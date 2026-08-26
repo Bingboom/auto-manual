@@ -43,8 +43,9 @@ class SymbolsPanelContract:
     icon_frame_height: float
     column_gap: float
     table_width: float
-    fill_all_cells: bool
-    shell_fill: str
+    signal_column_width: float
+    left_icon_column_width: float
+    right_icon_column_width: float
     auto_grow_rows: bool
     disable_hyphenation: bool
     frame_rects: tuple[tuple[str, tuple[float, float, float, float]], ...]

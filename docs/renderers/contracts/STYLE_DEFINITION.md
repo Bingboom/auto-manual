@@ -530,9 +530,9 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 - `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外统一增加 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；它只吸收导入后的表格标记，不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
+IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外保留 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；组件自有的 K05 Symbol 列底板覆盖完整外框高度，所以余量不会表现为列底部白带。它不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
 
-IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、K05 底色与圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
+IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。两种密度遵守同一填色规则：只有 `Symbol` / 图标列使用 K05，`Meaning` 列和圆角外壳保持 Paper；组件内部用与真实列宽相同的 K05 底板覆盖完整外框高度，并让列分隔线延续穿过表格载体余量，禁止在表格底部形成白带或断开的列边界，也禁止用整块灰色外壳遮盖空带。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
 
 ### 4.7 对比表
 

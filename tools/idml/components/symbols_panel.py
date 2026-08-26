@@ -113,6 +113,13 @@ class SymbolsPanel:
             owner="SymbolsPanel",
         )
         icon_table_width = (width - icon_gap) / 2.0 - icon_table_trim
+        signal_col = component_param_pt(
+            writer.params,
+            "comp_symbol_signal_col_width",
+            width * 0.24,
+            strict=writer.strict_component_assets,
+            owner="SymbolsPanel signal column",
+        )
         left_icon_col = component_param_pt(
             writer.params,
             (
@@ -255,9 +262,9 @@ class SymbolsPanel:
                 language,
                 headers=signal_headers,
                 row_heights=list(metrics.signal_row_heights),
+                left_col_width=signal_col,
                 fit_body_to_row=metrics.fit_body_to_row,
                 cell_vertical_inset=metrics.signal_cell_inset,
-                fill_all_cells=metrics.fill_all_cells,
                 disable_hyphenation=metrics.disable_hyphenation,
                 auto_grow_rows=metrics.auto_grow_rows,
             ),
@@ -307,7 +314,6 @@ class SymbolsPanel:
                 icon_width=icon_width,
                 icon_height=icon_height,
                 fit_body_to_row=metrics.fit_body_to_row,
-                fill_all_cells=metrics.fill_all_cells,
                 disable_hyphenation=metrics.disable_hyphenation,
                 auto_grow_rows=metrics.auto_grow_rows,
             ),
@@ -326,7 +332,6 @@ class SymbolsPanel:
                 icon_width=icon_width,
                 icon_height=icon_height,
                 fit_body_to_row=metrics.fit_body_to_row,
-                fill_all_cells=metrics.fill_all_cells,
                 disable_hyphenation=metrics.disable_hyphenation,
                 auto_grow_rows=metrics.auto_grow_rows,
             ),
@@ -362,16 +367,13 @@ class SymbolsPanel:
                 f"needed={total_height:.3f} available={available_height:.3f}"
             )
 
-        shell_fill = (
-            "Color/HB Bg K05"
-            if self.density == "compact"
-            else "Color/Paper"
-        )
-        shell_opts = with_rounded_outer({
-            "inset": (0, 0, 0, 0),
-            "rounded_outer_masks": True,
-            "rounded_outer_fill": shell_fill,
-        })
+        def shell_opts(left_plate_width: float, carrier_allowance: float) -> dict:
+            return with_rounded_outer({
+                "inset": (0, 0, 0, 0),
+                "rounded_outer_masks": True,
+                "left_plate_width": left_plate_width,
+                "left_plate_tail_height": carrier_allowance,
+            })
         frames = (
             frame_with_background(
                 writer,
@@ -383,15 +385,15 @@ class SymbolsPanel:
             ),
             frame_with_background(
                 writer, self.sid, "signals", signal_sid, signal_rect,
-                shell_opts,
+                shell_opts(signal_col, metrics.signal_frame_allowance),
             ),
             frame_with_background(
                 writer, self.sid, "icons_left", left_sid, left_rect,
-                shell_opts,
+                shell_opts(left_icon_col, metrics.icon_frame_allowance),
             ),
             frame_with_background(
                 writer, self.sid, "icons_right", right_sid, right_rect,
-                shell_opts,
+                shell_opts(right_icon_col, metrics.icon_frame_allowance),
             ),
         )
         contract = SymbolsPanelContract(
@@ -407,8 +409,9 @@ class SymbolsPanel:
             icon_frame_height=icon_frame_height,
             column_gap=icon_gap,
             table_width=icon_table_width,
-            fill_all_cells=metrics.fill_all_cells,
-            shell_fill=shell_fill,
+            signal_column_width=signal_col,
+            left_icon_column_width=left_icon_col,
+            right_icon_column_width=right_icon_col,
             auto_grow_rows=metrics.auto_grow_rows,
             disable_hyphenation=metrics.disable_hyphenation,
             frame_rects=(

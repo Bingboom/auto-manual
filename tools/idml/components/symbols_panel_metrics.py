@@ -30,7 +30,6 @@ class PanelMetrics:
     icon_long_last_row_height: float
     icon_frame_allowance: float
     signal_cell_inset: float
-    fill_all_cells: bool
     auto_grow_rows: bool
     disable_hyphenation: bool
     fit_body_to_row: bool
@@ -77,7 +76,6 @@ def panel_metrics(
             icon_long_last_row_height=style.icon_long_last_row_height,
             icon_frame_allowance=style.table_frame_allowance,
             signal_cell_inset=3.0,
-            fill_all_cells=False,
             auto_grow_rows=True,
             disable_hyphenation=False,
             fit_body_to_row=False,
@@ -170,7 +168,6 @@ def panel_metrics(
             "idml_compact_symbols_signal_cell_vertical_inset",
             3.0,
         ),
-        fill_all_cells=True,
         auto_grow_rows=False,
         disable_hyphenation=True,
         fit_body_to_row=True,

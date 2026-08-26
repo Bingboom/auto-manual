@@ -459,11 +459,11 @@ class SharedPageTests(unittest.TestCase):
                     self.assertNotIn('AutoGrow="true"', table_xml)
                     self.assertIn('Hyphenation="false"', table_xml)
                 self.assertEqual(
-                    14,
+                    7,
                     left_xml.count('FillColor="Color/HB Bg K05"'),
                 )
                 self.assertEqual(
-                    12,
+                    6,
                     right_xml.count('FillColor="Color/HB Bg K05"'),
                 )
                 for index in range(1, 12):

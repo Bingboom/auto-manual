@@ -316,21 +316,23 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                           lang: str = "en", *,
                           headers: tuple[str, str],
                           row_heights: list[float] | None = None,
+                          left_col_width: float | None = None,
                           fit_body_to_row: bool = False,
                           cell_vertical_inset: float = 3.0,
-                          fill_all_cells: bool = False,
                           disable_hyphenation: bool = False,
                           auto_grow_rows: bool = True) -> str:
     rows = [("", headers[0], headers[1], True)] + [
         (*_signal_row_fields(row), False) for row in signals
     ]
-    left_col = component_param_pt(
-        writer.params,
-        "comp_symbol_signal_col_width",
-        width * 0.24,
-        strict=writer.strict_component_assets,
-        owner="symbol signal table",
-    )
+    left_col = left_col_width
+    if left_col is None:
+        left_col = component_param_pt(
+            writer.params,
+            "comp_symbol_signal_col_width",
+            width * 0.24,
+            strict=writer.strict_component_assets,
+            owner="symbol signal table",
+        )
     cols = [left_col, width - left_col]
     cells = []
     for ri, (signal_key, left, right, header) in enumerate(rows):
@@ -370,8 +372,6 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                                   right=4,
                                   valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                  fill=("Color/HB Bg K05"
-                                        if fill_all_cells else None),
                                   top=cell_vertical_inset,
                                   bottom=cell_vertical_inset,
                                   left=7, right=5,
@@ -408,7 +408,6 @@ def _symbols_icon_table(
     icon_width: float | None = None,
     icon_height: float | None = None,
     fit_body_to_row: bool = False,
-    fill_all_cells: bool = False,
     disable_hyphenation: bool = False,
     auto_grow_rows: bool = True,
 ) -> str:
@@ -529,8 +528,6 @@ def _symbols_icon_table(
                                   right=2 if row.get("header") else 4,
                                   valign="CenterAlign"))
         cells.append(writer._cell(f"{tid}c{ri}_1", f"1:{ri}", right_xml,
-                                  fill=("Color/HB Bg K05"
-                                        if fill_all_cells else None),
                                   top=2, bottom=2, left=5, right=4,
                                   valign="CenterAlign"))
     table = writer._component_table(

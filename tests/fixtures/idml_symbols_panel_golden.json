@@ -6,8 +6,6 @@
         "column_gap": 5.8,
         "density": "compact",
         "disable_hyphenation": true,
-        "fill_all_cells": true,
-        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -48,12 +46,15 @@
         ],
         "icon_frame_height": 24.5,
         "language": "en",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           13.0
         ],
+        "right_icon_column_width": 35.5,
         "right_icon_row_heights": [
           13.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 117.901,
         "signal_gap": 4.1,
         "signal_row_heights": [
@@ -73,9 +74,9 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_en_icons_left": "4968329de513a4f27c99627809a157fd1129e6ccd6f753d430a211550d727966",
-        "st_symbols_shared_en_icons_right": "4335abcbdd30af944312108ede143195207b2349398a51941d607203de6913be",
-        "st_symbols_shared_en_signals": "223476f8e319308559feb7084cc483974d4db51800802d63c18a1d21b12fbff4",
+        "st_symbols_shared_en_icons_left": "1c8ad31934e24cdcbc2bf519409fb7425497d1824ddb0e7193fb2d8ed20f85b2",
+        "st_symbols_shared_en_icons_right": "6c0bbfab6333afacd80b6dc3ce29ecbbf459b761c6221588ef4e3124bbdbe57b",
+        "st_symbols_shared_en_signals": "2a757174b88855547fcf27725fbbe777d8809cb05b29a9b65c4b77148c8743ee",
         "st_symbols_shared_en_title": "3806e8489894db34cf94c11555d918551f7b80827916816f486574ec8dd89689"
       }
     },
@@ -85,8 +86,6 @@
         "column_gap": 5.8,
         "density": "compact",
         "disable_hyphenation": true,
-        "fill_all_cells": true,
-        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -127,12 +126,15 @@
         ],
         "icon_frame_height": 24.5,
         "language": "es",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           13.0
         ],
+        "right_icon_column_width": 35.5,
         "right_icon_row_heights": [
           13.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 106.501,
         "signal_gap": 5.0,
         "signal_row_heights": [
@@ -152,9 +154,9 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_es_icons_left": "fa71a7724181f3c0d731c4b2708312a11da9332d18be2948e6ae53b69b17f6a9",
-        "st_symbols_shared_es_icons_right": "ceec139df512372079045005976f43689b0ea79b87483c6b1e15aa2a23562686",
-        "st_symbols_shared_es_signals": "a9367acf27bd98edeb43e5ef241fb7b51f11cd5c612a9cc39a25b40ac6d23eef",
+        "st_symbols_shared_es_icons_left": "307ed6e41f0ab3d7a10722409c478649fce5f462d8236ce20379f71a4b41b05b",
+        "st_symbols_shared_es_icons_right": "939b91a6d7d94e2f11f67ce6faefe50055b8eda7818db2e0dd88e9f285271906",
+        "st_symbols_shared_es_signals": "c14bfddcdd67adadc0aca1f36cf7cfeaf8258eb92120da8fa4e27429527acb11",
         "st_symbols_shared_es_title": "8af7faa62e5f847d10d10a686555c77dd59bbc875f619babf224d46e1f435cd3"
       }
     },
@@ -164,8 +166,6 @@
         "column_gap": 5.8,
         "density": "compact",
         "disable_hyphenation": true,
-        "fill_all_cells": true,
-        "shell_fill": "Color/HB Bg K05",
         "frame_rects": [
           [
             "title",
@@ -206,12 +206,15 @@
         ],
         "icon_frame_height": 24.5,
         "language": "fr",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           13.0
         ],
+        "right_icon_column_width": 35.5,
         "right_icon_row_heights": [
           13.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 105.501,
         "signal_gap": 5.0,
         "signal_row_heights": [
@@ -231,9 +234,9 @@
         "right": 0
       },
       "story_sha256": {
-        "st_symbols_shared_fr_icons_left": "09cd43a48d3bc41c95ec818bbe33b7178c93280a3828962eed05848c03185a8b",
-        "st_symbols_shared_fr_icons_right": "c06a9b0f950e4276ced354c45af68c50f008f2454c56ed7189273cb769ce13f4",
-        "st_symbols_shared_fr_signals": "130fc2b615e8f2335ce7ea2f09fb27fd18599f4fbfdc25d357297c6f0d801d52",
+        "st_symbols_shared_fr_icons_left": "3371feb8e2445b037013955973406e9185fabe64118150b80b6c7c5d57ccf639",
+        "st_symbols_shared_fr_icons_right": "a984af88084bfdee60582e9ec8ed1c39c20723c4fa2bb7f19db2b419751b8818",
+        "st_symbols_shared_fr_signals": "cb8f1202ce1e5b56769a6ac7d98273d4593de0b519f5fbaf7a68a7d96685803c",
         "st_symbols_shared_fr_title": "8d16b246a71d27b28113b71cd59085cdbf05999fb7e6c452d976645ec2e6ac0a"
       }
     }
@@ -245,8 +248,6 @@
         "column_gap": 5.8,
         "density": "standard",
         "disable_hyphenation": false,
-        "fill_all_cells": false,
-        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",
@@ -287,12 +288,15 @@
         ],
         "icon_frame_height": 15.25,
         "language": "en",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           15.0
         ],
+        "right_icon_column_width": 36.4,
         "right_icon_row_heights": [
           15.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 118.98,
         "signal_gap": 4.1,
         "signal_row_heights": [
@@ -324,8 +328,6 @@
         "column_gap": 5.8,
         "density": "standard",
         "disable_hyphenation": false,
-        "fill_all_cells": false,
-        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",
@@ -366,12 +368,15 @@
         ],
         "icon_frame_height": 15.25,
         "language": "es",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           15.0
         ],
+        "right_icon_column_width": 36.4,
         "right_icon_row_heights": [
           15.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 118.98,
         "signal_gap": 9.8,
         "signal_row_heights": [
@@ -403,8 +408,6 @@
         "column_gap": 5.8,
         "density": "standard",
         "disable_hyphenation": false,
-        "fill_all_cells": false,
-        "shell_fill": "Color/Paper",
         "frame_rects": [
           [
             "title",
@@ -445,12 +448,15 @@
         ],
         "icon_frame_height": 15.25,
         "language": "fr",
+        "left_icon_column_width": 39.685,
         "left_icon_row_heights": [
           15.0
         ],
+        "right_icon_column_width": 36.4,
         "right_icon_row_heights": [
           15.0
         ],
+        "signal_column_width": 74.83464566929135,
         "signal_frame_height": 118.98,
         "signal_gap": 10.7,
         "signal_row_heights": [

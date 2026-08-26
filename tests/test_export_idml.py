@@ -2773,7 +2773,7 @@ class ExportIdmlTests(unittest.TestCase):
         )
         spread = dict(w.spreads)["sp_2"]
         self.assertEqual(spread.count("<TextFrame "), 8)
-        self.assertEqual(spread.count("<Rectangle "), 22)
+        self.assertEqual(spread.count("<Rectangle "), 25)
         self.assertEqual(
             spread.count('AppliedObjectStyle="ObjectStyle/HB Capsule Heading"'),
             2,

@@ -121,7 +121,7 @@ class SymbolsPanelTests(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_compact_panel_owns_fixed_rows_and_continuous_k05_fill(self) -> None:
+    def test_compact_panel_uses_shared_column_fill_and_absorbs_carrier(self) -> None:
         params = load_layout_params(
             ROOT / "data" / "layout_params.csv",
             (ROOT / "data" / "layout_params.idml-compact.csv",),
@@ -143,18 +143,54 @@ class SymbolsPanelTests(unittest.TestCase):
             density="compact",
         ).render(x=writer.m_l, y=163.2, width=312.09, available_height=361.0)
 
-        self.assertTrue(rendered.contract.fill_all_cells)
         self.assertFalse(rendered.contract.auto_grow_rows)
         self.assertTrue(rendered.contract.disable_hyphenation)
-        self.assertEqual("Color/HB Bg K05", rendered.contract.shell_fill)
-        for story_id in rendered.story_ids[1:]:
+        for story_id, frame_height in zip(
+            rendered.story_ids[1:],
+            (
+                rendered.contract.signal_frame_height,
+                rendered.contract.icon_frame_height,
+                rendered.contract.icon_frame_height,
+            ),
+            strict=True,
+        ):
             xml = dict(writer.stories)[story_id]
             self.assertIn('FillColor="Color/HB Bg K05"', xml)
             self.assertIn('AutoGrow="false"', xml)
             self.assertNotIn('AutoGrow="true"', xml)
-        for frame_id, frame_xml in zip(
+            root = ET.fromstring(xml)
+            table = root.find(".//Table")
+            self.assertIsNotNone(table)
+            rows = table.findall("./Row")
+            self.assertAlmostEqual(
+                11.5,
+                frame_height
+                - sum(float(row.attrib["SingleRowHeight"]) for row in rows),
+                places=3,
+            )
+            for cell in table.findall("./Cell"):
+                column = cell.attrib["Name"].split(":", 1)[0]
+                if column == "0":
+                    self.assertEqual(
+                        "Color/HB Bg K05",
+                        cell.attrib.get("FillColor"),
+                    )
+                else:
+                    self.assertNotIn("FillColor", cell.attrib)
+        for frame_id, frame_xml, plate_width, frame_height, tail_height in zip(
             ("signals", "icons_left", "icons_right"),
             rendered.frames[1:],
+            (
+                rendered.contract.signal_column_width,
+                rendered.contract.left_icon_column_width,
+                rendered.contract.right_icon_column_width,
+            ),
+            (
+                rendered.contract.signal_frame_height,
+                rendered.contract.icon_frame_height,
+                rendered.contract.icon_frame_height,
+            ),
+            (11.5, 11.5, 11.5),
             strict=True,
         ):
             root = ET.fromstring(f"<root>{frame_xml}</root>")
@@ -162,7 +198,45 @@ class SymbolsPanelTests(unittest.TestCase):
                 f".//*[@Self='bg_st_symbols_contract_{frame_id}']"
             )
             self.assertIsNotNone(shell)
-            self.assertEqual("Color/HB Bg K05", shell.attrib["FillColor"])
+            self.assertEqual("Color/Paper", shell.attrib["FillColor"])
+            plate = root.find(
+                f".//*[@Self='plate_st_symbols_contract_{frame_id}']"
+            )
+            self.assertIsNotNone(plate)
+            self.assertEqual("Color/HB Bg K05", plate.attrib["FillColor"])
+            anchors = [
+                tuple(float(value) for value in point.attrib["Anchor"].split())
+                for point in plate.findall(".//PathPointType")
+            ]
+            self.assertAlmostEqual(
+                plate_width,
+                max(x for x, _y in anchors) - min(x for x, _y in anchors),
+                places=3,
+            )
+            self.assertAlmostEqual(
+                frame_height,
+                max(y for _x, y in anchors) - min(y for _x, y in anchors),
+                places=3,
+            )
+            divider = root.find(
+                f".//*[@Self='divider_tail_st_symbols_contract_{frame_id}']"
+            )
+            self.assertIsNotNone(divider)
+            divider_anchors = [
+                tuple(float(value) for value in point.attrib["Anchor"].split())
+                for point in divider.findall(".//PathPointType")
+            ]
+            self.assertEqual(2, len(divider_anchors))
+            self.assertAlmostEqual(
+                max(x for x, _y in anchors),
+                divider_anchors[0][0],
+                places=3,
+            )
+            self.assertAlmostEqual(
+                tail_height,
+                abs(divider_anchors[1][1] - divider_anchors[0][1]),
+                places=3,
+            )
 
     def test_page_assemblers_only_assign_symbols_panel_rectangles(self) -> None:
         forbidden = (

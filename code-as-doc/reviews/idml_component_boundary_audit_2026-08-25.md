@@ -118,6 +118,24 @@ leader geometry; changing it to a relocatable rectangle API requires its own
 pre-refactor trilingual package baseline rather than being mixed into the
 fixed-panel move.
 
+### Symbols visual correction after the ownership refactor
+
+The initial ownership move preserved an existing compact-path divergence:
+compact Symbols rows excluded the native table-carrier allowance, leaving the
+allowance as a blank band below the table, while both columns and later the
+whole rounded shell were filled K05 to conceal it. That was component reuse in
+name only because its visible fill behavior differed from the standard JE
+contract and from the BP reference.
+
+The follow-up correction keeps one internal rule for both densities: only the
+Symbol/icon column is K05, the Meaning column and rounded shell are Paper, and
+a component-owned K05 column plate uses the real table-column width and full
+outer-frame height, with its divider continued through the carrier tail. The
+existing carrier allowance therefore stays available
+to native InDesign without becoming a visible white band. The EN/FR/ES
+contract fixture checks both cell-fill boundaries and the plate's exact width
+and height.
+
 ## Non-goals
 
 - no visual token value changes;
