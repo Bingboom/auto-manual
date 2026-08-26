@@ -67,34 +67,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r requirements.lock
-      - name: Select preview target
-        id: preview-target
-        shell: bash
-        run: |
-          config="configs/config.us-en.yaml"
-          model="JE-1000F"
-          region="US"
-          source="review"
-
-          changed_files="$(git diff --name-only "$FROM_REF" "$TO_REF")"
-          if printf '%s\n' "$changed_files" | grep -Eq '^(config\.zh\.yaml|docs/manifests/manual_zh\.yaml|docs/templates/page_zh/|docs/templates/recipes/zh/)'; then
-            config="configs/config.zh.yaml"
-            model="JE-2000E"
-            region="CN"
-            source="runtime"
-          fi
-
-          echo "config=$config" >> "$GITHUB_OUTPUT"
-          echo "model=$model" >> "$GITHUB_OUTPUT"
-          echo "region=$region" >> "$GITHUB_OUTPUT"
-          echo "source=$source" >> "$GITHUB_OUTPUT"
       - name: Build review preview smoke package
         run: >
           python tools/process_docs/build_review_preview.py
-          --config "${{ steps.preview-target.outputs.config }}"
-          --model "${{ steps.preview-target.outputs.model }}"
-          --region "${{ steps.preview-target.outputs.region }}"
-          --source "${{ steps.preview-target.outputs.source }}"
           --from-ref "$FROM_REF"
           --to-ref "$TO_REF"
           --data-root tests/fixtures/phase2

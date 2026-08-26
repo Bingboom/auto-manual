@@ -13,6 +13,27 @@ from tools.process_docs import build_review_preview
 
 
 class TestBuildReviewPreview(unittest.TestCase):
+    @staticmethod
+    def _preview_args(**overrides: object) -> argparse.Namespace:
+        values: dict[str, object] = {
+            "config": None,
+            "model": "JBP-2000B",
+            "region": "US",
+            "source": "review",
+            "tracked_root": None,
+            "data_root": "tests/fixtures/phase2",
+            "from_ref": "HEAD~1",
+            "to_ref": "HEAD",
+            "output_dir": "site/review-preview/dist",
+            "clean_build": False,
+            "skip_build": False,
+            "skip_diff": False,
+            "skip_word": True,
+            "all_review_models": True,
+        }
+        values.update(overrides)
+        return argparse.Namespace(**values)
+
     def test_importing_target_module_should_not_load_config_immediately(self) -> None:
         module_name = "tools.process_docs.build_review_preview_targets"
         sys.modules.pop(module_name, None)
@@ -32,6 +53,75 @@ class TestBuildReviewPreview(unittest.TestCase):
         self.assertEqual("JP", templates["configs/config.ja.yaml"].family)
         self.assertEqual("ja", templates["configs/config.ja.yaml"].language)
         self.assertFalse(templates["configs/config.ja.yaml"].include_lang_in_output_path)
+
+    def test_requested_workspace_target_should_resolve_bp_config_from_model_and_region(self) -> None:
+        target = build_review_preview.requested_workspace_target(self._preview_args())
+
+        self.assertEqual(("JBP-2000B", "US", "en"), target.key)
+        self.assertEqual("configs/config.bp-us.yaml", target.config)
+        self.assertFalse(target.include_lang_in_output_path)
+
+    def test_all_review_models_should_not_apply_host_configs_to_bp(self) -> None:
+        args = self._preview_args(config="configs/config.us-en.yaml", model="JE-1000F")
+        requested = build_review_preview.requested_workspace_target(args)
+
+        with mock.patch(
+            "tools.process_docs.build_review_preview_targets.review_models",
+            return_value=["JE-1000F", "JBP-2000B"],
+        ):
+            targets = build_review_preview.collect_workspace_target_candidates(
+                args,
+                requested_target=requested,
+            )
+
+        bp_targets = [target for target in targets if target.model == "JBP-2000B"]
+        self.assertEqual(1, len(bp_targets))
+        self.assertEqual("configs/config.bp-us.yaml", bp_targets[0].config)
+        self.assertFalse(bp_targets[0].include_lang_in_output_path)
+
+    def test_review_diff_command_should_use_each_targets_own_config(self) -> None:
+        args = self._preview_args(config="configs/config.us-en.yaml", model="JE-1000F")
+        bp_target = build_review_preview.registered_workspace_targets_for_model("JBP-2000B")[0]
+
+        command = build_review_preview.build_diff_command(
+            args=args,
+            target=bp_target,
+            tracked_root=Path("docs/_review/JBP-2000B/US"),
+        )
+
+        config_index = command.index("--config") + 1
+        self.assertEqual(
+            build_review_preview.resolve_path("configs/config.bp-us.yaml"),
+            Path(command[config_index]),
+        )
+
+    def test_resolve_preview_request_should_infer_changed_bp_review_target(self) -> None:
+        args = self._preview_args(model=None, region=None)
+
+        resolved = build_review_preview.resolve_preview_request_args(
+            args,
+            changed_files=["docs/_review/JBP-2000B/US/page/03_product_overview.rst"],
+            docs_dir=Path("docs"),
+        )
+
+        self.assertEqual("JBP-2000B", resolved.model)
+        self.assertEqual("US", resolved.region)
+        self.assertIsNone(resolved.config)
+        self.assertEqual("review", resolved.source)
+
+    def test_resolve_preview_request_should_preserve_cn_runtime_template_path(self) -> None:
+        args = self._preview_args(model=None, region=None)
+
+        resolved = build_review_preview.resolve_preview_request_args(
+            args,
+            changed_files=["docs/templates/page_zh/03_product_overview.rst"],
+            docs_dir=Path("missing-docs"),
+        )
+
+        self.assertEqual("JE-2000E", resolved.model)
+        self.assertEqual("CN", resolved.region)
+        self.assertEqual("configs/config.zh.yaml", resolved.config)
+        self.assertEqual("runtime", resolved.source)
 
     def test_rewrite_manual_switcher_links_should_preserve_manual_mode_and_retarget_preview_paths(self) -> None:
         current = build_review_preview.WorkspaceTarget(

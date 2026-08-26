@@ -4,6 +4,8 @@ doc_type: manual_bundle
 
 build:
   family_id: us-merged
+  # Queue-table Build_family expresses only the language range.
+  language_family: us-merged
   languages: [ en, fr, es ]
   include_lang_in_output_path: false
   queue_by_document_key: true

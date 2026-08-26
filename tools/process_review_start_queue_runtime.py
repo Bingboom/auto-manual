@@ -173,6 +173,7 @@ def process_review_start_queue(
             group_lang = deps.group_lang_fn(group)
             group_build_family = deps.group_build_family_fn(group)
             build_config_path = deps.resolve_config_path_fn(
+                model=model,
                 region=region,
                 lang=group_lang,
                 build_family=group_build_family,
@@ -243,6 +244,7 @@ def process_review_start_queue(
             group_lang = deps.group_lang_fn(group)
             group_build_family = deps.group_build_family_fn(group)
             build_config_path = deps.resolve_config_path_fn(
+                model=model,
                 region=region,
                 lang=group_lang,
                 build_family=group_build_family,

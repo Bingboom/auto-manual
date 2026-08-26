@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-08-13
+Updated: 2026-08-24
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -199,6 +199,18 @@ Quality and release logic should follow concern-specific modules instead of drif
     derivative mapping, and exact-or-abstain `merge_params` safety proof
   - no branch mutation, sync, PR creation, or propagation apply surface
 
+### Review Preview Packaging
+
+- [`tools/process_docs/build_review_preview.py`](../../tools/process_docs/build_review_preview.py)
+  - review-preview CLI facade, diff-based default-target inference, and package orchestration
+- [`tools/process_docs/build_review_preview_config.py`](../../tools/process_docs/build_review_preview_config.py)
+  - delegates exact model/region config selection and ambiguity rejection to the shared queue target resolver
+  - config-derived workspace target metadata
+- [`tools/process_docs/build_review_preview_targets.py`](../../tools/process_docs/build_review_preview_targets.py)
+  - review availability, target discovery, output paths, and build/diff command assembly
+- [`tools/process_docs/build_review_preview_workspace.py`](../../tools/process_docs/build_review_preview_workspace.py)
+  - per-target exports and workspace payload assembly
+
 ## 5. Build Queue Modules
 
 [`tools/process_build_queue.py`](../../tools/process_build_queue.py) should stay orchestration-first and delegate to:
@@ -228,10 +240,12 @@ Quality and release logic should follow concern-specific modules instead of drif
   - repo entrypoint-facing access to environment-backed binding resolution
 - [`tools/queue_bound_records.py`](../../tools/queue_bound_records.py)
   - queue record/action facade adapters
-  - repo-root-aware config resolution and grouping helpers used by the queue entrypoint
+  - repo-root-aware config resolution that forwards the parsed model/region target into grouping and execution
 - [`tools/queue_config_resolution.py`](../../tools/queue_config_resolution.py)
-  - config-family routing
-  - target/config resolution for queue rows
+  - shared Start Review / Draft / Publish / Preview config resolver
+  - exact declared model/region target override plus generic regional fallback
+  - queue `Build_family` language-range matching through `build.language_family`, while `build.family_id` remains the internal config identity
+  - target-only config exclusion from model-less fallback and fail-closed ambiguity handling
 - [`tools/queue_runtime.py`](../../tools/queue_runtime.py)
   - worktree/runtime helpers
   - generated path and review/runtime input helpers, including subprocess-scoped environment overlays

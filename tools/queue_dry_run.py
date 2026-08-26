@@ -30,6 +30,7 @@ def print_dry_run_groups(
         validate_queue_record_group(group)
         effective_doc_phase = resolve_queue_workflow_action(record)
         resolved_config_path = resolve_config_path_for_task(
+            model=model,
             region=region,
             lang=group_lang,
             build_family=group_build_family,
