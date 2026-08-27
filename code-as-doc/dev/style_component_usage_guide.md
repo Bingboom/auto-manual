@@ -238,13 +238,16 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
 | 已审组件的内部 token / 私有 helper 进入 6 个已枚举 composer | `inspect.getsource` 黑名单测试 ×11（`test_idml_fixed_panel_golden` 等），CI 全量 unittest 执行 | ✅ 已闸 |
 | 三语 × 密度几何回归 | FCC/Inbox/TIP、Safety、Storage、Symbols 的 EN/FR/ES golden | ✅ 已闸 |
 | LCD / Troubleshooting 最终化只碰载体 | `test_indesign_finalize` 源码切片断言 | ✅ 已闸 |
-| `if model ==` / `page_number ==` / 本地化标题分支 | **无**——当前 `tools/idml/` 恰好为零，靠约定维持 | ⚠️ 仅文档 |
-| **新增**的 composer / 组件越界 | **无**——边界测试逐个枚举函数名，新函数不在名单上 | ⚠️ 仅文档 |
-| Symbols 最终化 refit、通用溢出 pass 的标题启发 | 测试钉住现状，但未验证 fill/stroke 透明 | ⚠️ 部分 |
+| `if model ==` / `page_number ==` 分支 | `tests/test_idml_page_boundaries.py`：AST 级 Eq/NotEq 扫描 + 型号字面量棘轮（唯一白名单 = `page_placed.py` 背板遗留） | ✅ 已闸 |
+| **新增**的 composer 越界 | 同上：任何模块里任何 `add_*_page` 函数自动受检（组件内部名/私有前缀/私有 import），不再逐个枚举 | ✅ 已闸 |
+| 新增 Panel 组件缺三语回归 | 同上：`COMPONENT_REGRESSION_REGISTRY` 普查——新 `*Panel` 类不登记矩阵即红（Phase C runner） | ✅ 已闸 |
+| 最终化新增 stretch 函数 | 同上：`geometricBounds` 写点集合钉死为 3 个已审函数 | ✅ 已闸 |
+| **本地化标题**决定样式 | **无**——标题比较在语义解析层有合法用途，无法一刀切；靠 §9 评审清单 | ⚠️ 仅文档 |
+| Symbols refit / 通用溢出 pass 的 fill/stroke 未验证 | 测试钉住现状与写点归属，但未验证透明性 | ⚠️ 部分 |
 
-后两行正是"下一个 agent 忍不住自己画"时 CI 不会变红的地方。评审新产线 PR 时，
-§7 清单要人工过一遍；结构性收口（AST 级的 composer 通用闸门 + 组件回归注册器，
-即边界审计 Phase C 的遗留项）在案未做。
+结构性收口已落地（`tests/test_idml_page_boundaries.py`，四组闸门各有负控验证）。
+剩余两行 ⚠️ 是评审新产线 PR 时仍需人工过 §9 清单的地方；白名单条目收缩是进步，
+扩张需要与共享样式变更同级的评审。
 
 ## 9. 代码评审时直接拒绝的形态
 
