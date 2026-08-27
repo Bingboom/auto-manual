@@ -61,7 +61,7 @@ plate、mask、outline，也不能按语言修改内部坐标。
 | Troubleshooting | production block 流进入 `render_table_block(...)` | 两列表数据、语言、外部 flow/frame | 本地化行 minima、列宽、垂直居中、底色、圆角 shell、透明终止载体 | 页面直接调用 `_troubleshooting_*` 私有 helper；给末行或外壳补白；最终化改可见表框 |
 | Storage | `StoragePanelData.from_blocks(...)` + `StoragePanel.render()` | H1/正文 blocks、语言、外部 story frame | 复用 JE 的 inline H1 + prose story；不创建独立卡片 | JBP 另建灰底正文卡、独立标题 story、圆角、inset 或基线补丁 |
 | Specifications | `writer.add_spec_story(...)` | 规格 sections、annotations、语言、批准 layout variant、外部 frame | 分节标题、行高、AutoGrow 规则、列宽、圆角 shell、脚注与 portable symbol | 页面设置逐表固定 shell 高度、把余量塞进末行、按标题单独调圆点/基线 |
-| Charging 尾部胶囊标题 | `add_charging_page(...)` → `HeadingPill` 的 `charging` variant | blocks、语言、语义 image role、批准 suffix 索引、外部 frame | 图→标题节奏、标题/胶囊字面宽度、两列间可见间距 | 叠加普通图后距和普通 H2 前距；右对齐胶囊；在页面重分两列 |
+| Charging 尾部胶囊标题 | `add_charging_page(...)` → `promote_h2_suffix_pills(..., variant="charging")` 产出 `headingpill` block，由 `components/emphasis.py` 的 `render_headingpill` 渲染 | blocks、语言、语义 image role、批准 suffix 索引、外部 frame | 图→标题节奏、标题/胶囊字面宽度、两列间可见间距 | 叠加普通图后距和普通 H2 前距；右对齐胶囊；在页面重分两列 |
 | H1 | 共享 `heading_text` + `h1_frame_opts`，通常由所属完整组件调用 | 标题语义和组件外部矩形 | 字面基线、标题框内部边界、共同字体/leading | 页面以 Y 偏移、型号分支或独立 text rectangle 重建内部基线 |
 
 `render_table_block(...)` 是 Troubleshooting 在 block renderer 内的公共边界，不是
@@ -86,7 +86,8 @@ panel = SymbolsPanel(
 )
 ```
 
-调用完成后，页面只能使用返回的 story / continuation 结果继续编排；不得再拿
+调用完成后，页面只能使用返回的 story / overflow 结果继续编排（续页经
+`SymbolsPanel.render_continuation`）；不得再拿
 `panel_metrics()` 的行高给 shell、底板或遮罩做第二次调整。
 
 ### 3.2 Storage：使用 JE 的同一条 H1 + prose 内容流
@@ -108,19 +109,31 @@ writer.add_story_frames(panel.story_id, [(page_index, top, bottom)])
 ### 3.3 Charging：页面选择语义 variant，不传内部间距
 
 `add_charging_page(...)` 从 target composition 读取 `image_role` 和
-`h2_suffix_pill_indices`，把目标 H2 提升为 `HeadingPill(variant="charging")`。页面
+`h2_suffix_pill_indices`，经 `promote_h2_suffix_pills(..., variant="charging")` 把目标
+H2 提升为 `headingpill` 组件块（`render_headingpill` 渲染）。页面
 不接收图后距、H2 前距、标题列宽或胶囊宽度；这些值属于共享组件。
 
 ## 4. 透明终止载体的统一模式
 
 IDML 文本故事可能需要为原生终止标记保留极小空间。这个空间是**排版载体**，不是
-视觉内容，必须与可见 shell 分离：
+视觉内容，必须与可见 shell 分离。带标签载体是主模式（LCD 与 Troubleshooting
+已按此实现，`tools/idml/page_objects.py` 的 `terminal_carrier_height` 路径）：
 
 1. 组件先计算可见行高，并让主文本框、底色、遮罩和圆角外框精确结束在行高总和。
 2. 组件通过 `terminal_carrier_height` 创建串接在主文本框之后的透明 frame。
 3. 透明 frame 使用稳定标签 `tf_terminal_carrier_group_*`，且 fill/stroke 均为 None。
 4. 最终化脚本如需容纳终止标记，只能扩展这个载体。
 5. 最终化不得查询原生表高后修改主框、plate、mask、outline 或任何 row。
+
+当前代码里有两个**登记在案的例外**，新组件不要模仿，收敛方向是并入带标签模式：
+
+- **Symbols 表**用帧内余量（`idml_symbols_native_carrier_allowance`）而非独立载体；
+  最终化的 `resizeComposedTableShell`（`indesign_finalize.jsx:301`）按 story 标题
+  `Signal words` / `Symbol icons` 匹配后读原生表高、改一个透明表框。它没有验证
+  fill/stroke，也没有 `tf_terminal_carrier` 标签——依赖“该框恰好透明”这一约定。
+- **通用溢出 pass**（`fitTerminalCarrierFrames`，`jsx:259`）不检查载体标签：仅含
+  终止标记的 story 允许长 24pt，标题含 `product_overview` 的实测 story 允许长
+  160pt，其余为 0。给 story 起含 `product_overview` 的名字会意外获得放宽额度。
 
 禁止用三种“看似快速”的办法：给最后一行加高、给可见 shell 加 1pt、在底部补一块
 与底色相同的矩形。三者都会把内部排版问题伪装成视觉修补，并在下一语言或下一次
@@ -138,7 +151,12 @@ InDesign 重排时重新露白。
 ### 5.2 新语言
 
 - 先补稳定语义数据和真实本地化文案，再确认内容是否超过当前容量。
-- 容量差异优先走 `lang_<code>_*` token 或内容测量，不复制 renderer。
+- **优先让组件从前一块的实测渲染高度推导堆叠位置，其次才是 `lang_<code>_*`
+  常量**。JBP 轮 overlay 里 `lang_*` 行从 21 涨到 44，多为手工量出的堆叠偏移
+  （如 `lang_fr_idml_compact_safety_symbols_title_top`）——每个这样的常量都是
+  下一语言要重付的测量成本。确需常量时，注释里写明它量的是什么。
+- 容量差异不复制 renderer；字号/行距类的排版容量参数是 `lang_<code>_*` 的正当
+  用途。
 - 同时检查字形、换行、行高、垂直居中、溢出和透明载体。
 - 新语言通过后，把它加入同一组件回归矩阵；不要创建语言专属 golden 逻辑。
 
@@ -185,7 +203,49 @@ python tools/check_doc_link_integrity.py
 涉及可见 IDML 几何或最终化行为时，直接测试之后还必须用真实 InDesign 导出
 EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视觉验收。
 
-## 7. 代码评审时直接拒绝的形态
+## 7. 新产线 IDML 文件包：完整八步
+
+上面各节回答"怎样复用一个组件"；本节回答**下一条产线从零到 IDML 交付包**的完整
+顺序。JBP-2000B_US 是首个全程按此走通的产线。每步标注是机械操作还是需要判断——
+判断步是时间会花掉的地方。
+
+| # | 步骤 | 落点 | 性质 |
+|---|---|---|---|
+| 1 | 规格入库 | phase2 源表，经 `spec-sheet-structured-intake` skill | 判断 + 操作者审批写库 |
+| 2 | 家族 config + 骨架 | `configs/config.<family>.yaml`（照 `config.bp-us.yaml`；`language_family` 写语言范围、`queue_requires_target_match: true`）+ blueprint / region-profile → `tools/skeleton_resolve.py` emit | 基本机械；⚠️ `allowed_foreign_identity_literals` 是**整表替换**不是追加 |
+| 3 | 页面模板 | `docs/templates/page_<family>/{en,fr,es}/`：语义容器（`.. container:: warranty-*`）、`asset:KEY`、`{{snippet:}}`、`:widths: 12 88` callout | 判断；逐项过 §6 清单 |
+| 4 | 插图资产 | `data/asset_recipes/*.json`（经 `asset-textless-extraction` skill）→ 注册表登记，**全新键 `override_for` 留空** | 判断 + 操作者确认 |
+| 5 | **目标装配 JSON** | `docs/renderers/contracts/target_assembly/<model>_<region>_v1_candidate.json`：逐页 composition_type、物理页打包（对齐出货书页数预算）、variant 选择 | **纯判断，当前无脚手架——全流程瓶颈**。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
+| 6 | 容量令牌 | `data/layout_params.idml-compact.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行 | 半机械测量；见 §5.2 |
+| 7 | 构建 + 最终化 | `python build.py idml --config configs/config.<family>.yaml --model <M> --region <R> --idml-mode both --skip-root-index`；InDesign 最终化只碰载体；preflight 零 overset | 机械 |
+| 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门（**流程尚未成文**：`config.bp-us.yaml` 注释只说"经 approved registry 晋升"，加载器在 `production_eligible` 前 fail-closed） | 判断 |
+
+已知的两处减速带（按 JBP 实测）：
+
+- **第 5 步无脚手架**：JBP 的装配 JSON 有 603 行，全部手写。下一条产线最值得
+  投入的机制是一个从 manifest + 出货书页数生成装配骨架的工具。
+- **第 6 步是逐语言实测成本**：JBP 轮 overlay 从 103 行涨到 170 行（`lang_*`
+  21→44），多为"量出来的"堆叠偏移。组件若能从前一块的实测渲染高度推导堆叠位置
+  （而不是读常量），这笔成本对下一语言就不再重付。
+
+## 8. 闸门现状：CI 会拦住什么、不会拦住什么
+
+§7 的拒绝形态并非全部有机器闸门。诚实的现状（tip `13892ff6`）：
+
+| 禁止形态 | 闸门 | 状态 |
+|---|---|---|
+| 已审组件的内部 token / 私有 helper 进入 6 个已枚举 composer | `inspect.getsource` 黑名单测试 ×11（`test_idml_fixed_panel_golden` 等），CI 全量 unittest 执行 | ✅ 已闸 |
+| 三语 × 密度几何回归 | FCC/Inbox/TIP、Safety、Storage、Symbols 的 EN/FR/ES golden | ✅ 已闸 |
+| LCD / Troubleshooting 最终化只碰载体 | `test_indesign_finalize` 源码切片断言 | ✅ 已闸 |
+| `if model ==` / `page_number ==` / 本地化标题分支 | **无**——当前 `tools/idml/` 恰好为零，靠约定维持 | ⚠️ 仅文档 |
+| **新增**的 composer / 组件越界 | **无**——边界测试逐个枚举函数名，新函数不在名单上 | ⚠️ 仅文档 |
+| Symbols 最终化 refit、通用溢出 pass 的标题启发 | 测试钉住现状，但未验证 fill/stroke 透明 | ⚠️ 部分 |
+
+后两行正是"下一个 agent 忍不住自己画"时 CI 不会变红的地方。评审新产线 PR 时，
+§7 清单要人工过一遍；结构性收口（AST 级的 composer 通用闸门 + 组件回归注册器，
+即边界审计 Phase C 的遗留项）在案未做。
+
+## 9. 代码评审时直接拒绝的形态
 
 - `if model == ...`、`if page_number == ...` 或按本地化标题决定样式。
 - 页面编排器 import 组件私有 helper、metrics 或内部 token。
