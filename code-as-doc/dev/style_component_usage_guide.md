@@ -215,15 +215,16 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
 | 2 | 家族 config + 骨架 | `configs/config.<family>.yaml`（照 `config.bp-us.yaml`；`language_family` 写语言范围、`queue_requires_target_match: true`）+ blueprint / region-profile → `tools/skeleton_resolve.py` emit | 基本机械；⚠️ `allowed_foreign_identity_literals` 是**整表替换**不是追加 |
 | 3 | 页面模板 | `docs/templates/page_<family>/{en,fr,es}/`：语义容器（`.. container:: warranty-*`）、`asset:KEY`、`{{snippet:}}`、`:widths: 12 88` callout | 判断；逐项过 §6 清单 |
 | 4 | 插图资产 | `data/asset_recipes/*.json`（经 `asset-textless-extraction` skill）→ 注册表登记，**全新键 `override_for` 留空** | 判断 + 操作者确认 |
-| 5 | **目标装配 JSON** | `docs/renderers/contracts/target_assembly/<model>_<region>_v1_candidate.json`：逐页 composition_type、物理页打包（对齐出货书页数预算）、variant 选择 | **纯判断，当前无脚手架——全流程瓶颈**。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
+| 5 | **目标装配 JSON** | 先跑脚手架：`python -m tools.idml.target_assembly_scaffold --ir <build>/idml/manual.ir.json --physical-pages <N> --out .../<target>_v1_candidate.json`——机械字段（角色、组合、页序）自动生成且可直接 normalize，随产出的 `.todos.md` 只补判断项（variant / composition_data / flow_split / 打包合并）。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
 | 6 | 容量令牌 | `data/layout_params.idml-compact.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行 | 半机械测量；见 §5.2 |
 | 7 | 构建 + 最终化 | `python build.py idml --config configs/config.<family>.yaml --model <M> --region <R> --idml-mode both --skip-root-index`；InDesign 最终化只碰载体；preflight 零 overset | 机械 |
 | 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门（**流程尚未成文**：`config.bp-us.yaml` 注释只说"经 approved registry 晋升"，加载器在 `production_eligible` 前 fail-closed） | 判断 |
 
 已知的两处减速带（按 JBP 实测）：
 
-- **第 5 步无脚手架**：JBP 的装配 JSON 有 603 行，全部手写。下一条产线最值得
-  投入的机制是一个从 manifest + 出货书页数生成装配骨架的工具。
+- ~~第 5 步无脚手架~~ **已解决**：`tools/idml/target_assembly_scaffold.py` 对 JBP
+  自身页序的往返测试证明全部机械字段与手写 plan 逐字段一致（43 页 × 7 字段），
+  剩余判断收敛为 7 条具名 TODO。
 - **第 6 步是逐语言实测成本**：JBP 轮 overlay 从 103 行涨到 170 行（`lang_*`
   21→44），多为"量出来的"堆叠偏移。组件若能从前一块的实测渲染高度推导堆叠位置
   （而不是读常量），这笔成本对下一语言就不再重付。
