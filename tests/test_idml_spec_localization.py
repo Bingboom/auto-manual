@@ -176,6 +176,31 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
                         story,
                     )
 
+    def test_compact_spec_supports_more_than_three_sections(self) -> None:
+        writer = IdmlWriter(
+            load_layout_params(ROOT / "data" / "layout_params.csv")
+        )
+        sections = [
+            {"title": f"SECTION {index}", "rows": [("Label", "Value")]}
+            for index in range(1, 5)
+        ]
+
+        sid = writer.add_spec_story(
+            sections,
+            lang="ko",
+            title="제품 사양",
+            layout_variant="compact",
+        )
+
+        self.assertEqual("st_spec_ko", sid)
+        anchors = {
+            name
+            for name, _xml in writer.stories
+            if name.startswith("st_anchor_spec_ko")
+        }
+        self.assertEqual(4, len(anchors))
+        self.assertIn('SpaceBefore="2.5"', dict(writer.stories)[sid])
+
     def test_spec_row_minima_and_multiline_growth_are_token_driven(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         params["idml_spec_table_row_height"] = ("12", "pt")

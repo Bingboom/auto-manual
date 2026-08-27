@@ -13,6 +13,7 @@ from tools.page_plan import (
     build_renderer_page_plan,
     idml_page_binding,
     latex_page_binding,
+    page_template_role_for_composition_type,
     web_pagination_binding,
     word_page_binding,
 )
@@ -70,6 +71,18 @@ class PagePlanTests(unittest.TestCase):
                     if page.language not in {"cover", "toc", ""}
                 )
             ),
+        )
+
+    def test_preface_safety_composite_is_a_numbered_body_page(self) -> None:
+        self.assertEqual(
+            PageTemplateRole.STANDARD,
+            page_template_role_for_composition_type(
+                "preface_safety_maintenance"
+            ),
+        )
+        self.assertEqual(
+            PageTemplateRole.NO_FOOTER,
+            page_template_role_for_composition_type("preface"),
         )
 
     def test_source_order_and_composition_map_are_lossless(self) -> None:

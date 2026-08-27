@@ -356,6 +356,9 @@ def product_overview_frames(
     sid: str,
     blocks: list[Block],
     bundle_root: Path,
+    *,
+    instance_id: str | None = None,
+    asset_refs: Mapping[str, str] | None = None,
 ) -> list[str]:
     """Build the shared Overview component frames without owning a page."""
     h1 = next((str(value) for kind, value in blocks if kind == "h1"), "")
@@ -370,11 +373,21 @@ def product_overview_frames(
         )
     if not h1 or len(h2s) != 2 or len(image_refs) != 2:
         raise ValueError("product overview requires one h1, two h2s, and two images")
-    assets = [writer._resolve_bundle_image(bundle_root, ref) for ref in image_refs]
+    resolved_refs = list(image_refs)
+    if asset_refs is not None:
+        resolved_refs = [
+            str(asset_refs.get("front_art") or ""),
+            str(asset_refs.get("right_art") or ""),
+        ]
+    assets = [writer._resolve_bundle_image(bundle_root, ref) for ref in resolved_refs]
     if any(asset is None for asset in assets):
         raise ValueError("product overview contains an unresolved governed image")
 
-    instance = resolve_overview_instance(model=writer.model, region=writer.region)
+    instance = resolve_overview_instance(
+        model=writer.model,
+        region=writer.region,
+        instance_id=instance_id,
+    )
     try:
         spec = overview_spec_from_blocks(
             blocks,

@@ -360,8 +360,14 @@ def _display_segments(
 def finalize(
     writer, collector: TocCollector, add_story_parts, psr,
     source: dict | None = None,
+    page_plan: dict | None = None,
 ) -> bool:
     """Build the TOC spread and splice it into the template slot."""
+    if (page_plan or {}).get("plan_source") == "target-assembly" and not any(
+        entry.get("page_role") == "toc"
+        for entry in (page_plan or {}).get("pages", [])
+    ):
+        return False
     title, segments = _display_segments(collector, source)
     if not segments or len(writer.spreads) <= _TOC_SLOT:
         return False

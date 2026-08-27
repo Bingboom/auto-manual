@@ -320,6 +320,15 @@ idml_app_control_label_font_leading,5.8,pt,IDML App control overlay label leadin
 idml_app_control_label_min_height,7.2,pt,IDML App control overlay minimum editable frame height
 idml_app_control_label_leader_gap,1.2,pt,IDML App control label-to-leader optical gap shared by both sides and all languages
 idml_app_control_leader_extension_weight,0.5,pt,IDML App control leader-extension stroke weight matching the linked control artwork
+idml_app_control_embedded_main_outer_edge,39.15,pt,App embedded-leader main-power label outer edge
+idml_app_control_embedded_main_leader_edge,75.61,pt,App embedded-leader main-power label leader edge
+idml_app_control_embedded_main_line_y,-52.64,pt,App embedded-leader main-power label vertical center
+idml_app_control_embedded_dc_outer_edge,25.49,pt,App embedded-leader DC-USB label outer edge
+idml_app_control_embedded_dc_leader_edge,75.61,pt,App embedded-leader DC-USB label leader edge
+idml_app_control_embedded_dc_line_y,-29.75,pt,App embedded-leader DC-USB label vertical center
+idml_app_control_embedded_ac_outer_edge,262.68,pt,App embedded-leader AC label outer edge
+idml_app_control_embedded_ac_leader_edge,225.31,pt,App embedded-leader AC label leader edge
+idml_app_control_embedded_ac_line_y,-28.52,pt,App embedded-leader AC label vertical center
 idml_app_connect_step_font_size,5.5,pt,IDML App screenshot step-label size
 idml_app_connect_step_font_leading,6.2,pt,IDML App screenshot step-label leading
 idml_app_connect_note_font_size,5.8,pt,IDML App screenshot reference-note size
@@ -354,6 +363,7 @@ idml_app_add_device_space_before,8.0,pt,App instructions-to-pairing-composite rh
 idml_app_add_device_space_after,3.5,pt,App pairing-composite-to-step-2.3 rhythm
 idml_app_connect_result_space_before,12.0,pt,App step-2.5-to-result-composite rhythm
 idml_app_page_extra_height,48.0,pt,Invisible final-frame depth allowance for localized editable App copy
+idml_app_page_top,15.06,pt,Shared App composition first-frame top edge
 comp_trouble_left_ratio,0.11,ratio,Troubleshooting error-code column ratio before cell padding
 comp_trouble_step_indent,3.4,mm,Troubleshooting numbered-step hanging indent
 comp_trouble_steps_pad_tb,1.0,mm,Troubleshooting numbered-step cell top/bottom padding
@@ -848,6 +858,7 @@ comp_spec_table_left_ratio,0.315,ratio,Spec table left column ratio of textwidth
 idml_spec_table_left_ratio,0.302,ratio,Default InDesign specification left-column ratio measured from reference
 lang_es_idml_spec_table_left_ratio,0.362,ratio,ES InDesign specification left-column ratio measured from reference
 idml_spec_table_row_height,10.3,pt,InDesign specification ordinary row minimum height
+idml_spec_native_carrier_allowance,1.0,pt,Transparent native InDesign terminal-marker carrier threaded below each visible specification shell
 idml_spec_section_1_space_before,7.89,pt,Default first specification section rhythm
 idml_spec_section_2_space_before,9.56,pt,Default second specification section rhythm
 idml_spec_section_3_space_before,10.54,pt,Default third specification section rhythm

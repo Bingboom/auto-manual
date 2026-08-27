@@ -733,32 +733,75 @@ def _app_add_device(
     # The source panel retains its original short leader stubs.  These native
     # paths extend them to the exact reference endpoints and stay underneath
     # all editable label frames.
-    graphics.extend([
-        _inline_path(
-            f"referencefigure_app_rule_power_extension_{tid}",
-            ((77.905, -40.118), (108.25, -40.118)),
-            weight=style.control_leader_extension_weight,
-        ),
-        _inline_path(
-            f"referencefigure_app_rule_dc_extension_{tid}",
-            ((102.5, -22.786), (108.0, -22.786)),
-            weight=style.control_leader_extension_weight,
-        ),
-        _inline_path(
-            f"referencefigure_app_rule_ac_extension_{tid}",
-            ((230.0, -22.686), (248.268, -22.686)),
-            weight=style.control_leader_extension_weight,
-        ),
-    ])
+    control_variant = str(
+        spec.get("control_layout_variant") or "reference_extensions"
+    )
+    if control_variant not in {"embedded_leaders", "reference_extensions"}:
+        raise ValueError(
+            "app_add_device control_layout_variant must be embedded_leaders "
+            "or reference_extensions"
+        )
+    if control_variant == "reference_extensions":
+        graphics.extend([
+            _inline_path(
+                f"referencefigure_app_rule_power_extension_{tid}",
+                ((77.905, -40.118), (108.25, -40.118)),
+                weight=style.control_leader_extension_weight,
+            ),
+            _inline_path(
+                f"referencefigure_app_rule_dc_extension_{tid}",
+                ((102.5, -22.786), (108.0, -22.786)),
+                weight=style.control_leader_extension_weight,
+            ),
+            _inline_path(
+                f"referencefigure_app_rule_ac_extension_{tid}",
+                ((230.0, -22.686), (248.268, -22.686)),
+                weight=style.control_leader_extension_weight,
+            ),
+        ])
 
     labels = _control_labels_by_role(spec, ctx)
     # Roles are explicit in source/IR. Localized array order never controls
     # placement: the fixed visual slots are main power, DC/USB, then AC.
-    label_specs = (
-        ("main_power", 23.161, 77.905, -40.118, "left"),
-        ("dc_usb", 22.681, 102.5, -22.786, "left"),
-        ("ac", 310.0, 248.268, -22.686, "right"),
-    )
+    if control_variant == "embedded_leaders":
+        def geometry(key: str, default: float) -> float:
+            return component_param_pt(
+                ctx.params,
+                key,
+                default,
+                strict=ctx.strict_component_assets,
+                owner="app_add_device embedded_leaders",
+            )
+
+        label_specs = (
+            (
+                "main_power",
+                geometry("idml_app_control_embedded_main_outer_edge", 39.15),
+                geometry("idml_app_control_embedded_main_leader_edge", 75.61),
+                geometry("idml_app_control_embedded_main_line_y", -52.64),
+                "left",
+            ),
+            (
+                "dc_usb",
+                geometry("idml_app_control_embedded_dc_outer_edge", 25.49),
+                geometry("idml_app_control_embedded_dc_leader_edge", 75.61),
+                geometry("idml_app_control_embedded_dc_line_y", -29.75),
+                "left",
+            ),
+            (
+                "ac",
+                geometry("idml_app_control_embedded_ac_outer_edge", 262.68),
+                geometry("idml_app_control_embedded_ac_leader_edge", 225.31),
+                geometry("idml_app_control_embedded_ac_line_y", -28.52),
+                "right",
+            ),
+        )
+    else:
+        label_specs = (
+            ("main_power", 23.161, 77.905, -40.118, "left"),
+            ("dc_usb", 22.681, 102.5, -22.786, "left"),
+            ("ac", 310.0, 248.268, -22.686, "right"),
+        )
     label_frames = []
     for index, (role, outer_edge, leader_edge, line_y, side) in enumerate(
         label_specs

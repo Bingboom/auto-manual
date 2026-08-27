@@ -29,6 +29,28 @@ def page_template_role_for_assembly_role(role: str) -> PageTemplateRole:
     return PageTemplateRole.STANDARD
 
 
+def page_template_role_for_composition_type(
+    composition_type: str,
+) -> PageTemplateRole:
+    """Return the physical-page policy owned by a shared composition."""
+
+    normalized = str(composition_type).strip().casefold().replace("-", "_")
+    if normalized == "front_cover":
+        return PageTemplateRole.FRONT_COVER
+    if normalized == "back_cover":
+        return PageTemplateRole.BACK_COVER
+    if normalized == "toc":
+        return PageTemplateRole.TOC
+    if normalized == "preface_safety_maintenance":
+        # A composite that also owns safety and maintenance content is a
+        # numbered body page. Only the standalone preface composition uses
+        # the no-footer policy.
+        return PageTemplateRole.STANDARD
+    if normalized == "preface" or normalized.startswith("preface_"):
+        return PageTemplateRole.NO_FOOTER
+    return PageTemplateRole.STANDARD
+
+
 def page_template_role_for_source_ref(source_ref: str | Path) -> PageTemplateRole:
     stem = Path(source_ref).stem.casefold()
     if stem.startswith("cover"):
@@ -57,10 +79,15 @@ def _source_page(
             f"page-plan entry {ordinal} lacks approved physical mapping: {exc}"
         ) from exc
     assembly_role = str(entry.get("page_role") or "")
+    composition_type = str(entry.get("composition_type") or "")
     role = (
-        page_template_role_for_assembly_role(assembly_role)
-        if assembly_role
-        else page_template_role_for_source_ref(source_ref)
+        page_template_role_for_composition_type(composition_type)
+        if composition_type
+        else (
+            page_template_role_for_assembly_role(assembly_role)
+            if assembly_role
+            else page_template_role_for_source_ref(source_ref)
+        )
     )
     footer_policy, folio_policy = policies_for_role(role)
     extension_id = (

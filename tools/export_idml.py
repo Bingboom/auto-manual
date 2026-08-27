@@ -546,7 +546,8 @@ def main() -> int:
     if back_cover_added:
         page_cursor += 1
     _toc.finalize(w, toc, w._add_story_parts, w._psr,
-                  source=_ir_projection.toc_page_data(manual_ir, bundle_root))
+                  source=_ir_projection.toc_page_data(manual_ir, bundle_root),
+                  page_plan=page_plan)
     _folio.apply(
         w,
         w._add_story_parts,

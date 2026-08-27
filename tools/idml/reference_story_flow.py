@@ -268,7 +268,11 @@ class ReferenceStoryEmitter:
                     13.81,
                 )
                 if is_ups_charging
-                else 15.06
+                else param_pt(
+                    writer.params,
+                    "idml_app_page_top",
+                    15.06,
+                )
                 if is_app
                 else storage_first_top_offset(writer.params, composition_lang)
                 if is_storage_troubleshooting

@@ -787,8 +787,17 @@ def add_spec_story(
                 stroke="Color/HB Brand Dark",
                 stroke_weight=0.75,
                 radius=6.8,
+                terminal_carrier_height=param_pt(
+                    writer.params,
+                    "idml_spec_native_carrier_allowance",
+                    1.0,
+                ),
             )
-            table_default = default_table_before[si]
+            table_default = (
+                default_table_before[si]
+                if si < len(default_table_before)
+                else default_table_before[-1]
+            )
             table_before = param_pt(
                 writer.params,
                 (

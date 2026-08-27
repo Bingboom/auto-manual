@@ -5,6 +5,7 @@ import math
 import re
 
 from .. import page_objects as _po
+from ..line_metrics import estimated_line_count, estimated_text_width
 from ..params import param_pt
 from ..primitives import (
     cell,
@@ -32,11 +33,13 @@ def _language_param(ctx: RenderContext, key: str, default: float) -> float:
 
 
 def _wrapped_lines(text: str, width: float, size: float) -> int:
-    plain = text.replace("**", "").strip()
-    if not plain:
-        return 1
-    chars = max(8, int(width / max(1.0, size * 0.50)))
-    return max(1, math.ceil(len(plain) / chars))
+    return estimated_line_count(
+        text.replace("**", "").strip(),
+        width,
+        point_size=size,
+        narrow_width_ratio=0.50,
+        minimum_narrow_chars=8,
+    )
 
 
 def _panel_width(ctx: RenderContext, width: float) -> float:
@@ -586,7 +589,14 @@ def render_warrantysection(
     title_h = title_leading + 2 * title_pad_tb
     title_w = min(
         width - 2 * pad_lr,
-        max(55.0, len(title) * title_size * 0.53 + 2 * title_pad_lr),
+        max(
+            55.0,
+            estimated_text_width(
+                title,
+                point_size=title_size,
+                narrow_width_ratio=0.53,
+            ) + 2 * title_pad_lr,
+        ),
     )
     if ctx.add_story is None:
         fallback = psr("HB Warranty Title", title) + "".join(body_parts)

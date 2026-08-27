@@ -70,7 +70,9 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     PageRoleRule(
         PageRole.COVER,
         stable_aliases=("cover",),
-        pattern=re.compile(rf"cover[-_]{_LANGUAGE_PATTERN}"),
+        pattern=re.compile(
+            rf"cover(?:[-_][a-z0-9]+)*[-_]{_LANGUAGE_PATTERN}"
+        ),
     ),
     PageRoleRule(
         PageRole.SAFETY,

@@ -25,6 +25,7 @@ from .projection import (
     build_renderer_page_plan,
     legacy_folio_page_plan,
     page_template_role_for_assembly_role,
+    page_template_role_for_composition_type,
     page_template_role_for_source_ref,
 )
 
@@ -43,6 +44,7 @@ __all__ = (
     "latex_page_binding",
     "legacy_folio_page_plan",
     "page_template_role_for_assembly_role",
+    "page_template_role_for_composition_type",
     "page_template_role_for_source_ref",
     "validate_page_plan",
     "web_pagination_binding",

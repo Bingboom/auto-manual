@@ -39,7 +39,7 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("story.overflows", jsx)
         self.assertIn("FontStatus.INSTALLED", jsx)
         self.assertIn("LinkStatus.NORMAL", jsx)
-        self.assertIn("hb:page=", jsx)
+        self.assertIn('insertLabel("hb:page_id"', jsx)
         self.assertIn("doc.exportFile", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
         self.assertIn("fitLcdCarrierFrames(doc)", jsx)
@@ -86,7 +86,10 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
         self.assertIn('["Segoe UI Symbol\\tRegular", "Apple Symbols\\tRegular"]', jsx)
-        self.assertIn('["Yu Gothic\\tRegular", "Arial Unicode MS\\tRegular"]', jsx)
+        self.assertIn(
+            '["Yu Gothic\\tRegular", "Apple SD Gothic Neo\\tRegular"]',
+            jsx,
+        )
         self.assertIn("font_substitutions", jsx)
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
         self.assertIn("matches = doc.findText()", jsx)
@@ -99,7 +102,21 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("fontUsageSamples(doc, font)", jsx)
         self.assertIn("fitTerminalCarrierFrames(doc)", jsx)
         self.assertIn("carrier_frame_fits", jsx)
-        self.assertIn('title.indexOf("product_overview")', jsx)
+        generic_carrier_fit = jsx.split(
+            "function fitTerminalCarrierFrames(doc)",
+            1,
+        )[1].split("function isComposedSymbolTableStory", 1)[0]
+        self.assertIn(
+            '"hb:self=tf_terminal_carrier_group_"',
+            generic_carrier_fit,
+        )
+        self.assertNotIn('" specification table"', generic_carrier_fit)
+        self.assertNotIn("storyTitle", generic_carrier_fit)
+        self.assertIn("!isTerminalCarrier", generic_carrier_fit)
+        self.assertIn("frame.previousTextFrame !== previousFrame", generic_carrier_fit)
+        self.assertNotIn("frames[ti].label =", jsx)
+        self.assertIn('insertLabel("hb:page_id"', jsx)
+        self.assertIn('insertLabel("hb:frame_index"', jsx)
         self.assertIn("app.pdfExportPresets.itemByName(job.pdf_preset)", jsx)
         self.assertIn("if (!pdfPreset.isValid)", jsx)
         self.assertIn("app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES", jsx)

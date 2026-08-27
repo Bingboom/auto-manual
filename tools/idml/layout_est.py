@@ -113,8 +113,26 @@ def template_symbol_split(
 
     indexed = [(_symbol_order(row, index), index, row)
                for index, row in enumerate(icons, start=1)]
-    ordered = [row for order, _, row in sorted(indexed)
-               if 1 <= order <= 11]
+    ordered_entries = [entry for entry in sorted(indexed) if entry[0] >= 1]
+    ordered = [row for _, _, row in ordered_entries]
+    canonical_orders = {float(index) for index in range(1, 12)}
+    current_orders = {order for order, _, _ in ordered_entries}
+    if current_orders != canonical_orders:
+        # Sparse product families are not forced into the JE-1000F 6/5
+        # canonical columns.  Preserve semantic order, keep at least two rows
+        # in the second column, and cap the first column at five rows.  This
+        # also retains registered marks beyond canonical row 11.
+        split_at = min(5, max(1, len(ordered) - 2))
+        left_sparse = ordered[:split_at]
+        right_sparse = ordered[split_at:]
+        if not dense:
+            return left_sparse, right_sparse, [], []
+        return (
+            left_sparse[:4],
+            right_sparse[:4],
+            left_sparse[4:],
+            right_sparse[4:],
+        )
     left_all = ordered[:6]
     right_all = ordered[6:11]
     if not dense:

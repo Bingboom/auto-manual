@@ -185,6 +185,18 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Table ", table_stories)
         self.assertIn("GENERAL INFO", story)
         self.assertIn("Product Name", table_stories)
+        self.assertIn(
+            "tf_terminal_carrier_group_st_anchor_spec_",
+            story,
+        )
+        spec_carrier = story.split(
+            '<TextFrame Self="tf_terminal_carrier_group_st_anchor_spec_',
+            1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('Anchor="0 0"', spec_carrier)
+        self.assertIn('Anchor="0 1"', spec_carrier)
+        self.assertIn('FillColor="Swatch/None"', spec_carrier)
+        self.assertIn('StrokeColor="Swatch/None"', spec_carrier)
 
     def test_text_frames_use_path_geometry(self) -> None:
         out = self._write_package()
@@ -2397,6 +2409,99 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertTrue(notice_specs[0]["unbulleted_first"])
         self.assertTrue(notice_specs[1]["unbulleted_first"])
 
+    def test_target_app_figures_reuse_shared_reference_components(self) -> None:
+        from tools.idml.prose_flow import (
+            align_app_second_page,
+            promote_reference_figures,
+        )
+
+        stem = "12_app_setup_placeholder"
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [{
+                "source_ref": f"page/{stem}.rst",
+                "source_path": f"page/{stem}.rst",
+                "language": "ko",
+                "composition_id": "ko_app",
+                "composition_type": "app",
+                "latex_start_page": 16,
+                "planned_page_count": 2,
+                "composition_data": {
+                    "app": {
+                        "instance_id": "je3000c-kr-v1",
+                        "control_image": "controls/je3000c/panel.pdf",
+                        "control_layout_variant": "embedded_leaders",
+                        "figure_assets": {
+                            "app_add_device": "app/je3000c/add_device_textless.png",
+                        },
+                        "labels_by_role": {
+                            "main_power": "POWER 버튼",
+                            "dc_usb": "DC/USB 전원 버튼",
+                            "ac": "AC 전원 버튼",
+                        },
+                    }
+                },
+            }],
+        }
+        notice = (
+            "component",
+            json.dumps({"kind": "notice", "label": "참고"}),
+        )
+        blocks = [
+            ("h2", "1. APP 다운로드"),
+            ("image", "download.png"),
+            ("body", "다운로드 안내"),
+            ("h2", "2. 장치 추가"),
+            ("body", "2.1 첫 단계"),
+            ("body", "2.2 둘째 단계"),
+            ("image", "add_device.png"),
+            ("body", "POWER 버튼\nAC 전원 버튼\nDC/USB 전원 버튼"),
+            ("body", "2.3 셋째 단계"),
+            notice,
+            ("body", "2.4 넷째 단계"),
+            ("image", "connect_result.png"),
+            ("body", "참고용 화면"),
+        ]
+
+        aligned = align_app_second_page(blocks, plan, stem)
+        self.assertIn(("layout", "page_break:15.1"), aligned)
+        promoted = promote_reference_figures(aligned, plan, stem)
+        specs = [
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+            and json.loads(payload).get("kind") == "referencefigure"
+        ]
+
+        self.assertEqual(
+            ["app_download", "app_add_device", "app_connect_result"],
+            [spec["layout"] for spec in specs],
+        )
+        self.assertEqual(
+            "controls/je3000c/panel.pdf",
+            specs[1]["control_image"],
+        )
+        self.assertEqual(
+            "embedded_leaders",
+            specs[1]["control_layout_variant"],
+        )
+        self.assertEqual(
+            "app/je3000c/add_device_textless.png",
+            specs[1]["image"],
+        )
+        self.assertEqual(
+            {
+                "main_power": "POWER 버튼",
+                "dc_usb": "DC/USB 전원 버튼",
+                "ac": "AC 전원 버튼",
+            },
+            specs[1]["labels_by_role"],
+        )
+        self.assertNotIn(
+            ("body", "POWER 버튼\nAC 전원 버튼\nDC/USB 전원 버튼"),
+            promoted,
+        )
+
     def test_approved_localized_app_figures_keep_localized_top_layer_labels(self) -> None:
         from tools.idml.prose_flow import promote_reference_figures
 
@@ -3206,6 +3311,39 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual([], overflow_left)
         self.assertEqual([], overflow_right)
 
+    def test_template_icon_split_preserves_sparse_row_twelve(self) -> None:
+        icons = [
+            {"symbol_key": key, "order": str(order), "text": key}
+            for key, order in (
+                ("warning_triangle", 1),
+                ("read_manual", 2),
+                ("do_not_dismantle", 7),
+                ("no_open_flame", 8),
+                ("keep_away_from_children", 9),
+                ("li_ion", 10),
+                ("weee2", 12),
+            )
+        ]
+
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+
+        self.assertEqual(
+            [
+                "warning_triangle",
+                "read_manual",
+                "do_not_dismantle",
+                "no_open_flame",
+                "keep_away_from_children",
+            ],
+            [row["symbol_key"] for row in left],
+        )
+        self.assertEqual(
+            ["li_ion", "weee2"],
+            [row["symbol_key"] for row in right],
+        )
+        self.assertEqual([], overflow_left)
+        self.assertEqual([], overflow_right)
+
     def test_safety_symbols_weee_uses_canonical_cropped_asset(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -3828,6 +3966,10 @@ class ExportIdmlTests(unittest.TestCase):
             ("CONSEJOS", "tip"),
             ("ATTENTION", "caution"),
             ("PRECAUCIÓN", "caution"),
+            ("경고", "warning"),
+            ("주의", "caution"),
+            ("참고", "note"),
+            ("팁", "tip"),
         ]
         for label, variant in cases:
             with self.subTest(label=label):

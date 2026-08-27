@@ -203,6 +203,16 @@ def art_frame_size(img: Path, max_w: float = 120.0, *,
             return w_pt, w_pt * ih / iw
     except Exception:
         pass
+    if img.suffix.casefold() == ".pdf":
+        try:
+            import fitz
+
+            with fitz.open(img) as document:
+                rect = document[0].rect
+                if rect.width > 0:
+                    return w_pt, w_pt * rect.height / rect.width
+        except Exception:
+            pass
     return w_pt, w_pt * 0.62
 
 

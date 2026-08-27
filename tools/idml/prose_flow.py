@@ -543,7 +543,7 @@ def align_charging_car_page(blocks: list[Block], page_plan: dict | None,
 
 def align_app_second_page(blocks: list[Block], page_plan: dict | None,
                           stem: str) -> list[Block]:
-    """Start every approved localized App composition at the post-pairing note.
+    """Start every governed two-page App composition at the pairing note.
 
     English, French, and Spanish share the same physical reference split:
     page one ends after the pairing step and page two starts at its note.  The
@@ -553,11 +553,7 @@ def align_app_second_page(blocks: list[Block], page_plan: dict | None,
     """
     from .latex_page_plan import planned_span
     if (
-        not plan_page_owns_component(
-            page_plan,
-            stem,
-            component=APP_ADD_DEVICE_COMPONENT,
-        )
+        _app_composition_options(page_plan, stem) is None
         or planned_span(page_plan, [stem], 1) < 2
     ):
         return blocks
@@ -614,6 +610,59 @@ def _step_number(text: str) -> str:
     return match.group(1) if match else ""
 
 
+def _app_composition_options(
+    page_plan: dict | None,
+    stem: str,
+) -> dict[str, object] | None:
+    """Resolve one App instance without exposing target identity to renderers."""
+    if plan_page_owns_component(
+        page_plan,
+        stem,
+        component=APP_ADD_DEVICE_COMPONENT,
+    ):
+        language = _planned_page_language(page_plan, stem)
+        if language is None:
+            raise ValueError(
+                f"approved App figure {stem} has no governed page language"
+            )
+        base_labels, render_labels = approved_app_control_labels(
+            page_plan,
+            language,
+        )
+        return {
+            "base_labels_by_role": base_labels,
+            "labels_by_role": render_labels,
+            "control_image": APP_PAIRING_PANEL_ASSET_URI,
+            "control_layout_variant": "reference_extensions",
+        }
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return None
+    matches = [
+        entry
+        for entry in (page_plan or {}).get("pages", [])
+        if Path(str(entry.get("source_path") or entry.get("source_ref") or ""))
+        .stem.casefold()
+        == Path(stem).stem.casefold()
+        and entry.get("composition_type") == "app"
+    ]
+    if len(matches) != 1:
+        return None
+    data = matches[0].get("composition_data")
+    app = data.get("app") if isinstance(data, dict) else None
+    if not isinstance(app, dict):
+        return None
+    labels = app.get("labels_by_role")
+    if not isinstance(labels, dict):
+        return None
+    return {
+        "base_labels_by_role": labels,
+        "labels_by_role": labels,
+        "control_image": app.get("control_image"),
+        "control_layout_variant": app.get("control_layout_variant"),
+        "figure_assets": app.get("figure_assets"),
+    }
+
+
 def promote_reference_figures(
     blocks: list[Block],
     page_plan: dict | None,
@@ -624,17 +673,15 @@ def promote_reference_figures(
     Routing uses the approved plan, source-page role, asset basename, and
     neighbouring block shape.  It never matches translated headings or copy.
     """
-    if (page_plan or {}).get("plan_source") != "approved-reference":
-        return blocks
+    approved_reference = (
+        (page_plan or {}).get("plan_source") == "approved-reference"
+    )
     is_charging = re.fullmatch(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
-    ) is not None
-    is_app = plan_page_owns_component(
-        page_plan,
-        stem,
-        component=APP_ADD_DEVICE_COMPONENT,
-    )
+    ) is not None and approved_reference
+    app_options = _app_composition_options(page_plan, stem)
+    is_app = app_options is not None
     if not is_charging and not is_app:
         return blocks
 
@@ -778,7 +825,14 @@ def promote_reference_figures(
             )
             aligned[index:body_end] = [
                 _referencefigure_block(
-                    "app_download", payload, copy=copy,
+                    "app_download",
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_download",
+                            payload,
+                        )
+                    ),
+                    copy=copy,
                 )
             ]
             index += 1
@@ -790,14 +844,11 @@ def promote_reference_figures(
                 for prior_kind, text in aligned[:index]
                 if prior_kind == "body" and _step_number(text)
             ][-2:]
-            language = _planned_page_language(page_plan, stem)
-            if language is None:
-                raise ValueError(
-                    f"approved App figure {stem} has no governed page language"
-                )
-            base_labels, render_labels = approved_app_control_labels(
-                page_plan,
-                language,
+            base_labels = dict(
+                (app_options or {}).get("base_labels_by_role") or {}
+            )
+            render_labels = dict(
+                (app_options or {}).get("labels_by_role") or {}
             )
             consume = 1
             if (
@@ -816,10 +867,18 @@ def promote_reference_figures(
             aligned[index:index + consume] = [
                 _referencefigure_block(
                     "app_add_device",
-                    payload,
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_add_device",
+                            payload,
+                        )
+                    ),
                     labels_by_role=render_labels,
                     step_labels=prior_steps,
-                    control_image=APP_PAIRING_PANEL_ASSET_URI,
+                    control_image=(app_options or {}).get("control_image"),
+                    control_layout_variant=(app_options or {}).get(
+                        "control_layout_variant"
+                    ),
                 )
             ]
             index += 1
@@ -839,7 +898,12 @@ def promote_reference_figures(
             aligned[index:index + 2] = [
                 _referencefigure_block(
                     "app_connect_result",
-                    payload,
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_connect_result",
+                            payload,
+                        )
+                    ),
                     step_labels=prior_steps,
                     reference_note=aligned[index + 1][1],
                 )

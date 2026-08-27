@@ -1305,6 +1305,10 @@ Gothic` owns circled numbers through 27. These Windows-native resources replace
 the former `Apple Symbols` / `Apple SD Gothic Neo` runs in both story XML and
 `Resources/Fonts.xml`; their delivery rows come from the same centralized font
 tokens. Neither Windows system font is redistributed under `Document fonts/`.
+On the pinned macOS finalize host, the finalizer maps missing `Yu Gothic` runs
+to `Apple SD Gothic Neo` rather than `Arial Unicode MS`, because Arial Unicode
+does not contain enclosed numbers 21-27; the Mac fallback must preserve the
+complete editable row-number set before PDF export.
 Line and coarse text-width budgeting is governed by
 `tools/idml/line_metrics.py`: the existing per-component narrow-glyph ratios
 remain stable, East Asian Width `W`/`F` characters consume one em, combining

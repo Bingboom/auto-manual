@@ -178,6 +178,134 @@
         }
       ]
     },
+    "je3000c-kr-v1": {
+      "component_id": "HB-SPECIAL-OVERVIEW",
+      "target": {
+        "model": "JE-3000C",
+        "region": "KR"
+      },
+      "source_patterns": [
+        "*03_product_overview_placeholder"
+      ],
+      "page": {
+        "title_frame": [29.505, 250.0, 311.91, 20.065]
+      },
+      "views": [
+        {
+          "id": "front",
+          "asset_role": "front_art",
+          "image_key": "overview/je3000c_kr/front_art",
+          "web_replace_key": "product-overview.front",
+          "composite_locales": [
+            {"source_patterns": ["03_product_overview_placeholder"], "locale": "ko"}
+          ],
+          "web": {
+            "aspect_ratio": 1.322581,
+            "decorative_leaders": []
+          },
+          "idml": {
+            "art_rect": [111.0, 303.0, 152.0, 115.0],
+            "heading_text_y": 276.0,
+            "heading_bullet_rect": [30.425, 276.2, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "power",
+              "source_slot": "front.left.0",
+              "web": {"rect": [1.0, 3.0, 28.0, 8.0], "align": "left", "leader": [[1.0, 8.0], [42.0, 8.0], [42.0, 30.0]]},
+              "idml": {"rect": [31.5, 291.0, 70.0, 13.0], "align": "LeftAlign", "leader": [[31.5, 299.0], [145.0, 299.0], [145.0, 331.0]]}
+            },
+            {
+              "id": "dc12",
+              "source_slot": "front.left.1",
+              "web": {"rect": [1.0, 16.0, 28.0, 15.0], "align": "left", "leader": [[1.0, 25.0], [38.0, 25.0], [38.0, 36.0]]},
+              "idml": {"rect": [31.5, 309.0, 76.0, 27.0], "align": "LeftAlign", "leader": [[31.5, 327.0], [132.0, 327.0], [132.0, 345.0]]}
+            },
+            {
+              "id": "usb_c",
+              "source_slot": "front.left.2",
+              "web": {"rect": [1.0, 35.0, 30.0, 22.0], "align": "left", "leader": [[1.0, 49.0], [39.0, 49.0], [43.0, 54.0]]},
+              "idml": {"rect": [31.5, 340.0, 82.0, 37.0], "align": "LeftAlign", "leader": [[31.5, 368.0], [130.0, 368.0], [140.0, 370.0]]}
+            },
+            {
+              "id": "usb_a",
+              "source_slot": "front.left.4",
+              "web": {"rect": [1.0, 61.0, 29.0, 17.0], "align": "left", "leader": [[1.0, 72.0], [39.0, 72.0], [39.0, 64.0]]},
+              "idml": {"rect": [31.5, 381.0, 80.0, 27.0], "align": "LeftAlign", "leader": [[31.5, 401.0], [139.0, 401.0], [139.0, 383.0]]}
+            },
+            {
+              "id": "dc_usb",
+              "source_slot": "front.left.5",
+              "web": {"rect": [1.0, 83.0, 30.0, 10.0], "align": "left", "leader": [[1.0, 89.0], [43.0, 89.0], [43.0, 68.0]]},
+              "idml": {"rect": [31.5, 412.0, 82.0, 17.0], "align": "LeftAlign", "leader": [[31.5, 423.0], [153.0, 423.0], [153.0, 391.0]], "anchor": "above-leader"}
+            },
+            {
+              "id": "lcd",
+              "source_slot": "front.right.0",
+              "web": {"rect": [72.0, 3.0, 27.0, 8.0], "align": "right", "leader": [[99.0, 8.0], [58.0, 8.0], [58.0, 30.0]]},
+              "idml": {"rect": [270.0, 291.0, 70.0, 13.0], "align": "RightAlign", "leader": [[341.0, 299.0], [205.0, 299.0], [205.0, 331.0]]}
+            },
+            {
+              "id": "ac_power",
+              "source_slot": "front.right.3",
+              "web": {"rect": [72.0, 44.0, 27.0, 13.0], "align": "right", "leader": [[99.0, 51.0], [53.0, 51.0], [53.0, 58.0]]},
+              "idml": {"rect": [266.0, 350.0, 75.0, 22.0], "align": "RightAlign", "leader": [[341.0, 364.0], [189.0, 364.0], [189.0, 376.0]]}
+            },
+            {
+              "id": "ac_output",
+              "source_slot": "front.right.4",
+              "web": {"rect": [72.0, 62.0, 27.0, 16.0], "align": "right", "leader": [[99.0, 73.0], [65.0, 73.0], [65.0, 66.0]]},
+              "idml": {"rect": [266.0, 382.0, 75.0, 29.0], "align": "RightAlign", "leader": [[341.0, 402.0], [229.0, 402.0], [229.0, 386.0]], "anchor": "above-leader"}
+            }
+          ]
+        },
+        {
+          "id": "right",
+          "asset_role": "right_art",
+          "image_key": "overview/je3000c_kr/right_art",
+          "web_replace_key": "product-overview.right",
+          "composite_locales": [
+            {"source_patterns": ["03_product_overview_placeholder"], "locale": "ko"}
+          ],
+          "web": {
+            "aspect_ratio": 1.423529,
+            "decorative_leaders": []
+          },
+          "idml": {
+            "art_rect": [128.0, 448.0, 110.0, 65.0],
+            "heading_text_y": 431.0,
+            "heading_bullet_rect": [30.425, 431.2, 7.067, 7.068]
+          },
+          "callouts": [
+            {
+              "id": "ac_input",
+              "source_slot": "right.sequence.1",
+              "web": {"rect": [1.0, 29.0, 30.0, 18.0], "align": "left", "leader": [[1.0, 40.0], [42.0, 40.0], [42.0, 55.0]]},
+              "idml": {"rect": [31.5, 456.0, 88.0, 28.0], "align": "LeftAlign", "leader": [[31.5, 475.0], [154.0, 475.0], [154.0, 483.0]], "anchor": "above-leader"}
+            },
+            {
+              "id": "dc_input",
+              "source_slot": "right.sequence.2",
+              "web": {"rect": [69.0, 24.0, 30.0, 25.0], "align": "right", "leader": [[99.0, 40.0], [62.0, 40.0], [62.0, 56.0]]},
+              "idml": {"rect": [249.0, 456.0, 92.0, 40.0], "align": "RightAlign", "leader": [[341.0, 483.0], [231.0, 483.0], [231.0, 485.0]], "anchor": "above-leader"}
+            }
+          ]
+        }
+      ],
+      "idml_leader_order": [
+        "front.power",
+        "front.dc12",
+        "front.usb_c",
+        "front.usb_a",
+        "front.dc_usb",
+        "front.lcd",
+        "front.ac_power",
+        "front.ac_output",
+        "right.ac_input",
+        "right.dc_input"
+      ],
+      "idml_decorative_leaders": []
+    },
     "jbp2000b-us-v1": {
       "component_id": "HB-SPECIAL-OVERVIEW",
       "target": {

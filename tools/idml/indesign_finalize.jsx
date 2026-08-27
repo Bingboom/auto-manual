@@ -184,7 +184,7 @@
         var substitutions = [];
         var mappings = [
             ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"]
+            ["Yu Gothic\tRegular", "Apple SD Gothic Neo\tRegular"]
         ];
         for (var mi = 0; mi < mappings.length; mi += 1) {
             var result = substituteMissingFont(doc, mappings[mi][0], mappings[mi][1]);
@@ -260,20 +260,20 @@
         var results = [];
         for (var si = 0; si < doc.stories.length; si += 1) {
             var story = doc.stories[si];
-            var title = String(story.storyTitle || "");
-            var contents = String(story.contents || "");
-            var isMeasuredOverview = title.indexOf("product_overview") >= 0;
-            var isMarkerOnlyCarrier = !textHasVisibleContent(contents);
-            if (!story.overflows ||
-                    (story.tables.length > 0 && !isMeasuredOverview) ||
-                    story.textContainers.length === 0) { continue; }
-            var maxGrowth = isMeasuredOverview ? 160.0 : isMarkerOnlyCarrier ? 24.0 : 0.0;
-            if (maxGrowth <= 0) { continue; }
+            if (!story.overflows || story.textContainers.length === 0) { continue; }
             var frame = story.textContainers[story.textContainers.length - 1];
             if (frame.constructor.name !== "TextFrame" ||
                     !frame.parentPage || !frame.parentPage.isValid) { continue; }
+            var isTerminalCarrier = itemLabel(frame).indexOf(
+                "hb:self=tf_terminal_carrier_group_"
+            ) === 0;
+            if (!isTerminalCarrier || story.textContainers.length < 2) { continue; }
+            var previousFrame = story.textContainers[
+                story.textContainers.length - 2
+            ];
+            if (frame.previousTextFrame !== previousFrame) { continue; }
             var growth = 0.0;
-            while (story.overflows && growth < maxGrowth) {
+            while (story.overflows && growth < 24.0) {
                 var bounds = frame.geometricBounds;
                 bounds[2] = Number(bounds[2]) + 4.0;
                 frame.geometricBounds = bounds;
@@ -281,7 +281,7 @@
                 doc.recompose();
             }
             results.push({
-                title: title,
+                identity: itemLabel(frame),
                 growth: growth,
                 cleared: !story.overflows
             });
@@ -383,26 +383,12 @@
         doc.recompose();
         // Keep the report key for compatibility. LCD finalization may grow
         // only the transparent terminal carrier, never the visible shell.
-        report.fitted_lcd_table_groups = fitLcdCarrierFrames(doc);
-        report.fitted_troubleshooting_carrier_frames =
-            fitTroubleshootingCarrierFrames(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
-        report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
         report.font_substitutions = applyHostFontSubstitutions(doc);
-        report.fitted_lcd_table_groups += fitLcdCarrierFrames(doc);
-        report.fitted_troubleshooting_carrier_frames +=
-            fitTroubleshootingCarrierFrames(doc);
-        report.carrier_frame_fits = report.carrier_frame_fits.concat(
-            fitTerminalCarrierFrames(doc)
-        );
         report.font_substitutions = report.font_substitutions.concat(
             applyHostFontSubstitutions(doc)
         );
-        report.fitted_troubleshooting_carrier_frames +=
-            fitTroubleshootingCarrierFrames(doc);
-        report.carrier_frame_fits = report.carrier_frame_fits.concat(
-            fitTerminalCarrierFrames(doc)
-        );
+        report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
         report.page_count = doc.pages.length;
         report.story_count = doc.stories.length;
 
@@ -416,7 +402,8 @@
         for (var ti = 0; ti < frames.length; ti += 1) {
             var parentPage = frames[ti].parentPage;
             var pagePart = parentPage && parentPage.isValid ? parentPage.documentOffset + 1 : 0;
-            frames[ti].label = "hb:page=" + pagePart + ";frame=" + ti;
+            frames[ti].insertLabel("hb:page_id", "physical-" + pagePart);
+            frames[ti].insertLabel("hb:frame_index", String(ti));
             report.stable_labels.text_frames += 1;
         }
 

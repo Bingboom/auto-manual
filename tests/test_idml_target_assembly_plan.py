@@ -85,6 +85,146 @@ def _manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_symbols_is_a_registered_complete_component_composition(self) -> None:
+        plan = build_composition_plan({
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": "page/symbols_ko.rst",
+                "language": "ko",
+                "page_role": "symbols",
+                "composition_id": "ko_symbols",
+                "composition_type": "symbols",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+            }],
+        })
+
+        self.assertEqual("symbols", plan.compositions[0].composition_type)
+
+    def test_overview_accepts_a_registered_component_instance_binding(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "product_overview"
+            and page["language"] == "en"
+        )
+        page["composition_data"] = {
+            "overview": {"instance_id": "je1000f-us-v1"}
+        }
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == page["source_ref"]
+        )
+        self.assertEqual(page["composition_data"], normalized["composition_data"])
+
+    def test_inbox_accepts_target_image_width_profile(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "inbox"
+            and page["language"] == "en"
+        )
+        page["composition_data"] = {
+            "inbox": {
+                "image_width_pt_by_language": {
+                    "en": [66.0, 30.0, 40.0],
+                }
+            }
+        }
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == page["source_ref"]
+        )
+        self.assertEqual(page["composition_data"], normalized["composition_data"])
+
+    def test_app_accepts_target_instance_data_for_shared_composition(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/warranty_en.rst"
+        )
+        page.update({
+            "source_ref": "page/12_app_setup_placeholder.rst",
+            "page_role": "app_setup",
+            "composition_id": "en_app",
+            "composition_type": "app",
+            "composition_data": {
+                "app": {
+                    "instance_id": "test-app-v1",
+                    "control_image": "controls/test/panel.pdf",
+                    "control_layout_variant": "embedded_leaders",
+                    "figure_assets": {
+                        "app_add_device": "app/test/add_device_textless.png",
+                    },
+                    "labels_by_role": {
+                        "main_power": "POWER",
+                        "dc_usb": "DC/USB",
+                        "ac": "AC",
+                    },
+                }
+            },
+        })
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == "page/12_app_setup_placeholder.rst"
+        )
+        self.assertEqual(page["composition_data"], normalized["composition_data"])
+
+    def test_app_rejects_incomplete_control_label_roles(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/warranty_en.rst"
+        )
+        page.update({
+            "source_ref": "page/12_app_setup_placeholder.rst",
+            "page_role": "app_setup",
+            "composition_id": "en_app",
+            "composition_type": "app",
+            "composition_data": {
+                "app": {
+                    "instance_id": "test-app-v1",
+                    "control_image": "controls/test/panel.pdf",
+                    "control_layout_variant": "embedded_leaders",
+                    "labels_by_role": {
+                        "main_power": "POWER",
+                        "ac": "AC",
+                    },
+                }
+            },
+        })
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "labels_by_role must contain exactly ac, dc_usb, and main_power",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
     def test_connections_composition_accepts_shared_layout_variant(self) -> None:
         payload = _payload()
         page = next(

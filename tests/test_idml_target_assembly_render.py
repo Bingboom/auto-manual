@@ -10,6 +10,307 @@ from tools.idml.target_assembly_render import TargetAssemblyRenderer
 
 
 class TargetAssemblyRenderTests(unittest.TestCase):
+    def test_app_routes_through_shared_app_composition(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        source_ref = "page/app_setup_ko.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 2,
+            "pages": [{
+                "source_ref": source_ref,
+                "source_path": source_ref,
+                "language": "ko",
+                "page_role": "app_setup",
+                "composition_id": "ko_app",
+                "composition_type": "app",
+                "latex_start_page": 1,
+                "planned_page_count": 2,
+                "composition_data": {
+                    "app": {
+                        "instance_id": "je3000c-kr-v1",
+                        "control_image": "controls/panel.pdf",
+                        "control_layout_variant": "embedded_leaders",
+                        "labels_by_role": {
+                            "main_power": "POWER 버튼",
+                            "dc_usb": "DC/USB 전원 버튼",
+                            "ac": "AC 전원 버튼",
+                        },
+                    }
+                },
+            }],
+        }
+        blocks = (("h1", "APP 설정"), ("image", "download.png"))
+        projected_by_path = {
+            bundle_root / source_ref: ProjectedPage(
+                path=bundle_root / source_ref,
+                language="ko",
+                blocks=blocks,
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ko",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_app_composition"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / source_ref,
+                get_page_cursor=lambda: 15,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(2, delta.page_count)
+        self.assertEqual(list(blocks), add_page.call_args.kwargs["blocks"])
+        self.assertEqual(page_plan, add_page.call_args.kwargs["page_plan"])
+        self.assertEqual("app_setup_ko", add_page.call_args.kwargs["source_stem"])
+
+    def test_inbox_overview_merges_target_component_data(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        inbox_ref = "page/inbox_ko.rst"
+        overview_ref = "page/overview_ko.rst"
+        inbox_data = {
+            "inbox": {
+                "image_width_pt_by_language": {
+                    "ko": [66.0, 30.0, 40.0],
+                }
+            }
+        }
+        overview_data = {
+            "overview": {"instance_id": "je3000c-kr-v1"}
+        }
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [
+                {
+                    "source_ref": inbox_ref,
+                    "source_path": inbox_ref,
+                    "language": "ko",
+                    "page_role": "inbox",
+                    "composition_id": "ko_inbox_overview",
+                    "composition_type": "inbox_overview",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                    "composition_data": inbox_data,
+                },
+                {
+                    "source_ref": overview_ref,
+                    "source_path": overview_ref,
+                    "language": "ko",
+                    "page_role": "product_overview",
+                    "composition_id": "ko_inbox_overview",
+                    "composition_type": "inbox_overview",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                    "composition_data": overview_data,
+                },
+            ],
+        }
+        projected_by_path = {
+            bundle_root / inbox_ref: ProjectedPage(
+                path=bundle_root / inbox_ref,
+                language="ko",
+                blocks=(("h1", "박스 구성품"),),
+                skipped_raw=0,
+                twocol=False,
+            ),
+            bundle_root / overview_ref: ProjectedPage(
+                path=bundle_root / overview_ref,
+                language="ko",
+                blocks=(("h1", "제품 개요"),),
+                skipped_raw=0,
+                twocol=False,
+            ),
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ko",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_inbox_overview_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / inbox_ref,
+                get_page_cursor=lambda: 3,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(
+            {**inbox_data, **overview_data},
+            add_page.call_args.kwargs["composition_data"],
+        )
+
+    def test_specifications_routes_layout_variant_to_complete_component(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        source_ref = "page/spec_ko.rst"
+        composition_data = {
+            "specifications": {"layout_variant": "compact"}
+        }
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": source_ref,
+                "source_path": source_ref,
+                "language": "ko",
+                "page_role": "spec",
+                "composition_id": "ko_spec",
+                "composition_type": "specifications",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+                "composition_data": composition_data,
+            }],
+        }
+        projected_by_path = {
+            bundle_root / source_ref: ProjectedPage(
+                path=bundle_root / source_ref,
+                language="ko",
+                blocks=(("h1", "사양"),),
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        sections: list[dict] = []
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ko",
+            emitted=set(),
+            spec_sections=sections,
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+        spec_data = Mock(
+            title="사양",
+            sections=({"title": "일반 정보", "rows": []},),
+            annotations=(),
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.ir_projection.spec_page_data",
+            return_value=spec_data,
+        ), patch(
+            "tools.idml.target_assembly_render.shared_page.add_specifications_page",
+            return_value=("st_spec", list(spec_data.sections)),
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / source_ref,
+                get_page_cursor=lambda: 13,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(
+            composition_data,
+            add_page.call_args.kwargs["composition_data"],
+        )
+        self.assertEqual(list(spec_data.sections), sections)
+
+    def test_symbols_routes_through_complete_symbols_panel(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        source_ref = "page/symbols_ko.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": source_ref,
+                "source_path": source_ref,
+                "language": "ko",
+                "page_role": "symbols",
+                "composition_id": "ko_symbols",
+                "composition_type": "symbols",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+            }],
+        }
+        projected_by_path = {
+            bundle_root / source_ref: ProjectedPage(
+                path=bundle_root / source_ref,
+                language="ko",
+                blocks=(("h1", "기호 설명"),),
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        symbol_data = Mock(title="기호 설명")
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ko",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(return_value=symbol_data),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_symbols_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / source_ref,
+                get_page_cursor=lambda: 2,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual(symbol_data, add_page.call_args.kwargs["symbol_data"])
+
     def test_connections_passes_target_component_data_to_shared_compositor(
         self,
     ) -> None:

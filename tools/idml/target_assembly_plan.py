@@ -286,10 +286,10 @@ def _validate_composition_data(
         if set(data) == {"specifications"}:
             if page.get("page_role") != PageRole.SPEC.value or page.get(
                 "composition_type"
-            ) != "storage_specifications":
+            ) not in {"specifications", "storage_specifications"}:
                 issues.append(
                     f"{source_ref}.composition_data.specifications requires "
-                    "a storage_specifications composition on the spec source"
+                    "a specifications composition on the spec source"
                 )
                 continue
             specifications = data["specifications"]
@@ -298,11 +298,13 @@ def _validate_composition_data(
                     f"{source_ref}.composition_data.specifications must be an object"
                 )
                 continue
-            expected = {"layout_variant", "section_groups"}
-            if set(specifications) != expected:
+            allowed = {"layout_variant", "section_groups"}
+            if "layout_variant" not in specifications or not set(
+                specifications
+            ) <= allowed:
                 issues.append(
                     f"{source_ref}.composition_data.specifications must contain "
-                    f"exactly {sorted(expected)}"
+                    "layout_variant and supports optional section_groups"
                 )
                 continue
             if specifications.get("layout_variant") != "compact":
@@ -311,6 +313,10 @@ def _validate_composition_data(
                     "layout_variant must be compact"
                 )
             groups = specifications.get("section_groups")
+            if groups is None and page.get(
+                "composition_type"
+            ) == "specifications":
+                continue
             if not isinstance(groups, list) or not groups:
                 issues.append(
                     f"{source_ref}.composition_data.specifications."
@@ -354,6 +360,225 @@ def _validate_composition_data(
                     seen_indices.add(source_index)
                 if "title" in group and not isinstance(group["title"], str):
                     issues.append(f"{label}.title must be a string")
+            continue
+        if set(data) == {"inbox"}:
+            if page.get("page_role") != PageRole.INBOX.value or page.get(
+                "composition_type"
+            ) not in {"inbox_overview", "fcc_inbox_overview"}:
+                issues.append(
+                    f"{source_ref}.composition_data.inbox requires "
+                    "an inbox overview composition on the inbox source"
+                )
+                continue
+            inbox = data["inbox"]
+            if not isinstance(inbox, dict) or set(inbox) != {
+                "image_width_pt_by_language"
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.inbox must contain exactly "
+                    "image_width_pt_by_language"
+                )
+                continue
+            widths_by_language = inbox.get("image_width_pt_by_language")
+            language = str(page.get("language") or "")
+            if (
+                not isinstance(widths_by_language, dict)
+                or language not in widths_by_language
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.inbox."
+                    "image_width_pt_by_language must contain the page language"
+                )
+                continue
+            invalid_widths = [
+                key
+                for key, widths in widths_by_language.items()
+                if not isinstance(key, str)
+                or not key
+                or not isinstance(widths, list)
+                or len(widths) != 3
+                or any(
+                    (value := _finite_number(item)) is None or value <= 0
+                    for item in widths
+                )
+            ]
+            if invalid_widths:
+                issues.append(
+                    f"{source_ref}.composition_data.inbox."
+                    "image_width_pt_by_language values must contain three "
+                    "positive numbers"
+                )
+            continue
+        if set(data) == {"overview"}:
+            if page.get("page_role") != PageRole.PRODUCT_OVERVIEW.value or page.get(
+                "composition_type"
+            ) not in {"inbox_overview", "fcc_inbox_overview"}:
+                issues.append(
+                    f"{source_ref}.composition_data.overview requires "
+                    "an inbox_overview composition on the product overview source"
+                )
+                continue
+            overview = data["overview"]
+            if not isinstance(overview, dict):
+                issues.append(
+                    f"{source_ref}.composition_data.overview must be an object"
+                )
+                continue
+            if not set(overview) <= {"instance_id", "asset_refs"} or (
+                "instance_id" not in overview
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.overview must contain "
+                    "instance_id and supports optional asset_refs"
+                )
+                continue
+            if not isinstance(overview.get("instance_id"), str) or not str(
+                overview.get("instance_id")
+            ).strip():
+                issues.append(
+                    f"{source_ref}.composition_data.overview.instance_id "
+                    "must be a non-empty string"
+                )
+            asset_refs = overview.get("asset_refs")
+            if asset_refs is not None:
+                if not isinstance(asset_refs, dict) or set(asset_refs) != {
+                    "front_art",
+                    "right_art",
+                }:
+                    issues.append(
+                        f"{source_ref}.composition_data.overview.asset_refs must "
+                        "contain exactly front_art and right_art"
+                    )
+                elif any(
+                    not isinstance(value, str) or not value.strip()
+                    for value in asset_refs.values()
+                ):
+                    issues.append(
+                        f"{source_ref}.composition_data.overview.asset_refs values "
+                        "must be non-empty strings"
+                    )
+            continue
+        if set(data) == {"app"}:
+            if page.get("page_role") != PageRole.APP_SETUP.value or page.get(
+                "composition_type"
+            ) != "app":
+                issues.append(
+                    f"{source_ref}.composition_data.app requires an app composition"
+                )
+                continue
+            app = data["app"]
+            expected = {
+                "instance_id",
+                "control_image",
+                "control_layout_variant",
+                "labels_by_role",
+            }
+            if (
+                not isinstance(app, dict)
+                or not expected <= set(app)
+                or not set(app) <= expected | {"figure_assets"}
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.app must contain "
+                    f"{sorted(expected)} and supports optional figure_assets"
+                )
+                continue
+            for field in ("instance_id", "control_image"):
+                if not isinstance(app.get(field), str) or not str(
+                    app.get(field)
+                ).strip():
+                    issues.append(
+                        f"{source_ref}.composition_data.app.{field} must be a "
+                        "non-empty string"
+                    )
+            if app.get("control_layout_variant") not in {
+                "embedded_leaders",
+                "reference_extensions",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.app.control_layout_variant "
+                    "is invalid"
+                )
+            labels = app.get("labels_by_role")
+            required_roles = {"main_power", "dc_usb", "ac"}
+            if not isinstance(labels, dict) or set(labels) != required_roles:
+                issues.append(
+                    f"{source_ref}.composition_data.app.labels_by_role must "
+                    "contain exactly ac, dc_usb, and main_power"
+                )
+            elif any(
+                not isinstance(value, str) or not value.strip()
+                for value in labels.values()
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.app.labels_by_role values "
+                    "must be non-empty strings"
+                )
+            elif len({value.strip() for value in labels.values()}) != 3:
+                issues.append(
+                    f"{source_ref}.composition_data.app.labels_by_role values "
+                    "must be unique"
+                )
+            figure_assets = app.get("figure_assets")
+            allowed_figure_roles = {
+                "app_download",
+                "app_add_device",
+                "app_connect_result",
+            }
+            if figure_assets is not None and (
+                not isinstance(figure_assets, dict)
+                or not figure_assets
+                or not set(figure_assets) <= allowed_figure_roles
+                or any(
+                    not isinstance(value, str) or not value.strip()
+                    for value in figure_assets.values()
+                )
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.app.figure_assets must be "
+                    "a non-empty subset of the registered App figure roles"
+                )
+            continue
+        if set(data) == {"flow"}:
+            if page.get("composition_type") not in {
+                "operation_ups",
+                "charging_charging_methods",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.flow requires an operation "
+                    "or charging composition"
+                )
+                continue
+            flow = data["flow"]
+            if not isinstance(flow, dict) or set(flow) != {
+                "asset_refs",
+                "image_role",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.flow must contain exactly "
+                    "asset_refs and image_role"
+                )
+                continue
+            refs = flow.get("asset_refs")
+            if not isinstance(refs, list) or not refs or any(
+                value is not None
+                and (not isinstance(value, str) or not value.strip())
+                for value in refs
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.flow.asset_refs must be a "
+                    "non-empty list of paths or null drop slots"
+                )
+            if flow.get("image_role") not in {
+                "charging_diagram",
+                "compact_diagram",
+                "full_measure",
+                "reference_measure",
+                "wide_diagram",
+            }:
+                issues.append(
+                    f"{source_ref}.composition_data.flow.image_role is invalid"
+                )
             continue
         if set(data) == {"warranty"}:
             if page.get("page_role") != PageRole.WARRANTY.value or page.get(
@@ -440,8 +665,8 @@ def _validate_composition_data(
         if set(data) != {"lcd"}:
             issues.append(
                 f"{source_ref}.composition_data supports only charging, "
-                "connections, lcd, specifications, troubleshooting, or "
-                "warranty component data"
+                "app, connections, inbox, lcd, overview, specifications, "
+                "troubleshooting, or warranty component data"
             )
             continue
         if page.get("page_role") != PageRole.LCD.value or page.get(
@@ -594,6 +819,61 @@ def normalize_target_assembly_plan(
         reference = {}
     if reference.get("page_count") != physical_page_count:
         issues.append("reference_pdf.page_count must equal physical_page_count")
+    page_size = reference.get("page_size_pt")
+    page_width = _finite_number(
+        page_size.get("width") if isinstance(page_size, dict) else None
+    )
+    page_height = _finite_number(
+        page_size.get("height") if isinstance(page_size, dict) else None
+    )
+
+    idml_contract = payload.get("idml_contract")
+    if idml_contract is not None:
+        editable = (
+            idml_contract.get("editable_components")
+            if isinstance(idml_contract, dict)
+            else None
+        )
+        back_cover = editable.get("back_cover") if isinstance(editable, dict) else None
+        if not isinstance(back_cover, dict) or set(back_cover) != {
+            "variant",
+            "qr_asset",
+            "qr_rect",
+        }:
+            issues.append(
+                "idml_contract supports only editable_components.back_cover with "
+                "variant, qr_asset, and qr_rect"
+            )
+        else:
+            if back_cover.get("variant") != "qr_only":
+                issues.append("idml_contract back_cover.variant must be qr_only")
+            if not isinstance(back_cover.get("qr_asset"), str) or not str(
+                back_cover.get("qr_asset")
+            ).strip():
+                issues.append("idml_contract back_cover.qr_asset must be non-empty")
+            rect = back_cover.get("qr_rect")
+            if not isinstance(rect, list) or len(rect) != 4:
+                issues.append("idml_contract back_cover.qr_rect must contain four numbers")
+            else:
+                values = [_finite_number(value) for value in rect]
+                if any(value is None for value in values):
+                    issues.append(
+                        "idml_contract back_cover.qr_rect must contain four numbers"
+                    )
+                else:
+                    x, y, width, height = values  # type: ignore[misc]
+                    if (
+                        width <= 0
+                        or height <= 0
+                        or x < 0
+                        or y < 0
+                        or page_width is not None and x + width > page_width
+                        or page_height is not None and y + height > page_height
+                    ):
+                        issues.append(
+                            "idml_contract back_cover.qr_rect must stay inside the "
+                            "reference page"
+                        )
 
     raw_pages = payload.get("pages")
     if not isinstance(raw_pages, list):
@@ -666,6 +946,7 @@ def normalize_target_assembly_plan(
             if page["page_role"] == PageRole.TOC.value
         ],
         "pages": normalized_pages,
+        "idml_contract": idml_contract,
         "target_assembly_plan": payload,
     }
     try:
