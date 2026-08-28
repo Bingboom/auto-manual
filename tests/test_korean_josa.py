@@ -4,6 +4,7 @@ from pathlib import Path
 
 from tools import build_docs
 from tools.utils.korean_josa import (
+    JOSA_PAIRS,
     has_batchim,
     josa_base_key,
     josa_substitutions,
@@ -27,6 +28,31 @@ class KoreanJosaSelectionTests(unittest.TestCase):
         for value, pair, expected in cases:
             with self.subTest(value=value, pair=pair):
                 self.assertEqual(expected, select_josa(value, pair))
+
+    def test_every_josa_pair_should_be_ordered_consonant_then_vowel(self) -> None:
+        """Ground truth for every pair, so none can be registered backwards.
+
+        ``JOSA_PAIRS`` stores ``(after a consonant, after a vowel)``. ``WA`` was
+        stored the other way round and no test named it, so 시스템 resolved to
+        와 and 배터리 to 과 — both wrong — until a template asked for it.
+        """
+
+        # 템 carries a final consonant; 리 does not.
+        correct_forms = {
+            "EUN": ("시스템은", "배터리는"),
+            "EUL": ("시스템을", "배터리를"),
+            "I": ("시스템이", "배터리가"),
+            "WA": ("시스템과", "배터리와"),
+        }
+        self.assertEqual(
+            set(JOSA_PAIRS),
+            set(correct_forms),
+            "a new josa pair needs its expected forms written down here",
+        )
+        for pair, (after_consonant, after_vowel) in correct_forms.items():
+            with self.subTest(pair=pair):
+                self.assertEqual(after_consonant, "시스템" + select_josa("시스템", pair))
+                self.assertEqual(after_vowel, "배터리" + select_josa("배터리", pair))
 
     def test_select_josa_should_read_trailing_digits_as_sino_korean(self) -> None:
         # 2000 reads 이천 (final ㄴ) -> 은; 12 reads 십이 (no final) -> 는.
