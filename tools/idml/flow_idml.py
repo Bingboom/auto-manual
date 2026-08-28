@@ -360,7 +360,7 @@ class _FlowIdmlWriter:
         return _styles.graphic_xml(self.params)
 
     def fonts_xml(self) -> str:
-        return _styles.fonts_xml()
+        return _styles.fonts_xml(self.language)
 
     def styles_xml(self) -> str:
         # Flow owns the semantic style names, while actual components use the

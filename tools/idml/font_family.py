@@ -137,9 +137,48 @@ CIRCLED_NUMBER_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
 )
 
 
+# Korean body text is a typographic choice, not coverage fallback: Hangul
+# runs route here instead of degrading to the Arial Unicode MS symbol face.
+# Noto Sans KR is the print-industry default for Korean (SIL OFL 1.1 — free
+# to install and to embed in print PDFs). The family is declared only inside
+# Korean packages so every non-Korean package keeps byte-identical
+# resources; swapping the Korean face later means editing this one token.
+KOREAN_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_noto_sans_kr",
+    name="Noto Sans KR",
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_noto_sans_kr_r",
+            name="Noto Sans KR Regular",
+            postscript_name="NotoSansKR-Regular",
+            style_name="Regular",
+            font_type="OpenTypeCFF",
+        ),
+    ),
+    delivery_postscript_names="NotoSansKR-Regular",
+    delivery_license="SIL OFL 1.1 (Korean text; Google Noto)",
+)
+
+
 IDML_FONT_FAMILY_TOKENS = (
     PRIMARY_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
 )
+
+# One manifest serves every delivery, so operators installing fonts see the
+# Korean family listed even though it ships only inside Korean packages.
+DELIVERY_FONT_FAMILY_TOKENS = IDML_FONT_FAMILY_TOKENS + (
+    KOREAN_FONT_FAMILY_TOKEN,
+)
+
+
+def font_family_tokens(
+    language: str | None = None,
+) -> tuple[IdmlFontFamilyToken, ...]:
+    """Return the font families a package for ``language`` must declare."""
+    code = (language or "").split("-", 1)[0].strip().casefold()
+    if code == "ko":
+        return IDML_FONT_FAMILY_TOKENS + (KOREAN_FONT_FAMILY_TOKEN,)
+    return IDML_FONT_FAMILY_TOKENS

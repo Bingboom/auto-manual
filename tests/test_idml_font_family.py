@@ -11,6 +11,7 @@ from tools.idml.flow_idml import DEFAULT_STYLE_MAP, _flow_style_entries
 from tools.idml.font_family import (
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
+    KOREAN_FONT_FAMILY_TOKEN,
     PRIMARY_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
 )
@@ -28,14 +29,16 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         artifacts = {
             "styles": styles_xml(params),
             "fonts": fonts_xml(),
+            "fonts_ko": fonts_xml("ko"),
             "flow": _flow_style_entries(DEFAULT_STYLE_MAP),
             "manifest": _fonts_manifest(False),
         }
         expected = {
             "styles": "8a697432cd63084047142685060429eea6257a56e1fc3a8d6fe434362bafe316",
             "fonts": "09eac1cc0235a6321d7efff2771d48b6404a56e8a960471f66f4882dd690975d",
+            "fonts_ko": "9553baefc211261034e83b98818745c81ff4da87d3743c073761fbc90c5e220f",
             "flow": "111c9d93d62ba1b250d743af51db9bfb8079c1a675201e96d895e1c18ceb4211",
-            "manifest": "f05ad7a960b43370ac1036a327a985a426b7777be7b46ff3b3c58a8d79899d31",
+            "manifest": "dbd80f1f24fd17fe24a7478cecf94942f0611a6a92134b08b431dee429122085",
         }
         actual = {
             name: hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -85,6 +88,26 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
                 self.assertEqual(token.delivery_row, _FONT_ROWS[index])
         self.assertNotIn("Apple Symbols", fonts)
         self.assertNotIn("Apple SD Gothic Neo", fonts)
+
+    def test_korean_family_is_declared_only_in_korean_packages(self) -> None:
+        family_decl = (
+            f'<FontFamily Self="{KOREAN_FONT_FAMILY_TOKEN.resource_id}" '
+            f'Name="{KOREAN_FONT_FAMILY_TOKEN.name}">'
+        )
+        self.assertNotIn(family_decl, fonts_xml())
+        self.assertNotIn(family_decl, fonts_xml("ja"))
+        self.assertIn(family_decl, fonts_xml("ko"))
+        self.assertIn(family_decl, fonts_xml("ko-KR"))
+        self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[4])
+
+    def test_hangul_routes_to_the_korean_text_face_not_the_symbol_face(self) -> None:
+        from tools.idml.inline_text import _fallback_font
+
+        self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.name, _fallback_font("한"))
+        self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.name, _fallback_font("ㄱ"))
+        self.assertEqual(CJK_FONT_FAMILY_TOKEN.name, _fallback_font("日"))
+        self.assertEqual(CJK_FONT_FAMILY_TOKEN.name, _fallback_font("、"))
+        self.assertIsNone(_fallback_font("A"))
 
     def test_authority_modules_do_not_repeat_primary_family_literal(self) -> None:
         for relative_path in (

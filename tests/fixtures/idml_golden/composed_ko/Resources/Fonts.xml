@@ -16,4 +16,7 @@
   <FontFamily Self="ff_yu_gothic" Name="Yu Gothic">
     <Font Self="ff_yu_gothic_r" FontFamily="Yu Gothic" Name="Yu Gothic Regular" PostScriptName="YuGothic-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
+  <FontFamily Self="ff_noto_sans_kr" Name="Noto Sans KR">
+    <Font Self="ff_noto_sans_kr_r" FontFamily="Noto Sans KR" Name="Noto Sans KR Regular" PostScriptName="NotoSansKR-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeCFF"/>
+  </FontFamily>
 </idPkg:Fonts>

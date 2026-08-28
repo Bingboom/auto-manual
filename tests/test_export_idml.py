@@ -262,12 +262,18 @@ class ExportIdmlTests(unittest.TestCase):
             "Latin 日本語、한국어 Latin",
             terminal=True,
         )
-        fallback = (
+        cjk_fallback = (
             '<Properties><AppliedFont type="string">Arial Unicode MS'
             '</AppliedFont></Properties>'
         )
-        self.assertEqual(1, psr.count(fallback))
-        self.assertIn("<Content>日本語、한국어</Content>", psr)
+        korean_fallback = (
+            '<Properties><AppliedFont type="string">Noto Sans KR'
+            '</AppliedFont></Properties>'
+        )
+        self.assertEqual(1, psr.count(cjk_fallback))
+        self.assertEqual(1, psr.count(korean_fallback))
+        self.assertIn("<Content>日本語、</Content>", psr)
+        self.assertIn("<Content>한국어</Content>", psr)
         self.assertIn("<Content>Latin </Content>", psr)
         self.assertIn("<Content> Latin</Content>", psr)
 
