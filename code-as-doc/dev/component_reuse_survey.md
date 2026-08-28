@@ -414,6 +414,12 @@ TeX 里不再重打信号词。
 收益：§3.2 的 78 处丢框、§5.1 的 pt-BR 分叉、§3.4 的渲染器不对称、
 清单 #1/#2 一并消解。这是投入产出比最高的一件。
 
+**2026-08-28 已落地**：`variant_for_label()` 改为静态表优先、数据索引兜底
+（`_data_variant_index()`，经 `signal_words.signal_label_entries()` 读十语数据，
+CI 走 fixture 回落）；`ALERT_LABELS` 改为共享词汇派生。复测：语料丢框
+**78/156 → 0/153，十语全通**。注意 `aliases_*` 列至今不被 `signal_words`
+读取——复数/近形词仍由静态表持有（见 `variant_for_label` docstring）。
+
 ### D2 语言覆盖进合同
 
 现状：`manual_style.yaml` 的 `conformance` 只描述四端投影，
