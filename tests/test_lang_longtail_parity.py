@@ -125,6 +125,16 @@ class LanguageLongTailParityTest(unittest.TestCase):
     def test_idml_governed_languages_have_one_registry_source(self) -> None:
         self.assertEqual(lang_registry.governed_languages(), ("en", "fr", "es"))
 
+    def test_idml_layout_override_languages_add_only_tuning_lines(self) -> None:
+        self.assertEqual(
+            lang_registry.layout_override_languages(),
+            ("en", "fr", "es", "ko"),
+        )
+        self.assertLessEqual(
+            set(lang_registry.governed_languages()),
+            set(lang_registry.layout_override_languages()),
+        )
+
     def test_longtail_display_registration_is_closed(self) -> None:
         maps = (
             build_docs.LANGUAGE_LABELS,

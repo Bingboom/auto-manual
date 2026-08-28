@@ -16,7 +16,7 @@ import unicodedata
 from ..language_contract import governed_languages
 from .. import page_objects
 from ..character_metrics import with_character_baseline_shift
-from ..params import component_param_pt
+from ..params import component_param_pt, localized_component_param_pt
 from ..line_metrics import estimated_line_count
 from ..primitives import psr
 from .base import RenderContext
@@ -68,6 +68,11 @@ KEY_STYLE_LOCALE_TOKENS = (
     "idml_key_panel_space_before",
     "idml_key_visual_raise",
 )
+# Languages whose approved key-panel geometry lives in the locale rows above
+# (en's approved geometry is the base rows). Their overrides are
+# contract-required under strict builds; every other governed language reads
+# overrides permissively until its reference layout is approved.
+KEY_STYLE_CONTRACT_LANGUAGES = frozenset({"fr", "es"})
 
 
 @dataclass(frozen=True)
@@ -179,10 +184,13 @@ class KeyCombinationStyle:
             )
 
         def localized(key: str, default: float) -> float:
-            base = token(key, default)
-            if language not in {"fr", "es"}:
-                return base
-            return token(f"lang_{language}_{key}", base)
+            return localized_component_param_pt(
+                ctx.params, key, default,
+                language=language,
+                strict=ctx.strict_component_assets,
+                owner="key_combinations",
+                contract_languages=KEY_STYLE_CONTRACT_LANGUAGES,
+            )
 
         governed = language in governed_languages()
         return cls(

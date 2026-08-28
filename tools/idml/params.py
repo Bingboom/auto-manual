@@ -78,6 +78,68 @@ def component_param_pt(
     return param_pt(params, key, default)
 
 
+def localized_param_pt(
+    params: dict[str, tuple[str, str]],
+    key: str,
+    default: float,
+    *,
+    language: str | None,
+) -> float:
+    """Language override of a pt token; the base value otherwise.
+
+    The one implementation of the ``lang_<code>_<key>`` cascade the IDML
+    components previously re-derived each for themselves, with gates that
+    disagreed ({"fr","es"} literals beside ``governed_languages()`` — survey
+    D3). The gate is ``layout_override_languages()``: governed languages plus
+    lines in active layout tuning. Registering a language does not opt it in,
+    and an honored language with no override row simply keeps the base value —
+    override tokens are additive, never contract-required here.
+    """
+    from .language_contract import layout_override_languages
+
+    base = param_pt(params, key, default)
+    code = (language or "").split("-", 1)[0].strip().casefold()
+    if code and code in layout_override_languages():
+        return param_pt(params, f"lang_{code}_{key}", base)
+    return base
+
+
+def localized_component_param_pt(
+    params: dict[str, tuple[str, str]],
+    key: str,
+    default: float,
+    *,
+    language: str | None,
+    strict: bool,
+    owner: str,
+    contract_languages: frozenset[str] = frozenset(),
+) -> float:
+    """``localized_param_pt`` with component fail-closed semantics.
+
+    The base token keeps the caller's strictness — an approved component's
+    required token stays contract-checked. The override lookup is strict only
+    for ``contract_languages``: the languages whose approved reference
+    geometry *lives in* the ``lang_<code>_`` rows, so losing or corrupting one
+    of those rows must fail the approved contract rather than silently render
+    the base geometry. For every other honored language a missing override
+    row means "no override yet", which is what lets a language in layout
+    tuning build before its rows exist.
+    """
+    from .language_contract import layout_override_languages
+
+    base = component_param_pt(params, key, default, strict=strict, owner=owner)
+    code = (language or "").split("-", 1)[0].strip().casefold()
+    if code and code in layout_override_languages():
+        return component_param_pt(
+            params,
+            f"lang_{code}_{key}",
+            base,
+            strict=strict and code in contract_languages,
+            owner=owner,
+        )
+    return base
+
+
 def brand_cmyk(params: dict[str, tuple[str, str]], key: str, default: str) -> tuple[float, float, float, float]:
     value, unit = params.get(key, (default, "cmyk"))
     parts = [p.strip() for p in (value or default).split(",")]

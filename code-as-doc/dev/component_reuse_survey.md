@@ -433,6 +433,30 @@ TeX 里不再重打信号词。
 7 处各自实现的级联收敛到它——注意保留"仅治理语言级联"和"按组件严格性"两个
 现有能力，`resolve_layout_tokens` 目前表达不了，需要先补。
 
+**已落地（2026-08-28，ko 开门轮）**：`tools/idml/params.py` 新增
+`localized_param_pt` / `localized_component_param_pt` 单一级联实现，
+`symbols_page` / `key_combinations` / `reference_story_flow` /
+`prose_table`（含 4 语言 IndexError 修复与 `_safety_language` 探测）
+全部收敛到它。实施中发现 `governed_languages()` 一词身兼两职，
+拆成了**三个正交集合**（这是 D3 原定义没预见的关键修正）：
+
+1. `governed_languages()` = 已批准参考版式的**流程行为**门
+   （固定高度 vs 内容估算、参考偏移、planned composition）——仍为
+   en/fr/es；把 ko 直接加进去会让 composed_ko 的符号页几何塌 47.75pt，
+   因为它同时翻转了"估算 vs 固定"这类行为门。
+2. `layout_override_languages()` = `lang_<code>_` 行被级联**读取**的集合
+   （治理语言 + 调优中产线，现为 en/fr/es/ko）——韩语行落地即全组件生效，
+   但在版式批准前保持 measured/fallback 流程行为。
+3. 各组件的 `contract_languages` = 批准几何**长在覆盖行里**的语言
+   （symbols 为 en/fr/es，key panel 为 fr/es）——strict 构建下这些行
+   缺失/损坏必须炸，其余语言缺行=「尚无覆盖」。
+
+剩余的 `{"fr","es"}` 字面量经逐处分类确认为 fr/es **排版密度事实**
+（信号词缩排、`HB Safety List FR/ES` 样式名、dense 面板、lead 宽度），
+不是治理门，保留并由 `data/language_literal_baseline.txt` 棘轮登记。
+composed_ko golden 主动重基线一次（仅两个 safety story 的
+SpaceAfter ≤0.07pt：ko 不再经 "en" 回落借用批准版 EN 行集）。
+
 ### D4 识别层禁令要有闸门
 
 现状：`STYLE_DEFINITION.md` §0.5 三处明文禁止靠本地化文案识别，

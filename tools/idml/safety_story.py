@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 from .character_metrics import with_character_metrics
-from .language_contract import governed_languages
+from .language_contract import layout_override_languages
 from .params import param_pt
 
 
@@ -276,5 +276,14 @@ def _safety_list_xml(
 
 
 def _safety_language(sid: str) -> str:
+    """Resolve the safety story's locale row-set from its story id.
+
+    Scans every honored layout language, so a line in layout tuning reads its
+    own ``lang_<code>_`` safety rows (or the base defaults) instead of
+    silently borrowing the approved EN row-set through the "en" fallback.
+    """
     folded = sid.casefold()
-    return next((lang for lang in governed_languages() if f"_{lang}" in folded), "en")
+    return next(
+        (lang for lang in layout_override_languages() if f"_{lang}" in folded),
+        "en",
+    )
