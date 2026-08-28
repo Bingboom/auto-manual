@@ -12,7 +12,8 @@ slots:
     file: asset:page/cover
   preface_important:
     type: rst_include
-    file: templates/page_shared/{primary_lang}/00_preface.rst
+    # BP ships a shorter three-language preface than the host manual.
+    file: templates/page_bp/{primary_lang}/00_preface.rst
     lang: primary
     lang_blocks: true
   toc:
@@ -30,7 +31,8 @@ slots:
     include_dir: generated/{model}
   box_contents:
     type: rst_include
-    file: templates/page_shared/{lang}/02_whats_in_the_box.rst
+    # Battery Pack + Expansion Cable + Documents; never the host AC cable.
+    file: templates/page_bp/{lang}/02_whats_in_the_box.rst
   product_overview:
     type: generated_page
     page: 03_product_overview
@@ -78,8 +80,9 @@ slots:
     include_dir: generated/{model}
   warranty:
     type: rst_include
-    file: templates/page_shared/{lang}/11_warranty.rst
+    # Preserve the shipped BP warranty copy without host-only section carriers.
+    file: templates/page_bp/{lang}/11_warranty.rst
   back_cover:
     type: rst_include
-    file: templates/page_shared/{primary_lang}/99_back_cover.rst
+    file: templates/page_bp/{primary_lang}/99_back_cover.rst
     lang: primary

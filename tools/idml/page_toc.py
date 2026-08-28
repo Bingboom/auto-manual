@@ -12,8 +12,9 @@ import re
 from dataclasses import dataclass, field
 from xml.sax.saxutils import escape
 
-from .params import IDPKG
+from .params import IDPKG, param_pt
 from . import page_objects as _po
+from .line_metrics import estimated_text_width
 from .style_names import paragraph_style_ref
 from .language_contract import IDML_LANGUAGE_PACKS, LANGUAGE_REGISTRY
 
@@ -52,6 +53,9 @@ _LEFT_ENTRY_X = (29.896, 30.012, 30.127)
 _LEFT_ENTRY_WIDTH = (151.461, 151.461, 151.346)
 _RIGHT_ENTRY_X = 189.261
 _RIGHT_ENTRY_WIDTH = (154.676, 154.790, 154.905)
+_ENTRY_NARROW_WIDTH_RATIO = 0.52
+_LEADER_TEXT_GAP = 4.0
+_LEADER_MIN_LENGTH = 0.25
 
 # Reference artwork applies small per-entry horizontal metric adjustments.
 # Keeping these on live CharacterStyleRange text reproduces the measured word
@@ -211,12 +215,53 @@ def _folio(spread_index: int) -> int:
     return max(1, spread_index - 1)
 
 
-def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
-    style = paragraph_style_ref("HB TOC Entry")
+def _entry_typography(title: str, col_w: float) -> tuple[float, float]:
     available = col_w - 8.0
     point_size = min(6.5, available / max(1.0, len(title) * 0.56))
     point_size = max(5.4, point_size)
     horizontal_scale = _ENTRY_HORIZONTAL_SCALE.get(title, 100.693)
+    return point_size, horizontal_scale
+
+
+def _entry_text_end_x(title: str, entry_x: float, col_w: float) -> float:
+    """Return the portable page-space estimate of an entry title's end."""
+    point_size, horizontal_scale = _entry_typography(title, col_w)
+    width = estimated_text_width(
+        title,
+        point_size=point_size,
+        narrow_width_ratio=_ENTRY_NARROW_WIDTH_RATIO,
+    )
+    return entry_x + width * horizontal_scale / 100.0
+
+
+def _leader_metric_for_entry(
+    title: str,
+    entry_x: float,
+    col_w: float,
+    metric: tuple[float, float, float, float, float, float],
+    *,
+    text_gap: float = _LEADER_TEXT_GAP,
+) -> tuple[float, float, float, float, float, float]:
+    """Move only the leader start beyond this entry's rendered title."""
+    _reference_x1, y, x2, weight, dash, gap = metric
+    text_end = _entry_text_end_x(title, entry_x, col_w)
+    x1 = min(text_end + text_gap, x2 - _LEADER_MIN_LENGTH)
+    return x1, y, x2, weight, dash, gap
+
+
+def _offset_leader_metric_y(
+    metric: tuple[float, float, float, float, float, float],
+    delta: float,
+) -> tuple[float, float, float, float, float, float]:
+    """Move measured leader geometry with its token-positioned segment."""
+
+    x1, y, x2, weight, dash, gap = metric
+    return x1, y + delta, x2, weight, dash, gap
+
+
+def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
+    style = paragraph_style_ref("HB TOC Entry")
+    point_size, horizontal_scale = _entry_typography(title, col_w)
     right_tab = (
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
@@ -323,7 +368,15 @@ def finalize(
 
     body_x = writer.m_l
     body_w = writer.page_w - writer.m_l - writer.m_r
-    y = 33.84
+    dynamic_leader_start = bool(
+        param_pt(writer.params, "idml_toc_dynamic_leader_start", 0.0)
+    )
+    leader_text_gap = param_pt(
+        writer.params,
+        "idml_toc_leader_text_gap",
+        _LEADER_TEXT_GAP,
+    )
+    y = param_pt(writer.params, "idml_toc_title_top", 33.84)
     frames: list[str] = []
     # Master: plain large dark text, no bar (STYLE_DEFINITION.md §2.5).
     title_xml = psr("HB TOC Title", title, terminal=True).replace(
@@ -339,7 +392,14 @@ def finalize(
         "tf_toc_title", title_sid,
         *writer._page_rect(body_x + 1.11, y + 0.667, body_w - 1.11, 30.0),
         inset=(0, 0, 0, 0)))
-    y = 65.51
+    y = param_pt(writer.params, "idml_toc_first_segment_top", 65.51)
+    first_segment_advance = param_pt(
+        writer.params, "idml_toc_first_segment_advance", 142.75,
+    )
+    following_segment_advance = param_pt(
+        writer.params, "idml_toc_following_segment_advance", 149.22,
+    )
+    reference_segment_top = 65.51
 
     for si, (header, rng, segment) in enumerate(segments):
         code, _, label = header.partition("  ")
@@ -397,11 +457,26 @@ def finalize(
             )
             if si < len(_REFERENCE_LEADERS) and ci < len(_REFERENCE_LEADERS[si]):
                 leader_metrics = _REFERENCE_LEADERS[si][ci]
-                for ri, _ in enumerate(chunk[:len(leader_metrics)]):
+                for ri, (entry_title, _) in enumerate(
+                    chunk[:len(leader_metrics)]
+                ):
+                    metric = leader_metrics[ri]
+                    if dynamic_leader_start:
+                        metric = _leader_metric_for_entry(
+                            entry_title,
+                            entry_x,
+                            entry_w,
+                            metric,
+                            text_gap=leader_text_gap,
+                        )
+                    metric = _offset_leader_metric_y(
+                        metric,
+                        y - reference_segment_top,
+                    )
                     frames.append(_leader_xml(
                         writer,
                         f"gl_toc_leader_{si}_{ci}_{ri}",
-                        leader_metrics[ri],
+                        metric,
                     ))
             xml = "".join(_entry_psr(t, folio, entry_w) for t, folio in chunk)
             sid = add_story_parts(f"st_toc_seg{si}_c{ci}", f"TOC {si}/{ci}", [xml])
@@ -411,7 +486,8 @@ def finalize(
                     entry_x, entry_y, entry_w, 14.0 * half + 14.0,
                 ),
                 inset=(0, 0, 0, 0)))
-        y += 142.75 if si == 0 else 149.22
+        y += first_segment_advance if si == 0 else following_segment_advance
+        reference_segment_top += 142.75 if si == 0 else 149.22
 
     spread_xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

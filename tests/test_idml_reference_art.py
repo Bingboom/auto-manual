@@ -13,7 +13,14 @@ from tools.idml.components.oppanel import (
     _row_text_layers,
     render_oppanel,
 )
-from tools.idml.components.prose_image import render_image_block
+from tools.idml.components.prose_image import (
+    IMAGE_ROLE_CHARGING_DIAGRAM,
+    IMAGE_ROLE_COMPACT_DIAGRAM,
+    IMAGE_ROLE_FULL_MEASURE,
+    IMAGE_ROLE_REFERENCE_MEASURE,
+    IMAGE_ROLE_WIDE_DIAGRAM,
+    render_image_block,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -306,6 +313,86 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 )
                 self.assertIn('AnchorSpaceAbove="0"', xml or "")
                 self.assertGreater(height, 0.0)
+
+    def test_semantic_image_roles_use_layout_ratios_without_filename_routing(
+        self,
+    ) -> None:
+        ctx = _ctx()
+        neutral_asset = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        )
+        roles_and_ratios = (
+            (IMAGE_ROLE_FULL_MEASURE, 1.0),
+            (IMAGE_ROLE_REFERENCE_MEASURE, 1.0),
+            (IMAGE_ROLE_WIDE_DIAGRAM, 0.78),
+            (IMAGE_ROLE_COMPACT_DIAGRAM, 0.62),
+            (IMAGE_ROLE_CHARGING_DIAGRAM, 0.58),
+        )
+        for index, (role, ratio) in enumerate(roles_and_ratios):
+            with self.subTest(role=role):
+                xml, height = render_image_block(
+                    neutral_asset.as_posix(),
+                    ctx,
+                    rect_id=f"semantic_{index}",
+                    terminal=False,
+                    role=role,
+                )
+                self.assertIsNotNone(xml)
+                self.assertAlmostEqual(
+                    ctx.text_measure * ratio,
+                    _image_width(xml or ""),
+                    places=3,
+                )
+                self.assertGreater(height, 0.0)
+
+        default_xml, _ = render_image_block(
+            neutral_asset.as_posix(),
+            ctx,
+            rect_id="semantic_default",
+            terminal=False,
+        )
+        self.assertAlmostEqual(120.0, _image_width(default_xml or ""), places=3)
+
+        localized = RenderContext(
+            params={
+                "idml_semantic_image_full_measure_ratio": ("1.0", "ratio"),
+                "lang_fr_idml_semantic_image_full_measure_ratio": (
+                    "0.80",
+                    "ratio",
+                ),
+            },
+            page_w=ctx.page_w,
+            m_l=ctx.m_l,
+            m_r=ctx.m_r,
+            root=ctx.root,
+            bundle_root=ctx.bundle_root,
+            language="fr",
+        )
+        localized_xml, _ = render_image_block(
+            neutral_asset.as_posix(),
+            localized,
+            rect_id="semantic_fr",
+            terminal=False,
+            role=IMAGE_ROLE_FULL_MEASURE,
+        )
+        self.assertAlmostEqual(
+            localized.text_measure * 0.80,
+            _image_width(localized_xml or ""),
+            places=3,
+        )
+        reference_xml, _ = render_image_block(
+            neutral_asset.as_posix(),
+            localized,
+            rect_id="semantic_fr_reference",
+            terminal=False,
+            role=IMAGE_ROLE_REFERENCE_MEASURE,
+        )
+        self.assertAlmostEqual(
+            localized.text_measure,
+            _image_width(reference_xml or ""),
+            places=3,
+        )
 
     def test_operation_panel_preserves_reference_art_scale(self) -> None:
         ctx = _ctx()

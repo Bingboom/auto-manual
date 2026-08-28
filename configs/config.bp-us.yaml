@@ -44,6 +44,11 @@ paths:
   docs_dir: docs
   structured_data_dir: data/phase2
   layout_params_csv: data/layout_params.csv
+  idml_layout_params_overlays:
+    - data/layout_params.idml-compact.csv
+  # Candidate physical assembly only; it remains non-production until native
+  # InDesign/PDF visual approval promotes it through the approved registry.
+  idml_assembly_plan: docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json
   page_registry_csv: data/phase2/page_registry.csv
   page_blocks_dir: data/phase2
   spec_master_csv: data/phase2/Spec_Master.csv

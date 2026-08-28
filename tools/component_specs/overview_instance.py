@@ -67,11 +67,6 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
     if not isinstance(page, Mapping):
         raise ComponentSpecError(f"{prefix}.page must be a mapping")
     _number_list(page.get("title_frame"), length=4, field=f"{prefix}.page.title_frame")
-    _number_list(
-        page.get("title_text_rect"),
-        length=4,
-        field=f"{prefix}.page.title_text_rect",
-    )
 
     views = instance.get("views")
     if not isinstance(views, list) or not views:
@@ -148,6 +143,12 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
             length=4,
             field=f"{view_prefix}.idml.heading_bullet_rect",
         )
+        if "heading_text_rect" in idml:
+            _number_list(
+                idml.get("heading_text_rect"),
+                length=4,
+                field=f"{view_prefix}.idml.heading_text_rect",
+            )
 
         callouts = view.get("callouts")
         if not isinstance(callouts, list) or not callouts:

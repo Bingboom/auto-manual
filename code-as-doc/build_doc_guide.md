@@ -808,7 +808,10 @@ to the reviewed, hash-bound
 The design and implementation rationale is recorded in
 [`dev/idml_reference_replica_plan.md`](dev/idml_reference_replica_plan.md), and
 the module boundary remains documented in
-[`dev/idml_module_map.md`](dev/idml_module_map.md).
+[`dev/idml_module_map.md`](dev/idml_module_map.md). When a new model, language,
+page, or density should reuse an existing visual component, follow
+[`dev/style_component_usage_guide.md`](dev/style_component_usage_guide.md) before
+adding page-level geometry or finalizer behavior.
 
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),

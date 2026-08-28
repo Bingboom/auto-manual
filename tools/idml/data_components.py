@@ -78,6 +78,44 @@ def _calls(text: str, macro: str, argc: int) -> list[list[str]]:
             cursor = start + len(needle)
 
 
+def _optional_calls(
+    text: str,
+    macro: str,
+    argc: int,
+) -> list[tuple[str, list[str]]]:
+    """Return an optional semantic key plus the required braced arguments.
+
+    The optional value is renderer metadata: LaTeX ignores it, while Manual
+    IR carries it into editable components. Legacy calls without ``[...]``
+    remain readable with an empty key.
+    """
+
+    found: list[tuple[str, list[str]]] = []
+    cursor = 0
+    needle = "\\" + macro
+    while True:
+        start = text.find(needle, cursor)
+        if start < 0:
+            return found
+        args_start = start + len(needle)
+        while args_start < len(text) and text[args_start] in " \t\n":
+            args_start += 1
+        optional = ""
+        if args_start < len(text) and text[args_start] == "[":
+            optional_end = text.find("]", args_start + 1)
+            if optional_end < 0:
+                cursor = args_start + 1
+                continue
+            optional = text[args_start + 1:optional_end].strip()
+            args_start = optional_end + 1
+        args, end = _read_braced_args(text, args_start, argc)
+        if len(args) == argc:
+            found.append((optional, args))
+            cursor = end
+        else:
+            cursor = start + len(needle)
+
+
 def _spec_payload(body: str) -> dict[str, Any] | None:
     start = body.find(r"\HBSpecPageStart")
     if start >= 0:
@@ -128,8 +166,15 @@ def _symbol_payload(body: str) -> dict[str, Any] | None:
         headers = [_text(args[0]), _text(args[1])]
         if macro == "HBSymbolTable":
             rows = [
-                {"figure": figure.strip(), "label": _text(label), "text": _text(meaning)}
-                for figure, label, meaning in _calls(args[2], "HBSymbolSignalRow", 3)
+                {
+                    "signal_key": key.casefold(),
+                    "figure": figure.strip(),
+                    "label": _text(label),
+                    "text": _text(meaning),
+                }
+                for key, (figure, label, meaning) in _optional_calls(
+                    args[2], "HBSymbolSignalRow", 3,
+                )
             ]
             return {"kind": "symbol_signals", "headers": headers, "rows": rows}
         groups = args[2:]

@@ -1,13 +1,10 @@
 """Absolute-positioned composed-page assemblers for the IDML exporter."""
 from __future__ import annotations
 
-import re
 from pathlib import Path
 
-from .language_contract import governed_languages
-from .page_objects import frame_with_background, h1_bar_h_pt, heading_bar_opts, heading_text, with_rounded_outer
-from .params import IDPKG, component_param_pt, param_pt
-from .source_copy import source_block_text
+from .params import IDPKG
+from .safety_story import _safety_section_story
 from .symbols_page import (
     ROOT as ROOT, SymbolOverflow,
     _localized_signal_label_bar,
@@ -62,404 +59,48 @@ def _frame_xml(writer, frame_id: str, story_id: str,
     )
 
 
-def _safety_section_story(writer, sid: str, title: str,
-                          blocks: list[tuple[str, str]],
-                          bundle_root: Path) -> str:
-    parts: list[str] = []
-    text_measure = writer.page_w - writer.m_l - writer.m_r
-    column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
-    column_measure = (text_measure - column_gap) / 2.0
-    content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
-    last_idx = content_indices[-1] if content_indices else -1
-    previous_kind = ""
-    dense_language = any(marker in sid.casefold() for marker in ("_fr_", "_es_"))
-    language = _safety_language(sid)
-    right_section = sid.endswith("_right")
-    scale_key = (
-        "idml_safety_list_horizontal_scale_dense"
-        if dense_language else "idml_safety_list_horizontal_scale"
-    )
-    localized_scale_key = f"lang_{language}_{scale_key}"
-    horizontal_scale = 100.0 * float(
-        writer.params.get(
-            localized_scale_key,
-            writer.params.get(
-                scale_key,
-                ("0.90" if dense_language else "0.98", "ratio"),
-            ),
-        )[0]
-    )
-    for bi, (kind, text) in enumerate(blocks):
-        terminal = bi == last_idx
-        if kind == "component":
-            import json as _json
-            xml_part, _ = writer._render_component(
-                sid, bi, _json.loads(text), bundle_root, terminal,
-                span_columns=False, measure_w=column_measure)
-            parts.append(xml_part)
-        elif kind == "body":
-            # \HBTypeBody territory: lead-ins are body Medium, not L2 Bold
-            parts.append(writer._psr("HB Body", text, terminal=terminal))
-        elif kind == "safetylead":
-            parts.append(writer._psr("HB Safety Lead", text, terminal=terminal))
-        elif kind == "list":
-            list_style = (
-                f"HB Safety List {language.upper()}"
-                if language in {"fr", "es"}
-                else "HB Safety List"
-            )
-            list_left_indent = param_pt(
-                writer.params,
-                (
-                    f"lang_{language}_idml_safety_right_list_left_indent"
-                    if right_section
-                    else f"lang_{language}_idml_safety_list_left_indent"
-                ),
-                param_pt(writer.params, "idml_list_left_indent", 3.7),
-            )
-            list_first_line_indent = param_pt(
-                writer.params,
-                (
-                    f"lang_{language}_idml_safety_right_list_first_line_indent"
-                    if right_section
-                    else f"lang_{language}_idml_safety_list_first_line_indent"
-                ),
-                param_pt(writer.params, "idml_list_first_line_indent", -6.25),
-            )
-            list_space_after = param_pt(
-                writer.params,
-                f"lang_{language}_idml_safety_list_space_after",
-                param_pt(writer.params, "comp_list_itemsep", 2.07),
-            )
-            list_xml = _safety_list_xml(
-                writer,
-                style=list_style,
-                text=text,
-                terminal=terminal,
-                left_indent=list_left_indent,
-                first_line_indent=list_first_line_indent,
-                space_after=list_space_after,
-                horizontal_scale=horizontal_scale,
-                default_marker="•",
-            )
-            parts.append(list_xml)
-        elif kind == "sublist":
-            sublist_style = (
-                f"HB Safety Sublist {language.upper()}"
-                if language in {"fr", "es"}
-                else "HB Safety Sublist"
-            )
-            sublist_space_after = param_pt(
-                writer.params,
-                f"lang_{language}_idml_safety_list_space_after",
-                param_pt(writer.params, "comp_sublist_itemsep", 2.0),
-            )
-            sublist_left_indent = param_pt(
-                writer.params, "idml_sublist_left_indent", 9.58,
-            )
-            sublist_xml = _safety_list_xml(
-                writer,
-                style=sublist_style,
-                text=text,
-                terminal=terminal,
-                left_indent=sublist_left_indent,
-                first_line_indent=param_pt(
-                    writer.params, "idml_sublist_first_line_indent", -6.04,
-                ),
-                space_after=sublist_space_after,
-                horizontal_scale=horizontal_scale,
-                default_marker="–",
-            )
-            if previous_kind != "sublist":
-                first_gap = param_pt(
-                    writer.params, "idml_sublist_first_space_before", 0.45,
-                )
-                sublist_xml = sublist_xml.replace(
-                    "<ParagraphStyleRange ",
-                    f'<ParagraphStyleRange SpaceBefore="{first_gap:g}" ',
-                    1,
-                )
-            parts.append(sublist_xml)
-        elif kind in {"h1", "h2", "h3"}:
-            parts.append(writer._psr(writer._PROSE_STYLE[kind], text, terminal=terminal))
-        if kind != "layout":
-            previous_kind = kind
-    return writer._add_story_parts(sid, title, parts)
-
-
-def _safety_list_xml(
+def add_safety_page(
     writer,
-    *,
-    style: str,
-    text: str,
-    terminal: bool,
-    left_indent: float,
-    first_line_indent: float,
-    space_after: float,
-    horizontal_scale: float,
-    default_marker: str,
+    sid: str,
+    title: str,
+    blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    page_index: int,
 ) -> str:
-    """Render a safety-list marker separately from its tab-aligned prose."""
-    marker_match = re.match(r"^\s*([•◦–-])(?:\s+|$)", text)
-    marker = marker_match.group(1) if marker_match else default_marker
-    list_text = text[marker_match.end():] if marker_match else text.lstrip()
-    paragraph = writer._psr(style, list_text, terminal=terminal)
-    paragraph = paragraph.replace(
-        "<ParagraphStyleRange ",
-        (
-            '<ParagraphStyleRange '
-            f'LeftIndent="{left_indent:g}" '
-            f'FirstLineIndent="{first_line_indent:g}" '
-            f'SpaceAfter="{space_after:g}" '
-            'RightIndent="0" Hyphenation="false" '
-        ),
-        1,
+    """Place the complete standard Safety component on one page."""
+
+    from .components.safety_panel import SafetyPanel, SafetyPanelData
+
+    panel = SafetyPanel(
+        writer,
+        sid=sid,
+        data=SafetyPanelData.from_blocks(blocks, story_title=title),
+        bundle_root=bundle_root,
+    ).render(
+        x=writer.m_l,
+        y=0.0,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=writer.page_h,
     )
-    paragraph = paragraph.replace(
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'HorizontalScale="{horizontal_scale:g}"',
-    )
-    tab_properties = (
-        '<Properties><TabList type="list"><ListItem type="record">'
-        '<Alignment type="enumeration">LeftAlign</Alignment>'
-        '<AlignmentCharacter type="string"></AlignmentCharacter>'
-        '<Leader type="string"></Leader>'
-        f'<Position type="unit">{left_indent:g}</Position>'
-        '</ListItem></TabList></Properties>'
-    )
-    marker_xml = (
-        '<CharacterStyleRange '
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'HorizontalScale="{horizontal_scale:g}">'
-        f'<Content>{marker}</Content>'
-        '</CharacterStyleRange>'
-    )
-    tab_xml = (
-        '<CharacterStyleRange '
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
-        '<Content>\t</Content>'
-        '</CharacterStyleRange>'
-    )
-    return paragraph.replace(
-        "\n    <CharacterStyleRange",
-        f"\n    {tab_properties}\n    {marker_xml}\n    {tab_xml}\n    <CharacterStyleRange",
-        1,
-    )
-
-
-def _safety_language(sid: str) -> str:
-    folded = sid.casefold()
-    return next((lang for lang in governed_languages() if f"_{lang}" in folded), "en")
-
-
-def _split_safety_section_at_list(
-    blocks: list[tuple[str, str]], left_list_items: int,
-) -> tuple[list[tuple[str, str]], list[tuple[str, str]]]:
-    seen = 0
-    for index, (kind, _text) in enumerate(blocks):
-        if kind != "list":
-            continue
-        if seen == left_list_items:
-            return blocks[:index], blocks[index:]
-        seen += 1
-    raise ValueError(
-        "approved safety-page split exceeds the available first-section list items"
-    )
-
-
-def _approved_safety_param(writer, key: str, default: float) -> float:
-    return component_param_pt(
-        writer.params,
-        key,
-        default,
-        strict=writer.strict_component_assets,
-        owner="safety-page",
-    )
-
-def add_safety_page(writer, sid: str, title: str, blocks: list[tuple[str, str]], bundle_root: Path, page_index: int) -> str:
-    """V2.0 US safety page 01: fixed component regions, not one flow."""
-    h1 = source_block_text(blocks, "h1", owner="Safety page title")
-    top_warning = next((t for k, t in blocks
-                        if k == "component" and any(
-                            f'"kind": "{name}"' in t
-                            for name in ("safetywarning", "safetyinstruction"))), None)
-    subbar = source_block_text(blocks, "h2", owner="Safety operating-instructions title")
-
-    sections: list[list[tuple[str, str]]] = []
-    cur: list[tuple[str, str]] | None = None
-    for kind, text in blocks:
-        if kind == "layout" and text == "twocol_start":
-            cur = []
-        elif kind == "layout" and text == "twocol_end":
-            if cur is not None:
-                sections.append(cur)
-            cur = None
-        elif cur is not None:
-            cur.append((kind, text))
-
-    title_sid = f"{sid}_title"
-    writer._add_story_parts(
-        title_sid, f"{title} title",
-        [heading_text(writer, h1, level=1)])
-    warning_sid = f"{sid}_top_warning"
-    if top_warning:
-        import json as _json
-        xml_part, _ = writer._render_component(
-            warning_sid, 0, _json.loads(top_warning), bundle_root,
-            terminal=True, span_columns=False)
-        writer._add_story_parts(warning_sid, f"{title} warning", [xml_part])
-    bar_sid = f"{sid}_subbar"
-    writer._add_story_parts(
-        bar_sid, f"{title} subbar",
-        [heading_text(writer, subbar, level=2)])
-    language = _safety_language(sid)
-    dense_reference = writer.strict_component_assets and language in {"fr", "es"}
-    section_sids: list[tuple[str, str | None]] = []
-    for idx, section in enumerate(sections[:2]):
-        sec_sid = f"{sid}_section{idx + 1}"
-        if idx == 0 and dense_reference:
-            split_key = f"lang_{language}_idml_safety_first_section_left_list_items"
-            base_left_count = _approved_safety_param(
-                writer, "idml_safety_first_section_left_list_items", 5.0,
-            )
-            left_count = round(
-                _approved_safety_param(writer, split_key, base_left_count)
-            )
-            left_blocks, right_blocks = _split_safety_section_at_list(
-                section, left_count,
-            )
-            left_sid = f"{sec_sid}_left"
-            right_sid = f"{sec_sid}_right"
-            writer._safety_section_story(
-                left_sid, f"{title} section {idx + 1} left",
-                left_blocks, bundle_root,
-            )
-            writer._safety_section_story(
-                right_sid, f"{title} section {idx + 1} right",
-                right_blocks, bundle_root,
-            )
-            section_sids.append((left_sid, right_sid))
-        else:
-            writer._safety_section_story(
-                sec_sid, f"{title} section {idx + 1}", section, bundle_root,
-            )
-            section_sids.append((sec_sid, None))
-
     spread_id = f"sp_{page_index}"
     page_no = page_index + 1
-    body_x = writer.m_l
-    body_w = writer.page_w - writer.m_l - writer.m_r
-    column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
-    warning_top = _approved_safety_param(writer, "idml_safety_warning_top", 55.5)
-    warning_height = _approved_safety_param(
-        writer, "idml_safety_warning_height", 31.5,
-    )
-    second_section_top = _approved_safety_param(
-        writer, "idml_safety_second_section_top", 281.88,
-    )
-    second_section_height = _approved_safety_param(
-        writer, "idml_safety_second_section_height", 209.12,
-    )
-    subbar_height = param_pt(writer.params, "comp_subbar_height", 13.9)
-    subbar_top = 263.0
-    if dense_reference:
-        warning_top = _approved_safety_param(
-            writer, f"lang_{language}_idml_safety_warning_top", warning_top,
-        )
-        warning_height = _approved_safety_param(
-            writer, f"lang_{language}_idml_safety_warning_height", warning_height,
-        )
-        second_section_height = _approved_safety_param(
-            writer,
-            f"lang_{language}_idml_safety_second_section_height",
-            second_section_height,
-        )
-    frames = []
-    for frame_id, story_id, rect, opts in (
-        ("title", title_sid, (body_x, 27.92, body_w, h1_bar_h_pt(writer)),
-         {**heading_bar_opts(1, (1.5, 0, 1, 0)),
-          "text_rect": (body_x + 6.0, 26.0, body_w - 12.0, h1_bar_h_pt(writer))}),
-        ("warning", warning_sid, (body_x, warning_top, body_w, warning_height),
-         with_rounded_outer({
-             "inset": (0, 0, 0, 0),
-             "valign": "CenterAlign",
-         })),
-        ("section1", section_sids[0][0] if section_sids else "", (body_x, 95.77, body_w, 162.0),
-         {"columns": 2, "gutter": column_gap,
-          "balance_columns": True, "inset": (0, 0, 0, 0)}),
-        ("subbar", bar_sid, (body_x, subbar_top, body_w, subbar_height),
-         {**heading_bar_opts(2, (0.5, 0, 0.5, 0)),
-          "text_rect": (body_x + 6.0, subbar_top, body_w - 12.0, subbar_height)}),
-        ("section2", section_sids[1][0] if len(section_sids) > 1 else "",
-         (body_x, second_section_top, body_w, second_section_height),
-         {"columns": 2, "gutter": column_gap,
-          "balance_columns": True, "inset": (0, 0, 0, 0)}),
-    ):
-        if not story_id:
-            continue
-        if frame_id == "section1" and dense_reference:
-            base_gap = _approved_safety_param(
-                writer, "idml_safety_first_section_column_gap", 13.4,
-            )
-            dense_gap = _approved_safety_param(
-                writer, f"lang_{language}_idml_safety_first_section_column_gap",
-                base_gap,
-            )
-            base_left_top = _approved_safety_param(
-                writer, "idml_safety_first_section_left_top", 95.77,
-            )
-            left_top = _approved_safety_param(
-                writer, f"lang_{language}_idml_safety_first_section_left_top",
-                base_left_top,
-            )
-            base_right_top = _approved_safety_param(
-                writer, "idml_safety_first_section_right_top", base_left_top,
-            )
-            right_top = _approved_safety_param(
-                writer, f"lang_{language}_idml_safety_first_section_right_top",
-                base_right_top,
-            )
-            bottom = _approved_safety_param(
-                writer, "idml_safety_first_section_bottom", 257.77,
-            )
-            bottom = _approved_safety_param(
-                writer,
-                f"lang_{language}_idml_safety_first_section_bottom",
-                bottom,
-            )
-            section_to_subbar_gap = _approved_safety_param(
-                writer, "idml_safety_first_section_to_subbar_gap", 4.0,
-            )
-            bottom = min(bottom, subbar_top - section_to_subbar_gap)
-            column_w = (body_w - dense_gap) / 2.0
-            frames.append(frame_with_background(
-                writer, sid, "section1_left", story_id,
-                (body_x, left_top, column_w, bottom - left_top),
-                {"inset": (0, 0, 0, 0)},
-            ))
-            frames.append(frame_with_background(
-                writer, sid, "section1_right", section_sids[0][1] or "",
-                (body_x + column_w + dense_gap, right_top,
-                 column_w, bottom - right_top),
-                {"inset": (0, 0, 0, 0)},
-            ))
-            continue
-        frames.append(frame_with_background(writer, sid, frame_id, story_id, rect, opts))
     xml = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
         f'  <Page Self="{spread_id}_pg" Name="{page_no}" '
-        'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
+        'AppliedMaster="n" OverrideList="" TabOrder="" '
+        'GridStartingPoint="TopOutside" '
         f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
-        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}">\n'
+        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} '
+        f'{-writer.page_h / 2:g}">\n'
         '    <MarginPreference ColumnCount="1" ColumnGutter="12" '
         f'Top="{writer.m_t:g}" Bottom="{writer.m_b:g}" '
         f'Left="{writer.m_l:g}" Right="{writer.m_r:g}"/>\n'
         '  </Page>\n'
-        + "".join(frames) +
-        '</Spread>\n'
+        + "".join(panel.frames)
+        + '</Spread>\n'
         '</idPkg:Spread>\n'
     )
     writer.spreads.append((spread_id, xml))

@@ -23,9 +23,11 @@ from .latex_page_plan import (
     write_page_plan,
 )
 from .data_components import parse_data_component
+from .composition_plan import is_explicit_assembly_plan
 from .lcd_reference_profile import apply_lcd_reference_profile
 from .reference_layout_plan import load_approved_reference_plan
 from .source_copy import source_text
+from .target_assembly_plan import load_target_assembly_plan
 
 
 @dataclass(frozen=True)
@@ -48,6 +50,7 @@ class SpecPageData:
 class LcdPageData:
     title: str
     rows: tuple[dict[str, str], ...]
+    hero_reference: str = ""
 
 
 @dataclass(frozen=True)
@@ -55,7 +58,7 @@ class SymbolPageData:
     title: str
     signal_headers: tuple[str, str]
     icon_headers: tuple[str, str]
-    signals: tuple[tuple[str, str], ...]
+    signals: tuple[dict[str, str], ...]
     icons: tuple[dict[str, str], ...]
 
 
@@ -102,9 +105,16 @@ def project_pages(ir: ManualIR, bundle_root: Path) -> tuple[ProjectedPage, ...]:
 
 
 def _matching_page(ir: ManualIR, prefix: str, lang: str) -> ManualPage | None:
+    aliases = {
+        "spec_": ("spec_", "specifications_"),
+        "lcd_icons_": ("lcd_icons_", "lcd_display_"),
+        "symbols_": ("symbols_", "symbol_meaning_"),
+    }
+    prefixes = aliases.get(prefix, (prefix,))
     candidates = [
         page for page in ir.pages
-        if Path(page.source_path).name.startswith(prefix) and page.language == lang
+        if Path(page.source_path).name.startswith(prefixes)
+        and page.language == lang
     ]
     return candidates[0] if candidates else None
 
@@ -186,6 +196,8 @@ def _circled(index: int) -> str:
 
 
 def _asset_path(root: Path, data_root: Path, category: str, reference: str) -> str:
+    if not reference.strip():
+        return ""
     path = Path(reference)
     if path.is_absolute() and path.exists():
         return path.as_posix()
@@ -257,9 +269,15 @@ def lcd_page_data(
             )
         except ValueError:
             row["no"] = display_number or _circled(index)
+    hero_reference = next((
+        str(block.payload)
+        for block in (page.blocks if page is not None else ())
+        if block.kind == "image" and isinstance(block.payload, str)
+    ), "")
     return LcdPageData(
         _heading(page, owner="LCD page title"),
         tuple(rows),
+        hero_reference,
     )
 
 
@@ -273,7 +291,12 @@ def symbol_page_data(
     icon_payload = next((payload for payload in payloads
                          if payload.get("kind") == "symbol_icons"), None)
     signals = tuple(
-        (str(row.get("label") or ""), str(row.get("text") or ""))
+        {
+            "signal_key": str(row.get("signal_key") or "").casefold(),
+            "figure": str(row.get("figure") or ""),
+            "label": str(row.get("label") or ""),
+            "text": str(row.get("text") or ""),
+        }
         for row in (signal_payload or {}).get("rows", [])
         if row.get("text")
     )
@@ -368,7 +391,8 @@ def same_source_issues(ir: ManualIR) -> list[str]:
 
 def build_same_source_ir(
     *, root: Path, bundle_root: Path, model: str, region: str, lang: str,
-    data_root: Path,
+    data_root: Path, layout_params_csv: Path | None = None,
+    layout_param_overlays: tuple[Path, ...] = (),
 ) -> ManualIR:
     """Build and enforce the target-independent same-source contract.
 
@@ -377,7 +401,9 @@ def build_same_source_ir(
     """
     ir = build_manual_ir(
         root=root, bundle_root=bundle_root, model=model, region=region,
-        lang=lang, source="prepared-bundle", data_root=data_root)
+        lang=lang, source="prepared-bundle", data_root=data_root,
+        layout_params_csv=layout_params_csv,
+        layout_param_overlays=layout_param_overlays)
     issues = validate_manual_ir(ir)
     issues.extend(same_source_issues(ir))
     issues.extend(asset_resolution_issues(ir, root=root, data_root=data_root))
@@ -391,7 +417,10 @@ def build_reference_page_plan(
     *,
     root: Path,
     bundle_root: Path,
+    target_assembly_plan: Path | None = None,
 ) -> dict[str, Any] | None:
+    """Resolve approved, configured-candidate, then measured page assembly."""
+
     approved = load_approved_reference_plan(root=root, ir=ir)
     if approved is not None:
         issues = validate_page_plan(approved)
@@ -400,6 +429,8 @@ def build_reference_page_plan(
                 "approved reference page plan validation failed: " + "; ".join(issues)
             )
         return approved
+    if target_assembly_plan is not None:
+        return load_target_assembly_plan(target_assembly_plan, ir)
     reference_pdf = find_reference_pdf(bundle_root)
     if reference_pdf is None:
         return None
@@ -439,7 +470,7 @@ def reference_page_count_issues(
     plan: dict[str, Any] | None,
     emitted_page_count: int,
 ) -> list[str]:
-    """Reject a package whose physical pages drift from its APPROVED plan.
+    """Reject physical-page drift from an explicit assembly contract.
 
     Exact physical-page parity is only meaningful under an approved reference
     plan, where a human mapped the IDML page-by-page to the frozen PDF. The
@@ -452,7 +483,7 @@ def reference_page_count_issues(
     """
     if plan is None:
         return []
-    if plan.get("plan_source") != "approved-reference":
+    if not is_explicit_assembly_plan(plan):
         return []
     expected = int(plan.get("physical_page_count") or 0)
     if emitted_page_count == expected:
@@ -471,7 +502,7 @@ def report_reference_page_count_issues(
     issues = reference_page_count_issues(plan, emitted_page_count)
     for issue in issues:
         print(f"[export-idml] PAGE PLAN FAIL: {issue}")
-    if not issues and plan is not None and plan.get("plan_source") != "approved-reference":
+    if not issues and plan is not None and not is_explicit_assembly_plan(plan):
         expected = int(plan.get("physical_page_count") or 0)
         if expected and emitted_page_count != expected:
             print(

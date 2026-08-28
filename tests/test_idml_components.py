@@ -35,6 +35,11 @@ MINIMAL_SPECS: dict[str, dict] = {
     "warrantysection": {"kind": "warrantysection", "title": "Limited Warranty",
                         "index": 1, "blocks": [{"kind": "body", "text": "Copy."}]},
     "emphasispill": {"kind": "emphasispill", "texts": ["Charge before first use."]},
+    "headingpill": {
+        "kind": "headingpill",
+        "heading": "CHARGING VIA SOLAR PANELS",
+        "pill": "SOLD SEPARATELY",
+    },
     "referencefigure": {
         "kind": "referencefigure",
         "layout": "charging_ac",
@@ -179,6 +184,103 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('FillColor="Color/HB Brand Dark"', xml)
         self.assertNotIn('FillColor="Color/HB Brand Dark" RowSpan=', xml)
         self.assertIn('BaselineShift="0.7"', next(iter(stories.values())))
+
+    def test_heading_pill_reuses_h2_marker_and_rounded_emphasis_geometry(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid: str, _title: str, parts: list[str]) -> str:
+            stories[sid] = "".join(parts)
+            return sid
+
+        xml, height = render(
+            MINIMAL_SPECS["headingpill"],
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                native_structure_markers=True,
+                add_story=add_story,
+            ),
+            tid="charging_heading",
+            terminal=False,
+        )
+
+        self.assertIn("<Table ", xml)
+        self.assertIn("charging_heading_h2_marker_circle", xml)
+        self.assertIn('AppliedParagraphStyle="ParagraphStyle/Heading2"', xml)
+        self.assertIn("st_anchor_headingpill_charging_heading", xml)
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        self.assertIn("SOLD SEPARATELY", "".join(stories.values()))
+        self.assertGreater(height, 0.0)
+
+    def test_heading_pill_owns_compact_trilingual_column_geometry(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        localized = (
+            ("en", "CHARGING VIA SOLAR PANELS", "SOLD SEPARATELY"),
+            ("fr", "CHARGEMENT PAR PANNEAUX SOLAIRES", "VENDU SÉPARÉMENT"),
+            ("es", "CARGA MEDIANTE PANELES SOLARES", "SE VENDE POR SEPARADO"),
+        )
+        suffix_columns = []
+        for language, heading, pill in localized:
+            with self.subTest(language=language):
+                stories = {}
+
+                def add_story(sid, _title, parts):
+                    stories[sid] = "".join(parts)
+                    return sid
+
+                xml, _height = render(
+                    {
+                        "kind": "headingpill",
+                        "heading": heading,
+                        "pill": pill,
+                        "variant": "charging",
+                    },
+                    RenderContext(
+                        params=params,
+                        page_w=368.79,
+                        m_l=28.35,
+                        m_r=28.35,
+                        root=ROOT,
+                        bundle_root=ROOT,
+                        language=language,
+                        native_structure_markers=True,
+                        add_story=add_story,
+                    ),
+                    tid=f"charging_heading_{language}",
+                    terminal=True,
+                )
+
+                root = ET.fromstring(xml)
+                columns = [
+                    float(column.attrib["SingleColumnWidth"])
+                    for column in root.iter("Column")
+                ]
+                cells = list(root.iter("Cell"))
+                self.assertEqual(2, len(columns))
+                self.assertLess(sum(columns), 250.0)
+                self.assertAlmostEqual(
+                    10.9,
+                    float(cells[1].attrib["LeftInset"])
+                    + float(params["idml_charging_emphasis_horizontal_padding"][0])
+                    + 1.25,
+                )
+                self.assertIn(heading, xml)
+                self.assertIn(pill, "".join(stories.values()))
+                suffix_columns.append(columns[1])
+
+        self.assertLess(suffix_columns[0], suffix_columns[1])
+        self.assertLess(suffix_columns[1], suffix_columns[2])
 
     def test_reference_body_and_l2_typography_use_idml_calibration_tokens(self) -> None:
         from tools.export_idml import load_layout_params
@@ -415,6 +517,247 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('VerticalJustification="TopAlign"', xml)
         self.assertNotIn('VerticalJustification="CenterAlign"', xml)
 
+    def test_warranty_years_reuse_the_je_portable_glyph_on_target_plans(
+        self,
+    ) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        xml, _height = render(
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "Standard Warranty",
+                    "text": "Copy.",
+                }],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                native_structure_markers=True,
+            ),
+            tid="warranty_native_year",
+            terminal=True,
+        )
+
+        self.assertIn("<Content>❸</Content>", xml)
+        self.assertIn("<Content> YEARS</Content>", xml)
+        self.assertNotIn("tf_warranty_year_", xml)
+
+    def test_bp_warranty_years_use_reference_subtitle_and_rhythm(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        xml, _height = render(
+            {
+                "kind": "warrantyyears",
+                "layout_variant": "bp_default",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "— Standard Warranty",
+                    "text": "Reference-width explanatory copy.",
+                }],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="en",
+                native_structure_markers=True,
+            ),
+            tid="warranty_bp_year",
+            terminal=True,
+        )
+
+        self.assertIn("<Content>❸</Content>", xml)
+        self.assertNotIn("tf_warranty_year_", xml)
+        self.assertIn("<Content>Standard Warranty</Content>", xml)
+        self.assertNotIn("<Content>— Standard Warranty</Content>", xml)
+        self.assertIn('HorizontalScale="100"', xml)
+        self.assertIn('Leading="7"', xml)
+        self.assertIn('Hyphenation="false"', xml)
+
+    def test_bp_warranty_body_uses_reference_rhythm_only_in_variant(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+
+        def rendered(layout_variant: str) -> tuple[str, str]:
+            stories = []
+
+            def add_story(sid, title, parts):
+                stories.append((sid, title, parts))
+                return sid
+
+            spec = {
+                "kind": "warrantysection",
+                "title": "Limited Warranty",
+                "index": 1,
+                "blocks": [
+                    {"kind": "body", "text": "First warranty paragraph."},
+                    {"kind": "body", "text": "Second warranty paragraph."},
+                ],
+            }
+            if layout_variant:
+                spec["layout_variant"] = layout_variant
+            xml, _height = render(
+                spec,
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="en",
+                    add_story=add_story,
+                ),
+                tid=f"warranty_body_{layout_variant or 'base'}",
+                terminal=True,
+            )
+            body = next(
+                "".join(parts)
+                for sid, _title, parts in stories
+                if sid.startswith("st_anchor_warranty_body_")
+            )
+            return xml, body
+
+        bp_xml, bp_body = rendered("bp_default")
+        _base_xml, base_body = rendered("")
+
+        self.assertIn('Leading="7"', bp_body)
+        self.assertIn('HorizontalScale="100"', bp_body)
+        self.assertIn('Hyphenation="false"', bp_body)
+        self.assertIn('Composer="HL Single"', bp_body)
+        self.assertNotIn('Leading="7"', base_body)
+        self.assertNotIn('Hyphenation="false"', base_body)
+        body_frame = bp_xml.split(
+            'Self="tf_warranty_body_warranty_body_bp_default"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('Anchor="9.07087 -15.1524"', body_frame)
+
+    def test_bp_final_warranty_copy_is_vertically_centered(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        xml, _height = render(
+            {
+                "kind": "warrantysection",
+                "title": "Interpretation Rights",
+                "index": 6,
+                "layout_variant": "bp_default",
+                "blocks": [{"kind": "body", "text": "One-line final policy."}],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="en",
+                add_story=add_story,
+            ),
+            tid="warranty_final_center",
+            terminal=True,
+        )
+
+        body_frame = xml.split(
+            'Self="tf_warranty_body_warranty_final_center"', 1,
+        )[1].split("</TextFrame>", 1)[0]
+        self.assertIn('VerticalJustification="CenterAlign"', body_frame)
+
+    def test_warranty_variant_correction_resolves_per_language(self) -> None:
+        """A variant correction must follow the same language cascade as its base.
+
+        The values it offsets are per-language (`lang_<code>_idml_warranty_*`), and
+        those base tokens are also read by the approved JE-1000F/US reference
+        layout. If the variant layer were language-blind, a per-language BP
+        correction would have to be folded back into the shared base — which moves
+        the host's approved geometry and breaks its `layout_params_sha256` pin.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext
+        from tools.idml.components.warranty import _variant_adjust
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        spec = {"layout_variant": "bp_default"}
+
+        def adjust(language: str, key: str) -> float:
+            return _variant_adjust(
+                spec,
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language=language,
+                ),
+                key,
+            )
+
+        # en and es need opposite corrections on the same key — the whole point of
+        # the cascade. These two numbers are what used to live in the base tokens.
+        self.assertAlmostEqual(-5.5, adjust("en", "panel_height_adjust_5"), places=3)
+        self.assertAlmostEqual(8.0, adjust("es", "panel_height_adjust_5"), places=3)
+
+        # fr declares no bp_default correction, so it must fall through to zero
+        # rather than inherit either sibling's value.
+        self.assertAlmostEqual(0.0, adjust("fr", "panel_height_adjust_5"), places=3)
+
+        # An unregistered variant contributes nothing at all.
+        self.assertAlmostEqual(
+            0.0,
+            _variant_adjust(
+                {"layout_variant": "no_such_variant"},
+                RenderContext(
+                    params=params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="en",
+                ),
+                "panel_height_adjust_5",
+            ),
+            places=3,
+        )
+
     def test_localized_warranty_note_uses_reviewed_reference_width(self) -> None:
         from tools.export_idml import IdmlWriter, load_layout_params
 
@@ -467,6 +810,102 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertGreater(heights["es"], heights["fr"])
         self.assertIn('HorizontalScale="96"', xml_by_language["fr"])
         self.assertIn('HorizontalScale="100"', xml_by_language["en"])
+
+    def test_warranty_lead_preserves_authored_multiline_target_copy(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        _single_xml, single_height = render(
+            {
+                "kind": "warrantylead",
+                "texts": ["Line one Line two Line three"],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="fr",
+                add_story=add_story,
+            ),
+            tid="warranty_lead_single",
+            terminal=True,
+        )
+        _multi_xml, multiline_height = render(
+            {
+                "kind": "warrantylead",
+                "texts": ["Line one", "Line two", "Line three"],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="fr",
+                add_story=add_story,
+            ),
+            tid="warranty_lead_multiline",
+            terminal=True,
+        )
+
+        self.assertGreater(multiline_height, single_height)
+        multiline_story = stories[-1][2][0]
+        self.assertEqual(2, multiline_story.count("<Br/>"))
+
+    def test_warranty_layout_variant_resolves_shared_section_tokens(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
+        xml, _height = render(
+            {
+                "kind": "warrantysection",
+                "title": "Garantie limitée",
+                "index": 1,
+                "layout_variant": "multiline_lead",
+                "blocks": [{"kind": "body", "text": "Copy."}],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="fr",
+                add_story=add_story,
+            ),
+            tid="warranty_multiline_variant",
+            terminal=True,
+        )
+
+        self.assertIn('SpaceBefore="2.36"', xml)
+        body = next(
+            "".join(parts) for sid, _title, parts in stories if "body" in sid
+        )
+        self.assertIn('HorizontalScale="97"', body)
+        self.assertIn('Leading="7"', body)
+        self.assertIn('Hyphenation="false"', body)
 
     def test_warranty_lead_uses_approved_shell_width_and_host_inset(self) -> None:
         from tools.export_idml import load_layout_params
@@ -793,6 +1232,50 @@ class ComponentRegistryTests(unittest.TestCase):
         )
         self.assertIn('LeftIndent="6" FirstLineIndent="-4"', body)
         self.assertIn('PointSize="5"', body)
+
+    def test_multilingual_plural_note_labels_render_through_shared_notice(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        base = _ctx()
+        for language, label in (
+            ("en", "NOTES"),
+            ("fr", "REMARQUES"),
+            ("es", "OBSERVACIONES"),
+        ):
+            with self.subTest(language=language):
+                stories: dict[str, str] = {}
+
+                def add_story(story_id: str, _title: str, parts: list[str]) -> str:
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                xml, height = render(
+                    {
+                        "kind": "notice",
+                        "label": label,
+                        "variant": "note",
+                        "texts": ["First item.", "Second item."],
+                        "list": True,
+                    },
+                    RenderContext(
+                        params=base.params,
+                        page_w=base.page_w,
+                        m_l=base.m_l,
+                        m_r=base.m_r,
+                        root=base.root,
+                        bundle_root=base.bundle_root,
+                        language=language,
+                        add_story=add_story,
+                    ),
+                    tid=f"plural_note_{language}",
+                    terminal=True,
+                )
+                self.assertGreater(height, 0.0)
+                self.assertIn(f'grp_notice_plural_note_{language}', xml)
+                rendered = "".join(stories.values())
+                self.assertIn(label, rendered)
+                self.assertIn("First item.", rendered)
+                self.assertIn("Second item.", rendered)
 
     def test_notice_symbol_fallback_keeps_valid_character_attributes(self) -> None:
         from tools.idml.components import RenderContext, render

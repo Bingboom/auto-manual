@@ -1,2 +1,3 @@
 target,kind,asset_key,source_note
 160102000404,qr,qr/back_cover_ai_candidate,"AI 母版 p59 二维码；解码为文档物料号 16-0102-000404，不是网址，因此不参与存活巡检。冻结参考 PDF p58 的旧候选解码为 160102000161，已隔离。"
+160102000279,qr,qr/jbp2000b/back_cover,"JBP-2000B US 冻结母版 p28 二维码；解码为文档物料号 16-0102-000279，不是网址，因此不参与存活巡检。recipe 依敏感资产策略保持 quarantine，构建使用经本地 12x 验收和哈希锁定的导出物。"

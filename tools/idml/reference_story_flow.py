@@ -18,7 +18,9 @@ from .asset_contracts import (
 )
 from .params import param_pt
 from .prose_flow import (
+    apply_component_composition_data,
     composition_language,
+    composition_type,
     operation_final_frame_x_offset,
     operation_language,
 )
@@ -49,8 +51,12 @@ class ReferenceStoryEmitter:
         """Emit one editable prose story and return the next page cursor."""
         writer = self.writer
         self.toc.latch(title)
+        plan_source = (self.page_plan or {}).get("plan_source")
+        measured_fallback = self.page_plan is not None and plan_source != "approved-reference"
+        normalized_title = title.casefold()
         operation_lang = operation_language(blocks, self.page_plan, title)
         composition_lang = composition_language(self.page_plan, title)
+        planned_composition_type = composition_type(self.page_plan, title)
         is_operation = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
@@ -71,13 +77,31 @@ class ReferenceStoryEmitter:
             component=APP_ADD_DEVICE_COMPONENT,
         )
         is_storage_troubleshooting = (
-            (self.page_plan or {}).get("plan_source") == "approved-reference"
+            plan_source == "approved-reference"
             and "storage_and_maintenance" in title
             and "troubleshooting" in title
         )
+        is_measured_troubleshooting = (
+            measured_fallback
+            and "troubleshooting" in normalized_title
+            and (
+                "charging" in normalized_title
+                or "storage" in normalized_title
+            )
+        )
+        is_measured_overview = (
+            measured_fallback
+            and "product_overview" in normalized_title
+        )
         is_warranty = (
-            (self.page_plan or {}).get("plan_source") == "approved-reference"
-            and "warranty" in title.casefold()
+            (
+                planned_composition_type == "warranty"
+                or (
+                    (self.page_plan or {}).get("plan_source")
+                    == "approved-reference"
+                    and "warranty" in title.casefold()
+                )
+            )
             and composition_lang in governed_languages()
         )
         warranty_frame_x_offset = (
@@ -95,9 +119,16 @@ class ReferenceStoryEmitter:
         prose_options: dict[str, float | str] = {
             "inline_origin_shift": final_frame_x_offset,
         }
+        if planned_composition_type is not None:
+            prose_options["semantic_page_role"] = planned_composition_type
         story_language = operation_lang or composition_lang
         if story_language is not None:
             prose_options["language"] = story_language
+        blocks = apply_component_composition_data(
+            blocks,
+            self.page_plan,
+            title,
+        )
         _, estimate = writer.add_prose_story(
             sid,
             title,
@@ -105,7 +136,7 @@ class ReferenceStoryEmitter:
             self.bundle_root,
             **prose_options,
         )
-        if title == "00_preface":
+        if planned_composition_type == "preface" or title == "00_preface":
             preface_left = param_pt(
                 writer.params, "idml_preface_margin_left", writer.m_l,
             )
@@ -113,7 +144,11 @@ class ReferenceStoryEmitter:
                 writer.params, "idml_preface_margin_right", writer.m_r,
             )
             preface_top = param_pt(
-                writer.params, "idml_preface_margin_top", writer.m_t,
+                writer.params,
+                "idml_compact_preface_margin_top",
+                param_pt(
+                    writer.params, "idml_preface_margin_top", writer.m_t,
+                ),
             )
             preface_bottom = param_pt(
                 writer.params, "idml_preface_margin_bottom", writer.m_b,
@@ -156,7 +191,7 @@ class ReferenceStoryEmitter:
                 f"lang_{operation_lang}_comp_operation_page_extra_height",
                 shared_operation_extra,
             )
-        elif is_storage_troubleshooting:
+        elif is_storage_troubleshooting or is_measured_troubleshooting:
             # The governed troubleshooting panel reaches the reference's
             # lower trim rhythm. Keep its complete editable anchored group in
             # the story with an invisible frame-depth allowance; never shrink
@@ -165,6 +200,16 @@ class ReferenceStoryEmitter:
                 writer.params,
                 "comp_trouble_page_extra_height",
                 32.0,
+            )
+        elif is_measured_overview:
+            # Measured-LaTeX fallback may deliberately compose FCC, inbox, and
+            # Product Overview on one physical page. Preserve the existing
+            # editable components and give only the final carrier frame a small
+            # invisible import allowance for anchored-object markers.
+            bottom_extra = param_pt(
+                writer.params,
+                "idml_measured_overview_page_extra_height",
+                8.0,
             )
         elif is_warranty:
             shared_warranty_extra = param_pt(

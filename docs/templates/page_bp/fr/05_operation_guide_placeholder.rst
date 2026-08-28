@@ -4,27 +4,29 @@ FONCTIONNEMENT
 MARCHE/ARRÊT
 ------------
 
-.. list-table::
-   :header-rows: 0
-   :widths: 20 40 40
+.. image:: asset:operation/jbp2000b/power_control
+   :alt: Fonctionnement du bouton d'alimentation du Battery Pack 2000.
+   :width: 360px
 
-   * - **Marche**
-     - Appuyez une fois
-     -
-   * - **Arrêt**
-     - Appuyez et maintenez pendant 3 secondes
-     -
-
-ACTIVATION/DÉSACTIVATION DE L'ÉCRAN LCD
----------------------------------------
-
-Lorsque vous appuyez sur le bouton d'alimentation principale ou lorsque vous chargez le produit, l'écran LCD s'allume, et lorsque vous appuyez à nouveau sur ce bouton, l'écran LCD s'éteint.
+| **Marche**
+| Appuyez une fois
+| **Arrêt**
+| Appuyez et maintenez pendant 3 secondes
 
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
-   * - **REMARQUES**
-     -
-       - Lorsque vous utilisez le Jackery HomePower 2000 Plus, vous pouvez contrôler la mise sous tension ou hors tension du Jackery Battery Pack 2000 via le bouton d'alimentation principal du Jackery HomePower 2000 Plus.
-       - Le dispositif s'éteint automatiquement s'il n'est pas chargé ou si aucune charge n'est connectée pendant |DEFAULT_STANDBY_DURATION|.
+   * - **REMARQUE**
+     - Lorsque le Battery Pack 2000 est utilisé avec le Jackery HomePower 2000 Plus, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal du Jackery HomePower 2000 Plus.
+
+       Le produit s'éteint automatiquement lorsqu'il n'est pas en charge et qu'aucune charge n'est connectée pendant |DEFAULT_STANDBY_DURATION|.
+
+ACTIVATION/DÉSACTIVATION DE L'ÉCRAN LCD
+---------------------------------------
+
+.. image:: asset:operation/jbp2000b/lcd_control
+   :alt: Fonctionnement de l'écran LCD du Battery Pack 2000.
+   :width: 360px
+
+Lorsque vous appuyez sur le bouton POWER principal ou que vous chargez le produit, l'écran LCD s'allume. Appuyez à nouveau sur le bouton POWER principal pour éteindre l'écran LCD.

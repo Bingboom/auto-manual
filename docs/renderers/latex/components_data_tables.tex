@@ -18,6 +18,8 @@
 \expandafter\providecommand\csname HBcomp_trouble_step_indent\endcsname{3.4mm}
 \expandafter\providecommand\csname HBcomp_trouble_steps_pad_tb\endcsname{1.0mm}
 \expandafter\providecommand\csname HBcomp_trouble_section_needspace\endcsname{102mm}
+\expandafter\providecommand\csname HBcomp_trouble_compact_max_rows\endcsname{7}
+\expandafter\providecommand\csname HBcomp_trouble_compact_section_needspace\endcsname{55mm}
 \expandafter\providecommand\csname HBtype_data_table_font_size\endcsname{5.9pt}
 \expandafter\providecommand\csname HBtype_data_table_font_leading\endcsname{6.7pt}
 \expandafter\providecommand\csname HBtype_data_table_header_font_size\endcsname{6.2pt}
@@ -90,6 +92,13 @@
 }
 \providecommand{\HBDataTroubleSectionGuard}{%
   \Needspace{\csname HBcomp_trouble_section_needspace\endcsname}%
+}
+\providecommand{\HBDataTroubleSectionGuardForRows}[1]{%
+  \ifnum#1>\csname HBcomp_trouble_compact_max_rows\endcsname\relax
+    \HBDataTroubleSectionGuard
+  \else
+    \Needspace{\csname HBcomp_trouble_compact_section_needspace\endcsname}%
+  \fi
 }
 \providecommand{\HBDataHangingLine}[2]{%
   \par\noindent

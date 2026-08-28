@@ -142,6 +142,91 @@ def layout_tokens(
     return columns, icon_pt, padding
 
 
+def label_description_layout(
+    writer,
+    rows: list[dict[str, str]],
+    body_w: float,
+    *,
+    lang: str,
+    segment_index: int,
+) -> tuple[tuple[float, float], float, list[float]]:
+    """Size the compact two-column LCD variant from its live copy.
+
+    The four-column LCD contract reserves separate number and icon columns.
+    A label/description target must not merge those reserved widths into the
+    label column: doing so starves the description and makes native InDesign
+    import clip the first row.  The shared label ratio remains the authority,
+    while row heights are derived from the localized label/body metrics.
+    """
+    raw_ratio = writer.params.get(
+        "comp_lcd_label_col_width",
+        ("0.24", "ratio"),
+    )[0].replace("\\linewidth", "").strip()
+    try:
+        label_ratio = float(raw_ratio)
+    except ValueError as exc:
+        raise ValueError(
+            "comp_lcd_label_col_width must contain a numeric ratio"
+        ) from exc
+    if not 0 < label_ratio < 1:
+        raise ValueError("comp_lcd_label_col_width ratio must be between 0 and 1")
+
+    label_width = body_w * label_ratio
+    columns = (label_width, body_w - label_width)
+    padding = param_pt(writer.params, "comp_lcd_table_tabcolsep", 1.4)
+    text_indent = param_pt(writer.params, "comp_table_text_indent", 5.2)
+    vertical_pad = param_pt(
+        writer.params,
+        "idml_lcd_label_description_vertical_padding",
+        2.8,
+    )
+    minimum = param_pt(
+        writer.params,
+        "idml_lcd_label_description_min_row_height",
+        13.5,
+    )
+    row_safety = param_pt(
+        writer.params,
+        "idml_lcd_label_description_row_safety",
+        1.0,
+    )
+    glyph_ratio = param_pt(
+        writer.params,
+        "idml_lcd_label_description_glyph_width_ratio",
+        0.52,
+    )
+    if vertical_pad < 0 or minimum <= 0 or row_safety < 0 or glyph_ratio <= 0:
+        raise ValueError("LCD label/description layout tokens must be positive")
+
+    row_heights: list[float] = []
+    for row in rows:
+        label_size, label_leading, body_size, body_leading = typography_tokens(
+            writer,
+            lang,
+            row,
+            segment_index=segment_index,
+        )
+        label_lines = estimated_line_count(
+            row.get("name", ""),
+            max(1.0, columns[0] - text_indent - padding),
+            point_size=label_size,
+            narrow_width_ratio=glyph_ratio,
+        )
+        body_lines = estimated_line_count(
+            row.get("desc", ""),
+            max(1.0, columns[1] - text_indent - padding),
+            point_size=body_size,
+            narrow_width_ratio=glyph_ratio,
+        )
+        height = max(
+            minimum,
+            label_lines * label_leading + 2 * vertical_pad + row_safety,
+            body_lines * body_leading + 2 * vertical_pad + row_safety,
+        )
+        row_heights.append(round(height, 3))
+    return columns, vertical_pad, row_heights
+
+
 def _wrapped_line_count(text: str, width_pt: float, point_size: float) -> int:
     """Estimate InDesign's line count without depending on local font files.
 

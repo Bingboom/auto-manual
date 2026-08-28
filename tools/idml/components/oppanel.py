@@ -22,7 +22,7 @@ from ..primitives import (
     wrap_table_paragraph,
 )
 from ..page_objects import rounded_path_geometry
-from ..params import component_param_pt
+from ..params import component_param_pt, param_pt
 from ..source_copy import source_text
 from .base import RenderContext, figure_paragraph
 
@@ -57,6 +57,19 @@ def _editable_text_frame(
     """Return an independently editable, manually positionable text frame."""
     if ctx.add_story is None:
         return ""
+    if param_pt(
+        ctx.params,
+        "idml_operation_overlay_disable_hyphenation",
+        0.0,
+    ) >= 0.5:
+        parts = [
+            re.sub(
+                r"<ParagraphStyleRange (?![^>]*Hyphenation=)",
+                '<ParagraphStyleRange Hyphenation="false" ',
+                part,
+            )
+            for part in parts
+        ]
     sid = ctx.add_story(story_id, title, parts)
     inset_xml = "".join(
         f'<ListItem type="unit">{value:g}</ListItem>' for value in inset
@@ -694,6 +707,189 @@ def _special_panel_paragraph(
     return xml, height + space_after
 
 
+def _render_image_caption_panel(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    measure_w: float | None,
+) -> tuple[str, float]:
+    """Render linked operation art and editable caption in one rounded card."""
+
+    width = measure_w or ctx.text_measure
+    caption = source_text(
+        spec.get("caption"),
+        owner="operation image-caption panel",
+        strict=ctx.strict_component_assets,
+    )
+    ref = str(spec.get("image") or "").strip()
+    asset = ctx.resolve_bundle_image(ref) if ref else None
+    if asset is None or not asset.exists():
+        if ctx.strict_component_assets:
+            raise FileNotFoundError(
+                f"operation image-caption asset missing: {ref}"
+            )
+        return psr("HB Body", caption, terminal=terminal), 16.0
+
+    art_w, art_h = ctx.art_frame_size(asset, max_w=width - 30.0)
+    caption_width = width - 30.0
+    caption_size = 5.4
+    caption_leading = 6.2
+    caption_lines = _estimated_lines(
+        caption, caption_width, size=caption_size,
+    )
+    caption_height = max(20.0, caption_lines * caption_leading + 7.0)
+    height = art_h + caption_height + 8.0
+    art_top = -height + 4.0
+    caption_bottom = -4.0
+    caption_top = caption_bottom - caption_height
+
+    shapes = [
+        _panel_bounds(tid, width, height),
+        _positioned_image(
+            f"oppanel_image_caption_art_{tid}",
+            asset,
+            art_w,
+            art_h,
+            left=(width - art_w) / 2.0,
+            bottom=art_top + art_h,
+        ),
+        _shape(
+            shape_id=f"oppanel_image_caption_bg_{tid}",
+            left=7.0,
+            top=caption_top,
+            right=width - 7.0,
+            bottom=caption_bottom,
+            radius=7.0,
+            fill="Color/HB Bg K05",
+        ),
+    ]
+    caption_frame = _editable_text_frame(
+        ctx,
+        story_id=f"st_anchor_oppanel_image_caption_{tid}",
+        frame_id=f"tf_oppanel_image_caption_{tid}",
+        title=f"{tid} image caption",
+        parts=[_sized_psr(
+            "HB Body",
+            caption,
+            size=caption_size,
+            leading=caption_leading,
+            terminal=True,
+        )],
+        left=14.0,
+        top=caption_top,
+        right=width - 14.0,
+        bottom=caption_bottom,
+        inset=(3.0, 0.0, 3.0, 0.0),
+        valign="CenterAlign",
+    )
+    return _special_panel_paragraph(
+        ctx,
+        tid=tid,
+        title="image caption operation panel",
+        group_content="".join(shapes) + caption_frame,
+        width=width,
+        height=height,
+        terminal=terminal,
+    )
+
+
+def _render_image_notice_panel(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    measure_w: float | None,
+) -> tuple[str, float]:
+    """Render operation artwork and its following notice in one outer card."""
+
+    from .notice import render_notice
+
+    width = measure_w or ctx.text_measure
+    ref = str(spec.get("image") or "").strip()
+    asset = ctx.resolve_bundle_image(ref) if ref else None
+    if asset is None or not asset.exists():
+        if ctx.strict_component_assets:
+            raise FileNotFoundError(f"operation image-notice asset missing: {ref}")
+        notice = dict(spec.get("notice") or {})
+        return render_notice(
+            notice,
+            ctx,
+            tid=f"{tid}_notice",
+            terminal=terminal,
+            measure_w=width,
+        )
+
+    notice_spec = dict(spec.get("notice") or {})
+    notice_spec["space_before"] = 0.0
+    notice_spec["space_after"] = 0.0
+    notice_w = width - 14.0
+    notice_xml, notice_estimate = render_notice(
+        notice_spec,
+        ctx,
+        tid=f"{tid}_notice",
+        terminal=True,
+        measure_w=notice_w,
+    )
+    group_start = notice_xml.index('<Group Self="grp_notice_')
+    group_end = notice_xml.index("</Group>", group_start) + len("</Group>")
+    notice_group = notice_xml[group_start:group_end].replace(
+        'ItemTransform="1 0 0 1 0 0"',
+        'ItemTransform="1 0 0 1 7 -7"',
+        1,
+    )
+    notice_gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
+    notice_h = max(1.0, notice_estimate - 2.0 * notice_gap)
+
+    rows = [tuple(row) for row in spec.get("rows", [])]
+    prereq = str(spec.get("prereq") or "").strip()
+    tail = str(spec.get("tail") or "").strip()
+    art_w, art_h = ctx.art_frame_size(asset, max_w=width - 18.0)
+    art_left = (width - art_w) / 2.0
+    height = art_h + notice_h + 19.0
+    art_bottom = -notice_h - 12.0
+    prereq_underlay, prereq_text = _prereq_overlay_parts(
+        ctx, tid=tid, text=prereq, image_w=art_w, image_h=art_h,
+    )
+    tail_underlay, tail_text = _tail_overlay_parts(
+        ctx, tid=tid, text=tail, image_w=art_w, image_h=art_h,
+    )
+    art_group = (
+        f'<Group Self="grp_oppanel_image_notice_art_{tid}" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        f'ItemTransform="1 0 0 1 {art_left:g} {art_bottom:g}">'
+        + image_cell_content(f"oppanel_image_notice_art_{tid}", asset, art_w, art_h)
+        + prereq_underlay
+        + tail_underlay
+        + _main_power_clock_overlay(
+            ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+        )
+        + prereq_text
+        + tail_text
+        + _row_text_layers(
+            ctx,
+            tid=tid,
+            ref=ref,
+            rows=rows,
+            image_w=art_w,
+            image_h=art_h,
+            panel_w=art_w,
+        )
+        + "</Group>"
+    )
+    return _special_panel_paragraph(
+        ctx,
+        tid=tid,
+        title="image notice operation panel",
+        group_content=_panel_bounds(tid, width, height) + art_group + notice_group,
+        width=width,
+        height=height,
+        terminal=terminal,
+    )
+
+
 def _render_energy_saving_panel(
     spec: dict,
     ctx: RenderContext,
@@ -1111,6 +1307,14 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         )
     if ctx.add_story is not None and layout == "led_light":
         return _render_led_light_panel(
+            spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
+        )
+    if ctx.add_story is not None and layout == "image_caption":
+        return _render_image_caption_panel(
+            spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
+        )
+    if ctx.add_story is not None and layout == "image_notice":
+        return _render_image_notice_panel(
             spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
         )
 

@@ -4,11 +4,14 @@ from copy import deepcopy
 import re
 import unittest
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from tools.csv_to_tex_params import fmt_value
 from tools.render_contract import (
     contract_sha256,
     effective_final_mile,
+    layout_tokens_sha256,
+    load_layout_token_layers,
     load_layout_tokens,
     load_render_contract,
     resolve_layout_tokens,
@@ -100,6 +103,46 @@ class RenderContractTests(unittest.TestCase):
 
     def test_contract_has_no_schema_or_token_errors(self) -> None:
         self.assertEqual([], validate_render_contract(self.contract, self.tokens))
+
+    def test_layout_token_layers_are_additive_and_hash_the_effective_set(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "base.csv"
+            overlay = root / "overlay.csv"
+            base.write_text(
+                "key,value,unit,comment\npage_paperwidth,100,pt,base\n",
+                encoding="utf-8",
+            )
+            overlay.write_text(
+                "key,value,unit,comment\nidml_compact_gap,4,pt,overlay\n",
+                encoding="utf-8",
+            )
+
+            base_hash = layout_tokens_sha256(load_layout_tokens(base))
+            layered = load_layout_token_layers(base, (overlay,))
+
+        self.assertEqual(["page_paperwidth", "idml_compact_gap"], list(layered))
+        self.assertNotEqual(
+            base_hash,
+            layout_tokens_sha256(layered),
+        )
+
+    def test_layout_token_overlay_cannot_redefine_baseline_key(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "base.csv"
+            overlay = root / "overlay.csv"
+            base.write_text(
+                "key,value,unit,comment\npage_paperwidth,100,pt,base\n",
+                encoding="utf-8",
+            )
+            overlay.write_text(
+                "key,value,unit,comment\npage_paperwidth,101,pt,override\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "redefines existing keys"):
+                load_layout_token_layers(base, (overlay,))
 
     def test_committed_contract_uses_schema_v2(self) -> None:
         self.assertEqual(2, self.contract["schema_version"])

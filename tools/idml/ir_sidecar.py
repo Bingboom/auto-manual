@@ -17,6 +17,8 @@ def emit_manual_ir_sidecar(
     region: str,
     lang: str,
     data_root: Path,
+    layout_params_csv: Path | None = None,
+    layout_param_overlays: tuple[Path, ...] = (),
 ) -> Path | None:
     if not bundle_page_order(bundle_root):
         return None
@@ -28,6 +30,8 @@ def emit_manual_ir_sidecar(
         lang=lang,
         source="prepared-bundle",
         data_root=data_root,
+        layout_params_csv=layout_params_csv,
+        layout_param_overlays=layout_param_overlays,
     )
     issues = validate_manual_ir(manual_ir)
     if issues:

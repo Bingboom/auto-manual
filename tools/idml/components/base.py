@@ -55,6 +55,9 @@ class RenderContext:
     # required assets, style tokens, and semantic role bindings all fail
     # closed. Non-reference/flow callers keep permissive defaults/fallbacks.
     strict_component_assets: bool = False
+    # Candidate target assemblies use native vector structural glyphs so the
+    # raw IDML remains readable before any host-specific finalizer runs.
+    native_structure_markers: bool = False
     # writer._add_story_parts, for components that render rounded objects
     # as anchored frames (one sub-story per frame). None in pure/table-only
     # contexts; renderers must keep a table fallback for that case.

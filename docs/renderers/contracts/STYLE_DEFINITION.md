@@ -16,6 +16,7 @@
 | 查某个 `HB-*` 在四端的绑定 | [§1 全量对照总表](#1-全量对照总表) |
 | 调标题、表格、警示框或专题组件 | [§2–§8 视觉与实现合同](#2-文字与标题) |
 | 看原始 RST 怎样变成 Web 版面 | [§10 逐层实例](#10-逐层实例原始-rst-怎么变成-web-版面) |
+| 把已有样式或组件接到新型号/语言/页面 | [共享样式与完整组件应用指南](../../../code-as-doc/dev/style_component_usage_guide.md) |
 | 新增组件或修改共享样式 | [附录 A 维护流程](#附录-a-组件与维护流程) |
 | 查当前未对齐项或工具限制 | [附录 B 已知边界](#附录-b-已知边界) |
 
@@ -280,13 +281,44 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 | 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
 
-IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。
+IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。该标题行的横向几何也归共享 `HeadingPill` 所有：标题列和胶囊列按 Gilroy Bold 字面宽度收紧，组件用 10.9pt 定义标题末字到胶囊首字的可见间距；页面编排器只能放置整行，不能把胶囊右对齐或重新分配两列宽度。
+
+Storage 不定义产线专属标题条或正文卡。JE-1000F 与 JBP 共用
+`h1_pill_paragraph` + prose story：同一 inline H1 的字面缩进和基线、同一正文
+段落/列表规则、同一纸白内容流。compact `storage_specifications` 只能为 Storage
+与 Specifications 分配外部故事矩形，不能添加 K05 正文底板、圆角、inset 或另建
+标题故事。
+
+生产 IDML 的普通 H2 圆点必须使用内联原生矢量圆和独立间隔对象，不能把
+`●` 交给 Segoe UI Symbol、Yu Gothic 或其他平台字体。这样 Windows 与 macOS
+打开同一自包含 IDML 时不会因缺字、替代字体或字面裁切而改变标题。圆点直径和
+标题间距继续只消费 `comp_title_l2_bullet_radius` / `comp_title_l2_gap`；目标装配
+不得通过标题文字、页码或型号分支替换这项共享语义。
+
+规格值中的直流符号 `⎓` 同样由共享原生矢量输出，但其字面必须复刻 JE-1000F
+批准稿的 Apple Symbols U+2393：2048 em、1514 advance、左右各 128 side bearing，
+线条与断线位置按当前 `HB Spec Value` 字号等比缩放。standard/compact 与 EN/FR/ES
+只能传规格文字和字号，不能另选字体、扩大符号或覆写基线；因此 JBP 与 JE 的直流
+符号使用同一字宽、线重和垂直位置。
 
 App 原生故事的编号与列表使用显式悬挂/tab 合同，不再依赖圆点后的普通空格估算。H2 圆点留在版心起点，并由 `idml_app_h2_marker_font_size` / `idml_app_h2_marker_baseline_shift` 单独约束在首个 tab 内；H2 编号文本与 H3 的 `4.x` 编号共同落在 `idml_app_notes_left_indent`。列表圆点由 `idml_app_list_left_indent` 与该编号边对齐，首行正文和全部续行则共同落在 `bullet_left - idml_app_list_first_line_indent` 的固定 tab 位。英文、法文及任何结构化为 App list 的语言都复用这组属性，不按标题文字或页码追加坐标补丁。
 
-UPS 与 Charging 共用一条可编辑内容流：三语各自的 `lang_*_idml_ups_caution_space_after` 控制 UPS CAUTION→CHARGING 标题，`idml_charging_emphasis_space_before` 控制 Charging 引言→黑色强调胶囊。当前强调胶囊前距为 5pt；三语 CAUTION 后距相对上一版等量减少 4pt，因此重分配节奏但保持页面总深度、后续 NOTE 位置和分页不变。`idml_charging_emphasis_horizontal_padding` 同时登记文字左侧光学缩进与总宽的双端 allowance：左侧由段落 `LeftIndent` 明确落位，使字面与 CHARGING 标题内容对齐；右侧不写 `RightIndent`，而由总宽余量自然保留。不能再叠加非对称 frame inset 或右段落缩进，否则会重复缩窄可用行宽并把结尾挤成溢流。文本框继续使用 `VerticalJustification=CenterAlign`；完整文案保持单行后，垂直居中不再被隐藏的第二行拉偏。该关系由组件 token 与估算高度共同维护，不允许在单页 XML 上追加坐标补丁。
+UPS 与 Charging 共用一条可编辑内容流：三语各自的 `lang_*_idml_ups_caution_space_after` 控制 UPS CAUTION→CHARGING 标题，`idml_charging_emphasis_space_before` 控制 Charging 引言→黑色强调胶囊。当前强调胶囊前距为 5pt；三语 CAUTION 后距相对上一版等量减少 4pt，因此重分配节奏但保持页面总深度、后续 NOTE 位置和分页不变。`idml_charging_emphasis_horizontal_padding` 同时登记文字左侧光学缩进与总宽的双端 allowance：左侧由段落 `LeftIndent` 明确落位，使字面与 CHARGING 标题内容对齐；右侧不写 `RightIndent`，而由总宽余量自然保留。不能再叠加非对称 frame inset 或右段落缩进，否则会重复缩窄可用行宽并把结尾挤成溢流。文本框继续使用 `VerticalJustification=CenterAlign`；完整文案保持单行后，垂直居中不再被隐藏的第二行拉偏。Charging 方法页的插图段落已经自带 AboveLine 原生行盒，所以图后的 `4.25pt` 普通后距与尾部胶囊标题前的 `5.67pt` 普通前距不得再次相加；共享 `charging` 变体把这两个显式边距都置零，EN/FR/ES 共用同一图→标题回归。该关系由组件 token 与估算高度共同维护，不允许在单页 XML 上追加坐标补丁。
 
 IDML 可编辑表格的普通单元格统一由 `primitives.cell()` 输出 `VerticalJustification=CenterAlign`，模板合成阶段必须保留该语义属性，不允许因移除颜色、边线或 inset 覆盖而一并丢失。Troubleshooting 的 F6/F7 等多步骤行还要求左右格使用对称的上下内边距，正文格与错误码格都不得再叠加逐语言、逐行的 `BaselineShift`；否则虽然 XML 声明居中，视觉位置仍会被二次位移。LCD、Symbols 和通用图片表的图标段落另显式输出 `Justification=CenterAlign`，因此图标在格内同时横向、纵向居中。Symbols 信号词徽标分成两层基线合同：`idml_symbols_signal_badge_baseline_shift` 只校正整块深色徽标在表格行内的位置，`idml_symbols_signal_content_baseline_shift` 则统一校正徽标内部图标与文字的可见字面；两者不能用一次递归 `BaselineShift` 覆盖。圆角 WARNING/callout 不依赖表格默认值：标签框、正文框和黑框正文使用同一 `TextFramePreference.VerticalJustification=CenterAlign` 合同。
+
+Troubleshooting 的短表和完整表共用 `HB-TABLE-TROUBLESHOOTING`，但行高预算
+必须由真实行数和本地化换行计算：只有完整 12 行 profile 才消费其冻结 ordinal
+minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
+`idml_trouble_compact_outer_radius`。错误码列宽同时测量表头与全部代码，右侧表头
+保持纸白，首列按合同使用灰底；源 RST 的 line-block 分隔符只能表达换行，不能以
+字面量 `|` 进入单元格。故障段落和表格默认关闭断词，避免在错误码和措施文字中
+产生源稿没有的词内断行。紧凑表把测得高度同时写入 `SingleRowHeight` 与
+`MinimumHeight` 并关闭 AutoGrow，使可见行完整占满圆角外壳；表格内容框在圆角
+外壳底边终止，随后串接一个独立、无填色无描边的透明文本框，专门承载终止标记。
+`idml_trouble_native_carrier_allowance` 只决定该载体的初始高度，不属于外壳或首列
+灰底。InDesign 最终化只能按 `tf_terminal_carrier_group_*` 的稳定标签校准该透明
+载体，不能读取实际表高后改写可见外壳、内容框、遮罩或表格行。
 
 ### 专题版块
 
@@ -343,6 +375,13 @@ IDML 的 FR/ES 列表与子列表通过类型化样式消费语言密度 token�
 PDF/IDML token：`type_h1_font_size` 12.0pt、`type_h1_font_leading` 14.4pt、`comp_h1_pill_arc` 2.0mm、`comp_h1_pill_height` 7.1mm。Word：`dingding-heading1`，`sz` 34（17pt），色 `343031`。
 
 IDML 的 band 高度与 PDF 共用 `comp_h1_pill_height`；质保页的宽度和左缩进继续由明确登记的 `idml_warranty_h1_*` token 控制。
+
+IDML 的 flowed H1 与 fixed/composed H1 必须消费同一个 `heading_text` +
+`h1_frame_opts` 合同：文本框与深色标题条共用相同的纵向起点和高度，
+`VerticalJustification=CenterAlign`，Gilroy 可见大写字面统一使用
+`BaselineShift=0.5pt`。页面组件只能提交标题条外矩形；不得再提供独立
+`title_text_rect`、负向 Y 偏移或 `BaselineShift=-1.5pt` 来抵消另一套基线。
+Safety、Symbols、Inbox、Overview、Storage 以及 EN/FR/ES 都受同一回归约束。
 
 ### 2.3 二级标题
 
@@ -464,7 +503,7 @@ pipe 表 / `` ```{manual-table} `` → `table.manual-table`
 
 **同一列宽有多组经合同登记的投影值**：Web 31% / PDF `comp_spec_table_left_ratio` 0.315 / Word 33%，IDML 默认 `idml_spec_table_left_ratio` 0.302，西语批准投影为 `lang_es_idml_spec_table_left_ratio` 0.362。它们分别服务响应式、固定版、Word 与批准语言版式，不应只改其中一处后假定其他渲染器自动同步。其余 token：`comp_table_outer_arc` 2.4mm、`comp_table_outer_rule` 0.75pt、`type_spec_label_font_size` 与 `type_spec_value_font_size` 均 6.0pt。
 
-IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。分节标题的圆点与文字共享同一组件基线合同：`idml_spec_section_text_baseline_shift`（及语言覆盖）确定标题基线，`idml_spec_section_bullet_baseline_offset` 只表达圆点相对文字的光学校正；`idml_spec_section_left_indent` 统一让圆点左边缘与随后表格的外框共线。所有分节和语言复用这些值，不逐标题写死位置。表格单元格里的圈号是引用标记，保持小号上标；页底脚注行首的同一圈号是注释编号，必须继承 `HB Spec Note` 的正常字号与基线。注册商标 `®` 保留字体自身的上标字形，不套用圈号引用规则。
+IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `comp_spec_table_multiline_min_height`，并输出 `MinimumHeight` / `AutoGrow`，不再由本地常量决定。compact Specifications 的所有单行固定为 `idml_compact_spec_table_row_height`，关闭 AutoGrow；圆角外壳高度严格等于该表全部行高之和。不得再设置逐表固定外壳高度，也不得把外壳余量塞进末行，否则同为单行的最后一行会被单独拉高。分节标题的圆点与文字共享同一组件基线合同：`idml_spec_section_text_baseline_shift`（及语言覆盖）确定标题基线，`idml_spec_section_bullet_baseline_offset` 只表达圆点相对文字的光学校正；`idml_spec_section_left_indent` 统一让圆点左边缘与随后表格的外框共线。所有分节和语言复用这些值，不逐标题写死位置。表格单元格里的圈号是引用标记，保持小号上标；页底脚注行首的同一圈号是注释编号，必须继承 `HB Spec Note` 的正常字号与基线。注册商标 `®` 保留字体自身的上标字形，不套用圈号引用规则。
 
 ### 4.3 故障排查表
 
@@ -481,6 +520,15 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 
 表头默认 `Error Code` / `Corrective Measures`；plain-Markdown 可用类型化
 `:headers: A | B` 提供两个本地化表头（见 [附录 B](#附录-b-已知边界)）。IDML 关闭自动缩放；批准语言的行 minima、表头/正文高度修正、内外线宽、面板下限、导入安全余量和 portable glyph-width 估算全部由 `idml_trouble_*` / `lang_*_idml_trouble_*` token 控制。
+紧凑表的可见外壳高度严格等于可见行高总和；原生终止标记余量使用独立透明载体，最终化不得把余量加到圆角外框底部。
+
+IDML production 由普通 block 流进入 `components/prose_table.py` 的公共
+`render_table_block(...)` 边界。页面编排器只能提供外部 flow/frame，不能调用
+`_troubleshooting_*` 私有 helper，也不能读取行高、列宽、填色、圆角或载体 token。
+组件拥有 EN/FR/ES 行高增长、原生垂直居中、可见外壳和透明终止载体；最终化只可
+按 `tf_terminal_carrier_group_*` 标签处理不可见载体，禁止改主表框、底板、遮罩、
+外框或末行。具体接入与验收见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
 
 ### 4.4 LCD 图标表
 
@@ -495,6 +543,13 @@ IDML 普通行由 `idml_spec_table_row_height` 控制；多行单元格使用 `c
 | 说明列 | 支持 ` / ` 分步；`On:` / `Blink:` / `Off:` 及本地化状态前缀保留源 strong 语义，IDML 输出为可编辑粗体字符 run |
 
 四处语义对齐（`aligned`）。批准 reference profile 可保留型号特定行高，这是一条已批准边界说明；共享排版、位置和表结构仍由 token 控制，不是待修缺陷。
+
+IDML 的可见圆角外壳高度严格等于全部行高之和；原生终止标记进入与主表框串接的
+独立透明载体，而不是在末行或可见外壳下方留白。页面入口只传行数据、语言、批准
+profile 和外部 story frame；它不能改列、行、图标、底板或 shell。最终化只能按
+`tf_terminal_carrier_group_*` 标签扩展透明载体，不能读取表高后拉伸主表框、圆角
+plate、mask 或 outline。EN/FR/ES 共用这一结构回归，应用方法见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
 
 ### 4.5 LCD 模式表
 
@@ -516,7 +571,13 @@ IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、p
 - `` ```{symbols} `` → `figure.hb-symbol-pair-composition`：`grid-template-columns: repeat(2, minmax(0,1fr))`，间距 `clamp(.72rem, 1.8vw, 1rem)`，窄屏转单列。面板表内边距 `clamp(.62rem,1.5vw,.9rem)` `clamp(.55rem,1.25vw,.78rem)`，格间线 `1.5px solid --hb-brand-dark`，表头下边框同宽。**两个面板行高互不影响**（PDF 用的就是两张独立表）。
 - 信号词表 `HB-TABLE-SYMBOL-SIGNAL` → `.hb-symbol-signal-composition`，流水线专属，md 写不出。
 
-IDML 的 subbar 高度、标题/维护区间距、H1 光学偏移、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。批准语言的图标表保留原有固定行高，外层框在行高总和之外统一增加 `idml_symbols_table_frame_allowance`（当前 `0.25pt`）作为 InDesign 表格承载余量；它只吸收导入后的表格标记，不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
+IDML 的 subbar 高度、标题/维护区间距、页面下限和非批准语言 fallback 估算均来自 `manual_style.yaml` 登记的 token；两类 Symbols 表均为 `aligned`。Symbols H1 不再拥有独立光学偏移 token，统一服从 §2.2 的共享标题框与字面基线。标准 JE 密度保留已批准的固定行高及 `0.25pt` 外壳承载容差；compact 密度的较大 `idml_compact_symbols_*_frame_allowance` 必须由组件吸收到可见正文行内，不能悬空成为表格尾部白带。InDesign 终止标记需要的原生承载空间由独立的透明文本框余量 `idml_symbols_native_carrier_allowance` 提供；它不属于可见外壳、底板、遮罩或行高。组件不缩字、不改分栏，也不允许最终化脚本隐藏 overset。
+
+IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中的三张散表。组件内部拥有标题条、圆角外壳、列宽、各行高度、表格载体余量、信号词表与图标表之间的最小间距，以及内容超出可用高度时的续页拆分。JE/JBP 页面 composer 只能传入本地化数据、语言、`standard` / `compact` 密度和组件可用矩形；它可以决定组件放在哪里，但不能再调用 Symbols 表格 primitive 或覆盖内部几何。两种密度遵守同一填色规则：只有 `Symbol` / 图标列使用 K05，`Meaning` 列和圆角外壳保持 Paper；compact 可见行完整占满外框，标准密度仅保留原有 `0.25pt` 容差，因此底板不再替大块尾部空带补色或补画分隔线。最终化脚本只能校准透明的原生载体文本框，禁止改写圆角外壳、K05 底板、遮罩、分隔线或表格行。EN/FR/ES 的两种密度共同使用 [`tests/fixtures/idml_symbols_panel_golden.json`](../../../tests/fixtures/idml_symbols_panel_golden.json) 作为几何与可编辑 Story 回归基准，边界测试同时禁止页面 composer 重新消费内部行高 token。
+
+新产线或新页面不得从低层 Symbols primitive 重新组装同一内容；公共调用形状、允许
+输入和边界验收见
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
 
 ### 4.7 对比表
 
@@ -908,6 +969,11 @@ Model No.    | JE-1000F /JE-1000F-SG
 
 **L3**：`figure.hb-lcd-table-composition > table.hb-lcd-icon-table`，版面规则见 §4.4。**md 等价**：`` ```{lcd-icons} ``，行写 `1 | 图.png | Wi-Fi | On: … / Blink: …`（图片格只认第 2 列）。
 
+IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一行直接闭合到底部
+圆角线。InDesign 原生终止标记使用外壳之外、与主表框串接的透明载体；最终化脚本
+只能按 `tf_terminal_carrier_group_*` 标签扩展该载体，禁止读取表格行高后改写主表框、
+底部遮罩、底板或外框。EN/FR/ES 共用这一结构回归。
+
 ### 10.8 符号页两表（`HB-TABLE-SYMBOL-SIGNAL` / `-ICON`）
 
 **L1 原始 RST**（[`symbols_en.rst`](../../_review/JE-1000F/US/page/symbols_en.rst)；同一页两张表）——信号词表是 22/78 两列，徽标是流水线生成的 raw span：
@@ -1065,7 +1131,25 @@ Model No.    | JE-1000F /JE-1000F-SG
 | 合并语义 | `_merged_row()`：空格子并入上方（每列独立）。`spec-table` 用自己的实现，**只看第一列** |
 | 输出 | `nodes.raw(format="html")`，即样式契约要的确切标记 |
 
-### A.3 新增一个组件
+### A.3 复用一个已有样式或完整组件
+
+复用不是复制现有页面后再调到相似，而是让新调用方进入同一个公共组件边界：
+
+1. 在 §1 找到 `HB-*` 语义，在所属视觉章节确认不变量与批准 variant。
+2. 找到现有完整组件公共入口；调用方只传语义数据、语言、登记在册的
+   density/variant、可用矩形和 z-order。
+3. 组件独占底色、圆角、列宽、行高、内边距、内部间距、内容 fitting、溢出策略与
+   原生载体空间。页面不得 import 私有 helper、metrics 或内部 token。
+4. 最终化只能处理组件显式暴露的不可见载体；不得修改可见 story frame、plate、
+   mask、outline 或 row。
+5. 用 EN/FR/ES 的同一组件 fixture 验证适用密度，并与批准 JE/reference 页面做真实
+   视觉对比。构建成功、XML 无错或只看英文都不构成视觉验收。
+
+各现有 IDML 组件的公共入口、允许输入、禁区和验证清单统一维护在
+[`共享样式与完整组件应用指南`](../../../code-as-doc/dev/style_component_usage_guide.md)。
+页面接入前先按该表审查；不能表达需求时再进入下一节的新组件流程。
+
+### A.4 新增一个组件
 
 1. **定义稳定语义。** 在 `manual_style.yaml` 加 `role`、
    `semantic_source_kinds`、`theme_token_roles`、token refs、四端 capability/binding，
@@ -1089,7 +1173,7 @@ Model No.    | JE-1000F /JE-1000F-SG
 看守。不要在本文复制阈值数字；阈值属于代码门禁，调整时要解释模块为什么不能继续
 拆分，而不是只把上限调大。
 
-### A.4 改样式的顺序
+### A.5 改样式的顺序
 
 1. 在 `manual_style.yaml` 找语义 ID，确认 `semantic_source_kinds`、四端 binding、
    token 和当前 `conformance.debt` / 边界记录。

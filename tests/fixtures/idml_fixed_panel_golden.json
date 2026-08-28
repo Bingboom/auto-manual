@@ -1,0 +1,1827 @@
+{
+  "compact": {
+    "en": {
+      "frames": {
+        "bg_st_fixed_panels_compact_en_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_en_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_en_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_en_card_1": {
+          "bounds": [
+            -157.894,
+            -58.3465,
+            -58.3937,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_en_card_2": {
+          "bounds": [
+            -51.8937,
+            -58.3465,
+            47.6063,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_en_card_3": {
+          "bounds": [
+            53.6063,
+            -58.3465,
+            153.106,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_en_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.646,
+            153.106,
+            -104.646
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_en_inbox_title": {
+          "bounds": [
+            -157.894,
+            -88.3465,
+            153.106,
+            -68.3465
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_en_overview_title": {
+          "bounds": [
+            -154.889,
+            66.1535,
+            157.021,
+            86.2185
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_compact_en_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_card_1": {
+          "bounds": [
+            -149.894,
+            -37.3465,
+            -66.3937,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_card_2": {
+          "bounds": [
+            -43.8937,
+            -37.3465,
+            39.6063,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_card_3": {
+          "bounds": [
+            61.6063,
+            -37.3465,
+            145.106,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.646,
+            -8.8937,
+            -176.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_fcc_left": {
+          "bounds": [
+            -151.494,
+            -178.646,
+            -1.4937,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.646,
+            -109.894,
+            -193.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.646,
+            147.106,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_inbox_title": {
+          "bounds": [
+            -151.894,
+            -88.3465,
+            147.106,
+            -68.3465
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_front_heading": {
+          "bounds": [
+            -142.394,
+            103.154,
+            -37.3937,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_front_label_1": {
+          "bounds": [
+            -152.894,
+            202.654,
+            -47.8937,
+            220.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_front_label_2": {
+          "bounds": [
+            -152.894,
+            114.654,
+            -80.8937,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_right_heading": {
+          "bounds": [
+            -13.8937,
+            103.154,
+            154.106,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_right_label_1": {
+          "bounds": [
+            90.6063,
+            114.654,
+            156.606,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_right_label_2": {
+          "bounds": [
+            71.6063,
+            187.654,
+            156.606,
+            225.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_right_label_3": {
+          "bounds": [
+            71.6063,
+            140.654,
+            156.606,
+            174.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_en_overview_title": {
+          "bounds": [
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "b9bc174f6f5410810d4de2dccd63ce7d1ada61c5d67c159df0dd80286318fc12",
+      "story_sha256": {
+        "st_fixed_panels_compact_en_badge_1": "19254abc6558331c33e4a7f88c396291ddfa35868049ee816eaa1aa1429cabe1",
+        "st_fixed_panels_compact_en_badge_2": "4421455fd7b32224c0e48a375cc9b23e2dd28d5822ab75990394b0e516276f10",
+        "st_fixed_panels_compact_en_badge_3": "4916d77c593362e33a7aabf532b687d96b91c5ed2e73701e16923bd56ae32640",
+        "st_fixed_panels_compact_en_card_1": "67a9fb289431712ed7c5b682d54694b5fef970d3fee7f77f5376640affd1c478",
+        "st_fixed_panels_compact_en_card_2": "d42b3e0c790bac801bc0ffa5c4977dddc1c062e972b581cd5866e22c1be8cc5b",
+        "st_fixed_panels_compact_en_card_3": "6a327f0a16c836572e80119f7cf183edd343e7ebe5bde36bf70e7689eb482c52",
+        "st_fixed_panels_compact_en_fcc_lead": "18d22587d3a42ffbe1b68347a314aa1b4886206f9a850e31fd8642119d37aa5c",
+        "st_fixed_panels_compact_en_fcc_left": "484796de804c11da5c6e710ef129b1d0eee0a5304a55dda9d6fa4a9e1caeff59",
+        "st_fixed_panels_compact_en_fcc_mark": "d335467a583d9fc4936a65f2721a4fe139457b18e7c2ca1429f11e8f81adb3e2",
+        "st_fixed_panels_compact_en_fcc_right": "d08d091fcaaf5c09e5ee7d3e52acb244e95165a5c0243816ea3a5dac8ed786d4",
+        "st_fixed_panels_compact_en_inbox_title": "4a688673de91c22b3fafd54de883550ce7979706e3f3af7a4c54397b5089bcde",
+        "st_fixed_panels_compact_en_overview_front_label_1": "44f9e66efcf5a7208cc19ae9696ee18345dd1749d084d06e62318e1e77e42182",
+        "st_fixed_panels_compact_en_overview_front_label_2": "bcb1b56d1eba09027d56723bd9a8d7404cc5cfc728b763f28297172cc1720420",
+        "st_fixed_panels_compact_en_overview_front_story": "ecf650103a15757636f4a0fbc43a5612f8cb72e30128618a8ca069b28a3ada35",
+        "st_fixed_panels_compact_en_overview_right_label_1": "4ce171814f985c6b48c4391e5a1d2205ea758ce9679c35185f465a72ec086177",
+        "st_fixed_panels_compact_en_overview_right_label_2": "74b5779c490dfef33703ae1a9349b8dbda543227e69bcf4834515bdf73502853",
+        "st_fixed_panels_compact_en_overview_right_label_3": "415dd7f5d3c82da23f25013db49bc4bcaecb964e8bbfa868f8d8720c050f0c2b",
+        "st_fixed_panels_compact_en_overview_right_story": "12f871cf90b0d5cb7bd2bdabe2e2010efd0e97bf8d3d6edfb50323fc2c0665b7",
+        "st_fixed_panels_compact_en_overview_title": "f4c6ae49f5733c3ce714878b9adf6af44bfb615c0039a73f002f6df37d58aee3"
+      }
+    },
+    "es": {
+      "frames": {
+        "bg_st_fixed_panels_compact_es_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_es_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_es_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_es_card_1": {
+          "bounds": [
+            -157.894,
+            -58.3465,
+            -58.3937,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_es_card_2": {
+          "bounds": [
+            -51.8937,
+            -58.3465,
+            47.6063,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_es_card_3": {
+          "bounds": [
+            53.6063,
+            -58.3465,
+            153.106,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_es_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.646,
+            153.106,
+            -104.646
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_es_inbox_title": {
+          "bounds": [
+            -157.894,
+            -88.3465,
+            153.106,
+            -68.3465
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_es_overview_title": {
+          "bounds": [
+            -154.889,
+            66.1535,
+            157.021,
+            86.2185
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_compact_es_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_card_1": {
+          "bounds": [
+            -149.894,
+            -37.3465,
+            -66.3937,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_card_2": {
+          "bounds": [
+            -43.8937,
+            -37.3465,
+            39.6063,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_card_3": {
+          "bounds": [
+            61.6063,
+            -37.3465,
+            145.106,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.646,
+            -2.8937,
+            -170.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_fcc_left": {
+          "bounds": [
+            -151.494,
+            -172.646,
+            -1.4937,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.646,
+            -109.894,
+            -193.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.646,
+            147.106,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_inbox_title": {
+          "bounds": [
+            -151.894,
+            -88.3465,
+            147.106,
+            -68.3465
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_front_heading": {
+          "bounds": [
+            -142.394,
+            103.154,
+            -37.3937,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_front_label_1": {
+          "bounds": [
+            -152.894,
+            202.654,
+            -47.8937,
+            220.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_front_label_2": {
+          "bounds": [
+            -152.894,
+            114.654,
+            -80.8937,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_right_heading": {
+          "bounds": [
+            -13.8937,
+            103.154,
+            154.106,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_right_label_1": {
+          "bounds": [
+            90.6063,
+            114.654,
+            156.606,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_right_label_2": {
+          "bounds": [
+            71.6063,
+            187.654,
+            156.606,
+            225.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_right_label_3": {
+          "bounds": [
+            71.6063,
+            140.654,
+            156.606,
+            174.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_es_overview_title": {
+          "bounds": [
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "236786ba1cb1ca7999c238e68354246dc5db8fdc45786bea26517f1ebe3efc0b",
+      "story_sha256": {
+        "st_fixed_panels_compact_es_badge_1": "2d2c430e08181a885c745add3a2c0992881a843e51bee9bdd655071018aa5741",
+        "st_fixed_panels_compact_es_badge_2": "ccc6c0c93aa6c04198881f5d2bf53f2659409ad08f7d516af32518dfdf6828cd",
+        "st_fixed_panels_compact_es_badge_3": "630e08cca1c8ab592f6e65c7fcabc2d2915022dab2d4c16811f14025472d9515",
+        "st_fixed_panels_compact_es_card_1": "062a5262fa8fab3cec3c09d90e788eaf2ec03bd8f8ad03127f31ecd49ce7822c",
+        "st_fixed_panels_compact_es_card_2": "08f87971b82c8eb28feb0efb1d22d9f77973c08b52176cce51d931ed103c39a7",
+        "st_fixed_panels_compact_es_card_3": "86af7858613cfd1fea854d13d2eea2ab4fc3304894c5195f0df9dcb8e7e48eaa",
+        "st_fixed_panels_compact_es_fcc_lead": "79419779a94f44786f58a4c15c0e018a9a99c86f33e38688fd8c705edfa73ec7",
+        "st_fixed_panels_compact_es_fcc_left": "70794a116e94ceb18d1047d7e38c11fea7005a81f407f9cea8677752739de89b",
+        "st_fixed_panels_compact_es_fcc_mark": "ba039a4c1c68b7320f860416873395c3849ee6a751fbf7786be4c2a3d94c44c4",
+        "st_fixed_panels_compact_es_fcc_right": "329adaf44d35f56766b0e1e022d843873dd74d1fc52e4872d299727817f2499a",
+        "st_fixed_panels_compact_es_inbox_title": "996291c861e9731027180a0212f9ac5cb358cb9ab67700736fbfd3f656024b8c",
+        "st_fixed_panels_compact_es_overview_front_label_1": "e1ec032eb748c3f2d76d375a43f65b0369f16d954a5073ba78458b3220ef5d25",
+        "st_fixed_panels_compact_es_overview_front_label_2": "7bff6ad7feaca761312bcfdbb6d6821f67b5b0e4db479d294b7b028631d8588b",
+        "st_fixed_panels_compact_es_overview_front_story": "79169ba0fd445af615978f847dc179daa20236051c7ffe6ed8b04c9058904283",
+        "st_fixed_panels_compact_es_overview_right_label_1": "061a06c1710f7b0a291911c4867a72fbd91a13c2f65282511d4d63911327706b",
+        "st_fixed_panels_compact_es_overview_right_label_2": "f77556505b9e7646fc7b97bae80b5090227da6bce5e160745a47646388fcef65",
+        "st_fixed_panels_compact_es_overview_right_label_3": "521e16c873865bfac44a01ff7f4c46f22b4e7288b3d13963c5de489030ee378d",
+        "st_fixed_panels_compact_es_overview_right_story": "bcb903b059e3aebac2e28b6eeb89f7f5406a8417e358924a9678e0232acb61d2",
+        "st_fixed_panels_compact_es_overview_title": "a44cbfce17bf5bdb8c26f63084da8a187033fc2f7de0db1b45623172a495e403"
+      }
+    },
+    "fr": {
+      "frames": {
+        "bg_st_fixed_panels_compact_fr_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_fr_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_fr_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_fr_card_1": {
+          "bounds": [
+            -157.894,
+            -58.3465,
+            -58.3937,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_fr_card_2": {
+          "bounds": [
+            -51.8937,
+            -58.3465,
+            47.6063,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_fr_card_3": {
+          "bounds": [
+            53.6063,
+            -58.3465,
+            153.106,
+            49.6535
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Border K10"
+        },
+        "bg_st_fixed_panels_compact_fr_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.646,
+            153.106,
+            -104.646
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_fr_inbox_title": {
+          "bounds": [
+            -157.894,
+            -88.3465,
+            153.106,
+            -68.3465
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_compact_fr_overview_title": {
+          "bounds": [
+            -154.889,
+            66.1535,
+            157.021,
+            86.2185
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_compact_fr_badge_1": {
+          "bounds": [
+            -115.036,
+            -50.3465,
+            -101.251,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_badge_2": {
+          "bounds": [
+            -9.0362,
+            -50.3465,
+            4.7488,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_badge_3": {
+          "bounds": [
+            96.4638,
+            -50.3465,
+            110.249,
+            -36.5615
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_card_1": {
+          "bounds": [
+            -149.894,
+            -37.3465,
+            -66.3937,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_card_2": {
+          "bounds": [
+            -43.8937,
+            -37.3465,
+            39.6063,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_card_3": {
+          "bounds": [
+            61.6063,
+            -37.3465,
+            145.106,
+            44.6535
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.646,
+            -2.8937,
+            -164.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_fcc_left": {
+          "bounds": [
+            -151.494,
+            -166.646,
+            -1.4937,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.646,
+            -109.894,
+            -193.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.646,
+            147.106,
+            -104.646
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_inbox_title": {
+          "bounds": [
+            -151.894,
+            -88.3465,
+            147.106,
+            -68.3465
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_front_heading": {
+          "bounds": [
+            -142.394,
+            103.154,
+            -37.3937,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_front_label_1": {
+          "bounds": [
+            -152.894,
+            202.654,
+            -47.8937,
+            220.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_front_label_2": {
+          "bounds": [
+            -152.894,
+            114.654,
+            -80.8937,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_right_heading": {
+          "bounds": [
+            -13.8937,
+            103.154,
+            154.106,
+            115.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_right_label_1": {
+          "bounds": [
+            90.6063,
+            114.654,
+            156.606,
+            128.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_right_label_2": {
+          "bounds": [
+            71.6063,
+            187.654,
+            156.606,
+            225.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_right_label_3": {
+          "bounds": [
+            71.6063,
+            140.654,
+            156.606,
+            174.654
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_compact_fr_overview_title": {
+          "bounds": [
+            -148.489,
+            66.1535,
+            150.621,
+            86.2185
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "ebadb0e37e60a90ca24681d3192f3ff3865a6e0e97afbd5144c1b387a1d2f707",
+      "story_sha256": {
+        "st_fixed_panels_compact_fr_badge_1": "a3eb1e10624aadd201557f96aa070cddbff7c5113581f537fbb044b968d565c5",
+        "st_fixed_panels_compact_fr_badge_2": "105ede6106b63aa37dcd8ef2373651ffbd291a10fbbb787ba6966d5021fe572e",
+        "st_fixed_panels_compact_fr_badge_3": "b09551ee8cb3074a04f3240742d1dbc12efe88864706da3c5aab14c8e4d6157a",
+        "st_fixed_panels_compact_fr_card_1": "2cd2db391afefa14fe466b4698dadc6ac8a2203de8fca24eaf935471f6c46da6",
+        "st_fixed_panels_compact_fr_card_2": "b19e9d0e625d7a3b8aab9f5164ed2e5d1058fedf0e923b50ea6882a582cc80d0",
+        "st_fixed_panels_compact_fr_card_3": "778df833f4498f418dffbe70186a9ddf29f1c34f06fd6dbbc8e380ac9d8eb691",
+        "st_fixed_panels_compact_fr_fcc_lead": "3ae696597b83eb200c3572b3fd0c7d742438e136e0d46e289a4e873eeee321c7",
+        "st_fixed_panels_compact_fr_fcc_left": "6b77d1b506d2b5a1968a124d9c72b31b922e202e91c3fdf1b0d6daf245ce1351",
+        "st_fixed_panels_compact_fr_fcc_mark": "be358bc47f0e7e074890a1e90c3c6a4e39df0ff511b0ed23b1f8f680a5ffeb03",
+        "st_fixed_panels_compact_fr_fcc_right": "8ee8153624b57f9ce4b2c9e198dc763ac6f67555a0c3f5854618103401d5a6e8",
+        "st_fixed_panels_compact_fr_inbox_title": "5becc66c481fd5928fbf484b4201521ce00585bfbd0eeaefb6e319e246f0b0b2",
+        "st_fixed_panels_compact_fr_overview_front_label_1": "26dc2a87413665b6e07be8de32e2a5e3304008cac384ae75450628f8c99b2958",
+        "st_fixed_panels_compact_fr_overview_front_label_2": "6105de1c5e2093cabce8360703f8914a242534a564d30be763f4e6b8b4b3d1c1",
+        "st_fixed_panels_compact_fr_overview_front_story": "78d9257e795e274b803ef3ccfd8fb284095a501ea01249883620f92f4882f330",
+        "st_fixed_panels_compact_fr_overview_right_label_1": "e4be2756f753c358e90ae2dcbdf9a4ef3470a939a6373f40f292f58043626e32",
+        "st_fixed_panels_compact_fr_overview_right_label_2": "f37287fb85a8ddaf1b6185e40cc6041dd13d28d42b35f99739a1cb731cce2249",
+        "st_fixed_panels_compact_fr_overview_right_label_3": "1f036f03745cd4058e1e2d0a2cc0e2e4fdad537f7f8ada1c9a1376a482240fdd",
+        "st_fixed_panels_compact_fr_overview_right_story": "71063e47e79759647551dd808e91bf39698db372c80e237a76d75ef4bb01256f",
+        "st_fixed_panels_compact_fr_overview_title": "7be3c038487d1cb5942f587a2e10ffe56a0c6b29ad73e1312592df9079fe9e2a"
+      }
+    }
+  },
+  "standard": {
+    "en": {
+      "frames": {
+        "bg_st_fixed_panels_standard_en_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_card_1": {
+          "bounds": [
+            -157.894,
+            10.6535,
+            -58.3937,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_en_card_2": {
+          "bounds": [
+            -51.8937,
+            10.6535,
+            47.6063,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_en_card_3": {
+          "bounds": [
+            53.6063,
+            10.6535,
+            153.106,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_en_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.346,
+            153.106,
+            -104.346
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_tip_strip": {
+          "bounds": [
+            -157.894,
+            195.654,
+            153.106,
+            237.323
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_en_title": {
+          "bounds": [
+            -157.894,
+            -17.3465,
+            153.106,
+            2.65354
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_standard_en_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_card_1": {
+          "bounds": [
+            -149.894,
+            42.7535,
+            -66.3937,
+            170.754
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_card_2": {
+          "bounds": [
+            -43.8937,
+            39.1535,
+            39.6063,
+            167.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_card_3": {
+          "bounds": [
+            61.6063,
+            38.2535,
+            145.106,
+            166.254
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.346,
+            -8.8937,
+            -176.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_fcc_left": {
+          "bounds": [
+            -151.494,
+            -178.346,
+            -1.4937,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.346,
+            -109.894,
+            -193.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.346,
+            147.106,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_tip_body": {
+          "bounds": [
+            -100.001,
+            199.055,
+            149.846,
+            233.921
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_en_title": {
+          "bounds": [
+            -151.494,
+            -17.3465,
+            146.706,
+            2.65354
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "29e61e386eec0f31ec3382f0f9213d0a2cee090c161eb169822ebea0fb4498f7",
+      "story_sha256": {
+        "st_fixed_panels_standard_en_badge_1": "a782a85b24ef7c8cc9d2ef363092e6e55433217a6a71d6c539c7204f284d8711",
+        "st_fixed_panels_standard_en_badge_2": "120ef708e9d02f18ed6479e07f38383779f775b584a35781687b27b9564a0ab0",
+        "st_fixed_panels_standard_en_badge_3": "11d4294a70a47e1b02f7fe49da76622d3537bdacf3e93781ca45edc02a96efc1",
+        "st_fixed_panels_standard_en_card_1": "a5e83b22b2ab24445e8577531d39542cd1c73e84425d4653966cf795f8ed138a",
+        "st_fixed_panels_standard_en_card_2": "1bfff13217809417f0d94c844e360f23e41fdf69f6af8abe3fc392d5fadca1eb",
+        "st_fixed_panels_standard_en_card_3": "6c6cb3a4b6042334f41178d93808dc95529060926c593c9cf49ad0dd396532a1",
+        "st_fixed_panels_standard_en_fcc_lead": "ef4a3110a9ddacb2d2d4728209b7dd774eea210939866b98d1336893742530ca",
+        "st_fixed_panels_standard_en_fcc_left": "78820405fffad3be0c1ec7522a6e2648aef2366a732616a2052945bb38d0eab4",
+        "st_fixed_panels_standard_en_fcc_mark": "e416ee854d140501af6fb9984223db04c8b9adc481201c166da4bb43bb2b8214",
+        "st_fixed_panels_standard_en_fcc_right": "f9f844685aa7de6962e544974baf043d514fbe50e1a109bb7da10010eab5f0bb",
+        "st_fixed_panels_standard_en_tip_body": "7a39181f588e458268c8ee9be24d640bd73be4e836f605e1f5e33c8f164394ed",
+        "st_fixed_panels_standard_en_tip_label": "2669981555b2bbb0ab40ba2141aea008bac33a485c5f6395f470ed3111f8b86a",
+        "st_fixed_panels_standard_en_title": "2824564934449f94de671e40fedad3a97ce3d34cd6e0db69aeccd9f33c08d343"
+      }
+    },
+    "es": {
+      "frames": {
+        "bg_st_fixed_panels_standard_es_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_card_1": {
+          "bounds": [
+            -157.894,
+            10.6535,
+            -58.3937,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_es_card_2": {
+          "bounds": [
+            -51.8937,
+            10.6535,
+            47.6063,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_es_card_3": {
+          "bounds": [
+            53.6063,
+            10.6535,
+            153.106,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_es_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.346,
+            153.106,
+            -104.346
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_tip_strip": {
+          "bounds": [
+            -157.894,
+            195.654,
+            153.106,
+            237.323
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_es_title": {
+          "bounds": [
+            -157.894,
+            -17.3465,
+            153.106,
+            2.65354
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_standard_es_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_card_1": {
+          "bounds": [
+            -149.894,
+            42.7535,
+            -66.3937,
+            170.754
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_card_2": {
+          "bounds": [
+            -43.8937,
+            39.1535,
+            39.6063,
+            167.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_card_3": {
+          "bounds": [
+            61.6063,
+            38.2535,
+            145.106,
+            166.254
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.346,
+            -2.8937,
+            -170.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_fcc_left": {
+          "bounds": [
+            -151.494,
+            -172.346,
+            -1.4937,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.346,
+            -109.894,
+            -193.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.346,
+            147.106,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_tip_body": {
+          "bounds": [
+            -100.001,
+            199.055,
+            149.846,
+            233.921
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_es_title": {
+          "bounds": [
+            -151.494,
+            -17.3465,
+            146.706,
+            2.65354
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "5c2d6e63e6e43b420119b04054083587271befbd14539182c9a386a8fe9a3083",
+      "story_sha256": {
+        "st_fixed_panels_standard_es_badge_1": "72c1193f6e468ea5bfdce8428e4c78621f6b34fc75f0ec5b8a680c672561f002",
+        "st_fixed_panels_standard_es_badge_2": "d67d432d11b082c2b62e1e3c58e142f070fe8e0901c07d6b2e2cf8fe0b200396",
+        "st_fixed_panels_standard_es_badge_3": "19e31a9925bf0b4594ce1e153c732bcacec411dc4296544f3e1e0f6a93c2bb18",
+        "st_fixed_panels_standard_es_card_1": "b30c4e7d2d5a25d805b5864a557905e56af16ca0580e3b0ac2f4529be727a95d",
+        "st_fixed_panels_standard_es_card_2": "6c953d54920fd7ce177bd01b2ed5e948778bc86eb5e1987897f797f7c3e22541",
+        "st_fixed_panels_standard_es_card_3": "ca6da2af2e7f1af1d9bd86b21cf32a506b87418e1ffbeccc0b6422fced84051f",
+        "st_fixed_panels_standard_es_fcc_lead": "674a299587253b39b5ef9f0c231b1bcdc3d0ec3898cf5e1d82c25ad7928d4a55",
+        "st_fixed_panels_standard_es_fcc_left": "5ffb760caaa827ee9b731071e1fd6d7968d751192bd5a3f37f744808db30b5f2",
+        "st_fixed_panels_standard_es_fcc_mark": "8cf648538bcf6ec4f87cb3546b253f8ee8e8b8d06f0b272d816b004ec863d98a",
+        "st_fixed_panels_standard_es_fcc_right": "61470364db1005177fdcd7d7e6ce730ac2a22ac744a3b466d9b368992b64e480",
+        "st_fixed_panels_standard_es_tip_body": "05f14c9f1dba5b8f059283daa8d1e391fa06b60eb875b075fc35b2f5a3f58812",
+        "st_fixed_panels_standard_es_tip_label": "6c78574f8992cf47b8f860206978aeacabe17aa1589c40da0de3afec4450e81c",
+        "st_fixed_panels_standard_es_title": "39731907c38806dbc279d87cd283e3c38f958f52ef21c3d3d232cf0bc4a7f659"
+      }
+    },
+    "fr": {
+      "frames": {
+        "bg_st_fixed_panels_standard_fr_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Badge",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_card_1": {
+          "bounds": [
+            -157.894,
+            10.6535,
+            -58.3937,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_fr_card_2": {
+          "bounds": [
+            -51.8937,
+            10.6535,
+            47.6063,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_fr_card_3": {
+          "bounds": [
+            53.6063,
+            10.6535,
+            153.106,
+            183.154
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Inbox Card",
+          "stroke": "Color/HB Line K40"
+        },
+        "bg_st_fixed_panels_standard_fr_fcc_panel": {
+          "bounds": [
+            -157.894,
+            -234.346,
+            153.106,
+            -104.346
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "Color/Paper",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_tip_strip": {
+          "bounds": [
+            -157.894,
+            195.654,
+            153.106,
+            237.323
+          ],
+          "fill": "Color/HB Bg K05",
+          "object_style": "ObjectStyle/HB Rounded Panel",
+          "stroke": "Swatch/None"
+        },
+        "bg_st_fixed_panels_standard_fr_title": {
+          "bounds": [
+            -157.894,
+            -17.3465,
+            153.106,
+            2.65354
+          ],
+          "fill": "Color/HB Brand Dark",
+          "object_style": "ObjectStyle/HB Capsule Heading",
+          "stroke": "Swatch/None"
+        },
+        "tf_st_fixed_panels_standard_fr_badge_1": {
+          "bounds": [
+            -115.036,
+            33.0845,
+            -101.251,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_badge_2": {
+          "bounds": [
+            -9.0362,
+            33.0845,
+            4.7488,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_badge_3": {
+          "bounds": [
+            96.4638,
+            33.0845,
+            110.249,
+            46.8695
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_card_1": {
+          "bounds": [
+            -149.894,
+            42.7535,
+            -66.3937,
+            170.754
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_card_2": {
+          "bounds": [
+            -43.8937,
+            39.1535,
+            39.6063,
+            167.154
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_card_3": {
+          "bounds": [
+            61.6063,
+            38.2535,
+            145.106,
+            166.254
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_fcc_lead": {
+          "bounds": [
+            -105.894,
+            -226.346,
+            -2.8937,
+            -164.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_fcc_left": {
+          "bounds": [
+            -151.494,
+            -166.346,
+            -1.4937,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_fcc_mark": {
+          "bounds": [
+            -151.894,
+            -227.346,
+            -109.894,
+            -193.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_fcc_right": {
+          "bounds": [
+            8.9063,
+            -226.346,
+            147.106,
+            -104.346
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_tip_body": {
+          "bounds": [
+            -100.001,
+            199.055,
+            149.846,
+            233.921
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_tip_label": {
+          "bounds": [
+            -156.646,
+            196.901,
+            -105.453,
+            236.076
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        },
+        "tf_st_fixed_panels_standard_fr_title": {
+          "bounds": [
+            -151.494,
+            -17.3465,
+            146.706,
+            2.65354
+          ],
+          "fill": "",
+          "object_style": "ObjectStyle/$ID/[Normal Text Frame]",
+          "stroke": ""
+        }
+      },
+      "spread_sha256": "4baff315a98d9ae1b83879f55e0b5eb9c2db0131a363a0082b66cedf9f8a88a8",
+      "story_sha256": {
+        "st_fixed_panels_standard_fr_badge_1": "497c6324eb5bb165b96e81d3545ed24227b6979d39a7c58bfc406d9a1023e43a",
+        "st_fixed_panels_standard_fr_badge_2": "0ba42e25aa4d1e6c1c6835ba103f3e86dfc170af8b9d0ae8806a750ef1a14132",
+        "st_fixed_panels_standard_fr_badge_3": "e887f71bef74c3accbcec8b09c105d02614668d8ffaaac02d91d25c2ab6bde79",
+        "st_fixed_panels_standard_fr_card_1": "0fe2763882dc9a3c6326f0beeb8a457bb0fde94e3c2c78fa448922184f880a93",
+        "st_fixed_panels_standard_fr_card_2": "05944a750227a810155e9b698eae0d55f62102c6bdfeb45cc4d78467cfa61402",
+        "st_fixed_panels_standard_fr_card_3": "e1e094d3cd3a281802817b5c0371cd6384846d6078887dba85c5e593050526af",
+        "st_fixed_panels_standard_fr_fcc_lead": "22589bfea3973b6e8cc63e59953500e66deb169077f8ecb42d40a76e2d2e68b0",
+        "st_fixed_panels_standard_fr_fcc_left": "10db2eb496f0b26ed7c7dc7a8e5bd7a4d0289a0ea76b95a396b211a4ab082bf1",
+        "st_fixed_panels_standard_fr_fcc_mark": "98e67a45b068974a82260a10d788ba926e6343e3cdc86a2a14405e966ed94408",
+        "st_fixed_panels_standard_fr_fcc_right": "24bdb706c7a022cc21b952cc716bd6210de6bacc0081b3b2c43466c2f5343929",
+        "st_fixed_panels_standard_fr_tip_body": "a02ffab74b676c2273390164a79f210c808b4f2e55ff926db3e64015e50bc483",
+        "st_fixed_panels_standard_fr_tip_label": "956890b6fe61c31991833aaef60b8dc974dd802ff60175822b39bee70e2fb5d9",
+        "st_fixed_panels_standard_fr_title": "f98748a9cb5a6d0515d58f09cc0d14afd16931ae0158292305e75d0c58b3ce6b"
+      }
+    }
+  }
+}

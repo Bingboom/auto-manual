@@ -15,7 +15,7 @@ from tools.render_contract import (
     LAYOUT_PARAMS_HASH_ALGORITHM,
     contract_sha256,
     layout_tokens_sha256,
-    load_layout_tokens,
+    load_layout_token_layers,
     load_render_contract,
 )
 from tools.utils.path_utils import Paths
@@ -189,6 +189,7 @@ def build_manual_ir(
     source: str,
     data_root: Path | None = None,
     layout_params_csv: Path | None = None,
+    layout_param_overlays: tuple[Path, ...] = (),
     style_contract_path: Path | None = None,
 ) -> ManualIR:
     paths = Paths(root=root)
@@ -201,6 +202,12 @@ def build_manual_ir(
     contract = load_render_contract(style_contract_path)
     base_tags = {
         "latex",
+        # IDML consumes the LaTeX-capable source projection, but some pages
+        # also provide an editable semantic branch that must replace opaque
+        # raw-LaTeX artwork.  The dedicated tag lets those pages express
+        # ``latex and not idml`` / ``not latex or idml`` without changing the
+        # ordinary Sphinx builders.
+        "idml",
         f"region_{region.lower()}",
         "model_" + model.lower().replace("-", "_"),
     }
@@ -261,7 +268,9 @@ def build_manual_ir(
         bundle_root=bundle_root.as_posix(),
         bundle_sha256=bundle_sha,
         snapshot_sha256=_snapshot_sha256(data_root),
-        layout_params_sha256=layout_tokens_sha256(load_layout_tokens(layout_params_csv)),
+        layout_params_sha256=layout_tokens_sha256(
+            load_layout_token_layers(layout_params_csv, layout_param_overlays)
+        ),
         style_contract_sha256=contract_sha256(contract),
         content_sha256=content_sha,
         pages=tuple(pages),

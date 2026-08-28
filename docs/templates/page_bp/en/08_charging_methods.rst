@@ -4,26 +4,24 @@ CHARGING
 CHARGING VIA AC WALL OUTLET
 ---------------------------
 
+When charging from the wall, this product must be used with Jackery HomePower 2000 Plus.
+
 .. list-table::
    :header-rows: 0
    :widths: 12 88
 
    * - **WARNING**
-     - When charging from the wall, this product must be used with Jackery HomePower 2000 Plus.
+     - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
 
-CHARGING VIA SOLAR PANELS
--------------------------
+.. image:: asset:charging/jbp2000b/ac_wall
+   :alt: AC wall charging connection through Jackery HomePower 2000 Plus.
+   :width: 100%
+
+CHARGING VIA SOLAR PANELS (SOLD SEPARATELY)
+-------------------------------------------
 
 Charge your product with solar panels and Jackery HomePower 2000 Plus as shown in the figure below. Please refer to the Jackery HomePower 2000 Plus user manual for more information.
 
-.. TODO(资产): 太阳能充电接线示意图已入库、待整合 — 源=HTP017 US 出货书 printed p06
-   (SOLD SEPARATELY / SolarSaga 200)。已注册为 charging/jbp2000b/solar(适用区域 US 同上;去字后板子无名,
-   是否需要本地化标题槽待定)。整合切换时在此加
-   `.. image:: asset:charging/jbp2000b/solar`。
-
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
-
-   * - **CAUTION**
-     - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+.. image:: asset:charging/jbp2000b/solar
+   :alt: Solar charging connection through Jackery HomePower 2000 Plus.
+   :width: 500px

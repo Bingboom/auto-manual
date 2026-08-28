@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import unittest
+from contextlib import nullcontext
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -150,6 +151,60 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertIn("--mode", calls[3][1])
         mode_index = calls[3][1].index("--mode")
         self.assertEqual("flow", calls[3][1][mode_index + 1])
+
+    def test_dispatch_idml_configured_assembly_prepares_rst_and_forwards_plan(
+        self,
+    ) -> None:
+        plan = Path("docs/renderers/contracts/target_assembly/candidate.json")
+        with patch.object(
+            build_dispatch,
+            "resolve_idml_assembly_plan",
+            return_value=plan,
+        ):
+            calls = self._dispatch("idml", _preserve_assembly_patch=True)
+
+        self.assertEqual("rst", calls[1][2]["action_override"])
+        command = calls[3][1]
+        plan_index = command.index("--assembly-plan")
+        self.assertEqual(str(plan), command[plan_index + 1])
+
+    def test_dispatch_idml_forwards_configured_layout_token_layers(self) -> None:
+        base = Path("data/layout_params.csv")
+        overlay = Path("data/layout_params.idml-compact.csv")
+        with patch.object(
+            build_dispatch,
+            "resolve_layout_params_csv",
+            return_value=base,
+        ), patch.object(
+            build_dispatch,
+            "resolve_idml_layout_param_overlays",
+            return_value=(overlay,),
+        ):
+            calls = self._dispatch("idml", _preserve_layout_patch=True)
+
+        command = calls[3][1]
+        base_index = command.index("--layout-params-csv")
+        overlay_index = command.index("--layout-params-overlay")
+        self.assertEqual(str(base), command[base_index + 1])
+        self.assertEqual(str(overlay), command[overlay_index + 1])
+
+    def test_idml_layout_param_overlays_resolve_relative_to_repo(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.yaml"
+            config.write_text(
+                "paths:\n"
+                "  idml_layout_params_overlays:\n"
+                "    - data/compact.csv\n",
+                encoding="utf-8",
+            )
+
+            resolved = build_dispatch.resolve_idml_layout_param_overlays(
+                config,
+                repo_root=root,
+            )
+
+        self.assertEqual((root / "data" / "compact.csv",), resolved)
 
     def test_dispatch_idml_uses_single_configured_language(self) -> None:
         with patch.object(
@@ -312,6 +367,8 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual("review-asis", calls[1][2]["source_override"])
 
     def _dispatch(self, action: str, **overrides) -> list[tuple]:
+        preserve_assembly_patch = overrides.pop("_preserve_assembly_patch", False)
+        preserve_layout_patch = overrides.pop("_preserve_layout_patch", False)
         values = {
             "action": action,
             "data_root": "data/phase2",
@@ -343,38 +400,62 @@ class TestBuildDispatch(unittest.TestCase):
             calls.append(("review-bundle", parsed_args.action))
             return ["review-bundle"]
 
-        build_dispatch.dispatch_action(
-            args,
-            config_path=Path("config.us.yaml"),
-            ensure_supported_staging_action=record_arg("ensure"),
-            run_validate=record_call("validate"),
-            run_doctor=record_arg("doctor"),
-            run_checked=lambda cmd: calls.append(("run-checked", tuple(cmd))),
-            build_docs_command=record_command("build-docs"),
-            review_bundle_command=review_bundle_command,
-            run_check=record_arg("check"),
-            sync_review_command=lambda parsed_args: ["sync-review", parsed_args.action],
-            sync_data_command=lambda parsed_args: ["sync-data", parsed_args.action],
-            spec_master_rebuild_command=lambda parsed_args: ["spec-master-rebuild", parsed_args.action],
-            run_translation_memory=record_arg("translation-memory"),
-            run_message_control_dry_run=record_arg("message-control-dry-run"),
-            run_manual_index_query=record_arg("manual-index-query"),
-            run_queue_query=record_arg("queue-query"),
-            run_queue_resolve_action=record_arg("queue-resolve-action"),
-            run_queue_execute=record_arg("queue-execute"),
-            process_review_start_queue_command=lambda parsed_args: ["process-review-start-queue", parsed_args.action],
-            process_build_queue_command=lambda parsed_args: ["process-build-queue", parsed_args.action],
-            listen_build_queue_command=lambda parsed_args: ["listen-build-queue", parsed_args.action],
-            listen_message_control_command=lambda parsed_args: ["listen-message-control", parsed_args.action],
-            run_publish=record_arg("publish"),
-            run_diff_report=record_arg("diff-report"),
-            release_manifest_command=lambda parsed_args: ["release-manifest", parsed_args.action],
-            release_rebuild_command=lambda parsed_args: ["release-rebuild", parsed_args.action],
-            clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
-            maybe_sync_review_before_build=record_maybe_sync,
-            run_asset_command=record_arg("asset-command"),
-            run_new_line=record_arg("new-line"),
+        assembly_patch = (
+            patch.object(build_dispatch, "resolve_idml_assembly_plan", return_value=None)
+            if not preserve_assembly_patch
+            else nullcontext()
         )
+        layout_base_patch = (
+            patch.object(
+                build_dispatch,
+                "resolve_layout_params_csv",
+                return_value=Path("data/layout_params.csv"),
+            )
+            if not preserve_layout_patch
+            else nullcontext()
+        )
+        layout_overlay_patch = (
+            patch.object(
+                build_dispatch,
+                "resolve_idml_layout_param_overlays",
+                return_value=(),
+            )
+            if not preserve_layout_patch
+            else nullcontext()
+        )
+        with assembly_patch, layout_base_patch, layout_overlay_patch:
+            build_dispatch.dispatch_action(
+                args,
+                config_path=Path("config.us.yaml"),
+                ensure_supported_staging_action=record_arg("ensure"),
+                run_validate=record_call("validate"),
+                run_doctor=record_arg("doctor"),
+                run_checked=lambda cmd: calls.append(("run-checked", tuple(cmd))),
+                build_docs_command=record_command("build-docs"),
+                review_bundle_command=review_bundle_command,
+                run_check=record_arg("check"),
+                sync_review_command=lambda parsed_args: ["sync-review", parsed_args.action],
+                sync_data_command=lambda parsed_args: ["sync-data", parsed_args.action],
+                spec_master_rebuild_command=lambda parsed_args: ["spec-master-rebuild", parsed_args.action],
+                run_translation_memory=record_arg("translation-memory"),
+                run_message_control_dry_run=record_arg("message-control-dry-run"),
+                run_manual_index_query=record_arg("manual-index-query"),
+                run_queue_query=record_arg("queue-query"),
+                run_queue_resolve_action=record_arg("queue-resolve-action"),
+                run_queue_execute=record_arg("queue-execute"),
+                process_review_start_queue_command=lambda parsed_args: ["process-review-start-queue", parsed_args.action],
+                process_build_queue_command=lambda parsed_args: ["process-build-queue", parsed_args.action],
+                listen_build_queue_command=lambda parsed_args: ["listen-build-queue", parsed_args.action],
+                listen_message_control_command=lambda parsed_args: ["listen-message-control", parsed_args.action],
+                run_publish=record_arg("publish"),
+                run_diff_report=record_arg("diff-report"),
+                release_manifest_command=lambda parsed_args: ["release-manifest", parsed_args.action],
+                release_rebuild_command=lambda parsed_args: ["release-rebuild", parsed_args.action],
+                clean_build_artifacts=lambda config_path: calls.append(("clean", config_path)),
+                maybe_sync_review_before_build=record_maybe_sync,
+                run_asset_command=record_arg("asset-command"),
+                run_new_line=record_arg("new-line"),
+            )
         return calls
 
 

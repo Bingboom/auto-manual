@@ -9,9 +9,9 @@ from __future__ import annotations
 from pathlib import Path
 
 try:
-    from tools.render_contract import load_layout_tokens
+    from tools.render_contract import load_layout_token_layers
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
-    from render_contract import load_layout_tokens  # type: ignore
+    from render_contract import load_layout_token_layers  # type: ignore
 
 MIMETYPE = "application/vnd.adobe.indesign-idml-package"
 IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
@@ -19,11 +19,14 @@ IDPKG = "http://ns.adobe.com/AdobeInDesign/idml/1.0/packaging"
 MM_TO_PT = 72.0 / 25.4
 
 
-def load_layout_params(csv_path: Path) -> dict[str, tuple[str, str]]:
+def load_layout_params(
+    csv_path: Path,
+    overlay_csvs: tuple[Path, ...] = (),
+) -> dict[str, tuple[str, str]]:
     """key -> (value, unit)"""
     return {
         key: (token.value, token.unit)
-        for key, token in load_layout_tokens(csv_path).items()
+        for key, token in load_layout_token_layers(csv_path, overlay_csvs).items()
     }
 
 

@@ -1035,6 +1035,15 @@
 % Charging introduction-to-emphasis rhythm shared by all languages
 \expandafter\def\csname HBidml_charging_emphasis_space_before\endcsname{5.0pt}
 
+% Charging diagram contributes no explicit margin before the following shared heading row
+\expandafter\def\csname HBidml_charging_figure_space_after\endcsname{0.0pt}
+
+% Charging copy-to-diagram rhythm owned by the shared charging composition
+\expandafter\def\csname HBidml_charging_figure_space_before\endcsname{2.83pt}
+
+% Charging diagram-to-heading transition uses the native paragraph line box only
+\expandafter\def\csname HBidml_charging_headingpill_space_before\endcsname{0.0pt}
+
 % Default charging-methods first-frame top offset
 \expandafter\def\csname HBidml_charging_methods_page_top_offset\endcsname{23.8pt}
 
@@ -1482,6 +1491,9 @@
 % Base LCD mode table top margin matching the approved English geometry
 \expandafter\def\csname HBidml_lcd_mode_table_top_margin\endcsname{13.69pt}
 
+% Transparent terminal-marker carrier outside the visible LCD shell
+\expandafter\def\csname HBidml_lcd_native_carrier_allowance\endcsname{1.0pt}
+
 % IDML LCD table width adjustment against the approved master
 \expandafter\def\csname HBidml_lcd_table_width_adjust\endcsname{0.4pt}
 
@@ -1851,9 +1863,6 @@
 % IDML English first safety-tail panel height
 \expandafter\def\csname HBidml_symbols_first_tail_height\endcsname{34.5pt}
 
-% IDML Symbols H1 band optical vertical offset
-\expandafter\def\csname HBidml_symbols_h1_optical_offset\endcsname{1.918pt}
-
 % IDML symbol-grid icon column width
 \expandafter\def\csname HBidml_symbols_icon_col_width\endcsname{39.685pt}
 
@@ -1892,6 +1901,9 @@
 
 % IDML gap after the maintenance subbar
 \expandafter\def\csname HBidml_symbols_maintenance_title_gap\endcsname{3.5pt}
+
+% Transparent native InDesign terminal-marker carrier outside the visible Symbols shell
+\expandafter\def\csname HBidml_symbols_native_carrier_allowance\endcsname{4mm}
 
 % IDML Symbols fallback bottom-trim allowance
 \expandafter\def\csname HBidml_symbols_page_bottom_allowance\endcsname{2.0pt}
@@ -1967,6 +1979,9 @@
 
 % Troubleshooting code-column optical allowance after the shared ratio
 \expandafter\def\csname HBidml_trouble_left_optical_width\endcsname{4.0pt}
+
+% Transparent terminal-marker carrier outside the visible troubleshooting shell
+\expandafter\def\csname HBidml_trouble_native_carrier_allowance\endcsname{1.0pt}
 
 % Troubleshooting rounded-panel outer rule
 \expandafter\def\csname HBidml_trouble_outer_rule\endcsname{0.57pt}

@@ -3,10 +3,9 @@ CONEXIONES
 
 Se pueden usar hasta 5 juegos de estos productos junto con el Jackery HomePower 2000 Plus para cubrir las necesidades de mayor capacidad.
 
-.. TODO(资产): 堆叠/间距示意图已入库、待整合 — 源=HTP017 US 出货书 printed p20 (ES)。
-   已注册为 connections/jbp2000b/stack_clearance(适用区域 US:主机面板画的是
-   NEMA 5-20R)。整合切换时在此加
-   `.. image:: asset:connections/jbp2000b/stack_clearance`。
+.. image:: asset:connections/jbp2000b/stack_clearance
+   :alt: Diagrama de conexión, apilamiento y separación de las baterías adicionales.
+   :width: 500px
 
 .. list-table::
    :header-rows: 0
@@ -21,9 +20,13 @@ Se pueden usar hasta 5 juegos de estos productos junto con el Jackery HomePower 
    :header-rows: 0
    :widths: 12 88
 
-   * - **OBSERVACIONES**
+   * - **Observaciones**
      -
        - La aparición del icono de conexión en la pantalla LCD (Jackery HomePower 2000 Plus) indica que la conexión entre la batería y el Jackery HomePower 2000 Plus se ha realizado correctamente.
        - No coloque el producto encima del Jackery HomePower 2000 Plus.
        - Coloque las baterías adicionales sobre una superficie plana, estable y con suficiente capacidad de carga. El número máximo predeterminado de baterías adicionales apiladas es de 3.
        - Si se requieren 4 o más baterías adicionales, deben colocarse en una zona estable, apoyadas contra una pared y alejadas de impactos externos, y deben adoptarse las medidas necesarias de fijación antivuelco.
+
+.. image:: asset:connections/jbp2000b/locking_es
+   :alt: Orden de conexión correcto y pasos para bloquear y desbloquear el cable de expansión.
+   :width: 100%

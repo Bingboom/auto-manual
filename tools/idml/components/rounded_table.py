@@ -39,6 +39,7 @@ def rounded_table_panel(
     space_after: float = 0.0,
     start_next_page: bool = False,
     content_bottom_bleed: float = 0.0,
+    terminal_carrier_height: float = 0.0,
 ) -> str:
     """Wrap one table segment in the canonical editable rounded shell.
 
@@ -48,6 +49,14 @@ def rounded_table_panel(
     """
     table_xml = suppress_outer_edges_xml(table_xml, n_cols)
     inner = wrap_table_paragraph(table_xml, True, span_columns=False)
+    if "idml_table_marker_point_size" in params:
+        marker_size = param_pt(params, "idml_table_marker_point_size", 0.1)
+        inner = inner.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'PointSize="{marker_size:g}" Leading="{marker_size:g}">',
+            1,
+        )
     xml = page_objects.anchored_panel_group_paragraph(
         add_story,
         sid,
@@ -74,6 +83,7 @@ def rounded_table_panel(
         # objects. Apply the measured optical offset to the group transform.
         group_x_offset=left_indent,
         content_bottom_bleed=content_bottom_bleed,
+        terminal_carrier_height=terminal_carrier_height,
     )
     attrs: list[str] = []
     if start_next_page:

@@ -10,6 +10,7 @@ empty — the same philosophy as load_symbols_rows.
 """
 from __future__ import annotations
 
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -64,6 +65,26 @@ class LocalizedLoaderTests(unittest.TestCase):
     def test_trouble_rows_localize_to_french(self) -> None:
         fr = load_trouble_rows(FIXTURES, "JE-1000F", "US", lang="fr")
         self.assertIn(("F0", "Redémarrez le produit."), fr)
+
+    def test_trouble_rows_prefer_model_specific_rows_and_fall_back_to_all(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            data_root = Path(td)
+            (data_root / "troubleshooting_blocks.csv").write_text(
+                "No.,Model,Region,Is_latest,error_code,corrective_measures_en\n"
+                "1,ALL,US,TRUE,GENERIC,Generic measure.\n"
+                "2,JBP-2000B,US,TRUE,SPECIFIC,Specific measure.\n"
+                "3,OTHER,US,TRUE,OTHER,Other measure.\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual(
+                [("SPECIFIC", "Specific measure.")],
+                load_trouble_rows(data_root, "JBP-2000B", "US"),
+            )
+            self.assertEqual(
+                [("GENERIC", "Generic measure.")],
+                load_trouble_rows(data_root, "UNREGISTERED", "US"),
+            )
 
     def test_spec_sections_localize_values_with_source_fallback(self) -> None:
         en = load_spec_sections(FIXTURES, "JE-1000F", "US", lang="en")

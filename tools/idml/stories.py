@@ -2,12 +2,10 @@
 from __future__ import annotations
 
 from pathlib import Path
-from xml.sax.saxutils import escape
 
 from . import components as _components, page_objects as _po, prose_flow as _flow
 from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
-from .params import IDPKG, param_pt
-from .primitives import _ATTR_ENTITIES
+from .params import param_pt
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
 from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
@@ -15,28 +13,28 @@ from .story_estimates import paragraph_estimate
 from .operation_stack import OperationStorySpacing
 from .story_parts import add_story_parts as _add_story_parts
 from .story_parts import add_text_story
+from .story_semantics import image_role, require_all_image_roles, story_language
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
                     inline_origin_shift: float = 0.0,
-                    language: str | None = None) -> tuple[str, float]:
+                    language: str | None = None,
+                    image_roles: tuple[str, ...] = (),
+                    disable_hyphenation: bool = False,
+                    first_h1_space_after: float | None = None, semantic_page_role: str | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
     est = 0.0
     img_n = 0
-    is_preface = title == "00_preface"
+    image_role_index = 0
+    is_preface = semantic_page_role == "preface" or (semantic_page_role is None and title == "00_preface")
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
     in_twocol = False
     next_h1_page_top: float | None = None
     next_trouble_h1_language, next_storage_h1_language = None, None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
-    first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
-    page_language = language or {
-        "WARRANTY": "en",
-        "GARANTIE": "fr",
-        "GARANTÍA": "es",
-    }.get(first_h1) or _flow.operation_language(blocks)
+    page_language = story_language(blocks, language)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     if is_preface:
         text_measure = writer.page_w - param_pt(
@@ -112,10 +110,13 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += h
             continue
         if kind == "image":
+            role = image_role(image_roles, image_role_index, title=title)
+            image_role_index += 1
             xml_part, h = _components.render_image_block(
                 text,
                 writer._render_context(bundle_root, language=page_language),
-                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal)
+                rect_id=f"{sid}_im{img_n + 1}", terminal=terminal, role=role,
+                spacing_variant=semantic_page_role)
             if xml_part is None:
                 continue
             img_n += 1
@@ -125,6 +126,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "h1":
             h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
+            if first_h1_space_after is not None:
+                h1_xml, first_h1_space_after = _flow.apply_first_h1_space_after(
+                    h1_xml, first_h1_space_after,
+                )
             if next_storage_h1_language is not None:
                 h1_xml = _flow.apply_storage_h1_rhythm(h1_xml, writer.params, next_storage_h1_language)
                 next_storage_h1_language = None
@@ -234,13 +239,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         )
         operation_rhythm.record_estimate(kind, lines)
         est += paragraph_height
+    require_all_image_roles(image_roles, image_role_index, title=title)
     operation_rhythm.assert_complete()
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-        + "".join(parts) + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
+    if disable_hyphenation:
+        parts = _flow.disable_story_hyphenation(parts)
+    _add_story_parts(writer, sid, title, parts)
     return sid, est

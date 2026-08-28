@@ -4,8 +4,10 @@ from __future__ import annotations
 import json
 import unittest
 from pathlib import Path
+from unittest.mock import Mock
 
 from tools.export_idml import IdmlWriter
+from tools.idml.reference_story_flow import ReferenceStoryEmitter
 from tools.idml.stories import add_prose_story
 from tools.idml.styles import styles_xml
 
@@ -14,6 +16,63 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PrefaceParityTests(unittest.TestCase):
+    def test_explicit_preface_uses_compact_top_override(self) -> None:
+        writer = Mock()
+        writer.params = {
+            "idml_preface_margin_top": ("52.986", "pt"),
+            "idml_compact_preface_margin_top": ("32.986", "pt"),
+        }
+        writer.m_l = 12.0
+        writer.m_r = 12.0
+        writer.m_t = 12.0
+        writer.m_b = 12.0
+        writer.page_h = 480.0
+        writer.add_prose_story.return_value = ("st_preface", 120.0)
+        emitter = ReferenceStoryEmitter(
+            writer=writer,
+            toc=Mock(),
+            bundle_root=ROOT,
+            page_plan={
+                "plan_source": "target-assembly",
+                "pages": [{
+                    "source_path": "page/00_preface.rst",
+                    "composition_id": "preface",
+                    "composition_type": "preface",
+                }],
+            },
+        )
+
+        next_page = emitter.emit(
+            "st_preface",
+            "00_preface",
+            [("body", "Preface copy.")],
+            1,
+        )
+
+        self.assertEqual(2, next_page)
+        self.assertEqual(
+            ("st_preface", [(1, 32.986, 468.0)]),
+            writer.add_story_frames.call_args.args,
+        )
+
+    def test_semantic_preface_alias_uses_preface_typography(self) -> None:
+        writer = IdmlWriter({
+            "idml_preface_body_font_size": ("7", "pt"),
+            "idml_preface_body_font_leading": ("10", "pt"),
+        })
+        writer.add_prose_story(
+            "st_preface_alias",
+            "preface_important",
+            [("body", "Semantic preface copy.")],
+            ROOT,
+            semantic_page_role="preface",
+        )
+        story = dict(writer.stories)["st_preface_alias"]
+        self.assertIn(
+            'AppliedParagraphStyle="ParagraphStyle/HB Preface Body"',
+            story,
+        )
+
     def test_preface_body_disables_hyphenation(self) -> None:
         writer = IdmlWriter({
             "idml_preface_paragraph_space_after": ("2", "pt"),

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
 
 from .line_metrics import estimated_text_width
 from .params import param_pt
@@ -19,6 +20,26 @@ def capsule_opts(inset: tuple[float, float, float, float]) -> dict:
 
 def h1_bar_opts(inset: tuple[float, float, float, float]) -> dict:
     return heading_bar_opts(1, inset)
+
+
+def h1_frame_opts(
+    rect: tuple[float, float, float, float],
+    *,
+    left_inset: float = 6.0,
+    right_inset: float = 6.0,
+) -> dict:
+    """Own the complete fixed-frame H1 geometry shared with flowed H1s."""
+
+    x, y, width, height = rect
+    return {
+        **heading_bar_opts(1, (1.5, 5.0, 1.0, 6.0)),
+        "text_rect": (
+            x + left_inset,
+            y,
+            width - left_inset - right_inset,
+            height,
+        ),
+    }
 
 
 def heading_bar_opts(level: int,
@@ -59,9 +80,9 @@ def heading_text(writer, text: str, *, level: int,
     xml = writer._psr("HB Capsule Text", text, terminal=True)
     if level == 1:
         # CenterAlign centres the font's line box, not Gilroy's visible caps.
-        # Fixed/composed title frames need a slight downward optical shift;
-        # flowed H1 hosts override it below because their inline line box has
-        # different metrics.
+        # The approved JE-1000F visible-cap centre uses one +0.5pt optical
+        # shift in both flowed and fixed H1 hosts. Frame composers must not
+        # introduce a second baseline or vertical text-frame displacement.
         marker = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
 
         def apply_baseline(match: re.Match[str]) -> str:
@@ -70,7 +91,7 @@ def heading_text(writer, text: str, *, level: int,
                 return match.group(0)
             attrs = attrs.replace(
                 marker,
-                f'{marker} BaselineShift="-1.5"',
+                f'{marker} BaselineShift="0.5"',
                 1,
             )
             return f"<CharacterStyleRange {attrs}>"
@@ -388,6 +409,9 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     h1_bar_bg = bool(opts.pop("h1_bar_bg", False))
     rounded_outer = bool(opts.pop("rounded_outer", False))
     rounded_outer_masks = bool(opts.pop("rounded_outer_masks", False))
+    left_plate_width = float(opts.pop("left_plate_width", 0.0))
+    rounded = bool(opts.pop("rounded", False))
+    rounded_fill = opts.get("fill")
     text_rect = opts.pop("text_rect", rect)
     x1, y1, x2, y2 = writer._page_rect(*rect)
     tx1, ty1, tx2, ty2 = writer._page_rect(*text_rect)
@@ -399,6 +423,42 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
             writer, f"bg_{sid}_{frame_id}", rect, bottom_only=True))
     if rounded_outer:
         parts.append(rounded_outer_xml(writer, f"bg_{sid}_{frame_id}", rect))
+    if rounded and rounded_fill:
+        parts.append(rectangle_xml(
+            f"bg_{sid}_{frame_id}",
+            x1,
+            y1,
+            x2,
+            y2,
+            fill=str(rounded_fill),
+            stroke_color="Swatch/None",
+            stroke_weight=0,
+            corner_radius=7.0,
+            object_style=PANEL_OBJECT_STYLE,
+        ))
+        # InDesign ignores CornerOption on a generated square text-frame
+        # path. Keep the editable text frame transparent above the real
+        # rounded background instead of relying on that dropped attribute.
+        opts.pop("fill", None)
+    if left_plate_width > 0:
+        plate_x1, plate_y1, plate_x2, plate_y2 = writer._page_rect(
+            rect[0],
+            rect[1],
+            min(left_plate_width, rect[2]),
+            rect[3],
+        )
+        parts.append(rectangle_xml(
+            f"plate_{sid}_{frame_id}",
+            plate_x1,
+            plate_y1,
+            plate_x2,
+            plate_y2,
+            fill="Color/HB Bg K05",
+            stroke_color="Swatch/None",
+            stroke_weight=0,
+            rounded=False,
+            object_style="ObjectStyle/$ID/[None]",
+        ))
     parts.append(writer._frame_xml(
         f"tf_{sid}_{frame_id}", story_id, tx1, ty1, tx2, ty2, **opts))
     if rounded_outer and rounded_outer_masks:
@@ -435,7 +495,14 @@ def frame_with_background(writer, sid: str, frame_id: str, story_id: str,
     return "".join(parts)
 
 
-def lcd_hero_paragraph(writer, lang: str = "en") -> str:
+def lcd_hero_paragraph(
+    writer,
+    lang: str = "en",
+    *,
+    hero_path: Path | None = None,
+    max_height: float | None = None,
+    horizontal_scale_override: float | None = None,
+) -> str:
     """The master's annotated LCD line-art above the icon table
     (finished art cropped from the V2.0 PDF; numbers only, so one asset
     serves every language). Empty string when the asset is absent."""
@@ -443,7 +510,7 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
 
     from .style_names import paragraph_style_ref
     root = _P(__file__).resolve().parents[2]
-    hero = (
+    hero = hero_path or (
         root / "docs" / "templates" / "word_template" / "common_assets"
         / "lcd" / "lcd_map.png"
     )
@@ -455,17 +522,21 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
     # (the vector v2 is 1.69:1 vs the old crop's 1.97:1) must shrink-to-fit
     # or it pushes the downstream prose chain into overset.
     language = (lang or "en").strip().casefold().replace("_", "-").split("-", 1)[0]
-    hero_max_h = param_pt(
+    hero_max_h = max_height if max_height is not None else param_pt(
         writer.params,
         f"lang_{language}_idml_lcd_hero_max_height",
         param_pt(writer.params, "idml_lcd_hero_max_height", 159.0),
     )
     if height > hero_max_h:
         width, height = width * hero_max_h / height, hero_max_h
-    horizontal_scale = float(writer.params.get(
-        f"lang_{language}_idml_lcd_hero_horizontal_scale",
-        writer.params.get("idml_lcd_hero_horizontal_scale", ("1", "ratio")),
-    )[0])
+    horizontal_scale = (
+        float(horizontal_scale_override)
+        if horizontal_scale_override is not None
+        else float(writer.params.get(
+            f"lang_{language}_idml_lcd_hero_horizontal_scale",
+            writer.params.get("idml_lcd_hero_horizontal_scale", ("1", "ratio")),
+        )[0])
+    )
     width *= horizontal_scale
     space_before = param_pt(
         writer.params,
@@ -477,11 +548,19 @@ def lcd_hero_paragraph(writer, lang: str = "en") -> str:
         f"lang_{language}_idml_lcd_hero_horizontal_offset",
         param_pt(writer.params, "idml_lcd_hero_horizontal_offset", 0.0),
     )
-    image_xml = writer._image_cell_content("lcd_hero", hero, width, height)
+    # Legacy single-language packages use the frozen ``lcd_hero`` identity.
+    # Compact multi-language assemblies need a language suffix because all
+    # three stories coexist in one IDML package.
+    hero_id = (
+        f"lcd_hero_{language}"
+        if max_height is not None and language != "en"
+        else "lcd_hero"
+    )
+    image_xml = writer._image_cell_content(hero_id, hero, width, height)
     if horizontal_scale != 1.0:
         image_xml = image_xml.replace(
-            '<Image Self="lcd_hero_img" ItemTransform="1 0 0 1 0 0">',
-            f'<Image Self="lcd_hero_img" ItemTransform="{horizontal_scale:g} 0 0 1 0 0">',
+            f'<Image Self="{hero_id}_img" ItemTransform="1 0 0 1 0 0">',
+            f'<Image Self="{hero_id}_img" ItemTransform="{horizontal_scale:g} 0 0 1 0 0">',
             1,
         )
     style = paragraph_style_ref("HB Figure")
@@ -598,11 +677,6 @@ def h1_pill_paragraph(writer, text: str, width: float,
     sid = f"st_anchor_h1pill_{len(writer.stories)}"
     title_xml = heading_text(writer, text, level=1, point_size=point_size)
     title_xml = title_xml.replace(
-        'BaselineShift="-1.5"',
-        'BaselineShift="0.5"',
-        1,
-    )
-    title_xml = title_xml.replace(
         "<ParagraphStyleRange ",
         '<ParagraphStyleRange LeftIndent="4.74" ',
         1,
@@ -663,6 +737,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
                                     group_overlay: str = "",
                                     group_x_offset: float = 0.0,
                                     content_bottom_bleed: float = 0.0,
+                                    terminal_carrier_height: float = 0.0,
                                     valign: str = "TopAlign",
                                     mask_content_corners: bool = True) -> str:
     """Rounded background plus square content frame in one anchored group.
@@ -673,11 +748,19 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     whole object editable and movable as one inline group.  Composite panels
     may additionally place native shapes or linked art below the content frame
     and independent editable text frames above the rounded outline.
+
+    When ``terminal_carrier_height`` is positive, the table frame stops at the
+    visible shell and threads into a second transparent frame below it.  That
+    carrier owns only the native end-of-story marker and is the sole frame a
+    finalizer may grow.
     """
     from .primitives import path_geometry
     from .style_names import paragraph_style_ref as _psr_ref
 
     story_sid = add_story(sid, title, parts)
+    frame_id = f"tf_group_{sid}"
+    carrier_id = f"tf_terminal_carrier_group_{sid}"
+    has_terminal_carrier = terminal_carrier_height > 0
     anchor = (
         '    <AnchoredObjectSetting AnchoredPosition="InlinePosition" '
         'SpineRelative="false" LockPosition="false" PinPosition="true" '
@@ -700,8 +783,9 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + '  </Rectangle>\n'
     )
     frame = (
-        f'  <TextFrame Self="tf_group_{sid}" ParentStory="{story_sid}" '
-        'PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" '
+        f'  <TextFrame Self="{frame_id}" ParentStory="{story_sid}" '
+        f'PreviousTextFrame="n" NextTextFrame="{carrier_id if has_terminal_carrier else "n"}" '
+        'ContentType="TextType" '
         'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
         'FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" '
         'ItemTransform="1 0 0 1 0 0">\n'
@@ -718,6 +802,26 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
         + anchor
         + '  </TextFrame>\n'
     )
+    terminal_carrier = ""
+    if has_terminal_carrier:
+        terminal_carrier = (
+            f'  <TextFrame Self="{carrier_id}" ParentStory="{story_sid}" '
+            f'PreviousTextFrame="{frame_id}" NextTextFrame="n" '
+            'ContentType="TextType" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" '
+            'FillColor="Swatch/None" StrokeColor="Swatch/None" '
+            'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
+            + path_geometry(0.0, 0.0, width, terminal_carrier_height)
+            + '    <TextFramePreference TextColumnCount="1" '
+            'VerticalJustification="TopAlign" AutoSizingType="Off">'
+            '<Properties><InsetSpacing type="list">'
+            + ''.join(
+                '<ListItem type="unit">0</ListItem>' for _ in range(4)
+            )
+            + '</InsetSpacing></Properties></TextFramePreference>\n'
+            + anchor
+            + '  </TextFrame>\n'
+        )
     corner_fills = corner_fills or {}
     masks = (
         "".join(
@@ -751,7 +855,7 @@ def anchored_panel_group_paragraph(add_story, sid: str, title: str,
     group = (
         f'<Group Self="grp_{sid}" AppliedObjectStyle="ObjectStyle/$ID/[None]" '
         f'ItemTransform="1 0 0 1 {-0.37 + group_x_offset:g} 0">\n'
-        + background + group_underlay + frame + masks + outline
+        + background + group_underlay + frame + terminal_carrier + masks + outline
         + group_overlay + '</Group>'
     )
     style_ref = _psr_ref("HB Figure")

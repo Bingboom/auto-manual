@@ -4,7 +4,7 @@
 
       \HBTocPageBegin
       \HBTocTitle{TABLE OF CONTENTS}
-      \HBTocLanguageBlock{EN}{English}{01--08}{%
+      \HBTocLanguageBlock{US}{English}{01--08}{%
         \HBTocEntry{IMPORTANT SAFETY INFORMATION}{01}
         \HBTocEntry{MEANING OF SYMBOLS}{01}
         \HBTocEntry{WHAT'S IN THE BOX}{02}
@@ -15,8 +15,8 @@
       }{%
         \HBTocEntry{TROUBLESHOOTING}{05}
         \HBTocEntry{CHARGING}{06}
-        \HBTocEntry{SPECIFICATIONS}{07}
         \HBTocEntry{STORAGE}{07}
+        \HBTocEntry{SPECIFICATIONS}{07}
         \HBTocEntry{WARRANTY}{08}
       }
       \HBTocLanguageBlock{FR}{Français}{09--16}{%
@@ -30,8 +30,8 @@
       }{%
         \HBTocEntry{DÉPANNAGE}{13}
         \HBTocEntry{CHARGE}{14}
-        \HBTocEntry{SPÉCIFICATIONS}{15}
         \HBTocEntry{STOCKAGE}{15}
+        \HBTocEntry{SPÉCIFICATIONS}{15}
         \HBTocEntry{GARANTIE}{16}
       }
       \HBTocLanguageBlock{ES}{Español}{17--24}{%
@@ -45,8 +45,8 @@
       }{%
         \HBTocEntry{RESOLUCIÓN DE PROBLEMAS}{21}
         \HBTocEntry{CARGANDO}{22}
-        \HBTocEntry{ESPECIFICACIONES}{23}
         \HBTocEntry{ALMACENAMIENTO}{23}
+        \HBTocEntry{ESPECIFICACIONES}{23}
         \HBTocEntry{GARANTÍA}{24}
       }
       \HBTocPageEnd

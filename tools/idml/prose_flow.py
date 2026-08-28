@@ -18,11 +18,37 @@ from .control_labels import (
     approved_app_control_labels,
     matches_base_label_block,
 )
+from .composition_plan import is_explicit_assembly_plan
 
 Block = tuple[str, str]
 EmitProse = Callable[[str, str, list[Block], int], None]
 SlugStem = Callable[[str], str]
 EstimatePages = Callable[[list[Block], int], int]
+
+
+def disable_story_hyphenation(parts: list[str]) -> list[str]:
+    """Apply the target-level no-hyphenation contract to story paragraphs."""
+    return [
+        part.replace(
+            "<ParagraphStyleRange ",
+            '<ParagraphStyleRange Hyphenation="false" ',
+        )
+        for part in parts
+    ]
+
+
+def apply_first_h1_space_after(
+    paragraph: str,
+    space_after: float | None,
+) -> tuple[str, None]:
+    """Consume the optional first-H1 rhythm override exactly once."""
+    if space_after is not None:
+        paragraph = paragraph.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceAfter="{space_after:g}" ',
+            1,
+        )
+    return paragraph, None
 
 
 @dataclass
@@ -53,7 +79,7 @@ class ProseFlowBuffer:
             )
             for entry in (page_plan or {}).get("pages", [])
         }
-        explicit_plan = (page_plan or {}).get("plan_source") == "approved-reference"
+        explicit_plan = is_explicit_assembly_plan(page_plan)
         batches: list[list[tuple[str, list[Block], int]]] = []
         for item in items:
             key = planned_groups.get(item[0]) if respect_page_plan else None
@@ -98,29 +124,33 @@ class ProseFlowBuffer:
         page_plan: dict | None,
     ) -> list[tuple[str, list[Block], int]]:
         items = [(stem, list(blocks), columns) for stem, blocks, columns in self.items]
-        if (page_plan or {}).get("plan_source") != "approved-reference":
+        if not is_explicit_assembly_plan(page_plan):
             return items
         entries = {
             Path(entry["source_path"]).stem: entry
             for entry in (page_plan or {}).get("pages", [])
         }
-        items = [
+        approved_reference = (
+            (page_plan or {}).get("plan_source") == "approved-reference"
+        )
+        if approved_reference:
+            items = [
             (
                 stem,
                 align_app_second_page(blocks, page_plan, stem),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 promote_reference_figures(blocks, page_plan, stem),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 align_storage_heading(
@@ -130,9 +160,9 @@ class ProseFlowBuffer:
                 ),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
-        items = [
+                for stem, blocks, columns in items
+            ]
+            items = [
             (
                 stem,
                 align_troubleshooting_heading(
@@ -141,8 +171,8 @@ class ProseFlowBuffer:
                 ),
                 columns,
             )
-            for stem, blocks, columns in items
-        ]
+                for stem, blocks, columns in items
+            ]
         for index in range(len(items)):
             stem, blocks, columns = items[index]
             rule = entries.get(stem, {}).get("flow_split")
@@ -173,6 +203,8 @@ class ProseFlowBuffer:
                 blocks[split_at:] + target_blocks,
                 target_columns,
             )
+        if not approved_reference:
+            return items
         # The approved JE-1000F US charging split moves the AC body/image tail
         # from `charging` into the canonical methods composition.  It cannot be
         # recognized by the earlier stem-scoped promotion pass, so promote the
@@ -250,10 +282,7 @@ def _planned_page_language(
     stem: str | None,
 ) -> str | None:
     """Return approved page metadata language for an exact source stem."""
-    if (
-        (page_plan or {}).get("plan_source") != "approved-reference"
-        or not stem
-    ):
+    if not is_explicit_assembly_plan(page_plan) or not stem:
         return None
     target_stem = Path(stem).stem
     for entry in (page_plan or {}).get("pages", []):
@@ -938,6 +967,92 @@ def composition_language(page_plan: dict | None, title: str) -> str | None:
         if (language := _planned_page_language(page_plan, stem)) is not None
     }
     return next(iter(languages)) if len(languages) == 1 else None
+
+
+def composition_type(page_plan: dict | None, title: str) -> str | None:
+    """Return the shared composition type declared for an emitted story.
+
+    Target assemblies and approved references use the same semantic
+    composition vocabulary.  Resolve that vocabulary from exact source stems
+    so flowing components can reuse page-level geometry without checking a
+    model identifier, localized heading, or physical page number.
+    """
+    if not is_explicit_assembly_plan(page_plan):
+        return None
+    stems = {
+        Path(part.strip()).stem
+        for part in title.split(" + ")
+        if part.strip()
+    }
+    if not stems:
+        return None
+    matched = [
+        entry
+        for entry in (page_plan or {}).get("pages", [])
+        if Path(str(entry.get("source_path") or "")).stem in stems
+    ]
+    if len(matched) != len(stems):
+        return None
+    composition_ids = {
+        str(entry.get("composition_id") or "") for entry in matched
+    }
+    composition_types = {
+        str(entry.get("composition_type") or "") for entry in matched
+    }
+    if len(composition_ids) != 1 or "" in composition_ids:
+        return None
+    if len(composition_types) != 1 or "" in composition_types:
+        return None
+    return next(iter(composition_types))
+
+
+def apply_component_composition_data(
+    blocks: list[Block],
+    page_plan: dict | None,
+    title: str,
+) -> list[Block]:
+    """Project target assembly variants into shared component specs.
+
+    The plan declares only a semantic variant.  Component renderers continue
+    to own geometry and tokens, so target data never introduces a model,
+    heading-text, or physical-page branch.
+    """
+    if composition_type(page_plan, title) != "warranty":
+        return blocks
+    stems = {
+        Path(part.strip()).stem
+        for part in title.split(" + ")
+        if part.strip()
+    }
+    variants = [
+        data["warranty"].get("layout_variant")
+        for entry in (page_plan or {}).get("pages", [])
+        if Path(str(entry.get("source_path") or "")).stem in stems
+        and isinstance((data := entry.get("composition_data")), dict)
+        and isinstance(data.get("warranty"), dict)
+    ]
+    if len(variants) != 1 or not isinstance(variants[0], str):
+        return blocks
+    variant = variants[0]
+    projected: list[Block] = []
+    for kind, payload in blocks:
+        if kind != "component":
+            projected.append((kind, payload))
+            continue
+        try:
+            spec = json.loads(payload)
+        except (TypeError, json.JSONDecodeError):
+            projected.append((kind, payload))
+            continue
+        if isinstance(spec, dict) and spec.get("kind") in {
+            "warrantylead",
+            "warrantysection",
+            "warrantyyears",
+        }:
+            spec["layout_variant"] = variant
+            payload = json.dumps(spec, ensure_ascii=False)
+        projected.append((kind, payload))
+    return projected
 
 
 def _move_car_notice_to_storage(

@@ -69,6 +69,57 @@ class LatexCalloutTests(unittest.TestCase):
                     ),
                 )
 
+    def test_plural_notice_labels_are_recognised_so_the_box_survives(self) -> None:
+        """An unrecognised label does not warn — it silently loses the box.
+
+        replace_notice_tables converts a notice table only when
+        variant_for_label returns a variant; otherwise it leaves the table
+        alone and LaTeX emits \\sphinxstylestrong{LABEL} while Word emits
+        loose paragraphs. Nothing appears in any log. The shipped books print
+        the plural for a multi-item notes block, and `tip` already carried
+        TIPS / CONSEILS / CONSEJOS while `note` did not — so every plural
+        notes callout in the corpus was flattened.
+        """
+        from tools.component_specs.callout import variant_for_label
+
+        for label, expected in (
+            ("NOTE", "note"), ("NOTES", "note"),
+            ("REMARQUE", "note"), ("REMARQUES", "note"),
+            ("NOTA", "note"), ("NOTAS", "note"),
+            ("TIP", "tip"), ("TIPS", "tip"),
+            ("CONSEIL", "tip"), ("CONSEILS", "tip"),
+            ("CONSEJO", "tip"), ("CONSEJOS", "tip"),
+        ):
+            with self.subTest(label=label):
+                self.assertEqual(expected, variant_for_label(label))
+
+    def test_an_unrecognised_label_leaves_the_table_unconverted(self) -> None:
+        """Pin the degradation itself, so the cost of a missing label is visible.
+
+        HINWEIS is the control because the label map covers only en / fr / es.
+        Every German, Italian, pt-BR and Ukrainian callout label degrades this
+        way today — silently, in both renderers. Keep this test pointed at a
+        label the map genuinely lacks: if someone closes the de gap, the
+        assertion below fails and they pick the next still-missing language
+        rather than deleting the coverage.
+        """
+        from tools.component_specs.callout import variant_for_label
+
+        self.assertIsNone(variant_for_label("HINWEIS"))
+
+        source = (
+            ".. list-table::\n"
+            "   :header-rows: 0\n"
+            "   :widths: 12 88\n"
+            "\n"
+            "   * - **HINWEIS**\n"
+            "     - Something worth boxing.\n"
+        )
+        doctree = self._transform(source)
+
+        self.assertEqual([], list(doctree.findall(HBCallout)))
+        self.assertEqual(1, len(list(doctree.findall(nodes.table))))
+
     def _transform(self, source: str, *, output_format: str = "latex") -> nodes.document:
         doctree = publish_doctree(source)
         app = SimpleNamespace(builder=SimpleNamespace(format=output_format))

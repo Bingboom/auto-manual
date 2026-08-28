@@ -8,6 +8,28 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class PrefaceTemplateTests(unittest.TestCase):
+    def test_battery_pack_preface_uses_us_badge(self) -> None:
+        text = (
+            ROOT / "docs" / "templates" / "page_bp" / "en" / "00_preface.rst"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(r"\HBLangTagLine{US}{IMPORTANT}", text)
+        self.assertNotIn(r"\HBLangTagLine{EN}{IMPORTANT}", text)
+
+    def test_battery_pack_toc_uses_us_badge_and_reference_entry_order(self) -> None:
+        text = (
+            ROOT / "docs" / "templates" / "page_bp" / "en" / "00_toc.rst"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn(r"\HBTocLanguageBlock{US}{English}{01--08}", text)
+        self.assertNotIn(r"\HBTocLanguageBlock{EN}{English}{01--08}", text)
+        for language_entries in text.split("}{%", 1)[1:]:
+            if "STORAGE" in language_entries and "SPECIFICATIONS" in language_entries:
+                self.assertLess(
+                    language_entries.index("STORAGE"),
+                    language_entries.index("SPECIFICATIONS"),
+                )
+
     def test_shared_source_preface_should_keep_multilingual_notice_blocks(self) -> None:
         text = (ROOT / "docs" / "templates" / "page_shared" / "en" / "00_preface.rst").read_text(encoding="utf-8")
 

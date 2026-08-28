@@ -29,12 +29,14 @@ class IdmlWriter:
         region: str | None = None,
         language: str | None = None,
         strict_component_assets: bool = False,
+        native_structure_markers: bool = False,
     ):
         self.params = params
         self.model = model
         self.region = region
         self.language = language
         self.strict_component_assets = strict_component_assets
+        self.native_structure_markers = native_structure_markers
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -167,13 +169,18 @@ class IdmlWriter:
             language=language or self.language,
             inline_origin_shift=inline_origin_shift,
             strict_component_assets=self.strict_component_assets,
+            native_structure_markers=self.native_structure_markers,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,
                         blocks: list[tuple[str, str]],
                         bundle_root: Path, *,
                         inline_origin_shift: float = 0.0,
-                        language: str | None = None) -> tuple[str, float]:
+                        language: str | None = None,
+                        image_roles: tuple[str, ...] = (),
+                        disable_hyphenation: bool = False,
+                        first_h1_space_after: float | None = None,
+                        semantic_page_role: str | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -182,12 +189,16 @@ class IdmlWriter:
             bundle_root,
             inline_origin_shift=inline_origin_shift,
             language=language,
+            image_roles=image_roles,
+            disable_hyphenation=disable_hyphenation,
+            first_h1_space_after=first_h1_space_after,
+            semantic_page_role=semantic_page_role,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
         return _stories.add_lcd_story(self, rows, data_root, **kw)
 
-    def add_symbols_story(self, signals: list[tuple[str, str]],
+    def add_symbols_story(self, signals: list[object],
                           icons: list[dict], data_root: Path,
                           lang: str = "en", **kw) -> str:
         return _stories.add_symbols_story(
@@ -236,9 +247,10 @@ class IdmlWriter:
 
     def _safety_section_story(self, sid: str, title: str,
                               blocks: list[tuple[str, str]],
-                              bundle_root: Path) -> str:
+                              bundle_root: Path, *,
+                              compact: bool = False) -> str:
         return _pages._safety_section_story(
-            self, sid, title, blocks, bundle_root)
+            self, sid, title, blocks, bundle_root, compact=compact)
 
     def add_safety_page(self, sid: str, title: str,
                         blocks: list[tuple[str, str]], bundle_root: Path,
@@ -276,14 +288,22 @@ class IdmlWriter:
         )
 
     def _symbol_signal_bar(self, tid: str, label: str,
-                           bundle_root: Path, lang: str = "en") -> str:
-        return _pages._symbol_signal_bar(self, tid, label, bundle_root, lang)
+                           bundle_root: Path, lang: str = "en", *,
+                           signal_key: str = "") -> str:
+        return _pages._symbol_signal_bar(
+            self, tid, label, bundle_root, lang, signal_key=signal_key,
+        )
 
     def _symbols_signal_table(self, tid: str,
-                              signals: list[tuple[str, str]], width: float,
+                              signals: list[object], width: float,
                               bundle_root: Path, lang: str = "en", *,
                               headers: tuple[str, str],
-                              row_heights: list[float] | None = None) -> str:
+                              row_heights: list[float] | None = None,
+                              left_col_width: float | None = None,
+                              fit_body_to_row: bool = False,
+                              cell_vertical_inset: float = 3.0,
+                              disable_hyphenation: bool = False,
+                              auto_grow_rows: bool = True) -> str:
         return _pages._symbols_signal_table(
             self,
             tid,
@@ -293,6 +313,11 @@ class IdmlWriter:
             lang,
             headers=headers,
             row_heights=row_heights,
+            left_col_width=left_col_width,
+            fit_body_to_row=fit_body_to_row,
+            cell_vertical_inset=cell_vertical_inset,
+            disable_hyphenation=disable_hyphenation,
+            auto_grow_rows=auto_grow_rows,
         )
 
     def _symbols_icon_table(
@@ -306,7 +331,11 @@ class IdmlWriter:
         include_header: bool = True,
         row_heights: list[float] | None = None,
         icon_col_width: float | None = None,
+        icon_width: float | None = None,
+        icon_height: float | None = None,
         fit_body_to_row: bool = False,
+        disable_hyphenation: bool = False,
+        auto_grow_rows: bool = True,
     ) -> str:
         return _pages._symbols_icon_table(
             self,
@@ -318,7 +347,11 @@ class IdmlWriter:
             include_header=include_header,
             row_heights=row_heights,
             icon_col_width=icon_col_width,
+            icon_width=icon_width,
+            icon_height=icon_height,
             fit_body_to_row=fit_body_to_row,
+            disable_hyphenation=disable_hyphenation,
+            auto_grow_rows=auto_grow_rows,
         )
 
     def _table_story(self, sid: str, title: str, table: str) -> str:
@@ -329,7 +362,7 @@ class IdmlWriter:
         sid: str,
         tail_blocks: list[tuple[str, str]],
         maintenance_blocks: list[tuple[str, str]],
-        signals: list[tuple[str, str]],
+        signals: list[object],
         icons: list[dict],
         bundle_root: Path,
         page_index: int,
@@ -338,7 +371,6 @@ class IdmlWriter:
         title: str,
         signal_headers: tuple[str, str],
         icon_headers: tuple[str, str],
-        dense: bool = False,
     ) -> tuple[str, _pages.SymbolOverflow]:
         return _pages.add_safety_symbols_page(
             self,
@@ -353,7 +385,6 @@ class IdmlWriter:
             title=title,
             signal_headers=signal_headers,
             icon_headers=icon_headers,
-            dense=dense,
         )
 
     _path_geometry = staticmethod(_prim.path_geometry)

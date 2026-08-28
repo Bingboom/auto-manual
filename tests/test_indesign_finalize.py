@@ -42,13 +42,64 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
-        self.assertIn("fitLcdTableShells(doc)", jsx)
+        self.assertIn("fitLcdCarrierFrames(doc)", jsx)
         self.assertIn('indexOf(" table segment ")', jsx)
-        self.assertIn("table.rows[ri].height", jsx)
         self.assertIn("fitted_lcd_table_groups", jsx)
+        lcd_fit = jsx.split(
+            "function fitLcdCarrierFrames(doc)",
+            1,
+        )[1].split("function fitTroubleshootingCarrierFrames", 1)[0]
+        self.assertNotIn("allPageItems", lcd_fit)
+        self.assertNotIn("item.geometricBounds", lcd_fit)
+        self.assertNotIn("table.rows", lcd_fit)
+        self.assertIn(
+            '"hb:self=tf_terminal_carrier_group_"',
+            lcd_fit,
+        )
+        self.assertIn('=== "troubleshooting table"', jsx)
+        self.assertIn("fitted_troubleshooting_table_groups", jsx)
+        self.assertIn("fitted_troubleshooting_carrier_frames", jsx)
+        self.assertIn("fitTroubleshootingCarrierFrames(doc)", jsx)
+        self.assertIn(
+            "function growTableTerminalCarrier(doc, story, frame, maxGrowth)",
+            jsx,
+        )
+        self.assertIn("doc, story, frame, 24.0", jsx)
+        troubleshooting_fit = jsx.split(
+            "function fitTroubleshootingCarrierFrames(doc)",
+            1,
+        )[1].split("function substituteMissingFont", 1)[0]
+        self.assertNotIn("allPageItems", troubleshooting_fit)
+        self.assertNotIn("item.geometricBounds", troubleshooting_fit)
+        self.assertNotIn("table.rows", troubleshooting_fit)
+        self.assertIn(
+            '"hb:self=tf_terminal_carrier_group_"',
+            troubleshooting_fit,
+        )
         self.assertIn("fitComposedSymbolTableShells(doc)", jsx)
         self.assertIn('title.indexOf("Symbol icons ")', jsx)
         self.assertIn("fitted_symbol_table_shells", jsx)
+        symbol_fit = jsx.split(
+            "function resizeComposedTableShell(frame)", 1
+        )[1].split("function fitComposedSymbolTableShells(doc)", 1)[0]
+        self.assertNotIn("allPageItems", symbol_fit)
+        self.assertNotIn("item.geometricBounds", symbol_fit)
+        self.assertIn("applyHostFontSubstitutions(doc)", jsx)
+        self.assertIn('["Segoe UI Symbol\\tRegular", "Apple Symbols\\tRegular"]', jsx)
+        self.assertIn('["Yu Gothic\\tRegular", "Arial Unicode MS\\tRegular"]', jsx)
+        self.assertIn("font_substitutions", jsx)
+        self.assertIn("fontHasTextUsage(doc, font)", jsx)
+        self.assertIn("matches = doc.findText()", jsx)
+        self.assertIn("textHasVisibleContent(matches[mi].contents)", jsx)
+        self.assertNotIn("resizeLcdTableShell", jsx)
+        self.assertIn("tableHeight + 4.0", jsx)
+        self.assertIn("forced_residuals", jsx)
+        self.assertIn("appliedFontName(matches[mi])", jsx)
+        self.assertIn("font_usage_audit", jsx)
+        self.assertIn("fontUsageSamples(doc, font)", jsx)
+        self.assertIn("fitTerminalCarrierFrames(doc)", jsx)
+        self.assertIn("carrier_frame_fits", jsx)
+        self.assertIn('title.indexOf("product_overview")', jsx)
         self.assertIn("app.pdfExportPresets.itemByName(job.pdf_preset)", jsx)
         self.assertIn("if (!pdfPreset.isValid)", jsx)
         self.assertIn("app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES", jsx)

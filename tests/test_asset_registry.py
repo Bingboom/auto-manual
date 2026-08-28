@@ -30,9 +30,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(95, report.records)
+        self.assertEqual(111, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(88, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(104, report.status_counts[APPROVED_STATUS])
         self.assertEqual(2, report.status_counts[QUARANTINED_STATUS])
 
     def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
@@ -46,22 +46,28 @@ class TestAssetRegistry(unittest.TestCase):
         """
         family = ROOT / "docs" / "templates" / "page_bp"
         pattern = re.compile(r"asset:([A-Za-z0-9._/-]+)")
-        referenced: set[str] = set()
+        referenced: dict[str, set[str]] = {}
         for path in sorted(family.rglob("*.rst")):
-            referenced.update(pattern.findall(path.read_text(encoding="utf-8")))
+            language = path.relative_to(family).parts[0]
+            for asset_key in pattern.findall(path.read_text(encoding="utf-8")):
+                referenced.setdefault(asset_key, set()).add(language)
 
         self.assertTrue(referenced, "page_bp names no assets; update this guard")
-        for asset_key in sorted(referenced):
-            with self.subTest(asset_key=asset_key):
-                resolution = resolve_asset(
-                    self.records,
-                    repo_root=ROOT,
-                    asset_key=asset_key,
-                    model="JBP-2000B",
-                    region="US",
-                    language="en",
-                )
-                self.assertTrue(resolution.path)
+        self.assertIn("in_the_box/jbp2000b/main_unit", referenced)
+        self.assertIn("in_the_box/jbp2000b/expansion_cable", referenced)
+        self.assertNotIn("in_the_box/ac_charging_cable", referenced)
+        for asset_key, languages in sorted(referenced.items()):
+            for language in sorted(languages):
+                with self.subTest(asset_key=asset_key, language=language):
+                    resolution = resolve_asset(
+                        self.records,
+                        repo_root=ROOT,
+                        asset_key=asset_key,
+                        model="JBP-2000B",
+                        region="US",
+                        language=language,
+                    )
+                    self.assertTrue(resolution.path)
 
     def test_refresh_recomputes_materialized_hashes_without_changing_registry_shape(self) -> None:
         existing = (ROOT / "data" / "asset_registry.csv").read_text(encoding="utf-8")
@@ -84,7 +90,7 @@ class TestAssetRegistry(unittest.TestCase):
             source=ROOT / "data" / "asset_registry.csv",
         )
 
-        self.assertEqual(95, report.records)
+        self.assertEqual(111, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual((), report.updated)
         self.assertGreater(len(report.unchanged), 0)
@@ -203,6 +209,21 @@ class TestAssetRegistry(unittest.TestCase):
         self.assertEqual(
             "docs/templates/word_template/common_assets/overview/front_controls.png",
             jp_overview.path,
+        )
+
+        bp_lcd = resolve_asset(
+            self.records,
+            repo_root=ROOT,
+            asset_key="lcd/lcd_map",
+            format_name="png",
+            language="en",
+            model="JBP-2000B",
+            region="US",
+        )
+        self.assertEqual("lcd/jbp2000b/screen", bp_lcd.asset_key)
+        self.assertEqual(
+            "docs/renderers/latex/assets/jbp2000b_lcd_screen.png",
+            bp_lcd.path,
         )
 
     def test_resolve_v2_vector_projection(self) -> None:
@@ -472,7 +493,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(95, len(records))
+        self.assertEqual(111, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

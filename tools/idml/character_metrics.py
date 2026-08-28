@@ -19,14 +19,27 @@ def signal_label_metrics(
     base_signal_size = param_pt(params, "type_symbol_signal_font_size", 9.9)
     signal_size = base_signal_size
     body_size = param_pt(params, "type_symbol_body_font_size", 5.6)
-    # The FR/ES reference artwork uses the compact symbol-body density for
-    # signal words; long words receive a final width fit below.
+    # The base renderer keeps the historical compact signal-word size.  A
+    # target overlay may request a larger localized badge face and let the
+    # final width fit use horizontal scale instead of collapsing the label to
+    # body-copy size.
     if language in {"fr", "es"}:
-        signal_size = min(signal_size, body_size)
+        signal_size = min(
+            signal_size,
+            param_pt(
+                params,
+                f"lang_{language}_idml_symbols_signal_label_font_size",
+                body_size,
+            ),
+        )
     signal_leading = param_pt(params, "type_symbol_signal_font_leading", 10.5)
     if signal_size != base_signal_size:
         signal_leading *= signal_size / max(0.01, base_signal_size)
-    min_size = body_size
+    min_size = param_pt(
+        params,
+        f"lang_{language}_idml_symbols_signal_label_min_font_size",
+        body_size,
+    )
 
     def width_at(size: float) -> float:
         width = 0.0
@@ -111,7 +124,15 @@ def fit_symbol_body_metrics(
         param_pt(params, "type_symbol_body_font_leading", 6.5),
         base_size * 1.1,
     )
-    if language not in {"fr", "es"} or available_height <= 0:
+    fit_all_languages = param_pt(
+        params,
+        "idml_symbols_body_fit_all_languages",
+        0.0,
+    ) >= 0.5
+    if (
+        (language not in {"fr", "es"} and not fit_all_languages)
+        or available_height <= 0
+    ):
         return round(base_size, 3), round(base_leading, 3), 100.0
 
     available = max(1.0, available_width)

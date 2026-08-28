@@ -545,6 +545,49 @@ class ExportIdmlTests(unittest.TestCase):
             [block["kind"] for block in semantic["blocks"]],
         )
 
+    def test_bp_warranty_templates_enter_the_shared_je_semantic_components(
+        self,
+    ) -> None:
+        from tools.idml.oppanel import transform
+        from tools.idml_rst_extract import extract_page
+
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                page = (
+                    ROOT / "docs" / "templates" / "page_bp" / language
+                    / "11_warranty.rst"
+                )
+                extracted = extract_page(page, {"latex"})
+                semantic = [
+                    json.loads(payload)
+                    for kind, payload in extracted.blocks
+                    if kind == "semantic"
+                ]
+                self.assertEqual(
+                    ["warranty_lead"] + ["warranty_section"] * 6,
+                    [block["kind"] for block in semantic],
+                )
+                self.assertIn(
+                    "warranty_years",
+                    semantic[2]["roles"],
+                )
+
+                projected = transform(extracted.blocks)
+                component_specs = [
+                    json.loads(payload)
+                    for kind, payload in projected
+                    if kind == "component"
+                ]
+                self.assertEqual(
+                    ["warrantylead"] + ["warrantysection"] * 6,
+                    [spec["kind"] for spec in component_specs],
+                )
+                period = component_specs[2]
+                self.assertEqual(
+                    "warrantyyears",
+                    period["blocks"][0]["spec"]["kind"],
+                )
+
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -2730,7 +2773,7 @@ class ExportIdmlTests(unittest.TestCase):
         )
         spread = dict(w.spreads)["sp_2"]
         self.assertEqual(spread.count("<TextFrame "), 8)
-        self.assertEqual(spread.count("<Rectangle "), 22)
+        self.assertEqual(spread.count("<Rectangle "), 25)
         self.assertEqual(
             spread.count('AppliedObjectStyle="ObjectStyle/HB Capsule Heading"'),
             2,
@@ -2961,7 +3004,6 @@ class ExportIdmlTests(unittest.TestCase):
         overrides = {
             "idml_symbols_maintenance_title_gap": "4",
             "idml_symbols_title_gap": "10",
-            "idml_symbols_h1_optical_offset": "2.5",
             "idml_symbols_page_bottom_allowance": "3",
             "idml_symbols_table_frame_allowance": "0.5",
             "idml_symbols_fallback_import_allowance": "4",
@@ -2979,7 +3021,6 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(17.0, style.subbar_height)
         self.assertEqual(4.0, style.maintenance_title_gap)
         self.assertEqual(10.0, style.symbols_title_gap)
-        self.assertEqual(2.5, style.h1_optical_offset)
         self.assertEqual(3.0, style.page_bottom_allowance)
         self.assertEqual(0.5, style.table_frame_allowance)
         self.assertEqual(4.0, style.fallback_import_allowance)
@@ -3131,6 +3172,40 @@ class ExportIdmlTests(unittest.TestCase):
         dense = template_symbol_split(icons, dense=True)
         self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
 
+    def test_template_icon_split_recovers_semantic_columns_from_assets(self) -> None:
+        icons = [
+            {"figure": "10_warning_triangle_hash.png", "text": "warning"},
+            {"figure": "20_read_manual_hash.png", "text": "manual"},
+            {"figure": "30_electric_shock_hash.png", "text": "shock"},
+            {"figure": "40_battery_charging_hash.png", "text": "charging"},
+            {"figure": "10_do_not_dismantle_hash.png", "text": "dismantle"},
+            {"figure": "20_no_open_flame_hash.png", "text": "flame"},
+            {
+                "figure": "30_keep_away_from_children_hash.png",
+                "text": "children",
+            },
+            {"figure": "40_li_ion_hash.png", "text": "li-ion"},
+            {
+                "figure": "50_explosive_material_hash.png",
+                "text": "explosive",
+            },
+            {"figure": "60_heavy_object_hash.png", "text": "heavy"},
+            {"figure": "50_weee_hash.png", "text": "weee"},
+        ]
+
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+
+        self.assertEqual(
+            ["warning", "manual", "shock", "charging", "explosive", "heavy"],
+            [row["text"] for row in left],
+        )
+        self.assertEqual(
+            ["dismantle", "flame", "children", "li-ion", "weee"],
+            [row["text"] for row in right],
+        )
+        self.assertEqual([], overflow_left)
+        self.assertEqual([], overflow_right)
+
     def test_safety_symbols_weee_uses_canonical_cropped_asset(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -3152,7 +3227,11 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertNotIn("11_weee_shifted_source.png", left)
 
-    def test_dense_safety_symbols_page_returns_reference_continuation_rows(self) -> None:
+    def test_standard_symbols_panel_derives_continuation_from_available_height(
+        self,
+    ) -> None:
+        import json
+
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         icons = [
             {"figure": "1_warning_triangle.png", "text": "Avertissement"},
@@ -3171,15 +3250,30 @@ class ExportIdmlTests(unittest.TestCase):
         w = IdmlWriter(params)
         spread_id, overflow = w.add_safety_symbols_page(
             "st_safety_symbols_dense",
-            [],
+            [
+                ("component", json.dumps({
+                    "kind": "warnbox",
+                    "label": "AVERTISSEMENT",
+                    "texts": ["Avertissement de sécurité."],
+                })),
+                ("component", json.dumps({
+                    "kind": "warnbox",
+                    "label": "DANGER",
+                    "texts": ["Danger de sécurité."],
+                })),
+            ],
             [("h1", "ENTRETIEN"), ("body", "Corps.")],
-            [("AVERTISSEMENT", "Pratique dangereuse.")],
+            [
+                ("AVERTISSEMENT", "Pratique dangereuse."),
+                ("ATTENTION", "Risque de blessure."),
+                ("REMARQUE", "Risque de dommage."),
+                ("CONSEIL", "Information utile."),
+            ],
             icons,
             ROOT,
             22,
             "fr",
             **_symbol_source_kwargs("fr"),
-            dense=True,
         )
 
         self.assertEqual(spread_id, "sp_22")
@@ -3486,7 +3580,7 @@ class ExportIdmlTests(unittest.TestCase):
         title = bounds("tf_st_fcc_es_layout_title")
         card = bounds("bg_st_fcc_es_layout_card_1")
         tip = bounds("bg_st_fcc_es_layout_tip_strip")
-        self.assertAlmostEqual(263.5 - 1.96, title[1], places=3)
+        self.assertAlmostEqual(263.5, title[1], places=3)
         self.assertAlmostEqual(288.0, card[1], places=3)
         self.assertAlmostEqual(160.8, card[3] - card[1], places=3)
         self.assertAlmostEqual(454.0, tip[1], places=3)
@@ -3724,7 +3818,12 @@ class ExportIdmlTests(unittest.TestCase):
 
         cases = [
             ("REMARQUE", "note"),
+            ("NOTES", "note"),
+            ("REMARQUES", "note"),
             ("NOTA", "note"),
+            ("NOTAS", "note"),
+            ("OBSERVACIONES", "note"),
+            ("IMPORTANT", "note"),
             ("CONSEILS", "tip"),
             ("CONSEJOS", "tip"),
             ("ATTENTION", "caution"),
@@ -3925,6 +4024,7 @@ class ExportIdmlTests(unittest.TestCase):
     def test_lcd_governed_height_budget_is_fixed_for_all_us_languages(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         self.assertEqual(("3.8", "pt"), params["idml_lcd_governed_icon_line_reserve"])
+        self.assertEqual(("1.0", "pt"), params["idml_lcd_native_carrier_allowance"])
         rows = [
             {
                 "no": str(index),
@@ -3949,6 +4049,28 @@ class ExportIdmlTests(unittest.TestCase):
                 ]
                 self.assertEqual(19, continuation.count('AutoGrow="true"'))
                 self.assertNotIn('AutoGrow="false"', continuation)
+                host_sid = "st_lcd" if language == "en" else f"st_lcd_{language}"
+                host = dict(writer.stories)[host_sid]
+                for segment_index in (0, 1):
+                    main_frame_id = (
+                        f"tf_group_st_anchor_lcd_table_{language}_{segment_index}"
+                    )
+                    carrier_id = (
+                        "tf_terminal_carrier_group_st_anchor_lcd_table_"
+                        f"{language}_{segment_index}"
+                    )
+                    self.assertIn(
+                        f'Self="{main_frame_id}" '
+                        f'ParentStory="st_anchor_lcd_table_{language}_{segment_index}" '
+                        f'PreviousTextFrame="n" NextTextFrame="{carrier_id}"',
+                        host,
+                    )
+                    carrier = host.split(
+                        f'<TextFrame Self="{carrier_id}"', 1,
+                    )[1].split("</TextFrame>", 1)[0]
+                    self.assertIn('Anchor="0 1"', carrier)
+                    self.assertIn('FillColor="Swatch/None"', carrier)
+                    self.assertIn('StrokeColor="Swatch/None"', carrier)
 
     def test_lcd_french_first_page_uses_reference_body_column_width(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -4448,6 +4570,20 @@ class ExportIdmlTests(unittest.TestCase):
         rows = _parse_list_table(body)
         self.assertEqual(rows[0], ["Buttons", "Operation", "Function"])
         self.assertEqual(rows[1], ["A + B", "Hold 3s", "Toggle mode"])
+
+    def test_list_table_line_blocks_preserve_breaks_without_pipe_text(self) -> None:
+        from tools.idml_rst_extract import _parse_list_table
+
+        rows = _parse_list_table([
+            "   * - | F6-F9,",
+            "       | FA, FC",
+            "     - Contact Jackery Customer Support.",
+        ])
+
+        self.assertEqual(
+            rows,
+            [["F6-F9,\nFA, FC", "Contact Jackery Customer Support."]],
+        )
 
     def test_full_bundle_extraction_has_zero_skips(self) -> None:
         from tools.idml_rst_extract import bundle_page_order, extract_page

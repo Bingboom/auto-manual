@@ -296,6 +296,9 @@ idml_charging_note_space_after,1.8,pt,Charging NOTE trailing rhythm
 idml_charging_emphasis_font_size,6.6,pt,Pre-charge editable emphasis size measured from approved PDF
 idml_charging_emphasis_font_leading,7.4,pt,Pre-charge editable emphasis leading
 idml_charging_emphasis_space_before,5.0,pt,Charging introduction-to-emphasis rhythm shared by all languages
+idml_charging_figure_space_before,2.83,pt,Charging copy-to-diagram rhythm owned by the shared charging composition
+idml_charging_figure_space_after,0.0,pt,Charging diagram contributes no explicit margin before the following shared heading row
+idml_charging_headingpill_space_before,0.0,pt,Charging diagram-to-heading transition uses the native paragraph line box only
 idml_charging_emphasis_horizontal_padding,6.1,pt,Pre-charge emphasis optical inset aligned with the H1 title text edge
 idml_charging_methods_page_top_offset,23.8,pt,Default charging-methods first-frame top offset
 lang_en_idml_charging_methods_page_top_offset,23.8,pt,English charging-methods first-frame top offset
@@ -388,6 +391,7 @@ idml_trouble_inner_rule,0.25,pt,Troubleshooting editable-cell inner rule
 idml_trouble_outer_rule,0.57,pt,Troubleshooting rounded-panel outer rule
 idml_trouble_panel_min_height,237.79,pt,English troubleshooting rounded-panel minimum height
 idml_trouble_import_safety,0.0,pt,Additional troubleshooting frame allowance after measured row growth
+idml_trouble_native_carrier_allowance,1.0,pt,Transparent terminal-marker carrier outside the visible troubleshooting shell
 idml_trouble_glyph_width_ratio,0.50,ratio,Troubleshooting portable line-measure glyph width ratio
 type_trouble_body_font_size,5.5,pt,Troubleshooting corrective-measure font size
 type_trouble_body_font_leading,6.0,pt,Troubleshooting corrective-measure leading
@@ -503,6 +507,7 @@ comp_lcd_partial_row_height,27,pt,LCD short final-segment row height allowance
 comp_lcd_partial_panel_extra,4,pt,LCD short final-segment shell allowance
 comp_lcd_partial_panel_min_height,30,pt,LCD short final-segment minimum shell height
 idml_lcd_table_width_adjust,0.4,pt,IDML LCD table width adjustment against the approved master
+idml_lcd_native_carrier_allowance,1.0,pt,Transparent terminal-marker carrier outside the visible LCD shell
 idml_lcd_first_no_col_width,19.2,pt,IDML LCD first-segment number column width
 lang_fr_idml_lcd_first_no_col_width,20.2,pt,French IDML LCD first-segment number column width
 lang_es_idml_lcd_first_no_col_width,20.2,pt,Spanish IDML LCD first-segment number column width
@@ -643,7 +648,6 @@ idml_symbols_maintenance_body_gap,0.0,pt,IDML English maintenance body gap befor
 idml_symbols_signal_gap_after,4.1,pt,IDML English gap between signal and icon tables
 idml_symbols_maintenance_title_gap,3.5,pt,IDML gap after the maintenance subbar
 idml_symbols_title_gap,9.0,pt,IDML gap after the Symbols H1 band
-idml_symbols_h1_optical_offset,1.918,pt,IDML Symbols H1 band optical vertical offset
 idml_symbols_page_bottom_allowance,2.0,pt,IDML Symbols fallback bottom-trim allowance
 idml_symbols_table_frame_allowance,0.25,pt,IDML governed Symbols table carrier allowance preventing final-row overset
 idml_symbols_fallback_import_allowance,3.0,pt,IDML non-governed Symbols icon-table import allowance
@@ -654,6 +658,7 @@ idml_symbols_signal_icon_width,7.5,pt,IDML editable signal-badge warning icon wi
 idml_symbols_signal_icon_height,7.0,pt,IDML editable signal-badge warning icon height
 idml_symbols_signal_badge_baseline_shift,1.5,pt,IDML inline signal badge optical raise inside each signal row
 idml_symbols_signal_content_baseline_shift,1.5,pt,IDML signal-badge icon and label optical raise inside the dark badge
+idml_symbols_native_carrier_allowance,4,mm,Transparent native InDesign terminal-marker carrier outside the visible Symbols shell
 idml_symbols_icon_width,26.0,pt,IDML symbol icon frame width
 idml_symbols_icon_height,26.0,pt,IDML symbol icon frame height
 idml_symbols_icon_col_width,39.685,pt,IDML symbol-grid icon column width

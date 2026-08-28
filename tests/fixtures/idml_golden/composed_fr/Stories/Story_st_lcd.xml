@@ -41,7 +41,7 @@
     </Properties>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
-  <TextFrame Self="tf_group_st_anchor_lcd_table_en_0" Label="hb:self=tf_group_st_anchor_lcd_table_en_0" ParentStory="st_anchor_lcd_table_en_0" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_group_st_anchor_lcd_table_en_0" Label="hb:self=tf_group_st_anchor_lcd_table_en_0" ParentStory="st_anchor_lcd_table_en_0" PreviousTextFrame="n" NextTextFrame="tf_terminal_carrier_group_st_anchor_lcd_table_en_0" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -50,6 +50,22 @@
             <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
             <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
             <PathPointType Anchor="312.494 -280.777" LeftDirection="312.494 -280.777" RightDirection="312.494 -280.777"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </TextFrame>
+  <TextFrame Self="tf_terminal_carrier_group_st_anchor_lcd_table_en_0" Label="hb:self=tf_terminal_carrier_group_st_anchor_lcd_table_en_0" ParentStory="st_anchor_lcd_table_en_0" PreviousTextFrame="tf_group_st_anchor_lcd_table_en_0" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
+            <PathPointType Anchor="0 1" LeftDirection="0 1" RightDirection="0 1"/>
+            <PathPointType Anchor="312.494 1" LeftDirection="312.494 1" RightDirection="312.494 1"/>
+            <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>
@@ -153,7 +169,7 @@
     </Properties>
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </Rectangle>
-  <TextFrame Self="tf_group_st_anchor_lcd_table_en_1" Label="hb:self=tf_group_st_anchor_lcd_table_en_1" ParentStory="st_anchor_lcd_table_en_1" PreviousTextFrame="n" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+  <TextFrame Self="tf_group_st_anchor_lcd_table_en_1" Label="hb:self=tf_group_st_anchor_lcd_table_en_1" ParentStory="st_anchor_lcd_table_en_1" PreviousTextFrame="n" NextTextFrame="tf_terminal_carrier_group_st_anchor_lcd_table_en_1" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
     <Properties>
       <PathGeometry>
         <GeometryPathType PathOpen="false">
@@ -162,6 +178,22 @@
             <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
             <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
             <PathPointType Anchor="312.494 -480" LeftDirection="312.494 -480" RightDirection="312.494 -480"/>
+          </PathPointArray>
+        </GeometryPathType>
+      </PathGeometry>
+    </Properties>
+    <TextFramePreference TextColumnCount="1" VerticalJustification="TopAlign" AutoSizingType="Off"><Properties><InsetSpacing type="list"><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem><ListItem type="unit">0</ListItem></InsetSpacing></Properties></TextFramePreference>
+    <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
+  </TextFrame>
+  <TextFrame Self="tf_terminal_carrier_group_st_anchor_lcd_table_en_1" Label="hb:self=tf_terminal_carrier_group_st_anchor_lcd_table_en_1" ParentStory="st_anchor_lcd_table_en_1" PreviousTextFrame="tf_group_st_anchor_lcd_table_en_1" NextTextFrame="n" ContentType="TextType" AppliedObjectStyle="ObjectStyle/$ID/[Normal Text Frame]" FillColor="Swatch/None" StrokeColor="Swatch/None" StrokeWeight="0" ItemTransform="1 0 0 1 0 0">
+    <Properties>
+      <PathGeometry>
+        <GeometryPathType PathOpen="false">
+          <PathPointArray>
+            <PathPointType Anchor="0 0" LeftDirection="0 0" RightDirection="0 0"/>
+            <PathPointType Anchor="0 1" LeftDirection="0 1" RightDirection="0 1"/>
+            <PathPointType Anchor="312.494 1" LeftDirection="312.494 1" RightDirection="312.494 1"/>
+            <PathPointType Anchor="312.494 0" LeftDirection="312.494 0" RightDirection="312.494 0"/>
           </PathPointArray>
         </GeometryPathType>
       </PathGeometry>

@@ -105,13 +105,28 @@ def is_placed_page(page: ManualPage) -> bool:
     )
 
 
+def _is_final_back_cover(page: ManualPage, *, is_final_source_page: bool) -> bool:
+    """Return whether a final source page owns the physical back cover.
+
+    Back-cover contact copy can also appear in warranty/legal text, so text
+    matching alone may bind the source to the preceding body page.  The
+    manual contract is structural: a terminal ``back_cover``/``99_back_cover``
+    source owns the final physical page.
+    """
+
+    if not is_final_source_page:
+        return False
+    stem = Path(page.source_path).stem.casefold()
+    return stem in {"back_cover", "99_back_cover"} or stem.endswith("_back_cover")
+
+
 def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
     normalized_pages = [_normalize(page) for page in pdf_pages]
     toc_pages = {index for index, text in enumerate(normalized_pages)
                  if "table of contents" in text}
     cursor = 0
     entries: list[dict[str, Any]] = []
-    for source_page in ir.pages:
+    for source_index, source_page in enumerate(ir.pages):
         placed = is_placed_page(source_page)
         ranked_candidates = [] if placed else _ranked_anchor_candidates(source_page)
         candidates = [text for _, text in ranked_candidates]
@@ -125,7 +140,14 @@ def map_pages(ir: ManualIR, pdf_pages: list[str]) -> list[dict[str, Any]]:
                     break
         match_page = None
         matched_anchor = None
-        if matches:
+        if _is_final_back_cover(
+            source_page,
+            is_final_source_page=source_index == len(ir.pages) - 1,
+        ) and normalized_pages:
+            match_page = len(normalized_pages)
+            matched_anchor = "structural:last-page"
+            cursor = len(normalized_pages) - 1
+        elif matches:
             _, index, _, matched_anchor = min(matches)
             match_page = index + 1
             cursor = index

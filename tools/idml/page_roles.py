@@ -7,6 +7,8 @@ from enum import Enum
 from pathlib import Path
 from typing import Iterable
 
+from tools.lang_registry import LANGUAGE_BY_ALIAS
+
 
 class PageRole(str, Enum):
     PREFACE = "preface"
@@ -16,6 +18,7 @@ class PageRole(str, Enum):
     MEANING_OF_SYMBOLS = "meaning_of_symbols"
     INBOX = "inbox"
     PRODUCT_OVERVIEW = "product_overview"
+    CONNECTIONS = "connections"
     OPERATION_GUIDE = "operation_guide"
     UPS_MODE = "ups_mode"
     EXTRA_BATTERY = "extra_battery"
@@ -41,9 +44,12 @@ class PageRoleRule:
 
     role: PageRole
     semantic_stems: tuple[str, ...] = ()
+    stable_aliases: tuple[str, ...] = ()
     pattern: re.Pattern[str] | None = None
 
     def matches(self, stem: str) -> bool:
+        if stem in self.stable_aliases:
+            return True
         if self.pattern is not None and self.pattern.fullmatch(stem):
             return True
         return any(
@@ -52,22 +58,60 @@ class PageRoleRule:
         )
 
 
+_LANGUAGE_CODES = tuple(sorted(LANGUAGE_BY_ALIAS))
+_LANGUAGE_PATTERN = "(?:" + "|".join(_LANGUAGE_CODES) + ")"
+
+
+def _localized_aliases(stem: str) -> tuple[str, ...]:
+    return tuple(f"{stem}_{lang}" for lang in _LANGUAGE_CODES)
+
+
 PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
-    PageRoleRule(PageRole.COVER, pattern=re.compile(r"cover(?:[-_].+)?")),
-    PageRoleRule(PageRole.SAFETY, pattern=re.compile(r"safety(?:[-_].+)?")),
-    PageRoleRule(PageRole.SPEC, pattern=re.compile(r"spec(?:[-_].+)?")),
-    PageRoleRule(PageRole.LCD, pattern=re.compile(r"lcd_icons(?:[-_].+)?")),
-    PageRoleRule(PageRole.SYMBOLS, pattern=re.compile(r"symbols(?:[-_].+)?")),
+    PageRoleRule(
+        PageRole.COVER,
+        stable_aliases=("cover",),
+        pattern=re.compile(rf"cover[-_]{_LANGUAGE_PATTERN}"),
+    ),
+    PageRoleRule(
+        PageRole.SAFETY,
+        stable_aliases=_localized_aliases("safety_info"),
+        pattern=re.compile(rf"safety_{_LANGUAGE_PATTERN}"),
+    ),
+    PageRoleRule(
+        PageRole.SPEC,
+        stable_aliases=_localized_aliases("specifications"),
+        pattern=re.compile(rf"spec_(?:{_LANGUAGE_PATTERN}|template)"),
+    ),
+    PageRoleRule(
+        PageRole.LCD,
+        stable_aliases=_localized_aliases("lcd_display"),
+        pattern=re.compile(rf"lcd_icons_(?:{_LANGUAGE_PATTERN}|template)"),
+    ),
+    PageRoleRule(
+        PageRole.SYMBOLS,
+        stable_aliases=_localized_aliases("symbol_meaning"),
+        pattern=re.compile(rf"symbols_(?:{_LANGUAGE_PATTERN}|template)"),
+    ),
     PageRoleRule(
         PageRole.TROUBLESHOOTING_DATA,
-        pattern=re.compile(r"troubleshooting(?:[-_].+)?"),
+        stable_aliases=_localized_aliases("troubleshooting"),
+        pattern=re.compile(rf"troubleshooting_(?:{_LANGUAGE_PATTERN}|template)"),
     ),
     PageRoleRule(
         PageRole.PREFACE,
         semantic_stems=("00_preface", "00_preface_single_language"),
+        stable_aliases=("preface_important",),
     ),
-    PageRoleRule(PageRole.TOC, semantic_stems=("00_toc",)),
-    PageRoleRule(PageRole.FCC, semantic_stems=("01_fcc",)),
+    PageRoleRule(
+        PageRole.TOC,
+        semantic_stems=("00_toc",),
+        stable_aliases=("toc",),
+    ),
+    PageRoleRule(
+        PageRole.FCC,
+        semantic_stems=("01_fcc",),
+        stable_aliases=_localized_aliases("fcc"),
+    ),
     PageRoleRule(
         PageRole.MAINTENANCE,
         semantic_stems=("01_user_maintenance_instructions",),
@@ -76,36 +120,60 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
         PageRole.MEANING_OF_SYMBOLS,
         semantic_stems=("01_meaning_of_symbols",),
     ),
-    PageRoleRule(PageRole.INBOX, semantic_stems=("02_whats_in_the_box",)),
+    PageRoleRule(
+        PageRole.INBOX,
+        semantic_stems=("02_whats_in_the_box",),
+        stable_aliases=_localized_aliases("box_contents"),
+    ),
     PageRoleRule(
         PageRole.PRODUCT_OVERVIEW,
+        stable_aliases=_localized_aliases("product_overview"),
         pattern=re.compile(r"(?:p\d+_)?03_product_overview(?:_.+)?"),
+    ),
+    PageRoleRule(
+        PageRole.CONNECTIONS,
+        semantic_stems=("04_connections",),
+        stable_aliases=_localized_aliases("connections"),
     ),
     PageRoleRule(
         PageRole.OPERATION_GUIDE,
         semantic_stems=("05_operation_guide", "05_operation_guide_placeholder"),
+        stable_aliases=_localized_aliases("operation"),
     ),
     PageRoleRule(PageRole.UPS_MODE, semantic_stems=("06_ups_mode",)),
     PageRoleRule(PageRole.EXTRA_BATTERY, semantic_stems=("07_extra_battery",)),
-    PageRoleRule(PageRole.CHARGING, semantic_stems=("charging",)),
+    PageRoleRule(
+        PageRole.CHARGING,
+        semantic_stems=("charging",),
+        stable_aliases=_localized_aliases("charging"),
+    ),
     PageRoleRule(
         PageRole.CHARGING_METHODS,
         semantic_stems=("08_charging_methods",),
     ),
     PageRoleRule(
         PageRole.STORAGE_MAINTENANCE,
-        semantic_stems=("09_storage_and_maintenance",),
+        semantic_stems=("09_storage", "09_storage_and_maintenance"),
+        stable_aliases=_localized_aliases("storage"),
     ),
     PageRoleRule(
         PageRole.TROUBLESHOOTING_PROSE,
         semantic_stems=("10_troubleshooting",),
     ),
-    PageRoleRule(PageRole.WARRANTY, semantic_stems=("11_warranty",)),
+    PageRoleRule(
+        PageRole.WARRANTY,
+        semantic_stems=("11_warranty",),
+        stable_aliases=_localized_aliases("warranty"),
+    ),
     PageRoleRule(
         PageRole.APP_SETUP,
         semantic_stems=("12_app_setup", "12_app_setup_placeholder"),
     ),
-    PageRoleRule(PageRole.BACK_COVER, semantic_stems=("99_back_cover",)),
+    PageRoleRule(
+        PageRole.BACK_COVER,
+        semantic_stems=("99_back_cover",),
+        stable_aliases=("back_cover",),
+    ),
 )
 
 

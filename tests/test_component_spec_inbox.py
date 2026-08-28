@@ -117,6 +117,29 @@ class InboxComponentSpecTests(unittest.TestCase):
                 registry=self.registry,
                 theme=self.theme,
             )
+
+    def test_three_card_composition_can_explicitly_omit_tip(self) -> None:
+        spec = inbox_spec_from_payload(
+            {
+                "kind": "inbox",
+                "items": [
+                    {"img": "one.png", "label": "One"},
+                    {"img": "two.png", "label": "Two"},
+                    {"img": "three.png", "label": "Three"},
+                ],
+            },
+            source_ref="page/inbox.rst",
+            language="en",
+            accessibility_label="Inbox",
+            tip_label="",
+            tip_body="",
+            registry=self.registry,
+            theme=self.theme,
+            require_tip=False,
+        )
+
+        self.assertEqual("", spec.slot("tip_label").content)
+        self.assertEqual("", spec.slot("tip_body").content)
         with self.assertRaises(ComponentSpecError):
             inbox_spec_from_payload(
                 {"kind": "inbox", "items": [{"img": "", "label": "Missing image"}] * 3},

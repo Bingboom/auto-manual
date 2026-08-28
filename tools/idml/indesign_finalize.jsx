@@ -67,61 +67,226 @@
         }
     }
 
-    function resizeLcdTableShell(frame) {
-        var table = frame.parentStory.tables[0];
-        var frameBounds = frame.geometricBounds;
-        var oldBottom = Number(frameBounds[2]);
-        var tableHeight = 0;
-        for (var ri = 0; ri < table.rows.length; ri += 1) {
-            tableHeight += Number(table.rows[ri].height);
+    function isTroubleshootingTableStory(story) {
+        try {
+            return String(story.storyTitle || "") === "troubleshooting table";
+        } catch (_) {
+            return false;
         }
-        var newBottom = Number(frameBounds[0]) + tableHeight;
-        var delta = newBottom - oldBottom;
-        if (Math.abs(delta) < 0.01) { return false; }
-
-        var oldHeight = oldBottom - Number(frameBounds[0]);
-        var oldWidth = Number(frameBounds[3]) - Number(frameBounds[1]);
-        var siblings = frame.parent.allPageItems;
-        for (var si = 0; si < siblings.length; si += 1) {
-            var item = siblings[si];
-            if (item.constructor.name !== "Rectangle") { continue; }
-            var bounds = item.geometricBounds;
-            var itemHeight = Number(bounds[2]) - Number(bounds[0]);
-            var itemWidth = Number(bounds[3]) - Number(bounds[1]);
-            var isFullShell = itemHeight > oldHeight * 0.9 && itemWidth > oldWidth * 0.9;
-            var isBottomMask = !isFullShell &&
-                Math.abs(Number(bounds[2]) - oldBottom) < 0.2;
-            if (isFullShell) {
-                bounds[2] = newBottom;
-                item.geometricBounds = bounds;
-            } else if (isBottomMask) {
-                bounds[0] = Number(bounds[0]) + delta;
-                bounds[2] = Number(bounds[2]) + delta;
-                item.geometricBounds = bounds;
-            }
-        }
-        frameBounds[2] = newBottom;
-        frame.geometricBounds = frameBounds;
-        return true;
     }
 
-    function fitLcdTableShells(doc) {
+    function growTableTerminalCarrier(doc, story, frame, maxGrowth) {
+        if (!story.overflows) { return false; }
+        var growth = 0.0;
+        while (story.overflows && growth < maxGrowth) {
+            var frameBounds = frame.geometricBounds;
+            frameBounds[2] = Number(frameBounds[2]) + 2.0;
+            frame.geometricBounds = frameBounds;
+            growth += 2.0;
+            doc.recompose();
+        }
+        return growth > 0;
+    }
+
+    function fitLcdCarrierFrames(doc) {
         var fitted = 0;
-        var items = doc.allPageItems;
-        for (var ii = 0; ii < items.length; ii += 1) {
-            var frame = items[ii];
-            if (frame.constructor.name !== "TextFrame" ||
-                    frame.parent.constructor.name !== "Group") { continue; }
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
             try {
-                if (frame.parentStory.tables.length === 1 &&
-                        isLcdTableStory(frame.parentStory) &&
-                        resizeLcdTableShell(frame)) {
+                if (!isLcdTableStory(story) ||
+                        story.tables.length !== 1 ||
+                        story.textContainers.length < 2) { continue; }
+                var frame = story.textContainers[story.textContainers.length - 1];
+                if (frame.constructor.name === "TextFrame" &&
+                        itemLabel(frame).indexOf(
+                            "hb:self=tf_terminal_carrier_group_"
+                        ) === 0 &&
+                        growTableTerminalCarrier(
+                            doc, story, frame, 24.0
+                        )) {
                     fitted += 1;
                 }
             } catch (_) {}
         }
         doc.recompose();
         return fitted;
+    }
+
+    function fitTroubleshootingCarrierFrames(doc) {
+        var fitted = 0;
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            try {
+                if (!isTroubleshootingTableStory(story) ||
+                        story.tables.length !== 1 ||
+                        story.textContainers.length < 2) { continue; }
+                var frame = story.textContainers[story.textContainers.length - 1];
+                if (frame.constructor.name === "TextFrame" &&
+                        itemLabel(frame).indexOf(
+                            "hb:self=tf_terminal_carrier_group_"
+                        ) === 0 &&
+                        growTableTerminalCarrier(
+                            doc, story, frame, 24.0
+                        )) {
+                    fitted += 1;
+                }
+            } catch (_) {}
+        }
+        doc.recompose();
+        return fitted;
+    }
+
+    function substituteMissingFont(doc, sourceName, targetName) {
+        var sourceFont = doc.fonts.itemByName(sourceName);
+        if (!sourceFont.isValid || sourceFont.status === FontStatus.INSTALLED) {
+            return null;
+        }
+        var targetFont = app.fonts.itemByName(targetName);
+        if (!targetFont.isValid || targetFont.status !== FontStatus.INSTALLED) {
+            throw Error("required host fallback font is not installed: " + targetName);
+        }
+
+        var changed = [];
+        try {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.changeTextPreferences = NothingEnum.nothing;
+            app.findTextPreferences.appliedFont = sourceFont;
+            app.changeTextPreferences.appliedFont = targetFont;
+            changed = doc.changeText();
+        } finally {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.changeTextPreferences = NothingEnum.nothing;
+        }
+        var forcedResiduals = 0;
+        try {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.findTextPreferences.appliedFont = sourceFont;
+            var residuals = doc.findText();
+            for (var ri = 0; ri < residuals.length; ri += 1) {
+                try {
+                    residuals[ri].appliedFont = targetFont;
+                    forcedResiduals += 1;
+                } catch (_) {}
+            }
+        } finally {
+            app.findTextPreferences = NothingEnum.nothing;
+        }
+        return {
+            source: sourceName,
+            target: targetName,
+            replacements: changed.length,
+            forced_residuals: forcedResiduals,
+            reason: "host_missing_font"
+        };
+    }
+
+    function applyHostFontSubstitutions(doc) {
+        var substitutions = [];
+        var mappings = [
+            ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
+            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"]
+        ];
+        for (var mi = 0; mi < mappings.length; mi += 1) {
+            var result = substituteMissingFont(doc, mappings[mi][0], mappings[mi][1]);
+            if (result !== null) { substitutions.push(result); }
+        }
+        doc.recompose();
+        return substitutions;
+    }
+
+    function textHasVisibleContent(value) {
+        return String(value || "")
+            .replace(/[\u0000-\u0020\u0016\uFEFF\uFFFC]+/g, "")
+            .length > 0;
+    }
+
+    function appliedFontName(textRange) {
+        try {
+            var applied = textRange.appliedFont;
+            if (applied && applied.name) { return String(applied.name); }
+            return String(applied || "");
+        } catch (_) {
+            return "";
+        }
+    }
+
+    function fontHasTextUsage(doc, font) {
+        var matches = [];
+        try {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.changeTextPreferences = NothingEnum.nothing;
+            app.findTextPreferences.appliedFont = font;
+            matches = doc.findText();
+            for (var mi = 0; mi < matches.length; mi += 1) {
+                if (!textHasVisibleContent(matches[mi].contents)) { continue; }
+                var appliedName = appliedFontName(matches[mi]);
+                var missingFamily = String(font.name || "").split("\t")[0];
+                var appliedFamily = appliedName.split("\t")[0];
+                if (!appliedFamily || appliedFamily === missingFamily) { return true; }
+            }
+            return false;
+        } catch (_) {
+            // A failed audit must remain fail-closed: retain the missing-font
+            // finding instead of silently declaring an unverified face clean.
+            return true;
+        } finally {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.changeTextPreferences = NothingEnum.nothing;
+        }
+    }
+
+    function fontUsageSamples(doc, font) {
+        var samples = [];
+        try {
+            app.findTextPreferences = NothingEnum.nothing;
+            app.findTextPreferences.appliedFont = font;
+            var matches = doc.findText();
+            for (var mi = 0; mi < matches.length && samples.length < 12; mi += 1) {
+                if (!textHasVisibleContent(matches[mi].contents)) { continue; }
+                samples.push({
+                    contents: String(matches[mi].contents).slice(0, 32),
+                    applied_font: appliedFontName(matches[mi])
+                });
+            }
+        } catch (error) {
+            samples.push({error: String(error)});
+        } finally {
+            app.findTextPreferences = NothingEnum.nothing;
+        }
+        return samples;
+    }
+
+    function fitTerminalCarrierFrames(doc) {
+        var results = [];
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            var title = String(story.storyTitle || "");
+            var contents = String(story.contents || "");
+            var isMeasuredOverview = title.indexOf("product_overview") >= 0;
+            var isMarkerOnlyCarrier = !textHasVisibleContent(contents);
+            if (!story.overflows ||
+                    (story.tables.length > 0 && !isMeasuredOverview) ||
+                    story.textContainers.length === 0) { continue; }
+            var maxGrowth = isMeasuredOverview ? 160.0 : isMarkerOnlyCarrier ? 24.0 : 0.0;
+            if (maxGrowth <= 0) { continue; }
+            var frame = story.textContainers[story.textContainers.length - 1];
+            if (frame.constructor.name !== "TextFrame" ||
+                    !frame.parentPage || !frame.parentPage.isValid) { continue; }
+            var growth = 0.0;
+            while (story.overflows && growth < maxGrowth) {
+                var bounds = frame.geometricBounds;
+                bounds[2] = Number(bounds[2]) + 4.0;
+                frame.geometricBounds = bounds;
+                growth += 4.0;
+                doc.recompose();
+            }
+            results.push({
+                title: title,
+                growth: growth,
+                cleared: !story.overflows
+            });
+        }
+        return results;
     }
 
     function isComposedSymbolTableStory(story) {
@@ -141,24 +306,12 @@
         for (var ri = 0; ri < table.rows.length; ri += 1) {
             tableHeight += Number(table.rows[ri].height);
         }
-        var newBottom = Number(frameBounds[0]) + tableHeight + 0.25;
+        var newBottom = Number(frameBounds[0]) + tableHeight + 4.0;
         if (Math.abs(newBottom - oldBottom) < 0.01) { return false; }
 
-        var pageItems = frame.parentPage.allPageItems;
-        for (var pi = 0; pi < pageItems.length; pi += 1) {
-            var item = pageItems[pi];
-            if (item.constructor.name !== "Rectangle") { continue; }
-            var bounds = item.geometricBounds;
-            var sameShell =
-                Math.abs(Number(bounds[0]) - Number(frameBounds[0])) < 0.2 &&
-                Math.abs(Number(bounds[1]) - Number(frameBounds[1])) < 0.2 &&
-                Math.abs(Number(bounds[2]) - oldBottom) < 0.2 &&
-                Math.abs(Number(bounds[3]) - Number(frameBounds[3])) < 0.2;
-            if (sameShell) {
-                bounds[2] = newBottom;
-                item.geometricBounds = bounds;
-            }
-        }
+        // SymbolsPanel owns every visible shell, plate, mask, and row.
+        // Fit only this transparent terminal-marker carrier; finalization
+        // must not rewrite the component's visual geometry.
         frameBounds[2] = newBottom;
         frame.geometricBounds = frameBounds;
         return true;
@@ -197,7 +350,12 @@
         bad_links: [],
         stable_labels: {pages: 0, text_frames: 0},
         fitted_lcd_table_groups: 0,
+        fitted_troubleshooting_table_groups: 0,
+        fitted_troubleshooting_carrier_frames: 0,
         fitted_symbol_table_shells: 0,
+        carrier_frame_fits: [],
+        font_substitutions: [],
+        font_usage_audit: [],
         pdf_export: {
             requested_preset: String(job.pdf_preset || ""),
             applied_preset: null,
@@ -223,8 +381,28 @@
         doc.cmykProfile = job.output_intent;
         report.pdf_export.applied_document_cmyk_profile = String(doc.cmykProfile);
         doc.recompose();
-        report.fitted_lcd_table_groups = fitLcdTableShells(doc);
+        // Keep the report key for compatibility. LCD finalization may grow
+        // only the transparent terminal carrier, never the visible shell.
+        report.fitted_lcd_table_groups = fitLcdCarrierFrames(doc);
+        report.fitted_troubleshooting_carrier_frames =
+            fitTroubleshootingCarrierFrames(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
+        report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
+        report.font_substitutions = applyHostFontSubstitutions(doc);
+        report.fitted_lcd_table_groups += fitLcdCarrierFrames(doc);
+        report.fitted_troubleshooting_carrier_frames +=
+            fitTroubleshootingCarrierFrames(doc);
+        report.carrier_frame_fits = report.carrier_frame_fits.concat(
+            fitTerminalCarrierFrames(doc)
+        );
+        report.font_substitutions = report.font_substitutions.concat(
+            applyHostFontSubstitutions(doc)
+        );
+        report.fitted_troubleshooting_carrier_frames +=
+            fitTroubleshootingCarrierFrames(doc);
+        report.carrier_frame_fits = report.carrier_frame_fits.concat(
+            fitTerminalCarrierFrames(doc)
+        );
         report.page_count = doc.pages.length;
         report.story_count = doc.stories.length;
 
@@ -267,8 +445,21 @@
         var fonts = doc.fonts.everyItem().getElements();
         for (var fi = 0; fi < fonts.length; fi += 1) {
             var font = fonts[fi];
+            // InDesign keeps a substituted source font in doc.fonts even
+            // after every text range has moved to the installed fallback.
+            // Only a live text use is a preflight failure; an unused resource
+            // entry is provenance, not a missing deliverable dependency.
             if (font.status !== FontStatus.INSTALLED) {
-                report.missing_fonts.push({name: String(font.name), status: String(font.status)});
+                var hasTextUsage = fontHasTextUsage(doc, font);
+                report.font_usage_audit.push({
+                    name: String(font.name),
+                    status: String(font.status),
+                    live_text_usage: hasTextUsage,
+                    samples: fontUsageSamples(doc, font)
+                });
+                if (hasTextUsage) {
+                    report.missing_fonts.push({name: String(font.name), status: String(font.status)});
+                }
             }
         }
 

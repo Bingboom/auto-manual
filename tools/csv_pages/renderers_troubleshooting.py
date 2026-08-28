@@ -103,22 +103,26 @@ def _matches_region(row: dict[str, str], *, target_region: str) -> bool:
     return any(token.casefold() in target_aliases for token in tokens)
 
 
-def _matches_model(row: dict[str, str], *, target_model: str, target_region: str) -> bool:
+def _model_scope(
+    row: dict[str, str], *, target_model: str, target_region: str,
+) -> str | None:
     model_value = row.get("Model") or row.get("model") or ""
     tokens = parse_model_tokens(model_value)
     if not tokens:
-        return True
-    if any(token.casefold() == "all" for token in tokens):
-        return True
+        return "fallback"
     if not target_model:
-        return False
+        return "fallback" if any(token.casefold() == "all" for token in tokens) else None
     normalized_target = canonicalize_model_token(target_model, region=target_region)
     normalized_tokens = {
         canonicalize_model_token(token, region=target_region).casefold()
         for token in tokens
-        if token
+        if token and token.casefold() != "all"
     }
-    return normalized_target.casefold() in normalized_tokens
+    if normalized_target.casefold() in normalized_tokens:
+        return "specific"
+    if any(token.casefold() == "all" for token in tokens):
+        return "fallback"
+    return None
 
 
 def _sort_key(row: dict[str, str]) -> tuple[int, float | str, str]:
@@ -151,15 +155,24 @@ def _collect_rows(
 
     target_model = _pick_target_model(vars_map)
     target_region = _pick_target_region(vars_map)
-    rows: list[dict[str, str]] = []
+    candidates: list[tuple[str, dict[str, str]]] = []
 
     for row in blocks:
         if not _truthy(row.get("Is_latest") or row.get("Is_Latest") or row.get("is_latest"), default=True):
             continue
-        if not _matches_model(row, target_model=target_model, target_region=target_region):
-            continue
         if not _matches_region(row, target_region=target_region):
             continue
+        model_scope = _model_scope(
+            row, target_model=target_model, target_region=target_region,
+        )
+        if model_scope is not None:
+            candidates.append((model_scope, row))
+
+    specific = [row for scope, row in candidates if scope == "specific"]
+    selected = specific or [row for scope, row in candidates if scope == "fallback"]
+    rows: list[dict[str, str]] = []
+
+    for row in selected:
         code = (row.get("error_code") or "").strip()
         measures = (row.get(measures_col) or row.get("corrective_measures_en") or "").strip()
         if not code or not measures:

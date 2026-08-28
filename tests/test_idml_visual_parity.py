@@ -20,7 +20,10 @@ from tools.idml.components.rounded_table import rounded_table_panel, table_text_
 from tools.idml.page_objects import (
     anchored_panel_group_paragraph,
     h1_bar_h_pt,
+    h1_frame_opts,
+    h1_pill_paragraph,
     heading_bar_opts,
+    heading_text,
     left_rounded_path_geometry,
     rounded_path_geometry,
 )
@@ -91,6 +94,20 @@ class IdmlVisualParityTests(unittest.TestCase):
             h1_bar_h_pt(writer),
             places=5,
         )
+
+    def test_fixed_and_flowed_h1_share_the_je_visible_cap_centre(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        rect = (28.35, 27.92, 312.09, h1_bar_h_pt(writer))
+        opts = h1_frame_opts(rect)
+        fixed = heading_text(writer, "IMPORTANT SAFETY INFORMATION", level=1)
+        h1_pill_paragraph(writer, "STORAGE", rect[2])
+        flowed = dict(writer.stories)["st_anchor_h1pill_0"]
+
+        self.assertEqual("CenterAlign", opts["valign"])
+        self.assertEqual((34.35, 27.92, 300.09, rect[3]), opts["text_rect"])
+        for story in (fixed, flowed):
+            self.assertIn('BaselineShift="0.5"', story)
+            self.assertNotIn('BaselineShift="-1.5"', story)
 
     def test_heading_styles_derive_keep_with_next_from_shared_needspace(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -204,6 +221,156 @@ class IdmlVisualParityTests(unittest.TestCase):
                 self.assertIn('<Position type="unit">11.4</Position>', item)
                 self.assertIn("<Content>•\t", item)
                 self.assertNotIn("<Content>• ", item)
+
+    def test_target_assembly_headings_use_font_independent_vector_markers(
+        self,
+    ) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, native_structure_markers=True)
+
+        heading, *_ = build_text_paragraph(
+            writer,
+            kind="h2",
+            text="AC OUTPUT ON/OFF",
+            terminal=True,
+            is_preface=False,
+            has_twocol_layout=False,
+            in_twocol=False,
+            bundle_root=ROOT,
+            page_language="en",
+            story_id="st_operation",
+            block_index=2,
+        )
+
+        self.assertNotIn("<Content>●</Content>", heading)
+        self.assertNotIn("Segoe UI Symbol", heading)
+        self.assertIn("st_operation_h2_marker_2_circle", heading)
+        self.assertIn('FillColor="Color/HB Brand Dark"', heading)
+        self.assertIn("st_operation_h2_marker_2_gap", heading)
+
+        writer.add_spec_story(
+            [{
+                "title": "GENERAL INFO",
+                "rows": [
+                    ("Chemistry", "LiFePO₄"),
+                    ("Input", "36.8V⎓75A"),
+                ],
+            }],
+            [],
+            lang="en",
+            title="SPECIFICATIONS",
+        )
+        spec_story = dict(writer.stories)["st_spec"]
+        self.assertNotIn("<Content>●</Content>", spec_story)
+        self.assertNotIn("Segoe UI Symbol", spec_story)
+        self.assertIn("st_spec_section_marker_0_circle", spec_story)
+        spec_xml = "".join(
+            xml
+            for story_id, xml in writer.stories
+            if story_id == "st_spec" or story_id.startswith("st_anchor_spec_")
+        )
+        self.assertIn("st_spec_spec_symbol_3_direct_current", spec_xml)
+        self.assertIn(
+            "st_spec_spec_symbol_3_direct_current_left_bearing",
+            spec_xml,
+        )
+        self.assertIn(
+            "st_spec_spec_symbol_3_direct_current_right_bearing",
+            spec_xml,
+        )
+        self.assertIn('StrokeWeight="0.408691"', spec_xml)
+        self.assertIn('Anchor="0 -1.88965"', spec_xml)
+        self.assertIn('Anchor="3.68555 -1.88965"', spec_xml)
+        self.assertNotIn('Anchor="7 -3.8"', spec_xml)
+        self.assertIn('Position="Subscript"', spec_xml)
+        self.assertIn("<Content>4</Content>", spec_xml)
+        self.assertNotIn("Segoe UI Symbol", spec_xml)
+
+        warranty, _ = writer._render_component(
+            "st_warranty",
+            0,
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "For the original buyer",
+                    "text": "Limited warranty coverage.",
+                }],
+            },
+            ROOT,
+            True,
+        )
+        self.assertIn("Yu Gothic", warranty)
+        self.assertIn("❸", warranty)
+
+        compact_params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        compact_writer = IdmlWriter(
+            compact_params,
+            native_structure_markers=True,
+        )
+        compact_warranty, _ = compact_writer._render_component(
+            "st_warranty_compact",
+            0,
+            {
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "For the original buyer",
+                    "text": "Limited warranty coverage.",
+                }],
+            },
+            ROOT,
+            True,
+        )
+        self.assertEqual(warranty, compact_warranty.replace(
+            "st_warranty_compact_cmp0",
+            "st_warranty_cmp0",
+        ))
+        self.assertIn("❸", compact_warranty)
+
+        base_period_writer = IdmlWriter(
+            writer.params,
+            native_structure_markers=False,
+        )
+        period_writer = IdmlWriter(
+            compact_params,
+            native_structure_markers=True,
+        )
+        period_spec = {
+            "kind": "warrantysection",
+            "title": "WARRANTY PERIOD",
+            "index": 2,
+            "blocks": [{
+                "kind": "warrantyyears",
+                "items": [{
+                    "number": "3",
+                    "unit": "YEARS",
+                    "label": "Standard Warranty",
+                    "text": "Limited warranty coverage.",
+                }],
+            }],
+        }
+        base_period, base_period_height = base_period_writer._render_component(
+            "st_warranty_period",
+            0,
+            period_spec,
+            ROOT,
+            True,
+        )
+        period, period_height = period_writer._render_component(
+            "st_warranty_period",
+            0,
+            period_spec,
+            ROOT,
+            True,
+        )
+        self.assertEqual(base_period, period)
+        self.assertEqual(base_period_height, period_height)
 
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

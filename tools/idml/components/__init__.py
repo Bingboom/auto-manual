@@ -19,7 +19,7 @@ from .callout import (
     render_warninglead,
 )
 from .fcc import render_fcc
-from .emphasis import render_emphasispill
+from .emphasis import render_emphasispill, render_headingpill
 from .inbox import render_inbox
 from .lcdmode import render_lcdmode
 from .notice import render_notice
@@ -50,6 +50,7 @@ REGISTRY: dict[str, ComponentRenderer] = {
     "warrantysection": render_warrantysection,
     "fcc": render_fcc,
     "emphasispill": render_emphasispill,
+    "headingpill": render_headingpill,
     "lcdmode": render_lcdmode,
     "referencefigure": render_referencefigure,
 }

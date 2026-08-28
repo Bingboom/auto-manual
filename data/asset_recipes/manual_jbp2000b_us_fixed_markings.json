@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jbp2000b_us_master",
+    "expected_sha256": "f011887c89f61e879be13c3868b13abf45849ea95c09326adb572709880a4b2f",
+    "expected_page_count": 28
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 28
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "5": 4,
+        "6": 4
+      }
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "cover_front", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 2, "page_key": "frontmatter_important", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "frontmatter_toc", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "en_01", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "en_02", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "en_03", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "en_04", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "en_05", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 9, "page_key": "en_06", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 10, "page_key": "en_07", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 11, "page_key": "en_08", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 12, "page_key": "fr_01", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 13, "page_key": "fr_02", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 14, "page_key": "fr_03", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 15, "page_key": "fr_04", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 16, "page_key": "fr_05", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 17, "page_key": "fr_06", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 18, "page_key": "fr_07", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 19, "page_key": "fr_08", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 20, "page_key": "es_01", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 21, "page_key": "es_02", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 22, "page_key": "es_03", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 23, "page_key": "es_04", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 24, "page_key": "es_05", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 25, "page_key": "es_06", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 26, "page_key": "es_07", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 27, "page_key": "es_08", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 28, "page_key": "cover_back", "role": "cover_back", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {
+      "asset_key": "overview/jbp2000b/front_controls",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [29.7, 400.2, 149.3, 463.7]},
+        {
+          "op": "drop_leader_strokes",
+          "note": "Operator confirmed the left/front illustration with POWER and Battery Pack 2000 retained. Suppress the two paired callout leaders only.",
+          "halo_width_pt": 2.0,
+          "line_width_pt": 0.216,
+          "width_tolerance_pt": 0.05
+        }
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_front_controls.pdf", "expected_sha256": "26b6ac82fb421fc6ee906706c9a4ec41882a5b17a52c805ad29d95c94e81ec85"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_front_controls.png", "scale": 12, "expected_sha256": "c405e6a1fdd35bb593429ee85568e843e02ced8e8a43d672ef1cb8034774cce3"}
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator confirmed the four-asset pixel review sheet on 2026-08-23. This corrective output keeps the fixed POWER and Battery Pack 2000 live text plus the vector Jackery wordmark; localized callout copy is outside the tight crop.",
+          "The existing approved recipes remain byte-identical; this independent corrective recipe owns the replacement output hashes."
+        ]
+      },
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "overview/jbp2000b/left_side_ports",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [170.9, 400.3, 287.4, 484.6]},
+        {
+          "op": "drop_leader_strokes",
+          "note": "Suppress three paired callout leaders; the Port B leader is a zero-height horizontal geometry and must remain structurally detected.",
+          "halo_width_pt": 2.0,
+          "line_width_pt": 0.216,
+          "width_tolerance_pt": 0.05
+        },
+        {"op": "redact_text_region", "bbox_pt": [270.0, 400.3, 287.4, 484.6], "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_left_side_ports.pdf", "expected_sha256": "9c4bd27261e9a5688448867250a9afdc450d445e8eda46fdc3b939ff20de18e8"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_left_side_ports.png", "scale": 12, "expected_sha256": "6ac9bc60991ebd6da65bcea1f62a1f82a737d8f38031144396d857f35ccbd8fc"}
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator confirmed the four-asset pixel review sheet on 2026-08-23. The corrective output keeps the fixed A/B/DC EXPANSION PORT markings while removing only the external localized-label strip at the crop edge.",
+          "The existing approved recipes remain byte-identical; this independent corrective recipe owns the replacement output hashes."
+        ]
+      },
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "operation/jbp2000b/power_control",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [39.5, 234.5, 331.5, 307.5]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_power_control.pdf", "expected_sha256": "66a0306a88f6a0e1163a996de234303544b46b9290012f6e7eed2744e1e32a54"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_power_control.png", "scale": 12, "expected_sha256": "c8332fadce5987fef4ecd43938fb3a61bda2211b588bd20fd7c52a18768b1799"}
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator confirmed the 12x candidate on 2026-08-23. redact_text removes the live On/Off/Press/3s instructions with graphics preserved; fixed product and panel markings are vector outlines and remain."
+        ]
+      },
+      "risk_tags": ["model-specific", "text-removal"]
+    },
+    {
+      "asset_key": "operation/jbp2000b/lcd_control",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [39.5, 389.5, 331.5, 463.0]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_lcd_control.pdf", "expected_sha256": "e977dbc5bea5876e249cdf84db10545b488d692d62caac31ee55a057d719da7c"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_lcd_control.png", "scale": 12, "expected_sha256": "4d5f74e927261d7c174b45b5c0eb039d0e7c11ff4ab4c932e5719d2138415975"}
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator confirmed the 12x candidate on 2026-08-23. The crop contains no live text spans, so redact_text is a graphics-preserving no-op; fixed product and panel markings are vector outlines and remain."
+        ]
+      },
+      "risk_tags": ["model-specific"]
+    }
+  ]
+}

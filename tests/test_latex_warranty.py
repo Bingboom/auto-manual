@@ -63,6 +63,31 @@ Exclusions
 
 
 class LatexWarrantyTests(unittest.TestCase):
+    def test_bp_warranty_templates_expose_real_section_nodes(self) -> None:
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                source = (
+                    ROOT
+                    / "docs"
+                    / "templates"
+                    / "page_bp"
+                    / language
+                    / "11_warranty.rst"
+                ).read_text(encoding="utf-8")
+                source = (
+                    source
+                    .replace("|LEGAL_COMPANY_NAME|", "Jackery Inc.")
+                    .replace("|PRODUCT_NAME|", "Battery Pack")
+                    .replace("|WARRANTY_EMAIL|", "support@example.com")
+                )
+                doctree = publish_doctree(source)
+                sections = list(doctree.findall(nodes.section))
+                self.assertEqual(6, len(sections))
+                self.assertTrue(any(
+                    list(section.findall(nodes.table))
+                    for section in sections
+                ))
+
     def _transform(self, source: str, *, output_format: str = "latex") -> nodes.document:
         doctree = publish_doctree(source)
         app = SimpleNamespace(builder=SimpleNamespace(format=output_format))
@@ -90,6 +115,16 @@ class LatexWarrantyTests(unittest.TestCase):
         )
         raw_latex = [node.astext() for node in doctree.findall(nodes.raw)]
         self.assertIn(r"\textquotesingle{}", raw_latex)
+
+    def test_builds_dedicated_page_for_supported_localized_titles(self) -> None:
+        for title in ("WARRANTY", "GARANTIE", "GARANTÍA"):
+            with self.subTest(title=title):
+                source = WARRANTY_RST.replace("WARRANTY\n========", f"{title}\n========", 1)
+                doctree = self._transform(source)
+
+                pages = list(doctree.findall(HBWarrantyPage))
+                self.assertEqual(1, len(pages))
+                self.assertEqual(title, pages[0]["title"])
 
     def test_keeps_non_latex_and_non_warranty_sections_unchanged(self) -> None:
         html_tree = self._transform(WARRANTY_RST, output_format="html")

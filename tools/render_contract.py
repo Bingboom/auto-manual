@@ -77,6 +77,30 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
     return tokens
 
 
+def load_layout_token_layers(
+    base_csv: Path,
+    overlay_csvs: tuple[Path, ...] = (),
+) -> dict[str, LayoutToken]:
+    """Load one baseline plus additive target-selected token overlays.
+
+    Overlays are deliberately additive.  A target may opt into tokens owned by
+    an additional composition family, but it may not silently replace an
+    approved baseline value through this path.
+    """
+
+    tokens = load_layout_tokens(base_csv)
+    for overlay_csv in overlay_csvs:
+        overlay = load_layout_tokens(overlay_csv)
+        duplicates = sorted(set(tokens).intersection(overlay))
+        if duplicates:
+            raise ValueError(
+                f"layout token overlay {overlay_csv} redefines existing keys: "
+                + ", ".join(duplicates)
+            )
+        tokens.update(overlay)
+    return tokens
+
+
 def layout_tokens_sha256(tokens: dict[str, LayoutToken]) -> str:
     """Hash ordered key/value/unit semantics, excluding CSV presentation details."""
     payload = [

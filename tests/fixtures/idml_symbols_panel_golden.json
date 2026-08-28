@@ -1,0 +1,492 @@
+{
+  "standard": {
+    "en": {
+      "contract": {
+        "density": "standard",
+        "language": "en",
+        "title_height": 20.125984251968504,
+        "title_gap": 9.0,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 4.1,
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "icon_frame_height": 15.25,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 36.4,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": true,
+        "disable_hyphenation": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              140.78976377952756,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              169.91574803149607,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              292.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              292.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ]
+      },
+      "height": 167.45598425196852,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_en_symbols_title": "7b3d3c771d5b56c6d07612c76f59b51d72cee48696f9ffc2d00400fced126d27",
+        "st_symbols_standard_en_signals": "9eb3a138167230f416a210193ac37bd074387fb33ab4f79b8e06236beb32f709",
+        "st_symbols_standard_en_icons_left": "b8532652411e8c3fde87106bef329cca603a778f021f8701b54c8f50b9077427",
+        "st_symbols_standard_en_icons_right": "581e6ee8edc9e24ab2a7fd9807075811bf6cca74f4fe2a704c4c177f797c13f7"
+      }
+    },
+    "fr": {
+      "contract": {
+        "density": "standard",
+        "language": "fr",
+        "title_height": 20.125984251968504,
+        "title_gap": 9.0,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 10.7,
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "icon_frame_height": 15.25,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 36.4,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": true,
+        "disable_hyphenation": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              200.08976377952754,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              229.21574803149605,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              358.89574803149605,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              358.89574803149605,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ]
+      },
+      "height": 174.0559842519685,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_fr_symbols_title": "38c273241ecdc144fd414c5212ab88e703d5cca09c134f957fd7073cc4f962d6",
+        "st_symbols_standard_fr_signals": "18b6bddf96dd69a32f555b9b07708492a4b4aed6afc81b524b7f6bbd3516c2e3",
+        "st_symbols_standard_fr_icons_left": "2a9a6293362c4e9e6bcf165d911ab46aa937f3f58b29f25ff67330ec397e79cb",
+        "st_symbols_standard_fr_icons_right": "670247a343b9c6c3dab246e076697024a3e681e38e8f2dc8d9cba4ba427a035e"
+      }
+    },
+    "es": {
+      "contract": {
+        "density": "standard",
+        "language": "es",
+        "title_height": 20.125984251968504,
+        "title_gap": 9.0,
+        "signal_row_heights": [
+          17.3,
+          25.42,
+          25.42,
+          25.42,
+          25.42
+        ],
+        "signal_frame_height": 118.98,
+        "signal_gap": 9.8,
+        "left_icon_row_heights": [
+          15.0
+        ],
+        "right_icon_row_heights": [
+          15.0
+        ],
+        "icon_frame_height": 15.25,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 36.4,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": true,
+        "disable_hyphenation": false,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              201.08976377952754,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              230.21574803149605,
+              312.09448818897647,
+              118.98
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              358.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              358.9957480314961,
+              151.94724409448824,
+              15.25
+            ]
+          ]
+        ]
+      },
+      "height": 173.15598425196853,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_standard_es_symbols_title": "52b70bab5b83fabd7ec1028233bc89cf378a43d2abcafaae3b2f78e7b36595fb",
+        "st_symbols_standard_es_signals": "cc63b765a53b80f440eedd4f747ab968ff3b8bf27263b703ffee69a2102ccce7",
+        "st_symbols_standard_es_icons_left": "0ab7f31d6015606a75fb2dd96e3457b4f77b7242a54aae8df1e87fd2baa9b2f0",
+        "st_symbols_standard_es_icons_right": "87be3fddfe43bc77954881f0edf1ff1e1c98d9ff95f0ebc36a574a96b5f359d7"
+      }
+    }
+  },
+  "compact": {
+    "en": {
+      "contract": {
+        "density": "compact",
+        "language": "en",
+        "title_height": 20.125984251968504,
+        "title_gap": 6.0,
+        "signal_row_heights": [
+          17.3,
+          25.15,
+          25.15,
+          25.15,
+          25.15
+        ],
+        "signal_frame_height": 117.89999999999999,
+        "signal_gap": 4.1,
+        "left_icon_row_heights": [
+          24.5
+        ],
+        "right_icon_row_heights": [
+          24.5
+        ],
+        "icon_frame_height": 24.5,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 35.5,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": false,
+        "disable_hyphenation": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              163.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              189.3259842519685,
+              312.09448818897647,
+              117.89999999999999
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              311.3259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              311.3259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ]
+      },
+      "height": 172.62598425196853,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_en_title": "9eaf0b3016b96306368d8fd53a9fa4517241a3aee2741cce60ced9388185b834",
+        "st_symbols_shared_en_signals": "5f431eb7b6bda4d710d10594903fa08ed7c9b1bfd983319e83520045f35e8b75",
+        "st_symbols_shared_en_icons_left": "e55343a2d68574907f271acfdae6ddbae2b57766ad94b3e15b43d9e4f2cdb863",
+        "st_symbols_shared_en_icons_right": "8a375e0a0c2583dd40794e10909a9f01c8ed7967b663e73cf35121c2779ef4db"
+      }
+    },
+    "fr": {
+      "contract": {
+        "density": "compact",
+        "language": "fr",
+        "title_height": 20.125984251968504,
+        "title_gap": 6.0,
+        "signal_row_heights": [
+          13.5,
+          23.0,
+          23.0,
+          23.0,
+          23.0
+        ],
+        "signal_frame_height": 105.5,
+        "signal_gap": 5.0,
+        "left_icon_row_heights": [
+          24.5
+        ],
+        "right_icon_row_heights": [
+          24.5
+        ],
+        "icon_frame_height": 24.5,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 35.5,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": false,
+        "disable_hyphenation": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              173.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              199.3259842519685,
+              312.09448818897647,
+              105.5
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              309.8259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              309.8259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ]
+      },
+      "height": 161.12598425196853,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_fr_title": "4ebff2bdf6fbbc1c54db4275ec4f13a294f991c14f2844383ef7e4688a25a1d2",
+        "st_symbols_shared_fr_signals": "384845053f450ae34740eb0cb9d147050a266f80e4fc107ebf19db6d4485509a",
+        "st_symbols_shared_fr_icons_left": "9fd02f26a04cbbb45ec796b0de3511dc75088e6901d66e938f4198ee489b0ca3",
+        "st_symbols_shared_fr_icons_right": "847f2fd6a323ccd3ba5ae84e0e2344596c4084b193ae6c98c5194b373cbfb714"
+      }
+    },
+    "es": {
+      "contract": {
+        "density": "compact",
+        "language": "es",
+        "title_height": 20.125984251968504,
+        "title_gap": 6.0,
+        "signal_row_heights": [
+          13.5,
+          23.25,
+          23.25,
+          23.25,
+          23.25
+        ],
+        "signal_frame_height": 106.5,
+        "signal_gap": 5.0,
+        "left_icon_row_heights": [
+          24.5
+        ],
+        "right_icon_row_heights": [
+          24.5
+        ],
+        "icon_frame_height": 24.5,
+        "column_gap": 5.8,
+        "table_width": 151.94724409448824,
+        "signal_column_width": 74.83464566929135,
+        "left_icon_column_width": 39.685,
+        "right_icon_column_width": 35.5,
+        "native_carrier_allowance": 11.338582677165356,
+        "auto_grow_rows": false,
+        "disable_hyphenation": true,
+        "frame_rects": [
+          [
+            "title",
+            [
+              28.34645669291339,
+              173.2,
+              312.09448818897647,
+              20.125984251968504
+            ]
+          ],
+          [
+            "signals",
+            [
+              28.34645669291339,
+              199.3259842519685,
+              312.09448818897647,
+              106.5
+            ]
+          ],
+          [
+            "icons_left",
+            [
+              28.34645669291339,
+              310.8259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ],
+          [
+            "icons_right",
+            [
+              186.09370078740164,
+              310.8259842519685,
+              151.94724409448824,
+              24.5
+            ]
+          ]
+        ]
+      },
+      "height": 162.12598425196853,
+      "overflow": {
+        "left": 0,
+        "right": 0
+      },
+      "story_sha256": {
+        "st_symbols_shared_es_title": "78b22cd597409322a9a0fa87aabac41520e49d934652e617edf828daab34dd95",
+        "st_symbols_shared_es_signals": "62d909eefcea9784b45bf0ba593c9f3572ee362d7c33abdb580cf11bc06e1077",
+        "st_symbols_shared_es_icons_left": "691cc53f842bf566513068744cfe1475d7d46548f7c08bbd301138ac6a8c635a",
+        "st_symbols_shared_es_icons_right": "bbacb44778adc487062b3e494b41607fa23558658fb733711b564fe4ebeba8b2"
+      }
+    }
+  }
+}

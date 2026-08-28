@@ -82,7 +82,7 @@ class LatexComponentModuleTests(unittest.TestCase):
         )
 
         self.assertIn(
-            r"\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g}", component,
+            r"\ProvideDocumentCommand{\HBBackCoverPage}{m m m g g g}", component,
         )
         self.assertIn(r"\IfNoValueF{#4}", component)
         self.assertIn(r"\IfNoValueF{#5}", component)

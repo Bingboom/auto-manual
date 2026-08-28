@@ -61,6 +61,7 @@ def inbox_component_spec(
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
+    require_tip: bool = True,
 ) -> ComponentSpec:
     if len(cards) != 3:
         raise ComponentSpecError(f"{COMPONENT_ID}: exactly three cards are required")
@@ -69,7 +70,7 @@ def inbox_component_spec(
     normalized_tip_body = str(tip_body).strip()
     if not label:
         raise ComponentSpecError(f"{COMPONENT_ID}: accessibility label is required")
-    if not normalized_tip_label or not normalized_tip_body:
+    if require_tip and (not normalized_tip_label or not normalized_tip_body):
         raise ComponentSpecError(f"{COMPONENT_ID}: tip label and body are required")
 
     normalized_cards: list[dict[str, Any]] = []
@@ -117,6 +118,7 @@ def inbox_spec_from_payload(
     tip_body: str,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
+    require_tip: bool = True,
 ) -> ComponentSpec:
     """Combine a typed inbox payload with its source-authored H1 and tip."""
     if str(payload.get("kind") or "") != "inbox":
@@ -145,6 +147,7 @@ def inbox_spec_from_payload(
         language=language,
         registry=registry,
         theme=theme,
+        require_tip=require_tip,
     )
 
 

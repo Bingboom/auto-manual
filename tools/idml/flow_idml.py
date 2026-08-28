@@ -66,6 +66,8 @@ class _FlowBlock:
 
 def write_flow_outputs(*, root: Path, model: str, region: str, lang: str,
                        data_root: Path, bundle_root: Path,
+                       layout_params_csv: Path | None = None,
+                       layout_param_overlays: tuple[Path, ...] = (),
                        build_command: list[str] | None = None) -> FlowOutputs:
     artifacts = flow_md.write_flow_artifacts(
         root=root,
@@ -84,7 +86,10 @@ def write_flow_outputs(*, root: Path, model: str, region: str, lang: str,
         encoding="utf-8",
     )
     idml_path = out_dir / "manual.flow.idml"
-    params = _params.load_layout_params(root / "data" / "layout_params.csv")
+    params = _params.load_layout_params(
+        layout_params_csv or root / "data" / "layout_params.csv",
+        layout_param_overlays,
+    )
     writer = _FlowIdmlWriter(
         params=params,
         style_map=style_map,

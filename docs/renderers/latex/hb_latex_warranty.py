@@ -1,4 +1,4 @@
-"""Render the English warranty page as dedicated LaTeX components."""
+"""Render localized warranty pages as dedicated LaTeX components."""
 from __future__ import annotations
 
 import re
@@ -6,8 +6,12 @@ import re
 from docutils import nodes
 
 
-_WARRANTY_PAGE_TITLES = {"WARRANTY"}
-_WARRANTY_PERIOD_TITLES = {"WARRANTY PERIOD"}
+_WARRANTY_PAGE_TITLES = {"WARRANTY", "GARANTIE", "GARANTÍA"}
+_WARRANTY_PERIOD_TITLES = {
+    "WARRANTY PERIOD",
+    "PÉRIODE DE GARANTIE",
+    "PERÍODO DE GARANTÍA",
+}
 
 
 class HBWarrantyPage(nodes.General, nodes.Element):
@@ -146,7 +150,7 @@ def _warranty_page(title: nodes.title, children: list[nodes.Node]) -> HBWarranty
 
 
 def replace_warranty_page(app, doctree: nodes.document, _docname: str) -> None:
-    """Replace only the English Warranty section for LaTeX output."""
+    """Replace supported localized Warranty sections for LaTeX output."""
     if getattr(app.builder, "format", None) != "latex":
         return
 

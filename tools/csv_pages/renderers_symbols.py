@@ -538,11 +538,12 @@ def _signal_section(
     lines.append("")
     # LaTeX component contract:
     # \HBSymbolTable{symbol header}{meaning header}{row macro calls}
-    # \HBSymbolSignalRow{image basename}{optional signal label}{meaning}
+    # \HBSymbolSignalRow[semantic key]{image basename}{signal label}{meaning}
     signal_tex_rows = []
     for row in signal_rows:
         signal_tex_rows.append(
-            rf"\HBSymbolSignalRow{{{_latex_image_name(str(row['image']))}}}"
+            rf"\HBSymbolSignalRow[{latex_arg_escape(str(row['signal_key']))}]"
+            rf"{{{_latex_image_name(str(row['image']))}}}"
             rf"{{{latex_arg_escape(str(row['label']))}}}{{{_latex_text_arg(str(row['meaning']))}}}"
         )
     lines.extend(

@@ -128,8 +128,7 @@ def idml_overview_projection(
         callout_geometry = {
             str(item["id"]): item["idml"] for item in geometry["callouts"]
         }
-        views.append(
-            {
+        projected_view = {
                 **deepcopy(view),
                 "art_rect": deepcopy(geometry["idml"]["art_rect"]),
                 "heading_text_y": float(geometry["idml"]["heading_text_y"]),
@@ -141,7 +140,11 @@ def idml_overview_projection(
                     for callout in view["callouts"]
                 ],
             }
-        )
+        if "heading_text_rect" in geometry["idml"]:
+            projected_view["heading_text_rect"] = deepcopy(
+                geometry["idml"]["heading_text_rect"]
+            )
+        views.append(projected_view)
     semantic_leaders = {
         f"{view['id']}.{callout['id']}": {
             "id": str(callout["id"]),

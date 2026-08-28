@@ -21,6 +21,7 @@ from hb_latex_data_tables import (  # noqa: E402
     HBDataSectionGuard,
     HBDataTable,
     replace_data_tables,
+    visit_section_guard_latex,
 )
 
 
@@ -94,6 +95,36 @@ class LatexDataTableTests(unittest.TestCase):
             ["key_combinations", "troubleshooting"],
             [guard["kind"] for guard in doctree.findall(HBDataSectionGuard)],
         )
+        trouble_guard = next(
+            guard for guard in doctree.findall(HBDataSectionGuard)
+            if guard["kind"] == "troubleshooting"
+        )
+        self.assertEqual(2, trouble_guard["body_rows"])
+
+    def test_troubleshooting_guard_carries_body_row_count_to_latex(self) -> None:
+        short = next(
+            guard for guard in self._transform(DATA_TABLE_RST).findall(
+                HBDataSectionGuard
+            )
+            if guard["kind"] == "troubleshooting"
+        )
+        translator = SimpleNamespace(body=[])
+        with self.assertRaises(nodes.SkipNode):
+            visit_section_guard_latex(translator, short)
+        self.assertEqual(
+            ["\n\\HBDataTroubleSectionGuardForRows{2}\n"],
+            translator.body,
+        )
+
+        component = (
+            ROOT / "docs" / "renderers" / "latex" / "components_data_tables.tex"
+        ).read_text(encoding="utf-8")
+        self.assertIn(r"\providecommand{\HBDataTroubleSectionGuard}", component)
+        self.assertIn(
+            r"\providecommand{\HBDataTroubleSectionGuardForRows}[1]",
+            component,
+        )
+        self.assertIn("HBcomp_trouble_compact_section_needspace", component)
 
     def test_preserves_row_spans_and_hanging_numbered_measures(self) -> None:
         doctree = self._transform(DATA_TABLE_RST)
