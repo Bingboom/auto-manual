@@ -27,7 +27,7 @@ JOSA_PAIRS: dict[str, tuple[str, str]] = {
     "EUN": ("은", "는"),
     "EUL": ("을", "를"),
     "I": ("이", "가"),
-    "WA": ("와", "과"),
+    "WA": ("과", "와"),
 }
 
 _HANGUL_BASE = 0xAC00
