@@ -47,7 +47,9 @@ paths:
   idml_layout_params_overlays:
     - data/layout_params.idml-compact.csv
   # Candidate physical assembly only; it remains non-production until native
-  # InDesign/PDF visual approval promotes it through the approved registry.
+  # InDesign/PDF visual approval promotes it through the approved registry —
+  # full flow: code-as-doc/dev/idml_candidate_promotion.md (delete this key
+  # in the promotion PR).
   idml_assembly_plan: docs/renderers/contracts/target_assembly/jbp2000b_us_v1_candidate.json
   page_registry_csv: data/phase2/page_registry.csv
   page_blocks_dir: data/phase2
