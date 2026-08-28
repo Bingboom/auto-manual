@@ -122,14 +122,21 @@ def _typed(xml: str, size: float, leading: float, weight: str | None = None,
     return re.sub(r"<CharacterStyleRange\b[^>]*>", apply_style, xml)
 
 
-def _body_xml(spec: dict, size: float, leading: float,
-              horizontal_scale: float, baseline_shift: float,
-              paragraph_space_after: float = 0.0,
-              unbulleted_first: bool = False,
-              font_style: str = "Medium",
-              bullet_indent: float = 0.0,
-              bullet_width: float = 3.4,
-              bullet_size: float = 4.8) -> str:
+def notice_body_xml(spec: dict, size: float, leading: float,
+                    horizontal_scale: float, baseline_shift: float,
+                    paragraph_space_after: float = 0.0,
+                    unbulleted_first: bool = False,
+                    font_style: str = "Medium",
+                    bullet_indent: float = 0.0,
+                    bullet_width: float = 3.4,
+                    bullet_size: float = 4.8) -> str:
+    """Render callout body ranges without duplicating fallback-font attrs.
+
+    Combined compositions such as inbox + overview must use the same body
+    serializer as a standalone notice.  Injecting attributes into the first
+    character range is unsafe for CJK text because that range already carries
+    its fallback font style.
+    """
     texts = spec.get("texts", [])
     if not spec.get("list"):
         return _typed(
@@ -190,6 +197,20 @@ def _body_xml(spec: dict, size: float, leading: float,
             )
         paragraphs.append(paragraph)
     return "".join(paragraphs)
+
+
+def notice_label_xml(label: str, size: float, leading: float,
+                     baseline_shift: float,
+                     font_style: str = "Bold") -> str:
+    """Render a source-authored callout label with CJK glyph fallback."""
+
+    return _typed(
+        psr("HB Callout Label", label, terminal=True),
+        size,
+        leading,
+        font_style,
+        baseline_shift=baseline_shift,
+    )
 
 
 def _gilroy_width(text: str, size: float) -> float:
@@ -622,14 +643,13 @@ def render_notice(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
             else 0.0
         ),
     )
-    label_psr = _typed(
-        psr("HB Callout Label", label, terminal=True),
+    label_psr = notice_label_xml(
+        label,
         layout.label_size,
         layout.label_leading,
-        "Bold",
-        baseline_shift=layout.label_baseline_shift,
+        layout.label_baseline_shift,
     )
-    body_psr = _body_xml(
+    body_psr = notice_body_xml(
         spec,
         layout.body_size,
         layout.body_leading,

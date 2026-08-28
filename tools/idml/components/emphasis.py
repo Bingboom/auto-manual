@@ -80,21 +80,29 @@ def render_emphasispill(
     if not text:
         return "", 0.0
     body_w = measure_w or ctx.text_measure
+    full_width_subbar = spec.get("layout_variant") == "full_width_subbar"
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
-    space_before = param_pt(
-        ctx.params,
-        "idml_charging_emphasis_space_before",
-        5.0,
+    space_before = (
+        param_pt(ctx.params, "idml_title_l2_space_before", 5.67)
+        if full_width_subbar
+        else param_pt(
+            ctx.params,
+            "idml_charging_emphasis_space_before",
+            5.0,
+        )
     )
     horizontal_padding = param_pt(
         ctx.params,
         "idml_charging_emphasis_horizontal_padding",
         7.0,
     )
-    space_after = 1.5
+    space_after = (
+        param_pt(ctx.params, "idml_title_l2_space_after", 5.67)
+        if full_width_subbar else 1.5
+    )
     height = max(14.2, param_pt(ctx.params, "comp_subbar_height", 13.89))
     width_factor = 0.50 if len(text) > 55 else 0.44
-    width = min(
+    width = body_w if full_width_subbar else min(
         body_w,
         max(
             96.0,

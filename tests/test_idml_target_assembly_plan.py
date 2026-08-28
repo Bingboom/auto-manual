@@ -6,6 +6,8 @@ import unittest
 
 from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
+    OPERATION_LAYOUT_VARIANTS,
+    SPECIFICATION_LAYOUT_VARIANTS,
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
     normalize_target_assembly_plan,
@@ -85,6 +87,59 @@ def _manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_operation_composition_accepts_guidance_stack_with_asset_override(
+        self,
+    ) -> None:
+        from tools.idml.target_assembly_plan import _validate_composition_data
+
+        page = {
+            "source_ref": "page/operation_en.rst",
+            "language": "en",
+            "page_role": "operation_guide",
+            "composition_id": "en_operation_guidance",
+            "composition_type": "operation",
+            "composition_data": {
+            "assets": {"image_refs": []},
+            "operation": {"layout_variant": "guidance_stack"},
+            },
+        }
+        ir = _manual_ir({"pages": [page]})
+
+        self.assertEqual(
+            [],
+            _validate_composition_data(
+                [page],
+                {"page_size_pt": {"width": 368.0, "height": 524.0}},
+                ir,
+            ),
+        )
+        self.assertEqual({"guidance_stack"}, set(OPERATION_LAYOUT_VARIANTS))
+
+    def test_operation_composition_rejects_unknown_layout_variant(self) -> None:
+        from tools.idml.target_assembly_plan import _validate_composition_data
+
+        page = {
+            "source_ref": "page/operation_en.rst",
+            "language": "en",
+            "page_role": "operation_guide",
+            "composition_id": "en_operation_guidance",
+            "composition_type": "operation",
+            "composition_data": {
+                "operation": {"layout_variant": "page_8_patch"},
+            },
+        }
+        ir = _manual_ir({"pages": [page]})
+
+        issues = _validate_composition_data(
+            [page],
+            {"page_size_pt": {"width": 368.0, "height": 524.0}},
+            ir,
+        )
+        self.assertIn(
+            "operation.layout_variant must be one of guidance_stack",
+            "; ".join(issues),
+        )
+
     def test_connections_composition_accepts_shared_layout_variant(self) -> None:
         payload = _payload()
         page = next(
@@ -126,6 +181,72 @@ class TargetAssemblyPlanTests(unittest.TestCase):
         with self.assertRaisesRegex(
             TargetAssemblyPlanError,
             "connections.layout_variant must be notice_before_primary_figure",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_target_page_breaks_are_validated_by_semantic_ordinal(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["composition_data"]["page_breaks"] = [
+            {"at_kind": "h2", "occurrence": 2, "top_gap_pt": 10.5},
+        ]
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == "page/charging_en.rst"
+        )
+        self.assertEqual(
+            page["composition_data"], normalized["composition_data"]
+        )
+
+    def test_target_page_breaks_reject_missing_semantic_ordinal(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["composition_data"]["page_breaks"] = [
+            {"at_kind": "h2", "occurrence": 3},
+        ]
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "page_breaks.*cannot find h2 occurrence 3",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_flow_prefix_requires_an_earlier_composition(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["flow_prefix"] = {
+            "until_kind": "image",
+            "occurrence": 1,
+            "head_composition_id": "en_storage_specifications",
+        }
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "flow_prefix target must start earlier",
         ):
             normalize_target_assembly_plan(
                 payload,
@@ -391,6 +512,53 @@ class TargetAssemblyPlanTests(unittest.TestCase):
                     source_path=PLAN_PATH,
                 )
                 self.assertTrue(plan)
+
+    def test_specification_layout_variants_match_shared_component_contract(self) -> None:
+        self.assertEqual(
+            {"compact", "reference"},
+            set(SPECIFICATION_LAYOUT_VARIANTS),
+        )
+
+    def test_specification_accepts_semantic_annotation_order(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/specifications_en.rst"
+        )
+        page["composition_data"]["specifications"]["annotation_order"] = [1, 0]
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == "page/specifications_en.rst"
+        )
+        self.assertEqual(
+            [1, 0],
+            normalized["composition_data"]["specifications"]["annotation_order"],
+        )
+
+    def test_specification_rejects_duplicate_annotation_order_indices(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/specifications_en.rst"
+        )
+        page["composition_data"]["specifications"]["annotation_order"] = [0, 0]
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "annotation_order must be a non-empty list of unique",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
 
 
 if __name__ == "__main__":

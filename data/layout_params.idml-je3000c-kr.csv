@@ -1,0 +1,18 @@
+key,value,unit,comment
+lang_ko_idml_key_panel_height,139.14,pt,JE-3000C KR approved editable Key-combinations panel height
+lang_ko_idml_key_panel_left_indent,0.99,pt,JE-3000C KR approved editable Key-combinations host-line offset
+lang_ko_idml_key_panel_space_before,16.53,pt,JE-3000C KR approved editable Key-combinations leading gap
+lang_ko_idml_key_visual_raise,0.0,pt,JE-3000C KR Key heading and panel remain in natural flow
+lang_ko_idml_trouble_row_minima,"15.310;18.132;18.133;18.132;18.133;18.132;18.133;63.813;36.000;19.098;20.046;19.978",none,JE-3000C KR troubleshooting row minimum heights in points
+lang_ko_idml_trouble_left_line_baseline,"1;1;1;1;1;1;1;1;1;1;1;1",none,JE-3000C KR troubleshooting left-cell source line baselines
+lang_ko_idml_trouble_right_line_baseline,"1;1;1;1;1;1;1;5;3;1;1;1",none,JE-3000C KR troubleshooting right-cell source line baselines
+lang_ko_idml_lcd_first_no_col_width,18.17,pt,JE-3000C KR first-segment number column width
+lang_ko_idml_lcd_first_icon_col_width,26.07,pt,JE-3000C KR first-segment icon column width
+lang_ko_idml_lcd_first_label_col_width,52.53,pt,JE-3000C KR first-segment label column width
+lang_ko_idml_lcd_first_visual_raise,16.47,pt,Raise the JE-3000C KR first LCD table over the hero asset bottom whitespace
+lang_ko_idml_lcd_continuation_no_col_width,19.22,pt,JE-3000C KR continuation number column width
+lang_ko_idml_lcd_continuation_icon_col_width,32.77,pt,JE-3000C KR continuation icon column width
+lang_ko_idml_lcd_continuation_label_col_width,62.68,pt,JE-3000C KR continuation label column width
+lang_ko_idml_lcd_continuation_page_top,30.55,pt,JE-3000C KR continuation table top
+lang_ko_idml_compact_spec_table_row_height,12.2,pt,JE-3000C KR compact specification ordinary row capacity
+lang_ko_idml_compact_spec_table_multiline_min_height,24.4,pt,JE-3000C KR compact specification two-line row capacity

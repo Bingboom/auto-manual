@@ -804,7 +804,12 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('TopEdgeStrokeColor="Color/HB Brand Dark"', table_story)
 
     def test_localized_troubleshooting_headers_use_shared_rounded_component(self) -> None:
-        for header in ("Code d'erreur", "Código de fallo", "Código de error"):
+        for header, language in (
+            ("Code d'erreur", "fr"),
+            ("Código de fallo", "es"),
+            ("Código de error", "es"),
+            ("오류 코드", "ko"),
+        ):
             writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
             ctx = RenderContext(
                 params=writer.params,
@@ -813,6 +818,7 @@ class IdmlVisualParityTests(unittest.TestCase):
                 m_r=writer.m_r,
                 root=ROOT,
                 bundle_root=ROOT / "docs",
+                language=language,
                 add_story=writer._add_story_parts,
             )
             render_table_block(

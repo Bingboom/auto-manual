@@ -168,6 +168,80 @@ class TestBuildDispatch(unittest.TestCase):
         plan_index = command.index("--assembly-plan")
         self.assertEqual(str(plan), command[plan_index + 1])
 
+    def test_idml_assembly_plan_resolves_one_target_from_shared_config(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.yaml"
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-1000F\n"
+                "  default_region: KR\n"
+                "paths:\n"
+                "  idml_assembly_plans:\n"
+                "    JE-3000C_KR: plans/je3000c.json\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual(
+                root / "plans" / "je3000c.json",
+                build_dispatch.resolve_idml_assembly_plan(
+                    config,
+                    repo_root=root,
+                    model="JE-3000C",
+                    region="KR",
+                ),
+            )
+            self.assertIsNone(
+                build_dispatch.resolve_idml_assembly_plan(
+                    config,
+                    repo_root=root,
+                    model="JE-2000E",
+                    region="KR",
+                )
+            )
+
+    def test_idml_assembly_plan_uses_shared_config_defaults(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.yaml"
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-3000C\n"
+                "  default_region: KR\n"
+                "paths:\n"
+                "  idml_assembly_plans:\n"
+                "    je-3000c_kr: plans/je3000c.json\n",
+                encoding="utf-8",
+            )
+
+            self.assertEqual(
+                root / "plans" / "je3000c.json",
+                build_dispatch.resolve_idml_assembly_plan(
+                    config,
+                    repo_root=root,
+                ),
+            )
+
+    def test_idml_assembly_plan_rejects_ambiguous_config_shapes(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.yaml"
+            config.write_text(
+                "paths:\n"
+                "  idml_assembly_plan: plans/default.json\n"
+                "  idml_assembly_plans:\n"
+                "    JE-3000C_KR: plans/je3000c.json\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(ValueError, "mutually exclusive"):
+                build_dispatch.resolve_idml_assembly_plan(
+                    config,
+                    repo_root=root,
+                    model="JE-3000C",
+                    region="KR",
+                )
+
     def test_dispatch_idml_forwards_configured_layout_token_layers(self) -> None:
         base = Path("data/layout_params.csv")
         overlay = Path("data/layout_params.idml-compact.csv")
@@ -205,6 +279,37 @@ class TestBuildDispatch(unittest.TestCase):
             )
 
         self.assertEqual((root / "data" / "compact.csv",), resolved)
+
+    def test_idml_layout_param_overlays_select_only_the_requested_target(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            config = root / "config.yaml"
+            config.write_text(
+                "build:\n"
+                "  default_model: JE-1000F\n"
+                "  default_region: KR\n"
+                "paths:\n"
+                "  idml_layout_params_overlays_by_target:\n"
+                "    JE-3000C_KR:\n"
+                "      - data/je3000c-kr.csv\n",
+                encoding="utf-8",
+            )
+
+            selected = build_dispatch.resolve_idml_layout_param_overlays(
+                config,
+                repo_root=root,
+                model="JE-3000C",
+                region="KR",
+            )
+            unselected = build_dispatch.resolve_idml_layout_param_overlays(
+                config,
+                repo_root=root,
+                model="JE-1000F",
+                region="KR",
+            )
+
+        self.assertEqual((root / "data" / "je3000c-kr.csv",), selected)
+        self.assertEqual((), unselected)
 
     def test_dispatch_idml_uses_single_configured_language(self) -> None:
         with patch.object(

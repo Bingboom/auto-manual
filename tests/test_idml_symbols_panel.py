@@ -13,9 +13,12 @@ from tools.idml import page03, shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from tools.idml.components.fcc_inbox_panel import FccInboxPanel
 from tools.idml.components.safety_symbols_panel import SafetySymbolsPanel
+from tools.idml.font_family import CJK_FONT_FAMILY_TOKEN
 from tools.idml.loaders import load_symbols_rows
+from tools.idml.layout_est import template_symbol_split
 from tools.idml.params import param_pt
 from tools.idml.symbols_page import SafetySymbolsPageStyle
+from tools.idml_rst_extract import extract_page
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -109,6 +112,51 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
 
 
 class SymbolsPanelTests(unittest.TestCase):
+    def test_je3000c_kr_source_preserves_the_reference_five_two_split(self) -> None:
+        source = (
+            ROOT
+            / "docs"
+            / "_review"
+            / "JE-3000C"
+            / "KR"
+            / "ko"
+            / "page"
+            / "symbols_ko.rst"
+        )
+        extracted = extract_page(source, {"latex", "idml"})
+        payload = next(
+            json.loads(value)
+            for kind, value in extracted.blocks
+            if kind == "data" and json.loads(value).get("kind") == "symbol_icons"
+        )
+
+        left, right, overflow_left, overflow_right = template_symbol_split(
+            payload["rows"]
+        )
+
+        self.assertEqual((5, 2, 0, 0), (
+            len(left),
+            len(right),
+            len(overflow_left),
+            len(overflow_right),
+        ))
+
+    def test_korean_signal_labels_use_the_governed_cjk_font(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, language="ko")
+
+        xml = symbols_page._localized_signal_label_bar(
+            writer,
+            "ko_signal",
+            "주의",
+            "ko",
+            signal_key="caution",
+        )
+
+        self.assertIn(CJK_FONT_FAMILY_TOKEN.name, xml)
+        self.assertIn("<Content>주의</Content>", xml)
+        self.assertIn('FontStyle="Bold"', xml)
+
     def test_three_language_visual_contract_matches_golden(self) -> None:
         expected = json.loads(GOLDEN.read_text(encoding="utf-8"))
         actual = json.loads(json.dumps({

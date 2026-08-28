@@ -97,6 +97,10 @@ DC 12V/USB 출력 켜기/끄기
 
 저전력 기기(AC ≤ |ENERGY_SAVING_AC_THRESHOLD| 또는 DC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|)에 전원을 공급할 때는 출력이 자동으로 꺼지는 것을 방지하려면 에너지 절약 모드를 비활성화하십시오.
 
+.. raw:: manual-ir
+
+   {"kind":"operation_panel_copy","layout":"energy_saving","mode_label":"켜기/끄기"}
+
 .. image:: asset:operation/energy_saving
    :alt: Energy saving mode key operation placeholder.
    :width: 320px

@@ -79,6 +79,20 @@ class CompositionPlanTests(unittest.TestCase):
         self.assertNotIn("je-1000f", registry_text)
         self.assertNotIn("jbp-2000b", registry_text)
 
+    def test_compact_target_packings_are_semantic_role_signatures(self) -> None:
+        self.assertEqual(
+            tuple(role.value for role in REGISTRY["preface_safety_maintenance"].source_roles),
+            ("preface", "safety", "maintenance"),
+        )
+        self.assertEqual(
+            tuple(role.value for role in REGISTRY["inbox_overview"].source_roles),
+            ("inbox", "product_overview"),
+        )
+        self.assertEqual(
+            tuple(role.value for role in REGISTRY["symbols"].source_roles),
+            ("symbols",),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

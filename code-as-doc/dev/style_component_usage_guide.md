@@ -159,6 +159,10 @@ InDesign 重排时重新露白。
   用途。
 - 同时检查字形、换行、行高、垂直居中、溢出和透明载体。
 - 新语言通过后，把它加入同一组件回归矩阵；不要创建语言专属 golden 逻辑。
+- 若同一 family config 服务多个型号，目标容量 token 必须放在独立 additive overlay，
+  并通过 `paths.idml_layout_params_overlays_by_target.<Document_Key>` 绑定。不要把
+  JE-3000C 的 `lang_ko_*` token 写进全局 `layout_params.csv`，也不要把该 overlay
+  作为整个 KR family 的无条件列表；两种做法都会让无关目标的冻结样式身份漂移。
 
 ### 5.3 新 density / variant
 
@@ -216,7 +220,7 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
 | 3 | 页面模板 | `docs/templates/page_<family>/{en,fr,es}/`：语义容器（`.. container:: warranty-*`）、`asset:KEY`、`{{snippet:}}`、`:widths: 12 88` callout | 判断；逐项过 §6 清单 |
 | 4 | 插图资产 | `data/asset_recipes/*.json`（经 `asset-textless-extraction` skill）→ 注册表登记，**全新键 `override_for` 留空** | 判断 + 操作者确认 |
 | 5 | **目标装配 JSON** | 先跑脚手架：`python -m tools.idml.target_assembly_scaffold --ir <build>/idml/manual.ir.json --physical-pages <N> --out .../<target>_v1_candidate.json`——机械字段（角色、组合、页序）自动生成且可直接 normalize，随产出的 `.todos.md` 只补判断项（variant / composition_data / flow_split / 打包合并）。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
-| 6 | 容量令牌 | `data/layout_params.idml-compact.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行 | 半机械测量；见 §5.2 |
+| 6 | 容量令牌 | `data/layout_params.idml-<target>.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行；共享 family config 用 `paths.idml_layout_params_overlays_by_target.<Document_Key>` 选择 | 半机械测量；见 §5.2 |
 | 7 | 构建 + 最终化 | `python build.py idml --config configs/config.<family>.yaml --model <M> --region <R> --idml-mode both --skip-root-index`；InDesign 最终化只碰载体；preflight 零 overset | 机械 |
 | 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门（**流程尚未成文**：`config.bp-us.yaml` 注释只说"经 approved registry 晋升"，加载器在 `production_eligible` 前 fail-closed） | 判断 |
 

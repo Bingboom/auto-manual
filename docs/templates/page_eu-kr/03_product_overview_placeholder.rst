@@ -1,4 +1,4 @@
-.. only:: latex
+.. only:: latex and not idml
 
    .. raw:: latex
 
@@ -17,7 +17,7 @@
       \HBOverviewPair{}{}{|SIDE_DC_INPUT_LABEL|}{|SIDE_DC_INPUT_PV_SPEC| \newline |SIDE_DC_INPUT_CAR_SPEC|}
       }
 
-.. only:: not latex
+.. only:: not latex or idml
 
    제품 개요
    ================

@@ -46,6 +46,12 @@ _VARIANTS_BY_LABEL = {
     "OBSERVACIONES": "note",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
+    "\uacbd\uace0": "warning",
+    "\uc704\ud5d8": "danger",
+    "\uc8fc\uc758": "caution",
+    "\ucc38\uace0": "note",
+    "\uc911\uc694": "note",
+    "\ud301": "tip",
 }
 
 

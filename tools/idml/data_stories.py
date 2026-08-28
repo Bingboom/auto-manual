@@ -18,6 +18,7 @@ from .components.native_marker import (
     marker_replacements,
     portable_symbol_text,
 )
+from .character_metrics import with_character_baseline_shift
 from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
 from .source_copy import source_text
@@ -62,12 +63,30 @@ def add_lcd_story(
         else "comp_lcd_translated_continuation_segment_rows",
         ("19", "count"),
     )[0]))
-    raw_segments = split_lcd_table_rows(
-        rows,
-        lang=lang,
-        first_segment_rows=first_limit,
-        continuation_segment_rows=continuation_limit,
-    )
+    semantic_breaks = [
+        index
+        for index, row in enumerate(rows)
+        if str(row.get("segment_start") or "").strip().casefold() == "true"
+    ]
+    if semantic_breaks:
+        # An approved target profile may declare a page boundary by source-row
+        # semantics.  Keep this in the assembly contract instead of encoding a
+        # product-specific row count in the shared renderer.
+        boundaries = [0, *semantic_breaks, len(rows)]
+        if boundaries != sorted(set(boundaries)) or semantic_breaks[0] == 0:
+            raise ValueError("LCD semantic segment boundaries must be ordered")
+        raw_segments = [
+            rows[start:end]
+            for start, end in zip(boundaries, boundaries[1:])
+            if start < end
+        ]
+    else:
+        raw_segments = split_lcd_table_rows(
+            rows,
+            lang=lang,
+            first_segment_rows=first_limit,
+            continuation_segment_rows=continuation_limit,
+        )
     text_indent = table_text_indent(writer.params)
     governed_icon_line_reserve = component_param_pt(
         writer.params,
@@ -229,7 +248,9 @@ def add_lcd_story(
                         0.0,
                     ),
                 )
-        elif row_heights is not None:
+        elif row_heights is not None and str(
+            segment[0].get("fill_continuation_to_page", "true")
+        ).strip().casefold() != "false":
             # Every continuation frame is a complete page-owned table.  Its
             # last row absorbs the exact remaining page depth so the rounded
             # table closes on the linked-frame bottom instead of leaving a
@@ -461,6 +482,17 @@ def add_lcd_story(
                 f'<ParagraphStyleRange LeftIndent="{left_indent:g}" ',
                 1,
             )
+        if segment_index == 0:
+            visual_raise = param_pt(
+                writer.params,
+                f"lang_{lang}_idml_lcd_first_visual_raise",
+                param_pt(writer.params, "idml_lcd_first_visual_raise", 0.0),
+            )
+            if visual_raise:
+                panel = with_character_baseline_shift(
+                    panel,
+                    shift=visual_raise,
+                )
         table_panels.append(panel)
     parts = [
         _po.h1_pill_paragraph(
@@ -634,6 +666,7 @@ def add_spec_story(
                 list(section["rows"]),
                 writer.params,
                 density="compact",
+                language=lang,
             )
             for section in sections
         )
@@ -788,7 +821,11 @@ def add_spec_story(
                 stroke_weight=0.75,
                 radius=6.8,
             )
-            table_default = default_table_before[si]
+            table_default = (
+                default_table_before[si]
+                if si < len(default_table_before)
+                else default_table_before[-1]
+            )
             table_before = param_pt(
                 writer.params,
                 (

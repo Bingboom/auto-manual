@@ -5,11 +5,13 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
-from . import composition_plan, ir_projection, shared_page
+from . import composition_plan, ir_projection, page_placed, shared_page
 from .loaders import normalize_lang
 
 SPECIAL_COMPOSITION_TYPES = frozenset({
+    "symbols",
     "safety_symbols",
+    "inbox_overview",
     "fcc_inbox_overview",
     "lcd_operations",
     "connections",
@@ -17,6 +19,10 @@ SPECIAL_COMPOSITION_TYPES = frozenset({
     "charging",
     "charging_storage",
     "storage_specifications",
+    "storage_troubleshooting",
+    "specifications",
+    "app",
+    "back_cover",
 })
 
 
@@ -54,6 +60,14 @@ class TargetAssemblyRenderer:
             if self.enabled and page_plan is not None
             else None
         )
+        self.toc_planned = (
+            not self.enabled
+            or plan is not None
+            and any(
+                composition.composition_type == "toc"
+                for composition in plan.compositions
+            )
+        )
         self.composition_by_ref = plan.by_source_ref() if plan is not None else {}
         self.plan_entry_by_ref = {
             str(entry.get("source_ref") or ""): entry
@@ -76,6 +90,7 @@ class TargetAssemblyRenderer:
         self.slug_stem = slug_stem
         self.handled_compositions: set[str] = set()
         self.routed_tail_blocks: dict[str, list[tuple[str, str]]] = {}
+        self.back_cover_added = False
 
     def _source_ref_for(self, page: Path) -> str:
         try:
@@ -116,7 +131,21 @@ class TargetAssemblyRenderer:
         ]
         skipped_raw = sum(item.skipped_raw for item in composition_pages)
         lang = normalize_lang(composition.language)
-        if composition.composition_type == "safety_symbols":
+        if composition.composition_type == "symbols":
+            symbol_data = self.symbol_data_for(lang)
+            if symbol_data is None:
+                raise ValueError(f"{composition.composition_id}: missing Symbols data")
+            self.toc.note(symbol_data.title, page_cursor, lang)
+            shared_page.add_symbols_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                symbol_data=symbol_data,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+            )
+            self.emitted.add(f"symbols:{lang}")
+        elif composition.composition_type == "safety_symbols":
             safety, _symbols = composition_pages
             symbol_data = self.symbol_data_for(lang)
             if symbol_data is None:
@@ -135,6 +164,29 @@ class TargetAssemblyRenderer:
                 language=lang,
             )
             self.emitted.add(f"symbols:{lang}")
+        elif composition.composition_type == "inbox_overview":
+            inbox, overview = composition_pages
+            for projected in composition_pages:
+                self.toc.note_h1s(list(projected.blocks), page_cursor)
+            inbox_data = self.plan_entry_by_ref[
+                composition.source_refs[0]
+            ].get("composition_data")
+            overview_data = self.plan_entry_by_ref[
+                composition.source_refs[1]
+            ].get("composition_data")
+            shared_page.add_inbox_overview_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                inbox_blocks=list(inbox.blocks),
+                overview_blocks=list(overview.blocks),
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+                composition_data={
+                    **(inbox_data if isinstance(inbox_data, dict) else {}),
+                    **(overview_data if isinstance(overview_data, dict) else {}),
+                },
+            )
         elif composition.composition_type == "fcc_inbox_overview":
             fcc, inbox, overview = composition_pages
             for projected in composition_pages:
@@ -286,6 +338,64 @@ class TargetAssemblyRenderer:
                 page_index=page_cursor,
                 language=lang,
             )
+        elif composition.composition_type == "app":
+            app_page = composition_pages[0]
+            app_blocks = list(app_page.blocks)
+            self.toc.note_h1s(app_blocks, page_cursor)
+            shared_page.add_app_composition(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                title=composition.composition_id,
+                blocks=app_blocks,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                page_count=composition.page_count,
+                language=lang,
+                page_plan=self.page_plan,
+                source_stem=Path(app_page.path).stem,
+            )
+        elif composition.composition_type == "storage_troubleshooting":
+            storage, trouble = composition_pages
+            trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
+            if trouble_data is None:
+                raise ValueError(
+                    f"{composition.composition_id}: missing Troubleshooting data"
+                )
+            if lang == self.output_lang:
+                self.trouble_rows[:] = list(trouble_data.rows)
+            self.toc.note_h1s(list(storage.blocks), page_cursor)
+            self.toc.note(trouble_data.title, page_cursor, lang)
+            shared_page.add_storage_troubleshooting_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                storage_blocks=list(storage.blocks),
+                trouble_sid="st_" + self.slug_stem(Path(trouble.path).stem),
+                trouble_title=Path(trouble.path).stem,
+                trouble_blocks=list(trouble.blocks),
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+            )
+            self.emitted.add(f"trouble:{lang}")
+        elif composition.composition_type == "specifications":
+            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+            if spec_data is None:
+                raise ValueError(
+                    f"{composition.composition_id}: missing Specifications data"
+                )
+            self.toc.note(spec_data.title, page_cursor, lang)
+            _spec_sid, rendered_sections = shared_page.add_specifications_page(
+                self.writer,
+                spec_data=spec_data,
+                page_index=page_cursor,
+                language=lang,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
+            )
+            if lang == self.output_lang:
+                self.spec_sections[:] = rendered_sections
+            self.emitted.add(f"spec:{lang}")
         elif composition.composition_type == "storage_specifications":
             storage, _spec = composition_pages
             storage_blocks = list(storage.blocks)
@@ -314,6 +424,20 @@ class TargetAssemblyRenderer:
             if lang == self.output_lang:
                 self.spec_sections[:] = grouped_sections
             self.emitted.add(f"spec:{lang}")
+        elif composition.composition_type == "back_cover":
+            self.back_cover_added = page_placed.add_preferred_back_cover_page(
+                self.writer,
+                self.writer.region,
+                lang,
+                self.root / "docs",
+                page_cursor,
+                ir_projection.back_cover_data(self.manual_ir),
+                reference_plan=self.page_plan,
+            )
+            if not self.back_cover_added:
+                raise ValueError(
+                    f"{composition.composition_id}: back cover was not rendered"
+                )
         return RenderDelta(
             page_count=composition.page_count,
             skipped_raw=skipped_raw,

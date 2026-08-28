@@ -1,7 +1,8 @@
 """Complete editable title, card, badge, and TIP panel for box contents."""
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+import math
 from pathlib import Path
 
 from tools.component_specs.inbox import inbox_spec_from_payload
@@ -25,7 +26,12 @@ from .fixed_panel_contract import (
     normalize_language,
 )
 from .fixed_panel_primitives import add_story, centered_psr, image_paragraph
-from .notice import notice_box_layout, source_notice_label
+from .notice import (
+    notice_body_xml,
+    notice_box_layout,
+    notice_label_xml,
+    source_notice_label,
+)
 
 
 TITLE_HEIGHT = 20.0
@@ -85,7 +91,12 @@ class InboxPanelData:
             title=title,
             has_inbox=inbox_spec is not None,
             items=items,
-            tip_spec=tip_spec if density == "standard" else None,
+            tip_spec=(
+                tip_spec
+                if density == "standard"
+                or bool((reference_profile or {}).get("include_tip"))
+                else None
+            ),
             reference_profile=dict(reference_profile or {}),
         )
 
@@ -143,23 +154,6 @@ def _card_story(
     return add_story(writer, sid, "Inbox card", parts)
 
 
-def _tip_label(
-    label: str,
-    *,
-    point_size: float,
-    leading: float,
-    baseline_shift: float,
-) -> str:
-    return centered_psr(
-        "HB Callout Label",
-        label.strip(),
-        character_attrs=(
-            f'PointSize="{point_size:g}" Leading="{leading:g}" '
-            f'FontStyle="Bold" BaselineShift="{baseline_shift:g}"'
-        ),
-    )
-
-
 class InboxPanel:
     """Own all internal Inbox geometry; callers assign only its rectangle."""
 
@@ -194,6 +188,15 @@ class InboxPanel:
         return ""
 
     def _metric(self, name: str, fallback: float) -> float:
+        governed = self.data.reference_profile.get(name)
+        if governed is not None:
+            if (
+                isinstance(governed, bool)
+                or not isinstance(governed, (int, float))
+                or not math.isfinite(float(governed))
+            ):
+                raise ValueError(f"inbox reference metric {name} must be finite")
+            return float(governed)
         key = f"idml_inbox_{self.profile}{name}"
         return param_pt(
             self.writer.params,
@@ -423,13 +426,28 @@ class InboxPanel:
             for text in self.data.tip_spec.get("texts", [])
             if str(text).strip()
         ]
-        body = "\n".join(texts)
         layout = notice_box_layout(
             self.writer.params,
             width,
             label,
             texts,
             variant=str(self.data.tip_spec.get("variant", "")),
+        )
+        label_width = self._metric("tip_label_width", layout.label_width)
+        if label_width <= layout.plate_left:
+            raise ValueError("inbox tip label width must exceed its left inset")
+        natural_height = max(
+            layout.body_leading * layout.lines + 2 * layout.pad_tb + 1.0,
+            layout.label_leading + 2 * layout.plate_left + 1.0,
+        )
+        layout = replace(
+            layout,
+            label_width=label_width,
+            plate_width=label_width - layout.plate_left,
+            panel_height=max(
+                natural_height,
+                self._metric("tip_height", layout.panel_height),
+            ),
         )
         baseline_title_y = self._baseline_title_y()
         tip_y = y + self._metric("tip_y", 458.0) - baseline_title_y
@@ -449,24 +467,18 @@ class InboxPanel:
         )
         label_sid = f"{self.sid}_tip_label"
         body_sid = f"{self.sid}_tip_body"
-        add_story(self.writer, label_sid, "Inbox tip label", [_tip_label(
+        add_story(self.writer, label_sid, "Inbox tip label", [notice_label_xml(
             label,
-            point_size=layout.label_size,
-            leading=layout.label_leading,
-            baseline_shift=layout.label_baseline_shift,
+            layout.label_size,
+            layout.label_leading,
+            layout.label_baseline_shift,
         )])
-        body_xml = self.writer._psr(
-            "HB Callout Body",
-            body,
-            terminal=True,
-        ).replace(
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="{layout.body_size:g}" '
-            f'Leading="{layout.body_leading:g}" FontStyle="Medium" '
-            f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
-            f'BaselineShift="{layout.body_baseline_shift:g}"',
-            1,
+        body_xml = notice_body_xml(
+            self.data.tip_spec,
+            layout.body_size,
+            layout.body_leading,
+            layout.body_horizontal_scale,
+            layout.body_baseline_shift,
         )
         add_story(self.writer, body_sid, "Inbox tip body", [body_xml])
         frames = [

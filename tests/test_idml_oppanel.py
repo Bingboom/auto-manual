@@ -9,6 +9,7 @@ import warnings
 from tools.idml_rst_extract import extract_page
 from tools.idml.oppanel import (
     parse_rows,
+    promote_operation_guidance_stack,
     promote_paired_operation_cards,
     transform,
 )
@@ -46,6 +47,12 @@ class ParseRowsTest(unittest.TestCase):
             ),
         )
 
+    def test_korean_status_labels(self) -> None:
+        self.assertEqual(
+            [("켜기", "한 번 누르기"), ("끄기", "한 번 누르기")],
+            parse_rows("**켜기**\n한 번 누르기\n**끄기**\n한 번 누르기"),
+        )
+
     def test_bold_field_after_two_rows_is_not_folded_into_off_instruction(self) -> None:
         self.assertEqual(
             [("Marche", "appuyez une fois."),
@@ -64,6 +71,52 @@ class ParseRowsTest(unittest.TestCase):
 
 
 class TransformTest(unittest.TestCase):
+    def test_guidance_stack_groups_complete_semantic_run(self) -> None:
+        panel = {
+            "kind": "oppanel",
+            "image": "asset:operation/dc_usb",
+            "rows": [["On", "Press once"], ["Off", "Press once"]],
+        }
+        first_notice = {
+            "kind": "notice",
+            "label": "CAUTION",
+            "variant": "caution",
+            "texts": ["First"],
+        }
+        second_notice = {
+            "kind": "notice",
+            "label": "CAUTION",
+            "variant": "caution",
+            "texts": ["Second"],
+        }
+        output = promote_operation_guidance_stack([
+            ("component", json.dumps(panel)),
+            ("component", json.dumps(first_notice)),
+            ("body", "Interstitial guidance."),
+            ("component", json.dumps(second_notice)),
+            ("h2", "Next section"),
+        ], require_match=True)
+
+        self.assertEqual(["component", "h2"], [kind for kind, _ in output])
+        spec = json.loads(output[0][1])
+        self.assertEqual("image_guidance_stack", spec["layout"])
+        self.assertEqual(
+            ["notice", "body", "notice"],
+            [item["kind"] for item in spec["guidance"]],
+        )
+        self.assertEqual("First", spec["guidance"][0]["spec"]["texts"][0])
+        self.assertEqual("Interstitial guidance.", spec["guidance"][1]["text"])
+        self.assertEqual("Second", spec["guidance"][2]["spec"]["texts"][0])
+
+    def test_guidance_stack_fails_closed_without_complete_structure(self) -> None:
+        blocks = [
+            ("component", json.dumps({"kind": "oppanel"})),
+            ("component", json.dumps({"kind": "notice"})),
+            ("body", "Missing the second notice."),
+        ]
+        with self.assertRaisesRegex(ValueError, r"oppanel \+ notice \+ body"):
+            promote_operation_guidance_stack(blocks, require_match=True)
+
     def test_declared_paired_cards_variant_promotes_structure_not_copy(self) -> None:
         blocks = [
             (
@@ -173,6 +226,25 @@ class TransformTest(unittest.TestCase):
         self.assertEqual("_assets/x/ac_output.png", spec["image"])
         self.assertTrue(spec["prereq"].startswith("Prerequisite"))
         self.assertEqual([["On", "Press once"], ["Off", "Press once"]], spec["rows"])
+
+    def test_korean_image_plus_rows_with_prereq_becomes_component(self) -> None:
+        blocks = [
+            ("h2", "AC 출력 켜기/끄기"),
+            ("body", "**사전 조건**: 제품의 전원이 켜져 있어야 합니다."),
+            ("image", "_assets/x/ac_output.png"),
+            ("body", "**켜기**\n한 번 누르기\n**끄기**\n한 번 누르기"),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(["h2", "component"], [kind for kind, _ in out])
+        spec = json.loads(out[1][1])
+        self.assertEqual("oppanel", spec["kind"])
+        self.assertTrue(spec["prereq"].startswith("사전 조건"))
+        self.assertEqual(
+            [["켜기", "한 번 누르기"], ["끄기", "한 번 누르기"]],
+            spec["rows"],
+        )
 
     def test_consolidated_operation_tail_returns_to_full_width_body(self) -> None:
         tail_lines = [
@@ -363,6 +435,32 @@ class TransformTest(unittest.TestCase):
         spec = json.loads(out[2][1])
         self.assertEqual("energy_saving", spec["layout"])
         self.assertEqual([guidance], spec["guidance"])
+
+    def test_explicit_energy_semantics_accept_target_owned_vector_art(self) -> None:
+        blocks = [
+            ("semantic", json.dumps({
+                "kind": "operation_panel_copy",
+                "layout": "energy_saving",
+                "mode_label": "켜기/끄기",
+            }, ensure_ascii=False)),
+            ("h2", "에너지 절약 모드"),
+            ("body", "소개 문구"),
+            ("body", "비활성화 안내"),
+            ("body", "저전력 안내"),
+            ("image", "renderers/latex/assets/target_energy_panel.pdf"),
+            ("body", "두 버튼을 동시에 3초 이상 길게 누르십시오."),
+        ]
+
+        out = transform(blocks)
+
+        self.assertEqual(
+            ["h2_operation_energy", "body_operation_energy_intro", "component"],
+            [kind for kind, _payload in out],
+        )
+        spec = json.loads(out[2][1])
+        self.assertEqual("energy_saving", spec["layout"])
+        self.assertEqual("켜기/끄기", spec["mode_label"])
+        self.assertEqual("3s", spec["duration"])
 
     def test_localized_led_sections_become_editable_panels(self) -> None:
         cases = (

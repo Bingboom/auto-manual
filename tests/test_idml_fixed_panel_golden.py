@@ -11,6 +11,7 @@ from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page
+from tools.idml.components.inbox_panel import InboxPanel, InboxPanelData
 from tools.idml.components.storage_panel import StoragePanel
 from tools.idml.data_stories import add_spec_story
 from tools.idml.shared_page import add_fcc_inbox_overview_page
@@ -304,6 +305,34 @@ def _storage_snapshot(language: str) -> dict[str, str]:
 
 
 class FixedPanelGoldenTests(unittest.TestCase):
+    def test_compact_inbox_profile_can_include_the_source_tip(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(params, language="en")
+        sid = "st_compact_tip_profile"
+        data = InboxPanelData.from_blocks(
+            _inbox_blocks("en"),
+            sid=sid,
+            language="en",
+            density="compact",
+            reference_profile={"include_tip": True, "tip_y": 300.0},
+        )
+
+        rendered = InboxPanel(
+            writer,
+            sid=sid,
+            data=data,
+            bundle_root=ROOT,
+            language="en",
+            density="compact",
+        ).render(x=28.0, y=28.0, width=312.0, available_height=165.0)
+
+        self.assertIn(f"{sid}_tip_label", rendered.story_ids)
+        self.assertIn(f"{sid}_tip_body", rendered.story_ids)
+        self.assertTrue(any(name == "tip_shell" for name, _ in rendered.contract.frame_rects))
+
     def test_fcc_inbox_tip_visual_contract_is_shared_by_language(self) -> None:
         expected = json.loads(GOLDEN.read_text(encoding="utf-8"))
         actual = {

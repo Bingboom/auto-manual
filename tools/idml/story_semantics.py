@@ -31,6 +31,19 @@ def image_role(
     return image_roles[index]
 
 
+def consume_image_role(
+    override: str | None,
+    image_roles: tuple[str, ...],
+    index: int,
+    *,
+    title: str,
+) -> tuple[str | None, int]:
+    """Consume one target override or the next ordered semantic image role."""
+    if override is not None:
+        return override, index
+    return image_role(image_roles, index, title=title), index + 1
+
+
 def require_all_image_roles(
     image_roles: tuple[str, ...],
     consumed: int,
@@ -45,4 +58,4 @@ def require_all_image_roles(
         )
 
 
-__all__ = ["image_role", "require_all_image_roles", "story_language"]
+__all__ = ["consume_image_role", "image_role", "require_all_image_roles", "story_language"]

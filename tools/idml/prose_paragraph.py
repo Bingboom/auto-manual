@@ -10,6 +10,7 @@ from .app_text_styles import (
     tab_list_properties,
 )
 from .components.native_marker import marked_text, marker_replacements
+from .params import param_pt
 
 
 def build_text_paragraph(
@@ -48,6 +49,10 @@ def build_text_paragraph(
     }:
         semantic_kind = "body"
     style = writer._PROSE_STYLE.get(semantic_kind, "HB Body")
+    if kind == "prefacetitle":
+        style = "HB Preface Title"
+    elif kind == "prefacebody":
+        style = "HB Preface Body"
     normalized_language = (page_language or "en").split("-", 1)[0].lower()
     density_key = f"lang_{normalized_language}_type_list_font_leading"
     if semantic_kind in {"list", "sublist"} and density_key in writer.params:
@@ -88,6 +93,17 @@ def build_text_paragraph(
         span_columns=(has_twocol_layout and not in_twocol and is_h2),
         inline_replacements=inline_replacements,
     )
+    if kind == "prefacetitle":
+        title_gap = param_pt(
+            writer.params,
+            "idml_preface_header_space_after",
+            5.56,
+        )
+        paragraph = paragraph.replace(
+            "<ParagraphStyleRange ",
+            f'<ParagraphStyleRange SpaceAfter="{title_gap:g}" ',
+            1,
+        )
     if marker_layout is not None:
         paragraph = apply_marker_metrics(paragraph, marker_layout)
         paragraph = paragraph.replace(

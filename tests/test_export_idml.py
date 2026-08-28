@@ -1388,6 +1388,28 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('SpaceBefore="-19"', story)
         self.assertIn('BaselineShift="36.68"', story)
 
+    def test_operation_key_heading_does_not_inherit_governed_raise_in_korean(
+        self,
+    ) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "idml_key_visual_raise": ("36.68", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_key_korean",
+            "05_operation_guide_placeholder",
+            [
+                ("h2", "버튼 조합"),
+                ("table", '[["Buttons", "Operation", "Function"]]'),
+            ],
+            ROOT,
+            language="ko",
+        )
+
+        story = dict(writer.stories)["st_operation_key_korean"]
+        self.assertNotIn('BaselineShift="36.68"', story)
+
     def test_operation_led_gap_returns_space_consumed_by_localized_copy(self) -> None:
         from tools.idml.oppanel import operation_story_rhythm
 
@@ -1591,6 +1613,161 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertNotIn(("h2", "AC WALL"), emitted[0][1])
         self.assertEqual(("h2", "AC WALL"), emitted[1][1][0])
         self.assertIn(("h2", "SOLAR"), emitted[1][1])
+
+    def test_target_prose_flow_applies_declared_internal_page_break(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("operation", [
+            ("h1", "Operation"),
+            ("h2", "Power"),
+            ("body", "Power body"),
+            ("h2", "AC"),
+            ("body", "AC body"),
+            ("h2", "DC"),
+            ("body", "DC body"),
+            ("h2", "Energy"),
+            ("body", "Energy body"),
+        ])
+        emitted: list[list[tuple[str, str]]] = []
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [{
+                "source_path": "page/operation.rst",
+                "composition_id": "operation",
+                "composition_data": {
+                    "page_breaks": [{"at_kind": "h2", "occurrence": 4}],
+                },
+            }],
+        }
+
+        flow.flush(
+            lambda _sid, _title, blocks, _columns: emitted.append(blocks),
+            lambda stem: stem,
+            plan,
+        )
+
+        energy = emitted[0].index(("h2", "Energy"))
+        self.assertEqual(("layout", "page_break"), emitted[0][energy - 1])
+
+    def test_target_preface_safety_maintenance_uses_shared_semantic_variants(
+        self,
+    ) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("00_preface", [
+            ("body", "한국어"),
+            ("body", "**중요**"),
+            ("body", "Preface body"),
+        ])
+        flow.add("safety_ko", [("h1", "Safety"), ("list", "• item")])
+        flow.add("01_user_maintenance_instructions", [
+            ("h2", "Maintenance"),
+            ("body", "Maintenance body"),
+        ])
+        emitted: list[list[tuple[str, str]]] = []
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [
+                {
+                    "source_path": f"page/{stem}.rst",
+                    "composition_id": "ko_preface_safety_maintenance",
+                    "composition_type": "preface_safety_maintenance",
+                }
+                for stem in (
+                    "00_preface",
+                    "safety_ko",
+                    "01_user_maintenance_instructions",
+                )
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, _title, blocks, _columns: emitted.append(blocks),
+            lambda stem: stem,
+            plan,
+        )
+
+        blocks = emitted[0]
+        self.assertEqual(("prefacetitle", "중요"), blocks[0])
+        self.assertEqual(("prefacebody", "Preface body"), blocks[1])
+        self.assertNotIn(("body", "한국어"), blocks)
+        maintenance = json.loads(blocks[-2][1])
+        self.assertEqual("emphasispill", maintenance["kind"])
+        self.assertEqual("full_width_subbar", maintenance["layout_variant"])
+
+    def test_target_prose_flow_routes_prefix_to_earlier_composition(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("charging", [("h1", "Charging"), ("body", "AC")])
+        flow.add("methods", [
+            ("h2", "Solar"),
+            ("body", "Solar intro"),
+            ("image", "solar.pdf"),
+            ("h2", "Car"),
+        ])
+        emitted: list[tuple[str, list[tuple[str, str]]]] = []
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [
+                {
+                    "source_path": "page/charging.rst",
+                    "composition_id": "charging",
+                },
+                {
+                    "source_path": "page/methods.rst",
+                    "composition_id": "methods",
+                    "flow_prefix": {
+                        "until_kind": "image",
+                        "occurrence": 1,
+                        "head_composition_id": "charging",
+                    },
+                },
+            ],
+        }
+
+        flow.flush(
+            lambda _sid, title, blocks, _columns: emitted.append((title, blocks)),
+            lambda stem: stem,
+            plan,
+        )
+
+        self.assertEqual(("h2", "Solar"), emitted[0][1][-2])
+        self.assertEqual(("body", "Solar intro"), emitted[0][1][-1])
+        self.assertEqual(("image", "solar.pdf"), emitted[1][1][0])
+
+    def test_target_asset_roles_drive_shared_image_geometry(self) -> None:
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("charging", [("image", "source.png")])
+        emitted: list[list[tuple[str, str]]] = []
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [{
+                "source_path": "page/charging.rst",
+                "composition_id": "charging",
+                "composition_data": {
+                    "assets": {
+                        "image_refs": ["target.pdf"],
+                        "image_roles": ["full_measure"],
+                    },
+                },
+            }],
+        }
+
+        flow.flush(
+            lambda _sid, _title, blocks, _columns: emitted.append(blocks),
+            lambda stem: stem,
+            plan,
+        )
+
+        self.assertEqual(
+            [("layout", "image_role:full_measure"), ("image", "target.pdf")],
+            emitted[0],
+        )
 
     def test_approved_charging_tail_is_promoted_after_flow_split(self) -> None:
         from tools.idml.prose_flow import ProseFlowBuffer
@@ -1882,6 +2059,44 @@ class ExportIdmlTests(unittest.TestCase):
                     ("layout", f"page_break:{expected_gaps[language]}"),
                     aligned,
                 )
+
+    def test_target_assembly_language_reaches_korean_operation_components(
+        self,
+    ) -> None:
+        from tools.idml.prose_flow import composition_language, operation_language
+
+        plan = {
+            "plan_source": "target-assembly",
+            "pages": [
+                {
+                    "source_path": "page/05_operation_guide_placeholder.rst",
+                    "language": "ko",
+                    "composition_id": "ko_operation",
+                    "composition_type": "operation",
+                },
+                {
+                    "source_path": "page/06_ups_mode.rst",
+                    "language": "ko",
+                    "composition_id": "ko_ups_charging",
+                    "composition_type": "ups_charging",
+                },
+                {
+                    "source_path": "page/charging.rst",
+                    "language": "ko",
+                    "composition_id": "ko_ups_charging",
+                    "composition_type": "ups_charging",
+                },
+            ],
+        }
+
+        self.assertEqual(
+            "ko",
+            operation_language([], plan, "05_operation_guide_placeholder"),
+        )
+        self.assertEqual(
+            "ko",
+            composition_language(plan, "06_ups_mode + charging"),
+        )
 
     def test_operation_page_break_gap_is_emitted_on_the_new_page_carrier(
         self,
@@ -2511,6 +2726,16 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(res.blocks[0], ("layout", "twocol_start"))
         self.assertEqual(res.blocks[2], ("layout", "twocol_end"))
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "warninglead")
+
+    def test_safety_single_column_latex_wrappers_are_lossless_noops(self) -> None:
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        res = ExtractResult()
+        _extract_raw_latex(r"\begin{safetysinglecol}", res)
+        _extract_raw_latex(r"\end{safetysinglecol}", res)
+
+        self.assertEqual([], res.blocks)
+        self.assertEqual(0, res.skipped_raw)
 
     def test_safety_lead_and_nested_lists_keep_their_source_semantics(self) -> None:
         from tools.idml_rst_extract import _parse_text
@@ -3172,6 +3397,24 @@ class ExportIdmlTests(unittest.TestCase):
         dense = template_symbol_split(icons, dense=True)
         self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
 
+    def test_template_icon_split_preserves_sparse_source_columns(self) -> None:
+        icons = [
+            {
+                "figure": f"{index}.png",
+                "text": str(index),
+                "source_column": "left" if index <= 4 else "right",
+                "source_continuation": False,
+            }
+            for index in range(1, 8)
+        ]
+
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+
+        self.assertEqual(["1", "2", "3", "4"], [row["text"] for row in left])
+        self.assertEqual(["5", "6", "7"], [row["text"] for row in right])
+        self.assertEqual([], overflow_left)
+        self.assertEqual([], overflow_right)
+
     def test_template_icon_split_recovers_semantic_columns_from_assets(self) -> None:
         icons = [
             {"figure": "10_warning_triangle_hash.png", "text": "warning"},
@@ -3387,20 +3630,57 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
         self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
         self.assertIn(
-            'PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"',
+            'PointSize="8" FontStyle="Bold" BaselineShift="2.63"',
             stories["st_fcc_inbox_tip_label"],
         )
         self.assertIn(
-            'PointSize="6.5" Leading="7.83" FontStyle="Medium" '
-            'HorizontalScale="106.9" BaselineShift="0.9"',
-            stories["st_fcc_inbox_tip_body"],
+            '<Leading type="unit">9</Leading>',
+            stories["st_fcc_inbox_tip_label"],
         )
+        tip_body_story = stories["st_fcc_inbox_tip_body"]
+        self.assertIn(
+            'PointSize="6.5" FontStyle="Medium" '
+            'HorizontalScale="106.9" BaselineShift="0.9"',
+            tip_body_story,
+        )
+        self.assertIn('<Leading type="unit">7.83</Leading>', tip_body_story)
         self.assertIn(
             "The car charging cable is sold separately.",
             stories["st_fcc_inbox_tip_body"],
         )
         for key in ("st_fcc_inbox_card_1", "st_fcc_inbox_tip_body"):
             self.assertNotIn("<Table", stories[key])
+
+    def test_inbox_tip_reuses_notice_body_serializer_for_korean(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        inbox = _strict_inbox_blocks(
+            "구성품",
+            labels=("본체", "AC 충전 케이블", "사용자 설명서"),
+            tip_label="팁",
+            tip_body="차량용 충전 케이블은 별도로 구매할 수 있습니다.",
+        )
+
+        w.add_fcc_inbox_page(
+            "st_ko_inbox",
+            [("component", json.dumps({
+                "kind": "fcc",
+                "texts": ["왼쪽", "오른쪽"],
+            }))],
+            inbox,
+            ROOT,
+            3,
+        )
+
+        story = dict(w.stories)["st_ko_inbox_tip_body"]
+        root = ET.fromstring(story)
+        self.assertNotIn('FontStyle="Medium" FontStyle="Regular"', story)
+        visible_text = "".join(
+            element.text or "" for element in root.iter("Content")
+        )
+        self.assertIn("차량용 충전 케이블", visible_text)
+        label_story = dict(w.stories)["st_ko_inbox_tip_label"]
+        self.assertIn("Arial Unicode MS", label_story)
 
     def test_fcc_inbox_page_prepends_native_symbol_continuation(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3828,6 +4108,12 @@ class ExportIdmlTests(unittest.TestCase):
             ("CONSEJOS", "tip"),
             ("ATTENTION", "caution"),
             ("PRECAUCIÓN", "caution"),
+            ("\uacbd\uace0", "warning"),
+            ("\uc704\ud5d8", "danger"),
+            ("\uc8fc\uc758", "caution"),
+            ("\ucc38\uace0", "note"),
+            ("\uc911\uc694", "note"),
+            ("\ud301", "tip"),
         ]
         for label, variant in cases:
             with self.subTest(label=label):
@@ -3853,6 +4139,18 @@ class ExportIdmlTests(unittest.TestCase):
                     data["texts"],
                     ["First localized item.", "Second localized item."],
                 )
+
+    def test_known_notice_label_cannot_fall_back_to_generic_table(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        text = """
+.. list-table::
+   :header-rows: 0
+
+   * - **주의**
+"""
+        with self.assertRaisesRegex(ValueError, "known notice label"):
+            _parse_text(text, {"latex"})
 
     def test_inline_strong_markup_becomes_bold_runs(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3964,6 +4262,31 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("st_anchor_lcd_table_en_1", stories)
         self.assertNotIn("st_anchor_lcd_table_en_2", stories)
         self.assertNotIn('<ParagraphStyleRange LeftIndent="5.2"', stories["st_lcd"])
+
+    def test_lcd_story_honors_target_declared_semantic_segment_start(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        rows = [
+            {
+                "no": str(index),
+                "figure": "",
+                "name": f"Indicator {index}",
+                "desc": f"Description {index}",
+                "segment_start": "true" if index == 9 else "false",
+            }
+            for index in range(1, 27)
+        ]
+        writer = IdmlWriter(params)
+        writer.add_lcd_story(
+            rows,
+            FIXTURE_DATA_ROOT,
+            lang="ko",
+            title="LCD 디스플레이",
+        )
+        stories = dict(writer.stories)
+
+        self.assertEqual(2, writer.lcd_segment_counts["ko"])
+        self.assertIn('BodyRowCount="8"', stories["st_anchor_lcd_table_ko_0"])
+        self.assertIn('BodyRowCount="18"', stories["st_anchor_lcd_table_ko_1"])
 
     def test_lcd_locale_default_precedes_foreign_generic_density_role(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

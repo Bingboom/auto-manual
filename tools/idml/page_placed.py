@@ -154,6 +154,59 @@ _JBP_US_BACK_COVER_PROFILE = {
 }
 
 
+def _add_qr_only_back_cover_page(
+    writer,
+    page_index: int,
+    profile: dict,
+    docs_dir: Path | None,
+) -> bool:
+    """Place target-owned QR art on an otherwise blank native back cover."""
+
+    if docs_dir is None:
+        raise ValueError("qr_only back cover requires a docs directory")
+    qr_asset = str(profile.get("qr_asset") or "").strip()
+    asset = docs_dir.parent / qr_asset
+    if not qr_asset or not asset.is_file():
+        raise ValueError(f"back-cover QR asset is missing: {asset}")
+    qr_rect = profile.get("qr_rect")
+    if not isinstance(qr_rect, list) or len(qr_rect) != 4:
+        raise ValueError("qr_only back cover requires qr_rect")
+    qr_x, qr_y, qr_w, qr_h = (float(value) for value in qr_rect)
+    x1, y1, x2, y2 = writer._page_rect(qr_x, qr_y, qr_w, qr_h)
+    frame = (
+        '  <Rectangle Self="rc_st_back_cover_qr_only" ContentType="GraphicType" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        'StrokeColor="Swatch/None" StrokeWeight="0" '
+        'ItemTransform="1 0 0 1 0 0">\n'
+        + writer._path_geometry(x1, y1, x2, y2)
+        + '    <Image Self="rc_st_back_cover_qr_only_img" '
+        f'ItemTransform="1 0 0 1 {x1:g} {y1:g}">\n'
+        '      <Link Self="rc_st_back_cover_qr_only_lnk" '
+        f'LinkResourceURI="{escape(asset.resolve().as_uri(), _ATTR)}"/>\n'
+        '    </Image>\n'
+        '    <FrameFittingOption FittingOnEmptyFrame="Proportionally" '
+        'FittingAlignment="CenterAnchor" AutoFit="true"/>\n'
+        '  </Rectangle>\n'
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        f'  <Page Self="{spread_id}_pg" Name="{page_index + 1}" '
+        'AppliedMaster="n" OverrideList="" TabOrder="" '
+        'GridStartingPoint="TopOutside" '
+        f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
+        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} '
+        f'{-writer.page_h / 2:g}"/>\n'
+        + frame
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return True
+
+
 def _add_legacy_back_cover_page(
     writer, region: str, page_index: int, copy: dict[str, str] | None = None,
 ) -> bool:
@@ -222,6 +275,13 @@ def add_back_cover_page(
     *, profile: dict | None = None, docs_dir: Path | None = None,
 ) -> bool:
     """Compose the template's back page: company block + contact bar."""
+    if profile is not None and profile.get("variant") == "qr_only":
+        return _add_qr_only_back_cover_page(
+            writer,
+            page_index,
+            profile,
+            docs_dir,
+        )
     if profile is None:
         return _add_legacy_back_cover_page(writer, region, page_index, copy)
     copy = copy or _BACK_COVER_COPY.get(region)

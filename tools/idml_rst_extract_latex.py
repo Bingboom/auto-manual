@@ -107,6 +107,14 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     if stripped_body == r"\end{safetytwocol}":
         result.blocks.append(("layout", "twocol_end"))
         return
+    if stripped_body in {
+        r"\begin{safetysinglecol}",
+        r"\end{safetysinglecol}",
+    }:
+        # IDML prose is single-column by default.  These LaTeX-only wrappers
+        # carry no content or geometry into the IDML adapter and are therefore
+        # an intentional no-op rather than an unclassified raw block.
+        return
     if "safetytwocol" in body:
         result.twocol = True
     # HBLcdModeTable environment: structured mode/action/description groups
@@ -235,4 +243,3 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 and not stripped.startswith("\\begin{safetytwocol}") \
                 and not stripped.startswith("\\end{safetytwocol}"):
             result.skipped_raw += 1
-

@@ -14,6 +14,28 @@ from .model import (
 )
 
 
+# A composition owns one physical page policy even when several semantic source
+# roles are assembled onto that page.  Keep only the non-standard composition
+# policies here; ordinary compositions continue to inherit their source role.
+_COMPOSITION_TEMPLATE_ROLES = {
+    "front_cover": PageTemplateRole.FRONT_COVER,
+    "preface": PageTemplateRole.NO_FOOTER,
+    # This compact composition is the first numbered content page in the KR
+    # reference.  Although one of its sources is the preface, the assembled
+    # physical page carries the standard footer/folio contract.
+    "preface_safety_maintenance": PageTemplateRole.STANDARD,
+    "toc": PageTemplateRole.TOC,
+    "back_cover": PageTemplateRole.BACK_COVER,
+}
+
+
+def page_template_role_for_composition_type(
+    composition_type: object,
+) -> PageTemplateRole | None:
+    normalized = str(composition_type or "").strip().casefold().replace("-", "_")
+    return _COMPOSITION_TEMPLATE_ROLES.get(normalized)
+
+
 def page_template_role_for_assembly_role(role: str) -> PageTemplateRole:
     normalized = str(role).strip().casefold().replace("_", "-")
     if normalized == "cover":
@@ -57,11 +79,13 @@ def _source_page(
             f"page-plan entry {ordinal} lacks approved physical mapping: {exc}"
         ) from exc
     assembly_role = str(entry.get("page_role") or "")
-    role = (
-        page_template_role_for_assembly_role(assembly_role)
-        if assembly_role
-        else page_template_role_for_source_ref(source_ref)
-    )
+    role = page_template_role_for_composition_type(entry.get("composition_type"))
+    if role is None:
+        role = (
+            page_template_role_for_assembly_role(assembly_role)
+            if assembly_role
+            else page_template_role_for_source_ref(source_ref)
+        )
     footer_policy, folio_policy = policies_for_role(role)
     extension_id = (
         assembly_role.split(":", 1)[1]

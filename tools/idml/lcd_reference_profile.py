@@ -26,6 +26,9 @@ def validate_lcd_reference_profile(profile: Any) -> list[str]:
     if not isinstance(presentation, list) or not presentation:
         return ["row_presentation must be a non-empty list"]
     issues: list[str] = []
+    fill_continuation = profile.get("fill_continuation_to_page", True)
+    if not isinstance(fill_continuation, bool):
+        issues.append("fill_continuation_to_page must be boolean")
     icon_sizes = profile.get("icon_size_pt_by_language")
     if icon_sizes is not None:
         if not isinstance(icon_sizes, dict) or not icon_sizes:
@@ -71,6 +74,13 @@ def validate_lcd_reference_profile(profile: Any) -> list[str]:
         suppress = entry.get("suppress_number", False)
         if not isinstance(suppress, bool):
             issues.append(f"{prefix}.suppress_number must be boolean")
+        segment_start = entry.get("segment_start", False)
+        if not isinstance(segment_start, bool):
+            issues.append(f"{prefix}.segment_start must be boolean")
+        elif index == 0 and segment_start:
+            issues.append(
+                f"{prefix}.segment_start cannot mark the first presentation row"
+            )
         typography_role = entry.get("typography_role")
         if typography_role is not None and (
             not isinstance(typography_role, str)
@@ -163,6 +173,10 @@ def apply_lcd_reference_profile(
         rendered["no"] = str(entry["display_no"]).strip()
         rendered["number_row_span"] = str(entry.get("number_row_span", 1))
         rendered["suppress_number"] = "true" if entry.get("suppress_number") else "false"
+        rendered["segment_start"] = "true" if entry.get("segment_start") else "false"
+        rendered["fill_continuation_to_page"] = (
+            "true" if profile.get("fill_continuation_to_page", True) else "false"
+        )
         rendered["typography_role"] = str(
             entry.get("typography_role") or "default"
         )

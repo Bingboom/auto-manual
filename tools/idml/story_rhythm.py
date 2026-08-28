@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 
 from .components.prose_table import body_data_table_kind
+from .language_contract import governed_languages
 from .oppanel import operation_story_rhythm
 from .params import param_pt
 
@@ -159,8 +160,9 @@ def operation_key_visual_raise(
     if _next_operation_heading(kind, next_block) != "key":
         return 0.0
     language = (page_language or "en").split("-", 1)[0]
-    return param_pt(
-        params,
-        f"lang_{language}_idml_key_visual_raise",
-        param_pt(params, "idml_key_visual_raise", 36.68),
-    )
+    locale_key = f"lang_{language}_idml_key_visual_raise"
+    if locale_key in params:
+        return param_pt(params, locale_key, 0.0)
+    if language not in governed_languages():
+        return 0.0
+    return param_pt(params, "idml_key_visual_raise", 36.68)

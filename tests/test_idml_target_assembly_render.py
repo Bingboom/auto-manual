@@ -10,6 +10,72 @@ from tools.idml.target_assembly_render import TargetAssemblyRenderer
 
 
 class TargetAssemblyRenderTests(unittest.TestCase):
+    def test_target_back_cover_is_rendered_once_by_its_composition(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        source_ref = "page/99_back_cover.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [{
+                "source_ref": source_ref,
+                "source_path": source_ref,
+                "language": "ko",
+                "page_role": "back_cover",
+                "composition_id": "back_cover",
+                "composition_type": "back_cover",
+                "latex_start_page": 1,
+                "planned_page_count": 1,
+            }],
+        }
+        projected_by_path = {
+            bundle_root / source_ref: ProjectedPage(
+                path=bundle_root / source_ref,
+                language="ko",
+                blocks=(("h1", "Back cover"),),
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(model="JE-3000C", region="KR"),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ko",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.page_placed."
+            "add_preferred_back_cover_page",
+            return_value=True,
+        ) as add_page, patch(
+            "tools.idml.target_assembly_render.ir_projection.back_cover_data",
+            return_value={"company": "JACKERY"},
+        ):
+            delta = renderer.render(
+                bundle_root / source_ref,
+                get_page_cursor=lambda: 17,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertIsNotNone(delta)
+        self.assertEqual(1, delta.page_count)
+        self.assertTrue(renderer.back_cover_added)
+        self.assertFalse(renderer.toc_planned)
+        self.assertEqual(17, add_page.call_args.args[4])
+
     def test_connections_passes_target_component_data_to_shared_compositor(
         self,
     ) -> None:

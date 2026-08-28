@@ -172,6 +172,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
             "en": "NOTES",
             "fr": "REMARQUES",
             "es": "OBSERVACIONES",
+            "ko": "\ucc38\uace0",
         }
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "rst"
@@ -345,6 +346,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
                             {
                                 "source_no": "27",
                                 "display_no": "22",
+                                "segment_start": True,
                                 "number_row_span": 2,
                                 "typography_role": "dense",
                                 "row_height_pt_by_language": {
@@ -385,6 +387,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(["22", "27"], [row["source_no"] for row in lcd.rows])
         self.assertEqual("2", lcd.rows[1]["number_row_span"])
         self.assertEqual("dense", lcd.rows[1]["typography_role"])
+        self.assertEqual("true", lcd.rows[1]["segment_start"])
         self.assertEqual("33.078", lcd.rows[0]["row_height_pt"])
         self.assertEqual("23.094", lcd.rows[1]["row_height_pt"])
         self.assertEqual(["14.2", "14.2"], [row["icon_size_pt"] for row in lcd.rows])

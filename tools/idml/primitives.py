@@ -5,6 +5,7 @@ import re
 from pathlib import Path
 from xml.sax.saxutils import escape
 
+from .asset_geometry import fitted_art_size
 from .spec_tables import spec_table_xml
 from .app_text_styles import APP_PROSE_STYLE
 from .inline_text import character_ranges, inline_role_range
@@ -190,18 +191,9 @@ def resolve_bundle_image(bundle_root: Path, ref: str) -> Path | None:
 
 def art_frame_size(img: Path, max_w: float = 120.0, *,
                    page_w: float, m_l: float, m_r: float) -> tuple[float, float]:
-    """Frame size honoring the image's real aspect ratio (Pillow when
-    available; 0.62 heuristic keeps working without it)."""
+    """Frame size honoring a raster or single-page PDF aspect ratio."""
     w_pt = min(max_w, page_w - m_l - m_r)
-    try:
-        from PIL import Image as _PILImage
-        with _PILImage.open(img) as im:
-            iw, ih = im.size
-        if iw > 0:
-            return w_pt, w_pt * ih / iw
-    except Exception:
-        pass
-    return w_pt, w_pt * 0.62
+    return fitted_art_size(img, w_pt)
 
 
 def cell(cid: str, name: str, content: str, *, fill: str | None = None,

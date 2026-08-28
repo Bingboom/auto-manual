@@ -184,6 +184,8 @@
         var substitutions = [];
         var mappings = [
             ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
+            ["Yu Gothic\tRegular", "Hiragino Kaku Gothic Pro\tW3"],
+            ["Yu Gothic\tRegular", "Apple Symbols\tRegular"],
             ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"]
         ];
         for (var mi = 0; mi < mappings.length; mi += 1) {

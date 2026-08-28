@@ -176,6 +176,23 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
                         story,
                     )
 
+    def test_compact_spec_rhythm_supports_more_than_three_sections(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        sections = [
+            {"title": f"SECTION {index}", "rows": [("Label", "Value")]}
+            for index in range(1, 5)
+        ]
+
+        sid = writer.add_spec_story(
+            sections,
+            lang="ko",
+            title="사양",
+            layout_variant="compact",
+        )
+
+        story = dict(writer.stories)[sid]
+        self.assertEqual(4, story.count("<Group Self=\"grp_st_anchor_spec_ko"))
+
     def test_spec_row_minima_and_multiline_growth_are_token_driven(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         params["idml_spec_table_row_height"] = ("12", "pt")
@@ -197,6 +214,31 @@ class IdmlSpecLocalizationTests(unittest.TestCase):
         )
         self.assertIn(
             'SingleRowHeight="20" MinimumHeight="20" AutoGrow="true"',
+            table,
+        )
+
+    def test_ko_compact_spec_uses_language_capacity_tokens(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-je3000c-kr.csv",),
+        )
+        writer = IdmlWriter(params)
+
+        writer.add_spec_story([{
+            "title": "입력 포트",
+            "rows": [
+                ("1 × AC 입력", "충전 모드"),
+                ("2 × DC8020 입력", "차량 입력\nPV 입력"),
+            ],
+        }], lang="ko", title="사양", layout_variant="compact")
+
+        table = dict(writer.stories)["st_anchor_spec_ko0"]
+        self.assertIn(
+            'SingleRowHeight="12.2" MinimumHeight="12.2" AutoGrow="false"',
+            table,
+        )
+        self.assertIn(
+            'SingleRowHeight="24.4" MinimumHeight="24.4" AutoGrow="false"',
             table,
         )
 

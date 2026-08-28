@@ -178,13 +178,19 @@ class KeyCombinationStyle:
                 owner="key_combinations",
             )
 
+        governed_by_contract = language in governed_languages()
+        explicit_locale = any(
+            f"lang_{language}_{key}" in ctx.params
+            for key in KEY_STYLE_LOCALE_TOKENS
+        )
+
         def localized(key: str, default: float) -> float:
             base = token(key, default)
-            if language not in {"fr", "es"}:
+            if not explicit_locale:
                 return base
             return token(f"lang_{language}_{key}", base)
 
-        governed = language in governed_languages()
+        governed = governed_by_contract or explicit_locale
         return cls(
             panel_width=token("idml_key_panel_width", 311.02),
             left_ratio=token(
@@ -289,9 +295,16 @@ def _language_code(language: str | None) -> str:
 
 
 def is_key_combinations_rows(raw_rows: list[list]) -> bool:
-    """Recognize the governed four button pairs without header-language coupling."""
+    """Recognize a non-empty governed prefix of the shared button-pair order.
+
+    Product manuals do not all expose the optional POWER + LED combination.
+    Requiring the complete four-row JE table made valid three-row targets fall
+    back to an unstyled generic table even though every visible pair already
+    mapped to the public editable component. The ordered prefix remains
+    fail-closed: missing, reordered, duplicated, or unknown pairs are rejected.
+    """
     if (
-        len(raw_rows) != 5
+        not 2 <= len(raw_rows) <= len(_BUTTON_PAIR_ORDER) + 1
         or any(len(row) != 3 for row in raw_rows)
         or any(not _plain(cell) for row in raw_rows for cell in row)
     ):
@@ -303,7 +316,7 @@ def is_key_combinations_rows(raw_rows: list[list]) -> bool:
             return False
         left, right = _split_button_labels(buttons)
         pairs.append((_button_kind(left), _button_kind(right)))
-    return tuple(pairs) == _BUTTON_PAIR_ORDER
+    return tuple(pairs) == _BUTTON_PAIR_ORDER[:len(pairs)]
 
 
 def _split_button_labels(text: object) -> tuple[str, str]:

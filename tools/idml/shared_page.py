@@ -19,6 +19,7 @@ from .components.prose_image import (
 )
 from .components.lcd_callout import add_lcd_callouts
 from .components.fcc_inbox_panel import FccInboxPanel, FccInboxPanelData
+from .components.inbox_panel import InboxPanel, InboxPanelData
 from .components.compact_safety_panel import (
     CompactSafetyPanel,
     CompactSafetyPanelData,
@@ -158,6 +159,48 @@ def add_safety_symbols_page(
         + '</Spread>\n</idPkg:Spread>\n'
     ))
     return safety_sid, symbol_sid
+
+
+def add_symbols_page(
+    writer,
+    *,
+    sid: str,
+    symbol_data,
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+) -> str:
+    """Place the complete shared Symbols panel on one physical page."""
+
+    lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    panel = SymbolsPanel(
+        writer,
+        sid=sid,
+        data=SymbolsPanelData.from_source(symbol_data),
+        bundle_root=bundle_root,
+        language=lang,
+        density="standard",
+    ).render(
+        x=writer.m_l,
+        y=page_top,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=writer.page_h - writer.m_b - page_top,
+    )
+    if panel.overflow.has_rows():
+        raise ValueError("standard SymbolsPanel cannot drop symbol rows")
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join(panel.frames)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return spread_id
 
 
 def add_lcd_operations_page(
@@ -410,6 +453,161 @@ def add_fcc_inbox_overview_page(
     return spread_id
 
 
+def add_inbox_overview_page(
+    writer,
+    *,
+    sid: str,
+    inbox_blocks: list[tuple[str, str]],
+    overview_blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+    composition_data: dict | None = None,
+) -> str:
+    """Compose the existing Inbox panel above the product overview."""
+
+    lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
+    panel_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    overview_top = param_pt(writer.params, "idml_compact_overview_top", 250.0)
+    panel = InboxPanel(
+        writer,
+        sid=sid,
+        data=InboxPanelData.from_blocks(
+            inbox_blocks,
+            sid=sid,
+            language=lang,
+            density="compact",
+            reference_profile=((composition_data or {}).get("inbox") or {}),
+        ),
+        bundle_root=bundle_root,
+        language=lang,
+        density="compact",
+    ).render(
+        x=FIXED_PANEL_X,
+        y=panel_top,
+        width=FIXED_PANEL_WIDTH,
+        available_height=overview_top - panel_top,
+    )
+    overview_options = ((composition_data or {}).get("overview") or {})
+    overview_frames = product_overview_frames(
+        writer,
+        f"{sid}_overview",
+        overview_blocks,
+        bundle_root,
+        instance_id=str(overview_options.get("instance_id") or "") or None,
+        asset_refs=overview_options.get("asset_refs"),
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join([*panel.frames, *overview_frames])
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return spread_id
+
+
+def add_app_composition(
+    writer,
+    *,
+    sid: str,
+    title: str,
+    blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    page_index: int,
+    page_count: int,
+    language: str,
+    page_plan: dict,
+    source_stem: str,
+) -> str:
+    """Render the shared App composition from target instance data."""
+
+    from .prose_flow import align_app_second_page, promote_reference_figures
+
+    prepared = oppanel.transform(list(blocks))
+    prepared = align_app_second_page(prepared, page_plan, source_stem)
+    prepared = promote_reference_figures(prepared, page_plan, source_stem)
+    writer.add_prose_story(
+        sid,
+        title,
+        prepared,
+        bundle_root,
+        language=language,
+        semantic_page_role="app",
+    )
+    page_top = param_pt(writer.params, "idml_app_page_top", 15.06)
+    bottom = writer.page_h - writer.m_b + param_pt(
+        writer.params,
+        "idml_app_page_extra_height",
+        48.0,
+    )
+    writer.add_story_frames(
+        sid,
+        [
+            (page_index + offset, page_top, bottom)
+            for offset in range(page_count)
+        ],
+    )
+    return sid
+
+
+def add_storage_troubleshooting_page(
+    writer,
+    *,
+    sid: str,
+    storage_blocks: list[tuple[str, str]],
+    trouble_sid: str,
+    trouble_title: str,
+    trouble_blocks: list[tuple[str, str]],
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+) -> tuple[str, str]:
+    """Compose Storage and complete Troubleshooting components on one page."""
+
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    split = param_pt(
+        writer.params,
+        "idml_compact_storage_trouble_split",
+        151.0,
+    )
+    panel = StoragePanel(
+        writer,
+        sid=sid,
+        data=StoragePanelData.from_blocks(storage_blocks),
+        bundle_root=bundle_root,
+        language=language,
+    ).render()
+    writer.add_prose_story(
+        trouble_sid,
+        trouble_title,
+        trouble_blocks,
+        bundle_root,
+        language=language,
+        disable_hyphenation=True,
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    writer.add_story_frames(panel.story_id, [(page_index, page_top, split)])
+    writer.add_story_frames(
+        trouble_sid,
+        [(page_index, split + 4.0, writer.page_h - writer.m_b + 12.0)],
+    )
+    return panel.story_id, trouble_sid
+
+
 def add_connection_tail_troubleshooting_page(
     writer,
     *,
@@ -604,6 +802,24 @@ def grouped_spec_sections(
     return grouped
 
 
+def ordered_spec_annotations(
+    annotations: list[str],
+    composition_data: dict | None,
+) -> list[str]:
+    """Apply target-declared semantic trailer order without changing geometry."""
+
+    options = dict((composition_data or {}).get("specifications") or {})
+    order = options.get("annotation_order")
+    if order is None:
+        return list(annotations)
+    indices = list(order)
+    if sorted(indices) != list(range(len(annotations))):
+        raise ValueError(
+            "specification annotation_order must cover each annotation once"
+        )
+    return [annotations[index] for index in indices]
+
+
 def add_storage_specifications_page(
     writer,
     *,
@@ -634,7 +850,7 @@ def add_storage_specifications_page(
     sections = grouped_spec_sections(list(spec_data.sections), composition_data)
     spec_sid = writer.add_spec_story(
         sections,
-        list(spec_data.annotations),
+        ordered_spec_annotations(list(spec_data.annotations), composition_data),
         lang=language,
         title=spec_data.title,
         layout_variant=str(options.get("layout_variant") or "reference"),
@@ -663,16 +879,61 @@ def add_storage_specifications_page(
     return panel.story_id, spec_sid, sections
 
 
+def add_specifications_page(
+    writer,
+    *,
+    spec_data,
+    page_index: int,
+    language: str,
+    composition_data: dict | None = None,
+) -> tuple[str, list[dict]]:
+    """Place the complete Specifications component on one physical page."""
+
+    options = dict((composition_data or {}).get("specifications") or {})
+    sections = grouped_spec_sections(list(spec_data.sections), composition_data)
+    spec_sid = writer.add_spec_story(
+        sections,
+        ordered_spec_annotations(list(spec_data.annotations), composition_data),
+        lang=language,
+        title=spec_data.title,
+        layout_variant=str(options.get("layout_variant") or "reference"),
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    bottom = writer.page_h - writer.m_b + param_pt(
+        writer.params,
+        "idml_compact_spec_frame_bottom_extra",
+        8.0,
+    )
+    writer.add_story_frames(spec_sid, [(page_index, page_top, bottom)])
+    return spec_sid, sections
+
+
 __all__ = (
+    "add_app_composition",
     "add_charging_page",
     "add_charging_storage_page",
     "add_connection_tail_troubleshooting_page",
     "add_connections_page",
     "add_fcc_inbox_overview_page",
+    "add_inbox_overview_page",
     "add_lcd_operations_page",
     "add_safety_symbols_page",
+    "add_specifications_page",
+    "add_storage_troubleshooting_page",
+    "add_symbols_page",
     "add_storage_specifications_page",
     "grouped_spec_sections",
+    "ordered_spec_annotations",
     "latex_start_page",
     "shares_latex_page",
 )

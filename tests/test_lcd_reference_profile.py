@@ -73,6 +73,48 @@ class LcdReferenceProfileTests(unittest.TestCase):
         }
         self.assertEqual([], validate_lcd_reference_profile(profile))
 
+    def test_validator_accepts_semantic_segment_start_after_first_row(self) -> None:
+        profile = {
+            "row_presentation": [
+                {"source_no": "1", "display_no": "1"},
+                {"source_no": "2", "display_no": "2", "segment_start": True},
+            ],
+        }
+
+        self.assertEqual([], validate_lcd_reference_profile(profile))
+        rendered = apply_lcd_reference_profile(
+            [{"source_no": "1", "no": "1"}, {"source_no": "2", "no": "2"}],
+            profile,
+            language="ko",
+        )
+        self.assertEqual("false", rendered[0]["segment_start"])
+        self.assertEqual("true", rendered[1]["segment_start"])
+
+    def test_validator_rejects_first_row_segment_start(self) -> None:
+        issues = validate_lcd_reference_profile({
+            "row_presentation": [
+                {"source_no": "1", "display_no": "1", "segment_start": True},
+            ],
+        })
+
+        self.assertTrue(any("first presentation row" in issue for issue in issues))
+
+    def test_apply_carries_target_continuation_fill_policy(self) -> None:
+        profile = {
+            "fill_continuation_to_page": False,
+            "row_presentation": [
+                {"source_no": "1", "display_no": "1"},
+            ],
+        }
+
+        rendered = apply_lcd_reference_profile(
+            [{"source_no": "1", "no": "1"}],
+            profile,
+            language="ko",
+        )
+
+        self.assertEqual("false", rendered[0]["fill_continuation_to_page"])
+
     def test_validator_rejects_invalid_row_heights(self) -> None:
         for heights in (
             {},

@@ -304,6 +304,39 @@ class EditableKeyCombinationTests(unittest.TestCase):
         self.assertFalse(is_key_combinations_rows(rows))
         self.assertIsNone(body_data_table_kind(rows))
 
+    def test_korean_three_pair_prefix_reuses_editable_component(self) -> None:
+        rows = [
+            ["버튼", "조작", "기능"],
+            [
+                "POWER 버튼 + AC 전원 버튼",
+                "3초 동안 동시에 길게 누르기",
+                "에너지 절약 모드 켜기/끄기",
+            ],
+            [
+                "POWER 버튼 + DC/USB 전원 버튼",
+                "3초 동안 동시에 길게 누르기",
+                "Wi-Fi 및 블루투스 재설정",
+            ],
+            [
+                "DC/USB 전원 버튼 + AC 전원 버튼",
+                "1초 동안 동시에 길게 누르기",
+                "Wi-Fi 및 블루투스 켜기/끄기",
+            ],
+        ]
+
+        self.assertTrue(is_key_combinations_rows(rows))
+        self.assertEqual("key_combinations", body_data_table_kind(rows))
+
+    def test_korean_non_prefix_pair_order_fails_closed(self) -> None:
+        rows = [
+            ["버튼", "조작", "기능"],
+            ["POWER 버튼 + AC 전원 버튼", "3초", "첫 번째"],
+            ["DC/USB 전원 버튼 + AC 전원 버튼", "1초", "세 번째"],
+        ]
+
+        self.assertFalse(is_key_combinations_rows(rows))
+        self.assertIsNone(body_data_table_kind(rows))
+
     def test_missing_any_governed_asset_falls_back_atomically(self) -> None:
         for missing in sorted(KEY_ASSETS):
             with self.subTest(missing=missing), tempfile.TemporaryDirectory() as tmp:
@@ -549,6 +582,30 @@ class EditableKeyCombinationTests(unittest.TestCase):
         self.assertIn(
             'PointSize="9"',
             en_stories["st_anchor_key_function_0_key_en"],
+        )
+
+    def test_explicit_korean_locale_tokens_activate_complete_component_geometry(
+        self,
+    ) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params.update({
+            "lang_ko_idml_key_panel_height": ("139.14", "pt"),
+            "lang_ko_idml_key_panel_left_indent": ("0.99", "pt"),
+            "lang_ko_idml_key_panel_space_before": ("16.53", "pt"),
+            "lang_ko_idml_key_visual_raise": ("0", "pt"),
+        })
+
+        xml, estimated_height, _stories = self._render("ko", params=params)
+        outline = _object_bounds(
+            xml,
+            "outline_group_st_anchor_key_key_ko",
+        )
+
+        self.assertAlmostEqual(139.14, outline[3] - outline[1], places=2)
+        self.assertAlmostEqual(139.14 + 16.53 + 3.4, estimated_height, places=2)
+        self.assertIn(
+            'FirstLineIndent="0.99" SpaceBefore="16.53"',
+            xml,
         )
 
     def test_narrow_measure_scales_the_complete_component_contract(self) -> None:

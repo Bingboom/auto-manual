@@ -313,6 +313,13 @@ approved contract. All 58 pages are compared at 300 dpi as fixed
 RGB MAD `≤ 0.008`, changed-pixel ratio `≤ 0.040`, and changed-channel threshold
 `16`. Any failing page fails the run; averages cannot hide it.
 
+When one family config serves several models, `build.py idml` selects a
+model/region-specific candidate assembly and layout-token overlay from
+`paths.idml_assembly_plans` and
+`paths.idml_layout_params_overlays_by_target`. Operators should keep using the
+normal model/region command; do not copy a shared config per model or move
+target-only calibration rows into the global layout-parameter file.
+
 For a multi-target design handoff, run
 `python tools/indesign_finalize.py --jobs <manifest.json>` with one explicit
 PDF preset, output intent, output condition, and PDF/X level on every job.

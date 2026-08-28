@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 import unittest
 from pathlib import Path
+import fitz
 
 from tools.idml.components import RenderContext
 from tools.idml.components.oppanel import (
@@ -90,6 +91,64 @@ def _item_translation(
 
 
 class ReferenceArtGeometryTests(unittest.TestCase):
+    def test_je3000c_main_power_uses_the_canonical_operation_canvas(self) -> None:
+        asset = (
+            ROOT
+            / "docs"
+            / "renderers"
+            / "latex"
+            / "assets"
+            / "je3000c_kr_operation_main_power.pdf"
+        )
+        with fitz.open(asset) as document:
+            page = document[0]
+            self.assertAlmostEqual(288.0, page.rect.width, delta=0.05)
+            self.assertAlmostEqual(112.5814, page.rect.height, delta=0.05)
+            self.assertAlmostEqual(1228 / 480, page.rect.width / page.rect.height, places=3)
+
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            add_story=add_story,
+        )
+        _xml, panel_height = render_oppanel(
+            {
+                "kind": "oppanel",
+                "image": asset.relative_to(ROOT).as_posix(),
+                "rows": [["켜기", "한 번 누르기"], ["끄기", "한 번 누르기"]],
+                "tail": "기본 대기 시간: 2시간\n제품이 자동으로 종료됩니다.\n앱에서 변경할 수 있습니다.",
+            },
+            ctx,
+            tid="je3000c_canvas",
+            terminal=True,
+        )
+        panel = stories["st_anchor_oppanel_je3000c_canvas"]
+        off = _item_bounds(panel, "tf_oppanel_row_1_je3000c_canvas")
+        tail = _item_bounds(panel, "tf_oppanel_tail_je3000c_canvas")
+
+        self.assertGreaterEqual(tail[1] - off[3], 10.0)
+        self.assertAlmostEqual(127.27, panel_height, delta=0.1)
+
+    def test_vector_operation_art_uses_pdf_page_ratio(self) -> None:
+        width, height = _ctx().art_frame_size(
+            ROOT / "docs/renderers/latex/assets/op_main_power.pdf",
+            max_w=294.9,
+        )
+
+        self.assertEqual(294.9, width)
+        self.assertAlmostEqual(115.1, height, places=1)
+
     def test_operation_row_overlays_use_role_specific_alignment(self) -> None:
         image_w = 294.9
         image_h = 160.0
@@ -414,6 +473,65 @@ class ReferenceArtGeometryTests(unittest.TestCase):
 
         self.assertGreaterEqual(_image_width(xml), ctx.text_measure * 0.94)
         self.assertGreater(height, 170.0)
+
+    def test_operation_guidance_stack_owns_one_outer_shell_and_editable_copy(
+        self,
+    ) -> None:
+        stories: dict[str, str] = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=base.bundle_root,
+            language="ko",
+            add_story=add_story,
+        )
+        notice = {
+            "kind": "notice",
+            "label": "주의",
+            "variant": "caution",
+            "texts": ["편집 가능한 주의 문구입니다."],
+            "list": True,
+        }
+        spec = {
+            "kind": "oppanel",
+            "layout": "image_guidance_stack",
+            "image": (
+                ROOT / "docs/renderers/latex/assets/op_dc_usb_output.png"
+            ).as_posix(),
+            "prereq": "사전 조건: 제품의 전원이 켜져 있어야 합니다.",
+            "rows": [["켜기", "한 번 누르기"], ["끄기", "한 번 누르기"]],
+            "guidance": [
+                {"kind": "notice", "spec": notice},
+                {"kind": "body", "text": "편집 가능한 중간 설명입니다."},
+                {"kind": "notice", "spec": notice},
+            ],
+        }
+
+        xml, height = render_oppanel(
+            spec,
+            ctx,
+            tid="guidance_stack",
+            terminal=False,
+        )
+
+        nested = stories["st_anchor_oppanel_guidance_stack"]
+        self.assertEqual(1, nested.count('Self="grp_oppanel_guidance_stack"'))
+        self.assertEqual(2, nested.count('<Group Self="grp_notice_'))
+        self.assertIn("st_anchor_oppanel_guidance_body_guidance_stack", stories)
+        rendered_copy = "".join(
+            re.findall(r"<Content>(.*?)</Content>", "\n".join(stories.values()))
+        )
+        self.assertIn("편집 가능한 중간 설명", rendered_copy)
+        self.assertGreater(height, 250.0)
 
     def test_operation_prerequisite_replaces_baked_pill_with_editable_stack(self) -> None:
         stories = []

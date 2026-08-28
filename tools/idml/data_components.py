@@ -48,7 +48,13 @@ def _text(value: str, *, preserve_strong: bool = False) -> str:
     value = re.sub(r"(?<!\\)%[^\n]*\n?", "", value)
     tilde_token = "\u0000HB_TILDE\u0000"
     value = value.replace(r"\textasciitilde{}", tilde_token)
-    value = value.replace(r"\HBSpecMarkerOne{}", "①")
+    spec_markers = (
+        "One", "Two", "Three", "Four", "Five",
+        "Six", "Seven", "Eight", "Nine", "Ten",
+    )
+    for index, name in enumerate(spec_markers, start=1):
+        value = value.replace(rf"\HBSpecMarker{name}{{}}", chr(0x245F + index))
+    value = value.replace(r"\HBSpecMarkerAsterisk{}", "*")
     value = value.replace(r"\HBSpecMultilineRowStrut{}", "")
     value = value.replace(r"\newline", "\n").replace(r"\par", "\n")
     value = value.replace(r"\textbullet", "•")
@@ -178,11 +184,22 @@ def _symbol_payload(body: str) -> dict[str, Any] | None:
             ]
             return {"kind": "symbol_signals", "headers": headers, "rows": rows}
         groups = args[2:]
-        rows = [
-            {"figure": figure.strip(), "text": _text(meaning)}
-            for group in groups
-            for figure, meaning in _calls(group, "HBSymbolIconRow", 2)
-        ]
+        # Preserve the source-authored visual columns. Flattening these
+        # groups made sparse symbol sets fall back to the JE/US 6+5 split
+        # even when the RST macro explicitly declared (for example) 4+3.
+        # Split macros carry the same left/right columns for their continuation
+        # page in arguments five and six.
+        rows = []
+        for group_index, group in enumerate(groups):
+            rows.extend(
+                {
+                    "figure": figure.strip(),
+                    "text": _text(meaning),
+                    "source_column": "left" if group_index % 2 == 0 else "right",
+                    "source_continuation": group_index >= 2,
+                }
+                for figure, meaning in _calls(group, "HBSymbolIconRow", 2)
+            )
         return {"kind": "symbol_icons", "headers": headers, "rows": rows}
     return None
 

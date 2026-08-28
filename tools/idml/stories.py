@@ -11,9 +11,8 @@ from .character_metrics import with_character_baseline_shift
 from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
 from .story_estimates import paragraph_estimate
 from .operation_stack import OperationStorySpacing
-from .story_parts import add_story_parts as _add_story_parts
-from .story_parts import add_text_story
-from .story_semantics import image_role, require_all_image_roles, story_language
+from .story_parts import add_story_parts as _add_story_parts, add_text_story
+from .story_semantics import consume_image_role, require_all_image_roles, story_language
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bundle_root: Path, *,
@@ -30,8 +29,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     is_preface = semantic_page_role == "preface" or (semantic_page_role is None and title == "00_preface")
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
-    in_twocol = False
-    next_h1_page_top: float | None = None
+    in_twocol, next_h1_page_top, next_image_role = False, None, None
     next_trouble_h1_language, next_storage_h1_language = None, None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
     page_language = story_language(blocks, language)
@@ -72,6 +70,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                 next_trouble_h1_language = text.split(":", 1)[1]
             elif text.startswith("storage_h1:"):
                 next_storage_h1_language = text.split(":", 1)[1]
+            elif text.startswith("image_role:"):
+                next_image_role = text.split(":", 1)[1]
             continue
         terminal = bi == last_idx
         if kind == "component":
@@ -110,8 +110,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             est += h
             continue
         if kind == "image":
-            role = image_role(image_roles, image_role_index, title=title)
-            image_role_index += 1
+            role, image_role_index = consume_image_role(next_image_role, image_roles, image_role_index, title=title)
+            next_image_role = None
             xml_part, h = _components.render_image_block(
                 text,
                 writer._render_context(bundle_root, language=page_language),

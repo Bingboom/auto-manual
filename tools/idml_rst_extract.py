@@ -256,6 +256,12 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                 if notice is not None:
                     result.blocks.append(("component", _json.dumps(notice, ensure_ascii=False)))
                 elif rows:
+                    first_cell = _clean_rst_text(rows[0][0]) if rows[0] else ""
+                    if notice_label_variant(first_cell) is not None:
+                        raise ValueError(
+                            "known notice label cannot fall back to a generic "
+                            f"table: {first_cell!r}"
+                        )
                     result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
                 else:
                     result.skipped_raw += 1

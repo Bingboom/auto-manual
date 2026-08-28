@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import unittest
 from pathlib import Path
+import xml.etree.ElementTree as ET
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml.components import RenderContext
@@ -138,6 +139,21 @@ JBP_EN_ROWS = [
 ]
 
 
+KO_ROWS = [
+    ["오류 코드", "조치 방법"],
+    *[[f"F{index}", "제품을 다시 시작하십시오."] for index in range(6)],
+    [
+        "F6",
+        "1. 첫 번째 단계.\n2. 두 번째 단계.\n3. 세 번째 단계.\n"
+        "4. 네 번째 단계.\n5. 다섯 번째 단계.",
+    ],
+    ["F7", "1. 첫 번째 단계.\n2. 두 번째 단계.\n3. 세 번째 단계."],
+    ["F8", "Jackery 고객 지원팀에 문의하십시오."],
+    ["F9", "연결된 장치를 제거하십시오."],
+    ["FE", "Jackery 고객 지원팀에 문의하십시오."],
+]
+
+
 class TroubleshootingTableContractTests(unittest.TestCase):
     def _render(
         self,
@@ -146,6 +162,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         strict: bool = False,
         params: dict[str, tuple[str, str]] | None = None,
         suffix: str = "localized",
+        language: str | None = None,
     ) -> tuple[str, str, float]:
         writer = IdmlWriter(
             params
@@ -159,6 +176,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
             m_r=writer.m_r,
             root=ROOT,
             bundle_root=ROOT / "docs",
+            language=language,
             add_story=writer._add_story_parts,
             strict_component_assets=strict,
         )
@@ -194,6 +212,27 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         self.assertIn("<Content>FE</Content>", story)
         self.assertIn('Anchor="0 -237.79"', xml)
         self.assertAlmostEqual(246.53, height, places=2)
+
+    def test_korean_table_uses_shared_rounded_component_and_measured_rows(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-je3000c-kr.csv",),
+        )
+        xml, story, height = self._render(
+            KO_ROWS,
+            suffix="ko",
+            language="ko",
+            params=params,
+        )
+
+        self.assertIn("<Content>오류</Content>", story)
+        self.assertIn("<Content>코드</Content>", story)
+        self.assertIn("<Content>FE</Content>", story)
+        self.assertIn('MinimumHeight="63.813" AutoGrow="true"', story)
+        self.assertIn('MinimumHeight="36" AutoGrow="true"', story)
+        self.assertIn('StoryTitle="troubleshooting table"', story)
+        self.assertGreater(height, 280.0)
+        ET.fromstring(story)
 
     def test_seven_row_table_reuses_rows_without_full_master_depth(self) -> None:
         short_rows = EN_ROWS[:8]

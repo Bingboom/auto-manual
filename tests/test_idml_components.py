@@ -655,6 +655,36 @@ class ComponentRegistryTests(unittest.TestCase):
         )[1].split("</TextFrame>", 1)[0]
         self.assertIn('Anchor="9.07087 -15.1524"', body_frame)
 
+    def test_warranty_section_height_counts_east_asian_glyph_width(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        context = RenderContext(
+            params=params,
+            page_w=368.79,
+            m_l=28.35,
+            m_r=28.35,
+            root=ROOT,
+            bundle_root=ROOT / "does-not-exist",
+        )
+
+        def height(text: str) -> float:
+            _xml, value = render(
+                {
+                    "kind": "warrantysection",
+                    "title": "Warranty",
+                    "index": 4,
+                    "blocks": [{"kind": "body", "text": text}],
+                },
+                context,
+                tid="warranty_unicode_width",
+                terminal=True,
+            )
+            return value
+
+        self.assertGreater(height("가" * 60), height("A" * 60))
+
     def test_bp_final_warranty_copy_is_vertically_centered(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render

@@ -1145,6 +1145,15 @@ keeps the approved source order, including review-owned TOC/back-cover pages.
 An explicit source selection is never rewritten. Targets without an approved
 plan retain the runtime default and historical fallback pagination.
 
+A shared family config may select candidate assemblies and additive IDML token
+layers by exact `Document_Key`. Use `paths.idml_assembly_plans.<MODEL_REGION>`
+and `paths.idml_layout_params_overlays_by_target.<MODEL_REGION>` when only one
+target in the family owns that physical composition or capacity calibration.
+The ordinary `build.py idml --model ... --region ...` entrypoint forwards both
+selections automatically. Keep target-only tokens out of the global
+`data/layout_params.csv`; otherwise approved targets that do not use the new
+composition still acquire an unrelated layout-token hash change.
+
 The flow artifacts remain generated handoff files, not a new content source.
 Registered components become editable objects, images become linked frames,
 and Markdown tables become native tables; raw serialized JSON must not become

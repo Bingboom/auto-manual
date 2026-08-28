@@ -12,6 +12,7 @@ from .character_metrics import (
     with_character_metrics,
 )
 from .layout_est import est_table_height
+from .inline_text import character_ranges
 from .params import IDPKG, component_param_pt, param_pt
 from .style_names import paragraph_style_ref
 
@@ -233,6 +234,27 @@ def _localized_signal_label_bar(
             f'BaselineShift="{content_raise:g}">'
             f'<Properties><Leading type="unit">{label_leading:g}</Leading></Properties>'
             f'<Content> {escape(label)}</Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n'
+        )
+    elif any(ord(char) > 127 for char in label):
+        label_ranges = "".join(character_ranges(
+            f" {label}",
+            bold=True,
+            superscript_markers=False,
+            replacements={},
+        ))
+        label_ranges = label_ranges.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            'FillColor="Color/Paper" '
+            f'BaselineShift="{content_raise:g}"',
+        ).replace('FontStyle="Regular"', 'FontStyle="Bold"')
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'FillColor="Color/Paper" BaselineShift="{content_raise:g}">'
+            f'{icon}</CharacterStyleRange>{label_ranges}\n'
             '  </ParagraphStyleRange>\n'
         )
     else:

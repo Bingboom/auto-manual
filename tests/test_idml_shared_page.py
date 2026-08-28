@@ -17,6 +17,7 @@ from tools.idml.shared_page import (
     add_lcd_operations_page,
     add_safety_symbols_page,
     add_storage_specifications_page,
+    ordered_spec_annotations,
     shares_latex_page,
 )
 
@@ -25,6 +26,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SharedPageTests(unittest.TestCase):
+    def test_spec_annotation_order_must_be_a_complete_permutation(self) -> None:
+        composition_data = {
+            "specifications": {"annotation_order": [1, 2, 0]},
+        }
+        self.assertEqual(
+            ["footnote 1", "footnote 2", "trademark note"],
+            ordered_spec_annotations(
+                ["trademark note", "footnote 1", "footnote 2"],
+                composition_data,
+            ),
+        )
+        with self.assertRaisesRegex(ValueError, "cover each annotation once"):
+            ordered_spec_annotations(
+                ["note", "footnote"],
+                {"specifications": {"annotation_order": [1]}},
+            )
+
     def test_connections_page_reuses_target_declared_order_and_image_role(
         self,
     ) -> None:

@@ -86,6 +86,11 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
         self.assertIn('["Segoe UI Symbol\\tRegular", "Apple Symbols\\tRegular"]', jsx)
+        self.assertIn(
+            '["Yu Gothic\\tRegular", "Hiragino Kaku Gothic Pro\\tW3"]',
+            jsx,
+        )
+        self.assertIn('["Yu Gothic\\tRegular", "Apple Symbols\\tRegular"]', jsx)
         self.assertIn('["Yu Gothic\\tRegular", "Arial Unicode MS\\tRegular"]', jsx)
         self.assertIn("font_substitutions", jsx)
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
