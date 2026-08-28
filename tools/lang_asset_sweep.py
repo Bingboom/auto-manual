@@ -11,6 +11,13 @@ than one language-asset source and reports substantive divergences ("forks"):
 - template headings, aligned position-by-position between the English page
   file and its sibling language file (page_eu-*/page_us-*/page_shared/<lang>).
 
+With ``--terminology`` the same run also cross-checks every stored target
+value against ``data/terminology_rules.csv`` — the rule table the build-time
+terminology gate uses.  The gate only sees built bundles, so a retired
+wording that still sits in the library stays invisible until it is rendered
+into some manual; this pass reads the library directly and reports the rows
+to fix, including ones already marked Approved.
+
 Also reports: TM rows sharing one English key with contradicting values,
 "shadow" duplicate rows (one filled / one empty, which make TM pre-translation
 miss silently), placeholder junk values (``test``/``TBD``) left in live
@@ -31,9 +38,16 @@ import json
 import os
 import re
 import subprocess
+import sys
 import unicodedata
 from collections import defaultdict
 from pathlib import Path
+
+_REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
+from tools.check_docs_terminology import load_rules, scan_text  # noqa: E402
 
 TM_SENTENCE_TABLE = "tblqtvNbgjDwR4ya"
 TM_TERMS_TABLE = "tblzerRpOEuDIkKA"
@@ -142,7 +156,7 @@ def lang_column_groups(columns: list[str]) -> dict[str, dict[str, str]]:
     return groups
 
 
-def collect_table_entries(base_token, table_id, name, entries, tm_rows_by_key):
+def collect_table_entries(base_token, table_id, name, entries, tm_rows_by_key, row_status=None):
     rows = lark_dump(base_token, table_id)
     if not rows:
         return 0
@@ -155,6 +169,8 @@ def collect_table_entries(base_token, table_id, name, entries, tm_rows_by_key):
             if len(en) < 2:
                 continue
             source = name if not gbase else f"{name}.{gbase}"
+            if row_status is not None:
+                row_status[(source, row["record_id"])] = flat_cell(row.get("Status"))
             if name == "TM句对" and not gbase and tm_rows_by_key is not None:
                 tm_rows_by_key[norm_key(en)].append(row)
             for lang, col in mapping.items():
@@ -211,6 +227,46 @@ def collect_template_entries(repo_root: Path, entries):
     return paired, skipped
 
 
+def collect_terminology_violations(
+    entries: list[tuple[str, str, str, str, str]],
+    *,
+    data_dir: Path,
+    row_status: dict[tuple[str, str], str],
+) -> list[dict[str, str]]:
+    """Report stored values that still carry a retired wording.
+
+    Template entries are skipped: the build-time gate already covers rendered
+    pages, and a template hit is the same finding reported twice.
+    """
+    rules_by_lang: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for rule in load_rules(data_dir):
+        rules_by_lang[rule["lang"]].append(rule)
+    if not rules_by_lang:
+        return []
+
+    findings: list[dict[str, str]] = []
+    for source, rid, en, lang, val in entries:
+        if source.startswith("模板:"):
+            continue
+        for rule in rules_by_lang.get(lang, ()):
+            hits = scan_text(val, rule)
+            if not hits:
+                continue
+            findings.append(
+                {
+                    "rule_id": rule["rule_id"],
+                    "lang": lang,
+                    "source": source,
+                    "record_id": rid,
+                    "status": row_status.get((source, rid), ""),
+                    "en": en,
+                    "value": val,
+                    "preferred": rule["preferred"],
+                }
+            )
+    return findings
+
+
 def suggest(variants: dict, evidence: dict) -> str:
     with_tpl = [v for v in variants if evidence.get(v, (0,))[0] > 0]
     if len(with_tpl) == 1:
@@ -225,6 +281,11 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", required=True, help="fork report Markdown path")
     ap.add_argument("--adjudication", help="optional adjudication checklist Markdown path")
+    ap.add_argument(
+        "--terminology",
+        action="store_true",
+        help="also cross-check stored values against data/terminology_rules.csv",
+    )
     ap.add_argument("--repo-root", default=str(Path(__file__).resolve().parents[1]))
     ap.add_argument("--tm-base-token", default=os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"))
     ap.add_argument("--doc-base-token", default=os.environ.get("FEISHU_PHASE2_BASE_TOKEN"))
@@ -235,11 +296,15 @@ def main() -> int:
 
     entries: list[tuple[str, str, str, str, str]] = []
     tm_rows_by_key: dict[str, list[dict]] = defaultdict(list)
+    row_status: dict[tuple[str, str], str] = {}
     stats: dict[str, int] = {}
-    stats["TM句对"] = collect_table_entries(args.tm_base_token, TM_SENTENCE_TABLE, "TM句对", entries, tm_rows_by_key)
-    stats["Terms"] = collect_table_entries(args.tm_base_token, TM_TERMS_TABLE, "Terms", entries, None)
+    stats["TM句对"] = collect_table_entries(
+        args.tm_base_token, TM_SENTENCE_TABLE, "TM句对", entries, tm_rows_by_key, row_status)
+    stats["Terms"] = collect_table_entries(
+        args.tm_base_token, TM_TERMS_TABLE, "Terms", entries, None, row_status)
     for table_id, name in DOC_TABLES:
-        stats[name] = collect_table_entries(args.doc_base_token, table_id, name, entries, None)
+        stats[name] = collect_table_entries(
+            args.doc_base_token, table_id, name, entries, None, row_status)
     paired, skipped = collect_template_entries(repo_root, entries)
 
     tpl_corpus = {
@@ -293,6 +358,14 @@ def main() -> int:
                 dup_shadow[lang].append((key, [r["record_id"] for r in rows]))
     dup_groups = sum(1 for rows in tm_rows_by_key.values() if len(rows) > 1)
 
+    term_violations = (
+        collect_terminology_violations(
+            entries, data_dir=repo_root / "data", row_status=row_status
+        )
+        if args.terminology
+        else []
+    )
+
     tm_keys = {norm_key(en) for s, _, en, _, _ in entries if s == "TM句对"}
     term_keys = {norm_key(en) for s, _, en, _, _ in entries if s == "Terms"}
     overlap = tm_keys & term_keys
@@ -311,6 +384,16 @@ def main() -> int:
         + ", ".join(f"{lg}:{len(v)}" for lg, v in sorted(dup_shadow.items())),
         f"- Terms 与 TM 英文键重叠:{len(overlap)} 个(重复维护面)",
         f"- 活表垃圾值(test/TBD 等):{len(junky)} 处",
+        (
+            f"- 库内废弃术语:**{len(term_violations)}** 处"
+            + (
+                f"(其中标记 Approved 的 {sum(1 for f in term_violations if f['status'] == 'Approved')} 处)"
+                if term_violations
+                else ""
+            )
+            if args.terminology
+            else "- 库内废弃术语:未检查(加 --terminology 开启)"
+        ),
         "",
         "## 实质分叉清单(按语言)",
         "",
@@ -363,6 +446,25 @@ def main() -> int:
     lines += ["", "## 轻微差异(样例≤30)", ""]
     for key, lang, variants in minors[:30]:
         lines.append(f"- [{lang}] {en_display[key][:60]} → " + " | ".join(f"`{v[:40]}`" for v in variants))
+    if args.terminology:
+        lines += ["", "## 库内废弃术语(与 terminology_rules.csv 交叉)", ""]
+        if term_violations:
+            lines += [
+                "构建期术语门只看构建产物;下面是**库里**仍在用废弃写法的记录——"
+                "它们不会报错,直到某本手册把它们渲染出来。",
+                "",
+                "| 规则 | 语言 | 状态 | 出处 | record_id | 现值 | 应为 |",
+                "|---|---|---|---|---|---|---|",
+            ]
+            for f in sorted(term_violations, key=lambda x: (x["lang"], x["rule_id"], x["source"])):
+                value = f["value"].replace("|", "\\|")[:60]
+                lines.append(
+                    f"| {f['rule_id']} | {f['lang']} | {f['status'] or '-'} | {f['source']} "
+                    f"| {f['record_id']} | `{value}` | {f['preferred'] or '-'} |"
+                )
+        else:
+            lines.append("未发现:所有存储值都符合当前规则表。")
+
     lines += ["", "## 垃圾值清单(活表里的 test/TBD 等占位残留)", ""]
     for key, lang, junk in junky:
         for v, occ in junk.items():
@@ -381,7 +483,8 @@ def main() -> int:
     print(
         f"forks={len(forks)} minors={len(minors)} dup_groups={dup_groups} "
         f"diverge={len(dup_diverge)} shadow={sum(len(v) for v in dup_shadow.values())} "
-        f"overlap={len(overlap)} junk={len(junky)}"
+        f"overlap={len(overlap)} junk={len(junky)} "
+        f"terminology={len(term_violations) if args.terminology else 'skipped'}"
     )
     return 0
 
