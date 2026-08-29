@@ -58,7 +58,7 @@ class IdmlWriter:
         return _styles.graphic_xml(self.params)
 
     def fonts_xml(self) -> str:
-        return _styles.fonts_xml()
+        return _styles.fonts_xml(self.language)
 
     def preferences_xml(self) -> str:
         return _styles.preferences_xml(page_w=self.page_w, page_h=self.page_h,

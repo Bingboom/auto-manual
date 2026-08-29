@@ -28,7 +28,7 @@ from urllib.parse import unquote, urlparse
 from xml.sax.saxutils import escape, unescape
 
 from .check import check_idml
-from .font_family import IDML_FONT_FAMILY_TOKENS
+from .font_family import DELIVERY_FONT_FAMILY_TOKENS
 
 _LINK_URI_RE = re.compile(r'LinkResourceURI="([^"]*)"')
 _ATTR_ENTITIES = {'"': "&quot;"}
@@ -39,7 +39,7 @@ _FONT_EXTENSIONS = {".otf", ".ttf", ".ttc"}
 # symbol fallbacks). None are redistributable from this repo: Gilroy is a
 # commercial license, the others are system fonts.
 _FONT_ROWS = (
-    *(token.delivery_row for token in IDML_FONT_FAMILY_TOKENS),
+    *(token.delivery_row for token in DELIVERY_FONT_FAMILY_TOKENS),
 )
 
 

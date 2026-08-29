@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 from .font_family import (
-    IDML_FONT_FAMILY_TOKENS,
     PRIMARY_FONT_FAMILY_TOKEN,
     IdmlFontFamilyToken,
+    font_family_tokens,
 )
 from .params import IDPKG, brand_cmyk
 
@@ -51,9 +51,9 @@ def _font_family_xml(token: IdmlFontFamilyToken) -> str:
     )
 
 
-def fonts_xml() -> str:
+def fonts_xml(language: str | None = None) -> str:
     families = "\n".join(
-        _font_family_xml(token) for token in IDML_FONT_FAMILY_TOKENS
+        _font_family_xml(token) for token in font_family_tokens(language)
     )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

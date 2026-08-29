@@ -6,6 +6,7 @@ from xml.sax.saxutils import escape
 from .font_family import (
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
+    KOREAN_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
 )
 
@@ -35,28 +36,37 @@ SPEC_SUPERSCRIPT_MARKERS = frozenset(
 # silently routed to a CJK text font.  Width-aware line estimation is a
 # separate Stage 5 contract.
 _CJK_CODEPOINT_RANGES = (
-    (0x1100, 0x11FF),   # Hangul Jamo
     (0x2E80, 0x2FFF),   # CJK radicals + ideographic description characters
     (0x3000, 0x303F),   # CJK symbols and punctuation
     (0x3040, 0x30FF),   # Hiragana + Katakana
     (0x3100, 0x312F),   # Bopomofo
-    (0x3130, 0x318F),   # Hangul compatibility Jamo
     (0x31A0, 0x31BF),   # Bopomofo extended
     (0x31C0, 0x31EF),   # CJK strokes
     (0x31F0, 0x31FF),   # Katakana phonetic extensions
     (0x3200, 0x33FF),   # Enclosed CJK letters/months and compatibility units
     (0x3400, 0x4DBF),   # CJK unified ideographs extension A
     (0x4E00, 0x9FFF),   # CJK unified ideographs
-    (0xA960, 0xA97F),   # Hangul Jamo extended A
-    (0xAC00, 0xD7AF),   # Hangul syllables
-    (0xD7B0, 0xD7FF),   # Hangul Jamo extended B
     (0xF900, 0xFAFF),   # CJK compatibility ideographs
     (0xFE10, 0xFE1F),   # Vertical punctuation forms
     (0xFE30, 0xFE4F),   # CJK compatibility forms
-    (0xFF01, 0xFFEF),   # Fullwidth forms, halfwidth Katakana/Hangul
+    (0xFF01, 0xFF9F),   # Fullwidth forms + halfwidth Katakana
+    (0xFFE0, 0xFFEF),   # Fullwidth signs
     (0x1B000, 0x1B16F), # Kana supplements and small Kana extension
     (0x20000, 0x2FA1F), # CJK extensions B-F + compatibility supplement
     (0x30000, 0x323AF), # CJK extensions G-H
+)
+
+# Hangul routes to the governed Korean text face, not the CJK symbol
+# fallback: Korean body type is a typographic choice (font_family.py), and
+# Korean prose otherwise uses Western punctuation, so splitting by script
+# block keeps ja/zh output byte-identical.
+_HANGUL_CODEPOINT_RANGES = (
+    (0x1100, 0x11FF),   # Hangul Jamo
+    (0x3130, 0x318F),   # Hangul compatibility Jamo
+    (0xA960, 0xA97F),   # Hangul Jamo extended A
+    (0xAC00, 0xD7AF),   # Hangul syllables
+    (0xD7B0, 0xD7FF),   # Hangul Jamo extended B
+    (0xFFA0, 0xFFDC),   # Halfwidth Hangul variants
 )
 
 
@@ -65,10 +75,19 @@ def _is_cjk_character(character: str) -> bool:
     return any(start <= codepoint <= end for start, end in _CJK_CODEPOINT_RANGES)
 
 
+def _is_hangul_character(character: str) -> bool:
+    codepoint = ord(character)
+    return any(
+        start <= codepoint <= end for start, end in _HANGUL_CODEPOINT_RANGES
+    )
+
+
 def _fallback_font(character: str) -> str | None:
     symbol_font = SYMBOL_FONT_FALLBACKS.get(character)
     if symbol_font is not None:
         return symbol_font
+    if _is_hangul_character(character):
+        return KOREAN_FONT_FAMILY_TOKEN.name
     if _is_cjk_character(character):
         return CJK_FONT_FAMILY_TOKEN.name
     return None

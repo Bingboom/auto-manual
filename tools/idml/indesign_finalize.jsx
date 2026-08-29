@@ -184,7 +184,8 @@
         var substitutions = [];
         var mappings = [
             ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"]
+            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"],
+            ["Noto Sans KR\tRegular", "Arial Unicode MS\tRegular"]
         ];
         for (var mi = 0; mi < mappings.length; mi += 1) {
             var result = substituteMissingFont(doc, mappings[mi][0], mappings[mi][1]);
