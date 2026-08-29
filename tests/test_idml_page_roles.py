@@ -36,6 +36,7 @@ class IdmlPageRoleTests(unittest.TestCase):
             "12_app_setup_placeholder.rst": PageRole.APP_SETUP,
             "99_back_cover.rst": PageRole.BACK_COVER,
             "cover_jp.rst": PageRole.COVER,
+            "cover_je3000c-ko.rst": PageRole.COVER,
             "safety_pt-BR.rst": PageRole.SAFETY,
             "spec_zh.rst": PageRole.SPEC,
             "specifications_en.rst": PageRole.SPEC,
@@ -119,6 +120,7 @@ class IdmlPageRoleTests(unittest.TestCase):
 
     def test_stable_slot_prefixes_do_not_capture_unknown_pages(self) -> None:
         for name in (
+            "cover_notes_ko.rst",
             "box_contents_notes.rst",
             "charging_notes.rst",
             "connections_notes.rst",

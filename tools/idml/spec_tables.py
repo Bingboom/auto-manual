@@ -17,24 +17,46 @@ def spec_table_row_heights(
     params: dict[str, tuple[str, str]],
     *,
     density: str,
+    language: str | None = None,
 ) -> list[float]:
     """Return component-owned row heights for one specification table."""
 
     if density not in {"reference", "compact"}:
         raise ValueError(f"unsupported specification-table density: {density}")
     compact = density == "compact"
+    language_key = (
+        (language or "").strip().casefold().replace("_", "-").split("-", 1)[0]
+    )
+    row_height_key = (
+        "idml_compact_spec_table_row_height" if compact
+        else "idml_spec_table_row_height"
+    )
+    multiline_height_key = (
+        "idml_compact_spec_table_multiline_min_height" if compact
+        else "comp_spec_table_multiline_min_height"
+    )
     row_height = param_pt(
         params,
-        "idml_compact_spec_table_row_height" if compact
-        else "idml_spec_table_row_height",
+        row_height_key,
         10.3,
     )
+    if language_key:
+        row_height = param_pt(
+            params,
+            f"lang_{language_key}_{row_height_key}",
+            row_height,
+        )
     multiline_height = param_pt(
         params,
-        "idml_compact_spec_table_multiline_min_height" if compact
-        else "comp_spec_table_multiline_min_height",
+        multiline_height_key,
         13.0 if compact else 15.0,
     )
+    if language_key:
+        multiline_height = param_pt(
+            params,
+            f"lang_{language_key}_{multiline_height_key}",
+            multiline_height,
+        )
     return [
         max(row_height, multiline_height)
         if "\n" in str(label) or "\n" in str(value)
@@ -48,10 +70,16 @@ def spec_table_height(
     params: dict[str, tuple[str, str]],
     *,
     density: str,
+    language: str | None = None,
 ) -> float:
     """Return the visible shell height owned by the table's rows."""
 
-    return sum(spec_table_row_heights(rows, params, density=density))
+    return sum(spec_table_row_heights(
+        rows,
+        params,
+        density=density,
+        language=language,
+    ))
 
 
 def spec_table_xml(
@@ -206,6 +234,7 @@ def spec_table_xml(
         rows,
         params,
         density=density,
+        language=language,
     )
     row_xml = "\n".join(
         f'    <Row Self="{tid}r{ri}" Name="{ri}" '

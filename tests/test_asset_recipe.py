@@ -408,6 +408,37 @@ class TestAssetRecipe(unittest.TestCase):
             ["crop", "redact_text"], [item.op for item in solar.transforms]
         )
 
+    def test_je3000c_eu_uk_overview_recipe_is_pinned(self) -> None:
+        recipe = load_recipe(
+            ROOT
+            / "data"
+            / "asset_recipes"
+            / "manual_je3000c_eu_uk_overview.json"
+        )
+
+        self.assertEqual(19, len(recipe.page_catalog))
+        self.assertEqual(
+            "c7a43b6e77003c3e5e4bd772ea7a8df7c0938c9992b494b045e54970e0c00557",
+            recipe.source.expected_sha256,
+        )
+        self.assertEqual(1, len(recipe.assets))
+        asset = recipe.assets[0]
+        self.assertEqual("overview/je3000c_kr/right_art", asset.asset_key)
+        self.assertEqual(("JE-3000C",), asset.scope.models)
+        self.assertEqual(("KR",), asset.scope.regions)
+        self.assertEqual("approved", asset.gate.status)
+        self.assertEqual(
+            ["crop", "retain_vector_drawings"],
+            [item.op for item in asset.transforms],
+        )
+        retained = asset.transforms[1]
+        self.assertEqual(tuple(range(372, 392)), retained.drawing_indices)
+        self.assertEqual((373,), retained.stroke_suppressed_indices)
+        self.assertEqual(
+            "ad9c45dd8b7fc3de49f849fbcbac89e9d3ba4be0e4a2ca896fb7cddd05645936",
+            asset.outputs[0].expected_sha256,
+        )
+
     def test_battery_pack_box_and_lcd_recipe_matches_operator_choice(self) -> None:
         recipe = load_recipe(
             ROOT
@@ -590,6 +621,71 @@ class TestAssetRecipe(unittest.TestCase):
                 with self.assertRaises(Exception):
                     _transform(
                         {"op": "drop_leader_strokes", "halo_width_pt": bad}, "t"
+                    )
+
+    def test_retain_vector_drawings_round_trips(self) -> None:
+        spec = _transform(
+            {
+                "op": "retain_vector_drawings",
+                "drawing_indices": [0, 2, 5],
+                "fill_rgb_overrides": {"0": [244 / 255, 244 / 255, 244 / 255]},
+                "stroke_suppressed_indices": [2],
+            },
+            "t",
+        )
+
+        self.assertEqual((0, 2, 5), spec.drawing_indices)
+        self.assertEqual(0, spec.fill_rgb_overrides[0][0])
+        self.assertEqual((2,), spec.stroke_suppressed_indices)
+        self.assertEqual(
+            [0, 2, 5],
+            spec.as_manifest()["drawing_indices"],
+        )
+
+    def test_retain_vector_drawings_rejects_ambiguous_indices(self) -> None:
+        for indices in ([], [1, 1], [2, 1], [-1], [True]):
+            with self.subTest(indices=indices):
+                with self.assertRaises(Exception):
+                    _transform(
+                        {
+                            "op": "retain_vector_drawings",
+                            "drawing_indices": indices,
+                            "fill_rgb_overrides": {},
+                            "stroke_suppressed_indices": [],
+                        },
+                        "t",
+                    )
+
+    def test_retain_vector_drawings_is_exclusive_after_crop(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["transforms"] = [  # type: ignore[index]
+            {"op": "crop", "bbox_pt": [10, 10, 110, 100]},
+            {
+                "op": "retain_vector_drawings",
+                "drawing_indices": [0],
+                "fill_rgb_overrides": {},
+                "stroke_suppressed_indices": [],
+            },
+            {"op": "whiteout", "bbox_pt": [80, 70, 100, 90]},
+        ]
+
+        with self.assertRaisesRegex(
+            RecipeValidationError,
+            "retain_vector_drawings must be the only transform after crop",
+        ):
+            self._load(payload)
+
+        for suppressed in ([1, 1], [2, 1], [5], [-1], [True]):
+            with self.subTest(suppressed=suppressed):
+                with self.assertRaises(Exception):
+                    _transform(
+                        {
+                            "op": "retain_vector_drawings",
+                            "drawing_indices": [0, 1, 2],
+                            "fill_rgb_overrides": {},
+                            "stroke_suppressed_indices": suppressed,
+                        },
+                        "t",
                     )
 
 

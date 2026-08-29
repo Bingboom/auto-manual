@@ -890,6 +890,199 @@ def _render_image_notice_panel(
     )
 
 
+def _nested_notice_group(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    width: float,
+    bottom: float,
+) -> tuple[str, float]:
+    """Render one shared notice component as a positioned nested group."""
+    from .notice import render_notice
+
+    nested = dict(spec)
+    nested["space_before"] = 0.0
+    nested["space_after"] = 0.0
+    notice_xml, notice_estimate = render_notice(
+        nested,
+        ctx,
+        tid=tid,
+        terminal=True,
+        measure_w=width - 14.0,
+    )
+    group_start = notice_xml.index('<Group Self="grp_notice_')
+    group_end = notice_xml.index("</Group>", group_start) + len("</Group>")
+    group = notice_xml[group_start:group_end]
+    group = re.sub(
+        r'ItemTransform="1 0 0 1 [^\"]+ [^\"]+"',
+        f'ItemTransform="1 0 0 1 7 {bottom:g}"',
+        group,
+        count=1,
+    )
+    notice_gap = param_pt(ctx.params, "comp_data_table_before", 3.4)
+    return group, max(1.0, notice_estimate - 2.0 * notice_gap)
+
+
+def _render_image_guidance_stack(
+    spec: dict,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    measure_w: float | None,
+) -> tuple[str, float]:
+    """Render art, two notices, and interstitial copy in one outer card."""
+
+    guidance = list(spec.get("guidance") or [])
+    if (
+        len(guidance) != 3
+        or [str(item.get("kind") or "") for item in guidance]
+        != ["notice", "body", "notice"]
+    ):
+        raise ValueError(
+            "image_guidance_stack requires notice, body, notice guidance"
+        )
+    first_notice = dict(guidance[0].get("spec") or {})
+    body_text = source_text(
+        guidance[1].get("text"),
+        owner="operation guidance-stack body",
+        strict=ctx.strict_component_assets,
+    )
+    second_notice = dict(guidance[2].get("spec") or {})
+    width = measure_w or ctx.text_measure
+    gap = param_pt(ctx.params, "idml_operation_stack_gap_max", 14.17)
+    body_size = 6.2
+    body_leading = 7.5
+    body_width = width - 28.0
+    body_lines = _estimated_lines(body_text, body_width, size=body_size)
+    body_height = max(14.0, body_lines * body_leading + 4.0)
+
+    ref = str(spec.get("image") or "").strip()
+    asset = ctx.resolve_bundle_image(ref) if ref else None
+    if asset is None or not asset.exists():
+        if ctx.strict_component_assets:
+            raise FileNotFoundError(
+                f"operation image-guidance asset missing: {ref}"
+            )
+        from .notice import render_notice
+
+        first_xml, first_h = render_notice(
+            first_notice,
+            ctx,
+            tid=f"{tid}_notice_1",
+            terminal=False,
+            measure_w=width,
+        )
+        body_xml = _sized_psr(
+            "HB Body",
+            body_text,
+            size=body_size,
+            leading=body_leading,
+            terminal=False,
+        )
+        second_xml, second_h = render_notice(
+            second_notice,
+            ctx,
+            tid=f"{tid}_notice_2",
+            terminal=terminal,
+            measure_w=width,
+        )
+        return first_xml + body_xml + second_xml, first_h + body_height + second_h
+
+    second_bottom = -7.0
+    second_group, second_h = _nested_notice_group(
+        second_notice,
+        ctx,
+        tid=f"{tid}_notice_2",
+        width=width,
+        bottom=second_bottom,
+    )
+    second_top = second_bottom - second_h
+    body_bottom = second_top - gap
+    body_top = body_bottom - body_height
+    first_bottom = body_top - gap
+    first_group, first_h = _nested_notice_group(
+        first_notice,
+        ctx,
+        tid=f"{tid}_notice_1",
+        width=width,
+        bottom=first_bottom,
+    )
+    first_top = first_bottom - first_h
+
+    rows = [tuple(row) for row in spec.get("rows", [])]
+    prereq = str(spec.get("prereq") or "").strip()
+    tail = str(spec.get("tail") or "").strip()
+    art_w, art_h = ctx.art_frame_size(asset, max_w=width - 18.0)
+    art_left = (width - art_w) / 2.0
+    art_bottom = first_top - gap
+    outer_top = art_bottom - art_h - 7.0
+    height = -outer_top
+    prereq_underlay, prereq_text = _prereq_overlay_parts(
+        ctx, tid=tid, text=prereq, image_w=art_w, image_h=art_h,
+    )
+    tail_underlay, tail_text = _tail_overlay_parts(
+        ctx, tid=tid, text=tail, image_w=art_w, image_h=art_h,
+    )
+    art_group = (
+        f'<Group Self="grp_oppanel_image_guidance_art_{tid}" '
+        'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+        f'ItemTransform="1 0 0 1 {art_left:g} {art_bottom:g}">'
+        + image_cell_content(f"oppanel_image_guidance_art_{tid}", asset, art_w, art_h)
+        + prereq_underlay
+        + tail_underlay
+        + _main_power_clock_overlay(
+            ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+        )
+        + prereq_text
+        + tail_text
+        + _row_text_layers(
+            ctx,
+            tid=tid,
+            ref=ref,
+            rows=rows,
+            image_w=art_w,
+            image_h=art_h,
+            panel_w=art_w,
+        )
+        + "</Group>"
+    )
+    body_frame = _editable_text_frame(
+        ctx,
+        story_id=f"st_anchor_oppanel_guidance_body_{tid}",
+        frame_id=f"tf_oppanel_guidance_body_{tid}",
+        title=f"{tid} operation guidance body",
+        parts=[_sized_psr(
+            "HB Body",
+            body_text,
+            size=body_size,
+            leading=body_leading,
+            terminal=True,
+        )],
+        left=14.0,
+        top=body_top,
+        right=width - 14.0,
+        bottom=body_bottom,
+        valign="CenterAlign",
+    )
+    return _special_panel_paragraph(
+        ctx,
+        tid=tid,
+        title="image guidance-stack operation panel",
+        group_content=(
+            _panel_bounds(tid, width, height)
+            + art_group
+            + first_group
+            + body_frame
+            + second_group
+        ),
+        width=width,
+        height=height,
+        terminal=terminal,
+    )
+
+
 def _render_energy_saving_panel(
     spec: dict,
     ctx: RenderContext,
@@ -1315,6 +1508,10 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         )
     if ctx.add_story is not None and layout == "image_notice":
         return _render_image_notice_panel(
+            spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
+        )
+    if ctx.add_story is not None and layout == "image_guidance_stack":
+        return _render_image_guidance_stack(
             spec, ctx, tid=tid, terminal=terminal, measure_w=measure_w,
         )
 

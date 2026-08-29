@@ -59,7 +59,7 @@ class SymbolPageData:
     signal_headers: tuple[str, str]
     icon_headers: tuple[str, str]
     signals: tuple[dict[str, str], ...]
-    icons: tuple[dict[str, str], ...]
+    icons: tuple[dict[str, Any], ...]
 
 
 @dataclass(frozen=True)
@@ -304,6 +304,8 @@ def symbol_page_data(
         {
             "figure": _asset_path(root, data_root, "symbols", str(row.get("figure") or "")),
             "text": str(row.get("text") or ""),
+            "column": str(row.get("column") or ""),
+            "continuation": bool(row.get("continuation", False)),
         }
         for row in (icon_payload or {}).get("rows", [])
         if row.get("text")

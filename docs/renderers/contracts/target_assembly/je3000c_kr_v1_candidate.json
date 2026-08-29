@@ -1,0 +1,331 @@
+{
+  "schema_version": "target-idml-assembly-plan/v1",
+  "status": "candidate",
+  "production_eligible": false,
+  "target": {
+    "model": "JE-3000C",
+    "region": "KR",
+    "languages": ["ko"]
+  },
+  "physical_page_count": 18,
+  "reference_pdf": {
+    "file_name": "说明书 HTE1563000A-KR-JAK RoHS REACH.pdf",
+    "sha256": "b18f490e430e2b343508a795eba131e9ce936ba21d3654f848ee6769fbd9c7ce",
+    "byte_size": 5587761,
+    "page_count": 18,
+    "page_size_pt": {
+      "width": 368.504,
+      "height": 524.409
+    }
+  },
+  "idml_contract": {
+    "editable_components": {
+      "back_cover": {
+        "variant": "qr_only",
+        "qr_asset": "docs/renderers/latex/assets/je3000c_kr_back_cover_qr.pdf",
+        "qr_rect": [303.99, 457.81, 33.91, 34.02]
+      },
+      "lcd_icon_table": {
+        "fill_continuation_to_page": false,
+        "icon_size_pt_by_language": {
+          "ko": 13.0
+        },
+        "row_presentation": [
+          {"source_no": "1", "display_no": "1", "row_height_pt_by_language": {"ko": 24.367}},
+          {"source_no": "2", "display_no": "2", "row_height_pt_by_language": {"ko": 24.310}},
+          {"source_no": "3", "display_no": "3", "row_height_pt_by_language": {"ko": 30.893}},
+          {"source_no": "15", "display_no": "4", "typography_role": "battery_saving", "row_height_pt_by_language": {"ko": 52.639}},
+          {"source_no": "4", "display_no": "5", "row_height_pt_by_language": {"ko": 39.438}},
+          {"source_no": "16", "display_no": "6", "typography_role": "charging_limit", "row_height_pt_by_language": {"ko": 24.944}},
+          {"source_no": "5", "display_no": "7", "row_height_pt_by_language": {"ko": 38.234}},
+          {"source_no": "6", "display_no": "8", "typography_role": "dense", "row_height_pt_by_language": {"ko": 61.504}},
+          {"source_no": "7", "display_no": "9", "segment_start": true, "typography_role": "dense", "row_height_pt_by_language": {"ko": 47.991}},
+          {"source_no": "8", "display_no": "10", "row_height_pt_by_language": {"ko": 18.716}},
+          {"source_no": "10", "display_no": "11", "row_height_pt_by_language": {"ko": 17.654}},
+          {"source_no": "11", "display_no": "12", "row_height_pt_by_language": {"ko": 19.832}},
+          {"source_no": "12", "display_no": "13", "row_height_pt_by_language": {"ko": 16.809}},
+          {"source_no": "13", "display_no": "14", "row_height_pt_by_language": {"ko": 18.266}},
+          {"source_no": "14", "display_no": "15", "row_height_pt_by_language": {"ko": 20.159}},
+          {"source_no": "17", "display_no": "16", "row_height_pt_by_language": {"ko": 21.474}},
+          {"source_no": "19", "display_no": "17", "typography_role": "low_battery", "row_height_pt_by_language": {"ko": 26.854}},
+          {"source_no": "18", "display_no": "18", "row_height_pt_by_language": {"ko": 18.987}},
+          {"source_no": "20", "display_no": "19", "typography_role": "timer", "row_height_pt_by_language": {"ko": 33.918}},
+          {"source_no": "22", "display_no": "20", "typography_role": "energy_saving", "row_height_pt_by_language": {"ko": 22.704}},
+          {"source_no": "23", "display_no": "21", "number_row_span": 2, "typography_role": "temperature", "row_height_pt_by_language": {"ko": 19.823}},
+          {"source_no": "24", "display_no": "21", "suppress_number": true, "typography_role": "temperature", "row_height_pt_by_language": {"ko": 18.736}},
+          {"source_no": "25", "display_no": "22", "row_height_pt_by_language": {"ko": 21.218}},
+          {"source_no": "9", "display_no": "23", "row_height_pt_by_language": {"ko": 22.497}},
+          {"source_no": "26", "display_no": "24", "row_height_pt_by_language": {"ko": 20.600}},
+          {"source_no": "27", "display_no": "25", "row_height_pt_by_language": {"ko": 22.310}}
+        ]
+      }
+    }
+  },
+  "pages": [
+    {
+      "source_ref": "page/cover_je3000c-ko.rst",
+      "language": "ko",
+      "page_role": "cover",
+      "composition_id": "front_cover",
+      "composition_type": "front_cover",
+      "start_page": 1,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/00_preface.rst",
+      "language": "ko",
+      "page_role": "preface",
+      "composition_id": "ko_preface_safety_maintenance",
+      "composition_type": "preface_safety_maintenance",
+      "start_page": 2,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/safety_ko.rst",
+      "language": "ko",
+      "page_role": "safety",
+      "composition_id": "ko_preface_safety_maintenance",
+      "composition_type": "preface_safety_maintenance",
+      "start_page": 2,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/01_user_maintenance_instructions.rst",
+      "language": "ko",
+      "page_role": "maintenance",
+      "composition_id": "ko_preface_safety_maintenance",
+      "composition_type": "preface_safety_maintenance",
+      "start_page": 2,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/symbols_ko.rst",
+      "language": "ko",
+      "page_role": "symbols",
+      "composition_id": "ko_symbols",
+      "composition_type": "symbols",
+      "start_page": 3,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/02_whats_in_the_box.rst",
+      "language": "ko",
+      "page_role": "inbox",
+      "composition_id": "ko_inbox_overview",
+      "composition_type": "inbox_overview",
+      "start_page": 4,
+      "page_count": 1,
+      "composition_data": {
+        "inbox": {
+          "layout_variant": "compact_with_tip"
+        }
+      }
+    },
+    {
+      "source_ref": "page/03_product_overview_placeholder.rst",
+      "language": "ko",
+      "page_role": "product_overview",
+      "composition_id": "ko_inbox_overview",
+      "composition_type": "inbox_overview",
+      "start_page": 4,
+      "page_count": 1,
+      "composition_data": {
+        "overview": {
+          "instance_id": "je3000c-kr-v1",
+          "asset_refs": {
+            "front_art": "renderers/latex/assets/je3000c_kr_overview_front.pdf",
+            "right_art": "renderers/latex/assets/je3000c_kr_overview_right.pdf"
+          }
+        }
+      }
+    },
+    {
+      "source_ref": "page/lcd_icons_ko.rst",
+      "language": "ko",
+      "page_role": "lcd",
+      "composition_id": "ko_lcd",
+      "composition_type": "lcd",
+      "start_page": 5,
+      "page_count": 2
+    },
+    {
+      "source_ref": "page/05_operation_guide_placeholder.rst",
+      "language": "ko",
+      "page_role": "operation_guide",
+      "composition_id": "ko_operation",
+      "composition_type": "operation",
+      "start_page": 7,
+      "page_count": 3,
+      "flow_split": {
+        "at_kind": "h2",
+        "occurrence": 6,
+        "tail_composition_id": "ko_ups_charging"
+      },
+      "composition_data": {
+        "page_breaks": [
+          {
+            "at_kind": "h2",
+            "occurrence": 4
+          }
+        ],
+        "assets": {
+          "image_refs": [
+            "renderers/latex/assets/je3000c_kr_operation_main_power.pdf",
+            "renderers/latex/assets/je3000c_kr_operation_ac_output.pdf",
+            "renderers/latex/assets/je3000c_kr_operation_dc_usb_output.pdf",
+            "renderers/latex/assets/je3000c_kr_operation_energy_saving.pdf"
+          ]
+        },
+        "operation": {
+          "layout_variant": "guidance_stack"
+        }
+      }
+    },
+    {
+      "source_ref": "page/06_ups_mode.rst",
+      "language": "ko",
+      "page_role": "ups_mode",
+      "composition_id": "ko_ups_charging",
+      "composition_type": "ups_charging",
+      "start_page": 10,
+      "page_count": 2,
+      "composition_data": {
+        "assets": {
+          "image_refs": [
+            "renderers/latex/assets/je3000c_kr_operation_ups_mode.pdf"
+          ],
+          "image_roles": [
+            "full_measure"
+          ]
+        }
+      }
+    },
+    {
+      "source_ref": "page/charging.rst",
+      "language": "ko",
+      "page_role": "charging",
+      "composition_id": "ko_ups_charging",
+      "composition_type": "ups_charging",
+      "start_page": 10,
+      "page_count": 2,
+      "composition_data": {
+        "page_breaks": [
+          {
+            "at_kind": "h1",
+            "occurrence": 1
+          }
+        ],
+        "assets": {
+          "image_refs": [
+            "renderers/latex/assets/je3000c_kr_charging_ac_wall.pdf"
+          ],
+          "image_roles": [
+            "full_measure"
+          ]
+        }
+      }
+    },
+    {
+      "source_ref": "page/08_charging_methods.rst",
+      "language": "ko",
+      "page_role": "charging_methods",
+      "composition_id": "ko_charging_methods",
+      "composition_type": "charging_methods",
+      "start_page": 12,
+      "page_count": 1,
+      "flow_prefix": {
+        "until_kind": "image",
+        "occurrence": 1,
+        "head_composition_id": "ko_ups_charging"
+      },
+      "composition_data": {
+        "assets": {
+          "image_refs": [
+            "renderers/latex/assets/je3000c_kr_charging_solar_composite.pdf",
+            "renderers/latex/assets/je3000c_kr_charging_car_charge.pdf"
+          ],
+          "image_roles": [
+            "full_measure",
+            "full_measure"
+          ]
+        }
+      }
+    },
+    {
+      "source_ref": "page/09_storage_and_maintenance.rst",
+      "language": "ko",
+      "page_role": "storage_maintenance",
+      "composition_id": "ko_storage_troubleshooting",
+      "composition_type": "storage_troubleshooting",
+      "start_page": 13,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/troubleshooting_ko.rst",
+      "language": "ko",
+      "page_role": "troubleshooting_data",
+      "composition_id": "ko_storage_troubleshooting",
+      "composition_type": "storage_troubleshooting",
+      "start_page": 13,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/spec_ko.rst",
+      "language": "ko",
+      "page_role": "spec",
+      "composition_id": "ko_specifications",
+      "composition_type": "specifications",
+      "start_page": 14,
+      "page_count": 1,
+      "composition_data": {
+        "specifications": {
+          "layout_variant": "compact",
+          "annotation_order": [1, 2, 0]
+        }
+      }
+    },
+    {
+      "source_ref": "page/11_warranty.rst",
+      "language": "ko",
+      "page_role": "warranty",
+      "composition_id": "ko_warranty",
+      "composition_type": "warranty",
+      "start_page": 15,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/12_app_setup_placeholder.rst",
+      "language": "ko",
+      "page_role": "app_setup",
+      "composition_id": "ko_app",
+      "composition_type": "app",
+      "start_page": 16,
+      "page_count": 2,
+      "composition_data": {
+        "app": {
+          "instance_id": "je3000c-kr-v1",
+          "control_image": "renderers/latex/assets/je3000c_kr_network_pairing_panel.pdf",
+          "control_layout_variant": "embedded_leaders",
+          "figure_assets": {
+            "app_add_device": "renderers/latex/assets/je3000c_kr_app_add_device_textless.png",
+            "app_connect_result": "renderers/latex/assets/je3000c_kr_app_connect_result.png"
+          },
+          "labels_by_role": {
+            "main_power": "POWER 버튼",
+            "dc_usb": "DC/USB 전원 버튼",
+            "ac": "AC 전원 버튼"
+          }
+        }
+      }
+    },
+    {
+      "source_ref": "page/99_back_cover.rst",
+      "language": "ko",
+      "page_role": "back_cover",
+      "composition_id": "back_cover",
+      "composition_type": "back_cover",
+      "start_page": 18,
+      "page_count": 1
+    }
+  ]
+}

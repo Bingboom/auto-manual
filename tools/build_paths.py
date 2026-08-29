@@ -96,24 +96,64 @@ def resolve_idml_layout_param_overlays(
     config_path: Path,
     *,
     repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
     config_loader: Callable[[Path], dict[str, Any]] = load_config,
 ) -> tuple[Path, ...]:
-    """Resolve additive IDML composition-token layers selected by a config."""
+    """Resolve global and target-selected additive IDML token layers."""
 
     cfg = config_loader(config_path)
     paths_cfg = cfg.get("paths", {})
     if not isinstance(paths_cfg, dict):
         return ()
     raw = paths_cfg.get("idml_layout_params_overlays", [])
+    raw_by_target = paths_cfg.get("idml_layout_params_overlays_by_target", {})
     if raw is None:
-        return ()
+        raw = []
     if not isinstance(raw, list) or any(
         not isinstance(value, str) or not value.strip() for value in raw
     ):
         raise ValueError("paths.idml_layout_params_overlays must be a list of paths")
+    if raw_by_target is None:
+        raw_by_target = {}
+    if not isinstance(raw_by_target, dict) or any(
+        not isinstance(key, str)
+        or not key.strip()
+        or not isinstance(values, list)
+        or any(not isinstance(value, str) or not value.strip() for value in values)
+        for key, values in raw_by_target.items()
+    ):
+        raise ValueError(
+            "paths.idml_layout_params_overlays_by_target must map "
+            "Document_Key to lists of paths"
+        )
+
+    selected = list(raw)
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        build_cfg = {}
+    resolved_model = str(model or build_cfg.get("default_model") or "").strip()
+    resolved_region = str(region or build_cfg.get("default_region") or "").strip()
+    if resolved_model and resolved_region:
+        document_key = f"{resolved_model}_{resolved_region}".casefold()
+        matches = [
+            values
+            for key, values in raw_by_target.items()
+            if key.strip().casefold() == document_key
+        ]
+        if len(matches) > 1:
+            raise ValueError(
+                "paths.idml_layout_params_overlays_by_target contains duplicate "
+                "case-insensitive Document_Key entries for "
+                f"{resolved_model}_{resolved_region}"
+            )
+        if matches:
+            selected.extend(matches[0])
+    if len({value.strip() for value in selected}) != len(selected):
+        raise ValueError("IDML layout parameter overlay paths must be unique")
     return tuple(
         resolve_path_from_root(repo_root, value.strip())
-        for value in raw
+        for value in selected
     )
 
 
@@ -121,6 +161,8 @@ def resolve_idml_assembly_plan(
     config_path: Path,
     *,
     repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
     config_loader: Callable[[Path], dict[str, Any]] = load_config,
 ) -> Path | None:
     """Resolve an explicitly configured candidate IDML assembly contract.
@@ -136,9 +178,49 @@ def resolve_idml_assembly_plan(
     if not isinstance(paths_cfg, dict):
         return None
     raw = paths_cfg.get("idml_assembly_plan")
-    if not isinstance(raw, str) or not raw.strip():
+    raw_by_target = paths_cfg.get("idml_assembly_plans")
+    if raw is not None and raw_by_target is not None:
+        raise ValueError(
+            "paths.idml_assembly_plan and paths.idml_assembly_plans are "
+            "mutually exclusive"
+        )
+    if raw is not None:
+        if not isinstance(raw, str) or not raw.strip():
+            raise ValueError("paths.idml_assembly_plan must be a non-empty path")
+        return resolve_path_from_root(repo_root, raw.strip())
+    if raw_by_target is None:
         return None
-    return resolve_path_from_root(repo_root, raw.strip())
+    if not isinstance(raw_by_target, dict) or any(
+        not isinstance(key, str)
+        or not key.strip()
+        or not isinstance(value, str)
+        or not value.strip()
+        for key, value in raw_by_target.items()
+    ):
+        raise ValueError(
+            "paths.idml_assembly_plans must map Document_Key to non-empty paths"
+        )
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        build_cfg = {}
+    resolved_model = str(model or build_cfg.get("default_model") or "").strip()
+    resolved_region = str(region or build_cfg.get("default_region") or "").strip()
+    if not resolved_model or not resolved_region:
+        return None
+    document_key = f"{resolved_model}_{resolved_region}".casefold()
+    matches = [
+        value
+        for key, value in raw_by_target.items()
+        if key.strip().casefold() == document_key
+    ]
+    if len(matches) > 1:
+        raise ValueError(
+            "paths.idml_assembly_plans contains duplicate case-insensitive "
+            f"Document_Key entries for {resolved_model}_{resolved_region}"
+        )
+    if not matches:
+        return None
+    return resolve_path_from_root(repo_root, matches[0].strip())
 
 
 def resolve_docs_dir(

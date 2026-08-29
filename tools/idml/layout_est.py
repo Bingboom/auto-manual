@@ -94,6 +94,33 @@ def template_symbol_split(
     (the separate batteries/accumulators mark) is not part of this approved
     US reference composition.
     """
+    source_columns = {
+        str(row.get("column") or "").casefold()
+        for row in icons
+    }
+    if icons and source_columns <= {"left", "right"} and "" not in source_columns:
+        left = [
+            row for row in icons
+            if str(row.get("column")).casefold() == "left"
+            and not bool(row.get("continuation", False))
+        ]
+        right = [
+            row for row in icons
+            if str(row.get("column")).casefold() == "right"
+            and not bool(row.get("continuation", False))
+        ]
+        overflow_left = [
+            row for row in icons
+            if str(row.get("column")).casefold() == "left"
+            and bool(row.get("continuation", False))
+        ]
+        overflow_right = [
+            row for row in icons
+            if str(row.get("column")).casefold() == "right"
+            and bool(row.get("continuation", False))
+        ]
+        return left, right, overflow_left, overflow_right
+
     # Prepared RST carries only the rendered image basename.  Those basenames
     # restart at 10/20/... in each visual column, so they cannot recover the
     # canonical order (the second column's first row also looks like ``10_``).

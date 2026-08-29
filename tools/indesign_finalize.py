@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import tempfile
+import unicodedata
 from collections import defaultdict
 from pathlib import Path
 
@@ -149,6 +150,68 @@ def _pdf_export_compliance(path: Path, job: dict[str, str]) -> dict[str, object]
     )
 
 
+def _pdf_missing_glyphs(path: Path) -> list[dict[str, object]]:
+    """Return visible U+FFFD or .notdef uses from every PDF text trace.
+
+    PyMuPDF's trace walks page text after placed PDF form XObjects have been
+    assembled into the exported document, so this covers both native InDesign
+    text and text retained inside placed graphics.  ``glyph_id == 0`` is the
+    PDF font's .notdef glyph; text extraction alone is insufficient because a
+    ToUnicode map can still return the intended character for that glyph.
+    """
+
+    import fitz
+
+    findings: list[dict[str, object]] = []
+    with fitz.open(path) as document:
+        for page_index, page in enumerate(document, start=1):
+            for span_index, span in enumerate(page.get_texttrace(), start=1):
+                font = str(span.get("font") or "")
+                for char_index, raw_char in enumerate(
+                    span.get("chars", ()), start=1,
+                ):
+                    if len(raw_char) < 2:
+                        raise ValueError(
+                            "PDF text trace character is missing codepoint/glyph id"
+                        )
+                    codepoint = int(raw_char[0])
+                    glyph_id = int(raw_char[1])
+                    try:
+                        character = chr(codepoint)
+                    except ValueError as exc:
+                        raise ValueError(
+                            f"PDF text trace contains invalid codepoint: {codepoint}"
+                        ) from exc
+                    visible = (
+                        not character.isspace()
+                        and not unicodedata.category(character).startswith("C")
+                    )
+                    reasons: list[str] = []
+                    if codepoint == 0xFFFD:
+                        reasons.append("replacement_character")
+                    if glyph_id == 0 and visible:
+                        reasons.append("notdef_glyph")
+                    if not reasons:
+                        continue
+                    bbox = raw_char[3] if len(raw_char) > 3 else None
+                    findings.append({
+                        "page": page_index,
+                        "span": span_index,
+                        "character_index": char_index,
+                        "character": character,
+                        "codepoint": f"U+{codepoint:04X}",
+                        "glyph_id": glyph_id,
+                        "font": font,
+                        "reasons": reasons,
+                        **(
+                            {"bbox": [float(value) for value in bbox]}
+                            if bbox is not None
+                            else {}
+                        ),
+                    })
+    return findings
+
+
 def _clear_outputs(job: dict[str, str]) -> None:
     for key in ("output_indd", "output_pdf", "report_json"):
         output = Path(job[key])
@@ -236,9 +299,34 @@ def _collect_finalize_result(
     if output_pdf.is_file():
         compliance = _pdf_export_compliance(output_pdf, job)
         report["pdf_export_validation"] = compliance
-        report["success"] = bool(report.get("success")) and bool(compliance["pass"])
+        try:
+            missing_glyphs = _pdf_missing_glyphs(output_pdf)
+            glyph_validation: dict[str, object] = {
+                "pass": not missing_glyphs,
+                "finding_count": len(missing_glyphs),
+            }
+        except Exception as exc:
+            missing_glyphs = []
+            glyph_validation = {
+                "pass": False,
+                "finding_count": 0,
+                "error": str(exc),
+            }
+        report["missing_glyphs"] = missing_glyphs
+        report["pdf_glyph_validation"] = glyph_validation
+        report["success"] = (
+            bool(report.get("success"))
+            and bool(compliance["pass"])
+            and bool(glyph_validation["pass"])
+        )
         if not compliance["pass"] and not report.get("error"):
             report["error"] = "exported PDF does not satisfy the PDF/X output contract"
+        if not glyph_validation["pass"] and not report.get("error"):
+            report["error"] = (
+                "exported PDF contains replacement or .notdef glyphs"
+                if missing_glyphs
+                else "exported PDF glyph validation could not be completed"
+            )
     report["toolchain"] = {
         "indesign_actual": indesign_version(),
         "version_pin_status": pin_status,
@@ -248,12 +336,17 @@ def _collect_finalize_result(
     )
     success = bool(report.get("success"))
     status = "OK" if success else "PREFLIGHT FAIL"
-    overset = len(report.get("overset_stories", []))
+    overset = (
+        len(report.get("overset_stories", []))
+        + len(report.get("overset_table_cells", []))
+    )
     missing_fonts = len(report.get("missing_fonts", []))
+    missing_glyphs = len(report.get("missing_glyphs", []))
     bad_links = len(report.get("bad_links", []))
     print(
         f"[indesign-finalize] {status}: pages={report.get('page_count')} "
-        f"overset={overset} fonts={missing_fonts} links={bad_links} "
+        f"overset={overset} fonts={missing_fonts} glyphs={missing_glyphs} "
+        f"links={bad_links} "
         f"report={job['report_json']}"
     )
     if report.get("error"):
@@ -266,6 +359,7 @@ def _collect_finalize_result(
         "page_count": report.get("page_count"),
         "overset_count": overset,
         "missing_fonts_count": missing_fonts,
+        "missing_glyphs_count": missing_glyphs,
         "bad_links_count": bad_links,
         **({"error": report["error"]} if report.get("error") else {}),
     }

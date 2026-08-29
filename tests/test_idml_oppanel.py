@@ -429,6 +429,48 @@ class TransformTest(unittest.TestCase):
                 self.assertEqual(lead, spec["lead"])
                 self.assertEqual(steps, spec["steps"])
 
+    def test_led_panel_survives_a_registered_energy_semantic(self) -> None:
+        """The US template registers energy_saving copy before the LED section.
+
+        The copy-key clause that admits non-governed KR art stems must not
+        pull the governed LED image into the energy branch: its shape check
+        would fail and return None, silently demoting the approved led_light
+        component to a raw image in every JE-1000F US/FR/ES book.
+        """
+        steps = [
+            "Press the LED Light button once to turn on the light.",
+            "Press it again to switch to SOS Mode.",
+            "Press it a third time to turn off the light.",
+        ]
+        blocks = [
+            ("semantic", json.dumps({
+                "kind": "operation_panel_copy",
+                "layout": "energy_saving",
+                "mode_label": "On/Off",
+            })),
+            ("h2", "ENERGY SAVING MODE"),
+            ("body", "Introductory copy."),
+            ("body", "Disable guidance."),
+            ("body", "Low-power guidance."),
+            ("image", "renderers/latex/assets/op_energy_saving.png"),
+            ("body", "Press and hold both buttons for 3 seconds."),
+            ("h2", "LED LIGHT ON/OFF"),
+            ("body", "The LED light has two modes: Light mode and SOS mode."),
+            ("image", "_assets/operation/op_led_light.png"),
+            ("body", "\n".join(steps)),
+        ]
+
+        out = transform(blocks)
+
+        kinds = [kind for kind, _payload in out]
+        self.assertNotIn("image", kinds)
+        layouts = [
+            json.loads(payload)["layout"]
+            for kind, payload in out
+            if kind == "component"
+        ]
+        self.assertEqual(["energy_saving", "led_light"], layouts)
+
     def test_incomplete_special_operation_sections_are_untouched(self) -> None:
         cases = (
             [

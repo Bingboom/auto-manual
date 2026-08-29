@@ -8,6 +8,7 @@ from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
+    _validate_composition_data,
     normalize_target_assembly_plan,
 )
 from tools.manual_ir import ManualBlock, ManualIR, ManualPage
@@ -22,8 +23,6 @@ PLAN_PATH = (
     / "target_assembly"
     / "jbp2000b_us_v1_candidate.json"
 )
-
-
 def _payload() -> dict:
     return json.loads(PLAN_PATH.read_text(encoding="utf-8"))
 
@@ -85,6 +84,22 @@ def _manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_inbox_accepts_shared_compact_with_tip_variant(self) -> None:
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/02_whats_in_the_box.rst",
+                "page_role": "inbox",
+                "composition_type": "inbox_overview",
+                "composition_data": {
+                    "inbox": {"layout_variant": "compact_with_tip"},
+                },
+            }],
+            {},
+            _manual_ir(_payload()),
+        )
+
+        self.assertEqual([], issues)
+
     def test_connections_composition_accepts_shared_layout_variant(self) -> None:
         payload = _payload()
         page = next(

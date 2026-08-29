@@ -56,6 +56,9 @@ _VARIANTS_BY_LABEL = {
     "ПОРАДИ": "tip",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
+    # ko: 경고/위험/주의/참고/팁 are the registered signal words and resolve
+    # through the data index; only the synonym 중요 stays literal here.
+    "중요": "note",
 }
 
 

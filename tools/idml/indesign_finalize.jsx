@@ -184,6 +184,8 @@
         var substitutions = [];
         var mappings = [
             ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
+            ["Yu Gothic\tRegular", "Hiragino Kaku Gothic Pro\tW3"],
+            ["Yu Gothic\tRegular", "Apple Symbols\tRegular"],
             ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"],
             ["Noto Sans KR\tRegular", "Arial Unicode MS\tRegular"]
         ];
@@ -257,35 +259,53 @@
         return samples;
     }
 
-    function fitTerminalCarrierFrames(doc) {
+    function fitTerminalCarrierFrames(doc, errors) {
         var results = [];
         for (var si = 0; si < doc.stories.length; si += 1) {
             var story = doc.stories[si];
-            var title = String(story.storyTitle || "");
-            var contents = String(story.contents || "");
-            var isMeasuredOverview = title.indexOf("product_overview") >= 0;
-            var isMarkerOnlyCarrier = !textHasVisibleContent(contents);
-            if (!story.overflows ||
-                    (story.tables.length > 0 && !isMeasuredOverview) ||
-                    story.textContainers.length === 0) { continue; }
-            var maxGrowth = isMeasuredOverview ? 160.0 : isMarkerOnlyCarrier ? 24.0 : 0.0;
-            if (maxGrowth <= 0) { continue; }
-            var frame = story.textContainers[story.textContainers.length - 1];
-            if (frame.constructor.name !== "TextFrame" ||
-                    !frame.parentPage || !frame.parentPage.isValid) { continue; }
-            var growth = 0.0;
-            while (story.overflows && growth < maxGrowth) {
-                var bounds = frame.geometricBounds;
-                bounds[2] = Number(bounds[2]) + 4.0;
-                frame.geometricBounds = bounds;
-                growth += 4.0;
-                doc.recompose();
+            try {
+                if (!story.isValid) { continue; }
+                var title = String(story.storyTitle || "");
+                var isMeasuredOverview = title.indexOf("product_overview") >= 0;
+                if (!story.overflows ||
+                        (story.tables.length > 0 && !isMeasuredOverview) ||
+                        story.textContainers.length === 0) { continue; }
+                var frame = story.textContainers[story.textContainers.length - 1];
+                if (!frame || !frame.isValid ||
+                        frame.constructor.name !== "TextFrame" ||
+                        !frame.parentPage || !frame.parentPage.isValid) { continue; }
+                var isTaggedCarrier = itemLabel(frame).indexOf(
+                    "hb:self=tf_terminal_carrier_group_"
+                ) === 0;
+                if (!isMeasuredOverview && !isTaggedCarrier) { continue; }
+                var maxGrowth = isMeasuredOverview ? 160.0 : 24.0;
+                var growth = 0.0;
+                while (story.overflows && growth < maxGrowth) {
+                    if (!story.isValid || !frame.isValid) {
+                        throw Error("carrier became invalid while fitting");
+                    }
+                    var bounds = frame.geometricBounds;
+                    bounds[2] = Number(bounds[2]) + 4.0;
+                    frame.geometricBounds = bounds;
+                    growth += 4.0;
+                    doc.recompose();
+                }
+                results.push({
+                    title: title,
+                    label: itemLabel(frame),
+                    growth: growth,
+                    cleared: !story.overflows
+                });
+            } catch (error) {
+                errors.push({
+                    story_index: si,
+                    title: (function () {
+                        try { return String(story.storyTitle || ""); }
+                        catch (_) { return ""; }
+                    }()),
+                    error: String(error)
+                });
             }
-            results.push({
-                title: title,
-                growth: growth,
-                cleared: !story.overflows
-            });
         }
         return results;
     }
@@ -337,6 +357,42 @@
         return fitted;
     }
 
+    function collectOversetTableCells(doc) {
+        var oversets = [];
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            var tables = story.tables.everyItem().getElements();
+            for (var ti = 0; ti < tables.length; ti += 1) {
+                var cells = tables[ti].cells.everyItem().getElements();
+                for (var ci = 0; ci < cells.length; ci += 1) {
+                    var cell = cells[ci];
+                    if (!cell.overflows) { continue; }
+                    var page = 0;
+                    try {
+                        var parentFrames = cell.insertionPoints[0].parentTextFrames;
+                        if (parentFrames.length > 0) {
+                            var parentPage = parentFrames[0].parentPage;
+                            if (parentPage && parentPage.isValid) {
+                                page = parentPage.documentOffset + 1;
+                            }
+                        }
+                    } catch (_) {}
+                    oversets.push({
+                        story_index: si,
+                        story_id: String(story.id),
+                        story_label: itemLabel(story),
+                        table_index: ti,
+                        cell_index: ci,
+                        cell_name: String(cell.name || ""),
+                        page: page,
+                        preview: String(cell.contents).replace(/[\r\n]+/g, " ").slice(0, 120)
+                    });
+                }
+            }
+        }
+        return oversets;
+    }
+
     var job = jsonParse(readText(HB_JOB_PATH));
     var report = {
         schema_version: "indesign-preflight/v1",
@@ -347,6 +403,7 @@
         page_count: 0,
         story_count: 0,
         overset_stories: [],
+        overset_table_cells: [],
         missing_fonts: [],
         bad_links: [],
         stable_labels: {pages: 0, text_frames: 0},
@@ -355,6 +412,7 @@
         fitted_troubleshooting_carrier_frames: 0,
         fitted_symbol_table_shells: 0,
         carrier_frame_fits: [],
+        carrier_frame_errors: [],
         font_substitutions: [],
         font_usage_audit: [],
         pdf_export: {
@@ -388,13 +446,15 @@
         report.fitted_troubleshooting_carrier_frames =
             fitTroubleshootingCarrierFrames(doc);
         report.fitted_symbol_table_shells = fitComposedSymbolTableShells(doc);
-        report.carrier_frame_fits = fitTerminalCarrierFrames(doc);
+        report.carrier_frame_fits = fitTerminalCarrierFrames(
+            doc, report.carrier_frame_errors
+        );
         report.font_substitutions = applyHostFontSubstitutions(doc);
         report.fitted_lcd_table_groups += fitLcdCarrierFrames(doc);
         report.fitted_troubleshooting_carrier_frames +=
             fitTroubleshootingCarrierFrames(doc);
         report.carrier_frame_fits = report.carrier_frame_fits.concat(
-            fitTerminalCarrierFrames(doc)
+            fitTerminalCarrierFrames(doc, report.carrier_frame_errors)
         );
         report.font_substitutions = report.font_substitutions.concat(
             applyHostFontSubstitutions(doc)
@@ -402,7 +462,7 @@
         report.fitted_troubleshooting_carrier_frames +=
             fitTroubleshootingCarrierFrames(doc);
         report.carrier_frame_fits = report.carrier_frame_fits.concat(
-            fitTerminalCarrierFrames(doc)
+            fitTerminalCarrierFrames(doc, report.carrier_frame_errors)
         );
         report.page_count = doc.pages.length;
         report.story_count = doc.stories.length;
@@ -442,6 +502,7 @@
                 });
             }
         }
+        report.overset_table_cells = collectOversetTableCells(doc);
 
         var fonts = doc.fonts.everyItem().getElements();
         for (var fi = 0; fi < fonts.length; fi += 1) {
@@ -488,7 +549,9 @@
         doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false, pdfPreset);
         report.stage = "complete";
         report.success = report.overset_stories.length === 0 &&
-            report.missing_fonts.length === 0 && report.bad_links.length === 0;
+            report.overset_table_cells.length === 0 &&
+            report.missing_fonts.length === 0 && report.bad_links.length === 0 &&
+            report.carrier_frame_errors.length === 0;
         doc.close(SaveOptions.YES);
         doc = null;
     } catch (error) {

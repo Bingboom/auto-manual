@@ -184,7 +184,8 @@ InDesign 重排时重新露白。
 - [ ] 可见 shell 精确包住可见内容；最后一行无白带、无补色块、无异常增高。
 - [ ] 行内容原生垂直居中；不是靠逐行 `BaselineShift` 补齐。
 - [ ] 透明终止载体与可见对象分离，最终化只处理载体。
-- [ ] 无 overset、缺字、缺图和坏链接。
+- [ ] 无 overset、缺字、缺图和坏链接；最终化报告的 `missing_glyphs` 为空，
+  `pdf_glyph_validation.pass=true`。
 - [ ] 与批准 JE/reference 页面做了同页截图或渲染对比，而不是只看新产线自身。
 - [ ] deliberate 视觉变化有明确差异记录；ownership-only 重构不随意刷新 golden。
 

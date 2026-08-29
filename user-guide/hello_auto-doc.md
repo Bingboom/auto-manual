@@ -304,8 +304,11 @@ new reviewer decision and a passing `asset-check --json`; operators must not
 patch the hash alone.
 
 The provisioned design Mac runs `tools/indesign_finalize.py` to create the INDD
-and PDF, with zero overset/missing-font/bad-link findings and PDF/X-4 using
-`Japan Color 2001 Coated` / `JC200103`. It then runs
+and PDF, with zero overset/missing-font/missing-glyph/bad-link findings and
+PDF/X-4 using `Japan Color 2001 Coated` / `JC200103`. The finalizer scans the
+exported PDF for visible `U+FFFD` and `.notdef` glyphs, including text retained
+inside placed PDF graphics; rasterized or outlined art remains part of visual
+review. It then runs
 `tools/idml_pdf_parity.py` against the approved PDF (the historical
 `--latex-pdf` flag name does not mean the newly built LaTeX PDF here) and the
 approved contract. All 58 pages are compared at 300 dpi as fixed
@@ -695,6 +698,7 @@ Important:
 - `python build.py word`, `python build.py html`, and `python build.py pdf` all prepare the RST bundle first.
 - `python build.py all` runs `html`, `word`, and `pdf` after the same prepare step.
 - RST may reference an approved asset by identity, for example `.. image:: asset:operation/ac_output`. Bundle finalization accepts only PNG/JPG/JPEG/SVG/PDF exports; `.ai` is archive input and is never a renderer fallback.
+- PDF-compatible Illustrator masters are extracted through `tools/asset_intake.py` and a committed `data/asset_recipes/*.json` contract. Use `retain_vector_drawings` only when the wanted illustration and burned labels are separate source drawing groups: declare ascending source indices, explicit fill overrides and stroke suppressions, review the quarantine render at 12x, then pin the approved output hash. The operator is exclusive after `crop` and fails closed on an out-of-range/non-intersecting group or an unsupported vector item; it is not a coordinate whiteout mechanism.
 - Each finalized bundle contains `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and `bundle_manifest.json`. `registry-uri` means the bytes came from the frozen approved registry export; `review-override` keeps the `asset_key` while recording the explicit override bytes; `legacy-path` means a path-based image was staged and accounted for but has not yet been migrated under registry status/scope control.
 - Shared templates (`docs/templates/`) are bulk-migrated to `asset:` — every `common_assets` image and raw-HTML `src` now resolves through the registry, so status/scope/hash gating applies to all of them; write new template image references as `asset:<asset_key>`, not as file paths. `legacy-path` accounting remains for any reference that has not (or cannot) be keyed.
 - `release-manifest` carries an `assets` section: the bundle fingerprint, the registry-snapshot hash, and every registry-backed asset the build actually consumed (key, format, content SHA, status, resolution source); the release CSV gains `assets_registry_count`, `assets_legacy_path_count`, `assets_bundle_sha256` and `assets_registry_snapshot_sha256`. `publish` runs an asset gate after the last prepare and before the manifest, so a bundle that consumed a `🔧临时替代`, `❌缺失` or `⛔隔离` asset — or that carries no frozen lineage — fails before anything is released. The gate does not block `legacy-path` images — references with no registry attribution at all — but their count is recorded so the debt stays visible; JE-1000F US reached zero. Synced Feishu attachment images (`_attachments/lcd_icons`, `_attachments/symbols`) are attributed to their `feishu/*_attachments` collection rows as `feishu-attachment` entries: each manifest row records the exact bytes that shipped, the collection row's registry status gates publish for the whole column, and the RST keeps its path reference (file identity is the Feishu token, so these are never keyed per file).

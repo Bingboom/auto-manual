@@ -109,13 +109,13 @@ class ProseFlowBuffer:
                 planned_starts.get(batches[index + 1][0][0])
                 if respect_page_plan else None
             )
-            blocks, columns = self._batch_content(batches[index])
+            blocks, columns = self._batch_content(batches[index], page_plan)
             if start and next_start and estimate_pages(blocks, columns) > next_start - start:
                 batches[index].extend(batches.pop(index + 1))
             else:
                 index += 1
         for batch in batches:
-            self._emit_batch(batch, emit, slug_stem)
+            self._emit_batch(batch, emit, slug_stem, page_plan)
         self.items.clear()
         return True
 
@@ -130,6 +130,9 @@ class ProseFlowBuffer:
             Path(entry["source_path"]).stem: entry
             for entry in (page_plan or {}).get("pages", [])
         }
+        items = _apply_target_asset_refs(items, entries, page_plan)
+        items = _apply_target_page_breaks(items, entries, page_plan)
+        items = _apply_target_flow_prefixes(items, entries, page_plan)
         approved_reference = (
             (page_plan or {}).get("plan_source") == "approved-reference"
         )
@@ -229,14 +232,18 @@ class ProseFlowBuffer:
         return _move_car_notice_to_storage(items, page_plan)
 
     @staticmethod
-    def _batch_content(items: list[tuple[str, list[Block], int]]) -> tuple[list[Block], int]:
+    def _batch_content(
+        items: list[tuple[str, list[Block], int]],
+        page_plan: dict | None = None,
+    ) -> tuple[list[Block], int]:
         from . import oppanel as _oppanel
         from . import page_roles as _page_roles
 
+        prepared_items = _prepare_preface_safety_maintenance(items, page_plan)
         default_langtag_language = None
         if (
-            len(items) == 1
-            and _page_roles.classify_page_role(Path(items[0][0]))
+            len(prepared_items) == 1
+            and _page_roles.classify_page_role(Path(prepared_items[0][0]))
             is _page_roles.PageRole.PREFACE
         ):
             # Approved physical-page-2 exception: legacy flattened review
@@ -244,15 +251,20 @@ class ProseFlowBuffer:
             # Keep that completion confined to the semantic preface page.
             default_langtag_language = "EN"
         return (_oppanel.transform(
-            [block for _, page_blocks, _ in items for block in page_blocks],
+            [
+                block
+                for _, page_blocks, _ in prepared_items
+                for block in page_blocks
+            ],
             default_langtag_language=default_langtag_language,
-        ), items[0][2])
+        ), prepared_items[0][2])
 
     @staticmethod
     def _emit_batch(items: list[tuple[str, list[Block], int]],
-                    emit: EmitProse, slug_stem: SlugStem) -> None:
+                    emit: EmitProse, slug_stem: SlugStem,
+                    page_plan: dict | None = None) -> None:
         stems = [stem for stem, _, _ in items]
-        blocks, columns = ProseFlowBuffer._batch_content(items)
+        blocks, columns = ProseFlowBuffer._batch_content(items, page_plan)
         if len(stems) == 1:
             sid = "st_" + slug_stem(stems[0])
             title = stems[0]
@@ -260,6 +272,230 @@ class ProseFlowBuffer:
             sid = "st_flow_" + slug_stem("_".join(stems[:2]))
             title = " + ".join(stems)
         emit(sid, title, blocks, columns)
+
+
+def _prepare_preface_safety_maintenance(
+    items: list[tuple[str, list[Block], int]],
+    page_plan: dict | None,
+) -> list[tuple[str, list[Block], int]]:
+    """Apply the shared one-page preface/safety/maintenance vocabulary.
+
+    The source keeps the monolingual language marker and the bold preface
+    heading as ordinary paragraphs so Sphinx and Word can consume them.  The
+    fixed-page composition promotes those two structural paragraphs to the
+    existing preface typography and promotes the maintenance H2 to the shared
+    full-width capsule variant.  No localized title text participates in the
+    routing.
+    """
+
+    if len(items) != 3 or not is_explicit_assembly_plan(page_plan):
+        return items
+    entries = {
+        Path(str(entry.get("source_path") or "")).stem: entry
+        for entry in (page_plan or {}).get("pages", [])
+    }
+    if {
+        str(entries.get(stem, {}).get("composition_type") or "")
+        for stem, _blocks, _columns in items
+    } != {"preface_safety_maintenance"}:
+        return items
+
+    prepared = [(stem, list(blocks), columns) for stem, blocks, columns in items]
+    preface_stem, preface_blocks, preface_columns = prepared[0]
+    if (
+        len(preface_blocks) >= 2
+        and preface_blocks[0][0] == "body"
+        and preface_blocks[1][0] == "body"
+        and re.fullmatch(r"\*\*[^*]+\*\*", preface_blocks[1][1].strip())
+    ):
+        title = preface_blocks[1][1].strip()[2:-2].strip()
+        preface_blocks = [
+            ("prefacetitle", title),
+            *[
+                ("prefacebody", text) if kind == "body" else (kind, text)
+                for kind, text in preface_blocks[2:]
+            ],
+        ]
+        prepared[0] = (preface_stem, preface_blocks, preface_columns)
+
+    maintenance_stem, maintenance_blocks, maintenance_columns = prepared[-1]
+    promoted: list[Block] = []
+    promoted_heading = False
+    for kind, text in maintenance_blocks:
+        if kind == "h2" and not promoted_heading:
+            promoted.append((
+                "component",
+                json.dumps({
+                    "kind": "emphasispill",
+                    "layout_variant": "full_width_subbar",
+                    "texts": [text],
+                }, ensure_ascii=False),
+            ))
+            promoted_heading = True
+        else:
+            promoted.append((kind, text))
+    prepared[-1] = (maintenance_stem, promoted, maintenance_columns)
+    return prepared
+
+
+def _apply_target_asset_refs(
+    items: list[tuple[str, list[Block], int]],
+    entries: dict[str, dict],
+    page_plan: dict | None,
+) -> list[tuple[str, list[Block], int]]:
+    """Bind target-owned image slots without changing component geometry."""
+
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return items
+    rebound_items: list[tuple[str, list[Block], int]] = []
+    for stem, blocks, columns in items:
+        data = entries.get(stem, {}).get("composition_data")
+        assets = data.get("assets") if isinstance(data, dict) else None
+        refs = assets.get("image_refs") if isinstance(assets, dict) else None
+        roles = assets.get("image_roles") if isinstance(assets, dict) else None
+        if not isinstance(refs, list):
+            rebound_items.append((stem, blocks, columns))
+            continue
+        replacements = iter(refs)
+        semantic_roles = iter(roles) if isinstance(roles, list) else None
+        rebound: list[Block] = []
+        for kind, payload in blocks:
+            if kind != "image":
+                rebound.append((kind, payload))
+                continue
+            try:
+                replacement = next(replacements)
+            except StopIteration as exc:
+                raise ValueError(
+                    f"{stem}: target image_refs do not cover every image slot"
+                ) from exc
+            if replacement is not None:
+                if semantic_roles is not None:
+                    try:
+                        role = next(semantic_roles)
+                    except StopIteration as exc:
+                        raise ValueError(
+                            f"{stem}: target image_roles do not cover every image slot"
+                        ) from exc
+                    rebound.append(("layout", f"image_role:{role}"))
+                rebound.append((kind, str(replacement)))
+        try:
+            next(replacements)
+        except StopIteration:
+            pass
+        else:
+            raise ValueError(
+                f"{stem}: target image_refs contain extra image slots"
+            )
+        if semantic_roles is not None:
+            try:
+                next(semantic_roles)
+            except StopIteration:
+                pass
+            else:
+                raise ValueError(
+                    f"{stem}: target image_roles contain extra image slots"
+                )
+        rebound_items.append((stem, rebound, columns))
+    return rebound_items
+
+
+def _apply_target_flow_prefixes(
+    items: list[tuple[str, list[Block], int]],
+    entries: dict[str, dict],
+    page_plan: dict | None,
+) -> list[tuple[str, list[Block], int]]:
+    """Route a source prefix into an explicitly earlier composition."""
+
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return items
+    routed = [(stem, list(blocks), columns) for stem, blocks, columns in items]
+    for index in range(len(routed)):
+        stem, blocks, columns = routed[index]
+        rule = entries.get(stem, {}).get("flow_prefix")
+        if not isinstance(rule, dict):
+            continue
+        until_kind = str(rule.get("until_kind") or "")
+        occurrence = int(rule.get("occurrence") or 0)
+        seen = 0
+        split_at = None
+        for block_index, (kind, _payload) in enumerate(blocks):
+            if kind != until_kind:
+                continue
+            seen += 1
+            if seen == occurrence:
+                split_at = block_index
+                break
+        head_id = str(rule.get("head_composition_id") or "")
+        target_index = next((
+            candidate
+            for candidate in range(index - 1, -1, -1)
+            if entries.get(routed[candidate][0], {}).get("composition_id")
+            == head_id
+        ), None)
+        if split_at is None or target_index is None:
+            raise ValueError(f"target flow prefix cannot be applied for {stem}")
+        head_stem, head_blocks, head_columns = routed[target_index]
+        routed[target_index] = (
+            head_stem,
+            head_blocks + blocks[:split_at],
+            head_columns,
+        )
+        routed[index] = (stem, blocks[split_at:], columns)
+    return routed
+
+
+def _apply_target_page_breaks(
+    items: list[tuple[str, list[Block], int]],
+    entries: dict[str, dict],
+    page_plan: dict | None,
+) -> list[tuple[str, list[Block], int]]:
+    """Insert target-declared internal page boundaries by block semantics.
+
+    The target plan owns *where* a composition continues on the next physical
+    page.  The shared prose renderer still owns the page-break carrier and all
+    typography.  Matching by block kind + ordinal keeps localized heading copy
+    out of the layout contract and avoids model-specific renderer branches.
+    """
+
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return items
+    aligned_items: list[tuple[str, list[Block], int]] = []
+    for stem, blocks, columns in items:
+        data = entries.get(stem, {}).get("composition_data")
+        rules = data.get("page_breaks") if isinstance(data, dict) else None
+        if not isinstance(rules, list):
+            aligned_items.append((stem, blocks, columns))
+            continue
+        aligned = list(blocks)
+        insertions: list[tuple[int, Block]] = []
+        for rule in rules:
+            if not isinstance(rule, dict):
+                raise ValueError(f"{stem}: target page_breaks rule must be an object")
+            at_kind = str(rule.get("at_kind") or "")
+            occurrence = int(rule.get("occurrence") or 0)
+            seen = 0
+            split_at = None
+            for block_index, (kind, _payload) in enumerate(blocks):
+                if kind != at_kind:
+                    continue
+                seen += 1
+                if seen == occurrence:
+                    split_at = block_index
+                    break
+            if split_at is None:
+                raise ValueError(
+                    f"{stem}: target page_breaks cannot find "
+                    f"{at_kind} occurrence {occurrence}"
+                )
+            top_gap = rule.get("top_gap_pt")
+            marker = "page_break" if top_gap is None else f"page_break:{float(top_gap):g}"
+            insertions.append((split_at, ("layout", marker)))
+        for split_at, marker in sorted(insertions, reverse=True):
+            if split_at == 0 or aligned[split_at - 1] != marker:
+                aligned.insert(split_at, marker)
+        aligned_items.append((stem, aligned, columns))
+    return aligned_items
 
 
 def idml_page_estimator(writer_cls, params, bundle_root) -> EstimatePages:
@@ -277,11 +513,11 @@ def _language_code(value: object) -> str:
     return normalized.split("-", 1)[0]
 
 
-def _planned_page_language(
+def _assembly_page_language(
     page_plan: dict | None,
     stem: str | None,
 ) -> str | None:
-    """Return approved page metadata language for an exact source stem."""
+    """Return explicit assembly metadata language for an exact source stem."""
     if not is_explicit_assembly_plan(page_plan) or not stem:
         return None
     target_stem = Path(stem).stem
@@ -290,8 +526,17 @@ def _planned_page_language(
         if not source_path or Path(str(source_path)).stem != target_stem:
             continue
         language = _language_code(entry.get("language"))
-        return language if language in governed_languages() else None
+        return language or None
     return None
+
+
+def _planned_page_language(
+    page_plan: dict | None,
+    stem: str | None,
+) -> str | None:
+    """Return an established governed locale for legacy reference helpers."""
+    language = _assembly_page_language(page_plan, stem)
+    return language if language in governed_languages() else None
 
 
 def operation_language(
@@ -305,7 +550,7 @@ def operation_language(
     not change when an editor revises visible table headings. Header inference
     remains as a compatibility fallback for unapproved and older call sites.
     """
-    planned = _planned_page_language(page_plan, stem)
+    planned = _assembly_page_language(page_plan, stem)
     if planned is not None:
         return planned
     headers = {
@@ -553,11 +798,7 @@ def align_app_second_page(blocks: list[Block], page_plan: dict | None,
     """
     from .latex_page_plan import planned_span
     if (
-        not plan_page_owns_component(
-            page_plan,
-            stem,
-            component=APP_ADD_DEVICE_COMPONENT,
-        )
+        _app_composition_options(page_plan, stem) is None
         or planned_span(page_plan, [stem], 1) < 2
     ):
         return blocks
@@ -614,6 +855,60 @@ def _step_number(text: str) -> str:
     return match.group(1) if match else ""
 
 
+def _app_composition_options(
+    page_plan: dict | None,
+    stem: str,
+) -> dict[str, object] | None:
+    """Resolve one App instance without exposing target identity to renderers."""
+
+    if plan_page_owns_component(
+        page_plan,
+        stem,
+        component=APP_ADD_DEVICE_COMPONENT,
+    ):
+        language = _planned_page_language(page_plan, stem)
+        if language is None:
+            raise ValueError(
+                f"approved App figure {stem} has no governed page language"
+            )
+        base_labels, render_labels = approved_app_control_labels(
+            page_plan,
+            language,
+        )
+        return {
+            "base_labels_by_role": base_labels,
+            "labels_by_role": render_labels,
+            "control_image": APP_PAIRING_PANEL_ASSET_URI,
+            "control_layout_variant": "reference_extensions",
+        }
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return None
+    matches = [
+        entry
+        for entry in (page_plan or {}).get("pages", [])
+        if Path(str(entry.get("source_path") or entry.get("source_ref") or ""))
+        .stem.casefold()
+        == Path(stem).stem.casefold()
+        and entry.get("composition_type") == "app"
+    ]
+    if len(matches) != 1:
+        return None
+    data = matches[0].get("composition_data")
+    app = data.get("app") if isinstance(data, dict) else None
+    if not isinstance(app, dict):
+        return None
+    labels = app.get("labels_by_role")
+    if not isinstance(labels, dict):
+        return None
+    return {
+        "base_labels_by_role": labels,
+        "labels_by_role": labels,
+        "control_image": app.get("control_image"),
+        "control_layout_variant": app.get("control_layout_variant"),
+        "figure_assets": app.get("figure_assets"),
+    }
+
+
 def promote_reference_figures(
     blocks: list[Block],
     page_plan: dict | None,
@@ -624,17 +919,15 @@ def promote_reference_figures(
     Routing uses the approved plan, source-page role, asset basename, and
     neighbouring block shape.  It never matches translated headings or copy.
     """
-    if (page_plan or {}).get("plan_source") != "approved-reference":
-        return blocks
+    approved_reference = (
+        (page_plan or {}).get("plan_source") == "approved-reference"
+    )
     is_charging = re.fullmatch(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
-    ) is not None
-    is_app = plan_page_owns_component(
-        page_plan,
-        stem,
-        component=APP_ADD_DEVICE_COMPONENT,
-    )
+    ) is not None and approved_reference
+    app_options = _app_composition_options(page_plan, stem)
+    is_app = app_options is not None
     if not is_charging and not is_app:
         return blocks
 
@@ -778,7 +1071,14 @@ def promote_reference_figures(
             )
             aligned[index:body_end] = [
                 _referencefigure_block(
-                    "app_download", payload, copy=copy,
+                    "app_download",
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_download",
+                            payload,
+                        )
+                    ),
+                    copy=copy,
                 )
             ]
             index += 1
@@ -790,14 +1090,11 @@ def promote_reference_figures(
                 for prior_kind, text in aligned[:index]
                 if prior_kind == "body" and _step_number(text)
             ][-2:]
-            language = _planned_page_language(page_plan, stem)
-            if language is None:
-                raise ValueError(
-                    f"approved App figure {stem} has no governed page language"
-                )
-            base_labels, render_labels = approved_app_control_labels(
-                page_plan,
-                language,
+            base_labels = dict(
+                (app_options or {}).get("base_labels_by_role") or {}
+            )
+            render_labels = dict(
+                (app_options or {}).get("labels_by_role") or {}
             )
             consume = 1
             if (
@@ -816,10 +1113,18 @@ def promote_reference_figures(
             aligned[index:index + consume] = [
                 _referencefigure_block(
                     "app_add_device",
-                    payload,
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_add_device",
+                            payload,
+                        )
+                    ),
                     labels_by_role=render_labels,
                     step_labels=prior_steps,
-                    control_image=APP_PAIRING_PANEL_ASSET_URI,
+                    control_image=(app_options or {}).get("control_image"),
+                    control_layout_variant=(app_options or {}).get(
+                        "control_layout_variant"
+                    ),
                 )
             ]
             index += 1
@@ -839,7 +1144,12 @@ def promote_reference_figures(
             aligned[index:index + 2] = [
                 _referencefigure_block(
                     "app_connect_result",
-                    payload,
+                    str(
+                        dict((app_options or {}).get("figure_assets") or {}).get(
+                            "app_connect_result",
+                            payload,
+                        )
+                    ),
                     step_labels=prior_steps,
                     reference_note=aligned[index + 1][1],
                 )
@@ -964,7 +1274,7 @@ def composition_language(page_plan: dict | None, title: str) -> str | None:
     languages = {
         language
         for stem in (part.strip() for part in title.split(" + "))
-        if (language := _planned_page_language(page_plan, stem)) is not None
+        if (language := _assembly_page_language(page_plan, stem)) is not None
     }
     return next(iter(languages)) if len(languages) == 1 else None
 
@@ -1017,13 +1327,31 @@ def apply_component_composition_data(
     to own geometry and tokens, so target data never introduces a model,
     heading-text, or physical-page branch.
     """
-    if composition_type(page_plan, title) != "warranty":
-        return blocks
+    planned_type = composition_type(page_plan, title)
     stems = {
         Path(part.strip()).stem
         for part in title.split(" + ")
         if part.strip()
     }
+    if planned_type == "operation":
+        from .oppanel import promote_operation_guidance_stack
+
+        variants = [
+            data["operation"].get("layout_variant")
+            for entry in (page_plan or {}).get("pages", [])
+            if Path(str(entry.get("source_path") or "")).stem in stems
+            and isinstance((data := entry.get("composition_data")), dict)
+            and isinstance(data.get("operation"), dict)
+        ]
+        if not variants:
+            return blocks
+        if variants != ["guidance_stack"]:
+            raise ValueError(
+                "operation composition requires one guidance_stack variant"
+            )
+        return promote_operation_guidance_stack(blocks, require_match=True)
+    if planned_type != "warranty":
+        return blocks
     variants = [
         data["warranty"].get("layout_variant")
         for entry in (page_plan or {}).get("pages", [])

@@ -341,6 +341,52 @@ class TestAssetIntake(unittest.TestCase):
             self.assertIn("KEEP", extracted)
             self.assertNotIn("REMOVE", extracted)
 
+    def test_retain_vector_drawings_outputs_only_selected_source_groups(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            source = root / "source.ai"
+            document = fitz.open()
+            page = document.new_page(width=120, height=100)
+            page.draw_rect(fitz.Rect(10, 10, 50, 50), fill=(0.5, 0.5, 0.5))
+            page.draw_circle(fitz.Point(85, 30), 15, fill=(1, 0, 0))
+            page.draw_line(fitz.Point(60, 20), fitz.Point(100, 20))
+            page.insert_text((15, 80), "VECTOR LABEL", fontsize=9)
+            document.save(
+                str(source), garbage=4, clean=True, deflate=True, no_new_id=True,
+            )
+            document.close()
+            with source.open("ab") as handle:
+                handle.write(b"\n% /AIPrivateData /AIMetaData /PieceInfo\n")
+            payload = self._single_page_payload(sha256_file(source))
+            asset = payload["assets"][0]  # type: ignore[index]
+            asset["transforms"] = [
+                {"op": "crop", "bbox_pt": [5, 5, 115, 60]},
+                {
+                    "op": "retain_vector_drawings",
+                    "drawing_indices": [0, 2],
+                    "fill_rgb_overrides": {"0": [0.8, 0.8, 0.8]},
+                    "stroke_suppressed_indices": [0],
+                },
+            ]
+            asset["outputs"] = [
+                {"format": "pdf", "path": "docs/assets/retained.pdf"},
+                {"format": "png", "path": "docs/assets/retained.png", "scale": 4},
+            ]
+            recipe = self._write_recipe(root / "recipe.json", payload)
+
+            result = run_intake(
+                source_path=source,
+                recipe=recipe,
+                output_root=root / "complete-run",
+            )
+
+            pdf = result.output_root / "artifacts/docs/assets/retained.pdf"
+            with fitz.open(pdf) as output:
+                drawings = output[0].get_drawings()
+                self.assertEqual(2, len(drawings))
+                self.assertEqual("", output[0].get_text())
+                self.assertAlmostEqual(0.8, drawings[0]["fill"][0], places=3)
+
     def test_intake_reads_only_verified_private_source_snapshot(self) -> None:
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

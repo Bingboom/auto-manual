@@ -16,7 +16,9 @@ from tools.indesign_finalize import (
     DEFAULT_PDFX,
     JSX,
     VERSION_PIN,
+    _collect_finalize_result,
     _job,
+    _pdf_missing_glyphs,
     _parse_pdf_export_compliance,
     check_version_pin,
     main,
@@ -26,6 +28,88 @@ from tools.indesign_finalize import (
 
 
 class InDesignFinalizeTests(unittest.TestCase):
+    def test_pdf_missing_glyphs_flags_replacement_and_notdef(self) -> None:
+        class FakePage:
+            def get_texttrace(self):
+                return [{
+                    "font": "Example Font",
+                    "chars": [
+                        (0xFFFD, 42, (1.0, 2.0), (1.0, 2.0, 3.0, 4.0)),
+                        (ord("경"), 0, (5.0, 6.0), (5.0, 6.0, 7.0, 8.0)),
+                        (ord("A"), 12, (9.0, 10.0), (9.0, 10.0, 11.0, 12.0)),
+                        (ord(" "), 0, (13.0, 14.0), (13.0, 14.0, 15.0, 16.0)),
+                    ],
+                }]
+
+        class FakeDocument:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return None
+
+            def __iter__(self):
+                return iter([FakePage()])
+
+        with patch("fitz.open", return_value=FakeDocument()):
+            findings = _pdf_missing_glyphs(Path("fake.pdf"))
+
+        self.assertEqual([item["codepoint"] for item in findings], [
+            "U+FFFD", "U+ACBD",
+        ])
+        self.assertEqual(findings[0]["reasons"], ["replacement_character"])
+        self.assertEqual(findings[1]["reasons"], ["notdef_glyph"])
+        self.assertEqual(findings[1]["glyph_id"], 0)
+        self.assertEqual(findings[1]["page"], 1)
+        self.assertEqual(findings[1]["font"], "Example Font")
+
+    def test_finalize_result_fails_closed_on_missing_pdf_glyphs(self) -> None:
+        finding = {
+            "page": 3,
+            "character": "경",
+            "codepoint": "U+ACBD",
+            "glyph_id": 0,
+            "font": "Gilroy-Bold",
+            "reasons": ["notdef_glyph"],
+        }
+        with temp_test_root() as root:
+            report_path = Path(root) / "report.json"
+            pdf_path = Path(root) / "output.pdf"
+            report_path.write_text(json.dumps({
+                "success": True,
+                "overset_stories": [],
+                "overset_table_cells": [],
+                "missing_fonts": [],
+                "bad_links": [],
+            }), encoding="utf-8")
+            pdf_path.write_bytes(b"%PDF-test")
+            job = {
+                "job_id": "glyph-negative-control",
+                "output_pdf": str(pdf_path),
+                "report_json": str(report_path),
+                "pdfx": DEFAULT_PDFX,
+                "output_intent": DEFAULT_OUTPUT_INTENT,
+                "output_condition": DEFAULT_OUTPUT_CONDITION,
+            }
+            with patch(
+                "tools.indesign_finalize._pdf_export_compliance",
+                return_value={"pass": True},
+            ), patch(
+                "tools.indesign_finalize._pdf_missing_glyphs",
+                return_value=[finding],
+            ), patch(
+                "tools.indesign_finalize.indesign_version",
+                return_value="Adobe InDesign test",
+            ):
+                result = _collect_finalize_result(job, pin_status="match")
+
+            written = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertFalse(result["success"])
+            self.assertEqual(result["missing_glyphs_count"], 1)
+            self.assertFalse(written["success"])
+            self.assertEqual(written["missing_glyphs"], [finding])
+            self.assertFalse(written["pdf_glyph_validation"]["pass"])
+
     def test_job_paths_are_absolute_and_script_checks_required_gates(self) -> None:
         job = _job(argparse.Namespace(
             idml="input.idml", indd="output.indd", pdf="output.pdf",
@@ -37,6 +121,9 @@ class InDesignFinalizeTests(unittest.TestCase):
             "input_idml", "output_indd", "output_pdf", "report_json")))
         jsx = JSX.read_text(encoding="utf-8")
         self.assertIn("story.overflows", jsx)
+        self.assertIn("cell.overflows", jsx)
+        self.assertIn("collectOversetTableCells(doc)", jsx)
+        self.assertIn("overset_table_cells", jsx)
         self.assertIn("FontStatus.INSTALLED", jsx)
         self.assertIn("LinkStatus.NORMAL", jsx)
         self.assertIn("hb:page=", jsx)
@@ -97,9 +184,19 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("appliedFontName(matches[mi])", jsx)
         self.assertIn("font_usage_audit", jsx)
         self.assertIn("fontUsageSamples(doc, font)", jsx)
-        self.assertIn("fitTerminalCarrierFrames(doc)", jsx)
+        self.assertIn(
+            "fitTerminalCarrierFrames(doc, report.carrier_frame_errors)",
+            jsx,
+        )
         self.assertIn("carrier_frame_fits", jsx)
+        self.assertIn("carrier_frame_errors", jsx)
         self.assertIn('title.indexOf("product_overview")', jsx)
+        terminal_fit = jsx.split(
+            "function fitTerminalCarrierFrames(doc, errors)", 1
+        )[1].split("function isComposedSymbolTableStory", 1)[0]
+        self.assertIn('"hb:self=tf_terminal_carrier_group_"', terminal_fit)
+        self.assertIn("!frame.isValid", terminal_fit)
+        self.assertNotIn("isMarkerOnlyCarrier", terminal_fit)
         self.assertIn("app.pdfExportPresets.itemByName(job.pdf_preset)", jsx)
         self.assertIn("if (!pdfPreset.isValid)", jsx)
         self.assertIn("app.pdfExportPreferences.pageRange = PageRange.ALL_PAGES", jsx)

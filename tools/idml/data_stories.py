@@ -634,6 +634,7 @@ def add_spec_story(
                 list(section["rows"]),
                 writer.params,
                 density="compact",
+                language=lang,
             )
             for section in sections
         )
@@ -788,7 +789,11 @@ def add_spec_story(
                 stroke_weight=0.75,
                 radius=6.8,
             )
-            table_default = default_table_before[si]
+            table_default = (
+                default_table_before[si]
+                if si < len(default_table_before)
+                else default_table_before[-1]
+            )
             table_before = param_pt(
                 writer.params,
                 (
