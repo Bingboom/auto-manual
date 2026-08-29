@@ -6,6 +6,7 @@ import unittest
 
 from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
+    OPERATION_LAYOUT_VARIANTS,
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
     _PAGE_KEYS,
@@ -24,6 +25,41 @@ PLAN_PATH = (
     / "target_assembly"
     / "jbp2000b_us_v1_candidate.json"
 )
+KR_PLAN_PATH = (
+    ROOT
+    / "docs"
+    / "renderers"
+    / "contracts"
+    / "target_assembly"
+    / "je3000c_kr_v1_candidate.json"
+)
+
+# The four KR source pages whose plan rules address block identity. Every count
+# here is forced by a validator against the shipped contract, not chosen: the
+# operation page needs h2 occurrence 6 for its flow_split, h2 occurrence 4 for
+# its page_break and four image blocks for its four image_refs; ups_mode and
+# charging need one image each (charging also h1 occurrence 1 for its
+# page_break); charging_methods needs two images. Every other page carries no
+# blocks because no KR rule reads one.
+_KR_BLOCK_KINDS: dict[str, tuple[str, ...]] = {
+    "page/05_operation_guide_placeholder.rst": (
+        "h2",
+        "image",
+        "h2",
+        "image",
+        "h2",
+        "image",
+        "h2",
+        "h2",
+        "h2",
+        "image",
+    ),
+    "page/06_ups_mode.rst": ("h1", "image"),
+    "page/charging.rst": ("h1", "image"),
+    "page/08_charging_methods.rst": ("h1", "image", "image"),
+}
+
+
 def _payload() -> dict:
     return json.loads(PLAN_PATH.read_text(encoding="utf-8"))
 
@@ -84,6 +120,50 @@ def _manual_ir(payload: dict) -> ManualIR:
     )
 
 
+def _kr_payload() -> dict:
+    return json.loads(KR_PLAN_PATH.read_text(encoding="utf-8"))
+
+
+def _kr_manual_ir(payload: dict) -> ManualIR:
+    pages = []
+    for index, entry in enumerate(payload["pages"], start=1):
+        kinds = _KR_BLOCK_KINDS.get(entry["source_ref"], ())
+        blocks = tuple(
+            ManualBlock(
+                block_id=f"block-{index}-{block_index}",
+                source_ref=entry["source_ref"],
+                kind=kind,
+                payload=f"{kind}-{block_index}",
+                content_sha256=f"{block_index:064x}",
+            )
+            for block_index, kind in enumerate(kinds, start=1)
+        )
+        pages.append(
+            ManualPage(
+                page_id=f"page-{index}",
+                source_ref=entry["source_ref"],
+                source_path=entry["source_ref"],
+                language=entry["language"],
+                source_sha256=f"{index:064x}",
+                skipped_raw=0,
+                blocks=blocks,
+            )
+        )
+    return ManualIR(
+        model="JE-3000C",
+        region="KR",
+        language="ko",
+        source="test",
+        bundle_root=".",
+        bundle_sha256="0" * 64,
+        snapshot_sha256="1" * 64,
+        layout_params_sha256="2" * 64,
+        style_contract_sha256="3" * 64,
+        content_sha256="4" * 64,
+        pages=tuple(pages),
+    )
+
+
 class TargetAssemblyPlanTests(unittest.TestCase):
     def test_inbox_accepts_shared_compact_with_tip_variant(self) -> None:
         issues = _validate_composition_data(
@@ -100,6 +180,88 @@ class TargetAssemblyPlanTests(unittest.TestCase):
         )
 
         self.assertEqual([], issues)
+
+    def test_operation_accepts_the_registered_guidance_stack_variant(self) -> None:
+        """Every registered operation variant must validate clean.
+
+        ``guidance_stack`` is the only name the promotion in
+        ``oppanel.promote_operation_guidance_stack`` knows how to wrap. A name
+        added to the frozenset without that wiring would pass validation here
+        and then render loose blocks instead of one guidance card, so this
+        iterates the vocabulary rather than pinning a single literal.
+        """
+        for variant in sorted(OPERATION_LAYOUT_VARIANTS):
+            with self.subTest(layout_variant=variant):
+                issues = _validate_composition_data(
+                    [{
+                        "source_ref": "page/05_operation_guide_placeholder.rst",
+                        "page_role": "operation_guide",
+                        "composition_type": "operation",
+                        "composition_data": {
+                            "operation": {"layout_variant": variant},
+                        },
+                    }],
+                    {},
+                    _kr_manual_ir(_kr_payload()),
+                )
+
+                self.assertEqual([], issues)
+
+    def test_operation_rejects_a_page_specific_variant(self) -> None:
+        """A per-page variant name is a target leaking geometry into the plan.
+
+        The allowlist is the only thing between a typo (or a smuggled
+        ``kr_page_7``) and an operation page that renders with no correction at
+        all, so an unregistered name must be reported, not ignored.
+        """
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/05_operation_guide_placeholder.rst",
+                "page_role": "operation_guide",
+                "composition_type": "operation",
+                "composition_data": {
+                    "operation": {"layout_variant": "kr_page_7"},
+                },
+            }],
+            {},
+            _kr_manual_ir(_kr_payload()),
+        )
+
+        self.assertEqual(
+            [
+                "page/05_operation_guide_placeholder.rst.composition_data"
+                ".operation.layout_variant must be one of guidance_stack"
+            ],
+            issues,
+        )
+
+    def test_operation_variant_requires_an_operation_composition(self) -> None:
+        """Operation data must not ride on a non-operation composition.
+
+        Only the operation compositor reads ``operation.layout_variant``; if the
+        host guard is dropped, the key is silently inert on any other page and
+        the plan claims a layout nothing applies.
+        """
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/05_operation_guide_placeholder.rst",
+                "page_role": "operation_guide",
+                "composition_type": "lcd_operations",
+                "composition_data": {
+                    "operation": {"layout_variant": "guidance_stack"},
+                },
+            }],
+            {},
+            _kr_manual_ir(_kr_payload()),
+        )
+
+        self.assertEqual(
+            [
+                "page/05_operation_guide_placeholder.rst.composition_data"
+                ".operation requires an operation composition"
+            ],
+            issues,
+        )
 
     def test_connections_composition_accepts_shared_layout_variant(self) -> None:
         payload = _payload()
@@ -258,6 +420,82 @@ class TargetAssemblyPlanTests(unittest.TestCase):
 
     def test_candidate_remains_non_approved(self) -> None:
         payload = _payload()
+        self.assertEqual(payload["status"], "candidate")
+        self.assertFalse(payload["production_eligible"])
+        self.assertNotIn("approval", payload)
+
+    def test_kr_candidate_normalizes_to_13_shared_compositions(self) -> None:
+        """The shipped KR contract must still project onto the shared vocabulary.
+
+        Until now the committed JE-3000C plan was only checked for its page
+        keys; nothing normalized it. A renamed page role, a re-paginated
+        ``start_page``, an added page or a composition type dropped from
+        ``composition_plan.REGISTRY`` would ship silently and only surface as a
+        CompositionPlanError during a real KR build.
+        """
+        payload = _kr_payload()
+        plan = normalize_target_assembly_plan(
+            payload,
+            _kr_manual_ir(payload),
+            source_path=KR_PLAN_PATH,
+        )
+
+        self.assertEqual(plan["plan_source"], "target-assembly")
+        self.assertEqual(plan["physical_page_count"], 18)
+        self.assertEqual(plan["source_page_count"], 18)
+        self.assertEqual(plan["composition_count"], 13)
+        compositions = build_composition_plan(plan)
+        by_id = {item.composition_id: item for item in compositions.compositions}
+        self.assertEqual(
+            by_id["ko_inbox_overview"].source_refs,
+            (
+                "page/02_whats_in_the_box.rst",
+                "page/03_product_overview_placeholder.rst",
+            ),
+        )
+        self.assertEqual(
+            by_id["ko_ups_charging"].composition_type,
+            "ups_charging",
+        )
+        self.assertEqual(
+            by_id["ko_ups_charging"].source_refs,
+            (
+                "page/06_ups_mode.rst",
+                "page/charging.rst",
+            ),
+        )
+        self.assertEqual(
+            by_id["ko_storage_troubleshooting"].source_refs,
+            (
+                "page/09_storage_and_maintenance.rst",
+                "page/troubleshooting_ko.rst",
+            ),
+        )
+        self.assertEqual(3, by_id["ko_operation"].page_count)
+        operation_page = next(
+            page for page in plan["pages"]
+            if page["source_ref"] == "page/05_operation_guide_placeholder.rst"
+        )
+        self.assertEqual(
+            "guidance_stack",
+            operation_page["composition_data"]["operation"]["layout_variant"],
+        )
+        spec_page = next(
+            page for page in plan["pages"]
+            if page["page_role"] == "spec"
+        )
+        self.assertEqual(
+            {"layout_variant": "compact", "annotation_order": [1, 2, 0]},
+            spec_page["composition_data"]["specifications"],
+        )
+
+    def test_kr_candidate_remains_non_approved(self) -> None:
+        """The KR target is a candidate until an operator approves the proof.
+
+        Flipping ``production_eligible`` or adding an ``approval`` block here
+        would let an unreviewed layout be discovered as an approved reference.
+        """
+        payload = _kr_payload()
         self.assertEqual(payload["status"], "candidate")
         self.assertFalse(payload["production_eligible"])
         self.assertNotIn("approval", payload)
