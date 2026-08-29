@@ -1442,6 +1442,8 @@ Findings surface as `TERMINOLOGY_DEPRECATED`, a warning-only code — a rule can
 
 The rule table is the machine-readable half of the Style Guide (飞书知识库「多语言语言资产规范」); when a clause there changes, update the matching row here in the same change.
 
+The gate only sees built bundles. A retired wording sitting in the library stays invisible until some manual renders it — `python tools/lang_asset_sweep.py --terminology` reads Translation_Memory, Terms and the print source tables directly and reports those rows, including ones already marked `Approved`. Template hits are skipped there because the gate already covers rendered pages.
+
 ## 5.1 Capability Gate
 
 `build.py check` validates each target against the product capability matrix:
