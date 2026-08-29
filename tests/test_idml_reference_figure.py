@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -132,6 +133,18 @@ class EditableReferenceFigureTests(unittest.TestCase):
             self.assertIn("tf_referencefigure_car_vehicle_car", xml)
             self.assertLess(xml.index("carimg"), xml.index("tf_referencefigure_car_note_car"))
             self.assertIn('LockPosition="false" PinPosition="false"', xml)
+            note_bg = xml[
+                xml.index('<Rectangle Self="referencefigure_car_note_bg_car"'):
+                xml.index(
+                    "</Rectangle>",
+                    xml.index('<Rectangle Self="referencefigure_car_note_bg_car"'),
+                )
+            ]
+            note_y = [
+                float(value)
+                for value in re.findall(r'Anchor="[-0-9.]+ ([-0-9.]+)"', note_bg)
+            ]
+            self.assertAlmostEqual(15.0, max(note_y) - min(note_y), places=3)
             self.assertEqual(2, len(stories))
             self.assertIn("Vehicle", stories[1][1])
 

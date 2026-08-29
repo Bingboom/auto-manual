@@ -596,7 +596,7 @@ class FixedPanelGoldenTests(unittest.TestCase):
             if element.findtext("Content") == "팁"
         )
         self.assertEqual(
-            "Noto Sans KR",
+            "NanumGothic",
             label_range.findtext("Properties/AppliedFont"),
         )
         self.assertTrue(all(

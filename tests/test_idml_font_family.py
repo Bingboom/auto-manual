@@ -9,11 +9,13 @@ from pathlib import Path
 from tools.idml.delivery import _FONT_ROWS, _fonts_manifest
 from tools.idml.flow_idml import DEFAULT_STYLE_MAP, _flow_style_entries
 from tools.idml.font_family import (
+    BULLET_FONT_FAMILY_TOKEN,
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
     KOREAN_FONT_FAMILY_TOKEN,
     PRIMARY_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
+    TEXT_SYMBOL_FONT_FAMILY_TOKEN,
 )
 from tools.idml.params import load_layout_params
 from tools.idml.style_resources import fonts_xml
@@ -35,10 +37,10 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         }
         expected = {
             "styles": "8a697432cd63084047142685060429eea6257a56e1fc3a8d6fe434362bafe316",
-            "fonts": "09eac1cc0235a6321d7efff2771d48b6404a56e8a960471f66f4882dd690975d",
-            "fonts_ko": "9553baefc211261034e83b98818745c81ff4da87d3743c073761fbc90c5e220f",
+            "fonts": "7bef8c30988b0b8ceabb67734943995a172b2428fdc2c8772d67ac4afff16407",
+            "fonts_ko": "319a2447dfeeea2e261f8c4fba614f1cacea844fee9989a6e4ef919bc3833f33",
             "flow": "111c9d93d62ba1b250d743af51db9bfb8079c1a675201e96d895e1c18ceb4211",
-            "manifest": "dbd80f1f24fd17fe24a7478cecf94942f0611a6a92134b08b431dee429122085",
+            "manifest": "11debfec1dfbb6cf041f57d213c12970e2c1982bc6cad89205b564218b08d5d5",
         }
         actual = {
             name: hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -73,10 +75,14 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         )
         self.assertEqual(CJK_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[1])
 
-    def test_windows_symbol_tokens_drive_resources_and_delivery(self) -> None:
+    def test_portable_symbol_tokens_drive_resources_and_delivery(self) -> None:
         fonts = fonts_xml()
         for index, token in enumerate(
-            (SYMBOL_FONT_FAMILY_TOKEN, CIRCLED_NUMBER_FONT_FAMILY_TOKEN),
+            (
+                TEXT_SYMBOL_FONT_FAMILY_TOKEN,
+                SYMBOL_FONT_FAMILY_TOKEN,
+                BULLET_FONT_FAMILY_TOKEN,
+            ),
             start=2,
         ):
             with self.subTest(family=token.name):
@@ -88,6 +94,12 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
                 self.assertEqual(token.delivery_row, _FONT_ROWS[index])
         self.assertNotIn("Apple Symbols", fonts)
         self.assertNotIn("Apple SD Gothic Neo", fonts)
+        self.assertNotIn("Segoe UI Symbol", fonts)
+        self.assertNotIn("Yu Gothic", fonts)
+        self.assertIs(
+            CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
+            SYMBOL_FONT_FAMILY_TOKEN,
+        )
 
     def test_korean_family_is_declared_only_in_korean_packages(self) -> None:
         family_decl = (
@@ -98,7 +110,7 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         self.assertNotIn(family_decl, fonts_xml("ja"))
         self.assertIn(family_decl, fonts_xml("ko"))
         self.assertIn(family_decl, fonts_xml("ko-KR"))
-        self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[4])
+        self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[5])
 
     def test_hangul_routes_to_the_korean_text_face_not_the_symbol_face(self) -> None:
         from tools.idml.inline_text import _fallback_font

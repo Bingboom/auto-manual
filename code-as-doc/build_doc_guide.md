@@ -1323,18 +1323,21 @@ aliases are resolved only through `tools/lang_registry.py`, while non-content
 page roles `cover` and `toc` are exempt.
 
 Japanese, Korean, and Chinese characters in editable IDML are serialized as
-explicit character runs using `CJK_FONT_FAMILY_TOKEN` (the renderer token
-`idml_font_family_cjk`). The current family is the already-declared Arial
-Unicode MS fallback, so the font resource and handoff manifest do not change
-for Latin-only targets. This token is intentionally outside
-`data/layout_params.csv`: changing it is a font-delivery decision, not a page
-geometry change, and does not by itself require a reference layout rebind.
-Latin-market editable symbols are governed separately: `Segoe UI Symbol`
-owns the DC, bullet, reference-mark, ordinal, and subscript set, while `Yu
-Gothic` owns circled numbers through 27. These Windows-native resources replace
-the former `Apple Symbols` / `Apple SD Gothic Neo` runs in both story XML and
-`Resources/Fonts.xml`; their delivery rows come from the same centralized font
-tokens. Neither Windows system font is redistributed under `Document fonts/`.
+explicit script-aware character runs. Korean Hangul uses the committed
+SIL-OFL `NanumGothic` face; Japanese and Chinese continue through
+`CJK_FONT_FAMILY_TOKEN` (the renderer token `idml_font_family_cjk`, currently
+Arial Unicode MS). Font-family tokens intentionally stay outside
+`data/layout_params.csv`: changing font delivery is not page geometry and does
+not by itself require a reference-layout rebind.
+Latin-market editable symbols are governed separately: `Noto Sans` owns
+reference marks, ordinals, and subscript digits; `Noto Sans Symbols` owns the
+DC glyph and circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle
+fallback. LCD labels 21-27 are normalized to `(21)`-`(27)`, and both final
+assembly modes enable native vector structure markers. Every declared
+redistributable face is hash-verified from
+`docs/templates/word_template/common_assets/fonts/idml_portable/` and copied
+beside the IDML under `Document fonts/`; generated packages therefore do not
+depend on `Segoe UI Symbol`, `Yu Gothic`, or `Noto Sans KR` on the host.
 Line and coarse text-width budgeting is governed by
 `tools/idml/line_metrics.py`: the existing per-component narrow-glyph ratios
 remain stable, East Asian Width `W`/`F` characters consume one em, combining
@@ -1349,8 +1352,9 @@ designer delivery zip via `tools/idml/delivery.py`:
 production and flow IDML with every `LinkResourceURI` rewritten to
 `file:Links/<name>`, the linked images collected under `Links/`, the flow outputs, the handoff
 reports, `source_trace.json` stamped with the queue row's real version, a
-fonts manifest (plus `Document fonts/` when `AUTO_MANUAL_LOCAL_GILROY_DIR` is
-provisioned on the build machine), and the versioned reference PDF. The zip is
+fonts manifest, the declared SIL-OFL faces under `Document fonts/`, optional
+licensed Gilroy files when `AUTO_MANUAL_LOCAL_GILROY_DIR` is provisioned on the
+build machine, and the versioned reference PDF. The zip is
 the designer-facing package: its checklist points to the versioned root IDML,
 `missing_assets_report.md` reports package-time link portability, and the
 separate `source_asset_resolution_report.md` preserves unresolved semantic

@@ -192,7 +192,7 @@ def spec_page_data(ir: ManualIR, lang: str) -> SpecPageData | None:
 def _circled(index: int) -> str:
     if index <= 20:
         return chr(0x245F + index)
-    return chr(0x323C + index)
+    return f"({index})"
 
 
 def _asset_path(root: Path, data_root: Path, category: str, reference: str) -> str:

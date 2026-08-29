@@ -15,9 +15,6 @@ from ..primitives import (
 )
 from .base import RenderContext, figure_paragraph
 
-_CIRCLED = {str(index): glyph for index, glyph in enumerate("❶❷❸❹❺❻❼❽❾", 1)}
-
-
 def _plain_strong(text: str) -> str:
     match = re.fullmatch(r"\s*\*\*(.*?)\*\*\s*", text, re.S)
     return match.group(1) if match else text
@@ -168,12 +165,10 @@ def _year_heading(
     number = str(item.get("number", "")).strip()
     unit = str(item.get("unit", "")).strip()
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
-    glyph_size = param_pt(ctx.params, "idml_warranty_year_glyph_size", 30.0)
-    glyph = _CIRCLED.get(number, number)
-    xml = psr("HB Warranty Year Heading", f"{glyph} {unit}")
+    xml = psr("HB Warranty Year Heading", f"**{number}** {unit}")
     xml = xml.replace(
-        'FontStyle="Regular"',
-        f'PointSize="{glyph_size:g}" FontStyle="Regular"',
+        'FontStyle="Bold"',
+        f'PointSize="{badge_size:g}" FontStyle="Bold"',
         1,
     )
     xml = xml.replace(

@@ -37,6 +37,7 @@ from .oppanel import (
 
 
 _APP_CONTROL_ROLES = ("main_power", "dc_usb", "ac")
+_CHARGING_CAR_NOTE_HEIGHT = 15.0
 
 
 @dataclass(frozen=True)
@@ -446,6 +447,7 @@ def _charging_car(
     )
     note_left = image_w * 0.55
     note_top = -panel_height + 5.0
+    note_height = _CHARGING_CAR_NOTE_HEIGHT
     panel_bg = _shape(
         shape_id=f"referencefigure_car_panel_bg_{tid}",
         left=0.0,
@@ -485,8 +487,8 @@ def _charging_car(
         left=note_left,
         top=note_top,
         right=image_w - 9.0,
-        bottom=note_top + 13.0,
-        radius=6.5,
+        bottom=note_top + note_height,
+        radius=note_height / 2.0,
         fill="Color/Paper",
     )
     # Text frames are deliberately appended after every graphic/shape.
@@ -502,7 +504,7 @@ def _charging_car(
         left=note_left + 3.0,
         top=note_top,
         right=image_w - 12.0,
-        bottom=note_top + 13.0,
+        bottom=note_top + note_height,
         valign="CenterAlign",
     )
     vehicle_frame = _editable_text_frame(

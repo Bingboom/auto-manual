@@ -553,3 +553,19 @@ authority，不是本轮组件几何缺陷；本轮没有为追图而改写源�
 - maintainability guardrails 只报告分支基线中既有的
   `tools/idml_rst_extract.py` 577 行（上限 520，超 57 行）；本轮触及模块没有新增
   guardrail 违规，也没有把该无关历史债务并入本次视觉调整。
+
+## 17. 2026-08-29 portable-font final assembly closeout
+
+- 三语 connection-tail 的锁定图高度加共享 Figure 段前/段后间距，分别比原 candidate
+  split 多约 1.4-4.4 pt；因此旧基线在物理页 8/16/24 各保留一个 marker-only
+  overset。这不是字体缺字或 Warranty 组件问题；
+- 只在 candidate target assembly 的目标数据中，把 EN/FR/ES troubleshooting
+  split 统一为 `306.5pt`。没有新增型号、语言、标题或页码判断，也没有修改共享
+  compositor；
+- 使用冻结 `tests/fixtures/phase2` 经真实 `build.py idml --source runtime
+  --idml-mode both --no-clean --skip-root-index` 重建：28 页、43/43 bindings、
+  228 Manual IR blocks、277 stories、`skipped_raw=0`；
+- InDesign 2026 `21.0.1.6` 原生 finalize：0 overset、0 missing fonts、
+  0 missing glyphs、0 bad links；delivery ZIP 收集 41/41 links，missing=0，
+  并携带 `Noto Sans`、`Noto Sans Symbols`、`Noto Sans Symbols2` 与 OFL notice；
+- candidate 治理状态不变，本次收口不注册 approved-reference contract，也不写线上表。

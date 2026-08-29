@@ -124,21 +124,22 @@ ordinary/fallback IDML keeps the existing permissive behavior. Add a language
 to the shared registry instead of relying on the English fallback. Registered
 aliases such as `jp` and `pt_br` are accepted.
 
-For Japanese, Korean, or Chinese editable text, the IDML exporter now writes
-explicit CJK font runs instead of letting those characters inherit Gilroy.
-The shared `idml_font_family_cjk` renderer token currently points to Arial
-Unicode MS, which is already listed in the designer package font manifest.
-Install that font before opening the handoff package. This font token is not a
-layout parameter, so it does not require a reference layout rebind when page
-geometry and content bindings are unchanged.
+For Japanese, Korean, or Chinese editable text, the IDML exporter writes
+explicit script-aware font runs instead of letting those characters inherit
+Gilroy. Korean uses the bundled SIL-OFL `NanumGothic` face. Japanese and
+Chinese continue to use the separate `idml_font_family_cjk` renderer token
+(`Arial Unicode MS`). Font routing is not a layout parameter, so changing a
+portable font does not require a reference-layout rebind when geometry,
+content bindings, and composition stay unchanged.
 
-Editable symbol runs use a separate Windows-safe contract. The exporter routes
-DC, bullet, reference-mark, ordinal, and subscript glyphs through `Segoe UI
-Symbol`, and circled numbers through 27 through `Yu Gothic`. Both faces are
-declared in `Resources/Fonts.xml` and the handoff font manifest; production
-IDML no longer emits `Apple Symbols` or `Apple SD Gothic Neo`. These are
-Windows system fonts and are not copied into `Document fonts/`, so the InDesign
-host must have them installed. The CJK prose token above remains independent.
+Editable symbol runs are cross-platform too. `Noto Sans` owns reference marks,
+ordinals, and subscript digits; `Noto Sans Symbols` owns DC and circled labels
+1-20; `Noto Sans Symbols2` owns the filled-circle fallback. Final assembly for
+both approved-reference and target-assembly targets uses native vector heading
+markers, and LCD labels 21-27 serialize as `(21)`-`(27)`. The exporter copies
+the declared SIL-OFL files beside the IDML under `Document fonts/`, so raw
+designer packages no longer depend on `Segoe UI Symbol`, `Yu Gothic`, or
+`Noto Sans KR` being installed on the opening host.
 
 The exporter also budgets Japanese, Korean, and Chinese wrapping by Unicode
 East Asian Width instead of treating every character as a 0.52-em Latin
@@ -373,12 +374,12 @@ Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
 the bare `.idml`: it bundles the production IDML with its image links
 rewritten to a packaged `Links/` folder, the flow outputs, the handoff
-reports, a fonts manifest, and the reference PDF, and the zip's knowledge-base
-link is what lands in the queue row's `idml_file` field. If
-`AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, the fonts from
-that folder are also packed into the zip's `Document fonts/`.
-Windows system fallback faces (`Segoe UI Symbol` and `Yu Gothic`) remain
-manifest-only and are not redistributed in the package.
+reports, a fonts manifest, the bundled SIL-OFL fonts under `Document fonts/`,
+and the reference PDF; the zip's knowledge-base link is what lands in the
+queue row's `idml_file` field.
+If `AUTO_MANUAL_LOCAL_GILROY_DIR` is set on the build machine, licensed Gilroy
+files from that folder are added to the same directory. Gilroy remains a
+commercial operator-provisioned font; the repository does not redistribute it.
 The checklist opens the versioned IDML at the zip root. Package link failures
 are reported in `missing_assets_report.md`; unresolved semantic source/flow
 references remain available separately in `source_asset_resolution_report.md`.

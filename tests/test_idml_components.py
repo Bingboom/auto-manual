@@ -547,7 +547,8 @@ class ComponentRegistryTests(unittest.TestCase):
             terminal=True,
         )
 
-        self.assertIn("<Content>❸</Content>", xml)
+        self.assertIn("<Content>3</Content>", xml)
+        self.assertNotIn("<Content>❸</Content>", xml)
         self.assertIn("<Content> YEARS</Content>", xml)
         self.assertNotIn("tf_warranty_year_", xml)
 
@@ -584,7 +585,8 @@ class ComponentRegistryTests(unittest.TestCase):
             terminal=True,
         )
 
-        self.assertIn("<Content>❸</Content>", xml)
+        self.assertIn("<Content>3</Content>", xml)
+        self.assertNotIn("<Content>❸</Content>", xml)
         self.assertNotIn("tf_warranty_year_", xml)
         self.assertIn("<Content>Standard Warranty</Content>", xml)
         self.assertNotIn("<Content>— Standard Warranty</Content>", xml)

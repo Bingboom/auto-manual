@@ -269,19 +269,12 @@ class IdmlVisualParityTests(unittest.TestCase):
             for story_id, xml in writer.stories
             if story_id == "st_spec" or story_id.startswith("st_anchor_spec_")
         )
-        self.assertIn("st_spec_spec_symbol_3_direct_current", spec_xml)
+        self.assertNotIn("st_spec_spec_symbol_3_direct_current", spec_xml)
         self.assertIn(
-            "st_spec_spec_symbol_3_direct_current_left_bearing",
+            '<AppliedFont type="string">Noto Sans Symbols</AppliedFont>',
             spec_xml,
         )
-        self.assertIn(
-            "st_spec_spec_symbol_3_direct_current_right_bearing",
-            spec_xml,
-        )
-        self.assertIn('StrokeWeight="0.408691"', spec_xml)
-        self.assertIn('Anchor="0 -1.88965"', spec_xml)
-        self.assertIn('Anchor="3.68555 -1.88965"', spec_xml)
-        self.assertNotIn('Anchor="7 -3.8"', spec_xml)
+        self.assertIn("<Content>⎓</Content>", spec_xml)
         self.assertIn('Position="Subscript"', spec_xml)
         self.assertIn("<Content>4</Content>", spec_xml)
         self.assertNotIn("Segoe UI Symbol", spec_xml)
@@ -301,8 +294,16 @@ class IdmlVisualParityTests(unittest.TestCase):
             ROOT,
             True,
         )
-        self.assertIn("Yu Gothic", warranty)
-        self.assertIn("❸", warranty)
+        self.assertNotIn("Yu Gothic", warranty)
+        self.assertNotIn("❸", warranty)
+        self.assertIn("<Content>3</Content>", warranty)
+        warranty_number_size = param_pt(
+            writer.params, "type_warranty_year_number_font_size", 21.0,
+        )
+        self.assertIn(
+            f'PointSize="{warranty_number_size:g}" FontStyle="Bold"',
+            warranty,
+        )
 
         compact_params = load_layout_params(
             ROOT / "data" / "layout_params.csv",
@@ -331,7 +332,8 @@ class IdmlVisualParityTests(unittest.TestCase):
             "st_warranty_compact_cmp0",
             "st_warranty_cmp0",
         ))
-        self.assertIn("❸", compact_warranty)
+        self.assertNotIn("❸", compact_warranty)
+        self.assertIn("<Content>3</Content>", compact_warranty)
 
         base_period_writer = IdmlWriter(
             writer.params,

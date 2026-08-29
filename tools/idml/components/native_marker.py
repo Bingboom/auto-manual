@@ -123,11 +123,17 @@ def portable_symbol_text(
     marker_id: str,
     point_size: float = 6.0,
 ) -> tuple[str, dict[str, str]]:
-    """Replace Windows-only symbol glyphs with native/typographic equivalents."""
+    """Replace host-only glyphs with portable typographic equivalents.
+
+    U+2393 stays live text and is routed by ``inline_text`` to the bundled
+    Noto Sans Symbols face.  The three-object vector replica changes the
+    minimum line box inside InDesign tables, so using it in fixed-height spec
+    rows breaks the approved pagination even though its drawn outline matches.
+    """
     output: list[str] = []
     for character in text:
         if character == "⎓":
-            output.append(DIRECT_CURRENT_TOKEN)
+            output.append(character)
         elif character in "₀₁₂₃₄₅₆₇₈₉":
             output.append(f":sub:`{character.translate(_SUBSCRIPT_DIGITS)}`")
         else:

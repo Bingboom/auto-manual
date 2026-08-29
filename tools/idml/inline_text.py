@@ -4,31 +4,52 @@ from __future__ import annotations
 from xml.sax.saxutils import escape
 
 from .font_family import (
+    BULLET_FONT_FAMILY_TOKEN,
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
     KOREAN_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
+    TEXT_SYMBOL_FONT_FAMILY_TOKEN,
 )
 
 GENERAL_SYMBOL_FONT = SYMBOL_FONT_FAMILY_TOKEN.name
 CIRCLED_NUMBER_FONT = CIRCLED_NUMBER_FONT_FAMILY_TOKEN.name
+TEXT_SYMBOL_FONT = TEXT_SYMBOL_FONT_FAMILY_TOKEN.name
+BULLET_FONT = BULLET_FONT_FAMILY_TOKEN.name
 SYMBOL_FONT_FALLBACK_STYLE = "Regular"
+# Noto Sans carries U+203B, but its glyph is 0.837 em wide.  Preserve the
+# 0.593-em reference-mark advance used by the approved fixed frames so the
+# portable face does not introduce a line-wrap/overset regression.
+_REFERENCE_MARK_HORIZONTAL_SCALE = 70.8
 SYMBOL_FONT_FALLBACKS = {
     "⎓": GENERAL_SYMBOL_FONT,
-    "※": GENERAL_SYMBOL_FONT,
+    "※": TEXT_SYMBOL_FONT,
     # Gilroy's installed production face has no masculine ordinal indicator.
     # Keep the source Spanish ``Nº`` intact and route only that glyph through
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
-    "º": GENERAL_SYMBOL_FONT,
-    **{ch: GENERAL_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉●"},
+    "º": TEXT_SYMBOL_FONT,
+    **{ch: TEXT_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉"},
+    "●": BULLET_FONT,
     **{
         ch: CIRCLED_NUMBER_FONT
-        for ch in "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾㉑㉒㉓㉔㉕㉖㉗"
+        for ch in "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳❶❷❸❹❺❻❼❽❾"
     },
 }
 SPEC_SUPERSCRIPT_MARKERS = frozenset(
     "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 )
+_HIGH_CIRCLED_NUMBER_REPLACEMENTS = {
+    chr(0x3251 + offset): f"({21 + offset})"
+    for offset in range(7)
+}
+
+
+def _portable_text(segment: str) -> str:
+    """Replace Unicode labels whose only common faces are host-specific."""
+    return "".join(
+        _HIGH_CIRCLED_NUMBER_REPLACEMENTS.get(character, character)
+        for character in segment
+    )
 
 # Script/presentation blocks that require the governed CJK family instead of
 # inheriting the Latin primary paragraph font.  Keep this explicit rather
@@ -129,6 +150,8 @@ def _style_range(
     properties = ""
     if fallback_font:
         attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+        if fallback_font == TEXT_SYMBOL_FONT and segment and set(segment) == {"※"}:
+            attrs += f' HorizontalScale="{_REFERENCE_MARK_HORIZONTAL_SCALE:g}"'
         properties = (
             "<Properties>"
             f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
@@ -148,6 +171,7 @@ def _style_range(
 
 def inline_role_range(segment: str, *, role: str, bold: bool = False) -> str:
     """Serialize an RST sub/sup role as an editable InDesign text position."""
+    segment = _portable_text(segment)
     position = "Subscript" if role == "sub" else "Superscript"
     return "".join(
         _style_range(
@@ -207,6 +231,7 @@ def character_ranges(
     replacements: dict[str, str],
 ) -> list[str]:
     """Serialize one bold/plain segment, preserving fallback-font boundaries."""
+    segment = _portable_text(segment)
     output: list[str] = []
     for piece, fallback_font in _font_runs(segment):
         if replacements and fallback_font is None:
