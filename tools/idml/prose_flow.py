@@ -132,7 +132,6 @@ class ProseFlowBuffer:
         }
         items = _apply_target_asset_refs(items, entries, page_plan)
         items = _apply_target_page_breaks(items, entries, page_plan)
-        items = _apply_target_flow_prefixes(items, entries, page_plan)
         approved_reference = (
             (page_plan or {}).get("plan_source") == "approved-reference"
         )
@@ -352,12 +351,10 @@ def _apply_target_asset_refs(
         data = entries.get(stem, {}).get("composition_data")
         assets = data.get("assets") if isinstance(data, dict) else None
         refs = assets.get("image_refs") if isinstance(assets, dict) else None
-        roles = assets.get("image_roles") if isinstance(assets, dict) else None
         if not isinstance(refs, list):
             rebound_items.append((stem, blocks, columns))
             continue
         replacements = iter(refs)
-        semantic_roles = iter(roles) if isinstance(roles, list) else None
         rebound: list[Block] = []
         for kind, payload in blocks:
             if kind != "image":
@@ -370,14 +367,6 @@ def _apply_target_asset_refs(
                     f"{stem}: target image_refs do not cover every image slot"
                 ) from exc
             if replacement is not None:
-                if semantic_roles is not None:
-                    try:
-                        role = next(semantic_roles)
-                    except StopIteration as exc:
-                        raise ValueError(
-                            f"{stem}: target image_roles do not cover every image slot"
-                        ) from exc
-                    rebound.append(("layout", f"image_role:{role}"))
                 rebound.append((kind, str(replacement)))
         try:
             next(replacements)
@@ -387,62 +376,8 @@ def _apply_target_asset_refs(
             raise ValueError(
                 f"{stem}: target image_refs contain extra image slots"
             )
-        if semantic_roles is not None:
-            try:
-                next(semantic_roles)
-            except StopIteration:
-                pass
-            else:
-                raise ValueError(
-                    f"{stem}: target image_roles contain extra image slots"
-                )
         rebound_items.append((stem, rebound, columns))
     return rebound_items
-
-
-def _apply_target_flow_prefixes(
-    items: list[tuple[str, list[Block], int]],
-    entries: dict[str, dict],
-    page_plan: dict | None,
-) -> list[tuple[str, list[Block], int]]:
-    """Route a source prefix into an explicitly earlier composition."""
-
-    if (page_plan or {}).get("plan_source") != "target-assembly":
-        return items
-    routed = [(stem, list(blocks), columns) for stem, blocks, columns in items]
-    for index in range(len(routed)):
-        stem, blocks, columns = routed[index]
-        rule = entries.get(stem, {}).get("flow_prefix")
-        if not isinstance(rule, dict):
-            continue
-        until_kind = str(rule.get("until_kind") or "")
-        occurrence = int(rule.get("occurrence") or 0)
-        seen = 0
-        split_at = None
-        for block_index, (kind, _payload) in enumerate(blocks):
-            if kind != until_kind:
-                continue
-            seen += 1
-            if seen == occurrence:
-                split_at = block_index
-                break
-        head_id = str(rule.get("head_composition_id") or "")
-        target_index = next((
-            candidate
-            for candidate in range(index - 1, -1, -1)
-            if entries.get(routed[candidate][0], {}).get("composition_id")
-            == head_id
-        ), None)
-        if split_at is None or target_index is None:
-            raise ValueError(f"target flow prefix cannot be applied for {stem}")
-        head_stem, head_blocks, head_columns = routed[target_index]
-        routed[target_index] = (
-            head_stem,
-            head_blocks + blocks[:split_at],
-            head_columns,
-        )
-        routed[index] = (stem, blocks[split_at:], columns)
-    return routed
 
 
 def _apply_target_page_breaks(
@@ -879,7 +814,6 @@ def _app_composition_options(
             "base_labels_by_role": base_labels,
             "labels_by_role": render_labels,
             "control_image": APP_PAIRING_PANEL_ASSET_URI,
-            "control_layout_variant": "reference_extensions",
         }
     if (page_plan or {}).get("plan_source") != "target-assembly":
         return None
@@ -904,7 +838,6 @@ def _app_composition_options(
         "base_labels_by_role": labels,
         "labels_by_role": labels,
         "control_image": app.get("control_image"),
-        "control_layout_variant": app.get("control_layout_variant"),
         "figure_assets": app.get("figure_assets"),
     }
 
@@ -1122,9 +1055,6 @@ def promote_reference_figures(
                     labels_by_role=render_labels,
                     step_labels=prior_steps,
                     control_image=(app_options or {}).get("control_image"),
-                    control_layout_variant=(app_options or {}).get(
-                        "control_layout_variant"
-                    ),
                 )
             ]
             index += 1

@@ -193,9 +193,6 @@
         "assets": {
           "image_refs": [
             "renderers/latex/assets/je3000c_kr_operation_ups_mode.pdf"
-          ],
-          "image_roles": [
-            "full_measure"
           ]
         }
       }
@@ -218,9 +215,6 @@
         "assets": {
           "image_refs": [
             "renderers/latex/assets/je3000c_kr_charging_ac_wall.pdf"
-          ],
-          "image_roles": [
-            "full_measure"
           ]
         }
       }
@@ -233,20 +227,11 @@
       "composition_type": "charging_methods",
       "start_page": 12,
       "page_count": 1,
-      "flow_prefix": {
-        "until_kind": "image",
-        "occurrence": 1,
-        "head_composition_id": "ko_ups_charging"
-      },
       "composition_data": {
         "assets": {
           "image_refs": [
             "renderers/latex/assets/je3000c_kr_charging_solar_composite.pdf",
             "renderers/latex/assets/je3000c_kr_charging_car_charge.pdf"
-          ],
-          "image_roles": [
-            "full_measure",
-            "full_measure"
           ]
         }
       }
@@ -305,7 +290,6 @@
         "app": {
           "instance_id": "je3000c-kr-v1",
           "control_image": "renderers/latex/assets/je3000c_kr_network_pairing_panel.pdf",
-          "control_layout_variant": "embedded_leaders",
           "figure_assets": {
             "app_add_device": "renderers/latex/assets/je3000c_kr_app_add_device_textless.png",
             "app_connect_result": "renderers/latex/assets/je3000c_kr_app_connect_result.png"
