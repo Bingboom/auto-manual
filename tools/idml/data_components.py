@@ -49,6 +49,7 @@ def _text(value: str, *, preserve_strong: bool = False) -> str:
     tilde_token = "\u0000HB_TILDE\u0000"
     value = value.replace(r"\textasciitilde{}", tilde_token)
     value = value.replace(r"\HBSpecMarkerOne{}", "①")
+    value = value.replace(r"\HBSpecMarkerTwo{}", "②")
     value = value.replace(r"\HBSpecMultilineRowStrut{}", "")
     value = value.replace(r"\newline", "\n").replace(r"\par", "\n")
     value = value.replace(r"\textbullet", "•")
@@ -178,11 +179,19 @@ def _symbol_payload(body: str) -> dict[str, Any] | None:
             ]
             return {"kind": "symbol_signals", "headers": headers, "rows": rows}
         groups = args[2:]
-        rows = [
-            {"figure": figure.strip(), "text": _text(meaning)}
-            for group in groups
-            for figure, meaning in _calls(group, "HBSymbolIconRow", 2)
-        ]
+        rows = []
+        for group_index, group in enumerate(groups):
+            column = "left" if group_index % 2 == 0 else "right"
+            continuation = macro.endswith("Split") and group_index >= 2
+            rows.extend(
+                {
+                    "figure": figure.strip(),
+                    "text": _text(meaning),
+                    "column": column,
+                    "continuation": continuation,
+                }
+                for figure, meaning in _calls(group, "HBSymbolIconRow", 2)
+            )
         return {"kind": "symbol_icons", "headers": headers, "rows": rows}
     return None
 

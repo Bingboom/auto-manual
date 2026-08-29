@@ -49,6 +49,16 @@
     "max_elapsed_seconds": 2.07,
     "accepted_runs": 5,
     "total_runs": 5,
+    "later_verification_runs": [
+      {
+        "version": "v12",
+        "elapsed_seconds": 2.08
+      },
+      {
+        "version": "v13",
+        "elapsed_seconds": 2.31
+      }
+    ],
     "acceptance": {
       "matched_pages": 18,
       "total_pages": 18,
@@ -84,9 +94,22 @@
         "inbox_overview"
       ]
     },
-    "semantic_component_instances": {
+    "cross_renderer_component_spec_instances": {
+      "scope": "ComponentSpec values projected from Manual IR through tools.component_specs.projection.project_manual_ir_components",
+      "total": 19,
+      "existing_main_contract_instances": 19,
+      "reuse_percent": 100.0,
+      "counts": {
+        "HB-CALLOUT-STRIP": 13,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OVERVIEW": 1,
+        "HB-TABLE-SPEC": 4
+      }
+    },
+    "idml_component_registry_instances": {
+      "scope": "Manual IR component blocks dispatched through the pre-existing tools.idml.components.REGISTRY",
       "total": 16,
-      "existing_main_contract_instances": 16,
+      "existing_main_renderer_instances": 16,
       "reuse_percent": 100.0,
       "counts": {
         "notice": 13,
@@ -136,7 +159,24 @@
     }
   },
   "native_finalization": {
-    "current_source_successful_pdf_x4_finalization": false,
+    "current_source_successful_pdf_x4_finalization": true,
+    "first_successful_current_source_version": "v12",
+    "first_successful_current_source_elapsed_seconds": 59.12,
+    "latest_successful_version": "v13",
+    "latest_acceptance": {
+      "page_count": 18,
+      "story_count": 153,
+      "overset_stories": 0,
+      "overset_table_cells": 0,
+      "missing_fonts": 0,
+      "missing_glyphs": 0,
+      "bad_links": 0,
+      "pdfx": "PDF/X-4",
+      "output_intent": "Japan Color 2001 Coated",
+      "output_condition": "JC200103",
+      "indesign_version": "Adobe InDesign 2026 21.0.1.6",
+      "version_pin_status": "match"
+    },
     "missing_glyph_gate": {
       "method": "PyMuPDF page.get_texttrace",
       "replacement_character": "U+FFFD",
@@ -148,21 +188,25 @@
     "cold_preflight_report_seconds_observed": [34, 32, 32],
     "warm_preflight_report_seconds_observed": [5, 5, 6],
     "observed_reports_success": false,
-    "blocking_stage": "export_pdf",
-    "blocking_error": "PDF/X-4 missing-glyph warning was treated as user cancellation by the automated finalizer",
+    "historical_blocking_stage": "export_pdf",
+    "historical_blocking_error": "PDF/X-4 missing-glyph warning was treated as user cancellation by the automated finalizer",
     "native_v7_is_older_than_current_idml": true,
     "operator_screenshot_document": "docs/_build/JE-3000C/KR/ko/idml/native-v7/manual_je3000c_kr_ko.indd",
-    "current_v11_export_pending": true,
+    "current_v13_export_pending": false,
     "local_font_state": {
       "noto_sans_kr_installed_in_indesign": false,
       "arial_unicode_ms_installed_in_indesign": true
     }
   },
   "delivery": {
-    "idml_file": "JE-3000C_KR_second-package_v11.idml",
-    "idml_sha256": "4c4fc8d740c95de72d0e42a7abe9bbd4a90b398aa644e800f96987a9f3a7d53f",
-    "handoff_zip_file": "JE-3000C_KR_second-package_v11_handoff.zip",
-    "handoff_zip_sha256": "0c71569f74e0d92508a82933a300296513fb97b0d6481862e5f123387a49f68d",
+    "idml_file": "JE-3000C_KR_second-package_v13.idml",
+    "idml_sha256": "f2e5ac73e8d4ecf10884086605a226d103a7c2dd84a4dbe8d5ac0fc469f9fdf2",
+    "handoff_zip_file": "JE-3000C_KR_second-package_v13_handoff.zip",
+    "handoff_zip_sha256": "23f6ea9f5c2c351a4437261c37d1b5edcd0e810168849da2c6f877af324c31e4",
+    "indd_file": "JE-3000C_KR_second-package_v13.indd",
+    "indd_sha256": "b04b311db5f611ff31206d6bd77adef200bf84ecf2200efdec3d1c7314a4c06a",
+    "pdf_file": "JE-3000C_KR_second-package_v13.pdf",
+    "pdf_sha256": "1ca9ca83c921503e573f7112788135491e057802c12874c3e682fba7a4c7667d",
     "zip_entries": 118,
     "idml_files": 2,
     "links_entries": 103,
@@ -177,15 +221,53 @@
     "cover_tounicode_replacement_character_in_extracted_text": false,
     "cover_300dpi_pixel_difference_bbox": null
   },
+  "overview_right_asset": {
+    "source_key": "source/manual_je3000c_eu_uk_master",
+    "source_sha256": "c7a43b6e77003c3e5e4bd772ea7a8df7c0938c9992b494b045e54970e0c00557",
+    "source_page": 5,
+    "source_page_drawings": 426,
+    "retained_drawing_indices": [
+      372,
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391
+    ],
+    "excluded_external_leaders": [371, 392, 393, 394, 395],
+    "excluded_outlined_text_range": [396, 425],
+    "output_sha256": "ad9c45dd8b7fc3de49f849fbcbac89e9d3ba4be0e4a2ca896fb7cddd05645936",
+    "output_drawings": 20,
+    "output_extractable_text": "",
+    "confirmed_candidate_max_geometry_delta_pt": 0.003
+  },
   "validation": {
     "full_unittest": "pass",
     "ruff": "pass",
     "maintainability_guardrails": "pass",
     "doc_link_integrity": "pass",
     "latest_main_build_structural_check": "pass",
+    "asset_recipe_and_registry": "pass",
+    "native_v13_preflight": "pass",
+    "pdf_visual_review_18_pages": "pass",
     "generic_us_build_check": {
-      "status": "blocked",
-      "reason": "isolated worktree is missing data/phase2/Spec_Master.csv"
+      "status": "environment_blocked_without_data_root",
+      "reason": "isolated worktree is missing data/phase2/Spec_Master.csv",
+      "fixture_data_root_check": "pass"
     }
   }
 }

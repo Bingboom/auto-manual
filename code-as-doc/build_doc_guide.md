@@ -984,6 +984,13 @@ preference:
 - only approved PNG/JPG/JPEG/SVG/PDF exports that match model, region, and
   language may resolve; `.ai` is an immutable archive/source master and is
   never a renderer fallback;
+- when live-text redaction cannot separate an illustration from outlined
+  labels, a committed asset recipe may use `retain_vector_drawings` to replay
+  only explicitly indexed source groups into a new crop-sized vector PDF.
+  The retained indices must be ascending, the operator must be the sole
+  transform after `crop`, zero-area line groups are overlap-checked safely,
+  and unsupported path items or crop/index drift fail closed. Promote only
+  after a 12x quarantine comparison and pin the resulting output SHA-256;
 - missing, ambiguous, quarantined, stale, or hash-mismatched used assets stop
   assembly;
 - `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and

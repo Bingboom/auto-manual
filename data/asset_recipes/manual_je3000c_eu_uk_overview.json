@@ -1,0 +1,150 @@
+{
+ "schema_version": 1,
+ "coordinate_contract": {
+  "page_numbering": "pdf-1-based",
+  "bbox_units": "pt",
+  "bbox_origin": "top-left",
+  "bbox_space": "source-page"
+ },
+ "normalization": {
+  "engine": "pymupdf",
+  "validated_version": "1.28.0",
+  "validated_mupdf_version": "1.29.0",
+  "pdf_save": {
+   "garbage": 4,
+   "clean": true,
+   "deflate": true,
+   "no_new_id": true
+  },
+  "forbidden_pdf_markers": [
+   "AIPrivateData",
+   "PieceInfo",
+   "AIMetaData"
+  ],
+  "max_render_pixels": 40000000
+ },
+ "source": {
+  "source_key": "source/manual_je3000c_eu_uk_master",
+  "expected_sha256": "c7a43b6e77003c3e5e4bd772ea7a8df7c0938c9992b494b045e54970e0c00557",
+  "expected_page_count": 19
+ },
+ "archive": {
+  "pages": {
+   "first": 1,
+   "last": 19
+  },
+  "pdf": {
+   "path_pattern": "archive/pages/page-{page:04d}.pdf"
+  },
+  "previews": {
+   "path_pattern": "archive/previews/page-{page:04d}.png",
+   "default_scale": 1,
+   "page_scale": {}
+  }
+ },
+ "page_catalog": [
+  {"page": 1, "page_key": "source_page_01", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 2, "page_key": "source_page_02", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 3, "page_key": "source_page_03", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 4, "page_key": "source_page_04", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 5, "page_key": "en_product_overview", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art"]},
+  {"page": 6, "page_key": "source_page_06", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 7, "page_key": "source_page_07", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 8, "page_key": "source_page_08", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 9, "page_key": "source_page_09", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 10, "page_key": "source_page_10", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 11, "page_key": "source_page_11", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 12, "page_key": "source_page_12", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 13, "page_key": "source_page_13", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 14, "page_key": "source_page_14", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 15, "page_key": "source_page_15", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 16, "page_key": "source_page_16", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 17, "page_key": "source_page_17", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 18, "page_key": "source_page_18", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+  {"page": 19, "page_key": "source_page_19", "role": "manual_page", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+ ],
+ "assets": [
+  {
+   "asset_key": "overview/je3000c_kr/right_art",
+   "page": 5,
+   "build_eligible": true,
+   "scope": {
+    "models": [
+     "JE-3000C"
+    ],
+    "regions": [
+     "KR"
+    ],
+    "locales": [
+     "und"
+    ]
+   },
+   "text_policy": "textless",
+   "visual_review_required": false,
+   "transforms": [
+    {
+     "op": "crop",
+     "bbox_pt": [
+      153.622211,
+      342.413806,
+      241.063199,
+      393.94679
+     ]
+    },
+    {
+     "op": "retain_vector_drawings",
+     "drawing_indices": [
+      372,
+      373,
+      374,
+      375,
+      376,
+      377,
+      378,
+      379,
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391
+     ],
+     "fill_rgb_overrides": {
+      "372": [
+       0.9568627451,
+       0.9568627451,
+       0.9568627451
+      ]
+     },
+     "stroke_suppressed_indices": [
+      373
+     ]
+    }
+   ],
+   "outputs": [
+    {
+     "format": "pdf",
+     "path": "docs/renderers/latex/assets/je3000c_kr_overview_right.pdf",
+     "expected_sha256": "ad9c45dd8b7fc3de49f849fbcbac89e9d3ba4be0e4a2ca896fb7cddd05645936"
+    }
+   ],
+   "gate": {
+    "status": "approved",
+    "reasons": [
+     "Operator confirmed the textless right-side candidate on 2026-08-28. The formal output from this PDF-compatible Illustrator source contains the same 20 vector drawing groups with matching fills, strokes, and widths; its maximum corresponding geometry delta from the confirmed KR-derived candidate is 0.003 pt at 12x review scale.",
+     "Drawing groups 372-391 contain the complete right-side chassis and port geometry. Groups 371 and 392-395 are external leaders; groups 396-425 are outlined English port labels. Retaining only the structural groups prevents both classes from entering the output. Group 373 contributes the neutral panel fill; its source stroke is suppressed to match the approved KR reference appearance. Groups 374-385 are zero-area horizontal or vertical port-slot strokes and are retained with an overlap test that does not depend on fitz.Rect.intersects()."
+    ]
+   },
+   "risk_tags": [
+    "model-specific",
+    "region-locked-art"
+   ]
+  }
+ ]
+}

@@ -400,6 +400,54 @@
     }
    }
   },
+  "retain_vector_drawings": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "op",
+    "drawing_indices",
+    "fill_rgb_overrides",
+    "stroke_suppressed_indices"
+   ],
+   "properties": {
+    "op": {
+     "const": "retain_vector_drawings"
+    },
+    "drawing_indices": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "type": "integer",
+      "minimum": 0
+     }
+    },
+    "fill_rgb_overrides": {
+     "type": "object",
+     "propertyNames": {
+      "pattern": "^(?:0|[1-9][0-9]*)$"
+     },
+     "additionalProperties": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      }
+     }
+    },
+    "stroke_suppressed_indices": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "integer",
+      "minimum": 0
+     }
+    }
+   }
+  },
   "pdf_output": {
    "type": "object",
    "additionalProperties": false,
@@ -513,6 +561,9 @@
        },
        {
         "$ref": "#/$defs/drop_leader_strokes"
+       },
+       {
+        "$ref": "#/$defs/retain_vector_drawings"
        }
       ]
      }

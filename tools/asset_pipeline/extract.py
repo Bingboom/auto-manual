@@ -5,6 +5,8 @@ from __future__ import annotations
 import hashlib
 import importlib
 import math
+import shutil
+import tempfile
 from pathlib import Path, PurePosixPath
 from typing import Any, BinaryIO
 
@@ -327,11 +329,142 @@ def _prepare_asset_source(
                 fill=(1, 1, 1),
                 overlay=True,
             )
+        elif transform.op == "retain_vector_drawings":
+            # Applied at output time: the retained groups are replayed into a
+            # fresh crop-sized page so every non-selected vector object stays
+            # out of the artifact instead of being hidden or painted over.
+            continue
         else:
             raise ArtifactValidationError(
                 f"asset {asset.asset_key!r} has unsupported transform {transform.op!r}"
             )
     return source, crop
+
+
+def _translated_point(point: Any, *, dx: float, dy: float) -> Any:
+    return type(point)(point.x + dx, point.y + dy)
+
+
+def _translated_rect(rect: Any, *, dx: float, dy: float) -> Any:
+    return type(rect)(rect.x0 + dx, rect.y0 + dy, rect.x1 + dx, rect.y1 + dy)
+
+
+def _drawing_overlaps_clip(rect: Any, clip: Any) -> bool:
+    """Return overlap for ordinary and zero-area vector drawing bounds."""
+
+    return not (
+        rect.x1 < clip.x0
+        or rect.x0 > clip.x1
+        or rect.y1 < clip.y0
+        or rect.y0 > clip.y1
+    )
+
+
+def _replay_drawing(
+    page: Any,
+    drawing: dict[str, Any],
+    *,
+    dx: float,
+    dy: float,
+    fill_override: tuple[float, float, float] | None = None,
+    suppress_stroke: bool = False,
+) -> None:
+    shape = page.new_shape()
+    for item in drawing["items"]:
+        if item[0] == "l":
+            shape.draw_line(
+                _translated_point(item[1], dx=dx, dy=dy),
+                _translated_point(item[2], dx=dx, dy=dy),
+            )
+        elif item[0] == "c":
+            shape.draw_bezier(
+                *(
+                    _translated_point(point, dx=dx, dy=dy)
+                    for point in item[1:5]
+                )
+            )
+        elif item[0] == "re":
+            shape.draw_rect(_translated_rect(item[1], dx=dx, dy=dy))
+        else:
+            raise ArtifactValidationError(
+                f"retain_vector_drawings does not support drawing item {item[0]!r}"
+            )
+    line_cap = drawing.get("lineCap", 0)
+    if isinstance(line_cap, (list, tuple)):
+        line_cap = line_cap[0] if line_cap else 0
+    dashes = drawing.get("dashes")
+    if not isinstance(dashes, str) or not dashes.strip():
+        dashes = None
+    shape.finish(
+        width=float(drawing.get("width") or 0),
+        color=None if suppress_stroke else drawing.get("color"),
+        fill=fill_override if fill_override is not None else drawing.get("fill"),
+        lineCap=int(line_cap or 0),
+        lineJoin=int(drawing.get("lineJoin") or 0),
+        dashes=dashes,
+        even_odd=bool(drawing.get("even_odd", False)),
+        closePath=bool(drawing.get("closePath", False)),
+        fill_opacity=float(drawing.get("fill_opacity", 1) or 1),
+        stroke_opacity=float(drawing.get("stroke_opacity", 1) or 1),
+    )
+    shape.commit(overlay=True)
+
+
+def _retained_vector_transform(asset: AssetSpec):
+    transforms = [
+        transform
+        for transform in asset.transforms
+        if transform.op == "retain_vector_drawings"
+    ]
+    if len(transforms) > 1:
+        raise ArtifactValidationError(
+            f"asset {asset.asset_key!r} has more than one retain_vector_drawings transform"
+        )
+    return transforms[0] if transforms else None
+
+
+def _save_retained_vector_pdf(
+    fitz: Any,
+    source: Any,
+    asset: AssetSpec,
+    clip: Any,
+    destination: Path,
+) -> None:
+    transform = _retained_vector_transform(asset)
+    if transform is None:
+        raise ArtifactValidationError(
+            f"asset {asset.asset_key!r} has no retain_vector_drawings transform"
+        )
+    page = source.load_page(asset.page - 1)
+    drawings = page.get_drawings()
+    if transform.drawing_indices[-1] >= len(drawings):
+        raise ArtifactValidationError(
+            f"asset {asset.asset_key!r} drawing index "
+            f"{transform.drawing_indices[-1]} exceeds source drawing count {len(drawings)}"
+        )
+    overrides = dict(transform.fill_rgb_overrides)
+    stroke_suppressed = set(transform.stroke_suppressed_indices)
+    output = fitz.open()
+    try:
+        target = output.new_page(width=clip.width, height=clip.height)
+        for index in transform.drawing_indices:
+            drawing = drawings[index]
+            if not _drawing_overlaps_clip(fitz.Rect(drawing["rect"]), clip):
+                raise ArtifactValidationError(
+                    f"asset {asset.asset_key!r} retained drawing {index} "
+                    "does not intersect the declared crop"
+                )
+            _replay_drawing(
+                target,
+                drawing,
+                dx=-clip.x0,
+                dy=-clip.y0,
+                fill_override=overrides.get(index),
+                suppress_stroke=index in stroke_suppressed,
+            )
+        _save_pdf(output, destination)
+    finally:
+        output.close()
 
 
 def _save_asset_pdf(
@@ -529,43 +662,62 @@ def _asset_artifacts(
         source, clip = _prepare_asset_source(fitz, source_path, asset)
         try:
             page = source.load_page(asset.page - 1)
-            for output in asset.outputs:
-                destination = _ensure_destination(artifact_root, output.path)
-                if output.format == "pdf":
-                    _save_asset_pdf(fitz, source, asset, clip, destination)
-                elif output.format == "png":
-                    if output.scale is None:
+            with tempfile.TemporaryDirectory(prefix="asset-vector-") as temp_dir:
+                retained_pdf = None
+                if _retained_vector_transform(asset) is not None:
+                    retained_pdf = Path(temp_dir) / "retained.pdf"
+                    _save_retained_vector_pdf(
+                        fitz, source, asset, clip, retained_pdf
+                    )
+                for output in asset.outputs:
+                    destination = _ensure_destination(artifact_root, output.path)
+                    if output.format == "pdf":
+                        if retained_pdf is not None:
+                            shutil.copyfile(retained_pdf, destination)
+                        else:
+                            _save_asset_pdf(fitz, source, asset, clip, destination)
+                    elif output.format == "png":
+                        if output.scale is None:
+                            raise ArtifactValidationError(
+                                f"asset {asset.asset_key!r} PNG has no Matrix scale"
+                            )
+                        if retained_pdf is not None:
+                            _render_png(
+                                fitz,
+                                retained_pdf,
+                                destination,
+                                scale=output.scale,
+                                max_render_pixels=recipe.normalization.max_render_pixels,
+                            )
+                        else:
+                            _render_source_page_png(
+                                fitz,
+                                page,
+                                destination,
+                                clip=clip,
+                                scale=output.scale,
+                                max_render_pixels=recipe.normalization.max_render_pixels,
+                            )
+                    else:
                         raise ArtifactValidationError(
-                            f"asset {asset.asset_key!r} PNG has no Matrix scale"
+                            f"asset {asset.asset_key!r} has unsupported output {output.format!r}"
                         )
-                    _render_source_page_png(
-                        fitz,
-                        page,
-                        destination,
-                        clip=clip,
-                        scale=output.scale,
-                        max_render_pixels=recipe.normalization.max_render_pixels,
+                    records.append(
+                        _artifact_record(
+                            destination,
+                            artifact_root=artifact_root,
+                            format_name=output.format,
+                            kind="asset_export",
+                            source_page=asset.page,
+                            repo_path=output.path,
+                            asset_key=asset.asset_key,
+                            expected_sha256=output.expected_sha256,
+                            gate_status=asset.gate.status,
+                            build_eligible=asset.build_eligible,
+                            visual_review_required=asset.visual_review_required,
+                            text_policy=asset.text_policy,
+                        )
                     )
-                else:
-                    raise ArtifactValidationError(
-                        f"asset {asset.asset_key!r} has unsupported output {output.format!r}"
-                    )
-                records.append(
-                    _artifact_record(
-                        destination,
-                        artifact_root=artifact_root,
-                        format_name=output.format,
-                        kind="asset_export",
-                        source_page=asset.page,
-                        repo_path=output.path,
-                        asset_key=asset.asset_key,
-                        expected_sha256=output.expected_sha256,
-                        gate_status=asset.gate.status,
-                        build_eligible=asset.build_eligible,
-                        visual_review_required=asset.visual_review_required,
-                        text_policy=asset.text_policy,
-                    )
-                )
         finally:
             source.close()
     return records

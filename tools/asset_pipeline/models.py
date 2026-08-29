@@ -120,6 +120,11 @@ class TransformSpec:
     halo_width_pt: float | None = None
     line_width_pt: float | None = None
     width_tolerance_pt: float | None = None
+    # retain_vector_drawings only: keep deterministic source-page drawing
+    # groups and optionally normalize selected RGB fills.
+    drawing_indices: tuple[int, ...] = ()
+    fill_rgb_overrides: tuple[tuple[int, tuple[float, float, float]], ...] = ()
+    stroke_suppressed_indices: tuple[int, ...] = ()
 
     def as_manifest(self) -> dict[str, Any]:
         payload: dict[str, Any] = {"op": self.op}
@@ -135,6 +140,15 @@ class TransformSpec:
             value = getattr(self, name)
             if value is not None:
                 payload[name] = value
+        if self.op == "retain_vector_drawings":
+            payload["drawing_indices"] = list(self.drawing_indices)
+            payload["fill_rgb_overrides"] = {
+                str(index): list(rgb)
+                for index, rgb in self.fill_rgb_overrides
+            }
+            payload["stroke_suppressed_indices"] = list(
+                self.stroke_suppressed_indices
+            )
         return payload
 
 

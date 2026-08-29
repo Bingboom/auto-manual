@@ -243,6 +243,7 @@ class ManualIRTests(unittest.TestCase):
                 "   \\end{spectable}\n\n"
                 ".. raw:: latex\n\n"
                 "   \\HBTypeSpecNote{\\HBSpecMarkerOne{} Note text}\\par\n\n"
+                "   \\HBTypeSpecNote{\\HBSpecMarkerTwo{} Second note}\\par\n\n"
                 ".. raw:: latex\n\n"
                 "   \\HBSpecPageEnd\n",
                 encoding="utf-8",
@@ -284,6 +285,18 @@ class ManualIRTests(unittest.TestCase):
         self.assertEqual(
             "**On:** Connected.\n**Off:** Disconnected.",
             payloads[3]["rows"][0]["desc"],
+        )
+        self.assertEqual(
+            ["① Note text", "② Second note"],
+            payloads[2]["texts"],
+        )
+        self.assertEqual(
+            ["left", "right"],
+            [row["column"] for row in payloads[5]["rows"]],
+        )
+        self.assertEqual(
+            [False, False],
+            [row["continuation"] for row in payloads[5]["rows"]],
         )
         self.assertEqual(
             ["wifi.png", "warning.png", "manual.png", "fire.png"],

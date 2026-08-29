@@ -116,7 +116,7 @@ Overview geometry instance. Shared code gained three target-neutral
 composition signatures and reusable validators/rendering variants; it contains
 no `JE-3000C`, `KR`, or `ko` branch.
 
-The current v11 structure produces:
+The current v13 structure produces:
 
 - 18/18 matched physical pages;
 - Manual IR with 18 pages, 143 blocks, and `skipped_raw=0`;
@@ -127,6 +127,8 @@ The current v11 structure produces:
   corrected to a space with zero 300 dpi pixel change;
 - Hangul runs routed to the latest-main `Noto Sans KR` family while retaining
   the shared InDesign fallback to installed `Arial Unicode MS`.
+- a recipe-governed, textless right-side Overview vector extracted from the
+  operator-supplied PDF-compatible Illustrator master rather than a screenshot.
 
 Machine-readable results are in
 [`je3000c_kr_second_package_metrics_2026-08-28.json`](je3000c_kr_second_package_metrics_2026-08-28.json).
@@ -140,7 +142,8 @@ feed one composition).
 | Metric | Reused | Total | Reuse |
 | --- | ---: | ---: | ---: |
 | Composition instances whose type existed on `main` | 10 | 13 | 76.9% |
-| Manual-IR semantic component instances using an existing contract | 16 | 16 | 100.0% |
+| Cross-renderer `ComponentSpec` instances using a contract from `main` | 19 | 19 | 100.0% |
+| IDML component-registry instances using a renderer from `main` | 16 | 16 | 100.0% |
 | Executed IDML implementation modules byte-identical to `main` | 95 | 117 | 81.2% |
 | Executed IDML modules with `main` provenance (unchanged + extended) | 115 | 117 | 98.3% |
 
@@ -150,12 +153,18 @@ types are `front_cover`, `lcd`, `operation`, `ups_charging`,
 `charging_methods`, `storage_troubleshooting`, `specifications`, `warranty`,
 `app`, and `back_cover`.
 
-The 16 semantic component instances are 13 `notice` blocks plus one each of
-`safetywarning`, `inbox`, and `lcdmode`. No JE-3000C-specific ComponentSpec was
-added. The only two wholly new executed IDML modules are target-neutral helpers
-for real asset aspect ratios and governed Overview asset-role resolution;
-20 existing modules were extended additively. The exact module list and trace
-command are recorded in the metrics JSON.
+The 19 formal cross-renderer `ComponentSpec` projections are 13
+`HB-CALLOUT-STRIP`, four `HB-TABLE-SPEC`, one `HB-SPECIAL-INBOX`, and one
+`HB-SPECIAL-OVERVIEW`; all four contract IDs already exist on `main`. Separately,
+the 16 Manual-IR component blocks dispatched by the IDML-only registry are 13
+`notice` blocks plus one each of `safetywarning`, `inbox`, and `lcdmode`; all four
+renderer kinds also already exist on `main`. This distinction avoids calling
+the IDML-only `safetywarning` and `lcdmode` renderers formal `ComponentSpec`
+contracts. No JE-3000C-specific component contract or renderer was added. The
+only two wholly new executed IDML modules are target-neutral helpers for real
+asset aspect ratios and governed Overview asset-role resolution; 20 existing
+modules were extended additively. The exact module list and trace command are
+recorded in the metrics JSON.
 
 ## Time evidence
 
@@ -170,27 +179,49 @@ continuous active engineering effort.
 | Clone created → first gate-clean IDML (`skipped_raw=0`) | 36m 07s |
 | Target data created → first gate-clean IDML | 30m 54s |
 
-For the current v11 source, five consecutive user-facing builds took
+For the v11 source, five consecutive user-facing builds took
 `1.90, 2.07, 1.73, 1.75, 1.74` seconds: median `1.75 s`, mean `1.838 s`.
 Every run met 18/18 pages, 143 blocks, `skipped_raw=0`, 153 stories, and 18
-spreads.
+spreads. The v12 semantic-regression build took `2.08 s`; the v13 build with
+the approved Illustrator-derived Overview asset took `2.31 s` and met the
+same structural gates.
 
-Earlier native-finalizer observations were 32-34 seconds from a cold InDesign
-start and 5-6 seconds when warm, but those runs stopped at PDF export and have
-`success=false`; they are not reported as successful finalization time. Their
-native-v7 PDF is also older than the current v11 IDML. The operator's latest
-screenshot confirms that the exported warning still came from that old v7
-document, not v11. A current-source PDF/X-4 timing remains pending the v11
-export.
+The first successful current-source native finalization was v12 at `59.12 s`.
+The v13 finalization also passed with 18 pages, 153 stories, zero overset,
+missing fonts, missing glyphs, and bad links. Both used the pinned InDesign
+`21.0.1.6` host and the PDF/X-4 / Japan Color 2001 Coated / JC200103 print
+contract. `Noto Sans KR` is not installed on this host, so the shared finalizer
+recorded a deterministic `Arial Unicode MS` substitution; the final PDF glyph
+gate still reports zero findings.
+
+## Illustrator-derived Overview asset
+
+The supplied
+`16-0102-000382 说明书 HTE1563000A-EU UK-JAK RoHS REACH.ai` is a
+19-page PDF-compatible Illustrator master with SHA-256
+`c7a43b6e77003c3e5e4bd772ea7a8df7c0938c9992b494b045e54970e0c00557`.
+Page 5 contains 426 vector drawing groups and no embedded raster image. The
+approved recipe keeps groups `372-391` (complete chassis and port structure),
+excludes group `371` and `392-395` (external leaders), and excludes groups
+`396-425` (outlined English labels). The formal pipeline output is entirely
+vector, has no extractable text, and has SHA-256
+`ad9c45dd8b7fc3de49f849fbcbac89e9d3ba4be0e4a2ca896fb7cddd05645936`.
+At 12x it matches the operator-confirmed KR-derived candidate in fill, stroke,
+line width, and all 20 corresponding drawing groups; maximum geometry delta is
+`0.003 pt`.
 
 ## Delivery package
 
-Generated artifacts remain outside Git:
+Generated delivery artifacts remain outside Git:
 
-- `JE-3000C_KR_second-package_v11.idml`, SHA-256
-  `4c4fc8d740c95de72d0e42a7abe9bbd4a90b398aa644e800f96987a9f3a7d53f`;
-- `JE-3000C_KR_second-package_v11_handoff.zip`, SHA-256
-  `0c71569f74e0d92508a82933a300296513fb97b0d6481862e5f123387a49f68d`.
+- `JE-3000C_KR_second-package_v13.idml`, SHA-256
+  `f2e5ac73e8d4ecf10884086605a226d103a7c2dd84a4dbe8d5ac0fc469f9fdf2`;
+- `JE-3000C_KR_second-package_v13_handoff.zip`, SHA-256
+  `23f6ea9f5c2c351a4437261c37d1b5edcd0e810168849da2c6f877af324c31e4`;
+- finalized INDD, SHA-256
+  `b04b311db5f611ff31206d6bd77adef200bf84ecf2200efdec3d1c7314a4c06a`;
+- finalized PDF/X-4, SHA-256
+  `1ca9ca83c921503e573f7112788135491e057802c12874c3e682fba7a4c7667d`.
 
 The ZIP has 118 entries: production and flow IDML, 103 assets under `Links/`,
 the reference PDF, flow/source reports, checklist, and fonts manifest. All 109
@@ -213,20 +244,19 @@ Completed on the current source:
   regression, without changing the target RST;
 - exported-PDF missing-glyph gate for visible `U+FFFD` and `.notdef` glyphs;
   the old native-v7 negative control reports nine findings across placed and
-  native text.
+  native text, while v13 reports zero;
+- all 18 v13 PDF pages rendered with Poppler and visually compared against the
+  supplied KR production PDF; focused checks passed for Symbols p3, Overview
+  p4, Operation p7-p8, and Specifications p14;
+- v13 native preflight and PDF/X-4/XMP/OutputIntent validation passed.
 
 The mandatory generic US `build.py check` reaches config and layout validation
 but is environment-blocked because this isolated worktree has no
 `data/phase2/Spec_Master.csv`; target identity therefore cannot resolve
-`JE-1000F_US`. This is recorded separately from the accepted KR target build.
+`JE-1000F_US`. The same command with `--data-root tests/fixtures/phase2`
+passes, separating the missing local live-data snapshot from code behavior.
+This is recorded separately from the accepted KR target build.
 
-Still required before calling the package final:
-
-- install `Noto Sans KR` for exact intended typography, or record the shared
-  finalizer's explicit fallback to the installed `Arial Unicode MS`;
-- operator export of v11 through InDesign;
-- verify no PDF/X-4 missing-glyph warning;
-- PDF/X-4/XMP/OutputIntent inspection;
-- current-source native overset/font/link preflight;
-- render and compare all 18 pages, with focused review of pages 3, 4, 8, 14,
-  and 18.
+Residual handoff note: install `Noto Sans KR` before editing if exact intended
+Korean typography is required. The delivered PDF is accepted with the recorded
+`Arial Unicode MS` fallback and zero missing-glyph findings.

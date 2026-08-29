@@ -118,6 +118,27 @@ def _integer(value: Any, location: str, *, minimum: int = 1) -> int:
     return value
 
 
+def _drawing_index(value: Any, location: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+        raise _fail(location, "must be an integer >= 0")
+    return value
+
+
+def _rgb(value: Any, location: str) -> tuple[float, float, float]:
+    items = _list(value, location)
+    if len(items) != 3:
+        raise _fail(location, "must contain exactly three RGB channels")
+    channels = []
+    for index, item in enumerate(items):
+        if isinstance(item, bool) or not isinstance(item, (int, float)):
+            raise _fail(f"{location}[{index}]", "must be a number from 0 to 1")
+        channel = float(item)
+        if not math.isfinite(channel) or not 0 <= channel <= 1:
+            raise _fail(f"{location}[{index}]", "must be a number from 0 to 1")
+        channels.append(channel)
+    return channels[0], channels[1], channels[2]
+
+
 def _number(value: Any, location: str, *, maximum: float = 16.0) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise _fail(location, "must be a finite number")
@@ -427,10 +448,87 @@ def _transform(value: Any, location: str) -> TransformSpec:
                 raise _fail(f"{location}.{name}", "must be a number in (0, 8]")
             widths[name] = float(value)
         return TransformSpec(op=op, **widths)
+    if op == "retain_vector_drawings":
+        _keys(
+            data,
+            location=location,
+            required={
+                "op",
+                "drawing_indices",
+                "fill_rgb_overrides",
+                "stroke_suppressed_indices",
+            },
+        )
+        drawing_indices = tuple(
+            _drawing_index(item, f"{location}.drawing_indices[{index}]")
+            for index, item in enumerate(
+                _list(data["drawing_indices"], f"{location}.drawing_indices")
+            )
+        )
+        if not drawing_indices:
+            raise _fail(f"{location}.drawing_indices", "must not be empty")
+        if len(set(drawing_indices)) != len(drawing_indices):
+            raise _fail(f"{location}.drawing_indices", "must not contain duplicates")
+        if tuple(sorted(drawing_indices)) != drawing_indices:
+            raise _fail(f"{location}.drawing_indices", "must be in ascending source order")
+        raw_overrides = _mapping(
+            data["fill_rgb_overrides"], f"{location}.fill_rgb_overrides"
+        )
+        overrides = []
+        for raw_index, raw_rgb in raw_overrides.items():
+            if not isinstance(raw_index, str) or not raw_index.isdigit():
+                raise _fail(
+                    f"{location}.fill_rgb_overrides",
+                    "keys must be decimal drawing indices",
+                )
+            index = _drawing_index(
+                int(raw_index), f"{location}.fill_rgb_overrides.{raw_index}"
+            )
+            if index not in drawing_indices:
+                raise _fail(
+                    f"{location}.fill_rgb_overrides.{raw_index}",
+                    "must refer to a retained drawing index",
+                )
+            overrides.append(
+                (index, _rgb(raw_rgb, f"{location}.fill_rgb_overrides.{raw_index}"))
+            )
+        stroke_suppressed_indices = tuple(
+            _drawing_index(
+                item, f"{location}.stroke_suppressed_indices[{item_index}]"
+            )
+            for item_index, item in enumerate(
+                _list(
+                    data["stroke_suppressed_indices"],
+                    f"{location}.stroke_suppressed_indices",
+                )
+            )
+        )
+        if len(set(stroke_suppressed_indices)) != len(stroke_suppressed_indices):
+            raise _fail(
+                f"{location}.stroke_suppressed_indices",
+                "must not contain duplicates",
+            )
+        if tuple(sorted(stroke_suppressed_indices)) != stroke_suppressed_indices:
+            raise _fail(
+                f"{location}.stroke_suppressed_indices",
+                "must be in ascending source order",
+            )
+        for index in stroke_suppressed_indices:
+            if index not in drawing_indices:
+                raise _fail(
+                    f"{location}.stroke_suppressed_indices",
+                    "must contain only retained drawing indices",
+                )
+        return TransformSpec(
+            op=op,
+            drawing_indices=drawing_indices,
+            fill_rgb_overrides=tuple(sorted(overrides)),
+            stroke_suppressed_indices=stroke_suppressed_indices,
+        )
     raise _fail(
         f"{location}.op",
         "must be crop, drop_leader_strokes, redact_text, redact_text_region, "
-        "or whiteout",
+        "retain_vector_drawings, or whiteout",
     )
 
 
@@ -516,6 +614,22 @@ def _assets(value: Any, *, source: SourceSpec) -> tuple[AssetSpec, ...]:
             raise _fail(f"{location}.transforms", "crop must be the first transform")
         if sum(transform.op == "crop" for transform in transforms) != 1:
             raise _fail(f"{location}.transforms", "must contain exactly one crop")
+        retained_vector_count = sum(
+            transform.op == "retain_vector_drawings" for transform in transforms
+        )
+        if retained_vector_count > 1:
+            raise _fail(
+                f"{location}.transforms",
+                "must contain at most one retain_vector_drawings transform",
+            )
+        if retained_vector_count and [transform.op for transform in transforms] != [
+            "crop",
+            "retain_vector_drawings",
+        ]:
+            raise _fail(
+                f"{location}.transforms",
+                "retain_vector_drawings must be the only transform after crop",
+            )
         outputs = tuple(
             _output(item, f"{location}.outputs[{item_index}]")
             for item_index, item in enumerate(_list(data["outputs"], f"{location}.outputs"))

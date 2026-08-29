@@ -3258,6 +3258,49 @@ class ExportIdmlTests(unittest.TestCase):
         dense = template_symbol_split(icons, dense=True)
         self.assertEqual([len(rows) for rows in dense], [4, 4, 2, 1])
 
+    def test_template_icon_split_preserves_authored_uneven_columns(self) -> None:
+        icons = [
+            {
+                "figure": f"{index}_left.png",
+                "text": f"left {index}",
+                "column": "left",
+                "continuation": False,
+            }
+            for index in range(1, 6)
+        ] + [
+            {
+                "figure": f"{index}_right.png",
+                "text": f"right {index}",
+                "column": "right",
+                "continuation": False,
+            }
+            for index in range(1, 3)
+        ]
+
+        left, right, overflow_left, overflow_right = template_symbol_split(icons)
+
+        self.assertEqual([f"left {index}" for index in range(1, 6)],
+                         [row["text"] for row in left])
+        self.assertEqual(["right 1", "right 2"],
+                         [row["text"] for row in right])
+        self.assertEqual([], overflow_left)
+        self.assertEqual([], overflow_right)
+
+    def test_template_icon_split_preserves_authored_continuations(self) -> None:
+        icons = [
+            {"text": "left", "column": "left", "continuation": False},
+            {"text": "right", "column": "right", "continuation": False},
+            {"text": "left overflow", "column": "left", "continuation": True},
+            {"text": "right overflow", "column": "right", "continuation": True},
+        ]
+
+        split = template_symbol_split(icons, dense=True)
+
+        self.assertEqual(
+            [["left"], ["right"], ["left overflow"], ["right overflow"]],
+            [[row["text"] for row in rows] for rows in split],
+        )
+
     def test_template_icon_split_recovers_semantic_columns_from_assets(self) -> None:
         icons = [
             {"figure": "10_warning_triangle_hash.png", "text": "warning"},
