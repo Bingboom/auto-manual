@@ -38,7 +38,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.ac-output_fr_50f979a6ca78.png",
       "region_scope": "US",
-      "source_fragment_sha256": "5981a72dc40c2b83b959dafde2314e47f13b24948ef4277075c62930a7af5090",
+      "source_fragment_sha256": "836c350900ea2dedfbda4a3171bd0dc63c2bd0bd4d2221047c186abd6c938281",
       "source_page": 26,
       "web_replace_key": "operation.ac-output"
     },
@@ -80,7 +80,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.dc-usb-output_fr_0fb775148880.png",
       "region_scope": "US",
-      "source_fragment_sha256": "31facb2662ec8928d5816dc831e7e2f6f7f9c02796307ac9ee791ee2c79d2fbf",
+      "source_fragment_sha256": "450dd714aa04f409e32a339b3b9b94bc0f5f360e4e72585450e1ab714d3fe837",
       "source_page": 27,
       "web_replace_key": "operation.dc-usb-output"
     },
@@ -136,7 +136,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.led-light_en_488d554029be.png",
       "region_scope": "US",
-      "source_fragment_sha256": "83b45c8c8cf5e0989ecf6450466cd3414ef27b317fd4845f306be919170588ba",
+      "source_fragment_sha256": "67650270634ec2e587ab7a5195585f20c0d92faccd0a2f622af14cd8b713e3d9",
       "source_page": 14,
       "web_replace_key": "operation.led-light"
     },
@@ -164,7 +164,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.led-light_fr_218224f9ded3.png",
       "region_scope": "US",
-      "source_fragment_sha256": "447564090ca0b384c159df1e31fe1daffff3b50dd229a3a19cf1d98474f958e8",
+      "source_fragment_sha256": "de6fa1f4a42f07a3424a9084c93d931249a9abab95fb55a56e9431567070310d",
       "source_page": 28,
       "web_replace_key": "operation.led-light"
     },
@@ -192,7 +192,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.main-power_es_1593f45faaa4.png",
       "region_scope": "US",
-      "source_fragment_sha256": "a0fd30b34ef296a445b7cb3073debee1f568f09eca4a0caf4aa87da2044ddd06",
+      "source_fragment_sha256": "c29619354cf6c55e4252baefd2c413bdbe203f4cb6e59bf8821956e9d07e37dc",
       "source_page": 42,
       "web_replace_key": "operation.main-power"
     },
@@ -206,7 +206,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.main-power_fr_9efaabd93945.png",
       "region_scope": "US",
-      "source_fragment_sha256": "074a5a7623b13483c1cc4e547c29daa3924d20beee7c5c40220583bf7dd25566",
+      "source_fragment_sha256": "97b21fb6e6b8d5c660db79fa93c0a87c08b376e45f1a2caed6575e783296c920",
       "source_page": 26,
       "web_replace_key": "operation.main-power"
     },
@@ -234,7 +234,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.front_es_e1db532310ae.png",
       "region_scope": "US",
-      "source_fragment_sha256": "1d598826fcfd5660c2d10104b9b2e11e8c8d152275af1af9fe71d95fa179a2ba",
+      "source_fragment_sha256": "2045d094981cfe21f7988f8bf24a1092ad568ca43be6ab510d6a79e41dd70238",
       "source_page": 40,
       "web_replace_key": "product-overview.front"
     },
@@ -248,7 +248,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.front_fr_2e1c9327b308.png",
       "region_scope": "US",
-      "source_fragment_sha256": "dbbeb8f52fe9b1ed34620df9e4fb95a65c21fec3df4fa9ee413de8118c661275",
+      "source_fragment_sha256": "5bd310134741a62acc11586b59628e6e952002fc2e6d6ba77651361b57f45c77",
       "source_page": 24,
       "web_replace_key": "product-overview.front"
     },
@@ -332,7 +332,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-car_es_be3e23850314.png",
       "region_scope": "US",
-      "source_fragment_sha256": "c89d24add5f72ebe60ab0d6211d13e0c062d0f7b30c7960ecaf9b813247fcede",
+      "source_fragment_sha256": "d3390e4dfab4156ab727b1b6694fd841a865ee0aecc4c3ff8d6db3327fd2c95a",
       "source_page": 45,
       "web_replace_key": "reference.charging-car"
     },

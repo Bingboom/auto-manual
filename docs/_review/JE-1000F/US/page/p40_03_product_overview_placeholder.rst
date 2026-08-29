@@ -16,7 +16,7 @@ VISTA FRONTAL
    :header-rows: 0
    :widths: 50 50
 
-   * - **Botón de encendido**
+   * - **Botón POWER**
      - **LCD**
    * - **Puerto CC 12 V**
 

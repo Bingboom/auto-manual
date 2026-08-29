@@ -71,7 +71,7 @@ CHARGING
    :widths: 12 88
 
    * - **NOTE**
-     - - The recommended charging temperature for the product ranges from 14°F to 113°F (-10°C to 45°C), and the discharging temperature ranges from 14°F to 113°F (-10°C to 45°C).
+     - - The recommended charging temperature for the product ranges from 32°F to 113°F / 0°C to 45°C, and the discharging temperature ranges from 14°F to 113°F / -10°C to 45°C.
        - Operating the product beyond this temperature range may restrict its charging and discharging capabilities, or even prevent it from charging or discharging.
        - The charging power and battery capacity of the product may vary due to temperature fluctuations.
 
@@ -94,5 +94,5 @@ Connect the AC charging cable to the AC input port of the product and a wall out
 
 **Emergency Charging Mode**
 
-| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery app. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
-| \* To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.
+| Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery App. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
+| \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.

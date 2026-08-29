@@ -512,6 +512,59 @@ class SharedPageTests(unittest.TestCase):
                 writer.write(output)
                 self.assertEqual([], check_idml(output))
 
+    def test_compact_symbols_absorb_standard_continuation_rows(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(params)
+        symbol_data = SimpleNamespace(
+            title="SIGNIFICATION DES SYMBOLES",
+            signal_headers=("Symbole", "Signification"),
+            icon_headers=("Symbole", "Signification"),
+            signals=(
+                {
+                    "signal_key": "warning",
+                    "label": "AVERTISSEMENT",
+                    "text": "Pratiques dangereuses.",
+                },
+            ),
+            icons=tuple(
+                {
+                    "figure": "",
+                    "text": f"Icône {index}",
+                    "column": "left" if index <= 6 else "right",
+                    "continuation": index in {5, 6, 11},
+                }
+                for index in range(1, 12)
+            ),
+        )
+        safety = [
+            ("h1", "INFORMATIONS DE SÉCURITÉ IMPORTANTES"),
+            *[("list", f"• Consigne {index}") for index in range(1, 11)],
+        ]
+
+        with tempfile.TemporaryDirectory() as td:
+            add_safety_symbols_page(
+                writer,
+                safety_sid="st_safety_fr",
+                safety_title="safety_fr",
+                safety_blocks=safety,
+                symbol_data=symbol_data,
+                bundle_root=Path(td),
+                data_root=Path(td),
+                page_index=11,
+                language="fr",
+            )
+
+        stories = dict(writer.stories)
+        rendered = (
+            stories["st_symbols_shared_fr_icons_left"]
+            + stories["st_symbols_shared_fr_icons_right"]
+        )
+        for index in range(1, 12):
+            self.assertIn(f"<Content>Icône {index}</Content>", rendered)
+
     def test_compact_page_reuses_lcd_and_operations_stories(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         params = dict(params)

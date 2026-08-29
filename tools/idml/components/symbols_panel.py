@@ -159,7 +159,16 @@ class SymbolsPanel:
         )
 
         left_icons, right_icons, overflow_left, overflow_right = (
-            template_symbol_split(list(self.data.icons), dense=False)
+            template_symbol_split(
+                list(self.data.icons),
+                dense=False,
+                # ``continuation`` is physical metadata from the approved
+                # standard US composition. Compact target assemblies reuse
+                # the same semantic rows on one page, so they must consume
+                # the complete declared left/right columns instead of
+                # inheriting the standard composition's following-page split.
+                flatten_continuations=self.density == "compact",
+            )
         )
         signal_row_heights = list(metrics.signal_row_heights)
         if self.density == "compact":

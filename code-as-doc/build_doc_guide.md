@@ -845,6 +845,12 @@ configs keep that historical default unless `--lang` is supplied explicitly.
 
 The approved v2 contract separates enforced identity from provenance:
 
+The committed engineering-plane review copy is synchronized to
+`Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`.
+The 2026-08-29 content reapproval covers the current editable IDML semantic
+projection; its rebind changed zero page bindings and left the 58-page
+composition map unchanged.
+
 | Contract item | Approved value |
 | --- | --- |
 | Target | `JE-1000F / US / en+fr+es` |
@@ -852,11 +858,11 @@ The approved v2 contract separates enforced identity from provenance:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Content identity (enforced) | `ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0` |
-| Assembly identity (enforced) | `1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05` |
-| Style-contract identity (enforced) | `885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7` |
-| Layout-params identity (enforced) | `912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d` |
-| Snapshot provenance (not an activation gate) | `2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33` |
+| Content identity (enforced) | `b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a` |
+| Assembly identity (enforced) | `c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57` |
+| Style-contract identity (enforced) | `6db62e7780288ac073bc7502379112ddf10aae8d6c00de29875e9ea1a80d0003` |
+| Layout-params identity (enforced) | `2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82` |
+| Snapshot provenance (not an activation gate) | `aa4bfb324cd12ff07be2507a51a634e61e2d6043e2dd4fb199bb873afd43f821` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:

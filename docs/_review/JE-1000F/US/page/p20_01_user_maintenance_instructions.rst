@@ -14,4 +14,4 @@
 
       <h2 class="hb-subbar">INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR</h2>
 
-Au cours du cycle des produits de stockage d'énergie, une certaine dégradation de la capacité et de l'énergie se produira. À mesure que le nombre de cycles d'utilisation augmente et que la durée de stockage s'allonge, cette dégradation s'intensifiera progressivement, ce qui est un phénomène normal conforme au modèle de vieillissement naturel des cellules de batterie.
+Pendant le cycle de vie des produits de stockage d'énergie, une certaine dégradation de la capacité et de l'énergie est attendue. À mesure que le nombre de cycles de charge et de décharge augmente et que la durée de stockage s'allonge, cette dégradation s'intensifie progressivement. Il s'agit d'un phénomène normal, conforme au vieillissement naturel des cellules de batterie.
