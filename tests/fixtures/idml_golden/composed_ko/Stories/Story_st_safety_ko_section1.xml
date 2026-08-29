@@ -71,19 +71,19 @@
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
 </TextFrame>
 </Group><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.06929" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <Properties><TabList type="list"><ListItem type="record"><Alignment type="enumeration">LeftAlign</Alignment><AlignmentCharacter type="string"></AlignmentCharacter><Leader type="string"></Leader><Position type="unit">3.7</Position></ListItem></TabList></Properties>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>•</Content></CharacterStyleRange>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>	</Content></CharacterStyleRange>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>Read all the instructions before using the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.06929" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <Properties><TabList type="list"><ListItem type="record"><Alignment type="enumeration">LeftAlign</Alignment><AlignmentCharacter type="string"></AlignmentCharacter><Leader type="string"></Leader><Position type="unit">3.7</Position></ListItem></TabList></Properties>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>•</Content></CharacterStyleRange>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>	</Content></CharacterStyleRange>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>Do not allow children to play on the product.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
-  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.07" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
+  <ParagraphStyleRange LeftIndent="3.7" FirstLineIndent="-6.25" SpaceAfter="2.06929" RightIndent="0" Hyphenation="false" AppliedParagraphStyle="ParagraphStyle/HB Safety List">
     <Properties><TabList type="list"><ListItem type="record"><Alignment type="enumeration">LeftAlign</Alignment><AlignmentCharacter type="string"></AlignmentCharacter><Leader type="string"></Leader><Position type="unit">3.7</Position></ListItem></TabList></Properties>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" HorizontalScale="98"><Content>•</Content></CharacterStyleRange>
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>	</Content></CharacterStyleRange>

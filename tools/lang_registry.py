@@ -345,9 +345,19 @@ IDML_LANGUAGE_PACKS = {
 }
 
 # Only languages with an approved reference-layout geometry receive governed
-# IDML spacing/placement overrides.  Registration of a new language does not
-# accidentally opt it into the production-master layout contract.
+# IDML flow behavior (fixed approved heights, reference offsets, planned
+# composition).  Registration of a new language does not accidentally opt it
+# into the production-master layout contract.
 _IDML_GOVERNED_LANGUAGE_CODES = frozenset(("en", "fr", "es"))
+
+# Languages whose lang_<code>_ layout-override rows are honored by the shared
+# token cascade.  This is governance's on-ramp: a line in active layout
+# tuning (ko: KR line, 2026-08) gets its rows read by every component the
+# moment they land, while keeping measured/fallback flow behavior until its
+# reference layout is approved and it joins the governed set above.  Which
+# override rows are *contract-required* under approved-reference builds is a
+# third, per-component declaration (contract_languages).
+_IDML_LAYOUT_TUNING_LANGUAGE_CODES = frozenset(("ko",))
 
 # Source-table headers retain their historical order for snapshot and manifest
 # compatibility.  Keep that order in the registry so schema consumers do not
@@ -423,6 +433,20 @@ def governed_languages() -> tuple[str, ...]:
         spec.code
         for spec in LANGUAGE_REGISTRY
         if spec.code in _IDML_GOVERNED_LANGUAGE_CODES
+    )
+
+
+def layout_override_languages() -> tuple[str, ...]:
+    """Return languages whose ``lang_<code>_`` layout rows are honored.
+
+    Governed languages plus lines in active layout tuning: the cascade reads
+    their override rows, but only governed languages get approved-reference
+    flow behavior.
+    """
+
+    honored = _IDML_GOVERNED_LANGUAGE_CODES | _IDML_LAYOUT_TUNING_LANGUAGE_CODES
+    return tuple(
+        spec.code for spec in LANGUAGE_REGISTRY if spec.code in honored
     )
 
 

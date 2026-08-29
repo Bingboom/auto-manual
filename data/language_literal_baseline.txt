@@ -45,6 +45,7 @@ tools/idml/safety_story.py	set	es,fr	f4c071528243d993
 tools/idml/story_rhythm.py	dict	en,es,fr	2b90eedf00778878
 tools/idml/story_rhythm.py	dict	en,es,fr	70d2bf4099829523
 tools/idml/story_semantics.py	dict	en,es,fr	83bad58adfe19df6
+tools/idml/symbols_page.py	set	en,es,fr	76cf83ce30586e10
 tools/idml/symbols_page.py	set	es,fr	f4c071528243d993
 tools/lang_asset_sweep.py	dict	de,es,fr,it,ja,jp,ko,pt-BR,pt-br,uk,zh	de90bffb1785af9c
 tools/language_aliases.py	dict	br,pt-BR,pt-br,pt_br	25587383e65d3ef6

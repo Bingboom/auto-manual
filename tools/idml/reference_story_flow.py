@@ -16,7 +16,7 @@ from .asset_contracts import (
     APP_ADD_DEVICE_COMPONENT,
     plan_page_owns_component,
 )
-from .params import param_pt
+from .params import localized_param_pt, param_pt
 from .prose_flow import (
     apply_component_composition_data,
     composition_language,
@@ -29,13 +29,17 @@ from .prose_flow import (
 def storage_first_top_offset(
     params: dict[str, tuple[str, str]], language: str | None,
 ) -> float:
-    """Return the approved car-notice continuation offset on storage pages."""
-    if language not in governed_languages():
+    """Return the approved car-notice continuation offset on storage pages.
+
+    Ungoverned languages get no offset at all — not the base value: the base
+    row encodes the governed reference flow, which measured fallback pages do
+    not follow.
+    """
+    code = (language or "").split("-", 1)[0].strip().casefold()
+    if code not in governed_languages():
         return 0.0
-    return param_pt(
-        params,
-        f"lang_{language}_idml_storage_page_top_offset",
-        param_pt(params, "idml_storage_page_top_offset", 0.0),
+    return localized_param_pt(
+        params, "idml_storage_page_top_offset", 0.0, language=code,
     )
 
 

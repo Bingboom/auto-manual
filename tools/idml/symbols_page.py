@@ -5,18 +5,23 @@ from pathlib import Path
 from dataclasses import dataclass
 from xml.sax.saxutils import escape
 
-from .language_contract import governed_languages
 from .character_metrics import (
     fit_symbol_body_metrics,
     signal_label_metrics,
     with_character_metrics,
 )
 from .layout_est import est_table_height
-from .params import IDPKG, component_param_pt, param_pt
+from .params import IDPKG, component_param_pt, localized_component_param_pt, param_pt
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
 SYMBOL_ICON_ART_SCALE = 0.9
+# Languages whose approved symbols-page geometry lives in lang_<code>_ rows:
+# for these, a strict (approved-reference) build treats the override rows as
+# contract-required. A newly governed language joins this set only when its
+# reference layout is approved with symbols overrides — not when it merely
+# becomes governed.
+SYMBOLS_STYLE_CONTRACT_LANGUAGES = frozenset({"en", "fr", "es"})
 
 
 def _symbol_icon_asset(figure: str | None) -> Path | None:
@@ -80,10 +85,13 @@ class SafetySymbolsPageStyle:
             )
 
         def localized(key: str, default: float) -> float:
-            base = token(key, default)
-            if normalized not in governed_languages():
-                return base
-            return token(f"lang_{normalized}_{key}", base)
+            return localized_component_param_pt(
+                writer.params, key, default,
+                language=normalized,
+                strict=writer.strict_component_assets,
+                owner="safety symbols page",
+                contract_languages=SYMBOLS_STYLE_CONTRACT_LANGUAGES,
+            )
 
         return cls(
             page_top=localized("idml_symbols_page_top", 27.7),

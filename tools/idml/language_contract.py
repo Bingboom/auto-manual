@@ -13,6 +13,7 @@ try:  # normal repository-package import
         LANGUAGE_REGISTRY,
         canonical_language,
         governed_languages,
+        layout_override_languages,
     )
 except ImportError:  # direct exporter-script import
     from lang_registry import (  # type: ignore[no-redef]
@@ -20,6 +21,7 @@ except ImportError:  # direct exporter-script import
         LANGUAGE_REGISTRY,
         canonical_language,
         governed_languages,
+        layout_override_languages,
     )
 
 
@@ -28,4 +30,5 @@ __all__ = (
     "LANGUAGE_REGISTRY",
     "canonical_language",
     "governed_languages",
+    "layout_override_languages",
 )

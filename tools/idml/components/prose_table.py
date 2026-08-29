@@ -10,7 +10,7 @@ import math
 import re
 
 from ..character_metrics import with_character_metrics
-from ..language_contract import governed_languages
+from ..language_contract import governed_languages, layout_override_languages
 from ..line_metrics import east_asian_width_units, estimated_text_width
 from ..params import component_param_pt, param_pt, param_text
 from ..primitives import (
@@ -50,6 +50,32 @@ class _TroubleshootingLocaleCalibration:
     right_line_baseline: tuple[int, ...]
 
 
+# Languages whose approved trouble-table geometry carries a contract-required
+# space-before row (en included: this component reads lang_en_ directly, not
+# the unscoped base token). Other honored languages read their row
+# permissively and fall back to the resolved en value until their reference
+# layout is approved.
+_TROUBLE_SPACE_BEFORE_CONTRACT = (
+    ("en", 8.74), ("fr", 6.70), ("es", 7.75),
+)
+
+
+def _table_space_before_pairs(token) -> tuple[tuple[str, float], ...]:
+    """Resolve the per-language space-before pairs from one token reader."""
+    pairs: dict[str, float] = {
+        code: token(f"lang_{code}_idml_trouble_table_space_before", default)
+        for code, default in _TROUBLE_SPACE_BEFORE_CONTRACT
+    }
+    for code in layout_override_languages():
+        if code not in pairs:
+            pairs[code] = token(
+                f"lang_{code}_idml_trouble_table_space_before",
+                pairs["en"],
+                strict=False,
+            )
+    return tuple(pairs.items())
+
+
 @dataclass(frozen=True)
 class TroubleshootingTableStyle:
     """Source-side geometry contract for the editable troubleshooting table.
@@ -82,8 +108,11 @@ class TroubleshootingTableStyle:
     outer_rule: float
     extra_row_min_height: float
     space_before: float = 9.74
-    table_space_before_by_language: tuple[float, float, float] = (
-        8.74, 6.70, 7.75,
+    # (language, pt) pairs: the approved trouble-table space-before per
+    # honored layout language. A language without a pair falls back to en,
+    # so a language entering tuning renders before its row exists.
+    table_space_before_by_language: tuple[tuple[str, float], ...] = (
+        ("en", 8.74), ("fr", 6.70), ("es", 7.75),
     )
 
     @classmethod
@@ -138,11 +167,18 @@ class TroubleshootingTableStyle:
             language,
             _TROUBLESHOOTING_LOCALE_CALIBRATIONS["en"],
         )
-        minima_key = (
-            f"lang_{language}_idml_trouble_row_minima"
-            if language in governed_languages()
-            else "idml_trouble_row_minima"
-        )
+        override_minima_key = f"lang_{language}_idml_trouble_row_minima"
+        if language in governed_languages():
+            # Approved locales: their row IS the contract (strict check below).
+            minima_key = override_minima_key
+        elif (
+            language in layout_override_languages()
+            and override_minima_key in ctx.params
+        ):
+            # A line in layout tuning is honored the moment its row lands.
+            minima_key = override_minima_key
+        else:
+            minima_key = "idml_trouble_row_minima"
         minima_raw = param_text(
             ctx.params,
             minima_key,
@@ -214,18 +250,13 @@ class TroubleshootingTableStyle:
             inner_rule=token("idml_trouble_inner_rule", 0.25),
             outer_rule=token("idml_trouble_outer_rule", 0.57),
             extra_row_min_height=token("idml_trouble_extra_row_min_height", 11.15),
-            table_space_before_by_language=(
-                token("lang_en_idml_trouble_table_space_before", 8.74),
-                token("lang_fr_idml_trouble_table_space_before", 6.70),
-                token("lang_es_idml_trouble_table_space_before", 7.75),
-            ),
+            table_space_before_by_language=_table_space_before_pairs(token),
         )
         return style
 
     def table_space_before(self, language: str) -> float:
-        governed = governed_languages()
-        index = governed.index(language) if language in governed else 0
-        return self.table_space_before_by_language[index]
+        pairs = dict(self.table_space_before_by_language)
+        return pairs.get(language, pairs["en"])
 
     def minimum_for_row(self, row_index: int) -> float:
         if row_index < len(self.row_minima):
