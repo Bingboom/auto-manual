@@ -11,6 +11,7 @@ from .character_metrics import (
     with_character_metrics,
 )
 from .layout_est import est_table_height
+from .inline_text import character_ranges
 from .params import IDPKG, component_param_pt, localized_component_param_pt, param_pt
 from .style_names import paragraph_style_ref
 
@@ -19,7 +20,7 @@ SYMBOL_ICON_ART_SCALE = 0.9
 # Languages whose approved symbols-page geometry lives in lang_<code>_ rows:
 # for these, a strict (approved-reference) build treats the override rows as
 # contract-required. A newly governed language joins this set only when its
-# reference layout is approved with symbols overrides — not when it merely
+# reference layout is approved with symbols overrides - not when it merely
 # becomes governed.
 SYMBOLS_STYLE_CONTRACT_LANGUAGES = frozenset({"en", "fr", "es"})
 
@@ -241,6 +242,31 @@ def _localized_signal_label_bar(
             f'BaselineShift="{content_raise:g}">'
             f'<Properties><Leading type="unit">{label_leading:g}</Leading></Properties>'
             f'<Content> {escape(label)}</Content></CharacterStyleRange>\n'
+            '  </ParagraphStyleRange>\n'
+        )
+    elif any(ord(character) >= 0x1100 for character in label):
+        label_ranges = "".join(
+            character_ranges(
+                f" {label}",
+                bold=True,
+                superscript_markers=False,
+                replacements={},
+            )
+        )
+        marker = (
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+        )
+        label_ranges = label_ranges.replace(
+            marker,
+            f'{marker} FillColor="Color/Paper" '
+            f'BaselineShift="{content_raise:g}"',
+        )
+        content = (
+            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            '    <CharacterStyleRange '
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'BaselineShift="{content_raise:g}">{icon}</CharacterStyleRange>\n'
+            f'    {label_ranges}\n'
             '  </ParagraphStyleRange>\n'
         )
     else:

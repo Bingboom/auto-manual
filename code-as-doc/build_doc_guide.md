@@ -1210,6 +1210,15 @@ One document can therefore fail without preventing the remaining documents in
 that application group from running. Different InDesign application names use
 separate dispatches, and single-job mode remains unchanged.
 
+After PDF export, the Python wrapper also scans every retained text trace in
+the final PDF. A visible replacement character (`U+FFFD`) or `.notdef` glyph
+(`glyph_id=0`) fails the job even when InDesign reports every font as
+installed. Because the scan runs on the assembled PDF, it covers native
+InDesign stories and text retained inside placed PDF graphics. Findings are
+recorded in `missing_glyphs` and `pdf_glyph_validation`; rasterized or outlined
+art still requires visual review because it no longer contains inspectable PDF
+glyphs.
+
 Compare that InDesign export to the supplied approved PDF, not to the newly
 built LaTeX PDF. `--latex-pdf` is retained as a legacy CLI flag name; its value
 for this workflow is the approved reference PDF:
@@ -1248,7 +1257,8 @@ the visual hard gate.
 The latest deliverable is acceptable only when all of these are true:
 
 - exactly 58 pages, with every page inside the approved geometry tolerance;
-- zero overset stories, zero missing fonts, and zero bad links;
+- zero overset stories/table cells, zero missing fonts, zero missing glyphs,
+  and zero bad links;
 - PDF/X-4 and the required Output Intent/Condition are present in the exported
   PDF;
 - all 52/52 source identities and the reference PDF match the approved plan;

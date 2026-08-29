@@ -304,8 +304,11 @@ new reviewer decision and a passing `asset-check --json`; operators must not
 patch the hash alone.
 
 The provisioned design Mac runs `tools/indesign_finalize.py` to create the INDD
-and PDF, with zero overset/missing-font/bad-link findings and PDF/X-4 using
-`Japan Color 2001 Coated` / `JC200103`. It then runs
+and PDF, with zero overset/missing-font/missing-glyph/bad-link findings and
+PDF/X-4 using `Japan Color 2001 Coated` / `JC200103`. The finalizer scans the
+exported PDF for visible `U+FFFD` and `.notdef` glyphs, including text retained
+inside placed PDF graphics; rasterized or outlined art remains part of visual
+review. It then runs
 `tools/idml_pdf_parity.py` against the approved PDF (the historical
 `--latex-pdf` flag name does not mean the newly built LaTeX PDF here) and the
 approved contract. All 58 pages are compared at 300 dpi as fixed

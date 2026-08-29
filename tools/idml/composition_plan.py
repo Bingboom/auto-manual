@@ -69,8 +69,15 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
     for spec in (
         _spec("front_cover", PageRole.COVER),
         _spec("preface", PageRole.PREFACE),
+        _spec(
+            "preface_safety_maintenance",
+            PageRole.PREFACE,
+            PageRole.SAFETY,
+            PageRole.MAINTENANCE,
+        ),
         _spec("toc", PageRole.TOC),
         _spec("safety", PageRole.SAFETY),
+        _spec("symbols", PageRole.SYMBOLS),
         _spec("maintenance_symbols", PageRole.MAINTENANCE, PageRole.SYMBOLS),
         _spec("safety_symbols", PageRole.SAFETY, PageRole.SYMBOLS),
         _spec("fcc_inbox", PageRole.FCC, PageRole.INBOX),
@@ -80,6 +87,7 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
             PageRole.INBOX,
             PageRole.PRODUCT_OVERVIEW,
         ),
+        _spec("inbox_overview", PageRole.INBOX, PageRole.PRODUCT_OVERVIEW),
         _spec("product_overview", PageRole.PRODUCT_OVERVIEW),
         _spec("lcd", PageRole.LCD),
         _spec("lcd_operations", PageRole.LCD, PageRole.OPERATION_GUIDE),

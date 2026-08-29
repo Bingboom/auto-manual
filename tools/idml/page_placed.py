@@ -224,6 +224,58 @@ def add_back_cover_page(
     """Compose the template's back page: company block + contact bar."""
     if profile is None:
         return _add_legacy_back_cover_page(writer, region, page_index, copy)
+    if profile.get("variant") == "qr_only":
+        if docs_dir is None:
+            raise ValueError("qr-only back cover requires docs_dir")
+        qr_asset = str(profile.get("qr_asset") or "").strip()
+        qr_rect = profile.get("qr_rect")
+        if not qr_asset or not isinstance(qr_rect, list) or len(qr_rect) != 4:
+            raise ValueError(
+                "qr-only back cover requires qr_asset and four-value qr_rect"
+            )
+        asset = docs_dir.parent / qr_asset
+        if not asset.is_file():
+            raise ValueError(f"back-cover QR asset is missing: {asset}")
+        qr_x, qr_y, qr_width, qr_height = map(float, qr_rect)
+        if qr_width <= 0 or qr_height <= 0:
+            raise ValueError("qr-only back-cover rectangle must be positive")
+        x1, y1, x2, y2 = writer._page_rect(
+            qr_x, qr_y, qr_width, qr_height,
+        )
+        sid = "st_back_cover"
+        spread_id = f"sp_{page_index}"
+        frame = (
+            f'  <Rectangle Self="rc_{sid}_qr" ContentType="GraphicType" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'StrokeColor="Swatch/None" StrokeWeight="0" '
+            'ItemTransform="1 0 0 1 0 0">\n'
+            + writer._path_geometry(x1, y1, x2, y2)
+            + f'    <Image Self="rc_{sid}_qr_img" '
+            f'ItemTransform="1 0 0 1 {x1:g} {y1:g}">\n'
+            f'      <Link Self="rc_{sid}_qr_lnk" '
+            f'LinkResourceURI="{escape(asset.resolve().as_uri(), _ATTR)}"/>\n'
+            '    </Image>\n'
+            '    <FrameFittingOption FittingOnEmptyFrame="Proportionally" '
+            'FittingAlignment="CenterAnchor" AutoFit="true"/>\n'
+            '  </Rectangle>\n'
+        )
+        xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+            f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+            'ShowMasterItems="true">\n'
+            f'  <Page Self="{spread_id}_pg" Name="{page_index + 1}" '
+            'AppliedMaster="n" OverrideList="" TabOrder="" '
+            'GridStartingPoint="TopOutside" '
+            f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
+            f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} '
+            f'{-writer.page_h / 2:g}"/>\n'
+            + frame
+            + '</Spread>\n'
+            '</idPkg:Spread>\n'
+        )
+        writer.spreads.append((spread_id, xml))
+        return True
     copy = copy or _BACK_COVER_COPY.get(region)
     if copy is None:
         return False

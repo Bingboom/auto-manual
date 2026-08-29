@@ -46,6 +46,12 @@ _VARIANTS_BY_LABEL = {
     "OBSERVACIONES": "note",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
+    "경고": "warning",
+    "위험": "danger",
+    "주의": "caution",
+    "참고": "note",
+    "중요": "note",
+    "팁": "tip",
 }
 
 

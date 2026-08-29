@@ -5,7 +5,57 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from .inline_text import fallback_font_for_character
 from .params import MIMETYPE
+
+
+def _paragraph_fonts(styles: ET.Element) -> dict[str, str]:
+    fonts: dict[str, str] = {}
+    for style in styles.iter("ParagraphStyle"):
+        properties = style.find("Properties")
+        applied = properties.find("AppliedFont") if properties is not None else None
+        if applied is not None and applied.text:
+            fonts[str(style.get("Self") or "")] = applied.text
+    return fonts
+
+
+def _fallback_run_issues(
+    part_name: str,
+    root: ET.Element,
+    paragraph_fonts: dict[str, str],
+) -> list[str]:
+    issues: list[str] = []
+
+    def walk(element: ET.Element, paragraph_font: str | None = None) -> None:
+        if element.tag == "ParagraphStyleRange":
+            paragraph_font = paragraph_fonts.get(
+                str(element.get("AppliedParagraphStyle") or ""),
+                paragraph_font,
+            )
+        applied_font = paragraph_font
+        if element.tag == "CharacterStyleRange":
+            properties = element.find("Properties")
+            explicit = (
+                properties.find("AppliedFont")
+                if properties is not None else None
+            )
+            if explicit is not None and explicit.text:
+                applied_font = explicit.text
+            for content in element.findall("Content"):
+                for character in content.text or "":
+                    required = fallback_font_for_character(character)
+                    if required is None or applied_font == required:
+                        continue
+                    issues.append(
+                        f"{part_name}: character U+{ord(character):04X} "
+                        f"requires {required} but uses "
+                        f"{applied_font or 'no declared font'}"
+                    )
+        for child in element:
+            walk(child, applied_font)
+
+    walk(root)
+    return issues
 
 
 def check_idml(path: Path) -> list[str]:
@@ -22,12 +72,21 @@ def check_idml(path: Path) -> list[str]:
             issues.append("mimetype entry is compressed (must be STORED)")
         if zf.read("mimetype").decode() != MIMETYPE:
             issues.append("mimetype content mismatch")
+        xml_roots: dict[str, ET.Element] = {}
         for name in names:
             if name.endswith(".xml"):
                 try:
-                    ET.fromstring(zf.read(name))
+                    xml_roots[name] = ET.fromstring(zf.read(name))
                 except ET.ParseError as exc:
                     issues.append(f"{name}: XML parse error: {exc}")
+        styles = xml_roots.get("Resources/Styles.xml")
+        if styles is not None:
+            paragraph_fonts = _paragraph_fonts(styles)
+            for name, root in xml_roots.items():
+                if name.startswith("Stories/"):
+                    issues.extend(_fallback_run_issues(
+                        name, root, paragraph_fonts,
+                    ))
         # designmap references must resolve
         dm = zf.read("designmap.xml").decode("utf-8")
         root = ET.fromstring(dm)

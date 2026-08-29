@@ -100,12 +100,29 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
     texts = []
     list_like = len(row) > 2
     for cell in row[1:]:
-        text = _clean_rst_text(cell).strip()
-        if text.startswith("- "):
-            list_like = True
-            text = text[2:].strip()
-        if text:
-            texts.append(text)
+        lines = [line.strip() for line in cell.splitlines() if line.strip()]
+        has_bullets = any(line.startswith("- ") for line in lines)
+        if not has_bullets:
+            text = _clean_rst_text(cell).strip()
+            if text:
+                texts.append(text)
+            continue
+        list_like = list_like or has_bullets
+        cell_texts: list[str] = []
+        for line in lines:
+            if line.startswith("- "):
+                text = _clean_rst_text(line[2:]).strip()
+                if text:
+                    cell_texts.append(text)
+            elif cell_texts and has_bullets:
+                continuation = _clean_rst_text(line).strip()
+                if continuation:
+                    cell_texts[-1] = f"{cell_texts[-1]} {continuation}"
+            else:
+                text = _clean_rst_text(line).strip()
+                if text:
+                    cell_texts.append(text)
+        texts.extend(cell_texts)
     if not texts:
         return None
     return idml_notice_payload_from_legacy(
@@ -256,6 +273,12 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                 if notice is not None:
                     result.blocks.append(("component", _json.dumps(notice, ensure_ascii=False)))
                 elif rows:
+                    first_cell = _clean_rst_text(rows[0][0]) if rows[0] else ""
+                    if notice_label_variant(first_cell) is not None:
+                        raise ValueError(
+                            "known notice label cannot fall back to a generic "
+                            f"table: {first_cell!r}"
+                        )
                     result.blocks.append(("table", _json.dumps(rows, ensure_ascii=False)))
                 else:
                     result.skipped_raw += 1

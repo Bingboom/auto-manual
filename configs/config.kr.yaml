@@ -26,6 +26,13 @@ paths:
   docs_dir: docs
   structured_data_dir: data/phase2
   layout_params_csv: data/layout_params.csv
+  # Shared KR family config: only the registered target below opts into its
+  # candidate physical assembly.  Other KR models retain their existing path.
+  idml_assembly_plans:
+    JE-3000C_KR: docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json
+  idml_layout_params_overlays_by_target:
+    JE-3000C_KR:
+      - data/layout_params.idml-je3000c-kr.csv
   page_registry_csv: data/phase2/page_registry.csv
   page_blocks_dir: data/phase2
   spec_master_csv: data/phase2/Spec_Master.csv

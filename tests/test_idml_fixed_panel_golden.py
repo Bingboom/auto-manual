@@ -11,9 +11,11 @@ from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page
+from tools.idml.components.inbox_panel import InboxPanel, InboxPanelData
 from tools.idml.components.storage_panel import StoragePanel
 from tools.idml.data_stories import add_spec_story
 from tools.idml.shared_page import add_fcc_inbox_overview_page
+from tools.idml.spec_tables import spec_table_row_heights
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -428,6 +430,7 @@ class FixedPanelGoldenTests(unittest.TestCase):
                         "st_spec" if language == "en"
                         else f"st_spec_{language}"
                     ]
+
                     background = re.search(
                         rf'<Rectangle Self="bg_group_st_anchor_spec_'
                         rf'{language}{section_index}".*?</Rectangle>',
@@ -453,6 +456,153 @@ class FixedPanelGoldenTests(unittest.TestCase):
                         rf'<Cell\b[^>]*Name="0:{last_row}"[^>]*'
                         r'FillColor="Color/HB Bg K05"',
                     )
+
+    def test_compact_spec_accepts_more_sections_than_legacy_defaults(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, language="ko")
+
+        sid = add_spec_story(
+            writer,
+            [
+                {"title": f"Section {index}", "rows": [("A", "B")]}
+                for index in range(1, 5)
+            ],
+            lang="ko",
+            title="사양",
+            layout_variant="compact",
+        )
+
+        self.assertEqual("st_spec_ko", sid)
+        stories = dict(writer.stories)
+        self.assertIn("st_anchor_spec_ko3", stories)
+
+    def test_compact_spec_row_heights_honor_language_tokens(self) -> None:
+        params = {
+            "idml_compact_spec_table_row_height": ("10.3", "pt"),
+            "idml_compact_spec_table_multiline_min_height": ("13", "pt"),
+            "lang_ko_idml_compact_spec_table_row_height": ("12.2", "pt"),
+            "lang_ko_idml_compact_spec_table_multiline_min_height": (
+                "24.4",
+                "pt",
+            ),
+        }
+
+        heights = spec_table_row_heights(
+            [("single", "value"), ("multi", "line one\nline two")],
+            params,
+            density="compact",
+            language="ko-KR",
+        )
+
+        self.assertEqual([12.2, 24.4], heights)
+
+    def test_compact_with_tip_keeps_tip_and_owns_internal_geometry(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params.update({
+            "lang_en_idml_inbox_compact_card_y": ("205.14", "pt"),
+            "lang_en_idml_inbox_compact_card_height": ("89.48", "pt"),
+            "lang_en_idml_inbox_compact_tip_y": ("300.09", "pt"),
+            "lang_en_idml_inbox_compact_tip_height": ("26", "pt"),
+            "lang_en_idml_inbox_compact_tip_label_width": ("40", "pt"),
+        })
+        writer = IdmlWriter(params, language="en")
+        data = InboxPanelData.from_blocks(
+            _inbox_blocks("en"),
+            sid="st_compact_with_tip",
+            language="en",
+            density="compact",
+            reference_profile={"layout_variant": "compact_with_tip"},
+        )
+
+        panel = InboxPanel(
+            writer,
+            sid="st_compact_with_tip",
+            data=data,
+            bundle_root=ROOT,
+            language="en",
+            density="compact",
+        ).render(x=29.5, y=27.7, width=311.9, available_height=164.0)
+
+        rects = dict(panel.contract.frame_rects)
+        self.assertEqual("compact_with_tip", panel.contract.profile)
+        self.assertAlmostEqual(58.84, rects["card_1_shell"][1], places=2)
+        self.assertAlmostEqual(89.48, rects["card_1_shell"][3], places=2)
+        self.assertAlmostEqual(153.79, rects["tip_shell"][1], places=2)
+        self.assertAlmostEqual(26.0, rects["tip_shell"][3], places=2)
+
+    def test_compact_korean_tip_typography_is_valid_across_fallback_runs(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        params.update({
+            "lang_ko_idml_inbox_compact_tip_y": ("300.09", "pt"),
+            "lang_ko_idml_inbox_compact_tip_height": ("26", "pt"),
+            "lang_ko_idml_inbox_compact_tip_label_width": ("40", "pt"),
+        })
+        writer = IdmlWriter(params, language="ko")
+        blocks = _inbox_blocks("en")
+        blocks[0] = ("h1", "구성품")
+        tip_payload = json.loads(blocks[-1][1])
+        tip_payload.update({
+            "label": "팁",
+            "texts": [
+                "차량용 충전 케이블은 포함되어 있지 않으며 당사 웹사이트에서 "
+                "별도로 구매할 수 있습니다."
+            ],
+        })
+        blocks[-1] = (
+            "component",
+            json.dumps(tip_payload, ensure_ascii=False),
+        )
+        data = InboxPanelData.from_blocks(
+            blocks,
+            sid="st_compact_ko_tip",
+            language="ko",
+            density="compact",
+            reference_profile={"layout_variant": "compact_with_tip"},
+        )
+
+        InboxPanel(
+            writer,
+            sid="st_compact_ko_tip",
+            data=data,
+            bundle_root=ROOT,
+            language="ko",
+            density="compact",
+        ).render(x=29.5, y=27.7, width=311.9, available_height=164.0)
+
+        story = dict(writer.stories)["st_compact_ko_tip_tip_body"]
+        root = ET.fromstring(story)
+        content_ranges = [
+            element
+            for element in root.iter("CharacterStyleRange")
+            if element.find("Content") is not None
+        ]
+        self.assertGreater(len(content_ranges), 1)
+        for element in content_ranges:
+            self.assertEqual("6.5", element.attrib.get("PointSize"))
+            self.assertEqual("7.83", element.attrib.get("Leading"))
+            self.assertEqual("106.9", element.attrib.get("HorizontalScale"))
+            self.assertEqual("0.9", element.attrib.get("BaselineShift"))
+        fallback_ranges = [
+            element
+            for element in content_ranges
+            if element.find("Properties/AppliedFont") is not None
+        ]
+        self.assertTrue(fallback_ranges)
+        label_story = dict(writer.stories)["st_compact_ko_tip_tip_label"]
+        label_root = ET.fromstring(label_story)
+        label_range = next(
+            element
+            for element in label_root.iter("CharacterStyleRange")
+            if element.findtext("Content") == "팁"
+        )
+        self.assertEqual(
+            "Noto Sans KR",
+            label_range.findtext("Properties/AppliedFont"),
+        )
+        self.assertTrue(all(
+            element.attrib.get("FontStyle") == "Regular"
+            for element in fallback_ranges
+        ))
 
 
 if __name__ == "__main__":

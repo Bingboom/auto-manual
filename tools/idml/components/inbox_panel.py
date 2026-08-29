@@ -24,7 +24,12 @@ from .fixed_panel_contract import (
     FrameRect,
     normalize_language,
 )
-from .fixed_panel_primitives import add_story, centered_psr, image_paragraph
+from .fixed_panel_primitives import (
+    add_story,
+    apply_character_attrs,
+    centered_psr,
+    image_paragraph,
+)
 from .notice import notice_box_layout, source_notice_label
 
 
@@ -60,7 +65,11 @@ class InboxPanelData:
             raise ValueError("inbox title is required from source RST")
         inbox_spec = component_spec(blocks, "inbox")
         tip_spec = component_spec(blocks, "notice")
-        require_tip = density == "standard"
+        profile = dict(reference_profile or {})
+        layout_variant = str(profile.get("layout_variant") or "").strip()
+        if layout_variant and layout_variant != "compact_with_tip":
+            raise ValueError(f"unsupported Inbox layout variant: {layout_variant}")
+        require_tip = density == "standard" or layout_variant == "compact_with_tip"
         if inbox_spec is not None and require_tip and tip_spec is None:
             raise ValueError("inbox tip is required from source RST")
         items: tuple[dict, ...] = ()
@@ -85,8 +94,8 @@ class InboxPanelData:
             title=title,
             has_inbox=inbox_spec is not None,
             items=items,
-            tip_spec=tip_spec if density == "standard" else None,
-            reference_profile=dict(reference_profile or {}),
+            tip_spec=tip_spec if require_tip else None,
+            reference_profile=profile,
         )
 
 
@@ -192,6 +201,10 @@ class InboxPanel:
         if self.overflow_profile:
             return "overflow_"
         return ""
+
+    @property
+    def layout_variant(self) -> str:
+        return str(self.data.reference_profile.get("layout_variant") or "").strip()
 
     def _metric(self, name: str, fallback: float) -> float:
         key = f"idml_inbox_{self.profile}{name}"
@@ -433,19 +446,21 @@ class InboxPanel:
         )
         baseline_title_y = self._baseline_title_y()
         tip_y = y + self._metric("tip_y", 458.0) - baseline_title_y
-        tip_rect = (x, tip_y, width, layout.panel_height)
+        tip_height = self._metric("tip_height", layout.panel_height)
+        tip_label_width = self._metric("tip_label_width", layout.plate_width)
+        tip_rect = (x, tip_y, width, tip_height)
         plate_rect = (
             x + layout.plate_left,
             tip_y + layout.plate_left,
-            layout.plate_width,
-            layout.panel_height - 2 * layout.plate_left,
+            tip_label_width,
+            tip_height - 2 * layout.plate_left,
         )
-        body_x = x + layout.plate_left + layout.plate_width + layout.body_inset
+        body_x = x + layout.plate_left + tip_label_width + layout.body_inset
         body_rect = (
             body_x,
             tip_y + layout.pad_tb,
             x + width - layout.right_inset - body_x,
-            layout.panel_height - 2 * layout.pad_tb,
+            tip_height - 2 * layout.pad_tb,
         )
         label_sid = f"{self.sid}_tip_label"
         body_sid = f"{self.sid}_tip_body"
@@ -455,18 +470,16 @@ class InboxPanel:
             leading=layout.label_leading,
             baseline_shift=layout.label_baseline_shift,
         )])
-        body_xml = self.writer._psr(
-            "HB Callout Body",
-            body,
-            terminal=True,
-        ).replace(
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        body_xml = apply_character_attrs(
+            self.writer._psr(
+                "HB Callout Body",
+                body,
+                terminal=True,
+            ),
             f'PointSize="{layout.body_size:g}" '
             f'Leading="{layout.body_leading:g}" FontStyle="Medium" '
             f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
             f'BaselineShift="{layout.body_baseline_shift:g}"',
-            1,
         )
         add_story(self.writer, body_sid, "Inbox tip body", [body_xml])
         frames = [
@@ -545,7 +558,7 @@ class InboxPanel:
             contract=InboxPanelContract(
                 density=self.density,
                 language=self.language,
-                profile=self.profile.rstrip("_"),
+                profile=self.layout_variant or self.profile.rstrip("_"),
                 frame_rects=(title_rect, *card_rects, *tip_rects),
             ),
         )

@@ -124,6 +124,43 @@ class PagePlanTests(unittest.TestCase):
         self.assertEqual("projection-only", restored.capability("word").value)
         self.assertEqual("not-applicable", restored.capability("web").value)
 
+    def test_composition_policy_unifies_preface_safety_maintenance_page(self) -> None:
+        plan = build_renderer_page_plan(
+            {
+                "physical_page_count": 1,
+                "pages": [
+                    {
+                        "source_ref": source_ref,
+                        "language": "ko",
+                        "page_role": page_role,
+                        "latex_start_page": 1,
+                        "planned_page_count": 1,
+                        "composition_id": "ko_preface_safety_maintenance",
+                        "composition_type": "preface_safety_maintenance",
+                    }
+                    for source_ref, page_role in (
+                        ("page/00_preface.rst", "preface"),
+                        ("page/safety_ko.rst", "safety"),
+                        (
+                            "page/01_user_maintenance_instructions.rst",
+                            "maintenance",
+                        ),
+                    )
+                ],
+            }
+        )
+
+        physical = plan.physical_page(1)
+        self.assertEqual(PageTemplateRole.STANDARD, physical.role)
+        self.assertEqual(FolioPolicy.SHOW, physical.folio_policy)
+        self.assertEqual(1, physical.folio_number)
+        self.assertTrue(
+            all(
+                source.role is PageTemplateRole.STANDARD
+                for source in plan.source_pages
+            )
+        )
+
     def test_four_renderer_adapters_project_semantics_not_geometry(self) -> None:
         front = self.plan.physical_page(1)
         preface = self.plan.physical_page(2)

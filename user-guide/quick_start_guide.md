@@ -654,12 +654,16 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    ```
 
 6. 只有以下条件全部满足才交付：58 页及 geometry 通过、overset / missing
-   fonts / bad links 全为 0、PDF/X-4 与 `Japan Color 2001 Coated` /
+   fonts / missing glyphs / bad links 全为 0、PDF/X-4 与 `Japan Color 2001 Coated` /
    `JC200103` 正确、52/52 source identity 匹配、所有实际使用资产获批且
    hash 正确、没有可见正文/封底整页 PDF shortcut、58 页逐页 RGB MAD
    `≤ 0.008` 且 changed-pixel ratio `≤ 0.040`，最终 parity JSON 的
    `accepted=true`。写完文档、生成 IDML 或肉眼看起来接近，都不等于已经
    验收通过。
+
+   `tools/indesign_finalize.py` 会在最终 PDF 上扫描可见 `U+FFFD` 与
+   `.notdef` 字形，因此正文和置入 PDF 中保留的文本都会进入机器闸门；已
+   转曲或纯位图素材仍必须依靠逐页视觉验收。
 
 ## 9. 一句话规则
 

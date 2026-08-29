@@ -67,26 +67,55 @@ def parse_list_table(body: list[str]) -> list[list[str]]:
                 for part in parts
                 if part.strip()
             ).strip()
+        if any(part.startswith("- ") for part in parts):
+            return "\n".join(part for part in parts if part).strip()
         return " ".join(part for part in parts if part).strip()
 
     rows: list[list[str]] = []
+    row: list[str] | None = None
     cell: list[str] | None = None
+    cell_marker_column: int | None = None
+
+    def flush_cell() -> None:
+        nonlocal cell
+        if row is not None and cell is not None:
+            row.append(join_cell(cell))
+        cell = None
+
     for raw in body:
         line = raw.strip()
         if not line or line.startswith(":"):
             continue
-        m = re.match(r"\*\s+-\s?(.*)", line)
-        if m:
-            rows.append([])
-            cell = [m.group(1).strip()]
-            rows[-1].append("")
-        elif line.startswith("- ") and rows:
-            if cell is not None:
-                rows[-1][-1] = join_cell(cell)
-            cell = [line[2:].strip()]
-            rows[-1].append("")
-        elif cell is not None:
+        row_match = re.match(
+            r"^(?P<prefix>[ \t]*\*[ \t]+)-(?:[ \t]?(?P<text>.*))?$",
+            raw,
+        )
+        if row_match:
+            flush_cell()
+            row = []
+            rows.append(row)
+            cell = [(row_match.group("text") or "").strip()]
+            cell_marker_column = len(row_match.group("prefix").expandtabs(8))
+            continue
+
+        cell_match = re.match(
+            r"^(?P<indent>[ \t]*)-(?:[ \t]?(?P<text>.*))?$",
+            raw,
+        )
+        if cell_match and row is not None and cell_marker_column is not None:
+            marker_column = len(cell_match.group("indent").expandtabs(8))
+            text = (cell_match.group("text") or "").strip()
+            if marker_column == cell_marker_column:
+                flush_cell()
+                cell = [text]
+            elif marker_column > cell_marker_column and cell is not None:
+                cell.append(f"- {text}".rstrip())
+            elif cell is not None:
+                cell.append(line)
+            continue
+
+        if cell is not None:
             cell.append(line)
-        if cell is not None and rows:
-            rows[-1][-1] = join_cell(cell)
+
+    flush_cell()
     return [r for r in rows if any(r)]

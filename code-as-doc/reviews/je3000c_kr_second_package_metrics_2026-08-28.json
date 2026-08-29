@@ -1,0 +1,191 @@
+{
+  "schema_version": "idml-second-package-metrics/v1",
+  "recorded_at": "2026-08-28",
+  "timezone": "America/Los_Angeles",
+  "target": {
+    "model": "JE-3000C",
+    "region": "KR",
+    "language": "ko",
+    "physical_pages": 18
+  },
+  "baseline": {
+    "branch": "feat/je3000c-kr-idml-data-assembly",
+    "head": "3cfa01d5f6d76db41359a6eb088a6f601c3a11c1",
+    "origin_main": "3cfa01d5f6d76db41359a6eb088a6f601c3a11c1",
+    "main_resolution": "GitHub API plus exact tar snapshot; local Git transport refresh unavailable",
+    "ahead": 0,
+    "behind": 0,
+    "baseline_probe_elapsed_seconds": 0.94,
+    "baseline_probe_result": "Review bundle not found"
+  },
+  "first_package_timeline": {
+    "clone_created_at": "2026-08-28T16:32:33-07:00",
+    "target_assembly_created_at": "2026-08-28T16:37:46-07:00",
+    "first_structural_idml_at": "2026-08-28T17:05:14-07:00",
+    "first_structural_idml": {
+      "matched_pages": 18,
+      "total_pages": 18,
+      "skipped_raw": 2,
+      "clone_to_output_seconds": 1961,
+      "target_data_to_output_seconds": 1648
+    },
+    "first_gate_clean_idml_at": "2026-08-28T17:08:40-07:00",
+    "first_gate_clean_idml": {
+      "matched_pages": 18,
+      "total_pages": 18,
+      "skipped_raw": 0,
+      "clone_to_output_seconds": 2167,
+      "target_data_to_output_seconds": 1854
+    },
+    "timing_kind": "wall_clock",
+    "active_effort_is_not_inferred": true
+  },
+  "steady_state_build": {
+    "command": "python3 build.py idml --config configs/config.kr.yaml --model JE-3000C --region KR --source review-asis --idml-mode both --no-clean",
+    "runs_elapsed_seconds": [1.90, 2.07, 1.73, 1.75, 1.74],
+    "median_elapsed_seconds": 1.75,
+    "mean_elapsed_seconds": 1.838,
+    "min_elapsed_seconds": 1.73,
+    "max_elapsed_seconds": 2.07,
+    "accepted_runs": 5,
+    "total_runs": 5,
+    "acceptance": {
+      "matched_pages": 18,
+      "total_pages": 18,
+      "manual_ir_pages": 18,
+      "manual_ir_blocks": 143,
+      "skipped_raw": 0,
+      "stories": 153,
+      "spreads": 18
+    }
+  },
+  "reuse": {
+    "composition_instances": {
+      "unit": "unique composition_id",
+      "total": 13,
+      "existing_main_type_instances": 10,
+      "new_generic_type_instances": 3,
+      "reuse_percent": 76.9,
+      "existing_main_types": [
+        "front_cover",
+        "lcd",
+        "operation",
+        "ups_charging",
+        "charging_methods",
+        "storage_troubleshooting",
+        "specifications",
+        "warranty",
+        "app",
+        "back_cover"
+      ],
+      "new_generic_types": [
+        "preface_safety_maintenance",
+        "symbols",
+        "inbox_overview"
+      ]
+    },
+    "semantic_component_instances": {
+      "total": 16,
+      "existing_main_contract_instances": 16,
+      "reuse_percent": 100.0,
+      "counts": {
+        "notice": 13,
+        "safetywarning": 1,
+        "inbox": 1,
+        "lcdmode": 1
+      }
+    },
+    "executed_idml_implementation_modules": {
+      "scope": "Executed Python modules under tools/idml and tools/component_specs, excluding __init__.py",
+      "trace_command": "python3 -m trace --count --file=/tmp/je3000c_export.trace tools/export_idml.py --model JE-3000C --region KR --lang ko --mode both --layout-params-csv data/layout_params.csv --layout-params-overlay data/layout_params.idml-je3000c-kr.csv --assembly-plan docs/renderers/contracts/target_assembly/je3000c_kr_v1_candidate.json",
+      "local_trace_sha256": "7fa3ba8713222da5f2b746092666c48595c93cd561ab37d226f7c4e5fa31a809",
+      "total": 117,
+      "reused_unchanged": 95,
+      "reused_unchanged_percent": 81.2,
+      "extended_existing": 20,
+      "new": 2,
+      "existing_main_provenance": 115,
+      "existing_main_provenance_percent": 98.3,
+      "classification_rule": "unchanged means git diff --quiet HEAD; extended_existing existed in HEAD but changed; new was absent from HEAD",
+      "extended_existing_modules": [
+        "tools/component_specs/callout.py",
+        "tools/idml/check.py",
+        "tools/idml/components/fixed_panel_primitives.py",
+        "tools/idml/components/inbox_panel.py",
+        "tools/idml/components/oppanel.py",
+        "tools/idml/components/warranty.py",
+        "tools/idml/composition_plan.py",
+        "tools/idml/data_stories.py",
+        "tools/idml/inline_text.py",
+        "tools/idml/oppanel.py",
+        "tools/idml/page_overview.py",
+        "tools/idml/page_placed.py",
+        "tools/idml/page_roles.py",
+        "tools/idml/primitives.py",
+        "tools/idml/prose_flow.py",
+        "tools/idml/shared_page.py",
+        "tools/idml/spec_tables.py",
+        "tools/idml/symbols_page.py",
+        "tools/idml/target_assembly_plan.py",
+        "tools/idml/target_assembly_render.py"
+      ],
+      "new_modules": [
+        "tools/idml/asset_geometry.py",
+        "tools/idml/page_overview_assets.py"
+      ]
+    }
+  },
+  "native_finalization": {
+    "current_source_successful_pdf_x4_finalization": false,
+    "missing_glyph_gate": {
+      "method": "PyMuPDF page.get_texttrace",
+      "replacement_character": "U+FFFD",
+      "notdef_glyph_id": 0,
+      "fail_closed": true,
+      "covers_native_and_placed_pdf_text": true,
+      "native_v7_negative_control_findings": 9
+    },
+    "cold_preflight_report_seconds_observed": [34, 32, 32],
+    "warm_preflight_report_seconds_observed": [5, 5, 6],
+    "observed_reports_success": false,
+    "blocking_stage": "export_pdf",
+    "blocking_error": "PDF/X-4 missing-glyph warning was treated as user cancellation by the automated finalizer",
+    "native_v7_is_older_than_current_idml": true,
+    "operator_screenshot_document": "docs/_build/JE-3000C/KR/ko/idml/native-v7/manual_je3000c_kr_ko.indd",
+    "current_v11_export_pending": true,
+    "local_font_state": {
+      "noto_sans_kr_installed_in_indesign": false,
+      "arial_unicode_ms_installed_in_indesign": true
+    }
+  },
+  "delivery": {
+    "idml_file": "JE-3000C_KR_second-package_v11.idml",
+    "idml_sha256": "4c4fc8d740c95de72d0e42a7abe9bbd4a90b398aa644e800f96987a9f3a7d53f",
+    "handoff_zip_file": "JE-3000C_KR_second-package_v11_handoff.zip",
+    "handoff_zip_sha256": "0c71569f74e0d92508a82933a300296513fb97b0d6481862e5f123387a49f68d",
+    "zip_entries": 118,
+    "idml_files": 2,
+    "links_entries": 103,
+    "link_uris": 109,
+    "unique_link_uris": 103,
+    "nonportable_link_uris": 0,
+    "unresolved_link_uris": 0,
+    "reference_pdf_included": true,
+    "fonts_included": false,
+    "korean_font_declared": "Noto Sans KR",
+    "cover_asset_sha256": "b57c774b7a08c0e63eb45f3bc24e16e6d12bfc8b2fe3fad8fff02d8841670ae7",
+    "cover_tounicode_replacement_character_in_extracted_text": false,
+    "cover_300dpi_pixel_difference_bbox": null
+  },
+  "validation": {
+    "full_unittest": "pass",
+    "ruff": "pass",
+    "maintainability_guardrails": "pass",
+    "doc_link_integrity": "pass",
+    "latest_main_build_structural_check": "pass",
+    "generic_us_build_check": {
+      "status": "blocked",
+      "reason": "isolated worktree is missing data/phase2/Spec_Master.csv"
+    }
+  }
+}

@@ -82,7 +82,8 @@ def _is_hangul_character(character: str) -> bool:
     )
 
 
-def _fallback_font(character: str) -> str | None:
+def fallback_font_for_character(character: str) -> str | None:
+    """Return the governed IDML font required for one source character."""
     symbol_font = SYMBOL_FONT_FALLBACKS.get(character)
     if symbol_font is not None:
         return symbol_font
@@ -93,13 +94,18 @@ def _fallback_font(character: str) -> str | None:
     return None
 
 
+def _fallback_font(character: str) -> str | None:
+    """Backward-compatible private entrypoint retained by latest-main tests."""
+    return fallback_font_for_character(character)
+
+
 def _font_runs(segment: str) -> list[tuple[str, str | None]]:
     """Split a text segment by the explicit fallback font it needs."""
     runs: list[tuple[str, str | None]] = []
     buffer: list[str] = []
-    current_font = _fallback_font(segment[0]) if segment else None
+    current_font = fallback_font_for_character(segment[0]) if segment else None
     for character in segment:
-        font = _fallback_font(character)
+        font = fallback_font_for_character(character)
         if font != current_font:
             runs.append(("".join(buffer), current_font))
             buffer = []

@@ -166,6 +166,30 @@ class ExportIdmlTests(unittest.TestCase):
         out = self._write_package()
         self.assertEqual(check_idml(out), [])
 
+    def test_structural_check_rejects_unrouted_cjk_glyph(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        story = writer._add_story_parts(
+            "st_bad_cjk",
+            "Bad CJK",
+            [
+                '  <ParagraphStyleRange '
+                'AppliedParagraphStyle="ParagraphStyle/HB Callout Label">\n'
+                '    <CharacterStyleRange '
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+                '<Content>팁</Content></CharacterStyleRange>\n'
+                '  </ParagraphStyleRange>\n'
+            ],
+        )
+        writer.add_spread_chain(story, 1, 0)
+        out = Path(tempfile.mkdtemp()) / "bad-cjk.idml"
+        writer.write(out)
+
+        issues = check_idml(out)
+
+        self.assertEqual(1, len(issues))
+        self.assertTrue(all("requires Noto Sans KR" in issue for issue in issues))
+
     def test_mimetype_is_first_and_stored(self) -> None:
         out = self._write_package()
         with zipfile.ZipFile(out) as zf:
@@ -812,6 +836,24 @@ class ExportIdmlTests(unittest.TestCase):
             self.assertAlmostEqual(fh / fw, ih / iw, places=2)
         except ImportError:
             self.assertAlmostEqual(fh / fw, 0.62, places=2)
+
+    def test_art_frames_honor_pdf_page_aspect_ratio(self) -> None:
+        try:
+            import fitz
+        except ImportError:
+            self.skipTest("PyMuPDF is unavailable")
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        with tempfile.TemporaryDirectory() as tmp:
+            asset = Path(tmp) / "wide-art.pdf"
+            document = fitz.open()
+            document.new_page(width=300, height=90)
+            document.save(asset)
+            document.close()
+
+            frame_width, frame_height = writer._art_frame_size(asset)
+
+        self.assertAlmostEqual(frame_height / frame_width, 0.3, places=3)
 
     def test_components_render_as_tables(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -2518,6 +2560,16 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(res.blocks[2], ("layout", "twocol_end"))
         self.assertEqual(json.loads(res.blocks[1][1])["kind"], "warninglead")
 
+    def test_safety_single_column_latex_wrappers_are_lossless_noops(self) -> None:
+        from tools.idml_rst_extract import ExtractResult, _extract_raw_latex
+
+        res = ExtractResult()
+        _extract_raw_latex(r"\begin{safetysinglecol}", res)
+        _extract_raw_latex(r"\end{safetysinglecol}", res)
+
+        self.assertEqual([], res.blocks)
+        self.assertEqual(0, res.skipped_raw)
+
     def test_safety_lead_and_nested_lists_keep_their_source_semantics(self) -> None:
         from tools.idml_rst_extract import _parse_text
 
@@ -3004,6 +3056,34 @@ class ExportIdmlTests(unittest.TestCase):
             english,
         )
         self.assertEqual(2, french.count('BaselineShift="2.25"'))
+
+    def test_korean_signal_badge_uses_korean_text_face(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params, language="ko")
+
+        korean = writer._symbol_signal_bar(
+            "sig_ko", "주의", ROOT, "ko", signal_key="caution",
+        )
+        root = ET.fromstring(korean)
+        label_ranges = [
+            element
+            for element in root.iter("CharacterStyleRange")
+            if element.findtext("Content")
+        ]
+
+        self.assertEqual(" 주의", "".join(
+            element.findtext("Content") or "" for element in label_ranges
+        ))
+        cjk_ranges = [
+            element
+            for element in label_ranges
+            if any(ord(character) >= 0x1100 for character in element.findtext("Content"))
+        ]
+        self.assertTrue(cjk_ranges)
+        self.assertTrue(all(
+            element.findtext("Properties/AppliedFont") == "Noto Sans KR"
+            for element in cjk_ranges
+        ))
 
     def test_safety_symbols_composition_constants_are_layout_tokens(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -3834,6 +3914,12 @@ class ExportIdmlTests(unittest.TestCase):
             ("CONSEJOS", "tip"),
             ("ATTENTION", "caution"),
             ("PRECAUCIÓN", "caution"),
+            ("경고", "warning"),
+            ("위험", "danger"),
+            ("주의", "caution"),
+            ("참고", "note"),
+            ("중요", "note"),
+            ("팁", "tip"),
         ]
         for label, variant in cases:
             with self.subTest(label=label):
@@ -3859,6 +3945,18 @@ class ExportIdmlTests(unittest.TestCase):
                     data["texts"],
                     ["First localized item.", "Second localized item."],
                 )
+
+    def test_known_notice_label_cannot_fall_back_to_generic_table(self) -> None:
+        from tools.idml_rst_extract import _parse_text
+
+        text = """
+.. list-table::
+   :header-rows: 0
+
+   * - **주의**
+"""
+        with self.assertRaisesRegex(ValueError, "known notice label"):
+            _parse_text(text, {"latex"})
 
     def test_inline_strong_markup_becomes_bold_runs(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

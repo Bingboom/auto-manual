@@ -1,9 +1,10 @@
 """Small XML helpers shared by the fixed FCC/Inbox panel family."""
 from __future__ import annotations
 
+import re
 from pathlib import Path
-from xml.sax.saxutils import escape
 
+from ..inline_text import character_ranges
 from ..style_names import paragraph_style_ref
 
 
@@ -42,16 +43,67 @@ def centered_psr(
     character_attrs: str = "",
 ) -> str:
     style_ref = paragraph_style_ref(style)
-    attrs = f" {character_attrs}" if character_attrs else ""
-    return (
+    content = "".join(
+        character_ranges(
+            text,
+            # Preserve the caller's exact FontStyle/attribute order for
+            # ordinary text.  Governed fallback runs already declare their
+            # own Regular face and ``apply_character_attrs`` will not
+            # overwrite it with a primary-font style.
+            bold=False,
+            superscript_markers=False,
+            replacements={},
+        )
+    )
+    xml = (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}" '
         'Justification="CenterAlign">\n'
-        '    <CharacterStyleRange '
-        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-        f'{attrs}>'
-        f'<Content>{escape(text)}</Content></CharacterStyleRange>\n'
+        f'    {content}\n'
         '  </ParagraphStyleRange>\n'
     )
+    return apply_character_attrs(xml, character_attrs)
 
 
-__all__ = ["add_story", "centered_psr", "image_paragraph"]
+_ATTRIBUTE_NAME = re.compile(r"([A-Za-z_:][A-Za-z0-9_.:-]*)\s*=")
+_CHARACTER_RANGE_OPEN = re.compile(r"<CharacterStyleRange\b([^>]*)>")
+
+
+def apply_character_attrs(paragraph_xml: str, character_attrs: str) -> str:
+    """Add character attributes to every range without duplicating overrides.
+
+    ``writer._psr`` splits CJK and governed-symbol fallback runs so each can
+    carry its own font/style attributes.  Fixed-panel typography still needs
+    to apply to every one of those ranges, but it must preserve an explicit
+    fallback ``FontStyle=Regular`` (and bold/inline-role overrides) instead of
+    serializing the same XML attribute twice.
+    """
+    additions = [
+        match.group(0).strip()
+        for match in re.finditer(
+            r"[A-Za-z_:][A-Za-z0-9_.:-]*\s*=\s*\"[^\"]*\"",
+            character_attrs,
+        )
+    ]
+    if not additions:
+        return paragraph_xml
+
+    def merge(match: re.Match[str]) -> str:
+        existing = match.group(1)
+        existing_names = set(_ATTRIBUTE_NAME.findall(existing))
+        missing = [
+            attribute
+            for attribute in additions
+            if _ATTRIBUTE_NAME.match(attribute).group(1) not in existing_names
+        ]
+        suffix = (" " + " ".join(missing)) if missing else ""
+        return f"<CharacterStyleRange{existing}{suffix}>"
+
+    return _CHARACTER_RANGE_OPEN.sub(merge, paragraph_xml)
+
+
+__all__ = [
+    "add_story",
+    "apply_character_attrs",
+    "centered_psr",
+    "image_paragraph",
+]

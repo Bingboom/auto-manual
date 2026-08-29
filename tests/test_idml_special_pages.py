@@ -137,6 +137,46 @@ class IdmlSpecialPageTests(unittest.TestCase):
         self.assertIn("rc_st_back_cover_qr", spread)
         self.assertIn(qr.resolve().as_uri(), spread)
 
+    def test_qr_only_back_cover_places_only_target_rect(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs = root / "docs"
+            qr = docs / "renderers" / "latex" / "assets" / "kr-qr.pdf"
+            qr.parent.mkdir(parents=True)
+            qr.write_bytes(b"KR QR")
+            profile = {
+                "variant": "qr_only",
+                "qr_asset": "docs/renderers/latex/assets/kr-qr.pdf",
+                "qr_rect": [303.99, 457.81, 33.91, 34.02],
+            }
+
+            added = page_placed.add_back_cover_page(
+                self.writer,
+                "KR",
+                17,
+                {
+                    "company": "JACKERY",
+                    "address": "대한민국 전용",
+                    "phone": "QR 코드를 참조하십시오",
+                },
+                profile=profile,
+                docs_dir=docs,
+            )
+
+        self.assertTrue(added)
+        self.assertEqual([], self.writer.stories)
+        spread = self.writer.spreads[-1][1]
+        self.assertIn('Self="rc_st_back_cover_qr"', spread)
+        self.assertIn(qr.resolve().as_uri(), spread)
+        self.assertNotIn("phone_ring", spread)
+        self.assertNotIn("mail_box", spread)
+        self.assertNotIn("web_ring", spread)
+        x1, y1, x2, y2 = self.writer._page_rect(
+            303.99, 457.81, 33.91, 34.02,
+        )
+        self.assertIn(f'Anchor="{x1:g} {y1:g}"', spread)
+        self.assertIn(f'Anchor="{x2:g} {y2:g}"', spread)
+
     def test_toc_uses_source_titles_ranges_and_folios(self) -> None:
         self.writer.spreads = [(f"sp_{i}", f'<Spread Self="sp_{i}"/>') for i in range(4)]
         source = {

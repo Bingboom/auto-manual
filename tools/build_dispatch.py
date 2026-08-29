@@ -275,6 +275,8 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     assembly_plan = resolve_idml_assembly_plan(
         context.config_path,
         repo_root=repo_root,
+        model=getattr(args, "model", None),
+        region=getattr(args, "region", None),
     )
     layout_params_csv = resolve_layout_params_csv(
         context.config_path,
@@ -283,6 +285,8 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     layout_param_overlays = resolve_idml_layout_param_overlays(
         context.config_path,
         repo_root=repo_root,
+        model=getattr(args, "model", None),
+        region=getattr(args, "region", None),
     )
     approved_target = _target_has_approved_reference_plan(
         args,
