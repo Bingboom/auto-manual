@@ -109,7 +109,14 @@ def _special_operation_panel(
         return None
     stem = _image_stem(ref)
 
-    if stem in _ENERGY_SAVING_ART or "energy_saving" in operation_copy:
+    # The copy-key clauses admit targets whose art uses non-governed stems
+    # (the KR line). A governed stem must never enter the OTHER panel's
+    # fuzzy branch: with both semantics registered (the US template order),
+    # the LED image would fail the energy shape check and return None,
+    # demoting the approved led_light component to a raw image.
+    if stem in _ENERGY_SAVING_ART or (
+        "energy_saving" in operation_copy and stem not in _LED_LIGHT_ART
+    ):
         # h2, intro, then one combined or two separate guidance paragraphs,
         # followed by image + action. Spanish review copy combines its
         # disable/low-power guidance in one paragraph while EN/FR keep two.
@@ -158,7 +165,9 @@ def _special_operation_panel(
             ),
         ), 2
 
-    if stem in _LED_LIGHT_ART or "led_light" in operation_copy:
+    if stem in _LED_LIGHT_ART or (
+        "led_light" in operation_copy and stem not in _ENERGY_SAVING_ART
+    ):
         # h2, lead, image, exactly three newline-separated instructions.
         if (
             len(out) < 2
