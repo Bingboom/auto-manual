@@ -1033,6 +1033,18 @@ language-neutral (the LCD-hero precedent).
   - JP is blocked separately and for a different reason:
     `page-0002-01_meaning_of_symbols: skipped_raw=1`.
 
+- [ ] **JE-3000C KR 的 13 幅插图没有可复现的提取路径**（2026-08-29 登记）。这
+  条产线的 15 个二进制里，只有 `overview/je3000c_kr/right_art` 有配方
+  (`data/asset_recipes/manual_je3000c_eu_uk_overview.json`)；其余 13 幅（operation
+  ×5、charging ×3、network_pairing_panel、app ×2、overview_front、封面整页）既无
+  `data/asset_recipes` 条目也无 `data/asset_sources.csv` 源行，PR #964 的提交说明
+  也没有记录来源。资产登记行锁住了**已提交的字节**（哈希）与可建状态，但没人能
+  从母版重新裁切这批图。收敛路径：操作者提供 KR 母版 → 登记
+  `data/asset_sources.csv` 源行 → 按 `asset-textless-extraction` skill 为 12 幅
+  矢量图写一份 `data/asset_recipes/manual_je3000c_kr_*.json`。同时这 14 行对飞书
+  `04_资产定义` 镜像而言是 unmanaged（与 `page/jbp2000b_us/cover` 同状态，sync 不
+  删除、原样放行），应在下一轮资产入库时补登。
+
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 
 Milestone status: `pending`
