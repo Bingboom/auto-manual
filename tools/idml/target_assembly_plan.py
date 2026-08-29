@@ -36,6 +36,22 @@ OPERATION_LAYOUT_VARIANTS = frozenset({"guidance_stack"})
 INBOX_LAYOUT_VARIANTS = frozenset({"compact_with_tip"})
 
 
+# Every key a plan page may carry. Anything else fails validation: a
+# declared rule the normalizer would silently drop is a contract that lies
+# about the rendered output (how the dead flow_prefix field slipped through).
+_PAGE_KEYS = frozenset({
+    "source_ref",
+    "language",
+    "page_role",
+    "start_page",
+    "composition_id",
+    "composition_type",
+    "page_count",
+    "flow_split",
+    "composition_data",
+})
+
+
 class TargetAssemblyPlanError(ValueError):
     """A configured candidate target assembly is invalid for the current IR."""
 
@@ -166,12 +182,11 @@ def _validate_asset_overrides(
     refs = assets.get("image_refs") if isinstance(assets, dict) else None
     if (
         not isinstance(assets, dict)
-        or not set(assets) <= {"image_refs", "image_roles"}
-        or "image_refs" not in assets
+        or set(assets) != {"image_refs"}
     ):
         return [
-            f"{source_ref}.composition_data.assets must contain image_refs "
-            "and supports optional image_roles"
+            f"{source_ref}.composition_data.assets must contain exactly "
+            "image_refs"
         ]
     if not isinstance(refs, list):
         return [f"{source_ref}.composition_data.assets.image_refs must be a list"]
@@ -200,24 +215,6 @@ def _validate_asset_overrides(
                 "bundle-relative"
             )
 
-    image_roles = assets.get("image_roles")
-    if image_roles is not None:
-        allowed_roles = {
-            "charging_diagram",
-            "compact_diagram",
-            "full_measure",
-            "reference_measure",
-            "wide_diagram",
-        }
-        if (
-            not isinstance(image_roles, list)
-            or len(image_roles) != image_count
-            or any(role not in allowed_roles for role in image_roles)
-        ):
-            issues.append(
-                f"{source_ref}.composition_data.assets.image_roles must contain "
-                f"exactly {image_count} registered semantic roles"
-            )
     return issues
 
 
@@ -533,7 +530,6 @@ def _validate_composition_data(
             required = {
                 "instance_id",
                 "control_image",
-                "control_layout_variant",
                 "labels_by_role",
             }
             if (
@@ -558,14 +554,6 @@ def _validate_composition_data(
                         f"{source_ref}.composition_data.app.{field} must be a "
                         "non-empty bundle-relative string"
                     )
-            if app.get("control_layout_variant") not in {
-                "embedded_leaders",
-                "reference_extensions",
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.app.control_layout_variant "
-                    "is invalid"
-                )
             labels = app.get("labels_by_role")
             required_roles = {"main_power", "dc_usb", "ac"}
             if (
@@ -1033,6 +1021,12 @@ def normalize_target_assembly_plan(
         source_ref = raw.get("source_ref")
         if source_ref != source_page.source_ref:
             issues.append(f"pages[{index}].source_ref is out of order")
+        unknown_keys = set(raw) - _PAGE_KEYS
+        if unknown_keys:
+            issues.append(
+                f"{source_page.source_ref}: unknown page keys "
+                f"{sorted(unknown_keys)}"
+            )
         if raw.get("language") != source_page.language:
             issues.append(f"{source_page.source_ref}: language does not match")
         role = classify_page_role(Path(source_page.source_ref))

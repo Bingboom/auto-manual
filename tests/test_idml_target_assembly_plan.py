@@ -8,6 +8,7 @@ from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
+    _PAGE_KEYS,
     _validate_composition_data,
     normalize_target_assembly_plan,
 )
@@ -325,6 +326,64 @@ class TargetAssemblyPlanTests(unittest.TestCase):
                 _manual_ir(payload),
                 source_path=PLAN_PATH,
             )
+
+    def test_pages_fail_closed_on_unknown_keys(self) -> None:
+        """A declared rule the normalizer drops is a contract that lies.
+
+        flow_prefix shipped exactly this way: declared in the KR plan,
+        silently dropped by the fixed normalization key list, never executed.
+        Unknown page keys must fail validation instead.
+        """
+        payload = _payload()
+        payload["pages"][0]["flow_prefix"] = {
+            "until_kind": "image",
+            "occurrence": 1,
+            "head_composition_id": "anything",
+        }
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            r"unknown page keys \['flow_prefix'\]",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_assets_reject_the_removed_image_roles_field(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["source_ref"] == "page/charging_en.rst"
+        )
+        page["composition_data"]["assets"] = {
+            "image_refs": [],
+            "image_roles": ["full_measure"],
+        }
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "assets must contain exactly image_refs",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_committed_plans_carry_no_dead_vocabulary(self) -> None:
+        """Every committed candidate stays inside the executable vocabulary."""
+        plans_dir = PLAN_PATH.parent
+        dead_fields = {"flow_prefix", "image_roles", "control_layout_variant"}
+        for plan_path in sorted(plans_dir.glob("*.json")):
+            payload = json.loads(plan_path.read_text(encoding="utf-8"))
+            for page in payload.get("pages", []):
+                with self.subTest(plan=plan_path.name, page=page.get("source_ref")):
+                    self.assertLessEqual(set(page), _PAGE_KEYS)
+                    text = json.dumps(page, ensure_ascii=False)
+                    for field in dead_fields:
+                        self.assertNotIn(f'"{field}"', text)
 
     def test_charging_composition_rejects_unregistered_image_role(self) -> None:
         payload = _payload()
