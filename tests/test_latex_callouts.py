@@ -93,26 +93,53 @@ class LatexCalloutTests(unittest.TestCase):
             with self.subTest(label=label):
                 self.assertEqual(expected, variant_for_label(label))
 
-    def test_an_unrecognised_label_leaves_the_table_unconverted(self) -> None:
-        """Pin the degradation itself, so the cost of a missing label is visible.
+    def test_every_registered_language_signal_word_resolves(self) -> None:
+        """The reverse index closes what the en/fr/es-only map used to drop.
 
-        HINWEIS is the control because the label map covers only en / fr / es.
-        Every German, Italian, pt-BR and Ukrainian callout label degrades this
-        way today — silently, in both renderers. Keep this test pointed at a
-        label the map genuinely lacks: if someone closes the de gap, the
-        assertion below fails and they pick the next still-missing language
-        rather than deleting the coverage.
+        These are the exact labels the corpus survey measured losing their box
+        in every renderer except Word — 78 of 156 authored callouts, with
+        de/ko/uk/zh at 100% loss. The data plane (Localized_Copy +
+        symbols_blocks through tools.signal_words, fixture fallback in CI)
+        supplies them; the zh 提示 collision (note vs tips both print it)
+        resolves to note, matching the Word pipeline's setdefault behaviour.
         """
         from tools.component_specs.callout import variant_for_label
 
-        self.assertIsNone(variant_for_label("HINWEIS"))
+        for label, expected in (
+            ("VORSICHT", "caution"), ("HINWEIS", "note"),     # de
+            ("주의", "caution"), ("참고", "note"),              # ko
+            ("경고", "warning"), ("위험", "danger"),            # ko
+            ("УВАГА", "caution"), ("ПРИМІТКА", "note"),        # uk
+            ("注意", "caution"), ("提示", "note"),              # zh (collision -> note)
+            ("备注", "note"), ("说明", "note"),                 # zh synonyms (static)
+            ("警告", "warning"), ("ご注意", "caution"),          # ja / zh
+            ("備考", "note"),                                   # ja
+            ("ATTENZIONE", "caution"), ("AVVERTENZA", "warning"),  # it
+            ("CUIDADO", "caution"), ("AVISO", "warning"),      # pt-BR
+            ("GEFAHR", "danger"), ("PERICOLO", "danger"),      # de / it
+        ):
+            with self.subTest(label=label):
+                self.assertEqual(expected, variant_for_label(label))
+
+    def test_an_unrecognised_label_leaves_the_table_unconverted(self) -> None:
+        """Pin the degradation itself, so the cost of a missing label is visible.
+
+        Every registered language now resolves through the data index, so the
+        control must be a label no language registers. The MECHANISM this pins
+        is unchanged: an unknown label means replace_notice_tables declines,
+        LaTeX emits \\sphinxstylestrong{LABEL}, Word emits loose paragraphs,
+        and nothing appears in any log.
+        """
+        from tools.component_specs.callout import variant_for_label
+
+        self.assertIsNone(variant_for_label("NOT A SIGNAL WORD"))
 
         source = (
             ".. list-table::\n"
             "   :header-rows: 0\n"
             "   :widths: 12 88\n"
             "\n"
-            "   * - **HINWEIS**\n"
+            "   * - **NOT A SIGNAL WORD**\n"
             "     - Something worth boxing.\n"
         )
         doctree = self._transform(source)

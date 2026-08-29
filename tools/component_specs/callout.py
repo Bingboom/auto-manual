@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from functools import lru_cache
 import re
 from typing import Any, Mapping, Sequence
 
@@ -44,6 +45,15 @@ _VARIANTS_BY_LABEL = {
     "OBSERVACIÓN": "note",
     "OBSERVACION": "note",
     "OBSERVACIONES": "note",
+    # Recognition-only synonyms the data plane does not carry: the zh corpus
+    # authors 备注/说明 beside the registered 提示/注意, templates carry the
+    # traditional-script 備註, and uk uses the plural ПОРАДИ of the registered
+    # ПОРАДА. Everything else non-en/fr/es resolves through the data index.
+    "备注": "note",
+    "說明": "note",
+    "说明": "note",
+    "備註": "note",
+    "ПОРАДИ": "tip",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
 }
@@ -53,8 +63,60 @@ def display_label(value: str) -> str:
     return re.sub(r"[\s:：-]+$", "", str(value).strip()).strip()
 
 
+@lru_cache(maxsize=1)
+def _data_variant_index() -> dict[str, str]:
+    """label → variant, derived from the ten-language signal-word data plane.
+
+    ``Localized_Copy.csv`` / ``symbols_blocks.csv`` (read through
+    ``tools.signal_words``, with the committed fixture as fallback when the
+    live mirror is absent) already carry every language's printed signal
+    words. This reverse index is what lets LaTeX and IDML recognise them the
+    way Word always has — before it, a de/ko/uk/zh callout silently lost its
+    box in both print renderers while Word boxed it.
+
+    Where the same label maps to two signal keys (zh 提示 is both note's label
+    and tips' label), the first key in sorted order wins — note over tips —
+    matching the Word pipeline's long-standing ``setdefault`` behaviour.
+    Cached for the build's lifetime; a long-lived process does not observe
+    mirror edits.
+    """
+
+    from tools.signal_words import signal_label_entries
+
+    index: dict[str, str] = {}
+    for entry in signal_label_entries():
+        variant = _VARIANT_ALIASES.get(entry.key, entry.key)
+        if variant not in CALLOUT_VARIANTS:
+            continue
+        index.setdefault(display_label(entry.label).upper(), variant)
+    return index
+
+
+def known_signal_word_labels() -> frozenset[str]:
+    """Every label ``variant_for_label`` recognises, static and data-derived.
+
+    The audit tooling consumes this so its vocabulary can never disagree with
+    what the renderers actually recognise.
+    """
+
+    return frozenset(_VARIANTS_BY_LABEL) | frozenset(_data_variant_index())
+
+
 def variant_for_label(label: str) -> str | None:
-    return _VARIANTS_BY_LABEL.get(display_label(label).upper())
+    """Resolve a printed signal word to its callout variant, any language.
+
+    The static map keeps recognition-only synonyms the data plane does not
+    hold (plural forms, accent-stripped near-misses — ``aliases_*`` columns
+    exist in the source table but are not read by ``signal_words``); the data
+    index supplies every registered language's printed labels. Static entries
+    win, so the historical en/fr/es behaviour is unchanged by construction.
+    """
+
+    key = display_label(label).upper()
+    static = _VARIANTS_BY_LABEL.get(key)
+    if static is not None:
+        return static
+    return _data_variant_index().get(key)
 
 
 def _normalized_variant(label: str, variant: str | None, *, legacy: bool) -> str:
