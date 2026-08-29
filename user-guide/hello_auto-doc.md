@@ -154,9 +154,15 @@ The safety-tail panels use the approved dark triangle, and the symbol-grid
 icon size and columns come from shared layout tokens, so English, French, and
 Spanish follow the same component definition.
 The symbol-page copy and TOC language headers come from the shared language
-registry's IDML language packs. Reference-bound spacing overrides are limited
-to the registry's `governed_languages()` set, so adding translation metadata
-does not silently apply an unapproved physical layout.
+registry's IDML language packs. Reference-bound spacing override rows are read
+for the registry's `layout_override_languages()` set — the governed languages
+plus lines in active layout tuning, currently adding Korean — while
+`governed_languages()` (English, French, Spanish) still gates
+approved-reference flow behavior such as fixed heights and reference offsets.
+A tuning language's override rows take effect as they land, but its flow
+behavior stays measured/fallback until its reference layout is approved, so
+adding translation metadata still does not silently apply an unapproved
+physical layout.
 The LaTeX safety dispatcher uses the registered warning label for every
 language passed to `HBApplyLang`, including the long-tail languages, instead of
 silently retaining `WARNING`.

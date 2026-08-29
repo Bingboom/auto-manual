@@ -815,10 +815,17 @@ adding page-level geometry or finalizer behavior.
 
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
-not tables maintained by the individual IDML modules. Reference-bound spacing
-and placement overrides use the same registry's `governed_languages()` helper;
-adding a language pack alone does not claim that language has an approved
-physical layout.
+not tables maintained by the individual IDML modules. For reference-bound
+spacing and placement overrides the registry separates three sets:
+`governed_languages()` gates approved-reference flow behavior (fixed approved
+heights, reference offsets, planned composition — en/fr/es);
+`layout_override_languages()` is the set whose `lang_<code>_` override rows the
+shared token cascade reads (the governed languages plus lines in active layout
+tuning, currently adding ko), with tuning languages keeping measured/fallback
+flow behavior until their reference layout is approved; and each component's
+`contract_languages` declares which override rows are contract-required under
+approved-reference builds. Adding a language pack alone does not claim that
+language has an approved physical layout.
 The fixed-layout LaTeX `HBApplyLang` dispatcher also covers the warning label
 for every registered language; its label values are parity-checked against the
 registry's symbol language pack.
