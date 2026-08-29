@@ -1,6 +1,9 @@
+import tempfile
 import unittest
+from pathlib import Path
 
 from tools.lang_asset_sweep import (
+    collect_terminology_violations,
     JUNK_VALUE,
     lang_column_groups,
     minor_only,
@@ -74,6 +77,64 @@ class EvidenceAndSuggestionTests(unittest.TestCase):
             "b": [("Terms", "r2", "EN", "b")],
         }
         self.assertEqual(suggest(tie, {"a": (0, []), "b": (0, [])}), "")
+
+
+class TerminologyCrossCheckTests(unittest.TestCase):
+    _RULES = (
+        "rule_id,lang,deprecated_regex,preferred,allow_regex,note\n"
+        "KO-POWER-BTN,ko,메인 전원 버튼,POWER 버튼,,main power button\n"
+        "KO-GRID,ko,그리드 전력,전력망 전원,상용 전원\\(그리드 전력\\),grid wording\n"
+    )
+
+    def _data_dir(self, tmp):
+        data_dir = Path(tmp) / "data"
+        data_dir.mkdir()
+        (data_dir / "terminology_rules.csv").write_text(self._RULES, encoding="utf-8")
+        return data_dir
+
+    def test_reports_stored_value_with_retired_wording(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            entries = [("TM句对", "rec1", "Press the POWER button.", "ko", "메인 전원 버튼을 누르십시오.")]
+            found = collect_terminology_violations(
+                entries,
+                data_dir=self._data_dir(tmp),
+                row_status={("TM句对", "rec1"): "Approved"},
+            )
+            self.assertEqual(len(found), 1)
+            self.assertEqual(found[0]["rule_id"], "KO-POWER-BTN")
+            self.assertEqual(found[0]["status"], "Approved")
+            self.assertEqual(found[0]["preferred"], "POWER 버튼")
+
+    def test_template_entries_are_left_to_the_build_gate(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            entries = [("模板:shared/05.rst", "docs/x.rst", "EN", "ko", "메인 전원 버튼")]
+            self.assertEqual(
+                collect_terminology_violations(
+                    entries, data_dir=self._data_dir(tmp), row_status={}
+                ),
+                [],
+            )
+
+    def test_allow_regex_context_is_not_reported(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            entries = [("TM句对", "rec2", "UPS", "ko", "상용 전원(그리드 전력)이 중단될 때")]
+            self.assertEqual(
+                collect_terminology_violations(
+                    entries, data_dir=self._data_dir(tmp), row_status={}
+                ),
+                [],
+            )
+
+    def test_other_language_values_are_untouched(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            entries = [("Terms", "rec3", "EN", "de", "메인 전원 버튼")]
+            self.assertEqual(
+                collect_terminology_violations(
+                    entries, data_dir=self._data_dir(tmp), row_status={}
+                ),
+                [],
+            )
+
 
 
 if __name__ == "__main__":

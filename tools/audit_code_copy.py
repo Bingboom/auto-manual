@@ -7,6 +7,8 @@ import argparse
 import ast
 import csv
 import re
+
+from tools.component_specs.callout import known_signal_word_labels
 from collections import Counter
 from dataclasses import dataclass, replace
 from pathlib import Path
@@ -37,44 +39,15 @@ DEFAULT_SCAN_ROOTS = ("tools", "build.py", "scripts", "integrations")
 EXCLUDED_PARTS = {"__pycache__", ".git", ".mypy_cache", ".pytest_cache", ".ruff_cache", ".venv", "venv"}
 EXCLUDED_REL_PREFIXES = ("docs/_build", "reports")
 
-ALERT_LABELS = {
-    "WARNING",
-    "CAUTION",
-    "DANGER",
-    "NOTE",
-    "TIP",
-    "TIPS",
-    "AVERTISSEMENT",
-    "ATTENTION",
-    "REMARQUE",
-    "CONSEIL",
-    "CONSEILS",
-    "ADVERTENCIA",
-    "PELIGRO",
-    "PRECAUCIÓN",
-    "PRECAUCION",
-    "NOTA",
-    "CONSEJO",
-    "CONSEJOS",
-    "WARNUNG",
-    "VORSICHT",
-    "HINWEIS",
-    "TIPP",
-    "AVVERTENZA",
-    "ATTENZIONE",
-    "SUGGERIMENTO",
-    "ПОПЕРЕДЖЕННЯ",
-    "УВАГА",
-    "ПРИМІТКА",
+# The audit's recognition vocabulary is the same reverse index the renderers
+# use, so the two can no longer disagree about which words are signal labels.
+# The static tail keeps historical synonyms the shared vocabulary does not
+# carry yet (zh/uk plurals and script variants).
+ALERT_LABELS = known_signal_word_labels() | {
     "ПОРАДИ",
-    "警告",
-    "注意",
-    "ご注意",
-    "提示",
-    "说明",
-    "備考",
     "備註",
     "备注",
+    "说明",
 }
 
 DIAGNOSTIC_WORDS = (

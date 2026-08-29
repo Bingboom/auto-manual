@@ -219,7 +219,7 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
 | 5 | **目标装配 JSON** | 先跑脚手架：`python -m tools.idml.target_assembly_scaffold --ir <build>/idml/manual.ir.json --physical-pages <N> --out .../<target>_v1_candidate.json`——机械字段（角色、组合、页序）自动生成且可直接 normalize，随产出的 `.todos.md` 只补判断项（variant / composition_data / flow_split / 打包合并）。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
 | 6 | 容量令牌 | `data/layout_params.idml-compact.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行 | 半机械测量；见 §5.2 |
 | 7 | 构建 + 最终化 | `python build.py idml --config configs/config.<family>.yaml --model <M> --region <R> --idml-mode both --skip-root-index`；InDesign 最终化只碰载体；preflight 零 overset | 机械 |
-| 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门（**流程尚未成文**：`config.bp-us.yaml` 注释只说"经 approved registry 晋升"，加载器在 `production_eligible` 前 fail-closed） | 判断 |
+| 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门，全流程见 [`idml_candidate_promotion.md`](idml_candidate_promotion.md)（前置验收门、v2 合同字段迁移、rebind 绑 pin、registry 注册、strict 翻转清单） | 判断 |
 
 已知的两处减速带（按 JBP 实测）：
 
