@@ -136,14 +136,37 @@
         return fitted;
     }
 
-    function substituteMissingFont(doc, sourceName, targetName) {
+    function substituteMissingFont(doc, sourceName, targetNames) {
         var sourceFont = doc.fonts.itemByName(sourceName);
         if (!sourceFont.isValid || sourceFont.status === FontStatus.INSTALLED) {
             return null;
         }
-        var targetFont = app.fonts.itemByName(targetName);
-        if (!targetFont.isValid || targetFont.status !== FontStatus.INSTALLED) {
-            throw Error("required host fallback font is not installed: " + targetName);
+        // The source guard above is weaker than "this mapping is still
+        // needed": InDesign keeps a substituted source in doc.fonts as a
+        // non-installed entry even after every range moved to the fallback
+        // (see the preflight comment at the font_usage_audit loop). Without
+        // this gate a second mapping for the same source re-enters and can
+        // demand a target face the document no longer needs. Same predicate
+        // as the preflight, which is fail-closed on a failed audit, so a skip
+        // here can never hide a gate failure.
+        if (!fontHasTextUsage(doc, sourceFont)) {
+            return null;
+        }
+        var targetFont = null;
+        var targetName = "";
+        for (var ti = 0; ti < targetNames.length; ti += 1) {
+            var candidate = app.fonts.itemByName(targetNames[ti]);
+            if (candidate.isValid && candidate.status === FontStatus.INSTALLED) {
+                targetFont = candidate;
+                targetName = targetNames[ti];
+                break;
+            }
+        }
+        if (targetFont === null) {
+            throw Error(
+                "no installed host fallback font for " + sourceName
+                + "; tried: " + targetNames.join(", ")
+            );
         }
 
         var changed = [];
@@ -182,12 +205,19 @@
 
     function applyHostFontSubstitutions(doc) {
         var substitutions = [];
+        // One row per source font, targets in preference order: the first
+        // INSTALLED candidate wins. Repeating a source across rows instead
+        // does not cascade — changeText moves every range on the source in
+        // one pass, so the later rows only re-enter and can throw for a face
+        // the document no longer needs.
         var mappings = [
-            ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Hiragino Kaku Gothic Pro\tW3"],
-            ["Yu Gothic\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"],
-            ["Noto Sans KR\tRegular", "Arial Unicode MS\tRegular"]
+            ["Segoe UI Symbol\tRegular", ["Apple Symbols\tRegular"]],
+            ["Yu Gothic\tRegular", [
+                "Hiragino Kaku Gothic Pro\tW3",
+                "Apple Symbols\tRegular",
+                "Arial Unicode MS\tRegular"
+            ]],
+            ["Noto Sans KR\tRegular", ["Arial Unicode MS\tRegular"]]
         ];
         for (var mi = 0; mi < mappings.length; mi += 1) {
             var result = substituteMissingFont(doc, mappings[mi][0], mappings[mi][1]);
