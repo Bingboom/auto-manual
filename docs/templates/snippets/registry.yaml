@@ -8,9 +8,11 @@
 # two variants in page_zh), is 100% present in the battery-pack corpus (7/7),
 # carries zero placeholders and zero brand or category nouns, and never enters
 # a TOC — so splicing it is byte-conservable and cannot move a page number.
-# Only the three languages the BP@INTL x US line ships are registered here;
-# collapsing the remaining host copies is rollout work and needs a byte diff
-# per copy.
+# The original three BP@INTL x US languages plus Italian are registered here.
+# The approved six-language source proves that the Italian paragraph is an
+# exact byte-for-byte reusable variant. German and Ukrainian remain in their
+# BP carriers because their approved source wording differs from the host
+# copies; collapsing the remaining copies still needs a byte diff per copy.
 snippets:
   - snippet_id: battery_long_storage_advisory
     lang: en
@@ -23,4 +25,8 @@ snippets:
   - snippet_id: battery_long_storage_advisory
     lang: es
     file: templates/snippets/battery_long_storage_advisory/es.rst
+    tags: [storage, battery_health]
+  - snippet_id: battery_long_storage_advisory
+    lang: it
+    file: templates/snippets/battery_long_storage_advisory/it.rst
     tags: [storage, battery_health]

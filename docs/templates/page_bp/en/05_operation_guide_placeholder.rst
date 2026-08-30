@@ -18,7 +18,7 @@ POWER ON/OFF
    :widths: 12 88
 
    * - **NOTE**
-     - When used with Jackery HomePower 2000 Plus, the Battery Pack 2000 power state can be controlled through the main POWER button on Jackery HomePower 2000 Plus.
+     - When used with |BP_HOST_PRODUCT_NAME|, the Battery Pack 2000 power state can be controlled through the main POWER button on |BP_HOST_PRODUCT_NAME|.
 
        The product automatically shuts down when it is not charging and no load is connected for |DEFAULT_STANDBY_DURATION|.
 

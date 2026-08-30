@@ -1,7 +1,7 @@
 CONNEXIONS
 ==========
 
-Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec le Jackery HomePower 2000 Plus.
+Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuvent être utilisés avec le |BP_HOST_PRODUCT_NAME|.
 
 .. image:: asset:connections/jbp2000b/stack_clearance
    :alt: Schéma de connexion, d'empilage et de dégagement des batteries d'extension.
@@ -13,7 +13,7 @@ Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuven
 
    * - **Important**
      -
-       - Assurez-vous que tous les produits sont éteints avant de connecter le HomePower 2000 Plus au(x) Jackery Battery Pack 2000.
+       - Assurez-vous que tous les produits sont éteints avant de connecter le |BP_HOST_PRODUCT_SHORT_NAME| au(x) Jackery Battery Pack 2000.
        - Pour assurer le bon fonctionnement du produit, assurez-vous que les entrées et sorties d'air sur les deux côtés ne sont pas obstruées. Laissez un espace d'au moins 0,66 pied (200 mm) entre les ouvertures et tout objet pour permettre une dissipation thermique adéquate.
 
 .. list-table::
@@ -22,8 +22,8 @@ Pour répondre à des besoins de capacité accrue, jusqu'à 5 dispositifs peuven
 
    * - **Remarques**
      -
-       - L'apparition de l'icône de connexion sur l'écran LCD (Jackery HomePower 2000 Plus) signifie que la connexion entre l'unité de batterie et le Jackery HomePower 2000 Plus est réussie.
-       - Veuillez ne pas empiler le dispositif sur le Jackery HomePower 2000 Plus.
+       - L'apparition de l'icône de connexion sur l'écran LCD (|BP_HOST_PRODUCT_NAME|) signifie que la connexion entre l'unité de batterie et le |BP_HOST_PRODUCT_NAME| est réussie.
+       - Veuillez ne pas empiler le dispositif sur le |BP_HOST_PRODUCT_NAME|.
        - Placez les batteries d'extension sur une surface plane, stable et suffisamment résistante. Le nombre maximal de batteries d'extension empilées est de 3 par défaut.
        - Si 4 batteries d'extension ou plus sont nécessaires, elles doivent être placées dans une zone stable, contre un mur et à l'abri des chocs extérieurs, et les mesures nécessaires de fixation anti-basculement doivent être prises.
 

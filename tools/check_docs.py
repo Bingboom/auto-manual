@@ -102,7 +102,11 @@ from tools.utils.spec_master import (  # noqa: E402
     source_language_for_row,
     resolve_template_substitutions_from_spec_master,
 )
-from tools.word_bundle_common import load_rst_substitutions, resolve_config_path  # noqa: E402
+from tools.word_bundle_common import (  # noqa: E402
+    load_config_rst_substitutions,
+    load_rst_substitutions,
+    resolve_config_path,
+)
 from tools.word_bundle_html import _convert_rst_fragment_to_html  # noqa: E402
 
 @dataclass(frozen=True)
@@ -435,6 +439,7 @@ def collect_generated_page_issues(
         load_page_contracts=load_page_contracts,
         resolve_contracts_dir=resolve_contracts_dir,
         load_rst_substitutions=load_rst_substitutions,
+        load_config_rst_substitutions=load_config_rst_substitutions,
         resolve_config_path=resolve_config_path,
         load_draft_recipe=load_draft_recipe,
         missing_required_row_keys=missing_required_row_keys,
