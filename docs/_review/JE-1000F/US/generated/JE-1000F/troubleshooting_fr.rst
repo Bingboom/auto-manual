@@ -1,7 +1,7 @@
 DÉPANNAGE
 =========
 
-Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème. Si l'erreur persiste, veuillez contacter le service à la clientèle de Jackery.
+Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives indiquées pour résoudre le problème. Si l'erreur persiste, veuillez contacter le service client Jackery.
 
 .. list-table::
    :class: longtable
@@ -30,7 +30,7 @@ Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives in
        | 5. Redémarrez le produit.
    * - F7
      - | 1. Retirez toutes les entrées CC du produit.
-       | 2. Vérifiez la tension en circuit ouvert (V\ :sub:`oc`) des panneaux solaires connectés. Le produit autorise une tension d'entrée CC maximale de 60V.
+       | 2. Vérifiez la tension en circuit ouvert (V\ :sub:`oc`) des panneaux solaires connectés. Le produit accepte une tension d'entrée CC maximale de 60V.
        | 3. Redémarrez le produit et laissez-le inactif. Attendez que l'erreur disparaisse.
    * - F8
      - Contacter le service à la clientèle de Jackery.
@@ -38,3 +38,4 @@ Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives in
      - Retirez la charge connectée aux ports USB du produit. Attendez que l'erreur disparaisse.
    * - FE
      - Contacter le service à la clientèle de Jackery.
+

@@ -443,7 +443,7 @@ class WebPresentationTests(unittest.TestCase):
                 "overview.right.ac_input": "AC Input",
             },
             "fr": {
-                "overview.front.power": "Bouton d'alimentation",
+                "overview.front.power": "Bouton POWER",
                 "overview.front.lcd": "LCD",
                 "overview.front.dc12": "Port 12 V CC",
                 "overview.right.handle": "Poignée",
@@ -451,7 +451,7 @@ class WebPresentationTests(unittest.TestCase):
                 "overview.right.ac_input": "Entrée CA",
             },
             "es": {
-                "overview.front.power": "Botón de encendido",
+                "overview.front.power": "Botón POWER",
                 "overview.front.lcd": "LCD",
                 "overview.front.dc12": "Puerto CC 12 V",
                 "overview.right.handle": "Asa",
@@ -889,7 +889,7 @@ class WebPresentationTests(unittest.TestCase):
         localized_labels = {
             "symbols_en.rst": ["WARNING", "CAUTION", "NOTE", "TIP"],
             "symbols_fr.rst": ["AVERTISSEMENT", "ATTENTION", "REMARQUE", "CONSEIL"],
-            "symbols_es.rst": ["ADVERTENCIA", "PRECAUCIÓN", "NOTA", "CONSEJO"],
+            "symbols_es.rst": ["ADVERTENCIA", "PRECAUCIÓN", "NOTA", "CONSEJOS"],
         }
 
         for source_name, expected_labels in localized_labels.items():
@@ -1088,15 +1088,15 @@ class WebPresentationTests(unittest.TestCase):
         localized = {
             "en": (
                 "12_app_setup_placeholder.rst",
-                ["Main Power Button", "DC/USB Power Button", "AC Power Button"],
+                ["POWER Button", "AC Power Button", "DC / USB Power Button"],
             ),
             "fr": (
                 "p34_12_app_setup_placeholder.rst",
-                ["Bouton POWER", "Bouton d’alimentation CC/USB", "Bouton d’alimentation CA"],
+                ["Bouton POWER", "Bouton d’alimentation CC / USB", "Bouton Power CA"],
             ),
             "es": (
                 "p50_12_app_setup_placeholder.rst",
-                ["Botón de encendido", "Botón de energía CC / USB", "Botón Power CA"],
+                ["Botón POWER", "Botón de energía CC / USB", "Botón Power CA"],
             ),
         }
         artwork_by_locale: dict[str, tuple[str, str]] = {}
@@ -1245,7 +1245,7 @@ class WebPresentationTests(unittest.TestCase):
                 "Alternatively, scan the QR code",
             ),
             "p34_12_app_setup_placeholder.rst": (
-                "Recherchez « Jackery »",
+                "Recherchez \"Jackery\"",
                 "Vous pouvez également scanner",
             ),
             "p50_12_app_setup_placeholder.rst": (
@@ -1370,7 +1370,7 @@ class WebPresentationTests(unittest.TestCase):
             ),
             "p49_11_warranty.rst": (
                 ["AÑOS", "AÑOS"],
-                ["Garantía Estándar", "Garantía extendida"],
+                ["Garantía estándar", "Garantía extendida"],
             ),
         }
 

@@ -112,7 +112,8 @@ def _new_production_writer(
             (page_plan or {}).get("plan_source") == "approved-reference"
         ),
         native_structure_markers=(
-            (page_plan or {}).get("plan_source") == "target-assembly"
+            (page_plan or {}).get("plan_source")
+            in {"approved-reference", "target-assembly"}
         ),
     )
 
@@ -568,6 +569,8 @@ def main() -> int:
     _ir_projection.emit_reference_page_plan(page_plan, out_dir=out.parent)
     _ir_sidecar.write_manual_ir_sidecar(manual_ir, out.parent)
     w.write(out)
+    from tools.idml.font_assets import provision_document_fonts
+    provision_document_fonts(out)
     issues = check_idml(out)
     for i in issues:
         print(f"[export-idml] SELF-CHECK FAIL: {i}")

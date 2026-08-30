@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import threading
@@ -14,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 from tools.export_idml import (  # noqa: E402
     IdmlWriter,
+    _new_production_writer,
     check_idml,
     load_layout_params,
     load_lcd_rows,
@@ -166,6 +168,19 @@ class ExportIdmlTests(unittest.TestCase):
         out = self._write_package()
         self.assertEqual(check_idml(out), [])
 
+    def test_both_final_assembly_modes_enable_portable_native_markers(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        for plan_source in ("approved-reference", "target-assembly"):
+            with self.subTest(plan_source=plan_source):
+                writer = _new_production_writer(
+                    params,
+                    model="JE-1000F",
+                    region="US",
+                    language="en",
+                    page_plan={"plan_source": plan_source},
+                )
+                self.assertTrue(writer.native_structure_markers)
+
     def test_structural_check_rejects_unrouted_cjk_glyph(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         writer = IdmlWriter(params)
@@ -188,7 +203,7 @@ class ExportIdmlTests(unittest.TestCase):
         issues = check_idml(out)
 
         self.assertEqual(1, len(issues))
-        self.assertTrue(all("requires Noto Sans KR" in issue for issue in issues))
+        self.assertTrue(all("requires NanumGothic" in issue for issue in issues))
 
     def test_mimetype_is_first_and_stored(self) -> None:
         out = self._write_package()
@@ -258,26 +273,52 @@ class ExportIdmlTests(unittest.TestCase):
         h1_range = story.split("</ParagraphStyleRange>")[0]
         self.assertIn("<Br/>", h1_range)
 
-    def test_symbol_glyphs_use_fallback_font_without_text_rewrite(self) -> None:
+    def test_symbol_glyphs_use_distributable_fallback_fonts(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
         psr = w._psr(
             "HB Body",
-            "16 V-60 V\u23935 A and LiFePO\u2084 \u203b \u2460 Nº de modelo",
+            "16 V-60 V\u23935 A and LiFePO\u2084 \u203b \u2460 ● Nº de modelo",
             terminal=True,
         )
         self.assertIn("\u2393", psr)
         self.assertIn("\u2084", psr)
-        self.assertIn("\u203b", psr)
         self.assertIn("\u2460", psr)
         self.assertIn("<Content>º</Content>", psr)
         self.assertIn("<Content> de modelo</Content>", psr)
         self.assertNotIn(" DC ", psr)
         self.assertNotIn('AppliedFont="Arial Unicode MS"', psr)
-        self.assertIn("<Properties><AppliedFont type=\"string\">Segoe UI Symbol</AppliedFont></Properties>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Noto Sans Symbols</AppliedFont></Properties>", psr)
         self.assertIn("<Content>\u2393</Content>", psr)
-        self.assertIn("<Properties><AppliedFont type=\"string\">Yu Gothic</AppliedFont></Properties>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Noto Sans</AppliedFont></Properties>", psr)
+        self.assertIn("<Properties><AppliedFont type=\"string\">Noto Sans Symbols2</AppliedFont></Properties>", psr)
+        self.assertNotIn("<Content>\u203b</Content>", psr)
+        self.assertIn("<!--HB_NATIVE_REFERENCE_MARK-->", psr)
+        self.assertIn('<Polygon Self="__HB_NATIVE_REFERENCE_MARK_GLYPH__"', psr)
+        self.assertNotIn('HorizontalScale="70.8"', psr)
         self.assertIn('FontStyle="Regular"', psr)
+
+    def test_reference_mark_package_ids_are_unique_and_font_independent(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        story = writer._add_story_parts(
+            "st_reference_mark",
+            "Reference marks",
+            [writer._psr("HB Body", "A※B※C", terminal=True)],
+        )
+        writer.add_spread_chain(story, 1, 0)
+        out = Path(tempfile.mkdtemp()) / "reference-mark.idml"
+        writer.write(out)
+
+        with zipfile.ZipFile(out) as zf:
+            xml = zf.read("Stories/Story_st_reference_mark.xml").decode("utf-8")
+        ids = re.findall(r'<(?:Rectangle|Polygon) Self="(hb_refmark_[^"]+)"', xml)
+        self.assertEqual(6, len(ids))
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(2, xml.count("<Polygon "))
+        self.assertNotIn("HB_NATIVE_REFERENCE_MARK", xml)
+        self.assertNotIn("<Content>※</Content>", xml)
+        self.assertNotIn("Noto Sans</AppliedFont>", xml)
 
     def test_cjk_text_uses_fallback_runs_without_changing_latin_text(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
@@ -291,7 +332,7 @@ class ExportIdmlTests(unittest.TestCase):
             '</AppliedFont></Properties>'
         )
         korean_fallback = (
-            '<Properties><AppliedFont type="string">Noto Sans KR'
+            '<Properties><AppliedFont type="string">NanumGothic'
             '</AppliedFont></Properties>'
         )
         self.assertEqual(1, psr.count(cjk_fallback))
@@ -345,10 +386,14 @@ class ExportIdmlTests(unittest.TestCase):
         fonts = IdmlWriter(params).fonts_xml()
         self.assertIn('Name="Arial Unicode MS"', fonts)
         self.assertIn('PostScriptName="ArialUnicodeMS"', fonts)
-        self.assertIn('Name="Segoe UI Symbol"', fonts)
-        self.assertIn('PostScriptName="SegoeUISymbol"', fonts)
-        self.assertIn('Name="Yu Gothic"', fonts)
-        self.assertIn('PostScriptName="YuGothic-Regular"', fonts)
+        self.assertIn('Name="Noto Sans"', fonts)
+        self.assertIn('PostScriptName="NotoSans-Regular"', fonts)
+        self.assertIn('Name="Noto Sans Symbols"', fonts)
+        self.assertIn('PostScriptName="NotoSansSymbols-Regular"', fonts)
+        self.assertIn('Name="Noto Sans Symbols2"', fonts)
+        self.assertIn('PostScriptName="NotoSansSymbols2-Regular"', fonts)
+        self.assertNotIn('Name="Segoe UI Symbol"', fonts)
+        self.assertNotIn('Name="Yu Gothic"', fonts)
         self.assertNotIn('Name="Apple Symbols"', fonts)
         self.assertNotIn('Name="Apple SD Gothic Neo"', fonts)
 
@@ -2356,6 +2401,185 @@ class ExportIdmlTests(unittest.TestCase):
             with self.subTest(stem=stem):
                 self.assertEqual(blocks, promote_reference_figures(blocks, plan, stem))
 
+    def test_target_asset_refs_rebind_every_image_slot_in_order(self) -> None:
+        """A target plan owns which art each image slot carries.
+
+        Catches a regression where the rebinding walks the wrong slots (art
+        would land under the wrong caption), touches non-image blocks, or where
+        the ``target-assembly`` guard broadens and an approved-reference book
+        starts having its reference art silently replaced.
+        """
+        from tools.idml.prose_flow import _apply_target_asset_refs
+
+        blocks = [
+            ("h1", "OPERATION"),
+            ("image", "a.png"),
+            ("body", "copy"),
+            ("image", "b.png"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        entries = {
+            "05_operation_guide_placeholder": {
+                "composition_data": {
+                    "assets": {"image_refs": ["new_a.pdf", "new_b.pdf"]},
+                },
+            },
+        }
+
+        rebound = _apply_target_asset_refs(
+            items, entries, {"plan_source": "target-assembly"},
+        )
+
+        self.assertEqual(
+            [
+                (
+                    "05_operation_guide_placeholder",
+                    [
+                        ("h1", "OPERATION"),
+                        ("image", "new_a.pdf"),
+                        ("body", "copy"),
+                        ("image", "new_b.pdf"),
+                    ],
+                    1,
+                ),
+            ],
+            rebound,
+        )
+
+        self.assertEqual(
+            items,
+            _apply_target_asset_refs(
+                items, entries, {"plan_source": "approved-reference"},
+            ),
+        )
+
+    def test_target_asset_refs_fail_closed_on_a_slot_count_mismatch(self) -> None:
+        """Too few or too many refs must raise, never bind partially.
+
+        Catches a regression where a short ``image_refs`` list leaves later
+        slots on stale source art, or a long one silently drops the surplus —
+        both ship a book whose art no longer matches its target contract.
+        """
+        from tools.idml.prose_flow import _apply_target_asset_refs
+
+        blocks = [
+            ("h1", "OPERATION"),
+            ("image", "a.png"),
+            ("body", "copy"),
+            ("image", "b.png"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        plan = {"plan_source": "target-assembly"}
+
+        def entries_with(refs: list[str]) -> dict[str, dict]:
+            return {
+                "05_operation_guide_placeholder": {
+                    "composition_data": {"assets": {"image_refs": refs}},
+                },
+            }
+
+        with self.assertRaisesRegex(ValueError, "do not cover every image slot"):
+            _apply_target_asset_refs(items, entries_with(["only_a.pdf"]), plan)
+
+        with self.assertRaisesRegex(ValueError, "contain extra image slots"):
+            _apply_target_asset_refs(
+                items, entries_with(["a.pdf", "b.pdf", "c.pdf"]), plan,
+            )
+
+    def test_target_page_breaks_insert_markers_by_block_kind_and_ordinal(self) -> None:
+        """Markers land *before* the matched block, later rules first.
+
+        Catches a regression where a marker lands after its block (the page
+        would break one heading too late), where insertions stop running in
+        reverse index order (every rule after the first would be off by N), or
+        where ``top_gap_pt`` stops rendering as ``page_break:<pt>`` — the exact
+        shape the prose renderer parses.
+        """
+        from tools.idml.prose_flow import _apply_target_page_breaks
+
+        blocks = [
+            ("h1", "A"),
+            ("h2", "B"),
+            ("body", "c"),
+            ("h2", "D"),
+            ("h2", "E"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        entries = {
+            "05_operation_guide_placeholder": {
+                "composition_data": {
+                    "page_breaks": [
+                        {"at_kind": "h2", "occurrence": 1, "top_gap_pt": 12.5},
+                        {"at_kind": "h2", "occurrence": 3},
+                    ],
+                },
+            },
+        }
+
+        aligned = _apply_target_page_breaks(
+            items, entries, {"plan_source": "target-assembly"},
+        )
+
+        self.assertEqual(
+            [
+                (
+                    "05_operation_guide_placeholder",
+                    [
+                        ("h1", "A"),
+                        ("layout", "page_break:12.5"),
+                        ("h2", "B"),
+                        ("body", "c"),
+                        ("h2", "D"),
+                        ("layout", "page_break"),
+                        ("h2", "E"),
+                    ],
+                    1,
+                ),
+            ],
+            aligned,
+        )
+
+        self.assertEqual(
+            items,
+            _apply_target_page_breaks(
+                items, entries, {"plan_source": "approved-reference"},
+            ),
+        )
+
+    def test_target_page_breaks_fail_closed_on_an_unreachable_rule(self) -> None:
+        """An ordinal the page cannot reach, or a malformed rule, must raise.
+
+        Catches a regression where a stale rule silently no-ops after the source
+        RST loses a heading — the page would then run long instead of breaking
+        where the target contract says it must.
+        """
+        from tools.idml.prose_flow import _apply_target_page_breaks
+
+        blocks = [
+            ("h1", "A"),
+            ("h2", "B"),
+            ("body", "c"),
+            ("h2", "D"),
+            ("h2", "E"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        plan = {"plan_source": "target-assembly"}
+
+        def entries_with(rules: list) -> dict[str, dict]:
+            return {
+                "05_operation_guide_placeholder": {
+                    "composition_data": {"page_breaks": rules},
+                },
+            }
+
+        with self.assertRaisesRegex(ValueError, "cannot find h2 occurrence 9"):
+            _apply_target_page_breaks(
+                items, entries_with([{"at_kind": "h2", "occurrence": 9}]), plan,
+            )
+
+        with self.assertRaisesRegex(ValueError, "page_breaks rule must be an object"):
+            _apply_target_page_breaks(items, entries_with(["h2"]), plan)
+
     def test_approved_app_figures_keep_step_numbers_and_movable_labels(self) -> None:
         from tools.idml.prose_flow import promote_reference_figures
 
@@ -3081,7 +3305,7 @@ class ExportIdmlTests(unittest.TestCase):
         ]
         self.assertTrue(cjk_ranges)
         self.assertTrue(all(
-            element.findtext("Properties/AppliedFont") == "Noto Sans KR"
+            element.findtext("Properties/AppliedFont") == "NanumGothic"
             for element in cjk_ranges
         ))
 
@@ -4085,7 +4309,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(
             'TopInset="2.14" BottomInset="2.14"', continuation_cell)
         self.assertIn(
-            '<AppliedFont type="string">Yu Gothic</AppliedFont>',
+            '<AppliedFont type="string">Noto Sans Symbols</AppliedFont>',
             number_cell,
         )
 
@@ -4529,17 +4753,27 @@ class ExportIdmlTests(unittest.TestCase):
                 title=SOURCE_TITLES["en"]["lcd"],
             )
 
-    def test_lcd_high_circled_numbers_use_a_font_that_covers_them(self) -> None:
+    def test_lcd_portable_marker_font_covers_the_retained_unicode_block(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        for number in ("㉑", "㉗"):
+        for number in ("①", "⑳"):
             with self.subTest(number=number):
                 psr = IdmlWriter(params)._psr(
                     "HB Spec Label", number, terminal=True)
                 self.assertIn(
                     '<Properties><AppliedFont type="string">'
-                    'Yu Gothic</AppliedFont>',
+                    'Noto Sans Symbols</AppliedFont>',
                     psr,
                 )
+
+    def test_lcd_high_circled_numbers_degrade_to_portable_ascii_labels(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        psr = IdmlWriter(params)._psr(
+            "HB Spec Label", "㉑ ㉗", terminal=True,
+        )
+        self.assertIn("<Content>(21) (27)</Content>", psr)
+        self.assertNotIn("㉑", psr)
+        self.assertNotIn("㉗", psr)
+        self.assertNotIn("Arial Unicode MS", psr)
 
     def test_shading_uses_paragraph_prefixed_attributes(self) -> None:
         # bare ShadingOn/ShadingColor are silently ignored by InDesign

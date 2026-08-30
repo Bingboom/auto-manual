@@ -1,0 +1,45 @@
+{
+  "schema_version": "idml-portable-font-assets/v1",
+  "fonts": [
+    {
+      "family": "NanumGothic",
+      "postscript_name": "NanumGothic",
+      "filename": "NanumGothic-Regular.ttf",
+      "sha256": "76f45ef4a6bcff344c837c95a7dcc26e017e38b5846d5ae0cdcb5b86be2e2d31",
+      "license_file": "OFL-NanumGothic.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/nanumgothic/NanumGothic-Regular.ttf",
+      "languages": ["ko"],
+      "usage": "Korean editable text"
+    },
+    {
+      "family": "Noto Sans",
+      "postscript_name": "NotoSans-Regular",
+      "filename": "NotoSans-Regular.ttf",
+      "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf",
+      "languages": ["*"],
+      "usage": "reference marks, ordinals and subscript glyphs"
+    },
+    {
+      "family": "Noto Sans Symbols",
+      "postscript_name": "NotoSansSymbols-Regular",
+      "filename": "NotoSansSymbols-Regular.ttf",
+      "sha256": "8f02f31959bbdf6061547a188248e13f84dc5fdd940326ec494675f453f072bb",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols/NotoSansSymbols-Regular.ttf",
+      "languages": ["*"],
+      "usage": "direct-current and circled-number glyphs"
+    },
+    {
+      "family": "Noto Sans Symbols2",
+      "postscript_name": "NotoSansSymbols2-Regular",
+      "filename": "NotoSansSymbols2-Regular.ttf",
+      "sha256": "630846d528dbe4c4981370a4d0a9475a1fd1491a129bb411f8e157cdb5de13c6",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols2/NotoSansSymbols2-Regular.ttf",
+      "languages": ["*"],
+      "usage": "filled-circle fallback glyph"
+    }
+  ]
+}

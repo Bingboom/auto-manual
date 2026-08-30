@@ -5,11 +5,11 @@ SIGNIFICADO DE LOS SÍMBOLOS
 
    .. raw:: latex
 
-      \HBSymbolTable{Símbolo}{Significados}{%
-      \HBSymbolSignalRow{warning_triangle.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
-      \HBSymbolSignalRow{warning_triangle.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
-      \HBSymbolSignalRow{mandatory.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
-      \HBSymbolSignalRow{mandatory.png}{CONSEJOS}{Complementa la información importante o consejos de operación en el texto.}
+      \HBSymbolTable{Símbolo}{Significado}{%
+      \HBSymbolSignalRow{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
+      \HBSymbolSignalRow{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
+      \HBSymbolSignalRow{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
+      \HBSymbolSignalRow{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEJOS}{Complementa la información importante o consejos de operación en el texto.}
       }
 
 .. only:: not latex
@@ -43,21 +43,21 @@ SIGNIFICADO DE LOS SÍMBOLOS
 
    .. raw:: latex
 
-      \HBSymbolTwoColumnTablesSplit{Símbolo}{Significados}{%
-      \HBSymbolIconRow{1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png}{Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.}
-      \HBSymbolIconRow{2_read_manual_P0fEbfBNKoRiCoxkAm7cq3ymndh.png}{Lea el manual del operador}
-      \HBSymbolIconRow{3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png}{Riesgo de descarga eléctrica}
-      \HBSymbolIconRow{4_battery_charging_N9ppbBQWdoPM5bxEammcGFItnpd.png}{Carga de batería}
+      \HBSymbolTwoColumnTablesSplit{Símbolo}{Significado}{%
+      \HBSymbolIconRow{1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png}{Símbolos de advertencia y precaución. Alertan a las personas sobre información que debe leerse para evitar posibles peligros o riesgos.}
+      \HBSymbolIconRow{2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png}{Lea el manual del operador}
+      \HBSymbolIconRow{3_electric_shock_XYAbbMCnNoNzYix7mKRcMHGhnic.png}{Riesgo de descarga eléctrica}
+      \HBSymbolIconRow{4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png}{Carga de batería}
       }{%
-      \HBSymbolIconRow{7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png}{No desarme el producto.}
-      \HBSymbolIconRow{8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png}{No fumar ni hacer llamas abiertas}
-      \HBSymbolIconRow{9_keep_away_from_children_AjeEb4GIgoPNpdxkXhFcIeaDnTM.png}{No se permiten niños}
-      \HBSymbolIconRow{10_li_ion_Nkm5benPWobav4xNt0ecDB2nn6D.png}{Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.}
+      \HBSymbolIconRow{7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png}{No desarme el producto.}
+      \HBSymbolIconRow{8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png}{Mantenga el producto alejado del fuego.}
+      \HBSymbolIconRow{9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png}{No se permiten niños}
+      \HBSymbolIconRow{10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png}{Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.}
       }{%
-      \HBSymbolIconRow{5_explosive_material_F4J3bCXAeoUk7sxrOg2ch60anHf.png}{Material explosivo}
-      \HBSymbolIconRow{6_heavy_object_M31Fbb3XeoQ0ClxmK2Lc9I5snYi.png}{Objeto pesado}
+      \HBSymbolIconRow{5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png}{Material explosivo}
+      \HBSymbolIconRow{6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png}{Objeto pesado}
       }{%
-      \HBSymbolIconRow{11_weee_Wx7PbvwWCoznaCxrZ9Pc1KsXnSc.png}{Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. \newline El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.}
+      \HBSymbolIconRow{11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png}{Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje. \newline El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.}
       }
 
 .. only:: not latex
@@ -71,50 +71,51 @@ SIGNIFICADO DE LOS SÍMBOLOS
         - **Significado**
         - **Símbolo**
         - **Significado**
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/1_warning_triangle_IfHObDBCDowRHbxLvCzci3wen7c.png
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png
              :alt: warning_triangle
              :width: 40px
-        - Precaución! El incumplimiento de los mensajes de advertencia puede provocar lesiones.
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/7_do_not_dismantle_TTrGbm6PdoAFBwx16nXcZOaFnZf.png
+        - Símbolos de advertencia y precaución. Alertan a las personas sobre información que debe leerse para evitar posibles peligros o riesgos.
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png
              :alt: do_not_dismantle
              :width: 40px
         - No desarme el producto.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/2_read_manual_P0fEbfBNKoRiCoxkAm7cq3ymndh.png
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png
              :alt: read_manual
              :width: 40px
         - Lea el manual del operador
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_GOQabZgNNoj1goxlyjHcA0w7n7b.png
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png
              :alt: no_open_flame
              :width: 40px
-        - No fumar ni hacer llamas abiertas
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/3_electric_shock_Ctr7btZp2oBcCqxDmHbcrFPEnFd.png
+        - Mantenga el producto alejado del fuego.
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/3_electric_shock_XYAbbMCnNoNzYix7mKRcMHGhnic.png
              :alt: electric_shock
              :width: 40px
         - Riesgo de descarga eléctrica
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/9_keep_away_from_children_AjeEb4GIgoPNpdxkXhFcIeaDnTM.png
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png
              :alt: keep_away_from_children
              :width: 40px
         - No se permiten niños
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/4_battery_charging_N9ppbBQWdoPM5bxEammcGFItnpd.png
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png
              :alt: battery_charging
              :width: 40px
         - Carga de batería
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/10_li_ion_Nkm5benPWobav4xNt0ecDB2nn6D.png
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png
              :alt: li_ion
              :width: 40px
         - Este símbolo indica que el producto contiene una batería de iones de litio (Li-ion), la cual debe desecharse o reciclarse de forma adecuada.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/5_explosive_material_F4J3bCXAeoUk7sxrOg2ch60anHf.png
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png
              :alt: explosive_material
              :width: 40px
         - Material explosivo
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/11_weee_Wx7PbvwWCoznaCxrZ9Pc1KsXnSc.png
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png
              :alt: weee
              :width: 40px
         - Este símbolo indica que el producto no debe desecharse con los residuos domésticos. En su lugar, debe llevarse a un punto de recogida designado para su correcto reciclaje.
           El desecho y reciclaje adecuados ayudan a proteger el medioambiente. Para más información, póngase en contacto con su autoridad local, el servicio de gestión de residuos o el distribuidor del producto.
-      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/6_heavy_object_M31Fbb3XeoQ0ClxmK2Lc9I5snYi.png
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png
              :alt: heavy_object
              :width: 40px
         - Objeto pesado
         -
         -
+

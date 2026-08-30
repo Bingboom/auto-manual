@@ -845,6 +845,12 @@ configs keep that historical default unless `--lang` is supplied explicitly.
 
 The approved v2 contract separates enforced identity from provenance:
 
+The committed engineering-plane review copy is synchronized to
+`Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`.
+The 2026-08-29 content reapproval covers the current editable IDML semantic
+projection; its rebind changed zero page bindings and left the 58-page
+composition map unchanged.
+
 | Contract item | Approved value |
 | --- | --- |
 | Target | `JE-1000F / US / en+fr+es` |
@@ -852,11 +858,11 @@ The approved v2 contract separates enforced identity from provenance:
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Content identity (enforced) | `ced5ae20f48a0dc438d638ad10e0ae37c0574b00409e790ac2df1db1fcd66fc0` |
-| Assembly identity (enforced) | `1217da8e34c3317196ec7f1e288106dd7728d82fe97aa896ea8bcda670ba6a05` |
-| Style-contract identity (enforced) | `885b936fa2569bf018d495e5af0527f9928bbf79e2ae47c9eaaae3bee7f94da7` |
-| Layout-params identity (enforced) | `912db2f5da32326993cb00fffedfbddba1b44abd33098582fc584e51916c2d2d` |
-| Snapshot provenance (not an activation gate) | `2d77eff60a95633f9b828aea62d788d38d514f8825773c1e5be1286dc1512d33` |
+| Content identity (enforced) | `b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a` |
+| Assembly identity (enforced) | `c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57` |
+| Style-contract identity (enforced) | `6db62e7780288ac073bc7502379112ddf10aae8d6c00de29875e9ea1a80d0003` |
+| Layout-params identity (enforced) | `2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82` |
+| Snapshot provenance (not an activation gate) | `aa4bfb324cd12ff07be2507a51a634e61e2d6043e2dd4fb199bb873afd43f821` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:
@@ -1180,6 +1186,14 @@ python3 tools/indesign_finalize.py \
   --pdfx PDF/X-4
 ```
 
+Keep the generated `Document fonts/` directory beside the output INDD.  The
+finalizer now saves the INDD, closes it, reopens that saved file, recomposes it,
+and repeats the overset/font/link preflight before exporting the PDF.  Reports
+use `indesign-preflight/v2` and record this second pass under `post_reopen`.
+The job fails when the saved document changes page/story count, reopens with a
+`NOT_AVAILABLE`/substituted font, or gains an overset/bad link.  This catches
+document-font failures that are invisible during the first IDML import.
+
 For a design host processing more than one target, use an explicit
 `indesign-finalize-jobs/v1` manifest. Every job must declare its PDF preset,
 output intent, output condition, and PDF/X level; batch mode deliberately has
@@ -1317,18 +1331,30 @@ aliases are resolved only through `tools/lang_registry.py`, while non-content
 page roles `cover` and `toc` are exempt.
 
 Japanese, Korean, and Chinese characters in editable IDML are serialized as
-explicit character runs using `CJK_FONT_FAMILY_TOKEN` (the renderer token
-`idml_font_family_cjk`). The current family is the already-declared Arial
-Unicode MS fallback, so the font resource and handoff manifest do not change
-for Latin-only targets. This token is intentionally outside
-`data/layout_params.csv`: changing it is a font-delivery decision, not a page
-geometry change, and does not by itself require a reference layout rebind.
-Latin-market editable symbols are governed separately: `Segoe UI Symbol`
-owns the DC, bullet, reference-mark, ordinal, and subscript set, while `Yu
-Gothic` owns circled numbers through 27. These Windows-native resources replace
-the former `Apple Symbols` / `Apple SD Gothic Neo` runs in both story XML and
-`Resources/Fonts.xml`; their delivery rows come from the same centralized font
-tokens. Neither Windows system font is redistributed under `Document fonts/`.
+explicit script-aware character runs. Korean Hangul uses the committed
+SIL-OFL `NanumGothic` face; Japanese and Chinese continue through
+`CJK_FONT_FAMILY_TOKEN` (the renderer token `idml_font_family_cjk`, currently
+Arial Unicode MS). Font-family tokens intentionally stay outside
+`data/layout_params.csv`: changing font delivery is not page geometry and does
+not by itself require a reference-layout rebind.
+Latin-market editable symbols are governed separately: the U+203B reference
+mark is an inline native IDML vector with deterministic story-local object IDs,
+so it has no font dependency after an INDD save/reopen cycle. Warranty-year
+badges likewise use a native black circle plus an editable white ASCII digit;
+do not replace the approved badge with either `❷` / `❸` or bare `2` / `3`.
+The native badge renderer positions the localized year unit with a fixed tab
+stop and reuses that exact x anchor for the warranty subtitle below it;
+font-space advance must not separate `YEARS` from `Standard Warranty` or
+`Extended Warranty` horizontally.
+`Noto Sans` owns
+ordinals and subscript digits; `Noto Sans Symbols` owns the
+DC glyph and circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle
+fallback. LCD labels 21-27 are normalized to `(21)`-`(27)`, and both final
+assembly modes enable native vector structure markers. Every declared
+redistributable face is hash-verified from
+`docs/templates/word_template/common_assets/fonts/idml_portable/` and copied
+beside the IDML under `Document fonts/`; generated packages therefore do not
+depend on `Segoe UI Symbol`, `Yu Gothic`, or `Noto Sans KR` on the host.
 Line and coarse text-width budgeting is governed by
 `tools/idml/line_metrics.py`: the existing per-component narrow-glyph ratios
 remain stable, East Asian Width `W`/`F` characters consume one em, combining
@@ -1343,8 +1369,9 @@ designer delivery zip via `tools/idml/delivery.py`:
 production and flow IDML with every `LinkResourceURI` rewritten to
 `file:Links/<name>`, the linked images collected under `Links/`, the flow outputs, the handoff
 reports, `source_trace.json` stamped with the queue row's real version, a
-fonts manifest (plus `Document fonts/` when `AUTO_MANUAL_LOCAL_GILROY_DIR` is
-provisioned on the build machine), and the versioned reference PDF. The zip is
+fonts manifest, the declared SIL-OFL faces under `Document fonts/`, optional
+licensed Gilroy files when `AUTO_MANUAL_LOCAL_GILROY_DIR` is provisioned on the
+build machine, and the versioned reference PDF. The zip is
 the designer-facing package: its checklist points to the versioned root IDML,
 `missing_assets_report.md` reports package-time link portability, and the
 separate `source_asset_resolution_report.md` preserves unresolved semantic

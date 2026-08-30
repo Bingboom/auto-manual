@@ -22,7 +22,8 @@ class IdmlDesignHandoffTests(unittest.TestCase):
             flow_dir = idml_dir / "flow"
             flow_dir.mkdir(parents=True)
             production = idml_dir / "manual_je1000f_us_en.idml"
-            production.write_text("idml", encoding="utf-8")
+            from tests.test_idml_delivery import _write_production_idml
+            _write_production_idml(production, [])
             (idml_dir / "manual.ir.json").write_text(
                 json.dumps({"metadata": {"skipped_raw": 2}}),
                 encoding="utf-8",
@@ -61,7 +62,15 @@ class IdmlDesignHandoffTests(unittest.TestCase):
             )
 
             self.assertTrue(outputs.production_idml.is_file())
-            self.assertEqual("idml", outputs.production_idml.read_text(encoding="utf-8"))
+            self.assertTrue(outputs.production_idml.is_file())
+            document_fonts = outputs.production_idml.parent / "Document fonts"
+            self.assertTrue((document_fonts / "NotoSans-Regular.ttf").is_file())
+            self.assertTrue(
+                (document_fonts / "NotoSansSymbols-Regular.ttf").is_file()
+            )
+            self.assertTrue(
+                (document_fonts / "NotoSansSymbols2-Regular.ttf").is_file()
+            )
             trace = json.loads(outputs.production_trace.read_text(encoding="utf-8"))
             self.assertEqual("production", trace["idml_mode"])
             self.assertTrue(trace["production_idml"].endswith("manual.production.idml"))

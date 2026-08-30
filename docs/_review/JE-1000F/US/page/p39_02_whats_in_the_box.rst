@@ -7,8 +7,8 @@
    .. raw:: latex
 
       \section{CONTENIDO DE LA CAJA}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Cable de carga de CA}{manual_icon1.png}{Doucumentos}
-      \HBTipBlock{CONSEJOS}{El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
+      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Cable de carga de CA}{manual_icon1.png}{Documentos}
+      \HBTipBlock{CONSEJOS}{El cable de carga para vehículo no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
       \HBPageBreak
 
 .. only:: latex and region_eu
@@ -17,7 +17,7 @@
 
       \section{CONTENIDO DE LA CAJA}
       \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Cable de carga de CA}{manual_icon1.png}{Manual del usuario}
-      \HBTipBlock{CONSEJOS}{El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
+      \HBTipBlock{CONSEJOS}{El cable de carga para vehículo no está incluido, pero está disponible para su compra por separado en nuestro sitio web. Para obtener asistencia, comunícate con el servicio al cliente de Jackery.}
 
 .. only:: not latex and region_us
 
@@ -43,7 +43,7 @@
              :alt: Imagen de los documentos.
              :width: 120px
 
-          **Doucumentos**
+          **Documentos**
 
 .. only:: not latex and region_eu
 
@@ -78,5 +78,5 @@
       :widths: 12 88
 
       * - **CONSEJOS**
-        - El cable de carga para automóvil no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
+        - El cable de carga para vehículo no está incluido, pero está disponible para su compra por separado en nuestro sitio web.
           Para obtener asistencia, comunícate con el servicio al cliente de Jackery.

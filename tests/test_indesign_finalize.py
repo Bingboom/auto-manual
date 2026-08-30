@@ -110,6 +110,58 @@ class InDesignFinalizeTests(unittest.TestCase):
             self.assertEqual(written["missing_glyphs"], [finding])
             self.assertFalse(written["pdf_glyph_validation"]["pass"])
 
+    def test_finalize_result_fails_closed_on_post_reopen_font_error(self) -> None:
+        with temp_test_root() as root:
+            report_path = Path(root) / "report.json"
+            pdf_path = Path(root) / "output.pdf"
+            report_path.write_text(json.dumps({
+                "schema_version": "indesign-preflight/v2",
+                "success": True,
+                "page_count": 1,
+                "story_count": 1,
+                "overset_stories": [],
+                "overset_table_cells": [],
+                "missing_fonts": [],
+                "bad_links": [],
+                "post_reopen": {
+                    "completed": True,
+                    "page_count": 1,
+                    "story_count": 1,
+                    "overset_stories": [],
+                    "overset_table_cells": [],
+                    "missing_fonts": [{
+                        "name": "HB Refmark Symbols",
+                        "status": "NOT_AVAILABLE",
+                    }],
+                    "bad_links": [],
+                },
+            }), encoding="utf-8")
+            pdf_path.write_bytes(b"%PDF-test")
+            job = {
+                "job_id": "reopen-negative-control",
+                "output_pdf": str(pdf_path),
+                "report_json": str(report_path),
+                "pdfx": DEFAULT_PDFX,
+                "output_intent": DEFAULT_OUTPUT_INTENT,
+                "output_condition": DEFAULT_OUTPUT_CONDITION,
+            }
+            with patch(
+                "tools.indesign_finalize._pdf_export_compliance",
+                return_value={"pass": True},
+            ), patch(
+                "tools.indesign_finalize._pdf_missing_glyphs",
+                return_value=[],
+            ), patch(
+                "tools.indesign_finalize.indesign_version",
+                return_value="Adobe InDesign test",
+            ):
+                result = _collect_finalize_result(job, pin_status="match")
+
+            written = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertFalse(result["success"])
+            self.assertEqual(1, result["missing_fonts_count"])
+            self.assertIn("close/reopen", written["error"])
+
     def test_job_paths_are_absolute_and_script_checks_required_gates(self) -> None:
         job = _job(argparse.Namespace(
             idml="input.idml", indd="output.indd", pdf="output.pdf",
@@ -128,6 +180,10 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("LinkStatus.NORMAL", jsx)
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
+        self.assertIn("collectPostReopenState(doc)", jsx)
+        self.assertIn('report.stage = "reopen_indd"', jsx)
+        self.assertIn("doc = app.open(File(job.output_indd), false)", jsx)
+        self.assertIn("report.post_reopen.missing_fonts.length === 0", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
         self.assertIn("fitLcdCarrierFrames(doc)", jsx)
         self.assertIn('indexOf(" table segment ")', jsx)
@@ -172,8 +228,6 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertNotIn("allPageItems", symbol_fit)
         self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
-        self.assertIn('["Segoe UI Symbol\\tRegular", "Apple Symbols\\tRegular"]', jsx)
-        self.assertIn('["Yu Gothic\\tRegular", "Arial Unicode MS\\tRegular"]', jsx)
         self.assertIn("font_substitutions", jsx)
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
         self.assertIn("matches = doc.findText()", jsx)
@@ -205,6 +259,65 @@ class InDesignFinalizeTests(unittest.TestCase):
             "doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false, pdfPreset)",
             jsx,
         )
+
+    def test_font_substitution_table_is_one_row_per_source(self) -> None:
+        """A repeated source font re-enters after its text has already moved.
+
+        changeText moves every range on a source font in one pass, so a second
+        row for the same source can never act as a glyph-level cascade — it
+        only re-enters substituteMissingFont and demands a target face the
+        document no longer needs, which throws and aborts finalize before the
+        .indd and .pdf are written. Targets belong in one ordered list per
+        source, first installed wins.
+        """
+        import re
+
+        jsx = JSX.read_text(encoding="utf-8")
+        block = jsx.split("var mappings = [", 1)[1].split("\n        ];", 1)[0]
+        rows = [
+            (match.group(1), re.findall(r'"([^"]+)"', match.group(2)))
+            for match in re.finditer(
+                r'\["([^"]+)",\s*\[([^\]]*)\]\]', block, re.S,
+            )
+        ]
+
+        self.assertTrue(rows, "mappings must be [source, [target, ...]] rows")
+        sources = [source for source, _targets in rows]
+        self.assertEqual(
+            len(sources),
+            len(set(sources)),
+            "a second row for the same source font re-enters "
+            "substituteMissingFont after the first has cleared its text — "
+            "group its targets into one ordered list instead",
+        )
+        # The JSX source carries a literal backslash-t, not a tab character.
+        self.assertEqual(
+            {
+                r"Segoe UI Symbol\tRegular",
+                r"Yu Gothic\tRegular",
+                r"Noto Sans KR\tRegular",
+            },
+            set(sources),
+        )
+        for source, targets in rows:
+            with self.subTest(source=source):
+                self.assertTrue(targets, "every source needs a fallback target")
+
+        # The necessity gate must stay above the target lookup, or a mapping
+        # for an already-cleared source can still throw.
+        body = jsx.split("function substituteMissingFont", 1)[1].split(
+            "\n    function ", 1,
+        )[0]
+        self.assertIn("if (!fontHasTextUsage(doc, sourceFont))", body)
+        self.assertLess(
+            body.index("fontHasTextUsage"), body.index("app.fonts.itemByName"),
+        )
+        self.assertIn("no installed host fallback font for", body)
+
+        audit = jsx.split("function fontHasTextUsage", 1)[1].split(
+            "\n    function ", 1,
+        )[0]
+        self.assertIn("return true;", audit.split("} catch (_) {", 1)[1])
 
     def test_default_pdf_preset_is_pdfx4(self) -> None:
         self.assertEqual("[PDF/X-4:2008 (Japan)]", DEFAULT_PDF_PRESET)

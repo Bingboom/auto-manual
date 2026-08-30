@@ -9,6 +9,7 @@ import warnings
 from tools.idml_rst_extract import extract_page
 from tools.idml.oppanel import (
     parse_rows,
+    promote_operation_guidance_stack,
     promote_paired_operation_cards,
     transform,
 )
@@ -114,6 +115,132 @@ class TransformTest(unittest.TestCase):
             "Localized editable caption.",
             image_caption["caption"],
         )
+
+    def test_operation_guidance_run_becomes_one_outer_card(self) -> None:
+        """A complete guidance run collapses into a single outer panel spec.
+
+        The target assembly declares the guidance_stack variant, and this
+        promotion is the only thing that turns the four loose source blocks
+        into the one component the shared renderer can stack.  If the window
+        widens or narrows, the operation page silently reverts to loose
+        artwork plus floating notices, which is the layout #966 removed.
+        Both admitted body kinds are exercised so dropping
+        body_operation_inter_section from the guard cannot pass unnoticed.
+        """
+        panel = {
+            "kind": "oppanel",
+            "image": "asset:operation/main_power",
+            "rows": [["On", "Press once"], ["Off", "Hold"]],
+        }
+        first_notice = {
+            "kind": "notice",
+            "label": "NOTE",
+            "texts": ["First localized note."],
+        }
+        second_notice = {
+            "kind": "notice",
+            "label": "WARNING",
+            "texts": ["Second localized note."],
+        }
+        body = "Localized editable guidance paragraph."
+        for body_kind in ("body", "body_operation_inter_section"):
+            with self.subTest(body_kind=body_kind):
+                blocks = [
+                    ("component", json.dumps(panel)),
+                    ("component", json.dumps(first_notice)),
+                    (body_kind, body),
+                    ("component", json.dumps(second_notice)),
+                    ("h2", "NEXT SECTION"),
+                ]
+
+                out = promote_operation_guidance_stack(blocks)
+
+                self.assertEqual(
+                    ["component", "h2"],
+                    [kind for kind, _payload in out],
+                )
+                spec = json.loads(out[0][1])
+                self.assertEqual("oppanel", spec["kind"])
+                self.assertEqual("image_guidance_stack", spec["layout"])
+                self.assertEqual("asset:operation/main_power", spec["image"])
+                self.assertEqual(
+                    ["notice", "body", "notice"],
+                    [item["kind"] for item in spec["guidance"]],
+                )
+                self.assertEqual(body, spec["guidance"][1]["text"])
+                self.assertEqual(first_notice, spec["guidance"][0]["spec"])
+                self.assertEqual(second_notice, spec["guidance"][2]["spec"])
+
+    def test_incomplete_guidance_run_is_untouched(self) -> None:
+        """Pages without the full run keep their blocks verbatim.
+
+        The promotion is applied to every operation page, so a page that
+        never had the oppanel + notice + body + notice sequence must pass
+        straight through rather than absorb whatever four blocks happen to
+        sit next to each other.
+        """
+        blocks = [("body", "Only prose."), ("h2", "NEXT SECTION")]
+        self.assertEqual(blocks, promote_operation_guidance_stack(blocks))
+
+    def test_declared_guidance_stack_fails_closed_without_its_run(self) -> None:
+        """A declared guidance_stack with no matching run must raise.
+
+        prose_flow calls this with require_match=True once the plan declares
+        the variant.  Without the raise, a plan could declare guidance_stack
+        and the book would silently render loose blocks instead — the exact
+        drift the declared variant exists to prevent.
+        """
+        blocks = [("body", "Only prose."), ("h2", "NEXT SECTION")]
+        with self.assertRaisesRegex(
+            ValueError,
+            "operation guidance_stack requires oppanel \\+ notice \\+ body "
+            "\\+ notice",
+        ):
+            promote_operation_guidance_stack(blocks, require_match=True)
+
+    def test_already_laid_out_panel_is_not_rewrapped(self) -> None:
+        """A panel that already carries a layout is left alone.
+
+        Earlier promotions hand this pass panels that already declare their
+        variant.  Dropping the empty-layout guard would wrap a composed
+        image_notice card into a second outer card, double-printing the
+        artwork on the operation page.
+        """
+        blocks = [
+            (
+                "component",
+                json.dumps({
+                    "kind": "oppanel",
+                    "layout": "image_notice",
+                    "image": "asset:operation/main_power",
+                }),
+            ),
+            (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "NOTE",
+                    "texts": ["First localized note."],
+                }),
+            ),
+            ("body", "Localized editable guidance paragraph."),
+            (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "WARNING",
+                    "texts": ["Second localized note."],
+                }),
+            ),
+        ]
+
+        out = promote_operation_guidance_stack(blocks)
+
+        self.assertEqual(
+            ["component", "component", "body", "component"],
+            [kind for kind, _payload in out],
+        )
+        self.assertEqual(blocks, out)
 
     def test_battery_pack_templates_use_neutral_art_and_editable_panel_copy(self) -> None:
         expected_rows = {

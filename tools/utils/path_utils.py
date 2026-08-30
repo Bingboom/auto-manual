@@ -40,6 +40,9 @@ class PathSegments:
     RECIPES = "recipes"
     WORD_TEMPLATE = "word_template"
     COMMON_ASSETS = "common_assets"
+    FONTS = "fonts"
+    IDML_PORTABLE_FONTS = "idml_portable"
+    DOCUMENT_FONTS = "Document fonts"
     WEB_COMPOSITES = "web_composites"
     PUBLISH = "publish"
     WEB = "web"
@@ -122,6 +125,14 @@ def word_common_assets_of(docs_dir: Path) -> Path:
         / PathSegments.TEMPLATES
         / PathSegments.WORD_TEMPLATE
         / PathSegments.COMMON_ASSETS
+    )
+
+
+def idml_portable_fonts_of(docs_dir: Path) -> Path:
+    return (
+        word_common_assets_of(docs_dir)
+        / PathSegments.FONTS
+        / PathSegments.IDML_PORTABLE_FONTS
     )
 
 

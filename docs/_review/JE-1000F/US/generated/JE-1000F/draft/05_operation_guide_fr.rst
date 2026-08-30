@@ -12,7 +12,7 @@ MARCHE/ARRÊT
    :alt: Fonction marche/arrêt.
    :width: 360px
 
-| Marche : Appuyez une fois.
+| Marche : appuyez une fois.
 | Arrêt : appuyez et maintenez pendant 3 secondes.
 | **Temps de veille par défaut :** 2 heures.
 | Le produit s'éteindra automatiquement après 2 heures d'inactivité, sans charge ni décharge.
@@ -29,9 +29,9 @@ SORTIE CA MARCHE/ARRÊT
    :width: 360px
 
 | **Marche** 
-| Appuyez une fois
+| appuyez une fois
 | **Arrêt** 
-| Appuyez une fois
+| appuyez une fois
 
 SORTIE CC 12V/USB MARCHE/ARRÊT
 ------------------------------
@@ -43,9 +43,9 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
    :width: 360px
 
 | **Marche** 
-| Appuyez une fois
+| appuyez une fois
 | **Arrêt** 
-| Appuyez une fois
+| appuyez une fois
 
 .. list-table::
    :header-rows: 0
@@ -53,8 +53,8 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 
    * - **ATTENTION**
      -
-       - **Les ports USB-C de 100W sont des ports de sortie haute puissance de type Source d'alimentation 3 (PS3) selon USB-PD.** Si l'appareil utilisateur ou l'accessoire connecté ne répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre les incendies.
-       - Ne connectez le Jackery Explorer 1000 qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
+       - **Les ports USB-C de 100 W sont des ports de sortie haute puissance de type Source d'alimentation 3 (PS3) selon USB-PD.** Si l'appareil utilisateur ou l'accessoire connecté ne répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre les incendies.
+       - Ne connectez Jackery Explorer 1000 qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
        - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W).
 
 | Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
@@ -66,15 +66,15 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
    * - **ATTENTION**
      -
        - Le port CC 12V est uniquement compatible avec les batteries de voiture 12V et ne convient pas aux systèmes 24V.
-       - Ne démarrez pas la voiture pendant que le produit charge la batterie via le port de sortie CC 12V (port allume-cigare), car cela pourrait endommager le produit.
+       - Ne démarrez pas la voiture pendant que le produit charge la batterie via le port de sortie CC 12V, car cela pourrait endommager le produit.
        - Cette fonctionnalité est destinée à un usage d'urgence uniquement et ne peut pas charger une batterie de voiture morte ou endommagée.
 
 MODE D'ÉCONOMIE D'ÉNERGIE
 -------------------------
 
-Pour éviter une consommation inutile de la batterie due à l’oubli de désactiver la sortie, le produit active par défaut le Mode d’Économie d’Énergie. Lorsque la sortie CA ou CC/USB est activée, l’icône du mode Économie d’énergie s’affiche sur l’écran LCD. Dans ce mode, si aucun appareil n’est connecté ou si la consommation de l’appareil connecté est inférieure à un certain seuil (sortie CA de 25 W ou sortie CC/USB de 2 W), la sortie correspondante s’éteint automatiquement après la durée définie. Le réglage par défaut est de 12 heures. La durée du mode Économie d’énergie peut être réglée dans l’application Jackery sur 1H, 2 H, 8 H, 12 H ou 24 H. Si l’option « Never Off » est sélectionnée, le mode Économie d’énergie sera désactivé.
+Pour éviter une consommation inutile de la batterie due à l'oubli de désactiver la sortie, le produit active par défaut le mode d'économie d'énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode d'économie d'énergie s'affiche sur l'écran LCD. Dans ce mode, si aucun appareil n'est connecté ou si la consommation de l'appareil connecté est inférieure à un certain seuil (sortie CA de 25 W ou sortie CC/USB de 2 W), la sortie correspondante s'éteint automatiquement après la durée définie. Le réglage par défaut est 12 heures. La durée du mode d'économie d'énergie peut être réglée dans l'application Jackery sur 1 H, 2 H, 8 H, 12 H ou 24 H. Si l'option "Never Off" est sélectionnée, le mode d'économie d'énergie sera désactivé.
 
-Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton POWER principal pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
+Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le bouton d’alimentation CA et sur le bouton POWER pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
 Lors de l'alimentation d'appareils à faible puissance (CA ≤ 25 W ou CC/USB ≤ 2 W), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
 
@@ -99,7 +99,7 @@ Lors de l'alimentation d'appareils à faible puissance (CA ≤ 25 W ou CC/USB �
 LAMPE LED MARCHE/ARRÊT
 ----------------------
 
-La lampe LED dispose de deux modes: mode éclairage et mode SOS. Dans n’importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
+La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière.
 
 .. raw:: manual-ir
 
@@ -117,14 +117,14 @@ La lampe LED dispose de deux modes: mode éclairage et mode SOS. Dans n’import
 Fonction de reprise de Sortie CA et CC
 ---------------------------------------
 
-La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
+Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
 
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| Conditions de reprise automatique                                     | Conditions sans reprise automatique                       |
+| Conditions de reprise automatique                                     | Conditions sans reprise automatique                        |
 +=======================================================================+============================================================+
 | Mise sous tension/redémarrage après arrêt ou redémarrage              | Sortie désactivée manuellement (bouton/App)                |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
-| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie              |
+| SOC de la batterie ≥ limite de décharge +10% après avoir atteint      | Sortie désactivée en mode économie d’énergie               |
 | la limite                                                             +------------------------------------------------------------+
 |                                                                       | Sortie désactivée suite à un déclenchement de protection   |
 +-----------------------------------------------------------------------+------------------------------------------------------------+
@@ -141,15 +141,15 @@ AFFICHAGE LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le Bouton POWER ou lorsque le produit est en charge.</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER ou lorsque le produit est en charge.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le Bouton POWER.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -158,11 +158,11 @@ AFFICHAGE LCD
         <tr>
           <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en continu (en cours de charge ou de décharge)</td>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le Bouton POWER lorsque le produit est allumé.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez deux fois sur le bouton POWER lorsque le produit est allumé.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Éteindre</td>
-          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le Bouton POWER.</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Appuyez sur le bouton POWER.</td>
         </tr>
         <tr>
           <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Arrêt automatique</td>
@@ -174,9 +174,9 @@ AFFICHAGE LCD
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
-      \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le Bouton POWER ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le Bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
-      \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le Bouton POWER lorsque le produit est allumé.}{Éteindre}{Appuyez sur le Bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après 2 heures d'inactivité.}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
+      \HBLcdModeFirstGroup{Allumer en discontinu}{Allumer}{Appuyez sur le bouton POWER ou lorsque le produit est en charge.}{Éteindre}{Appuyez sur le bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité.}
+      \HBLcdModeSecondGroup{Allumer en continu (en cours de charge ou de décharge)}{Allumer}{Appuyez deux fois sur le bouton POWER lorsque le produit est allumé.}{Éteindre}{Appuyez sur le bouton POWER.}{Arrêt automatique}{L'écran LCD s'éteint automatiquement après 2 heures d'inactivité.}
       \end{HBLcdModeTable}
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
@@ -200,6 +200,6 @@ FONCTIONNEMENT DES BOUTONS
    * - Bouton d'alimentation **CC/USB** + Bouton d'alimentation CA
      - Appuyer 1 seconde sur les deux
      - Activer/désactiver le Wi-Fi et le Bluetooth
-   * - Bouton POWER + Bouton lumière LED
+   * - Bouton POWER + Bouton d'éclairage LED
      - Appuyer 1 seconde sur les deux
-     - Activer/désactiver le mode de charge d'urgence
+     - Activer/désactiver le mode d'urgence

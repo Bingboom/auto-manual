@@ -1,3 +1,7 @@
+.. raw:: latex
+
+   \HBApplyLang{en}
+
 .. only:: latex
 
    .. raw:: latex

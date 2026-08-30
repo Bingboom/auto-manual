@@ -1,5 +1,10 @@
 # JE-3000C KR second-package build and reuse report
 
+> 2026-08-29 portability update: the v13 hashes and native-finalize results
+> below are historical. The current shared IDML contract routes native Hangul
+> to bundled `NanumGothic` under `Document fonts/`; a placed full-page cover
+> PDF is not used as proof of editable Korean font coverage.
+
 Date: 2026-08-28
 Branch: `feat/je3000c-kr-idml-data-assembly`
 Baseline: `3cfa01d5f6d76db41359a6eb088a6f601c3a11c1` (GitHub `main`)
@@ -257,6 +262,7 @@ but is environment-blocked because this isolated worktree has no
 passes, separating the missing local live-data snapshot from code behavior.
 This is recorded separately from the accepted KR target build.
 
-Residual handoff note: install `Noto Sans KR` before editing if exact intended
-Korean typography is required. The delivered PDF is accepted with the recorded
-`Arial Unicode MS` fallback and zero missing-glyph findings.
+Historical v13 handoff note: that package required a host substitution because
+it did not carry `Noto Sans KR`. It is superseded by the 2026-08-29 portable
+font contract; current KR acceptance requires bundled `NanumGothic` and zero
+native missing-font/missing-glyph findings, not the old Arial fallback.

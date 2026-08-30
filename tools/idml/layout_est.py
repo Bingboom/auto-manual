@@ -85,6 +85,7 @@ def template_symbol_split(
     icons: list[dict],
     *,
     dense: bool = False,
+    flatten_continuations: bool = False,
 ) -> tuple[list[dict], list[dict], list[dict], list[dict]]:
     """Split reference symbol tables into current- and continuation-page rows.
 
@@ -99,6 +100,13 @@ def template_symbol_split(
         for row in icons
     }
     if icons and source_columns <= {"left", "right"} and "" not in source_columns:
+        if flatten_continuations:
+            return (
+                [row for row in icons if str(row.get("column")).casefold() == "left"],
+                [row for row in icons if str(row.get("column")).casefold() == "right"],
+                [],
+                [],
+            )
         left = [
             row for row in icons
             if str(row.get("column")).casefold() == "left"

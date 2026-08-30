@@ -136,14 +136,37 @@
         return fitted;
     }
 
-    function substituteMissingFont(doc, sourceName, targetName) {
+    function substituteMissingFont(doc, sourceName, targetNames) {
         var sourceFont = doc.fonts.itemByName(sourceName);
         if (!sourceFont.isValid || sourceFont.status === FontStatus.INSTALLED) {
             return null;
         }
-        var targetFont = app.fonts.itemByName(targetName);
-        if (!targetFont.isValid || targetFont.status !== FontStatus.INSTALLED) {
-            throw Error("required host fallback font is not installed: " + targetName);
+        // The source guard above is weaker than "this mapping is still
+        // needed": InDesign keeps a substituted source in doc.fonts as a
+        // non-installed entry even after every range moved to the fallback
+        // (see the preflight comment at the font_usage_audit loop). Without
+        // this gate a second mapping for the same source re-enters and can
+        // demand a target face the document no longer needs. Same predicate
+        // as the preflight, which is fail-closed on a failed audit, so a skip
+        // here can never hide a gate failure.
+        if (!fontHasTextUsage(doc, sourceFont)) {
+            return null;
+        }
+        var targetFont = null;
+        var targetName = "";
+        for (var ti = 0; ti < targetNames.length; ti += 1) {
+            var candidate = app.fonts.itemByName(targetNames[ti]);
+            if (candidate.isValid && candidate.status === FontStatus.INSTALLED) {
+                targetFont = candidate;
+                targetName = targetNames[ti];
+                break;
+            }
+        }
+        if (targetFont === null) {
+            throw Error(
+                "no installed host fallback font for " + sourceName
+                + "; tried: " + targetNames.join(", ")
+            );
         }
 
         var changed = [];
@@ -182,12 +205,19 @@
 
     function applyHostFontSubstitutions(doc) {
         var substitutions = [];
+        // One row per source font, targets in preference order: the first
+        // INSTALLED candidate wins. Repeating a source across rows instead
+        // does not cascade — changeText moves every range on the source in
+        // one pass, so the later rows only re-enter and can throw for a face
+        // the document no longer needs.
         var mappings = [
-            ["Segoe UI Symbol\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Hiragino Kaku Gothic Pro\tW3"],
-            ["Yu Gothic\tRegular", "Apple Symbols\tRegular"],
-            ["Yu Gothic\tRegular", "Arial Unicode MS\tRegular"],
-            ["Noto Sans KR\tRegular", "Arial Unicode MS\tRegular"]
+            ["Segoe UI Symbol\tRegular", ["Apple Symbols\tRegular"]],
+            ["Yu Gothic\tRegular", [
+                "Hiragino Kaku Gothic Pro\tW3",
+                "Apple Symbols\tRegular",
+                "Arial Unicode MS\tRegular"
+            ]],
+            ["Noto Sans KR\tRegular", ["Arial Unicode MS\tRegular"]]
         ];
         for (var mi = 0; mi < mappings.length; mi += 1) {
             var result = substituteMissingFont(doc, mappings[mi][0], mappings[mi][1]);
@@ -393,9 +423,77 @@
         return oversets;
     }
 
+    function collectPostReopenState(doc) {
+        var state = {
+            completed: true,
+            page_count: doc.pages.length,
+            story_count: doc.stories.length,
+            overset_stories: [],
+            overset_table_cells: [],
+            missing_fonts: [],
+            bad_links: [],
+            font_usage_audit: []
+        };
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            if (!story.overflows) { continue; }
+            var containers = [];
+            for (var tci = 0; tci < story.textContainers.length; tci += 1) {
+                var container = story.textContainers[tci];
+                var containerPage = container.parentPage;
+                containers.push({
+                    page: containerPage && containerPage.isValid ?
+                        containerPage.documentOffset + 1 : 0,
+                    label: itemLabel(container)
+                });
+            }
+            state.overset_stories.push({
+                index: si,
+                id: String(story.id),
+                label: itemLabel(story),
+                preview: String(story.contents).replace(/[\r\n]+/g, " ").slice(0, 120),
+                text_containers: containers
+            });
+        }
+        state.overset_table_cells = collectOversetTableCells(doc);
+
+        var fonts = doc.fonts.everyItem().getElements();
+        for (var fi = 0; fi < fonts.length; fi += 1) {
+            var font = fonts[fi];
+            if (font.status === FontStatus.INSTALLED) { continue; }
+            var hasTextUsage = fontHasTextUsage(doc, font);
+            var finding = {
+                name: String(font.name),
+                status: String(font.status),
+                live_text_usage: hasTextUsage,
+                samples: fontUsageSamples(doc, font)
+            };
+            state.font_usage_audit.push(finding);
+            // The save/reopen gate is deliberately stricter than import-time
+            // repair: any NOT_AVAILABLE resource after reopen means the INDD
+            // is not portable, even when InDesign cannot find a live range.
+            state.missing_fonts.push({
+                name: finding.name,
+                status: finding.status,
+                live_text_usage: hasTextUsage
+            });
+        }
+
+        for (var li = 0; li < doc.links.length; li += 1) {
+            var link = doc.links[li];
+            if (link.status === LinkStatus.NORMAL) { continue; }
+            state.bad_links.push({
+                name: String(link.name),
+                status: String(link.status),
+                path: String(link.filePath || "")
+            });
+        }
+        return state;
+    }
+
     var job = jsonParse(readText(HB_JOB_PATH));
     var report = {
-        schema_version: "indesign-preflight/v1",
+        schema_version: "indesign-preflight/v2",
         input_idml: job.input_idml,
         output_indd: job.output_indd,
         output_pdf: job.output_pdf,
@@ -415,6 +513,16 @@
         carrier_frame_errors: [],
         font_substitutions: [],
         font_usage_audit: [],
+        post_reopen: {
+            completed: false,
+            page_count: 0,
+            story_count: 0,
+            overset_stories: [],
+            overset_table_cells: [],
+            missing_fonts: [],
+            bad_links: [],
+            font_usage_audit: []
+        },
         pdf_export: {
             requested_preset: String(job.pdf_preset || ""),
             applied_preset: null,
@@ -537,6 +645,12 @@
 
         report.stage = "save_indd";
         doc.save(File(job.output_indd));
+        doc.close(SaveOptions.NO);
+        doc = null;
+        report.stage = "reopen_indd";
+        doc = app.open(File(job.output_indd), false);
+        doc.recompose();
+        report.post_reopen = collectPostReopenState(doc);
         report.stage = "validate_pdf_preset";
         var pdfPreset = app.pdfExportPresets.itemByName(job.pdf_preset);
         if (!pdfPreset.isValid) {
@@ -551,8 +665,15 @@
         report.success = report.overset_stories.length === 0 &&
             report.overset_table_cells.length === 0 &&
             report.missing_fonts.length === 0 && report.bad_links.length === 0 &&
-            report.carrier_frame_errors.length === 0;
-        doc.close(SaveOptions.YES);
+            report.carrier_frame_errors.length === 0 &&
+            report.post_reopen.completed &&
+            report.post_reopen.page_count === report.page_count &&
+            report.post_reopen.story_count === report.story_count &&
+            report.post_reopen.overset_stories.length === 0 &&
+            report.post_reopen.overset_table_cells.length === 0 &&
+            report.post_reopen.missing_fonts.length === 0 &&
+            report.post_reopen.bad_links.length === 0;
+        doc.close(SaveOptions.NO);
         doc = null;
     } catch (error) {
         report.error = String(error) + (error.line ? " at line " + error.line : "");
