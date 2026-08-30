@@ -136,7 +136,12 @@ Axis ownership, corrected against the HTE152 and HTE153 factorials:
 - **`region_profile`** (new; an overlay key space, **not** a third anchor key)
   owns the compliance fragment mounting row, safety-module regional variant,
   unit system, legal-entity/contact module, brand display name, language-set
-  reference, TOC on/off, back-cover form, and cover module.
+  reference, TOC on/off, terminal/back-cover form, and cover module. A
+  profile's `terminal_slots` is a selection from the blueprint-owned `back`
+  superset: it may choose a QR `back_cover`, a
+  `regulatory_compliance` carrier, both in blueprint order, or an explicitly
+  empty set. It does not create or reorder topics, and a selected carrier with
+  no family default must be supplied by the region's `slot_overrides`.
   Keeping region out of the anchor key is deliberate: promoting it would split
   the 27 `MAIN@INTL` manuals into seven cells — precisely the "8+ phantom
   skeletons" §4.2 already rejected. The mechanism is §6.3's existing
@@ -638,6 +643,12 @@ owns it). No second rendering stack. No relaxation of live-table write gates.
 
 ## 10. Revision log
 
+- 2026-08-30 (post-S6 R1b prerequisite): `BP@INTL` gained the corpus-proven
+  `regulatory_compliance` terminal topic and the resolver gained a generic
+  `region_profile.terminal_slots` selector. US explicitly selects only
+  `back_cover`, so `manual_bp-us.yaml` remains byte-identical; a synthetic
+  six-language profile proves one terminal regulatory carrier after all body
+  language blocks, with no target/model branch.
 - 2026-08-20: initial draft from the six-perspective repo assessment.
 - 2026-08-20 (Phase B intake round 2): three HTE153 manuals (AU/KR/BR) and the
   corrected HTE152 JP manual folded in. `MAIN@INTL` 25 (incl. the MX alias) →

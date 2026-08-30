@@ -82,6 +82,12 @@ slots:
     type: rst_include
     # Preserve the shipped BP warranty copy without host-only section carriers.
     file: templates/page_bp/{lang}/11_warranty.rst
+  regulatory_compliance:
+    type: rst_include
+    # The legal carrier is region-owned and must be supplied by the selecting
+    # region profile. Keeping the family mapping path-free prevents one
+    # market's declaration from becoming the global BP fallback.
+    file: null
   back_cover:
     type: rst_include
     file: templates/page_bp/{primary_lang}/99_back_cover.rst

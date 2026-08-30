@@ -5,6 +5,7 @@ from pathlib import Path
 
 from tools.config_pages import parse_config_pages_or_raise
 from tools.skeleton_resolve import (
+    SkeletonResolveError,
     build_header,
     emit_manifest_yaml,
     load_blueprint,
@@ -89,6 +90,43 @@ class SkeletonResolveTests(unittest.TestCase):
             positions = [expanded.index(s) for s in body_slots]
             self.assertEqual(positions, sorted(positions))
 
+    def test_region_selects_one_terminal_slot_after_all_language_blocks(self) -> None:
+        blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
+        slot_templates = load_slot_templates(SKELETON_DIR / "slot_templates.yaml", blueprint)
+        profile = load_region_profile(REGION_PROFILE, blueprint)
+        profile = {
+            **profile,
+            "language_set": ["en", "fr", "es", "de", "it", "uk"],
+            "terminal_slots": ["regulatory_compliance"],
+            "slot_overrides": {
+                **profile["slot_overrides"],
+                "regulatory_compliance": {
+                    "file": "templates/page_bp/eu/99_regulatory_compliance.rst"
+                },
+            },
+        }
+
+        plan = resolve_plan(blueprint, slot_templates, profile, manifest_id="synthetic_bp_eu")
+
+        slot_ids = [entry["slot_id"] for entry in plan["pages"]]
+        self.assertEqual("regulatory_compliance", slot_ids[-1])
+        self.assertEqual(1, slot_ids.count("regulatory_compliance"))
+        self.assertNotIn("back_cover", slot_ids)
+        for lang in profile["language_set"]:
+            self.assertLess(slot_ids.index(f"warranty_{lang}"), len(slot_ids) - 1)
+
+    def test_region_can_select_an_explicitly_empty_terminal_set(self) -> None:
+        blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
+        slot_templates = load_slot_templates(SKELETON_DIR / "slot_templates.yaml", blueprint)
+        profile = {**load_region_profile(REGION_PROFILE, blueprint), "terminal_slots": []}
+
+        plan = resolve_plan(blueprint, slot_templates, profile, manifest_id="synthetic_no_tail")
+
+        back_ids = {
+            slot["slot_id"] for slot in blueprint["slots"] if slot["block"] == "back"
+        }
+        self.assertTrue(back_ids.isdisjoint(entry["slot_id"] for entry in plan["pages"]))
+
 
 class ResolverGuardTests(unittest.TestCase):
     def test_boolean_like_language_survives_emit_round_trip(self) -> None:
@@ -148,6 +186,26 @@ class ResolverGuardTests(unittest.TestCase):
             path = Path(fh.name)
         with self.assertRaises(SkeletonResolveError):
             load_blueprint(path)
+
+    def test_terminal_selection_rejects_body_and_unknown_slots(self) -> None:
+        import tempfile
+
+        blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
+        for selected in ("warranty", "not_a_slot"):
+            with self.subTest(selected=selected):
+                with tempfile.NamedTemporaryFile("w", suffix=".yaml", delete=False) as fh:
+                    fh.write(
+                        "schema_version: skeleton-region-profile/v1\n"
+                        "region: synthetic\n"
+                        "language_set: [en]\n"
+                        "primary_lang: en\n"
+                        f"terminal_slots: [{selected}]\n"
+                    )
+                    path = Path(fh.name)
+                with self.assertRaisesRegex(
+                    SkeletonResolveError, "non-back or unknown slots"
+                ):
+                    load_region_profile(path, blueprint)
 
 
 if __name__ == "__main__":
