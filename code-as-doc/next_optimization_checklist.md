@@ -2266,9 +2266,12 @@ every item owned:
    same-record readback. Every schema change remains separately gated. R0 is
    read-only.
 5. Each item below is one task/branch unless its own slicing line says
-   otherwise. The S1–S6 MA-019 merge authorization expired at slice acceptance;
-   R0–R6 PRs use normal operator review unless a new live authorization covers
-   them.
+   otherwise. The S1–S6 MA-019 merge authorization expired at slice acceptance.
+   MA-023 now covers #976 and the later PRs that explicitly deliver R1b–R6:
+   follow the dependency order below, require every check green, no
+   changes-requested review and no unresolved review thread, and never use the
+   authorization to bypass a target/source/legal/asset or separate approval
+   gate.
 
 - [x] R0: Recount current coverage and re-baseline the rollout
   - Status: `done` (2026-08-30). Evidence PR
@@ -2330,8 +2333,25 @@ every item owned:
     deleted without a separate operator gate.
 
 - [ ] R1: Complete the shared `BP@INTL` reuse contract before target intake
-  - Status: `pending`; the #975 gate is satisfied. R1a starts from latest
-    `main` before any EU target intake.
+  - Status: `in_progress`; R1a is done and R1b has started from the latest
+    `main`.
+  - [x] R1a semantic slot-diff/report
+    - Status: `done` (completed 2026-08-30; evidence PR
+      [#976](https://github.com/Bingboom/auto-manual/pull/976) passed 17/17
+      checks with no changes-requested review or unresolved review thread and
+      squash-merged as `bac8c980`).
+    - Evidence:
+      [`reviews/bp_intl_eu_semantic_slot_diff_2026-08.md`](reviews/bp_intl_eu_semantic_slot_diff_2026-08.md)
+      and its 54-row physical-page ledger
+      [`reviews/bp_intl_eu_semantic_slot_diff_2026-08.csv`](reviews/bp_intl_eu_semantic_slot_diff_2026-08.csv).
+      EU and US share the same 12 effective body slots in the same semantic
+      order; EU adds a once-per-book `regulatory_compliance` tail and omits the
+      US QR-only `back_cover`, so this remains a shared-carrier problem rather
+      than a new skeleton or target branch.
+  - [ ] R1b shared carrier and language readiness
+    - Status: `in_progress`; gate: #976 merged. Any resolver change must land as
+      a target-neutral prerequisite and keep the frozen JBP-US resolved
+      manifest byte-identical.
   - Frozen S6 identities at checklist registration:
     - `blueprint.yaml` SHA-256
       `5203be26a8846ceac8bf59ca706d7879954ff7800bd016500badb0d716a390f8`
