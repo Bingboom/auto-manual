@@ -2271,16 +2271,18 @@ every item owned:
    them.
 
 - [ ] R0: Recount current coverage and re-baseline the rollout
-  - Status: `in_progress` (started 2026-08-30 on
-    `docs/milestone-m-r0-coverage-rebaseline`; evidence Draft PR
-    [#975](https://github.com/Bingboom/auto-manual/pull/975)).
+  - Status: `ready_for_review` (started 2026-08-30 on
+    `docs/milestone-m-r0-coverage-rebaseline`; evidence PR
+    [#975](https://github.com/Bingboom/auto-manual/pull/975)). Mark done only
+    after #975 lands on `main`.
   - Measured strict baseline: structural **55/58**, current pipeline PASS
     **4/58**, complete four-renderer plus native/package delivery **2/58**.
-    The 58 rows and 22 SKU groups reconcile exactly once; 22 manuals have an
-    exact live identity and 36 remain `needs_review`.
+    The 58 rows and 22 SKU groups reconcile exactly once; 23 manuals have an
+    exact live identity and 35 remain `needs_review`.
   - Scope: read-only reconciliation of all 58 corpus manuals / 22 SKUs / five
-    skeleton cells against current configs, manifests, live source-table target
-    identities, asset readiness and actual build evidence.
+    skeleton cells, followed by one operator-approved additive Document_key
+    master-data create. No specification, placeholder, localized-copy or asset
+    rows were written.
   - Define three non-interchangeable metrics in the report:
     - `structurally_reconstructable`: corpus chapter tree reconstructs from
       skeleton + modules + product/region differences
@@ -2294,11 +2296,11 @@ every item owned:
       skeleton cell, exact `Document_Key`, the three metric states, evidence
       link and blocker; unknown live identity is `needs_review`, never guessed
     - query the live build/source tables before classifying a target missing;
-      no writes in this stage
-    - confirm the EU slice identity. Current corpus candidate is HTP017
+      after the explicit operator gate, create only the missing target master
+      identity and perform same-record readback; no source-content rows
+    - confirm the EU slice identity. The confirmed target is HTP017
       `JBP-2000B`, 54 pages, `en/fr/es/de/it/uk`; `uk` is Ukrainian, not United
-      Kingdom market evidence, and `JBP-2000B_EU` is only a provisional key
-      until live readback confirms it
+      Kingdom market evidence; live readback confirms `JBP-2000B_EU`
     - publish
       `code-as-doc/reviews/skeleton_library_post_s6_coverage_2026-08.md` and
       replace the stale 15/58 headline with measured current values
@@ -2308,25 +2310,27 @@ every item owned:
       priority/blocker
     - the next target, exact source authority, editable/PDF assets, languages,
       warranty and EU/UK legal owner are named
-  - Current blockers from #975:
-    - no live EU `Document_Key`, specification, placeholder or build row
-    - the 54-page PDF is Illustrator-editable and names material
+  - Authority rulings and live evidence from #975:
+    - `JBP-2000B_EU` exists exactly once as `recvtNbSrFZXfL`; same-record
+      readback confirms `项目代码=HTP017`, the JBP-2000B model link and EU region
+      link; specification, placeholder and build rows remain intentionally zero
+    - the operator approved the 54-page Illustrator-editable PDF, material
       `16-0102-000400`; the committed registry already has 7 finished
       JBP-2000B/ALL neutral assets plus 14 US-scoped assets, but no live JBP
-      master or EU enrollment, so source approval and EU delta completeness
-      remain open
+      master or EU enrollment, so R2 owns enrollment and delta completeness
     - all six language blocks show 3-year standard plus 2-year extended
       warranty, but the Ukrainian warranty page contains a German `Umtausch`
       heading and exchange paragraph; HTE154/HTE152 shipped EU books provide a
-      visually verified Ukrainian replacement candidate (`Обмін` plus the
-      matching exchange paragraph), pending source/operator approval
+      visually verified Ukrainian replacement (`Обмін` plus the matching
+      exchange paragraph), approved for R2 intake
     - the final page provides an EU RED declaration and Shenzhen manufacturer
-      only; no UK responsible person or UKCA statement was found, so UK market
-      scope remains unproven
-  - Rollback: docs-only revert; no live or generated state changes.
+      only; the operator ruled the target EU six-language only, with no UK
+      market claim or UK legal carrier
+  - Rollback: docs revert independently; the additive master-data row is never
+    deleted without a separate operator gate.
 
 - [ ] R1: Complete the shared `BP@INTL` reuse contract before target intake
-  - Status: `pending`; gate: R0 done and EU target/source authority confirmed.
+  - Status: `pending`; gate: #975 merged, then R1a starts from latest `main`.
   - Frozen S6 identities at checklist registration:
     - `blueprint.yaml` SHA-256
       `5203be26a8846ceac8bf59ca706d7879954ff7800bd016500badb0d716a390f8`
@@ -2362,10 +2366,10 @@ every item owned:
 - [ ] R2: Add the second target on the same `BP@INTL` blueprint — EU six-language
   - Status: `pending`; gate: R1 done, live identity confirmed, source/legal and
     asset intake approved.
-  - Provisional target contract: HTP017 JBP-2000B EU, 54 reference pages,
-    `en/fr/es/de/it/uk`; exact `Document_Key` comes from R0 live readback. The
-    source filename contains `EUUK`, but UK market scope must not be asserted
-    unless the missing legal authority is supplied; `uk` here means Ukrainian.
+  - Confirmed target contract: `JBP-2000B_EU`, HTP017 JBP-2000B EU, 54 reference
+    pages, `en/fr/es/de/it/uk`. The source filename contains `EUUK`, but the
+    operator ruled this target EU-only; `uk` here means Ukrainian and no UK
+    market claim belongs in the target.
   - Allowed target surfaces:
     - `region_profiles/eu.yaml`, family config/target registration and resolved
       manifest generated from `bp-intl`
