@@ -2226,7 +2226,7 @@ generate-then-verify; YAML stays the source of truth).
 
 ### Post-S6 scale-proof checklist R0–R6
 
-Status: `pending` — registered 2026-08-30 from the operator sequence:
+Status: `in_progress` — registered 2026-08-30 from the operator sequence:
 recount → second `BP@INTL` target → separate `BP@JP` cell → legacy MAIN
 ordinal/language migration → `page_registry` authority.
 
@@ -2271,7 +2271,8 @@ every item owned:
    them.
 
 - [ ] R0: Recount current coverage and re-baseline the rollout
-  - Status: `pending`.
+  - Status: `in_progress` (started 2026-08-30 on
+    `docs/milestone-m-r0-coverage-rebaseline`).
   - Scope: read-only reconciliation of all 58 corpus manuals / 22 SKUs / five
     skeleton cells against current configs, manifests, live source-table target
     identities, asset readiness and actual build evidence.
