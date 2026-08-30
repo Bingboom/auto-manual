@@ -143,10 +143,17 @@ Creator: Adobe Illustrator 30.4 (Windows)
 ```
 
 Every inspected page carries Illustrator `PieceInfo`, so the PDF is an
-Illustrator-editable source carrier. No separate `.ai` file was found beside
-it, and the live asset source/definition/export tables contain no JBP master.
-R2 must not claim asset-registry readiness until the PDF source is approved and
-enrolled through the normal asset gate.
+Illustrator-editable source carrier. A full indexed filename search under the
+local Downloads, Desktop and Documents roots found no separate `.ai` file.
+
+The committed `data/asset_registry.csv` is not empty for this model: it contains
+**21 finished JBP-2000B entries**, split into **7 `ALL`-region neutral assets**
+and **14 US-scoped assets**. R2 may reuse the seven neutral assets under their
+existing scope, but it must not relabel US covers, language composites,
+connection diagrams or QR assets as EU. The live asset
+source/definition/export tables contain no JBP master or EU enrollment. The
+remaining gate is therefore EU source enrollment plus a 54-page delta-asset
+completeness check, not a claim that JBP has no reusable assets.
 
 The six printed language blocks are `en`, `fr`, `es`, `de`, `it`, `uk` in that
 order. Here `uk` is the ISO language code for **Ukrainian**, not evidence of a
@@ -229,8 +236,9 @@ yet satisfied. Required operator inputs are:
    a separately gated row creation followed by same-record readback;
 2. confirm whether the target is EU-only or truly EU+UK market scope and supply
    the missing UK legal owner/statement if UK is in scope;
-3. approve the Illustrator-editable PDF as the asset/layout source authority
-   (or provide the separate `.ai` master);
+3. approve the Illustrator-editable PDF as the EU asset/layout source authority
+   (or provide the separate `.ai` master), then enroll it and prove which of the
+   existing seven neutral assets plus new EU delta assets cover the 54 pages;
 4. provide or approve the Ukrainian warranty correction before six-language
    source intake.
 
