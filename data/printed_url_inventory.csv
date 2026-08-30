@@ -1,8 +1,16 @@
 target,kind,occurrences,sources
+160102000279,qr,1,JBP-2000B US 冻结母版 p28 二维码；解码为文档物料号 16-0102-000279，不是网址，因此不参与存活巡检。recipe 依敏感资产策略保持 quarantine，构建使用经本地 12x 验收和哈希锁定的导出物。
+160102000341,qr,1,JE-3000C KR 封底二维码；解码为文档物料号 16-0102-000341，不是网址，因此不参与存活巡检。解码方法与对照见 data/asset_registry.csv 同键行的备注：PyMuPDF 四个缩放级独立复现，解码器先用两个已登记载荷做对照验证。物料号是否为 JE-3000C KR 的正确文档号，待操作者确认。
 160102000404,qr,1,AI 母版 p59 二维码；解码为文档物料号 16-0102-000404，不是网址，因此不参与存活巡检。冻结参考 PDF p58 的旧候选解码为 160102000161，已隔离。
 hello.aus@jackery.com,email,1,configs/config.au-en.yaml
 hello.eu@jackery.com,email,2,configs/config-bases/eu-single-language-base.yaml;configs/config.eu.yaml
 hello.kr@jackery.com,email,1,configs/config.kr.yaml
-hello@jackery.com,email,4,configs/config-bases/us-single-language-base.yaml;configs/config.us.yaml;docs/renderers/contracts/reference_layout/je1000f_us_v2_20260605.json;(+1 more)
+hello@jackery.com,email,6,configs/config-bases/us-single-language-base.yaml;configs/config.bp-us.yaml;configs/config.us.yaml;(+3 more)
+http://scripts.sil.org/OFL,url,2,docs/templates/word_template/common_assets/fonts/idml_portable/OFL-NanumGothic.txt;docs/templates/word_template/common_assets/fonts/idml_portable/OFL-Noto.txt
+http://www.nhncorp.com,url,1,docs/templates/word_template/common_assets/fonts/idml_portable/OFL-NanumGothic.txt
+https://github.com/google/fonts/blob/main/ofl/nanumgothic/NanumGothic-Regular.ttf,url,1,docs/templates/word_template/common_assets/fonts/idml_portable/manifest.json
+https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf,url,1,docs/templates/word_template/common_assets/fonts/idml_portable/manifest.json
+https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols/NotoSansSymbols-Regular.ttf,url,1,docs/templates/word_template/common_assets/fonts/idml_portable/manifest.json
+https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols2/NotoSansSymbols2-Regular.ttf,url,1,docs/templates/word_template/common_assets/fonts/idml_portable/manifest.json
 https://www.jackery.jp,url,1,docs/templates/page_jp/11_warranty.rst
 jackery.jp@jackery.com,email,3,docs/templates/page_jp/00_preface.rst;docs/templates/page_jp/11_warranty.rst;docs/templates/page_jp/cover_jp.rst
