@@ -1610,14 +1610,15 @@ This milestone is the **superset execution** of Workstream M (`page_registry`
 becomes the only composition authority) in
 [`optimization_project.md`](optimization_project.md).
 
-Milestone status: `in_progress` — S1–S5 are done: S1 #936 (`1823cc4e`),
+Milestone status: `in_progress` — the S1–S6 vertical slice is done: S1 #936 (`1823cc4e`),
 S2 #937 (`eeb8eaa8`), S3 #938 (`71f7c5ec`), S4 #940 (`5e1d0c26`) and
 S5 #939 (`0432e5b7`). Both S4 source-table batches have landed, and #944
-(`baf8b712`) restored the JBP target from CI `SKIP` to `PASS`. S6 is now
-`in_progress`: the shared-component target assembly, pipeline-side
-reconciliation, native InDesign preflight, 28-page visual comparison and
-self-contained delivery-pack checks all have recorded evidence; the formal
-four-class difference counts and operator rulings remain open.
+(`baf8b712`) restored the JBP target from CI `SKIP` to `PASS`. S6 closed
+2026-08-30 after the shared-component target assembly, pipeline-side
+reconciliation, native InDesign preflight, 28-page visual comparison,
+self-contained delivery-pack checks and operator ruling were all recorded.
+The milestone remains `in_progress` because the post-slice rollout and the
+remaining milestone exit criteria below are still open.
 Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.
@@ -2161,11 +2162,12 @@ generate-then-verify; YAML stays the source of truth).
     thread — no prose claims of "works". `tools/renderer_acceptance.py --json`
     emits it; exit 0 means every selected criterion passed.
 
-- [ ] S6: InDesign finishing + page-by-page reconciliation (operator round)
-  - Status: `in_progress` — S5 is green and its S4 data prerequisite is
-    satisfied. #955 (`ad14f261`) landed the JBP shared-component candidate
-    assembly, #959 (`646050aa`) recorded the pipeline-side reconciliation,
-    and #971 (`c1d75d62`) closed the portable-font final-assembly defects.
+- [x] S6: InDesign finishing + page-by-page reconciliation (operator round)
+  - Status: `done` — S5 is green and its S4 data prerequisite is satisfied.
+    #955 (`ad14f261`) landed the JBP shared-component candidate assembly,
+    #959 (`646050aa`) recorded the pipeline-side reconciliation, and #971
+    (`c1d75d62`) closed the portable-font final-assembly defects. Operator
+    closeout was recorded 2026-08-30.
   - Gate: S5 green — satisfied.
   - Work: pipeline delivers the handoff zip (existing mechanism: relative
     Links, fonts opt-in); operator performs one real InDesign finishing pass;
@@ -2189,19 +2191,24 @@ generate-then-verify; YAML stays the source of truth).
     - the same validation record documents a 28-page source/native side-by-side
       review and a clean-room ZIP unpack/reopen pass; the unpacked package
       retained 41/41 links and reproduced all 28 rendered pages
-  - Remaining before `done`:
-    - consolidate every observed visual difference into the four required
-      classes and record an explicit count for each class
-    - record the operator's final ruling for every `pipeline-gap` and
-      `accepted-degradation`
-    - keep the target assembly `candidate` / `production_eligible=false` until
-      the separate promotion gate is approved; this evidence does not make it
-      an approved reference-layout
-  - Slice exit: report delivered and operator rules on each pipeline-gap.
+  - Final reconciliation counts use distinct root-cause families, not repeated
+    language/page instances: `pipeline-gap=0`, `finishing-layer=3` observed / 0
+    open, `data-gap=0`, `accepted-degradation=2` observed / 0 open. The two
+    accepted differences are the current source authority's `EN` versus the
+    historical reference's `US` label and the current source-authority TOC
+    order; neither is a missing-data or layout-pipeline defect.
+  - Operator ruling (2026-08-30): close S6 with zero pipeline gaps and accept
+    those two source-authority differences for this slice. This ruling does
+    **not** approve reference-layout promotion: the target assembly remains
+    `candidate` / `production_eligible=false` until the separate promotion
+    gate is approved.
+  - Slice exit: satisfied — report delivered, counts recorded, and operator
+    ruling recorded.
 
-### Rollout backlog (deferred until S6 acceptance; full audited text in commit 80321368)
+### Post-S6 rollout backlog (full audited text in commit 80321368)
 
-Every item keeps M-pre. Re-scope each against the S6 report before starting.
+S6 is accepted. Every item below remains deferred until it is re-scoped against
+the final S6 report and its own M-pre gate is satisfied.
 
 - [ ] M0 ordinal/naming decoupling for **existing** manifests — `deferred`;
   the slice proves slot_id naming on new manifests only; migrating the pNN_
@@ -2232,7 +2239,7 @@ Every item keeps M-pre. Re-scope each against the S6 report before starting.
 
 ### Milestone M exit criteria (unchanged targets, slice-first path)
 
-- [ ] slice S1–S6 accepted, reconciliation report ruled on
+- [x] slice S1–S6 accepted, reconciliation report ruled on
 - [ ] rollout re-scoped from the report and executed
 - [ ] all five skeleton cells build at least one target end to end
 - [ ] corpus reconstruction 58/58 (3 outliers registered `legacy`)
