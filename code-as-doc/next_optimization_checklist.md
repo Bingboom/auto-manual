@@ -1634,7 +1634,7 @@ self-contained delivery-pack checks and operator ruling were all recorded.
 The milestone remains `in_progress` because the post-slice rollout and the
 remaining milestone exit criteria below are still open. The superseded M0–M9
 backlog has now been re-cut into the executable R0–R6 scale-proof checklist
-below; none of R0–R6 has started.
+below. R0 completed through PR #975; R1a is the next executable item.
 Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.
@@ -2270,11 +2270,11 @@ every item owned:
    R0–R6 PRs use normal operator review unless a new live authorization covers
    them.
 
-- [ ] R0: Recount current coverage and re-baseline the rollout
-  - Status: `ready_for_review` (started 2026-08-30 on
-    `docs/milestone-m-r0-coverage-rebaseline`; evidence PR
-    [#975](https://github.com/Bingboom/auto-manual/pull/975)). Mark done only
-    after #975 lands on `main`.
+- [x] R0: Recount current coverage and re-baseline the rollout
+  - Status: `done` (2026-08-30). Evidence PR
+    [#975](https://github.com/Bingboom/auto-manual/pull/975) passed 17/17 checks,
+    had no changes-requested review or unresolved thread, and squash-merged to
+    `main` as `0ed1871d`.
   - Measured strict baseline: structural **55/58**, current pipeline PASS
     **4/58**, complete four-renderer plus native/package delivery **2/58**.
     The 58 rows and 22 SKU groups reconcile exactly once; 23 manuals have an
@@ -2330,7 +2330,8 @@ every item owned:
     deleted without a separate operator gate.
 
 - [ ] R1: Complete the shared `BP@INTL` reuse contract before target intake
-  - Status: `pending`; gate: #975 merged, then R1a starts from latest `main`.
+  - Status: `pending`; the #975 gate is satisfied. R1a starts from latest
+    `main` before any EU target intake.
   - Frozen S6 identities at checklist registration:
     - `blueprint.yaml` SHA-256
       `5203be26a8846ceac8bf59ca706d7879954ff7800bd016500badb0d716a390f8`
