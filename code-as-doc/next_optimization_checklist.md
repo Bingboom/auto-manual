@@ -2311,7 +2311,10 @@ every item owned:
   - Current blockers from #975:
     - no live EU `Document_Key`, specification, placeholder or build row
     - the 54-page PDF is Illustrator-editable and names material
-      `16-0102-000400`, but asset-source approval/registry enrollment is absent
+      `16-0102-000400`; the committed registry already has 7 finished
+      JBP-2000B/ALL neutral assets plus 14 US-scoped assets, but no live JBP
+      master or EU enrollment, so source approval and EU delta completeness
+      remain open
     - all six language blocks show 3-year standard plus 2-year extended
       warranty, but the Ukrainian warranty page contains a German `Umtausch`
       heading and exchange paragraph
