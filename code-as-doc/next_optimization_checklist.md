@@ -2317,7 +2317,9 @@ every item owned:
       remain open
     - all six language blocks show 3-year standard plus 2-year extended
       warranty, but the Ukrainian warranty page contains a German `Umtausch`
-      heading and exchange paragraph
+      heading and exchange paragraph; HTE154/HTE152 shipped EU books provide a
+      visually verified Ukrainian replacement candidate (`Обмін` plus the
+      matching exchange paragraph), pending source/operator approval
     - the final page provides an EU RED declaration and Shenzhen manufacturer
       only; no UK responsible person or UKCA statement was found, so UK market
       scope remains unproven
