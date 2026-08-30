@@ -1618,7 +1618,9 @@ S5 #939 (`0432e5b7`). Both S4 source-table batches have landed, and #944
 reconciliation, native InDesign preflight, 28-page visual comparison,
 self-contained delivery-pack checks and operator ruling were all recorded.
 The milestone remains `in_progress` because the post-slice rollout and the
-remaining milestone exit criteria below are still open.
+remaining milestone exit criteria below are still open. The superseded M0–M9
+backlog has now been re-cut into the executable R0–R6 scale-proof checklist
+below; none of R0–R6 has started.
 Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.
@@ -1630,10 +1632,13 @@ its own gate.
 > Where a condition is *not* verifiable today, it now says so instead of
 > implying a check exists.
 
-**Baseline being changed** (measured): corpus 58 independent manuals,
-**15 buildable (25.9%)**, SKU coverage 5/22, battery-pack category 0%, JP the
-largest queue at 18 manuals with 1 buildable; reconstruction 47/58 pure
-deletion (81.0%) / 55/58 with ≤1 overlay (94.8%).
+**Pre-S6 baseline — not a current coverage claim** (measured 2026-08-20):
+corpus 58 independent manuals, **15 buildable (25.9%)**, SKU coverage 5/22,
+battery-pack category 0%, JP the largest queue at 18 manuals with 1 buildable;
+reconstruction 47/58 pure deletion (81.0%) / 55/58 with ≤1 overlay (94.8%).
+JBP-2000B/US has since completed S1–S6, so these buildability figures are stale.
+R0 owns the first post-S6 recount; do not report an inferred 16/58 as the new
+official baseline before its 58-row ledger is delivered.
 
 **Premise (operator, 2026-08-21):** a shipped book is **pipeline output + an
 InDesign finishing layer**. A template-zero-hit block is hand-placed at layout
@@ -2205,37 +2210,253 @@ generate-then-verify; YAML stays the source of truth).
   - Slice exit: satisfied — report delivered, counts recorded, and operator
     ruling recorded.
 
-### Post-S6 rollout backlog (full audited text in commit 80321368)
+### Post-S6 scale-proof checklist R0–R6
 
-S6 is accepted. Every item below remains deferred until it is re-scoped against
-the final S6 report and its own M-pre gate is satisfied.
+Status: `pending` — registered 2026-08-30 from the operator sequence:
+recount → second `BP@INTL` target → separate `BP@JP` cell → legacy MAIN
+ordinal/language migration → `page_registry` authority.
 
-- [ ] M0 ordinal/naming decoupling for **existing** manifests — `deferred`;
-  the slice proves slot_id naming on new manifests only; migrating the pNN_
-  world stays gated on M-pre.3 (committed review derivatives + approved pin).
-- [ ] M1 language-block parameterization of the 17 existing manifests +
-  family index v2 — `deferred`; the slice's resolver is the prototype.
-- [ ] M2 App/联网 capability — `deferred`, **blocked on a design decision**
-  (no blank state exists: writer emits TRUE/FALSE only, empty reads as FALSE
-  and drops the page everywhere).
-- [ ] M3 `MAIN@JP` opening repair — `deferred`; must be an in-place
-  restructure of `01_meaning_of_symbols.rst` (adding `safety_ja.rst` back
-  would revert #607; it is a byte-exact 64-line prefix).
-- [ ] M4 `MAIN@CN` repair + conformity tail slot — `deferred`; note the
-  known-red `JE-2000E/CN` baseline (`ac_bypass` UNUSED_FOOTNOTE).
-- [ ] M5 full BP family (EU 6-language as slice #2, JP cell, A5 dissolution)
-  — `deferred`; both `target_defaults` failure paths must be closed for any
-  JP-family config.
-- [ ] M7 full contract tiering + JE-300E fork reclamation (7 assets, 6
-  manifests' model_overrides, 5 diff carriers, AC presence bits) — `deferred`;
-  gate on M5-equivalent category data and the live `review/JE-300E-EU` branch.
-- [ ] M6 `page_registry` composition authority — `deferred`; hard-gated on
-  truthful manifests (M3/M4) and T-K4.
-- [ ] M8 compliance fragment library + Row_key/Variant_key split — `deferred`;
-  operator compliance decision table signs first; ANATEL is a finishing-layer
-  item, not a blocker.
-- [ ] M9 data-quality closeout + PH line + reverse-gap registration —
-  `deferred`; requires a PH manifest, not just a config; no dependency on M5.
+This replaces the old M0–M9 **execution order**, not its scope. The full
+pre-slice audit text remains in commit `80321368`; the mapping below keeps
+every item owned:
+
+| Old item | New owner | Disposition |
+| --- | --- | --- |
+| M0 ordinal/naming | R4a | prerequisite for editing legacy manifests |
+| M1 language blocks | R4b | follows stable naming |
+| M2 App capability | R5a | decide three-state semantics before MAIN repair |
+| M3 MAIN@JP | R5b | repair before registry migration |
+| M4 MAIN@CN | R5c | repair before registry migration |
+| M5 full BP family | R1–R3 | EU scale proof, then separate JP cell |
+| M7 full contract tiering | R5d | use BP category evidence; reclaim JE-300E fork |
+| M8 compliance fragments | R1/R5e/R6 | EU minimum carrier first; full governance before registry exit |
+| M9 data-quality / PH / reverse gaps | R0/R5f/R6 | register now, repair before final closeout |
+| M6 page registry authority | R6 | last, after manifests tell the truth |
+
+#### Scale-proof invariants
+
+1. **Target PRs contain target data, not target logic.** A target-onboarding PR
+   may add a region profile, language/source data, resolved manifest/config,
+   candidate target-assembly data, approved assets/recipes, fixtures, tests and
+   review evidence. It may not add a model/title/file/page-number branch to
+   `tools/skeleton_resolve.py`, `tools/export_idml.py`, `tools/idml/**` or any
+   shared renderer.
+2. If a generic mechanism gap is discovered, stop the target PR and land a
+   separate target-neutral prerequisite with at least JBP-US plus the new
+   scaffold as tests. Do not hide mechanism work inside target assembly data.
+3. A shared skeleton may gain a corpus-proven superset slot, but the existing
+   target must re-resolve byte-identically. A different required ordering or
+   user journey that fails the Boolean-removal test creates a new skeleton
+   cell; it is never another target flag.
+4. Every source-table or asset-registry write remains operator-gated and needs
+   same-record readback. Every schema change remains separately gated. R0 is
+   read-only.
+5. Each item below is one task/branch unless its own slicing line says
+   otherwise. The S1–S6 MA-019 merge authorization expired at slice acceptance;
+   R0–R6 PRs use normal operator review unless a new live authorization covers
+   them.
+
+- [ ] R0: Recount current coverage and re-baseline the rollout
+  - Status: `pending`.
+  - Scope: read-only reconciliation of all 58 corpus manuals / 22 SKUs / five
+    skeleton cells against current configs, manifests, live source-table target
+    identities, asset readiness and actual build evidence.
+  - Define three non-interchangeable metrics in the report:
+    - `structurally_reconstructable`: corpus chapter tree reconstructs from
+      skeleton + modules + product/region differences
+    - `pipeline_buildable`: target resolves uniquely and committed source data
+      makes `build.py check` pass
+    - `delivery_validated`: four renderers plus native InDesign/package checks
+      have recorded evidence
+  - Work:
+    - rerun `code-as-doc/architecture/corpus_audit_2026-08/stats.py`
+    - produce a 58-row ledger with `corpus_id`, model, region, languages,
+      skeleton cell, exact `Document_Key`, the three metric states, evidence
+      link and blocker; unknown live identity is `needs_review`, never guessed
+    - query the live build/source tables before classifying a target missing;
+      no writes in this stage
+    - confirm the EU slice identity. Current corpus candidate is HTP017
+      `JBP-2000B` EU/UK, 54 pages, `en/fr/es/de/it/uk`; `JBP-2000B_EU` is only
+      a provisional key until live readback confirms it
+    - publish
+      `code-as-doc/reviews/skeleton_library_post_s6_coverage_2026-08.md` and
+      replace the stale 15/58 headline with measured current values
+  - Done when:
+    - 58/58 corpus rows and 22/22 SKU groups reconcile exactly once
+    - every M0–M9 item has the R-stage owner above plus an evidence-backed
+      priority/blocker
+    - the next target, exact source authority, editable/PDF assets, languages,
+      warranty and EU/UK legal owner are named
+  - Rollback: docs-only revert; no live or generated state changes.
+
+- [ ] R1: Complete the shared `BP@INTL` reuse contract before target intake
+  - Status: `pending`; gate: R0 done and EU target/source authority confirmed.
+  - Frozen S6 identities at checklist registration:
+    - `blueprint.yaml` SHA-256
+      `5203be26a8846ceac8bf59ca706d7879954ff7800bd016500badb0d716a390f8`
+    - `slot_templates.yaml` SHA-256
+      `c259beae86b7b8d60fae514814af0e6cab6706ebcb6b7fbeadb1ded669ac1646`
+    - `tools/skeleton_resolve.py` SHA-256
+      `3421f97a1b6313c660f9dbd609bc9200aa37f3c44eae9ca2eb1b1a735d576e96`
+    - resolved `manual_bp-us.yaml` SHA-256
+      `94e7276ab3f20bbd804eb66864b360dd5780c886b3d29ed5377161162da5cc8b`
+  - Work:
+    - diff the EU 54-page printed sequence against the current `BP@INTL`
+      blueprint and the US resolved manifest by semantic `slot_id`
+    - resolve the known corpus delta: EU includes
+      `regulatory_compliance`, while the US slice blueprint currently has no
+      such slot. Add only a family-level, region-mounted superset carrier after
+      legal ownership is confirmed; do not add an EU/model renderer branch
+    - establish family-level de/it/uk carriers or structured language sources
+      for the existing BP slots. They may be language variants, but must not
+      contain `JBP-2000B_EU` or target-specific geometry/flow logic
+    - register de/it/uk variants of proven reusable snippets where the source
+      supports exact reuse; do not create a global module from translation
+      similarity alone
+  - Done when:
+    - the EU scaffold resolves from the same `skeleton_id=bp-intl`
+    - the JBP-US resolved manifest is byte-identical to the full hash above and
+      still passes its 28-page S6 mechanical gates
+    - `rg 'JBP-2000B_EU|HTP017' tools/ docs/renderers/` has no new target logic
+    - any resolver/shared-renderer change, if genuinely required, landed in a
+      separate target-neutral PR before R2
+  - Suggested slicing: R1a semantic slot-diff/report; R1b shared carrier and
+    language readiness. Neither PR onboards the EU target.
+
+- [ ] R2: Add the second target on the same `BP@INTL` blueprint — EU/UK six-language
+  - Status: `pending`; gate: R1 done, live identity confirmed, source/legal and
+    asset intake approved.
+  - Target contract: HTP017 JBP-2000B EU/UK, 54 reference pages,
+    `en/fr/es/de/it/uk`; exact `Document_Key` comes from R0 live readback.
+  - Allowed target surfaces:
+    - `region_profiles/eu.yaml`, family config/target registration and resolved
+      manifest generated from `bp-intl`
+    - model-language/capability/source-table rows, with operator-gated writes
+      and same-record readback
+    - candidate target-assembly JSON containing composition choices and target
+      geometry data only
+    - approved assets/recipes, target fixtures, tests and reconciliation report
+  - Forbidden target surfaces:
+    - no new model/region/title/file/page-number branch in resolver or renderers
+    - no copied US 28-page assembly and no copied JE host assembly
+    - no target-specific LaTeX macro, IDML compositor or HTML whitelist shortcut
+    - no approved-reference registration before native visual approval
+  - Validation:
+    - resolver emit == committed manifest; `manifest_family.py fold` green
+    - six languages present exactly once and in declared order
+    - `build.py check`, `build.py all` and `renderer_acceptance.py --json` green
+    - PDF/native IDML page count = the confirmed 54-page reference; native
+      preflight 0 overset / missing fonts / missing glyphs / bad links
+    - 54-page side-by-side report and clean-room delivery ZIP reopen
+    - JBP-US remains 28 pages, 43/43 bindings and byte-identical at all frozen
+      source/assembly gates; host/KR target regressions remain green
+  - Slice exit: the EU target PR itself changes only the allowed target
+    surfaces. If target logic is needed, R2 fails and returns to R1.
+
+- [ ] R3: Establish the separate `BP@JP` skeleton cell
+  - Status: `pending`; gate: R2 proves `BP@INTL` reuse first.
+  - Discovery gate:
+    - compare all three audited `BP@JP` members before choosing the canonical
+      slot sequence; the current design explicitly marks it pending
+    - use HTP017 `JBP-2000B_JP` (12 printed pages, ja, existing capability row)
+      as the likely first target, but confirm its live source identity and
+      product/legal copy before implementation
+    - apply the superset/Boolean-removal test; do not force JP into `BP@INTL`
+      merely to avoid a second blueprint
+  - Work:
+    - add `skeletons/bp-jp/{blueprint.yaml,slot_templates.yaml}` and a JP region
+      profile; resolve a committed manifest from stable slot IDs
+    - close both `target_defaults` ambiguity paths and explicitly preserve the
+      current `config.ja.yaml` family default before adding a BP-JP config
+    - intake Japanese source rows/assets through the normal approval gates;
+      create only candidate target-assembly data
+  - Done when:
+    - `BP@JP` is the second formally implemented skeleton cell, not an overlay
+      pretending to be `BP@INTL`
+    - one JP BP target passes four-renderer, native InDesign, visual and ZIP
+      checks against its shipped book
+    - BP@INTL US/EU and existing MAIN JP builds remain unchanged
+  - Suggested slicing: R3a read-only three-book sequence decision; R3b skeleton
+    mechanism/data; R3c first target and native reconciliation.
+
+- [ ] R4: Make legacy MAIN manifests safe to migrate
+  - Status: `pending`; gate: R3 done. This stage owns old M0 + M1.
+  - [ ] R4a ordinal/name decoupling
+    - freeze every committed review derivative and approved source/layout pin
+    - add explicit stable ordinal/name identity for the 17 legacy manifests;
+      capability removal must not renumber any later `pNN_` source ref
+    - no committed `docs/_review/**` delete/rename without the separate operator
+      gate; base/head worktree builds must be byte-identical
+  - [ ] R4b language-block parameterization + family index v2
+    - replace hand-copied language-block authoring with parameterized expansion
+      while keeping resolved manifests committed and byte-compatible during the
+      migration
+    - prove EU six-language, US three-language and single-language families;
+      exact model-language trimming comes from `model_languages.csv`
+  - Done when:
+    - adding/removing a capability or language changes only the intended slots
+    - all 18 current manifests remain registered and `manifest_family.py fold`
+      passes; no reference-layout/review pin is silently rebound
+    - renderer outputs for unchanged targets are byte-identical across detached
+      base/head worktrees
+
+- [ ] R5: Repair MAIN truth and retire the remaining pre-registry debt
+  - Status: `pending`; gate: R4 stable naming/language expansion done.
+  - [ ] R5a M2 — operator decides App/联网 three-state semantics
+    (`TRUE/FALSE/unknown`) before capability gating; unknown must not silently
+    behave as FALSE.
+  - [ ] R5b M3 — repair `MAIN@JP` opening in place; do not restore the removed
+    duplicate `safety_ja.rst` prefix from #607.
+  - [ ] R5c M4 — repair `MAIN@CN` opening/back tail and conformity certificate;
+    fix or explicitly re-record the JE-2000E/CN `ac_bypass` known-red baseline.
+  - [ ] R5d M7 — complete category/capability/region contract tiering and
+    reclaim the JE-300E fork with byte-diff evidence.
+  - [ ] R5e M8 — establish signed compliance fragment variants (EU/UK DoC,
+    CN certificate, FCC/ANATEL ownership); legal text never comes from inferred
+    translation or screenshot matching.
+  - [ ] R5f M9 — register PH and every reverse gap; unknown/manual-only targets
+    stay explicit instead of disappearing from coverage denominators.
+  - Done when:
+    - MAIN@INTL, MAIN@JP and MAIN@CN each build at least one representative
+      target end to end from truthful manifests
+    - the HTE153 AU/KR/pt-BR regression baseline is reconciled against shipped
+      books
+    - all known-red baselines are fixed or deliberately re-recorded with owner,
+      reason and date
+
+- [ ] R6: Make `page_registry` the single composition authority
+  - Status: `pending`; hard gates: R4/R5 done and T-K4 point-in-time source-table
+    backup/restore evidence green.
+  - Schema/authority work requires a separate operator approval before any live
+    table write. The migration must begin in shadow/read-only comparison mode.
+  - Work:
+    - declare every shipped prose and data page with stable slot/order,
+      applicability, language set, template family, contract and fragment
+      bindings; folder/file presence is no longer composition authority
+    - keep current RST rendering as the compatibility adapter until page-level
+      parity is proven; Web/Word/PDF/IDML remain separate render adapters over
+      the same resolved page plan
+    - migrate cell by cell with reverse reconstruction and base/head output
+      parity; rollback is table snapshot restore + config switch back to legacy
+      manifest authority
+  - Done when:
+    - all five skeleton cells build at least one target end to end
+    - all 58 corpus manuals reconstruct deterministically; three true outliers
+      are explicitly registered `legacy`, not omitted
+    - all shipped pages are present in `page_registry`; composition and
+      applicability are read from data rather than inferred from directories
+    - unchanged prose output is byte-identical, and four-renderer/native gates
+      remain green
+    - `code_optimization_log.md` receives the maintenance record and Workstream
+      M becomes `done` in `optimization_project.md`
+
+### R0–R6 PR order
+
+`R0 → R1a → R1b → R2 → R3a → R3b → R3c → R4a → R4b → R5a–R5f → R6`
+
+R5 sub-items may run in parallel only after R4 and only when they do not share
+manifest/review files. R6 never starts early to encode known-wrong MAIN
+composition into the source tables.
 
 ### Milestone M exit criteria (unchanged targets, slice-first path)
 
