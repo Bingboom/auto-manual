@@ -6,6 +6,10 @@ schema_version: skeleton-region-profile/v1
 region: US
 language_set: [en, fr, es]
 primary_lang: en
+# Select from the blueprint-owned terminal superset. The explicit selection
+# keeps the frozen US manifest byte-identical when another BP@INTL region uses
+# a regulatory declaration instead of this QR-only back cover.
+terminal_slots: [back_cover]
 slot_overrides:
   safety_info:
     # BP@INTL uses the compact safety copy from the shipped HTP017 line so

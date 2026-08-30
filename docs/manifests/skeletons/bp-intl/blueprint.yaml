@@ -93,6 +93,11 @@ slots:
     requirement: required
     presentation: chapter
     toc: true
+  - slot_id: regulatory_compliance
+    block: back
+    requirement: required
+    presentation: untitled_block
+    toc: false
   - slot_id: back_cover
     block: back
     requirement: required
