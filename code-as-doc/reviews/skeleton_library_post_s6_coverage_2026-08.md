@@ -1,11 +1,12 @@
 # Skeleton library post-S6 coverage re-baseline (R0, 2026-08)
 
-Status: `blocked_on_operator_authority`
+Status: `ready_for_review`
 
 Branch: `docs/milestone-m-r0-coverage-rebaseline`
 
-Scope: read-only evidence reconciliation; no live Base, source-table, asset-registry,
-review derivative, or generated-output write was performed.
+Scope: read-only evidence reconciliation plus one operator-approved additive
+`Document_key` master-data write. No specification, placeholder, localized-copy,
+asset-registry, review-derivative, or generated-output write was performed.
 
 This report is the R0 evidence package for the post-S6 scale-proof checklist in
 [`next_optimization_checklist.md`](../next_optimization_checklist.md). The
@@ -46,7 +47,7 @@ frozen 58 independent corpus manuals.
 
 The frozen corpus closes exactly once at **58 manuals / 22 SKUs**. The ledger
 contains 58 unique `corpus_id` values and 58 unique corpus slugs. Live target
-identity is exact for 22 manuals and remains `needs_review` for 36; no missing
+identity is exact for 23 manuals and remains `needs_review` for 35; no missing
 identity was inferred from filename or model similarity.
 
 | SKU | Manuals | Structural | Pipeline | Delivery | Exact live identity | `needs_review` identity |
@@ -72,8 +73,8 @@ identity was inferred from filename or model similarity.
 | HTP007 | 1 | 1 | 0 | 0 | 0 | 1 |
 | HTP011 | 1 | 1 | 0 | 0 | 0 | 1 |
 | HTP015 | 2 | 2 | 0 | 0 | 0 | 2 |
-| HTP017 | 3 | 3 | 1 | 1 | 2 | 1 |
-| **Total** | **58** | **55** | **4** | **2** | **22** | **36** |
+| HTP017 | 3 | 3 | 1 | 1 | 3 | 0 |
+| **Total** | **58** | **55** | **4** | **2** | **23** | **35** |
 
 The current config-derived check matrix returned `PASS=12`, `SKIP=5`,
 `FAIL=2`. Multiple config entries can resolve to the same `Document_Key`, so
@@ -99,11 +100,13 @@ These values measure different things and must not be used as a trend line.
 
 All Base reads used `lark-cli 1.0.78`, profile `prod`, identity `bot`, full
 pagination (`--limit 200` plus offsets), and field-order consistency checks.
-No create/update/delete call was made.
+The recount was read-only. After the operator approved the R0 target ruling,
+one additive `Document_key` row was created and read back; no row was updated
+or deleted.
 
 | Live table surface | Rows read |
 | --- | ---: |
-| `Document_key` | 32 |
+| `Document_key` | 33 |
 | build table | 30 |
 | specifications | 420 |
 | page placeholders | 627 |
@@ -128,7 +131,7 @@ Ledger identity matching is intentionally narrow: live `项目代码 == SKU`, a
 unique region suffix, and an exact returned `Document_key`. Zero or multiple
 matches become `needs_review`.
 
-## 5. Proposed second BP@INTL target: verified facts and blockers
+## 5. Confirmed second BP@INTL target: verified facts and rulings
 
 ### 5.1 Source authority inspected
 
@@ -145,6 +148,7 @@ Creator: Adobe Illustrator 30.4 (Windows)
 Every inspected page carries Illustrator `PieceInfo`, so the PDF is an
 Illustrator-editable source carrier. A full indexed filename search under the
 local Downloads, Desktop and Documents roots found no separate `.ai` file.
+The operator approved this PDF as the EU source authority on 2026-08-30.
 
 The committed `data/asset_registry.csv` is not empty for this model: it contains
 **21 finished JBP-2000B entries**, split into **7 `ALL`-region neutral assets**
@@ -152,7 +156,7 @@ and **14 US-scoped assets**. R2 may reuse the seven neutral assets under their
 existing scope, but it must not relabel US covers, language composites,
 connection diagrams or QR assets as EU. The live asset
 source/definition/export tables contain no JBP master or EU enrollment. The
-remaining gate is therefore EU source enrollment plus a 54-page delta-asset
+remaining R2 gate is therefore EU source enrollment plus a 54-page delta-asset
 completeness check, not a claim that JBP has no reusable assets.
 
 The six printed language blocks are `en`, `fr`, `es`, `de`, `it`, `uk` in that
@@ -179,9 +183,9 @@ Longhua District, Shenzhen, Guangdong, China
 ```
 
 No UK responsible person, UKCA declaration, or separate EU responsible person
-was found in the 54-page source. Until an operator/legal source confirms
-otherwise, describe this candidate as the **EU six-language source**, not as a
-proven EU+UK-market target.
+was found in the 54-page source. The operator ruled this target **EU
+six-language only** on 2026-08-30; `uk` remains the Ukrainian language code and
+no United Kingdom market claim or UK legal carrier belongs in this target.
 
 ### 5.3 Source defect found by visual inspection
 
@@ -204,31 +208,40 @@ Jackery замінить (за рахунок Jackery) будь-який про�
 виготовлення. Заміна отримує залишок гарантійного терміну оригінального продукту.
 ```
 
-This is a source-backed replacement candidate, not yet an approved edit to the
-HTP017 target. R2 should reuse the shared warranty composition and record the
-operator/source ruling before intake.
+The operator approved this source-backed replacement on 2026-08-30. R2 must
+reuse the shared warranty composition and substitute this Ukrainian component;
+it must not preserve the German residue or add target-specific warranty logic.
 
 ### 5.4 Live identity state
 
-Live readback found:
+Live readback now finds:
 
 - `JBP-2000B_US`: exact target, 11 specification rows, 9 placeholder rows, one
   successful build row;
 - `JBP-2000B_JP`: target exists, no specification or placeholder rows;
 - `JBP-2000B_CN`: target exists, no specification or placeholder rows;
-- proposed EU target: no `Document_key`, specification, placeholder, or build
-  row.
+- `JBP-2000B_EU`: exact target, no specification, placeholder, or build row.
 
-`JBP-2000B_EU` therefore remains a provisional spelling only. R0 does not
-create the row because this stage is read-only.
+The operator-approved additive create returned `record_id=recvtNbSrFZXfL`.
+Same-record readback confirmed:
+
+```text
+Document_key = JBP-2000B_EU
+项目代码 = HTP017
+Model = recvg5TR1QLqKu
+Region = recvg5S7r6OdTt (EU)
+```
+
+The full table moved from 32 to 33 rows and contains exactly one
+`JBP-2000B_EU` record. Formula and lookup fields were not written directly.
 
 ## 6. Re-prioritized M0-M9 ownership
 
 | Old item | R owner | Priority | Evidence-backed blocker / order reason |
 | --- | --- | --- | --- |
-| M5 full BP family | R1-R3 | P0 | The second BP@INTL target is the direct anti-special-case proof; exact identity, approved source, and legal scope are not yet closed. |
-| M8 compliance fragments | R1/R5e/R6 | P0 | The EU book adds `regulatory_compliance`; UK scope/owner and signed-fragment governance are unresolved. |
-| M9 data quality / PH / reverse gaps | R0/R5f/R6 | P0 | 36 corpus identities remain `needs_review`; the candidate source contains Ukrainian-page German residue. |
+| M5 full BP family | R1-R3 | P0 | Exact EU identity, source and market scope are closed; R1 must now prove the shared BP@INTL contract before R2 adds target data. |
+| M8 compliance fragments | R1/R5e/R6 | P0 | The EU book adds `regulatory_compliance`; the family-level EU carrier and signed-fragment governance remain unresolved. UK is out of scope. |
+| M9 data quality / PH / reverse gaps | R0/R5f/R6 | P0 | 35 corpus identities remain `needs_review`; the approved Ukrainian replacement must be applied during EU intake. |
 | M0 ordinal/naming | R4a | P1 | Stable identity is required before legacy capability removal can stop renumbering `pNN_` sources. |
 | M1 language blocks | R4b | P1 | Parameterization must follow stable names and must prove EU six-language, US three-language, and one-language books. |
 | M2 App capability semantics | R5a | P1 | Operator must define TRUE/FALSE/unknown before capability gating; unknown cannot silently mean FALSE. |
@@ -245,19 +258,15 @@ R0 -> R1a -> R1b -> R2 -> R3a -> R3b -> R3c -> R4a -> R4b -> R5a-R5f -> R6
 
 ## 7. R0 gate decision
 
-The mechanical recount and evidence report are complete, but R0 must remain
-`in_progress`/blocked because its authority-dependent exit conditions are not
-yet satisfied. Required operator inputs are:
+R0 exit conditions are satisfied:
 
-1. confirm the exact live `Document_Key` for the HTP017 EU target, or authorize
-   a separately gated row creation followed by same-record readback;
-2. confirm whether the target is EU-only or truly EU+UK market scope and supply
-   the missing UK legal owner/statement if UK is in scope;
-3. approve the Illustrator-editable PDF as the EU asset/layout source authority
-   (or provide the separate `.ai` master), then enroll it and prove which of the
-   existing seven neutral assets plus new EU delta assets cover the 54 pages;
-4. approve the source-backed Ukrainian warranty replacement above before
-   six-language source intake.
+1. 58/58 corpus rows and 22/22 SKU groups reconcile exactly once;
+2. M0-M9 have explicit R owners, priorities and blockers;
+3. the next target is exactly `JBP-2000B_EU`, with same-record live readback;
+4. the Illustrator-editable 54-page PDF is the approved EU source authority;
+5. the target is EU six-language only and makes no UK market claim;
+6. warranty is 3-year standard plus 2-year extended, and the sibling-sourced
+   Ukrainian exchange replacement is approved.
 
-R1a may begin only after these source-authority decisions are recorded. R1b,
-R2, and every later stage stay gated.
+R0 is ready for operator review and merge through PR #975. R1a starts from the
+latest `main` only after that PR lands; R1b and R2 remain gated behind R1a.
