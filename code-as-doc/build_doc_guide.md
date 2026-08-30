@@ -1342,6 +1342,10 @@ mark is an inline native IDML vector with deterministic story-local object IDs,
 so it has no font dependency after an INDD save/reopen cycle. Warranty-year
 badges likewise use a native black circle plus an editable white ASCII digit;
 do not replace the approved badge with either `❷` / `❸` or bare `2` / `3`.
+The native badge renderer positions the localized year unit with a fixed tab
+stop and reuses that exact x anchor for the warranty subtitle below it;
+font-space advance must not separate `YEARS` from `Standard Warranty` or
+`Extended Warranty` horizontally.
 `Noto Sans` owns
 ordinals and subscript digits; `Noto Sans Symbols` owns the
 DC glyph and circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle

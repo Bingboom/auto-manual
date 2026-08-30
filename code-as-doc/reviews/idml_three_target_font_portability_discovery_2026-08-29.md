@@ -70,7 +70,12 @@ The first portability pass overcorrected by emitting bare large `2` / `3`
 digits, which removed the approved black circular badge. The shared component
 now preserves the source number as ordinary editable ASCII inside a native
 IDML circle: the geometry supplies the black badge, while the white digit uses
-the packaged production face and remains editable.
+the packaged production face and remains editable. The native circle changes
+the inline advance relative to the former Unicode glyph, so the shared
+component owns that migration delta and pins the year unit to a fixed tab stop.
+The warranty subtitle reuses the same x anchor; focused PDF coordinate review
+must show `YEARS` and `Standard Warranty` / `Extended Warranty` aligned within
+0.01 pt without changing the frozen layout-params identity.
 
 ### 4. LCD rows beyond 20
 

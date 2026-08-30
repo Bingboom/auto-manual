@@ -159,6 +159,7 @@ def _year_heading(
     ctx: RenderContext,
     *,
     marker_id: str,
+    unit_indent: float,
 ) -> str:
     """Render the shared, font-portable warranty year badge.
 
@@ -229,7 +230,24 @@ def _year_heading(
         )
 
     if badge:
-        xml = psr("HB Warranty Year Heading", f" {unit}")
+        # Pin the unit to the same component-owned x coordinate used by the
+        # subtitle below.  Letting a literal space follow the inline badge
+        # made the unit advance font-dependent and allowed the two baselines
+        # to drift apart when the Unicode circled digit became native IDML.
+        xml = psr("HB Warranty Year Heading", f"\t{unit}")
+        tab_properties = (
+            '<Properties><TabList type="list"><ListItem type="record">'
+            '<Alignment type="enumeration">LeftAlign</Alignment>'
+            '<AlignmentCharacter type="string"></AlignmentCharacter>'
+            '<Leader type="string"></Leader>'
+            f'<Position type="unit">{unit_indent:g}</Position>'
+            '</ListItem></TabList></Properties>'
+        )
+        xml = xml.replace(
+            "\n    <CharacterStyleRange",
+            f"\n    {tab_properties}\n    <CharacterStyleRange",
+            1,
+        )
         marker = (
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
         )
@@ -301,6 +319,19 @@ def _years_table(
     )
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     subtitle_size = param_pt(ctx.params, "type_warranty_year_subtitle_font_size", 7.2)
+    unit_indent = param_pt(
+        ctx.params, "idml_warranty_year_subtitle_left_indent", 21.31,
+    )
+    if ctx.add_story is not None:
+        # The approved 21.31 pt token was measured against the former Unicode
+        # circled-digit advance.  Native badge geometry is 4.90 pt wider at
+        # the unit baseline.  Keep the frozen approved token intact and own
+        # that renderer migration delta inside the shared native component.
+        unit_indent += _language_param(
+            ctx,
+            "idml_warranty_native_badge_indent_adjust",
+            4.90,
+        )
     for index, (item, col_w) in enumerate(zip(items, cols)):
         subtitle = str(item.get("label", "")).strip()
         body = str(item.get("text", "")).strip()
@@ -308,6 +339,7 @@ def _years_table(
             item,
             ctx,
             marker_id=f"warranty_year_{tid}_{index}",
+            unit_indent=unit_indent,
         )
         if _variant_value(
             spec, ctx, "strip_year_subtitle_leading_dash", 0.0,
@@ -316,12 +348,9 @@ def _years_table(
         subtitle_xml = psr("HB Warranty Year Subtitle", subtitle)
         # The subtitle's first letter sits on the same vertical as the unit
         # text (the ``Y`` in ``YEARS``), not after an additional optical gap.
-        subtitle_indent = param_pt(
-            ctx.params, "idml_warranty_year_subtitle_left_indent", 21.31,
-        )
         subtitle_xml = subtitle_xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange LeftIndent="{subtitle_indent:g}" ',
+            f'<ParagraphStyleRange LeftIndent="{unit_indent:g}" ',
             1,
         )
         content += subtitle_xml

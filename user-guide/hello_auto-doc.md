@@ -136,7 +136,9 @@ Editable symbol runs are cross-platform too. The `※` reference mark is a nativ
 IDML vector, so reopening the saved INDD does not depend on a document font.
 Warranty-year `3` / `2` values remain editable white ASCII digits inside native
 black circular badges, preserving the approved appearance without relying on
-host-specific `❸` / `❷` glyphs.
+host-specific `❸` / `❷` glyphs. The year unit and the warranty subtitle below
+it share one component-owned x anchor, so `Standard Warranty` and
+`Extended Warranty` stay left-aligned with their localized `YEARS` labels.
 `Noto Sans` owns ordinals and subscript digits; `Noto Sans Symbols` owns DC and
 circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle fallback. Final assembly for
 both approved-reference and target-assembly targets uses native vector heading
