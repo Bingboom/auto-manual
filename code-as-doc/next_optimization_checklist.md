@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-08-21
+Updated: 2026-08-30
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -44,6 +44,20 @@ When a whole milestone is finished:
 
 - append a short historical entry to [`code_optimization_log.md`](code_optimization_log.md)
 - update [`../optimization_project.md`](optimization_project.md) if the active workstream status changed materially
+
+Tracking PR lifecycle (operator ruling, 2026-08-30):
+
+- keep the checklist PR in Draft and unmerged while any active item remains
+  incomplete
+- implement each checklist item in its own branch and PR based on the latest
+  `main`; do not stack implementation code or generated build artifacts onto
+  the checklist branch
+- after each implementation PR merges, refresh the checklist branch from the
+  latest `main`, update the item status, and backfill links to the merged PR,
+  validation, build and acceptance evidence
+- use the checklist PR only for checklist state and evidence indexes
+- mark the checklist PR Ready and merge it only after every item and the
+  milestone exit criteria are complete
 
 Status vocabulary:
 
