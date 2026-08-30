@@ -191,6 +191,23 @@ the residue. The source is therefore suitable as an editable layout/asset
 authority but is not clean six-language copy authority without a correction or
 an explicit accepted-source ruling.
 
+The correction does not need to be invented or machine-translated. The shipped
+HTE154 JE-2000F EU/UK book (SHA-256
+`6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d`), physical
+page 99, and the HTE152 JE-2000E EU/UK book carry the same warranty exchange
+meaning in a visually verified Ukrainian component:
+
+```text
+Обмін
+Jackery замінить (за рахунок Jackery) будь-який продукт Jackery, який не працює
+протягом відповідного гарантійного періоду через дефект матеріалів або
+виготовлення. Заміна отримує залишок гарантійного терміну оригінального продукту.
+```
+
+This is a source-backed replacement candidate, not yet an approved edit to the
+HTP017 target. R2 should reuse the shared warranty composition and record the
+operator/source ruling before intake.
+
 ### 5.4 Live identity state
 
 Live readback found:
@@ -239,8 +256,8 @@ yet satisfied. Required operator inputs are:
 3. approve the Illustrator-editable PDF as the EU asset/layout source authority
    (or provide the separate `.ai` master), then enroll it and prove which of the
    existing seven neutral assets plus new EU delta assets cover the 54 pages;
-4. provide or approve the Ukrainian warranty correction before six-language
-   source intake.
+4. approve the source-backed Ukrainian warranty replacement above before
+   six-language source intake.
 
 R1a may begin only after these source-authority decisions are recorded. R1b,
 R2, and every later stage stay gated.
