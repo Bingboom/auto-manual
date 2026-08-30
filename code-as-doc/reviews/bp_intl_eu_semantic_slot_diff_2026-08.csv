@@ -1,0 +1,55 @@
+physical_page,printed_page,language,slot_ids,comparison_to_us,resolution_note
+1,,und,cover,same_slot,EU cover authority
+2,,en|fr|es,preface_important,same_slot_page_budget_delta,first half of six-language preface
+3,,de|it|uk,preface_important,same_slot_page_budget_delta,second half of six-language preface
+4,,en|fr|es,toc,same_slot_page_budget_delta,first half of six-language TOC
+5,,de|it|uk,toc,same_slot_page_budget_delta,second half of six-language TOC
+6,01,en,safety_info|symbol_meaning,same_semantic_sequence,co-page
+7,02,en,box_contents|product_overview,same_semantic_sequence,co-page
+8,03,en,lcd_display|operation,same_semantic_sequence,co-page
+9,04,en,connections,same_semantic_sequence,chapter start
+10,05,en,connections|troubleshooting,same_semantic_sequence,locking continuation above troubleshooting
+11,06,en,charging,same_semantic_sequence,single page
+12,07,en,storage|specifications,same_semantic_sequence,blueprint co-page group
+13,08,en,warranty,same_semantic_sequence,three-year standard plus two-year extended
+14,09,fr,safety_info|symbol_meaning,same_semantic_sequence,co-page
+15,10,fr,box_contents|product_overview,same_semantic_sequence,co-page
+16,11,fr,lcd_display|operation,same_semantic_sequence,co-page
+17,12,fr,connections,same_semantic_sequence,chapter start
+18,13,fr,connections|troubleshooting,same_semantic_sequence,locking continuation above troubleshooting
+19,14,fr,charging,same_semantic_sequence,single page
+20,15,fr,storage|specifications,same_semantic_sequence,blueprint co-page group
+21,16,fr,warranty,same_semantic_sequence,three-year standard plus two-year extended
+22,17,es,safety_info|symbol_meaning,same_semantic_sequence,co-page
+23,18,es,box_contents|product_overview,same_semantic_sequence,co-page
+24,19,es,lcd_display|operation,same_semantic_sequence,co-page
+25,20,es,connections,same_semantic_sequence,chapter start
+26,21,es,connections|troubleshooting,same_semantic_sequence,locking continuation above troubleshooting
+27,22,es,charging,same_semantic_sequence,single page
+28,23,es,storage|specifications,same_semantic_sequence,blueprint co-page group
+29,24,es,warranty,same_semantic_sequence,three-year standard plus two-year extended
+30,25,de,safety_info|symbol_meaning,same_slot_new_language,co-page; BP language carrier missing
+31,26,de,box_contents|product_overview,same_slot_new_language,co-page; BP language carrier missing
+32,27,de,lcd_display|operation,same_slot_new_language,co-page; structured LCD schema ready; BP operation carrier missing
+33,28,de,connections,same_slot_new_language,chapter start; BP language carrier missing
+34,29,de,connections|troubleshooting,same_slot_new_language,locking continuation above troubleshooting; structured troubleshooting schema ready
+35,30,de,charging,same_slot_new_language,BP language and EU-voltage asset carriers missing
+36,31,de,storage|specifications,same_slot_new_language,structured spec schema ready; host storage wording is not source-identical
+37,32,de,warranty,same_slot_new_language,BP warranty carrier missing
+38,33,it,safety_info|symbol_meaning,same_slot_new_language,co-page; BP language carrier missing
+39,34,it,box_contents|product_overview,same_slot_new_language,co-page; BP language carrier missing
+40,35,it,lcd_display|operation,same_slot_new_language,co-page; structured LCD schema ready; BP operation carrier missing
+41,36,it,connections,same_slot_new_language,chapter start; BP language carrier missing
+42,37,it,connections|troubleshooting,same_slot_new_language,locking continuation above troubleshooting; structured troubleshooting schema ready
+43,38,it,charging,same_slot_new_language,BP language and EU-voltage asset carriers missing
+44,39,it,storage|specifications,same_slot_new_language,structured spec schema ready; long-storage paragraph is source-identical after line-wrap normalization
+45,40,it,warranty,same_slot_new_language,BP warranty carrier missing
+46,41,uk,safety_info|symbol_meaning,same_slot_new_language,co-page; BP language carrier missing; uk means Ukrainian
+47,42,uk,box_contents|product_overview,same_slot_new_language,co-page; BP language carrier missing
+48,43,uk,lcd_display|operation,same_slot_new_language,co-page; structured LCD schema ready; BP operation carrier missing
+49,44,uk,connections,same_slot_new_language,chapter start; BP language carrier missing
+50,45,uk,connections|troubleshooting,same_slot_new_language,locking continuation above troubleshooting; structured troubleshooting schema ready
+51,46,uk,charging,same_slot_new_language,BP language and EU-voltage asset carriers missing
+52,47,uk,storage|specifications,same_slot_new_language,structured spec schema ready; host storage wording is not source-identical
+53,48,uk,warranty,same_slot_new_language,BP warranty carrier missing; approved HTE154/HTE152 exchange replacement required
+54,,und,regulatory_compliance,eu_terminal_delta,RED declaration and manufacturer data occupy terminal back-page form; no separate US QR-only back_cover
