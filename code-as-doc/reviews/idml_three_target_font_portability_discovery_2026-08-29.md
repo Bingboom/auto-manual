@@ -62,13 +62,15 @@ The IDML output and production handoff must place the required files in a
 `Document fonts/` directory beside the document. Commercial Gilroy remains an
 operator-provisioned font and is not added to the repository.
 
-### 3. Warranty component violates its source contract
+### 3. Warranty component violated its source and visual contracts
 
-`tools/idml/components/warranty.py::_year_heading()` maps ordinary source
-numbers through `_CIRCLED` and relies on the fallback split to enlarge only the
-first run. The shared styles already provide the primary Gilroy number/unit
-typography. The component must preserve the source number as ordinary editable
-ASCII and apply the large-number character formatting directly.
+`tools/idml/components/warranty.py::_year_heading()` originally mapped ordinary
+source numbers through `_CIRCLED`, producing host-dependent `❷` / `❸` glyphs.
+The first portability pass overcorrected by emitting bare large `2` / `3`
+digits, which removed the approved black circular badge. The shared component
+now preserves the source number as ordinary editable ASCII inside a native
+IDML circle: the geometry supplies the black badge, while the white digit uses
+the packaged production face and remains editable.
 
 ### 4. LCD rows beyond 20
 
@@ -85,7 +87,7 @@ row marker, not row order, copy, assets, pagination or component geometry.
 | portable font assets | `docs/templates/word_template/common_assets/fonts/idml_portable/**`, `tools/idml/font_assets.py` | exact file hashes; every referenced portable family has one distributable binary and OFL notice |
 | font contract | `tools/idml/font_family.py`, `tools/idml/inline_text.py`, `tools/idml/style_resources.py` consumers | no `Segoe UI Symbol` / `Yu Gothic` in generated resources, stories or delivery manifest |
 | shared production mode | `tools/export_idml.py` | approved-reference and target-assembly writers both enable native structure markers; fallback/golden mode remains explicit |
-| Warranty | `tools/idml/components/warranty.py` | source `2` / `3` stays ASCII, large first run remains Gilroy, no circled glyph or symbol-family run |
+| Warranty | `tools/idml/components/warranty.py` | source `2` / `3` stays ASCII in an editable child story; a native black circle preserves the approved badge without a circled glyph or symbol-family run |
 | LCD | `tools/idml/ir_projection.py` | 1–20 keep approved circled labels; 21–27 become `(21)`–`(27)` without row loss |
 | handoff | `tools/idml/design_handoff.py`, `tools/idml/delivery.py` | direct IDML and delivery ZIP contain `Document fonts/`; the manifest distinguishes bundled OFL fonts from optional commercial fonts |
 | final verification | no committed `_build` artifacts | Ruff, targeted tests, full unittest, guardrails, reference pins, three clean `--idml-mode both` builds, native InDesign preflight and focused PDF review |
@@ -124,8 +126,27 @@ assembly now declares one shared `306.5` pt troubleshooting split for EN, FR,
 and ES.  No renderer condition or page-local geometry was added.
 
 Static scans of the final IDML packages find no `Segoe UI Symbol`, `Yu Gothic`,
-`Noto Sans KR`, `❷` / `❸`, or high circled LCD labels.  Warranty headings keep
-ordinary editable `2` / `3`; the KR package declares and carries
+`Noto Sans KR`, `❷` / `❸`, or high circled LCD labels. Warranty headings keep
+ordinary editable `2` / `3` in native circular badges; the KR package declares and carries
 `NanumGothic-Regular.ttf`.  The three delivery ZIPs package 112/112, 103/103,
 and 41/41 links respectively, with zero missing links and the required OFL
 font binaries and license notices under `Document fonts/`.
+
+## Save/reopen hardening follow-up
+
+The first portable-font implementation still allowed U+203B (`※`) to depend
+on the bundled `Noto Sans` face. It passed the import-time preflight, but a
+saved JE-1000F INDD could reopen with the reference mark as a pink missing-glyph
+box. The shared inline serializer now emits the approved 5.6 pt reference mark
+as native IDML path geometry. Package assembly binds its left bearing, glyph,
+and right bearing objects to deterministic IDs derived from the story identity
+and occurrence index; no U+203B text run or reference-mark font resource is
+written.
+
+`indesign_finalize.py` now enforces `indesign-preflight/v2`: save INDD, close,
+reopen, recompose, rerun page/story/overset/font/link checks, and only then
+export the PDF and scan it for `.notdef` glyphs. With `Document fonts/` beside
+the output INDD, the rebuilt JE-1000F package passed the post-reopen gate at
+58 pages with zero overset, missing fonts, missing glyphs, and bad links. The
+page-15 specification footnote was also rendered at 400 dpi and visually
+confirmed without a pink frame or baseline/advance regression.

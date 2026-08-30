@@ -132,9 +132,13 @@ Chinese continue to use the separate `idml_font_family_cjk` renderer token
 portable font does not require a reference-layout rebind when geometry,
 content bindings, and composition stay unchanged.
 
-Editable symbol runs are cross-platform too. `Noto Sans` owns reference marks,
-ordinals, and subscript digits; `Noto Sans Symbols` owns DC and circled labels
-1-20; `Noto Sans Symbols2` owns the filled-circle fallback. Final assembly for
+Editable symbol runs are cross-platform too. The `※` reference mark is a native
+IDML vector, so reopening the saved INDD does not depend on a document font.
+Warranty-year `3` / `2` values remain editable white ASCII digits inside native
+black circular badges, preserving the approved appearance without relying on
+host-specific `❸` / `❷` glyphs.
+`Noto Sans` owns ordinals and subscript digits; `Noto Sans Symbols` owns DC and
+circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle fallback. Final assembly for
 both approved-reference and target-assembly targets uses native vector heading
 markers, and LCD labels 21-27 serialize as `(21)`-`(27)`. The exporter copies
 the declared SIL-OFL files beside the IDML under `Document fonts/`, so raw
@@ -322,6 +326,12 @@ approved contract. All 58 pages are compared at 300 dpi as fixed
 `1537 × 2187` RGB rasters with the approved ICC profile, 1 px blur, per-page
 RGB MAD `≤ 0.008`, changed-pixel ratio `≤ 0.040`, and changed-channel threshold
 `16`. Any failing page fails the run; averages cannot hide it.
+
+Keep `Document fonts/` beside the generated INDD. Before exporting the final
+PDF, the finalizer saves the INDD, closes it, reopens it, recomposes it, and
+rechecks fonts, overset stories/cells, links, page count, and story count. The
+`indesign-preflight/v2` report records this under `post_reopen`; a first-open
+green result is no longer sufficient.
 
 For a multi-target design handoff, run
 `python tools/indesign_finalize.py --jobs <manifest.json>` with one explicit

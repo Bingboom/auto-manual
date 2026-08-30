@@ -295,6 +295,20 @@ def _collect_finalize_result(
             "error": f"finalize report not found: {report_path}",
         }
     report = json.loads(report_path.read_text(encoding="utf-8"))
+    post_reopen = report.get("post_reopen") or {}
+    requires_reopen_gate = report.get("schema_version") == "indesign-preflight/v2"
+    reopen_gate_pass = (
+        not requires_reopen_gate
+        or (
+            post_reopen.get("completed") is True
+            and post_reopen.get("page_count") == report.get("page_count")
+            and post_reopen.get("story_count") == report.get("story_count")
+            and not post_reopen.get("overset_stories")
+            and not post_reopen.get("overset_table_cells")
+            and not post_reopen.get("missing_fonts")
+            and not post_reopen.get("bad_links")
+        )
+    )
     output_pdf = Path(job["output_pdf"])
     if output_pdf.is_file():
         compliance = _pdf_export_compliance(output_pdf, job)
@@ -318,6 +332,7 @@ def _collect_finalize_result(
             bool(report.get("success"))
             and bool(compliance["pass"])
             and bool(glyph_validation["pass"])
+            and reopen_gate_pass
         )
         if not compliance["pass"] and not report.get("error"):
             report["error"] = "exported PDF does not satisfy the PDF/X output contract"
@@ -326,6 +341,10 @@ def _collect_finalize_result(
                 "exported PDF contains replacement or .notdef glyphs"
                 if missing_glyphs
                 else "exported PDF glyph validation could not be completed"
+            )
+        if not reopen_gate_pass and not report.get("error"):
+            report["error"] = (
+                "saved INDD failed the mandatory close/reopen preflight gate"
             )
     report["toolchain"] = {
         "indesign_actual": indesign_version(),
@@ -339,10 +358,18 @@ def _collect_finalize_result(
     overset = (
         len(report.get("overset_stories", []))
         + len(report.get("overset_table_cells", []))
+        + len(post_reopen.get("overset_stories", []))
+        + len(post_reopen.get("overset_table_cells", []))
     )
-    missing_fonts = len(report.get("missing_fonts", []))
+    missing_fonts = (
+        len(report.get("missing_fonts", []))
+        + len(post_reopen.get("missing_fonts", []))
+    )
     missing_glyphs = len(report.get("missing_glyphs", []))
-    bad_links = len(report.get("bad_links", []))
+    bad_links = (
+        len(report.get("bad_links", []))
+        + len(post_reopen.get("bad_links", []))
+    )
     print(
         f"[indesign-finalize] {status}: pages={report.get('page_count')} "
         f"overset={overset} fonts={missing_fonts} glyphs={missing_glyphs} "

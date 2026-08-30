@@ -17,13 +17,10 @@ CIRCLED_NUMBER_FONT = CIRCLED_NUMBER_FONT_FAMILY_TOKEN.name
 TEXT_SYMBOL_FONT = TEXT_SYMBOL_FONT_FAMILY_TOKEN.name
 BULLET_FONT = BULLET_FONT_FAMILY_TOKEN.name
 SYMBOL_FONT_FALLBACK_STYLE = "Regular"
-# Noto Sans carries U+203B, but its glyph is 0.837 em wide.  Preserve the
-# 0.593-em reference-mark advance used by the approved fixed frames so the
-# portable face does not introduce a line-wrap/overset regression.
-_REFERENCE_MARK_HORIZONTAL_SCALE = 70.8
 SYMBOL_FONT_FALLBACKS = {
     "⎓": GENERAL_SYMBOL_FONT,
-    "※": TEXT_SYMBOL_FONT,
+    # U+203B is a native vector component.  Unlike a font fallback, it remains
+    # stable after saving to INDD and reopening on another host.
     # Gilroy's installed production face has no masculine ordinal indicator.
     # Keep the source Spanish ``Nº`` intact and route only that glyph through
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
@@ -150,8 +147,6 @@ def _style_range(
     properties = ""
     if fallback_font:
         attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
-        if fallback_font == TEXT_SYMBOL_FONT and segment and set(segment) == {"※"}:
-            attrs += f' HorizontalScale="{_REFERENCE_MARK_HORIZONTAL_SCALE:g}"'
         properties = (
             "<Properties>"
             f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
@@ -232,6 +227,12 @@ def character_ranges(
 ) -> list[str]:
     """Serialize one bold/plain segment, preserving fallback-font boundaries."""
     segment = _portable_text(segment)
+    # Import lazily: components import the primitives module during registry
+    # initialization, so a module-level import would create a package cycle.
+    if "※" in segment:
+        from .components.native_marker import reference_mark_xml
+
+        replacements = {"※": reference_mark_xml(), **replacements}
     output: list[str] = []
     for piece, fallback_font in _font_runs(segment):
         if replacements and fallback_font is None:

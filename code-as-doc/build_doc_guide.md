@@ -1186,6 +1186,14 @@ python3 tools/indesign_finalize.py \
   --pdfx PDF/X-4
 ```
 
+Keep the generated `Document fonts/` directory beside the output INDD.  The
+finalizer now saves the INDD, closes it, reopens that saved file, recomposes it,
+and repeats the overset/font/link preflight before exporting the PDF.  Reports
+use `indesign-preflight/v2` and record this second pass under `post_reopen`.
+The job fails when the saved document changes page/story count, reopens with a
+`NOT_AVAILABLE`/substituted font, or gains an overset/bad link.  This catches
+document-font failures that are invisible during the first IDML import.
+
 For a design host processing more than one target, use an explicit
 `indesign-finalize-jobs/v1` manifest. Every job must declare its PDF preset,
 output intent, output condition, and PDF/X level; batch mode deliberately has
@@ -1329,8 +1337,13 @@ SIL-OFL `NanumGothic` face; Japanese and Chinese continue through
 Arial Unicode MS). Font-family tokens intentionally stay outside
 `data/layout_params.csv`: changing font delivery is not page geometry and does
 not by itself require a reference-layout rebind.
-Latin-market editable symbols are governed separately: `Noto Sans` owns
-reference marks, ordinals, and subscript digits; `Noto Sans Symbols` owns the
+Latin-market editable symbols are governed separately: the U+203B reference
+mark is an inline native IDML vector with deterministic story-local object IDs,
+so it has no font dependency after an INDD save/reopen cycle. Warranty-year
+badges likewise use a native black circle plus an editable white ASCII digit;
+do not replace the approved badge with either `❷` / `❸` or bare `2` / `3`.
+`Noto Sans` owns
+ordinals and subscript digits; `Noto Sans Symbols` owns the
 DC glyph and circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle
 fallback. LCD labels 21-27 are normalized to `(21)`-`(27)`, and both final
 assembly modes enable native vector structure markers. Every declared

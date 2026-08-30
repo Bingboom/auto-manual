@@ -393,9 +393,77 @@
         return oversets;
     }
 
+    function collectPostReopenState(doc) {
+        var state = {
+            completed: true,
+            page_count: doc.pages.length,
+            story_count: doc.stories.length,
+            overset_stories: [],
+            overset_table_cells: [],
+            missing_fonts: [],
+            bad_links: [],
+            font_usage_audit: []
+        };
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var story = doc.stories[si];
+            if (!story.overflows) { continue; }
+            var containers = [];
+            for (var tci = 0; tci < story.textContainers.length; tci += 1) {
+                var container = story.textContainers[tci];
+                var containerPage = container.parentPage;
+                containers.push({
+                    page: containerPage && containerPage.isValid ?
+                        containerPage.documentOffset + 1 : 0,
+                    label: itemLabel(container)
+                });
+            }
+            state.overset_stories.push({
+                index: si,
+                id: String(story.id),
+                label: itemLabel(story),
+                preview: String(story.contents).replace(/[\r\n]+/g, " ").slice(0, 120),
+                text_containers: containers
+            });
+        }
+        state.overset_table_cells = collectOversetTableCells(doc);
+
+        var fonts = doc.fonts.everyItem().getElements();
+        for (var fi = 0; fi < fonts.length; fi += 1) {
+            var font = fonts[fi];
+            if (font.status === FontStatus.INSTALLED) { continue; }
+            var hasTextUsage = fontHasTextUsage(doc, font);
+            var finding = {
+                name: String(font.name),
+                status: String(font.status),
+                live_text_usage: hasTextUsage,
+                samples: fontUsageSamples(doc, font)
+            };
+            state.font_usage_audit.push(finding);
+            // The save/reopen gate is deliberately stricter than import-time
+            // repair: any NOT_AVAILABLE resource after reopen means the INDD
+            // is not portable, even when InDesign cannot find a live range.
+            state.missing_fonts.push({
+                name: finding.name,
+                status: finding.status,
+                live_text_usage: hasTextUsage
+            });
+        }
+
+        for (var li = 0; li < doc.links.length; li += 1) {
+            var link = doc.links[li];
+            if (link.status === LinkStatus.NORMAL) { continue; }
+            state.bad_links.push({
+                name: String(link.name),
+                status: String(link.status),
+                path: String(link.filePath || "")
+            });
+        }
+        return state;
+    }
+
     var job = jsonParse(readText(HB_JOB_PATH));
     var report = {
-        schema_version: "indesign-preflight/v1",
+        schema_version: "indesign-preflight/v2",
         input_idml: job.input_idml,
         output_indd: job.output_indd,
         output_pdf: job.output_pdf,
@@ -415,6 +483,16 @@
         carrier_frame_errors: [],
         font_substitutions: [],
         font_usage_audit: [],
+        post_reopen: {
+            completed: false,
+            page_count: 0,
+            story_count: 0,
+            overset_stories: [],
+            overset_table_cells: [],
+            missing_fonts: [],
+            bad_links: [],
+            font_usage_audit: []
+        },
         pdf_export: {
             requested_preset: String(job.pdf_preset || ""),
             applied_preset: null,
@@ -537,6 +615,12 @@
 
         report.stage = "save_indd";
         doc.save(File(job.output_indd));
+        doc.close(SaveOptions.NO);
+        doc = null;
+        report.stage = "reopen_indd";
+        doc = app.open(File(job.output_indd), false);
+        doc.recompose();
+        report.post_reopen = collectPostReopenState(doc);
         report.stage = "validate_pdf_preset";
         var pdfPreset = app.pdfExportPresets.itemByName(job.pdf_preset);
         if (!pdfPreset.isValid) {
@@ -551,8 +635,15 @@
         report.success = report.overset_stories.length === 0 &&
             report.overset_table_cells.length === 0 &&
             report.missing_fonts.length === 0 && report.bad_links.length === 0 &&
-            report.carrier_frame_errors.length === 0;
-        doc.close(SaveOptions.YES);
+            report.carrier_frame_errors.length === 0 &&
+            report.post_reopen.completed &&
+            report.post_reopen.page_count === report.page_count &&
+            report.post_reopen.story_count === report.story_count &&
+            report.post_reopen.overset_stories.length === 0 &&
+            report.post_reopen.overset_table_cells.length === 0 &&
+            report.post_reopen.missing_fonts.length === 0 &&
+            report.post_reopen.bad_links.length === 0;
+        doc.close(SaveOptions.NO);
         doc = null;
     } catch (error) {
         report.error = String(error) + (error.line ? " at line " + error.line : "");

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import threading
@@ -282,7 +283,6 @@ class ExportIdmlTests(unittest.TestCase):
         )
         self.assertIn("\u2393", psr)
         self.assertIn("\u2084", psr)
-        self.assertIn("\u203b", psr)
         self.assertIn("\u2460", psr)
         self.assertIn("<Content>º</Content>", psr)
         self.assertIn("<Content> de modelo</Content>", psr)
@@ -292,8 +292,33 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn("<Content>\u2393</Content>", psr)
         self.assertIn("<Properties><AppliedFont type=\"string\">Noto Sans</AppliedFont></Properties>", psr)
         self.assertIn("<Properties><AppliedFont type=\"string\">Noto Sans Symbols2</AppliedFont></Properties>", psr)
-        self.assertIn('HorizontalScale="70.8"', psr)
+        self.assertNotIn("<Content>\u203b</Content>", psr)
+        self.assertIn("<!--HB_NATIVE_REFERENCE_MARK-->", psr)
+        self.assertIn('<Polygon Self="__HB_NATIVE_REFERENCE_MARK_GLYPH__"', psr)
+        self.assertNotIn('HorizontalScale="70.8"', psr)
         self.assertIn('FontStyle="Regular"', psr)
+
+    def test_reference_mark_package_ids_are_unique_and_font_independent(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(params)
+        story = writer._add_story_parts(
+            "st_reference_mark",
+            "Reference marks",
+            [writer._psr("HB Body", "A※B※C", terminal=True)],
+        )
+        writer.add_spread_chain(story, 1, 0)
+        out = Path(tempfile.mkdtemp()) / "reference-mark.idml"
+        writer.write(out)
+
+        with zipfile.ZipFile(out) as zf:
+            xml = zf.read("Stories/Story_st_reference_mark.xml").decode("utf-8")
+        ids = re.findall(r'<(?:Rectangle|Polygon) Self="(hb_refmark_[^"]+)"', xml)
+        self.assertEqual(6, len(ids))
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(2, xml.count("<Polygon "))
+        self.assertNotIn("HB_NATIVE_REFERENCE_MARK", xml)
+        self.assertNotIn("<Content>※</Content>", xml)
+        self.assertNotIn("Noto Sans</AppliedFont>", xml)
 
     def test_cjk_text_uses_fallback_runs_without_changing_latin_text(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")

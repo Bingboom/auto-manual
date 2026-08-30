@@ -12,6 +12,7 @@ from pathlib import Path
 from .params import IDPKG, MIMETYPE
 from .stable_ids import apply_stable_labels
 from .story_frames import add_lcd_story_frames, add_story_frames
+from .components.native_marker import bind_reference_mark_ids
 
 
 def frame_height(writer) -> float:
@@ -138,4 +139,5 @@ def write(writer, out_path: Path) -> None:
         for sid, xml in writer.spreads:
             add(f"Spreads/Spread_{sid}.xml", apply_stable_labels(xml))
         for sid, xml in writer.stories:
+            xml = bind_reference_mark_ids(sid, xml)
             add(f"Stories/Story_{sid}.xml", apply_stable_labels(xml))

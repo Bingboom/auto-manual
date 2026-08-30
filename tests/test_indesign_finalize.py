@@ -110,6 +110,58 @@ class InDesignFinalizeTests(unittest.TestCase):
             self.assertEqual(written["missing_glyphs"], [finding])
             self.assertFalse(written["pdf_glyph_validation"]["pass"])
 
+    def test_finalize_result_fails_closed_on_post_reopen_font_error(self) -> None:
+        with temp_test_root() as root:
+            report_path = Path(root) / "report.json"
+            pdf_path = Path(root) / "output.pdf"
+            report_path.write_text(json.dumps({
+                "schema_version": "indesign-preflight/v2",
+                "success": True,
+                "page_count": 1,
+                "story_count": 1,
+                "overset_stories": [],
+                "overset_table_cells": [],
+                "missing_fonts": [],
+                "bad_links": [],
+                "post_reopen": {
+                    "completed": True,
+                    "page_count": 1,
+                    "story_count": 1,
+                    "overset_stories": [],
+                    "overset_table_cells": [],
+                    "missing_fonts": [{
+                        "name": "HB Refmark Symbols",
+                        "status": "NOT_AVAILABLE",
+                    }],
+                    "bad_links": [],
+                },
+            }), encoding="utf-8")
+            pdf_path.write_bytes(b"%PDF-test")
+            job = {
+                "job_id": "reopen-negative-control",
+                "output_pdf": str(pdf_path),
+                "report_json": str(report_path),
+                "pdfx": DEFAULT_PDFX,
+                "output_intent": DEFAULT_OUTPUT_INTENT,
+                "output_condition": DEFAULT_OUTPUT_CONDITION,
+            }
+            with patch(
+                "tools.indesign_finalize._pdf_export_compliance",
+                return_value={"pass": True},
+            ), patch(
+                "tools.indesign_finalize._pdf_missing_glyphs",
+                return_value=[],
+            ), patch(
+                "tools.indesign_finalize.indesign_version",
+                return_value="Adobe InDesign test",
+            ):
+                result = _collect_finalize_result(job, pin_status="match")
+
+            written = json.loads(report_path.read_text(encoding="utf-8"))
+            self.assertFalse(result["success"])
+            self.assertEqual(1, result["missing_fonts_count"])
+            self.assertIn("close/reopen", written["error"])
+
     def test_job_paths_are_absolute_and_script_checks_required_gates(self) -> None:
         job = _job(argparse.Namespace(
             idml="input.idml", indd="output.indd", pdf="output.pdf",
@@ -128,6 +180,10 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("LinkStatus.NORMAL", jsx)
         self.assertIn("hb:page=", jsx)
         self.assertIn("doc.exportFile", jsx)
+        self.assertIn("collectPostReopenState(doc)", jsx)
+        self.assertIn('report.stage = "reopen_indd"', jsx)
+        self.assertIn("doc = app.open(File(job.output_indd), false)", jsx)
+        self.assertIn("report.post_reopen.missing_fonts.length === 0", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
         self.assertIn("fitLcdCarrierFrames(doc)", jsx)
         self.assertIn('indexOf(" table segment ")', jsx)
