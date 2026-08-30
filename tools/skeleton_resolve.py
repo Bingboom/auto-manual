@@ -18,7 +18,9 @@ Resolution precedence (fixed): blueprint slots -> capability annotation (from
 the slot requirement; the actual gate stays at build time in
 ``filter_pages_by_capability``) -> region profile (language set, slot
 overrides, compliance mounting rows) -> language expansion (``front``/``back``
-slots emit once, ``body`` slots emit once per language in declaration order).
+slots emit once, ``body`` slots emit once per language in declaration order;
+an explicit ``terminal_slots`` selection filters the blueprint-owned ``back``
+block without changing its order).
 
 Contract guard: this module must stay free of slot-specific or region-specific
 literals. Every slot decision must trace to one of the three data carriers;
@@ -212,6 +214,27 @@ def load_region_profile(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]
     if not isinstance(primary, str) or primary not in language_set:
         raise SkeletonResolveError(f"{path}: primary_lang must be a member of language_set")
     blueprint_ids = {slot["slot_id"] for slot in blueprint["slots"]}
+    back_ids = {
+        slot["slot_id"] for slot in blueprint["slots"] if slot["block"] == "back"
+    }
+    terminal_slots = data.get("terminal_slots")
+    if terminal_slots is not None:
+        if not isinstance(terminal_slots, list) or not all(
+            isinstance(item, str) and item.strip() for item in terminal_slots
+        ):
+            raise SkeletonResolveError(
+                f"{path}: terminal_slots must be a list of non-empty strings"
+            )
+        if len(set(terminal_slots)) != len(terminal_slots):
+            raise SkeletonResolveError(
+                f"{path}: terminal_slots contains duplicates: {terminal_slots}"
+            )
+        non_terminal = sorted(set(terminal_slots) - back_ids)
+        if non_terminal:
+            raise SkeletonResolveError(
+                f"{path}: terminal_slots references non-back or unknown slots: "
+                f"{', '.join(non_terminal)}"
+            )
     overrides = data.get("slot_overrides", {})
     if not isinstance(overrides, dict):
         raise SkeletonResolveError(f"{path}: slot_overrides must be a mapping")
@@ -386,6 +409,9 @@ def resolve_plan(
     front = [s for s in blueprint["slots"] if s["block"] == "front"]
     body = [s for s in blueprint["slots"] if s["block"] == "body"]
     back = [s for s in blueprint["slots"] if s["block"] == "back"]
+    if "terminal_slots" in profile:
+        terminal_set = set(profile["terminal_slots"])
+        back = [slot for slot in back if slot["slot_id"] in terminal_set]
 
     for slot in front:
         emit_slot(slot, lang=primary_lang, qualified=False)
