@@ -14,9 +14,12 @@ from tools.idml.shared_page import (
     add_connection_tail_troubleshooting_page,
     add_connections_page,
     add_fcc_inbox_overview_page,
+    add_inbox_overview_page,
     add_lcd_operations_page,
     add_safety_symbols_page,
+    add_specifications_page,
     add_storage_specifications_page,
+    add_storage_troubleshooting_page,
     shares_latex_page,
 )
 
@@ -249,6 +252,358 @@ class SharedPageTests(unittest.TestCase):
         self.assertNotIn('SingleRowHeight="15.7"', stories)
         self.assertNotIn('SingleRowHeight="17.5"', stories)
         self.assertEqual(11, stories.count('AutoGrow="false"'))
+
+    def test_storage_and_troubleshooting_reuse_one_physical_page(self) -> None:
+        """Both KR stories land on one page, stacked instead of overlapping.
+
+        The JE-3000C KR plan folds ``09_storage_and_maintenance`` and
+        ``troubleshooting_ko`` into one composition through
+        ``add_storage_troubleshooting_page``. If either story stops being
+        placed the book silently drops a whole section, and if the split
+        stops separating the two frames Storage overprints Troubleshooting
+        rather than sitting above it.
+        """
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-je3000c-kr.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JE-3000C",
+            region="KR",
+            language="ko",
+            native_structure_markers=True,
+        )
+
+        storage_sid, trouble_sid = add_storage_troubleshooting_page(
+            writer,
+            sid="st_storage_trouble",
+            storage_blocks=[
+                ("h1", "보관 및 유지관리"),
+                ("body", "건조한 곳에 보관하십시오."),
+                ("list", "• 3개월마다 충전하십시오."),
+            ],
+            trouble_sid="st_troubleshooting_ko",
+            trouble_title="troubleshooting_ko",
+            trouble_blocks=[
+                ("h1", "문제 해결"),
+                ("body", "아래 조치를 따르십시오."),
+                (
+                    "table",
+                    json.dumps([
+                        ["오류 코드", "조치 방법"],
+                        ["F0", "제품을 재시작하십시오."],
+                    ]),
+                ),
+            ],
+            bundle_root=ROOT,
+            page_index=15,
+            language="ko",
+        )
+
+        self.assertEqual("st_storage_trouble", storage_sid)
+        self.assertEqual("st_troubleshooting_ko", trouble_sid)
+        spread = dict(writer.spreads)["sp_15"]
+        self.assertEqual(1, spread.count("<Page "))
+        self.assertIn(f'ParentStory="{storage_sid}"', spread)
+        self.assertIn(f'ParentStory="{trouble_sid}"', spread)
+
+        def frame_y_range(story_id: str) -> tuple[float, float]:
+            frame = spread.split(f'ParentStory="{story_id}"', 1)[1].split(
+                "</TextFrame>", 1,
+            )[0]
+            anchors = [
+                float(chunk.split('"', 1)[0].split(" ")[1])
+                for chunk in frame.split('Anchor="')[1:]
+            ]
+            return min(anchors), max(anchors)
+
+        storage_top, storage_bottom = frame_y_range(storage_sid)
+        trouble_top, trouble_bottom = frame_y_range(trouble_sid)
+        self.assertLess(storage_top, storage_bottom)
+        self.assertLess(storage_bottom, trouble_top)
+        self.assertLess(trouble_top, trouble_bottom)
+
+        stories = dict(writer.stories)
+
+        def story_text(story_id: str) -> str:
+            root = ET.fromstring(stories[story_id])
+            return "".join(node.text or "" for node in root.iter("Content"))
+
+        self.assertIn("아래 조치를 따르십시오.", story_text(trouble_sid))
+        self.assertIn('Hyphenation="false"', stories[trouble_sid])
+        self.assertIn("AnchoredObjectSetting", stories[storage_sid])
+        self.assertIn("건조한 곳에", story_text(storage_sid))
+        self.assertIn("F0", "".join(stories.values()))
+
+    def test_compact_specifications_group_and_reorder_from_target_data(
+        self,
+    ) -> None:
+        """Target composition_data must reach the standalone spec page.
+
+        The JE-3000C KR plan gives its Specifications page ``layout_variant``
+        "compact" plus a section grouping and an ``annotation_order``. If
+        ``composition_data`` stops reaching ``add_spec_story`` the page still
+        exports, but silently in the taller reference layout with the source
+        section split and the source trailer order — a design regression no
+        schema check catches.
+        """
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-je3000c-kr.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JE-3000C",
+            region="KR",
+            language="ko",
+            native_structure_markers=True,
+        )
+        spec_data = SimpleNamespace(
+            title="제품 사양",
+            annotations=(
+                "ANNOTATION ALPHA",
+                "ANNOTATION BRAVO",
+                "ANNOTATION CHARLIE",
+            ),
+            sections=(
+                {"title": "GENERAL INFO", "rows": [("모델", "JE-3000C")] * 5},
+                {"title": "INPUT PORTS", "rows": [("입력", "36 V")]},
+                {"title": "OUTPUT PORTS", "rows": [("출력", "36 V")]},
+                {"title": "TEMPERATURE", "rows": [("충전", "45 C")] * 2},
+            ),
+        )
+
+        spec_sid, sections = add_specifications_page(
+            writer,
+            spec_data=spec_data,
+            page_index=14,
+            language="ko",
+            composition_data={
+                "specifications": {
+                    "layout_variant": "compact",
+                    "annotation_order": [1, 2, 0],
+                    "section_groups": [
+                        {"source_indices": [0]},
+                        {
+                            "source_indices": [1, 2],
+                            "title": "INPUT / OUTPUT PORTS",
+                        },
+                        {"source_indices": [3]},
+                    ],
+                }
+            },
+        )
+
+        self.assertEqual("st_spec_ko", spec_sid)
+        self.assertEqual(3, len(sections))
+        self.assertEqual("INPUT / OUTPUT PORTS", sections[1]["title"])
+        self.assertEqual(2, len(sections[1]["rows"]))
+        story_map = dict(writer.stories)
+        spread = dict(writer.spreads)["sp_14"]
+        self.assertEqual(1, spread.count("<Page "))
+        self.assertIn(f'ParentStory="{spec_sid}"', spread)
+        spec_tables = [
+            story_map[f"st_anchor_spec_ko{index}"] for index in range(3)
+        ]
+        # Three anchored tables with 5 / 2 / 2 rows: the grouped source
+        # sections 1 and 2 render as one two-row table. Compact rows are
+        # 12.2pt; the same fixture renders 10.3pt rows and loses the grouping
+        # when layout_variant / section_groups stop reaching add_spec_story.
+        self.assertEqual(
+            [["12.2"] * 5, ["12.2"] * 2, ["12.2"] * 2],
+            [
+                [
+                    row.attrib["SingleRowHeight"]
+                    for row in ET.fromstring(xml).find(".//Table").findall(
+                        "./Row",
+                    )
+                ]
+                for xml in spec_tables
+            ],
+        )
+        annotations = (
+            "ANNOTATION ALPHA",
+            "ANNOTATION BRAVO",
+            "ANNOTATION CHARLIE",
+        )
+        trailer = story_map[spec_sid]
+        self.assertNotIn(-1, [trailer.find(text) for text in annotations])
+        self.assertEqual(
+            [
+                "ANNOTATION BRAVO",
+                "ANNOTATION CHARLIE",
+                "ANNOTATION ALPHA",
+            ],
+            sorted(annotations, key=trailer.find),
+        )
+
+    def test_inbox_overview_page_composes_cards_and_overview_callouts(
+        self,
+    ) -> None:
+        """The KR page 4 composition must keep its cards and callout bindings.
+
+        ``add_inbox_overview_page`` stacks the three-card Inbox panel over the
+        governed Overview component for the JE-3000C KR plan. The front
+        callouts are bound positionally through the
+        ``left = rows 0,1,3,4,5,2`` source mapping, so a regression there
+        reorders the labels against the artwork leaders without failing any
+        structural check. The two guards keep an unreviewed layout variant or
+        a dropped source tip from reaching the page instead of failing loudly.
+        """
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-je3000c-kr.csv",),
+        )
+        assets = ROOT / "docs" / "renderers" / "latex" / "assets"
+        card_art = (assets / "je3000c_kr_operation_main_power.pdf").as_posix()
+        inbox_blocks = [
+            ("h1", "구성품"),
+            (
+                "component",
+                json.dumps({
+                    "kind": "inbox",
+                    "items": [
+                        {"img": card_art, "label": f"품목 {index}"}
+                        for index in range(1, 4)
+                    ],
+                }),
+            ),
+            (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "TIP",
+                    "variant": "tips",
+                    "texts": ["포장재를 보관하십시오."],
+                }),
+            ),
+        ]
+        overview_blocks = [
+            ("h1", "제품 개요"),
+            ("h2", "전면"),
+            ("image", (assets / "je3000c_kr_overview_front.pdf").as_posix()),
+            (
+                "table",
+                [
+                    ["**POWER**", "**LCD**"],
+                    ["**DC12V**", "**AC POWER**"],
+                    ["**DC/USB**", "**AC OUTPUT**"],
+                    ["**USB-C**", ""],
+                    ["", ""],
+                    ["**USB-A**", ""],
+                ],
+            ),
+            ("h2", "측면"),
+            ("image", (assets / "je3000c_kr_overview_right.pdf").as_posix()),
+            (
+                "table",
+                [
+                    ["**AC INPUT LABEL**", "**AC INPUT**"],
+                    ["**DC INPUT LABEL**", "**DC INPUT** 12V"],
+                ],
+            ),
+        ]
+
+        def compose(blocks: list, layout_variant: str) -> IdmlWriter:
+            writer = IdmlWriter(
+                params,
+                model="JE-3000C",
+                region="KR",
+                language="ko",
+                native_structure_markers=True,
+            )
+            add_inbox_overview_page(
+                writer,
+                sid="st_inbox_overview",
+                inbox_blocks=blocks,
+                overview_blocks=overview_blocks,
+                bundle_root=ROOT,
+                page_index=4,
+                language="ko",
+                composition_data={
+                    "inbox": {"layout_variant": layout_variant},
+                    "overview": {"instance_id": "je3000c-kr-v1"},
+                },
+            )
+            return writer
+
+        writer = compose(inbox_blocks, "compact_with_tip")
+
+        spread = dict(writer.spreads)["sp_4"]
+        story_map = dict(writer.stories)
+
+        def story_text(story_id: str) -> str:
+            root = ET.fromstring(story_map[story_id])
+            return "".join(
+                node.text or "" for node in root.iter("Content")
+            ).strip()
+
+        self.assertEqual(1, spread.count("<Page "))
+        self.assertIn("art_st_inbox_overview_overview_front", spread)
+        self.assertIn("art_st_inbox_overview_overview_right", spread)
+        self.assertEqual("구성품", story_text("st_inbox_overview_inbox_title"))
+        self.assertEqual("TIP", story_text("st_inbox_overview_tip_label"))
+        self.assertEqual(
+            "포장재를 보관하십시오.",
+            story_text("st_inbox_overview_tip_body"),
+        )
+        self.assertEqual(
+            ["품목 1", "품목 2", "품목 3"],
+            [
+                story_text(f"st_inbox_overview_card_{index}")
+                for index in (1, 2, 3)
+            ],
+        )
+        self.assertEqual(
+            ["1", "2", "3"],
+            [
+                story_text(f"st_inbox_overview_badge_{index}")
+                for index in (1, 2, 3)
+            ],
+        )
+        # je3000c-kr-v1 binds front.left.{0,1,2,4,5} and front.right.{0,1,2}
+        # through the left = rows 0,1,3,4,5,2 mapping, so this order is the
+        # instance contract, not the source table order.
+        self.assertEqual(
+            [
+                "POWER",
+                "DC12V",
+                "USB-C",
+                "USB-A",
+                "DC/USB",
+                "LCD",
+                "AC POWER",
+                "AC OUTPUT",
+            ],
+            [
+                story_text(f"st_inbox_overview_overview_front_label_{index}")
+                for index in range(1, 9)
+            ],
+        )
+        self.assertNotIn(
+            "st_inbox_overview_overview_front_label_9",
+            story_map,
+        )
+        # right.sequence.{1,3}: the second and fourth cell of the right table.
+        self.assertEqual(
+            "AC INPUT",
+            story_text("st_inbox_overview_overview_right_label_1"),
+        )
+        self.assertTrue(
+            story_text("st_inbox_overview_overview_right_label_2").startswith(
+                "DC INPUT"
+            ),
+        )
+
+        with self.assertRaisesRegex(
+            ValueError, "unsupported Inbox layout variant: kr_page_4",
+        ):
+            compose(inbox_blocks, "kr_page_4")
+        with self.assertRaisesRegex(
+            ValueError, "inbox tip is required from source RST",
+        ):
+            compose(inbox_blocks[:2], "compact_with_tip")
 
     def test_compact_fcc_inbox_page_embeds_shared_semantic_overview(self) -> None:
         params = load_layout_params(

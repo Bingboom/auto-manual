@@ -9,6 +9,7 @@ through the registry (no forked logic).
 """
 from __future__ import annotations
 
+import re
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -54,6 +55,34 @@ def _ctx():
 
     return RenderContext(params={}, page_w=368.79, m_l=28.35, m_r=28.35,
                          root=ROOT, bundle_root=ROOT / "does-not-exist")
+
+
+def _guidance_stack_spec(image: str, guidance: list | None = None) -> dict:
+    """An `oppanel` spec already promoted to the guidance-stack layout.
+
+    Shape mirrors what `tools.idml.oppanel.promote_operation_guidance_stack`
+    emits: the panel keeps its own art/rows and gains a three-member
+    `guidance` run of notice / body / notice.
+    """
+    return {
+        "kind": "oppanel",
+        "layout": "image_guidance_stack",
+        "image": image,
+        "rows": [],
+        "guidance": guidance if guidance is not None else [
+            {"kind": "notice", "spec": {
+                "kind": "notice",
+                "label": "NOTE",
+                "texts": ["Charge before first use."],
+            }},
+            {"kind": "body", "text": "Interstitial guidance copy."},
+            {"kind": "notice", "spec": {
+                "kind": "notice",
+                "label": "TIP",
+                "texts": ["Keep the unit ventilated."],
+            }},
+        ],
+    }
 
 
 class ComponentRegistryTests(unittest.TestCase):
@@ -1626,6 +1655,193 @@ class ComponentRegistryTests(unittest.TestCase):
             'FillColor="Color/Paper"',
             host,
         )
+
+    def test_image_guidance_stack_stacks_art_notice_body_notice_in_one_card(
+        self,
+    ) -> None:
+        """The four members must stay stacked, in order, inside one card.
+
+        `_render_image_guidance_stack` composes art, the first notice, the
+        editable interstitial body, and the second notice into a single outer
+        group whose members are positioned by explicit bottom offsets. If the
+        emission order flips, or the offsets lose their sign, the art
+        overprints the notices instead of sitting above them — a silent
+        visual regression no other gate catches, because the IDML still
+        parses. The nested notices are re-anchored by `_nested_notice_group`,
+        which slices `render_notice` output on the literal `<Group
+        Self="grp_notice_` and rewrites `ItemTransform` by regex, so this
+        also pins that coupling: a rename inside notice.py breaks the slice.
+
+        Everything the card emits lands in the anchored sub-story, not in the
+        returned inline XML, so both are searched together.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid: str, _title: str, parts: list[str]) -> str:
+            stories[sid] = "".join(parts)
+            return sid
+
+        tid = "guidance_stack"
+        xml, height = render(
+            _guidance_stack_spec("docs/renderers/latex/assets/op_energy_saving.png"),
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT,
+                add_story=add_story,
+            ),
+            tid=tid, terminal=True,
+        )
+        composed = xml + "".join(stories.values())
+
+        members = [
+            f"grp_oppanel_image_guidance_art_{tid}",
+            f"grp_notice_{tid}_notice_1",
+            f"tf_oppanel_guidance_body_{tid}",
+            f"grp_notice_{tid}_notice_2",
+        ]
+        pattern = "|".join(re.escape(member) for member in members)
+        self.assertEqual(
+            members,
+            re.findall(f'Self="({pattern})"', composed),
+            "guidance-stack members are missing or out of document order",
+        )
+
+        transforms = dict(
+            (name, (x, float(y)))
+            for name, x, y in re.findall(
+                r'<Group Self="(grp_notice_' + re.escape(tid) + r'_notice_[12])"'
+                r'[^>]*?ItemTransform="1 0 0 1 ([-\d.]+) ([-\d.]+)"',
+                composed,
+            )
+        )
+        self.assertEqual(
+            ["7", "7"],
+            [transforms[f"grp_notice_{tid}_notice_1"][0],
+             transforms[f"grp_notice_{tid}_notice_2"][0]],
+            "both nested notices must stay pinned to the card's left inset",
+        )
+        self.assertEqual(-7.0, transforms[f"grp_notice_{tid}_notice_2"][1])
+        self.assertLess(
+            transforms[f"grp_notice_{tid}_notice_1"][1],
+            transforms[f"grp_notice_{tid}_notice_2"][1],
+            "the first notice must sit further down the card than the second",
+        )
+        self.assertIn("Interstitial guidance copy.", composed)
+        self.assertGreater(height, 0.0)
+
+    def test_image_guidance_stack_falls_back_flat_when_the_art_is_missing(
+        self,
+    ) -> None:
+        """Without art, the run degrades to flat blocks — never a half card.
+
+        A permissive (flow/preview) build may not have the governed operation
+        artwork on disk. The renderer then emits the two notices and the body
+        copy as ordinary stacked output instead of composing a card around a
+        missing image. If that branch ever emitted the card frames anyway,
+        the export would place an empty art group and an unfilled body frame
+        over the notices.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid: str, _title: str, parts: list[str]) -> str:
+            stories[sid] = "".join(parts)
+            return sid
+
+        tid = "guidance_stack_flat"
+        xml, height = render(
+            _guidance_stack_spec("_assets/operation/definitely_missing_art.png"),
+            RenderContext(
+                params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                root=ROOT, bundle_root=ROOT / "does-not-exist",
+                add_story=add_story,
+            ),
+            tid=tid, terminal=True,
+        )
+        composed = xml + "".join(stories.values())
+
+        self.assertNotIn("grp_oppanel_image_guidance_art_", composed)
+        self.assertNotIn("tf_oppanel_guidance_body_", composed)
+        self.assertIn(f"st_anchor_notice_body_{tid}_notice_1", stories)
+        self.assertIn(f"st_anchor_notice_body_{tid}_notice_2", stories)
+        self.assertGreater(height, 0.0)
+
+    def test_image_guidance_stack_fails_closed_on_a_missing_governed_asset(
+        self,
+    ) -> None:
+        """An approved/target build must abort, not silently drop the art.
+
+        `strict_component_assets` is what separates a governed reference
+        build from a permissive preview. If the strict and permissive
+        branches were ever swapped, a shipped book would quietly lose the
+        operation illustration instead of failing the build.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        with self.assertRaisesRegex(
+            FileNotFoundError,
+            "operation image-guidance asset missing: "
+            "_assets/operation/definitely_missing_art.png",
+        ):
+            render(
+                _guidance_stack_spec(
+                    "_assets/operation/definitely_missing_art.png",
+                ),
+                RenderContext(
+                    params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                    root=ROOT, bundle_root=ROOT / "does-not-exist",
+                    strict_component_assets=True,
+                    add_story=lambda sid, _title, _parts: sid,
+                ),
+                tid="guidance_stack_strict", terminal=True,
+            )
+
+    def test_image_guidance_stack_requires_notice_body_notice(self) -> None:
+        """The guidance run's shape is a contract, checked before layout.
+
+        The plan declares `layout_variant: guidance_stack` and the promoter
+        builds exactly notice / body / notice. A malformed or reordered run
+        would otherwise be indexed positionally and render a notice where the
+        editable body belongs, so the renderer refuses it up front.
+        """
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        notice = {"kind": "notice", "spec": {
+            "kind": "notice", "label": "NOTE", "texts": ["Copy."],
+        }}
+        body = {"kind": "body", "text": "Interstitial guidance copy."}
+        for label, guidance in (
+            ("empty", []),
+            ("reordered", [notice, notice, body]),
+        ):
+            with self.subTest(guidance=label):
+                with self.assertRaisesRegex(
+                    ValueError,
+                    "image_guidance_stack requires notice, body, notice guidance",
+                ):
+                    render(
+                        _guidance_stack_spec(
+                            "docs/renderers/latex/assets/op_energy_saving.png",
+                            guidance,
+                        ),
+                        RenderContext(
+                            params=params, page_w=368.79, m_l=28.35, m_r=28.35,
+                            root=ROOT, bundle_root=ROOT,
+                            add_story=lambda sid, _title, _parts: sid,
+                        ),
+                        tid=f"guidance_stack_shape_{label}", terminal=True,
+                    )
 
     def test_unknown_kind_renders_nothing(self) -> None:
         from tools.idml.components import render

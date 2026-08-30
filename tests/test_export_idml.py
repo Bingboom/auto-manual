@@ -2401,6 +2401,185 @@ class ExportIdmlTests(unittest.TestCase):
             with self.subTest(stem=stem):
                 self.assertEqual(blocks, promote_reference_figures(blocks, plan, stem))
 
+    def test_target_asset_refs_rebind_every_image_slot_in_order(self) -> None:
+        """A target plan owns which art each image slot carries.
+
+        Catches a regression where the rebinding walks the wrong slots (art
+        would land under the wrong caption), touches non-image blocks, or where
+        the ``target-assembly`` guard broadens and an approved-reference book
+        starts having its reference art silently replaced.
+        """
+        from tools.idml.prose_flow import _apply_target_asset_refs
+
+        blocks = [
+            ("h1", "OPERATION"),
+            ("image", "a.png"),
+            ("body", "copy"),
+            ("image", "b.png"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        entries = {
+            "05_operation_guide_placeholder": {
+                "composition_data": {
+                    "assets": {"image_refs": ["new_a.pdf", "new_b.pdf"]},
+                },
+            },
+        }
+
+        rebound = _apply_target_asset_refs(
+            items, entries, {"plan_source": "target-assembly"},
+        )
+
+        self.assertEqual(
+            [
+                (
+                    "05_operation_guide_placeholder",
+                    [
+                        ("h1", "OPERATION"),
+                        ("image", "new_a.pdf"),
+                        ("body", "copy"),
+                        ("image", "new_b.pdf"),
+                    ],
+                    1,
+                ),
+            ],
+            rebound,
+        )
+
+        self.assertEqual(
+            items,
+            _apply_target_asset_refs(
+                items, entries, {"plan_source": "approved-reference"},
+            ),
+        )
+
+    def test_target_asset_refs_fail_closed_on_a_slot_count_mismatch(self) -> None:
+        """Too few or too many refs must raise, never bind partially.
+
+        Catches a regression where a short ``image_refs`` list leaves later
+        slots on stale source art, or a long one silently drops the surplus —
+        both ship a book whose art no longer matches its target contract.
+        """
+        from tools.idml.prose_flow import _apply_target_asset_refs
+
+        blocks = [
+            ("h1", "OPERATION"),
+            ("image", "a.png"),
+            ("body", "copy"),
+            ("image", "b.png"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        plan = {"plan_source": "target-assembly"}
+
+        def entries_with(refs: list[str]) -> dict[str, dict]:
+            return {
+                "05_operation_guide_placeholder": {
+                    "composition_data": {"assets": {"image_refs": refs}},
+                },
+            }
+
+        with self.assertRaisesRegex(ValueError, "do not cover every image slot"):
+            _apply_target_asset_refs(items, entries_with(["only_a.pdf"]), plan)
+
+        with self.assertRaisesRegex(ValueError, "contain extra image slots"):
+            _apply_target_asset_refs(
+                items, entries_with(["a.pdf", "b.pdf", "c.pdf"]), plan,
+            )
+
+    def test_target_page_breaks_insert_markers_by_block_kind_and_ordinal(self) -> None:
+        """Markers land *before* the matched block, later rules first.
+
+        Catches a regression where a marker lands after its block (the page
+        would break one heading too late), where insertions stop running in
+        reverse index order (every rule after the first would be off by N), or
+        where ``top_gap_pt`` stops rendering as ``page_break:<pt>`` — the exact
+        shape the prose renderer parses.
+        """
+        from tools.idml.prose_flow import _apply_target_page_breaks
+
+        blocks = [
+            ("h1", "A"),
+            ("h2", "B"),
+            ("body", "c"),
+            ("h2", "D"),
+            ("h2", "E"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        entries = {
+            "05_operation_guide_placeholder": {
+                "composition_data": {
+                    "page_breaks": [
+                        {"at_kind": "h2", "occurrence": 1, "top_gap_pt": 12.5},
+                        {"at_kind": "h2", "occurrence": 3},
+                    ],
+                },
+            },
+        }
+
+        aligned = _apply_target_page_breaks(
+            items, entries, {"plan_source": "target-assembly"},
+        )
+
+        self.assertEqual(
+            [
+                (
+                    "05_operation_guide_placeholder",
+                    [
+                        ("h1", "A"),
+                        ("layout", "page_break:12.5"),
+                        ("h2", "B"),
+                        ("body", "c"),
+                        ("h2", "D"),
+                        ("layout", "page_break"),
+                        ("h2", "E"),
+                    ],
+                    1,
+                ),
+            ],
+            aligned,
+        )
+
+        self.assertEqual(
+            items,
+            _apply_target_page_breaks(
+                items, entries, {"plan_source": "approved-reference"},
+            ),
+        )
+
+    def test_target_page_breaks_fail_closed_on_an_unreachable_rule(self) -> None:
+        """An ordinal the page cannot reach, or a malformed rule, must raise.
+
+        Catches a regression where a stale rule silently no-ops after the source
+        RST loses a heading — the page would then run long instead of breaking
+        where the target contract says it must.
+        """
+        from tools.idml.prose_flow import _apply_target_page_breaks
+
+        blocks = [
+            ("h1", "A"),
+            ("h2", "B"),
+            ("body", "c"),
+            ("h2", "D"),
+            ("h2", "E"),
+        ]
+        items = [("05_operation_guide_placeholder", list(blocks), 1)]
+        plan = {"plan_source": "target-assembly"}
+
+        def entries_with(rules: list) -> dict[str, dict]:
+            return {
+                "05_operation_guide_placeholder": {
+                    "composition_data": {"page_breaks": rules},
+                },
+            }
+
+        with self.assertRaisesRegex(ValueError, "cannot find h2 occurrence 9"):
+            _apply_target_page_breaks(
+                items, entries_with([{"at_kind": "h2", "occurrence": 9}]), plan,
+            )
+
+        with self.assertRaisesRegex(ValueError, "page_breaks rule must be an object"):
+            _apply_target_page_breaks(items, entries_with(["h2"]), plan)
+
     def test_approved_app_figures_keep_step_numbers_and_movable_labels(self) -> None:
         from tools.idml.prose_flow import promote_reference_figures
 

@@ -16,8 +16,9 @@ production。此前这条流程只有 `configs/config.bp-us.yaml` 里的一句�
 1. **批准参考版式合同**(approved)——经
    `docs/renderers/contracts/reference_layout_registry.json` 注册发现,
    按 (model, region) 匹配。命中即用,且校验失败就报错,不回落。
-2. **candidate 目标装配合同**——family config 里
-   `paths.idml_assembly_plan` 显式指定(`tools/build_paths.py::
+2. **candidate 目标装配合同**——family config 里 `paths.idml_assembly_plan`
+   (整份 config)或 `paths.idml_assembly_plans`(`{Document_Key: path}`,按
+   `<MODEL>_<REGION>` 选中;二者互斥)显式指定(`tools/build_paths.py::
    resolve_idml_assembly_plan`,无文件名/型号自动发现)。
 3. **测量式 LaTeX 页面计划**——都没有时,从参考 PDF 现测。
 
@@ -97,9 +98,16 @@ _unregistered_approved_contracts` 会在校验时发现 reference_layout 目录�
 
 ### 3.4 退役 config 的 candidate 行
 
-解析阶梯里 approved 优先,config 的 `paths.idml_assembly_plan` 从此是死配置
-——同一 PR 里删掉它和旁边的 candidate 注释,避免下一个读 config 的人误判
-产线还停在 candidate 阶段。
+解析阶梯里 approved 优先,config 的 candidate 指向从此是死配置——同一 PR 里
+删掉它和旁边的 candidate 注释,避免下一个读 config 的人误判产线还停在
+candidate 阶段。单数形(`paths.idml_assembly_plan`,见 `configs/config.bp-us.yaml`)
+整键删除;共享 family config 的按目标形(`paths.idml_assembly_plans`,见
+`configs/config.kr.yaml` 三个 KR 型号共用一份 config)**只删本目标那一行**,
+该键上其他型号的行必须留着。
+
+`paths.idml_layout_params_overlays*` **不在此列**——批准几何就长在那些
+`lang_<code>_` 行里(见 §4 strict 翻转),删掉会让已进 `contract_languages`
+的语言直接构建失败。
 
 ## 4. 晋升的直接后果(strict 翻转清单)
 
@@ -126,7 +134,7 @@ _unregistered_approved_contracts` 会在校验时发现 reference_layout 目录�
 - [ ] §2 三个前置条件有据可查(对账报告链接 + 操作者验收记录)
 - [ ] 新合同通过 `validate_page_plan`(跑一次目标 IDML 构建即触发)
 - [ ] registry 行与合同 `target` 一致;`--all-registered` dry-run 干净
-- [ ] config 的 `idml_assembly_plan` 已删除
+- [ ] config 的 candidate 指向已退役(单数形删整键;`idml_assembly_plans` 只删本目标那一行、保留其他型号),`idml_layout_params_overlays*` 保持不动
 - [ ] strict 试跑通过(全部合同令牌与资产就位)
 - [ ] golden / 结构闸门按需主动重基线,PR 里逐项交代
 - [ ] 晋升本身是操作者门:PR 由操作者合入,不适用 gate-on-green 自合

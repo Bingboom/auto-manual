@@ -218,15 +218,37 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
 | # | 步骤 | 落点 | 性质 |
 |---|---|---|---|
 | 1 | 规格入库 | phase2 源表，经 `spec-sheet-structured-intake` skill | 判断 + 操作者审批写库 |
-| 2 | 家族 config + 骨架 | `configs/config.<family>.yaml`（照 `config.bp-us.yaml`；`language_family` 写语言范围、`queue_requires_target_match: true`）+ blueprint / region-profile → `tools/skeleton_resolve.py` emit | 基本机械；⚠️ `allowed_foreign_identity_literals` 是**整表替换**不是追加 |
+| 2 | 家族 config + 骨架 | `configs/config.<family>.yaml`（照 `config.bp-us.yaml`；`language_family` 写语言范围、`queue_requires_target_match: true`）+ blueprint / region-profile → `tools/skeleton_resolve.py` emit。⚠️ 本八步默认输出语言**已注册**；全新语言要先在 `tools/lang_registry.py` 加一行 `LanguageSpec`，那套流程归 [`new-region-line` skill 的 setup-map §2](../../.agents/skills/new-region-line/references/setup-map.md) 所有，本文不复述 | 基本机械；⚠️ `allowed_foreign_identity_literals` 是**整表替换**不是追加 |
 | 3 | 页面模板 | `docs/templates/page_<family>/{en,fr,es}/`：语义容器（`.. container:: warranty-*`）、`asset:KEY`、`{{snippet:}}`、`:widths: 12 88` callout | 判断；逐项过 §6 清单 |
 | 4 | 插图资产 | `data/asset_recipes/*.json`（经 `asset-textless-extraction` skill）→ 注册表登记，**全新键 `override_for` 留空** | 判断 + 操作者确认 |
-| 5 | **目标装配 JSON** | 先跑脚手架：`python -m tools.idml.target_assembly_scaffold --ir <build>/idml/manual.ir.json --physical-pages <N> --out .../<target>_v1_candidate.json`——机械字段（角色、组合、页序）自动生成且可直接 normalize，随产出的 `.todos.md` 只补判断项（variant / composition_data / flow_split / 打包合并）。词汇表：`front_cover / preface / toc / safety_symbols / fcc_inbox_overview / lcd_operations / connections / troubleshooting / charging / charging_storage / storage_specifications / warranty / back_cover`；加载器 fail-closed（`target_assembly_plan.py` 校验每一页） |
-| 6 | 容量令牌 | `data/layout_params.idml-compact.csv`（overlay，additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行 | 半机械测量；见 §5.2 |
+| 5 | **目标装配 JSON** | 先跑脚手架：`python -m tools.idml.target_assembly_scaffold --ir <build>/idml/manual.ir.json --physical-pages <N> --out docs/renderers/contracts/target_assembly/<target>_v1_candidate.json`——机械字段（角色、组合、页序）自动生成且可直接 normalize，随产出的 `.todos.md` 只补判断项（variant / composition_data / flow_split / 打包合并）。**词汇表不在本文复制**：权威来源是 `composition_plan.py::REGISTRY`。照抄快照正是本行上一轮只列 13 型、而注册表已有 27 型的原因。组合在册即直接引用；出现新的物理分组要先在 REGISTRY 登记一条 `_spec(<type>, <角色…>)`——KR 轮为此加了 `preface_safety_maintenance` / `symbols` / `inbox_overview` 三型。加载器 fail-closed：`composition_type` 必须在册且角色签名逐位相符，页面出现 `_PAGE_KEYS` 之外的任何键即报错（#966 起——会被静默丢弃的声明就是骗人的合同）。config 接线见 §7.1 | 判断 |
+| 6 | 容量令牌 | overlay CSV（additive-only）：仅当文案长度不同才加 `lang_<code>_*` 行。BP 用整份 config 生效的 `data/layout_params.idml-compact.csv`，KR 用按目标挂载的 `data/layout_params.idml-je3000c-kr.csv`，两种挂法见 §7.1。⚠️ 语言必须在 `layout_override_languages()`（`tools/lang_registry.py`）里，否则它的 `lang_<code>_*` 行会被**静默忽略**、直接回落基准值——ko 是经 `_IDML_LAYOUT_TUNING_LANGUAGE_CODES` 进的 | 半机械测量；见 §5.2 |
 | 7 | 构建 + 最终化 | `python build.py idml --config configs/config.<family>.yaml --model <M> --region <R> --idml-mode both --skip-root-index`；InDesign 最终化只碰载体；preflight 零 overset | 机械 |
 | 8 | 视觉验收 + 晋升 | §6 清单 + 与批准 reference 同页对比；candidate → production 晋升是操作者门，全流程见 [`idml_candidate_promotion.md`](idml_candidate_promotion.md)（前置验收门、v2 合同字段迁移、rebind 绑 pin、registry 注册、strict 翻转清单） | 判断 |
 
-已知的两处减速带（按 JBP 实测）：
+### 7.1 config 的两处 IDML 接线
+
+第 5 步的 plan 和第 6 步的 overlay 都**不会被自动发现**，必须在 family config
+的 `paths:` 里显式 opt-in（`tools/build_paths.py::resolve_idml_assembly_plan` /
+`resolve_idml_layout_param_overlays`，没有文件名或型号推断）。每处各有两种形：
+
+| 作用 | 整份 config 生效 | 按目标生效 |
+|---|---|---|
+| 装配 plan | `idml_assembly_plan: <path>` | `idml_assembly_plans:` 下 `<Document_Key>: <path>` |
+| 容量 overlay | `idml_layout_params_overlays:` 下 `- <path>` | `idml_layout_params_overlays_by_target:` 下 `<Document_Key>:` 再列 `- <path>` |
+
+`Document_Key` 是 `<MODEL>_<REGION>`，大小写不敏感匹配，同键重复即报错。
+
+一条产线独占 config 时用单数形（`configs/config.bp-us.yaml`）；**family config
+挂多个型号、只有其中一个进 candidate 装配时用按目标形**——`configs/config.kr.yaml`
+的三个 KR 型号共用一份 config，只有 `JE-3000C_KR` 挂了 plan 和 overlay，其余型号
+保持原有的测量路径。
+
+两者的合成规则不同：`idml_assembly_plan` 与 `idml_assembly_plans` **互斥**，同时
+出现即报错，且未命中目标时返回「无 candidate」而不是报错；overlay 则是**叠加**
+——全局列表在前、命中目标的列表追加在后，合成后路径必须唯一，重复即报错。
+
+### 7.2 已知的两处减速带（按 JBP 实测）
 
 - ~~第 5 步无脚手架~~ **已解决**：`tools/idml/target_assembly_scaffold.py` 对 JBP
   自身页序的往返测试证明全部机械字段与手写 plan 逐字段一致（43 页 × 7 字段），
