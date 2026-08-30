@@ -2349,9 +2349,15 @@ every item owned:
       US QR-only `back_cover`, so this remains a shared-carrier problem rather
       than a new skeleton or target branch.
   - [ ] R1b shared carrier and language readiness
-    - Status: `in_progress`; gate: #976 merged. Any resolver change must land as
-      a target-neutral prerequisite and keep the frozen JBP-US resolved
-      manifest byte-identical.
+    - Status: `in_progress`; the target-neutral terminal-carrier prerequisite
+      is done, while six-language front/body carrier readiness remains.
+    - Prerequisite evidence: [#977](https://github.com/Bingboom/auto-manual/pull/977)
+      passed 18/18 checks with no changes-requested review or unresolved review
+      thread and squash-merged as `e59a8eb7`. The blueprint now owns the
+      corpus-proven `regulatory_compliance` back slot and a region profile may
+      select it, `back_cover`, both in blueprint order, or an explicitly empty
+      terminal set. US explicitly selects only `back_cover`; its resolved
+      manifest remains byte-identical at the frozen SHA-256 below.
   - Frozen S6 identities at checklist registration:
     - `blueprint.yaml` SHA-256
       `5203be26a8846ceac8bf59ca706d7879954ff7800bd016500badb0d716a390f8`
