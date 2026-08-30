@@ -1610,17 +1610,14 @@ This milestone is the **superset execution** of Workstream M (`page_registry`
 becomes the only composition authority) in
 [`optimization_project.md`](optimization_project.md).
 
-Milestone status: `in progress` — slice S1 (#936) and S2 (#937) merged
-2026-08-21; S3 (#938), S5 (#939) and S4 (#940) are open with CI green. The one
-S4's **first** live source-table batch landed 2026-08-22 on operator
-confirmation (20 rows + 4 Slot records + 1 copy row + 1 TM field update;
-record ids in
-`code-as-doc/reviews/jbp2000b_us_intake_record_ids_2026-08.md` (added by #940)),
-which closed `validate_spec_master`. What now blocks the slice is the
-**second** batch — the symbols / LCD-icon / troubleshooting `csv_page` source
-rows, proposed in
-`code-as-doc/reviews/jbp2000b_us_csvpage_intake_order_2026-08.md` (added by #940)
-and awaiting confirmation.
+Milestone status: `in_progress` — S1–S5 are done: S1 #936 (`1823cc4e`),
+S2 #937 (`eeb8eaa8`), S3 #938 (`71f7c5ec`), S4 #940 (`5e1d0c26`) and
+S5 #939 (`0432e5b7`). Both S4 source-table batches have landed, and #944
+(`baf8b712`) restored the JBP target from CI `SKIP` to `PASS`. S6 is now
+`in_progress`: the shared-component target assembly, pipeline-side
+reconciliation, native InDesign preflight, 28-page visual comparison and
+self-contained delivery-pack checks all have recorded evidence; the formal
+four-class difference counts and operator rulings remain open.
 Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.
@@ -2089,9 +2086,10 @@ generate-then-verify; YAML stays the source of truth).
     `tools/renderer_acceptance.py` (added by #939) (608
     lines), `tests/test_renderer_acceptance.py`, and
     `code-as-doc/dev/renderer_acceptance_runbook.md` (added by #939).
-    The harness is mergeable now; the acceptance **run** is blocked on the S4
-    live intake.
-  - Gate: the harness merges on S1–S3; the run needs S4's data in place.
+    The harness is mergeable now; the acceptance **run** was subsequently
+    executed during S6 after both S4 intake batches landed.
+  - Gate: the harness merged on S1–S3; the S4 data prerequisite for the run is
+    now satisfied.
   - Mechanical criteria (each one command + one exit code / grep):
     - check/unittest/ruff/guardrails all green
     - **PDF page count == 28 exactly** (`F(L) + L·B + K`, `K = 1`;
@@ -2164,10 +2162,11 @@ generate-then-verify; YAML stays the source of truth).
     emits it; exit 0 means every selected criterion passed.
 
 - [ ] S6: InDesign finishing + page-by-page reconciliation (operator round)
-  - Status: `pending` — blocked on the operator transitively: S4's **second**
-    intake batch (the `csv_page` rows) has to land before S5's harness can be
-    run at all. The first batch landed 2026-08-22.
-  - Gate: S5 green.
+  - Status: `in_progress` — S5 is green and its S4 data prerequisite is
+    satisfied. #955 (`ad14f261`) landed the JBP shared-component candidate
+    assembly, #959 (`646050aa`) recorded the pipeline-side reconciliation,
+    and #971 (`c1d75d62`) closed the portable-font final-assembly defects.
+  - Gate: S5 green — satisfied.
   - Work: pipeline delivers the handoff zip (existing mechanism: relative
     Links, fonts opt-in); operator performs one real InDesign finishing pass;
     the finished book is reconciled page-by-page against the shipped
@@ -2180,6 +2179,24 @@ generate-then-verify; YAML stays the source of truth).
   - Deliverable: reconciliation report in `code-as-doc/reviews/`, every
     difference classified **pipeline-gap / finishing-layer / data-gap /
     accepted-degradation** with counts. This report re-scopes the rollout.
+  - Evidence already recorded:
+    - [`reviews/jbp2000b_us_s6_reconciliation_2026-08.md`](reviews/jbp2000b_us_s6_reconciliation_2026-08.md):
+      pipeline mechanical acceptance is 11/11, with 28/28 physical pages,
+      43/43 source bindings, `skipped_raw=0`, and 41/41 delivery links
+    - [`reviews/jbp2000b_us_local_validation_2026-08.md`](reviews/jbp2000b_us_local_validation_2026-08.md):
+      InDesign 2026 `21.0.1.6` native finalize produced 28 pages with
+      0 overset, 0 missing fonts, 0 missing glyphs and 0 bad links
+    - the same validation record documents a 28-page source/native side-by-side
+      review and a clean-room ZIP unpack/reopen pass; the unpacked package
+      retained 41/41 links and reproduced all 28 rendered pages
+  - Remaining before `done`:
+    - consolidate every observed visual difference into the four required
+      classes and record an explicit count for each class
+    - record the operator's final ruling for every `pipeline-gap` and
+      `accepted-degradation`
+    - keep the target assembly `candidate` / `production_eligible=false` until
+      the separate promotion gate is approved; this evidence does not make it
+      an approved reference-layout
   - Slice exit: report delivered and operator rules on each pipeline-gap.
 
 ### Rollout backlog (deferred until S6 acceptance; full audited text in commit 80321368)
