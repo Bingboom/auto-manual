@@ -1,12 +1,13 @@
 .. raw:: latex
 
    \HBApplyLang{en}
+
+.. raw:: latex
+
    \HBPrefacePageBegin
    \HBLangTagLine{EN}{IMPORTANT}
 
 .. only:: not latex
-
-   English / French / Spanish
 
    **IMPORTANT**
 

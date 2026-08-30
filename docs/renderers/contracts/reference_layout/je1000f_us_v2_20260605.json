@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "夏冰",
-    "approved_at": "2026-08-14T09:30:00Z",
-    "method": "operator-chat-decree(POWER统一+印刷页清单化), session 3767cc66"
+    "approved_at": "2026-08-29T14:11:49Z",
+    "method": "operator directive 2026-08-29: restore final assembly 3/3; exact Hello-Docs review e06def5e; editable IDML semantic projection; 52-source/58-page composition unchanged"
   },
   "render_contract": {
     "dpi": 300,
@@ -838,7 +838,7 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "af9314473f7d8c58bac2aa2980a153557d9fa421c339b2ed878e5f3860d1574c"
+      "manual_content_sha256": "b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a"
     },
     "assembly": {
       "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"

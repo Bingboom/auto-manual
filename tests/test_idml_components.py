@@ -521,15 +521,29 @@ class ComponentRegistryTests(unittest.TestCase):
         from tools.idml.components import RenderContext, render
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
         xml, _height = render(
             {
                 "kind": "warrantyyears",
-                "items": [{
-                    "number": "3",
-                    "unit": "YEARS",
-                    "label": "Standard Warranty",
-                    "text": "Copy.",
-                }],
+                "items": [
+                    {
+                        "number": "3",
+                        "unit": "YEARS",
+                        "label": "Standard Warranty",
+                        "text": "Copy.",
+                    },
+                    {
+                        "number": "2",
+                        "unit": "YEARS",
+                        "label": "Extended Warranty",
+                        "text": "Copy.",
+                    },
+                ],
             },
             RenderContext(
                 params=params,
@@ -538,13 +552,18 @@ class ComponentRegistryTests(unittest.TestCase):
                 m_r=28.35,
                 root=ROOT,
                 bundle_root=ROOT / "does-not-exist",
+                add_story=add_story,
             ),
             tid="warranty_year_subtitle_alignment",
             terminal=True,
         )
-        self.assertIn('LeftIndent="21.31"', xml)
-        self.assertIn('VerticalJustification="TopAlign"', xml)
-        self.assertNotIn('VerticalJustification="CenterAlign"', xml)
+        self.assertEqual(2, xml.count('LeftIndent="26.21"'))
+        self.assertEqual(2, xml.count('<Position type="unit">26.21</Position>'))
+        self.assertIn("<Content>\tYEARS</Content>", xml)
+        self.assertIn("<Content>Standard Warranty</Content>", xml)
+        self.assertIn("<Content>Extended Warranty</Content>", xml)
+        self.assertEqual(2, len(stories))
+        self.assertEqual(2, xml.count('VerticalJustification="TopAlign" TopInset="0"'))
 
     def test_warranty_years_reuse_the_je_portable_glyph_on_target_plans(
         self,
@@ -553,6 +572,12 @@ class ComponentRegistryTests(unittest.TestCase):
         from tools.idml.components import RenderContext, render
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
         xml, _height = render(
             {
                 "kind": "warrantyyears",
@@ -571,14 +596,21 @@ class ComponentRegistryTests(unittest.TestCase):
                 root=ROOT,
                 bundle_root=ROOT / "does-not-exist",
                 native_structure_markers=True,
+                add_story=add_story,
             ),
             tid="warranty_native_year",
             terminal=True,
         )
 
-        self.assertIn("<Content>❸</Content>", xml)
-        self.assertIn("<Content> YEARS</Content>", xml)
-        self.assertNotIn("tf_warranty_year_", xml)
+        self.assertIn('Self="bg_warranty_year_warranty_native_year_0"', xml)
+        self.assertIn('Self="tf_warranty_year_warranty_native_year_0"', xml)
+        self.assertIn('FillColor="Color/HB Brand Dark"', xml)
+        self.assertNotIn("<Content>❸</Content>", xml)
+        self.assertIn("<Content>\tYEARS</Content>", xml)
+        self.assertIn('<Position type="unit">26.21</Position>', xml)
+        self.assertEqual(1, len(stories))
+        self.assertIn("<Content>3</Content>", "".join(stories[0][2]))
+        self.assertIn('FillColor="Color/Paper"', "".join(stories[0][2]))
 
     def test_bp_warranty_years_use_reference_subtitle_and_rhythm(self) -> None:
         from tools.export_idml import load_layout_params
@@ -588,6 +620,12 @@ class ComponentRegistryTests(unittest.TestCase):
             ROOT / "data" / "layout_params.csv",
             (ROOT / "data" / "layout_params.idml-compact.csv",),
         )
+        stories = []
+
+        def add_story(sid, title, parts):
+            stories.append((sid, title, parts))
+            return sid
+
         xml, _height = render(
             {
                 "kind": "warrantyyears",
@@ -608,13 +646,16 @@ class ComponentRegistryTests(unittest.TestCase):
                 bundle_root=ROOT / "does-not-exist",
                 language="en",
                 native_structure_markers=True,
+                add_story=add_story,
             ),
             tid="warranty_bp_year",
             terminal=True,
         )
 
-        self.assertIn("<Content>❸</Content>", xml)
-        self.assertNotIn("tf_warranty_year_", xml)
+        self.assertIn('Self="bg_warranty_year_warranty_bp_year_0"', xml)
+        self.assertNotIn("<Content>❸</Content>", xml)
+        self.assertIn('Self="tf_warranty_year_warranty_bp_year_0"', xml)
+        self.assertIn("<Content>3</Content>", "".join(stories[0][2]))
         self.assertIn("<Content>Standard Warranty</Content>", xml)
         self.assertNotIn("<Content>— Standard Warranty</Content>", xml)
         self.assertIn('HorizontalScale="100"', xml)
@@ -1373,7 +1414,9 @@ class ComponentRegistryTests(unittest.TestCase):
             if story_id == "st_anchor_notice_body_notice_symbol"
         )
         ET.fromstring(f"<root>{body}</root>")
-        self.assertIn("※", body)
+        self.assertIn("<!--HB_NATIVE_REFERENCE_MARK-->", body)
+        self.assertIn('<Polygon Self="__HB_NATIVE_REFERENCE_MARK_GLYPH__"', body)
+        self.assertNotIn("<Content>※</Content>", body)
 
     def test_notice_reference_geometry_overrides_width_height_and_inline_offset(self) -> None:
         from tools.idml.components import RenderContext, render

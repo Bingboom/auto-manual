@@ -96,75 +96,90 @@ CJK_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
 )
 
 
-# Latin-market IDML must not depend on macOS-only symbol faces. Segoe UI
-# Symbol is present on supported Windows hosts and covers the editable DC,
-# bullet, reference-mark, ordinal, and subscript glyphs emitted by the
-# renderer.
+# Portable symbol faces are committed unchanged under SIL OFL 1.1 and copied
+# beside every designer-facing IDML. Do not replace them with a platform
+# system font: Resources/Fonts.xml cannot prove that the opening host has it.
 SYMBOL_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
-    resource_id="ff_segoe_ui_symbol",
-    name="Segoe UI Symbol",
+    resource_id="ff_noto_sans_symbols",
+    name="Noto Sans Symbols",
     faces=(
         IdmlFontFace(
-            resource_id="ff_segoe_ui_symbol_r",
-            name="Segoe UI Symbol",
-            postscript_name="SegoeUISymbol",
+            resource_id="ff_noto_sans_symbols_r",
+            name="Noto Sans Symbols Regular",
+            postscript_name="NotoSansSymbols-Regular",
             style_name="Regular",
             font_type="OpenTypeTT",
         ),
     ),
-    delivery_postscript_names="SegoeUISymbol",
-    delivery_license="Windows system font (symbol fallback)",
+    delivery_postscript_names="NotoSansSymbols-Regular",
+    delivery_license="SIL OFL 1.1 (bundled portable symbol fallback)",
 )
 
 
-# Segoe UI Symbol stops at circled 20. Yu Gothic is the Windows-native face
-# used for the complete editable circled-number set through 27, including the
-# LCD table row labels.
-CIRCLED_NUMBER_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
-    resource_id="ff_yu_gothic",
-    name="Yu Gothic",
+TEXT_SYMBOL_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_noto_sans",
+    name="Noto Sans",
     faces=(
         IdmlFontFace(
-            resource_id="ff_yu_gothic_r",
-            name="Yu Gothic Regular",
-            postscript_name="YuGothic-Regular",
+            resource_id="ff_noto_sans_r",
+            name="Noto Sans Regular",
+            postscript_name="NotoSans-Regular",
             style_name="Regular",
             font_type="OpenTypeTT",
         ),
     ),
-    delivery_postscript_names="YuGothic-Regular",
-    delivery_license="Windows system font (circled-number fallback)",
+    delivery_postscript_names="NotoSans-Regular",
+    delivery_license="SIL OFL 1.1 (bundled portable text-symbol fallback)",
 )
 
 
-# Korean body text is a typographic choice, not coverage fallback: Hangul
-# runs route here instead of degrading to the Arial Unicode MS symbol face.
-# Noto Sans KR is the print-industry default for Korean (SIL OFL 1.1 — free
-# to install and to embed in print PDFs). The family is declared only inside
-# Korean packages so every non-Korean package keeps byte-identical
-# resources; swapping the Korean face later means editing this one token.
+BULLET_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_noto_sans_symbols2",
+    name="Noto Sans Symbols2",
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_noto_sans_symbols2_r",
+            name="Noto Sans Symbols2 Regular",
+            postscript_name="NotoSansSymbols2-Regular",
+            style_name="Regular",
+            font_type="OpenTypeTT",
+        ),
+    ),
+    delivery_postscript_names="NotoSansSymbols2-Regular",
+    delivery_license="SIL OFL 1.1 (bundled portable filled-circle fallback)",
+)
+
+
+# Compatibility export: circled numbers 1-20 share Noto Sans Symbols.
+CIRCLED_NUMBER_FONT_FAMILY_TOKEN = SYMBOL_FONT_FAMILY_TOKEN
+
+
+# Korean prose uses a real sans family whose unchanged SIL-OFL binary is
+# shipped beside Korean IDML packages. This is typography, not a symbol
+# fallback; Western punctuation continues to inherit the primary paragraph.
 KOREAN_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
-    resource_id="ff_noto_sans_kr",
-    name="Noto Sans KR",
+    resource_id="ff_nanum_gothic",
+    name="NanumGothic",
     faces=(
         IdmlFontFace(
-            resource_id="ff_noto_sans_kr_r",
-            name="Noto Sans KR Regular",
-            postscript_name="NotoSansKR-Regular",
+            resource_id="ff_nanum_gothic_r",
+            name="NanumGothic Regular",
+            postscript_name="NanumGothic",
             style_name="Regular",
-            font_type="OpenTypeCFF",
+            font_type="OpenTypeTT",
         ),
     ),
-    delivery_postscript_names="NotoSansKR-Regular",
-    delivery_license="SIL OFL 1.1 (Korean text; Google Noto)",
+    delivery_postscript_names="NanumGothic",
+    delivery_license="SIL OFL 1.1 (bundled Korean text; NHN Nanum)",
 )
 
 
 IDML_FONT_FAMILY_TOKENS = (
     PRIMARY_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
+    TEXT_SYMBOL_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
-    CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
+    BULLET_FONT_FAMILY_TOKEN,
 )
 
 # One manifest serves every delivery, so operators installing fonts see the

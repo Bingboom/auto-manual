@@ -15,9 +15,6 @@ from ..primitives import (
 )
 from .base import RenderContext, figure_paragraph
 
-_CIRCLED = {str(index): glyph for index, glyph in enumerate("❶❷❸❹❺❻❼❽❾", 1)}
-
-
 def _plain_strong(text: str) -> str:
     match = re.fullmatch(r"\s*\*\*(.*?)\*\*\s*", text, re.S)
     return match.group(1) if match else text
@@ -162,20 +159,109 @@ def _year_heading(
     ctx: RenderContext,
     *,
     marker_id: str,
+    unit_indent: float,
 ) -> str:
-    """Render the same portable year heading used by JE-1000F."""
-    del marker_id
+    """Render the shared, font-portable warranty year badge.
+
+    The approved composition uses a dark circular badge with a white live-text
+    numeral.  A Unicode circled digit is not portable across InDesign hosts,
+    while reducing the heading to a bare ``3``/``2`` loses the component's
+    visual contract.  Keep the circle as native IDML geometry and put the
+    ordinary numeral in its own editable story; ordinary ASCII digits are
+    covered by the packaged production face on every target.
+    """
     number = str(item.get("number", "")).strip()
     unit = str(item.get("unit", "")).strip()
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
-    glyph_size = param_pt(ctx.params, "idml_warranty_year_glyph_size", 30.0)
-    glyph = _CIRCLED.get(number, number)
-    xml = psr("HB Warranty Year Heading", f"{glyph} {unit}")
-    xml = xml.replace(
-        'FontStyle="Regular"',
-        f'PointSize="{glyph_size:g}" FontStyle="Regular"',
-        1,
-    )
+    diameter = param_pt(ctx.params, "comp_warranty_year_badge_size", 23.81)
+    badge = ""
+    if ctx.add_story is not None:
+        safe_id = re.sub(r"[^A-Za-z0-9_]+", "_", marker_id).strip("_")
+        safe_id = safe_id or "warranty_year"
+        numeral_xml = psr("HB Warranty Year Heading", number, terminal=True)
+        numeral_xml = numeral_xml.replace(
+            "<ParagraphStyleRange ",
+            '<ParagraphStyleRange Justification="CenterAlign" ',
+            1,
+        )
+        numeral_xml = numeral_xml.replace(
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+            f'FillColor="Color/Paper" PointSize="{badge_size:g}" '
+            'FontStyle="Bold"',
+            1,
+        )
+        numeral_sid = ctx.add_story(
+            f"st_anchor_{safe_id}",
+            f"Warranty year {number} badge",
+            [numeral_xml],
+        )
+        background = (
+            f'<Polygon Self="bg_{safe_id}" ContentType="Unassigned" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'FillColor="Color/HB Brand Dark" StrokeColor="Swatch/None" '
+            'StrokeWeight="0" ItemTransform="1 0 0 1 0 0">\n'
+            + _po.rounded_path_geometry(
+                0.0,
+                -diameter,
+                diameter,
+                0.0,
+                diameter / 2.0,
+            )
+            + _anchor()
+            + '</Polygon>\n'
+        )
+        numeral_frame = _text_frame(
+            numeral_sid,
+            f"tf_{safe_id}",
+            0.0,
+            -diameter,
+            diameter,
+            0.0,
+            valign="CenterAlign",
+        )
+        badge = (
+            f'<Group Self="grp_{safe_id}" '
+            'AppliedObjectStyle="ObjectStyle/$ID/[None]" '
+            'ItemTransform="1 0 0 1 0 0">\n'
+            + background
+            + numeral_frame
+            + '</Group>'
+        )
+
+    if badge:
+        # Pin the unit to the same component-owned x coordinate used by the
+        # subtitle below.  Letting a literal space follow the inline badge
+        # made the unit advance font-dependent and allowed the two baselines
+        # to drift apart when the Unicode circled digit became native IDML.
+        xml = psr("HB Warranty Year Heading", f"\t{unit}")
+        tab_properties = (
+            '<Properties><TabList type="list"><ListItem type="record">'
+            '<Alignment type="enumeration">LeftAlign</Alignment>'
+            '<AlignmentCharacter type="string"></AlignmentCharacter>'
+            '<Leader type="string"></Leader>'
+            f'<Position type="unit">{unit_indent:g}</Position>'
+            '</ListItem></TabList></Properties>'
+        )
+        xml = xml.replace(
+            "\n    <CharacterStyleRange",
+            f"\n    {tab_properties}\n    <CharacterStyleRange",
+            1,
+        )
+        marker = (
+            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">'
+        )
+        xml = xml.replace(marker, marker + badge, 1)
+    else:
+        # Pure component callers do not own a story registry.  Preserve a
+        # readable fallback there; production IDML writers always provide
+        # ``add_story`` and therefore take the native circular path above.
+        xml = psr("HB Warranty Year Heading", f"**{number}** {unit}")
+        xml = xml.replace(
+            'FontStyle="Bold"',
+            f'PointSize="{badge_size:g}" FontStyle="Bold"',
+            1,
+        )
     xml = xml.replace(
         "<ParagraphStyleRange ",
         f'<ParagraphStyleRange Leading="{badge_size + 1:g}" SpaceAfter="1.2" ',
@@ -233,6 +319,19 @@ def _years_table(
     )
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     subtitle_size = param_pt(ctx.params, "type_warranty_year_subtitle_font_size", 7.2)
+    unit_indent = param_pt(
+        ctx.params, "idml_warranty_year_subtitle_left_indent", 21.31,
+    )
+    if ctx.add_story is not None:
+        # The approved 21.31 pt token was measured against the former Unicode
+        # circled-digit advance.  Native badge geometry is 4.90 pt wider at
+        # the unit baseline.  Keep the frozen approved token intact and own
+        # that renderer migration delta inside the shared native component.
+        unit_indent += _language_param(
+            ctx,
+            "idml_warranty_native_badge_indent_adjust",
+            4.90,
+        )
     for index, (item, col_w) in enumerate(zip(items, cols)):
         subtitle = str(item.get("label", "")).strip()
         body = str(item.get("text", "")).strip()
@@ -240,6 +339,7 @@ def _years_table(
             item,
             ctx,
             marker_id=f"warranty_year_{tid}_{index}",
+            unit_indent=unit_indent,
         )
         if _variant_value(
             spec, ctx, "strip_year_subtitle_leading_dash", 0.0,
@@ -248,12 +348,9 @@ def _years_table(
         subtitle_xml = psr("HB Warranty Year Subtitle", subtitle)
         # The subtitle's first letter sits on the same vertical as the unit
         # text (the ``Y`` in ``YEARS``), not after an additional optical gap.
-        subtitle_indent = param_pt(
-            ctx.params, "idml_warranty_year_subtitle_left_indent", 21.31,
-        )
         subtitle_xml = subtitle_xml.replace(
             "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange LeftIndent="{subtitle_indent:g}" ',
+            f'<ParagraphStyleRange LeftIndent="{unit_indent:g}" ',
             1,
         )
         content += subtitle_xml
@@ -438,8 +535,20 @@ def _section_body(
             table, table_height = _years_table(
                 years_spec, ctx, tid=f"{tid}_years", width=width,
             )
-            parts.append(wrap_table_paragraph(table, True, span_columns=False))
-            height += table_height
+            # The native circle reaches above the ordinary text ascender.  A
+            # composition-level clearance keeps it below the section-title
+            # plate without baking a page-specific offset into JE/JBP/KR.
+            badge_clearance = param_pt(
+                ctx.params,
+                "comp_warranty_section_pad_top",
+                9.07,
+            )
+            parts.append(wrap_table_paragraph(
+                table,
+                True,
+                span_columns=False,
+            ))
+            height += badge_clearance + table_height
             continue
         text = str(block.get("text", ""))
         is_list = kind in {"list", "sublist"}
@@ -664,6 +773,19 @@ def render_warrantysection(
         f"body_top_adjust_{index}",
         _variant_value(spec, ctx, "body_top_adjust", 0.0),
     )
+    if any(
+        str(block.get("kind") or "") == "component"
+        and str(block.get("spec", {}).get("kind") or "") == "warrantyyears"
+        for block in blocks
+    ):
+        # SpaceBefore on the first paragraph of an InDesign text frame is
+        # ignored.  Allocate the extra height above and move the body frame's
+        # top edge instead, keeping the native circles clear of the title.
+        body_top_adjust += param_pt(
+            ctx.params,
+            "comp_warranty_section_pad_top",
+            9.07,
+        )
     body_frame = _text_frame(
         body_sid,
         f"tf_warranty_body_{tid}",

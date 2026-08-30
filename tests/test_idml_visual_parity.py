@@ -269,19 +269,12 @@ class IdmlVisualParityTests(unittest.TestCase):
             for story_id, xml in writer.stories
             if story_id == "st_spec" or story_id.startswith("st_anchor_spec_")
         )
-        self.assertIn("st_spec_spec_symbol_3_direct_current", spec_xml)
+        self.assertNotIn("st_spec_spec_symbol_3_direct_current", spec_xml)
         self.assertIn(
-            "st_spec_spec_symbol_3_direct_current_left_bearing",
+            '<AppliedFont type="string">Noto Sans Symbols</AppliedFont>',
             spec_xml,
         )
-        self.assertIn(
-            "st_spec_spec_symbol_3_direct_current_right_bearing",
-            spec_xml,
-        )
-        self.assertIn('StrokeWeight="0.408691"', spec_xml)
-        self.assertIn('Anchor="0 -1.88965"', spec_xml)
-        self.assertIn('Anchor="3.68555 -1.88965"', spec_xml)
-        self.assertNotIn('Anchor="7 -3.8"', spec_xml)
+        self.assertIn("<Content>⎓</Content>", spec_xml)
         self.assertIn('Position="Subscript"', spec_xml)
         self.assertIn("<Content>4</Content>", spec_xml)
         self.assertNotIn("Segoe UI Symbol", spec_xml)
@@ -301,8 +294,24 @@ class IdmlVisualParityTests(unittest.TestCase):
             ROOT,
             True,
         )
-        self.assertIn("Yu Gothic", warranty)
-        self.assertIn("❸", warranty)
+        self.assertNotIn("Yu Gothic", warranty)
+        self.assertNotIn("❸", warranty)
+        self.assertIn('Self="bg_warranty_year_st_warranty_cmp0_0"', warranty)
+        self.assertIn('Self="tf_warranty_year_st_warranty_cmp0_0"', warranty)
+        warranty_number_story = next(
+            xml
+            for story_id, xml in writer.stories
+            if story_id == "st_anchor_warranty_year_st_warranty_cmp0_0"
+        )
+        self.assertIn("<Content>3</Content>", warranty_number_story)
+        self.assertIn('FillColor="Color/Paper"', warranty_number_story)
+        warranty_number_size = param_pt(
+            writer.params, "type_warranty_year_number_font_size", 21.0,
+        )
+        self.assertIn(
+            f'PointSize="{warranty_number_size:g}" FontStyle="Bold"',
+            warranty_number_story,
+        )
 
         compact_params = load_layout_params(
             ROOT / "data" / "layout_params.csv",
@@ -331,7 +340,17 @@ class IdmlVisualParityTests(unittest.TestCase):
             "st_warranty_compact_cmp0",
             "st_warranty_cmp0",
         ))
-        self.assertIn("❸", compact_warranty)
+        self.assertNotIn("❸", compact_warranty)
+        self.assertIn(
+            'Self="bg_warranty_year_st_warranty_compact_cmp0_0"',
+            compact_warranty,
+        )
+        compact_number_story = next(
+            xml
+            for story_id, xml in compact_writer.stories
+            if story_id == "st_anchor_warranty_year_st_warranty_compact_cmp0_0"
+        )
+        self.assertIn("<Content>3</Content>", compact_number_story)
 
         base_period_writer = IdmlWriter(
             writer.params,
@@ -346,13 +365,16 @@ class IdmlVisualParityTests(unittest.TestCase):
             "title": "WARRANTY PERIOD",
             "index": 2,
             "blocks": [{
-                "kind": "warrantyyears",
-                "items": [{
-                    "number": "3",
-                    "unit": "YEARS",
-                    "label": "Standard Warranty",
-                    "text": "Limited warranty coverage.",
-                }],
+                "kind": "component",
+                "spec": {
+                    "kind": "warrantyyears",
+                    "items": [{
+                        "number": "3",
+                        "unit": "YEARS",
+                        "label": "Standard Warranty",
+                        "text": "Limited warranty coverage.",
+                    }],
+                },
             }],
         }
         base_period, base_period_height = base_period_writer._render_component(
@@ -371,6 +393,10 @@ class IdmlVisualParityTests(unittest.TestCase):
         )
         self.assertEqual(base_period, period)
         self.assertEqual(base_period_height, period_height)
+        self.assertIn(
+            'Self="tf_warranty_body_st_warranty_period_cmp0"',
+            period,
+        )
 
     def test_body_table_group_uses_panel_fill_for_corner_masks(self) -> None:
         writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))

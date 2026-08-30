@@ -14,6 +14,7 @@ except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from utils.path_utils import PathSegments  # type: ignore
 
 from .flow_idml import FlowOutputs
+from .font_assets import provision_document_fonts
 
 
 @dataclass(frozen=True)
@@ -38,6 +39,7 @@ def write_handoff_package(*, root: Path, model: str, region: str, lang: str,
     production_dir.mkdir(parents=True, exist_ok=True)
     production_copy = production_dir / "manual.production.idml"
     shutil.copyfile(production_idml, production_copy)
+    provision_document_fonts(production_copy)
     production_manifest = production_dir / "asset_manifest.csv"
     if flow.asset_manifest.is_file():
         shutil.copyfile(flow.asset_manifest, production_manifest)

@@ -16,7 +16,7 @@ VUE DE FACE
    :header-rows: 0
    :widths: 50 50
 
-   * - **Bouton d'alimentation**
+   * - **Bouton POWER**
      - **LCD**
    * - **Port 12 V CC**
 

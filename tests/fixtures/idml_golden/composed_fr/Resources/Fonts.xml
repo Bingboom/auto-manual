@@ -10,10 +10,13 @@
   <FontFamily Self="ff_arial_unicode_ms" Name="Arial Unicode MS">
     <Font Self="ff_arial_unicode_ms_r" FontFamily="Arial Unicode MS" Name="Arial Unicode MS Regular" PostScriptName="ArialUnicodeMS" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
-  <FontFamily Self="ff_segoe_ui_symbol" Name="Segoe UI Symbol">
-    <Font Self="ff_segoe_ui_symbol_r" FontFamily="Segoe UI Symbol" Name="Segoe UI Symbol" PostScriptName="SegoeUISymbol" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  <FontFamily Self="ff_noto_sans" Name="Noto Sans">
+    <Font Self="ff_noto_sans_r" FontFamily="Noto Sans" Name="Noto Sans Regular" PostScriptName="NotoSans-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
-  <FontFamily Self="ff_yu_gothic" Name="Yu Gothic">
-    <Font Self="ff_yu_gothic_r" FontFamily="Yu Gothic" Name="Yu Gothic Regular" PostScriptName="YuGothic-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  <FontFamily Self="ff_noto_sans_symbols" Name="Noto Sans Symbols">
+    <Font Self="ff_noto_sans_symbols_r" FontFamily="Noto Sans Symbols" Name="Noto Sans Symbols Regular" PostScriptName="NotoSansSymbols-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  </FontFamily>
+  <FontFamily Self="ff_noto_sans_symbols2" Name="Noto Sans Symbols2">
+    <Font Self="ff_noto_sans_symbols2_r" FontFamily="Noto Sans Symbols2" Name="Noto Sans Symbols2 Regular" PostScriptName="NotoSansSymbols2-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
 </idPkg:Fonts>

@@ -90,6 +90,11 @@ panel = SymbolsPanel(
 `SymbolsPanel.render_continuation`）；不得再拿
 `panel_metrics()` 的行高给 shell、底板或遮罩做第二次调整。
 
+`column` 是稳定的语义分栏输入，`continuation` 则是某个物理装配的续页决定，二者
+不能混为一谈。`standard` 必须保留源中登记的续页行；`compact` 在同一页复用完整
+Symbols 面板时，组件会消费左右两列的全部行并清空 standard 的续页标记。页面或
+型号装配不得为此删行、复制数据，或按语言重写 split。
+
 ### 3.2 Storage：使用 JE 的同一条 H1 + prose 内容流
 
 ```python

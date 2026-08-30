@@ -12,7 +12,7 @@
 
    .. raw:: latex
 
-      \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{cover-en.pdf}
+      \includepdf[pages=1-,fitpaper=true,pagecommand={\thispagestyle{empty}}]{asset:page/cover}
       \clearpage
       \pagenumbering{arabic}
       \setcounter{page}{1}

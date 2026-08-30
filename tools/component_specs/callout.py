@@ -56,8 +56,15 @@ _VARIANTS_BY_LABEL = {
     "ПОРАДИ": "tip",
     "CONSEJO": "tip",
     "CONSEJOS": "tip",
-    # ko: 경고/위험/주의/참고/팁 are the registered signal words and resolve
-    # through the data index; only the synonym 중요 stays literal here.
+    # Keep the shipped Korean labels as recognition literals too.  The live
+    # data mirror can temporarily carry English compatibility values in its
+    # ``text_ko`` column; that must not let an authored Korean notice silently
+    # degrade to a generic table while the fixture/source catches up.
+    "경고": "warning",
+    "위험": "danger",
+    "주의": "caution",
+    "참고": "note",
+    "팁": "tip",
     "중요": "note",
 }
 

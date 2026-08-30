@@ -14,50 +14,50 @@
    \begin{spectable}
    \HBTypeSpecLabel{Product Name} & \HBTypeSpecValue{Jackery Explorer 1000} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Model No.} & \HBTypeSpecValue{JE-1000F /JE-1000F-SG} \tabularnewline
+   \HBTypeSpecLabel{Model No.} & \HBTypeSpecValue{JE-1000F / JE-1000F-SG} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Capacity} & \HBTypeSpecValue{1024 Wh (20Ah/51.2V⎓)} \tabularnewline
+   \HBTypeSpecLabel{Capacity} & \HBTypeSpecValue{1024 Wh (20 Ah / 51.2 V DC)} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Cell Chemistry} & \HBTypeSpecValue{LiFePO4} \tabularnewline
+   \HBTypeSpecLabel{Cell Chemistry} & \HBTypeSpecValue{LiFePO₄} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Weight} & \HBTypeSpecValue{About 23.4 lbs/10.6 kg} \tabularnewline
+   \HBTypeSpecLabel{Weight} & \HBTypeSpecValue{About 23.4 lbs / 10.6 kg} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Dimensions} & \HBTypeSpecValue{12.4 × 7.9 × 9.2 in / 31.4 x 20.1 x 23.4 cm} \tabularnewline
+   \HBTypeSpecLabel{Dimensions} & \HBTypeSpecValue{12.4 x 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Cycle Life} & \HBTypeSpecValue{6000 cycles to 70\%+ capacity} \tabularnewline
+   \HBTypeSpecLabel{Cycle Life} & \HBTypeSpecValue{4000 cycles to 70\%+ capacity} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{INPUT PORTS}
    \begin{spectable}
-   \HBTypeSpecLabel{1 × AC Input} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{Charge Mode: 100V-120V\textasciitilde{}60Hz, 15A max \newline Bypass Mode\HBSpecMarkerOne{}: 100V-120V\textasciitilde{}60Hz, 12A max.} \HBSpecTallRowBreak
+   \HBTypeSpecLabel{1 × AC Input} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{Charge Mode: 100-120 V\textasciitilde{} 60 Hz, 15 A max. \newline Bypass Mode\HBSpecMarkerOne{}: 100-120 V\textasciitilde{} 60 Hz, 12 A max.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{2 × DC8020 Ports} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11V-16V⎓8A Max, Double to 8A Max \newline 16V-60V⎓12A Max, Double to 21A/ 400W Max} \tabularnewline
+   \HBTypeSpecLabel{2 × DC8020 Ports} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11 V-16 V⎓8 A max., Double to 8 A max. \newline 16 V-60 V⎓12 A, Double to 21 A / 400 W max.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{OUTPUT PORTS}
    \begin{spectable}
-   \HBTypeSpecLabel{3 × AC} & \HBTypeSpecValue{120V\textasciitilde{} 60Hz, 12.5A Max, 1500W Rated per port, 1500W in Total, 3000W Surge Peak} \tabularnewline
+   \HBTypeSpecLabel{3 × AC} & \HBTypeSpecValue{120 V\textasciitilde{} 60 Hz, 12.5 A max., 1500 W Rated per port, 1500 W in Total, 3000 W Surge Peak} \tabularnewline
    \hline
    \HBTypeSpecLabel{AC Output in Bypass Mode\HBSpecMarkerOne{}} & \HBTypeSpecValue{100V-120V\textasciitilde{}60Hz, 12A max.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30W max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A} \tabularnewline
+   \HBTypeSpecLabel{USB-C 30W} & \HBTypeSpecValue{30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{USB-C 100W} & \HBTypeSpecValue{100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A} \tabularnewline
+   \HBTypeSpecLabel{USB-C 100W} & \HBTypeSpecValue{100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{1 × USB-A} & \HBTypeSpecValue{18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A} \tabularnewline
+   \HBTypeSpecLabel{1 × USB-A} & \HBTypeSpecValue{18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A} \tabularnewline
    \hline
-   \HBTypeSpecLabel{1 × DC 12V Port} & \HBTypeSpecValue{12V⎓10A max} \tabularnewline
+   \HBTypeSpecLabel{1 × DC 12 V Port} & \HBTypeSpecValue{12 V⎓10 A max.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
 
    \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
    \begin{spectable}
-   \HBTypeSpecLabel{Charging Temperature} & \HBTypeSpecValue{14°F to 113°F / -10°C to 45°C} \tabularnewline
+   \HBTypeSpecLabel{Charging Temperature} & \HBTypeSpecValue{32°F to 113°F / 0°C to 45°C} \tabularnewline
    \hline
    \HBTypeSpecLabel{Discharging Temperature} & \HBTypeSpecValue{14°F to 113°F / -10°C to 45°C} \tabularnewline
    \end{spectable}
@@ -104,27 +104,27 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Model No.</th>
-            <td class="hb-spec-value">JE-1000F /JE-1000F-SG</td>
+            <td class="hb-spec-value">JE-1000F / JE-1000F-SG</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Capacity</th>
-            <td class="hb-spec-value">1024 Wh (20Ah/51.2V⎓)</td>
+            <td class="hb-spec-value">1024 Wh (20 Ah / 51.2 V DC)</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Cell Chemistry</th>
-            <td class="hb-spec-value">LiFePO4</td>
+            <td class="hb-spec-value">LiFePO₄</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Weight</th>
-            <td class="hb-spec-value">About 23.4 lbs/10.6 kg</td>
+            <td class="hb-spec-value">About 23.4 lbs / 10.6 kg</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Dimensions</th>
-            <td class="hb-spec-value">12.4 × 7.9 × 9.2 in / 31.4 x 20.1 x 23.4 cm</td>
+            <td class="hb-spec-value">12.4 x 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Cycle Life</th>
-            <td class="hb-spec-value">6000 cycles to 70%+ capacity</td>
+            <td class="hb-spec-value">4000 cycles to 70%+ capacity</td>
           </tr>
         </tbody>
       </table>
@@ -136,11 +136,11 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">1 × AC Input</th>
-            <td class="hb-spec-value">Charge Mode: 100V-120V~60Hz, 15A max<br/>Bypass Mode①: 100V-120V~60Hz, 12A max.</td>
+            <td class="hb-spec-value">Charge Mode: 100-120 V~ 60 Hz, 15 A max.<br/>Bypass Mode①: 100-120 V~ 60 Hz, 12 A max.</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × DC8020 Ports</th>
-            <td class="hb-spec-value">11V-16V⎓8A Max, Double to 8A Max<br/>16V-60V⎓12A Max, Double to 21A/ 400W Max</td>
+            <td class="hb-spec-value">11 V-16 V⎓8 A max., Double to 8 A max.<br/>16 V-60 V⎓12 A, Double to 21 A / 400 W max.</td>
           </tr>
         </tbody>
       </table>
@@ -152,7 +152,7 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">3 × AC</th>
-            <td class="hb-spec-value">120V~ 60Hz, 12.5A Max, 1500W Rated per port, 1500W in Total, 3000W Surge Peak</td>
+            <td class="hb-spec-value">120 V~ 60 Hz, 12.5 A max., 1500 W Rated per port, 1500 W in Total, 3000 W Surge Peak</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">AC Output in Bypass Mode①</th>
@@ -160,15 +160,15 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × USB-C</th>
-            <td class="hb-spec-value">30W max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A<br/>100W max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A</td>
+            <td class="hb-spec-value">30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A<br/>100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">1 × USB-A</th>
-            <td class="hb-spec-value">18W max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A</td>
+            <td class="hb-spec-value">18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">1 × DC 12V Port</th>
-            <td class="hb-spec-value">12V⎓10A max</td>
+            <th scope="row" class="hb-spec-label">1 × DC 12 V Port</th>
+            <td class="hb-spec-value">12 V⎓10 A max.</td>
           </tr>
         </tbody>
       </table>
@@ -180,7 +180,7 @@
         <tbody>
           <tr>
             <th scope="row" class="hb-spec-label">Charging Temperature</th>
-            <td class="hb-spec-value">14°F to 113°F / -10°C to 45°C</td>
+            <td class="hb-spec-value">32°F to 113°F / 0°C to 45°C</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Discharging Temperature</th>

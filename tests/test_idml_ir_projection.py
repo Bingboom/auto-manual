@@ -320,7 +320,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
 
         self.assertIsNotNone(lcd)
         assert lcd is not None
-        self.assertEqual(["㉒", "㉗"], [row["no"] for row in lcd.rows])
+        self.assertEqual(["(22)", "(27)"], [row["no"] for row in lcd.rows])
 
     def test_lcd_projection_applies_approved_presentation_without_mutating_source(self) -> None:
         plan = {
@@ -381,7 +381,7 @@ class IdmlIRProjectionTests(unittest.TestCase):
 
         self.assertIsNotNone(lcd)
         assert lcd is not None
-        self.assertEqual(["㉑", "㉒"], [row["no"] for row in lcd.rows])
+        self.assertEqual(["(21)", "(22)"], [row["no"] for row in lcd.rows])
         self.assertEqual(["22", "27"], [row["source_no"] for row in lcd.rows])
         self.assertEqual("2", lcd.rows[1]["number_row_span"])
         self.assertEqual("dense", lcd.rows[1]["typography_role"])
