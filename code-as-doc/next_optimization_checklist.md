@@ -2449,8 +2449,9 @@ every item owned:
     surfaces. If target logic is needed, R2 fails and returns to R1.
 
 - [ ] R3: Establish the separate `BP@JP` skeleton cell
-  - Status: `in_progress`; R2 and R3a are done. R3b is the next pending slice;
-    R3c and every live-table write remain pending.
+  - Status: `in_progress`; R2, R3a and R3b are done. R3c is the next pending
+    slice; every live-table/asset write remains pending behind its operator
+    gate and readback contract.
   - [x] R3a read-only three-book sequence decision
     - Status: `done` (completed 2026-08-30). Evidence PR
       [#982](https://github.com/Bingboom/auto-manual/pull/982) passed 17/17
@@ -2468,11 +2469,39 @@ every item owned:
     - Live/source result: exact HTP017 JP identity exists, but specifications
       and placeholders are 0/0; HTP015/HTP007 identities remain `needs_review`.
       No live Base or asset-registry write was performed.
-  - [ ] R3b skeleton mechanism/data
-    - Status: `pending`; gate: R3a sequence decision accepted.
+  - [x] R3b skeleton mechanism/data
+    - Status: `done` (completed 2026-08-30). Evidence PR
+      [#983](https://github.com/Bingboom/auto-manual/pull/983) passed 18/18
+      checks with no changes-requested review or unresolved review thread and
+      squash-merged to `main` as `57e94c25`.
+    - Outcome: added the separate target-neutral `BP@JP` blueprint/slot
+      carriers/JP profile and `manual_bp-jp.yaml` required-core anchor. Generic
+      Product Manual Plan data now selects declared `jp-v2` / `jp-v1` order
+      profiles, optional front/body slots, target terminal slots, and
+      versioned safety/warranty carriers without a model/title/file/page or
+      region branch. `installation` is a truthful optional product binding,
+      not a proxy capability; `battery_recycling` remains absorbed fragment
+      content, not a page slot.
+    - Three-book proof: synthetic HTP015 resolves `jp-v2 + installation +
+      back_cover`; HTP017 resolves `jp-v2` without either; HTP007 resolves
+      spec-first/safety-last `jp-v1`. All retain stable semantic slot IDs and
+      `[lcd_display, operation]` as the only declared semantic co-page group.
+    - Compatibility proof: BP@INTL US and EU manifests remain byte-identical
+      at SHA-256 `94e7276a...c8b` and `51a4c08e...fc3`; family fold passes
+      20 manifests / 4 anchors / 16 folded; both MAIN JP default-discovery
+      paths still select `configs/config.ja.yaml` via its explicit
+      `build.family_default: true` marker.
+    - Local acceptance: Ruff; 3300/3300 unit tests; doc links; maintainability;
+      resolver/fold/default probes; and existing JE-1000F US/JP `build.py
+      check` regressions all passed. `manual_bp-jp.yaml` intentionally remains
+      an orphan-manifest warning until R3c adds the separately gated target
+      config. No target config, production plan, Japanese source/template
+      content, asset, target-assembly JSON, live Base row, renderer branch or
+      approved reference-layout binding was added.
   - [ ] R3c first target and native reconciliation
-    - Status: `pending`; gate: R3b merged and all target intake approvals
-      recorded.
+    - Status: `pending`; R3b is merged. Remaining gate: confirm and record all
+      HTP017 target product/legal/warranty and asset-intake approvals before
+      any source/asset write, then perform same-record readback.
   - Discovery gate:
     - compare all three audited `BP@JP` members before choosing the canonical
       slot sequence; the current design explicitly marks it pending
