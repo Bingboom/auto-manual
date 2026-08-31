@@ -27,7 +27,7 @@ Status: **决策记录（decision record）** · Owner: 夏冰 · 2026-08-21
 
 | 操作者的步 | 落地 | 清单项 |
 | --- | --- | --- |
-| 1. 三层：Skeleton Blueprint / Product Manual Plan / Resolved Manifest | Blueprint 落盘为 `docs/manifests/skeletons/<cell>/blueprint.yaml`；Plan 是解析产物（可 dump 审查，不落盘为源）；Resolved Manifest = 今天的 `manual_*.yaml` **字节兼容**，四渲染栈/review 派生物/版式 pin 只看这一层 | S1 |
+| 1. 三层：Skeleton Blueprint / Product Manual Plan / Resolved Manifest | Blueprint 落盘为 `docs/manifests/skeletons/<cell>/blueprint.yaml`；Plan 仍是内存解析产物（可 dump 审查），但 R3b 起可接收目标数据载体中的 `house_style_version + enabled_optional_slots + terminal_slots`，不把目标判断写进 resolver；Resolved Manifest = 今天的 `manual_*.yaml` **字节兼容**，四渲染栈/review 派生物/版式 pin 只看这一层 | S1 / R3b |
 | 2. 稳定 slot_id + order 护栏 | Blueprint 槽位带 `slot_id`；**新 manifest** 的物化名从 slot_id 派生而非迭代位置；既有 manifest 命名路径不动（`pNN_` pin 零风险） | S1 |
 | 3. 最小 contract tiering | 只做机制 + BP 档：`page_contracts` 分档键 + `requires_capability` 组；14 个主机专属 row_key 入档。**不回收 JE-300E fork**（铺开期） | S2 |
 | 4. 一个加电包作第二骨架实例 | **`JBP-2000B_US`**（HTP017 美加规，3 语 28 页），BP@INTL 格 | S1/S4 |

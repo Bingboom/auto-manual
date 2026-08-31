@@ -8,6 +8,9 @@ anchors:
   # docs/manifests/skeletons/bp-intl/ + docs/manifests/region_profiles/us.yaml;
   # `skeleton_resolve.py verify` asserts emitted == committed bytes.
   - docs/manifests/manual_bp-us.yaml
+  # Target-neutral BP@JP core anchor. Optional/product-terminal selections are
+  # supplied by Product Manual Plan data; the first production target is R3c.
+  - docs/manifests/manual_bp-jp.yaml
 entries:
   - family_id: us-single
     base: docs/manifests/manual_us-single-en.yaml
