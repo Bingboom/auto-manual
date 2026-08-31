@@ -2449,16 +2449,25 @@ every item owned:
     surfaces. If target logic is needed, R2 fails and returns to R1.
 
 - [ ] R3: Establish the separate `BP@JP` skeleton cell
-  - Status: `in_progress`; R2 has proved `BP@INTL` reuse. R3a is the only
-    active slice; R3b/R3c and every live-table write remain pending.
-  - [ ] R3a read-only three-book sequence decision
-    - Status: `in_progress` (started 2026-08-30).
-    - Scope: compare the three audited `BP@JP` manuals, decide the canonical
-      semantic slot sequence with the superset/Boolean-removal test, and report
-      the exact live-identity, source, asset, product-name, warranty and legal
-      gaps for the likely first target.
-    - Exclusions: no skeleton/config/manifest implementation, no asset
-      enrollment, no source-table write and no R3b/R3c work in this slice.
+  - Status: `in_progress`; R2 and R3a are done. R3b is the next pending slice;
+    R3c and every live-table write remain pending.
+  - [x] R3a read-only three-book sequence decision
+    - Status: `done` (completed 2026-08-30). Evidence PR
+      [#982](https://github.com/Bingboom/auto-manual/pull/982) passed 17/17
+      checks with no changes-requested review or unresolved review thread and
+      squash-merged to `main` as `76a98ac5`.
+    - Evidence:
+      [`reviews/bp_jp_three_book_sequence_decision_2026-08.md`](reviews/bp_jp_three_book_sequence_decision_2026-08.md)
+      and its 42-page physical ledger. All 20 HTP015, 10 HTP007 and 12 HTP017
+      pages reconcile exactly once.
+    - Decision: keep one `BP@JP` cell; use `jp-v2` as the canonical base and a
+      data-owned `jp-v1` house-style-version order profile for HTP007. HTP017
+      `JBP-2000B_JP` remains the first target. R3b must add generic
+      order-profile and optional product-plan mechanics before skeleton data;
+      no target/page renderer branch is allowed.
+    - Live/source result: exact HTP017 JP identity exists, but specifications
+      and placeholders are 0/0; HTP015/HTP007 identities remain `needs_review`.
+      No live Base or asset-registry write was performed.
   - [ ] R3b skeleton mechanism/data
     - Status: `pending`; gate: R3a sequence decision accepted.
   - [ ] R3c first target and native reconciliation
