@@ -1,0 +1,43 @@
+project,source_model,house_style_version,pdf_page,printed_page,slot_ids,normalization_note
+HTP015,JBP-1000B-WH,jp-v2,1,,cover,cover includes product name and support copy
+HTP015,JBP-1000B-WH,jp-v2,2,,toc,printed-page ranges 01-17
+HTP015,JBP-1000B-WH,jp-v2,3,01,safety_info|symbol_meaning,symbol legend begins below safety copy
+HTP015,JBP-1000B-WH,jp-v2,4,02,symbol_meaning|box_contents,battery recycling is absorbed into symbol composition
+HTP015,JBP-1000B-WH,jp-v2,5,03,product_overview|lcd_display,overview above LCD hero
+HTP015,JBP-1000B-WH,jp-v2,6,04,lcd_display|operation,stable semantic co-page pair
+HTP015,JBP-1000B-WH,jp-v2,7,05,operation|installation,installation chapter starts below LCD continuation
+HTP015,JBP-1000B-WH,jp-v2,8,06,installation,bracket and vertical placement
+HTP015,JBP-1000B-WH,jp-v2,9,07,installation,wood-wall mounting
+HTP015,JBP-1000B-WH,jp-v2,10,08,installation,wood-wall mounting continuation
+HTP015,JBP-1000B-WH,jp-v2,11,09,installation,concrete-wall mounting start
+HTP015,JBP-1000B-WH,jp-v2,12,10,installation,concrete-wall mounting continuation
+HTP015,JBP-1000B-WH,jp-v2,13,11,installation,concrete-wall mounting closeout
+HTP015,JBP-1000B-WH,jp-v2,14,12,connections,paired with SlimPower H1
+HTP015,JBP-1000B-WH,jp-v2,15,13,charging,AC and solar charging
+HTP015,JBP-1000B-WH,jp-v2,16,14,charging|troubleshooting,car charging above troubleshooting
+HTP015,JBP-1000B-WH,jp-v2,17,15,specifications,canonical jp-v2 tail position
+HTP015,JBP-1000B-WH,jp-v2,18,16,warranty,three-year plus two-year extension component
+HTP015,JBP-1000B-WH,jp-v2,19,17,warranty,warranty continuation and support contacts
+HTP015,JBP-1000B-WH,jp-v2,20,,back_cover,QR-only terminal page
+HTP007,JBP-5000A,jp-v1,1,,cover,cover includes product name and support copy
+HTP007,JBP-5000A,jp-v1,2,01,specifications|battery_recycling,specifications move to opening; recycling fragment mounted below
+HTP007,JBP-5000A,jp-v1,3,02,box_contents|product_overview,overview follows box contents
+HTP007,JBP-5000A,jp-v1,4,03,lcd_display|operation,stable semantic co-page pair
+HTP007,JBP-5000A,jp-v1,5,04,connections,host pairing and clearance
+HTP007,JBP-5000A,jp-v1,6,05,connections|charging,connection cautions above AC charging
+HTP007,JBP-5000A,jp-v1,7,06,charging,solar charging continuation
+HTP007,JBP-5000A,jp-v1,8,07,warranty,five-year Jackery Japan component
+HTP007,JBP-5000A,jp-v1,9,08,warranty,warranty continuation
+HTP007,JBP-5000A,jp-v1,10,,safety_info,source heading usage_precautions; terminal placement plus app QR
+HTP017,JBP-2000B,jp-v2,1,,cover,cover includes product name and support copy
+HTP017,JBP-2000B,jp-v2,2,,toc,printed-page ranges 01-10
+HTP017,JBP-2000B,jp-v2,3,01,safety_info,front safety carrier and signal-word legend
+HTP017,JBP-2000B,jp-v2,4,02,symbol_meaning,battery recycling is absorbed into symbol composition
+HTP017,JBP-2000B,jp-v2,5,03,box_contents|product_overview,overview below box contents
+HTP017,JBP-2000B,jp-v2,6,04,lcd_display|operation,stable semantic co-page pair
+HTP017,JBP-2000B,jp-v2,7,05,connections,host pairing and clearance
+HTP017,JBP-2000B,jp-v2,8,06,connections,locking and stacking continuation
+HTP017,JBP-2000B,jp-v2,9,07,charging,AC and solar charging
+HTP017,JBP-2000B,jp-v2,10,08,troubleshooting|specifications,canonical jp-v2 tail order on one page
+HTP017,JBP-2000B,jp-v2,11,09,warranty,three-year plus two-year extension component
+HTP017,JBP-2000B,jp-v2,12,10,warranty,warranty continuation and support contacts; no separate back cover
