@@ -125,6 +125,11 @@ idml_inbox_compact_content_height,82.0,pt,Compact inbox content frame height
 idml_inbox_compact_badge_y_offset,8.0,pt,Compact inbox badge offset from card top
 idml_inbox_compact_stroke_color,Color/HB Border K10,none,Compact inbox card border swatch
 idml_inbox_compact_stroke_weight,0.75,pt,Compact inbox card border weight
+lang_jp_idml_inbox_compact_card_height,145.0,pt,Japanese BP inbox card height measured from the shipped reference
+lang_jp_idml_inbox_compact_content_height,119.0,pt,Japanese BP inbox card content height measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_y,365.0,pt,Japanese BP inbox notice top measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_height,44.0,pt,Japanese BP inbox notice height measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_label_width,36.0,pt,Japanese BP inbox notice label width
 idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
 idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
 idml_overview_callout_label_font_size,6.0,pt,BP overview callout label size measured from the reference

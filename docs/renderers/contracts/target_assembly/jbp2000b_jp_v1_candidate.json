@@ -67,7 +67,12 @@
       "composition_id": "jp_inbox_overview",
       "composition_type": "inbox_overview",
       "start_page": 5,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "inbox": {
+          "layout_variant": "compact_with_tip"
+        }
+      }
     },
     {
       "source_ref": "page/product_overview_ja.rst",

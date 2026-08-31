@@ -340,6 +340,14 @@ class BpJpSkeletonTests(unittest.TestCase):
             page for page in assembly["pages"]
             if page["page_role"] == "connections"
         )
+        inbox = next(
+            page for page in assembly["pages"]
+            if page["page_role"] == "inbox"
+        )
+        self.assertEqual(
+            "compact_with_tip",
+            inbox["composition_data"]["inbox"]["layout_variant"],
+        )
         self.assertEqual(
             {
                 "layout_variant": "stacking_guide",
@@ -354,6 +362,22 @@ class BpJpSkeletonTests(unittest.TestCase):
         self.assertEqual(
             246.0,
             specifications["composition_data"]["specifications"]["split"],
+        )
+
+    def test_jbp2000b_jp_fixture_uses_shipped_symbols_title(self) -> None:
+        from tools.localized_copy import LocalizedCopyResolver
+
+        resolver = LocalizedCopyResolver.from_csv(
+            ROOT / "tests" / "fixtures" / "phase2" / "Localized_Copy.csv"
+        )
+        self.assertEqual(
+            "絵表示の説明",
+            resolver.resolve(
+                "symbols.page_title",
+                lang="ja",
+                model="JBP-2000B",
+                region="JP",
+            ),
         )
 
     def test_jbp2000b_jp_fixture_preserves_htp017_spec_evidence(self) -> None:
