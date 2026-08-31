@@ -165,10 +165,8 @@ class ResolverGuardTests(unittest.TestCase):
         with self.assertRaises(SkeletonResolveError):
             load_region_profile(path, blueprint)
 
-    def test_optional_requirement_rejected_until_implemented(self) -> None:
+    def test_optional_requirement_is_accepted_for_product_plan_selection(self) -> None:
         import tempfile
-
-        from tools.skeleton_resolve import SkeletonResolveError
 
         with tempfile.NamedTemporaryFile("w", suffix=".yaml", delete=False) as fh:
             fh.write(
@@ -184,8 +182,8 @@ class ResolverGuardTests(unittest.TestCase):
                 "    toc: true\n"
             )
             path = Path(fh.name)
-        with self.assertRaises(SkeletonResolveError):
-            load_blueprint(path)
+        blueprint = load_blueprint(path)
+        self.assertEqual("optional", blueprint["slots"][0]["requirement"])
 
     def test_terminal_selection_rejects_body_and_unknown_slots(self) -> None:
         import tempfile

@@ -4,6 +4,10 @@ doc_type: manual_bundle
 
 build:
   family_id: jp-ja
+  # Preserve MAIN JP as both the family and single-language batch default when
+  # a target-matched BP@JP config is added later. target_defaults fails closed
+  # if duplicate JP/ja configs do not have exactly one explicit default.
+  family_default: true
   languages: [ja]
   default_model: JE-1000F
   default_region: JP

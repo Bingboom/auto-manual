@@ -114,15 +114,86 @@ class TestTargetDefaults(unittest.TestCase):
         languages: str,
         include_lang: bool = False,
         queue_by_document_key: bool = False,
+        family_default: bool = False,
     ) -> None:
         path.write_text(
             "build:\n"
             f"  default_region: {region}\n"
             f"  languages: [{languages}]\n"
             f"  include_lang_in_output_path: {'true' if include_lang else 'false'}\n"
-            f"  queue_by_document_key: {'true' if queue_by_document_key else 'false'}\n",
+            f"  queue_by_document_key: {'true' if queue_by_document_key else 'false'}\n"
+            f"  family_default: {'true' if family_default else 'false'}\n",
             encoding="utf-8",
         )
+
+    def test_explicit_main_jp_default_closes_both_bp_jp_ambiguity_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            configs_dir = Path(td)
+            self._write_config(
+                configs_dir / "config.ja.yaml",
+                region="JP",
+                languages="ja",
+                family_default=True,
+            )
+            self._write_config(
+                configs_dir / "config.bp-jp.yaml",
+                region="JP",
+                languages="ja",
+                queue_by_document_key=True,
+            )
+            self._write_config(
+                configs_dir / "config.us.yaml",
+                region="US",
+                languages="en, fr",
+            )
+            self._write_config(
+                configs_dir / "config.us-en.yaml",
+                region="US",
+                languages="en",
+                include_lang=True,
+            )
+            self._write_config(
+                configs_dir / "config.eu.yaml",
+                region="EU",
+                languages="en, fr",
+            )
+            self._write_config(
+                configs_dir / "config.zh.yaml", region="CN", languages="zh"
+            )
+            self._write_config(
+                configs_dir / "config.kr.yaml", region="KR", languages="ko"
+            )
+
+            defaults = discover_target_defaults(configs_dir)
+
+        self.assertEqual("config.ja.yaml", Path(defaults.family_default_configs["JP"]).name)
+        self.assertEqual(
+            "config.ja.yaml",
+            Path(defaults.language_batch_target_configs["ja"]).name,
+        )
+
+    def test_duplicate_single_language_configs_without_explicit_default_fail_closed(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            configs_dir = Path(td)
+            for path, region, languages in (
+                ("config.us.yaml", "US", "en"),
+                ("config.eu.yaml", "EU", "en"),
+                ("config.ja.yaml", "JP", "ja"),
+                ("config.bp-jp.yaml", "JP", "ja"),
+                ("config.zh.yaml", "CN", "zh"),
+                ("config.kr.yaml", "KR", "ko"),
+            ):
+                self._write_config(
+                    configs_dir / path,
+                    region=region,
+                    languages=languages,
+                    # Let config.bp-jp win the family score so this fixture
+                    # reaches the separate single-language ambiguity path.
+                    queue_by_document_key=path == "config.bp-jp.yaml",
+                )
+
+            with self.assertRaisesRegex(RuntimeError, "without exactly one explicit"):
+                discover_target_defaults(configs_dir)
 
 
 class RepositoryConfigScanTests(unittest.TestCase):
