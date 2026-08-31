@@ -19,6 +19,7 @@ from tools.indesign_finalize import (
     _collect_finalize_result,
     _job,
     _pdf_missing_glyphs,
+    _overset_pages,
     _parse_pdf_export_compliance,
     check_version_pin,
     main,
@@ -176,6 +177,19 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("cell.overflows", jsx)
         self.assertIn("collectOversetTableCells(doc)", jsx)
         self.assertIn("overset_table_cells", jsx)
+        self.assertIn("collectTableCellOversets(", jsx)
+        self.assertIn("cell.tables.everyItem().getElements()", jsx)
+        self.assertIn("if (identity && seen[identity])", jsx)
+        self.assertIn('report.stage = "preflight_overset"', jsx)
+        self.assertLess(
+            jsx.index('report.stage = "preflight_overset"'),
+            jsx.index("doc.exportFile"),
+        )
+        self.assertIn('story_title: String(story.storyTitle || "")', jsx)
+        self.assertGreaterEqual(
+            jsx.count('story_title: String(story.storyTitle || "")'),
+            3,
+        )
         self.assertIn("FontStatus.INSTALLED", jsx)
         self.assertIn("LinkStatus.NORMAL", jsx)
         self.assertIn("hb:page=", jsx)
@@ -258,6 +272,28 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn(
             "doc.exportFile(ExportFormat.pdfType, File(job.output_pdf), false, pdfPreset)",
             jsx,
+        )
+
+    def test_overset_pages_merge_story_and_nested_cell_findings(self) -> None:
+        self.assertEqual(
+            [30, 38, 46],
+            _overset_pages({
+                "overset_stories": [{
+                    "text_containers": [{"page": 30}, {"page": 0}],
+                }],
+                "overset_table_cells": [
+                    {"page": 30, "table_depth": 1},
+                    {"page": 38, "table_depth": 1},
+                ],
+                "post_reopen": {
+                    "overset_stories": [],
+                    "overset_table_cells": [
+                        {"page": 38, "table_depth": 1},
+                        {"page": 46, "table_depth": 1},
+                        {"page": 0, "table_depth": 1},
+                    ],
+                },
+            }),
         )
 
     def test_font_substitution_table_is_one_row_per_source(self) -> None:

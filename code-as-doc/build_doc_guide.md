@@ -813,6 +813,16 @@ page, or density should reuse an existing visual component, follow
 [`dev/style_component_usage_guide.md`](dev/style_component_usage_guide.md) before
 adding page-level geometry or finalizer behavior.
 
+`JBP-2000B / EU / en+fr+es+de+it+uk` is the second target resolved from the
+same `BP@INTL` skeleton. Build it with `configs/config.bp-eu.yaml`; `uk` is
+Ukrainian and this target makes no UK-market claim. Its paired host is named
+`Jackery Explorer 2000 Plus` in EU target data (the US target uses
+`Jackery HomePower 2000 Plus`). The committed physical plan remains a
+candidate, so a successful 54-page native PDF/X-4 pass proves candidate
+assembly health but does not register an approved reference layout. Current
+native evidence is recorded in
+[`reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](reviews/jbp2000b_eu_r2_native_validation_2026-08.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound

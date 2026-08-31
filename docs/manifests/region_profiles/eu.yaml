@@ -1,0 +1,22 @@
+# Region profile — EU six-language Battery Pack line.
+# Owns target assembly data only: language set, regional carriers, recipes,
+# and the single EU compliance tail. Slot order remains blueprint-owned.
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set: [en, fr, es, de, it, uk]
+primary_lang: en
+terminal_slots: [regulatory_compliance]
+slot_overrides:
+  preface_important:
+    file: templates/page_bp/intl/00_preface_six_language.rst
+  toc:
+    file: templates/page_bp/intl/00_toc_six_language.rst
+  safety_info:
+    file: templates/page_bp/{lang}/01_safety.rst
+  product_overview:
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
+  operation:
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
+  regulatory_compliance:
+    file: templates/page_bp/intl/99_regulatory_compliance_eu.rst
+compliance: []

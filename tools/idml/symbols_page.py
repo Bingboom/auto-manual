@@ -222,7 +222,29 @@ def _localized_signal_label_bar(
     elif show_icon and writer.strict_component_assets:
         raise FileNotFoundError(f"symbol signal badge asset missing: {asset}")
     language = (lang or "en").split("-", 1)[0].casefold()
-    if language in {"fr", "es"}:
+    hyphenation_attr = (
+        ' Hyphenation="false"'
+        if param_pt(
+            writer.params,
+            f"lang_{language}_idml_symbols_signal_disable_hyphenation",
+            0.0,
+        ) >= 0.5
+        else ""
+    )
+    # Every localized badge shares one fixed-width geometry.  A language opts
+    # into fitting through its capacity tokens; the renderer does not own a
+    # language list.  Existing locales without those tokens retain their
+    # frozen metrics.
+    metric_keys = (
+        # Existing FR/ES governed pages predate the explicit label-capacity
+        # tokens and carry their opt-in through the localized signal gap.
+        f"lang_{language}_idml_symbols_signal_gap_after",
+        f"lang_{language}_idml_symbols_signal_label_font_size",
+        f"lang_{language}_idml_symbols_signal_label_min_font_size",
+        f"lang_{language}_idml_symbols_signal_label_width_ratio",
+        f"lang_{language}_idml_symbols_signal_disable_hyphenation",
+    )
+    if language != "en" and any(key in writer.params for key in metric_keys):
         label_size, label_leading, label_scale = signal_label_metrics(
             writer.params,
             language,
@@ -230,7 +252,8 @@ def _localized_signal_label_bar(
             badge_w - 3.0 - 2.0 - (icon_w + 2.0 if show_icon else 0.0),
         )
         content = (
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            f'  <ParagraphStyleRange{hyphenation_attr} '
+            f'AppliedParagraphStyle="{style_ref}">\n'
             '    <CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
             f'BaselineShift="{content_raise:g}">'
@@ -262,7 +285,8 @@ def _localized_signal_label_bar(
             f'BaselineShift="{content_raise:g}"',
         )
         content = (
-            f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'
+            f'  <ParagraphStyleRange{hyphenation_attr} '
+            f'AppliedParagraphStyle="{style_ref}">\n'
             '    <CharacterStyleRange '
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
             f'BaselineShift="{content_raise:g}">{icon}</CharacterStyleRange>\n'

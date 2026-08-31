@@ -406,6 +406,13 @@
         "right.port_b"
       ],
       "idml_decorative_leaders": []
+    },
+    "jbp2000b-eu-v1": {
+      "extends": "jbp2000b-us-v1",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "EU"
+      }
     }
   }
 }

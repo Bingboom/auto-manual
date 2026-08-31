@@ -387,37 +387,90 @@
         return fitted;
     }
 
+    function tableIdentity(table) {
+        try { return "id:" + String(table.id); }
+        catch (_) {
+            try { return "specifier:" + String(table.toSpecifier()); }
+            catch (_) { return ""; }
+        }
+    }
+
+    function collectTableCellOversets(
+        story, storyIndex, table, tablePath, depth, fallbackPage, seen, oversets
+    ) {
+        var identity = tableIdentity(table);
+        if (identity && seen[identity]) { return; }
+        if (identity) { seen[identity] = true; }
+        var cells = table.cells.everyItem().getElements();
+        for (var ci = 0; ci < cells.length; ci += 1) {
+            var cell = cells[ci];
+            var page = fallbackPage.page;
+            var pageName = fallbackPage.page_name;
+            try {
+                var parentFrames = cell.insertionPoints[0].parentTextFrames;
+                if (parentFrames.length > 0) {
+                    var parentPage = parentFrames[0].parentPage;
+                    if (parentPage && parentPage.isValid) {
+                        page = parentPage.documentOffset + 1;
+                        pageName = String(parentPage.name || "");
+                    }
+                }
+            } catch (_) {}
+            if (cell.overflows) {
+                oversets.push({
+                    story_index: storyIndex,
+                    story_id: String(story.id),
+                    story_label: itemLabel(story),
+                    story_title: String(story.storyTitle || ""),
+                    table_path: tablePath,
+                    table_depth: depth,
+                    table_id: identity,
+                    cell_index: ci,
+                    cell_id: String(cell.id),
+                    cell_name: String(cell.name || ""),
+                    page: page,
+                    page_name: pageName,
+                    preview: String(cell.contents).replace(/[\r\n]+/g, " ").slice(0, 120)
+                });
+            }
+            // InDesign exposes inline badge tables through the containing
+            // cell.  That collection can also point back to an ancestor, so
+            // recurse with a stable-ID visited set instead of assuming a tree.
+            try {
+                var nested = cell.tables.everyItem().getElements();
+                for (var ni = 0; ni < nested.length; ni += 1) {
+                    collectTableCellOversets(
+                        story, storyIndex, nested[ni],
+                        tablePath + "/cell[" + ci + "]/table[" + ni + "]",
+                        depth + 1, {page: page, page_name: pageName},
+                        seen, oversets
+                    );
+                }
+            } catch (_) {}
+        }
+    }
+
     function collectOversetTableCells(doc) {
         var oversets = [];
         for (var si = 0; si < doc.stories.length; si += 1) {
             var story = doc.stories[si];
             var tables = story.tables.everyItem().getElements();
-            for (var ti = 0; ti < tables.length; ti += 1) {
-                var cells = tables[ti].cells.everyItem().getElements();
-                for (var ci = 0; ci < cells.length; ci += 1) {
-                    var cell = cells[ci];
-                    if (!cell.overflows) { continue; }
-                    var page = 0;
-                    try {
-                        var parentFrames = cell.insertionPoints[0].parentTextFrames;
-                        if (parentFrames.length > 0) {
-                            var parentPage = parentFrames[0].parentPage;
-                            if (parentPage && parentPage.isValid) {
-                                page = parentPage.documentOffset + 1;
-                            }
-                        }
-                    } catch (_) {}
-                    oversets.push({
-                        story_index: si,
-                        story_id: String(story.id),
-                        story_label: itemLabel(story),
-                        table_index: ti,
-                        cell_index: ci,
-                        cell_name: String(cell.name || ""),
-                        page: page,
-                        preview: String(cell.contents).replace(/[\r\n]+/g, " ").slice(0, 120)
-                    });
+            var fallbackPage = {page: 0, page_name: ""};
+            try {
+                if (story.textContainers.length > 0) {
+                    var storyPage = story.textContainers[0].parentPage;
+                    if (storyPage && storyPage.isValid) {
+                        fallbackPage.page = storyPage.documentOffset + 1;
+                        fallbackPage.page_name = String(storyPage.name || "");
+                    }
                 }
+            } catch (_) {}
+            var seen = {};
+            for (var ti = 0; ti < tables.length; ti += 1) {
+                collectTableCellOversets(
+                    story, si, tables[ti], "table[" + ti + "]", 0,
+                    fallbackPage, seen, oversets
+                );
             }
         }
         return oversets;
@@ -451,6 +504,7 @@
                 index: si,
                 id: String(story.id),
                 label: itemLabel(story),
+                story_title: String(story.storyTitle || ""),
                 preview: String(story.contents).replace(/[\r\n]+/g, " ").slice(0, 120),
                 text_containers: containers
             });
@@ -605,6 +659,7 @@
                     index: si,
                     id: String(story.id),
                     label: itemLabel(story),
+                    story_title: String(story.storyTitle || ""),
                     preview: String(story.contents).replace(/[\r\n]+/g, " ").slice(0, 120),
                     text_containers: containers
                 });
@@ -651,6 +706,13 @@
         doc = app.open(File(job.output_indd), false);
         doc.recompose();
         report.post_reopen = collectPostReopenState(doc);
+        if (report.post_reopen.overset_stories.length > 0 ||
+                report.post_reopen.overset_table_cells.length > 0) {
+            report.stage = "preflight_overset";
+            throw Error(
+                "saved INDD contains overset text; PDF export skipped"
+            );
+        }
         report.stage = "validate_pdf_preset";
         var pdfPreset = app.pdfExportPresets.itemByName(job.pdf_preset);
         if (!pdfPreset.isValid) {
@@ -677,6 +739,14 @@
         doc = null;
     } catch (error) {
         report.error = String(error) + (error.line ? " at line " + error.line : "");
+        report.exception = {
+            stage: report.stage,
+            name: String(error.name || ""),
+            message: String(error.message || ""),
+            number: Number(error.number || 0),
+            line: Number(error.line || 0),
+            raw: String(error)
+        };
         if (doc !== null) {
             try { doc.close(SaveOptions.NO); } catch (_) {}
         }

@@ -114,10 +114,15 @@ def spec_table_xml(
         "idml_spec_table_left_ratio",
         params.get("comp_spec_table_left_ratio", ("0.315", "")),
     )
-    left_ratio = float(params.get(
-        f"lang_{language_key}_idml_spec_table_left_ratio",
-        default_left_ratio,
-    )[0])
+    density_left_ratio = params.get(
+        f"lang_{language_key}_idml_{density}_spec_table_left_ratio"
+    )
+    language_left_ratio = params.get(
+        f"lang_{language_key}_idml_spec_table_left_ratio"
+    )
+    left_ratio = float(
+        (density_left_ratio or language_left_ratio or default_left_ratio)[0]
+    )
     body_w = page_w - m_l - m_r - (1.13 if visual_parity else 0.0)
     col1 = body_w * left_ratio + (2.3 if visual_parity else 0.0)
     col2 = body_w - col1

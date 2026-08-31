@@ -165,6 +165,20 @@ def _kr_manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_symbols_accepts_target_declared_column_split(self) -> None:
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/symbol_meaning_en.rst",
+                "page_role": "symbols",
+                "composition_type": "safety_symbols",
+                "composition_data": {"symbols": {"left_count": 6}},
+            }],
+            {},
+            _manual_ir(_payload()),
+        )
+
+        self.assertEqual([], issues)
+
     def test_inbox_accepts_shared_compact_with_tip_variant(self) -> None:
         issues = _validate_composition_data(
             [{

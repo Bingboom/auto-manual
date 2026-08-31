@@ -121,6 +121,16 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         self.assertEqual(CJK_FONT_FAMILY_TOKEN.name, _fallback_font("、"))
         self.assertIsNone(_fallback_font("A"))
 
+    def test_contact_icons_route_to_one_bundled_portable_face(self) -> None:
+        from tools.idml.inline_text import _fallback_font
+
+        for icon in "☎✉◉":
+            with self.subTest(icon=icon):
+                self.assertEqual(
+                    BULLET_FONT_FAMILY_TOKEN.name,
+                    _fallback_font(icon),
+                )
+
     def test_authority_modules_do_not_repeat_primary_family_literal(self) -> None:
         for relative_path in (
             "tools/idml/styles.py",

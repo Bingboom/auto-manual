@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jbp2000b_eu_master_normalized",
+    "expected_sha256": "baeb2da4fb1b85ee08ffec00c48cb21d38500dfff72fd20283d9a8c8360efc24",
+    "expected_page_count": 54
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 54
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "cover_front", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["localized-copy"]},
+    {"page": 2, "page_key": "frontmatter_important", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "frontmatter_toc", "role": "frontmatter", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "en_01", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "en_02", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "en_03", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "en_04", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "en_05", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 9, "page_key": "en_06", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art"]},
+    {"page": 10, "page_key": "en_07", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 11, "page_key": "en_08", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art"]},
+    {"page": 12, "page_key": "fr_01", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 13, "page_key": "fr_02", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 14, "page_key": "fr_03", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 15, "page_key": "fr_04", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 16, "page_key": "fr_05", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 17, "page_key": "fr_06", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 18, "page_key": "fr_07", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 19, "page_key": "fr_08", "role": "manual_page", "locale": "fr", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 20, "page_key": "es_01", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 21, "page_key": "es_02", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 22, "page_key": "es_03", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 23, "page_key": "es_04", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 24, "page_key": "es_05", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 25, "page_key": "es_06", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 26, "page_key": "es_07", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 27, "page_key": "es_08", "role": "manual_page", "locale": "es", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 28, "page_key": "de_01", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 29, "page_key": "de_02", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 30, "page_key": "de_03", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 31, "page_key": "de_04", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 32, "page_key": "de_05", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 33, "page_key": "de_06", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 34, "page_key": "de_07", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 35, "page_key": "de_08", "role": "manual_page", "locale": "de", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 36, "page_key": "it_01", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 37, "page_key": "it_02", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 38, "page_key": "it_03", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 39, "page_key": "it_04", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 40, "page_key": "it_05", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 41, "page_key": "it_06", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 42, "page_key": "it_07", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 43, "page_key": "it_08", "role": "manual_page", "locale": "it", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 44, "page_key": "uk_01", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 45, "page_key": "uk_02", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 46, "page_key": "uk_03", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 47, "page_key": "uk_04", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 48, "page_key": "uk_05", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 49, "page_key": "uk_06", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 50, "page_key": "uk_07", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 51, "page_key": "uk_08", "role": "manual_page", "locale": "uk", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 52, "page_key": "regulatory_01", "role": "regulatory", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 53, "page_key": "regulatory_02", "role": "regulatory", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 54, "page_key": "regulatory_03", "role": "regulatory", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {
+      "asset_key": "page/jbp2000b_eu/cover",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [0, 0, 368.754, 524.659]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/cover_jbp2000b_eu-en.pdf", "expected_sha256": "f810453ab148f0b3b37e0cb6eb367902bf1863ab462181da17f2ddff26beb6e5"},
+        {"format": "png", "path": "docs/renderers/latex/assets/cover_jbp2000b_eu-en.png", "scale": 12, "expected_sha256": "cd2678cf0aa2d990de4dce1bd0b46fc34a3144b0135e7e146042393ef206bcd1"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x source/candidate comparison on 2026-08-30. The full-page export is pixel-identical to the approved EU cover source."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/stack_clearance",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.093, 124.28, 342.16, 362.596]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_stack_clearance.pdf", "expected_sha256": "373121ea8f1e4d739347bf24b3eb9a7a727c99baea05ca284766f8949f88b197"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_stack_clearance.png", "scale": 12, "expected_sha256": "8951b52e1a2fd330c8e7b996a7b0b91442b5dce1e68c7d8139dddf2672b61a7e"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x source/candidate comparison on 2026-08-30. Redaction is confined to the live dimension label and preserves the EU host geometry and fixed product markings."]},
+      "risk_tags": ["model-specific", "region-locked-art", "fixed-product-markings"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_en",
+      "page": 10,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_en.pdf", "expected_sha256": "b2483f45681c94ecb28604ba2570f7a41f80c6d96d6d344d8666dccc21b214ab"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_en.png", "scale": 12, "expected_sha256": "58bafa36e3f4242bd1eb8f227483670c878f9a97d8ec7e04c3be4269e32f8d42"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x source/candidate comparison on 2026-08-30. The crop preserves the localized Lock and Unlock panel while excluding the page title and troubleshooting table."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_fr",
+      "page": 18,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["fr"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_fr.pdf", "expected_sha256": "0bbfa537c6a6fec3e8ec2bb1daf468a0ce2ddb28ab1de88266cdef6ff1307692"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_fr.png", "scale": 12, "expected_sha256": "df6b8c37f6b24c5b6655f0769b9ce189937a9327e11487cdf505523ea0311bc1"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x localized operation-panel crop on 2026-08-30."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_es",
+      "page": 26,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["es"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_es.pdf", "expected_sha256": "cffa6492c377e1cb084015897697ecc7e2339a193ae81626ef2244f27d8e3aab"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_es.png", "scale": 12, "expected_sha256": "0a064c28a15331b10a6e7a462d22285365acfb6167dffbe5bab3b0c65b31c5ea"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x localized operation-panel crop on 2026-08-30."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_de",
+      "page": 34,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["de"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_de.pdf", "expected_sha256": "2c8f9d38ea9d789a70fe7a4c4c609d08638de39be48275e179e211fb57f89c08"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_de.png", "scale": 12, "expected_sha256": "c784e46834d0f7bdb3c7a62ec2cf4bdf30052a93a22783fd72b87b44f4aeda11"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x localized operation-panel crop on 2026-08-30."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_it",
+      "page": 42,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["it"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_it.pdf", "expected_sha256": "368acfe48c054a183b35a135cfa7e9ffba5cfabfea91bcf9efc1c0f00595095a"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_it.png", "scale": 12, "expected_sha256": "0857c9708d7e635f93233585d21cd2c41fd11e46983f7dab94bfe52b468d0fe3"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x localized operation-panel crop on 2026-08-30."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/eu/locking_uk",
+      "page": 50,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["uk"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 28, 341, 300]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_uk.pdf", "expected_sha256": "1de5283ee3b769ab532d22d1968d62d7d2cef34ea929c29f6c21638a9870391c"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_connection_locking_uk.png", "scale": 12, "expected_sha256": "2c7fbe39e01121c301a4993d84d6e53e2283a60f9203429df6c23bc14702a229"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x localized operation-panel crop on 2026-08-30."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "charging/jbp2000b/eu/ac_wall",
+      "page": 51,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27.4, 114.4, 341.6, 270.6]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_ac_charging.pdf", "expected_sha256": "afdb50d004dcc0cd9307193c28e8bafae9cec789ce87e43378f8d3b5150690ec"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_ac_charging.png", "scale": 12, "expected_sha256": "e249b7661d9874293f6f1ad478e9392d2bcd4a625ecc60ec27fa2898cbb4361f"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x source/candidate comparison on 2026-08-30. The EU AC charging crop comes from the Ukrainian-language EU page 51 and carries the correct EU wall plug for Explorer 2000 Plus."]},
+      "risk_tags": ["model-specific", "region-locked-art", "fixed-product-markings"]
+    },
+    {
+      "asset_key": "charging/jbp2000b/eu/solar",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.09, 318.63, 339.89, 497.6]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_solar_charging.pdf", "expected_sha256": "3599bdf10d7c2e0507e81ba9d460bf44bbd8ddb072e8688e751f72934539adbc"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_solar_charging.png", "scale": 12, "expected_sha256": "e7777b74c8b716d19c996bff31a0d33de8a4ea60260d00aaed789f97ceb60fef"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed the packaged 12x source/candidate comparison on 2026-08-30. Redaction is confined to live SolarSaga and port text and preserves the EU charging geometry and fixed vector product markings."]},
+      "risk_tags": ["model-specific", "region-locked-art", "fixed-product-markings"]
+    },
+    {
+      "asset_key": "qr/jbp2000b/eu/regulatory",
+      "page": 54,
+      "build_eligible": false,
+      "scope": {"models": ["JBP-2000B"], "regions": ["EU"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [{"op": "crop", "bbox_pt": [305.0, 459.0, 343.0, 497.0]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_eu_regulatory_qr.pdf", "expected_sha256": "cd6839c4880ce8bbd4ea6c3cb6980dc3decfd272240f269932941412a483f18f"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_eu_regulatory_qr.png", "scale": 12, "expected_sha256": "40c8d623d9039f1196765c5f9dc4e98e73838479c67cdd317b4514008eddba22"}
+      ],
+      "gate": {"status": "quarantine", "reasons": ["Operator confirmed the page-54 QR pixel crop on 2026-08-30; the exact output bytes are pinned, while payload decoding remains an explicit follow-up under the sensitive-asset policy."]},
+      "risk_tags": ["model-specific", "region-locked-art", "qr-code"]
+    }
+  ]
+}

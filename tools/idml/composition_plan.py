@@ -115,6 +115,7 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
         _spec("specifications", PageRole.SPEC),
         _spec("warranty", PageRole.WARRANTY),
         _spec("app", PageRole.APP_SETUP),
+        _spec("regulatory_compliance", PageRole.REGULATORY_COMPLIANCE),
         _spec("back_cover", PageRole.BACK_COVER),
     )
 }

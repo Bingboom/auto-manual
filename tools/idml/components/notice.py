@@ -265,8 +265,14 @@ def notice_box_layout(params: dict, body_width: float, label: str,
         params, "comp_callout_body_inset", 4.25)
     right_inset = param_pt(params, "comp_tip_pad_lr", 6.24)
     pad_tb = param_pt(params, "comp_caution_pad_tb", 3.4)
-    label_available = label_width - plate_left - 1.0
     estimated_label_width = _gilroy_width(label, label_size) * 1.03
+    if any(ord(char) > 127 for char in label):
+        estimated_label_width *= 1.30
+    label_width = min(
+        body_width * 0.35,
+        max(label_width, estimated_label_width + plate_left + 1.0),
+    )
+    label_available = label_width - plate_left - 1.0
     if estimated_label_width > label_available:
         scale = label_available / estimated_label_width
         label_size = max(6.5, label_size * scale)
