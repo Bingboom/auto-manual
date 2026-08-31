@@ -2332,9 +2332,8 @@ every item owned:
   - Rollback: docs revert independently; the additive master-data row is never
     deleted without a separate operator gate.
 
-- [ ] R1: Complete the shared `BP@INTL` reuse contract before target intake
-  - Status: `in_progress`; R1a is done and R1b has started from the latest
-    `main`.
+- [x] R1: Complete the shared `BP@INTL` reuse contract before target intake
+  - Status: `done`; R1a and R1b are complete on `main`.
   - [x] R1a semantic slot-diff/report
     - Status: `done` (completed 2026-08-30; evidence PR
       [#976](https://github.com/Bingboom/auto-manual/pull/976) passed 17/17
@@ -2348,9 +2347,18 @@ every item owned:
       order; EU adds a once-per-book `regulatory_compliance` tail and omits the
       US QR-only `back_cover`, so this remains a shared-carrier problem rather
       than a new skeleton or target branch.
-  - [ ] R1b shared carrier and language readiness
-    - Status: `in_progress`; the target-neutral terminal-carrier prerequisite
-      is done, while six-language front/body carrier readiness remains.
+  - [x] R1b shared carrier and language readiness
+    - Status: `done` (completed 2026-08-30; evidence PR
+      [#978](https://github.com/Bingboom/auto-manual/pull/978) passed 18/18
+      checks with no changes-requested review or unresolved review thread and
+      squash-merged as `a7812022`).
+    - Completion evidence: the family now owns six-language preface/TOC
+      carriers plus all eight `de` / `it` / `uk` body carriers. The exact
+      source and normalization ledger is
+      [`reviews/bp_intl_eu_language_carrier_provenance_2026-08.md`](reviews/bp_intl_eu_language_carrier_provenance_2026-08.md).
+      Local closure ran 3266 tests (5 skipped), both JBP-US and JE-1000F-US
+      `build.py check` paths, and a byte-for-byte base/head comparison of the
+      JBP-US `page/` and `generated/` trees.
     - Prerequisite evidence: [#977](https://github.com/Bingboom/auto-manual/pull/977)
       passed 18/18 checks with no changes-requested review or unresolved review
       thread and squash-merged as `e59a8eb7`. The blueprint now owns the
@@ -2391,12 +2399,16 @@ every item owned:
     language readiness. Neither PR onboards the EU target.
 
 - [ ] R2: Add the second target on the same `BP@INTL` blueprint — EU six-language
-  - Status: `pending`; gate: R1 done, live identity confirmed, source/legal and
-    asset intake approved.
+  - Status: `in_progress`; R1 is done, the live identity is confirmed, and the
+    source/legal intake is approved. Asset enrollment and every source-table
+    write remain operator-gated with same-record readback inside this slice.
   - Confirmed target contract: `JBP-2000B_EU`, HTP017 JBP-2000B EU, 54 reference
     pages, `en/fr/es/de/it/uk`. The source filename contains `EUUK`, but the
     operator ruled this target EU-only; `uk` here means Ukrainian and no UK
-    market claim belongs in the target.
+    market claim belongs in the target. The paired host is the same hardware
+    as the US line: EU binds `Jackery Explorer 2000 Plus` / `Explorer 2000
+    Plus`, while only US binds `Jackery HomePower 2000 Plus` / `HomePower 2000
+    Plus`.
   - Allowed target surfaces:
     - `region_profiles/eu.yaml`, family config/target registration and resolved
       manifest generated from `bp-intl`
