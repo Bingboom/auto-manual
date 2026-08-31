@@ -257,6 +257,26 @@ EN/FR/ES，并检查 PDF 页面与 preflight；XML 结构通过不能替代视�
   21→44），多为"量出来的"堆叠偏移。组件若能从前一块的实测渲染高度推导堆叠位置
   （而不是读常量），这笔成本对下一语言就不再重付。
 
+### 7.3 第二个 BP@INTL 目标证明了什么
+
+`JBP-2000B_EU` 不是复制 `JBP-2000B_US` 的页面装配。它继续解析同一个
+`BP@INTL` blueprint，只新增 EU region profile、六语目标数据、EU scoped 资产覆盖、
+resolved manifest 和 candidate assembly。`uk` 是乌克兰语；EU 目标不声明 UK 市场。
+同一配套主机在 EU 目标叫 `Explorer 2000 Plus`，在 US 目标叫
+`HomePower 2000 Plus`，两者由 config substitution 绑定，renderer 不判断区规。
+
+这次原生验证还把两个可复用边界钉实：
+
+- Signal badge 的宽度适配与禁止断词由 `lang_<code>_*` 容量行驱动，组件外壳、
+  行高和列宽仍只有 `SymbolsPanel` 一个写入者；
+- `☎ / ✉ / ◉` 保留原 codepoint，通过共享 portable fallback 拆成独立 font run，
+  联系正文继续使用正文样式；不得删除图标或依赖开包主机的系统字体。
+
+原生 r8 的 54 页验收、hash 和重点页记录见
+[`../reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](../reviews/jbp2000b_eu_r2_native_validation_2026-08.md)。
+该 assembly 仍是 `candidate` / `production_eligible=false`，本轮验证不能替代
+candidate promotion gate。
+
 ## 8. 闸门现状：CI 会拦住什么、不会拦住什么
 
 §7 的拒绝形态并非全部有机器闸门。诚实的现状（tip `13892ff6`）：

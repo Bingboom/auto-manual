@@ -185,10 +185,15 @@ def label_description_layout(
         "idml_lcd_label_description_min_row_height",
         13.5,
     )
-    row_safety = param_pt(
+    base_row_safety = param_pt(
         writer.params,
         "idml_lcd_label_description_row_safety",
         1.0,
+    )
+    row_safety = param_pt(
+        writer.params,
+        f"lang_{_language(lang)}_idml_lcd_label_description_row_safety",
+        base_row_safety,
     )
     glyph_ratio = param_pt(
         writer.params,

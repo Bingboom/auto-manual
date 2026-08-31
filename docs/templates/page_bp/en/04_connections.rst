@@ -1,7 +1,7 @@
 CONNECTIONS
 ===========
 
-Up to 5 sets of these products can be used along with Jackery HomePower 2000 Plus to meet the increased capacity needs.
+Up to 5 sets of these products can be used along with |BP_HOST_PRODUCT_NAME| to meet the increased capacity needs.
 
 .. image:: asset:connections/jbp2000b/stack_clearance
    :alt: Battery Pack connection, stacking, and clearance diagram.
@@ -13,7 +13,7 @@ Up to 5 sets of these products can be used along with Jackery HomePower 2000 Plu
 
    * - **CAUTION**
      -
-       - Ensure all products are powered off before connecting the HomePower 2000 Plus to the Jackery Battery Pack 2000.
+       - Ensure all products are powered off before connecting the |BP_HOST_PRODUCT_SHORT_NAME| to the Jackery Battery Pack 2000.
        - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (≈200 mm) of space between the vents and any objects to allow for proper heat dissipation.
 
 .. list-table::
@@ -22,8 +22,8 @@ Up to 5 sets of these products can be used along with Jackery HomePower 2000 Plu
 
    * - **NOTES**
      -
-       - The display of the connection icon on the LCD screen (Jackery HomePower 2000 Plus) signifies a successful connection between the battery pack and the Jackery HomePower 2000 Plus.
-       - Please do not stack the product on the top of the Jackery HomePower 2000 Plus.
+       - The display of the connection icon on the LCD screen (|BP_HOST_PRODUCT_NAME|) signifies a successful connection between the battery pack and the |BP_HOST_PRODUCT_NAME|.
+       - Please do not stack the product on the top of the |BP_HOST_PRODUCT_NAME|.
        - Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.
        - If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.
 

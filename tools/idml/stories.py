@@ -98,12 +98,12 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             xml_part, h = _components.render_table_block(
                 raw_rows,
                 writer._render_context(
-                    bundle_root,
-                    language=page_language,
+                    bundle_root, language=page_language,
                     inline_origin_shift=inline_origin_shift,
                 ),
                 tid=f"{sid}_t{img_n}", terminal=terminal,
-                span_columns=not in_twocol)
+                span_columns=not in_twocol,
+                troubleshooting=_flow.table_is_marked_troubleshooting(blocks, bi))
             xml_part = _flow.align_table_xml(xml_part, blocks, bi)
             xml_part, h = operation_rhythm.apply_block(bi, xml_part, h)
             parts.append(xml_part)

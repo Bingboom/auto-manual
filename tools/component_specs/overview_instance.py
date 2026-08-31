@@ -45,6 +45,39 @@ def _non_empty(value: Any, *, field: str) -> str:
     return text
 
 
+def _resolve_instance_definition(
+    instances: Mapping[str, Any],
+    instance_id: str,
+    *,
+    resolving: tuple[str, ...] = (),
+) -> dict[str, Any]:
+    """Materialize a target instance, including an optional shared base instance."""
+    raw = instances.get(instance_id)
+    if not isinstance(raw, Mapping):
+        raise ComponentSpecError(f"instances.{instance_id} must be a mapping")
+    if instance_id in resolving:
+        chain = " -> ".join((*resolving, instance_id))
+        raise ComponentSpecError(f"overview instance inheritance cycle: {chain}")
+
+    base_id = str(raw.get("extends") or "").strip()
+    if not base_id:
+        return deepcopy(dict(raw))
+    if base_id not in instances:
+        raise ComponentSpecError(
+            f"instances.{instance_id}.extends names unknown instance {base_id!r}"
+        )
+
+    materialized = _resolve_instance_definition(
+        instances,
+        base_id,
+        resolving=(*resolving, instance_id),
+    )
+    materialized.update(
+        deepcopy({key: value for key, value in raw.items() if key != "extends"})
+    )
+    return materialized
+
+
 def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
     prefix = f"instances.{instance_id}"
     if not isinstance(raw, Mapping):
@@ -258,8 +291,9 @@ def validate_overview_instance_registry(payload: Mapping[str, Any]) -> list[str]
     if default_id not in instances:
         issues.append("default_instance_id must name a registered instance")
     targets: set[tuple[str, str]] = set()
-    for instance_id, raw in instances.items():
+    for instance_id in instances:
         try:
+            raw = _resolve_instance_definition(instances, str(instance_id))
             instance = _validate_instance(str(instance_id), raw)
         except ComponentSpecError as exc:
             issues.append(str(exc))
@@ -302,21 +336,25 @@ def resolve_overview_instance(
     active = dict(registry or load_overview_instance_registry())
     instances = active["instances"]
     if instance_id:
-        raw = instances.get(instance_id)
-        if raw is None:
+        if instance_id not in instances:
             raise ComponentSpecError(f"unknown overview instance {instance_id!r}")
+        raw = _resolve_instance_definition(instances, instance_id)
         instance = _validate_instance(instance_id, raw)
     else:
+        materialized = {
+            str(key): _resolve_instance_definition(instances, str(key))
+            for key in instances
+        }
         matches = [
             (key, value)
-            for key, value in instances.items()
+            for key, value in materialized.items()
             if str(value["target"]["model"]).casefold() == str(model or "").casefold()
             and str(value["target"]["region"]).casefold()
             == str(region or "").casefold()
         ]
         if not model and not region:
             default_id = str(active["default_instance_id"])
-            matches = [(default_id, instances[default_id])]
+            matches = [(default_id, materialized[default_id])]
         if len(matches) != 1:
             raise ComponentSpecError(
                 f"expected one overview instance for {model!r}/{region!r}; "

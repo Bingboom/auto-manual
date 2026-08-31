@@ -370,10 +370,12 @@ def _collect_finalize_result(
         len(report.get("bad_links", []))
         + len(post_reopen.get("bad_links", []))
     )
+    overset_pages = _overset_pages(report)
     print(
         f"[indesign-finalize] {status}: pages={report.get('page_count')} "
         f"overset={overset} fonts={missing_fonts} glyphs={missing_glyphs} "
         f"links={bad_links} "
+        f"overset_pages={','.join(str(page) for page in overset_pages) or '-'} "
         f"report={job['report_json']}"
     )
     if report.get("error"):
@@ -388,8 +390,33 @@ def _collect_finalize_result(
         "missing_fonts_count": missing_fonts,
         "missing_glyphs_count": missing_glyphs,
         "bad_links_count": bad_links,
+        "overset_pages": overset_pages,
         **({"error": report["error"]} if report.get("error") else {}),
     }
+
+
+def _overset_pages(report: dict[str, object]) -> list[int]:
+    """Return unique physical pages from every structured overset finding."""
+
+    pages: set[int] = set()
+    states = [report, report.get("post_reopen") or {}]
+    for state in states:
+        if not isinstance(state, dict):
+            continue
+        for finding in state.get("overset_table_cells", []) or []:
+            if isinstance(finding, dict):
+                page = finding.get("page")
+                if isinstance(page, int) and page > 0:
+                    pages.add(page)
+        for finding in state.get("overset_stories", []) or []:
+            if not isinstance(finding, dict):
+                continue
+            for container in finding.get("text_containers", []) or []:
+                if isinstance(container, dict):
+                    page = container.get("page")
+                    if isinstance(page, int) and page > 0:
+                        pages.add(page)
+    return sorted(pages)
 
 
 def run_finalize_job(

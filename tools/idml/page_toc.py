@@ -1,8 +1,9 @@
 """Table-of-contents page for the composed IDML manual.
 
 Entries are collected while the spreads are assembled (title + the spread
-cursor it starts on); the TOC spread is then built last and spliced in at
-the template's slot (after the preface), renumbering the later spreads.
+cursor it starts on); the TOC spread is then built last and placed at the
+template's slot (after the preface), replacing a target-assembly carrier when
+one was explicitly planned and otherwise splicing before the later spreads.
 Folio numbers inherit the exporter's coarse page estimates — like every
 frame height here they are close, and the designer nudges the rest.
 """
@@ -53,6 +54,7 @@ _LEFT_ENTRY_X = (29.896, 30.012, 30.127)
 _LEFT_ENTRY_WIDTH = (151.461, 151.461, 151.346)
 _RIGHT_ENTRY_X = 189.261
 _RIGHT_ENTRY_WIDTH = (154.676, 154.790, 154.905)
+_SEGMENTS_PER_PAGE = len(_LABEL_HORIZONTAL_SCALE)
 _ENTRY_NARROW_WIDTH_RATIO = 0.52
 _LEADER_TEXT_GAP = 4.0
 _LEADER_MIN_LENGTH = 0.25
@@ -357,13 +359,43 @@ def _display_segments(
     return "TABLE OF CONTENTS", segments
 
 
+def _toc_slot(page_plan: dict | None) -> int:
+    """Return the target-declared zero-based TOC slot when one is available."""
+    for page in (page_plan or {}).get("pages", []):
+        if not isinstance(page, dict) or page.get("composition_type") != "toc":
+            continue
+        raw = page.get("latex_start_page", page.get("start_page"))
+        try:
+            return max(0, int(raw) - 1)
+        except (TypeError, ValueError):
+            break
+    return _TOC_SLOT
+
+
+def _planned_toc_page_count(page_plan: dict | None) -> int:
+    """Return the number of target-assembly carrier spreads to replace."""
+    if (page_plan or {}).get("plan_source") != "target-assembly":
+        return 0
+    for page in (page_plan or {}).get("pages", []):
+        if not isinstance(page, dict) or page.get("composition_type") != "toc":
+            continue
+        raw = page.get("planned_page_count", page.get("page_count"))
+        try:
+            return max(0, int(raw))
+        except (TypeError, ValueError):
+            return 0
+    return 0
+
+
 def finalize(
     writer, collector: TocCollector, add_story_parts, psr,
     source: dict | None = None,
+    page_plan: dict | None = None,
 ) -> bool:
-    """Build the TOC spread and splice it into the template slot."""
+    """Build one or more TOC spreads and splice them into the template slot."""
     title, segments = _display_segments(collector, source)
-    if not segments or len(writer.spreads) <= _TOC_SLOT:
+    toc_slot = _toc_slot(page_plan)
+    if not segments or len(writer.spreads) <= toc_slot:
         return False
 
     body_x = writer.m_l
@@ -376,8 +408,7 @@ def finalize(
         "idml_toc_leader_text_gap",
         _LEADER_TEXT_GAP,
     )
-    y = param_pt(writer.params, "idml_toc_title_top", 33.84)
-    frames: list[str] = []
+    title_y = param_pt(writer.params, "idml_toc_title_top", 33.84)
     # Master: plain large dark text, no bar (STYLE_DEFINITION.md §2.5).
     title_xml = psr("HB TOC Title", title, terminal=True).replace(
         'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
@@ -388,129 +419,195 @@ def finalize(
     title_sid = add_story_parts(
         "st_toc_title", "TOC title",
         [title_xml])
-    frames.append(writer._frame_xml(
-        "tf_toc_title", title_sid,
-        *writer._page_rect(body_x + 1.11, y + 0.667, body_w - 1.11, 30.0),
-        inset=(0, 0, 0, 0)))
-    y = param_pt(writer.params, "idml_toc_first_segment_top", 65.51)
+    first_segment_top = param_pt(
+        writer.params, "idml_toc_first_segment_top", 65.51,
+    )
     first_segment_advance = param_pt(
         writer.params, "idml_toc_first_segment_advance", 142.75,
     )
     following_segment_advance = param_pt(
         writer.params, "idml_toc_following_segment_advance", 149.22,
     )
-    reference_segment_top = 65.51
-
-    for si, (header, rng, segment) in enumerate(segments):
-        code, _, label = header.partition("  ")
-        bar_sid = add_story_parts(
-            f"st_toc_bar_{si}", f"TOC bar {si}",
-            [_bar_code_psr(code)])
-        label_sid = add_story_parts(
-            f"st_toc_bar_label_{si}", f"TOC bar label {si}",
-            [_bar_label_psr(label, _LABEL_HORIZONTAL_SCALE[si])])
-        range_xml = psr("HB TOC Range", rng, terminal=True).replace(
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
-            'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'HorizontalScale="{_RANGE_HORIZONTAL_SCALE[si]:g}"',
-            1,
-        )
-        range_sid = add_story_parts(
-            f"st_toc_range_{si}", f"TOC range {si}",
-            [range_xml])
-        # rounded via the capsule path Rectangle: CornerOption attrs are
-        # unreliable on generated frames (STYLE_DEFINITION.md §2.5)
-        bar_x = body_x + _BAR_X_OFFSET + si * _BAR_X_STEP
-        bar_y = y + _BAR_Y_OFFSET
-        frames.append(_po.capsule_xml(
-            writer,
-            f"bg_toc_bar_{si}",
-            (bar_x, bar_y, _BAR_WIDTH, _BAR_HEIGHT),
-            corner_radius=_BAR_RADIUS,
-        ))
-        frames.append(writer._frame_xml(
-            f"tf_toc_bar_{si}", bar_sid,
-            *writer._page_rect(_CODE_X[si], bar_y + 0.074, 17.0, 14.85),
-            valign="CenterAlign", inset=(0, 0, 0, 0)))
-        frames.append(writer._frame_xml(
-            f"tf_toc_bar_label_{si}", label_sid,
-            *writer._page_rect(_LABEL_X[si], bar_y + 1.598, 80.0, 14.85),
-            valign="CenterAlign", inset=(0, 0, 0, 0)))
-        frames.append(writer._frame_xml(
-            f"tf_toc_range_{si}", range_sid,
-            *writer._page_rect(
-                _RANGE_RIGHT[si] - 28.40,
-                bar_y + (0.163 if si == 0 else 0.114),
-                28.40,
-                14.85,
-            ),
-            valign="CenterAlign", inset=(0, 0, 0, 0)))
-        entry_y = y + 25.615 - (2.828 if si else 0.0)
-        half = (len(segment) + 1) // 2
-        for ci, chunk in enumerate((segment[:half], segment[half:])):
-            if not chunk:
-                continue
-            entry_x = _LEFT_ENTRY_X[si] if ci == 0 else _RIGHT_ENTRY_X
-            entry_w = (
-                _LEFT_ENTRY_WIDTH[si] if ci == 0
-                else _RIGHT_ENTRY_WIDTH[si]
-            )
-            if si < len(_REFERENCE_LEADERS) and ci < len(_REFERENCE_LEADERS[si]):
-                leader_metrics = _REFERENCE_LEADERS[si][ci]
-                for ri, (entry_title, _) in enumerate(
-                    chunk[:len(leader_metrics)]
-                ):
-                    metric = leader_metrics[ri]
-                    if dynamic_leader_start:
-                        metric = _leader_metric_for_entry(
-                            entry_title,
-                            entry_x,
-                            entry_w,
-                            metric,
-                            text_gap=leader_text_gap,
-                        )
-                    metric = _offset_leader_metric_y(
-                        metric,
-                        y - reference_segment_top,
-                    )
-                    frames.append(_leader_xml(
-                        writer,
-                        f"gl_toc_leader_{si}_{ci}_{ri}",
-                        metric,
-                    ))
-            xml = "".join(_entry_psr(t, folio, entry_w) for t, folio in chunk)
-            sid = add_story_parts(f"st_toc_seg{si}_c{ci}", f"TOC {si}/{ci}", [xml])
+    toc_spreads: list[tuple[str, str]] = []
+    for page_index, segment_start in enumerate(
+        range(0, len(segments), _SEGMENTS_PER_PAGE)
+    ):
+        frames: list[str] = []
+        if page_index == 0:
             frames.append(writer._frame_xml(
-                f"tf_toc_seg{si}_c{ci}", sid,
+                "tf_toc_title", title_sid,
                 *writer._page_rect(
-                    entry_x, entry_y, entry_w, 14.0 * half + 14.0,
+                    body_x + 1.11, title_y + 0.667, body_w - 1.11, 30.0,
                 ),
-                inset=(0, 0, 0, 0)))
-        y += first_segment_advance if si == 0 else following_segment_advance
-        reference_segment_top += 142.75 if si == 0 else 149.22
+                inset=(0, 0, 0, 0),
+            ))
+        y = first_segment_top
+        reference_segment_top = 65.51
+        page_segments = segments[
+            segment_start:segment_start + _SEGMENTS_PER_PAGE
+        ]
+        for local_index, (header, rng, segment) in enumerate(page_segments):
+            segment_index = segment_start + local_index
+            code, _, label = header.partition("  ")
+            bar_sid = add_story_parts(
+                f"st_toc_bar_{segment_index}", f"TOC bar {segment_index}",
+                [_bar_code_psr(code)])
+            label_sid = add_story_parts(
+                f"st_toc_bar_label_{segment_index}",
+                f"TOC bar label {segment_index}",
+                [_bar_label_psr(
+                    label, _LABEL_HORIZONTAL_SCALE[local_index],
+                )])
+            range_xml = psr("HB TOC Range", rng, terminal=True).replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                f'HorizontalScale="{_RANGE_HORIZONTAL_SCALE[local_index]:g}"',
+                1,
+            )
+            range_sid = add_story_parts(
+                f"st_toc_range_{segment_index}",
+                f"TOC range {segment_index}",
+                [range_xml])
+            # Rounded via the capsule path Rectangle: CornerOption attrs are
+            # unreliable on generated frames (STYLE_DEFINITION.md §2.5).
+            bar_x = body_x + _BAR_X_OFFSET + local_index * _BAR_X_STEP
+            bar_y = y + _BAR_Y_OFFSET
+            frames.append(_po.capsule_xml(
+                writer,
+                f"bg_toc_bar_{segment_index}",
+                (bar_x, bar_y, _BAR_WIDTH, _BAR_HEIGHT),
+                corner_radius=_BAR_RADIUS,
+            ))
+            frames.append(writer._frame_xml(
+                f"tf_toc_bar_{segment_index}", bar_sid,
+                *writer._page_rect(
+                    _CODE_X[local_index], bar_y + 0.074, 17.0, 14.85,
+                ),
+                valign="CenterAlign", inset=(0, 0, 0, 0)))
+            frames.append(writer._frame_xml(
+                f"tf_toc_bar_label_{segment_index}", label_sid,
+                *writer._page_rect(
+                    _LABEL_X[local_index], bar_y + 1.598, 80.0, 14.85,
+                ),
+                valign="CenterAlign", inset=(0, 0, 0, 0)))
+            frames.append(writer._frame_xml(
+                f"tf_toc_range_{segment_index}", range_sid,
+                *writer._page_rect(
+                    _RANGE_RIGHT[local_index] - 28.40,
+                    bar_y + (0.163 if local_index == 0 else 0.114),
+                    28.40,
+                    14.85,
+                ),
+                valign="CenterAlign", inset=(0, 0, 0, 0)))
+            entry_y = y + 25.615 - (2.828 if local_index else 0.0)
+            half = (len(segment) + 1) // 2
+            for column_index, chunk in enumerate(
+                (segment[:half], segment[half:])
+            ):
+                if not chunk:
+                    continue
+                entry_x = (
+                    _LEFT_ENTRY_X[local_index]
+                    if column_index == 0 else _RIGHT_ENTRY_X
+                )
+                entry_w = (
+                    _LEFT_ENTRY_WIDTH[local_index]
+                    if column_index == 0 else _RIGHT_ENTRY_WIDTH[local_index]
+                )
+                if (
+                    local_index < len(_REFERENCE_LEADERS)
+                    and column_index < len(_REFERENCE_LEADERS[local_index])
+                ):
+                    leader_metrics = _REFERENCE_LEADERS[
+                        local_index
+                    ][column_index]
+                    for row_index, (entry_title, _) in enumerate(
+                        chunk[:len(leader_metrics)]
+                    ):
+                        metric = leader_metrics[row_index]
+                        if dynamic_leader_start:
+                            metric = _leader_metric_for_entry(
+                                entry_title,
+                                entry_x,
+                                entry_w,
+                                metric,
+                                text_gap=leader_text_gap,
+                            )
+                        metric = _offset_leader_metric_y(
+                            metric,
+                            y - reference_segment_top,
+                        )
+                        frames.append(_leader_xml(
+                            writer,
+                            "gl_toc_leader_"
+                            f"{segment_index}_{column_index}_{row_index}",
+                            metric,
+                        ))
+                xml = "".join(
+                    _entry_psr(entry_title, folio, entry_w)
+                    for entry_title, folio in chunk
+                )
+                sid = add_story_parts(
+                    f"st_toc_seg{segment_index}_c{column_index}",
+                    f"TOC {segment_index}/{column_index}",
+                    [xml],
+                )
+                frames.append(writer._frame_xml(
+                    f"tf_toc_seg{segment_index}_c{column_index}", sid,
+                    *writer._page_rect(
+                        entry_x, entry_y, entry_w, 14.0 * half + 14.0,
+                    ),
+                    inset=(0, 0, 0, 0)))
+            y += (
+                first_segment_advance
+                if local_index == 0 else following_segment_advance
+            )
+            reference_segment_top += (
+                142.75 if local_index == 0 else 149.22
+            )
 
-    spread_xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Spread Self="sp_toc" PageCount="1" BindingLocation="0" ShowMasterItems="true">\n'
-        f'  <Page Self="sp_toc_pg" Name="{_TOC_SLOT + 1}" '
-        'AppliedMaster="n" OverrideList="" TabOrder="" GridStartingPoint="TopOutside" '
-        f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
-        f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} {-writer.page_h / 2:g}"/>\n'
-        + "".join(frames) +
-        "</Spread>\n"
-        "</idPkg:Spread>\n"
-    )
+        spread_sid = "sp_toc" if page_index == 0 else f"sp_toc_{page_index + 1}"
+        page_sid = (
+            "sp_toc_pg"
+            if page_index == 0 else f"sp_toc_{page_index + 1}_pg"
+        )
+        spread_xml = (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+            f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+            f'<Spread Self="{spread_sid}" PageCount="1" BindingLocation="0" '
+            'ShowMasterItems="true">\n'
+            f'  <Page Self="{page_sid}" Name="{toc_slot + page_index + 1}" '
+            'AppliedMaster="n" OverrideList="" TabOrder="" '
+            'GridStartingPoint="TopOutside" '
+            f'GeometricBounds="0 0 {writer.page_h:g} {writer.page_w:g}" '
+            f'ItemTransform="1 0 0 1 {-writer.page_w / 2:g} '
+            f'{-writer.page_h / 2:g}"/>\n'
+            + "".join(frames)
+            + "</Spread>\n"
+            + "</idPkg:Spread>\n"
+        )
+        toc_spreads.append((spread_sid, spread_xml))
 
     renumbered: list[tuple[str, str]] = []
-    for sid, xml in writer.spreads[_TOC_SLOT:]:
+    inserted_page_count = len(toc_spreads)
+    replaced_page_count = _planned_toc_page_count(page_plan)
+    page_number_delta = inserted_page_count - replaced_page_count
+    tail_slot = toc_slot + replaced_page_count
+    for sid, xml in writer.spreads[tail_slot:]:
         match = re.fullmatch(r"sp_(\d+)", sid)
-        if match:
+        if match and page_number_delta:
             n = int(match.group(1))
-            xml = xml.replace(f'Self="sp_{n}"', f'Self="sp_{n + 1}"')
-            xml = xml.replace(f'Self="sp_{n}_pg"', f'Self="sp_{n + 1}_pg"')
-            xml = xml.replace(f'Name="{n + 1}"', f'Name="{n + 2}"', 1)
-            sid = f"sp_{n + 1}"
+            new_index = n + page_number_delta
+            xml = xml.replace(f'Self="sp_{n}"', f'Self="sp_{new_index}"')
+            xml = xml.replace(
+                f'Self="sp_{n}_pg"', f'Self="sp_{new_index}_pg"',
+            )
+            xml = xml.replace(
+                f'Name="{n + 1}"',
+                f'Name="{n + page_number_delta + 1}"',
+                1,
+            )
+            sid = f"sp_{new_index}"
         renumbered.append((sid, xml))
-    writer.spreads[_TOC_SLOT:] = [("sp_toc", spread_xml)] + renumbered
+    writer.spreads[toc_slot:] = toc_spreads + renumbered
     return True

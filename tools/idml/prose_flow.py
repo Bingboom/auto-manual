@@ -523,6 +523,44 @@ def operation_final_frame_x_offset(language: str | None) -> float:
     return _OPERATION_FINAL_FRAME_X_OFFSETS.get(language or "", 0.0)
 
 
+TROUBLESHOOTING_TABLE_MARKER = "troubleshooting_table"
+
+
+def mark_troubleshooting_table(blocks: list[Block]) -> list[Block]:
+    """Declare which table is the Troubleshooting component.
+
+    The renderer used to recognise this table by matching its printed header
+    against a set of EN/FR/ES spellings, which is the localized-copy routing
+    that STYLE_DEFINITION §0.5 forbids — and it silently failed for the other
+    seven registered languages, dropping their tables to the legacy square
+    treatment. The exporter already knows the page role, so the semantic
+    travels as a block marker instead of being re-derived from the copy.
+    """
+    marked = list(blocks)
+    table_index = next(
+        (i for i, block in enumerate(marked) if block[0] == "table"), None,
+    )
+    if table_index is not None:
+        marked.insert(table_index, ("layout", TROUBLESHOOTING_TABLE_MARKER))
+    return marked
+
+
+def table_is_marked_troubleshooting(blocks: list[Block], index: int) -> bool:
+    """Read the marker for the table at ``index``.
+
+    Scans back over the whole contiguous run of layout markers rather than
+    just the previous block: ``align_trouble_table`` inserts
+    ``table_next_page`` between the marker and its table for a table that
+    starts on a second reference page.
+    """
+    position = index - 1
+    while position >= 0 and blocks[position][0] == "layout":
+        if blocks[position][1] == TROUBLESHOOTING_TABLE_MARKER:
+            return True
+        position -= 1
+    return False
+
+
 def align_trouble_table(blocks: list[Block], page_plan: dict | None,
                         stem: str) -> list[Block]:
     """Start a long troubleshooting table on its second reference page."""

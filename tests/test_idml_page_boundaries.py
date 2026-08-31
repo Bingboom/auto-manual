@@ -275,6 +275,16 @@ def _storage_matrix() -> set[tuple[str, str]]:
     return {("standard", language) for language in STORAGE_GOLDEN}
 
 
+def _regulatory_matrix() -> set[tuple[str, str]]:
+    from tests.test_idml_regulatory_compliance_panel import REGULATORY_GOLDEN
+
+    return {
+        (density, language)
+        for density, languages in REGULATORY_GOLDEN.items()
+        for language in languages
+    }
+
+
 COMPONENT_REGRESSION_REGISTRY: dict[str, dict] = {
     "SymbolsPanel": {
         "declared": {(d, lang) for d in ("standard", "compact")
@@ -311,6 +321,10 @@ COMPONENT_REGRESSION_REGISTRY: dict[str, dict] = {
     "StoragePanel": {
         "declared": {("standard", lang) for lang in ("en", "fr", "es")},
         "covered": _storage_matrix,
+    },
+    "RegulatoryCompliancePanel": {
+        "declared": {("bottom_card", "en")},
+        "covered": _regulatory_matrix,
     },
 }
 

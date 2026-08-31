@@ -276,6 +276,7 @@ def _years_table(
     *,
     tid: str,
     width: float,
+    section_index: int | None = None,
 ) -> tuple[str, float]:
     items = list(spec.get("items", []))
     if not items:
@@ -317,6 +318,19 @@ def _years_table(
         "year_body_horizontal_scale",
         section_horizontal_scale,
     )
+    estimate_horizontal_scale = _variant_value(
+        spec,
+        ctx,
+        "body_estimate_horizontal_scale",
+        horizontal_scale,
+    )
+    if section_index is not None:
+        estimate_horizontal_scale = _variant_value(
+            spec,
+            ctx,
+            f"body_estimate_horizontal_scale_{section_index}",
+            estimate_horizontal_scale,
+        )
     badge_size = param_pt(ctx.params, "type_warranty_year_number_font_size", 21.0)
     subtitle_size = param_pt(ctx.params, "type_warranty_year_subtitle_font_size", 7.2)
     unit_indent = param_pt(
@@ -372,10 +386,18 @@ def _years_table(
             left=0, right=(gap if index < len(items) - 1 else 0),
             valign="TopAlign",
         ))
-        lines = _wrapped_lines(body, col_w - 2.0, body_size)
+        lines = _wrapped_lines(
+            body,
+            col_w - 2.0,
+            body_size * estimate_horizontal_scale / 100.0,
+        )
         max_height = max(
             max_height,
-            badge_size + 1.0 + subtitle_size + 2.0 + lines * body_leading,
+            badge_size
+            + 1.0
+            + subtitle_size
+            + 2.0
+            + lines * rendered_body_leading,
         )
     return component_table(
         tid, cols, cells, n_rows=1, outer_stroke=False,
@@ -533,7 +555,11 @@ def _section_body(
             if layout_spec.get("layout_variant"):
                 years_spec["layout_variant"] = layout_spec["layout_variant"]
             table, table_height = _years_table(
-                years_spec, ctx, tid=f"{tid}_years", width=width,
+                years_spec,
+                ctx,
+                tid=f"{tid}_years",
+                width=width,
+                section_index=section_index,
             )
             # The native circle reaches above the ordinary text ascender.  A
             # composition-level clearance keeps it below the section-title
@@ -693,7 +719,21 @@ def render_warrantysection(
         22.0,
         pad_top + body_height + pad_bottom - trim + panel_adjust,
     )
-    title_size = param_pt(ctx.params, "idml_warranty_title_font_size", 8.0)
+    title_horizontal_scale = _language_param(
+        ctx,
+        "idml_warranty_title_horizontal_scale",
+        100.0,
+    )
+    title_estimate_scale = _language_param(
+        ctx,
+        "idml_warranty_title_estimate_horizontal_scale",
+        title_horizontal_scale,
+    )
+    title_estimate_size = (
+        param_pt(ctx.params, "idml_warranty_title_font_size", 8.0)
+        * title_estimate_scale
+        / 100.0
+    )
     title_leading = param_pt(ctx.params, "type_warranty_title_font_leading", 8.8)
     title_pad_lr = param_pt(ctx.params, "comp_warranty_title_pad_lr", 5.1)
     title_pad_tb = param_pt(ctx.params, "comp_warranty_title_pad_tb", 1.98)
@@ -704,7 +744,7 @@ def render_warrantysection(
             55.0,
             estimated_text_width(
                 title,
-                point_size=title_size,
+                point_size=title_estimate_size,
                 narrow_width_ratio=0.53,
             ) + 2 * title_pad_lr,
         ),
@@ -720,10 +760,16 @@ def render_warrantysection(
         )
         return wrap_table_paragraph(table, terminal, span_columns), panel_h
 
+    title_xml = psr("HB Warranty Title", title, terminal=True).replace(
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
+        'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+        f'HorizontalScale="{title_horizontal_scale:g}"',
+        1,
+    )
     title_sid = ctx.add_story(
         f"st_anchor_warranty_title_{tid}",
         f"{title} warranty panel title",
-        [psr("HB Warranty Title", title, terminal=True)],
+        [title_xml],
     )
     body_sid = ctx.add_story(
         f"st_anchor_warranty_body_{tid}",

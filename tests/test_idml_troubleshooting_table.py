@@ -146,6 +146,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
         strict: bool = False,
         params: dict[str, tuple[str, str]] | None = None,
         suffix: str = "localized",
+        language: str = "en",
     ) -> tuple[str, str, float]:
         writer = IdmlWriter(
             params
@@ -161,12 +162,16 @@ class TroubleshootingTableContractTests(unittest.TestCase):
             bundle_root=ROOT / "docs",
             add_story=writer._add_story_parts,
             strict_component_assets=strict,
+            language=language,
         )
+        # The caller declares the semantic; it is no longer inferred from the
+        # printed header (which only ever recognised EN/FR/ES).
         xml, estimated_height = render_table_block(
             rows,
             ctx,
             tid=f"trouble_{suffix}",
             terminal=True,
+            troubleshooting=True,
         )
         story = dict(writer.stories)[f"st_anchor_trouble_trouble_{suffix}"]
         return xml, story, estimated_height
@@ -181,7 +186,9 @@ class TroubleshootingTableContractTests(unittest.TestCase):
                 self.assertEqual(12, len(rows))
                 self.assertEqual("FE", rows[-1][0])
 
-                xml, story, height = self._render(rows, suffix=language)
+                xml, story, height = self._render(
+                    rows, suffix=language, language=language,
+                )
 
                 self.assertIn("<Content>FE</Content>", story)
                 self.assertIn('AutoSizingType="Off"', xml)
@@ -270,7 +277,9 @@ class TroubleshootingTableContractTests(unittest.TestCase):
     def test_body_cells_are_natively_vertically_centered_in_all_locales(self) -> None:
         for language, rows in (("en", EN_ROWS), ("fr", FR_ROWS), ("es", ES_ROWS)):
             with self.subTest(language=language):
-                _xml, story, _height = self._render(rows, suffix=language)
+                _xml, story, _height = self._render(
+                    rows, suffix=language, language=language,
+                )
                 for row_index in range(1, len(rows)):
                     for column_index in range(2):
                         cell_id = f'trouble_{language}c{row_index}_{column_index}'
@@ -349,6 +358,7 @@ class TroubleshootingTableContractTests(unittest.TestCase):
                         strict=True,
                         params=params,
                         suffix=f"missing_minima_{language}",
+                        language=language,
                     )
 
     def test_visible_table_calibrations_are_resolved_from_layout_tokens(self) -> None:

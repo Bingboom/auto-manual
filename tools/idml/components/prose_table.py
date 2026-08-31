@@ -96,6 +96,8 @@ class TroubleshootingTableStyle:
     header_single_height: float
     body_single_height: float
     row_minima: tuple[float, ...]
+    left_line_baseline: tuple[int, ...]
+    right_line_baseline: tuple[int, ...]
     steps_pad_tb: float
     outer_radius: float
     compact_outer_radius: float
@@ -204,6 +206,34 @@ class TroubleshootingTableStyle:
                 "twelve finite positive heights"
             )
 
+        def line_baseline(side: str, fallback: tuple[int, ...]) -> tuple[int, ...]:
+            """Native line counts per row, from data when the language has them.
+
+            These gate how far a row may grow beyond its measured height, so
+            borrowing another language's counts suppresses growth the copy
+            actually needs. The KR overlay shipped measured Korean counts
+            before anything read them.
+            """
+            key = f"lang_{language}_idml_trouble_{side}_line_baseline"
+            raw = param_text(
+                ctx.params, key, ";".join(str(value) for value in fallback),
+            )
+            try:
+                counts = tuple(int(value.strip()) for value in raw.split(";"))
+            except ValueError as exc:
+                raise ValueError(
+                    f"TroubleshootingTableStyle {key} must contain "
+                    "semicolon-separated integers"
+                ) from exc
+            if len(counts) != len(row_minima) or any(
+                count < 1 for count in counts
+            ):
+                raise ValueError(
+                    f"TroubleshootingTableStyle {key} must contain "
+                    f"{len(row_minima)} positive line counts"
+                )
+            return counts
+
         header_h = token("comp_data_table_header_height", 14.74)
         row_h = token("comp_data_table_row_height", 11.91)
         left_ratio = token("comp_trouble_left_ratio", 0.11)
@@ -230,6 +260,12 @@ class TroubleshootingTableStyle:
                 "idml_trouble_body_height_correction", 2.79,
             ),
             row_minima=row_minima,
+            left_line_baseline=line_baseline(
+                "left", calibration.left_line_baseline,
+            ),
+            right_line_baseline=line_baseline(
+                "right", calibration.right_line_baseline,
+            ),
             steps_pad_tb=token("comp_trouble_steps_pad_tb", 2.83465),
             outer_radius=token("comp_table_outer_arc", 6.8),
             # Compact tables are a target-overlay extension of the shared
@@ -264,15 +300,9 @@ class TroubleshootingTableStyle:
         return self.extra_row_min_height
 
 
-_TROUBLESHOOTING_HEADER_LANGUAGES = {
-    "error code": "en",
-    "code d'erreur": "fr",
-    "code d’erreur": "fr",
-    "código de fallo": "es",
-    "codigo de fallo": "es",
-    "código de error": "es",
-    "codigo de error": "es",
-}
+def _troubleshooting_language(language: str | None) -> str:
+    """Normalize the declared page language for calibration lookup."""
+    return (language or "en").split("-", 1)[0].strip().casefold() or "en"
 _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
     "en": _TroubleshootingLocaleCalibration(
         native_row_heights=(
@@ -530,11 +560,13 @@ def _troubleshooting_frame_height(
 ) -> float:
     """Budget localized AutoGrow rows before emitting the fixed panel group.
 
-    The approved EN/FR/ES copy has a native-InDesign row-height baseline.  It
-    captures font shaping that a deterministic build cannot query from a host
-    application (notably the two-line FR/ES code header).  The same width,
-    type, leading and inset calculation then adds growth when edited copy wraps
-    beyond that reviewed baseline.
+    The reviewed copy has a native-InDesign row-height and line-count
+    baseline. It captures font shaping that a deterministic build cannot query
+    from a host application (notably the two-line FR/ES code header). The same
+    width, type, leading and inset calculation then adds growth when edited
+    copy wraps beyond that reviewed baseline. Both halves of the baseline now
+    come off the resolved style, so a language supplies its own by shipping
+    layout rows rather than by being added to a table in this file.
     """
     column_widths = _troubleshooting_column_widths(
         raw_rows,
@@ -547,9 +579,6 @@ def _troubleshooting_frame_height(
             column_widths=column_widths,
             style=style,
         )) + style.import_safety
-    header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-    language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
-    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS[language]
     budget = 0.0
     for row_index, row in enumerate(raw_rows):
         right = str(row[1]) if len(row) > 1 else ""
@@ -576,12 +605,11 @@ def _troubleshooting_frame_height(
                 glyph_width_ratio=style.glyph_width_ratio,
             )
             measured_lines.append(lines)
-        if row_index < len(calibration.native_row_heights):
-            native_height = style.minimum_for_row(row_index)
-            left_baseline = calibration.left_line_baseline[row_index]
-            right_baseline = calibration.right_line_baseline[row_index]
+        native_height = style.minimum_for_row(row_index)
+        if row_index < len(style.left_line_baseline):
+            left_baseline = style.left_line_baseline[row_index]
+            right_baseline = style.right_line_baseline[row_index]
         else:
-            native_height = style.minimum_for_row(row_index)
             left_baseline = right_baseline = 1
         left_growth = max(0, measured_lines[0] - left_baseline) * (
             style.header_leading if row_index == 0 else style.code_leading
@@ -706,8 +734,7 @@ def _troubleshooting_table(
         if is_compact
         else None
     )
-    header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-    language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
+    language = _troubleshooting_language(ctx.language)
 
     cells: list[str] = []
     for ri, row in enumerate(raw_rows):
@@ -949,20 +976,17 @@ def _body_data_table(
 
 
 def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
-                       terminal: bool, span_columns: bool = True) -> tuple[str, float]:
+                       terminal: bool, span_columns: bool = True,
+                       troubleshooting: bool = False) -> tuple[str, float]:
     n_cols = max(len(r) for r in raw_rows)
     first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
     is_overview = first_cell in {"POWER Button", "Total Output", "Handle"}
-    # Troubleshooting is a shared visual component across EN/FR/ES. Detect
-    # the semantic header in every governed language so localized pages do
-    # not silently fall back to the legacy square table.
-    trouble_headers = {
-        "error code", "code d'erreur", "code d’erreur",
-        "código de fallo", "codigo de fallo",
-        "código de error", "codigo de error",
-    }
-    trouble_header = str(raw_rows[0][0]).strip().casefold() if raw_rows else ""
-    is_troubleshooting = n_cols == 2 and trouble_header in trouble_headers
+    # The caller declares this table's semantic; it is never re-derived from
+    # the printed header. Matching localized copy is what STYLE_DEFINITION
+    # §0.5 forbids, and the header set only ever held EN/FR/ES spellings, so
+    # ja/zh/de/it/uk/pt-BR/ko all fell through to the legacy square table
+    # while manual_style.yaml declared HB-TABLE-TROUBLESHOOTING `aligned`.
+    is_troubleshooting = n_cols == 2 and troubleshooting
     body_kind = body_data_table_kind(raw_rows)
     is_auto_resume = body_kind == "auto_resume"
     is_key_combinations = body_kind == "key_combinations"
@@ -1008,10 +1032,7 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
     elif is_troubleshooting:
         troubleshooting_style = TroubleshootingTableStyle.from_context(
             ctx,
-            language=_TROUBLESHOOTING_HEADER_LANGUAGES.get(
-                trouble_header,
-                "en",
-            ),
+            language=_troubleshooting_language(ctx.language),
         )
         table, framed_h = _troubleshooting_table(
             raw_rows,
@@ -1147,9 +1168,9 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             raise RuntimeError("troubleshooting style was not resolved")
         # LaTeX's HBDataTableFrame has a dedicated before gap.  Keep it on
         # the host paragraph so page-flow and table geometry remain separate.
-        header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-        language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
-        table_space_before = troubleshooting_style.table_space_before(language)
+        table_space_before = troubleshooting_style.table_space_before(
+            _troubleshooting_language(ctx.language),
+        )
         xml = xml.replace(
             "<ParagraphStyleRange ",
             f'<ParagraphStyleRange SpaceBefore="{table_space_before:g}" ',

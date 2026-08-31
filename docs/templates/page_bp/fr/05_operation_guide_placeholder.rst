@@ -18,7 +18,7 @@ MARCHE/ARRÊT
    :widths: 12 88
 
    * - **REMARQUE**
-     - Lorsque le Battery Pack 2000 est utilisé avec le Jackery HomePower 2000 Plus, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal du Jackery HomePower 2000 Plus.
+     - Lorsque le Battery Pack 2000 est utilisé avec le |BP_HOST_PRODUCT_NAME|, son état d'alimentation peut être contrôlé à l'aide du bouton POWER principal du |BP_HOST_PRODUCT_NAME|.
 
        Le produit s'éteint automatiquement lorsqu'il n'est pas en charge et qu'aucune charge n'est connectée pendant |DEFAULT_STANDBY_DURATION|.
 

@@ -662,6 +662,63 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('Leading="7"', xml)
         self.assertIn('Hyphenation="false"', xml)
 
+    def test_warranty_years_honor_section_estimate_scale(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        without_section_override = dict(params)
+        without_section_override.pop(
+            "lang_it_idml_warranty_variant_bp_default_"
+            "body_estimate_horizontal_scale_2",
+        )
+        text = (
+            "Il periodo di garanzia standard decorre dalla data di acquisto "
+            "del consumatore originale ed è necessario conservare la prova "
+            "documentale ragionevole. "
+        ) * 3
+        spec = {
+            "kind": "warrantysection",
+            "title": "Periodo di garanzia",
+            "index": 2,
+            "layout_variant": "bp_default",
+            "blocks": [{
+                "kind": "component",
+                "spec": {
+                    "kind": "warrantyyears",
+                    "items": [{
+                        "number": "3",
+                        "unit": "ANNI",
+                        "label": "Garanzia standard",
+                        "text": text,
+                    }],
+                },
+            }],
+        }
+
+        def height(layout_params) -> float:
+            _, rendered_height = render(
+                spec,
+                RenderContext(
+                    params=layout_params,
+                    page_w=368.79,
+                    m_l=28.35,
+                    m_r=28.35,
+                    root=ROOT,
+                    bundle_root=ROOT / "does-not-exist",
+                    language="it",
+                    add_story=lambda sid, _title, _parts: sid,
+                ),
+                tid="warranty_it_period",
+                terminal=True,
+            )
+            return rendered_height
+
+        self.assertLess(height(params), height(without_section_override))
+
     def test_bp_warranty_body_uses_reference_rhythm_only_in_variant(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render

@@ -157,13 +157,34 @@ class ReferenceStoryEmitter:
             preface_bottom = param_pt(
                 writer.params, "idml_preface_margin_bottom", writer.m_b,
             )
+            # A target assembly may explicitly allocate a multilingual
+            # preface more than one physical page.  A measured fallback plan,
+            # however, may merely leave a physical gap before the next source;
+            # that gap is not a request to thread the preface story through
+            # blank frames.
+            pages = (
+                ir_projection.planned_story_pages(
+                    self.page_plan,
+                    title,
+                    1,
+                )
+                if plan_source == "target-assembly"
+                else 1
+            )
             writer.add_story_frames(
                 sid,
-                [(page_cursor, preface_top, writer.page_h - preface_bottom)],
+                [
+                    (
+                        page_cursor + offset,
+                        preface_top,
+                        writer.page_h - preface_bottom,
+                    )
+                    for offset in range(pages)
+                ],
                 margin_left=preface_left,
                 margin_right=preface_right,
             )
-            return page_cursor + 1
+            return page_cursor + pages
 
         pages = writer.pages_for_height(estimate / max(1, columns))
         pages = ir_projection.planned_story_pages(

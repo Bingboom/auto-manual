@@ -665,6 +665,25 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    `.notdef` 字形，因此正文和置入 PDF 中保留的文本都会进入机器闸门；已
    转曲或纯位图素材仍必须依靠逐页视觉验收。
 
+### 构建尚未晋升的 BP@INTL EU candidate
+
+EU 六语加电包继续复用 `BP@INTL`，不需要复制一套页面 renderer：
+
+```bash
+python3 build.py idml \
+  --config configs/config.bp-eu.yaml \
+  --model JBP-2000B \
+  --region EU \
+  --data-root tests/fixtures/phase2
+```
+
+该目标的 `uk` 是乌克兰语，不代表 UK 市场；配套主机显示名必须是
+`Jackery Explorer 2000 Plus`。命令应得到 54 个物理页、76/76 source binding
+和 `skipped_raw=0`。随后仍须在设计 Mac 上运行 `tools/indesign_finalize.py`，
+要求 overset / missing fonts / missing glyphs / bad links 全为 0，并检查
+PDF/X-4。这里的 assembly 仍是 `candidate` / `production_eligible=false`；
+构建成功不等于已经完成 approved reference-layout 晋升。
+
 ## 9. 一句话规则
 
 - 改数据：去改 Feishu

@@ -248,9 +248,12 @@ class IdmlWriter:
     def _safety_section_story(self, sid: str, title: str,
                               blocks: list[tuple[str, str]],
                               bundle_root: Path, *,
-                              compact: bool = False) -> str:
+                              compact: bool = False,
+                              language: str | None = None) -> str:
         return _pages._safety_section_story(
-            self, sid, title, blocks, bundle_root, compact=compact)
+            self, sid, title, blocks, bundle_root,
+            compact=compact, language=language,
+        )
 
     def add_safety_page(self, sid: str, title: str,
                         blocks: list[tuple[str, str]], bundle_root: Path,

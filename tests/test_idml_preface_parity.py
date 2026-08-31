@@ -55,6 +55,48 @@ class PrefaceParityTests(unittest.TestCase):
             writer.add_story_frames.call_args.args,
         )
 
+    def test_target_assembly_preface_honors_its_planned_page_count(self) -> None:
+        writer = Mock()
+        writer.params = {}
+        writer.m_l = 12.0
+        writer.m_r = 12.0
+        writer.m_t = 12.0
+        writer.m_b = 12.0
+        writer.page_h = 480.0
+        writer.add_prose_story.return_value = ("st_preface", 120.0)
+        emitter = ReferenceStoryEmitter(
+            writer=writer,
+            toc=Mock(),
+            bundle_root=ROOT,
+            page_plan={
+                "plan_source": "target-assembly",
+                "physical_page_count": 54,
+                "pages": [{
+                    "source_path": "page/preface_important.rst",
+                    "composition_id": "preface",
+                    "composition_type": "preface",
+                    "latex_start_page": 2,
+                    "planned_page_count": 2,
+                }],
+            },
+        )
+
+        next_page = emitter.emit(
+            "st_preface",
+            "preface_important",
+            [("body", "Six-language preface copy.")],
+            1,
+        )
+
+        self.assertEqual(3, next_page)
+        self.assertEqual(
+            (
+                "st_preface",
+                [(1, 12.0, 468.0), (2, 12.0, 468.0)],
+            ),
+            writer.add_story_frames.call_args.args,
+        )
+
     def test_semantic_preface_alias_uses_preface_typography(self) -> None:
         writer = IdmlWriter({
             "idml_preface_body_font_size": ("7", "pt"),

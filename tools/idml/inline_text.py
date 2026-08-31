@@ -1,6 +1,7 @@
 """Character-run serialization for editable IDML prose."""
 from __future__ import annotations
 
+import re
 from xml.sax.saxutils import escape
 
 from .font_family import (
@@ -26,6 +27,12 @@ SYMBOL_FONT_FALLBACKS = {
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
     "º": TEXT_SYMBOL_FONT,
     **{ch: TEXT_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉"},
+    # The shared regulatory contact row uses these three editable Unicode
+    # icons.  Gilroy and the first Noto Symbols face do not cover U+260E;
+    # Noto Sans Symbols2 covers the complete set and is already carried in
+    # every designer-facing IDML package.  Keep the source codepoints intact
+    # and split only the icon run from the adjacent contact copy.
+    **{ch: BULLET_FONT for ch in "☎✉◉"},
     "●": BULLET_FONT,
     **{
         ch: CIRCLED_NUMBER_FONT
@@ -115,6 +122,35 @@ def fallback_font_for_character(character: str) -> str | None:
 def _fallback_font(character: str) -> str | None:
     """Backward-compatible private entrypoint retained by latest-main tests."""
     return fallback_font_for_character(character)
+
+
+_CHARACTER_STYLE_RANGE_OPEN = re.compile(r"<CharacterStyleRange\s[^>]*>")
+_FONT_STYLE_ATTR = re.compile(r'\sFontStyle="[^"]*"')
+
+
+def drop_duplicate_font_style(xml: str) -> str:
+    """Collapse a doubled ``FontStyle`` on one character range.
+
+    A component may set a semantic style (``Bold`` on a table header) on a
+    range whose text also needs an explicit fallback font, and the fallback
+    adds its own ``Regular``. XML rejects two attributes with the same name,
+    so InDesign refuses the whole story — it surfaced the first time a
+    Hangul troubleshooting header met the bold header style.
+
+    The fallback face supplies the style that actually applies, so its
+    attribute (the last one) is the one kept. Ranges carrying a single
+    ``FontStyle`` are returned untouched, which makes this a no-op on every
+    story that is already valid.
+    """
+
+    def collapse(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        styles = _FONT_STYLE_ATTR.findall(tag)
+        if len(styles) < 2:
+            return tag
+        return _FONT_STYLE_ATTR.sub("", tag[:-1]) + styles[-1] + ">"
+
+    return _CHARACTER_STYLE_RANGE_OPEN.sub(collapse, xml)
 
 
 def _font_runs(segment: str) -> list[tuple[str, str | None]]:
