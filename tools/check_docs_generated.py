@@ -81,6 +81,7 @@ def _load_generated_runtime(
     load_page_contracts: Callable[[Path], list[Any]],
     resolve_contracts_dir: Callable[..., Path],
     load_rst_substitutions: Callable[[Path], dict[str, str]],
+    load_config_rst_substitutions: Callable[[dict], dict[str, str]],
 ) -> GeneratedPageRuntime:
     spec_master_csv = resolve_spec_master_csv_path(cfg, data_root=data_root)
     spec_rows = read_spec_master_rows(spec_master_csv)
@@ -100,7 +101,10 @@ def _load_generated_runtime(
         registry_error=registry_error,
         contract_ids={contract.page_id for contract in contracts},
         contract_file_names={f"{contract.page_id}.yaml" for contract in contracts},
-        base_substitutions=load_rst_substitutions(docs_dir / "conf_base.py"),
+        base_substitutions={
+            **load_rst_substitutions(docs_dir / "conf_base.py"),
+            **load_config_rst_substitutions(cfg),
+        },
     )
 
 
@@ -608,7 +612,8 @@ def _placeholder_consistency_issues(
                 code="UNKNOWN_RECIPE_PLACEHOLDERS",
                 message=(
                     f"Recipe '{recipe.page_id}' uses placeholders that are not supplied by Spec_Master, "
-                    f"field_map, or conf_base for lang '{lang}': {', '.join(unknown_placeholders)}"
+                    "field_map, conf_base, or build.rst_substitutions for "
+                    f"lang '{lang}': {', '.join(unknown_placeholders)}"
                 ),
                 target=target,
                 path=template_path,
@@ -698,6 +703,7 @@ def collect_generated_page_issues(
     load_page_contracts: Callable[[Path], list[Any]],
     resolve_contracts_dir: Callable[..., Path],
     load_rst_substitutions: Callable[[Path], dict[str, str]],
+    load_config_rst_substitutions: Callable[[dict], dict[str, str]],
     resolve_config_path: Callable[..., Path],
     load_draft_recipe: Callable[[Path], Any],
     missing_required_row_keys: Callable[..., list[str]],
@@ -736,6 +742,7 @@ def collect_generated_page_issues(
         load_page_contracts=load_page_contracts,
         resolve_contracts_dir=resolve_contracts_dir,
         load_rst_substitutions=load_rst_substitutions,
+        load_config_rst_substitutions=load_config_rst_substitutions,
     )
 
     issues: list[Any] = []

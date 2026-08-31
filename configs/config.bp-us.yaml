@@ -36,6 +36,11 @@ build:
     MANUAL_LANGUAGE_SCOPE: English / French / Spanish
     WARRANTY_EMAIL: hello@jackery.com
     LEGAL_COMPANY_NAME: Jackery Inc.
+    # Shared BP carriers use target data for the paired host product. US keeps
+    # the exact shipped wording; another BP@INTL region can bind its own host
+    # names without a page or renderer branch.
+    BP_HOST_PRODUCT_NAME: Jackery HomePower 2000 Plus
+    BP_HOST_PRODUCT_SHORT_NAME: HomePower 2000 Plus
   open_word: false
   build_html: false
   open_html: false

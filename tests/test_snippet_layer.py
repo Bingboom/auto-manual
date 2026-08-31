@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
 REGISTRY = DOCS / "templates" / "snippets" / "registry.yaml"
 SNIPPET_DIR = DOCS / "templates" / "snippets" / "battery_long_storage_advisory"
-BP_LANGS = ("en", "fr", "es")
+BP_LANGS = ("en", "fr", "es", "it")
 
 
 class SnippetLayerTests(unittest.TestCase):

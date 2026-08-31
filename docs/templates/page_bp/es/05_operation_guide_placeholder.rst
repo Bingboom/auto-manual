@@ -18,7 +18,7 @@ ENCENDIDO/APAGADO
    :widths: 12 88
 
    * - **NOTA**
-     - Cuando se utiliza con el Jackery HomePower 2000 Plus, el estado de encendido del Battery Pack 2000 puede controlarse mediante el botón POWER principal del Jackery HomePower 2000 Plus.
+     - Cuando se utiliza con el |BP_HOST_PRODUCT_NAME|, el estado de encendido del Battery Pack 2000 puede controlarse mediante el botón POWER principal del |BP_HOST_PRODUCT_NAME|.
 
        El producto se apaga automáticamente cuando no se está cargando y no hay ninguna carga conectada durante |DEFAULT_STANDBY_DURATION|.
 
