@@ -28,6 +28,7 @@ from .components.storage_panel import StoragePanel, StoragePanelData
 from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .heading_suffix import promote_h2_suffix_pills
 from .params import IDPKG, param_pt
+from .prose_flow import mark_troubleshooting_table
 from .page03 import _spread_page
 from .page_overview import product_overview_frames, single_image_overview_frames
 
@@ -585,7 +586,7 @@ def add_storage_troubleshooting_page(
     writer.add_prose_story(
         trouble_sid,
         trouble_title,
-        trouble_blocks,
+        mark_troubleshooting_table(trouble_blocks),
         bundle_root,
         language=language,
         disable_hyphenation=True,
@@ -651,7 +652,7 @@ def add_connection_tail_troubleshooting_page(
     writer.add_prose_story(
         trouble_sid,
         trouble_title,
-        trouble_blocks,
+        mark_troubleshooting_table(trouble_blocks),
         bundle_root,
         language=language,
         disable_hyphenation=True,

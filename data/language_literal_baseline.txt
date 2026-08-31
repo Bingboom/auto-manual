@@ -27,7 +27,6 @@ tools/idml/components/key_combinations.py	set	es,fr	f4c071528243d993
 tools/idml/components/lcdmode.py	dict	en,es,fr	f098d348253e00ee
 tools/idml/components/prose_table.py	dict	en,es,fr	607065a533205f70
 tools/idml/components/prose_table.py	dict	en,es,fr	6ddd97e4f3b756d9
-tools/idml/components/prose_table.py	dict	en,es,fr	8f549f1d141565d6
 tools/idml/components/prose_table.py	dict	en,es,fr	9b2f5a99f9141038
 tools/idml/components/safety_panel.py	set	es,fr	f4c071528243d993
 tools/idml/data_stories.py	dict	es,fr	996f8eb7bf75cc40
