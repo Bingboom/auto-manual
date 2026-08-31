@@ -61,7 +61,16 @@ def signal_label_metrics(
             width += ratio * size
         return width
 
-    available = max(1.0, available_width)
+    # The badge width is shared, while native shaping differs by host face.
+    # New locale lines can reserve a conservative slice of that width as
+    # target data instead of adding language branches or changing badge
+    # geometry in the renderer/finalizer.
+    width_safety = param_pt(
+        params,
+        f"lang_{language}_idml_symbols_signal_label_width_ratio",
+        param_pt(params, "idml_symbols_signal_label_width_ratio", 1.0),
+    )
+    available = max(1.0, available_width * min(1.0, max(0.5, width_safety)))
     base_width = width_at(signal_size)
     fitted_size = signal_size
     if base_width > available:

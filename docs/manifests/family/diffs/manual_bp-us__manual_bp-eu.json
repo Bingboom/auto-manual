@@ -1,0 +1,726 @@
+{
+  "base_manifest_id": "manual_bp_us",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_bp_eu"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "asset:page/cover",
+          "slot_id": "cover",
+          "type": "cover_pdf"
+        },
+        {
+          "file": "templates/page_bp/intl/00_preface_six_language.rst",
+          "lang": "en",
+          "lang_blocks": true,
+          "slot_id": "preface_important",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/intl/00_toc_six_language.rst",
+          "lang": "en",
+          "slot_id": "toc",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/en/01_safety.rst",
+          "lang": "en",
+          "slot_id": "safety_info_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_en",
+          "template": "templates/page_bp/en/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_en",
+          "template": "templates/page_bp/en/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/en/06_ups_mode.rst",
+          "lang": "en",
+          "slot_id": "ups_mode_en",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/en/07_extra_battery.rst",
+          "lang": "en",
+          "slot_id": "extra_battery_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/en/04_connections.rst",
+          "lang": "en",
+          "slot_id": "connections_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/en/08_charging_methods.rst",
+          "lang": "en",
+          "slot_id": "charging_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/en/09_storage.rst",
+          "lang": "en",
+          "slot_id": "storage_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/en/11_warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/fr/01_safety.rst",
+          "lang": "fr",
+          "slot_id": "safety_info_fr",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "fr"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_fr",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/fr/02_whats_in_the_box.rst",
+          "lang": "fr",
+          "slot_id": "box_contents_fr",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "fr"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_fr",
+          "template": "templates/page_bp/fr/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "fr"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_fr",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "fr"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_fr",
+          "template": "templates/page_bp/fr/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/fr/06_ups_mode.rst",
+          "lang": "fr",
+          "slot_id": "ups_mode_fr",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/fr/07_extra_battery.rst",
+          "lang": "fr",
+          "slot_id": "extra_battery_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/fr/04_connections.rst",
+          "lang": "fr",
+          "slot_id": "connections_fr",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "fr"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_fr",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/fr/08_charging_methods.rst",
+          "lang": "fr",
+          "slot_id": "charging_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/fr/09_storage.rst",
+          "lang": "fr",
+          "slot_id": "storage_fr",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "fr"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_fr",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/fr/11_warranty.rst",
+          "lang": "fr",
+          "slot_id": "warranty_fr",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/es/01_safety.rst",
+          "lang": "es",
+          "slot_id": "safety_info_es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_es",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/es/02_whats_in_the_box.rst",
+          "lang": "es",
+          "slot_id": "box_contents_es",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "es"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_es",
+          "template": "templates/page_bp/es/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_es",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "es"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_es",
+          "template": "templates/page_bp/es/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/es/06_ups_mode.rst",
+          "lang": "es",
+          "slot_id": "ups_mode_es",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/es/07_extra_battery.rst",
+          "lang": "es",
+          "slot_id": "extra_battery_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/es/04_connections.rst",
+          "lang": "es",
+          "slot_id": "connections_es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_es",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/es/08_charging_methods.rst",
+          "lang": "es",
+          "slot_id": "charging_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/es/09_storage.rst",
+          "lang": "es",
+          "slot_id": "storage_es",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "es"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_es",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/es/11_warranty.rst",
+          "lang": "es",
+          "slot_id": "warranty_es",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/de/01_safety.rst",
+          "lang": "de",
+          "slot_id": "safety_info_de",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "de"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_de",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/de/02_whats_in_the_box.rst",
+          "lang": "de",
+          "slot_id": "box_contents_de",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "de"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_de",
+          "template": "templates/page_bp/de/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "de"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_de",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "de"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_de",
+          "template": "templates/page_bp/de/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/de/06_ups_mode.rst",
+          "lang": "de",
+          "slot_id": "ups_mode_de",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/de/07_extra_battery.rst",
+          "lang": "de",
+          "slot_id": "extra_battery_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/de/04_connections.rst",
+          "lang": "de",
+          "slot_id": "connections_de",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "de"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_de",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/de/08_charging_methods.rst",
+          "lang": "de",
+          "slot_id": "charging_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/de/09_storage.rst",
+          "lang": "de",
+          "slot_id": "storage_de",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "de"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_de",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/de/11_warranty.rst",
+          "lang": "de",
+          "slot_id": "warranty_de",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it/01_safety.rst",
+          "lang": "it",
+          "slot_id": "safety_info_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it/02_whats_in_the_box.rst",
+          "lang": "it",
+          "slot_id": "box_contents_it",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "it"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_it",
+          "template": "templates/page_bp/it/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "it"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_it",
+          "template": "templates/page_bp/it/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/it/06_ups_mode.rst",
+          "lang": "it",
+          "slot_id": "ups_mode_it",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/it/07_extra_battery.rst",
+          "lang": "it",
+          "slot_id": "extra_battery_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it/04_connections.rst",
+          "lang": "it",
+          "slot_id": "connections_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it/08_charging_methods.rst",
+          "lang": "it",
+          "slot_id": "charging_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it/09_storage.rst",
+          "lang": "it",
+          "slot_id": "storage_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it/11_warranty.rst",
+          "lang": "it",
+          "slot_id": "warranty_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/uk/01_safety.rst",
+          "lang": "uk",
+          "slot_id": "safety_info_uk",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "uk"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_uk",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/uk/02_whats_in_the_box.rst",
+          "lang": "uk",
+          "slot_id": "box_contents_uk",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "uk"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_uk",
+          "template": "templates/page_bp/uk/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "uk"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_uk",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "uk"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_uk",
+          "template": "templates/page_bp/uk/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/uk/06_ups_mode.rst",
+          "lang": "uk",
+          "slot_id": "ups_mode_uk",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/uk/07_extra_battery.rst",
+          "lang": "uk",
+          "slot_id": "extra_battery_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/uk/04_connections.rst",
+          "lang": "uk",
+          "slot_id": "connections_uk",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "uk"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_uk",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/uk/08_charging_methods.rst",
+          "lang": "uk",
+          "slot_id": "charging_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/uk/09_storage.rst",
+          "lang": "uk",
+          "slot_id": "storage_uk",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "uk"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_uk",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/uk/11_warranty.rst",
+          "lang": "uk",
+          "slot_id": "warranty_uk",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/intl/99_regulatory_compliance_eu.rst",
+          "lang": "en",
+          "slot_id": "regulatory_compliance",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_bp_eu"
+}

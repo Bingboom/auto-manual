@@ -364,8 +364,11 @@ class FixedPanelGoldenTests(unittest.TestCase):
             self.assertNotIn(token, source)
 
         renderer = inspect.getsource(StoragePanel.render)
+        self.assertIn('self.layout_variant == "shared_prose"', renderer)
         self.assertIn("add_prose_story", renderer)
         self.assertIn('[("h1", self.data.title)', renderer)
+        # The optional rounded variant is still component-owned: the page
+        # composer passes only its outer rectangle and target-declared variant.
         for token in (
             "frame_with_background",
             "heading_text",
@@ -373,7 +376,7 @@ class FixedPanelGoldenTests(unittest.TestCase):
             "rounded",
             "inset",
         ):
-            self.assertNotIn(token, renderer)
+            self.assertIn(token, renderer)
 
     def test_compact_spec_single_line_rows_are_equal_and_own_shell(self) -> None:
         for language in ("en", "fr", "es"):

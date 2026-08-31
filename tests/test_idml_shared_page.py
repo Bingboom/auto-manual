@@ -16,6 +16,7 @@ from tools.idml.shared_page import (
     add_fcc_inbox_overview_page,
     add_inbox_overview_page,
     add_lcd_operations_page,
+    add_regulatory_compliance_page,
     add_safety_symbols_page,
     add_specifications_page,
     add_storage_specifications_page,
@@ -252,6 +253,119 @@ class SharedPageTests(unittest.TestCase):
         self.assertNotIn('SingleRowHeight="15.7"', stories)
         self.assertNotIn('SingleRowHeight="17.5"', stories)
         self.assertEqual(11, stories.count('AutoGrow="false"'))
+
+    def test_rounded_storage_variant_owns_gray_body_panel(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="EU",
+            language="de",
+            native_structure_markers=True,
+        )
+        spec_data = SimpleNamespace(
+            title="TECHNISCHE DATEN",
+            annotations=(),
+            sections=(
+                {"title": "ALLGEMEINE INFORMATIONEN", "rows": [("Modell", "M1")]},
+            ),
+        )
+
+        storage_sid, spec_sid, _grouped = add_storage_specifications_page(
+            writer,
+            sid="st_storage_rounded",
+            storage_blocks=[
+                ("h1", "LAGERUNG"),
+                ("body", "Bewahren Sie das Produkt trocken auf."),
+            ],
+            spec_data=spec_data,
+            bundle_root=ROOT,
+            page_index=4,
+            language="de",
+            composition_data={
+                "storage": {"layout_variant": "rounded_panel"},
+                "specifications": {"layout_variant": "compact"},
+            },
+        )
+
+        spread = dict(writer.spreads)["sp_4"]
+        self.assertIn("bg_st_storage_rounded_storage_body", spread)
+        self.assertIn('FillColor="Color/HB Bg K05"', spread)
+        self.assertIn(f'ParentStory="{storage_sid}"', spread)
+        self.assertIn(f'ParentStory="{spec_sid}"', spread)
+        self.assertIn("st_storage_rounded_title", dict(writer.stories))
+
+    def test_regulatory_bottom_card_reuses_source_copy_and_target_qr(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="EU",
+            language="en",
+            native_structure_markers=True,
+        )
+
+        panel = add_regulatory_compliance_page(
+            writer,
+            sid="st_regulatory",
+            blocks=[
+                ("h1", "EU REGULATIONS"),
+                ("h2", "RED DECLARATION OF CONFORMITY"),
+                ("body", "The product complies with RED 2014/53/EU."),
+                ("body", "https://example.test/declaration"),
+                ("h2", "MANUFACTURER"),
+                ("body", "SHENZHEN HELLO TECH ENERGY CO., LTD."),
+                ("body", "Factory address, Shenzhen, China"),
+                ("body", "+86 400 668 9293\nsales@example.test\nwww.example.test"),
+            ],
+            page_index=9,
+            language="en",
+            root=ROOT,
+            composition_data={
+                "regulatory": {
+                    "layout_variant": "bottom_card",
+                    "qr_asset": (
+                        "docs/renderers/latex/assets/warning_lockup.png"
+                    ),
+                }
+            },
+        )
+
+        self.assertTrue(panel.contract.has_qr)
+        spread = dict(writer.spreads)["sp_9"]
+        self.assertIn("bg_st_regulatory_regulatory_title", spread)
+        self.assertIn("rc_st_regulatory_qr", spread)
+        stories = "".join(dict(writer.stories).values())
+        self.assertIn("RED DECLARATION OF CONFORMITY", stories)
+        self.assertIn("SHENZHEN HELLO TECH ENERGY CO., LTD.", stories)
+        self.assertIn("sales@example.test", stories)
+        for index, (icon, contact) in enumerate(
+            zip(
+                ("☎", "✉", "◉"),
+                (
+                    "+86 400 668 9293",
+                    "sales@example.test",
+                    "www.example.test",
+                ),
+                strict=True,
+            )
+        ):
+            with self.subTest(icon=icon):
+                contact_story = dict(writer.stories)[
+                    f"st_regulatory_contact_{index}"
+                ]
+                self.assertIn(
+                    '<AppliedFont type="string">Noto Sans Symbols2</AppliedFont>',
+                    contact_story,
+                )
+                self.assertIn(f"<Content>{icon}</Content>", contact_story)
+                self.assertIn(f"<Content> {contact}</Content>", contact_story)
 
     def test_storage_and_troubleshooting_reuse_one_physical_page(self) -> None:
         """Both KR stories land on one page, stacked instead of overlapping.
@@ -866,6 +980,57 @@ class SharedPageTests(unittest.TestCase):
                 output = Path(td) / f"shared-{language}.idml"
                 writer.write(output)
                 self.assertEqual([], check_idml(output))
+
+    def test_compact_safety_uses_explicit_tuning_language(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(params)
+
+        writer._safety_section_story(
+            "st_safety_info_de",
+            "safety_info_de",
+            [
+                ("body", "Grundlegende Vorsichtsmaßnahmen."),
+                ("list", "• Sicherheitshinweis."),
+            ],
+            ROOT,
+            compact=True,
+            language="de",
+        )
+
+        xml = dict(writer.stories)["st_safety_info_de"]
+        self.assertIn('PointSize="4.9"', xml)
+        self.assertIn('Leading type="unit">5.3</Leading>', xml)
+        self.assertIn('HorizontalScale="88"', xml)
+
+    def test_german_lcd_rows_receive_native_import_safety(self) -> None:
+        from tools.idml.lcd_style import (
+            label_description_layout,
+            typography_tokens,
+        )
+
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(params)
+        rows = [{
+            "name": "Leistungsprozentanzeige/Fehlercode",
+            "desc": "Die Anzeige zeigt den aktuellen Akkustand in Prozent an.",
+        }]
+
+        _, _, german_heights = label_description_layout(
+            writer, rows, 312.495, lang="de", segment_index=0,
+        )
+        label_size, label_leading, _, _ = typography_tokens(
+            writer, "de", rows[0], segment_index=0,
+        )
+
+        self.assertEqual(5.4, label_size)
+        self.assertEqual(6.5, label_leading)
+        self.assertGreaterEqual(german_heights[0], 20.6)
 
     def test_compact_symbols_absorb_standard_continuation_rows(self) -> None:
         params = load_layout_params(

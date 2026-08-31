@@ -25,6 +25,10 @@ from .components.compact_safety_panel import (
     CompactSafetyPanelData,
 )
 from .components.storage_panel import StoragePanel, StoragePanelData
+from .components.regulatory_compliance_panel import (
+    RegulatoryCompliancePanel,
+    RegulatoryCompliancePanelData,
+)
 from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .heading_suffix import promote_h2_suffix_pills
 from .params import IDPKG, param_pt
@@ -35,6 +39,32 @@ from .page_overview import product_overview_frames, single_image_overview_frames
 
 FIXED_PANEL_X = 26.5
 FIXED_PANEL_WIDTH = 311.0
+
+
+def symbols_panel_data(symbol_data, composition_data: dict | None):
+    """Apply target-declared column assembly without changing symbol copy."""
+    data = SymbolsPanelData.from_source(symbol_data)
+    options = dict((composition_data or {}).get("symbols") or {})
+    if "left_count" not in options:
+        return data
+    left_count = int(options["left_count"])
+    if not 0 < left_count < len(data.icons):
+        raise ValueError("symbols.left_count must split the declared icon rows")
+    icons = tuple(
+        {
+            **dict(icon),
+            "column": "left" if index < left_count else "right",
+            "continuation": False,
+        }
+        for index, icon in enumerate(data.icons)
+    )
+    return SymbolsPanelData(
+        title=data.title,
+        signal_headers=data.signal_headers,
+        icon_headers=data.icon_headers,
+        signals=data.signals,
+        icons=icons,
+    )
 
 
 def latex_start_page(page_plan: dict | None, page: Path, bundle_root: Path) -> int | None:
@@ -79,6 +109,7 @@ def add_safety_symbols_page(
     data_root: Path,
     page_index: int,
     language: str,
+    composition_data: dict | None = None,
 ) -> tuple[str, str]:
     """Compose the existing compact Safety and two-column Symbols components.
 
@@ -126,7 +157,7 @@ def add_safety_symbols_page(
     panel = SymbolsPanel(
         writer,
         sid=symbol_sid,
-        data=SymbolsPanelData.from_source(symbol_data),
+        data=symbols_panel_data(symbol_data, composition_data),
         bundle_root=bundle_root,
         language=lang,
         density="compact",
@@ -170,6 +201,7 @@ def add_symbols_page(
     bundle_root: Path,
     page_index: int,
     language: str,
+    composition_data: dict | None = None,
 ) -> str:
     """Place the complete shared Symbols panel on one physical page."""
 
@@ -178,7 +210,7 @@ def add_symbols_page(
     panel = SymbolsPanel(
         writer,
         sid=sid,
-        data=SymbolsPanelData.from_source(symbol_data),
+        data=symbols_panel_data(symbol_data, composition_data),
         bundle_root=bundle_root,
         language=lang,
         density="standard",
@@ -835,18 +867,29 @@ def add_storage_specifications_page(
     """Compose Storage and the existing specification tables on one page."""
 
     panel_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
-    spec_top = param_pt(
-        writer.params,
-        "idml_compact_storage_spec_spec_top",
-        148.8,
+    storage_options = dict((composition_data or {}).get("storage") or {})
+    storage_variant = str(
+        storage_options.get("layout_variant") or "shared_prose"
     )
+    spec_top_key = (
+        "idml_compact_storage_panel_spec_top"
+        if storage_variant == "rounded_panel"
+        else "idml_compact_storage_spec_spec_top"
+    )
+    spec_top = param_pt(writer.params, spec_top_key, 160.0)
     panel = StoragePanel(
         writer,
         sid=sid,
         data=StoragePanelData.from_blocks(storage_blocks),
         bundle_root=bundle_root,
         language=language,
-    ).render()
+        layout_variant=storage_variant,
+    ).render(
+        x=writer.m_l,
+        y=panel_top,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=spec_top - panel_top,
+    )
     options = dict((composition_data or {}).get("specifications") or {})
     sections = grouped_spec_sections(list(spec_data.sections), composition_data)
     spec_sid = writer.add_spec_story(
@@ -865,12 +908,14 @@ def add_storage_specifications_page(
         f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
         'ShowMasterItems="true">\n'
         + _spread_page(writer, spread_id, page_index + 1)
+        + "".join(panel.frames)
         + '</Spread>\n</idPkg:Spread>\n',
     ))
-    writer.add_story_frames(
-        panel.story_id,
-        [(page_index, panel_top, spec_top)],
-    )
+    if not panel.frames:
+        writer.add_story_frames(
+            panel.story_id,
+            [(page_index, panel_top, spec_top)],
+        )
     bottom = writer.page_h - writer.m_b + param_pt(
         writer.params,
         "idml_compact_spec_frame_bottom_extra",
@@ -919,6 +964,57 @@ def add_specifications_page(
     return spec_sid, sections
 
 
+def add_regulatory_compliance_page(
+    writer,
+    *,
+    sid: str,
+    blocks: list[tuple[str, str]],
+    page_index: int,
+    language: str,
+    root: Path,
+    composition_data: dict | None = None,
+):
+    """Render one editable bottom-card Regulatory composition."""
+
+    options = dict((composition_data or {}).get("regulatory") or {})
+    variant = str(options.get("layout_variant") or "bottom_card")
+    if variant != "bottom_card":
+        raise ValueError(
+            f"unsupported regulatory_compliance variant: {variant}"
+        )
+    qr_ref = str(options.get("qr_asset") or "").strip()
+    qr_asset = root / qr_ref if qr_ref else None
+    panel_top = param_pt(
+        writer.params,
+        "idml_regulatory_panel_top",
+        366.5,
+    )
+    panel = RegulatoryCompliancePanel(
+        writer,
+        sid=sid,
+        data=RegulatoryCompliancePanelData.from_blocks(blocks),
+        language=language,
+        qr_asset=qr_asset,
+    ).render(
+        x=writer.m_l,
+        y=panel_top,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=writer.page_h - panel_top,
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join(panel.frames)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return panel
+
+
 __all__ = (
     "add_app_composition",
     "add_charging_page",
@@ -928,6 +1024,7 @@ __all__ = (
     "add_fcc_inbox_overview_page",
     "add_inbox_overview_page",
     "add_lcd_operations_page",
+    "add_regulatory_compliance_page",
     "add_safety_symbols_page",
     "add_specifications_page",
     "add_storage_troubleshooting_page",

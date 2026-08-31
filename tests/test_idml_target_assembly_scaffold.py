@@ -130,7 +130,8 @@ class ScaffoldGuardTests(unittest.TestCase):
         from tools.idml.target_assembly_render import SPECIAL_COMPOSITION_TYPES
 
         story_flow_types = {
-            "front_cover", "preface", "toc", "warranty", "back_cover",
+            "front_cover", "preface", "toc", "warranty",
+            "regulatory_compliance", "back_cover",
         }
         allowed = set(SPECIAL_COMPOSITION_TYPES) | story_flow_types
         for role, ctype in ROLE_COMPOSITION.items():

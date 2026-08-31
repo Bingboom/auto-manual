@@ -1,0 +1,67 @@
+# BP (battery pack) family, EU six-language target. This target reuses the
+# BP@INTL blueprint; every region difference below is data or an asset binding.
+extends: config-bases/phase2-sync-base.yaml
+
+doc_type: manual_bundle
+
+build:
+  family_id: bp-eu
+  language_family: eu-merged
+  queue_requires_target_match: true
+  skeleton_family: BP
+  languages: [en, fr, es, de, it, uk]
+  include_lang_in_output_path: false
+  queue_by_document_key: true
+  default_model: JBP-2000B
+  default_region: EU
+  targets:
+    - model: JBP-2000B
+      region: EU
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}.docx
+  word_source: bundle
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English / French / Spanish / German / Italian / Ukrainian
+    WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
+    # Same paired host hardware as the US target; only its regional product
+    # display name differs. Keep this mapping in target data, never page logic.
+    BP_HOST_PRODUCT_NAME: Jackery Explorer 2000 Plus
+    BP_HOST_PRODUCT_SHORT_NAME: Explorer 2000 Plus
+    BP_CONNECTION_LOCKING_ASSET_DE: asset:connections/jbp2000b/eu/locking_de
+    BP_CONNECTION_LOCKING_ASSET_IT: asset:connections/jbp2000b/eu/locking_it
+    BP_CONNECTION_LOCKING_ASSET_UK: asset:connections/jbp2000b/eu/locking_uk
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  structured_data_dir: data/phase2
+  layout_params_csv: data/layout_params.csv
+  idml_layout_params_overlays:
+    - data/layout_params.idml-compact.csv
+  # Candidate physical assembly only; six-language visual approval must
+  # promote it through the approved reference-layout registry.
+  idml_assembly_plan: docs/renderers/contracts/target_assembly/jbp2000b_eu_v1_candidate.json
+  page_registry_csv: data/phase2/page_registry.csv
+  page_blocks_dir: data/phase2
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_notes_csv: data/phase2/Spec_Notes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
+  page_manifest: docs/manifests/manual_bp-eu.yaml
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Battery Pack 2000
+    - Jackery Explorer 2000 Plus

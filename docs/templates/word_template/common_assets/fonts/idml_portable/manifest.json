@@ -39,7 +39,7 @@
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols2/NotoSansSymbols2-Regular.ttf",
       "languages": ["*"],
-      "usage": "filled-circle fallback glyph"
+      "usage": "filled-circle and editable contact-icon fallback glyphs"
     }
   ]
 }

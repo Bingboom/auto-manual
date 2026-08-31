@@ -12,7 +12,8 @@ from .params import param_pt
 def _safety_section_story(writer, sid: str, title: str,
                           blocks: list[tuple[str, str]],
                           bundle_root: Path, *,
-                          compact: bool = False) -> str:
+                          compact: bool = False,
+                          language: str | None = None) -> str:
     parts: list[str] = []
     text_measure = writer.page_w - writer.m_l - writer.m_r
     column_gap = param_pt(writer.params, "comp_twocol_sep", 6.24)
@@ -21,7 +22,10 @@ def _safety_section_story(writer, sid: str, title: str,
     last_idx = content_indices[-1] if content_indices else -1
     previous_kind = ""
     dense_language = any(marker in sid.casefold() for marker in ("_fr_", "_es_"))
-    language = _safety_language(sid)
+    language = (
+        str(language).strip().casefold().replace("_", "-").split("-", 1)[0]
+        if language else _safety_language(sid)
+    )
     right_section = sid.endswith("_right")
     scale_key = (
         "idml_compact_safety_list_horizontal_scale"

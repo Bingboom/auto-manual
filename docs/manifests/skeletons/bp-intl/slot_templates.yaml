@@ -67,7 +67,9 @@ slots:
     type: rst_include
     # BP-specific: the shared host page describes DC8020 / PV / car-charger
     # inputs the battery pack does not have. Its own charging chapter (shipped
-    # printed 06) routes both AC and solar THROUGH the HomePower 2000 Plus.
+    # printed 06) routes both AC and solar THROUGH the paired host. The host is
+    # one product with region-specific display names: Explorer 2000 Plus in EU,
+    # HomePower 2000 Plus in US. Target data supplies the correct name.
     file: templates/page_bp/{lang}/08_charging_methods.rst
   storage:
     type: rst_include

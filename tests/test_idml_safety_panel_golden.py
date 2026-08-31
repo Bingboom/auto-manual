@@ -68,7 +68,7 @@ GOLDEN = {
         ),
         "compact": (
             "eb410a51580912995124b9d87e70b642445ab7c49ea53e6e212dad6e82bb50d4",
-            "cf6e690a0ae90505aa24af591025c21552aba8806fbc203a6066cf2de33db774",
+            "6397d856944a4aed6215c5be0d4f3e78404a1513b97b05971ca62c5f5699a4a3",
         ),
         "maintenance": (
             "5a1ecf52fae7704c70437ca9aa63e71a3443d2f5bf5ea5fa007fa20efacc6ff9",
@@ -82,7 +82,7 @@ GOLDEN = {
         ),
         "compact": (
             "07811d7923bc180990d6a17ec655c05982b152268b67f10c155f9ea09644f81f",
-            "67c0fb28e340d754b04eed1cef5e094a2f081f1a89b08b1a7aef3208745a6b30",
+            "61c9c9f588e59a1026f63dad1430eee13843a0c57e2686404d07d279f0563b09",
         ),
         "maintenance": (
             "5c9687d92ef903eb40be8b59cc27821881ba27be30d96dff06ad73e5f54d761c",
@@ -96,7 +96,7 @@ GOLDEN = {
         ),
         "compact": (
             "e0ad890a4cd47d537ee97c654978be2a536c0796fa7e028e7813b4c707aa3872",
-            "2474344b608791331127d6b53e949fb19852385f0c70bb8bb707ee2e71296707",
+            "4eb8c754165429df77ef1f722fecf485f79cf1841ec657e588c6d5a8903a9198",
         ),
         "maintenance": (
             "8bbc7d534b09464cf48c21e71152fe220b55a1a2d2587b8b26cb6d2c47a5fa50",

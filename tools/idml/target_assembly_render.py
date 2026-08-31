@@ -21,6 +21,7 @@ SPECIAL_COMPOSITION_TYPES = frozenset({
     "storage_specifications",
     "storage_troubleshooting",
     "specifications",
+    "regulatory_compliance",
     "app",
     "back_cover",
 })
@@ -143,6 +144,9 @@ class TargetAssemblyRenderer:
                 bundle_root=self.bundle_root,
                 page_index=page_cursor,
                 language=lang,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
             )
             self.emitted.add(f"symbols:{lang}")
         elif composition.composition_type == "safety_symbols":
@@ -162,6 +166,9 @@ class TargetAssemblyRenderer:
                 data_root=self.data_root,
                 page_index=page_cursor,
                 language=lang,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[1]
+                ].get("composition_data"),
             )
             self.emitted.add(f"symbols:{lang}")
         elif composition.composition_type == "inbox_overview":
@@ -424,6 +431,21 @@ class TargetAssemblyRenderer:
             if lang == self.output_lang:
                 self.spec_sections[:] = grouped_sections
             self.emitted.add(f"spec:{lang}")
+        elif composition.composition_type == "regulatory_compliance":
+            regulatory = composition_pages[0]
+            regulatory_blocks = list(regulatory.blocks)
+            self.toc.note_h1s(regulatory_blocks, page_cursor)
+            shared_page.add_regulatory_compliance_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                blocks=regulatory_blocks,
+                page_index=page_cursor,
+                language=lang,
+                root=self.root,
+                composition_data=self.plan_entry_by_ref[
+                    composition.source_refs[0]
+                ].get("composition_data"),
+            )
         elif composition.composition_type == "back_cover":
             self.back_cover_added = page_placed.add_preferred_back_cover_page(
                 self.writer,

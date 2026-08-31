@@ -178,6 +178,68 @@ class IdmlPageTocTests(unittest.TestCase):
                     places=4,
                 )
 
+    def test_six_language_source_uses_two_toc_spreads(self) -> None:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        writer.spreads = [
+            (
+                f"sp_{index}",
+                f'<Spread Self="sp_{index}"><Page Self="sp_{index}_pg" '
+                f'Name="{index + 1}"/></Spread>',
+            )
+            for index in range(6)
+        ]
+        source = {
+            "title": "TABLE OF CONTENTS",
+            "languages": [
+                {
+                    "code": code,
+                    "label": label,
+                    "page_range": page_range,
+                    "entries": [{"title": "SAFETY", "folio": page_range[:2]}],
+                }
+                for code, label, page_range in (
+                    ("US", "English", "01-08"),
+                    ("FR", "Français", "09-16"),
+                    ("ES", "Español", "17-24"),
+                    ("DE", "Deutsch", "25-32"),
+                    ("IT", "Italiano", "33-40"),
+                    ("UK", "Українська", "41-48"),
+                )
+            ],
+        }
+
+        self.assertTrue(page_toc.finalize(
+            writer,
+            page_toc.TocCollector(),
+            writer._add_story_parts,
+            writer._psr,
+            source=source,
+            page_plan={
+                "plan_source": "target-assembly",
+                "pages": [{
+                    "composition_type": "toc",
+                    "latex_start_page": 4,
+                    "planned_page_count": 2,
+                }],
+            },
+        ))
+
+        self.assertEqual(6, len(writer.spreads))
+        self.assertEqual(("sp_toc", "sp_toc_2"), tuple(
+            sid for sid, _ in writer.spreads[3:5]
+        ))
+        first = dict(writer.spreads)["sp_toc"]
+        second = dict(writer.spreads)["sp_toc_2"]
+        self.assertIn('Self="tf_toc_title"', first)
+        self.assertNotIn('Self="tf_toc_title"', second)
+        self.assertIn('Self="bg_toc_bar_2"', first)
+        self.assertNotIn('Self="bg_toc_bar_3"', first)
+        self.assertIn('Self="bg_toc_bar_3"', second)
+        self.assertIn('Self="bg_toc_bar_5"', second)
+        self.assertIn('Name="4"', first)
+        self.assertIn('Name="5"', second)
+        self.assertEqual("sp_5", writer.spreads[5][0])
+
 
 if __name__ == "__main__":
     unittest.main()
