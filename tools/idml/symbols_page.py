@@ -371,13 +371,15 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                           width: float, bundle_root: Path,
                           lang: str = "en", *,
                           headers: tuple[str, str],
+                          include_header: bool = True,
                           row_heights: list[float] | None = None,
                           left_col_width: float | None = None,
                           fit_body_to_row: bool = False,
                           cell_vertical_inset: float = 3.0,
                           disable_hyphenation: bool = False,
                           auto_grow_rows: bool = True) -> str:
-    rows = [("", headers[0], headers[1], True)] + [
+    header = [("", headers[0], headers[1], True)]
+    rows = (header if include_header else []) + [
         (*_signal_row_fields(row), False) for row in signals
     ]
     left_col = left_col_width

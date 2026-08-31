@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import html
 import re
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -258,7 +259,11 @@ def _matches_symbols_target(
 
 def _rst_heading(title: str, underline: str = "-") -> list[str]:
     title = rst_escape(title)
-    return [title, underline * len(title)]
+    display_width = sum(
+        2 if unicodedata.east_asian_width(character) in {"F", "W"} else 1
+        for character in title
+    )
+    return [title, underline * display_width]
 
 
 def _append_text_cell(lines: list[str], prefix: str, text: str) -> None:

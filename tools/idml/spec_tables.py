@@ -57,12 +57,42 @@ def spec_table_row_heights(
             f"lang_{language_key}_{multiline_height_key}",
             multiline_height,
         )
-    return [
-        max(row_height, multiline_height)
-        if "\n" in str(label) or "\n" in str(value)
-        else row_height
-        for label, value in rows
-    ]
+    cell_inset = (
+        param_pt(params, "idml_compact_spec_table_cell_inset", 2.0)
+        if compact else 0.0
+    )
+    value_leading = param_pt(params, "type_spec_value_font_leading", 6.6)
+    if language_key:
+        value_leading = param_pt(
+            params,
+            f"lang_{language_key}_type_spec_value_font_leading",
+            value_leading,
+        )
+    heights: list[float] = []
+    for label, value in rows:
+        explicit_lines = max(
+            len(str(label).splitlines()) or 1,
+            len(str(value).splitlines()) or 1,
+        )
+        if explicit_lines <= 1:
+            heights.append(row_height)
+            continue
+        if not compact:
+            # Reference tables use AutoGrow=true in the emitted IDML.  Keep
+            # their historical minimum-height contract and let InDesign grow
+            # the row from the story contents instead of baking source line
+            # count into the reference geometry.
+            heights.append(max(row_height, multiline_height))
+            continue
+        # Compact cells use fixed-height rows, so the multiline token is only
+        # a floor.  Explicit three-line source values must also reserve their
+        # actual line boxes plus the component-owned top/bottom insets.
+        heights.append(max(
+            row_height,
+            multiline_height,
+            explicit_lines * value_leading + 2.0 * cell_inset,
+        ))
+    return heights
 
 
 def spec_table_height(

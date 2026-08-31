@@ -413,6 +413,16 @@
         "model": "JBP-2000B",
         "region": "EU"
       }
+    },
+    "jbp2000b-jp-v1": {
+      "extends": "jbp2000b-us-v1",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "JP"
+      },
+      "source_patterns": [
+        "product_overview_ja"
+      ]
     }
   }
 }

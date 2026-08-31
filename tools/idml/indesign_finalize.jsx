@@ -136,6 +136,66 @@
         return fitted;
     }
 
+    function waitForInstalledApplicationFont(fontName) {
+        // Document Fonts activation is asynchronous when an IDML opens. The
+        // document can therefore keep a live system-substitution object even
+        // though the same-name portable font appears in app.fonts moments
+        // later. Poll the font registry, not the UI, and keep the wait bounded.
+        for (var attempt = 0; attempt < 20; attempt += 1) {
+            var candidate = app.fonts.itemByName(fontName);
+            if (candidate.isValid && candidate.status === FontStatus.INSTALLED) {
+                return candidate;
+            }
+            $.sleep(100);
+        }
+        return null;
+    }
+
+    function isJapaneseCodeUnit(code) {
+        return (code >= 0x3000 && code <= 0x30ff) ||
+            (code >= 0x31f0 && code <= 0x31ff) ||
+            (code >= 0x3400 && code <= 0x4dbf) ||
+            (code >= 0x4e00 && code <= 0x9fff) ||
+            (code >= 0xf900 && code <= 0xfaff) ||
+            (code >= 0xff66 && code <= 0xff9d);
+    }
+
+    function rebindJapanesePortableFont(doc, fontName, documentLanguage) {
+        if (String(documentLanguage || "") !== "ja") {
+            return null;
+        }
+        var targetFont = waitForInstalledApplicationFont(fontName);
+        if (targetFont === null) {
+            throw Error(
+                "portable document font did not activate: " + fontName
+            );
+        }
+        var replacements = 0;
+        for (var si = 0; si < doc.stories.length; si += 1) {
+            var characters = doc.stories[si].characters.everyItem().getElements();
+            for (var ci = 0; ci < characters.length; ci += 1) {
+                try {
+                    var contents = String(characters[ci].contents || "");
+                    if (contents.length > 0 &&
+                            isJapaneseCodeUnit(contents.charCodeAt(0))) {
+                        characters[ci].appliedFont = targetFont;
+                        replacements += 1;
+                    }
+                } catch (_) {}
+            }
+        }
+        doc.recompose();
+        var targetLocation = "";
+        try { targetLocation = String(targetFont.location || ""); } catch (_) {}
+        return {
+            target: String(targetFont.name),
+            target_location: targetLocation,
+            outcome: "rebound",
+            replacements: replacements,
+            reason: "japanese_portable_font_rebind"
+        };
+    }
+
     function substituteMissingFont(doc, sourceName, targetNames) {
         var sourceFont = doc.fonts.itemByName(sourceName);
         if (!sourceFont.isValid || sourceFont.status === FontStatus.INSTALLED) {
@@ -565,6 +625,7 @@
         fitted_symbol_table_shells: 0,
         carrier_frame_fits: [],
         carrier_frame_errors: [],
+        portable_font_rebinds: [],
         font_substitutions: [],
         font_usage_audit: [],
         post_reopen: {
@@ -703,8 +764,27 @@
         doc.close(SaveOptions.NO);
         doc = null;
         report.stage = "reopen_indd";
-        doc = app.open(File(job.output_indd), false);
+        var showPortableFontBootstrap = String(job.document_language || "") === "ja";
+        doc = app.open(File(job.output_indd), showPortableFontBootstrap);
         doc.recompose();
+        var japanesePortableRebind = rebindJapanesePortableFont(
+            doc, "HB Manual Sans JP (OTF)\tRegular", job.document_language
+        );
+        if (japanesePortableRebind !== null) {
+            if (japanesePortableRebind.replacements <= 0) {
+                throw Error(
+                    "Japanese document contains no portable-font rebinds"
+                );
+            }
+            report.portable_font_rebinds.push(japanesePortableRebind);
+            report.stage = "save_portable_font_rebind";
+            doc.save(File(job.output_indd));
+            doc.close(SaveOptions.NO);
+            doc = null;
+            report.stage = "reopen_indd_after_portable_font_rebind";
+            doc = app.open(File(job.output_indd), false);
+            doc.recompose();
+        }
         report.post_reopen = collectPostReopenState(doc);
         if (report.post_reopen.overset_stories.length > 0 ||
                 report.post_reopen.overset_table_cells.length > 0) {

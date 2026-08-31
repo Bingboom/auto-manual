@@ -1,0 +1,179 @@
+{
+  "schema_version": "target-idml-assembly-plan/v1",
+  "status": "candidate",
+  "production_eligible": false,
+  "target": {
+    "model": "JBP-2000B",
+    "region": "JP",
+    "languages": ["jp"]
+  },
+  "reference_pdf": {
+    "file_name": "Jackery Battery Pack 2000取扱説明書V2.0-2026-05-28.pdf",
+    "sha256": "f7830bf9fb96d9a3e36737bad5196bbfac2d262eaef642f3406fe77eecd02b0b",
+    "byte_size": 3317375,
+    "page_count": 12,
+    "page_size_pt": {
+      "width": 368.754,
+      "height": 524.659
+    }
+  },
+  "physical_page_count": 12,
+  "pages": [
+    {
+      "source_ref": "page/cover.rst",
+      "language": "jp",
+      "page_role": "cover",
+      "composition_id": "front_cover",
+      "composition_type": "front_cover",
+      "start_page": 1,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/toc.rst",
+      "language": "jp",
+      "page_role": "toc",
+      "composition_id": "jp_toc",
+      "composition_type": "toc",
+      "start_page": 2,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/safety_info_ja.rst",
+      "language": "jp",
+      "page_role": "safety",
+      "composition_id": "jp_safety_signals",
+      "composition_type": "safety_signals",
+      "start_page": 3,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/symbol_meaning_ja.rst",
+      "language": "jp",
+      "page_role": "symbols",
+      "composition_id": "jp_symbols_icons",
+      "composition_type": "symbols_icons",
+      "start_page": 4,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/box_contents_ja.rst",
+      "language": "jp",
+      "page_role": "inbox",
+      "composition_id": "jp_inbox_overview",
+      "composition_type": "inbox_overview",
+      "start_page": 5,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/product_overview_ja.rst",
+      "language": "jp",
+      "page_role": "product_overview",
+      "composition_id": "jp_inbox_overview",
+      "composition_type": "inbox_overview",
+      "start_page": 5,
+      "page_count": 1,
+      "composition_data": {
+        "overview": {
+          "instance_id": "jbp2000b-jp-v1",
+          "layout_variant": "annotated_without_view_headings"
+        }
+      }
+    },
+    {
+      "source_ref": "page/lcd_display_ja.rst",
+      "language": "jp",
+      "page_role": "lcd",
+      "composition_id": "jp_lcd_operations",
+      "composition_type": "lcd_operations",
+      "start_page": 6,
+      "page_count": 1,
+      "composition_data": {
+        "lcd": {
+          "table_variant": "label_description",
+          "hero_horizontal_scale": 1.0,
+          "operation_panel_variant": "paired_cards",
+          "hero_callouts": []
+        }
+      }
+    },
+    {
+      "source_ref": "page/operation_ja.rst",
+      "language": "jp",
+      "page_role": "operation_guide",
+      "composition_id": "jp_lcd_operations",
+      "composition_type": "lcd_operations",
+      "start_page": 6,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/connections_ja.rst",
+      "language": "jp",
+      "page_role": "connections",
+      "composition_id": "jp_connections",
+      "composition_type": "connections",
+      "start_page": 7,
+      "page_count": 2,
+      "composition_data": {
+        "connections": {
+          "layout_variant": "stacking_guide",
+          "image_role": "reference_measure"
+        }
+      }
+    },
+    {
+      "source_ref": "page/charging_ja.rst",
+      "language": "jp",
+      "page_role": "charging",
+      "composition_id": "jp_charging",
+      "composition_type": "charging",
+      "start_page": 9,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/troubleshooting_ja.rst",
+      "language": "jp",
+      "page_role": "troubleshooting_data",
+      "composition_id": "jp_troubleshooting_specifications",
+      "composition_type": "troubleshooting_specifications",
+      "start_page": 10,
+      "page_count": 1
+    },
+    {
+      "source_ref": "page/specifications_ja.rst",
+      "language": "jp",
+      "page_role": "spec",
+      "composition_id": "jp_troubleshooting_specifications",
+      "composition_type": "troubleshooting_specifications",
+      "start_page": 10,
+      "page_count": 1,
+      "composition_data": {
+        "specifications": {
+          "layout_variant": "compact",
+          "split": 246.0,
+          "section_groups": [
+            {"source_indices": [0]},
+            {
+              "source_indices": [1, 2],
+              "title": "入力/出力ポート"
+            },
+            {"source_indices": [3]}
+          ]
+        }
+      }
+    },
+    {
+      "source_ref": "page/warranty_ja.rst",
+      "language": "jp",
+      "page_role": "warranty",
+      "composition_id": "jp_warranty",
+      "composition_type": "warranty",
+      "start_page": 11,
+      "page_count": 2,
+      "composition_data": {
+        "warranty": {
+          "layout_variant": "bp_default"
+        }
+      }
+    }
+  ]
+}

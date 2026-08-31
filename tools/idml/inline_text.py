@@ -8,6 +8,7 @@ from .font_family import (
     BULLET_FONT_FAMILY_TOKEN,
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
+    cjk_font_family_for_language,
     KOREAN_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
     TEXT_SYMBOL_FONT_FAMILY_TOKEN,
@@ -151,6 +152,17 @@ def drop_duplicate_font_style(xml: str) -> str:
         return _FONT_STYLE_ATTR.sub("", tag[:-1]) + styles[-1] + ">"
 
     return _CHARACTER_STYLE_RANGE_OPEN.sub(collapse, xml)
+
+
+def localize_cjk_fallback_font(xml: str, language: str | None) -> str:
+    """Bind generic CJK runs to the portable face for this document language."""
+    family = cjk_font_family_for_language(language)
+    if family == CJK_FONT_FAMILY_TOKEN.name:
+        return xml
+    return xml.replace(
+        f'<AppliedFont type="string">{CJK_FONT_FAMILY_TOKEN.name}</AppliedFont>',
+        f'<AppliedFont type="string">{family}</AppliedFont>',
+    )
 
 
 def _font_runs(segment: str) -> list[tuple[str, str | None]]:

@@ -6,6 +6,7 @@ import unittest
 
 from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
+    CONNECTIONS_LAYOUT_VARIANTS,
     OPERATION_LAYOUT_VARIANTS,
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
@@ -277,30 +278,39 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             issues,
         )
 
-    def test_connections_composition_accepts_shared_layout_variant(self) -> None:
-        payload = _payload()
-        page = next(
-            page for page in payload["pages"]
-            if page["source_ref"] == "page/connections_en.rst"
+    def test_connections_composition_accepts_shared_layout_variants(self) -> None:
+        self.assertEqual(
+            {"notice_before_primary_figure", "stacking_guide"},
+            set(CONNECTIONS_LAYOUT_VARIANTS),
         )
-        page["composition_data"] = {
-            "connections": {
-                "layout_variant": "notice_before_primary_figure",
-                "image_role": "reference_measure",
-            }
-        }
+        for variant in CONNECTIONS_LAYOUT_VARIANTS:
+            with self.subTest(variant=variant):
+                payload = _payload()
+                page = next(
+                    page for page in payload["pages"]
+                    if page["source_ref"] == "page/connections_en.rst"
+                )
+                page["composition_data"] = {
+                    "connections": {
+                        "layout_variant": variant,
+                        "image_role": "reference_measure",
+                    }
+                }
 
-        plan = normalize_target_assembly_plan(
-            payload,
-            _manual_ir(payload),
-            source_path=PLAN_PATH,
-        )
+                plan = normalize_target_assembly_plan(
+                    payload,
+                    _manual_ir(payload),
+                    source_path=PLAN_PATH,
+                )
 
-        normalized = next(
-            item for item in plan["pages"]
-            if item["source_ref"] == "page/connections_en.rst"
-        )
-        self.assertEqual(page["composition_data"], normalized["composition_data"])
+                normalized = next(
+                    item for item in plan["pages"]
+                    if item["source_ref"] == "page/connections_en.rst"
+                )
+                self.assertEqual(
+                    page["composition_data"],
+                    normalized["composition_data"],
+                )
 
     def test_connections_composition_rejects_page_specific_variant(self) -> None:
         payload = _payload()
@@ -317,7 +327,48 @@ class TargetAssemblyPlanTests(unittest.TestCase):
 
         with self.assertRaisesRegex(
             TargetAssemblyPlanError,
-            "connections.layout_variant must be notice_before_primary_figure",
+            "connections.layout_variant must be one of",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_specifications_accepts_bounded_target_split(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "spec"
+        )
+        page["composition_data"]["specifications"]["split"] = 246.0
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == page["source_ref"]
+        )
+        self.assertEqual(
+            246.0,
+            normalized["composition_data"]["specifications"]["split"],
+        )
+
+    def test_specifications_rejects_out_of_bounds_target_split(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "spec"
+        )
+        page["composition_data"]["specifications"]["split"] = 999.0
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "specifications.split must be a finite number between 120 and 400",
         ):
             normalize_target_assembly_plan(
                 payload,

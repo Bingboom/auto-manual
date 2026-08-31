@@ -699,6 +699,19 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn("USER MAINTENANCE INSTRUCTIONS", out)
         self.assertNotIn(r"\section{MEANING OF SYMBOLS}", out)
 
+    def test_render_symbols_page_uses_display_width_for_japanese_title(self) -> None:
+        variables = self._localized_copy_vars(model="JBP-2000B", region="JP")
+        variables["symbols.page_title.ja"] = "記号の意味"
+        out = renderers.render_symbols_page(
+            template=self._symbols_template(),
+            blocks=self._symbols_blocks(),
+            sku_id="JBP-2000B",
+            lang="ja",
+            vars_map=variables,
+        )
+
+        self.assertTrue(out.startswith("記号の意味\n==========\n"))
+
     def test_render_symbols_page_emits_latex_notice_and_symbol_macros(self) -> None:
         out = renderers.render_symbols_page(
             template=self._symbols_template(),

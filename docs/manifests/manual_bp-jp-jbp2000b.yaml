@@ -1,0 +1,73 @@
+# Resolved Manifest — generated from the BP@JP skeleton and target Product Plan. Do not hand-edit.
+# Sources: docs/manifests/skeletons/bp-jp/{blueprint.yaml,slot_templates.yaml}
+#          + docs/manifests/region_profiles/jp.yaml
+#          + docs/manifests/product_plans/jbp2000b_jp.yaml
+manifest_id: manual_bp_jp_jbp2000b
+pages:
+  - type: cover_pdf
+    slot_id: cover
+    file: asset:page/cover
+  - type: rst_include
+    slot_id: toc
+    lang: ja
+    file: templates/page_bp/ja/00_toc.rst
+  - type: rst_include
+    slot_id: safety_info_ja
+    lang: ja
+    file: templates/page_bp/ja/01_safety.rst
+  - type: csv_page
+    slot_id: symbol_meaning_ja
+    source: phase2
+    page: symbols
+    langs: [ja]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: box_contents_ja
+    lang: ja
+    file: templates/page_bp/ja/02_whats_in_the_box.rst
+  - type: generated_page
+    slot_id: product_overview_ja
+    page: 03_product_overview
+    engine: draft_v1
+    recipe: templates/recipes/bp-jp/03_product_overview.yaml
+    template: templates/page_bp/ja/03_product_overview_placeholder.rst
+    langs: [ja]
+    include_dir: generated/{model}/draft
+  - type: csv_page
+    slot_id: lcd_display_ja
+    source: phase2
+    page: lcd_icons
+    langs: [ja]
+    include_dir: generated/{model}
+  - type: generated_page
+    slot_id: operation_ja
+    page: 05_operation_guide
+    engine: draft_v1
+    recipe: templates/recipes/bp-jp/05_operation_guide.yaml
+    template: templates/page_bp/ja/05_operation_guide_placeholder.rst
+    langs: [ja]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    slot_id: connections_ja
+    lang: ja
+    file: templates/page_bp/ja/04_connections.rst
+  - type: rst_include
+    slot_id: charging_ja
+    lang: ja
+    file: templates/page_bp/ja/08_charging_methods.rst
+  - type: csv_page
+    slot_id: troubleshooting_ja
+    source: phase2
+    page: troubleshooting
+    langs: [ja]
+    include_dir: generated/{model}
+  - type: csv_page
+    slot_id: specifications_ja
+    source: phase2
+    page: spec
+    langs: [ja]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: warranty_ja
+    lang: ja
+    file: templates/page_bp/ja/11_warranty.rst

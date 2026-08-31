@@ -33,7 +33,12 @@ SCHEMA_VERSION = "target-idml-assembly-plan/v1"
 WARRANTY_LAYOUT_VARIANTS = frozenset({"multiline_lead", "bp_default"})
 SPECIFICATION_LAYOUT_VARIANTS = frozenset({"reference", "compact"})
 OPERATION_LAYOUT_VARIANTS = frozenset({"guidance_stack"})
+CONNECTIONS_LAYOUT_VARIANTS = frozenset({
+    "notice_before_primary_figure",
+    "stacking_guide",
+})
 INBOX_LAYOUT_VARIANTS = frozenset({"compact_with_tip"})
+OVERVIEW_LAYOUT_VARIANTS = frozenset({"annotated_without_view_headings"})
 STORAGE_LAYOUT_VARIANTS = frozenset({"rounded_panel"})
 REGULATORY_LAYOUT_VARIANTS = frozenset({"bottom_card"})
 
@@ -435,12 +440,11 @@ def _validate_composition_data(
                     f"exactly {sorted(expected)}"
                 )
                 continue
-            if connections.get("layout_variant") != (
-                "notice_before_primary_figure"
-            ):
+            if connections.get("layout_variant") not in CONNECTIONS_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.connections.layout_variant "
-                    "must be notice_before_primary_figure"
+                    "must be one of "
+                    + ", ".join(sorted(CONNECTIONS_LAYOUT_VARIANTS))
                 )
             if connections.get("image_role") not in {
                 "full_measure",
@@ -511,11 +515,16 @@ def _validate_composition_data(
             if (
                 not isinstance(overview, dict)
                 or "instance_id" not in overview
-                or not set(overview) <= {"instance_id", "asset_refs"}
+                or not set(overview) <= {
+                    "instance_id",
+                    "asset_refs",
+                    "layout_variant",
+                }
             ):
                 issues.append(
                     f"{source_ref}.composition_data.overview must contain "
-                    "instance_id and supports optional asset_refs"
+                    "instance_id and supports optional asset_refs or "
+                    "layout_variant"
                 )
                 continue
             if not isinstance(overview.get("instance_id"), str) or not str(
@@ -546,6 +555,15 @@ def _validate_composition_data(
                         f"{source_ref}.composition_data.overview.asset_refs "
                         "values must be non-empty bundle-relative strings"
                     )
+            layout_variant = overview.get("layout_variant")
+            if layout_variant is not None and (
+                layout_variant not in OVERVIEW_LAYOUT_VARIANTS
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.overview.layout_variant "
+                    "must be one of "
+                    + ", ".join(sorted(OVERVIEW_LAYOUT_VARIANTS))
+                )
             continue
         if set(data) == {"app"}:
             if page.get("page_role") != PageRole.APP_SETUP.value or page.get(
@@ -626,7 +644,11 @@ def _validate_composition_data(
         ):
             if page.get("page_role") != PageRole.SPEC.value or page.get(
                 "composition_type"
-            ) not in {"storage_specifications", "specifications"}:
+            ) not in {
+                "storage_specifications",
+                "troubleshooting_specifications",
+                "specifications",
+            }:
                 issues.append(
                     f"{source_ref}.composition_data.specifications requires "
                     "a specifications composition on the spec source"
@@ -662,14 +684,31 @@ def _validate_composition_data(
                     f"{source_ref}.composition_data.specifications must be an object"
                 )
                 continue
-            allowed = {"layout_variant", "section_groups", "annotation_order"}
+            allowed = {
+                "layout_variant",
+                "section_groups",
+                "annotation_order",
+                "split",
+            }
             if "layout_variant" not in specifications or not set(
                 specifications
             ) <= allowed:
                 issues.append(
                     f"{source_ref}.composition_data.specifications must contain "
-                    "layout_variant and supports optional section_groups or "
-                    "annotation_order"
+                    "layout_variant and supports optional section_groups, "
+                    "annotation_order, or split"
+                )
+                continue
+            split = specifications.get("split")
+            if split is not None and (
+                isinstance(split, bool)
+                or not isinstance(split, (int, float))
+                or not math.isfinite(float(split))
+                or not 120.0 <= float(split) <= 400.0
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.specifications.split "
+                    "must be a finite number between 120 and 400 points"
                 )
                 continue
             if specifications.get(

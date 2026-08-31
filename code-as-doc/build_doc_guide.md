@@ -824,6 +824,19 @@ assembly health but does not register an approved reference layout. Current
 native evidence is recorded in
 [`reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](reviews/jbp2000b_eu_r2_native_validation_2026-08.md).
 
+`JBP-2000B / JP / ja` is the first target resolved from the separate `BP@JP`
+skeleton. Build it with `configs/config.bp-jp.yaml`; this config is exact-target
+only and declares `family_default: false`, so ordinary MAIN JP continues to
+resolve through `configs/config.ja.yaml`. Its paired host display name is
+`Jackery ポータブル電源 2000 Plus`. The 12-page target plan adds only assembly
+data: split signal/icon compositions, Inbox+Overview, LCD+Operation, a two-page
+Connections stacking guide, Troubleshooting+Specifications, and the shared
+warranty composition. New target behavior must stay in the manifest, Product
+Manual Plan, target assembly JSON, region profile, localized carrier data, and
+assets; do not add `JBP-2000B` or `JP` branches to page renderers. The plan
+remains `candidate` until native InDesign/PDF/X and 12-page visual acceptance
+are recorded and it is promoted separately.
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound
@@ -1343,9 +1356,16 @@ page roles `cover` and `toc` are exempt.
 
 Japanese, Korean, and Chinese characters in editable IDML are serialized as
 explicit script-aware character runs. Korean Hangul uses the committed
-SIL-OFL `NanumGothic` face; Japanese and Chinese continue through
-`CJK_FONT_FAMILY_TOKEN` (the renderer token `idml_font_family_cjk`, currently
-Arial Unicode MS). Font-family tokens intentionally stay outside
+SIL-OFL `NanumGothic` face. Japanese uses the committed static TrueType
+`HBManualSansJP-Regular.ttf` (`HB Manual Sans JP (OTF)` in InDesign,
+OpenTypeTT) in both IDML and LaTeX. It is the Noto Sans JP Regular outline under
+a project-unique family and PostScript identity, so a host-installed
+`Noto Sans JP (OTF)` cannot shadow the document font after close/reopen. The
+IDML token uses InDesign's normalized `(OTF)` family spelling while the TTF
+name table and PostScript identity stay project-unique. The file is
+hash-verified and packaged with the document. Chinese
+continues through `CJK_FONT_FAMILY_TOKEN` (the renderer token
+`idml_font_family_cjk`). Font-family routing intentionally stays outside
 `data/layout_params.csv`: changing font delivery is not page geometry and does
 not by itself require a reference-layout rebind.
 Latin-market editable symbols are governed separately: the U+203B reference

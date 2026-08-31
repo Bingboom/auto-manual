@@ -131,6 +131,9 @@ idml_overview_callout_label_font_size,6.0,pt,BP overview callout label size meas
 idml_overview_callout_label_font_leading,6.8,pt,BP overview callout label leading measured from the reference
 idml_overview_callout_label_bold,0,int,Use the reference regular weight for BP overview callouts
 idml_compact_connections_frame_bottom_extra,8.0,pt,Connections shared-page native import allowance
+idml_connections_stacking_guide_upper_bottom,250.0,pt,Shared stacking-guide upper panel bottom
+idml_connections_stacking_guide_vertical_gap,4.0,pt,Shared stacking-guide upper-to-columns gap
+idml_connections_stacking_guide_column_gutter,10.0,pt,Shared stacking-guide lower-column gutter
 idml_bp_connection_caution_body_font_size,5.8,pt,Compact Connections caution body font size
 idml_bp_connection_caution_body_font_leading,6.6,pt,Compact Connections caution body leading
 idml_bp_connection_caution_pad_tb,5.0,pt,Compact Connections caution vertical inset

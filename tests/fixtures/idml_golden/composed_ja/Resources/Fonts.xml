@@ -19,4 +19,7 @@
   <FontFamily Self="ff_noto_sans_symbols2" Name="Noto Sans Symbols2">
     <Font Self="ff_noto_sans_symbols2_r" FontFamily="Noto Sans Symbols2" Name="Noto Sans Symbols2 Regular" PostScriptName="NotoSansSymbols2-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
   </FontFamily>
+  <FontFamily Self="ff_hb_manual_sans_jp" Name="HB Manual Sans JP (OTF)">
+    <Font Self="ff_hb_manual_sans_jp_r" FontFamily="HB Manual Sans JP (OTF)" Name="HB Manual Sans JP (OTF) Regular" PostScriptName="HBManualSansJP-Regular" Status="Installed" FontStyleName="Regular" FontType="OpenTypeTT"/>
+  </FontFamily>
 </idPkg:Fonts>

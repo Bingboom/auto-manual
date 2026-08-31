@@ -295,6 +295,42 @@ class TestAssetIntake(unittest.TestCase):
 
             self.assertTrue(all(count >= 1 for count in counts), counts)
 
+    def test_private_marker_scan_skips_unassigned_xref_numbers(self) -> None:
+        class FakeDocument:
+            def xref_length(self) -> int:
+                return 3
+
+            def xref_object(self, xref: int, *, compressed: bool) -> str:
+                self.assert_compressed(compressed)
+                if xref == 2:
+                    raise RuntimeError("code=7: cannot find object in xref (2 0 R)")
+                return "<< /Type /Catalog /AIPrivateData true >>"
+
+            @staticmethod
+            def assert_compressed(compressed: bool) -> None:
+                if compressed:
+                    raise AssertionError("marker scan must request decoded objects")
+
+            @staticmethod
+            def xref_stream(xref: int) -> bytes | None:
+                return None
+
+            @staticmethod
+            def close() -> None:
+                return None
+
+        class FakeFitz:
+            @staticmethod
+            def open(path: str) -> FakeDocument:
+                return FakeDocument()
+
+        with TemporaryDirectory() as tmp:
+            path = Path(tmp) / "xref-gap.pdf"
+            path.write_bytes(b"%PDF-1.6\n")
+
+            with patch("tools.asset_pipeline.extract._fitz", return_value=FakeFitz()):
+                self.assertEqual((1, 0, 0), scan_pdf_private_markers(path))
+
     def test_bbox_scoped_text_redaction_removes_hidden_text_only_in_region(self) -> None:
         with TemporaryDirectory() as tmp:
             root = Path(tmp)

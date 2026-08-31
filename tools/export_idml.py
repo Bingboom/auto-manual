@@ -260,6 +260,7 @@ def main() -> int:
 
     def emit_data_page(kind: str, lang: str) -> None:
         nonlocal page_cursor
+        lang = normalize_lang(lang)
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
@@ -547,7 +548,7 @@ def main() -> int:
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
     back_cover_added = target_renderer.back_cover_added
-    if not back_cover_added:
+    if _target_assembly_render.needs_legacy_back_cover_fallback(target_renderer):
         back_cover_added = _placed.add_preferred_back_cover_page(
                 w, args.region, args.lang, ROOT / "docs", page_cursor,
                 _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan)

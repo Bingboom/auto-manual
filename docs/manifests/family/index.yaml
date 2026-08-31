@@ -40,6 +40,10 @@ entries:
     base: docs/manifests/manual_bp-us.yaml
     manifest: docs/manifests/manual_bp-eu.yaml
     diff: docs/manifests/family/diffs/manual_bp-us__manual_bp-eu.json
+  - family_id: bp-jp
+    base: docs/manifests/manual_bp-jp.yaml
+    manifest: docs/manifests/manual_bp-jp-jbp2000b.yaml
+    diff: docs/manifests/family/diffs/manual_bp-jp__manual_bp-jp-jbp2000b.json
   - family_id: au-en
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_au-en.yaml

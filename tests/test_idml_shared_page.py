@@ -8,6 +8,8 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from tools.export_idml import IdmlWriter, check_idml, load_layout_params
+from tools.idml.components.inbox_panel import InboxPanelData
+from tools.idml.page_overview import product_overview_frames
 from tools.idml.shared_page import (
     add_charging_page,
     add_charging_storage_page,
@@ -29,6 +31,87 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class SharedPageTests(unittest.TestCase):
+    def test_legacy_three_cell_inbox_table_adapts_to_shared_component(self) -> None:
+        data = InboxPanelData.from_blocks(
+            [
+                ("h1", "同梱品"),
+                (
+                    "table",
+                    json.dumps(
+                        [[
+                            ".. image:: asset:in_the_box/jbp2000b/main_unit **本体**",
+                            ".. image:: asset:in_the_box/jbp2000b/expansion_cable **拡張ケーブル**",
+                            ".. image:: asset:in_the_box/manual_icon1 **取扱説明書**",
+                        ]],
+                        ensure_ascii=False,
+                    ),
+                ),
+            ],
+            sid="st_inbox_legacy",
+            language="jp",
+            density="compact",
+        )
+
+        self.assertTrue(data.has_inbox)
+        self.assertEqual(
+            ("本体", "拡張ケーブル", "取扱説明書"),
+            tuple(item["label"] for item in data.items),
+        )
+        self.assertEqual(
+            (
+                "asset:in_the_box/jbp2000b/main_unit",
+                "asset:in_the_box/jbp2000b/expansion_cable",
+                "asset:in_the_box/manual_icon1",
+            ),
+            tuple(item["img"] for item in data.items),
+        )
+
+    def test_overview_variant_keeps_callouts_without_view_headings(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="JP",
+            language="jp",
+            native_structure_markers=True,
+        )
+        assets = ROOT / "docs" / "renderers" / "latex" / "assets"
+        blocks = [
+            ("h1", "各部の名称"),
+            ("image", (assets / "jbp2000b_front_controls.pdf").as_posix()),
+            ("table", [["**主電源ボタン**", "**ディスプレイ**"]]),
+            ("image", (assets / "jbp2000b_left_side_ports.pdf").as_posix()),
+            (
+                "table",
+                [
+                    ["**ハンドル**", "**DC拡張ポートA**"],
+                    ["", "**DC拡張ポートB**"],
+                ],
+            ),
+        ]
+
+        frames = product_overview_frames(
+            writer,
+            "st_overview_no_headings",
+            blocks,
+            ROOT,
+            instance_id="jbp2000b-jp-v1",
+            show_view_headings=False,
+        )
+
+        story_ids = {story_id for story_id, _xml in writer.stories}
+        self.assertNotIn("st_overview_no_headings_front_story", story_ids)
+        self.assertNotIn("st_overview_no_headings_right_story", story_ids)
+        self.assertIn("st_overview_no_headings_front_label_1", story_ids)
+        self.assertIn("st_overview_no_headings_right_label_1", story_ids)
+        joined = "".join(frames)
+        self.assertIn("leader_st_overview_no_headings", joined)
+        self.assertNotIn("_front_heading", joined)
+        self.assertNotIn("_right_heading", joined)
+
     def test_connections_page_reuses_target_declared_order_and_image_role(
         self,
     ) -> None:
@@ -99,6 +182,97 @@ class SharedPageTests(unittest.TestCase):
         self.assertLess(primary_figure, second_notice)
         image_xml = story[primary_figure:story.index("</Rectangle>", primary_figure)]
         self.assertIn('Anchor="312.094', image_xml)
+
+    def test_connections_stacking_guide_uses_shared_two_page_panel(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(
+            params,
+            model="JBP-2000B",
+            region="JP",
+            language="jp",
+            native_structure_markers=True,
+        )
+        art = (
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "warning_lockup.png"
+        ).as_posix()
+
+        def notice(text: str) -> tuple[str, str]:
+            return (
+                "component",
+                json.dumps({
+                    "kind": "notice",
+                    "label": "ご注意",
+                    "variant": "caution",
+                    "texts": [text],
+                    "list": True,
+                }, ensure_ascii=False),
+            )
+
+        add_connections_page(
+            writer,
+            sid="st_connections_stack",
+            title="connections",
+            blocks=[
+                ("h1", "ポータブル電源との併用"),
+                ("body", "接続説明。"),
+                notice("第一の注意。"),
+                ("image", art),
+                ("image", art),
+                notice("第二の注意。"),
+                ("image", art),
+                ("body", "**ロック**"),
+                ("image", art),
+                ("body", "**ロック解除**"),
+                ("image", art),
+            ],
+            bundle_root=ROOT,
+            page_index=6,
+            page_count=2,
+            language="jp",
+            composition_data={
+                "connections": {
+                    "layout_variant": "stacking_guide",
+                    "image_role": "reference_measure",
+                }
+            },
+        )
+
+        stories = dict(writer.stories)
+        self.assertEqual(
+            {
+                "st_connections_stack",
+                "st_connections_stack_guidance",
+                "st_connections_stack_controls",
+                "st_connections_stack_result",
+            },
+            {
+                story_id for story_id in stories
+                if story_id.startswith("st_connections_stack")
+            },
+        )
+        first_page = dict(writer.spreads)["sp_6"]
+        second_page = dict(writer.spreads)["sp_7"]
+        self.assertEqual(1, first_page.count("<Page "))
+        self.assertEqual(1, second_page.count("<Page "))
+        self.assertIn('ParentStory="st_connections_stack"', first_page)
+        for story_id in (
+            "st_connections_stack_guidance",
+            "st_connections_stack_controls",
+            "st_connections_stack_result",
+        ):
+            self.assertIn(f'ParentStory="{story_id}"', second_page)
+        self.assertIn(
+            'Self="st_connections_stack_controls_im2"',
+            stories["st_connections_stack_controls"],
+        )
+        self.assertNotIn(
+            "st_connections_stack_result_im2",
+            stories["st_connections_stack_result"],
+        )
 
     def test_charging_page_uses_target_declared_full_width_and_suffix_pill(
         self,

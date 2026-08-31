@@ -145,23 +145,24 @@ def patch_fonts(
     main_tex: str,
     *,
     build_dir: Path,
+    language: str | None,
     run: Callable[..., None],
     repo_root: Path,
     python_executable: str,
     printer: Callable[[str], None] = print,
 ) -> None:
     printer("[build] Patch fonts (inject fonts.tex)")
-    run(
-        [
-            python_executable,
-            patch_fonts_script,
-            "--tex",
-            main_tex,
-            "--build-dir",
-            str(build_dir),
-        ],
-        cwd=repo_root,
-    )
+    command = [
+        python_executable,
+        patch_fonts_script,
+        "--tex",
+        main_tex,
+        "--build-dir",
+        str(build_dir),
+    ]
+    if isinstance(language, str) and language.strip():
+        command += ["--lang", language.strip()]
+    run(command, cwd=repo_root)
 
 
 def export_word_from_latex(

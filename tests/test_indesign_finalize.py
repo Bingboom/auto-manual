@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -17,6 +18,7 @@ from tools.indesign_finalize import (
     JSX,
     VERSION_PIN,
     _collect_finalize_result,
+    _idml_document_language,
     _job,
     _pdf_missing_glyphs,
     _overset_pages,
@@ -29,6 +31,17 @@ from tools.indesign_finalize import (
 
 
 class InDesignFinalizeTests(unittest.TestCase):
+    def test_idml_document_language_comes_from_the_frozen_package_label(self) -> None:
+        with temp_test_root() as root:
+            path = Path(root) / "manual.idml"
+            with zipfile.ZipFile(path, "w") as package:
+                package.writestr(
+                    "designmap.xml",
+                    '<Document Label="hb:language=ja" Name="manual"/>',
+                )
+
+            self.assertEqual("ja", _idml_document_language(path))
+
     def test_pdf_missing_glyphs_flags_replacement_and_notdef(self) -> None:
         class FakePage:
             def get_texttrace(self):
@@ -197,6 +210,20 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("collectPostReopenState(doc)", jsx)
         self.assertIn('report.stage = "reopen_indd"', jsx)
         self.assertIn("doc = app.open(File(job.output_indd), false)", jsx)
+        self.assertIn("showPortableFontBootstrap", jsx)
+        self.assertIn(
+            "doc = app.open(File(job.output_indd), showPortableFontBootstrap)",
+            jsx,
+        )
+        self.assertIn('report.stage = "save_portable_font_rebind"', jsx)
+        self.assertIn(
+            'report.stage = "reopen_indd_after_portable_font_rebind"',
+            jsx,
+        )
+        self.assertLess(
+            jsx.index('report.stage = "save_portable_font_rebind"'),
+            jsx.index("report.post_reopen = collectPostReopenState(doc)"),
+        )
         self.assertIn("report.post_reopen.missing_fonts.length === 0", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
         self.assertIn("fitLcdCarrierFrames(doc)", jsx)
@@ -242,6 +269,16 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertNotIn("allPageItems", symbol_fit)
         self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
+        self.assertIn(
+            "rebindJapanesePortableFont(doc, fontName, documentLanguage)",
+            jsx,
+        )
+        self.assertIn("waitForInstalledApplicationFont(fontName)", jsx)
+        self.assertIn('"japanese_portable_font_rebind"', jsx)
+        self.assertIn('String(documentLanguage || "") !== "ja"', jsx)
+        self.assertIn("isJapaneseCodeUnit(contents.charCodeAt(0))", jsx)
+        self.assertIn('"HB Manual Sans JP (OTF)\\tRegular"', jsx)
+        self.assertIn("portable_font_rebinds", jsx)
         self.assertIn("font_substitutions", jsx)
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
         self.assertIn("matches = doc.findText()", jsx)

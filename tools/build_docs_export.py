@@ -301,7 +301,12 @@ def build_target(
         _copy_attachment_images_for_latex(
             Path(bundle.bundle_dir), Path(artifact_plan.latex_out_dir), printer,
         )
-        patch_fonts(artifact_plan.patch_fonts_script, artifact_plan.main_tex, build_dir=artifact_plan.latex_out_dir)
+        patch_fonts(
+            artifact_plan.patch_fonts_script,
+            artifact_plan.main_tex,
+            build_dir=artifact_plan.latex_out_dir,
+            language=target_lang or artifact_plan.primary_lang,
+        )
         compile_xelatex(artifact_plan.main_tex, artifact_plan.xelatex_runs, cwd=artifact_plan.latex_out_dir)
         latex_built = True
 

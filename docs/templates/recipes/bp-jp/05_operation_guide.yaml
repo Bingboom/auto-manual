@@ -1,0 +1,13 @@
+# BP@JP operation guide reuses the shared BP operation contract. The target
+# supplies only the two-hour standby value.
+page_id: 05_operation_guide
+template: templates/page_bp/ja/05_operation_guide_placeholder.rst
+field_map:
+  DEFAULT_STANDBY_DURATION:
+    row_key: default_standby_duration
+    pages: [operation_guide]
+    usage_type: page_value
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 05_operation_guide

@@ -1,6 +1,8 @@
 """Complete editable title, card, badge, and TIP panel for box contents."""
 from __future__ import annotations
 
+import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -36,6 +38,34 @@ from .notice import notice_box_layout, source_notice_label
 TITLE_HEIGHT = 20.0
 BADGE_DIAMETER = 13.785
 BADGE_Y_OFFSET = 22.431
+_LEGACY_IMAGE = re.compile(r"\.\.\s+image::\s+(\S+)")
+_LEGACY_LABEL = re.compile(r"\*\*(.+?)\*\*")
+
+
+def _legacy_inbox_payload(blocks: list[tuple[str, str]]) -> dict | None:
+    """Adapt a three-cell RST list-table into the shared Inbox ComponentSpec."""
+
+    raw = next((text for kind, text in blocks if kind == "table"), None)
+    if raw is None:
+        return None
+    try:
+        rows = json.loads(raw)
+    except (TypeError, json.JSONDecodeError):
+        return None
+    if not isinstance(rows, list) or len(rows) != 1 or len(rows[0]) != 3:
+        return None
+    items: list[dict[str, str]] = []
+    for cell in rows[0]:
+        image = _LEGACY_IMAGE.search(str(cell))
+        label = _LEGACY_LABEL.search(str(cell))
+        if image is None or label is None:
+            return None
+        items.append({
+            "img": image.group(1),
+            "label": label.group(1).strip(),
+            "alt": label.group(1).strip(),
+        })
+    return {"kind": "inbox", "items": items}
 
 
 @dataclass(frozen=True)
@@ -63,7 +93,7 @@ class InboxPanelData:
         ), "")
         if not title:
             raise ValueError("inbox title is required from source RST")
-        inbox_spec = component_spec(blocks, "inbox")
+        inbox_spec = component_spec(blocks, "inbox") or _legacy_inbox_payload(blocks)
         tip_spec = component_spec(blocks, "notice")
         profile = dict(reference_profile or {})
         layout_variant = str(profile.get("layout_variant") or "").strip()

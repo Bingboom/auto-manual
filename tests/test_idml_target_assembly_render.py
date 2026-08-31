@@ -10,6 +10,101 @@ from tools.idml.target_assembly_render import TargetAssemblyRenderer
 
 
 class TargetAssemblyRenderTests(unittest.TestCase):
+    def test_jp_split_symbol_compositions_route_to_shared_partial_panels(
+        self,
+    ) -> None:
+        bundle_root = Path("/tmp/bundle")
+        safety_ref = "page/safety_info_ja.rst"
+        symbols_ref = "page/symbol_meaning_ja.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 2,
+            "pages": [
+                {
+                    "source_ref": safety_ref,
+                    "source_path": safety_ref,
+                    "language": "jp",
+                    "page_role": "safety",
+                    "composition_id": "jp_safety_signals",
+                    "composition_type": "safety_signals",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                },
+                {
+                    "source_ref": symbols_ref,
+                    "source_path": symbols_ref,
+                    "language": "jp",
+                    "page_role": "symbols",
+                    "composition_id": "jp_symbols_icons",
+                    "composition_type": "symbols_icons",
+                    "latex_start_page": 2,
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+        projected_by_path = {
+            bundle_root / safety_ref: ProjectedPage(
+                path=bundle_root / safety_ref,
+                language="jp",
+                blocks=(("h1", "使用上のご注意"),),
+                skipped_raw=0,
+                twocol=False,
+            ),
+            bundle_root / symbols_ref: ProjectedPage(
+                path=bundle_root / symbols_ref,
+                language="jp",
+                blocks=(("h1", "記号の意味"),),
+                skipped_raw=0,
+                twocol=False,
+            ),
+        }
+        symbol_data = Mock(title="記号の意味")
+        emitted: set[str] = set()
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ja",
+            emitted=emitted,
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(return_value=symbol_data),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_safety_signals_page"
+        ) as add_signals, patch(
+            "tools.idml.target_assembly_render.shared_page.add_symbol_icons_page"
+        ) as add_icons:
+            safety_delta = renderer.render(
+                bundle_root / safety_ref,
+                get_page_cursor=lambda: 2,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+            icons_delta = renderer.render(
+                bundle_root / symbols_ref,
+                get_page_cursor=lambda: 3,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual("jp", renderer.output_lang)
+        self.assertEqual(1, safety_delta.page_count)
+        self.assertEqual(1, icons_delta.page_count)
+        self.assertEqual("jp", add_signals.call_args.kwargs["language"])
+        self.assertEqual("jp", add_icons.call_args.kwargs["language"])
+        self.assertIn("symbols:jp", emitted)
+
     def test_symbols_route_places_the_shared_panel_and_marks_the_language_emitted(
         self,
     ) -> None:
@@ -756,6 +851,159 @@ class TargetAssemblyRenderTests(unittest.TestCase):
             composition_data,
             add_page.call_args.kwargs["composition_data"],
         )
+
+    def test_connections_without_flow_split_uses_the_declared_two_page_span(
+        self,
+    ) -> None:
+        bundle_root = Path("/tmp/bundle")
+        source_ref = "page/connections_ja.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 2,
+            "pages": [{
+                "source_ref": source_ref,
+                "source_path": source_ref,
+                "language": "jp",
+                "page_role": "connections",
+                "composition_id": "jp_connections",
+                "composition_type": "connections",
+                "latex_start_page": 1,
+                "planned_page_count": 2,
+            }],
+        }
+        projected_by_path = {
+            bundle_root / source_ref: ProjectedPage(
+                path=bundle_root / source_ref,
+                language="jp",
+                blocks=(("h1", "ポータブル電源との併用"),),
+                skipped_raw=0,
+                twocol=False,
+            )
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ja",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_connections_page"
+        ) as add_page:
+            delta = renderer.render(
+                bundle_root / source_ref,
+                get_page_cursor=lambda: 6,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(2, delta.page_count)
+        self.assertEqual(2, add_page.call_args.kwargs["page_count"])
+
+    def test_troubleshooting_specifications_mirrors_the_ja_alias_output(
+        self,
+    ) -> None:
+        bundle_root = Path("/tmp/bundle")
+        trouble_ref = "page/troubleshooting_ja.rst"
+        spec_ref = "page/specifications_ja.rst"
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [
+                {
+                    "source_ref": trouble_ref,
+                    "source_path": trouble_ref,
+                    "language": "jp",
+                    "page_role": "troubleshooting_data",
+                    "composition_id": "jp_troubleshooting_specifications",
+                    "composition_type": "troubleshooting_specifications",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                },
+                {
+                    "source_ref": spec_ref,
+                    "source_path": spec_ref,
+                    "language": "jp",
+                    "page_role": "spec",
+                    "composition_id": "jp_troubleshooting_specifications",
+                    "composition_type": "troubleshooting_specifications",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                    "composition_data": {
+                        "specifications": {"layout_variant": "compact"}
+                    },
+                },
+            ],
+        }
+        projected_by_path = {
+            bundle_root / ref: ProjectedPage(
+                path=bundle_root / ref,
+                language="jp",
+                blocks=(("h1", ref),),
+                skipped_raw=0,
+                twocol=False,
+            )
+            for ref in (trouble_ref, spec_ref)
+        }
+        spec_sections: list[dict] = []
+        trouble_rows: list[tuple[str, str]] = []
+        emitted: set[str] = set()
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="ja",
+            emitted=emitted,
+            spec_sections=spec_sections,
+            lcd_rows=[],
+            trouble_rows=trouble_rows,
+            symbol_data_for=Mock(),
+            slug_stem=lambda value: value,
+        )
+        trouble_data = Mock(title="トラブル", rows=(("F0", "再起動"),))
+        spec_data = Mock(title="主な仕様", sections=({"title": "一般"},))
+        grouped = [{"title": "入力/出力"}]
+
+        with patch(
+            "tools.idml.target_assembly_render.ir_projection.trouble_page_data",
+            return_value=trouble_data,
+        ), patch(
+            "tools.idml.target_assembly_render.ir_projection.spec_page_data",
+            return_value=spec_data,
+        ), patch(
+            "tools.idml.target_assembly_render.shared_page."
+            "add_troubleshooting_specifications_page",
+            return_value=("st_trouble", "st_spec", grouped),
+        ):
+            delta = renderer.render(
+                bundle_root / trouble_ref,
+                get_page_cursor=lambda: 9,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(1, delta.page_count)
+        self.assertEqual([("F0", "再起動")], trouble_rows)
+        self.assertEqual(grouped, spec_sections)
+        self.assertEqual({"trouble:jp", "spec:jp"}, emitted)
 
     def test_charging_passes_target_component_data_to_shared_compositor(self) -> None:
         bundle_root = Path("/tmp/bundle")

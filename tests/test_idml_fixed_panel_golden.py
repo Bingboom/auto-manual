@@ -499,6 +499,37 @@ class FixedPanelGoldenTests(unittest.TestCase):
 
         self.assertEqual([12.2, 24.4], heights)
 
+    def test_compact_spec_three_line_row_reserves_line_boxes_and_insets(
+        self,
+    ) -> None:
+        heights = spec_table_row_heights(
+            [("保存温度", "1 year\n3 months\n1 month")],
+            {
+                "idml_compact_spec_table_row_height": ("11", "pt"),
+                "idml_compact_spec_table_multiline_min_height": ("13", "pt"),
+                "idml_compact_spec_table_cell_inset": ("2", "pt"),
+                "type_spec_value_font_leading": ("6.6", "pt"),
+            },
+            density="compact",
+            language="ja",
+        )
+
+        self.assertAlmostEqual(23.8, heights[0])
+
+    def test_reference_spec_multiline_row_keeps_autogrow_minimum(self) -> None:
+        heights = spec_table_row_heights(
+            [("Storage Temperature", "1 year\n3 months\n1 month")],
+            {
+                "idml_spec_table_row_height": ("10.3", "pt"),
+                "comp_spec_table_multiline_min_height": ("15", "pt"),
+                "type_spec_value_font_leading": ("6.6", "pt"),
+            },
+            density="reference",
+            language="en",
+        )
+
+        self.assertEqual([15.0], heights)
+
     def test_compact_with_tip_keeps_tip_and_owns_internal_geometry(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         params.update({

@@ -1,0 +1,25 @@
+{
+  "SignalWordsPanel": {
+    "split": {
+      "jp": {
+        "height": 101.93,
+        "row_count": 4,
+        "story_sha256": {
+          "st_signal_split_signals": "7d38e6b84f65be47e025d10340c4b3dbc54d523759fedfcb4d20852c1964f938"
+        }
+      }
+    }
+  },
+  "SymbolIconsPanel": {
+    "split": {
+      "jp": {
+        "height": 460.0,
+        "row_count": 2,
+        "story_sha256": {
+          "st_icon_split_icons": "0fad9e3711b626f8778a4d7b93bee278fc7e8a02123cdadcb7a197d69778d06b",
+          "st_icon_split_title": "e06d2246eb484d66938717924feb0a980cc738451895ed4c0d4f48f26ece7564"
+        }
+      }
+    }
+  }
+}

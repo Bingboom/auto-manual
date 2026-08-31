@@ -33,6 +33,7 @@ _APP_MEASURE_RATIOS = {
 
 IMAGE_ROLE_DEFAULT = "default"
 IMAGE_ROLE_FULL_MEASURE = "full_measure"
+IMAGE_ROLE_HALF_MEASURE = "half_measure"
 IMAGE_ROLE_REFERENCE_MEASURE = "reference_measure"
 IMAGE_ROLE_WIDE_DIAGRAM = "wide_diagram"
 IMAGE_ROLE_COMPACT_DIAGRAM = "compact_diagram"
@@ -42,6 +43,10 @@ _ROLE_WIDTH_RATIOS = {
     IMAGE_ROLE_FULL_MEASURE: (
         "idml_semantic_image_full_measure_ratio",
         1.0,
+    ),
+    IMAGE_ROLE_HALF_MEASURE: (
+        "idml_semantic_image_half_measure_ratio",
+        0.46,
     ),
     IMAGE_ROLE_REFERENCE_MEASURE: (
         "idml_semantic_image_reference_measure_ratio",

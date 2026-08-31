@@ -285,11 +285,31 @@ def _regulatory_matrix() -> set[tuple[str, str]]:
     }
 
 
+def _symbol_section_matrix(panel: str) -> set[tuple[str, str]]:
+    payload = json.loads(
+        (ROOT / "tests" / "fixtures" / "idml_symbol_sections_golden.json")
+        .read_text(encoding="utf-8")
+    )
+    return {
+        (density, language)
+        for density, languages in payload[panel].items()
+        for language in languages
+    }
+
+
 COMPONENT_REGRESSION_REGISTRY: dict[str, dict] = {
     "SymbolsPanel": {
         "declared": {(d, lang) for d in ("standard", "compact")
                      for lang in ("en", "fr", "es")},
         "covered": lambda: _json_matrix("idml_symbols_panel_golden.json"),
+    },
+    "SignalWordsPanel": {
+        "declared": {("split", "jp")},
+        "covered": lambda: _symbol_section_matrix("SignalWordsPanel"),
+    },
+    "SymbolIconsPanel": {
+        "declared": {("split", "jp")},
+        "covered": lambda: _symbol_section_matrix("SymbolIconsPanel"),
     },
     "FccPanel": {
         "declared": {(d, lang) for d in ("standard", "compact")

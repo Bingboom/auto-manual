@@ -1,0 +1,112 @@
+[
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "product_name",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "製品の名称",
+    "Value_source": "Jackery Battery Pack 2000",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "model_no",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "型番",
+    "Value_source": "JBP-2000B",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "capacity",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "定格容量",
+    "Value_source": "2048 Wh (40Ah/51.2V DC)",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "cell_chemistry",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "バッテリータイプ",
+    "Value_source": "LiFePO₄ (リン酸鉄リチウムイオン電池)",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "cycle_life",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "サイクル寿命",
+    "Value_source": "6,000回の充放電後も容量の70%以上を維持",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Row_key": "weight",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "サイズ＆重量",
+    "Value_source": "約365 × 255 × 191 mm (約14.8kg)",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "INPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート（入力）",
+    "Value_source": "36.8V-57.6V⎓最大75A",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "OUTPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート（出力）",
+    "Value_source": "36.8V-57.6V⎓最大75A",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Row_key": "charging_temperature",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "充電温度",
+    "Value_source": "-10℃~45℃",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Row_key": "discharging_temperature",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "動作温度",
+    "Value_source": "-10℃~45℃",
+    "Param_source": ""
+  },
+  {
+    "Page": "specifications",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Row_key": "storage_temperature",
+    "Slot_key": "",
+    "Line_order": 1,
+    "Row_label_source": "保存温度",
+    "Value_source": "1年間 0~25℃\n3ヶ月 0~45℃\n1ヶ月 -20~45℃",
+    "Param_source": ""
+  }
+]

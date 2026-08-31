@@ -9,6 +9,7 @@ import unittest
 import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -27,6 +28,9 @@ from tools.export_idml import (  # noqa: E402
 )
 from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml import page_placed  # noqa: E402
+from tools.idml.target_assembly_render import (  # noqa: E402
+    needs_legacy_back_cover_fallback,
+)
 from tools.idml.character_metrics import (  # noqa: E402
     signal_label_metrics,
     tail_label_metrics,
@@ -151,6 +155,15 @@ def _top_level_story_paragraphs(xml: str) -> list[ET.Element]:
 
 
 class ExportIdmlTests(unittest.TestCase):
+    def test_target_assembly_does_not_synthesize_undeclared_back_cover(self) -> None:
+        target = SimpleNamespace(enabled=True, back_cover_added=False)
+        legacy = SimpleNamespace(enabled=False, back_cover_added=False)
+        rendered_target = SimpleNamespace(enabled=True, back_cover_added=True)
+
+        self.assertFalse(needs_legacy_back_cover_fallback(target))
+        self.assertTrue(needs_legacy_back_cover_fallback(legacy))
+        self.assertFalse(needs_legacy_back_cover_fallback(rendered_target))
+
     def _write_package(self) -> Path:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")

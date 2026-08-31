@@ -10,6 +10,8 @@ from .loaders import normalize_lang
 
 SPECIAL_COMPOSITION_TYPES = frozenset({
     "symbols",
+    "symbols_icons",
+    "safety_signals",
     "safety_symbols",
     "inbox_overview",
     "fcc_inbox_overview",
@@ -20,11 +22,20 @@ SPECIAL_COMPOSITION_TYPES = frozenset({
     "charging_storage",
     "storage_specifications",
     "storage_troubleshooting",
+    "troubleshooting_specifications",
     "specifications",
     "regulatory_compliance",
     "app",
     "back_cover",
 })
+
+
+def needs_legacy_back_cover_fallback(renderer: object) -> bool:
+    """Return whether a legacy assembly may synthesize an undeclared back cover."""
+    return (
+        not bool(getattr(renderer, "back_cover_added"))
+        and not bool(getattr(renderer, "enabled"))
+    )
 
 
 @dataclass(frozen=True)
@@ -82,7 +93,7 @@ class TargetAssemblyRenderer:
         self.manual_ir = manual_ir
         self.root = root
         self.data_root = data_root
-        self.output_lang = output_lang
+        self.output_lang = normalize_lang(output_lang)
         self.emitted = emitted
         self.spec_sections = spec_sections
         self.lcd_rows = lcd_rows
@@ -149,6 +160,35 @@ class TargetAssemblyRenderer:
                 ].get("composition_data"),
             )
             self.emitted.add(f"symbols:{lang}")
+        elif composition.composition_type == "symbols_icons":
+            symbol_data = self.symbol_data_for(lang)
+            if symbol_data is None:
+                raise ValueError(f"{composition.composition_id}: missing Symbols data")
+            self.toc.note(symbol_data.title, page_cursor, lang)
+            shared_page.add_symbol_icons_page(
+                self.writer,
+                sid="st_" + self.slug_stem(composition.composition_id),
+                symbol_data=symbol_data,
+                page_index=page_cursor,
+                language=lang,
+            )
+            self.emitted.add(f"symbols:{lang}")
+        elif composition.composition_type == "safety_signals":
+            safety = composition_pages[0]
+            symbol_data = self.symbol_data_for(lang)
+            if symbol_data is None:
+                raise ValueError(f"{composition.composition_id}: missing Symbols data")
+            self.toc.note_h1s(list(safety.blocks), page_cursor)
+            shared_page.add_safety_signals_page(
+                self.writer,
+                safety_sid="st_" + self.slug_stem(Path(safety.path).stem),
+                safety_title=Path(safety.path).stem,
+                safety_blocks=list(safety.blocks),
+                symbol_data=symbol_data,
+                bundle_root=self.bundle_root,
+                page_index=page_cursor,
+                language=lang,
+            )
         elif composition.composition_type == "safety_symbols":
             safety, _symbols = composition_pages
             symbol_data = self.symbol_data_for(lang)
@@ -251,14 +291,27 @@ class TargetAssemblyRenderer:
             connection = composition_pages[0]
             entry = self.plan_entry_by_ref[composition.source_refs[0]]
             split = entry.get("flow_split")
+            connection_blocks = list(connection.blocks)
             if not isinstance(split, dict):
-                raise ValueError(
-                    f"{composition.composition_id}: connections requires flow_split"
+                self.toc.note_h1s(connection_blocks, page_cursor)
+                shared_page.add_connections_page(
+                    self.writer,
+                    sid="st_" + self.slug_stem(Path(connection.path).stem),
+                    title=Path(connection.path).stem,
+                    blocks=connection_blocks,
+                    bundle_root=self.bundle_root,
+                    page_index=page_cursor,
+                    language=lang,
+                    page_count=composition.page_count,
+                    composition_data=entry.get("composition_data"),
+                )
+                return RenderDelta(
+                    page_count=composition.page_count,
+                    skipped_raw=skipped_raw,
                 )
             occurrence = int(split["occurrence"])
             seen = 0
             split_at = None
-            connection_blocks = list(connection.blocks)
             for block_index, (kind, _value) in enumerate(connection_blocks):
                 if kind == split["at_kind"]:
                     seen += 1
@@ -281,6 +334,7 @@ class TargetAssemblyRenderer:
                 bundle_root=self.bundle_root,
                 page_index=page_cursor,
                 language=lang,
+                page_count=1,
                 composition_data=entry.get("composition_data"),
             )
         elif composition.composition_type == "troubleshooting":
@@ -384,6 +438,40 @@ class TargetAssemblyRenderer:
                 language=lang,
             )
             self.emitted.add(f"trouble:{lang}")
+        elif composition.composition_type == "troubleshooting_specifications":
+            _trouble, _spec = composition_pages
+            trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)
+            spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
+            if trouble_data is None:
+                raise ValueError(
+                    f"{composition.composition_id}: missing Troubleshooting data"
+                )
+            if spec_data is None:
+                raise ValueError(
+                    f"{composition.composition_id}: missing Specifications data"
+                )
+            if lang == self.output_lang:
+                self.trouble_rows[:] = list(trouble_data.rows)
+                self.spec_sections[:] = list(spec_data.sections)
+            self.toc.note(trouble_data.title, page_cursor, lang)
+            self.toc.note(spec_data.title, page_cursor, lang)
+            composition_data = self.plan_entry_by_ref[
+                composition.source_refs[1]
+            ].get("composition_data")
+            _trouble_sid, _spec_sid, grouped_sections = (
+                shared_page.add_troubleshooting_specifications_page(
+                    self.writer,
+                    trouble_data=trouble_data,
+                    spec_data=spec_data,
+                    page_index=page_cursor,
+                    language=lang,
+                    composition_data=composition_data,
+                )
+            )
+            if lang == self.output_lang:
+                self.spec_sections[:] = grouped_sections
+            self.emitted.add(f"trouble:{lang}")
+            self.emitted.add(f"spec:{lang}")
         elif composition.composition_type == "specifications":
             spec_data = ir_projection.spec_page_data(self.manual_ir, lang)
             if spec_data is None:

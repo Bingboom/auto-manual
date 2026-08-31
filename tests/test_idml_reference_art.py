@@ -17,6 +17,7 @@ from tools.idml.components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_COMPACT_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
+    IMAGE_ROLE_HALF_MEASURE,
     IMAGE_ROLE_REFERENCE_MEASURE,
     IMAGE_ROLE_WIDE_DIAGRAM,
     render_image_block,
@@ -324,6 +325,7 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         )
         roles_and_ratios = (
             (IMAGE_ROLE_FULL_MEASURE, 1.0),
+            (IMAGE_ROLE_HALF_MEASURE, 0.46),
             (IMAGE_ROLE_REFERENCE_MEASURE, 1.0),
             (IMAGE_ROLE_WIDE_DIAGRAM, 0.78),
             (IMAGE_ROLE_COMPACT_DIAGRAM, 0.62),

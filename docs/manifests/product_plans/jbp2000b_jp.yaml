@@ -1,0 +1,7 @@
+# JBP-2000B_JP / HTP017 target-owned Product Manual Plan.
+# Slot order and carrier logic remain in the BP@JP skeleton and region profile.
+schema_version: skeleton-product-plan/v1
+plan_id: jbp2000b_jp
+house_style_version: jp-v2
+enabled_optional_slots: [toc, symbol_meaning, troubleshooting]
+terminal_slots: []

@@ -86,6 +86,50 @@ class TestPatchLatexFonts(unittest.TestCase):
             self.assertFalse(applied)
             self.assertEqual(original, fonts_path.read_text(encoding="utf-8"))
 
+    def test_apply_language_cjk_override_should_carry_and_select_japanese_font(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            build_dir = root / "latex"
+            build_dir.mkdir()
+            fonts_path = build_dir / "fonts.tex"
+            fonts_path.write_text("\\HBSetupFonts\n", encoding="utf-8")
+            source = root / patch_latex_fonts.JAPANESE_PORTABLE_FONT_FILE
+            source.write_bytes(b"portable-japanese-font")
+
+            applied = patch_latex_fonts.apply_language_cjk_override(
+                fonts_path,
+                build_dir=build_dir,
+                language="ja-JP",
+                portable_font_source=source,
+            )
+
+            self.assertTrue(applied)
+            self.assertEqual(
+                source.read_bytes(),
+                (build_dir / source.name).read_bytes(),
+            )
+            content = fonts_path.read_text(encoding="utf-8")
+            self.assertIn(patch_latex_fonts.LANGUAGE_CJK_OVERRIDE_MARKER, content)
+            self.assertEqual(
+                4,
+                content.count(patch_latex_fonts.JAPANESE_PORTABLE_FONT_FILE),
+            )
+
+    def test_apply_language_cjk_override_should_leave_non_japanese_build_unchanged(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            build_dir = Path(td)
+            fonts_path = build_dir / "fonts.tex"
+            fonts_path.write_text("unchanged\n", encoding="utf-8")
+
+            applied = patch_latex_fonts.apply_language_cjk_override(
+                fonts_path,
+                build_dir=build_dir,
+                language="en",
+            )
+
+            self.assertFalse(applied)
+            self.assertEqual("unchanged\n", fonts_path.read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

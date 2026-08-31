@@ -632,11 +632,18 @@ def _warning_ratchet_hook(builder: str, warn_log: Path) -> None:
         )
 
 
-def patch_fonts(patch_fonts_script: str, main_tex: str, *, build_dir: Path) -> None:
+def patch_fonts(
+    patch_fonts_script: str,
+    main_tex: str,
+    *,
+    build_dir: Path,
+    language: str | None,
+) -> None:
     return _patch_fonts_impl(
         patch_fonts_script,
         main_tex,
         build_dir=build_dir,
+        language=language,
         run=run,
         repo_root=paths.root,
         python_executable=sys.executable,

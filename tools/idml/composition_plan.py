@@ -76,6 +76,8 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
             PageRole.MAINTENANCE,
         ),
         _spec("toc", PageRole.TOC),
+        _spec("safety_signals", PageRole.SAFETY),
+        _spec("symbols_icons", PageRole.SYMBOLS),
         _spec("safety", PageRole.SAFETY),
         _spec("symbols", PageRole.SYMBOLS),
         _spec("maintenance_symbols", PageRole.MAINTENANCE, PageRole.SYMBOLS),
@@ -106,6 +108,11 @@ REGISTRY: dict[str, CompositionTypeSpec] = {
             "storage_troubleshooting",
             PageRole.STORAGE_MAINTENANCE,
             PageRole.TROUBLESHOOTING_DATA,
+        ),
+        _spec(
+            "troubleshooting_specifications",
+            PageRole.TROUBLESHOOTING_DATA,
+            PageRole.SPEC,
         ),
         _spec(
             "storage_specifications",

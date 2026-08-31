@@ -30,6 +30,9 @@ class IdmlPortableFontsTest(unittest.TestCase):
             "NotoSans-Regular.ttf": (
                 "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
             ),
+            "HBManualSansJP-Regular.ttf": (
+                "acaca4c837d81a772427a209963c0438c54fc0b22ee6cb06cdeae91ca0f1cd30"
+            ),
             "NotoSansSymbols-Regular.ttf": (
                 "8f02f31959bbdf6061547a188248e13f84dc5fdd940326ec494675f453f072bb"
             ),
@@ -39,7 +42,11 @@ class IdmlPortableFontsTest(unittest.TestCase):
         }
         self.assertEqual(
             set(expected),
-            {path.name for path in FONT_ROOT.glob("*.ttf")},
+            {
+                path.name
+                for suffix in ("*.ttf", "*.otf")
+                for path in FONT_ROOT.glob(suffix)
+            },
         )
         for filename, digest in expected.items():
             with self.subTest(filename=filename):

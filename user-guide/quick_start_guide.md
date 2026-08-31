@@ -684,6 +684,31 @@ python3 build.py idml \
 PDF/X-4。这里的 assembly 仍是 `candidate` / `production_eligible=false`；
 构建成功不等于已经完成 approved reference-layout 晋升。
 
+### 构建尚未晋升的 BP@JP JP candidate
+
+日规加电包使用独立 `BP@JP` 骨架，但继续复用共享组件和 composition 类型：
+
+```bash
+python3 build.py check \
+  --config configs/config.bp-jp.yaml \
+  --model JBP-2000B \
+  --region JP
+
+python3 build.py idml \
+  --config configs/config.bp-jp.yaml \
+  --model JBP-2000B \
+  --region JP \
+  --no-clean
+```
+
+配套主机显示名必须是 `Jackery ポータブル電源 2000 Plus`。目标应输出
+12 个物理页、13/13 source binding、`skipped_raw=0`；`Connections` 为两页，
+Troubleshooting 与 Specifications 共页。随后在设计 Mac 上运行
+`tools/indesign_finalize.py`，要求保存/重开后 overset、missing fonts、
+missing glyphs、bad links 均为 0，PDF/X-4 通过，并逐页对照冻结参考 PDF。
+该计划仍是 `candidate`，首次出包通过不等于 approved reference-layout
+晋升。
+
 ## 9. 一句话规则
 
 - 改数据：去改 Feishu

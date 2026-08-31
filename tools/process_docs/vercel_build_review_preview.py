@@ -32,6 +32,8 @@ def _preview_config_score(config_path: Path, build_cfg: dict[str, object], regio
     languages = build_cfg.get("languages", [])
     language_count = len(languages) if isinstance(languages, list) else 0
     score = 0
+    if build_cfg.get("family_default") is True:
+        score += 1000
     if not bool(build_cfg.get("include_lang_in_output_path", False)):
         score += 100
     if bool(build_cfg.get("queue_by_document_key", False)):

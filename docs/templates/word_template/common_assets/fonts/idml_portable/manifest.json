@@ -12,6 +12,18 @@
       "usage": "Korean editable text"
     },
     {
+      "family": "HB Manual Sans JP (OTF)",
+      "postscript_name": "HBManualSansJP-Regular",
+      "filename": "HBManualSansJP-Regular.ttf",
+      "sha256": "acaca4c837d81a772427a209963c0438c54fc0b22ee6cb06cdeae91ca0f1cd30",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "instantiation": "fonttools varLib.instancer wght=400 --update-name-table; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity",
+      "languages": ["ja", "jp"],
+      "usage": "Japanese editable text"
+    },
+    {
       "family": "Noto Sans",
       "postscript_name": "NotoSans-Regular",
       "filename": "NotoSans-Regular.ttf",

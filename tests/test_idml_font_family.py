@@ -13,6 +13,7 @@ from tools.idml.font_family import (
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
     KOREAN_FONT_FAMILY_TOKEN,
+    JAPANESE_FONT_FAMILY_TOKEN,
     PRIMARY_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
     TEXT_SYMBOL_FONT_FAMILY_TOKEN,
@@ -20,6 +21,7 @@ from tools.idml.font_family import (
 from tools.idml.params import load_layout_params
 from tools.idml.style_resources import fonts_xml
 from tools.idml.styles import styles_xml
+from tools.export_idml import IdmlWriter
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -32,6 +34,7 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
             "styles": styles_xml(params),
             "fonts": fonts_xml(),
             "fonts_ko": fonts_xml("ko"),
+            "fonts_ja": fonts_xml("ja"),
             "flow": _flow_style_entries(DEFAULT_STYLE_MAP),
             "manifest": _fonts_manifest(False),
         }
@@ -39,8 +42,9 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
             "styles": "8a697432cd63084047142685060429eea6257a56e1fc3a8d6fe434362bafe316",
             "fonts": "7bef8c30988b0b8ceabb67734943995a172b2428fdc2c8772d67ac4afff16407",
             "fonts_ko": "319a2447dfeeea2e261f8c4fba614f1cacea844fee9989a6e4ef919bc3833f33",
+            "fonts_ja": "72d7534df5f0b493aeb37931e60cc239d8b1045a13c00aeafd9b6c30b89b76d2",
             "flow": "111c9d93d62ba1b250d743af51db9bfb8079c1a675201e96d895e1c18ceb4211",
-            "manifest": "11debfec1dfbb6cf041f57d213c12970e2c1982bc6cad89205b564218b08d5d5",
+            "manifest": "95a077292f1afb9f486d981b69a70b3c2e8184ad0dd99e42a984e1f8757ff370",
         }
         actual = {
             name: hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -111,6 +115,41 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
         self.assertIn(family_decl, fonts_xml("ko"))
         self.assertIn(family_decl, fonts_xml("ko-KR"))
         self.assertEqual(KOREAN_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[5])
+
+    def test_japanese_family_is_declared_only_in_japanese_packages(self) -> None:
+        family_decl = (
+            f'<FontFamily Self="{JAPANESE_FONT_FAMILY_TOKEN.resource_id}" '
+            f'Name="{JAPANESE_FONT_FAMILY_TOKEN.name}">'
+        )
+        self.assertNotIn(family_decl, fonts_xml())
+        self.assertNotIn(family_decl, fonts_xml("ko"))
+        self.assertIn(family_decl, fonts_xml("ja"))
+        self.assertIn(family_decl, fonts_xml("jp"))
+        self.assertEqual(JAPANESE_FONT_FAMILY_TOKEN.delivery_row, _FONT_ROWS[6])
+
+    def test_japanese_story_runs_use_the_portable_document_family(self) -> None:
+        from tools.idml.inline_text import localize_cjk_fallback_font
+
+        generic = (
+            '<AppliedFont type="string">'
+            f'{CJK_FONT_FAMILY_TOKEN.name}</AppliedFont>'
+        )
+        self.assertIn(
+            JAPANESE_FONT_FAMILY_TOKEN.name,
+            localize_cjk_fallback_font(generic, "ja"),
+        )
+        self.assertIn(
+            CJK_FONT_FAMILY_TOKEN.name,
+            localize_cjk_fallback_font(generic, "zh"),
+        )
+
+    def test_japanese_package_labels_its_document_language_for_native_finalize(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        japanese = IdmlWriter(params, language="jp").designmap_xml()
+        english = IdmlWriter(params, language="en").designmap_xml()
+
+        self.assertIn('Label="hb:language=ja"', japanese)
+        self.assertNotIn('Label="hb:language=ja"', english)
 
     def test_hangul_routes_to_the_korean_text_face_not_the_symbol_face(self) -> None:
         from tools.idml.inline_text import _fallback_font

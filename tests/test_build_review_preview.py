@@ -75,9 +75,13 @@ class TestBuildReviewPreview(unittest.TestCase):
             )
 
         bp_targets = [target for target in targets if target.model == "JBP-2000B"]
-        self.assertEqual(1, len(bp_targets))
-        self.assertEqual("configs/config.bp-us.yaml", bp_targets[0].config)
-        self.assertFalse(bp_targets[0].include_lang_in_output_path)
+        self.assertEqual(
+            {"configs/config.bp-us.yaml", "configs/config.bp-jp.yaml"},
+            {target.config for target in bp_targets},
+        )
+        self.assertTrue(all(
+            not target.include_lang_in_output_path for target in bp_targets
+        ))
 
     def test_review_diff_command_should_use_each_targets_own_config(self) -> None:
         args = self._preview_args(config="configs/config.us-en.yaml", model="JE-1000F")

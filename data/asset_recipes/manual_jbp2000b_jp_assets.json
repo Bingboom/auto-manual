@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jbp2000b_jp_master",
+    "expected_sha256": "f7830bf9fb96d9a3e36737bad5196bbfac2d262eaef642f3406fe77eecd02b0b",
+    "expected_page_count": 12
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 12},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {"1": 4, "7": 4, "8": 4, "9": 4}
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "cover_front", "role": "cover_front", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["localized-copy", "qr-code"]},
+    {"page": 2, "page_key": "toc", "role": "frontmatter", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "jp_01", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "jp_02", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "jp_03", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "jp_04", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "jp_05", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": ["JP host connection and clearance source"]}, "risk_tags": ["region-locked-art"]},
+    {"page": 8, "page_key": "jp_06", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": ["JP stacking and locking source"]}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 9, "page_key": "jp_07", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": ["JP AC and solar charging source"]}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 10, "page_key": "jp_08", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 11, "page_key": "jp_09", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 12, "page_key": "jp_10", "role": "manual_page", "locale": "ja", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {
+      "asset_key": "page/jbp2000b_jp/cover",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["ja"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [0, 0, 368.754, 524.659]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/cover_jbp2000b-ja.pdf", "expected_sha256": "e9b2f36ea97a64f6749396a5d2b46157faf2ca1ee82159a38f321b9a613b9e11"},
+        {"format": "png", "path": "docs/renderers/latex/assets/cover_jbp2000b-ja.png", "scale": 12, "expected_sha256": "ab35cd4da147f2deac509c1953daa327e3ad46be5b9ad9a29f3306b1ca57d469"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed assets 1-8, including the packaged 12x JP cover comparison, on 2026-08-31. The localized cover and QR remain byte-identical to the frozen HTP017 source page."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy", "qr-code"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/jp/stack_clearance",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.4, 147, 341.6, 494]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_stack_clearance.pdf", "expected_sha256": "013269b404e05f73ae3333297f36232afad3397f716ab40614bfbaf034e1a382"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_stack_clearance.png", "scale": 12, "expected_sha256": "5136242dfef891a3ba81af15facb94e84dc0593d635b92c47e353f26fc952d0d"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 2 at 12x on 2026-08-31. Redaction removes the live clearance label while preserving the JP host geometry and fixed product markings."]},
+      "risk_tags": ["model-specific", "region-locked-art", "fixed-product-markings"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/jp/stacking_guidance",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.4, 26, 341.6, 153]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_stacking_guidance.pdf", "expected_sha256": "73577c709fb1b021c15243ced9671927429044bd3df11e94917dcb5408d67b77"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_stacking_guidance.png", "scale": 12, "expected_sha256": "16e7a936bb5b8356b8d965e0aeb7e8e7e46f331d1ba6cb03c5100c8ad6a3a05e"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 3 at 12x on 2026-08-31. The separated stacking-guidance panel is text-free and preserves the source drawing."]},
+      "risk_tags": ["model-specific", "region-locked-art"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/jp/lock_steps",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "numeric-only",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [35, 292, 160, 369]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_lock_steps.pdf", "expected_sha256": "4a8e62fb837d3c7ed25eed163a383c1a402046ed3b9843a7569fb36a824d5f6a"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_lock_steps.png", "scale": 12, "expected_sha256": "1558fad06fa6fa0446cc65047cdc5492ed5d639437cd33223429d89687e887a8"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 4 at 12x on 2026-08-31. The crop excludes the Japanese Lock title and preserves circled step numbers and operation arrows."]},
+      "risk_tags": ["model-specific", "region-locked-art"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/jp/unlock_steps",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "numeric-only",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [35, 407, 160, 486]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_unlock_steps.pdf", "expected_sha256": "f43756a25908b92ba6482266aa3ef03f9bd33701f5b3f688ccd0851e2c47b382"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_unlock_steps.png", "scale": 12, "expected_sha256": "a8438e064e2a7578e9c338fe611caef4e16169b3fe75a3022ac0db0e67ea04ee"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 5 at 12x on 2026-08-31. The crop excludes the Japanese Unlock title and preserves circled step numbers and operation arrows."]},
+      "risk_tags": ["model-specific", "region-locked-art"]
+    },
+    {
+      "asset_key": "connections/jbp2000b/jp/locked_stack",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [168, 292, 341.6, 500]}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_locked_stack.pdf", "expected_sha256": "0b8e1190baf2b294cef66f6b7865f0a2647b3ed3cb1b4d0fac0a9507bbf689e7"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_locked_stack.png", "scale": 12, "expected_sha256": "427028909b046628ef869910d6d9c15a182ffdc49f0ba1a51fc972ef2189f1f7"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 6 at 12x on 2026-08-31. The crop contains only the connected product stack and immutable product markings."]},
+      "risk_tags": ["model-specific", "region-locked-art", "fixed-product-markings"]
+    },
+    {
+      "asset_key": "charging/jbp2000b/jp/ac_wall",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.4, 113.5, 341.6, 267]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_ac_charging.pdf", "expected_sha256": "651e9526aebcd8fb525f5787f31c8c4665c23cf6395b0a21093b84f3e9cca649"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_ac_charging.png", "scale": 12, "expected_sha256": "f54227a581cef9c7345c0675fd8c38f5687f390d090ec2e951684a410a314bae"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 7 at 12x on 2026-08-31. Cable labels are removed and supplied by the Japanese carrier."]},
+      "risk_tags": ["model-specific", "region-locked-art"]
+    },
+    {
+      "asset_key": "charging/jbp2000b/jp/solar",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {"models": ["JBP-2000B"], "regions": ["JP"], "locales": ["und"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [27.4, 316, 341.6, 497]},
+        {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp2000b_jp_solar_charging.pdf", "expected_sha256": "66850d362b8c86ff46677c8092c3dde4dde53a72522bc33340588a18e13209f1"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp2000b_jp_solar_charging.png", "scale": 12, "expected_sha256": "57cb9acf480afa2a3c503fcd3de5d53621bf1f418d643af9798c8124df22f9bb"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Operator confirmed asset 8 at 12x on 2026-08-31. SolarSaga and cable labels are removed and supplied by the Japanese carrier."]},
+      "risk_tags": ["model-specific", "region-locked-art"]
+    }
+  ]
+}
