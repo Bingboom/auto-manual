@@ -1,0 +1,15 @@
+# Region profile — Japanese Battery Pack line.
+#
+# This profile owns the single Japanese language and family recipe carriers.
+# It deliberately has no terminal_slots: two audited targets in the same JP
+# region select different terminal forms through Product Manual Plan data.
+schema_version: skeleton-region-profile/v1
+region: JP
+language_set: [ja]
+primary_lang: ja
+slot_overrides:
+  product_overview:
+    recipe: templates/recipes/bp-jp/03_product_overview.yaml
+  operation:
+    recipe: templates/recipes/bp-jp/05_operation_guide.yaml
+compliance: []

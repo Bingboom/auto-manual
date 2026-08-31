@@ -2,7 +2,7 @@
 
 The page manifests under `docs/manifests/` are currently the compatibility
 source of truth. The family-manifest migration therefore starts with a
-non-mutating carrier instead of rewriting all 17 files at once.
+non-mutating carrier instead of rewriting the full manifest inventory at once.
 
 `tools/manifest_family.py` defines `family-manifest-diff/v1`:
 
@@ -42,7 +42,9 @@ identical.
 ## Fold index
 
 The tracked [`docs/manifests/family/index.yaml`](../../docs/manifests/family/index.yaml)
-records two compatibility anchors and 15 target/diff pairs. Run:
+records four compatibility anchors and 16 target/diff pairs, covering all 20
+current manifests. `BP@INTL` and `BP@JP` intentionally use separate anchors.
+Run:
 
 ```bash
 python tools/manifest_family.py fold \

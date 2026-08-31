@@ -5,25 +5,29 @@
 Three-layer contract (skeleton library, slice S1):
 
 1. Skeleton Blueprint  — ``docs/manifests/skeletons/<cell>/blueprint.yaml``
-   owns slot order, requirement (required | capability:<name>; 'optional' reserved),
-   presentation, and semantic co-page pairs. No languages, regions, or paths.
+   owns the stable slot universe, named order profiles, requirement
+   (required | optional | capability:<name>), presentation, and semantic
+   co-page pairs. No languages, regions, targets, or paths.
 2. Product Manual Plan — the in-memory resolution of blueprint x slot
-   templates x region profile x language set (dump with ``plan``).
+   templates x region profile x optional target plan x language set (dump
+   with ``plan``). A target plan selects a declared house-style/order profile,
+   optional front/body slots, and terminal slots; it never adds page logic.
 3. Resolved Manifest   — the committed ``docs/manifests/manual_*.yaml`` the
    whole pipeline keeps reading. YAML stays the compatibility surface: this
    tool only ever writes the manifest the repository already committed, and
    ``verify`` asserts emitted == committed bytes.
 
-Resolution precedence (fixed): blueprint slots -> capability annotation (from
-the slot requirement; the actual gate stays at build time in
-``filter_pages_by_capability``) -> region profile (language set, slot
-overrides, compliance mounting rows) -> language expansion (``front``/``back``
-slots emit once, ``body`` slots emit once per language in declaration order;
-an explicit ``terminal_slots`` selection filters the blueprint-owned ``back``
-block without changing its order).
+Resolution precedence (fixed): blueprint slots/order profile -> product-plan
+optional/terminal selection -> capability annotation (from the slot
+requirement; the actual gate stays at build time in
+``filter_pages_by_capability``) -> house-style carrier variant -> region
+profile (language set, slot overrides, compliance mounting rows) -> language
+expansion (``front``/``back`` slots emit once, ``body`` slots emit once per
+language in declaration order). Region-profile ``terminal_slots`` remains the
+legacy compatibility path when no product-plan selection is supplied.
 
 Contract guard: this module must stay free of slot-specific or region-specific
-literals. Every slot decision must trace to one of the three data carriers;
+literals. Every slot decision must trace to one of the declared data carriers;
 adding a branch keyed on a particular slot or region here is the
 template-clone failure mode reborn, and is a review-rejection criterion.
 """
@@ -45,6 +49,7 @@ _REPO_ROOT = bootstrap_repo_root(__file__, parent_count=1)
 _BLUEPRINT_SCHEMA = "skeleton-blueprint/v1"
 _SLOT_TEMPLATES_SCHEMA = "skeleton-slot-templates/v1"
 _REGION_PROFILE_SCHEMA = "skeleton-region-profile/v1"
+_PRODUCT_PLAN_SCHEMA = "skeleton-product-plan/v1"
 
 _BLOCKS = ("front", "body", "back")
 _PRESENTATIONS = ("chapter", "subsection", "titled_not_in_toc", "untitled_block")
@@ -57,6 +62,7 @@ _OVERRIDE_KEYS = {"file", "recipe", "template"}
 _COMPLIANCE_KEYS = {
     "fragment", "carrier", "file", "mount_after", "repeat_per_language", "presentation",
 }
+_PRODUCT_PLAN_KEYS = {"house_style_version", "enabled_optional_slots", "terminal_slots"}
 
 
 class SkeletonResolveError(RuntimeError):
@@ -116,20 +122,13 @@ def load_blueprint(path: Path) -> dict[str, Any]:
                 f"{path}: slots[{idx}].block must be one of {_BLOCKS}"
             )
         requirement = slot.get("requirement")
-        if isinstance(requirement, str) and requirement == "optional":
-            # Reserved, not implemented: no layer has opt-out semantics yet, so
-            # accepting it would emit the slot unconditionally — printing a
-            # chapter the product does not have (the capability-gate defect
-            # class). Fail loudly until the plan layer implements it.
-            raise SkeletonResolveError(
-                f"{path}: slots[{idx}].requirement 'optional' is reserved but not "
-                "implemented; use required or capability:<name>"
-            )
         if not isinstance(requirement, str) or not (
-            requirement == "required" or requirement.startswith("capability:")
+            requirement in {"required", "optional"}
+            or requirement.startswith("capability:")
         ):
             raise SkeletonResolveError(
-                f"{path}: slots[{idx}].requirement must be required | capability:<name>"
+                f"{path}: slots[{idx}].requirement must be "
+                "required | optional | capability:<name>"
             )
         if requirement.startswith("capability:") and not requirement.split(":", 1)[1].strip():
             raise SkeletonResolveError(
@@ -152,10 +151,53 @@ def load_blueprint(path: Path) -> dict[str, Any]:
             raise SkeletonResolveError(
                 f"{path}: co_page_groups references unknown slots: {', '.join(missing)}"
             )
+    order_profiles = data.get("order_profiles", {})
+    if not isinstance(order_profiles, dict):
+        raise SkeletonResolveError(f"{path}: order_profiles must be a mapping")
+    default_profile = data.get("default_order_profile")
+    if order_profiles:
+        if not isinstance(default_profile, str) or default_profile not in order_profiles:
+            raise SkeletonResolveError(
+                f"{path}: default_order_profile must name one declared order profile"
+            )
+    elif default_profile is not None:
+        raise SkeletonResolveError(
+            f"{path}: default_order_profile requires declared order_profiles"
+        )
+    blocks_by_id = {slot["slot_id"]: slot["block"] for slot in slots_raw}
+    for profile_name, order in order_profiles.items():
+        if not isinstance(profile_name, str) or not profile_name.strip():
+            raise SkeletonResolveError(f"{path}: order profile names must be non-empty strings")
+        if not isinstance(order, list) or not all(
+            isinstance(item, str) and item.strip() for item in order
+        ):
+            raise SkeletonResolveError(
+                f"{path}: order_profiles.{profile_name} must be a list of slot ids"
+            )
+        if len(order) != len(set(order)):
+            raise SkeletonResolveError(
+                f"{path}: order_profiles.{profile_name} contains duplicate slot ids"
+            )
+        missing = sorted(seen - set(order))
+        unknown = sorted(set(order) - seen)
+        if missing or unknown:
+            raise SkeletonResolveError(
+                f"{path}: order_profiles.{profile_name} must contain the complete slot "
+                f"universe (missing={missing}, unknown={unknown})"
+            )
+        block_positions = [_BLOCKS.index(blocks_by_id[slot_id]) for slot_id in order]
+        if block_positions != sorted(block_positions):
+            raise SkeletonResolveError(
+                f"{path}: order_profiles.{profile_name} must preserve front/body/back "
+                "block order"
+            )
     return data
 
 
-def load_slot_templates(path: Path, blueprint: dict[str, Any]) -> dict[str, dict[str, Any]]:
+def load_slot_template_catalog(
+    path: Path,
+    blueprint: dict[str, Any],
+) -> tuple[dict[str, dict[str, Any]], dict[str, dict[str, dict[str, Any]]]]:
     data = _load_yaml(path)
     _require_schema(data, _SLOT_TEMPLATES_SCHEMA, path)
     slots_raw = data.get("slots")
@@ -195,7 +237,51 @@ def load_slot_templates(path: Path, blueprint: dict[str, Any]) -> dict[str, dict
                 raise SkeletonResolveError(
                     f"{path}: slots.{slot_id}: 'lang' only supports 'primary'"
                 )
-    return slots_raw
+    style_profiles = data.get("house_style_versions", {})
+    if not isinstance(style_profiles, dict):
+        raise SkeletonResolveError(f"{path}: house_style_versions must be a mapping")
+    declared_profiles = set((blueprint.get("order_profiles") or {}).keys())
+    unknown_profiles = sorted(set(style_profiles) - declared_profiles)
+    if unknown_profiles:
+        raise SkeletonResolveError(
+            f"{path}: house_style_versions references undeclared order profiles: "
+            f"{', '.join(unknown_profiles)}"
+        )
+    for profile_name, overrides in style_profiles.items():
+        if not isinstance(overrides, dict):
+            raise SkeletonResolveError(
+                f"{path}: house_style_versions.{profile_name} must be a mapping"
+            )
+        for slot_id, override in overrides.items():
+            if slot_id not in blueprint_ids:
+                raise SkeletonResolveError(
+                    f"{path}: house_style_versions.{profile_name} references unknown "
+                    f"slot: {slot_id}"
+                )
+            if not isinstance(override, dict):
+                raise SkeletonResolveError(
+                    f"{path}: house_style_versions.{profile_name}.{slot_id} must be a mapping"
+                )
+            bad = sorted(set(override) - _OVERRIDE_KEYS)
+            if bad:
+                raise SkeletonResolveError(
+                    f"{path}: house_style_versions.{profile_name}.{slot_id} has "
+                    f"unsupported fields: {', '.join(bad)}"
+                )
+    return slots_raw, style_profiles
+
+
+def load_slot_templates(path: Path, blueprint: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    slots, _ = load_slot_template_catalog(path, blueprint)
+    return slots
+
+
+def load_slot_template_profiles(
+    path: Path,
+    blueprint: dict[str, Any],
+) -> dict[str, dict[str, dict[str, Any]]]:
+    _, profiles = load_slot_template_catalog(path, blueprint)
+    return profiles
 
 
 def load_region_profile(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]:
@@ -282,12 +368,129 @@ def load_region_profile(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]
     return data
 
 
+def _string_list(value: Any, *, label: str) -> list[str]:
+    if not isinstance(value, list) or not all(
+        isinstance(item, str) and item.strip() for item in value
+    ):
+        raise SkeletonResolveError(f"{label} must be a list of non-empty strings")
+    if len(value) != len(set(value)):
+        raise SkeletonResolveError(f"{label} contains duplicates: {value}")
+    return list(value)
+
+
+def _normalize_product_plan(
+    blueprint: dict[str, Any],
+    product_plan: dict[str, Any] | None,
+) -> dict[str, Any]:
+    """Validate target-owned selections without introducing target branches.
+
+    An absent plan intentionally resolves the blueprint's required/capability
+    core and its declared default order. Optional front/body slots stay absent;
+    optional back slots require an explicit terminal selection. This gives a
+    skeleton a safe, target-neutral anchor while real targets add only data.
+    """
+
+    raw = dict(product_plan or {})
+    unknown = sorted(set(raw) - _PRODUCT_PLAN_KEYS)
+    if unknown:
+        raise SkeletonResolveError(
+            f"product plan has unsupported fields: {', '.join(unknown)}"
+        )
+
+    order_profiles = blueprint.get("order_profiles") or {}
+    style_version = raw.get("house_style_version")
+    if style_version is None:
+        style_version = blueprint.get("default_order_profile")
+    if style_version is not None and (
+        not isinstance(style_version, str) or style_version not in order_profiles
+    ):
+        raise SkeletonResolveError(
+            "product plan house_style_version must name a declared order profile"
+        )
+
+    enabled = _string_list(
+        raw.get("enabled_optional_slots", []),
+        label="product plan enabled_optional_slots",
+    )
+    slots_by_id = {slot["slot_id"]: slot for slot in blueprint["slots"]}
+    optional_ids = {
+        slot_id
+        for slot_id, slot in slots_by_id.items()
+        if slot["requirement"] == "optional"
+    }
+    invalid_enabled = sorted(set(enabled) - optional_ids)
+    if invalid_enabled:
+        raise SkeletonResolveError(
+            "product plan enabled_optional_slots references required, capability, "
+            f"or unknown slots: {', '.join(invalid_enabled)}"
+        )
+    enabled_back = sorted(
+        slot_id for slot_id in enabled if slots_by_id[slot_id]["block"] == "back"
+    )
+    if enabled_back:
+        raise SkeletonResolveError(
+            "product plan back slots must be selected only through terminal_slots: "
+            f"{', '.join(enabled_back)}"
+        )
+
+    terminal_slots: list[str] | None = None
+    if "terminal_slots" in raw:
+        terminal_slots = _string_list(
+            raw["terminal_slots"],
+            label="product plan terminal_slots",
+        )
+        back_ids = {
+            slot_id for slot_id, slot in slots_by_id.items() if slot["block"] == "back"
+        }
+        invalid_terminal = sorted(set(terminal_slots) - back_ids)
+        if invalid_terminal:
+            raise SkeletonResolveError(
+                "product plan terminal_slots references non-back or unknown slots: "
+                f"{', '.join(invalid_terminal)}"
+            )
+
+    return {
+        "house_style_version": style_version,
+        "enabled_optional_slots": enabled,
+        "terminal_slots": terminal_slots,
+    }
+
+
+def load_product_plan(path: Path, blueprint: dict[str, Any]) -> dict[str, Any]:
+    """Load a target data carrier for the Python resolver API.
+
+    The public CLI surface intentionally stays unchanged in R3b. A later target
+    slice may pass this normalized mapping from its target-registration layer.
+    """
+
+    data = _load_yaml(path)
+    _require_schema(data, _PRODUCT_PLAN_SCHEMA, path)
+    plan_id = data.get("plan_id")
+    if not isinstance(plan_id, str) or not plan_id.strip():
+        raise SkeletonResolveError(f"{path}: plan_id must be a non-empty string")
+    allowed = {"schema_version", "plan_id", *_PRODUCT_PLAN_KEYS}
+    unknown = sorted(set(data) - allowed)
+    if unknown:
+        raise SkeletonResolveError(
+            f"{path}: product plan has unsupported fields: {', '.join(unknown)}"
+        )
+    normalized = _normalize_product_plan(
+        blueprint,
+        {key: data[key] for key in _PRODUCT_PLAN_KEYS if key in data},
+    )
+    return {key: value for key, value in normalized.items() if value is not None}
+
+
 def _merged_carrier(
     slot_id: str,
     slot_templates: dict[str, dict[str, Any]],
     profile: dict[str, Any],
+    *,
+    style_overrides: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     merged = dict(slot_templates[slot_id])
+    style_override = style_overrides.get(slot_id, {})
+    merged.update({k: v for k, v in style_override.items() if v is not None})
     override = (profile.get("slot_overrides") or {}).get(slot_id, {})
     merged.update({k: v for k, v in override.items() if v is not None})
     return merged
@@ -378,7 +581,17 @@ def resolve_plan(
     profile: dict[str, Any],
     *,
     manifest_id: str,
+    product_plan: dict[str, Any] | None = None,
+    slot_template_profiles: dict[str, dict[str, dict[str, Any]]] | None = None,
 ) -> dict[str, Any]:
+    if (blueprint.get("order_profiles") or {}) and slot_template_profiles is None:
+        raise SkeletonResolveError(
+            "declared order profiles require the slot-template profile catalog; "
+            "load both with load_slot_template_catalog"
+        )
+    selection = _normalize_product_plan(blueprint, product_plan)
+    style_version = selection["house_style_version"]
+    style_overrides = (slot_template_profiles or {}).get(style_version, {})
     primary_lang = profile["primary_lang"]
     language_set = list(profile["language_set"])
     compliance_by_anchor: dict[str, list[dict[str, Any]]] = {}
@@ -390,7 +603,12 @@ def resolve_plan(
     def emit_slot(slot: dict[str, Any], *, lang: str, qualified: bool) -> None:
         slot_id = slot["slot_id"]
         entry_slot_id = f"{slot_id}_{lang}" if qualified else slot_id
-        carrier = _merged_carrier(slot_id, slot_templates, profile)
+        carrier = _merged_carrier(
+            slot_id,
+            slot_templates,
+            profile,
+            style_overrides=style_overrides,
+        )
         pages.append(
             _entry_for(slot, carrier, slot_id=entry_slot_id, lang=lang, primary_lang=primary_lang)
         )
@@ -406,12 +624,37 @@ def resolve_plan(
                 }
             )
 
-    front = [s for s in blueprint["slots"] if s["block"] == "front"]
-    body = [s for s in blueprint["slots"] if s["block"] == "body"]
-    back = [s for s in blueprint["slots"] if s["block"] == "back"]
-    if "terminal_slots" in profile:
-        terminal_set = set(profile["terminal_slots"])
+    slots_by_id = {slot["slot_id"]: slot for slot in blueprint["slots"]}
+    order = (
+        blueprint["order_profiles"][style_version]
+        if style_version is not None
+        else [slot["slot_id"] for slot in blueprint["slots"]]
+    )
+    ordered_slots = [slots_by_id[slot_id] for slot_id in order]
+    enabled_optional = set(selection["enabled_optional_slots"])
+
+    def selected_front_or_body(slot: dict[str, Any]) -> bool:
+        return slot["requirement"] != "optional" or slot["slot_id"] in enabled_optional
+
+    front = [
+        slot
+        for slot in ordered_slots
+        if slot["block"] == "front" and selected_front_or_body(slot)
+    ]
+    body = [
+        slot
+        for slot in ordered_slots
+        if slot["block"] == "body" and selected_front_or_body(slot)
+    ]
+    back = [slot for slot in ordered_slots if slot["block"] == "back"]
+    terminal_slots = selection["terminal_slots"]
+    if terminal_slots is None and "terminal_slots" in profile:
+        terminal_slots = list(profile["terminal_slots"])
+    if terminal_slots is not None:
+        terminal_set = set(terminal_slots)
         back = [slot for slot in back if slot["slot_id"] in terminal_set]
+    else:
+        back = [slot for slot in back if slot["requirement"] != "optional"]
 
     for slot in front:
         emit_slot(slot, lang=primary_lang, qualified=False)
@@ -547,9 +790,18 @@ def build_header(skeleton_dir: Path, region_profile: Path, manifest_id: str) -> 
 def _build(args: argparse.Namespace) -> tuple[str, dict[str, Any]]:
     skeleton_dir = args.skeleton_dir
     blueprint = load_blueprint(skeleton_dir / "blueprint.yaml")
-    slot_templates = load_slot_templates(skeleton_dir / "slot_templates.yaml", blueprint)
+    slot_templates, slot_template_profiles = load_slot_template_catalog(
+        skeleton_dir / "slot_templates.yaml",
+        blueprint,
+    )
     profile = load_region_profile(args.region_profile, blueprint)
-    plan = resolve_plan(blueprint, slot_templates, profile, manifest_id=args.manifest_id)
+    plan = resolve_plan(
+        blueprint,
+        slot_templates,
+        profile,
+        manifest_id=args.manifest_id,
+        slot_template_profiles=slot_template_profiles,
+    )
     header = build_header(skeleton_dir, args.region_profile, args.manifest_id)
     return emit_manifest_yaml(plan, header=header), plan
 
