@@ -2398,10 +2398,24 @@ every item owned:
   - Suggested slicing: R1a semantic slot-diff/report; R1b shared carrier and
     language readiness. Neither PR onboards the EU target.
 
-- [ ] R2: Add the second target on the same `BP@INTL` blueprint — EU six-language
-  - Status: `in_progress`; R1 is done, the live identity is confirmed, and the
-    source/legal intake is approved. Asset enrollment and every source-table
-    write remain operator-gated with same-record readback inside this slice.
+- [x] R2: Add the second target on the same `BP@INTL` blueprint — EU six-language
+  - Status: `done` (completed 2026-08-30). Evidence PR
+    [#981](https://github.com/Bingboom/auto-manual/pull/981) passed 18/18
+    checks with no changes-requested review or unresolved review thread and
+    squash-merged to `main` as `c8fa6d0`.
+  - Completion evidence:
+    - [`reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](reviews/jbp2000b_eu_r2_native_validation_2026-08.md)
+      records the native r10 result: 54 pages, 76/76 source bindings, 455 IR
+      blocks and 530 IDML stories
+    - native preflight reported 0 overset text, missing fonts, missing glyphs
+      and bad links; PDF/X-4 plus output intent passed
+    - all 11 inspected pages were visually unchanged from r9, and the clean
+      native/package artifacts reopened successfully
+    - local closure ran 3,289 tests (5 skipped) plus Ruff, Mypy,
+      maintainability, link, target check, asset check and manifest fold/verify
+    - no live Feishu/Base write was performed; the assembly remains
+      `candidate` with `production_eligible=false` until the separate
+      reference-layout approval gate
   - Confirmed target contract: `JBP-2000B_EU`, HTP017 JBP-2000B EU, 54 reference
     pages, `en/fr/es/de/it/uk`. The source filename contains `EUUK`, but the
     operator ruled this target EU-only; `uk` here means Ukrainian and no UK
@@ -2435,7 +2449,21 @@ every item owned:
     surfaces. If target logic is needed, R2 fails and returns to R1.
 
 - [ ] R3: Establish the separate `BP@JP` skeleton cell
-  - Status: `pending`; gate: R2 proves `BP@INTL` reuse first.
+  - Status: `in_progress`; R2 has proved `BP@INTL` reuse. R3a is the only
+    active slice; R3b/R3c and every live-table write remain pending.
+  - [ ] R3a read-only three-book sequence decision
+    - Status: `in_progress` (started 2026-08-30).
+    - Scope: compare the three audited `BP@JP` manuals, decide the canonical
+      semantic slot sequence with the superset/Boolean-removal test, and report
+      the exact live-identity, source, asset, product-name, warranty and legal
+      gaps for the likely first target.
+    - Exclusions: no skeleton/config/manifest implementation, no asset
+      enrollment, no source-table write and no R3b/R3c work in this slice.
+  - [ ] R3b skeleton mechanism/data
+    - Status: `pending`; gate: R3a sequence decision accepted.
+  - [ ] R3c first target and native reconciliation
+    - Status: `pending`; gate: R3b merged and all target intake approvals
+      recorded.
   - Discovery gate:
     - compare all three audited `BP@JP` members before choosing the canonical
       slot sequence; the current design explicitly marks it pending
