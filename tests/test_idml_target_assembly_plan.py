@@ -8,6 +8,7 @@ from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
     CONNECTIONS_LAYOUT_VARIANTS,
     OPERATION_LAYOUT_VARIANTS,
+    TOC_LAYOUT_VARIANTS,
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
     _PAGE_KEYS,
@@ -166,6 +167,23 @@ def _kr_manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_toc_accepts_registered_single_column_variant(self) -> None:
+        self.assertEqual({"single_column"}, set(TOC_LAYOUT_VARIANTS))
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/toc.rst",
+                "page_role": "toc",
+                "composition_type": "toc",
+                "composition_data": {
+                    "toc": {"layout_variant": "single_column"},
+                },
+            }],
+            {},
+            _manual_ir(_payload()),
+        )
+
+        self.assertEqual([], issues)
+
     def test_symbols_accepts_target_declared_column_split(self) -> None:
         issues = _validate_composition_data(
             [{

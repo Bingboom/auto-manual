@@ -35,7 +35,12 @@
       "composition_id": "jp_toc",
       "composition_type": "toc",
       "start_page": 2,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "toc": {
+          "layout_variant": "single_column"
+        }
+      }
     },
     {
       "source_ref": "page/safety_info_ja.rst",

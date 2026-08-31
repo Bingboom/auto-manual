@@ -18,6 +18,7 @@ if _REPO_ROOT not in sys.path:  # export_idml.py runs as a direct script
     sys.path.insert(0, _REPO_ROOT)
 
 from tools.utils.path_utils import latex_renderer_of
+from tools.lang_registry import canonical_language
 
 from .params import IDPKG
 
@@ -43,7 +44,9 @@ def placed_asset_for(
     and the back cover is composed from its source-authored semantic payload.
     """
     assets_dir = latex_renderer_of(docs_dir) / "assets"
-    lang = (lang or "en").lower()
+    requested_lang = (lang or "en").strip().lower()
+    canonical_lang = canonical_language(requested_lang) or requested_lang
+    asset_languages = tuple(dict.fromkeys((canonical_lang, requested_lang)))
     if page_stem.startswith("cover"):
         model_slug = _cover_model_slug(model)
         candidates: list[str] = []
@@ -53,18 +56,23 @@ def placed_asset_for(
                 candidates.append(name)
 
         if model_slug:
-            add_candidate(f"cover_{model_slug}-{lang}.pdf")
+            for asset_lang in asset_languages:
+                add_candidate(f"cover_{model_slug}-{asset_lang}.pdf")
 
         # The unscoped ``cover-<lang>.pdf`` files predate model-bound cover
         # names and belong to JE-1000F.  Keep that compatibility only for the
         # owning model (and old callers without model context); otherwise a
         # missing target cover must not silently place another product.
         if not model_slug or model_slug == "je1000f":
-            add_candidate(f"cover-{lang}.pdf")
+            for asset_lang in asset_languages:
+                add_candidate(f"cover-{asset_lang}.pdf")
 
-        if model_slug and lang != "en":
+        if model_slug and "en" not in asset_languages:
             add_candidate(f"cover_{model_slug}-en.pdf")
-        if (not model_slug or model_slug == "je1000f") and lang != "en":
+        if (
+            (not model_slug or model_slug == "je1000f")
+            and "en" not in asset_languages
+        ):
             add_candidate("cover-en.pdf")
     else:
         return None

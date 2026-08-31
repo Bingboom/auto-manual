@@ -676,6 +676,48 @@ class ExportIdmlTests(unittest.TestCase):
                     period["blocks"][0]["spec"]["kind"],
                 )
 
+    def test_bp_jp_warranty_uses_shared_sections_without_inventing_year_badges(
+        self,
+    ) -> None:
+        from tools.idml.oppanel import transform
+        from tools.idml_rst_extract import extract_page
+
+        page = (
+            ROOT / "docs" / "templates" / "page_bp" / "ja"
+            / "11_warranty.rst"
+        )
+        extracted = extract_page(page, {"latex"})
+        semantic = [
+            json.loads(payload)
+            for kind, payload in extracted.blocks
+            if kind == "semantic"
+        ]
+        self.assertEqual(
+            ["warranty_lead"] + ["warranty_section"] * 7,
+            [block["kind"] for block in semantic],
+        )
+        self.assertNotIn(
+            "warranty_years",
+            {role for block in semantic for role in block["roles"]},
+        )
+
+        projected = transform(extracted.blocks)
+        component_specs = [
+            json.loads(payload)
+            for kind, payload in projected
+            if kind == "component"
+        ]
+        self.assertEqual(
+            ["warrantylead"] + ["warrantysection"] * 7,
+            [spec["kind"] for spec in component_specs],
+        )
+        self.assertFalse(any(
+            child.get("spec", {}).get("kind") == "warrantyyears"
+            for spec in component_specs
+            for child in spec.get("blocks", [])
+            if isinstance(child, dict)
+        ))
+
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)

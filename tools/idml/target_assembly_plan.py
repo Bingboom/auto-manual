@@ -41,6 +41,7 @@ INBOX_LAYOUT_VARIANTS = frozenset({"compact_with_tip"})
 OVERVIEW_LAYOUT_VARIANTS = frozenset({"annotated_without_view_headings"})
 STORAGE_LAYOUT_VARIANTS = frozenset({"rounded_panel"})
 REGULATORY_LAYOUT_VARIANTS = frozenset({"bottom_card"})
+TOC_LAYOUT_VARIANTS = frozenset({"single_column"})
 
 
 # Every key a plan page may carry. Anything else fails validation: a
@@ -318,6 +319,27 @@ def _validate_composition_data(
                 )
             )
         if not data:
+            continue
+        if set(data) == {"toc"}:
+            if page.get("page_role") != PageRole.TOC.value or page.get(
+                "composition_type"
+            ) != "toc":
+                issues.append(
+                    f"{source_ref}.composition_data.toc requires a TOC composition"
+                )
+                continue
+            toc = data["toc"]
+            if not isinstance(toc, dict) or set(toc) != {"layout_variant"}:
+                issues.append(
+                    f"{source_ref}.composition_data.toc must contain "
+                    "exactly ['layout_variant']"
+                )
+                continue
+            if toc.get("layout_variant") not in TOC_LAYOUT_VARIANTS:
+                issues.append(
+                    f"{source_ref}.composition_data.toc.layout_variant must be one of "
+                    + ", ".join(sorted(TOC_LAYOUT_VARIANTS))
+                )
             continue
         if set(data) == {"symbols"}:
             if page.get("page_role") != PageRole.SYMBOLS.value or page.get(
@@ -906,7 +928,7 @@ def _validate_composition_data(
         if set(data) != {"lcd"}:
             issues.append(
                 f"{source_ref}.composition_data supports only charging, "
-                "connections, lcd, regulatory, specifications, storage, "
+                "connections, lcd, regulatory, specifications, storage, toc, "
                 "troubleshooting, or warranty component data"
             )
             continue
