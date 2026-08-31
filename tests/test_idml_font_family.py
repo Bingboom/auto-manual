@@ -170,6 +170,16 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
                     _fallback_font(icon),
                 )
 
+    def test_editable_bullet_markers_use_the_portable_bullet_face(self) -> None:
+        from tools.idml.inline_text import _fallback_font
+
+        for marker in "●■◦":
+            with self.subTest(marker=marker):
+                self.assertEqual(
+                    BULLET_FONT_FAMILY_TOKEN.name,
+                    _fallback_font(marker),
+                )
+
     def test_authority_modules_do_not_repeat_primary_family_literal(self) -> None:
         for relative_path in (
             "tools/idml/styles.py",

@@ -34,7 +34,7 @@ SYMBOL_FONT_FALLBACKS = {
     # every designer-facing IDML package.  Keep the source codepoints intact
     # and split only the icon run from the adjacent contact copy.
     **{ch: BULLET_FONT for ch in "☎✉◉"},
-    "●": BULLET_FONT,
+    **{ch: BULLET_FONT for ch in "●■"},
     # Gilroy does not cover the open-circle marker used by nested warranty
     # lists.  Keep the authored marker editable, but route it through the
     # same portable bullet face already shipped in every IDML package.
