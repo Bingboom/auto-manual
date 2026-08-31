@@ -390,7 +390,12 @@ def main() -> int:
                     )
                     toc.stem_langs[page.stem] = page_lang(page)
                     prose_flow.add(page.stem, _prose_flow.align_trouble_table(
-                        list(res.blocks), page_plan, page.stem))
+                        _prose_flow.mark_troubleshooting_table(
+                            list(res.blocks),
+                        ),
+                        page_plan,
+                        page.stem,
+                    ))
                     continue
             emit_data_page(matched, page_lang(page))
             continue

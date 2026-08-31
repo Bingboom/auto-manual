@@ -819,7 +819,10 @@ class IdmlVisualParityTests(unittest.TestCase):
             ["FE", "Contact support."],
         ])
 
-        render_table_block(rows, ctx, tid="tbl_test_trouble", terminal=True)
+        render_table_block(
+            rows, ctx, tid="tbl_test_trouble", terminal=True,
+            troubleshooting=True,
+        )
 
         table_story = dict(writer.stories)["st_anchor_trouble_tbl_test_trouble"]
         self.assertIn('MinimumHeight="62.03" AutoGrow="true"', table_story)
@@ -829,28 +832,72 @@ class IdmlVisualParityTests(unittest.TestCase):
         self.assertIn('TopEdgeStrokeWeight="0.25"', table_story)
         self.assertIn('TopEdgeStrokeColor="Color/HB Brand Dark"', table_story)
 
-    def test_localized_troubleshooting_headers_use_shared_rounded_component(self) -> None:
-        for header in ("Code d'erreur", "Código de fallo", "Código de error"):
-            writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
-            ctx = RenderContext(
-                params=writer.params,
-                page_w=writer.page_w,
-                m_l=writer.m_l,
-                m_r=writer.m_r,
-                root=ROOT,
-                bundle_root=ROOT / "docs",
-                add_story=writer._add_story_parts,
-            )
-            render_table_block(
-                [[header, "Mesures correctives"], ["F0", "Redémarrer le produit."]],
-                ctx,
-                tid="tbl_localized_trouble",
-                terminal=True,
-            )
-            self.assertIn(
-                'st_anchor_trouble_tbl_localized_trouble',
-                dict(writer.stories),
-            )
+    def _render_trouble(
+        self, rows: list[list[str]], *, language: str, declared: bool,
+    ) -> dict[str, str]:
+        writer = IdmlWriter(load_layout_params(ROOT / "data" / "layout_params.csv"))
+        ctx = RenderContext(
+            params=writer.params,
+            page_w=writer.page_w,
+            m_l=writer.m_l,
+            m_r=writer.m_r,
+            root=ROOT,
+            bundle_root=ROOT / "docs",
+            add_story=writer._add_story_parts,
+            language=language,
+        )
+        render_table_block(
+            rows,
+            ctx,
+            tid="tbl_localized_trouble",
+            terminal=True,
+            troubleshooting=declared,
+        )
+        return dict(writer.stories)
+
+    def test_every_language_gets_the_shared_rounded_troubleshooting_component(
+        self,
+    ) -> None:
+        """The component follows the declaration, not the printed header.
+
+        The header set only ever held EN/FR/ES spellings, so ja/zh/de/it/uk/
+        pt-BR/ko every one fell through to the legacy square table while
+        manual_style.yaml declared HB-TABLE-TROUBLESHOOTING `aligned`. These
+        headers are exactly the ones the old set could never match.
+        """
+        cases = (
+            ("ko", "오류 코드", "조치 방법", "제품을 재시작하십시오."),
+            ("ja", "エラーコード", "対処方法", "製品を再起動してください。"),
+            ("zh", "故障代码", "解决措施", "重启产品。"),
+            ("de", "Fehlercode", "Abhilfemaßnahmen", "Starten Sie das Produkt neu."),
+            ("it", "Codice errore", "Misure correttive", "Riavviare il prodotto."),
+            ("uk", "Код помилки", "Заходи з усунення", "Перезапустіть виріб."),
+            ("pt-BR", "Código de erro", "Medidas corretivas", "Reinicie o produto."),
+        )
+        for language, header, header_right, body in cases:
+            with self.subTest(language=language):
+                stories = self._render_trouble(
+                    [[header, header_right], ["F0", body]],
+                    language=language,
+                    declared=True,
+                )
+
+                self.assertIn("st_anchor_trouble_tbl_localized_trouble", stories)
+
+    def test_an_undeclared_table_never_routes_on_its_printed_header(self) -> None:
+        """STYLE_DEFINITION §0.5: localized copy must not select a composer.
+
+        The English header is the strongest possible probe — it is the one
+        spelling the removed set definitely held. Without the declaration it
+        must render as an ordinary table.
+        """
+        stories = self._render_trouble(
+            [["Error Code", "Corrective Measures"], ["F0", "Restart the product."]],
+            language="en",
+            declared=False,
+        )
+
+        self.assertNotIn("st_anchor_trouble_tbl_localized_trouble", stories)
 
 
 if __name__ == "__main__":

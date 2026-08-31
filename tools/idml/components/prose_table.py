@@ -264,15 +264,9 @@ class TroubleshootingTableStyle:
         return self.extra_row_min_height
 
 
-_TROUBLESHOOTING_HEADER_LANGUAGES = {
-    "error code": "en",
-    "code d'erreur": "fr",
-    "code d’erreur": "fr",
-    "código de fallo": "es",
-    "codigo de fallo": "es",
-    "código de error": "es",
-    "codigo de error": "es",
-}
+def _troubleshooting_language(language: str | None) -> str:
+    """Normalize the declared page language for calibration lookup."""
+    return (language or "en").split("-", 1)[0].strip().casefold() or "en"
 _TROUBLESHOOTING_LOCALE_CALIBRATIONS = {
     "en": _TroubleshootingLocaleCalibration(
         native_row_heights=(
@@ -527,6 +521,7 @@ def _troubleshooting_frame_height(
     *,
     body_width: float,
     style: TroubleshootingTableStyle,
+    language: str,
 ) -> float:
     """Budget localized AutoGrow rows before emitting the fixed panel group.
 
@@ -547,9 +542,13 @@ def _troubleshooting_frame_height(
             column_widths=column_widths,
             style=style,
         )) + style.import_safety
-    header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-    language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
-    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS[language]
+    # Only en/fr/es have a measured line-baseline pass; an untuned language
+    # borrows the en baselines. This used to be a bare subscript, so the
+    # first non-en/fr/es table to be recognised would have raised KeyError.
+    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS.get(
+        _troubleshooting_language(language),
+        _TROUBLESHOOTING_LOCALE_CALIBRATIONS["en"],
+    )
     budget = 0.0
     for row_index, row in enumerate(raw_rows):
         right = str(row[1]) if len(row) > 1 else ""
@@ -706,8 +705,7 @@ def _troubleshooting_table(
         if is_compact
         else None
     )
-    header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-    language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
+    language = _troubleshooting_language(ctx.language)
 
     cells: list[str] = []
     for ri, row in enumerate(raw_rows):
@@ -808,6 +806,7 @@ def _troubleshooting_table(
         raw_rows,
         body_width=body_w,
         style=style,
+        language=language,
     )
 
 
@@ -949,20 +948,17 @@ def _body_data_table(
 
 
 def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
-                       terminal: bool, span_columns: bool = True) -> tuple[str, float]:
+                       terminal: bool, span_columns: bool = True,
+                       troubleshooting: bool = False) -> tuple[str, float]:
     n_cols = max(len(r) for r in raw_rows)
     first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
     is_overview = first_cell in {"POWER Button", "Total Output", "Handle"}
-    # Troubleshooting is a shared visual component across EN/FR/ES. Detect
-    # the semantic header in every governed language so localized pages do
-    # not silently fall back to the legacy square table.
-    trouble_headers = {
-        "error code", "code d'erreur", "code d’erreur",
-        "código de fallo", "codigo de fallo",
-        "código de error", "codigo de error",
-    }
-    trouble_header = str(raw_rows[0][0]).strip().casefold() if raw_rows else ""
-    is_troubleshooting = n_cols == 2 and trouble_header in trouble_headers
+    # The caller declares this table's semantic; it is never re-derived from
+    # the printed header. Matching localized copy is what STYLE_DEFINITION
+    # §0.5 forbids, and the header set only ever held EN/FR/ES spellings, so
+    # ja/zh/de/it/uk/pt-BR/ko all fell through to the legacy square table
+    # while manual_style.yaml declared HB-TABLE-TROUBLESHOOTING `aligned`.
+    is_troubleshooting = n_cols == 2 and troubleshooting
     body_kind = body_data_table_kind(raw_rows)
     is_auto_resume = body_kind == "auto_resume"
     is_key_combinations = body_kind == "key_combinations"
@@ -1008,10 +1004,7 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
     elif is_troubleshooting:
         troubleshooting_style = TroubleshootingTableStyle.from_context(
             ctx,
-            language=_TROUBLESHOOTING_HEADER_LANGUAGES.get(
-                trouble_header,
-                "en",
-            ),
+            language=_troubleshooting_language(ctx.language),
         )
         table, framed_h = _troubleshooting_table(
             raw_rows,
@@ -1147,9 +1140,9 @@ def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
             raise RuntimeError("troubleshooting style was not resolved")
         # LaTeX's HBDataTableFrame has a dedicated before gap.  Keep it on
         # the host paragraph so page-flow and table geometry remain separate.
-        header = _plain_cell(raw_rows[0][0]).casefold() if raw_rows else ""
-        language = _TROUBLESHOOTING_HEADER_LANGUAGES.get(header, "en")
-        table_space_before = troubleshooting_style.table_space_before(language)
+        table_space_before = troubleshooting_style.table_space_before(
+            _troubleshooting_language(ctx.language),
+        )
         xml = xml.replace(
             "<ParagraphStyleRange ",
             f'<ParagraphStyleRange SpaceBefore="{table_space_before:g}" ',
