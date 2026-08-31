@@ -496,6 +496,48 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
 
+    def test_warranty_sublist_marker_uses_portable_bullet_font(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid, _title, parts):
+            stories[sid] = "".join(parts)
+            return sid
+
+        render(
+            {
+                "kind": "warrantysection",
+                "title": "保証内容",
+                "index": 7,
+                "blocks": [{"kind": "sublist", "text": "◦ 修理条件"}],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="ja",
+                add_story=add_story,
+            ),
+            tid="warranty_sublist_font",
+            terminal=True,
+        )
+
+        story = stories["st_anchor_warranty_body_warranty_sublist_font"]
+        marker_range = story.split("<Content>◦</Content>", 1)[0].rsplit(
+            "<CharacterStyleRange", 1,
+        )[1]
+        self.assertIn('PointSize="4.8"', marker_range)
+        self.assertIn(
+            '<AppliedFont type="string">Noto Sans Symbols2</AppliedFont>',
+            marker_range,
+        )
+
     def test_app_numbered_headings_and_lists_share_hanging_contract(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import styles_xml

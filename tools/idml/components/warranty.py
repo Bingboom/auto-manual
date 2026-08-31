@@ -4,6 +4,7 @@ from __future__ import annotations
 import re
 
 from .. import page_objects as _po
+from ..inline_text import character_ranges
 from ..line_metrics import estimated_line_count, estimated_text_width
 from ..params import param_pt
 from ..primitives import (
@@ -617,12 +618,16 @@ def _section_body(
                 f'<Position type="unit">{list_indent:g}</Position>'
                 '</ListItem></TabList></Properties>'
             )
-            bullet_xml = (
-                '<CharacterStyleRange '
+            bullet_xml = "".join(character_ranges(
+                list_marker,
+                bold=False,
+                superscript_markers=False,
+                replacements={},
+            )).replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'PointSize="4.8">'
-                f'<Content>{list_marker}</Content>'
-                '</CharacterStyleRange>'
+                'PointSize="4.8"',
+                1,
             )
             tab_xml = (
                 '<CharacterStyleRange '
