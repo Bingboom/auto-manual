@@ -144,17 +144,14 @@ class RenderContractTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "redefines existing keys"):
                 load_layout_token_layers(base, (overlay,))
 
-    def test_alias_spelled_language_row_is_rejected_with_the_canonical_code(
-        self,
-    ) -> None:
-        """An alias-spelled row is unreachable, so it must not load quietly.
+    def test_pipeline_spelled_japanese_row_loads(self) -> None:
+        """`lang_jp_` is reachable and must not be rejected as an alias.
 
-        `jp` is a registered alias of `ja` and is what the phase2 data columns
-        use, but no lookup path ever builds a lang_ prefix from an alias — the
-        IDML cascade and every component use the canonical code. Seven
-        "measured from the JP reference" rows shipped this way on a target
-        branch and were read zero times, including the five added by the
-        commit whose whole purpose was to align that page.
+        `normalize_lang` deliberately maps canonical `ja` onto `jp`, the
+        historical phase2 suffix, and the IDML page path builds its prefix from
+        that output — so the seven "measured from the JP reference" BP@JP rows
+        are read exactly as spelled. An earlier revision of this gate assumed
+        no path builds a prefix from an alias and would have rejected them.
         """
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -170,11 +167,30 @@ class RenderContractTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
+            tokens = load_layout_token_layers(base, (overlay,))
+
+        self.assertEqual(
+            "145.0", tokens["lang_jp_idml_inbox_compact_card_height"].value,
+        )
+
+    def test_data_column_alias_row_is_rejected_with_the_canonical_code(
+        self,
+    ) -> None:
+        """`ukr` is a data-column alias no lookup path spells that way."""
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp) / "base.csv"
+            base.write_text(
+                "key,value,unit,comment\n"
+                "page_paperwidth,100,pt,base\n"
+                "lang_ukr_idml_gap,4,pt,alias\n",
+                encoding="utf-8",
+            )
+
             with self.assertRaisesRegex(
                 ValueError,
-                r"unreachable language row .*use the canonical code 'ja'",
+                r"unreachable language row .*data-column alias.*'uk'",
             ):
-                load_layout_token_layers(base, (overlay,))
+                load_layout_token_layers(base)
 
     def test_unregistered_language_row_is_rejected(self) -> None:
         with TemporaryDirectory() as tmp:
@@ -192,14 +208,26 @@ class RenderContractTests(unittest.TestCase):
             ):
                 load_layout_token_layers(base)
 
-    def test_every_canonical_spelling_a_lookup_can_build_is_accepted(self) -> None:
-        """The gate must accept each prefix form the code actually produces."""
+    def test_every_spelling_a_lookup_can_build_is_accepted(self) -> None:
+        """The gate must accept each prefix form the code actually produces.
+
+        That is both the canonical registry spelling and the `normalize_lang`
+        output the IDML page path uses, in their base-subtag and
+        hyphen-swapped forms.
+        """
+        from tools.idml.loaders import normalize_lang
         from tools.lang_registry import LANGUAGE_REGISTRY
 
         rows = ["key,value,unit,comment", "page_paperwidth,100,pt,base"]
         for index, spec in enumerate(LANGUAGE_REGISTRY):
-            code = spec.code.casefold()
-            for variant in {code, code.replace("-", "_"), code.split("-", 1)[0]}:
+            variants = set()
+            for spelling in (spec.code.casefold(), normalize_lang(spec.code).casefold()):
+                variants |= {
+                    spelling,
+                    spelling.replace("-", "_"),
+                    spelling.split("-", 1)[0],
+                }
+            for variant in variants:
                 rows.append(f"lang_{variant}_idml_gap_{index},4,pt,ok")
         with TemporaryDirectory() as tmp:
             base = Path(tmp) / "base.csv"

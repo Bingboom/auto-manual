@@ -80,28 +80,42 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
 def _language_row_prefixes() -> tuple[frozenset[str], dict[str, str]]:
     """Prefixes a build can actually look up, plus alias -> canonical hints.
 
-    Language rows are written ``lang_<code>_<base-key>`` and every lookup path
-    builds that prefix from the **canonical** code: the IDML cascade takes the
-    base subtag (``pt-BR`` -> ``pt``) and ``resolve_layout_tokens`` swaps the
-    hyphen (``pt_br``). The registry also carries aliases — ``ja`` is spelled
-    ``jp`` for the phase2 data columns — but nothing ever builds a prefix from
-    one, so an alias-spelled row is unreachable and silently falls back to the
-    base value.
+    Language rows are written ``lang_<code>_<base-key>``, and two lookup paths
+    build that prefix from two different spellings of the same language:
+
+    * ``resolve_layout_tokens`` and the IDML cascade use the canonical registry
+      code, taking the base subtag (``pt-BR`` -> ``pt``) or swapping the hyphen
+      (``pt_br``);
+    * the IDML page path runs the language through
+      :func:`tools.idml.loaders.normalize_lang` first, which deliberately maps
+      canonical ``ja`` onto the historical phase2 suffix ``jp``.
+
+    Both spellings are therefore reachable, and which one a given row needs
+    depends on the site that resolves its language — this gate cannot decide
+    that, so it only rejects a spelling **no** path builds, such as a
+    data-column alias (``ukr``, ``cn``) or a typo. Per-target reachability is
+    covered by ``tests/test_layout_language_row_reachability.py``.
     """
 
     try:
+        from tools.idml.loaders import normalize_lang
         from tools.lang_registry import LANGUAGE_REGISTRY
     except ImportError:  # pragma: no cover - direct script execution
+        from idml.loaders import normalize_lang  # type: ignore[no-redef]
         from lang_registry import LANGUAGE_REGISTRY  # type: ignore[no-redef]
 
     prefixes: set[str] = set()
     canonical_for: dict[str, str] = {}
     for spec in LANGUAGE_REGISTRY:
         code = spec.code.casefold()
-        prefixes.update({code, code.replace("-", "_"), code.split("-", 1)[0]})
+        pipeline = normalize_lang(spec.code).casefold()
+        for spelling in (code, pipeline):
+            prefixes.update(
+                {spelling, spelling.replace("-", "_"), spelling.split("-", 1)[0]}
+            )
         for alias in spec.aliases:
             folded = alias.casefold()
-            if folded != code:
+            if folded not in {code, pipeline}:
                 canonical_for[folded] = spec.code
     return frozenset(prefixes), canonical_for
 
@@ -120,14 +134,16 @@ def _reject_unreachable_language_rows(
         spelling = key[len("lang_"):].split("_", 1)[0]
         canonical = canonical_for.get(spelling.casefold())
         hint = (
-            f"use the canonical code {canonical!r}, not the alias {spelling!r}"
+            f"{spelling!r} is a data-column alias; use the canonical code "
+            f"{canonical!r} or its pipeline spelling"
             if canonical
             else f"{spelling!r} is not a registered language code"
         )
         raise ValueError(
             f"layout token {source} declares an unreachable language row "
-            f"{key!r}: {hint}. Nothing builds a lang_ prefix from it, so the "
-            "row would be silently ignored and the base value used instead."
+            f"{key!r}: {hint}. No lookup path builds a lang_ prefix from that "
+            "spelling, so the row would be silently ignored and the base value "
+            "used instead."
         )
 
 
