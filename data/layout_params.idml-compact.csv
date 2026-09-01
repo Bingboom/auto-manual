@@ -125,11 +125,11 @@ idml_inbox_compact_content_height,82.0,pt,Compact inbox content frame height
 idml_inbox_compact_badge_y_offset,8.0,pt,Compact inbox badge offset from card top
 idml_inbox_compact_stroke_color,Color/HB Border K10,none,Compact inbox card border swatch
 idml_inbox_compact_stroke_weight,0.75,pt,Compact inbox card border weight
-lang_ja_idml_inbox_compact_card_height,145.0,pt,Japanese BP inbox card height measured from the shipped reference
-lang_ja_idml_inbox_compact_content_height,119.0,pt,Japanese BP inbox card content height measured from the shipped reference
-lang_ja_idml_inbox_compact_tip_y,365.0,pt,Japanese BP inbox notice top measured from the shipped reference
-lang_ja_idml_inbox_compact_tip_height,44.0,pt,Japanese BP inbox notice height measured from the shipped reference
-lang_ja_idml_inbox_compact_tip_label_width,36.0,pt,Japanese BP inbox notice label width
+lang_jp_idml_inbox_compact_card_height,145.0,pt,Japanese BP inbox card height measured from the shipped reference
+lang_jp_idml_inbox_compact_content_height,119.0,pt,Japanese BP inbox card content height measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_y,365.0,pt,Japanese BP inbox notice top measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_height,44.0,pt,Japanese BP inbox notice height measured from the shipped reference
+lang_jp_idml_inbox_compact_tip_label_width,36.0,pt,Japanese BP inbox notice label width
 idml_compact_overview_top,319.0,pt,Shared FCC inbox overview product-overview title top
 idml_compact_overview_height,142.0,pt,Shared FCC inbox overview product-overview art height
 idml_overview_callout_label_font_size,6.0,pt,BP overview callout label size measured from the reference
@@ -199,8 +199,8 @@ lang_uk_idml_warranty_note_horizontal_scale,80,int,Ukrainian BP warranty legal-n
 lang_uk_idml_warranty_lead_horizontal_scale,84,int,Ukrainian BP warranty lead width correction
 lang_uk_idml_warranty_lead_height,36,pt,Ukrainian BP warranty lead height
 lang_uk_comp_warranty_page_extra_height,48,pt,Ukrainian BP warranty host-frame import allowance
-lang_ja_idml_warranty_lead_height,40,pt,Japanese BP warranty lead height for the authored three-line introduction
-lang_ja_idml_warranty_variant_bp_default_body_top_adjust,0,pt,Japanese stacked-card body baseline without the Latin optical inset
+lang_jp_idml_warranty_lead_height,40,pt,Japanese BP warranty lead height for the authored three-line introduction
+lang_jp_idml_warranty_variant_bp_default_body_top_adjust,0,pt,Japanese stacked-card body baseline without the Latin optical inset
 idml_warranty_variant_multiline_lead_panel_height_adjust_1,3.0,pt,Multiline-lead first warranty-panel height adjustment
 idml_warranty_variant_multiline_lead_section_2_before_adjust,-1.5,pt,Multiline-lead period-section rhythm adjustment
 idml_warranty_variant_multiline_lead_panel_height_adjust_2,2.0,pt,Multiline-lead period-panel height adjustment
