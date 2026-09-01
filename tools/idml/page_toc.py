@@ -269,8 +269,15 @@ def _localized_text_ranges(
     point_size: float,
     font_style: str,
     horizontal_scale: float | None = None,
+    point_size_format: str = "g",
 ) -> str:
-    """Serialize TOC copy through the shared language-font run contract."""
+    """Serialize TOC copy through the shared language-font run contract.
+
+    ``point_size_format`` exists because the approved reference bytes are not
+    uniform: entry runs carry ``PointSize="6.500"`` while the bar label
+    carries ``PointSize="7"``. Both spellings mean the same size, so the
+    format stays a caller's choice rather than being normalised here.
+    """
     ranges = "".join(character_ranges(
         text,
         bold=False,
@@ -280,7 +287,7 @@ def _localized_text_ranges(
 
     def decorate(match: re.Match[str]) -> str:
         tag = match.group(0)
-        attributes = [f'PointSize="{point_size:g}"']
+        attributes = [f'PointSize="{point_size:{point_size_format}}"']
         if " FontStyle=" not in tag:
             attributes.append(f'FontStyle="{font_style}"')
         if horizontal_scale is not None:
@@ -314,6 +321,7 @@ def _entry_psr(
         point_size=point_size,
         font_style="Medium",
         horizontal_scale=horizontal_scale,
+        point_size_format=".3f",
     )
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{right_tab}'
@@ -678,7 +686,14 @@ def finalize(
                 frames.append(writer._frame_xml(
                     f"tf_toc_seg{segment_index}_c{column_index}", sid,
                     *writer._page_rect(
-                        entry_x, entry_y, entry_w, 14.0 * len(chunk) + 14.0,
+                        entry_x,
+                        entry_y,
+                        entry_w,
+                        # Two-column segments size both frames off the larger
+                        # half, so an odd entry count does not shorten the
+                        # right column. Only the single-column path measures
+                        # its own chunk.
+                        14.0 * (len(chunk) if single_column else half) + 14.0,
                     ),
                     inset=(0, 0, 0, 0)))
             y += (
