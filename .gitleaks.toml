@@ -25,9 +25,18 @@ regexes = [
   # env / python / doc assignments, never the JSON form ("asset_key": "..."),
   # so every business key inside data/asset_recipes/*.json was unprotected.
   # It surfaced when one asset key's own entropy crossed generic-api-key's
-  # threshold. Widening is limited to JSON punctuation around the SAME key
-  # names; no new key name and no new value shape is exempted.
-  '''(?i)(document_key|row_key|symbol_key|copy_key|asset_key|business_key|page_key|source_key|record_key)"?\s*[=:]''',
+  # threshold. Widening is limited to JSON punctuation around these key
+  # names; no new value shape is exempted.
+  #
+  # record_id is the one key name added since: a Feishu record_id is a
+  # resource identifier of the same class as the base/wiki tokens already
+  # allowlisted above, and the intake reports commit it as
+  # "document_key_record_id". Note the suffix is why record_key did not
+  # cover it — the trailing quote must follow the key name immediately, so
+  # "document_key_record_id" only matches once record_id is itself listed.
+  # That same strictness is what keeps the exemption narrow: a credential
+  # wearing the name ("record_id_secret") still fails the scan.
+  '''(?i)(document_key|row_key|symbol_key|copy_key|asset_key|business_key|page_key|source_key|record_key|record_id)"?\s*[=:]''',
   # bare 27/28-char Feishu-token fixture assignment (tests)
   '''(?i)^\s*token\s*=\s*"[A-Za-z0-9]{27,28}"''',
   # Feishu table identifiers are resource IDs, not credentials.
