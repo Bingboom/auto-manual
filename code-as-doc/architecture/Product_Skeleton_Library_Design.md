@@ -136,19 +136,23 @@ Axis ownership, corrected against the HTE152 and HTE153 factorials:
 - **`region_profile`** (new; an overlay key space, **not** a third anchor key)
   owns the compliance fragment mounting row, safety-module regional variant,
   unit system, legal-entity/contact module, brand display name, language-set
-  reference, TOC on/off, terminal/back-cover form, and cover module. A
-  profile's `terminal_slots` is a selection from the blueprint-owned `back`
-  superset: it may choose a QR `back_cover`, a
-  `regulatory_compliance` carrier, both in blueprint order, or an explicitly
-  empty set. It does not create or reorder topics, and a selected carrier with
-  no family default must be supplied by the region's `slot_overrides`.
+  reference, TOC convention, terminal/back-cover carrier variants, and cover
+  module. The earlier profile-level `terminal_slots` field remains the
+  compatibility selector for existing BP@INTL manifests. R3b closes the
+  per-target case: Product Manual Plan data owns the final terminal selection
+  whenever two books in the same region differ. It may choose a QR
+  `back_cover`, a `regulatory_compliance` carrier, both in blueprint order, or
+  an explicitly empty set. The region profile does not create or reorder
+  topics, and a selected carrier with no family default must be supplied by
+  the region's `slot_overrides`.
   Keeping region out of the anchor key is deliberate: promoting it would split
   the 27 `MAIN@INTL` manuals into seven cells — precisely the "8+ phantom
   skeletons" §4.2 already rejected. The mechanism is §6.3's existing
   `fragment + (region, host_page, repeat_per_language)`, generalized from
   compliance-only to region-keyed module variants.
 - **`house_style_version` ∈ {v1, v2}** is an *attribute* of `house_style`, not
-  a fourth key. It owns the order profile and safety-block placement.
+  a fourth key. It selects a blueprint-declared order profile plus compatible
+  family carrier variants (for example the JP safety and warranty forms).
 
 **A5 dissolves.** Its three members shared a signature (specifications first,
 safety blocks last, `保証サービス` instead of `保証について`, `認証` row instead
@@ -315,7 +319,7 @@ with `BP@INTL`'s storage↔spec pair.
 
 ### 5.1 Three tables, not one
 
-`docs/manifests/family/index.yaml` currently holds `anchors` = 2 *repository
+`docs/manifests/family/index.yaml` currently holds `anchors` = 4 *repository
 fold bases*. Phase A's "anchors" are *corpus skeletons* with no repository
 file. Merging them conflates "what can be built today" with "what the corpus
 proves exists". The registry (`family-manifest-index/v2`) therefore keeps
@@ -349,11 +353,13 @@ minority, and every diff pays two `slot_retype` operations for it.
   72.2% normalized block containment, and decisively it **inherits a defect**,
   the LCD-display TOC entry reading folio 05 where the body prints 04, exactly
   as in the EU V2.0 master.
-- **`order_profile`**: `host_order | pack_order | spec_first`, stored as a
-  reference rather than inlined, because it drifts across families and regions
-  (international main = host, international BP = pack, JP BP = host,
-  HTE132/HTE119 JP main = pack). Inlining it into the anchor reproduces the
-  lens error.
+- **`order_profile`**: stored as a named blueprint-owned slot-ID sequence and
+  selected by the Product Manual Plan's `house_style_version`. It is referenced
+  rather than copied into targets because it drifts across families and house
+  style versions (international main = host, international BP = pack, JP BP
+  `jp-v2` = canonical tail-spec order, JP `jp-v1` = spec-first/safety-last).
+  Every profile must contain the complete stable slot universe exactly once;
+  optional existence remains a separate target-plan fact.
 - **Page grid as a first-class slot table** `(printed_page, [topic…])` instead
   of `(chapter, start_page)`. 7 of 10 remeasured books put two chapters on one
   printed page; with only `start_page`, their order is inexpressible because
@@ -567,6 +573,10 @@ at **module import** (line 148). A new `config.bp-jp.yaml` would tie with
 `config.ja.yaml` — so adding the battery-pack config would make the **entire
 `build.py` CLI fail to start**, not just that target. B5 therefore lands an
 explicit `build.family_default: true` marker before any new family config.
+Both default-discovery paths use it: family selection prefers exactly one
+explicit marker, and duplicate single-language batch configs choose that same
+marked config. Zero or multiple markers in an otherwise ambiguous set fail
+closed.
 
 ### 7.3 Workstream wiring
 
@@ -643,6 +653,13 @@ owns it). No second rendering stack. No relaxation of live-table write gates.
 
 ## 10. Revision log
 
+- 2026-08-30 (post-S6 R3b): implemented the separate `BP@JP` cell with one
+  stable slot universe, declared `jp-v2` / `jp-v1` order profiles, opt-in
+  product-plan slots, per-target terminal selection and versioned safety/
+  warranty carriers. `manual_bp-jp.yaml` is a target-neutral required-core
+  anchor; the three audited book sequences resolve through plan data. Existing
+  BP@INTL US/EU bytes and the MAIN JP default remain unchanged. The target
+  config, Japanese source/assets and native reconciliation remain R3c.
 - 2026-08-30 (post-S6 R1b prerequisite): `BP@INTL` gained the corpus-proven
   `regulatory_compliance` terminal topic and the resolver gained a generic
   `region_profile.terminal_slots` selector. US explicitly selects only

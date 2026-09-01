@@ -69,6 +69,7 @@ ROLE_COMPOSITION: dict[PageRole, str] = {
     PageRole.STORAGE_MAINTENANCE: "storage_specifications",
     PageRole.SPEC: "storage_specifications",
     PageRole.WARRANTY: "warranty",
+    PageRole.REGULATORY_COMPLIANCE: "regulatory_compliance",
     PageRole.BACK_COVER: "back_cover",
 }
 

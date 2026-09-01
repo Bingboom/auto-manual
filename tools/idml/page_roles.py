@@ -28,6 +28,7 @@ class PageRole(str, Enum):
     TROUBLESHOOTING_PROSE = "troubleshooting_prose"
     WARRANTY = "warranty"
     APP_SETUP = "app_setup"
+    REGULATORY_COMPLIANCE = "regulatory_compliance"
     BACK_COVER = "back_cover"
     COVER = "cover"
     SAFETY = "safety"
@@ -171,6 +172,11 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     PageRoleRule(
         PageRole.APP_SETUP,
         semantic_stems=("12_app_setup", "12_app_setup_placeholder"),
+    ),
+    PageRoleRule(
+        PageRole.REGULATORY_COMPLIANCE,
+        stable_aliases=("regulatory_compliance",),
+        pattern=re.compile(r"99_regulatory_compliance(?:_[a-z0-9-]+)?"),
     ),
     PageRoleRule(
         PageRole.BACK_COVER,

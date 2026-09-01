@@ -113,6 +113,18 @@ class OverviewComponentSpecTests(unittest.TestCase):
                 for callout in view["callouts"]
             ],
         )
+        battery_pack_eu = resolve_overview_instance(
+            model="JBP-2000B",
+            region="EU",
+            registry=self.instance_registry,
+        )
+        self.assertEqual("jbp2000b-eu-v1", battery_pack_eu["instance_id"])
+        us_geometry = deepcopy(battery_pack)
+        eu_geometry = deepcopy(battery_pack_eu)
+        for instance in (us_geometry, eu_geometry):
+            instance.pop("instance_id")
+            instance.pop("target")
+        self.assertEqual(us_geometry, eu_geometry)
         self.assertEqual(
             self.instance,
             resolve_overview_instance(
@@ -124,10 +136,29 @@ class OverviewComponentSpecTests(unittest.TestCase):
         )
         with self.assertRaisesRegex(ComponentSpecError, "found 0"):
             resolve_overview_instance(
-                model="JE-1000F",
-                region="EU",
+                model="JBP-2000B",
+                region="JP",
                 registry=self.instance_registry,
             )
+
+    def test_instance_inheritance_fails_closed_for_missing_base_and_cycles(self) -> None:
+        missing_base = deepcopy(self.instance_registry)
+        missing_base["instances"]["broken"] = {
+            "extends": "missing",
+            "target": {"model": "BROKEN", "region": "XX"},
+        }
+        self.assertRegex(
+            "; ".join(validate_overview_instance_registry(missing_base)),
+            "names unknown instance",
+        )
+
+        cycle = deepcopy(self.instance_registry)
+        cycle["instances"]["cycle-a"] = {"extends": "cycle-b"}
+        cycle["instances"]["cycle-b"] = {"extends": "cycle-a"}
+        self.assertRegex(
+            "; ".join(validate_overview_instance_registry(cycle)),
+            "inheritance cycle",
+        )
         with self.assertRaisesRegex(ComponentSpecError, "unknown overview instance"):
             resolve_overview_instance(
                 model=None,

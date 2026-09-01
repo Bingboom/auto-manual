@@ -34,6 +34,7 @@ class IdmlPageRoleTests(unittest.TestCase):
             "10_troubleshooting.rst": PageRole.TROUBLESHOOTING_PROSE,
             "11_warranty.rst": PageRole.WARRANTY,
             "12_app_setup_placeholder.rst": PageRole.APP_SETUP,
+            "99_regulatory_compliance_eu.rst": PageRole.REGULATORY_COMPLIANCE,
             "99_back_cover.rst": PageRole.BACK_COVER,
             "cover_jp.rst": PageRole.COVER,
             "cover_je3000c-ko.rst": PageRole.COVER,
@@ -88,8 +89,9 @@ class IdmlPageRoleTests(unittest.TestCase):
             "warranty_en.rst": PageRole.WARRANTY,
             "warranty_es.rst": PageRole.WARRANTY,
             "warranty_fr.rst": PageRole.WARRANTY,
+            "regulatory_compliance.rst": PageRole.REGULATORY_COMPLIANCE,
         }
-        self.assertEqual(24, len(cases))
+        self.assertEqual(25, len(cases))
 
         for name, expected in cases.items():
             with self.subTest(name=name):

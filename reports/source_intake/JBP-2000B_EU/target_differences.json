@@ -1,0 +1,149 @@
+{
+  "schema_version": "source-intake-staging-overrides/v1",
+  "rows": [
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "CONTROLS",
+        "Row_key": "main_power_button",
+        "Slot_key": "label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "POWER button",
+        "status": "direct",
+        "spec_field": "EU manual p05 Product Overview",
+        "raw": "POWER button",
+        "note": "Confirmed from the EU source authority; localized formal-table values are reviewed in the six-language ingest payload."
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.a.label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "DC Expansion Port A",
+        "status": "direct",
+        "spec_field": "EU manual p05 Product Overview",
+        "raw": "DC Expansion Port A",
+        "note": "Confirmed from the EU source authority; Explorer 2000 Plus is the EU paired-host display name."
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.a.spec",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "(Connect to Expansion Cable Terminal A)",
+        "status": "direct",
+        "spec_field": "EU manual p05 Product Overview",
+        "raw": "(Connect to Expansion Cable Terminal A)",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.b.label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "DC Expansion Port B",
+        "status": "direct",
+        "spec_field": "EU manual p05 Product Overview",
+        "raw": "DC Expansion Port B",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.b.spec",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "(Connect to Expansion Cable Terminal B)",
+        "status": "direct",
+        "spec_field": "EU manual p05 Product Overview",
+        "raw": "(Connect to Expansion Cable Terminal B)",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "operation_guide",
+        "Section": "SETTINGS",
+        "Row_key": "default_standby_duration",
+        "Slot_key": "value",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "2 hours",
+        "status": "direct",
+        "spec_field": "EU manual p06 Default Standby Duration",
+        "raw": "2 hours",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "storage",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "storage_temperature",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "-20°C to 45°C (0-60%RH)",
+        "status": "direct",
+        "spec_field": "EU manual p07 Storage Temperature",
+        "raw": "1 month: -20°C to 45°C (0-60%RH)",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "storage",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "storage_temperature",
+        "Slot_key": "",
+        "Line_order": 2
+      },
+      "fields": {
+        "Value_source": "0°C to 45°C (0-60%RH)",
+        "status": "direct",
+        "spec_field": "EU manual p07 Storage Temperature",
+        "raw": "3 months: 0°C to 45°C (0-60%RH)",
+        "note": "Confirmed from the EU source authority."
+      }
+    },
+    {
+      "key": {
+        "Page": "storage",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "storage_temperature",
+        "Slot_key": "",
+        "Line_order": 3
+      },
+      "fields": {
+        "Value_source": "0°C to 25°C (0-60%RH)",
+        "status": "direct",
+        "spec_field": "EU manual p07 Storage Temperature",
+        "raw": "12 months: 0°C to 25°C (0-60%RH)",
+        "note": "Confirmed from the EU source authority."
+      }
+    }
+  ]
+}

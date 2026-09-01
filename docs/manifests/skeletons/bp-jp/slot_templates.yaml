@@ -1,0 +1,75 @@
+# Slot -> carrier mapping for BP@JP.
+#
+# Paths are family/house-style carriers, not target assembly. The R3c target
+# slice supplies the actual Japanese source/templates/assets and production
+# plan; this file establishes their stable semantic destinations now.
+schema_version: skeleton-slot-templates/v1
+skeleton_id: bp-jp
+slots:
+  cover:
+    type: cover_pdf
+    file: asset:page/cover
+  toc:
+    type: rst_include
+    file: templates/page_bp/ja/00_toc.rst
+    lang: primary
+  safety_info:
+    type: rst_include
+    file: templates/page_bp/ja/01_safety.rst
+  symbol_meaning:
+    type: csv_page
+    page: symbols
+    include_dir: generated/{model}
+  box_contents:
+    type: rst_include
+    file: templates/page_bp/ja/02_whats_in_the_box.rst
+  product_overview:
+    type: generated_page
+    page: 03_product_overview
+    engine: draft_v1
+    template: templates/page_bp/ja/03_product_overview_placeholder.rst
+    include_dir: generated/{model}/draft
+  lcd_display:
+    type: csv_page
+    page: lcd_icons
+    include_dir: generated/{model}
+  operation:
+    type: generated_page
+    page: 05_operation_guide
+    engine: draft_v1
+    template: templates/page_bp/ja/05_operation_guide_placeholder.rst
+    include_dir: generated/{model}/draft
+  installation:
+    type: rst_include
+    file: templates/page_bp/ja/06_installation.rst
+  connections:
+    type: rst_include
+    file: templates/page_bp/ja/04_connections.rst
+  charging:
+    type: rst_include
+    file: templates/page_bp/ja/08_charging_methods.rst
+  troubleshooting:
+    type: csv_page
+    page: troubleshooting
+    include_dir: generated/{model}
+  specifications:
+    type: csv_page
+    page: spec
+    include_dir: generated/{model}
+  warranty:
+    type: rst_include
+    file: templates/page_bp/ja/11_warranty.rst
+  back_cover:
+    type: rst_include
+    file: templates/page_bp/ja/99_back_cover.rst
+    lang: primary
+house_style_versions:
+  jp-v2: {}
+  jp-v1:
+    # The shipped legacy book uses a distinct terminal safety composition and
+    # five-year `保証サービス` component. Versioned carriers keep those facts
+    # out of model branches while preserving the same semantic slot IDs.
+    safety_info:
+      file: templates/page_bp/ja/01_safety_v1.rst
+    warranty:
+      file: templates/page_bp/ja/11_warranty_v1.rst

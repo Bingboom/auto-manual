@@ -86,6 +86,7 @@ class CompactSafetyPanel:
             list(self.data.body_blocks),
             self.bundle_root,
             compact=True,
+            language=self.language,
         )
         title_height = h1_bar_h_pt(writer)
         title_body_gap = param_pt(

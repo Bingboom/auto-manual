@@ -9,6 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Literal
 
+from ..line_metrics import estimated_line_count
 from ..page_objects import h1_bar_h_pt
 from ..params import param_pt
 
@@ -254,12 +255,41 @@ def fit_visible_rows(
     return 0
 
 
+def distribute_compact_row_slack(
+    rows: list[dict],
+    heights: list[float],
+    *,
+    shell_height: float,
+    text_width: float,
+) -> list[float]:
+    """Allocate compact-column slack to the rows whose copy needs it most."""
+    if len(heights) <= 2 or shell_height <= sum(heights) + 0.001:
+        return list(heights)
+    fitted = list(heights)
+    remaining = shell_height - sum(fitted)
+    needs = []
+    for row, minimum in zip(rows, fitted[1:], strict=True):
+        lines = estimated_line_count(
+            str(row.get("text") or ""),
+            text_width,
+            point_size=6.0,
+            narrow_width_ratio=0.525,
+            minimum_narrow_chars=16,
+        )
+        needs.append(max(1.0, 7.0 * lines + 5.0 - minimum))
+    total_need = sum(needs)
+    for index, need in enumerate(needs, start=1):
+        fitted[index] += remaining * need / total_need
+    return fitted
+
+
 __all__ = [
     "PanelMetrics",
     "SymbolsPanelDensity",
     "absorb_icon_carrier_allowance",
     "absorb_signal_carrier_allowance",
     "fit_visible_rows",
+    "distribute_compact_row_slack",
     "icon_heights",
     "normalized_language",
     "panel_metrics",

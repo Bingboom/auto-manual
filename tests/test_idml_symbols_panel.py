@@ -11,6 +11,7 @@ from pathlib import Path
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
+from tools.idml.components.symbols_panel_metrics import distribute_compact_row_slack
 from tools.idml.components.fcc_inbox_panel import FccInboxPanel
 from tools.idml.components.safety_symbols_panel import SafetySymbolsPanel
 from tools.idml.loaders import load_symbols_rows
@@ -109,6 +110,68 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
 
 
 class SymbolsPanelTests(unittest.TestCase):
+    def test_eu_signal_badges_fit_the_shared_fixed_width(self) -> None:
+        params = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+        writer = IdmlWriter(params)
+        cases = {
+            "de": ("VORSICHT", "caution"),
+            "it": ("SUGGERIMENTO", "tips"),
+            "uk": ("ПОПЕРЕДЖЕННЯ", "warning"),
+        }
+
+        for language, (label, signal_key) in cases.items():
+            with self.subTest(language=language, label=label):
+                xml = writer._symbol_signal_bar(
+                    f"sig_{language}", label, ROOT, language,
+                    signal_key=signal_key,
+                )
+                root = ET.fromstring(xml)
+                visible = [
+                    element
+                    for element in root.iter("CharacterStyleRange")
+                    if label in (element.findtext("Content") or "")
+                ]
+                self.assertTrue(visible)
+                self.assertTrue(all(
+                    float(element.attrib["HorizontalScale"]) <= 100.0
+                    for element in visible
+                ))
+                self.assertTrue(all(
+                    float(element.attrib["PointSize"]) <= 9.9
+                    for element in visible
+                ))
+                self.assertTrue(all(
+                    element.find("Properties/Leading") is not None
+                    for element in visible
+                ))
+                self.assertIn('Hyphenation="false"', xml)
+                if language == "it":
+                    self.assertTrue(all(
+                        float(element.attrib["PointSize"]) < 7.0
+                        for element in visible
+                    ))
+                if language in {"de", "uk"}:
+                    self.assertTrue(all(
+                        float(element.attrib["HorizontalScale"]) < 100.0
+                        or float(element.attrib["PointSize"]) < 9.0
+                        for element in visible
+                    ))
+
+    def test_two_long_right_rows_share_compact_column_slack(self) -> None:
+        heights = distribute_compact_row_slack(
+            [{"text": "Long disposal copy " * 8}, {"text": "Long battery copy " * 14}],
+            [13.0, 24.0, 65.0],
+            shell_height=174.0,
+            text_width=90.0,
+        )
+
+        self.assertAlmostEqual(174.0, sum(heights), places=6)
+        self.assertGreater(heights[1], 24.0)
+        self.assertGreater(heights[2], 65.0)
+
     def test_three_language_visual_contract_matches_golden(self) -> None:
         expected = json.loads(GOLDEN.read_text(encoding="utf-8"))
         actual = json.loads(json.dumps({

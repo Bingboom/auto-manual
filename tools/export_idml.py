@@ -560,6 +560,7 @@ def main() -> int:
             w._add_story_parts,
             w._psr,
             source=_ir_projection.toc_page_data(manual_ir, bundle_root),
+            page_plan=page_plan,
         )
     _folio.apply(
         w,

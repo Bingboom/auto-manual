@@ -1,0 +1,127 @@
+# Skeleton Blueprint — BP@JP (battery pack, Japanese house style).
+#
+# The slot universe is shared by all three audited books. Named order profiles
+# carry house-style-version order only; optional slot and terminal existence is
+# selected by Product Manual Plan data, never by a model/page branch.
+schema_version: skeleton-blueprint/v1
+skeleton_id: bp-jp
+skeleton_family: BP
+house_style: JP
+default_order_profile: jp-v2
+slots:
+  - slot_id: cover
+    block: front
+    requirement: required
+    presentation: untitled_block
+    toc: false
+  - slot_id: toc
+    block: front
+    requirement: optional
+    presentation: titled_not_in_toc
+    toc: false
+  - slot_id: safety_info
+    block: body
+    requirement: required
+    presentation: titled_not_in_toc
+    toc: false
+  - slot_id: symbol_meaning
+    block: body
+    requirement: optional
+    presentation: subsection
+    toc: false
+  - slot_id: box_contents
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: product_overview
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: lcd_display
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: operation
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: installation
+    block: body
+    requirement: optional
+    presentation: chapter
+    toc: true
+  - slot_id: connections
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: charging
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: troubleshooting
+    block: body
+    requirement: optional
+    presentation: chapter
+    toc: true
+  - slot_id: specifications
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: warranty
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: back_cover
+    block: back
+    requirement: optional
+    presentation: untitled_block
+    toc: false
+order_profiles:
+  # Canonical HTP015/HTP017 sequence. Optional entries remain in the order
+  # universe even when a product plan does not select them.
+  jp-v2:
+    - cover
+    - toc
+    - safety_info
+    - symbol_meaning
+    - box_contents
+    - product_overview
+    - lcd_display
+    - operation
+    - installation
+    - connections
+    - charging
+    - troubleshooting
+    - specifications
+    - warranty
+    - back_cover
+  # Legacy HTP007 house style: specifications open the body and safety closes
+  # it. Optional entries are positioned deterministically if a future target
+  # truthfully enables them; this profile never deletes slots by itself.
+  jp-v1:
+    - cover
+    - toc
+    - specifications
+    - box_contents
+    - product_overview
+    - lcd_display
+    - operation
+    - installation
+    - connections
+    - charging
+    - troubleshooting
+    - warranty
+    - symbol_meaning
+    - safety_info
+    - back_cover
+co_page_groups:
+  # The only semantic same-page group stable across all three audited books.
+  - [lcd_display, operation]

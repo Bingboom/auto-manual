@@ -96,6 +96,8 @@ class TroubleshootingTableStyle:
     header_single_height: float
     body_single_height: float
     row_minima: tuple[float, ...]
+    left_line_baseline: tuple[int, ...]
+    right_line_baseline: tuple[int, ...]
     steps_pad_tb: float
     outer_radius: float
     compact_outer_radius: float
@@ -204,6 +206,34 @@ class TroubleshootingTableStyle:
                 "twelve finite positive heights"
             )
 
+        def line_baseline(side: str, fallback: tuple[int, ...]) -> tuple[int, ...]:
+            """Native line counts per row, from data when the language has them.
+
+            These gate how far a row may grow beyond its measured height, so
+            borrowing another language's counts suppresses growth the copy
+            actually needs. The KR overlay shipped measured Korean counts
+            before anything read them.
+            """
+            key = f"lang_{language}_idml_trouble_{side}_line_baseline"
+            raw = param_text(
+                ctx.params, key, ";".join(str(value) for value in fallback),
+            )
+            try:
+                counts = tuple(int(value.strip()) for value in raw.split(";"))
+            except ValueError as exc:
+                raise ValueError(
+                    f"TroubleshootingTableStyle {key} must contain "
+                    "semicolon-separated integers"
+                ) from exc
+            if len(counts) != len(row_minima) or any(
+                count < 1 for count in counts
+            ):
+                raise ValueError(
+                    f"TroubleshootingTableStyle {key} must contain "
+                    f"{len(row_minima)} positive line counts"
+                )
+            return counts
+
         header_h = token("comp_data_table_header_height", 14.74)
         row_h = token("comp_data_table_row_height", 11.91)
         left_ratio = token("comp_trouble_left_ratio", 0.11)
@@ -230,6 +260,12 @@ class TroubleshootingTableStyle:
                 "idml_trouble_body_height_correction", 2.79,
             ),
             row_minima=row_minima,
+            left_line_baseline=line_baseline(
+                "left", calibration.left_line_baseline,
+            ),
+            right_line_baseline=line_baseline(
+                "right", calibration.right_line_baseline,
+            ),
             steps_pad_tb=token("comp_trouble_steps_pad_tb", 2.83465),
             outer_radius=token("comp_table_outer_arc", 6.8),
             # Compact tables are a target-overlay extension of the shared
@@ -521,15 +557,16 @@ def _troubleshooting_frame_height(
     *,
     body_width: float,
     style: TroubleshootingTableStyle,
-    language: str,
 ) -> float:
     """Budget localized AutoGrow rows before emitting the fixed panel group.
 
-    The approved EN/FR/ES copy has a native-InDesign row-height baseline.  It
-    captures font shaping that a deterministic build cannot query from a host
-    application (notably the two-line FR/ES code header).  The same width,
-    type, leading and inset calculation then adds growth when edited copy wraps
-    beyond that reviewed baseline.
+    The reviewed copy has a native-InDesign row-height and line-count
+    baseline. It captures font shaping that a deterministic build cannot query
+    from a host application (notably the two-line FR/ES code header). The same
+    width, type, leading and inset calculation then adds growth when edited
+    copy wraps beyond that reviewed baseline. Both halves of the baseline now
+    come off the resolved style, so a language supplies its own by shipping
+    layout rows rather than by being added to a table in this file.
     """
     column_widths = _troubleshooting_column_widths(
         raw_rows,
@@ -542,13 +579,6 @@ def _troubleshooting_frame_height(
             column_widths=column_widths,
             style=style,
         )) + style.import_safety
-    # Only en/fr/es have a measured line-baseline pass; an untuned language
-    # borrows the en baselines. This used to be a bare subscript, so the
-    # first non-en/fr/es table to be recognised would have raised KeyError.
-    calibration = _TROUBLESHOOTING_LOCALE_CALIBRATIONS.get(
-        _troubleshooting_language(language),
-        _TROUBLESHOOTING_LOCALE_CALIBRATIONS["en"],
-    )
     budget = 0.0
     for row_index, row in enumerate(raw_rows):
         right = str(row[1]) if len(row) > 1 else ""
@@ -575,12 +605,11 @@ def _troubleshooting_frame_height(
                 glyph_width_ratio=style.glyph_width_ratio,
             )
             measured_lines.append(lines)
-        if row_index < len(calibration.native_row_heights):
-            native_height = style.minimum_for_row(row_index)
-            left_baseline = calibration.left_line_baseline[row_index]
-            right_baseline = calibration.right_line_baseline[row_index]
+        native_height = style.minimum_for_row(row_index)
+        if row_index < len(style.left_line_baseline):
+            left_baseline = style.left_line_baseline[row_index]
+            right_baseline = style.right_line_baseline[row_index]
         else:
-            native_height = style.minimum_for_row(row_index)
             left_baseline = right_baseline = 1
         left_growth = max(0, measured_lines[0] - left_baseline) * (
             style.header_leading if row_index == 0 else style.code_leading
@@ -806,7 +835,6 @@ def _troubleshooting_table(
         raw_rows,
         body_width=body_w,
         style=style,
-        language=language,
     )
 
 

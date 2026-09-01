@@ -27,6 +27,7 @@ from .symbols_panel_metrics import (
     SymbolsPanelDensity,
     absorb_icon_carrier_allowance,
     absorb_signal_carrier_allowance,
+    distribute_compact_row_slack,
     fit_visible_rows,
     icon_heights,
     normalized_language,
@@ -237,11 +238,19 @@ class SymbolsPanel:
             last=right_last,
         )
         shell_height = max(sum(left_heights), sum(right_heights))
-        if left_heights and sum(left_heights) < shell_height:
-            left_heights[-1] += shell_height - sum(left_heights)
-        if right_heights and sum(right_heights) < shell_height:
-            right_heights[-1] += shell_height - sum(right_heights)
         if self.density == "compact":
+            left_heights = distribute_compact_row_slack(
+                left_icons,
+                left_heights,
+                shell_height=shell_height,
+                text_width=max(20.0, icon_table_width - left_icon_col - 6.0),
+            )
+            right_heights = distribute_compact_row_slack(
+                right_icons,
+                right_heights,
+                shell_height=shell_height,
+                text_width=max(20.0, icon_table_width - right_icon_col - 6.0),
+            )
             left_heights = absorb_icon_carrier_allowance(
                 left_heights,
                 metrics.icon_frame_allowance,
@@ -250,6 +259,11 @@ class SymbolsPanel:
                 right_heights,
                 metrics.icon_frame_allowance,
             )
+        else:
+            if left_heights and sum(left_heights) < shell_height:
+                left_heights[-1] += shell_height - sum(left_heights)
+            if right_heights and sum(right_heights) < shell_height:
+                right_heights[-1] += shell_height - sum(right_heights)
         icon_frame_height = shell_height + metrics.icon_frame_allowance
         if self.density == "standard" and language not in governed_languages():
             from ..symbols_page import SafetySymbolsPageStyle

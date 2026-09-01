@@ -82,6 +82,82 @@ class TargetAssemblyRenderTests(unittest.TestCase):
         self.assertIs(symbol_data, add_page.call_args.kwargs["symbol_data"])
         self.assertIn("symbols:ko", emitted)
 
+    def test_safety_symbols_forwards_target_declared_column_split(self) -> None:
+        bundle_root = Path("/tmp/bundle")
+        safety_ref = "page/safety_info_de.rst"
+        symbols_ref = "page/symbol_meaning_de.rst"
+        composition_data = {"symbols": {"left_count": 6}}
+        page_plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 1,
+            "pages": [
+                {
+                    "source_ref": safety_ref,
+                    "source_path": safety_ref,
+                    "language": "de",
+                    "page_role": "safety",
+                    "composition_id": "de_safety_symbols",
+                    "composition_type": "safety_symbols",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                },
+                {
+                    "source_ref": symbols_ref,
+                    "source_path": symbols_ref,
+                    "language": "de",
+                    "page_role": "symbols",
+                    "composition_id": "de_safety_symbols",
+                    "composition_type": "safety_symbols",
+                    "latex_start_page": 1,
+                    "planned_page_count": 1,
+                    "composition_data": composition_data,
+                },
+            ],
+        }
+        projected_by_path = {
+            bundle_root / ref: ProjectedPage(
+                path=bundle_root / ref,
+                language="de",
+                blocks=(("h1", "SICHERHEIT"),),
+                skipped_raw=0,
+                twocol=False,
+            )
+            for ref in (safety_ref, symbols_ref)
+        }
+        renderer = TargetAssemblyRenderer(
+            page_plan=page_plan,
+            projected_by_path=projected_by_path,
+            bundle_root=bundle_root,
+            writer=Mock(),
+            toc=Mock(),
+            manual_ir=Mock(),
+            root=Path("/tmp/repo"),
+            data_root=Path("/tmp/data"),
+            output_lang="de",
+            emitted=set(),
+            spec_sections=[],
+            lcd_rows=[],
+            trouble_rows=[],
+            symbol_data_for=Mock(return_value=Mock(title="SYMBOLE")),
+            slug_stem=lambda value: value,
+        )
+
+        with patch(
+            "tools.idml.target_assembly_render.shared_page.add_safety_symbols_page"
+        ) as add_page:
+            renderer.render(
+                bundle_root / safety_ref,
+                get_page_cursor=lambda: 5,
+                flush_prose_flow=Mock(),
+                flush_pending_fcc=Mock(),
+                flush_pending_prefix=Mock(),
+            )
+
+        self.assertEqual(
+            composition_data,
+            add_page.call_args.kwargs["composition_data"],
+        )
+
         starved = TargetAssemblyRenderer(
             page_plan=page_plan,
             projected_by_path=projected_by_path,

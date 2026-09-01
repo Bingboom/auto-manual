@@ -764,7 +764,12 @@ class ExportIdmlTests(unittest.TestCase):
              "la mort et/ou des dommages matériels."),
             signals,
         )
-        self.assertEqual(icons, [])
+        self.assertEqual(len(icons), 1)
+        self.assertEqual(icons[0]["symbol_key"], "weee2")
+        self.assertIn(
+            "Les piles et accumulateurs ne doivent pas être jetés",
+            icons[0]["text"],
+        )
         self.assertFalse(any(row[0] == "WARNING" for row in signals))
 
     def test_symbol_signal_rows_drop_empty_meanings(self) -> None:

@@ -29,6 +29,7 @@ class _ConfigMetadata:
     languages: tuple[str, ...]
     include_lang_in_output_path: bool
     queue_by_document_key: bool
+    family_default: bool
 
 
 def _config_reference(path: Path) -> str:
@@ -57,6 +58,7 @@ def _read_config_metadata(config_path: Path) -> _ConfigMetadata:
         languages=languages,
         include_lang_in_output_path=bool(build.get("include_lang_in_output_path", False)),
         queue_by_document_key=bool(build.get("queue_by_document_key", False)),
+        family_default=build.get("family_default") is True,
     )
 
 
@@ -83,16 +85,24 @@ def _language_config_map(
             or config.include_lang_in_output_path is include_lang_in_output_path
         )
     ]
-    result: dict[str, str] = {}
+    by_language: dict[str, list[_ConfigMetadata]] = {}
     for config in selected:
-        language = config.languages[0]
-        if language in result:
+        by_language.setdefault(config.languages[0], []).append(config)
+
+    result: dict[str, str] = {}
+    for language, candidates in sorted(by_language.items()):
+        if len(candidates) == 1:
+            result[language] = _config_reference(candidates[0].path)
+            continue
+        explicit = [config for config in candidates if config.family_default]
+        if len(explicit) != 1:
+            names = ", ".join(_config_reference(config.path) for config in candidates)
             raise RuntimeError(
-                f"Multiple language configs for {family}/{language}: "
-                f"{result[language]}, {_config_reference(config.path)}"
+                f"Multiple language configs for {family}/{language} without exactly one "
+                f"explicit family_default: {names}"
             )
-        result[language] = _config_reference(config.path)
-    return dict(sorted(result.items()))
+        result[language] = _config_reference(explicit[0].path)
+    return result
 
 
 def _family_config_score(config: _ConfigMetadata) -> int:
@@ -118,6 +128,15 @@ def _family_default_map(
         candidates = [config for config in configs if config.family == family]
         if not candidates:
             raise RuntimeError(f"No default config found for family {family!r}")
+        explicit = [config for config in candidates if config.family_default]
+        if explicit:
+            if len(explicit) > 1:
+                names = ", ".join(_config_reference(config.path) for config in explicit)
+                raise RuntimeError(
+                    f"Multiple explicit family_default configs for family {family!r}: {names}"
+                )
+            result[family] = _config_reference(explicit[0].path)
+            continue
         candidates.sort(key=lambda config: (-_family_config_score(config), config.path.name))
         best_score = _family_config_score(candidates[0])
         best = [config for config in candidates if _family_config_score(config) == best_score]

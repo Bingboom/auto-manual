@@ -186,7 +186,8 @@ Meaning:
 - `tools/manifest_lint.py --json` is a report-only inventory sentinel for config-backed page manifests. It scans every `configs/config*.yaml` reference and every `docs/manifests/*.yaml` file, reporting orphan manifests, invalid/missing sources, and config/manifest language-set drift without blocking a build.
 - Within one `process-build-queue` invocation, a successful forced phase2 sync is memoized per config/data-root pair; later groups reuse that snapshot, while a failed sync is not memoized and remains retryable.
 - `tools/manifest_family.py` is the non-mutating family-manifest pilot. Use `diff --base <base.yaml> --target <target.yaml> --output <diff.json>` to create the deterministic `family-manifest-diff/v1` carrier, then use `roundtrip` with the same base, target, and diff to assert `"byte_identical": true`. This pilot does not rewrite `docs/manifests/`; checked-in generation is a later stage.
-- `python tools/manifest_family.py fold --root . --index docs/manifests/family/index.yaml` checks the Stage 3 fold index: two anchor YAML manifests plus 15 carrier diffs rebuild all 17 current YAML goldens with canonical byte identity. Add `--write` only to refresh the tracked diff carriers; it never edits a YAML manifest.
+- `python tools/manifest_family.py fold --root . --index docs/manifests/family/index.yaml` checks the family index: four anchor YAML manifests plus 16 carrier diffs cover all 20 current YAML goldens with canonical byte identity. The two battery-pack cells own separate anchors (`manual_bp-us.yaml` for `BP@INTL`, target-neutral `manual_bp-jp.yaml` for `BP@JP`). Add `--write` only to refresh the tracked diff carriers; it never edits a YAML manifest.
+- `tools/skeleton_resolve.py` keeps the public `emit` / `verify` / `plan` CLI surface unchanged. Its Python `resolve_plan(..., product_plan=...)` API now accepts target-owned `house_style_version`, `enabled_optional_slots`, and `terminal_slots` selections; when a blueprint declares order profiles, load and pass both carrier maps with `load_slot_template_catalog(...)` so a version cannot silently lose its safety/warranty variant. Blueprints declare the complete slot universe and named order profiles; optional front/body slots are opt-in, back slots have the single `terminal_slots` selector, and calls without a product plan still resolve the required/capability core. BP@INTL continues to use the legacy region-profile terminal selector and remains byte-identical. Do not put a model/title/file/page conditional in the resolver; R3c and later targets supply only plan/config/source/asset data.
 - Family manifests carry capability annotations at the page entry, not in a target-specific side table. All current `06_ups_mode` entries declare `capability: UPS功能`, so JP/KR/EU and the other current families use the same assembly-time keep/drop decision as US. When adding a capability-governed page to another family, add the same annotation there and refresh the fold carriers with `fold --write`.
 - `.github/workflows/manifest-regenerate-diff.yml` runs that fold check on pull requests touching configs, manifests, or carrier code; this is the CI red gate for a manually edited generated manifest. It also runs `manifest_lint` as a report-only inventory.
 - for `build.queue_by_document_key` configs, Draft rows with a non-empty `Lang` are grouped by `Document_Key + normalized Lang`; `br` / `pt-br` normalizes to `pt-BR`, and the selected language is passed to the build/check/validate/bundle path. `configs/config.pt-br.yaml` now follows the single-language US build path, so Brazil Portuguese draft rows should use `Build_family = pt-br` with `Lang=br` or `Lang=pt-BR` instead of adding an English companion row.
@@ -812,6 +813,16 @@ the module boundary remains documented in
 page, or density should reuse an existing visual component, follow
 [`dev/style_component_usage_guide.md`](dev/style_component_usage_guide.md) before
 adding page-level geometry or finalizer behavior.
+
+`JBP-2000B / EU / en+fr+es+de+it+uk` is the second target resolved from the
+same `BP@INTL` skeleton. Build it with `configs/config.bp-eu.yaml`; `uk` is
+Ukrainian and this target makes no UK-market claim. Its paired host is named
+`Jackery Explorer 2000 Plus` in EU target data (the US target uses
+`Jackery HomePower 2000 Plus`). The committed physical plan remains a
+candidate, so a successful 54-page native PDF/X-4 pass proves candidate
+assembly health but does not register an approved reference layout. Current
+native evidence is recorded in
+[`reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](reviews/jbp2000b_eu_r2_native_validation_2026-08.md).
 
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),

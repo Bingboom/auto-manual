@@ -25,18 +25,17 @@ MANIFESTS = ROOT / "docs" / "manifests"
 
 
 class ManifestFamilyTests(unittest.TestCase):
-    def test_family_index_folds_all_18_manifest_goldens(self) -> None:
-        # 18 manifests / 3 anchors / 15 folded: the third anchor is the BP@INTL
-        # resolved manifest (skeleton-library slice S1), which has no diff
-        # entries — anchors are bases, not fold targets.
+    def test_family_index_folds_all_20_manifest_goldens(self) -> None:
+        # 20 manifests / 4 anchors / 16 folded: BP@INTL and BP@JP each own one
+        # repository anchor; manual_bp-eu remains folded from BP@INTL.
         report = fold_repository(
             ROOT,
             MANIFESTS / "family" / "index.yaml",
         )
         self.assertTrue(report["passed"], report["errors"])
-        self.assertEqual(18, report["manifest_count"])
-        self.assertEqual(3, report["anchor_count"])
-        self.assertEqual(15, report["folded_count"])
+        self.assertEqual(20, report["manifest_count"])
+        self.assertEqual(4, report["anchor_count"])
+        self.assertEqual(16, report["folded_count"])
         self.assertTrue(all(item["byte_identical"] for item in report["checks"]))
 
     def test_two_us_single_language_pilot_lines_roundtrip_byte_identically(self) -> None:

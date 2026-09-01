@@ -112,6 +112,15 @@ the ordinary editable-prose fallback, but it has no reviewed assembly role yet.
 Update the shared role table and its regression test before release; do not add
 a model/region-specific filename exception.
 
+The BP family now has two exact-target configs. `JBP-2000B_US + us-merged`
+selects `configs/config.bp-us.yaml`; `JBP-2000B_EU + eu-merged` selects
+`configs/config.bp-eu.yaml`. The EU target contains `en/fr/es/de/it/uk`, where
+`uk` is Ukrainian, not a UK-market selector. It uses the paired host display
+name `Jackery Explorer 2000 Plus`; only the US target uses
+`Jackery HomePower 2000 Plus`. Keep that distinction in target substitutions
+and assets, not in page-renderer conditions. The EU IDML plan remains a
+candidate until the separate promotion workflow approves it.
+
 The production handoff's `production/source_trace.json` also records the
 `skipped_raw_blocks` count from `manual.ir.json`. For ordinary/fallback targets
 this remains report-only. For an approved-reference target, the approved plan
@@ -140,7 +149,8 @@ host-specific `❸` / `❷` glyphs. The year unit and the warranty subtitle belo
 it share one component-owned x anchor, so `Standard Warranty` and
 `Extended Warranty` stay left-aligned with their localized `YEARS` labels.
 `Noto Sans` owns ordinals and subscript digits; `Noto Sans Symbols` owns DC and
-circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle fallback. Final assembly for
+circled labels 1-20; `Noto Sans Symbols2` owns the filled-circle fallback and
+editable `☎ / ✉ / ◉` contact icons. Final assembly for
 both approved-reference and target-assembly targets uses native vector heading
 markers, and LCD labels 21-27 serialize as `(21)`-`(27)`. The exporter copies
 the declared SIL-OFL files beside the IDML under `Document fonts/`, so raw

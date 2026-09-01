@@ -27,6 +27,12 @@ SYMBOL_FONT_FALLBACKS = {
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
     "º": TEXT_SYMBOL_FONT,
     **{ch: TEXT_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉"},
+    # The shared regulatory contact row uses these three editable Unicode
+    # icons.  Gilroy and the first Noto Symbols face do not cover U+260E;
+    # Noto Sans Symbols2 covers the complete set and is already carried in
+    # every designer-facing IDML package.  Keep the source codepoints intact
+    # and split only the icon run from the adjacent contact copy.
+    **{ch: BULLET_FONT for ch in "☎✉◉"},
     "●": BULLET_FONT,
     **{
         ch: CIRCLED_NUMBER_FONT

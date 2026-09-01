@@ -34,6 +34,8 @@ WARRANTY_LAYOUT_VARIANTS = frozenset({"multiline_lead", "bp_default"})
 SPECIFICATION_LAYOUT_VARIANTS = frozenset({"reference", "compact"})
 OPERATION_LAYOUT_VARIANTS = frozenset({"guidance_stack"})
 INBOX_LAYOUT_VARIANTS = frozenset({"compact_with_tip"})
+STORAGE_LAYOUT_VARIANTS = frozenset({"rounded_panel"})
+REGULATORY_LAYOUT_VARIANTS = frozenset({"bottom_card"})
 
 
 # Every key a plan page may carry. Anything else fails validation: a
@@ -311,6 +313,33 @@ def _validate_composition_data(
                 )
             )
         if not data:
+            continue
+        if set(data) == {"symbols"}:
+            if page.get("page_role") != PageRole.SYMBOLS.value or page.get(
+                "composition_type"
+            ) not in {"symbols", "safety_symbols"}:
+                issues.append(
+                    f"{source_ref}.composition_data.symbols requires "
+                    "a symbols source in a symbols composition"
+                )
+                continue
+            symbols = data["symbols"]
+            if not isinstance(symbols, dict) or set(symbols) != {"left_count"}:
+                issues.append(
+                    f"{source_ref}.composition_data.symbols must contain "
+                    "exactly ['left_count']"
+                )
+                continue
+            left_count = symbols.get("left_count")
+            if (
+                isinstance(left_count, bool)
+                or not isinstance(left_count, int)
+                or left_count <= 0
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.symbols.left_count "
+                    "must be a positive integer"
+                )
             continue
         if set(data) == {"charging"}:
             if page.get("page_role") != PageRole.CHARGING.value or page.get(
@@ -591,7 +620,10 @@ def _validate_composition_data(
                     "a non-empty bundle-relative mapping of App figure roles"
                 )
             continue
-        if set(data) == {"specifications"}:
+        if set(data) in (
+            {"specifications"},
+            {"storage", "specifications"},
+        ):
             if page.get("page_role") != PageRole.SPEC.value or page.get(
                 "composition_type"
             ) not in {"storage_specifications", "specifications"}:
@@ -600,6 +632,30 @@ def _validate_composition_data(
                     "a specifications composition on the spec source"
                 )
                 continue
+            storage = data.get("storage")
+            if storage is not None:
+                if page.get("composition_type") != "storage_specifications":
+                    issues.append(
+                        f"{source_ref}.composition_data.storage requires a "
+                        "storage_specifications composition"
+                    )
+                    continue
+                if (
+                    not isinstance(storage, dict)
+                    or set(storage) != {"layout_variant"}
+                ):
+                    issues.append(
+                        f"{source_ref}.composition_data.storage must contain "
+                        "exactly ['layout_variant']"
+                    )
+                    continue
+                if storage.get("layout_variant") not in STORAGE_LAYOUT_VARIANTS:
+                    issues.append(
+                        f"{source_ref}.composition_data.storage.layout_variant "
+                        "must be one of "
+                        + ", ".join(sorted(STORAGE_LAYOUT_VARIANTS))
+                    )
+                    continue
             specifications = data["specifications"]
             if not isinstance(specifications, dict):
                 issues.append(
@@ -688,6 +744,44 @@ def _validate_composition_data(
                 if "title" in group and not isinstance(group["title"], str):
                     issues.append(f"{label}.title must be a string")
             continue
+        if set(data) == {"regulatory"}:
+            if page.get("page_role") != PageRole.REGULATORY_COMPLIANCE.value or page.get(
+                "composition_type"
+            ) != "regulatory_compliance":
+                issues.append(
+                    f"{source_ref}.composition_data.regulatory requires a "
+                    "regulatory_compliance composition"
+                )
+                continue
+            regulatory = data["regulatory"]
+            if (
+                not isinstance(regulatory, dict)
+                or "layout_variant" not in regulatory
+                or not set(regulatory) <= {"layout_variant", "qr_asset"}
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.regulatory must contain "
+                    "layout_variant and supports optional qr_asset"
+                )
+                continue
+            if regulatory.get("layout_variant") not in REGULATORY_LAYOUT_VARIANTS:
+                issues.append(
+                    f"{source_ref}.composition_data.regulatory.layout_variant "
+                    "must be one of "
+                    + ", ".join(sorted(REGULATORY_LAYOUT_VARIANTS))
+                )
+            qr_asset = regulatory.get("qr_asset")
+            if qr_asset is not None and (
+                not isinstance(qr_asset, str)
+                or not qr_asset.strip()
+                or Path(qr_asset).is_absolute()
+                or ".." in Path(qr_asset).parts
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.regulatory.qr_asset must "
+                    "be a non-empty repository-relative string"
+                )
+            continue
         if set(data) == {"warranty"}:
             if page.get("page_role") != PageRole.WARRANTY.value or page.get(
                 "composition_type"
@@ -773,8 +867,8 @@ def _validate_composition_data(
         if set(data) != {"lcd"}:
             issues.append(
                 f"{source_ref}.composition_data supports only charging, "
-                "connections, lcd, specifications, troubleshooting, or "
-                "warranty component data"
+                "connections, lcd, regulatory, specifications, storage, "
+                "troubleshooting, or warranty component data"
             )
             continue
         if page.get("page_role") != PageRole.LCD.value or page.get(
