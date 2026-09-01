@@ -700,17 +700,26 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertNotIn(r"\section{MEANING OF SYMBOLS}", out)
 
     def test_render_symbols_page_uses_display_width_for_japanese_title(self) -> None:
-        variables = self._localized_copy_vars(model="JBP-2000B", region="JP")
-        variables["symbols.page_title.ja"] = "記号の意味"
+        """The RST underline must span display columns, not characters.
+
+        A CJK title underlined by character count leaves the rule half the
+        width of the text, which Sphinx reports as a malformed section title.
+        The underline is checked against the emitted title rather than an
+        expected string so the assertion cannot drift from the shipped copy —
+        and the final check is what fails if anyone returns to len(title).
+        """
         out = renderers.render_symbols_page(
             template=self._symbols_template(),
             blocks=self._symbols_blocks(),
             sku_id="JBP-2000B",
             lang="ja",
-            vars_map=variables,
+            vars_map=self._localized_copy_vars(model="JBP-2000B", region="JP"),
         )
 
-        self.assertTrue(out.startswith("記号の意味\n==========\n"))
+        title, underline = out.splitlines()[:2]
+        self.assertEqual("絵表示の説明", title)
+        self.assertEqual("=" * 12, underline)
+        self.assertEqual(2 * len(title), len(underline))
 
     def test_render_symbols_page_emits_latex_notice_and_symbol_macros(self) -> None:
         out = renderers.render_symbols_page(
