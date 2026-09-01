@@ -144,6 +144,82 @@ class RenderContractTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "redefines existing keys"):
                 load_layout_token_layers(base, (overlay,))
 
+    def test_alias_spelled_language_row_is_rejected_with_the_canonical_code(
+        self,
+    ) -> None:
+        """An alias-spelled row is unreachable, so it must not load quietly.
+
+        `jp` is a registered alias of `ja` and is what the phase2 data columns
+        use, but no lookup path ever builds a lang_ prefix from an alias — the
+        IDML cascade and every component use the canonical code. Seven
+        "measured from the JP reference" rows shipped this way on a target
+        branch and were read zero times, including the five added by the
+        commit whose whole purpose was to align that page.
+        """
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "base.csv"
+            overlay = root / "overlay.csv"
+            base.write_text(
+                "key,value,unit,comment\npage_paperwidth,100,pt,base\n",
+                encoding="utf-8",
+            )
+            overlay.write_text(
+                "key,value,unit,comment\n"
+                "lang_jp_idml_inbox_compact_card_height,145.0,pt,measured\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(
+                ValueError,
+                r"unreachable language row .*use the canonical code 'ja'",
+            ):
+                load_layout_token_layers(base, (overlay,))
+
+    def test_unregistered_language_row_is_rejected(self) -> None:
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = root / "base.csv"
+            base.write_text(
+                "key,value,unit,comment\n"
+                "page_paperwidth,100,pt,base\n"
+                "lang_xx_idml_gap,4,pt,typo\n",
+                encoding="utf-8",
+            )
+
+            with self.assertRaisesRegex(
+                ValueError, "not a registered language code",
+            ):
+                load_layout_token_layers(base)
+
+    def test_every_canonical_spelling_a_lookup_can_build_is_accepted(self) -> None:
+        """The gate must accept each prefix form the code actually produces."""
+        from tools.lang_registry import LANGUAGE_REGISTRY
+
+        rows = ["key,value,unit,comment", "page_paperwidth,100,pt,base"]
+        for index, spec in enumerate(LANGUAGE_REGISTRY):
+            code = spec.code.casefold()
+            for variant in {code, code.replace("-", "_"), code.split("-", 1)[0]}:
+                rows.append(f"lang_{variant}_idml_gap_{index},4,pt,ok")
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp) / "base.csv"
+            base.write_text("\n".join(rows) + "\n", encoding="utf-8")
+
+            tokens = load_layout_token_layers(base)
+
+        self.assertGreater(len(tokens), len(LANGUAGE_REGISTRY))
+
+    def test_the_committed_layout_params_pass_the_gate(self) -> None:
+        """Every shipped overlay must load, not just the base CSV."""
+        base = ROOT / "data" / "layout_params.csv"
+        overlays = tuple(
+            path for path in sorted((ROOT / "data").glob("layout_params.*.csv"))
+        )
+        self.assertTrue(overlays, "no overlays found; update this guard")
+        for overlay in overlays:
+            with self.subTest(overlay=overlay.name):
+                self.assertTrue(load_layout_token_layers(base, (overlay,)))
+
     def test_committed_contract_uses_schema_v2(self) -> None:
         self.assertEqual(2, self.contract["schema_version"])
 

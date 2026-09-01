@@ -77,6 +77,60 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
     return tokens
 
 
+def _language_row_prefixes() -> tuple[frozenset[str], dict[str, str]]:
+    """Prefixes a build can actually look up, plus alias -> canonical hints.
+
+    Language rows are written ``lang_<code>_<base-key>`` and every lookup path
+    builds that prefix from the **canonical** code: the IDML cascade takes the
+    base subtag (``pt-BR`` -> ``pt``) and ``resolve_layout_tokens`` swaps the
+    hyphen (``pt_br``). The registry also carries aliases — ``ja`` is spelled
+    ``jp`` for the phase2 data columns — but nothing ever builds a prefix from
+    one, so an alias-spelled row is unreachable and silently falls back to the
+    base value.
+    """
+
+    try:
+        from tools.lang_registry import LANGUAGE_REGISTRY
+    except ImportError:  # pragma: no cover - direct script execution
+        from lang_registry import LANGUAGE_REGISTRY  # type: ignore[no-redef]
+
+    prefixes: set[str] = set()
+    canonical_for: dict[str, str] = {}
+    for spec in LANGUAGE_REGISTRY:
+        code = spec.code.casefold()
+        prefixes.update({code, code.replace("-", "_"), code.split("-", 1)[0]})
+        for alias in spec.aliases:
+            folded = alias.casefold()
+            if folded != code:
+                canonical_for[folded] = spec.code
+    return frozenset(prefixes), canonical_for
+
+
+def _reject_unreachable_language_rows(
+    tokens: dict[str, LayoutToken], source: Path,
+) -> None:
+    """Fail closed on a language row no lookup path can reach."""
+
+    prefixes, canonical_for = _language_row_prefixes()
+    for key in tokens:
+        if not key.startswith("lang_"):
+            continue
+        if any(key.startswith(f"lang_{prefix}_") for prefix in prefixes):
+            continue
+        spelling = key[len("lang_"):].split("_", 1)[0]
+        canonical = canonical_for.get(spelling.casefold())
+        hint = (
+            f"use the canonical code {canonical!r}, not the alias {spelling!r}"
+            if canonical
+            else f"{spelling!r} is not a registered language code"
+        )
+        raise ValueError(
+            f"layout token {source} declares an unreachable language row "
+            f"{key!r}: {hint}. Nothing builds a lang_ prefix from it, so the "
+            "row would be silently ignored and the base value used instead."
+        )
+
+
 def load_layout_token_layers(
     base_csv: Path,
     overlay_csvs: tuple[Path, ...] = (),
@@ -89,8 +143,10 @@ def load_layout_token_layers(
     """
 
     tokens = load_layout_tokens(base_csv)
+    _reject_unreachable_language_rows(tokens, base_csv)
     for overlay_csv in overlay_csvs:
         overlay = load_layout_tokens(overlay_csv)
+        _reject_unreachable_language_rows(overlay, overlay_csv)
         duplicates = sorted(set(tokens).intersection(overlay))
         if duplicates:
             raise ValueError(
