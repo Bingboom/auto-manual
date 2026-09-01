@@ -20,6 +20,7 @@ from .components.native_marker import (
 )
 from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
+from .story_parts import add_story_parts
 from .source_copy import source_text
 from .spec_tables import spec_table_height
 from .style_names import paragraph_style_ref
@@ -592,18 +593,12 @@ def add_trouble_story(
         + '    <Content></Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" '
-        'FrameType="TextFrameType"/>\n'
-        + "".join(parts)
-        + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+    # Same sink as every other component story: it applies the duplicate-style
+    # collapse and binds generic CJK runs to the document language's portable
+    # face. Building the wrapper here instead left the two data-heaviest JP
+    # pages on the Arial Unicode MS system font while sixteen sibling stories
+    # carried the bundled JP face.
+    return add_story_parts(writer, sid, title, parts)
 
 
 def add_spec_story(
@@ -857,16 +852,4 @@ def add_spec_story(
                 1,
             )
         parts.append(note_xml)
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" '
-        'FrameType="TextFrameType"/>\n'
-        + "".join(parts)
-        + '</Story>\n'
-        '</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+    return add_story_parts(writer, sid, title, parts)
