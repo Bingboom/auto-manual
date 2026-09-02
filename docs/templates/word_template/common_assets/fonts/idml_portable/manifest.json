@@ -32,11 +32,11 @@
       "family": "HB Manual Sans JP (OTF)",
       "postscript_name": "HBManualSansJP-DemiLight",
       "filename": "HBManualSansJP-DemiLight.ttf",
-      "sha256": "6afd378690fdbde99b946649f93f4a5476bf1eaa11de493bb2f10b8f9ff08fe9",
+      "sha256": "c2966c81c3c5f0cfd42c084aa74bf444ce81bb8f83b83497726695d8a103058b",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
       "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
-      "instantiation": "fonttools varLib.instancer wght=350; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on",
+      "instantiation": "fonttools varLib.instancer wght=350; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on",
       "languages": [
         "ja",
         "jp"
@@ -47,11 +47,11 @@
       "family": "HB Manual Sans JP (OTF)",
       "postscript_name": "HBManualSansJP-Medium",
       "filename": "HBManualSansJP-Medium.ttf",
-      "sha256": "317f395296c34c63576aa8b8971908e76e421ba0ada95597c179e83ea53f3dce",
+      "sha256": "a361d1766b73049a83fe908bc6575eae862eea7e6e1fbda8121d0643c6491ef1",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
       "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
-      "instantiation": "fonttools varLib.instancer wght=500; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on",
+      "instantiation": "fonttools varLib.instancer wght=500; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on",
       "languages": [
         "ja",
         "jp"
@@ -62,7 +62,7 @@
       "family": "HB Manual Sans JP (OTF)",
       "postscript_name": "HBManualSansJP-Bold",
       "filename": "HBManualSansJP-Bold.ttf",
-      "sha256": "349144974c3d2209980336da418a2be0eaf3fb1d65fa5b9ba5ec949f6cf1e915",
+      "sha256": "5feb2e7664b0b669636be9aa70695c6538371b7a0247facfa386934649d30075",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
       "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",

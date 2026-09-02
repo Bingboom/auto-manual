@@ -121,6 +121,45 @@ class BundledFontNameTables(unittest.TestCase):
                     "a non-RIBBI weight must appear in name ID 1",
                 )
 
+    def test_style_bits_agree_with_the_declared_weight(self) -> None:
+        """usWeightClass alone does not make a face bold.
+
+        The OS and InDesign read the style words -- OS/2 fsSelection and
+        head macStyle. A Bold face built by instancing a variable font inherits
+        the source's REGULAR bit and stays un-bold in both of them, so it reads
+        as another Regular however heavy its outlines are.
+        """
+        import struct as _struct
+
+        for _token, face, path in self._faces():
+            with self.subTest(face=face.postscript_name):
+                data = path.read_bytes()
+                count = _struct.unpack(">H", data[4:6])[0]
+                offsets = {}
+                for index in range(count):
+                    record = 12 + index * 16
+                    tag = data[record:record + 4].decode("latin-1")
+                    offsets[tag] = _struct.unpack(
+                        ">I", data[record + 8:record + 12]
+                    )[0]
+                fs_selection = _struct.unpack(
+                    ">H", data[offsets["OS/2"] + 62:offsets["OS/2"] + 64]
+                )[0]
+                mac_style = _struct.unpack(
+                    ">H", data[offsets["head"] + 44:offsets["head"] + 46]
+                )[0]
+                bold_expected = face.style_name == "Bold"
+                self.assertEqual(
+                    bold_expected, bool(fs_selection & (1 << 5)), "fsSelection BOLD"
+                )
+                self.assertEqual(
+                    bold_expected, bool(mac_style & 1), "macStyle bold"
+                )
+                if not bold_expected:
+                    self.assertTrue(
+                        fs_selection & (1 << 6), "a non-bold face must set REGULAR"
+                    )
+
     def test_full_name_is_family_plus_style(self) -> None:
         for token, face, path in self._faces():
             if len(token.faces) == 1:
