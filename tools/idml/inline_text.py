@@ -159,6 +159,96 @@ def drop_duplicate_font_style(xml: str) -> str:
     return _CHARACTER_STYLE_RANGE_OPEN.sub(collapse, xml)
 
 
+# Weight the shipped Japanese book gives each component, measured by matching
+# every Japanese run against the same page of the printed reference and grouping
+# the answers by the paragraph style that produced it. Only non-Regular entries
+# appear: Regular is the inherited default, so listing it would be a no-op.
+#
+# Recorded in code-as-doc/reviews/bp_jp_reference_vs_built_2026-09.md together
+# with the proportion behind each choice. Where the reference is not unanimous
+# the dominant weight is used, by operator ruling, rather than leaving the
+# component at body weight.
+_JAPANESE_PARAGRAPH_WEIGHTS = {
+    # running text
+    "HB Symbol Body": "DemiLight",      # 94% of 238 chars
+    "HB Warranty Body": "DemiLight",    # 76% of 401 chars
+    "HB Warranty List": "DemiLight",    # 100% of 124 chars
+    "HB Warranty Lead": "DemiLight",    # 100%, small sample
+    # secondary structure
+    "HB TOC Entry": "Medium",           # 100% of 51 chars
+    "HB TOC Bar": "Medium",             # 100%, small sample
+    "\u6bb5\u843d\u6837\u5f0f-\u52a0\u7c97": "Medium",  # 87% of 38 chars
+    # headings and labels
+    "HB TOC Title": "Bold",             # 100%, small sample
+    "HB Warranty Title": "Bold",        # 100% of 36 chars
+    "\u5e26\u5e95Heading2": "Bold",    # 100% of 66 chars
+    "Heading2": "Bold",                 # 68% of 22 chars
+    "HB Callout Label": "Bold",         # 80%, small sample
+    "HB Operation Row Label": "Bold",   # 100%, small sample
+}
+
+_PARAGRAPH_RANGE = re.compile(
+    r'(<ParagraphStyleRange\b[^>]*AppliedParagraphStyle="([^"]+)"[^>]*>)(.*?)'
+    r"(</ParagraphStyleRange>)",
+    re.S,
+)
+
+
+def _apply_paragraph_weight(body: str, family: str, weight: str) -> str:
+    """Set ``weight`` on this paragraph's runs in ``family``.
+
+    Only runs sitting at the inherited Regular are moved. A run that already
+    carries Bold got it from inline emphasis in the source, and emphasis is a
+    stronger signal than the component's resting weight, so it is left alone.
+    """
+    applied = f'<AppliedFont type="string">{family}</AppliedFont>'
+
+    def retag(match: re.Match[str]) -> str:
+        attrs, inner = match.group(1), match.group(2)
+        if applied not in inner or 'FontStyle="Regular"' not in attrs:
+            return match.group(0)
+        return attrs.replace('FontStyle="Regular"', f'FontStyle="{weight}"') + inner + "</CharacterStyleRange>"
+
+    return re.sub(
+        r"(<CharacterStyleRange\b[^>]*>)((?:(?!</CharacterStyleRange>).)*?)</CharacterStyleRange>",
+        retag,
+        body,
+        flags=re.S,
+    )
+
+
+def apply_cjk_paragraph_weights(xml: str, language: str | None) -> str:
+    """Give each component the resting weight the shipped book uses.
+
+    Language-scoped on purpose: the paragraph styles are shared across every
+    language, and the Latin family has no DemiLight at all, so writing these
+    weights into the style definitions would change books that were never
+    measured. Applying them here, beside the family binding that is already
+    language-scoped, leaves every other language byte-identical.
+    """
+    from .font_family import (
+        JAPANESE_FONT_FAMILY_TOKEN,
+        cjk_font_family_for_language,
+        family_declares_style,
+    )
+
+    # Resolve through the family rather than testing the language spelling: the
+    # registry already owns which codes mean Japanese, and the guardrails keep
+    # language literals out of this layer.
+    family = cjk_font_family_for_language(language)
+    if family != JAPANESE_FONT_FAMILY_TOKEN.name:
+        return xml
+
+    def handle(match: re.Match[str]) -> str:
+        open_tag, style_ref, body, close_tag = match.groups()
+        weight = _JAPANESE_PARAGRAPH_WEIGHTS.get(style_ref.split("/")[-1])
+        if weight is None or not family_declares_style(family, weight):
+            return match.group(0)
+        return open_tag + _apply_paragraph_weight(body, family, weight) + close_tag
+
+    return _PARAGRAPH_RANGE.sub(handle, xml)
+
+
 _GENERIC_CJK_APPLIED_FONT = (
     f'<AppliedFont type="string">{CJK_FONT_FAMILY_TOKEN.name}</AppliedFont>'
 )
@@ -178,10 +268,11 @@ def localize_cjk_fallback_font(xml: str, language: str | None) -> str:
         xml = _withdraw_unsupported_cjk_bold(xml)
     if family == CJK_FONT_FAMILY_TOKEN.name:
         return xml
-    return xml.replace(
+    bound = xml.replace(
         _GENERIC_CJK_APPLIED_FONT,
         f'<AppliedFont type="string">{family}</AppliedFont>',
     )
+    return apply_cjk_paragraph_weights(bound, language)
 
 
 _CJK_BOLD_RANGE = re.compile(

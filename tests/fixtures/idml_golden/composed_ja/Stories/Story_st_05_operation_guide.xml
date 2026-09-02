@@ -21,7 +21,7 @@
     <AnchoredObjectSetting AnchoredPosition="InlinePosition" SpineRelative="false" LockPosition="false" PinPosition="true" AnchorPoint="BottomRightAnchor" HorizontalAlignment="LeftAlign" HorizontalReferencePoint="TextFrame" VerticalAlignment="TopAlign" VerticalReferencePoint="LineBaseline" AnchorXoffset="0" AnchorYoffset="0" AnchorSpaceAbove="0"/>
   </TextFrame><Content></Content><Br/></CharacterStyleRange></ParagraphStyleRange>
   <ParagraphStyleRange SpaceBefore="7.5" AppliedParagraphStyle="ParagraphStyle/Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Noto Sans Symbols2</AppliedFont></Properties><Content>●</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> </Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>ボタンとキーの組み合わせ</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">Noto Sans Symbols2</AppliedFont></Properties><Content>●</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> </Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Bold"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>ボタンとキーの組み合わせ</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
   </ParagraphStyleRange>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式">
     <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content>DISPLAY</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>ボタンを押すと画面が点灯します。</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Content> Hold it for two seconds to turn the unit off.</Content></CharacterStyleRange><CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"><Br/></CharacterStyleRange>
@@ -42,12 +42,12 @@
     </Cell>
     <Cell Self="st_05_operation_guide_t1c0_1" Name="1:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>短押し</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Medium"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>短押し</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_05_operation_guide_t1c0_2" Name="2:0" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/段落样式-加粗">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Regular"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>長押し</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" FontStyle="Medium"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>長押し</Content></CharacterStyleRange>
   </ParagraphStyleRange>
     </Cell>
     <Cell Self="st_05_operation_guide_t1c1_0" Name="0:1" RowSpan="1" ColumnSpan="1" AppliedCellStyle="CellStyle/$ID/[None]" VerticalJustification="CenterAlign" TopInset="3" BottomInset="3" LeftInset="4" RightInset="4">
