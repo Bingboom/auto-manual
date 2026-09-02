@@ -294,10 +294,40 @@ and the package's own `fonts_manifest.md` lists it as commercial while the other
 four families ship under OFL. A host without Gilroy installed therefore
 substitutes it silently, and the visible signature is specific: Japanese body
 text renders correctly while the brand name, product name, bullets, page
-numbers and every unit and numeral change typeface. If the observed styling
-defect matches that signature, the cause is host font provisioning rather than
-the pipeline; if it does not, the cause is elsewhere and this rules one
-candidate out.
+numbers and every unit and numeral change typeface.
+
+### Reference comparison — the deviation is Japanese weight
+
+The operator supplied the shipped book, so the twelve-page comparison has now
+been done on the pipeline side and is recorded in
+[`../reviews/bp_jp_reference_vs_built_2026-09.md`](../reviews/bp_jp_reference_vs_built_2026-09.md).
+
+Page count and geometry match (12 = 12; 368.754 vs 368.787 pt is mm-to-point
+rounding), and content is complete — 6,879 reference characters against 6,644
+built, with every per-page difference explained. The table of contents is
+content-identical, all ten entries and page numbers, its apparent 1,226-character
+gap being dot leaders the reference sets literally and the build sets as a
+leader tab.
+
+**The real deviation is weight.** The shipped book sets Japanese in four faces —
+Regular 2,926 characters, DemiLight 2,004, Medium 1,509, Bold 356, plus
+NotoSansCJKjp-Bold 77 — so **57% of Japanese characters are non-Regular**. The
+build emits `HB Manual Sans JP (OTF)` for all 255 Japanese runs and every one
+resolves to Regular; `Document fonts/` ships exactly one Japanese face. Measured,
+zero runs even request Bold or Medium, so this is not a missing-file problem: the
+pipeline does not vary Japanese weight at all. Every heading, emphasis, table
+header and lead the reference sets in Medium or Bold renders at body weight, which
+flattens the hierarchy at every level simultaneously.
+
+That is a pipeline gap rather than a finishing-layer item — closing it needs the
+remaining Noto Sans JP weights provisioned under the `HB Manual Sans JP` family
+with the paragraph styles selecting them, and cannot be repaired by hand at layout
+time without abandoning the shared component styles.
+
+A secondary deviation: in the shipped book Gilroy is an accent used for 43
+characters in the whole book and page numbers are Japanese face
+(`01` is NotoSansJP-Regular 6.0 pt), while the build leaves 293 runs inheriting
+Gilroy.
 
 Artifacts:
 
