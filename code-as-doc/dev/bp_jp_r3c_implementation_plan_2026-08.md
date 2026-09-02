@@ -236,11 +236,68 @@ knowing before anyone repeats the sync:
 
 ## Phase 6 - native InDesign and twelve-page visual acceptance
 
-Status: in progress. Shared Connections and Troubleshooting+Specifications
-geometry now reopen with zero overset stories and zero overset table cells.
-The bundled Japanese static TTF also reached zero missing-font findings before
-the current locked-host interruption. A fresh native run, PDF/X export, and
-the twelve-page visual ledger are still required.
+Status: in progress. **The operator ran native InDesign on 2026-09-01 and
+reported that the styling does not yet meet the final acceptance standard.**
+The specific findings are on the operator's host and are not reproduced here.
+
+The three "zero" measurements previously recorded in this section — zero
+overset stories, zero overset table cells, zero missing-font findings — are
+**stale and must not be relied on**. They predate #985, #989 and #992, and the
+last two changed exactly the things they measured: #989 rerouted the data
+stories through the shared font sink, and #992 restored the `lang_jp_` prefix,
+which moves the inbox card from 108.0pt to a measured 145.0pt and changes the
+warranty lead and body baseline. Overset is a function of that geometry.
+Overset cannot be re-measured off-host: `tools/indesign_finalize.py::_overset_pages`
+reads a report produced by the JSX **inside** InDesign, so only a native run
+can settle it.
+
+What the pipeline side can prove was re-measured on the current bytes, and is
+recorded below so the next native round starts from facts rather than from the
+stale trio. A fresh native run, PDF/X export, and the twelve-page visual ledger
+are still required.
+
+### Pipeline-side mechanical acceptance (current bytes, no InDesign)
+
+Measured against the same checks recorded for JBP-2000B_US in
+[`../reviews/jbp2000b_us_s6_reconciliation_2026-08.md`](../reviews/jbp2000b_us_s6_reconciliation_2026-08.md)
+so the two targets stay comparable.
+
+| Check | Result |
+| --- | --- |
+| Physical pages = assembly contract | 12 = 12 |
+| Source page match | 13/13 (100.0%) |
+| Trim size | 368.787 x 524.693 pt (130.10 x 185.10 mm) |
+| Package shape | 12 spreads / 84 stories |
+| Content loss | `skipped_raw = 0` |
+| Filenames rendered as body text | 0 |
+| Linked assets | 31 collected into the handoff package, 0 missing |
+| Delivery package | builds clean: 7,373,480 bytes, 50 entries, trace trio present |
+| Fonts requested by the IDML | `Gilroy`, `HB Manual Sans JP (OTF)`, `Noto Sans Symbols`, `Noto Sans Symbols2` |
+| `Arial Unicode MS` host-font fallback | absent — #989 holds |
+
+### The font finding, which bears directly on styling acceptance
+
+All **72** style definitions in the package declare `Gilroy` as their base
+font, and the Japanese runs override to `HB Manual Sans JP (OTF)` at run level.
+Measured on the current package:
+
+- 255 runs carry the Japanese override; **0 CJK runs fall back** to a font
+  without CJK coverage, so #989's sink is complete for Japanese text.
+- **202 runs inherit the style default, i.e. Gilroy.** They are the brand and
+  Latin/numeral content: `Jackery` (30), the bullet `•` (24), `2000 Plus` (12),
+  page numbers (`03`/`04`/`08`), units (`AC`, `DC`, `LCD`, `36.8V-57.6V`) and
+  list ordinals.
+
+`Gilroy` is commercially licensed (Radomir Tinkov) and is **deliberately not
+shipped** in `Document fonts/` — `STYLE_DEFINITION.md` §8.1 records the policy,
+and the package's own `fonts_manifest.md` lists it as commercial while the other
+four families ship under OFL. A host without Gilroy installed therefore
+substitutes it silently, and the visible signature is specific: Japanese body
+text renders correctly while the brand name, product name, bullets, page
+numbers and every unit and numeral change typeface. If the observed styling
+defect matches that signature, the cause is host font provisioning rather than
+the pipeline; if it does not, the cause is elsewhere and this rules one
+candidate out.
 
 Artifacts:
 
@@ -260,20 +317,35 @@ Acceptance:
 
 ## Phase 7 - clean-room package, PR, merge, and checklist backfill
 
-Status: pending Phase 6 completion.
+Status: pending Phase 6 completion. The validation ladder and the package
+mechanics have been pre-run so that nothing but the visual gate stands between
+Phase 6 passing and this phase closing.
 
-Required validation ladder:
+Required validation ladder — **all eight green on 2026-09-01**:
 
 ```text
-python -m ruff check build.py integrations tools tests scripts
-python -m unittest
-python -m mypy tools/utils
-python tools/check_maintainability_guardrails.py
-python tools/check_doc_link_integrity.py
-python build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP
-python build.py check --config configs/config.bp-us.yaml --model JBP-2000B --region US
-python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP
+python -m ruff check build.py integrations tools tests scripts          # exit 0
+python -m unittest                                                      # 3338 tests, OK (skipped=5)
+python -m mypy tools/utils                                              # no issues in 14 files
+python tools/check_maintainability_guardrails.py                        # OK, 62 hotspot files
+python tools/check_doc_link_integrity.py                                # 147 files, 1623 links, 0 broken
+python build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # exit 0
+python build.py check --config configs/config.bp-us.yaml --model JBP-2000B --region US   # exit 0
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP       # exit 0
 ```
+
+The handoff package was also built ahead of the gate, from
+`build.py idml --idml-mode both` output: 7,373,480 bytes, 50 entries, 31 linked
+assets collected with none missing, four OFL font files bundled, and all seven
+reports present including the `source_trace.json` / `designer_checklist.md` /
+`missing_assets_report.md` trio. It is a dry run, not the deliverable: the real
+package must be built from a clean worktree and must carry the native PDF and
+visual evidence that Phase 6 has not yet produced.
+
+One packaging fact is worth stating before the clean-room reopen, because it
+will otherwise look like a package defect: the ZIP intentionally does **not**
+contain `Gilroy`, so a clean-room host without it licensed and installed will
+substitute on open. See the font finding in Phase 6.
 
 Package from a clean worktree/clone, verify the ZIP contains the IDML package,
 native PDF, font/asset links allowed by policy, manifest, checksums, and visual
