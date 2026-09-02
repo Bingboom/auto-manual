@@ -183,6 +183,14 @@ host's phase2 credentials and the mirror now carries the 17 `JBP-2000B_JP`
 `reports/source_intake/JBP-2000B_JP/source_data_approval_2026-08-31.json`.
 `data/phase2/*` is gitignored, so the sync leaves no repo footprint.
 
+Measurement provenance: every number below was taken on a tree carrying the
+`lang_jp_` prefix fix, i.e. the state this branch is on now that that fix has
+landed. It matters because the alternative — the `lang_ja_` spelling — makes the
+seven measured Japanese rows unreachable and silently substitutes the shared
+Latin fallbacks. The built IDML is the proof: its inbox card frames measure
+145.0pt and the content frames 119.0pt, and it contains no 108.0/82.0 fallback
+frame at all.
+
 Four-renderer reconciliation. Each entrypoint cleans the output directory, so
 the artefacts were measured per run rather than all at once:
 
