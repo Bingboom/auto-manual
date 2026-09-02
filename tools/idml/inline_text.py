@@ -8,6 +8,7 @@ from .font_family import (
     BULLET_FONT_FAMILY_TOKEN,
     CIRCLED_NUMBER_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
+    family_declares_style,
     cjk_font_family_for_language,
     KOREAN_FONT_FAMILY_TOKEN,
     SYMBOL_FONT_FAMILY_TOKEN,
@@ -198,7 +199,17 @@ def _style_range(
     attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
     properties = ""
     if fallback_font:
-        attrs += f' FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"'
+        # A fallback run still carries its emphasis, but only where the bundled
+        # family actually ships a Bold face. Symbol families ship Regular only,
+        # and asking for a face the package lacks makes InDesign substitute the
+        # whole run. Bold used to be dropped here unconditionally, which
+        # silently flattened every emphasized CJK label to body weight.
+        style = (
+            "Bold"
+            if bold and family_declares_style(fallback_font, "Bold")
+            else SYMBOL_FONT_FALLBACK_STYLE
+        )
+        attrs += f' FontStyle="{style}"'
         properties = (
             "<Properties>"
             f'<AppliedFont type="string">{escape(fallback_font)}</AppliedFont>'
