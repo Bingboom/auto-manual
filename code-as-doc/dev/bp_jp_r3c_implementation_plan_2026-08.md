@@ -226,10 +226,19 @@ python3 build.py check --config configs/config.us.yaml    --model JE-1000F  --re
 Two host-environment findings from this round, neither blocking but both worth
 knowing before anyone repeats the sync:
 
-- `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` points at the build-queue table
+- `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` pointed at the build-queue table
   (`Document_ID`, `钉钉上传节点`, `Git_ref_check`) in both local env files, so
-  `sync-data` exports 0 rows and would blank `data/model_capabilities.csv`.
-  Restored by hand here; the env value needs a fix at the source.
+  `sync-data` exported 0 rows and would have blanked
+  `data/model_capabilities.csv`. **Resolved.** The correct table is
+  `tbltnkDIdwiDOP7d`, and it lives in the same phase2 base — the wiki node
+  token and `FEISHU_PHASE2_BASE_TOKEN` are two token forms of one base, not two
+  bases. The reliable discriminator is the schema rather than the row count:
+  that table satisfies 10/10 of the columns `tools/sync_model_capabilities.py`
+  requires (`Document_key` plus the nine capability flags), while the
+  build-queue table satisfies 0/10. After correcting both env files, a dry run
+  reports `rows=33 changed=no` with a snapshot hash byte-identical to the
+  committed mirror, which also confirms the committed data was never wrong —
+  only the coordinate was.
 - The exporter writes 11 `asset_registry` note fields unquoted where the
   committed file quotes them. Values are byte-identical once parsed, so this is
   cosmetic churn; also restored rather than shipped.
