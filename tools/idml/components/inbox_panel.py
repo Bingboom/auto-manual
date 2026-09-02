@@ -20,12 +20,17 @@ from ..page_objects import (
     left_rounded_xml,
     page_rectangle_xml,
 )
+from ..corner_radii import declared_radius
 from ..params import param_pt, param_text
 from .fixed_panel_contract import (
     FixedPanelDensity,
     FrameRect,
     normalize_language,
 )
+
+# `page_rectangle_xml`'s own default, named here so a declaration in a
+# target contract reads as a deliberate override of a known value.
+_DEFAULT_CARD_RADIUS = 5.5
 from .fixed_panel_primitives import (
     add_story,
     apply_character_attrs,
@@ -385,6 +390,14 @@ class InboxPanel:
                 fill="Color/Paper",
                 stroke_color=stroke_color,
                 stroke_weight=stroke_weight,
+                # Nobody ever chose this radius: the card fell through to
+                # `page_rectangle_xml`'s own default while `comp_inbox_card_arc`
+                # sat unread in the layout table. A target whose master rounds
+                # the card differently declares it instead of moving a shared
+                # value that every other book reads.
+                corner_radius=declared_radius(
+                    self.data.reference_profile, "card", _DEFAULT_CARD_RADIUS,
+                ),
                 object_style=CARD_OBJECT_STYLE,
             ))
             frame_rects.append((f"card_{index + 1}_shell", card_rect))
@@ -512,6 +525,12 @@ class InboxPanel:
             f'BaselineShift="{layout.body_baseline_shift:g}"',
         )
         add_story(self.writer, body_sid, "Inbox tip body", [body_xml])
+        # The label plate stays optically inset from whichever corner the
+        # strip carries, so it follows a declared radius rather than the
+        # shared notice arc.
+        tip_arc = declared_radius(
+            self.data.reference_profile, "tip_strip", layout.arc,
+        )
         frames = [
             page_rectangle_xml(
                 self.writer,
@@ -520,7 +539,7 @@ class InboxPanel:
                 fill="Color/HB Bg K05",
                 stroke_color="Swatch/None",
                 stroke_weight=0,
-                corner_radius=layout.arc,
+                corner_radius=tip_arc,
                 object_style=PANEL_OBJECT_STYLE,
             ),
             left_rounded_xml(
@@ -530,7 +549,7 @@ class InboxPanel:
                 fill="Color/Paper",
                 corner_radius=max(
                     0.0,
-                    layout.arc - layout.plate_left / 2.0,
+                    tip_arc - layout.plate_left / 2.0,
                 ),
                 object_style=PANEL_OBJECT_STYLE,
             ),

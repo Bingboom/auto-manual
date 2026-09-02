@@ -1320,16 +1320,20 @@ def apply_component_composition_data(
         return promote_operation_guidance_stack(blocks, require_match=True)
     if planned_type != "warranty":
         return blocks
-    variants = [
-        data["warranty"].get("layout_variant")
+    compositions = [
+        data["warranty"]
         for entry in (page_plan or {}).get("pages", [])
         if Path(str(entry.get("source_path") or "")).stem in stems
         and isinstance((data := entry.get("composition_data")), dict)
         and isinstance(data.get("warranty"), dict)
     ]
+    variants = [composition.get("layout_variant") for composition in compositions]
     if len(variants) != 1 or not isinstance(variants[0], str):
         return blocks
     variant = variants[0]
+    # Carried on the same path as the variant, so the warranty chrome can be
+    # rounded to its own master without moving the shared arc every book reads.
+    corner_radii = compositions[0].get("corner_radii")
     projected: list[Block] = []
     for kind, payload in blocks:
         if kind != "component":
@@ -1346,6 +1350,8 @@ def apply_component_composition_data(
             "warrantyyears",
         }:
             spec["layout_variant"] = variant
+            if corner_radii:
+                spec["corner_radii"] = corner_radii
             payload = json.dumps(spec, ensure_ascii=False)
         projected.append((kind, payload))
     return projected
