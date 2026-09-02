@@ -163,21 +163,76 @@ python3 -m unittest tests.test_idml_target_assembly_plan tests.test_idml_target_
 
 ## Phase 5 - real entrypoint and four-renderer reconciliation
 
-Status: in progress. `build.py check` and production IDML are green at
-12 pages, 13/13 source pages matched, and zero skipped raw blocks. The final
-`build.py all` plus cross-target regression ladder remains Phase 7 work.
+Status: complete. All three entrypoints exit 0 against the **live-synced**
+`data/phase2` mirror, and the cross-target regression ladder is green.
 
-Required commands:
+Required commands, as run:
 
 ```text
-python3 build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP
-python3 build.py all --config configs/config.bp-jp.yaml --model JBP-2000B --region JP
-python3 build.py idml --config configs/config.bp-jp.yaml --model JBP-2000B --region JP
+python3 build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # exit 0
+python3 build.py all   --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # exit 0, 0 ERROR/Traceback
+python3 build.py idml  --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # exit 0
 ```
 
-The four renderers are LaTeX/PDF, Word, HTML, and IDML. Record actual page
-counts, source/assembly identity, glyph/font checks, and any renderer-specific
-warnings. Run the US and MAIN JP regressions after the target passes.
+Real-data prerequisite, now satisfied: these ran without `--data-root`. The
+committed mirror carried zero `JBP-2000B_JP` rows, so the entrypoints only
+passed against `tests/fixtures/phase2` and the branch's green tests proved
+nothing about the production data path. `build.py sync-data` was run with the
+host's phase2 credentials and the mirror now carries the 17 `JBP-2000B_JP`
+`Spec_Master` rows, matching the 17/17 staging readback in
+`reports/source_intake/JBP-2000B_JP/source_data_approval_2026-08-31.json`.
+`data/phase2/*` is gitignored, so the sync leaves no repo footprint.
+
+Measurement provenance: every number below was taken on a tree carrying the
+`lang_jp_` prefix fix, i.e. the state this branch is on now that that fix has
+landed. It matters because the alternative — the `lang_ja_` spelling — makes the
+seven measured Japanese rows unreachable and silently substitutes the shared
+Latin fallbacks. The built IDML is the proof: its inbox card frames measure
+145.0pt and the content frames 119.0pt, and it contains no 108.0/82.0 fallback
+frame at all.
+
+Four-renderer reconciliation. Each entrypoint cleans the output directory, so
+the artefacts were measured per run rather than all at once:
+
+| Renderer | Result |
+| --- | --- |
+| LaTeX/PDF | 4,061,645 bytes, **15 pages**, 0 missing-glyph findings (U+FFFD / .notdef) |
+| Word | 6,110,910 bytes |
+| HTML | 48,396 bytes |
+| IDML | 116,826 bytes, **12 `<Page>` elements across 12 spreads** |
+
+Assembly identity: `target={model: JBP-2000B, region: JP, languages: [jp]}`,
+`status=candidate`, `production_eligible=false`, `physical_page_count=12`,
+13 declared pages. Page plan `physical=12 matched=13/13 (100.0%) placed=0`;
+IR `pages=13 blocks=79 skipped_raw=0`.
+
+PDF fonts embed `HBManualSansJP-Regular` and `NotoSansJP` (Regular, Medium,
+Bold, DemiLight) alongside the Gilroy identity faces. IDML declares
+`HB Manual Sans JP (OTF)`, `Noto Sans Symbols`, `Noto Sans Symbols2`.
+
+The 15-page PDF against 12 IDML pages is expected, not a defect: the LaTeX
+projection paginates on its own, while the twelve-page ledger is the InDesign
+assembly contract. Phase 6's acceptance gate is 12/12 on the native result.
+
+Cross-target regressions, all `exit 0` / `[check] OK` on the same synced
+mirror:
+
+```text
+python3 build.py check --config configs/config.bp-us.yaml --model JBP-2000B --region US
+python3 build.py check --config configs/config.ja.yaml    --model JE-1000F  --region JP
+python3 build.py check --config configs/config.us.yaml    --model JE-1000F  --region US
+```
+
+Two host-environment findings from this round, neither blocking but both worth
+knowing before anyone repeats the sync:
+
+- `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` points at the build-queue table
+  (`Document_ID`, `钉钉上传节点`, `Git_ref_check`) in both local env files, so
+  `sync-data` exports 0 rows and would blank `data/model_capabilities.csv`.
+  Restored by hand here; the env value needs a fix at the source.
+- The exporter writes 11 `asset_registry` note fields unquoted where the
+  committed file quotes them. Values are byte-identical once parsed, so this is
+  cosmetic churn; also restored rather than shipped.
 
 ## Phase 6 - native InDesign and twelve-page visual acceptance
 
