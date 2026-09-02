@@ -239,3 +239,23 @@ def cjk_font_family_for_language(language: str | None) -> str:
     if code == "ja":
         return JAPANESE_FONT_FAMILY_TOKEN.name
     return CJK_FONT_FAMILY_TOKEN.name
+
+
+_ALL_FAMILY_TOKENS = DELIVERY_FONT_FAMILY_TOKENS + (CIRCLED_NUMBER_FONT_FAMILY_TOKEN,)
+
+
+def family_declares_style(family_name: str, style_name: str) -> bool:
+    """Does ``family_name`` ship a face for ``style_name``?
+
+    Weight can only be requested where the package actually carries the face.
+    Asking InDesign for a style a bundled family does not provide produces a
+    missing-font substitution, which is worse than rendering at the one weight
+    that exists, so callers gate on this rather than assuming a family is
+    complete.
+    """
+    folded = style_name.casefold()
+    for token in _ALL_FAMILY_TOKENS:
+        if token.name != family_name:
+            continue
+        return any(face.style_name.casefold() == folded for face in token.faces)
+    return False
