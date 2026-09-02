@@ -244,6 +244,79 @@ across two spreads, which is why the spec table is segmented by section -- so
 it is its own change. The section bar is entangled with the page 02/03 heading
 structure still open in §7.
 
+## 4c. Type scale: the specification row pitch, and why the rest is not a type change
+
+The type-scale gap is real and measured. The master sets every PROSE role at
+7.00 pt -- TOC entries, warranty items, symbol captions, specification values,
+running body, the disclaimer -- and a second tier at 6.00 pt for in-panel and
+in-table secondary copy. The build sets the prose roles at 5.50-6.50 and the
+6.00 pt tier at roughly the right size already, so the figure callouts and the
+troubleshooting cells need nothing. Body leading is 9.00 pt against the master's
+7.00/9.00 measured over 22 samples, where the build runs 6.00/7.20.
+
+But raising type does not work as a token change, and this is the finding that
+stopped one. **56.6 percent of this book's text sits in anchored frames with
+`AutoSizingType="Off"` whose heights are data tokens that do not move with type
+size.** Every one of the ten ordinary specification rows was a 7.00 pt line box
+holding a 6.60 pt line -- 0.40 pt of slack, `AutoGrow="false"`, no terminal
+carrier -- so a 7.7 pt leading oversets all twenty cells. Five of the seven
+pinned warranty panels carry the largest 6.00 pt population on 2.94-6.11 pt of
+slack. The LCD panel and the four notice bodies have 1.00-8.00 pt each. None of
+that is visible from the build: nothing compares `add_prose_story`'s estimated
+height against the frame it flows into, so an overset would have surfaced only
+when the book was opened.
+
+So the containers move first. The specification shell was the largest single
+geometry gap in the book, and its pitch was measurable rather than inferred:
+the master draws a hairline between every pair of rows, and reference page 9
+carries two stroked panels -- the upper one is the troubleshooting table
+(fourteen bands at about 10.89 pt, left column reading F1...FF), and the lower
+one is the specification table (eleven bands, ten at 14.95 pt and a final one at
+38.35 pt, left column reading 認証 / 型番 / 定格容量 / バッテリータイプ /
+サイクル寿命 / サイズ&重量 / DC拡張ポート(入力) / (出力) / 充電温度 / 動作温度 /
+保存温度). Pairing those two panels the other way round would have put the
+troubleshooting pitch into the specification table.
+
+| | built before | master | built now |
+| --- | ---: | ---: | ---: |
+| specification shell | 133.80 | 188.34 | **187.80** |
+| as a share of the master | 71.0% | 100% | **99.7%** |
+
+Declared as `lang_jp_idml_compact_spec_table_row_height` and
+`..._multiline_min_height`. `spec_tables.py` already reads both per language
+with the shared value as the fallback, and
+`lang_ko_idml_compact_spec_table_row_height` has been in the Korean overlay for
+a while, so this is a data change on an established path. The shell fits: the
+frame is 245.8 pt and carries the 20.1 pt H1 pill besides.
+
+### What the audit established about scoping the sizes themselves
+
+Every corner of this was checked against the code rather than assumed, because
+the obvious mechanism is a trap. Making the paragraph-style table's size helper
+language-aware -- `sz()` in `tools/idml/styles.py` reads one literal key -- would
+silently activate rows that already exist for other languages:
+
+| key | already declared by | so language-scoping it would |
+| --- | --- | --- |
+| `type_spec_label_font_size` | de 5.6, it 5.7, fr/es 5.9 | move four shipped books |
+| `type_spec_value_font_size` | fr/es 5.9 | move two |
+| `type_body_font_size` | nobody | be inert |
+| `type_warranty_body_font_size` | nobody | be inert |
+| `type_symbol_body_font_size` | nobody | be inert |
+
+Those de/it rows are half-live today: `data_stories.py` reads them to size the
+portable symbol markers inside spec cells, while the paragraph style still
+prints at the shared 6.00. So the specification type size is the one role that
+cannot be scoped this way, and the row pitch delivered here is what its geometry
+needs regardless.
+
+The safety-page bullet list was going to be part of this change and was dropped:
+the reference role that looked like a bullet list at 7.00/11.50 turns out, on
+page 2 at x 29.9 and x 100.6, to be the page intro and the four signal-word
+legend definitions. The master's page 2 has no bullet list at all, so our
+fifteen bullets are a content-structure difference belonging with §7 rather than
+a type delta.
+
 ## 5. Method
 
 Reference typography via PyMuPDF span extraction (font, size, character counts
