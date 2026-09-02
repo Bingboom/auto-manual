@@ -159,14 +159,43 @@ def drop_duplicate_font_style(xml: str) -> str:
     return _CHARACTER_STYLE_RANGE_OPEN.sub(collapse, xml)
 
 
+_GENERIC_CJK_APPLIED_FONT = (
+    f'<AppliedFont type="string">{CJK_FONT_FAMILY_TOKEN.name}</AppliedFont>'
+)
+
+
 def localize_cjk_fallback_font(xml: str, language: str | None) -> str:
-    """Bind generic CJK runs to the portable face for this document language."""
+    """Bind generic CJK runs to the portable face for this document language.
+
+    This is also where deferred emphasis is settled. ``_style_range`` writes
+    ``Bold`` on a generic CJK run without knowing the document language, since
+    the family that finally applies is chosen here. A family that ships only a
+    Regular face cannot honour it, so the emphasis is withdrawn rather than
+    left to become a missing-face substitution covering the whole run.
+    """
     family = cjk_font_family_for_language(language)
+    if not family_declares_style(family, "Bold"):
+        xml = _withdraw_unsupported_cjk_bold(xml)
     if family == CJK_FONT_FAMILY_TOKEN.name:
         return xml
     return xml.replace(
-        f'<AppliedFont type="string">{CJK_FONT_FAMILY_TOKEN.name}</AppliedFont>',
+        _GENERIC_CJK_APPLIED_FONT,
         f'<AppliedFont type="string">{family}</AppliedFont>',
+    )
+
+
+_CJK_BOLD_RANGE = re.compile(
+    r'(<CharacterStyleRange\b[^>]*?)FontStyle="Bold"([^>]*>(?:(?!</CharacterStyleRange>).)*?'
+    + re.escape(_GENERIC_CJK_APPLIED_FONT) + r")",
+    re.S,
+)
+
+
+def _withdraw_unsupported_cjk_bold(xml: str) -> str:
+    """Return ``xml`` with bold removed from generic-CJK runs only."""
+    return _CJK_BOLD_RANGE.sub(
+        lambda m: f'{m.group(1)}FontStyle="{SYMBOL_FONT_FALLBACK_STYLE}"{m.group(2)}',
+        xml,
     )
 
 
@@ -199,14 +228,20 @@ def _style_range(
     attrs = 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
     properties = ""
     if fallback_font:
-        # A fallback run still carries its emphasis, but only where the bundled
-        # family actually ships a Bold face. Symbol families ship Regular only,
-        # and asking for a face the package lacks makes InDesign substitute the
-        # whole run. Bold used to be dropped here unconditionally, which
-        # silently flattened every emphasized CJK label to body weight.
+        # A fallback run still carries its emphasis, but only where the family
+        # that finally applies ships a Bold face. Asking for a face the package
+        # lacks makes InDesign substitute the whole run, and bold used to be
+        # dropped here unconditionally, which flattened every emphasized CJK
+        # label to body weight.
+        #
+        # The generic CJK token is a placeholder: the document language decides
+        # the real family later, at localize_cjk_fallback_font. Emit the
+        # emphasis here and let that sink downgrade it if the resolved family
+        # cannot render it, because this function has no language to resolve.
+        deferred = fallback_font == CJK_FONT_FAMILY_TOKEN.name
         style = (
             "Bold"
-            if bold and family_declares_style(fallback_font, "Bold")
+            if bold and (deferred or family_declares_style(fallback_font, "Bold"))
             else SYMBOL_FONT_FALLBACK_STYLE
         )
         attrs += f' FontStyle="{style}"'

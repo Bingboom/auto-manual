@@ -37,13 +37,22 @@ class FamilyDeclaresStyle(unittest.TestCase):
 
     def test_regular_only_families_do_not_claim_bold(self) -> None:
         for token in (
-            JAPANESE_FONT_FAMILY_TOKEN,
             KOREAN_FONT_FAMILY_TOKEN,
             CJK_FONT_FAMILY_TOKEN,
             BULLET_FONT_FAMILY_TOKEN,
         ):
             self.assertTrue(family_declares_style(token.name, "Regular"), token.name)
             self.assertFalse(family_declares_style(token.name, "Bold"), token.name)
+
+    def test_japanese_family_ships_the_four_shipped_book_weights(self) -> None:
+        """The reference book uses all four; a missing one silently flattens."""
+        for style in ("DemiLight", "Regular", "Medium", "Bold"):
+            self.assertTrue(
+                family_declares_style(JAPANESE_FONT_FAMILY_TOKEN.name, style), style
+            )
+        self.assertFalse(
+            family_declares_style(JAPANESE_FONT_FAMILY_TOKEN.name, "Heavy")
+        )
 
     def test_unknown_family_declares_nothing(self) -> None:
         self.assertFalse(family_declares_style("No Such Family", "Bold"))
@@ -66,10 +75,42 @@ class BoldSurvivesFallbackRuns(unittest.TestCase):
 
     def test_bold_is_withheld_when_the_family_has_only_regular(self) -> None:
         """Withholding is deliberate: a missing face substitutes the whole run."""
-        for token in (JAPANESE_FONT_FAMILY_TOKEN, KOREAN_FONT_FAMILY_TOKEN):
-            xml = inline_text._style_range("保証", bold=True, fallback_font=token.name)
-            self.assertIn('FontStyle="Regular"', xml, token.name)
-            self.assertNotIn('FontStyle="Bold"', xml, token.name)
+        token = KOREAN_FONT_FAMILY_TOKEN
+        xml = inline_text._style_range("보증", bold=True, fallback_font=token.name)
+        self.assertIn('FontStyle="Regular"', xml)
+        self.assertNotIn('FontStyle="Bold"', xml)
+
+    def test_generic_cjk_defers_emphasis_to_the_language_sink(self) -> None:
+        """`_style_range` has no language, so it cannot resolve the family.
+
+        The generic token is a placeholder; the real family is chosen in
+        `localize_cjk_fallback_font`. Emphasis is therefore written optimistically
+        and settled there, which is the only place that knows whether the
+        resolved family can render it.
+        """
+        xml = inline_text._style_range(
+            "保証期間", bold=True, fallback_font=CJK_FONT_FAMILY_TOKEN.name
+        )
+        self.assertIn('FontStyle="Bold"', xml)
+
+        japanese = inline_text.localize_cjk_fallback_font(xml, "ja")
+        self.assertIn(JAPANESE_FONT_FAMILY_TOKEN.name, japanese)
+        self.assertIn('FontStyle="Bold"', japanese)
+
+        chinese = inline_text.localize_cjk_fallback_font(xml, "zh")
+        self.assertIn(CJK_FONT_FAMILY_TOKEN.name, chinese)
+        self.assertIn('FontStyle="Regular"', chinese)
+        self.assertNotIn('FontStyle="Bold"', chinese)
+
+    def test_withdrawal_leaves_non_cjk_bold_alone(self) -> None:
+        """Only the generic-CJK run loses emphasis, never its Latin neighbour."""
+        latin = inline_text._style_range("30", bold=True, fallback_font=None)
+        cjk = inline_text._style_range(
+            "日以内", bold=True, fallback_font=CJK_FONT_FAMILY_TOKEN.name
+        )
+        settled = inline_text.localize_cjk_fallback_font(latin + cjk, "zh")
+        self.assertEqual(1, settled.count('FontStyle="Bold"'))
+        self.assertIn('FontStyle="Regular"', settled)
 
     def test_symbol_fallbacks_never_take_bold(self) -> None:
         xml = inline_text._style_range(
