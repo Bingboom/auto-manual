@@ -1012,6 +1012,12 @@ def add_charging_page(
         variant="charging",
     )
     image_count = sum(kind == "image" for kind, _text in prepared_blocks)
+    # One entry per figure, in source order; a figure with no entry keeps its
+    # label table under the art, which is what every other target renders.
+    figure_callouts = tuple(
+        tuple(dict(callout) for callout in (figure or ()))
+        for figure in (options.get("figure_callouts") or ())
+    )
 
     writer.add_prose_story(
         sid,
@@ -1020,6 +1026,7 @@ def add_charging_page(
         bundle_root,
         language=language,
         image_roles=(image_role,) * image_count,
+        image_callouts=figure_callouts,
         semantic_page_role="charging",
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)

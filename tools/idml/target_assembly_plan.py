@@ -384,12 +384,20 @@ def _validate_composition_data(
                 )
                 continue
             expected = {"image_role", "h2_suffix_pill_indices"}
-            if set(charging) != expected:
+            # `figure_callouts` is optional so the contracts written before it
+            # stay valid and keep printing their label tables under the art.
+            if set(charging) - {"figure_callouts"} != expected:
                 issues.append(
                     f"{source_ref}.composition_data.charging must contain "
                     f"exactly {sorted(expected)}"
                 )
                 continue
+            issues.extend(
+                _figure_callout_issues(
+                    charging.get("figure_callouts"),
+                    label=f"{source_ref}.composition_data.charging.figure_callouts",
+                )
+            )
             if charging.get("image_role") not in {
                 "charging_diagram",
                 "full_measure",
@@ -1270,3 +1278,57 @@ __all__ = (
     "load_target_assembly_plan",
     "normalize_target_assembly_plan",
 )
+
+
+def _figure_callout_issues(declared: object, *, label: str) -> list[str]:
+    """Reject callout geometry that cannot place a label inside its figure."""
+
+    if declared is None:
+        return []
+    if not isinstance(declared, list) or not declared:
+        return [f"{label} must be a non-empty list"]
+    issues: list[str] = []
+    for figure_index, figure in enumerate(declared):
+        if not isinstance(figure, list):
+            issues.append(f"{label}[{figure_index}] must be a list")
+            continue
+        seen: set[int] = set()
+        for index, callout in enumerate(figure):
+            where = f"{label}[{figure_index}][{index}]"
+            if not isinstance(callout, dict):
+                issues.append(f"{where} must be an object")
+                continue
+            expected = {"cell_index", "x", "y", "width"}
+            if set(callout) != expected:
+                issues.append(f"{where} must contain exactly {sorted(expected)}")
+                continue
+            cell_index = callout.get("cell_index")
+            if (
+                isinstance(cell_index, bool)
+                or not isinstance(cell_index, int)
+                or cell_index < 0
+            ):
+                issues.append(f"{where}.cell_index must be a non-negative integer")
+            elif cell_index in seen:
+                issues.append(f"{where}.cell_index is declared twice")
+            else:
+                seen.add(cell_index)
+            for key in ("x", "y", "width"):
+                value = callout.get(key)
+                if isinstance(value, bool) or not isinstance(value, (int, float)):
+                    issues.append(f"{where}.{key} must be a number")
+                elif not 0.0 <= float(value) <= 1.0:
+                    issues.append(
+                        f"{where}.{key} must be a fraction of the figure, 0..1"
+                    )
+            width = callout.get("width")
+            x = callout.get("x")
+            if (
+                isinstance(width, (int, float))
+                and not isinstance(width, bool)
+                and isinstance(x, (int, float))
+                and not isinstance(x, bool)
+                and float(x) + float(width) > 1.0
+            ):
+                issues.append(f"{where} runs past the figure's right edge")
+    return issues
