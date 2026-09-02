@@ -25,6 +25,8 @@ lang_de_idml_compact_safety_list_leading,5.3,pt,German compact shared-page Safet
 lang_it_idml_compact_safety_list_font_size,4.9,pt,Italian compact shared-page Safety list font size
 lang_it_idml_compact_safety_list_leading,5.3,pt,Italian compact shared-page Safety list leading
 lang_uk_idml_compact_safety_list_font_size,4.7,pt,Ukrainian compact shared-page Safety list font size
+lang_jp_idml_compact_safety_list_font_size,7.0,pt,Japanese compact shared-page Safety list font size measured from the JP master (eleven bullets at 7.00 pt, full measure)
+lang_jp_idml_compact_safety_list_leading,11.5,pt,Japanese compact shared-page Safety list leading measured from the JP master (17 baselines, every delta 11.50)
 lang_uk_idml_compact_safety_list_leading,5.1,pt,Ukrainian compact shared-page Safety list leading
 idml_compact_safety_list_space_after,0.35,pt,Compact shared-page Safety list item gap
 idml_compact_safety_list_horizontal_scale,0.96,ratio,Compact shared-page Safety list width correction

@@ -336,6 +336,73 @@ legend definitions. The master's page 2 has no bullet list at all, so our
 fifteen bullets are a content-structure difference belonging with §7 rather than
 a type delta.
 
+## 4d. Safety bullets, and two corrections the adversarial pass forced
+
+The master sets the eleven 「使用上のご注意」 bullets at 7.00 pt on an 11.50 pt
+pitch, full measure; the build set the same eleven items at 5.50/6.30. Declared
+as `lang_jp_idml_compact_safety_list_font_size` / `..._leading`, which
+`safety_story.py` already reads per language with the shared value as the
+fallback -- en/fr/es/de/it/uk each declare their own, so Japanese was simply
+missing from a table every other language is in.
+
+This item was twice withheld on reasoning that turned out to be wrong, and both
+errors came from reading a sample instead of the whole:
+
+1. "The master's page 2 has no bullet list." It has eleven, at x 28.34. The
+   first six of the page's twenty-six 7.00 pt spans happen to be the intro and
+   the legend definitions, and the reading stopped there.
+2. "The build sets them in two columns, so it needs a layout change." It does
+   not. `column_measure` in `safety_story.py` feeds the components inside the
+   story; the bullets run the full 312.09 pt measure, and the built frame spans
+   page x 28.35-340.44 exactly as the master's do.
+
+The verification that settled it proved the pairing four independent ways --
+folio ('01' on both sides), all eleven items verbatim in the same order followed
+by 「絵表示について」, frame x-extent against the master's 42 x 7.00 pt wrap
+capacity, and the whole y-stack reconciling to 0.01 pt against
+`idml_shared_page_top` 27.7 and `idml_safety_signals_table_top` 350.0 -- and
+showed the reference size is not a text-matrix artefact on either axis (glyph
+bbox height 19.992 = 7.0 x 2.856; full-width advance exactly 7.00).
+
+Reflow is contained to that one frame: 113.45 -> 223.20 pt of 294.673, or
+38% -> 76%, leaving 71.47 pt. The legend below starts at page y 350.00 and the
+body frame ends at 346.00, a gap the growth never reaches.
+
+### Two corrections to §4c
+
+**The build is not blind to overset.** §4c said nothing compares a story's
+height against its frame, so an overset would surface only on opening the book.
+That is true of the Python leg only: `tools/idml/indesign_finalize.jsx` collects
+both `overset_stories` and `overset_table_cells` with page attribution, so the
+finalize report catches it.
+
+**The specification-cell overset numbers describe the state before the row
+pitch changed.** The reflow model that produced "ten 7.00 pt line boxes holding
+6.60 pt lines, 0.40 pt of slack" was computed at the shared 11.0 pt row height
+-- it called the estimator with a language key that is not `jp`, the same
+normalization trap as #985, so it modelled a table the shipped file no longer
+has. At the master's 14.95 pt pitch those cells have roughly 3.3 pt of slack at
+a 7.7 pt leading. The conclusion that containers must move first still stands,
+and the row pitch is what moved them; but the specification type size is no
+longer blocked by cell overset. What still blocks it is the key collision:
+de/it/fr/es already declare `type_spec_label_font_size` and
+`type_spec_value_font_size`.
+
+### What the completeness critic found that the audit could not see
+
+The audit's lens is XML text, so it is blind to type baked into placed artwork,
+and four "absent" findings are that blindness rather than gaps: the cover is not
+missing -- `Spread_sp_0` places `cover_jbp2000b-ja.pdf`, whose twelve spans match
+the master to 0.01 pt, making it the one page already at type parity -- and the
+Li-ion lettering, the ①/② step numerals and the product silkscreen are all
+present inside their assets. A fifth, the master's live 「3s」 duration mark, is a
+text-to-icon substitution in our artwork rather than a dropped element.
+
+Two findings survive as real and are not yet acted on: the safety bullet marker
+is '•' U+2022 where the master sets '・' U+30FB, and the two notice bodies judged
+"not reader-visible" on a -0.2 pt size delta carry `HorizontalScale="106.9"`,
+so their set width differs by more than the vertical axis alone shows.
+
 ## 5. Method
 
 Reference typography via PyMuPDF span extraction (font, size, character counts
