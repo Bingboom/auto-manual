@@ -140,7 +140,19 @@ def _fonts_manifest(fonts_included: bool) -> str:
     lines.extend(f"| {family} | {names} | {license_} |" for family, names, license_ in _FONT_ROWS)
     lines.append("")
     if fonts_included:
-        lines.append("Font files are included under `Document fonts/` (provisioned by the build operator; verify the embedding license covers your use).")
+        lines.extend([
+            "Font files ship under `Document fonts/`, but **install them before",
+            "opening the IDML**. Importing an IDML produces an untitled document,",
+            "and InDesign resolves a `Document fonts` folder relative to a saved",
+            "document, so the bundled copies are not picked up on that first open.",
+            "Every bundled face comes up as a missing font and is substituted.",
+            "",
+            "Installing the files in `Document fonts/` is enough; they are the same",
+            "faces the styles reference. Commercially licensed families are listed",
+            "above but not shipped, so those must come from your own licence.",
+            "",
+            "(Verify the embedding licence covers your use before redistributing.)",
+        ])
     else:
         lines.append("No font files are included in this package — install the fonts above (licensed) before opening the IDML, or InDesign will substitute them.")
     return "\n".join(lines) + "\n"

@@ -164,7 +164,12 @@ class BuildDeliveryPackageTest(unittest.TestCase):
                 self.assertIn("Document fonts/LICENSES/OFL-Noto.txt", names)
                 self.assertNotIn("Document fonts/notes.txt", names)
                 manifest = zf.read("fonts_manifest.md").decode("utf-8")
-                self.assertIn("included under `Document fonts/`", manifest)
+                self.assertIn("ship under `Document fonts/`", manifest)
+                # The bundled copies are not enough on their own: an IDML opens
+                # as an untitled document, so InDesign never consults the
+                # folder. Saying so is the difference between a designer
+                # installing four files and reporting the book as broken.
+                self.assertIn("install them before", manifest)
 
             without_fonts = build_delivery_package(
                 production_idml=idml, handoff_root=handoff,
@@ -177,7 +182,8 @@ class BuildDeliveryPackageTest(unittest.TestCase):
                 self.assertIn("Document fonts/NotoSansSymbols2-Regular.ttf", names)
                 self.assertFalse(any("Gilroy" in n for n in names))
                 manifest = zf.read("fonts_manifest.md").decode("utf-8")
-                self.assertIn("included under `Document fonts/`", manifest)
+                self.assertIn("ship under `Document fonts/`", manifest)
+                self.assertIn("install them before", manifest)
 
     def test_rewrites_links_in_real_flow_idml_too(self) -> None:
         with tempfile.TemporaryDirectory() as td:
