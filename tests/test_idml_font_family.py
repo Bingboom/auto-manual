@@ -42,9 +42,13 @@ class IdmlFontFamilyTokenTest(unittest.TestCase):
             "styles": "8a697432cd63084047142685060429eea6257a56e1fc3a8d6fe434362bafe316",
             "fonts": "7bef8c30988b0b8ceabb67734943995a172b2428fdc2c8772d67ac4afff16407",
             "fonts_ko": "319a2447dfeeea2e261f8c4fba614f1cacea844fee9989a6e4ef919bc3833f33",
-            "fonts_ja": "72d7534df5f0b493aeb37931e60cc239d8b1045a13c00aeafd9b6c30b89b76d2",
+            # fonts_ja and manifest moved when the Japanese family gained its
+            # DemiLight/Medium/Bold faces. styles, fonts, fonts_ko and flow are
+            # deliberately unchanged: no other language package sees the new
+            # faces, so this pins the blast radius as well as the output.
+            "fonts_ja": "bb373155a7d1493c2a2be034dde38a307528775504f2e6d9b0998f698bf1410e",
             "flow": "111c9d93d62ba1b250d743af51db9bfb8079c1a675201e96d895e1c18ceb4211",
-            "manifest": "95a077292f1afb9f486d981b69a70b3c2e8184ad0dd99e42a984e1f8757ff370",
+            "manifest": "17c873547377ec9e3b39abb1006a807a3f807e0cb5dfb6d0f289949cb6009e1a",
         }
         actual = {
             name: hashlib.sha256(text.encode("utf-8")).hexdigest()

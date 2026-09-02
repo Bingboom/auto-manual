@@ -191,7 +191,18 @@ JAPANESE_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
     # document-family name. Serializing that exact name prevents a dead
     # unavailable-family reference from being retained after save/reopen.
     name="HB Manual Sans JP (OTF)",
+    # The shipped HTP017 book sets 57% of its Japanese characters in a
+    # non-Regular weight, so a single face flattens every heading, emphasis and
+    # table header to body weight at once. All four are instanced from the one
+    # variable source recorded in the portable-font manifest.
     faces=(
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_dl",
+            name="HB Manual Sans JP (OTF) DemiLight",
+            postscript_name="HBManualSansJP-DemiLight",
+            style_name="DemiLight",
+            font_type="OpenTypeTT",
+        ),
         IdmlFontFace(
             resource_id="ff_hb_manual_sans_jp_r",
             name="HB Manual Sans JP (OTF) Regular",
@@ -199,8 +210,25 @@ JAPANESE_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
             style_name="Regular",
             font_type="OpenTypeTT",
         ),
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_m",
+            name="HB Manual Sans JP (OTF) Medium",
+            postscript_name="HBManualSansJP-Medium",
+            style_name="Medium",
+            font_type="OpenTypeTT",
+        ),
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_b",
+            name="HB Manual Sans JP (OTF) Bold",
+            postscript_name="HBManualSansJP-Bold",
+            style_name="Bold",
+            font_type="OpenTypeTT",
+        ),
     ),
-    delivery_postscript_names="HBManualSansJP-Regular",
+    delivery_postscript_names=(
+        "HBManualSansJP-DemiLight / HBManualSansJP-Regular / "
+        "HBManualSansJP-Medium / HBManualSansJP-Bold"
+    ),
     delivery_license="SIL OFL 1.1 (bundled renamed Japanese text; Adobe Noto)",
 )
 
