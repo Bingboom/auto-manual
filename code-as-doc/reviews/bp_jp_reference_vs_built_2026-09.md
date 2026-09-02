@@ -98,6 +98,25 @@ product name, bullets, page numbers and units all change typeface.
 
 ## 4. What this does not settle
 
+One question the next native round can answer in a glance, and nothing outside
+InDesign can. `HB Warranty Body` is declared with its leading equal to its size
+(6.00/6.00, `type_warranty_body_font_size` and `idml_warranty_body_font_leading`),
+so its 599 characters of prose depend entirely on a `Leading="7"` override --
+and that override is emitted on the `ParagraphStyleRange`, thirteen times, in
+`components/warranty.py::_variant_body_format`. In the whole package that is
+the only character-model attribute sitting on a paragraph range: `PointSize`
+appears there zero times against 248 on `CharacterStyleRange`, `HorizontalScale`
+zero against 355, and the same function puts `HorizontalScale` on the character
+range two lines later. But the form is not an accident either -- `lcdmode` emits
+it the same way and `tests/test_idml_lcdmode_editable.py:302` pins it -- so
+whether InDesign honours it is a question about InDesign, not about this repo.
+
+**So look at the warranty body on pages 11-12 and say whether the lines have
+interline space.** If they are set solid, the override is being dropped and the
+attribute belongs on the character range; if they breathe, the form is fine and
+this note can go away.
+
+
 Overset stories and overset table cells cannot be measured outside InDesign:
 `tools/indesign_finalize.py::_overset_pages` reads a report the JSX writes inside
 the application. The previous Phase 6 status quoted zeros for those, but they
