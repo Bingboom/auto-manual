@@ -1374,10 +1374,14 @@ def _corner_radii_issues(
         return [f"{label} must be a non-empty object"]
     issues: list[str] = []
     for name, value in declared.items():
-        if name not in allowed:
+        # `chrome:<index>` addresses one member of a repeated piece of chrome
+        # by the structural ordinal its spec carries.
+        base, _, ordinal = str(name).partition(":")
+        if base not in allowed or (ordinal and not ordinal.isdigit()):
             issues.append(
                 f"{label}.{name} is not declarable; expected one of "
                 + ", ".join(sorted(allowed))
+                + " optionally suffixed with :<index>"
             )
             continue
         if isinstance(value, bool) or not isinstance(value, (int, float)):

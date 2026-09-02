@@ -202,8 +202,20 @@ already reaches the chrome:
 | --- | ---: | ---: | ---: |
 | inbox card (x3) | 5.50 | 5.80 | 5.80 |
 | inbox note strip | 6.10 | 7.89 | 7.89 |
-| warranty section frame (x7) | 6.80 | 4.80 | 4.80 |
+| warranty section frame (x6) | 6.80 | 4.80 | 4.80 |
+| warranty 免責事項 panel | 6.80 | 11.08 | 11.08 |
 | warranty lead panel | 9.07 | 7.72 | 7.72 |
+
+The disclaimer is why a chrome name may be suffixed with a structural index.
+Declaring one `section` value for all seven frames moved the disclaimer from
+6.80 to 4.80 against a master that sets it at 11.08 -- the six real frames got
+better and that one got worse, which an adversarial pass over the rebuilt
+artefact caught. It is addressed as `section:7`, the ordinal its component spec
+already carries, and never by its title: routing on printed copy is what
+silently degraded seven languages in #979. Its fill, stroke and title chip
+still differ from the master -- the book sets a flat unstroked grey panel with
+the heading as plain bold text inside -- and that is a component variant, not a
+radius.
 
 Still on the shared defaults, with the reason:
 

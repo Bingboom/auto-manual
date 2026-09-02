@@ -22,7 +22,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
-__all__ = ("declared_radius", "declared_radii")
+__all__ = ("declared_indexed_radius", "declared_radius", "declared_radii")
 
 
 def declared_radii(composition: Mapping | None) -> dict[str, float]:
@@ -40,4 +40,26 @@ def declared_radius(
     """Return the declared radius for ``role``, else the shared ``default``."""
 
     value = declared_radii(composition).get(role)
+    return default if value is None else value
+
+
+def declared_indexed_radius(
+    composition: Mapping | None,
+    role: str,
+    index: object,
+    default: float,
+) -> float:
+    """Return the radius for one member of a repeated piece of chrome.
+
+    ``role:<index>`` wins over ``role``, which wins over the shared default.
+    The index is the structural ordinal the component spec already carries, so
+    a member is addressed by its position and never by its printed copy.
+    """
+
+    declared = declared_radii(composition)
+    if isinstance(index, int) and not isinstance(index, bool):
+        specific = declared.get(f"{role}:{index}")
+        if specific is not None:
+            return specific
+    value = declared.get(role)
     return default if value is None else value

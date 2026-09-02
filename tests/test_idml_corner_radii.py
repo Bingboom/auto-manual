@@ -19,7 +19,11 @@ import json
 import unittest
 from pathlib import Path
 
-from tools.idml.corner_radii import declared_radii, declared_radius
+from tools.idml.corner_radii import (
+    declared_indexed_radius,
+    declared_radii,
+    declared_radius,
+)
 from tools.idml.target_assembly_plan import (
     INBOX_CORNER_RADII,
     WARRANTY_CORNER_RADII,
@@ -39,8 +43,10 @@ MEASURED = {
     "inbox": {"card": 5.8, "tip_strip": 7.89},
     # reference pages 10-11: six section frames 312.1 wide stroked 1.10 at
     # 4.79-4.80; purchase-channel lead panel 311.8 x 37.2 unstroked at 7.72.
-    # Both are rounder in the build than in the book, not flatter.
-    "warranty": {"section": 4.8, "lead": 7.72},
+    # Both are rounder in the build than in the book, not flatter. The 免責事項
+    # disclaimer rides the same section component but the master sets it as a
+    # flat unstroked panel at 11.08, so it carries its own value.
+    "warranty": {"section": 4.8, "section:7": 11.08, "lead": 7.72},
 }
 ALLOWED = {"inbox": INBOX_CORNER_RADII, "warranty": WARRANTY_CORNER_RADII}
 MEASURED_CARD = MEASURED["inbox"]["card"]
@@ -104,6 +110,66 @@ class PlanGate(unittest.TestCase):
         self.assertTrue(self.label({"card": -1.0}))
 
 
+class IndexedChrome(unittest.TestCase):
+    """One member of a repeated component may carry its own radius.
+
+    This exists because a single `section` value made the warranty disclaimer
+    worse than the shared default it replaced: the six real section frames want
+    4.80 and the disclaimer wants 11.08, and both ride one component.
+    """
+
+    SECTION = {"corner_radii": {"section": 4.8, "section:7": 11.08}}
+
+    def test_the_addressed_member_takes_its_own_radius(self) -> None:
+        self.assertEqual(
+            11.08, declared_indexed_radius(self.SECTION, "section", 7, 6.8)
+        )
+
+    def test_every_other_member_takes_the_composition_value(self) -> None:
+        for index in (0, 2, 3, 4, 5, 6):
+            self.assertEqual(
+                4.8,
+                declared_indexed_radius(self.SECTION, "section", index, 6.8),
+                msg=f"index {index}",
+            )
+
+    def test_a_missing_index_still_takes_the_composition_value(self) -> None:
+        """A component whose spec carries no index must not crash or drift."""
+        self.assertEqual(
+            4.8, declared_indexed_radius(self.SECTION, "section", None, 6.8)
+        )
+
+    def test_declaring_only_an_index_leaves_the_others_on_the_default(self) -> None:
+        only = {"corner_radii": {"section:7": 11.08}}
+        self.assertEqual(6.8, declared_indexed_radius(only, "section", 3, 6.8))
+        self.assertEqual(11.08, declared_indexed_radius(only, "section", 7, 6.8))
+
+    def test_nothing_declared_keeps_the_shared_default(self) -> None:
+        self.assertEqual(6.8, declared_indexed_radius(None, "section", 7, 6.8))
+
+    def test_a_bare_index_name_is_refused_by_the_gate(self) -> None:
+        self.assertTrue(
+            _corner_radii_issues(
+                {"section:x": 11.08}, allowed=WARRANTY_CORNER_RADII, label="x"
+            )
+        )
+
+    def test_an_indexed_name_for_unknown_chrome_is_refused(self) -> None:
+        self.assertTrue(
+            _corner_radii_issues(
+                {"card:1": 5.8}, allowed=WARRANTY_CORNER_RADII, label="x"
+            )
+        )
+
+    def test_the_declared_indexed_name_passes_the_gate(self) -> None:
+        self.assertEqual(
+            [],
+            _corner_radii_issues(
+                MEASURED["warranty"], allowed=WARRANTY_CORNER_RADII, label="x"
+            ),
+        )
+
+
 class ShippedContractsAreUnaffected(unittest.TestCase):
     def declarations(self) -> dict[str, dict[str, dict]]:
         """{contract stem: {composition name: declared radii}}."""
@@ -139,7 +205,12 @@ class ShippedContractsAreUnaffected(unittest.TestCase):
             "jbp2000b_jp_v1_candidate"
         ].items():
             for name in radii:
-                self.assertIn(name, ALLOWED[composition], msg=composition)
+                # `chrome:<index>` addresses one member; the gate allow-lists
+                # the chrome, not each ordinal.
+                base, _, ordinal = name.partition(":")
+                self.assertIn(base, ALLOWED[composition], msg=composition)
+                if ordinal:
+                    self.assertTrue(ordinal.isdigit(), msg=name)
 
     def test_the_two_allow_lists_do_not_overlap(self) -> None:
         """Chrome names are per composition, so a name means one thing."""

@@ -231,6 +231,7 @@
           "layout_variant": "bp_default",
           "corner_radii": {
             "section": 4.8,
+            "section:7": 11.08,
             "lead": 7.72
           }
         }
