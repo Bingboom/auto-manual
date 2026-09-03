@@ -1,6 +1,7 @@
 """Load-bearing IDML paragraph styles, colors, fonts, and preferences."""
 from __future__ import annotations
 
+from .loaders import normalize_lang
 from .params import IDPKG, param_pt, param_text
 from .app_text_styles import paragraph_styles as app_paragraph_styles
 from .paragraph_style_attrs import contract_paragraph_attrs
@@ -8,10 +9,31 @@ from .style_resources import PRIMARY_FONT_FAMILY_TOKEN, fonts_xml, graphic_xml, 
 from .style_names import paragraph_style_name, paragraph_style_ref
 
 
-def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, float, str, str]]:
+def para_styles(
+    params: dict[str, tuple[str, str]],
+    language: str = "",
+) -> list[tuple[str, float, float, str, str]]:
     """(name, size, leading, font_style, extras)"""
     p = params
     def sz(key, d): return param_pt(p, key, d)
+
+    # `normalize_lang` because the writer carries the source code -- "ja" --
+    # while every layout row is keyed on the phase2 suffix "jp".
+    code = normalize_lang(language) if language else ""
+
+    def lsz(key, d):
+        """A size a book may declare for itself, falling back to the shared row.
+
+        `sz` reads one row for every book, which is right where the books
+        agree. These roles disagree because their printed masters disagree.
+        Only a language that declares a row moves: with no row the lookup
+        returns `sz`'s own value, so widening this reached nobody until the
+        first row existed. Do not point `lsz` at a key that already carries
+        another language's row -- see the spec family, whose fr/es/de/it rows
+        would activate four shipped books the moment it did.
+        """
+        return param_pt(p, f"lang_{code}_{key}", sz(key, d)) if code else sz(key, d)
+
     return [
         ("HB H1", sz("type_h1_font_size", 9.0), sz("type_h1_font_leading", 10.8), "Bold", ""),
         ("HB Title L2", sz("idml_title_l2_font_size", sz("type_title_l2_font_size", 8.6)), sz("type_title_l2_font_leading", 9.4), param_text(p, "idml_title_l2_font_style", "Heavy"), ""),
@@ -68,11 +90,11 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
         ("HB Safety Sublist FR", sz("type_list_font_size", 5.4), sz("lang_fr_idml_safety_list_leading", 7.0), "Regular", "sublist"),
         ("HB Safety List ES", sz("type_list_font_size", 5.4), sz("lang_es_idml_safety_list_leading", 6.5), "Regular", "list"),
         ("HB Safety Sublist ES", sz("type_list_font_size", 5.4), sz("lang_es_idml_safety_list_leading", 6.5), "Regular", "sublist"),
-        ("HB Warranty Lead", sz("type_warranty_lead_font_size", 7.0), sz("type_warranty_lead_font_leading", 8.2), "Bold", ""),
-        ("HB Warranty Note", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_note"),
-        ("HB Warranty Body", sz("type_warranty_body_font_size", 6.0), sz("idml_warranty_body_font_leading", 6.0), "Regular", ""),
-        ("HB Warranty Title", sz("idml_warranty_title_font_size", 8.0), sz("type_warranty_title_font_leading", 8.8), "Bold", "warranty_title"),
-        ("HB Warranty List", sz("type_warranty_body_font_size", 6.0), sz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_list"),
+        ("HB Warranty Lead", lsz("type_warranty_lead_font_size", 7.0), lsz("type_warranty_lead_font_leading", 8.2), "Bold", ""),
+        ("HB Warranty Note", lsz("type_warranty_body_font_size", 6.0), lsz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_note"),
+        ("HB Warranty Body", lsz("type_warranty_body_font_size", 6.0), lsz("idml_warranty_body_font_leading", 6.0), "Regular", ""),
+        ("HB Warranty Title", lsz("idml_warranty_title_font_size", 8.0), lsz("type_warranty_title_font_leading", 8.8), "Bold", "warranty_title"),
+        ("HB Warranty List", lsz("type_warranty_body_font_size", 6.0), lsz("type_warranty_body_font_leading", 7.2), "Regular", "warranty_list"),
         ("HB Warranty Year Heading", sz("type_warranty_year_unit_font_size", 12.0), sz("type_warranty_year_unit_font_size", 12.0), "Heavy", ""),
         ("HB Warranty Year Subtitle", sz("type_warranty_year_subtitle_font_size", 7.2), sz("type_warranty_year_subtitle_font_size", 7.2), "Bold", ""),
         ("HB Spec Section", sz("type_spec_section_font_size", 8.8), sz("type_spec_section_font_leading", 9.6), "Bold", ""),
@@ -93,9 +115,12 @@ def para_styles(params: dict[str, tuple[str, str]]) -> list[tuple[str, float, fl
     ]
 
 
-def styles_xml(params: dict[str, tuple[str, str]]) -> str:
+def styles_xml(
+    params: dict[str, tuple[str, str]],
+    language: str = "",
+) -> str:
     styles = []
-    for name, size, leading, weight, kind in para_styles(params):
+    for name, size, leading, weight, kind in para_styles(params, language):
         template_name = paragraph_style_name(name)
         self_id = paragraph_style_ref(name)
         # V2.0 master: H1 is a white-on-brand-dark bar; notice labels are

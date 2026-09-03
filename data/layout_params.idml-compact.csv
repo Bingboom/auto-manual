@@ -251,3 +251,8 @@ lang_jp_idml_section_capsule_leading,13.91,pt,JP section capsule leading: one li
 lang_jp_idml_section_capsule_text_inset,7.3,pt,JP section capsule text inset from the capsule's left edge (master 7.30)
 lang_jp_idml_section_capsule_space_before,10.42,pt,JP section capsule space above: master centre-to-centre 23.12 less half the 11.50 line and half the capsule
 lang_jp_idml_section_capsule_space_after,2.61,pt,JP section capsule space below: master centre-to-centre 15.31 less half the capsule and half the 11.50 line
+lang_jp_type_warranty_body_font_size,7.0,pt,JP warranty body/list/note size -- master page 10-11 sets 1056 characters of NotoSansJP-DemiLight at 7.00
+lang_jp_type_warranty_body_font_leading,9.0,pt,JP warranty list leading -- master page 11 items step 41.1/50.1/59.1/68.1 = 9.00
+lang_jp_idml_warranty_body_font_leading,9.0,pt,JP warranty note-body leading -- same 9.00 tier; 6.00 was solid-set against a 6.00 size
+lang_jp_type_warranty_lead_font_leading,11.0,pt,JP warranty lead-in leading -- master page 10 intro steps 51.6/62.6/73.6 = 11.00
+lang_jp_idml_warranty_title_font_size,7.58,pt,JP warranty section title -- master sets 保証期間/保証内容 at 7.58 Bold; the build ran 8.00
