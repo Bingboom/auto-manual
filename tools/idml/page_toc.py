@@ -13,6 +13,7 @@ import re
 from dataclasses import dataclass, field
 from xml.sax.saxutils import escape
 
+from .loaders import normalize_lang
 from .params import IDPKG, param_pt
 from . import page_objects as _po
 from .line_metrics import estimated_text_width
@@ -218,17 +219,41 @@ def _folio(spread_index: int) -> int:
     return max(1, spread_index - 1)
 
 
-def _entry_typography(title: str, col_w: float) -> tuple[float, float]:
+# What the entry has always set at, and the pitch its frame has always been
+# sized on. Both were literals in three places; a book that prints a different
+# scale declares them instead. See tests/test_idml_jp_toc_type_scale.py.
+_ENTRY_SIZE_DEFAULT = 6.5
+_ENTRY_LEADING_DEFAULT = 14.0
+
+
+def _entry_typography(
+    title: str,
+    col_w: float,
+    *,
+    cap: float = _ENTRY_SIZE_DEFAULT,
+) -> tuple[float, float]:
+    """The size an entry sets at, and its horizontal scale.
+
+    `cap` is the size the book asks for; a title too long for its column still
+    shrinks below it, down to the same 5.4 pt floor. Callers that do not
+    declare one keep the size this page has always set.
+    """
     available = col_w - 8.0
-    point_size = min(6.5, available / max(1.0, len(title) * 0.56))
+    point_size = min(cap, available / max(1.0, len(title) * 0.56))
     point_size = max(5.4, point_size)
     horizontal_scale = _ENTRY_HORIZONTAL_SCALE.get(title, 100.693)
     return point_size, horizontal_scale
 
 
-def _entry_text_end_x(title: str, entry_x: float, col_w: float) -> float:
+def _entry_text_end_x(
+    title: str,
+    entry_x: float,
+    col_w: float,
+    *,
+    cap: float = _ENTRY_SIZE_DEFAULT,
+) -> float:
     """Return the portable page-space estimate of an entry title's end."""
-    point_size, horizontal_scale = _entry_typography(title, col_w)
+    point_size, horizontal_scale = _entry_typography(title, col_w, cap=cap)
     width = estimated_text_width(
         title,
         point_size=point_size,
@@ -244,10 +269,11 @@ def _leader_metric_for_entry(
     metric: tuple[float, float, float, float, float, float],
     *,
     text_gap: float = _LEADER_TEXT_GAP,
+    cap: float = _ENTRY_SIZE_DEFAULT,
 ) -> tuple[float, float, float, float, float, float]:
     """Move only the leader start beyond this entry's rendered title."""
     _reference_x1, y, x2, weight, dash, gap = metric
-    text_end = _entry_text_end_x(title, entry_x, col_w)
+    text_end = _entry_text_end_x(title, entry_x, col_w, cap=cap)
     x1 = min(text_end + text_gap, x2 - _LEADER_MIN_LENGTH)
     return x1, y, x2, weight, dash, gap
 
@@ -304,9 +330,10 @@ def _entry_psr(
     col_w: float,
     *,
     language: str,
+    cap: float = _ENTRY_SIZE_DEFAULT,
 ) -> str:
     style = paragraph_style_ref("HB TOC Entry")
-    point_size, horizontal_scale = _entry_typography(title, col_w)
+    point_size, horizontal_scale = _entry_typography(title, col_w, cap=cap)
     right_tab = (
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
@@ -327,7 +354,7 @@ def _entry_psr(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{right_tab}'
         f'{title_ranges}'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        'PointSize="6.5" FontStyle="Regular"><Content>\t</Content>'
+        f'PointSize="{cap:g}" FontStyle="Regular"><Content>\t</Content>'
         '</CharacterStyleRange>'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
         'PointSize="7" FontStyle="Regular" BaselineShift="0.20">'
@@ -545,6 +572,29 @@ def finalize(
         for local_index, (header, rng, segment) in enumerate(page_segments):
             segment_index = segment_start + local_index
             code, _, label = header.partition("  ")
+            # A segment's own scale. The header carries the display code
+            # ("JP"); `normalize_lang` turns it into the phase2 suffix the
+            # layout rows are keyed on. A segment whose language declares
+            # nothing keeps the size and pitch this page has always set.
+            segment_lang = normalize_lang(code)
+            entry_size = param_pt(
+                writer.params,
+                f"lang_{segment_lang}_type_toc_entry_font_size",
+                param_pt(
+                    writer.params,
+                    "type_toc_entry_font_size",
+                    _ENTRY_SIZE_DEFAULT,
+                ),
+            )
+            entry_leading = param_pt(
+                writer.params,
+                f"lang_{segment_lang}_type_toc_entry_font_leading",
+                param_pt(
+                    writer.params,
+                    "type_toc_entry_font_leading",
+                    _ENTRY_LEADING_DEFAULT,
+                ),
+            )
             bar_sid = add_story_parts(
                 f"st_toc_bar_{segment_index}", f"TOC bar {segment_index}",
                 [_bar_code_psr(code)])
@@ -624,6 +674,7 @@ def finalize(
                             entry_w,
                             metric,
                             text_gap=leader_text_gap,
+                            cap=entry_size,
                         )
                         frames.append(_leader_xml(
                             writer,
@@ -658,6 +709,7 @@ def finalize(
                                 entry_w,
                                 metric,
                                 text_gap=leader_text_gap,
+                                cap=entry_size,
                             )
                         metric = _offset_leader_metric_y(
                             metric,
@@ -675,6 +727,7 @@ def finalize(
                         folio,
                         entry_w,
                         language=code,
+                        cap=entry_size,
                     )
                     for entry_title, folio in chunk
                 )
@@ -693,7 +746,9 @@ def finalize(
                         # half, so an odd entry count does not shorten the
                         # right column. Only the single-column path measures
                         # its own chunk.
-                        14.0 * (len(chunk) if single_column else half) + 14.0,
+                        entry_leading
+                        * (len(chunk) if single_column else half)
+                        + entry_leading,
                     ),
                     inset=(0, 0, 0, 0)))
             y += (

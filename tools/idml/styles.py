@@ -110,7 +110,8 @@ def para_styles(
         ("HB TOC Title", 22.25, 26.0, "Bold", "toc_title"),
         ("HB TOC Bar", 10.0, 10.0, "Heavy", "toc_bar"),
         ("HB TOC Range", 9.0, 10.0, "Bold", "toc_range"),
-        ("HB TOC Entry", 6.5, 14.0, "Regular", "toc_entry"),
+        ("HB TOC Entry", lsz("type_toc_entry_font_size", 6.5),
+         lsz("type_toc_entry_font_leading", 14.0), "Regular", "toc_entry"),
         ("HB Big Numeral", 26.0, 26.0, "Bold", ""),
     ]
 
