@@ -29,11 +29,10 @@ class CompactSafetyPanelData:
         *,
         story_title: str,
         subbar_capsule: bool = False,
-        language: str = "",
     ) -> "CompactSafetyPanelData":
         body = [block for block in blocks if block[0] != "h1"]
         if subbar_capsule:
-            body = _promote_first_h2_to_capsule(body, language)
+            body = _promote_first_h2_to_capsule(body)
         return cls(
             story_title=story_title,
             title=source_text(
@@ -46,7 +45,6 @@ class CompactSafetyPanelData:
 
 def _promote_first_h2_to_capsule(
     blocks: list[tuple[str, str]],
-    language: str,
 ) -> list[tuple[str, str]]:
     """Set the page's one section heading in the capsule its master prints.
 
@@ -65,7 +63,6 @@ def _promote_first_h2_to_capsule(
                     {
                         "kind": "emphasispill",
                         "layout_variant": "section_capsule",
-                        "language": language,
                         "texts": [text],
                     },
                     ensure_ascii=False,

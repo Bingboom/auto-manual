@@ -74,40 +74,24 @@ def _render_section_capsule(
     *,
     tid: str,
     terminal: bool,
-    language: str = "",
 ) -> tuple[str, float]:
-    """The master's full-measure section capsule, set inline in the prose flow.
+    """A section heading set in the shared subbar capsule, inline in the flow.
 
-    The shipped book prints a section heading inside its running copy as a
-    313.07 x 13.91 pt dark stadium at radius h/2, holding 7.00 pt reversed
-    type -- the same chrome the symbols page carries as a page title, and a
-    different object from the emphasis pill next door, which fits its own text
-    and floats in the measure. Both are anchored groups, so they share this
-    emitter and differ only in geometry.
-
-    Every number is declared, and the language override is read first, so a
-    book that promotes a heading here without declaring anything keeps the
-    pill's own resting values rather than inheriting Japanese measurements.
+    The house style has one subbar: ``comp_subbar_height`` tall, radius h/2,
+    ``type_subbar_font_size`` reversed type, ``comp_subbar_pad_lr`` inset. The
+    safety panel draws it as a page object; this draws the same object as an
+    anchored group so a heading inside running copy can carry it. Nothing here
+    is per-language -- a style is shared, and a book that differs is a
+    structural difference expressed by which heading takes the capsule, not by
+    new geometry.
     """
-    # The promoting composition declares the language. `ctx.language` carries
-    # the writer's own tag, which is the source code ("ja") rather than the
-    # phase2 suffix the layout rows are keyed on ("jp") -- reading it here
-    # would look up a prefix nothing declares and silently keep the defaults.
-    lang = (language or ctx.language or "").split("-", 1)[0].strip().casefold()
-
-    def declared(key: str, default: float) -> float:
-        base = param_pt(ctx.params, key, default)
-        return param_pt(ctx.params, f"lang_{lang}_{key}", base) if lang else base
-
-    # Full measure, never the column measure: the capsule spans the page the
-    # way the chapter bar above it does, even where its neighbours set in two.
     width = ctx.text_measure
-    height = declared("idml_section_capsule_height", 13.89)
-    size = declared("idml_section_capsule_font_size", 6.6)
-    leading = declared("idml_section_capsule_leading", size * 1.2)
-    inset = declared("idml_section_capsule_text_inset", 7.0)
-    space_before = declared("idml_section_capsule_space_before", 5.0)
-    space_after = declared("idml_section_capsule_space_after", 1.5)
+    height = param_pt(ctx.params, "comp_subbar_height", 13.89)
+    size = param_pt(ctx.params, "type_subbar_font_size", 8.0)
+    leading = param_pt(ctx.params, "type_subbar_font_leading", 9.6)
+    inset = param_pt(ctx.params, "comp_subbar_pad_lr", 6.24)
+    space_before = param_pt(ctx.params, "idml_charging_emphasis_space_before", 5.0)
+    space_after = 1.5
 
     content = with_character_metrics(
         psr("HB Emphasis Pill", text, terminal=True),
@@ -116,12 +100,10 @@ def _render_section_capsule(
     )
     # `HB Emphasis Pill` is not in the Japanese weight map, so a CJK run comes
     # back carrying an explicit Regular that overrides the style's own Bold.
-    # The master sets this capsule bold, and that map is shared with the
-    # Korean maintenance bar, so the weight is asserted on this one line
-    # rather than by widening the map and moving another book.
+    # The capsule is bold in every language; assert it on this one line.
     content = content.replace('FontStyle="Regular"', 'FontStyle="Bold"')
-    # As on the pill: InDesign will not hold a one-sided InsetSpacing on an
-    # inline rounded frame, so the optical left edge rides the paragraph.
+    # InDesign will not hold a one-sided InsetSpacing on an inline rounded
+    # frame, so the optical left edge rides the paragraph.
     content = content.replace(
         "<ParagraphStyleRange ",
         f'<ParagraphStyleRange LeftIndent="{inset:g}" ',
@@ -176,13 +158,7 @@ def render_emphasispill(
     if not text:
         return "", 0.0
     if str(spec.get("layout_variant") or "").strip().lower() == "section_capsule":
-        return _render_section_capsule(
-            text,
-            ctx,
-            tid=tid,
-            terminal=terminal,
-            language=str(spec.get("language") or ""),
-        )
+        return _render_section_capsule(text, ctx, tid=tid, terminal=terminal)
     body_w = measure_w or ctx.text_measure
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
     space_before = param_pt(
