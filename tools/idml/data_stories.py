@@ -577,12 +577,26 @@ def add_trouble_story(
     *,
     title: str,
     lang: str = "en",
+    intro: str = "",
+    header: tuple[str, str] | None = None,
 ) -> str:
+    """Build the Troubleshooting story.
+
+    ``intro`` and ``header`` default to empty so the compositions that do not
+    pass them render exactly what they rendered before.
+    """
     sid = "st_trouble" if lang == "en" else f"st_trouble_{lang}"
     title = source_text(title, owner="Troubleshooting page title")
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
+    if intro:
+        parts.append(writer._psr("HB Body", source_text(
+            intro, owner="Troubleshooting intro")))
     table_id = "tbl_trouble" if lang == "en" else f"tbl_trouble_{lang}"
+    if header is not None:
+        # The width logic already treats row 0 as the header and sizes it with
+        # `style.header_size`, so prepending it is what that code expects.
+        rows = [tuple(header), *rows]
     table = writer._table(table_id, rows, role="data")
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(

@@ -66,6 +66,12 @@ class SymbolPageData:
 class TroublePageData:
     title: str
     rows: tuple[tuple[str, str], ...]
+    # The source declares both of these and the projection used to discard
+    # them: the intro was never carried, and the header row was dropped by the
+    # `payload[1:]` slice below. Optional so the compositions that do not place
+    # them keep their current output byte-for-byte.
+    intro: str = ""
+    header: tuple[str, str] | None = None
 
 
 def _page_blocks(page: ManualPage) -> tuple[tuple[str, str], ...]:
@@ -341,7 +347,49 @@ def trouble_page_data(ir: ManualIR, lang: str) -> TroublePageData | None:
     return TroublePageData(
         _heading(page, owner="Troubleshooting page title"),
         rows,
+        intro=trouble_intro(ir, lang),
+        header=trouble_header(ir, lang),
     )
+
+
+def trouble_header(ir: ManualIR, lang: str) -> tuple[str, str] | None:
+    """The table's own first row, which `trouble_rows` slices off as a header.
+
+    Before #979 the rendered header came from a per-language copy dictionary,
+    and deleting that dictionary left nothing rendering a header at all even
+    though every source that has one still carries it.
+    """
+    page = _matching_page(ir, "troubleshooting_", lang)
+    if page is None:
+        return None
+    for block in page.blocks:
+        if block.kind != "table" or not isinstance(block.payload, list):
+            continue
+        first = block.payload[0] if block.payload else None
+        if isinstance(first, list) and len(first) >= 2:
+            return (str(first[0]), str(first[1]))
+        return None
+    return None
+
+
+def trouble_intro(ir: ManualIR, lang: str) -> str:
+    """Prose between the heading and the table.
+
+    Every troubleshooting template authors one, and it tells the reader what to
+    do when the listed measure does not resolve the fault, so losing it drops
+    instruction rather than decoration.
+    """
+    page = _matching_page(ir, "troubleshooting_", lang)
+    if page is None:
+        return ""
+    for block in page.blocks:
+        if block.kind == "table":
+            break
+        if block.kind == "body" and isinstance(block.payload, str):
+            text = block.payload.strip()
+            if text:
+                return text
+    return ""
 
 
 def trouble_rows(ir: ManualIR, lang: str) -> tuple[tuple[str, str], ...]:

@@ -1218,6 +1218,8 @@ def add_troubleshooting_specifications_page(
         list(trouble_data.rows),
         title=trouble_data.title,
         lang=language,
+        intro=getattr(trouble_data, "intro", ""),
+        header=getattr(trouble_data, "header", None),
     )
     spec_sid = writer.add_spec_story(
         sections,
