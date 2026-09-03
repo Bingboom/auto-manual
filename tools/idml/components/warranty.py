@@ -6,6 +6,7 @@ import re
 from .. import page_objects as _po
 from ..inline_text import character_ranges
 from ..line_metrics import estimated_line_count, estimated_text_width
+from ..corner_radii import declared_indexed_radius, declared_radius
 from ..params import param_pt
 from ..primitives import (
     cell,
@@ -489,7 +490,11 @@ def render_warrantylead(
         fill="Color/HB Bg K05",
         stroke="Swatch/None",
         stroke_weight=0,
-        radius=param_pt(ctx.params, "comp_warranty_lead_arc", 9.07),
+        radius=declared_radius(
+            spec,
+            "lead",
+            param_pt(ctx.params, "comp_warranty_lead_arc", 9.07),
+        ),
         inset=(pad_tb, pad_lr, pad_tb, pad_lr),
         valign="CenterAlign",
         auto_height=False,
@@ -782,7 +787,12 @@ def render_warrantysection(
         body_parts,
     )
     rule = param_pt(ctx.params, "comp_warranty_section_rule", 0.9)
-    arc = param_pt(ctx.params, "comp_warranty_section_arc", 6.8)
+    arc = declared_indexed_radius(
+        spec,
+        "section",
+        spec.get("index"),
+        param_pt(ctx.params, "comp_warranty_section_arc", 6.8),
+    )
     title_arc = param_pt(ctx.params, "comp_warranty_title_arc", 4.82)
     title_x = param_pt(ctx.params, "comp_warranty_title_inset", 8.50)
     outer = (

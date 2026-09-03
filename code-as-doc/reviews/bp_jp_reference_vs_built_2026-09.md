@@ -158,6 +158,92 @@ the art. No other contract declares it — `tests/test_idml_figure_callouts.py`
 pins that — and all four IDML goldens regenerate byte-identical, which is also
 why those tests exist: the goldens do not reach this path.
 
+## 4b. Corner treatment: what matches, what does not, and why none of it was scopable
+
+An audit of every box-like shape in both books, measured three independent
+ways, settled this. Two of those ways disagreed at first and the disagreement
+was the most useful result: a pixel arc fit on the rendered page measures the
+outer edge of the **ink**, which for a stroked box sits half a stroke width
+outside the **path**, and the IDML stores a path radius. Card 5.80 path +
+0.94/2 stroke = 6.27 ink; note strip 7.89 + 1.05/2 = 8.41. Every number below
+is a path radius. Taking the ink numbers would have declared six values half a
+stroke too round.
+
+Already matching, and left alone: the H1 chapter tab, the most repeated chrome
+in the book at eleven instances -- 5.6693 pt built (`comp_h1_pill_arc`, 2.0 mm)
+against 5.70-5.80 measured, sharp on top and rounded south in both. Its
+parameter comment says it was measured from the master, and it was. So were
+`comp_subbar_arc` (2.45 mm = 6.94, against the reference's 6.957 stadium bar)
+and `comp_table_outer_arc`.
+
+The radii that differ are, without exception, the ones nobody measured:
+hardcoded literals (`page_objects.py` 5.5, `page_toc.py` 4.753, nine separate
+values in `oppanel.py`) and one derived sum (`comp_tip_arc` + `comp_callout_rule`
+= 6.10 for every notice panel). The deltas run both ways -- the warranty frames
+and the operation panels are **rounder** in the build than in the book -- so
+there is no single global correction.
+
+Nothing here could be scoped to Japanese. Every radius sink reads its key
+language-neutrally through `param_pt` / `component_param_pt`;
+`localized_param_pt` and `localized_component_param_pt` have four call sites in
+the repo and not one of them is a radius. A `lang_jp_comp_*_arc` row is a dead
+row that changes nothing, silently -- the same trap as #985. Four declared rows
+(`comp_subbar_arc`, `comp_fcc_arc`, `comp_inbox_card_arc`, `comp_note_arc`) are
+not read by the IDML renderer at all, so editing them would also do nothing.
+
+So the radius lives in the target contract, which is the tightest scope
+available: the file belongs to one target and nothing else reads it. A
+composition may declare `corner_radii`, a map from a named piece of chrome to
+its radius in points; declaring nothing keeps the shared default, which is what
+every other contract does. Delivered for the two compositions whose data
+already reaches the chrome:
+
+| Chrome | built before | reference | built now |
+| --- | ---: | ---: | ---: |
+| inbox card (x3) | 5.50 | 5.80 | 5.80 |
+| inbox note strip | 6.10 | 7.89 | 7.89 |
+| warranty section frame (x6) | 6.80 | 4.80 | 4.80 |
+| warranty 免責事項 panel | 6.80 | 11.08 | 11.08 |
+| warranty lead panel | 9.07 | 7.72 | 7.72 |
+
+The disclaimer is why a chrome name may be suffixed with a structural index.
+Declaring one `section` value for all seven frames moved the disclaimer from
+6.80 to 4.80 against a master that sets it at 11.08 -- the six real frames got
+better and that one got worse, which an adversarial pass over the rebuilt
+artefact caught. It is addressed as `section:7`, the ordinal its component spec
+already carries, and never by its title: routing on printed copy is what
+silently degraded seven languages in #979. Its fill, stroke and title chip
+still differ from the master -- the book sets a flat unstroked grey panel with
+the heading as plain bold text inside -- and that is a component variant, not a
+radius.
+
+Still on the shared defaults, with the reason:
+
+| Chrome | built | reference | why not yet |
+| --- | ---: | ---: | --- |
+| notice panel (x5) + label plates | 6.10 / 5.48 | 8.06 / 7.31 | inline prose component; `_render_component` receives no composition data |
+| TOC segment bar | 4.75 | 6.31 | the TOC renders outside the composition dispatch |
+| signal-words + symbol-legend frames | 5.50 | 6.31 / 4.61 | the safety and symbols pages carry no `composition_data` |
+| operation panel (x2) | 10.00 | 8.15 | no `composition_data`, and nine hardcoded literals |
+| spec table shell | 6.80 | 5.78 | radius is a literal argument in `data_stories.py` |
+
+Beyond radii, the audit found chrome the book prints that the pipeline does not
+emit at all: the dark stadium section bar (the `emphasispill`
+`full_width_subbar` component exists and its radius already matches, but it is
+promoted only for the maintenance page), a rounded shell around the
+troubleshooting table (spec and LCD tables get one; `add_trouble_story` wraps
+its table in a bare `ParagraphStyleRange`), grey stadium capsules behind
+warranty lines, the back-page contact rows, and the connections step chips. One
+divergence runs the other way: the note strip is filled and carries a 注意
+label plate that the reference does not print.
+
+The operator's ruling was to build the contract scoping first and, of the
+missing chrome, to take the troubleshooting shell. That shell needs the table
+segmented -- the shell is a fixed-height anchored group and the table flows
+across two spreads, which is why the spec table is segmented by section -- so
+it is its own change. The section bar is entangled with the page 02/03 heading
+structure still open in §7.
+
 ## 5. Method
 
 Reference typography via PyMuPDF span extraction (font, size, character counts

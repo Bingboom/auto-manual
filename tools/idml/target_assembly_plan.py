@@ -520,12 +520,23 @@ def _validate_composition_data(
                 )
                 continue
             inbox = data["inbox"]
-            if not isinstance(inbox, dict) or set(inbox) != {"layout_variant"}:
+            # `corner_radii` is optional so the contracts written before it stay
+            # valid and keep rendering the shared defaults.
+            if not isinstance(inbox, dict) or set(inbox) - {"corner_radii"} != {
+                "layout_variant"
+            }:
                 issues.append(
                     f"{source_ref}.composition_data.inbox must contain "
                     "exactly ['layout_variant']"
                 )
                 continue
+            issues.extend(
+                _corner_radii_issues(
+                    inbox.get("corner_radii"),
+                    allowed=INBOX_CORNER_RADII,
+                    label=f"{source_ref}.composition_data.inbox.corner_radii",
+                )
+            )
             if inbox.get("layout_variant") not in INBOX_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.inbox.layout_variant "
@@ -866,12 +877,23 @@ def _validate_composition_data(
                     f"{source_ref}.composition_data.warranty must be an object"
                 )
                 continue
-            if set(warranty) != {"layout_variant"}:
+            # `corner_radii` is optional so the contracts written before it
+            # stay valid and keep rendering the shared arcs.
+            if set(warranty) - {"corner_radii"} != {"layout_variant"}:
                 issues.append(
                     f"{source_ref}.composition_data.warranty must contain "
                     "exactly ['layout_variant']"
                 )
                 continue
+            issues.extend(
+                _corner_radii_issues(
+                    warranty.get("corner_radii"),
+                    allowed=WARRANTY_CORNER_RADII,
+                    label=(
+                        f"{source_ref}.composition_data.warranty.corner_radii"
+                    ),
+                )
+            )
             if warranty.get("layout_variant") not in WARRANTY_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.warranty.layout_variant "
@@ -1331,4 +1353,39 @@ def _figure_callout_issues(declared: object, *, label: str) -> list[str]:
                 and float(x) + float(width) > 1.0
             ):
                 issues.append(f"{where} runs past the figure's right edge")
+    return issues
+
+
+# Chrome a composition may declare a radius for, per composition. Named after
+# the chrome rather than the parameter behind it, so moving a shared default
+# does not invalidate a declaration.
+INBOX_CORNER_RADII = frozenset({"card", "tip_strip"})
+WARRANTY_CORNER_RADII = frozenset({"section", "lead"})
+
+
+def _corner_radii_issues(
+    declared: object, *, allowed: frozenset[str], label: str
+) -> list[str]:
+    """Reject a corner-radii map that names unknown chrome or absurd radii."""
+
+    if declared is None:
+        return []
+    if not isinstance(declared, dict) or not declared:
+        return [f"{label} must be a non-empty object"]
+    issues: list[str] = []
+    for name, value in declared.items():
+        # `chrome:<index>` addresses one member of a repeated piece of chrome
+        # by the structural ordinal its spec carries.
+        base, _, ordinal = str(name).partition(":")
+        if base not in allowed or (ordinal and not ordinal.isdigit()):
+            issues.append(
+                f"{label}.{name} is not declarable; expected one of "
+                + ", ".join(sorted(allowed))
+                + " optionally suffixed with :<index>"
+            )
+            continue
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            issues.append(f"{label}.{name} must be a number of points")
+        elif not 0.0 <= float(value) <= 40.0:
+            issues.append(f"{label}.{name} must be between 0 and 40 pt")
     return issues
