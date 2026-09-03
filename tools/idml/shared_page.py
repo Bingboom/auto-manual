@@ -224,6 +224,11 @@ def add_safety_signals_page(
         data=CompactSafetyPanelData.from_blocks(
             safety_blocks,
             story_title=safety_title,
+            # This page's master sets its 「絵表示について」 heading in the
+            # same dark capsule the symbols page uses for its title. The
+            # symbols-page composition next door keeps the plain heading.
+            subbar_capsule=True,
+            language=lang,
         ),
         bundle_root=bundle_root,
         language=lang,
