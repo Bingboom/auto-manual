@@ -245,3 +245,9 @@ lang_en_idml_warranty_variant_bp_default_section_4_before_adjust,1.0,pt,BP Engli
 lang_en_idml_warranty_variant_bp_default_section_5_before_adjust,1.5,pt,BP English buyer-to-exclusions rhythm correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_section_6_before_adjust,0.5,pt,BP English exclusions-to-interpretation rhythm correction (moved off the shared base token)
 lang_jp_idml_compact_symbols_title_font_size,7.0,pt,JP symbols capsule title size (master 7.00)
+lang_jp_idml_section_capsule_height,13.91,pt,JP section capsule height measured from the master (313.07 x 13.91 stadium)
+lang_jp_idml_section_capsule_font_size,7.0,pt,JP section capsule type -- master 7.00 pt reversed bold
+lang_jp_idml_section_capsule_leading,13.91,pt,JP section capsule leading: one line -- centred in the capsule
+lang_jp_idml_section_capsule_text_inset,7.3,pt,JP section capsule text inset from the capsule's left edge (master 7.30)
+lang_jp_idml_section_capsule_space_before,10.42,pt,JP section capsule space above: master centre-to-centre 23.12 less half the 11.50 line and half the capsule
+lang_jp_idml_section_capsule_space_after,2.61,pt,JP section capsule space below: master centre-to-centre 15.31 less half the capsule and half the 11.50 line

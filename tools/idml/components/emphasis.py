@@ -4,6 +4,7 @@ from __future__ import annotations
 import unicodedata
 
 from .. import page_objects as _po
+from ..character_metrics import with_character_metrics
 from ..line_metrics import estimated_text_width
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, wrap_table_paragraph
@@ -67,6 +68,101 @@ def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
     return advances * point_size * _GILROY_BOLD_SHAPING_FACTOR / 1000.0
 
 
+def _render_section_capsule(
+    text: str,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+    language: str = "",
+) -> tuple[str, float]:
+    """The master's full-measure section capsule, set inline in the prose flow.
+
+    The shipped book prints a section heading inside its running copy as a
+    313.07 x 13.91 pt dark stadium at radius h/2, holding 7.00 pt reversed
+    type -- the same chrome the symbols page carries as a page title, and a
+    different object from the emphasis pill next door, which fits its own text
+    and floats in the measure. Both are anchored groups, so they share this
+    emitter and differ only in geometry.
+
+    Every number is declared, and the language override is read first, so a
+    book that promotes a heading here without declaring anything keeps the
+    pill's own resting values rather than inheriting Japanese measurements.
+    """
+    # The promoting composition declares the language. `ctx.language` carries
+    # the writer's own tag, which is the source code ("ja") rather than the
+    # phase2 suffix the layout rows are keyed on ("jp") -- reading it here
+    # would look up a prefix nothing declares and silently keep the defaults.
+    lang = (language or ctx.language or "").split("-", 1)[0].strip().casefold()
+
+    def declared(key: str, default: float) -> float:
+        base = param_pt(ctx.params, key, default)
+        return param_pt(ctx.params, f"lang_{lang}_{key}", base) if lang else base
+
+    # Full measure, never the column measure: the capsule spans the page the
+    # way the chapter bar above it does, even where its neighbours set in two.
+    width = ctx.text_measure
+    height = declared("idml_section_capsule_height", 13.89)
+    size = declared("idml_section_capsule_font_size", 6.6)
+    leading = declared("idml_section_capsule_leading", size * 1.2)
+    inset = declared("idml_section_capsule_text_inset", 7.0)
+    space_before = declared("idml_section_capsule_space_before", 5.0)
+    space_after = declared("idml_section_capsule_space_after", 1.5)
+
+    content = with_character_metrics(
+        psr("HB Emphasis Pill", text, terminal=True),
+        point_size=size,
+        leading=leading,
+    )
+    # `HB Emphasis Pill` is not in the Japanese weight map, so a CJK run comes
+    # back carrying an explicit Regular that overrides the style's own Bold.
+    # The master sets this capsule bold, and that map is shared with the
+    # Korean maintenance bar, so the weight is asserted on this one line
+    # rather than by widening the map and moving another book.
+    content = content.replace('FontStyle="Regular"', 'FontStyle="Bold"')
+    # As on the pill: InDesign will not hold a one-sided InsetSpacing on an
+    # inline rounded frame, so the optical left edge rides the paragraph.
+    content = content.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange LeftIndent="{inset:g}" ',
+        1,
+    )
+
+    if ctx.add_story is None:
+        table = component_table(
+            tid,
+            [width],
+            [cell(f"{tid}c0", "0:0", content, fill="Color/HB Brand Dark",
+                  stroke=False, top=2, bottom=2, left=0, right=0,
+                  valign="CenterAlign")],
+            role="warning",
+        )
+        return wrap_table_paragraph(table, terminal, span_columns=True), height + 2.0
+
+    xml = _po.anchored_panel_group_paragraph(
+        ctx.add_story,
+        f"st_anchor_section_capsule_{tid}",
+        "section capsule",
+        [content],
+        width,
+        height,
+        terminal=terminal,
+        fill="Color/HB Brand Dark",
+        stroke="Swatch/None",
+        stroke_weight=0,
+        radius=height / 2.0,
+        valign="CenterAlign",
+        mask_content_corners=False,
+    )
+    xml = xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+        f'SpaceAfter="{space_after:g}" ',
+        1,
+    )
+    return xml, height + space_before + space_after
+
+
 def render_emphasispill(
     spec: dict,
     ctx: RenderContext,
@@ -79,6 +175,14 @@ def render_emphasispill(
     text = " ".join(str(value).strip() for value in spec.get("texts", []) if value)
     if not text:
         return "", 0.0
+    if str(spec.get("layout_variant") or "").strip().lower() == "section_capsule":
+        return _render_section_capsule(
+            text,
+            ctx,
+            tid=tid,
+            terminal=terminal,
+            language=str(spec.get("language") or ""),
+        )
     body_w = measure_w or ctx.text_measure
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
     space_before = param_pt(
