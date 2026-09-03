@@ -788,7 +788,7 @@ class ComponentRegistryTests(unittest.TestCase):
             }
             if layout_variant:
                 spec["layout_variant"] = layout_variant
-            xml, _height = render(
+            xml, height = render(
                 spec,
                 RenderContext(
                     params=params,
@@ -808,10 +808,10 @@ class ComponentRegistryTests(unittest.TestCase):
                 for sid, _title, parts in stories
                 if sid.startswith("st_anchor_warranty_body_")
             )
-            return xml, body
+            return xml, body, height
 
-        bp_xml, bp_body = rendered("bp_default")
-        _base_xml, base_body = rendered("")
+        bp_xml, bp_body, bp_height = rendered("bp_default")
+        _base_xml, base_body, base_height = rendered("")
 
         self.assertIn('Leading="7"', bp_body)
         self.assertIn('HorizontalScale="100"', bp_body)
@@ -822,7 +822,13 @@ class ComponentRegistryTests(unittest.TestCase):
         body_frame = bp_xml.split(
             'Self="tf_warranty_body_warranty_body_bp_default"', 1,
         )[1].split("</TextFrame>", 1)[0]
-        self.assertIn('Anchor="9.07087 -15.1524"', body_frame)
+        # The variant renders body lines at 7.0 where the shared token says 6.0,
+        # and the panel budget follows the rendered leading: two body lines make
+        # the variant panel exactly 2 x (7.0 - 6.0) taller than the base one.
+        # (Before the budget read the rendered leading, this frame ended at
+        # -15.1524 -- 2 pt short of the copy it held.)
+        self.assertIn('Anchor="9.07087 -17.1524"', body_frame)
+        self.assertAlmostEqual(2.0, bp_height - base_height, places=3)
 
     def test_warranty_section_height_counts_east_asian_glyph_width(self) -> None:
         from tools.export_idml import load_layout_params

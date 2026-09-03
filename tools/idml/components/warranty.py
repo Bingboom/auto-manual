@@ -597,7 +597,15 @@ def _section_body(
         text = str(block.get("text", ""))
         is_list = kind in {"list", "sublist"}
         style = "HB Warranty List" if is_list else "HB Warranty Body"
-        leading = list_leading if is_list else body_leading
+        # Budget each line at the leading the paragraph will actually render
+        # with. A variant may override the body leading (bp_default renders
+        # 7.0 where the shared token says 6.0); budgeting at the shared value
+        # while rendering at the override made every body line 1 pt short,
+        # which the EN-tuned panel_height_adjust_1..6 rows absorbed -- until a
+        # book with a seventh section (JP) had no row to absorb it and its last
+        # line fell out of the frame. Lists never take the override, so their
+        # budget and render already agree.
+        leading = list_leading if is_list else rendered_body_leading
         paragraph_after = list_after if is_list else body_after
         list_marker = ""
         list_text = text

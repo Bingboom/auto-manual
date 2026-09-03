@@ -315,45 +315,38 @@ class TheBuiltPages(unittest.TestCase):
         self.assertGreater(margin_before_break, 50.0)
 
 
-class TheSeventhSectionFittingRow(unittest.TestCase):
-    """A budget/render mismatch, compensated where it bites and named as such.
+class TheBudgetIsTheRenderedLeading(unittest.TestCase):
+    """The panel height estimate reads the leading the page will print.
 
-    `_section_body` budgets body lines at `idml_warranty_body_font_leading`
-    (6.0) while the BP variant renders them at 7.0. Sections 1-6 absorb the
-    1 pt/line deficit through the shared `panel_height_adjust_1..6` slack;
-    there is no `_7`, and only the JP book has a seventh section, so 免責事項
-    overset by 5.00 pt at shared values. The measured JP leading rows had
-    masked that by making budget equal render. This row compensates it
-    honestly -- a fitting row, not a measurement -- until the budget is fixed
-    to read the rendered leading, at which point the row must go.
+    `_section_body` used to budget body lines at `idml_warranty_body_font_leading`
+    (6.0) while the BP variants rendered them at 7.0. Sections 1-6 absorbed the
+    1 pt/line deficit through the EN-tuned `panel_height_adjust_1..6` slack;
+    there was no `_7`, and only the JP book has a seventh section, so 免責事項
+    overset by 5.00 pt at shared values. #1015 compensated that with a JP
+    fitting row; this change fixes the budget itself and removes the row.
     """
 
-    KEY = "lang_jp_idml_warranty_panel_height_adjust_7"
-
-    def test_the_row_exists_at_the_fitting_value(self) -> None:
-        self.assertAlmostEqual(5.5, param_pt(params(), self.KEY, 0.0), delta=0.01)
-
-    def test_it_is_justified_as_compensation_not_measurement(self) -> None:
-        with OVERLAY.open(encoding="utf-8-sig", newline="") as handle:
-            comment = next(
-                (row.get("comment") or "")
-                for row in csv.DictReader(handle)
-                if (row.get("key") or "").strip() == self.KEY
-            )
-        self.assertIn("budget/render mismatch", comment)
-        self.assertIn("not a measurement", comment)
-        self.assertNotIn("master", comment.lower())
-
-    def test_no_shared_seventh_row_exists(self) -> None:
-        """The shared table stops at six because the reference book has six."""
-        rows = language_rows()
-        self.assertNotIn("idml_warranty_panel_height_adjust_7", rows)
-        others = sorted(
-            k.split("_")[1]
-            for k in rows
-            if re.fullmatch(r"lang_[a-z]{2}_idml_warranty_panel_height_adjust_7", k)
+    def test_body_lines_are_budgeted_at_the_rendered_leading(self) -> None:
+        source = (ROOT / "tools/idml/components/warranty.py").read_text(encoding="utf-8")
+        self.assertIn(
+            "leading = list_leading if is_list else rendered_body_leading", source
         )
-        self.assertEqual(["jp"], others)
+        self.assertNotIn("leading = list_leading if is_list else body_leading", source)
+
+    def test_no_seventh_section_compensation_row_remains(self) -> None:
+        rows = language_rows()
+        seventh = sorted(
+            k for k in rows if k.endswith("idml_warranty_panel_height_adjust_7")
+        )
+        self.assertEqual([], seventh)
+
+    def test_the_shared_adjust_table_still_stops_at_six(self) -> None:
+        """Those rows compensated a deficit that no longer exists; they are
+        left as they were so the reference books keep their measured air --
+        re-tuning them is a separate, per-book decision."""
+        rows = language_rows()
+        for index in range(1, 7):
+            self.assertIn(f"idml_warranty_panel_height_adjust_{index}", rows)
 
 
 class TheBuiltSeventhSection(unittest.TestCase):
