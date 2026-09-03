@@ -162,6 +162,8 @@ idml_regulatory_title_font_size,7.5,pt,Shared bottom-card Regulatory title font 
 idml_compact_spec_table_cell_inset,2.0,pt,Compact specification table vertical cell inset
 idml_compact_spec_table_row_height,11.0,pt,Compact specification table minimum row height measured from the battery-pack reference
 idml_compact_spec_table_multiline_min_height,13.0,pt,Compact specification multiline minimum row height
+lang_jp_idml_compact_spec_table_row_height,14.95,pt,JP specification ordinary row pitch measured from the JP master (ten rows at 14.95 pt between its hairlines)
+lang_jp_idml_compact_spec_table_multiline_min_height,38.35,pt,JP specification final multi-line row measured from the JP master
 idml_compact_spec_table_1_space_before,5.7,pt,Compact first specification heading-to-table rhythm
 idml_compact_spec_table_2_space_before,7.9,pt,Compact second specification heading-to-table rhythm
 idml_compact_spec_table_3_space_before,8.9,pt,Compact third specification heading-to-table rhythm
