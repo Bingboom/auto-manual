@@ -1238,6 +1238,7 @@ def add_troubleshooting_specifications_page(
         lang=language,
         intro=getattr(trouble_data, "intro", ""),
         header=getattr(trouble_data, "header", None),
+        label_column_fill="Color/HB Bg K05",
     )
     spec_sid = writer.add_spec_story(
         sections,

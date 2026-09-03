@@ -579,11 +579,13 @@ def add_trouble_story(
     lang: str = "en",
     intro: str = "",
     header: tuple[str, str] | None = None,
+    label_column_fill: str = "",
 ) -> str:
     """Build the Troubleshooting story.
 
-    ``intro`` and ``header`` default to empty so the compositions that do not
-    pass them render exactly what they rendered before.
+    ``intro``, ``header`` and ``label_column_fill`` default to empty so the
+    compositions that do not pass them render exactly what they rendered
+    before.
     """
     sid = "st_trouble" if lang == "en" else f"st_trouble_{lang}"
     title = source_text(title, owner="Troubleshooting page title")
@@ -598,6 +600,10 @@ def add_trouble_story(
         # `style.header_size`, so prepending it is what that code expects.
         rows = [tuple(header), *rows]
     table = writer._table(table_id, rows, role="data")
+    if label_column_fill:
+        # The same tint the specification, LCD, symbol and signal-word
+        # tables give their label column.
+        table = _tb.fill_column_xml(table, 0, label_column_fill)
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
