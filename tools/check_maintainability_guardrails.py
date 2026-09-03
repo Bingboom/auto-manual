@@ -120,7 +120,10 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # parity, test-enforced) lives beside the loaders it decorates.
     "tools/idml/loaders.py": 318,  # +31: localized spec-section/page-title loaders (per-language data pages)
     "tools/idml/components/callout.py": 200,
-    "tools/idml/stories.py": 247,  # +2: per-language data-page titles/sids (parity)
+    # +2 per-language data-page titles/sids (parity); +9 target-declared
+    # figure callouts -- one planning call, one lookup, and the skip for a
+    # label table now printed over the art (tools/idml/components/prose_image.py).
+    "tools/idml/stories.py": 256,
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
 }

@@ -21,8 +21,8 @@ AC充電の場合、本製品は |BP_HOST_PRODUCT_NAME| と一緒にお使いく
    :header-rows: 0
    :widths: 50 50
 
-   * - **拡張ケーブル**
-     - **ACケーブル**
+   * - 拡張ケーブル
+     - ACケーブル
 
 ソーラー充電（別売）
 --------------------
@@ -37,5 +37,5 @@ AC充電の場合、本製品は |BP_HOST_PRODUCT_NAME| と一緒にお使いく
    :header-rows: 0
    :widths: 50 50
 
-   * - **拡張ケーブル**
-     - **SolarSaga 200**
+   * - 拡張ケーブル
+     - SolarSaga 200

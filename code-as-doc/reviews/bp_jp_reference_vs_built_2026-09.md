@@ -107,6 +107,57 @@ The next native round should keep its finalize report inside
 `docs/_build/JBP-2000B/JP/` so the findings are readable here instead of being
 transcribed.
 
+## 4a. Charging page: figure measure, suffix pill, and the redacted labels
+
+Reference page 09 resolved three findings that read as one, all in the target
+contract rather than the renderer.
+
+The illustrations printed at 58 percent of the reference measure — 181.0 pt
+against 311.6 pt — because BP@JP's `charging` page declared no
+`composition_data` at all and fell through to the `charging_diagram` role's
+0.58 ratio. BP@US and BP@EU both declare `reference_measure` for the same page
+role, so BP@JP was the outlier. Declaring it puts both figures at the shipped
+size to a tenth of a point: AC 312.1 x 152.4 pt against the reference panel's
+311.6 x 151.1, solar 312.1 x 179.7 against 311.6 x 179.5. The heights land
+because both assets are full-measure crops of that page — the same 3772 px
+width — which is also what proves the next finding.
+
+`ソーラー充電（別売）` printed as plain running heading copy. The reference sets
+`（別売）` as white type on a dark rounded pill, brackets included, which is the
+`h2_suffix_pill_indices` treatment the siblings already declare. It could not
+be declared here: `split_trailing_parenthetical` matched only ASCII brackets
+preceded by a space, and Japanese writes full-width brackets with no space.
+The detector now carries the two forms as separate alternatives, so the Latin
+branch matches exactly what it matched before, and the full-width branch keeps
+its brackets in the pill because that is what the book prints. The pill's
+remaining width gap (28.1 pt against 35.7) is horizontal padding in the shared
+pill component and was left alone.
+
+The four cable labels were printed as a two-cell table under each figure. The
+reference sets them as live 6 pt Regular text inside the artwork, at
+`拡張ケーブル` (50.5, 242.9), `ACケーブル` (199.6, 243.7), `SolarSaga 200`
+(285.6, 427.2) and `拡張ケーブル` (37.6, 463.4) — a pair on a shared baseline
+under the AC art, and a pair 36 pt apart beside their own parts in the solar
+panel, which no table row can express. The asset registry says why those
+coordinates are available: both assets are this page's artwork with
+「电缆活字标签」 redacted, so each figure already carries the white band the
+labels came out of, and the leader arrows are still drawn in.
+
+So the labels now sit back in that band. The copy stays in
+`docs/templates/page_bp/ja/08_charging_methods.rst`, where translation, review
+and cloud-doc backport reach it; the contract carries only where each label
+sits, as fractions of the figure's own box, bound by cell ordinal the way the
+LCD hero callouts bind to their parts rows. All four land within 0.0 pt of the
+reference positions. The source no longer bolds them, because the reference
+does not.
+
+Blast radius: `figure_callouts` is optional in the plan gate and defaults to
+empty through `plan_figure_callouts`, `add_prose_story` and
+`render_image_block`, so a figure with nothing declared keeps its table under
+the art. No other contract declares it — `tests/test_idml_figure_callouts.py`
+pins that — and all four IDML goldens regenerate byte-identical, which is also
+why those tests exist: the goldens do not reach this path.
+
 ## 5. Method
 
 Reference typography via PyMuPDF span extraction (font, size, character counts

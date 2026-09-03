@@ -178,6 +178,7 @@ class IdmlWriter:
                         inline_origin_shift: float = 0.0,
                         language: str | None = None,
                         image_roles: tuple[str, ...] = (),
+                        image_callouts: tuple[tuple[dict, ...], ...] = (),
                         disable_hyphenation: bool = False,
                         first_h1_space_after: float | None = None,
                         semantic_page_role: str | None = None) -> tuple[str, float]:
@@ -190,6 +191,7 @@ class IdmlWriter:
             inline_origin_shift=inline_origin_shift,
             language=language,
             image_roles=image_roles,
+            image_callouts=image_callouts,
             disable_hyphenation=disable_hyphenation,
             first_h1_space_after=first_h1_space_after,
             semantic_page_role=semantic_page_role,

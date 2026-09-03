@@ -139,7 +139,45 @@
       "composition_id": "jp_charging",
       "composition_type": "charging",
       "start_page": 9,
-      "page_count": 1
+      "page_count": 1,
+      "composition_data": {
+        "charging": {
+          "image_role": "reference_measure",
+          "h2_suffix_pill_indices": [
+            1
+          ],
+          "figure_callouts": [
+            [
+              {
+                "cell_index": 0,
+                "x": 0.07,
+                "y": 0.8703,
+                "width": 0.14
+              },
+              {
+                "cell_index": 1,
+                "x": 0.5485,
+                "y": 0.8756,
+                "width": 0.14
+              }
+            ],
+            [
+              {
+                "cell_index": 0,
+                "x": 0.0286,
+                "y": 0.834,
+                "width": 0.14
+              },
+              {
+                "cell_index": 1,
+                "x": 0.8245,
+                "y": 0.6323,
+                "width": 0.16
+              }
+            ]
+          ]
+        }
+      }
     },
     {
       "source_ref": "page/troubleshooting_ja.rst",
