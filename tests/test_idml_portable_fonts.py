@@ -37,13 +37,13 @@ class IdmlPortableFontsTest(unittest.TestCase):
             # Regular came from, because the shipped book sets 57% of its
             # Japanese characters in a non-Regular weight.
             "HBManualSansJP-DemiLight.ttf": (
-                "7f24916b26399bec64d49215c610b45081678c97544ba4ee7915e773c884f969"
+                "c2966c81c3c5f0cfd42c084aa74bf444ce81bb8f83b83497726695d8a103058b"
             ),
             "HBManualSansJP-Medium.ttf": (
-                "24f892bbde1a36502c0696f37489c67e182840aa15c19174e1dfa987ca6ccffd"
+                "a361d1766b73049a83fe908bc6575eae862eea7e6e1fbda8121d0643c6491ef1"
             ),
             "HBManualSansJP-Bold.ttf": (
-                "3a9cfeb12ecc8255c631e53e777f09975eb31a21ead9ff467817d60bdb1e2f9f"
+                "5feb2e7664b0b669636be9aa70695c6538371b7a0247facfa386934649d30075"
             ),
             "NotoSansSymbols-Regular.ttf": (
                 "8f02f31959bbdf6061547a188248e13f84dc5fdd940326ec494675f453f072bb"
