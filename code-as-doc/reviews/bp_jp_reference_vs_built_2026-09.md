@@ -1,5 +1,20 @@
 # BP@JP reference-versus-built ledger (R3c Phase 6)
 
+> **Superseded in part, 2026-09-03 (#1015).** The geometry this ledger records
+> as "built now" in §4a–§4d — the declared corner radii (5.80 / 7.89 / 4.80 /
+> 11.08 / 7.72), the specification pitch (14.95 / 38.35, shell 187.80), the
+> safety bullets at 7.00/11.50, the section-capsule dimensions and the warranty
+> and contents type scale — was measured off the hand-made JP PDF and has been
+> **withdrawn**. The operator's ruling: the master is a structural key (which
+> heading takes which style, which table takes which component), not a source
+> of geometry; styles are shared across every region and the hand-made PDF
+> carries production error. BP@JP now prints the shared style, with the
+> Japanese safety list at the English fitting value (6.0/6.8). What this ledger
+> established about **structure** — the h2 → section-capsule mapping, the
+> troubleshooting label tint, the figure callouts inside the illustrations, the
+> three JP-only compositions — stands. Read §4b–§4d below as the record of a
+> measurement pass, not as the current build.
+
 Date: 2026-09-01
 
 Reference: `Jackery Battery Pack 2000取扱説明書V2.0-2026-05-28.pdf`, the shipped

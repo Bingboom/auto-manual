@@ -315,5 +315,114 @@ class TheBuiltPages(unittest.TestCase):
         self.assertGreater(margin_before_break, 50.0)
 
 
+class TheSeventhSectionFittingRow(unittest.TestCase):
+    """A budget/render mismatch, compensated where it bites and named as such.
+
+    `_section_body` budgets body lines at `idml_warranty_body_font_leading`
+    (6.0) while the BP variant renders them at 7.0. Sections 1-6 absorb the
+    1 pt/line deficit through the shared `panel_height_adjust_1..6` slack;
+    there is no `_7`, and only the JP book has a seventh section, so 免責事項
+    overset by 5.00 pt at shared values. The measured JP leading rows had
+    masked that by making budget equal render. This row compensates it
+    honestly -- a fitting row, not a measurement -- until the budget is fixed
+    to read the rendered leading, at which point the row must go.
+    """
+
+    KEY = "lang_jp_idml_warranty_panel_height_adjust_7"
+
+    def test_the_row_exists_at_the_fitting_value(self) -> None:
+        self.assertAlmostEqual(5.5, param_pt(params(), self.KEY, 0.0), delta=0.01)
+
+    def test_it_is_justified_as_compensation_not_measurement(self) -> None:
+        with OVERLAY.open(encoding="utf-8-sig", newline="") as handle:
+            comment = next(
+                (row.get("comment") or "")
+                for row in csv.DictReader(handle)
+                if (row.get("key") or "").strip() == self.KEY
+            )
+        self.assertIn("budget/render mismatch", comment)
+        self.assertIn("not a measurement", comment)
+        self.assertNotIn("master", comment.lower())
+
+    def test_no_shared_seventh_row_exists(self) -> None:
+        """The shared table stops at six because the reference book has six."""
+        rows = language_rows()
+        self.assertNotIn("idml_warranty_panel_height_adjust_7", rows)
+        others = sorted(
+            k.split("_")[1]
+            for k in rows
+            if re.fullmatch(r"lang_[a-z]{2}_idml_warranty_panel_height_adjust_7", k)
+        )
+        self.assertEqual(["jp"], others)
+
+
+class TheBuiltSeventhSection(unittest.TestCase):
+    """cmp8 must hold its copy, counting forced breaks and paragraph air."""
+
+    IDML = ROOT / "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml"
+
+    def setUp(self) -> None:
+        if not self.IDML.is_file():
+            self.skipTest("JBP-2000B JP has not been built in this tree")
+        import zipfile
+
+        self.zip = zipfile.ZipFile(self.IDML)
+
+    def test_every_warranty_body_frame_holds_its_rendered_copy(self) -> None:
+        from tools.idml.line_metrics import estimated_line_count
+
+        parent = self.zip.read("Stories/Story_st_warranty_ja.xml").decode("utf-8")
+        frames = {}
+        for match in re.finditer(r"<TextFrame\b([^>]*)>(.*?)</TextFrame>", parent, re.S):
+            owner = re.search(r'ParentStory="(st_anchor_warranty_body_[^"]+)"', match.group(1))
+            if not owner:
+                continue
+            pts = [
+                tuple(float(v) for v in raw.split())
+                for raw in re.findall(r'<PathPointType Anchor="([-\d.]+ [-\d.]+)"', match.group(2))
+            ]
+            frames[owner.group(1)] = (
+                max(p[0] for p in pts) - min(p[0] for p in pts),
+                max(p[1] for p in pts) - min(p[1] for p in pts),
+            )
+        self.assertEqual(7, len(frames))
+        for sid, (width, height) in sorted(frames.items()):
+            story = self.zip.read(f"Stories/Story_{sid}.xml").decode("utf-8")
+            need = 0.0
+            for para in re.finditer(
+                r"<ParagraphStyleRange\b([^>]*)>(.*?)</ParagraphStyleRange>", story, re.S
+            ):
+                attrs, body = para.group(1), para.group(2)
+                if not "".join(re.findall(r"<Content>([^<]*)</Content>", body)).strip():
+                    continue
+                style = re.search(r'ParagraphStyle/([^"]+)"', attrs).group(1)
+                lead_attr = re.search(r'Leading="([\d.]+)"', attrs)
+                lead_inline = re.search(r'<Leading type="unit">([\d.]+)<', body)
+                leading = (
+                    float(lead_attr.group(1))
+                    if lead_attr
+                    else float(lead_inline.group(1))
+                    if lead_inline
+                    else (7.2 if "List" in style else 6.0)
+                )
+                before = re.search(r'SpaceBefore="([\d.]+)"', attrs)
+                after = re.search(r'SpaceAfter="([\d.]+)"', attrs)
+                indent = re.search(r'LeftIndent="([\d.]+)"', attrs)
+                measure = width - (float(indent.group(1)) if indent else 0.0)
+                lines = 0
+                for segment in re.split(r"<Br/>", body):
+                    text = "".join(re.findall(r"<Content>([^<]*)</Content>", segment)).strip()
+                    if text:
+                        lines += estimated_line_count(
+                            text, measure, point_size=6.0,
+                            narrow_width_ratio=0.50, minimum_narrow_chars=8,
+                        )
+                need += max(lines, 1) * leading
+                need += float(before.group(1)) if before else 0.0
+                need += float(after.group(1)) if after else 0.0
+            with self.subTest(panel=sid.split("_cmp")[-1]):
+                self.assertLessEqual(need, height + 0.01, f"{sid}: {need:.2f} > {height:.3f}")
+
+
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()
