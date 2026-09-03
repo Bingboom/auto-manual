@@ -7,6 +7,7 @@ from .. import page_objects as _po
 from ..inline_text import character_ranges
 from ..line_metrics import estimated_line_count, estimated_text_width
 from ..corner_radii import declared_indexed_radius, declared_radius
+from ..loaders import normalize_lang
 from ..params import param_pt
 from ..primitives import (
     cell,
@@ -23,8 +24,16 @@ def _plain_strong(text: str) -> str:
 
 
 def _language_param(ctx: RenderContext, key: str, default: float) -> float:
+    """A warranty token a language may declare for itself.
+
+    `normalize_lang` because `ctx.language` carries the writer's own source
+    code -- "ja" -- while every layout row is keyed on the phase2 suffix
+    "jp". Without it this reads a prefix nothing declares and silently keeps
+    the shared value. No `lang_ja_` row exists anywhere, so normalizing takes
+    nothing away.
+    """
     base = param_pt(ctx.params, key, default)
-    language = (ctx.language or "").strip().lower()
+    language = normalize_lang(ctx.language) if ctx.language else ""
     if language:
         return param_pt(ctx.params, f"lang_{language}_{key}", base)
     return base
@@ -520,9 +529,12 @@ def _section_body(
     layout_spec: dict,
     section_index: int,
 ) -> tuple[list[str], float]:
-    body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
-    body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
-    list_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
+    # These three must resolve exactly as `para_styles` resolves them: the
+    # panel height is computed from them, so a size the style prints but the
+    # estimate does not see would size every panel for the wrong type.
+    body_size = _language_param(ctx, "type_warranty_body_font_size", 6.0)
+    body_leading = _language_param(ctx, "idml_warranty_body_font_leading", 6.0)
+    list_leading = _language_param(ctx, "type_warranty_body_font_leading", 7.2)
     body_after = param_pt(ctx.params, "idml_warranty_paragraph_after", 2.83)
     list_after = param_pt(ctx.params, "idml_warranty_list_after", 1.0)
     horizontal_scale = _variant_value(

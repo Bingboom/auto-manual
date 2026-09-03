@@ -49,10 +49,10 @@ class IdmlWriter:
 
     # -- styles ------------------------------------------------------------
     def para_styles(self) -> list[tuple[str, float, float, str, str]]:
-        return _styles.para_styles(self.params)
+        return _styles.para_styles(self.params, self.language)
 
     def styles_xml(self) -> str:
-        return _styles.styles_xml(self.params)
+        return _styles.styles_xml(self.params, self.language)
 
     def graphic_xml(self) -> str:
         return _styles.graphic_xml(self.params)
