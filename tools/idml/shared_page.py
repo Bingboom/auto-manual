@@ -1060,8 +1060,19 @@ def grouped_spec_sections(
             for section in selected
             for row in list(section.get("rows") or [])
         ]
+        # A declared title is honoured verbatim, empty included: a group that
+        # says `"title": ""` is asking for no heading, which is how a book
+        # whose printed spec table runs continuously is expressed. Falling
+        # through to the source section's own title on an empty string would
+        # make that impossible to say. Groups that omit the key keep inheriting
+        # the first selected section's title, so every contract written before
+        # this renders exactly as it did.
+        if "title" in group:
+            title = str(group.get("title") or "")
+        else:
+            title = str(selected[0].get("title") or "")
         grouped.append({
-            "title": str(group.get("title") or selected[0].get("title") or ""),
+            "title": title,
             "rows": rows,
         })
         used.extend(indices)

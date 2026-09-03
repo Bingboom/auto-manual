@@ -5,7 +5,9 @@
   "target": {
     "model": "JBP-2000B",
     "region": "JP",
-    "languages": ["jp"]
+    "languages": [
+      "jp"
+    ]
   },
   "reference_pdf": {
     "file_name": "Jackery Battery Pack 2000取扱説明書V2.0-2026-05-28.pdf",
@@ -161,12 +163,15 @@
           "layout_variant": "compact",
           "split": 246.0,
           "section_groups": [
-            {"source_indices": [0]},
             {
-              "source_indices": [1, 2],
-              "title": "入力/出力ポート"
-            },
-            {"source_indices": [3]}
+              "source_indices": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "title": ""
+            }
           ]
         }
       }
