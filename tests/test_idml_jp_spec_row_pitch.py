@@ -1,19 +1,21 @@
-"""Japanese specification rows take the pitch their own master prints.
+"""Japanese specification rows take the shared pitch.
 
-The shared `idml_compact_spec_table_row_height` is 11.0 pt and its comment says
-it was measured from the battery-pack reference, but the JP master draws its
-eleven rows at 14.95 pt with a 38.35 pt final multi-line row -- 188.34 pt of
-shell against the 133.80 pt the build produced, or 71 percent. That was the
-largest single geometry gap in the book.
+The shared `idml_compact_spec_table_row_height` is 11.0 pt and the multi-line
+minimum 13.0. An earlier pass measured 14.95 / 38.35 between the hairlines of
+the hand-made JP PDF and declared two `lang_jp_` rows to reproduce it -- a 71
+percent taller shell, chasing production error rather than fitting text. Those
+rows are gone.
 
-The row-height key is already read per language: `spec_tables.py` builds
-`lang_<code>_idml_compact_spec_table_row_height` with the shared value as the
-fallback, and `lang_ko_idml_compact_spec_table_row_height` has been in the
-Korean overlay for a while. So this is a data change, and BP@US and BP@EU --
-which pin different masters -- keep the shared value.
+The fitting question was asked properly before removing them: at the shared
+pitch every specification cell holds its 6.0 pt / 6.6 pt text by the builder's
+line model, the tightest at 0.49 pt of slack, and the multi-line rows resolve
+to 23.8 rather than the 13.0 minimum. If InDesign's composer shows overset on
+the acceptance open, the right answer is a fitting row derived from the text's
+need -- not a measurement of someone else's layout.
 
-The IDML goldens do not reach the compact specification table, so this is the
-coverage for the change as well as for the isolation.
+`spec_tables.py` builds `lang_<code>_idml_compact_spec_table_row_height` with
+the shared value as the fallback; the Korean overlay's 12.2 remains the one
+declared fitting row, and that precedent is untouched.
 """
 
 from __future__ import annotations
@@ -31,16 +33,9 @@ BASE = ROOT / "data/layout_params.csv"
 COMPACT = ROOT / "data/layout_params.idml-compact.csv"
 KOREAN = ROOT / "data/layout_params.idml-je3000c-kr.csv"
 
-# Measured between the hairlines the master draws on reference page index 9:
-# the lower stroked panel runs y 275.26..463.60 and holds eleven bands, ten at
-# 14.95 pt and a final one at 38.35 pt. The panel is the specification table --
-# its left column reads 認証 / 型番 / 定格容量 / バッテリータイプ / サイクル寿命 /
-# サイズ&重量 / DC拡張ポート(入力) / (出力) / 充電温度 / 動作温度 / 保存温度.
-MASTER_ORDINARY = 14.95
-MASTER_MULTILINE = 38.35
-MASTER_SHELL = 188.34
+SHARED_ORDINARY = 11.0
+SHARED_MULTILINE_MIN = 13.0
 
-# Eleven rows, of which the last wraps -- the shape of the JP specification.
 ROWS = [(f"label {n}", f"value {n}") for n in range(10)] + [
     ("保存温度", "-10℃〜45℃（最適：20℃〜30℃）で保管してください。長期保管の際は残量を確認してください。")
 ]
@@ -50,111 +45,69 @@ def params():
     return load_layout_params(BASE, (COMPACT,))
 
 
-class DeclaredPitch(unittest.TestCase):
-    def declared(self, name: str) -> str:
-        with COMPACT.open(encoding="utf-8") as handle:
-            for row in csv.reader(handle):
-                if row and row[0].strip() == name:
-                    return row[1].strip()
-        return ""
+def declared(name: str) -> str:
+    with COMPACT.open(encoding="utf-8") as handle:
+        for row in csv.reader(handle):
+            if row and row[0].strip() == name:
+                return row[1].strip()
+    return ""
 
-    def test_the_measured_values_are_declared(self) -> None:
-        self.assertEqual(
-            str(MASTER_ORDINARY),
-            self.declared("lang_jp_idml_compact_spec_table_row_height"),
-        )
-        self.assertEqual(
-            str(MASTER_MULTILINE),
-            self.declared("lang_jp_idml_compact_spec_table_multiline_min_height"),
-        )
 
-    def test_the_shared_default_is_untouched(self) -> None:
-        """BP@US and BP@EU pin different masters and keep 11.0."""
-        self.assertEqual("11.0", self.declared("idml_compact_spec_table_row_height"))
+class TheSharedPitch(unittest.TestCase):
+    def test_the_shared_values_are_declared(self) -> None:
+        self.assertEqual("11.0", declared("idml_compact_spec_table_row_height"))
+        self.assertEqual("13.0", declared("idml_compact_spec_table_multiline_min_height"))
+
+    def test_japanese_declares_no_pitch_of_its_own(self) -> None:
+        self.assertEqual("", declared("lang_jp_idml_compact_spec_table_row_height"))
         self.assertEqual(
-            "13.0", self.declared("idml_compact_spec_table_multiline_min_height")
+            "", declared("lang_jp_idml_compact_spec_table_multiline_min_height")
         )
 
 
 class ResolvedGeometry(unittest.TestCase):
-    """Assert the resolution, not a total that depends on live source rows.
-
-    The real specification rows live in `data/phase2`, which is a local mirror
-    and not available to CI, so the shell total is verified by measuring the
-    built IDML instead -- 187.8 pt against the master's 188.34 -- and recorded
-    in the review ledger. What a test can own is which language resolves to
-    which pitch.
-    """
-
-    def test_japanese_ordinary_rows_take_the_master_pitch(self) -> None:
-        heights = spec_table_row_heights(
-            ROWS, params(), density="compact", language="jp"
-        )
+    def test_japanese_ordinary_rows_take_the_shared_pitch(self) -> None:
+        heights = spec_table_row_heights(ROWS, params(), density="compact", language="jp")
         self.assertEqual(11, len(heights))
         for height in heights[:10]:
-            self.assertAlmostEqual(MASTER_ORDINARY, height, delta=0.01)
+            self.assertAlmostEqual(SHARED_ORDINARY, height, delta=0.01)
 
-    def test_japanese_multiline_minimum_resolves_to_the_master(self) -> None:
+    def test_japanese_equals_english(self) -> None:
+        resolved = params()
+        jp = spec_table_row_heights(ROWS, resolved, density="compact", language="jp")
+        en = spec_table_row_heights(ROWS, resolved, density="compact", language="en")
+        self.assertEqual([round(h, 2) for h in en], [round(h, 2) for h in jp])
+
+    def test_the_multiline_minimum_resolves_to_the_shared_value(self) -> None:
         self.assertAlmostEqual(
-            MASTER_MULTILINE,
+            SHARED_MULTILINE_MIN,
             param_pt(
                 params(),
                 "lang_jp_idml_compact_spec_table_multiline_min_height",
-                0.0,
+                param_pt(params(), "idml_compact_spec_table_multiline_min_height", 0.0),
             ),
             delta=0.01,
         )
 
-    def test_ten_master_rows_plus_the_multiline_row_reach_the_shell(self) -> None:
-        """The arithmetic the two declared values are supposed to produce."""
-        self.assertAlmostEqual(
-            MASTER_SHELL, 10 * MASTER_ORDINARY + MASTER_MULTILINE, delta=1.0
-        )
-
-    def test_the_shell_still_fits_its_frame(self) -> None:
-        """The spec frame is 245.8 pt and also carries the 20.1 pt H1 pill."""
-        self.assertLess(10 * MASTER_ORDINARY + MASTER_MULTILINE + 20.1, 245.8)
-
-    def test_an_unnormalized_ja_falls_back_to_the_shared_pitch(self) -> None:
-        """The renderer passes the normalized code, so `jp` is the live prefix.
-
-        Pins that a caller handing this sink `ja` gets the shared value rather
-        than the Japanese one -- the mistake #985 made in the other direction.
-        """
-        resolved = params()
-        as_ja = spec_table_row_heights(
-            ROWS, resolved, density="compact", language="ja"
-        )
-        shared = spec_table_row_heights(
-            ROWS, resolved, density="compact", language="en"
-        )
-        self.assertEqual(
-            [round(h, 2) for h in shared], [round(h, 2) for h in as_ja]
-        )
-
 
 class OtherLanguagesAreUnaffected(unittest.TestCase):
-    def test_every_other_language_keeps_the_shared_pitch(self) -> None:
+    def test_every_language_keeps_the_shared_pitch(self) -> None:
         resolved = params()
-        for language in ("en", "fr", "es", "de", "it", "uk", "zh"):
+        for language in ("en", "fr", "es", "de", "it", "uk", "zh", "jp"):
             heights = spec_table_row_heights(
                 ROWS, resolved, density="compact", language=language
             )
             for height in heights[:10]:
                 self.assertAlmostEqual(11.0, height, delta=0.01, msg=language)
 
-    def test_korean_keeps_its_own_declared_pitch(self) -> None:
-        """The precedent this change follows, still in force."""
-        # The Korean overlay replaces the compact one rather than stacking on
-        # it -- the loader refuses an overlay that redefines a key.
+    def test_korean_keeps_its_own_declared_fitting_pitch(self) -> None:
+        """The one legitimate fitting row, and the precedent for any future one."""
         korean = load_layout_params(BASE, (KOREAN,))
-        heights = spec_table_row_heights(
-            ROWS, korean, density="compact", language="ko"
-        )
+        heights = spec_table_row_heights(ROWS, korean, density="compact", language="ko")
         for height in heights[:10]:
             self.assertAlmostEqual(12.2, height, delta=0.01)
 
-    def test_only_japanese_and_korean_declare_a_row_pitch(self) -> None:
+    def test_only_korean_declares_a_row_pitch(self) -> None:
         """Pins the blast radius across all three layout tables."""
         declaring = set()
         for table in (BASE, COMPACT, KOREAN):
@@ -169,7 +122,27 @@ class OtherLanguagesAreUnaffected(unittest.TestCase):
                     )
                     if m:
                         declaring.add(m.group(1))
-        self.assertEqual({"jp", "ko"}, declaring)
+        self.assertEqual({"ko"}, declaring)
+
+
+class TheBuiltTable(unittest.TestCase):
+    IDML = ROOT / "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml"
+
+    def setUp(self) -> None:
+        if not self.IDML.is_file():
+            self.skipTest("JBP-2000B JP has not been built in this tree")
+        import zipfile
+
+        self.story = zipfile.ZipFile(self.IDML).read(
+            "Stories/Story_st_anchor_spec_jp0.xml"
+        ).decode("utf-8")
+
+    def test_ordinary_rows_are_the_shared_height(self) -> None:
+        heights = sorted(
+            {float(h) for h in re.findall(r'SingleRowHeight="([\d.]+)"', self.story)}
+        )
+        self.assertIn(11.0, heights)
+        self.assertNotIn(14.95, heights)
 
 
 if __name__ == "__main__":  # pragma: no cover

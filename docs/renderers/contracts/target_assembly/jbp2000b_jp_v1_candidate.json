@@ -72,11 +72,7 @@
       "page_count": 1,
       "composition_data": {
         "inbox": {
-          "layout_variant": "compact_with_tip",
-          "corner_radii": {
-            "card": 5.8,
-            "tip_strip": 7.89
-          }
+          "layout_variant": "compact_with_tip"
         }
       }
     },
@@ -228,12 +224,7 @@
       "page_count": 2,
       "composition_data": {
         "warranty": {
-          "layout_variant": "bp_default",
-          "corner_radii": {
-            "section": 4.8,
-            "section:7": 11.08,
-            "lead": 7.72
-          }
+          "layout_variant": "bp_default"
         }
       }
     }

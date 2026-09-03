@@ -228,7 +228,6 @@ def add_safety_signals_page(
             # same dark capsule the symbols page uses for its title. The
             # symbols-page composition next door keeps the plain heading.
             subbar_capsule=True,
-            language=lang,
         ),
         bundle_root=bundle_root,
         language=lang,

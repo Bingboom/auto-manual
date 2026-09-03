@@ -181,15 +181,9 @@ class SymbolIconsPanel:
         # chapter bar, so the title takes the height its own parameter
         # already carries; capsule_xml then rounds it at height / 2.
         title_height = param_pt(writer.params, "comp_subbar_height", 13.9)
-        # The master sets this capsule's type at 7.00 pt -- a point under the
-        # shared subbar size, which also feeds the LaTeX line and every other
-        # book. Declared per language on the IDML overlay so the correction
-        # reaches this composition and stays out of everyone else's way.
-        title_size = param_pt(
-            writer.params,
-            f"lang_{self.language}_idml_compact_symbols_title_font_size",
-            param_pt(writer.params, "type_subbar_font_size", 6.6),
-        )
+        # The capsule's type is the shared subbar size. The hand-made JP master
+        # measured 7.00 here; that is a production artefact, not a style.
+        title_size = param_pt(writer.params, "type_subbar_font_size", 8.0)
         title_gap = style.symbols_title_gap
         rows = len(self.data.icons) + (1 if self.include_header else 0)
         if rows <= 0:

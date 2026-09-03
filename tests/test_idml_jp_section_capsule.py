@@ -1,34 +1,36 @@
-"""The JP safety page sets its section heading in the capsule its master prints.
+"""The JP safety page sets its section heading in the shared subbar capsule.
 
-Reference page index 2 puts 「絵表示について」 inside a 313.07 x 13.91 pt dark
-stadium -- fill (0.2519, 0.2495, 0.2560) = HB Brand Dark, a six-item
-line/curve path, radius = height/2 -- holding 7.00 pt reversed CJKjp-Bold
-inset 7.30 pt from the capsule's left edge. That is the same chrome the
-symbols page carries as a page title, and a different object from the 20.07 pt
-`lclllc` chapter bar the master uses for chapter openers.
+The structural fact from the JP master: 「絵表示について」 is a section heading
+inside running copy, and the house style sets such a heading in the subbar
+capsule -- not the 20.07 pt chapter bar, not a plain paragraph. The build had
+set it as a plain 8 pt `Heading2`. That mapping (heading -> capsule) is what a
+master is for, and it is what this change keeps.
 
-The build set it as a plain 8 pt `Heading2` paragraph in the running copy.
+What the master is NOT for is geometry. An earlier pass measured the hand-made
+JP PDF -- 13.91 tall, 7.00 pt, 7.30 inset, 10.42 / 2.61 of air -- and wrote six
+`lang_jp_idml_section_capsule_*` rows to reproduce it. Those rows encoded human
+production error as data and forked JP off the shared style. They are gone.
+The capsule now reads the same tokens every other subbar reads:
+`comp_subbar_height`, `type_subbar_font_size`, `type_subbar_font_leading`,
+`comp_subbar_pad_lr`, and the pill's shared `idml_charging_emphasis_space_before`.
 
-Two things had to be true for the fix to be small. The safety story already
-renders `component` blocks inline, so a promoted heading needs no new sink;
-and `render_emphasispill` already anchors a rounded group in the flow, so it
-needed a variant rather than a new emitter.
+Two mechanisms carry it. The safety story already renders `component` blocks
+inline, so a promoted heading needs no new sink; `render_emphasispill` already
+anchors a rounded group in the flow, so it needed a variant, not an emitter.
 
-Scope is the delicate part. `CompactSafetyPanel` is shared: BP@JP reaches it
-through `add_safety_signals_page`, BP@US and BP@EU through
-`add_safety_symbols_page`. So the promotion is opt-in at the call site --
-`from_blocks(..., subbar_capsule=True)` -- and only the signals page asks.
-`safety_signals` is declared by one contract.
+Scope. `CompactSafetyPanel` is shared: BP@JP reaches it through
+`add_safety_signals_page`, BP@US and BP@EU through `add_safety_symbols_page`.
+The promotion is opt-in at the call site and only the signals page asks.
+BP@US rebuilt before and after is content-identical across all 318 entries.
 
-The pre-existing `full_width_subbar` variant is deliberately left alone. It is
-passed by `prose_flow.py`'s maintenance promotion and read by nobody, so that
-bar renders text-fitted today; honouring it would change JE-3000C KR, whose
-contract is the only one declaring `preface_safety_maintenance`.
+The pre-existing `full_width_subbar` variant stays untouched: no emitter reads
+it, and honouring it would change JE-3000C KR.
 """
 
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -37,19 +39,8 @@ from tools.idml.params import load_layout_params, param_pt
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = ROOT / "docs/renderers/contracts/target_assembly"
+BASE = ROOT / "data/layout_params.csv"
 OVERLAY = ROOT / "data/layout_params.idml-compact.csv"
-
-# Measured on reference page index 2 with PyMuPDF.
-MASTER = {
-    "width": 313.07,
-    "height": 13.91,
-    "font_size": 7.0,
-    "text_inset": 7.30,
-    # Centre-to-centre against the neighbouring 11.50 pt lines, less half of
-    # each box: 23.12 - (5.75 + 6.955) and 15.31 - (6.955 + 5.75).
-    "space_before": 10.42,
-    "space_after": 2.61,
-}
 
 BLOCKS = [
     ("h1", "使用上のご注意"),
@@ -60,7 +51,7 @@ BLOCKS = [
 
 
 def params():
-    return load_layout_params(ROOT / "data/layout_params.csv", [OVERLAY])
+    return load_layout_params(BASE, [OVERLAY])
 
 
 class ThePromotionIsOptIn(unittest.TestCase):
@@ -74,7 +65,7 @@ class ThePromotionIsOptIn(unittest.TestCase):
 
     def test_opting_in_replaces_the_heading_with_a_capsule(self) -> None:
         data = CompactSafetyPanelData.from_blocks(
-            BLOCKS, story_title="s", subbar_capsule=True, language="jp"
+            BLOCKS, story_title="s", subbar_capsule=True
         )
         kinds = [kind for kind, _ in data.body_blocks]
         self.assertNotIn("h2", kinds)
@@ -86,19 +77,19 @@ class ThePromotionIsOptIn(unittest.TestCase):
         self.assertEqual("section_capsule", spec["layout_variant"])
         self.assertEqual(["絵表示について"], spec["texts"])
 
-    def test_the_language_travels_on_the_spec(self) -> None:
-        """The writer's own tag is the source code (ja), not the row prefix (jp)."""
+    def test_the_spec_carries_no_language(self) -> None:
+        """A shared style has no per-language geometry to select."""
         data = CompactSafetyPanelData.from_blocks(
-            BLOCKS, story_title="s", subbar_capsule=True, language="jp"
+            BLOCKS, story_title="s", subbar_capsule=True
         )
         spec = json.loads(
             next(text for kind, text in data.body_blocks if kind == "component")
         )
-        self.assertEqual("jp", spec["language"])
+        self.assertNotIn("language", spec)
 
     def test_nothing_else_moves_and_order_is_kept(self) -> None:
         data = CompactSafetyPanelData.from_blocks(
-            BLOCKS, story_title="s", subbar_capsule=True, language="jp"
+            BLOCKS, story_title="s", subbar_capsule=True
         )
         self.assertEqual(
             ["list", "component", "body"],
@@ -108,14 +99,14 @@ class ThePromotionIsOptIn(unittest.TestCase):
     def test_a_page_without_a_heading_grows_no_capsule(self) -> None:
         plain = [("h1", "t"), ("body", "b")]
         data = CompactSafetyPanelData.from_blocks(
-            plain, story_title="s", subbar_capsule=True, language="jp"
+            plain, story_title="s", subbar_capsule=True
         )
         self.assertEqual((("body", "b"),), data.body_blocks)
 
     def test_only_the_first_heading_is_promoted(self) -> None:
         two = [("h1", "t"), ("h2", "one"), ("body", "b"), ("h2", "two")]
         data = CompactSafetyPanelData.from_blocks(
-            two, story_title="s", subbar_capsule=True, language="jp"
+            two, story_title="s", subbar_capsule=True
         )
         self.assertEqual(
             ["component", "body", "h2"],
@@ -123,51 +114,37 @@ class ThePromotionIsOptIn(unittest.TestCase):
         )
 
 
-class TheDeclaredGeometryIsTheMasters(unittest.TestCase):
-    def test_height(self) -> None:
-        self.assertAlmostEqual(
-            MASTER["height"],
-            param_pt(params(), "lang_jp_idml_section_capsule_height", 0.0),
-            delta=0.01,
-        )
+class TheCapsuleIsTheSharedSubbar(unittest.TestCase):
+    """No token of its own: the capsule is the subbar every book already has."""
 
-    def test_font_size(self) -> None:
-        self.assertAlmostEqual(
-            MASTER["font_size"],
-            param_pt(params(), "lang_jp_idml_section_capsule_font_size", 0.0),
-            delta=0.01,
+    def test_no_language_declares_capsule_geometry(self) -> None:
+        declared = sorted(
+            key for key in params() if "_idml_section_capsule_" in key
         )
+        self.assertEqual([], declared, "the capsule must not fork per language")
 
-    def test_text_inset(self) -> None:
-        self.assertAlmostEqual(
-            MASTER["text_inset"],
-            param_pt(params(), "lang_jp_idml_section_capsule_text_inset", 0.0),
-            delta=0.01,
-        )
+    def test_the_shared_subbar_tokens_are_what_it_reads(self) -> None:
+        p = params()
+        self.assertAlmostEqual(13.89, param_pt(p, "comp_subbar_height", 0.0), delta=0.02)
+        self.assertAlmostEqual(8.0, param_pt(p, "type_subbar_font_size", 0.0), delta=0.01)
+        self.assertAlmostEqual(9.6, param_pt(p, "type_subbar_font_leading", 0.0), delta=0.01)
+        self.assertAlmostEqual(6.24, param_pt(p, "comp_subbar_pad_lr", 0.0), delta=0.02)
 
-    def test_the_rhythm_around_it(self) -> None:
-        self.assertAlmostEqual(
-            MASTER["space_before"],
-            param_pt(params(), "lang_jp_idml_section_capsule_space_before", 0.0),
-            delta=0.01,
-        )
-        self.assertAlmostEqual(
-            MASTER["space_after"],
-            param_pt(params(), "lang_jp_idml_section_capsule_space_after", 0.0),
-            delta=0.01,
-        )
-
-    def test_a_stadium_needs_no_radius_token(self) -> None:
-        """`anchored_panel_group_paragraph` is handed height/2."""
-        self.assertAlmostEqual(6.955, MASTER["height"] / 2.0, delta=0.01)
-
-    def test_no_other_language_declares_the_capsule(self) -> None:
-        declared = sorted({
-            key.split("_")[1]
-            for key in params()
-            if key.startswith("lang_") and "_idml_section_capsule_" in key
-        })
-        self.assertEqual(["jp"], declared)
+    def test_the_emitter_reads_those_tokens_and_no_language(self) -> None:
+        source = (ROOT / "tools/idml/components/emphasis.py").read_text(encoding="utf-8")
+        start = source.index("def _render_section_capsule(")
+        end = source.index("def render_emphasispill(")
+        body = source[start:end]
+        for key in (
+            "comp_subbar_height",
+            "type_subbar_font_size",
+            "type_subbar_font_leading",
+            "comp_subbar_pad_lr",
+        ):
+            with self.subTest(key=key):
+                self.assertIn(f'"{key}"', body)
+        self.assertNotIn("lang_", body)
+        self.assertNotIn("idml_section_capsule", body)
 
 
 class TheBuiltCapsule(unittest.TestCase):
@@ -192,39 +169,41 @@ class TheBuiltCapsule(unittest.TestCase):
         if self.STORY not in self.zip.namelist():
             self.skipTest("build predates the section capsule")
         self.story = self.zip.read(self.STORY).decode("utf-8")
+        self.flow = self.zip.read("Stories/Story_st_safety_info_ja.xml").decode("utf-8")
 
     def test_it_holds_the_heading(self) -> None:
-        import re
-
         self.assertEqual(
             "絵表示について",
             "".join(re.findall(r"<Content>([^<]*)</Content>", self.story)),
         )
 
-    def test_the_type_is_the_masters_size(self) -> None:
-        import re
-
+    def test_the_type_is_the_shared_subbar_size(self) -> None:
+        self.assertEqual({"8"}, set(re.findall(r'PointSize="([\d.]+)"', self.story)))
         self.assertEqual(
-            {"7"}, set(re.findall(r'PointSize="([\d.]+)"', self.story))
+            {"9.6"}, set(re.findall(r'<Leading type="unit">([\d.]+)<', self.story))
         )
 
-    def test_the_type_is_bold_like_the_master(self) -> None:
+    def test_the_type_is_bold(self) -> None:
         """`HB Emphasis Pill` is not in the Japanese weight map, so a CJK run
         arrives carrying Regular; the capsule asserts Bold over it."""
-        import re
+        self.assertEqual({"Bold"}, set(re.findall(r'FontStyle="([^"]+)"', self.story)))
 
-        self.assertEqual(
-            {"Bold"}, set(re.findall(r'FontStyle="([^"]+)"', self.story))
-        )
+    def test_the_inset_is_the_shared_pad(self) -> None:
+        indents = {float(v) for v in re.findall(r'LeftIndent="([\d.]+)"', self.story)}
+        self.assertEqual(1, len(indents))
+        self.assertAlmostEqual(6.24, indents.pop(), delta=0.02)
 
-    def test_it_is_a_stadium_at_the_masters_measure(self) -> None:
-        import re
+    def test_the_air_is_the_pills_shared_air(self) -> None:
+        match = re.search(r'SpaceBefore="([\d.]+)" SpaceAfter="([\d.]+)"', self.flow)
+        self.assertIsNotNone(match)
+        self.assertAlmostEqual(5.0, float(match.group(1)), delta=0.01)
+        self.assertAlmostEqual(1.5, float(match.group(2)), delta=0.01)
 
-        body = self.zip.read("Stories/Story_st_safety_info_ja.xml").decode("utf-8")
+    def test_it_is_a_stadium_at_the_subbar_height(self) -> None:
         found = []
         for match in re.finditer(
             r'<Rectangle\b[^>]*FillColor="Color/HB Brand Dark"[^>]*>(.*?)</Rectangle>',
-            body,
+            self.flow,
             re.S,
         ):
             points = [
@@ -240,14 +219,11 @@ class TheBuiltCapsule(unittest.TestCase):
         xs = [p[0] for p in points]
         ys = [p[1] for p in points]
         self.assertEqual(8, len(points), "a stadium carries eight anchors")
-        self.assertAlmostEqual(MASTER["height"], max(ys) - min(ys), delta=0.02)
-        # The build's measure is 312.09 against the master's 313.07 bar -- a
-        # page-measure difference that predates this change.
+        self.assertAlmostEqual(13.89, max(ys) - min(ys), delta=0.02)
         self.assertAlmostEqual(312.09, max(xs) - min(xs), delta=0.05)
 
     def test_the_heading_paragraph_is_gone_from_the_flow(self) -> None:
-        body = self.zip.read("Stories/Story_st_safety_info_ja.xml").decode("utf-8")
-        self.assertNotIn("ParagraphStyle/Heading2", body)
+        self.assertNotIn("ParagraphStyle/Heading2", self.flow)
 
 
 class Scope(unittest.TestCase):
