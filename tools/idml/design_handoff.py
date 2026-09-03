@@ -178,6 +178,11 @@ def _designer_checklist(model: str, region: str, lang: str) -> str:
     return f"""# Designer Checklist
 
 - Target: `{model}_{region}_{lang}`
+- **Install the fonts in `Document fonts/` first.** Importing an IDML produces
+  an untitled document, and InDesign resolves a `Document fonts` folder
+  relative to a saved document, so the bundled copies are not picked up on that
+  first open — every bundled face is reported missing and substituted. See
+  `fonts_manifest.md` for the list and which families are not shipped.
 - Open `production/manual.production.idml` for visual parity review.
 - Open `flow/manual.flow.idml` for the rendered, editable continuous-story
   template; verify that linked images, native tables, and registered component
