@@ -244,3 +244,4 @@ idml_warranty_variant_bp_default_final_body_center,1,int,Vertically center one-l
 lang_en_idml_warranty_variant_bp_default_section_4_before_adjust,1.0,pt,BP English repair-to-buyer rhythm correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_section_5_before_adjust,1.5,pt,BP English buyer-to-exclusions rhythm correction (moved off the shared base token)
 lang_en_idml_warranty_variant_bp_default_section_6_before_adjust,0.5,pt,BP English exclusions-to-interpretation rhythm correction (moved off the shared base token)
+lang_jp_idml_compact_symbols_title_font_size,7.0,pt,JP symbols capsule title size (master 7.00)

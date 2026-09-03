@@ -33,6 +33,9 @@ CONTRACTS = ROOT / "docs/renderers/contracts/target_assembly"
 # 7.00 pt NotoSansCJKjp-Bold in white.
 MASTER_HEIGHT = 13.9
 MASTER_RADIUS = 6.95
+MASTER_POINT_SIZE = 7.0
+OVERLAY = ROOT / "data/layout_params.idml-compact.csv"
+SIZE_KEY = "idml_compact_symbols_title_font_size"
 
 
 class TheShapeTheMasterPrints(unittest.TestCase):
@@ -57,6 +60,43 @@ class TheShapeTheMasterPrints(unittest.TestCase):
     def test_half_the_master_height_is_the_master_radius(self) -> None:
         """A stadium's radius is h/2, which is why no radius token is needed."""
         self.assertAlmostEqual(MASTER_RADIUS, MASTER_HEIGHT / 2.0, delta=0.02)
+
+
+class TheTypeInsideIt(unittest.TestCase):
+    """The capsule's type is 7.00 pt, a point under the shared subbar size."""
+
+    def test_the_japanese_row_carries_the_master_size(self) -> None:
+        params = load_layout_params(ROOT / "data/layout_params.csv", [OVERLAY])
+        self.assertAlmostEqual(
+            MASTER_POINT_SIZE,
+            param_pt(params, f"lang_jp_{SIZE_KEY}", 0.0),
+            delta=0.01,
+        )
+
+    def test_the_shared_subbar_size_did_not_move(self) -> None:
+        """`type_subbar_font_size` also feeds params.tex and every other book."""
+        params = load_layout_params(ROOT / "data/layout_params.csv", [OVERLAY])
+        self.assertAlmostEqual(
+            8.0, param_pt(params, "type_subbar_font_size", 0.0), delta=0.01
+        )
+
+    def test_no_other_language_declares_the_override(self) -> None:
+        """A row here would activate silently the moment the sink reads it."""
+        params = load_layout_params(ROOT / "data/layout_params.csv", [OVERLAY])
+        declared = sorted(
+            key.split("_")[1]
+            for key in params
+            if key.startswith("lang_") and key.endswith(SIZE_KEY)
+        )
+        self.assertEqual(["jp"], declared)
+
+    def test_the_fallback_is_the_shared_size(self) -> None:
+        """A language with no row keeps whatever the book already printed."""
+        params = load_layout_params(ROOT / "data/layout_params.csv", [OVERLAY])
+        base = param_pt(params, "type_subbar_font_size", 6.6)
+        self.assertAlmostEqual(
+            base, param_pt(params, f"lang_en_{SIZE_KEY}", base), delta=0.01
+        )
 
 
 class Scope(unittest.TestCase):
