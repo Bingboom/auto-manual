@@ -14,10 +14,11 @@ from ..page_objects import (
     frame_with_background,
     h1_bar_h_pt,
     h1_frame_opts,
+    heading_bar_opts,
     heading_text,
     with_rounded_outer,
 )
-from ..params import component_param_pt
+from ..params import component_param_pt, param_pt
 from ..source_copy import source_text
 from ..symbols_page import SafetySymbolsPageStyle
 from .symbols_panel_contract import SymbolsPanelData
@@ -176,7 +177,10 @@ class SymbolIconsPanel:
             source_text(value, owner=f"SymbolIconsPanel header {index + 1}")
             for index, value in enumerate(self.data.icon_headers)
         )
-        title_height = h1_bar_h_pt(writer)
+        # The master opens this page with a section capsule rather than a
+        # chapter bar, so the title takes the height its own parameter
+        # already carries; capsule_xml then rounds it at height / 2.
+        title_height = param_pt(writer.params, "comp_subbar_height", 13.9)
         title_gap = style.symbols_title_gap
         rows = len(self.data.icons) + (1 if self.include_header else 0)
         if rows <= 0:
@@ -203,7 +207,7 @@ class SymbolIconsPanel:
         writer._add_story_parts(
             title_sid,
             title,
-            [heading_text(writer, title, level=1)],
+            [heading_text(writer, title, level=2)],
         )
         writer._table_story(
             table_sid,
@@ -233,7 +237,15 @@ class SymbolIconsPanel:
                     "title",
                     title_sid,
                     title_rect,
-                    h1_frame_opts(title_rect),
+                    {
+                        **heading_bar_opts(2, (0.5, 6.0, 0.5, 6.0)),
+                        "text_rect": (
+                            title_rect[0] + 6.0,
+                            title_rect[1],
+                            title_rect[2] - 12.0,
+                            title_rect[3],
+                        ),
+                    },
                 ),
                 frame_with_background(
                     writer,
