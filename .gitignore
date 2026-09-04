@@ -37,6 +37,12 @@ docs/generated/
 # copies into the snapshot; it must stay tracked or fresh checkouts cannot sync.
 data/phase2/*
 !data/phase2/page_registry.csv
+# sync-data's snapshot write lock (tools/sync_data_records.py
+# phase2_snapshot_write_lock). Only the flock is released; the file itself is
+# left on disk, and it sits BESIDE the export root rather than inside it, so
+# the pattern above does not cover it. Named from the export root, so a
+# configured or staging root produces its own `.<name>.snapshot.lock`.
+.*.snapshot.lock
 
 # Python caches
 **/__pycache__/
@@ -68,6 +74,24 @@ TOOLS.md
 
 # Review preview packaging
 site/review-preview/dist/
+
+# Staged renderer assets under a review derivative. `build.py check` copies
+# binaries into <target>/renderers/latex/assets/ while resolving the bundle;
+# nothing there has ever been tracked, for any target. Authored review content
+# stays tracked: page/, generated/, index.rst, manifest.json, and overrides/
+# (including the overrides/renderers/ path AGENTS.md §3 reserves for review
+# overrides, re-included below because the second pattern would otherwise
+# match it for a language-level target).
+docs/_review/*/*/renderers/
+docs/_review/*/*/*/renderers/
+!docs/_review/*/*/overrides/renderers/
+
+# InDesign handoff packages unpacked at the repo root to inspect them. The
+# exporter writes them under docs/_build/<...>/idml/ (already ignored); this is
+# a backstop for the manual copy, like the docs/publish patterns above. Root
+# only, so a tracked *_handoff path deeper in the tree stays visible.
+/*_handoff.zip
+/*_handoff/
 
 # AI assistant local config (each operator owns their own permissions and profile)
 .claude/settings.local.json
