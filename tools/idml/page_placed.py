@@ -292,10 +292,14 @@ def add_back_cover_page(
     body_x = float(profile.get("company_x", 27.4))
     body_w = writer.page_w - body_x * 2
     sid = "st_back_cover"
-    def sized_psr(style: str, text: str, size: float, leading: float,
+    def sized_psr(style: str, text: str, size: float,
                   *, bold: bool = False, terminal: bool = True) -> str:
+        # PointSize only. A numeric Leading attribute on a style range is
+        # dropped by InDesign (character_metrics.with_character_metrics exists
+        # to strip it), so the back-cover leadings this used to emit never
+        # applied; each line composes at its paragraph style's own leading.
         xml = writer._psr(style, text, terminal=terminal)
-        attrs = f'PointSize="{size:g}" Leading="{leading:g}"'
+        attrs = f'PointSize="{size:g}"'
         if bold:
             attrs += ' FontStyle="Bold"'
         return xml.replace(
@@ -307,15 +311,13 @@ def add_back_cover_page(
 
     company_sid = writer._add_story_parts(
         f"{sid}_company", "Back cover company",
-        [sized_psr("HB Title L2", copy["company"], 12.0, 14.5,
-                   bold=True)])
+        [sized_psr("HB Title L2", copy["company"], 12.0, bold=True)])
     address_sid = writer._add_story_parts(
         f"{sid}_address", "Back cover address",
         [sized_psr(
             "HB Body",
             str(profile.get("display_address") or copy["address"]),
             8.0,
-            10.0,
         )])
     phone_match = re.fullmatch(r"\s*(.*?)\s*(\(US\))\s*", copy["phone"])
     phone_number = phone_match.group(1) if phone_match else copy["phone"]
@@ -325,17 +327,17 @@ def add_back_cover_page(
     )
     phone_sid = writer._add_story_parts(
         f"{sid}_phone", "Back cover phone",
-        [sized_psr("HB Spec Section", phone_number, 15.415, 18.5, bold=True)])
+        [sized_psr("HB Spec Section", phone_number, 15.415, bold=True)])
     phone_suffix_sid = (writer._add_story_parts(
         f"{sid}_phone_suffix", "Back cover phone suffix",
-        [sized_psr("HB Body", phone_suffix, 8.0, 10.0)]) if phone_suffix else None)
+        [sized_psr("HB Body", phone_suffix, 8.0)]) if phone_suffix else None)
     lines = str(profile.get("contact_lines") or "") or copy.get("lines", "") or "\n".join(filter(None, (
         copy.get("email", ""),
         copy.get("web", ""),
     )))
     lines_sid = (writer._add_story_parts(
         f"{sid}_lines", "Back cover contact lines",
-        [sized_psr("HB Body", lines, 8.005, 10.8)]) if lines else None)
+        [sized_psr("HB Body", lines, 8.005)]) if lines else None)
 
     company_y = float(profile.get("company_y", writer.page_h - writer.m_b - 64.0))
     bar_x = float(profile.get("bar_x", body_x))

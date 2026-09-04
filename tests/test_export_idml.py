@@ -1178,7 +1178,7 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(writer.stories)["st_operation_rhythm"]
 
         self.assertIn('SpaceAfter="7.5"', story)
-        self.assertIn('Leading="8.1" SpaceAfter="7"', story)
+        self.assertIn('SpaceAfter="7"', story)
         self.assertIn(
             'SpaceBefore="22" SpaceAfter="6.5" '
             'AppliedParagraphStyle="ParagraphStyle/Heading2" '
@@ -3800,11 +3800,11 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
         self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
         self.assertIn(
-            'PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"',
+            'PointSize="8" FontStyle="Bold" BaselineShift="2.63"',
             stories["st_fcc_inbox_tip_label"],
         )
         self.assertIn(
-            'PointSize="6.5" Leading="7.83" FontStyle="Medium" '
+            'PointSize="6.5" FontStyle="Medium" '
             'HorizontalScale="106.9" BaselineShift="0.9"',
             stories["st_fcc_inbox_tip_body"],
         )

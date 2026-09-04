@@ -321,9 +321,9 @@
       },
       "story_sha256": {
         "st_symbols_shared_en_title": "9eaf0b3016b96306368d8fd53a9fa4517241a3aee2741cce60ced9388185b834",
-        "st_symbols_shared_en_signals": "5f431eb7b6bda4d710d10594903fa08ed7c9b1bfd983319e83520045f35e8b75",
-        "st_symbols_shared_en_icons_left": "e55343a2d68574907f271acfdae6ddbae2b57766ad94b3e15b43d9e4f2cdb863",
-        "st_symbols_shared_en_icons_right": "8a375e0a0c2583dd40794e10909a9f01c8ed7967b663e73cf35121c2779ef4db"
+        "st_symbols_shared_en_signals": "fecd35e9642bbba15e1c0714452f3b04218a98c27c13ce832b21b8295661ada3",
+        "st_symbols_shared_en_icons_left": "2e9bd40a3509a18b23f2186f8718bbdc83822955e14f812905fe8f4359c052b3",
+        "st_symbols_shared_en_icons_right": "31929e62c7158726b680531a838806be03ccb946309f7a2ff8df3ed211804424"
       }
     },
     "fr": {
@@ -402,9 +402,9 @@
       },
       "story_sha256": {
         "st_symbols_shared_fr_title": "4ebff2bdf6fbbc1c54db4275ec4f13a294f991c14f2844383ef7e4688a25a1d2",
-        "st_symbols_shared_fr_signals": "384845053f450ae34740eb0cb9d147050a266f80e4fc107ebf19db6d4485509a",
-        "st_symbols_shared_fr_icons_left": "9fd02f26a04cbbb45ec796b0de3511dc75088e6901d66e938f4198ee489b0ca3",
-        "st_symbols_shared_fr_icons_right": "847f2fd6a323ccd3ba5ae84e0e2344596c4084b193ae6c98c5194b373cbfb714"
+        "st_symbols_shared_fr_signals": "5ce4814ecd8433adf2b9e29bbddddf5b7a9dd144ac4a092ea90ce5597042d914",
+        "st_symbols_shared_fr_icons_left": "89e1e0d73ae64c5acedfa97756a9a53a395af643ba4f3b0c4179abbbc9a51aff",
+        "st_symbols_shared_fr_icons_right": "80a3af601394f72d8658cb5580388648a29b1388993072d0d9a4f158576b10d1"
       }
     },
     "es": {
@@ -483,9 +483,9 @@
       },
       "story_sha256": {
         "st_symbols_shared_es_title": "78b22cd597409322a9a0fa87aabac41520e49d934652e617edf828daab34dd95",
-        "st_symbols_shared_es_signals": "62d909eefcea9784b45bf0ba593c9f3572ee362d7c33abdb580cf11bc06e1077",
-        "st_symbols_shared_es_icons_left": "691cc53f842bf566513068744cfe1475d7d46548f7c08bbd301138ac6a8c635a",
-        "st_symbols_shared_es_icons_right": "bbacb44778adc487062b3e494b41607fa23558658fb733711b564fe4ebeba8b2"
+        "st_symbols_shared_es_signals": "ff9082013aa1d95c006a3ecec20514419d2da10a031682d5fb8339cdfb9b8ab2",
+        "st_symbols_shared_es_icons_left": "7b3b8e40058b1a374404251abb4f7c0912bad1c84057f81b4631cc46d9d2a18d",
+        "st_symbols_shared_es_icons_right": "0079f0bcb637b694d0996108d1d69f37cc63eaa1cf50df23c232985edd699e3f"
       }
     }
   }

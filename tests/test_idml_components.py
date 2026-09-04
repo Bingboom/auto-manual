@@ -701,7 +701,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("<Content>Standard Warranty</Content>", xml)
         self.assertNotIn("<Content>— Standard Warranty</Content>", xml)
         self.assertIn('HorizontalScale="100"', xml)
-        self.assertIn('Leading="7"', xml)
+        self.assertNotIn('Leading="', xml)
         self.assertIn('Hyphenation="false"', xml)
 
     def test_warranty_years_honor_section_estimate_scale(self) -> None:
@@ -813,11 +813,15 @@ class ComponentRegistryTests(unittest.TestCase):
         bp_xml, bp_body = rendered("bp_default")
         _base_xml, base_body = rendered("")
 
-        self.assertIn('Leading="7"', bp_body)
+        # The variant's rhythm is composition, not leading. A numeric Leading
+        # attribute on a style range is dropped by InDesign, so emitting one
+        # only ever created a value the page never used; body copy composes at
+        # HB Warranty Body's own leading under every variant.
+        self.assertNotIn('Leading="', bp_body)
+        self.assertNotIn('Leading="', base_body)
         self.assertIn('HorizontalScale="100"', bp_body)
         self.assertIn('Hyphenation="false"', bp_body)
         self.assertIn('Composer="HL Single"', bp_body)
-        self.assertNotIn('Leading="7"', base_body)
         self.assertNotIn('Hyphenation="false"', base_body)
         body_frame = bp_xml.split(
             'Self="tf_warranty_body_warranty_body_bp_default"', 1,
@@ -1103,7 +1107,7 @@ class ComponentRegistryTests(unittest.TestCase):
             "".join(parts) for sid, _title, parts in stories if "body" in sid
         )
         self.assertIn('HorizontalScale="97"', body)
-        self.assertIn('Leading="7"', body)
+        self.assertNotIn('Leading="', body)
         self.assertIn('Hyphenation="false"', body)
 
     def test_warranty_lead_uses_approved_shell_width_and_host_inset(self) -> None:

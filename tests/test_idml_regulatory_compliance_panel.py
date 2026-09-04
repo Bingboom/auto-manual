@@ -14,7 +14,7 @@ REGULATORY_GOLDEN = {
     "bottom_card": {
         "en": (
             "869b6c01dcacb75f9f91f982c4e727799fc7b3c6135c13e3b2283f78c0f5ebdb",
-            "6a179c4101f4f927c66636feb15cc27b8018cff0bafcdaa9e55bab1dfde16fa9",
+            "45dbcc82a7171820dd0f468f64689495778a04cb83202b240e6c8e9c0878bcb3",
         ),
     },
 }
