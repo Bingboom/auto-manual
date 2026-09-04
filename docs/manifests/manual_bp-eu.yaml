@@ -89,7 +89,7 @@ pages:
   - type: rst_include
     slot_id: warranty_en
     lang: en
-    file: templates/page_bp/en/11_warranty.rst
+    file: templates/page_bp/en/11_warranty_eu.rst
   - type: rst_include
     slot_id: safety_info_fr
     lang: fr
@@ -163,7 +163,7 @@ pages:
   - type: rst_include
     slot_id: warranty_fr
     lang: fr
-    file: templates/page_bp/fr/11_warranty.rst
+    file: templates/page_bp/fr/11_warranty_eu.rst
   - type: rst_include
     slot_id: safety_info_es
     lang: es
@@ -237,7 +237,7 @@ pages:
   - type: rst_include
     slot_id: warranty_es
     lang: es
-    file: templates/page_bp/es/11_warranty.rst
+    file: templates/page_bp/es/11_warranty_eu.rst
   - type: rst_include
     slot_id: safety_info_de
     lang: de

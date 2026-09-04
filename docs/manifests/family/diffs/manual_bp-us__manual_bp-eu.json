@@ -137,7 +137,7 @@
           "type": "csv_page"
         },
         {
-          "file": "templates/page_bp/en/11_warranty.rst",
+          "file": "templates/page_bp/en/11_warranty_eu.rst",
           "lang": "en",
           "slot_id": "warranty_en",
           "type": "rst_include"
@@ -251,7 +251,7 @@
           "type": "csv_page"
         },
         {
-          "file": "templates/page_bp/fr/11_warranty.rst",
+          "file": "templates/page_bp/fr/11_warranty_eu.rst",
           "lang": "fr",
           "slot_id": "warranty_fr",
           "type": "rst_include"
@@ -365,7 +365,7 @@
           "type": "csv_page"
         },
         {
-          "file": "templates/page_bp/es/11_warranty.rst",
+          "file": "templates/page_bp/es/11_warranty_eu.rst",
           "lang": "es",
           "slot_id": "warranty_es",
           "type": "rst_include"
