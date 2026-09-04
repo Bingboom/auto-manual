@@ -353,6 +353,56 @@ class TargetAssemblyPlanTests(unittest.TestCase):
                 source_path=PLAN_PATH,
             )
 
+    def test_a_bundle_missing_a_planned_page_names_it(self) -> None:
+        """The exporter's dead end used to be a raw strict-zip message.
+
+        JE-3000C_KR hits this on every default `build.py idml`: its plan wants
+        a cover and a back cover that no manifest declares, so the prepared
+        bundle is two pages short. The message has to name those pages -- the
+        count alone sent one investigation looking for a code regression.
+        """
+
+        payload = _payload()
+        dropped = payload["pages"][0]["source_ref"]
+        ir = _manual_ir(payload)
+        short_ir = ManualIR(**{
+            **{
+                field: getattr(ir, field)
+                for field in ir.__dataclass_fields__
+                if field != "pages"
+            },
+            "pages": ir.pages[1:],
+        })
+
+        with self.assertRaises(TargetAssemblyPlanError) as caught:
+            normalize_target_assembly_plan(
+                payload,
+                short_ir,
+                source_path=PLAN_PATH,
+            )
+
+        message = str(caught.exception)
+        self.assertIn(f"plan declares {len(payload['pages'])} page(s)", message)
+        self.assertIn(f"prepared bundle has {len(payload['pages']) - 1}", message)
+        self.assertIn("planned but not in the bundle: " + dropped, message)
+        self.assertIn("check that the page manifest declares", message)
+        self.assertNotIn("zip()", message)
+
+    def test_a_stale_plan_names_the_pages_it_does_not_know(self) -> None:
+        payload = _payload()
+        extra = payload["pages"].pop()["source_ref"]
+
+        with self.assertRaises(TargetAssemblyPlanError) as caught:
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(_payload()),
+                source_path=PLAN_PATH,
+            )
+
+        message = str(caught.exception)
+        self.assertIn("in the bundle but not planned: " + extra, message)
+        self.assertNotIn("zip()", message)
+
     def test_specifications_accepts_bounded_target_split(self) -> None:
         payload = _payload()
         page = next(

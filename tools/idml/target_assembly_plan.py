@@ -101,6 +101,39 @@ def _positive_int(value: object, *, label: str) -> int:
     return result
 
 
+def _page_set_mismatch(raw_pages: list[Any], ir: ManualIR) -> str:
+    """Say which pages the plan and the prepared bundle disagree about.
+
+    Both directions matter and mean different things. Pages the plan wants and
+    the bundle lacks are the common case: the frozen plan was derived from a
+    book whose source cannot currently reproduce it -- typically a page that
+    lives only in the review derivative because no manifest entry declares it.
+    Pages the bundle has and the plan lacks mean the plan is stale.
+    """
+
+    planned = [
+        str(page.get("source_ref"))
+        for page in raw_pages
+        if isinstance(page, dict) and page.get("source_ref")
+    ]
+    built = [page.source_ref for page in ir.pages]
+    missing = [ref for ref in planned if ref not in set(built)]
+    extra = [ref for ref in built if ref not in set(planned)]
+    parts = [
+        f"plan declares {len(raw_pages)} page(s), prepared bundle has {len(ir.pages)}"
+    ]
+    if missing:
+        parts.append("planned but not in the bundle: " + ", ".join(missing))
+    if extra:
+        parts.append("in the bundle but not planned: " + ", ".join(extra))
+    if missing and not extra:
+        parts.append(
+            "check that the page manifest declares every page the plan expects, "
+            "or build this target from the source the plan was frozen against"
+        )
+    return "; ".join(parts)
+
+
 def _validate_flow_splits(
     pages: list[dict[str, Any]],
     ir: ManualIR,
@@ -1195,7 +1228,13 @@ def normalize_target_assembly_plan(
     if not isinstance(raw_pages, list):
         raise TargetAssemblyPlanError("pages must be a list")
     if len(raw_pages) != len(ir.pages):
-        issues.append(f"pages must contain exactly {len(ir.pages)} entries")
+        # A count mismatch makes every later per-index check meaningless (each
+        # page reads as "out of order") and made `_validate_flow_splits` die on
+        # its strict zip -- so the real diagnosis, collected right here, used to
+        # be replaced by `zip() argument 2 is shorter than argument 1`. Raise it
+        # instead, naming the pages, because the cause is almost always a page
+        # the manifest does not declare rather than a wrong plan.
+        raise TargetAssemblyPlanError("; ".join([*issues, _page_set_mismatch(raw_pages, ir)]))
 
     normalized_pages: list[dict[str, Any]] = []
     for index, source_page in enumerate(ir.pages):
