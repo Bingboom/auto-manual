@@ -1,0 +1,320 @@
+{
+ "page_bp": {
+  "00_preface.rst": [
+   [
+    "en"
+   ]
+  ],
+  "00_preface_six_language.rst": [
+   [
+    "intl"
+   ]
+  ],
+  "00_toc.rst": [
+   [
+    "en"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "00_toc_six_language.rst": [
+   [
+    "intl"
+   ]
+  ],
+  "01_safety.rst": [
+   [
+    "de",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ],
+   [
+    "en"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "02_whats_in_the_box.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "03_product_overview_placeholder.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "04_connections.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "uk"
+   ],
+   [
+    "it"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "05_operation_guide_placeholder.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "08_charging_methods.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "09_storage.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "uk"
+   ]
+  ],
+  "11_warranty.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "it",
+    "uk"
+   ],
+   [
+    "fr"
+   ],
+   [
+    "ja"
+   ]
+  ],
+  "99_back_cover.rst": [
+   [
+    "en"
+   ]
+  ],
+  "99_regulatory_compliance_eu.rst": [
+   [
+    "intl"
+   ]
+  ]
+ },
+ "page_shared": {
+  "00_preface.rst": [
+   [
+    "ko",
+    "pt-BR"
+   ],
+   [
+    "en"
+   ]
+  ],
+  "00_preface_single_language.rst": [
+   [
+    "en"
+   ]
+  ],
+  "00_toc.rst": [
+   [
+    "en"
+   ]
+  ],
+  "01_user_maintenance_instructions.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ko",
+    "pt-BR",
+    "uk"
+   ]
+  ],
+  "02_whats_in_the_box.rst": [
+   [
+    "de",
+    "it",
+    "pt-BR",
+    "uk"
+   ],
+   [
+    "en",
+    "es",
+    "fr"
+   ],
+   [
+    "ko"
+   ]
+  ],
+  "06_ups_mode.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "it",
+    "ko",
+    "pt-BR",
+    "uk"
+   ],
+   [
+    "fr"
+   ]
+  ],
+  "07_extra_battery.rst": [
+   [
+    "en",
+    "es",
+    "fr"
+   ],
+   [
+    "ko"
+   ]
+  ],
+  "08_charging_methods.rst": [
+   [
+    "en",
+    "fr",
+    "it",
+    "ko",
+    "uk"
+   ],
+   [
+    "de"
+   ],
+   [
+    "es"
+   ],
+   [
+    "pt-BR"
+   ]
+  ],
+  "09_storage_and_maintenance.rst": [
+   [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "it",
+    "ko",
+    "pt-BR",
+    "uk"
+   ]
+  ],
+  "10_troubleshooting.rst": [
+   [
+    "de",
+    "en",
+    "it",
+    "pt-BR",
+    "uk"
+   ],
+   [
+    "es",
+    "fr",
+    "ko"
+   ]
+  ],
+  "11_warranty.rst": [
+   [
+    "de",
+    "it",
+    "ko",
+    "pt-BR",
+    "uk"
+   ],
+   [
+    "es",
+    "fr"
+   ],
+   [
+    "en"
+   ]
+  ],
+  "12_app_setup_placeholder.rst": [
+   [
+    "de",
+    "en",
+    "it",
+    "ko",
+    "pt-BR",
+    "uk"
+   ],
+   [
+    "es"
+   ],
+   [
+    "fr"
+   ]
+  ],
+  "99_back_cover.rst": [
+   [
+    "en"
+   ]
+  ],
+  "charging.rst": [
+   [
+    "de",
+    "it",
+    "pt-BR"
+   ],
+   [
+    "en"
+   ],
+   [
+    "es"
+   ],
+   [
+    "fr"
+   ],
+   [
+    "ko"
+   ],
+   [
+    "uk"
+   ]
+  ]
+ }
+}
