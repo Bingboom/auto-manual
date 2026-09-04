@@ -127,7 +127,18 @@ class RenderContractTests(unittest.TestCase):
             layout_tokens_sha256(layered),
         )
 
-    def test_layout_token_overlay_cannot_redefine_baseline_key(self) -> None:
+    def test_layout_token_overlay_overrides_the_baseline_key(self) -> None:
+        """A bound overlay is a layer above the common, so its value wins.
+
+        This used to assert the opposite -- any collision raised. Banning
+        collisions did stop a baseline value being replaced silently, but it
+        also left a category or target no legal way to differ, so 46 keys came
+        to carry a scope infix or a language prefix instead of overriding under
+        their own name. The plane now follows the same inheritance-and-override
+        rule as `tools/config_loader.py`, and non-silence comes from the
+        reported override set plus its ratchet in
+        `tests/test_layout_token_override.py`.
+        """
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
             base = root / "base.csv"
@@ -141,8 +152,8 @@ class RenderContractTests(unittest.TestCase):
                 encoding="utf-8",
             )
 
-            with self.assertRaisesRegex(ValueError, "redefines existing keys"):
-                load_layout_token_layers(base, (overlay,))
+            tokens = load_layout_token_layers(base, (overlay,))
+            self.assertEqual("101", tokens["page_paperwidth"].value)
 
     def test_committed_contract_uses_schema_v2(self) -> None:
         self.assertEqual(2, self.contract["schema_version"])
