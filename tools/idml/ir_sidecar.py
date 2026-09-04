@@ -17,6 +17,7 @@ def emit_manual_ir_sidecar(
     region: str,
     lang: str,
     data_root: Path,
+    category: str | None = None,
     layout_params_csv: Path | None = None,
     layout_param_overlays: tuple[Path, ...] = (),
 ) -> Path | None:
@@ -29,6 +30,7 @@ def emit_manual_ir_sidecar(
         region=region,
         lang=lang,
         source="prepared-bundle",
+        category=category,
         data_root=data_root,
         layout_params_csv=layout_params_csv,
         layout_param_overlays=layout_param_overlays,

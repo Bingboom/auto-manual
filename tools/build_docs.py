@@ -397,11 +397,18 @@ def _resolve_sphinx_build_cmd(builder: str) -> list[str]:
 _normalize_sphinx_tag_value = _normalize_sphinx_tag_value_impl
 
 
-def _sphinx_tag_args(*, model: str | None = None, region: str | None = None, lang: str | None = None) -> list[str]:
+def _sphinx_tag_args(
+    *,
+    model: str | None = None,
+    region: str | None = None,
+    lang: str | None = None,
+    category: str | None = None,
+) -> list[str]:
     return _sphinx_tag_args_impl(
         model=model,
         region=region,
         lang=lang,
+        category=category,
         normalize_sphinx_tag_value=_normalize_sphinx_tag_value,
     )
 
@@ -589,6 +596,7 @@ def sphinx_build(
     model: str | None = None,
     region: str | None = None,
     lang: str | None = None,
+    category: str | None = None,
     minimal_theme: bool = False,
     substitutions: dict[str, str] | None = None,
 ) -> None:
@@ -600,6 +608,7 @@ def sphinx_build(
         model=model,
         region=region,
         lang=lang,
+        category=category,
         minimal_theme=minimal_theme,
         substitutions=substitutions,
         should_use_minimal_html_theme=_should_use_minimal_html_theme,

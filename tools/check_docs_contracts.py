@@ -106,11 +106,11 @@ def collect_page_contract_issues(
     # contract fork. Absent declaration means MAIN, which keeps every existing
     # line byte-identical.
     from tools.check_docs_capability import load_capabilities
-    from tools.page_contracts import ContractContext
+    from tools.page_contracts import ContractContext, resolve_category
 
     build_cfg_raw = cfg.get("build", {})
     build_cfg_map = build_cfg_raw if isinstance(build_cfg_raw, dict) else {}
-    skeleton_family = str(build_cfg_map.get("skeleton_family") or "MAIN").strip() or "MAIN"
+    skeleton_family = resolve_category(build_cfg_map)
     target_capabilities = frozenset(
         name
         for name, enabled in (

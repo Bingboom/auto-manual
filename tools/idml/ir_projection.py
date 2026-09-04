@@ -441,7 +441,8 @@ def same_source_issues(ir: ManualIR) -> list[str]:
 
 def build_same_source_ir(
     *, root: Path, bundle_root: Path, model: str, region: str, lang: str,
-    data_root: Path, layout_params_csv: Path | None = None,
+    data_root: Path, category: str | None = None,
+    layout_params_csv: Path | None = None,
     layout_param_overlays: tuple[Path, ...] = (),
 ) -> ManualIR:
     """Build and enforce the target-independent same-source contract.
@@ -451,7 +452,7 @@ def build_same_source_ir(
     """
     ir = build_manual_ir(
         root=root, bundle_root=bundle_root, model=model, region=region,
-        lang=lang, source="prepared-bundle", data_root=data_root,
+        lang=lang, source="prepared-bundle", category=category, data_root=data_root,
         layout_params_csv=layout_params_csv,
         layout_param_overlays=layout_param_overlays)
     issues = validate_manual_ir(ir)
