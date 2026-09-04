@@ -39,7 +39,6 @@ idml_table_marker_point_size,0.1,pt,IDML editable table carrier marker size and 
 idml_compact_symbols_table_frame_allowance,11.5,pt,Reserve the InDesign table-carrier marker inside the rounded shell so the final K05 row ends at the border instead of overrunning the footer
 idml_compact_symbols_signal_frame_allowance,11.5,pt,Reserve the InDesign table-carrier marker inside the compact signal-table shell
 idml_compact_symbols_signal_cell_vertical_inset,1.5,pt,Keep localized signal badges visible inside the tightened ordinary rows
-idml_compact_symbols_signal_header_height,17.3,pt,Compact shared-page signal-table header height
 idml_compact_symbols_signal_row_height,21.317,pt,English ordinary signal rows share the carrier-marker allowance while preserving the measured outer height
 idml_compact_symbols_signal_last_row_height,25.15,pt,Keep the English TIP row at its full content height
 lang_fr_idml_compact_symbols_signal_header_height,13.5,pt,French compact shared-page signal-table header height
@@ -201,7 +200,7 @@ lang_uk_idml_warranty_note_horizontal_scale,80,int,Ukrainian BP warranty legal-n
 lang_uk_idml_warranty_lead_horizontal_scale,84,int,Ukrainian BP warranty lead width correction
 lang_uk_idml_warranty_lead_height,36,pt,Ukrainian BP warranty lead height
 lang_uk_comp_warranty_page_extra_height,48,pt,Ukrainian BP warranty host-frame import allowance
-lang_jp_idml_warranty_lead_height,40,pt,Japanese BP warranty lead height for the authored three-line introduction
+lang_jp_idml_warranty_lead_height,40,pt,"Japanese BP warranty lead height -- CANDIDATE-STAGE VALUE. The family (en 30.04 / fr 22.01 / es 26.39) is measured from the approved PDF; JP has no approved reference yet, so this one is not. Its three-line introduction is real -- the copy wraps to 3 lines and the component's own natural height for that is 34.60 pt -- but the 40 carries 5.40 pt beyond it with no content reason. Re-measure when JP gets an approved reference."
 lang_jp_idml_warranty_variant_bp_default_body_top_adjust,0,pt,Japanese stacked-card body baseline without the Latin optical inset
 idml_warranty_variant_multiline_lead_panel_height_adjust_1,3.0,pt,Multiline-lead first warranty-panel height adjustment
 idml_warranty_variant_multiline_lead_section_2_before_adjust,-1.5,pt,Multiline-lead period-section rhythm adjustment
