@@ -12,6 +12,15 @@ def build_parser(description: str | None) -> argparse.ArgumentParser:
     parser.add_argument("--model", help="product model registered in the build target")
     parser.add_argument("--region", default="US")
     parser.add_argument("--lang", default="en")
+    parser.add_argument(
+        "--category",
+        default=None,
+        help=(
+            "product line, from build.skeleton_family; carriers branch on it as "
+            "'.. only:: category_<value>'. Left unset a carrier's category branch "
+            "is simply absent, so build.py always passes the configured value."
+        ),
+    )
     parser.add_argument("--data-root", default="data/phase2")
     parser.add_argument("--out", default=None)
     parser.add_argument(

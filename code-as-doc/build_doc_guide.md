@@ -552,6 +552,13 @@ Parallel-language template note:
 - current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, `page_us-fr`, and `page_zh`
 - before you touch page templates for a new Markdown intake, fill out [`dev/manual_template_intake_checklist.md`](./dev/manual_template_intake_checklist.md) to decide manifest mapping, placeholder policy, and validation scope first
 
+Carrier tag axes:
+
+- a page can gate a body on four axes: `model_<model>`, `region_<region>`, `lang_<lang>`, and `category_<product line>`
+- the category is `build.skeleton_family` in the config (`BP` for the battery-pack line, `MAIN` when undeclared), resolved by `resolve_category` in [`tools/page_contracts.py`](../tools/page_contracts.py) — the same value the `category:` contract tier selects on, so a page's requirement and its `.. only::` body always agree
+- both renderer planes emit it: Sphinx as `-t category_<value>` and the manual IR as a `category_<value>` base tag. Never add an axis to one plane only — `.. only::` omits an unmatched body silently, so a one-plane tag prints in the PDF and vanishes from IDML with no error
+- prefer a category branch over cloning a page. Two carriers whose structure is identical and whose prose differs by product line belong in one file with two `.. only:: category_*` bodies; the parallel-language note above then applies once instead of twice
+
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon

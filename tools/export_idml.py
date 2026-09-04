@@ -143,6 +143,7 @@ def main() -> int:
         _ir_sidecar.emit_manual_ir_sidecar(
             root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
             model=args.model, region=args.region, lang=args.lang, data_root=data_root,
+            category=args.category,
             layout_params_csv=layout_params_csv,
             layout_param_overlays=layout_param_overlays)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
@@ -151,7 +152,7 @@ def main() -> int:
     try:
         manual_ir = _ir_projection.build_same_source_ir(
             root=ROOT, bundle_root=bundle_root, model=args.model, region=args.region,
-            lang=args.lang, data_root=data_root,
+            lang=args.lang, data_root=data_root, category=args.category,
             layout_params_csv=layout_params_csv,
             layout_param_overlays=layout_param_overlays)
         assembly_plan = Path(args.assembly_plan) if args.assembly_plan else None

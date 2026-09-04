@@ -9,6 +9,7 @@ from typing import Any
 
 import yaml
 
+from tools.build_docs_theme import normalize_sphinx_tag_value
 from tools.idml_rst_extract import bundle_page_order, extract_page
 from tools.idml.page_identity import page_language
 from tools.render_contract import (
@@ -187,6 +188,7 @@ def build_manual_ir(
     region: str,
     lang: str,
     source: str,
+    category: str | None = None,
     data_root: Path | None = None,
     layout_params_csv: Path | None = None,
     layout_param_overlays: tuple[Path, ...] = (),
@@ -211,6 +213,12 @@ def build_manual_ir(
         f"region_{region.lower()}",
         "model_" + model.lower().replace("-", "_"),
     }
+    # The product line, spelled exactly as the Sphinx plane spells it -- the
+    # same normalizer, so ``.. only:: category_bp`` cannot mean one thing to
+    # the PDF line and another to IDML.
+    normalized_category = normalize_sphinx_tag_value(category)
+    if normalized_category:
+        base_tags.add(f"category_{normalized_category}")
     pages: list[ManualPage] = []
     all_assets: list[str] = []
     all_block_hashes: list[str] = []

@@ -109,6 +109,7 @@ def sphinx_build(
     model: str | None = None,
     region: str | None = None,
     lang: str | None = None,
+    category: str | None = None,
     minimal_theme: bool = False,
     substitutions: dict[str, str] | None = None,
     should_use_minimal_html_theme: Callable[[Path, bool], bool],
@@ -123,7 +124,9 @@ def sphinx_build(
     printer(f"[build] Sphinx -> {builder.upper()}")
     out_dir.mkdir(parents=True, exist_ok=True)
     actual_minimal_theme = should_use_minimal_html_theme(conf_dir, minimal_theme) if builder == "html" else False
-    cmd = resolve_sphinx_build_cmd(builder) + sphinx_tag_args(model=model, region=region, lang=lang)
+    cmd = resolve_sphinx_build_cmd(builder) + sphinx_tag_args(
+        model=model, region=region, lang=lang, category=category
+    )
     cmd += [str(src_dir), str(out_dir), "-c", str(conf_dir)]
     if builder == "html" and actual_minimal_theme:
         cmd += [
