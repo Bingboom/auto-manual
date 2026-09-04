@@ -613,7 +613,11 @@ class FixedPanelGoldenTests(unittest.TestCase):
         self.assertGreater(len(content_ranges), 1)
         for element in content_ranges:
             self.assertEqual("6.5", element.attrib.get("PointSize"))
-            self.assertEqual("7.83", element.attrib.get("Leading"))
+            # No Leading attribute: InDesign drops the numeric attribute form
+            # on a style range, so the fallback runs take HB Callout Body's own
+            # leading -- which is the 7.83 this used to spell out here, so the
+            # composed page is unchanged.
+            self.assertIsNone(element.attrib.get("Leading"))
             self.assertEqual("106.9", element.attrib.get("HorizontalScale"))
             self.assertEqual("0.9", element.attrib.get("BaselineShift"))
         fallback_ranges = [

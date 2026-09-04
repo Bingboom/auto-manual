@@ -191,14 +191,17 @@ def _tip_label(
     label: str,
     *,
     point_size: float,
-    leading: float,
     baseline_shift: float,
 ) -> str:
+    # No Leading attribute: InDesign drops the numeric attribute form on a
+    # style range, so the label composes at HB Callout Label's own leading.
+    # The value this used to emit was identical to that style's, so nothing
+    # about the rendered page changes.
     return centered_psr(
         "HB Callout Label",
         label.strip(),
         character_attrs=(
-            f'PointSize="{point_size:g}" Leading="{leading:g}" '
+            f'PointSize="{point_size:g}" '
             f'FontStyle="Bold" BaselineShift="{baseline_shift:g}"'
         ),
     )
@@ -510,7 +513,6 @@ class InboxPanel:
         add_story(self.writer, label_sid, "Inbox tip label", [_tip_label(
             label,
             point_size=layout.label_size,
-            leading=layout.label_leading,
             baseline_shift=layout.label_baseline_shift,
         )])
         body_xml = apply_character_attrs(
@@ -520,7 +522,7 @@ class InboxPanel:
                 terminal=True,
             ),
             f'PointSize="{layout.body_size:g}" '
-            f'Leading="{layout.body_leading:g}" FontStyle="Medium" '
+            f'FontStyle="Medium" '
             f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
             f'BaselineShift="{layout.body_baseline_shift:g}"',
         )

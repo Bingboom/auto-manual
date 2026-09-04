@@ -570,7 +570,7 @@ def _symbols_icon_table(
                 right_xml = right_xml.replace(
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                    'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
+                    'PointSize="5.6" HorizontalScale="96"',
                     1,
                 )
             if disable_hyphenation:
@@ -613,7 +613,7 @@ def _table_story(writer, sid: str, title: str, table: str) -> str:
         marker_size = param_pt(
             writer.params, "idml_table_marker_point_size", 0.1,
         )
-        marker_attrs = f' PointSize="{marker_size:g}" Leading="{marker_size:g}"'
+        marker_attrs = f' PointSize="{marker_size:g}"'
     return writer._add_story_parts(
         sid, title,
          [f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'

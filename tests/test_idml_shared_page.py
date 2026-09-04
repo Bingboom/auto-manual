@@ -1099,8 +1099,8 @@ class SharedPageTests(unittest.TestCase):
                 self.assertIn("sig2icon", signal_xml)
                 self.assertNotIn("sig3icon", signal_xml)
                 self.assertNotIn("sig4icon", signal_xml)
-                self.assertIn('PointSize="0.1" Leading="0.1"', left_xml)
-                self.assertIn('PointSize="0.1" Leading="0.1"', right_xml)
+                self.assertIn('PointSize="0.1"', left_xml)
+                self.assertIn('PointSize="0.1"', right_xml)
                 def row_heights(xml: str) -> list[float]:
                     table = ET.fromstring(xml).find(".//Table")
                     self.assertIsNotNone(table)

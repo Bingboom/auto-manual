@@ -145,11 +145,19 @@ def _variant_body_format(
     ctx: RenderContext,
     *,
     horizontal_scale: float,
-    leading: float | None,
 ) -> str:
+    """Apply the variant's composition attributes to a body paragraph.
+
+    Leading is deliberately not among them. A numeric ``Leading`` attribute on
+    a style range is dropped by InDesign -- see
+    ``character_metrics.with_character_metrics``, which exists to strip exactly
+    this form and re-emit the honored ``<Leading type="unit">`` element. This
+    function used to append one, so the variant's declared body leading has
+    never reached a page; the copy has always composed at the leading its
+    paragraph style carries. ``Hyphenation`` and ``Composer`` below are genuine
+    paragraph attributes and are honored.
+    """
     attrs: list[str] = []
-    if leading is not None:
-        attrs.append(f'Leading="{leading:g}"')
     if _variant_value(spec, ctx, "disable_hyphenation", 0.0) >= 0.5:
         attrs.extend(('Hyphenation="false"', 'Composer="HL Single"'))
     if attrs:
@@ -273,9 +281,13 @@ def _year_heading(
             f'PointSize="{badge_size:g}" FontStyle="Bold"',
             1,
         )
+    # No Leading here: a numeric Leading attribute on a style range is dropped
+    # by InDesign (see character_metrics.with_character_metrics). The badge
+    # numeral takes HB Warranty Year Heading's own leading, and this paragraph
+    # is always the first line of its cell, so nothing shifts.
     xml = xml.replace(
         "<ParagraphStyleRange ",
-        f'<ParagraphStyleRange Leading="{badge_size + 1:g}" SpaceAfter="1.2" ',
+        '<ParagraphStyleRange SpaceAfter="1.2" ',
         1,
     )
     return xml
@@ -386,10 +398,6 @@ def _years_table(
             spec,
             ctx,
             horizontal_scale=horizontal_scale,
-            leading=(
-                rendered_body_leading
-                if rendered_body_leading != body_leading else None
-            ),
         )
         cells.append(cell(
             f"{tid}c{index}", f"{index}:0", content,
@@ -557,9 +565,12 @@ def _section_body(
         f"body_estimate_horizontal_scale_{section_index}",
         estimate_horizontal_scale,
     )
-    rendered_body_leading = _variant_value(
-        layout_spec, ctx, "body_font_leading", body_leading,
-    )
+    # `idml_warranty_variant_*_body_font_leading` is not read here any more.
+    # It only ever reached the page as a `Leading` attribute, which InDesign
+    # drops, so section body copy composes at HB Warranty Body's own leading
+    # and the budget below matches what prints. `_years_table` still reads the
+    # token for its own height estimate; that estimate is now the only thing
+    # the token affects, and it is a separate correction.
     list_indent = param_pt(
         ctx.params, "idml_warranty_list_left_indent", 5.67,
     )
@@ -662,10 +673,6 @@ def _section_body(
             layout_spec,
             ctx,
             horizontal_scale=horizontal_scale,
-            leading=(
-                rendered_body_leading
-                if not is_list and rendered_body_leading != body_leading else None
-            ),
         )
         if not terminal:
             paragraph = paragraph.replace(
