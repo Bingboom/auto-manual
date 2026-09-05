@@ -231,6 +231,15 @@ the same frozen runtime bundle goes from 267 to 270 blocks and passes strict
 IR validation with `skipped_raw=0`. The source template and LaTeX geometry are
 unchanged. This closes that extraction debt, not native page-layout acceptance
 or production-delivery signoff.
+Native comparison on 2026-09-05 (InDesign 21.0.1.6, the previous frozen local
+snapshot) finds the same existing layout failures before and after this fix:
+28 pages, two overset stories and 17 overset table cells, repeated identically
+after save/reopen. Affected pages are 14–17 (operation guide) and 24
+(temperature specification table); missing fonts, glyphs and links are zero.
+The tool's aggregate 38 counts both inspection passes, not 38 distinct defects.
+Native PDF export is blocked by overset. The same-source LaTeX PDF has 22 pages;
+reconciling the fallback page plan and native content budgets is a separate
+layout task, without changing constants solely to force equal page counts.
 This boundary does not change native acceptance
 D1–D4 (including the power on/off factual debt) or `production_eligible`.
 
