@@ -1691,6 +1691,13 @@ Each definition row needs two nonempty cells and a distinct recognized label;
 malformed tables beginning with a known signal word still fail. See the
 [same-source IR contract](dev/latex_indesign_same_source_plan.md) for the boundary.
 
+The JP symbols introduction's plain boxed heading and two following paragraphs
+now enter IR as editable heading/body blocks. The existing dedicated
+`tools/manual_ir_cli.py --strict` check on the prepared runtime bundle reports
+zero skipped blocks. The parser accepts only the complete supported shape;
+unknown TeX content still fails strict extraction. PDF source geometry is
+preserved; native InDesign layout acceptance remains a separate check.
+
 `Failed to resolve Product Name from Spec_Master.csv`
 
 - Check [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) for `Row_key=product_name`
