@@ -14,6 +14,15 @@ ROOT = Path(__file__).resolve().parents[1]
 OFFICIAL_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je1000f_us_master.json"
 
 
+class TestSwapPDFRegions(unittest.TestCase):
+    def test_roundtrip_and_invalid_geometry(self):
+        payload = {"op": "swap_pdf_regions", "bbox_pt": [10, 10, 30, 20], "other_bbox_pt": [10, 30, 30, 40]}
+        self.assertEqual(_transform(payload, "test").as_manifest(), payload)
+        for box in ([10, 15, 30, 25], [10, 30, 35, 40]):
+            with self.assertRaises(RecipeValidationError):
+                _transform({**payload, "other_bbox_pt": box}, "test")
+
+
 def sample_recipe_payload(*, source_sha256: str = "a" * 64) -> dict[str, object]:
     page_catalog: list[dict[str, object]] = []
     for page in range(1, 60):

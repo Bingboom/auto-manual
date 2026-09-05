@@ -1,0 +1,179 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JBP-2000B",
+  "region": "JP",
+  "language": "ja",
+  "source_pdf_sha256": "f7830bf9fb96d9a3e36737bad5196bbfac2d262eaef642f3406fe77eecd02b0b",
+  "source_pdf_name": "Jackery Battery Pack 2000取扱説明書V2.0-2026-05-28.pdf",
+  "recipe": "data/asset_recipes/manual_jbp2000b_jp_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "jbp2000b_front_controls.png",
+        "jbp2000b_left_side_ports.png"
+      ],
+      "path": "assets/jbp2000b_jp/overview.png",
+      "sha256": "c25149bdda95bbb55d57aadd9b870aa9db14be6a0686e070b782a690d347d1f4",
+      "source_page": 5,
+      "bbox_pt": [
+        27,
+        341,
+        341,
+        481
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "主電源ボタン ディスプレイ"
+        },
+        {
+          "selector": "table",
+          "text": "ハンドル DC 拡張ポート A 接続拡張ケーブルのプラグAに接続 DC 拡張ポート B 接続拡張ケーブルのプラグBに接続"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_lcd_screen.png"
+      ],
+      "path": "assets/jbp2000b_jp/lcd.png",
+      "sha256": "17bf5d749058bb17dc5e6410e0fd2c2c6715503f309076e2d2d7f3fb0a067dad",
+      "source_page": 6,
+      "bbox_pt": [
+        40,
+        57,
+        325,
+        113
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_power_control.png"
+      ],
+      "path": "assets/jbp2000b_jp/power.png",
+      "sha256": "9bb60cbd941de68292b31fd7296f31068358dc4028c198f7365d5f6fe051b421",
+      "source_page": 6,
+      "bbox_pt": [
+        29,
+        233,
+        340,
+        313
+      ],
+      "source_correction": "Structured source confirmed: on = press once; off = hold three seconds. Whole PDF panel retained with native on/off title regions exchanged by the recipe.",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "オン 1回押す オフ 3秒間長押し"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_lcd_control.png"
+      ],
+      "path": "assets/jbp2000b_jp/lcd_control.png",
+      "sha256": "ecfb4ce73bd93653fabad734bd0e8937d31636c738fa18ef0e6084876d73c39d",
+      "source_page": 6,
+      "bbox_pt": [
+        29,
+        383,
+        340,
+        469
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_jp_stack_clearance.png"
+      ],
+      "path": "assets/jbp2000b_jp/clearance.png",
+      "sha256": "c9beb528d5808ba56215d4d530dfffd94a46a91127e5c3577fee5e5405e6d658",
+      "source_page": 7,
+      "bbox_pt": [
+        27,
+        147,
+        342,
+        496
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_jp_stacking_guidance.png"
+      ],
+      "path": "assets/jbp2000b_jp/stacking.png",
+      "sha256": "2a2e9dd39b454622edbb36125ca2720e518ef7e25cbf802f7e29b1999f1ab7d2",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        11,
+        342,
+        154
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_jp_lock_steps.png",
+        "jbp2000b_jp_unlock_steps.png",
+        "jbp2000b_jp_locked_stack.png"
+      ],
+      "path": "assets/jbp2000b_jp/locking.png",
+      "sha256": "29c28bfdab38eb3fe4259350ac94e419ee0a8a89c93d3a7942d4bf7c0bf6851e",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        260,
+        342,
+        496
+      ],
+      "covered_annotations": [
+        {
+          "selector": "p",
+          "text": "ロック"
+        },
+        {
+          "selector": "p",
+          "text": "ロック解除"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_jp_ac_charging.png"
+      ],
+      "path": "assets/jbp2000b_jp/ac_charging.png",
+      "sha256": "cb0301bcc30ab54b5a6aa5a81f7333af098251db729d042883c5286df8759461",
+      "source_page": 9,
+      "bbox_pt": [
+        27,
+        114,
+        342,
+        267
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "拡張ケーブル ACケーブル"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_jp_solar_charging.png"
+      ],
+      "path": "assets/jbp2000b_jp/solar_charging.png",
+      "sha256": "f3df6d25fe39e449c142ed150166686b0284b366db349e8fe33489d174df5a7f",
+      "source_page": 9,
+      "bbox_pt": [
+        27,
+        317,
+        342,
+        497
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "拡張ケーブル SolarSaga 200"
+        }
+      ]
+    }
+  ]
+}

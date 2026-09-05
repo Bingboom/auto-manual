@@ -112,6 +112,7 @@ class PageCatalogEntry:
 class TransformSpec:
     op: str
     bbox_pt: Bbox | None = None
+    other_bbox_pt: Bbox | None = None
     images: str | None = None
     graphics: str | None = None
     fill: None = None
@@ -130,6 +131,8 @@ class TransformSpec:
         payload: dict[str, Any] = {"op": self.op}
         if self.bbox_pt is not None:
             payload["bbox_pt"] = list(self.bbox_pt)
+        if self.other_bbox_pt is not None:
+            payload["other_bbox_pt"] = list(self.other_bbox_pt)
         if self.images is not None:
             payload["images"] = self.images
         if self.graphics is not None:

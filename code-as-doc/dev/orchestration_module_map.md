@@ -522,3 +522,17 @@ These areas still deserve follow-up only when a concrete hotspot reappears:
 - [`tools/gen_index_bundle.py`](../../tools/gen_index_bundle.py)
 
 Keep future extraction notes here once those boundaries stabilize again.
+
+### Whole-document Web boundary
+
+`word_bundle_html` selects ordered pages once; `web_document_source` owns the
+RST/HTML adapter, target illustration bindings and asset packaging, then calls
+`manual_ir.builder.build_manual_ir_from_source`. `manual_ir.document` owns the
+finite content-tree validation. `web_document_ir` consumes the complete IR and
+invokes existing scoped component projections as rendering details. Source-page
+reads no longer occur inside the actual Web rendering loop. Word's compatibility
+converter remains separate. See [execution evidence](ir_document_closeout.md).
+
+`document_assets` owns the shared local image probing/copying implementation;
+Word keeps compatibility wrappers, and the Web IR renderer imports the lightweight
+helper directly so cold replay never imports source-table readers.

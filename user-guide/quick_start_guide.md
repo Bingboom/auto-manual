@@ -746,3 +746,17 @@ missing glyphs、bad links 均为 0，PDF/X-4 通过，并逐页对照冻结参�
 - 这条合并 US 流程不再要求法语、西语分别先创一份独立初稿 review bundle。
 - `Spec_Master` 里由 `Source_lang` 定义 source language；`*_source` 内容必须有，其他语言列在 CSV 驱动内容里可以为空，系统会自动回退到 source language 文本。
 - `Spec_Master` 现在是本地读取快照；人工维护规格参数时先改 `规格参数明细` / `页面占位参数`，再用 `sync-data --table spec_master` 或 `spec-master-rebuild` 生成。
+
+
+### 加电包日语 Web 本地验收
+
+在工程仓库使用现有快照试构建（不写线上 Base、不发布）：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.bp-jp.yaml --model JBP-2000B --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/bp-web --no-clean --skip-root-index
+python tools/readthedocs_source.py --build-root .tmp/bp-web/docs/_build --output-dir .tmp/bp-web/docs/_build/rtd
+python -m sphinx -b html .tmp/bp-web/docs/_build/rtd .tmp/bp-web/html
+```
+
+Web 图采用 PDF 带字裁切，正确操作说明以结构源为准。
+IR、源读取退出路径与剩余边界见[完整执行记录](../code-as-doc/dev/ir_document_closeout.md)。

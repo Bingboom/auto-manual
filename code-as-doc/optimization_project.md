@@ -1,5 +1,12 @@
 # Optimization Project
 
+Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
+acceptance](dev/ir_document_closeout.md). Subsequent work must be chosen from its
+explicit remaining boundaries, not another indefinite sequence of Web component
+projections. This checkpoint does not claim that Word/print or neutral rich text
+has migrated.
+
+
 Updated: 2026-07-17
 
 ## 1. Role

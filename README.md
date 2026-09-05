@@ -54,6 +54,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 工程面、业务面与飞书 Base | [`user-guide/two_plane_map.md`](user-guide/two_plane_map.md) |
 | 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
 | 公共 IR 的调用方与迁移边界 | [`Shared-source plan`](code-as-doc/dev/latex_indesign_same_source_plan.md) |
+| 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
 | 长期架构边界 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) |
 | AI Agent 操作规则 | [`AGENTS.md`](AGENTS.md) |
 | 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |

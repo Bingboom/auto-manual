@@ -700,6 +700,33 @@ Packaging rule:
 
 Web Publish / Read the Docs note:
 
+- Web-profile bundle export now reads prepared pages once into a complete
+  `manual-ir/v1` content tree and writes `manual.ir.json` beside the Markdown.
+  `tools.web_document_ir.render_document_fragments` consumes that IR and the
+  packaged `assets/` bytes without reopening RST/CSV. Word keeps its existing
+  conversion path. This is the whole-document Web boundary, not completion of
+  neutral rich text or migration of every output. See [the bounded execution
+  record](dev/ir_document_closeout.md) for replay, asset extraction and debt.
+- `paths.web_illustration_manifest` optionally binds a target/language to finished
+  PDF crops. The manifest freezes source PDF hash, page, bounding box, output
+  hash and exact input image basenames. One illustrated panel can replace several
+  split images; surrounding structured copy is retained. Wrong target, missing
+  images, changed bytes, repeated or unused bindings fail the build. These Web
+  variants preserve embedded text and never overwrite IDML textless assets.
+  Optional `covered_annotations` entries bind a selector and exact normalized
+  source text already covered by an illustration. Only unique unchanged matches
+  are consumed; changed or ambiguous copy fails. Covered copy stays in image alt
+  and IR provenance. Explanatory tables and warnings stay live.
+- Packaging lists use the existing `HB-SPECIAL-INBOX` component. The explicit
+  `in_the_box.semantic_source_patterns` contract accepts `box_contents_*` outside
+  target-specific figure geometry; three original item images, labels and the
+  note form the shared component. Finished-illustration bindings do not replace
+  those cards with screenshots.
+- For an approved PDF artwork correction, `swap_pdf_regions` exchanges two
+  equal-size, disjoint native regions on white backgrounds, inside the asset
+  crop. Freeze source/output hashes and visually verify the final PNG. JBP-2000B
+  JP uses this to correct reversed on/off titles according to structured source.
+
 - `Review Preview Package` uploads the review-preview workspace as a GitHub artifact only
 - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`
 - [`.github/workflows/feishu-web-publish-queue.yml`](../.github/workflows/feishu-web-publish-queue.yml) runs only on the Hello-Docs business plane, consumes `Workflow_action=Web Publish`, pushes frozen sources to the `Hello-Docs/publish:docs/publish/` candidate, rejects any PR diff outside `docs/publish/**`, opens or updates `publish -> main`, and writes the deterministic root-level RTD alias (for example `https://ht-doc.readthedocs.io/manual_je1000f_us.html`) to `HTML_link`
@@ -728,7 +755,7 @@ LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
 ordinary undeclared tables stay ordinary. RST and standalone `{lcd-icons}` MyST
-share validation: exactly four unspanned cells, one icon, and nonempty number,
+share validation: exactly four unspanned cells, one icon (or an explicitly declared `lcd-text-only` empty icon cell), and nonempty number,
 name and description. Malformed rows fail instead of being padded or truncated.
 Status line breaks, inline emphasis, lists, icon sources and row order remain
 authored content. The scrollable table can also receive keyboard focus; artwork

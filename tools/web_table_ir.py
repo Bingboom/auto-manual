@@ -37,9 +37,10 @@ def _render_lcd(soup: BeautifulSoup, table: Tag, rows: list[Tag]) -> None:
         for role, cell in zip(roles, row.find_all(["th", "td"], recursive=False)):
             _add_class(cell, f"hb-lcd-{role}")
         image = row.find_all(["th", "td"], recursive=False)[1].img
-        _add_class(image, "hb-lcd-icon-art")
-        for attribute in ("style", "width", "height"):
-            image.attrs.pop(attribute, None)
+        if image is not None:
+            _add_class(image, "hb-lcd-icon-art")
+            for attribute in ("style", "width", "height"):
+                image.attrs.pop(attribute, None)
 
     composition = table.parent
     if not (

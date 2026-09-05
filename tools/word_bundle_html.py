@@ -3,10 +3,8 @@
 
 from __future__ import annotations
 
-import hashlib
 import html
 import re
-import shutil
 from pathlib import Path
 
 from tools.config_pages import CsvPage
@@ -18,7 +16,8 @@ from tools.web_composite_manifest import (
     load_optional_web_composite_manifest,
 )
 from tools.word_bundle_common import paths
-from tools.word_bundle_html_images import _IMG_SRC_RE, _inject_img_dimensions
+from tools.word_bundle_html_images import _inject_img_dimensions
+from tools.document_assets import resolve_fragment_asset_path, stage_fragment_assets
 from tools.word_bundle_html_models import WordBundlePageMeta
 from tools.page_plan import page_template_role_for_source_ref, word_page_binding
 from tools.word_bundle_html_only import (
@@ -222,28 +221,7 @@ def _extract_rst_first_heading(text: str) -> tuple[str | None, str | None]:
 
 
 def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
-    candidate = src.strip()
-    if not candidate or candidate.startswith(("http://", "https://", "data:", "file:", "#")):
-        return None
-
-    raw_path = Path(candidate)
-    probe_paths: list[Path] = []
-    if raw_path.is_absolute():
-        probe_paths.append(raw_path)
-    else:
-        probe_paths.extend(
-            [
-                source_path.parent / raw_path,
-                source_path.parent.parent / raw_path,
-                paths.docs_dir / raw_path,
-                paths.root / raw_path,
-            ]
-        )
-
-    for probe in probe_paths:
-        if probe.exists() and probe.is_file():
-            return probe.resolve()
-    return None
+    return resolve_fragment_asset_path(src, source_path, (paths.docs_dir, paths.root))
 
 
 def _infer_fragment_lang(source_path: Path) -> str | None:
@@ -264,33 +242,7 @@ def _resolve_fragment_lang(source_path: Path, language: str | None) -> str | Non
 
 
 def _stage_fragment_assets(fragment: str, source_path: Path, bundle_dir: Path) -> str:
-    assets_dir = bundle_dir / "assets"
-    assets_dir.mkdir(parents=True, exist_ok=True)
-    staged: dict[str, str] = {}
-
-    def replace_src(match: re.Match[str]) -> str:
-        prefix, src, suffix = match.groups()
-        resolved = _resolve_fragment_asset_path(src, source_path)
-        if resolved is None:
-            return match.group(0)
-
-        key = str(resolved)
-        staged_name = staged.get(key)
-        if staged_name is None:
-            # The bundle may be materialized in a disposable worktree or an
-            # isolated staging root.  A path-derived suffix made the shipped
-            # Markdown (and the DOCX image descriptions generated from this
-            # HTML) change even when the source bytes were identical.  Bind
-            # the staged name to the asset content instead so the same frozen
-            # input has the same release representation everywhere.
-            digest = hashlib.sha256(resolved.read_bytes()).hexdigest()[:12]
-            staged_name = f"{resolved.stem}_{digest}{resolved.suffix}"
-            shutil.copy2(resolved, assets_dir / staged_name)
-            staged[key] = staged_name
-
-        return f"{prefix}{(assets_dir / staged_name).resolve().as_uri()}{suffix}"
-
-    return _IMG_SRC_RE.sub(replace_src, fragment)
+    return stage_fragment_assets(fragment, source_path, bundle_dir, (paths.docs_dir, paths.root))
 
 
 def _publish_rst_fragment_to_html(
@@ -415,6 +367,7 @@ def build_word_bundle_html(
         else None
     )
     title = materialized.title
+    bundle_languages = tuple(getattr(materialized, "languages", ()))
     reference_doc = materialized.reference_doc
     active_tags = _build_word_only_tags(model=materialized.model, region=materialized.region, lang=materialized.lang)
 
@@ -426,17 +379,20 @@ def build_word_bundle_html(
     page_metas: list[WordBundlePageMeta] = []
     page_paths = list(materialized.page_paths)
     declared_csv_pages: dict[Path, str] = {}
+    page_languages: dict[str, str] = {}
     if profile == WEB_PRESENTATION_PROFILE:
         # Reuse the target's declared CSV page identities once per bundle.
         # slot_id/renames are resolved by the existing assembly planner, not
         # guessed from filenames or the HTML's localized content.
         if cfg.get("pages") or cfg.get("paths", {}).get("page_manifest"):
+            planned_pages = plan_materialized_pages(
+                cfg, model=materialized.model, region=materialized.region,
+                langs=list(materialized.languages) or None,
+            )
+            page_languages = {p.file_name: p.lang or "" for p in planned_pages}
             declared_csv_pages = {
                 (materialized.page_dir / planned.file_name).resolve(): planned.page.page
-                for planned in plan_materialized_pages(
-                    cfg, model=materialized.model, region=materialized.region,
-                    langs=list(materialized.languages) or None,
-                )
+                for planned in planned_pages
                 if isinstance(planned.page, CsvPage)
                 and planned.page.page in {"troubleshooting", "lcd_icons"}
             }
@@ -447,24 +403,41 @@ def build_word_bundle_html(
                 f"got {page_paths[0]}"
             )
 
+    web_fragments = None
+    if profile == WEB_PRESENTATION_PROFILE:
+        from tools.web_document_source import load_web_document
+        from tools.web_document_ir import render_document_fragments
+        illustration_path = cfg.get("paths", {}).get("web_illustration_manifest")
+        ir = load_web_document(
+            materialized, page_paths=page_paths, declarations=declared_csv_pages,
+            page_languages=page_languages,
+            active_tags=active_tags, output_dir=bundle_output_dir,
+            composite_manifest=composite_manifest,
+            illustration_manifest=(paths.root / illustration_path) if illustration_path else None,
+        )
+        web_fragments = render_document_fragments(ir, package_root=bundle_output_dir)
+
     previous_was_cover = False
     for idx, rst_path in enumerate(page_paths):
         if profile == DOCUMENT_PRESENTATION_PROFILE and idx > 0 and not previous_was_cover:
             body_parts.append(_render_page_break_html())
-        rst_text = rst_path.read_text(encoding="utf-8")
-        html_fragment = _convert_rst_fragment_to_html(
-            rst_text,
-            rst_path,
-            bundle_output_dir,
-            active_tags=active_tags,
-            presentation_profile=profile,
-            composite_manifest=composite_manifest,
-            model=materialized.model,
-            region=materialized.region,
-            language=materialized.lang,
-            declared_troubleshooting=declared_csv_pages.get(rst_path.resolve()) == "troubleshooting",
-            declared_lcd_icons=declared_csv_pages.get(rst_path.resolve()) == "lcd_icons",
-        )
+        if web_fragments is not None:
+            html_fragment = web_fragments[idx]
+        else:
+            rst_text = rst_path.read_text(encoding="utf-8")
+            html_fragment = _convert_rst_fragment_to_html(
+                rst_text,
+                rst_path,
+                bundle_output_dir,
+                active_tags=active_tags,
+                presentation_profile=profile,
+                composite_manifest=composite_manifest,
+                model=materialized.model,
+                region=materialized.region,
+                language=materialized.lang,
+                declared_troubleshooting=declared_csv_pages.get(rst_path.resolve()) == "troubleshooting",
+                declared_lcd_icons=declared_csv_pages.get(rst_path.resolve()) == "lcd_icons",
+            )
         body_parts.append(html_fragment or "<div></div>")
         page_role = page_template_role_for_source_ref(rst_path)
         page_binding = word_page_binding(page_role)
@@ -485,7 +458,7 @@ def build_word_bundle_html(
     html_doc = "".join(
         [
             "<!DOCTYPE html>",
-            '<html lang="en">',
+            f'<html lang="{html.escape(materialized.lang or (bundle_languages[0] if len(bundle_languages) == 1 else "en"), quote=True)}">',
             "<head>",
             '<meta charset="utf-8"/>',
             f"<title>{html.escape(title)}</title>",
