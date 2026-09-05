@@ -995,16 +995,6 @@ def _transform_app_inline_controls(
     visible_label.replace_with(icon)
 
 
-def _transform_in_the_box(soup: BeautifulSoup, *, source_path: Path) -> None:
-    """Compatibility facade retained until the PR 9 cleanup."""
-    transform_inbox(
-        soup,
-        source_path=source_path,
-        language="und",
-        error_type=WebPresentationError,
-    )
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1486,7 +1476,10 @@ def transform_web_fragment(
             expected_years=[str(value) for value in warranty["period_years"]],
         )
     if is_in_the_box:
-        _transform_in_the_box(soup, source_path=source_path)
+        transform_inbox(
+            soup, source_path=source_path, language=language or "und",
+            model=model, region=region, error_type=WebPresentationError,
+        )
     if is_app_download:
         _transform_app_download(soup, source_path=source_path, contract=data)
     if is_app_inline_controls:

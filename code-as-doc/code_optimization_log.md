@@ -1767,3 +1767,22 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
   other components, neutral rich text and label lookup dependencies. Nested
   tables/callouts are an explicit unsupported body shape under this contract.
   JP native layout remains a separate workstream.
+
+
+## 2026-09-05: Prepared Inbox and its internal TIP consume public IR
+
+- The real RST/Web consumer now loads a scoped Inbox source, calls the public
+  assembler and replays verified IR before applying the figure. The old direct
+  ComponentSpec-only path and hardcoded `und` wrapper exit.
+- Three cards and the internal TIP remain one existing `HB-SPECIAL-INBOX`;
+  the new source adapter retains rich markup and all image references. No
+  parallel tip semantics, registry/config/schema change or extra renderer.
+- Replay verifies public hashes and owned semantic/asset agreement, including
+  correctly rehashed corrupt payloads. Incomplete/spanned/nested rows fail
+  before caller DOM mutation. Serialized replay survives source deletion.
+- Real RST tests cover EN/FR/ES, existing unsupported-target gating and source
+  context. Three pre-change localized Web outputs remain byte-identical.
+  Existing hotspot limits are unchanged.
+- Remaining: other composite figures, generic figure string protection,
+  whole-manual IR, renderer-neutral rich text, RST/LaTeX parser dependencies,
+  and other renderer consumer migration. JP native layout stays separate.

@@ -1807,3 +1807,14 @@ version change invalidates old doctrees. Nested tables or callouts in a callout
 body fail the shared single-table contract with source context; they are not
 silently flattened. Other rich Markdown nodes continue through Sphinx, and
 non-HTML writers retain ordinary body rendering.
+
+
+Prepared Web Inbox now assembles and consumes a scoped public IR before its
+figure enters Pandoc protection. The existing `HB-SPECIAL-INBOX` owns all three
+cards and its TIP label/body; no second callout interpretation is introduced.
+The `web-inbox` projection retains the ComponentSpec, heading/card/tip markup
+and image references, with actual source/model/region/language context. Replay
+validates hashes, semantics and complete unspanned rows before replacing caller
+DOM. The direct ComponentSpec-only Web path and hardcoded `und` facade have
+exited. Existing figure-target admission and EN/FR/ES output stay unchanged;
+other composite figures and the generic figure protection map remain separate.
