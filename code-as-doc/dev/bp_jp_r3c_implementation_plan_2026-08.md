@@ -360,18 +360,33 @@ Status: pending Phase 6 completion. The validation ladder and the package
 mechanics have been pre-run so that nothing but the visual gate stands between
 Phase 6 passing and this phase closing.
 
-Required validation ladder — **all eight green on 2026-09-01**:
+Required validation ladder — **all eight green on 2026-09-04**, re-run after the
+branch was aligned with `main` (#1027) and after the twelve commits that landed
+since the previous 2026-09-01 record, which this replaces:
 
 ```text
 python -m ruff check build.py integrations tools tests scripts          # exit 0
-python -m unittest                                                      # 3338 tests, OK (skipped=5)
+python -m unittest                                                      # 3557 tests, OK (skipped=5)
 python -m mypy tools/utils                                              # no issues in 14 files
-python tools/check_maintainability_guardrails.py                        # OK, 62 hotspot files
-python tools/check_doc_link_integrity.py                                # 147 files, 1623 links, 0 broken
-python build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # exit 0
-python build.py check --config configs/config.bp-us.yaml --model JBP-2000B --region US   # exit 0
-python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP       # exit 0
+python tools/check_maintainability_guardrails.py                        # OK, 62 hotspot files; language-literal 0 new / 66 known / 0 stale
+python tools/check_doc_link_integrity.py                                # 149 files, 1633 links, 0 broken
+python build.py check --config configs/config.bp-jp.yaml --model JBP-2000B --region JP   # [check] OK
+python build.py check --config configs/config.us-en.yaml --model JE-1000F --region US    # [check] OK
+python build.py check --config configs/config.ja.yaml --model JE-1000F --region JP       # [check] OK
 ```
+
+The middle `check` now runs the `us-en` config rather than `bp-us`, matching the
+set AGENTS.md §8.5 names for a build/quality-gate change. Each `check` rewrites
+189 tracked files under `docs/_build` plus one under `docs/_review`; they were
+restored with `git restore docs/_build docs/index.rst` after every run, per §6.
+
+The frozen JP package is pinned by content digest rather than by a claim:
+**107 zip members, 12 spreads, 88 stories,
+`a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1`**
+(sha256 over each member's name and content, so zip timestamps cannot mask a
+change). Recompute and compare per
+[`../reviews/bp_jp_r3c_native_validation_2026-09.md`](../reviews/bp_jp_r3c_native_validation_2026-09.md)
+§ Method.
 
 The handoff package was also built ahead of the gate, from
 `build.py idml --idml-mode both` output: 7,373,480 bytes, 50 entries, 31 linked
