@@ -129,12 +129,41 @@ workstreams was added during this acceptance round.
 
 ## Digest method
 
+Two digests, because the raw one pins the machine as well as the book.
+
+**The raw digest is not portable.** All 25 `LinkResourceURI` values in a built
+package are absolute `file:///` paths into whatever checkout produced it, so the
+same book built from a different worktree gives a different raw digest. That is
+the "15 XML members differing exclusively in `LinkResourceURI`" recorded under
+Scope and lineage: 15 of the 107 members carry a link URI, and normalising it is
+exactly what makes the remaining comparison meaningful.
+
+Use the **portable** digest to answer "is this the same book"; use the raw one
+only to compare two artefacts produced on the same host.
+
 ```python
-import hashlib, zipfile
-with zipfile.ZipFile(".tmp/native-acceptance/r3/manual_jbp2000b_jp.idml") as package:
-    digest = hashlib.sha256()
-    for name in sorted(package.namelist()):
-        digest.update(name.encode())
-        digest.update(hashlib.sha256(package.read(name)).digest())
-    print(digest.hexdigest())
+import hashlib, re, zipfile
+
+LINK = re.compile(rb'LinkResourceURI="[^"]*/([^"/]+)"')
+
+def digests(path):
+    raw, portable = hashlib.sha256(), hashlib.sha256()
+    with zipfile.ZipFile(path) as package:
+        for name in sorted(package.namelist()):
+            blob = package.read(name)
+            raw.update(name.encode()); raw.update(hashlib.sha256(blob).digest())
+            normalised = LINK.sub(rb'LinkResourceURI="\1"', blob)
+            portable.update(name.encode())
+            portable.update(hashlib.sha256(normalised).digest())
+    return raw.hexdigest(), portable.hexdigest()
 ```
+
+### Which digest a rebuild should match
+
+| Rebuilt from | Expect | Note |
+| --- | --- | --- |
+| current `main` | portable `0da6b51929d7030013460f7d863c4b13f650fe008533b3bcb912972f0c1533b1` | measured on `main` `f36711bf`; the raw digest on that host was `a0587ff5aa1db7197dd361621b5e99cc8804c9ce1b942377300e611f2ed2fc43` |
+| the R1 freeze `a7cc780f…` | **will not reproduce, and should not** | R1 was the input to the native round, not its result. The five repairs verified above changed nine members: the TOC spread and story, the charging story, the specification story, and five `warranty_ja` stories. A rebuild that still matched `a7cc780f…` would mean the repairs are missing. |
+
+`#1037` was checked against this and changes nothing here: JP rebuilt on either
+side of it is identical member for member, 107/107, zero changed.

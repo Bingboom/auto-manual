@@ -375,13 +375,20 @@ set AGENTS.md §8.5 names for a build/quality-gate change. Each `check` rewrites
 189 tracked files under `docs/_build` plus one under `docs/_review`; they were
 restored with `git restore docs/_build docs/index.rst` after every run, per §6.
 
-The original pre-native JP package was pinned by content digest:
-**107 zip members, 12 spreads, 88 stories,
-`a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1`**
-(sha256 over each member's name and content, so zip timestamps cannot mask a
-change). Recompute and compare per
+The pre-native JP package was pinned at **107 zip members, 12 spreads, 88
+stories**, digest `a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1`.
+**That pin is superseded and will not reproduce** — it was the R1 input, and the
+native round's five repairs changed nine members on the way to the accepted R3
+book. A rebuild that still matched it would mean the repairs were lost.
+
+It also had a defect worth carrying forward as a rule: **a whole-package digest
+over raw member bytes pins the machine, not the book.** All 25 `LinkResourceURI`
+values are absolute `file:///` paths into the producing checkout, so 15 of the
+107 members differ between two worktrees that built the identical book. The
+portable digest normalises those URIs to their basename first; the current value
+and the method are in
 [`../reviews/bp_jp_r3c_native_validation_2026-09.md`](../reviews/bp_jp_r3c_native_validation_2026-09.md)
-§ Method.
+§ Digest method.
 
 The handoff package was also built ahead of the gate, from
 `build.py idml --idml-mode both` output: 7,373,480 bytes, 50 entries, 31 linked
