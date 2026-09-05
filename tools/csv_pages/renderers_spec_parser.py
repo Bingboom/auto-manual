@@ -9,6 +9,7 @@ import re
 from typing import cast
 
 from .. import lang_registry
+from ..localized_copy import first_text, localized_columns
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..utils.spec_master import (
     canonicalize_model_token,
@@ -46,13 +47,7 @@ def _to_float(value: str, default: float = 0.0) -> float:
 
 
 def _first_non_empty(row: dict[str, str], keys: list[str]) -> str:
-    for key in keys:
-        if key not in row:
-            continue
-        value = rst_escape(row.get(key) or "")
-        if value:
-            return value
-    return ""
+    return rst_escape(first_text(row, keys))
 
 
 def _is_enabled_row(row: dict[str, str]) -> bool:
@@ -88,22 +83,6 @@ def _pick_spec_lang_text(
     lang: str,
     default_keys: list[str] | None = None,
 ) -> str:
-    def lang_suffix_candidates(raw_lang: str) -> list[str]:
-        raw = (raw_lang or "").strip()
-        aliases = lang_registry.language_alias_candidates(raw) or (raw,)
-        candidates = []
-        for alias in aliases:
-            candidates.extend(
-                [
-                    alias,
-                    alias.casefold(),
-                    alias.upper(),
-                    alias.replace("-", "_"),
-                    alias.casefold().replace("-", "_"),
-                ]
-            )
-        return list(dict.fromkeys(candidate for candidate in candidates if candidate))
-
     def normalized_lang_key(raw_lang: str) -> str:
         raw = (raw_lang or "").strip().casefold()
         canonical = lang_registry.canonical_language(raw_lang)
@@ -121,7 +100,7 @@ def _pick_spec_lang_text(
             base,
         ]
     else:
-        keys = [f"{base}_{suffix}" for suffix in lang_suffix_candidates(lang)]
+        keys = list(localized_columns((base,), lang_registry.language_alias_candidates(lang), uppercase=True))
         keys.extend([f"{base}_source", f"{base.lower()}_source", base])
     if default_keys:
         keys.extend(default_keys)

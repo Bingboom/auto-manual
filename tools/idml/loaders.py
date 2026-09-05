@@ -9,51 +9,14 @@ import csv
 import re
 from pathlib import Path
 
-from .language_contract import (
-    canonical_language,
-)
+from tools.localized_copy import first_text, localized_cell, snapshot_language_suffixes
 from .text_clean import VariableSubstituter, clean_cell
 
+
 def normalize_lang(lang: str | None) -> str:
-    token = str(lang or "en").strip()
-    canonical = canonical_language(token)
-    if canonical:
-        # ``jp`` remains the historical phase2 column suffix.  All other
-        # consumers use the canonical registry code directly.
-        return "jp" if canonical == "ja" else canonical
-    return token.lower() or "en"
-
-# The snapshot's localized column suffixes are not uniform across tables
-# (lcd/trouble use jp + ukr + both pt-BR/br; Spec_Footnotes/Notes use ja + uk),
-# so a language maps to a candidate-suffix tuple, tried in order.
-_SUFFIX_CANDIDATES = {
-    "jp": ("jp", "ja"),
-    "uk": ("uk", "ukr"),
-    "pt-BR": ("pt-BR", "br"),
-    "zh": ("zh", "cn"),
-}
-
-
-def _lang_suffixes(lang: str | None) -> tuple[str, ...]:
-    lang = normalize_lang(lang)
-    return _SUFFIX_CANDIDATES.get(lang, (lang,))
-
-
-def _localized_cell(row: dict, base: str, lang: str | None,
-                    fallbacks: tuple[str, ...] = ()) -> str:
-    """``{base}_{lang-suffix}`` with per-table suffix aliases, falling back to
-    the given source/en columns — the same fallback philosophy as
-    load_symbols_rows: untranslated cells ship the source text rather than
-    a hole."""
-    for suffix in _lang_suffixes(lang):
-        value = (row.get(f"{base}_{suffix}") or "").strip()
-        if value:
-            return value
-    for col in fallbacks:
-        value = (row.get(col) or "").strip()
-        if value:
-            return value
-    return ""
+    """Compatibility suffix API; canonical language identity stays in the registry."""
+    suffixes = snapshot_language_suffixes(lang)
+    return suffixes[0] if suffixes else "en"
 
 
 # Footnote ① markers — MIRRORS tools/csv_pages/renderers_spec_parser.py
@@ -142,13 +105,13 @@ def load_spec_sections(data_root: Path, model: str, region: str,
         if not sections or sections[-1]["title"] != title:
             sections.append({"title": title, "rows": []})
         label = _append_footnote_markers(
-            _localized_cell(r, "Row_label", lang, ("Row_label_source",)),
+            localized_cell(r, "Row_label", normalize_lang(lang), fallback_columns=("Row_label_source",)),
             _parse_footnote_refs(r.get("Row_label_footnote_refs") or ""), marker_by_id)
         param = _append_footnote_markers(
-            _localized_cell(r, "Param", lang, ("Param_source",)),
+            localized_cell(r, "Param", normalize_lang(lang), fallback_columns=("Param_source",)),
             _parse_footnote_refs(r.get("Param_footnote_refs") or ""), marker_by_id)
         value = _append_footnote_markers(
-            _localized_cell(r, "Value", lang, ("Value_source",)),
+            localized_cell(r, "Value", normalize_lang(lang), fallback_columns=("Value_source",)),
             _parse_footnote_refs(r.get("Value_footnote_refs") or ""), marker_by_id)
         line = f"{param}: {value}" if param else value
         sec_rows = sections[-1]["rows"]
@@ -173,8 +136,8 @@ def load_lcd_rows(data_root: Path, model: str, lang: str = "en", region: str | N
         out.append({
             "no": (r.get("No.") or "").strip(),
             "figure": (r.get("figure") or "").strip(),
-            "name": clean_cell(_localized_cell(r, "icon", lang, ("icon_en",)), subst),
-            "desc": clean_cell(_localized_cell(r, "icon_desc", lang, ("icon_desc_en",)), subst),
+            "name": clean_cell(localized_cell(r, "icon", normalize_lang(lang), fallback_columns=("icon_en",)), subst),
+            "desc": clean_cell(localized_cell(r, "icon_desc", normalize_lang(lang), fallback_columns=("icon_desc_en",)), subst),
         })
     out.sort(key=lambda x: float(x["no"] or 0))
     # The master numbers rows continuously; source "No." values may skip
@@ -204,7 +167,7 @@ def load_spec_annotations(data_root: Path, model: str, region: str,
             regions = [x.strip() for x in (r.get("Region") or "").split(",") if x.strip()]
             if regions and region not in regions and "ALL" not in regions:
                 continue
-            text = _localized_cell(r, "Text", lang, ("Text_en",))
+            text = localized_cell(r, "Text", normalize_lang(lang), fallback_columns=("Text_en",))
             if text and fname == "Spec_Footnotes.csv":
                 # The footnote line carries the same ① marker glyph as its
                 # referencing cells. Renderers decide its presentation by
@@ -234,12 +197,11 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
         ]
     rows.sort(key=lambda r: float(r.get("order") or 0))
     for r in rows:
-        text = ((r.get(text_col) or "").strip()
-                or (r.get("text_en") or "").strip())
+        # Symbols retain their single historical suffix, unlike the other loaders.
+        text = first_text(r, (text_col,), fallback_columns=("text_en",))
         if r.get("block_type") == "signal_row":
             if text:
-                label = ((r.get(label_col) or "").strip()
-                         or (r.get("label_en") or "").strip())
+                label = first_text(r, (label_col,), fallback_columns=("label_en",))
                 signals.append((label, text))
         elif r.get("block_type") == "table_row":
             icons.append({
@@ -278,8 +240,8 @@ def load_trouble_rows(data_root: Path, model: str, region: str,
     out: list[tuple[str, str]] = []
     for r in selected:
         out.append(((r.get("error_code") or "").strip(),
-                    clean_cell(_localized_cell(r, "corrective_measures", lang,
-                                               ("corrective_measures_en",)))))
+                    clean_cell(localized_cell(r, "corrective_measures", normalize_lang(lang),
+                                               fallback_columns=("corrective_measures_en",)))))
     return out
 
 

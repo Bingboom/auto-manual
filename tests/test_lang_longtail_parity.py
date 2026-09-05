@@ -64,10 +64,11 @@ class LanguageLongTailParityTest(unittest.TestCase):
         self.assertEqual(content_lint._VALUE, expected_value)
         self.assertEqual(content_lint.SUPPORTED_LANGS, expected_languages)
 
-    def test_idml_loader_suffix_candidates_match_registry(self) -> None:
+    def test_snapshot_suffix_candidates_and_idml_compatibility_match_registry(self) -> None:
         for spec in lang_registry.LANGUAGE_REGISTRY:
             with self.subTest(language=spec.code):
-                self.assertEqual(loaders._lang_suffixes(spec.code), spec.column_suffixes)
+                self.assertEqual(localized_copy.snapshot_language_suffixes(spec.code), spec.column_suffixes)
+                self.assertEqual(loaders.normalize_lang(spec.code), spec.column_suffixes[0])
 
     def test_variable_resolver_alias_candidates_match_registry(self) -> None:
         expected_aliases: dict[str, tuple[str, ...]] = {}
