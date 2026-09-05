@@ -267,6 +267,7 @@ invent a registry registration or change `manual-ir/v1`.
 | --- | --- | --- |
 | Prepared Web / standalone MyST specifications | Shared scoped specification IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
+| Prepared Web callouts outside protected composite figures | Public IR across the Pandoc handoff | ComponentSpec + retained rich HTML |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -279,7 +280,26 @@ references now receive the same Web superscript style; authored superscripts
 are preserved without nesting. Staging reuses the existing specification modules,
 with no new parser module, config, registry entry or serialized schema.
 
-These are **three scoped table families across both Web entrances**, not whole-manual Web IR or a
+**Prepared Web callout handoff:** `export_markdown_from_bundle` now passes each
+explicit `manual-callout-table` through `manual_ir.web_callouts` and public
+assembly before Pandoc. The existing placeholder map carries ManualIR instead
+of raw HTML. Restoration consumes `web_callout_ir.render_callout_ir`; there is
+no raw-string fallback or second source-file read. The one-block `web-callout`
+projection owns the registered ComponentSpec, original HTML and image references.
+Both public envelope checks and semantic/markup/asset agreement are required;
+recomputed envelope hashes cannot hide inconsistent owned payloads. Ambiguous
+rows, cells, spans or nested tables fail. Original HTML bytes, lists, links,
+images and label copy are retained. The actual bundle path/model/region are
+provided by the caller; language comes from the table or remains `und`.
+
+This slice does not migrate the standalone MyST `{callout}` directive (its
+nested document-node parser is a distinct carrier). Callouts inside composite
+figures protected earlier in the pipeline also remain on the figure path.
+Remaining HTML parsing and language-label lookup are explicit source-adapter
+debt, not a renderer-neutral rich-text implementation.
+
+These are **three scoped table families across both Web entrances plus the
+prepared Web callout handoff**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.
