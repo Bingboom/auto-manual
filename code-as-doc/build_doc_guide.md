@@ -1781,3 +1781,16 @@ shared source contract; corrupt IR fails before raw HTML is returned. Plain
 circled footnote references use the common Web superscript style; explicit
 superscripts are not nested. Staging includes the existing specification adapter
 and consumer modules. Commands, editing surfaces and `manual-ir/v1` are unchanged.
+
+
+Prepared Web warning/note tables now cross the Pandoc boundary as public
+ManualIR. The source adapter validates the declared label/body geometry and
+records ComponentSpec, rich HTML and image references. Restoration validates
+both the public envelope and agreement of semantics/assets with the markup,
+then returns the original HTML bytes without reopening the source file. Actual
+bundle path/model/region are supplied by the build; table language is retained
+or reported as `und`. Corrupt IR or malformed declared callouts fail the build.
+The internal placeholder map no longer accepts raw HTML as a parallel restore
+path. CLI commands and `manual-ir/v1` remain unchanged. Standalone MyST callouts
+and notices inside already-protected composite figures are not migrated by this
+slice; see the [shared-source plan](dev/latex_indesign_same_source_plan.md).

@@ -149,13 +149,19 @@ empty-cell policies are recorded in
     used by both the prepared Web bundle and standalone `SpecTableDirective`
   - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
 - [`tools/manual_ir/web_source.py`](../../tools/manual_ir/web_source.py)
-  - shared scoped HTML-source provenance envelope; reused by specifications and declared tables
+  - shared scoped HTML-source provenance envelope; reused by specifications, declared tables and callouts
 - [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
   - one declared LCD/troubleshooting source decoder and owned payload validation;
     explicit CSV/class identities select tables independently of filenames or artwork grants
 - [`tools/web_table_ir.py`](../../tools/web_table_ir.py)
   - shared public IR replay and atomic DOM application for LCD/troubleshooting;
     `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
+- [`tools/manual_ir/web_callouts.py`](../../tools/manual_ir/web_callouts.py)
+  - declared prepared-HTML callout decoder; owns one-row geometry, ComponentSpec and image references
+- [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
+  - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
+  - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
+    standalone MyST and already-protected composite figures remain separate paths
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)

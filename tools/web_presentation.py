@@ -17,7 +17,9 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from tools.component_specs.web_source import validate_web_callout_html
+from tools.manual_ir import ManualIR, build_manual_ir_from_source
+from tools.manual_ir.web_callouts import load_web_callout_source
+from tools.web_callout_ir import render_callout_ir
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
@@ -141,22 +143,34 @@ def restore_web_figures_after_pandoc(
     return restored
 
 
-def protect_web_callouts_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]:
+def protect_web_callouts_for_pandoc(
+    html_text: str, *, source_path: Path | None = None,
+    model: str | None = None, region: str | None = None,
+) -> tuple[str, dict[str, ManualIR]]:
     """Replace semantic callout tables with stable tokens before Pandoc parses HTML.
 
     Without this guard, Pandoc can convert plain callouts into pipe tables while
     leaving callouts with richer body markup as raw HTML. That content-dependent
     split drops the semantic classes, creates empty table headers, and can inject
     a 50/50 colgroup. Restoring the original table keeps every signal type on the
-    same ``manual-callout-*`` component contract.
+    same ``manual-callout-*`` component contract. The handoff carries public IR;
+    restoration validates and consumes it without reopening the source file.
     """
-    protected: dict[str, str] = {}
+    protected: dict[str, ManualIR] = {}
 
     def replace(match: re.Match[str]) -> str:
         token = f"AUTOMANUALWEBCALLOUT{len(protected) + 1:04d}PLACEHOLDER"
         callout_html = match.group(0)
-        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
-        protected[token] = callout_html
+        try:
+            source = load_web_callout_source(
+                callout_html, source_path=Path(f"{source_path or 'pandoc'}#{token}"),
+                model=model, region=region,
+            )
+            ir = build_manual_ir_from_source(source)
+            render_callout_ir(ir)  # Fail before invoking Pandoc on corrupt IR.
+            protected[token] = ir
+        except ValueError as exc:
+            raise WebPresentationError(str(exc)) from exc
         return f"<p>{token}</p>"
 
     return _WEB_CALLOUT_TABLE_RE.sub(replace, html_text), protected
@@ -164,12 +178,15 @@ def protect_web_callouts_for_pandoc(html_text: str) -> tuple[str, dict[str, str]
 
 def restore_web_callouts_after_pandoc(
     markdown_text: str,
-    protected: dict[str, str],
+    protected: dict[str, ManualIR],
 ) -> str:
     """Restore each protected callout exactly once, failing closed on drift."""
     restored = markdown_text
-    for token, callout_html in protected.items():
-        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
+    for token, ir in protected.items():
+        try:
+            callout_html = render_callout_ir(ir)
+        except ValueError as exc:
+            raise WebPresentationError(str(exc)) from exc
         occurrences = restored.count(token)
         if occurrences != 1:
             raise WebPresentationError(

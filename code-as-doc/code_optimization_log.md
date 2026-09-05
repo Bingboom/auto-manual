@@ -1727,3 +1727,21 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - Remaining debt: whole-manual IR, other Web components, neutral rich text and
   retained HTML, plus separate Word/Flow source policies. The earlier standalone
   specification bypass is now closed; no JP native-acceptance claim is implied.
+
+
+## 2026-09-05: Prepared Web callouts cross Pandoc as public ManualIR
+
+- Replaced the raw-string callout placeholder transport with public IR. The
+  prepared HTML adapter supplies existing ComponentSpec semantics, exact markup,
+  image references and actual bundle/target provenance; the renderer checks both
+  envelope integrity and semantic/markup/asset agreement before returning bytes.
+- Existing `web_presentation` protection/restoration and `markdown_bundle` caller
+  are migrated. Two bounded adapter/replay modules reuse current ComponentSpec
+  and public source/assembly contracts; no new registry, config or IR schema.
+- Safety nets cover the real RST -> Web -> Pandoc -> Markdown entry in English
+  and Japanese, serialized replay after source removal, corrupt envelopes,
+  correctly rehashed but inconsistent payloads and malformed later callouts.
+  Six pre-change rich callout protection/restoration outputs match byte for byte.
+- Remaining: standalone MyST callout node carrier, already-protected composite
+  figure callouts, other components/whole-manual IR, neutral rich text and
+  existing language-label source lookup. JP native layout remains a separate lane.
