@@ -145,3 +145,22 @@ through shared production/flow asset resolution. Regression cases preserve the
 energy thresholds, recovery condition columns and actual linked safety icons.
 Native screenshots of the rebuilt artifact remain required. No source product
 values or accepted power-button copy were changed.
+
+## JP source TOC and approved artwork
+
+The JP manifest now declares its own IDML-only `toc` payload: Japanese title
+and language header, with entries collected from the actual assembled story
+headings. Other-language legacy TOC behavior is unchanged. Physical TOC slot,
+folio alignment and final page spans remain part of pagination acceptance.
+Validation: 3,644 unit tests (22 skipped); Ruff and maintainability guardrails
+passed. The manifest-family diff carrier is updated with the added source.
+
+The operator approved all six supplied-reference crops after removing added
+manual labels. Product engravings (including outlined English and parameters)
+and the Jackery logo are part of the artwork and must remain. Policy is
+`fixed-product-markings`, not literal zero-visible-characters. At 12x, every
+changed pixel lies inside a removed real-text annotation bound; the front
+product image is pixel-identical to its reference crop. Source SHA-256:
+`d88b32fedb3f38bcbefc6df635079d10da52fd4b16e1046913c86c0c2fa65b0f`.
+New assets use the three dedicated asset Base tables; the legacy illustration
+table is read-only despite the older extraction skill's closing checklist.

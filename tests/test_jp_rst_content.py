@@ -67,3 +67,19 @@ class JpPreparedContentTests(unittest.TestCase):
         self.assertEqual(result.blocks, [("body", "Known |missing| value")])
         with self.assertRaisesRegex(ValueError, "cyclic"):
             _parse_text(".. |a| replace:: |b|\n.. |b| replace:: |a|\n\nValue |a|\n")
+
+
+class TargetTocTests(unittest.TestCase):
+    def test_auto_toc_uses_collected_target_headings(self):
+        from tools.idml.page_toc import TocCollector, _display_segments
+        collector = TocCollector()
+        collector.note("安全上のご注意", 2, "ja")
+        collector.note("主な仕様", 22, "ja")
+        title, segments = _display_segments(collector, {
+            "title": "目次", "auto_entries": True,
+            "languages": [{"code": "JP", "label": "日本語"}],
+        })
+        self.assertEqual(title, "目次")
+        self.assertEqual(len(segments), 1)
+        self.assertTrue(segments[0][0].startswith("JP"))
+        self.assertEqual(segments[0][2], [("安全上のご注意", 1), ("主な仕様", 21)])

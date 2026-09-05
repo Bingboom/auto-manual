@@ -1753,3 +1753,7 @@ Manual IR and flow manifests record these asset references. Both IDML writers
 resolve them through the shared render context and fail on missing inline
 assets instead of printing directive syntax. Native icon geometry is owned by
 the renderer; these parser checks do not certify final page composition.
+
+JP IDML uses its manifest-declared Japanese TOC payload with dynamically
+collected headings; the TOC is excluded from non-IDML builders. Final physical
+page numbering still follows the selected layout plan and native acceptance.

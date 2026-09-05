@@ -16,6 +16,11 @@
           "type": "rst_include"
         },
         {
+          "file": "templates/page_jp/toc.rst",
+          "lang": "ja",
+          "type": "rst_include"
+        },
+        {
           "file": "templates/page_jp/01_meaning_of_symbols.rst",
           "lang": "ja",
           "type": "rst_include"

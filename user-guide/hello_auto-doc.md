@@ -1544,3 +1544,7 @@ in the correct table column. Literal `.. image::`, `:alt:`, `:width:` or unresol
 substitution names are failed output, even when the package has no overset.
 Keep the package version with each screenshot; see the
 [JP review record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md).
+
+JP IDML uses its manifest-declared Japanese TOC payload with dynamically
+collected headings; the TOC is excluded from non-IDML builders. Final physical
+page numbering still follows the selected layout plan and native acceptance.

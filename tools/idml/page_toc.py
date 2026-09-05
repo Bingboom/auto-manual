@@ -426,7 +426,7 @@ def _bar_label_psr(
 def _display_segments(
     collector: TocCollector, source: dict | None,
 ) -> tuple[str, list[tuple[str, str, list[tuple[str, int | str]]]]]:
-    if source:
+    if source and not source.get("auto_entries"):
         segments = []
         for language in source.get("languages", []):
             header = f"{language.get('code', '')}  {language.get('label', '')}".strip()
@@ -435,12 +435,16 @@ def _display_segments(
             segments.append((header, str(language.get("page_range", "")), entries))
         return str(source.get("title") or "TABLE OF CONTENTS"), segments
     segments = []
+    headers = {normalize_lang(item.get("code", "")):
+               f"{item.get('code', '')}  {item.get('label', '')}"
+               for item in (source or {}).get("languages", [])}
     for lang, entries in _segments(collector.entries):
         folios = [_folio(index) for _, index in entries]
-        segments.append((_LANG_HEADERS.get(lang, lang.upper()),
+        segments.append((headers.get(normalize_lang(lang),
+                                     _LANG_HEADERS.get(normalize_lang(lang), lang.upper())),
                          f"{min(folios):02d}-{max(folios):02d}",
                          [(title, _folio(index)) for title, index in entries]))
-    return "TABLE OF CONTENTS", segments
+    return str((source or {}).get("title") or "TABLE OF CONTENTS"), segments
 
 
 def _toc_slot(page_plan: dict | None) -> int:

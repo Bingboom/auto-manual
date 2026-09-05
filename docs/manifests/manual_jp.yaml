@@ -5,6 +5,9 @@ pages:
     file: templates/page_jp/cover_jp.rst
   - type: rst_include
     lang: ja
+    file: templates/page_jp/toc.rst
+  - type: rst_include
+    lang: ja
     file: templates/page_jp/01_meaning_of_symbols.rst
   - type: rst_include
     lang: ja
