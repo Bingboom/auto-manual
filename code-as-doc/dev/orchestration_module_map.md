@@ -177,11 +177,14 @@ empty-cell policies are recorded in
   - actual Web consumer assembles public IR and renders its semantic slots before mutating caller DOM
   - retains existing FCC projection/layout; source marker config is not a renderer input
 - [`tools/manual_ir/web_symbols.py`](../../tools/manual_ir/web_symbols.py)
-  - governed signal-word legend source/owned contract; validates every label and row before replay
-  - retains localized semantic fields, rich table markup and image references with shared provenance
+  - governed signal legend and icon/meaning pair sources; share provenance/envelope checks
+  - validate complete rows, labels and pair assets against retained rich table markup before replay
 - [`tools/web_symbol_components.py`](../../tools/web_symbol_components.py)
   - actual signal-table Web consumer uses public IR and applies the figure only after validation
-  - raw caller-row decoding exits; symbol-pair tables remain owned by their existing separate transform
+  - raw caller-row decoding exits; signal payloads/hashes stay stable as pair consumers migrate
+- [`tools/web_symbol_pairs.py`](../../tools/web_symbol_pairs.py)
+  - public IR consumer for the existing left-six/right-five icon/meaning panels
+  - moves the direct source/render loop out of `web_presentation`; applies only fully validated replay
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
