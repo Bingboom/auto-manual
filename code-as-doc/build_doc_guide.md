@@ -1755,3 +1755,18 @@ profile behavior stays with its existing Word reader. All declared sections
 must pass before any section is replaced. The adapter is a scoped prepared-HTML
 projection, not a whole-book IR; other Web components and neutral rich-text
 parsing remain pending in the [shared-source plan](dev/latex_indesign_same_source_plan.md).
+
+
+Web LCD and troubleshooting tables also consume public ManualIR. Both prepared
+Web bundles and standalone `{lcd-icons}` / `{troubleshooting}` directives share
+one source decoder and consumer, retaining the assembly planner's explicit page
+identity or authored table class. Filenames and translated header vocabulary
+never select a table. A later invalid table rejects the complete transformation
+before changing the caller DOM. Rich lists, links, icon alt text, figure captions
+and authored headers survive IR serialization/replay. A governed figure containing
+multiple tables is ambiguous and fails closed rather than duplicating content.
+Standalone staging includes the bounded IR runtime, language registry and existing
+table stylesheet contract; it does not import the source checkout or legacy IDML
+extractor. `web_source` is the shared provenance constructor, including the active
+specification adapter. Remaining whole-manual and HTML-parser boundaries are
+tracked in the [shared-source plan](dev/latex_indesign_same_source_plan.md).

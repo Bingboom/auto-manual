@@ -1375,10 +1375,12 @@ def transform_web_fragment(
     )
     has_troubleshooting = transform_troubleshooting_tables(
         soup, source_path=source_path, declared_page=declared_troubleshooting,
+        language=language, model=model, region=region,
         error_type=WebPresentationError,
     )
     has_lcd = transform_lcd_icon_tables(
         soup, source_path=source_path, declared_page=declared_lcd_icons,
+        language=language, model=model, region=region,
         error_type=WebPresentationError,
     )
     semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd else html_fragment

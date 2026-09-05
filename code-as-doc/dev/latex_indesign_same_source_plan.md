@@ -247,11 +247,33 @@ provenance. All sections validate before the caller DOM changes, and a serialize
 projection can replay without the source file. Core imports remain independent
 of this HTML adapter and the legacy IDML extractor.
 
-This is **specification projection adoption**, not whole-manual Web IR or a
-renderer-neutral rich-text parser. Other Web components, Word's existing path,
-prepared HTML decoding and retained HTML payloads remain explicit migration
-debt. Tests observe the actual bundle calling the public assembler with the
-legacy Word parser disabled; a shared ComponentSpec helper alone does not count.
+**LCD and troubleshooting consumers:** prepared Web bundles and standalone
+MyST now use one `web_table_ir` consumer through the existing two transform
+entrypoints. `manual_ir.web_tables` owns declaration selection, row geometry,
+authored headers and role-labelled data (`number/icon/name/description` or
+`code/measures`). The `web_table` extension payload retains rich markup for
+presentation; semantic/markup drift and malformed later tables reject before
+caller mutation. Images enter the public asset union, and provenance hashes
+the actual prepared fragment plus the existing `web_manual.css` contract.
+The bounded standalone runtime includes the same public assembler/reader and
+language registry; it does not carry the legacy prepared-RST/IDML adapter.
+
+`manual_ir.web_source` now owns the shared provenance envelope used by both
+specifications and declared tables. Specification IR bytes remain unchanged.
+LCD/troubleshooting are not registered ComponentSpecs; this migration does not
+invent a registry registration or change `manual-ir/v1`.
+
+| Real consumer | Public IR status | Source boundary still present |
+| --- | --- | --- |
+| Prepared Web specifications | Scoped specification IR | Prepared HTML + retained rich markup |
+| Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
+| Standalone MyST specification directive | ComponentSpec only | Direct directive projection |
+| Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
+
+These are **three scoped table consumers**, not whole-manual Web IR or a
+renderer-neutral rich-text parser. Tests observe actual bundle invocations,
+standalone isolated-process builds, serialized replay, and unchanged existing
+outputs. A shared ComponentSpec helper alone does not count as IR adoption.
 
 Deferred: renderer-neutral extraction, remaining RST/LaTeX parser dependencies,
 and any deliberate reconciliation of flow policies. The prepared-RST adapter

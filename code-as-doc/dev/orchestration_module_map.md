@@ -147,9 +147,14 @@ empty-cell policies are recorded in
 - [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
   - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
     the Web bundle exits Word specification extraction/re-rendering
-- [`tools/web_lcd_component.py`](../../tools/web_lcd_component.py)
-  - one declared LCD-table projection for prepared RST and standalone MyST;
-    assembly CSV identities select pages independently of filenames and artwork grants
+- [`tools/manual_ir/web_source.py`](../../tools/manual_ir/web_source.py)
+  - shared scoped HTML-source provenance envelope; reused by specifications and declared tables
+- [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
+  - one declared LCD/troubleshooting source decoder and owned payload validation;
+    explicit CSV/class identities select tables independently of filenames or artwork grants
+- [`tools/web_table_ir.py`](../../tools/web_table_ir.py)
+  - shared public IR replay and atomic DOM application for LCD/troubleshooting;
+    `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)

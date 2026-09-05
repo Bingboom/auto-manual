@@ -7,7 +7,6 @@ Other page content remains in its original document, outside this projection.
 
 from __future__ import annotations
 
-import hashlib
 from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
@@ -17,7 +16,8 @@ from tools.component_specs.registry import load_component_registry
 from tools.component_specs.spec_table import spec_table_component_spec
 from tools.component_specs.theme import load_manual_theme
 from tools.manual_ir.hashing import value_sha256
-from tools.manual_ir.source import ManualSource, SourcePage
+from tools.manual_ir.source import ManualSource
+from tools.manual_ir.web_source import make_web_source
 
 
 def _source_rows(
@@ -132,30 +132,9 @@ def load_web_spec_source(
                 },
             )
         )
-    digest = hashlib.sha256(html_fragment.encode("utf-8")).hexdigest()
-    return ManualSource(
-        model=model or "unspecified",
-        region=region or "unspecified",
-        language=language or "und",
-        source="prepared-html",
-        bundle_root=str(source_path.parent),
-        bundle_sha256=digest,
-        snapshot_sha256=None,
-        layout_params_sha256=value_sha256({"layout_params": "not-used"}),
+    return make_web_source(
+        html_fragment, source_path=source_path, blocks=tuple(blocks),
+        projection="web-specifications",
         style_contract_sha256=value_sha256({"registry": registry, "theme": theme}),
-        pages=(
-            SourcePage(
-                page_id=str(source_path),
-                source_ref=str(source_path),
-                source_path=str(source_path),
-                language=language or "und",
-                source_sha256=digest,
-                blocks=tuple(blocks),
-            ),
-        ),
-        metadata={
-            "projection": "web-specifications",
-            "source_format": "prepared-html",
-            "layout_params": "not-used",
-        },
+        language=language, model=model, region=region,
     )
