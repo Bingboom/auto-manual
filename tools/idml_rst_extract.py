@@ -421,8 +421,9 @@ def bundle_page_order(bundle_root: Path) -> list[Path]:
     if index.exists():
         for m in re.finditer(r"\.\.\s+include::\s+(page/\S+)", index.read_text(encoding="utf-8")):
             p = bundle_root / m.group(1)
-            if p.exists():
-                order.append(p)
+            if not p.is_file():
+                raise ValueError(f"{index}: included page is missing or not a file: {m.group(1)}")
+            order.append(p)
     return order
 def _parse_grid_table(grid: list[str]) -> list[list[str]]:
     """Parse an rst grid table block into row cell-text lists."""

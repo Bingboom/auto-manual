@@ -152,6 +152,11 @@ reference-layout rebind (single and all-registered), reference-layout scaffold,
 and `tools/idml/target_assembly_scaffold.py`. They reject invalid input before
 writing reports, drafts or rebound plans. The scaffold's in-memory entry also
 uses shared validation instead of its former local schema/digest-format check.
+The handoff report also reads its source sidecar through `read_manual_ir`
+before copying production files or writing reports. It derives skipped-raw
+counts from validated pages; an absent sidecar remains unavailable (`null`),
+while a malformed sidecar fails instead of becoming zero. The source sidecar
+path is preserved even when the handoff directory differs from the input.
 No consumer currently needs an unchecked legacy file entrypoint.
 
 The base contract does not open external bundle/snapshot/assets to verify
@@ -210,6 +215,24 @@ the source assembler and verify the emitted IR is its exact result. Refactor
 checks also compare old/new CLI/public/sidecar IR JSON and IDML ZIP member
 bytes, including source hashes, IDs, source references and asset order. Existing
 goldens are not refreshed.
+
+Integrity follow-up: every direct page include in the prepared index must
+exist as a file; discovery reports the index and missing source reference
+instead of silently shortening the book. The registered prose-macro decoder
+requires complete arguments (respecting escaped braces and comments), and
+counts non-plumbing residue around recognized calls as skipped raw content.
+The existing preface-begin marker is recognized as layout-only; page-break
+normalization is idempotent for bare and already-braced markers.
+Strict IR rejects those pages through the existing skipped-raw policy;
+permissive extraction retains supported blocks and reports the skipped count.
+This is not a general TeX completeness proof: generated data macros and the
+special LCD decoder retain their separate interpretation paths.
+
+**Cross-renderer status:** public source assembly and input validation are
+prerequisites, not Web adoption. Web currently shares ComponentSpec projections
+but does not consume whole-manual ManualIR. A future Web migration must route
+a real consumer through IR and retire its corresponding repeated read/parse
+path; a zero-import Web adapter cannot count as that migration being complete.
 
 Deferred: renderer-neutral extraction, remaining RST/LaTeX parser dependencies,
 and any deliberate reconciliation of flow policies. The prepared-RST adapter
