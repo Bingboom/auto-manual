@@ -153,12 +153,21 @@ class WebCalloutIRTests(unittest.TestCase):
             self.assertIsNone(re.search(r'AUTOMANUALWEBCALLOUT\d+', result))
 
     def test_rst_to_markdown_bundle_uses_ir_in_both_languages(self) -> None:
+        import re
         from pathlib import Path
         from tempfile import TemporaryDirectory
         from types import SimpleNamespace
         from unittest.mock import patch
         from tools import markdown_bundle, web_presentation
         from tools.manual_ir import build_manual_ir_from_source
+
+        def fake_pandoc(command, **kwargs):
+            # The CI unit runner has no Pandoc. Keep RST rendering and public
+            # IR real here; the separate integration test exercises Pandoc.
+            html = Path(command[1]).read_text()
+            tokens = re.findall(r'AUTOMANUALWEBCALLOUT\d{4}PLACEHOLDER', html)
+            Path(command[command.index('-o') + 1]).write_text('\n\n'.join(tokens))
+            return SimpleNamespace(stdout='')
 
         for language, region, label in (('en', 'US', 'WARNING'), ('ja', 'JP', 'ご注意')):
             with self.subTest(language=language), TemporaryDirectory() as td:
@@ -170,6 +179,9 @@ class WebCalloutIRTests(unittest.TestCase):
                                          region=region, lang=language, languages=(language,),
                                          page_paths=(page,))
                 with patch.dict(markdown_bundle.os.environ, {'AUTO_MANUAL_PRESENTATION_PROFILE': 'web'}), \
+                     patch.object(markdown_bundle, 'resolve_pandoc_binary', return_value='pandoc'), \
+                     patch.object(markdown_bundle, 'resolve_markdown_writer', return_value='myst'), \
+                     patch.object(markdown_bundle.subprocess, 'run', side_effect=fake_pandoc), \
                      patch.object(web_presentation, 'build_manual_ir_from_source', wraps=build_manual_ir_from_source) as assembler:
                     output = markdown_bundle.export_markdown_from_bundle(
                         {}, 'OTHER', region, str(root / 'manual.md'),
