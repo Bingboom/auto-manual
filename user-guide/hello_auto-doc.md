@@ -1567,3 +1567,11 @@ screenshot round. Under the measured-LaTeX fallback plan an unmatched source
 between two anchors no longer donates its pages to the preceding story, and
 Warranty and App Setup are kept in separate linked chains so the App section
 starts its own page instead of continuing under the warranty tail.
+
+Under a measured fallback plan a story's chain is never longer than its own
+content needs. LaTeX and the IDML writer compose at different densities, so an
+anchor distance that is longer than the composed section used to leave trailing
+empty frames — blank body pages. Targets with an approved reference or target
+assembly plan are unaffected. When a section now runs out of room, InDesign
+marks it as overset rather than printing a blank page; that is the intended
+trade, so check the red overset markers after a rebuild.

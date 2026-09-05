@@ -275,3 +275,42 @@ maintainability guardrails (the span report lives with the story emitter rather
 than raising the `tools/export_idml.py` line pin); documentation links; US
 fixture and JP frozen-snapshot `build.py check`. Native acceptance remains
 pending and PR #1043 remains draft.
+
+### Screenshot round: blank folio 04 and the generalized fallback cap
+
+The operator opened the rebuilt candidate and reported physical page 6 (folio
+04) still blank. That page belongs to `01_meaning_of_symbols`, the first of the
+three spans this record had left undecided: the plan allocated four pages and
+the height estimate needed three, so the fourth linked frame received nothing.
+Unlike the earlier defect this was not mis-accounting — the measured plan
+faithfully reports that LaTeX spread the section over four physical pages. It
+is an engine-density difference, and honouring it costs a blank page.
+
+`reference_story_flow` already carried this exception for the preface ("a
+measured fallback plan may merely leave a physical gap before the next source;
+that gap is not a request to thread the preface story through blank frames").
+On the operator's decision that exception is now general: under a non-explicit
+plan the span may shorten a chain but never lengthen it past the story's own
+need, counted as the height estimate or one frame per authored page break,
+whichever is larger. Explicit assembly contracts are unchanged in both
+directions.
+
+This is a deliberate contract revision.
+`tests/test_reference_story_flow.py::test_reference_span_overrides_smaller_height_estimate`
+pinned the previous rule and was replaced by
+`test_fallback_span_never_exceeds_the_story_height_estimate`, plus new pins
+that an explicit assembly span still overrides a smaller estimate and that
+authored page breaks each keep a frame. Other measured-fallback targets (the KR
+line) will repaginate and need their own screenshot round; no approved
+reference target is affected.
+
+Resulting JE-1000F/JP allocation — every span now equals its own estimate:
+
+| | spreads | prose pages | symbols | charging methods | warranty | app |
+| --- | --- | --- | --- | --- | --- | --- |
+| `96618324` | 28 | 23 | 4 | 3 | shared chain | shared chain |
+| after | 23 | 18 | 3 | 2 | 2 | 2 |
+
+Overset, not blank pages, is now the failure mode when a section runs short of
+room. The next screenshot round must check the InDesign overset markers on the
+charging-methods and App sections, which each lost their surplus page.

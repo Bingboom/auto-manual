@@ -233,6 +233,22 @@ class ReferenceStoryEmitter:
             )
         ):
             pages = estimated_pages
+        # The same fallback plan measures a *different* composition engine, so
+        # LaTeX may spread a section over more physical pages than the IDML
+        # writer composes it into, and every surplus frame in the chain is a
+        # blank body page.  Cap the span at what this story needs on its own:
+        # its height estimate, or one frame per explicitly authored page break,
+        # whichever is larger.  Overset is the recoverable failure here and
+        # InDesign marks it; a blank page is neither.
+        if (
+            pages > estimated_pages
+            and not is_explicit_assembly_plan(self.page_plan)
+        ):
+            authored_breaks = sum(
+                1 for kind, text in blocks
+                if kind == "layout" and text.startswith("page_break")
+            )
+            pages = max(estimated_pages, authored_breaks + 1)
         self.spans.append((title, estimated_pages, pages))
         self.toc.note_h1s(blocks, page_cursor, pages)
         first_h1 = next((text for kind, text in blocks if kind == "h1"), "")

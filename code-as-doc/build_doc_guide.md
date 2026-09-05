@@ -1779,3 +1779,14 @@ dedicated section under a fallback plan is never allocated below its own
 estimate. `[export-idml] STORY SPANS` reports each story's allocated pages and,
 where they differ, the height estimate, so an over- or under-allocated section
 is named in the build log instead of only in a native screenshot.
+
+A measured fallback span may also be *longer* than the section the IDML writer
+composes, because it measures a different engine: LaTeX spread JE-1000F/JP's
+symbols section over four physical pages where the writer fills three, and the
+surplus linked frame printed as blank folio 04. The exception the preface
+already carried — a physical gap in a fallback plan is not a request to thread
+a story through blank frames — now covers every fallback story: the plan may
+shorten a chain but never lengthen it past what the story needs, counted as its
+height estimate or one frame per authored page break, whichever is larger. An
+approved-reference or target-assembly contract stays authoritative in both
+directions, since a human mapped it page by page.
