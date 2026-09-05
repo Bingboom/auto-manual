@@ -37,6 +37,7 @@ from tools.web_spec_component import transform_specification_tables
 from tools.web_symbol_components import transform_symbol_signal_table
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
+from tools.web_lcd_component import transform_lcd_icon_tables
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
@@ -987,63 +988,6 @@ def _transform_in_the_box(soup: BeautifulSoup, *, source_path: Path) -> None:
     )
 
 
-def _transform_lcd_icon_table(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-) -> None:
-    candidates = [
-        table
-        for table in soup.find_all("table")
-        if isinstance(table, Tag)
-        and (rows := _table_rows(table))
-        and all(len(row) == 4 for row in rows)
-    ]
-    if len(candidates) != 1:
-        raise WebPresentationError(
-            f"{source_path}: expected one four-column LCD icon table, found {len(candidates)}"
-        )
-
-    table = candidates[0]
-    rows = _table_rows(table)
-    if not all(row[1].find("img") and row[2].get_text(" ", strip=True) for row in rows):
-        raise WebPresentationError(f"{source_path}: LCD icon table rows are incomplete")
-
-    for colgroup in table.find_all("colgroup", recursive=False):
-        colgroup.decompose()
-    colgroup = soup.new_tag("colgroup")
-    for css_class in (
-        "hb-lcd-col-number",
-        "hb-lcd-col-icon",
-        "hb-lcd-col-name",
-        "hb-lcd-col-description",
-    ):
-        colgroup.append(soup.new_tag("col", attrs={"class": css_class}))
-    table.insert(0, colgroup)
-    table["class"] = [*table.get("class", []), "hb-lcd-icon-table"]
-
-    for row in rows:
-        row[0]["class"] = [*row[0].get("class", []), "hb-lcd-number"]
-        row[1]["class"] = [*row[1].get("class", []), "hb-lcd-icon"]
-        row[2]["class"] = [*row[2].get("class", []), "hb-lcd-name"]
-        row[3]["class"] = [*row[3].get("class", []), "hb-lcd-description"]
-        image = row[1].find("img")
-        if isinstance(image, Tag):
-            image["class"] = [*image.get("class", []), "hb-lcd-icon-art"]
-            for attribute in ("style", "width", "height"):
-                image.attrs.pop(attribute, None)
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-lcd-table-composition",
-            "aria-label": "LCD icon meanings",
-        },
-    )
-    table.replace_with(composition)
-    composition.append(table)
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1421,6 +1365,7 @@ def transform_web_fragment(
     region: str | None = None,
     language: str | None = None,
     declared_troubleshooting: bool = False,
+    declared_lcd_icons: bool = False,
 ) -> str:
     """Render declared semantics, then apply target-governed figure composition."""
     soup = BeautifulSoup(html_fragment, "html.parser")
@@ -1431,13 +1376,16 @@ def transform_web_fragment(
         soup, source_path=source_path, declared_page=declared_troubleshooting,
         error_type=WebPresentationError,
     )
-    semantic_fragment = str(soup) if has_specifications or has_troubleshooting else html_fragment
+    has_lcd = transform_lcd_icon_tables(
+        soup, source_path=source_path, declared_page=declared_lcd_icons,
+        error_type=WebPresentationError,
+    )
+    semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd else html_fragment
     data = contract or load_web_manual_contract()
     preface = data["preface"]
     overview = data["product_overview"]
     operations = data["operations"]
     fcc = data["fcc"]
-    lcd_icon_table = data["lcd_icon_table"]
     meaning_symbols = data["meaning_symbols"]
     warranty = data["warranty"]
     in_the_box = data["in_the_box"]
@@ -1448,10 +1396,6 @@ def transform_web_fragment(
     is_overview = _matches_source(source_path, list(overview["source_patterns"]))
     is_operations = _matches_source(source_path, list(operations["source_patterns"]))
     is_fcc = _matches_source(source_path, list(fcc["source_patterns"]))
-    is_lcd_icon_table = _matches_source(
-        source_path,
-        list(lcd_icon_table["source_patterns"]),
-    )
     is_meaning_symbols = _matches_source(
         source_path,
         list(meaning_symbols["source_patterns"]),
@@ -1470,7 +1414,6 @@ def transform_web_fragment(
         or is_overview
         or is_operations
         or is_fcc
-        or is_lcd_icon_table
         or is_meaning_symbols
         or is_warranty
         or is_in_the_box
@@ -1507,8 +1450,6 @@ def transform_web_fragment(
             error_type=WebPresentationError,
             language=language,
         )
-    if is_lcd_icon_table:
-        _transform_lcd_icon_table(soup, source_path=source_path)
     if is_meaning_symbols:
         transform_symbol_signal_table(
             soup,

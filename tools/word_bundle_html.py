@@ -338,6 +338,7 @@ def _convert_rst_fragment_to_html(
     region: str | None = None,
     language: str | None = None,
     declared_troubleshooting: bool = False,
+    declared_lcd_icons: bool = False,
 ) -> str:
     profile = normalize_presentation_profile(presentation_profile)
     source_name = source_path.name.lower()
@@ -355,6 +356,7 @@ def _convert_rst_fragment_to_html(
                     region=region,
                     language=fragment_lang,
                     declared_troubleshooting=declared_troubleshooting,
+                    declared_lcd_icons=declared_lcd_icons,
                 )
             return _stage_fragment_assets(rewritten_fragment, source_path, bundle_dir)
 
@@ -375,6 +377,7 @@ def _convert_rst_fragment_to_html(
             region=region,
             language=fragment_lang,
             declared_troubleshooting=declared_troubleshooting,
+            declared_lcd_icons=declared_lcd_icons,
         )
     else:
         rewritten_fragment = transform_word_fcc_html(
@@ -422,19 +425,20 @@ def build_word_bundle_html(
     body_parts: list[str] = []
     page_metas: list[WordBundlePageMeta] = []
     page_paths = list(materialized.page_paths)
-    troubleshooting_paths: set[Path] = set()
+    declared_csv_pages: dict[Path, str] = {}
     if profile == WEB_PRESENTATION_PROFILE:
         # Reuse the target's declared CSV page identities once per bundle.
         # slot_id/renames are resolved by the existing assembly planner, not
         # guessed from filenames or the HTML's localized content.
         if cfg.get("pages") or cfg.get("paths", {}).get("page_manifest"):
-            troubleshooting_paths = {
-                (materialized.page_dir / planned.file_name).resolve()
+            declared_csv_pages = {
+                (materialized.page_dir / planned.file_name).resolve(): planned.page.page
                 for planned in plan_materialized_pages(
                     cfg, model=materialized.model, region=materialized.region,
                     langs=list(materialized.languages) or None,
                 )
-                if isinstance(planned.page, CsvPage) and planned.page.page == "troubleshooting"
+                if isinstance(planned.page, CsvPage)
+                and planned.page.page in {"troubleshooting", "lcd_icons"}
             }
         page_paths = [path for path in page_paths if should_include_web_page(path)]
         if page_paths and not is_web_entry_page(page_paths[0]):
@@ -458,7 +462,8 @@ def build_word_bundle_html(
             model=materialized.model,
             region=materialized.region,
             language=materialized.lang,
-            declared_troubleshooting=rst_path.resolve() in troubleshooting_paths,
+            declared_troubleshooting=declared_csv_pages.get(rst_path.resolve()) == "troubleshooting",
+            declared_lcd_icons=declared_csv_pages.get(rst_path.resolve()) == "lcd_icons",
         )
         body_parts.append(html_fragment or "<div></div>")
         page_role = page_template_role_for_source_ref(rst_path)

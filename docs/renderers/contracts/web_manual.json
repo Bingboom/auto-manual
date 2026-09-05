@@ -49,9 +49,6 @@
       }
     ]
   },
-  "lcd_icon_table": {
-    "source_patterns": ["lcd_icons_*"]
-  },
   "meaning_symbols": {
     "source_patterns": ["symbols_*"],
     "signal_row_count": 4
