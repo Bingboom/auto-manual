@@ -219,11 +219,18 @@ vocabulary. This resolves the JE-1000F/JP Web-bundle failure on its four-row
 definition table while keeping all rows and source wording. Single notices
 still become callouts; incomplete notices and malformed definition tables
 starting with a known label still fail instead of becoming generic tables.
-The ordinary JE-1000F/JP Web-bundle conversion now succeeds, but its symbols
-page still reports `skipped_raw=1`: the legacy raw-LaTeX `tcolorbox` heading
-and following two introductory paragraphs are not decoded. Strict IR
-validation continues to reject this incomplete extraction. Resolving the
-definition-table error is not a lossless-IR or production-delivery signoff.
+The prepared-RST decoder also recognizes a plain white/bold `tcolorbox`
+heading followed by explicit `par/noindent` paragraphs, emitting existing
+`h2` and `body` blocks in source order. It consumes the whole block only when
+the options are content-free layout keys and the text is plain copy or escaped
+punctuation. Unknown commands, content-bearing options, malformed boxes and
+empty paragraphs remain skipped; embedded recognized macros cannot hide an
+unsupported box. No target or language dispatch is added.
+This restores the JE-1000F/JP symbols heading and both introductory paragraphs:
+the same frozen runtime bundle goes from 267 to 270 blocks and passes strict
+IR validation with `skipped_raw=0`. The source template and LaTeX geometry are
+unchanged. This closes that extraction debt, not native page-layout acceptance
+or production-delivery signoff.
 This boundary does not change native acceptance
 D1–D4 (including the power on/off factual debt) or `production_eligible`.
 

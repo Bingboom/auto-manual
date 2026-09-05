@@ -94,8 +94,51 @@ _MACROS: tuple[tuple[str, int, str], ...] = (
 )
 
 
+def _extract_boxed_intro(body: str) -> list[tuple[str, str]] | None:
+    """Decode a plain title bar plus paragraphs, never an arbitrary TeX box.
+
+    Match the entire block before emitting anything. In particular, options
+    such as ``title``/``overlay`` and unknown inline commands can carry content
+    and must stay visible to the skipped-raw diagnostic.
+    """
+    plain = r"(?:\\[%&#_{}]|[^\\{}%])+"
+    match = re.fullmatch(
+        r"\s*\\par\s*\\noindent\s*\\begin\{tcolorbox\}\[(?P<options>[^\[\]]*)\]"
+        r"\s*\{\\color\{white\}\\bfseries\s+(?P<title>" + plain + r")\}"
+        r"\s*\\end\{tcolorbox\}(?P<body>.*)",
+        body, re.DOTALL,
+    )
+    if match is None:
+        return None
+    layout_keys = {
+        "colback", "colframe", "arc", "boxrule", "boxsep", "left", "right",
+        "top", "bottom", "width", "before skip", "after skip",
+    }
+    for option in match["options"].split(","):
+        key, separator, value = option.strip().partition("=")
+        if not separator or key.strip() not in layout_keys or not re.fullmatch(
+            r"[\w. +\-]+|(?:[\d.]+)?\\textwidth", value.strip(),
+        ):
+            return None
+    paragraphs = re.split(r"\\par\s*\\noindent\s*", match["body"])
+    if paragraphs[0].strip() or len(paragraphs) < 2:
+        return None
+    texts = [match["title"], *paragraphs[1:]]
+    if any(not text.strip() or not re.fullmatch(plain, text) for text in texts):
+        return None
+    texts = [re.sub(r"\\([%&#_{}])", r"\1", text).strip() for text in texts]
+    return [("h2", texts[0]), *(("body", text) for text in texts[1:])]
+
+
 def _extract_raw_latex(body: str, result: ExtractResult) -> None:
     stripped_body = body.strip()
+    if r"\begin{tcolorbox}" in body:
+        intro = _extract_boxed_intro(body)
+        if intro is not None:
+            result.blocks.extend(intro)
+        else:
+            result.skipped_raw += 1
+        return
     data_payload = parse_data_component(body)
     if data_payload is not None:
         result.blocks.append(("data", json.dumps(data_payload, ensure_ascii=False)))
