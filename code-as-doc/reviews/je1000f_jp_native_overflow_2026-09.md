@@ -202,3 +202,76 @@ rest passing; full Ruff, maintainability guardrails and documentation-link
 checks pass. US fixture and JP frozen-snapshot `build.py check` runs pass.
 Delivery packaging must collect and rewrite both production and flow links;
 its hash/asset/residual report is included with the screenshot candidate.
+
+## Pagination phase: page spans and section boundaries
+
+The authorized third phase (pagination/components) starts from a rebuild of
+`96618324` against the frozen JP snapshot. That rebuild reports 28 spreads,
+108 stories and 266 IR blocks with zero skipped raw blocks. The IR block count
+matches the previous candidate; the spread and story counts do **not** match
+the "21 physical spreads, 96 stories" recorded for the earlier screenshot
+candidate, and the working tree carries no uncommitted source change that
+would explain the difference. Treat the earlier spread/story figures as
+unreproduced at this commit and use the numbers below.
+
+Two allocation defects were found, both in span selection rather than in
+component geometry.
+
+1. **Blank body pages.** Under the measured-LaTeX fallback plan a story's
+   spread chain is the anchor distance to the next *matched* source. Three of
+   the 14 JP sources do not match, and `planned_span` skipped over them to the
+   next anchor. `02_whats_in_the_box` was therefore threaded across four
+   frames for one page of content, while the unmatched sources were emitted
+   again as their own spreads. An unanchored gap now falls back to the height
+   estimate. Explicit assembly contracts are untouched, because they return
+   their declared `planned_page_count` before this path is reached.
+2. **Warranty and App Setup shared one chain.** The fallback merge that avoids
+   overset had merged them into `11_warranty + 12_app_setup_placeholder`, which
+   is why the App section opened under the warranty tail with its button labels
+   detached across the page break. Both roles are now dedicated sections that
+   never share a linked chain. Because a dedicated section can no longer borrow
+   its neighbour's frames, it is also never allocated below its own estimate
+   under a fallback plan; the LaTeX anchor distance gave Warranty one page for
+   two pages of content, which is the reported bottom-margin compression.
+
+`[export-idml] STORY SPANS` now reports every prose story's allocated pages and
+its height estimate. Measured effect on JE-1000F/JP:
+
+| | spreads | prose pages | warranty | app |
+| --- | --- | --- | --- | --- |
+| before | 28 | 23 | shared chain | shared chain |
+| after | 26 | 21 | 2 | 3 |
+
+Three unrelated spans remain plan-driven and above their estimate
+(`01_meaning_of_symbols=4(est3)`, `08_charging_methods=3(est2)`,
+`12_app_setup_placeholder=3(est2)`). The estimate is deliberately coarse and
+biased low, so these are not evidence of blank pages; the next screenshots
+decide them.
+
+### Not a layout defect: storage durations
+
+The reference places the three storage durations on separate lines and the
+generated page crowds them onto one. This is a **source-data** difference, not
+composition. `Spec_Master` row
+`JE-1000F_JP__v1.1__specifications__s04__r03__storage_temperature__main__l01`
+carries `1ヶ月 -20℃~45℃ 3ヶ月 0℃~45℃ 1年間 0℃~25℃`, while the sibling
+`JE-1800B_JP` row carries the same content with `\n` separators. Correcting it
+is a live source-table write through the approval-gated path with a read-back,
+not a change to this branch; the local `data/phase2` mirror is not an editing
+surface.
+
+### Still open in this phase
+
+Component geometry is untouched: the LCD panel crossing the body margin toward
+the footer, LED/LCD content protruding beyond its rounded container, and the
+overview labels flattened into tables all need measured native iteration rather
+than span selection, and no automated signal in this repo distinguishes a
+deliberate `bottom_extra` allowance from a real overflow. They remain phase-3
+work. The rebuilt LaTeX PDF also still reports 20 missing `℃` glyphs in Gilroy;
+the earlier Celsius repair covered the IDML font fallback, not the LaTeX lane.
+
+Validation for this round: 3,650 unit tests (22 skipped); full Ruff;
+maintainability guardrails (the span report lives with the story emitter rather
+than raising the `tools/export_idml.py` line pin); documentation links; US
+fixture and JP frozen-snapshot `build.py check`. Native acceptance remains
+pending and PR #1043 remains draft.

@@ -1558,3 +1558,12 @@ overrides. Product engravings and logos remain; added manual annotations are
 removed. Other targets retain their existing asset resolution. Local approved
 files are usable for review while dedicated asset-Base archival remains
 pending write permission; local hash checks do not prove online archival.
+
+`build.py idml` now prints `[export-idml] STORY SPANS`: each prose story's
+allocated page chain, with the height estimate shown in brackets whenever the
+two differ. A story allocated more pages than its content composes into is
+what produces blank body pages, so read this line before asking for another
+screenshot round. Under the measured-LaTeX fallback plan an unmatched source
+between two anchors no longer donates its pages to the preceding story, and
+Warranty and App Setup are kept in separate linked chains so the App section
+starts its own page instead of continuing under the warranty tail.

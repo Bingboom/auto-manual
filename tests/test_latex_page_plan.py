@@ -159,6 +159,27 @@ class LatexPagePlanTests(unittest.TestCase):
         self.assertEqual(9, planned_span(
             plan, ["operations", "charging", "trouble"], fallback=6))
 
+    def test_story_span_falls_back_across_an_unanchored_source(self) -> None:
+        """An unmatched source owns physical pages the story must not absorb.
+
+        The exporter emits that unmatched source as its own spread, so charging
+        the raw anchor distance to the preceding story threads it through
+        trailing blank linked frames -- the JE-1000F/JP blank-body-page defect.
+        """
+        plan = {
+            "physical_page_count": 20,
+            "pages": [
+                {"source_path": "page/whats_in_the_box.rst", "latex_start_page": 5},
+                {"source_path": "page/product_overview.rst"},
+                {"source_path": "page/operations.rst", "latex_start_page": 9},
+            ],
+        }
+
+        self.assertEqual(
+            1,
+            planned_span(plan, ["whats_in_the_box"], fallback=1),
+        )
+
     def test_approved_story_span_prefers_explicit_composition_page_count(self) -> None:
         plan = {
             "physical_page_count": 20,

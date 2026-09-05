@@ -1874,6 +1874,39 @@ class ExportIdmlTests(unittest.TestCase):
 
         self.assertEqual(emitted, ["ups + methods", "storage"])
 
+    def test_prose_flow_keeps_back_matter_sections_off_the_previous_tail(self) -> None:
+        """Warranty and App Setup never share one linked chain.
+
+        The measured-fallback merge exists to avoid overset, but merging these
+        two puts the App opening under the warranty tail and detaches its
+        button labels across the page break -- the JE-1000F/JP screenshot
+        finding for printed pages 22-24.
+        """
+        from tools.idml.prose_flow import ProseFlowBuffer
+
+        flow = ProseFlowBuffer()
+        flow.add("11_warranty", [("body", "warranty"), ("body", "overflow")])
+        flow.add("12_app_setup_placeholder", [("body", "app")])
+        emitted = []
+        plan = {"pages": [
+            {"source_path": "page/11_warranty.rst", "latex_start_page": 21},
+            {
+                "source_path": "page/12_app_setup_placeholder.rst",
+                "latex_start_page": 22,
+            },
+        ]}
+
+        flow.flush(
+            lambda _sid, title, _blocks, _columns: emitted.append(title),
+            lambda stem: stem,
+            plan,
+            estimate_pages=lambda blocks, _columns: len(blocks),
+        )
+
+        self.assertEqual(
+            emitted, ["11_warranty", "12_app_setup_placeholder"],
+        )
+
     def test_long_troubleshooting_table_starts_on_its_second_page(self) -> None:
         from tools.idml.prose_flow import align_trouble_table
 

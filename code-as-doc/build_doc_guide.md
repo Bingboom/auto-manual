@@ -1767,3 +1767,15 @@ overrides. Product engravings and logos remain; added manual annotations are
 removed. Other targets retain their existing asset resolution. Local approved
 files are usable for review while dedicated asset-Base archival remains
 pending write permission; local hash checks do not prove online archival.
+
+Under the measured-LaTeX fallback plan a story's spread chain is the anchor
+distance to the next matched source. An *unmatched* source between them owns
+physical pages of its own and is emitted as its own spread, so charging that
+distance to the preceding story threads it through trailing blank linked
+frames. Such an unanchored gap now falls back to the height estimate instead;
+an explicit assembly contract is unaffected. Warranty and App Setup are also
+treated as dedicated sections that never share one linked chain, and a
+dedicated section under a fallback plan is never allocated below its own
+estimate. `[export-idml] STORY SPANS` reports each story's allocated pages and,
+where they differ, the height estimate, so an over- or under-allocated section
+is named in the build log instead of only in a native screenshot.

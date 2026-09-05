@@ -596,6 +596,7 @@ def main() -> int:
         _template_merge.bake_beside(out, args.template, check_idml)
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
+    story_emitter.report_spans()
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "
           f"prose pages={prose_pages} skipped raw blocks={skipped_raw} | "
           f"spec rows={n_rows} lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")

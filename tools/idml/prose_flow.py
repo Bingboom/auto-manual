@@ -19,6 +19,13 @@ from .control_labels import (
     matches_base_label_block,
 )
 from .composition_plan import is_explicit_assembly_plan
+from .page_roles import PageRole, classify_page_role
+
+# A legally distinct back-matter section opens its own page in every
+# approved reference book.  Letting the height estimate merge it into the
+# preceding flow is what puts the App opening under the warranty tail and
+# detaches its button labels across the page break.
+DEDICATED_SECTION_ROLES = frozenset({PageRole.WARRANTY, PageRole.APP_SETUP})
 
 Block = tuple[str, str]
 EmitProse = Callable[[str, str, list[Block], int], None]
@@ -69,6 +76,10 @@ class ProseFlowBuffer:
         if not self.items:
             return False
         items = self._items_with_approved_splits(page_plan)
+        dedicated_stems = set(dedicated_stems) | {
+            stem for stem, _, _ in items
+            if classify_page_role(Path(stem)) in DEDICATED_SECTION_ROLES
+        }
         planned_starts = {
             Path(entry["source_path"]).stem: entry.get("latex_start_page")
             for entry in (page_plan or {}).get("pages", [])

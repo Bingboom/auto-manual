@@ -7,7 +7,7 @@ boundaries without inheriting the LaTeX reference page breaks.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .language_contract import governed_languages
@@ -17,7 +17,10 @@ from .asset_contracts import (
     plan_page_owns_component,
 )
 from .params import localized_param_pt, param_pt
+from .composition_plan import is_explicit_assembly_plan
+from .page_roles import classify_page_role
 from .prose_flow import (
+    DEDICATED_SECTION_ROLES,
     apply_component_composition_data,
     composition_language,
     composition_type,
@@ -49,6 +52,30 @@ class ReferenceStoryEmitter:
     toc: object
     bundle_root: Path
     page_plan: dict | None = None
+    # (title, height-estimate pages, allocated pages).  A story allocated more
+    # frames than its content composes into is exactly the trailing-blank-page
+    # failure mode; recording both numbers makes the source of each span
+    # visible in the exporter report instead of only in a native screenshot.
+    spans: list[tuple[str, int, int]] = field(default_factory=list)
+
+    def report_spans(self) -> None:
+        """Report each prose story's allocated spread chain and its estimate.
+
+        ``pages_for_height`` rounds up, so a story whose allocated span exceeds
+        what InDesign actually composes leaves trailing empty linked frames — the
+        "blank body page" screenshots report.  Printing the allocation next to the
+        height estimate names the responsible story without opening the package.
+        """
+        spans = self.spans
+        if not spans:
+            return
+        total = sum(pages for _, _, pages in spans)
+        detail = " ".join(
+            f"{title}={pages}"
+            + ("" if pages == estimated else f"(est{estimated})")
+            for title, estimated, pages in spans
+        )
+        print(f"[export-idml] STORY SPANS: pages={total} | {detail}")
 
     def emit(self, sid: str, title: str, blocks: list[tuple[str, str]],
              page_cursor: int, columns: int = 1) -> int:
@@ -171,6 +198,7 @@ class ReferenceStoryEmitter:
                 if plan_source == "target-assembly"
                 else 1
             )
+            self.spans.append((title, 1, pages))
             writer.add_story_frames(
                 sid,
                 [
@@ -186,10 +214,26 @@ class ReferenceStoryEmitter:
             )
             return page_cursor + pages
 
-        pages = writer.pages_for_height(estimate / max(1, columns))
+        estimated_pages = writer.pages_for_height(estimate / max(1, columns))
         pages = ir_projection.planned_story_pages(
-            self.page_plan, title, pages,
+            self.page_plan, title, estimated_pages,
         )
+        # A dedicated back-matter section no longer shares a linked chain with
+        # its neighbour, so it can no longer borrow the following section's
+        # frames.  Under a measured fallback plan the LaTeX anchor distance may
+        # be shorter than the section's own content; honouring it there is what
+        # compresses Warranty past the bottom body margin.  An approved
+        # assembly contract stays authoritative.
+        if (
+            pages < estimated_pages
+            and not is_explicit_assembly_plan(self.page_plan)
+            and any(
+                classify_page_role(Path(stem)) in DEDICATED_SECTION_ROLES
+                for stem in title.split(" + ")
+            )
+        ):
+            pages = estimated_pages
+        self.spans.append((title, estimated_pages, pages))
         self.toc.note_h1s(blocks, page_cursor, pages)
         first_h1 = next((text for kind, text in blocks if kind == "h1"), "")
         first_kind = next((kind for kind, _ in blocks if kind != "layout"), "")
