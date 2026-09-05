@@ -98,12 +98,19 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 3. Build Bundle And Export Modules
 
-[`tools/localized_copy.py`](../../tools/localized_copy.py) owns frozen-snapshot
-localized column selection and the existing strict copy-key resolver. IDML
-compatibility loaders and CSV page readers use its selection primitives;
+[`tools/utils/csv_fields.py`](../../tools/utils/csv_fields.py) owns the pure
+column spelling, header presence and cell text selection primitives. It has
+no business-reader or language-registry imports.
+[`tools/localized_copy.py`](../../tools/localized_copy.py) retains compatible
+exports, registry-aware snapshot helpers and the strict copy-key resolver. IDML
+compatibility loaders and CSV page readers keep using those exports;
 [`tools/lang_registry.py`](../../tools/lang_registry.py) remains the language
-metadata owner. Table-specific fallback and empty-cell policies stay with the
-readers, as recorded in
+metadata owner. Spec_Master row helpers and lookup consumers use `csv_fields`
+directly, retaining their own narrow alias and source-language policy. The
+dependency stays one-way: `localized_copy -> spec_master -> row_helpers ->
+csv_fields`; no lazy import hides a return edge. Model canonicalization,
+ranking, filtering, repair and cache owners are unchanged. Table fallback and
+empty-cell policies are recorded in
 [`external_table_contracts.md`](external_table_contracts.md#localized-columns-in-frozen-snapshots).
 
 [`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade and delegate to:

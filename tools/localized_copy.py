@@ -11,6 +11,12 @@ from functools import lru_cache
 from pathlib import Path
 
 from tools import lang_registry
+# Compatibility exports; the implementation must not depend on a business reader.
+from tools.utils.csv_fields import (
+    first_existing_column as first_existing_column,
+    first_text as first_text,
+    localized_columns as localized_columns,
+)
 from tools.utils.spec_master import canonicalize_model_token
 from tools.utils.variable_resolver import parse_model_tokens
 
@@ -39,28 +45,6 @@ def snapshot_language_suffixes(lang: str | None) -> tuple[str, ...]:
     return (raw,) if raw else ()
 
 
-def localized_columns(
-    bases: Iterable[str], suffixes: Iterable[str], *, uppercase: bool = False,
-) -> tuple[str, ...]:
-    """Expand CSV spelling variants without choosing aliases or fallbacks.
-
-    Callers supply registry alias order or table suffix order. Lowercase and
-    underscore spellings preserve legacy CSV readers; uppercase is opt-in for
-    the spec parser. Base variants are interleaved for each suffix spelling.
-    """
-    bases = tuple(bases)
-    columns: list[str] = []
-    for suffix in suffixes:
-        if not suffix:
-            continue
-        variants = [suffix, suffix.casefold()]
-        if uppercase:
-            variants.append(suffix.upper())
-        variants.extend((suffix.replace("-", "_"), suffix.casefold().replace("-", "_")))
-        columns.extend(f"{base}_{variant}" for variant in variants for base in bases)
-    return tuple(dict.fromkeys(columns))
-
-
 def table_localized_columns(table: str, base: str, lang: str) -> tuple[str, ...]:
     """Only columns declared for this table/field, then their CSV spellings.
 
@@ -75,43 +59,6 @@ def table_localized_columns(table: str, base: str, lang: str) -> tuple[str, ...]
         if spec is not None else ((lang or "").strip(),)
     )
     return localized_columns((base,), suffixes)
-
-
-def first_existing_column(
-    headers: Iterable[str], columns: Iterable[str], *,
-    fallback_columns: Iterable[str] = (), default: str | None = None,
-) -> str:
-    """Select by header presence only; blank cells never advance this search.
-
-    If no column exists, return the caller's diagnostic key (or the first
-    candidate). The caller retains responsibility for missing-column errors.
-    """
-    candidates = (*columns, *fallback_columns)
-    if not candidates and default is None:
-        raise ValueError("column selection requires candidates or an explicit default")
-    headers = set(headers)
-    return next((key for key in candidates if key in headers),
-                default if default is not None else candidates[0])
-
-
-def first_text(
-    row: Mapping[str, str | None], columns: Iterable[str], *,
-    fallback_columns: Iterable[str] = (), strip: bool = True,
-) -> str:
-    """First nonempty cell, followed only by explicitly supplied fallbacks.
-
-    Missing keys, None and empty strings are unavailable. By default whitespace
-    is also unavailable. ``strip=False`` preserves raw CSV truthiness, including
-    whitespace; callers may strip *after* selection when that is their policy.
-    There is no implicit source-language or English fallback.
-    """
-    for key in (*columns, *fallback_columns):
-        value = row.get(key) or ""
-        if strip:
-            value = value.strip()
-        if value:
-            return value
-    return ""
 
 
 def localized_cell(

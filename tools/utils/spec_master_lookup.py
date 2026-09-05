@@ -6,13 +6,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from tools.utils.csv_fields import first_text
 from tools.utils.spec_master_shared import (
     ProductNameMatch,
     SpecValueMatch,
     _DERIVED_MULTILINE_PLACEHOLDERS,
 )
 from tools.utils.spec_master_row_helpers import (
-    _first_non_empty,
     _iter_ranked_rows,
     _normalize_line_order_suffix,
     _pick_lang_value,
@@ -20,28 +20,10 @@ from tools.utils.spec_master_row_helpers import (
     _pick_usage_type,
     _pick_value_role,
     _read_csv_rows,
+    _spec_lang_columns,
     resolve_page_value_placeholder_name,
     source_language_for_row,
 )
-
-
-def _pick_lang_specific_value(row: dict[str, str], base: str, lang: str) -> str:
-    normalized_lang = (lang or "").strip()
-    if not normalized_lang:
-        return ""
-    candidates = [
-        normalized_lang,
-        normalized_lang.lower(),
-        normalized_lang.upper(),
-        normalized_lang.replace("-", "_"),
-        normalized_lang.lower().replace("-", "_"),
-    ]
-    if normalized_lang.casefold() in {"br", "pt-br", "pt_br"}:
-        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
-    return _first_non_empty(
-        row,
-        [f"{base}_{suffix}" for suffix in dict.fromkeys(candidate for candidate in candidates if candidate)],
-    )
 
 
 def _looks_like_translation_note(value: str) -> bool:
@@ -68,9 +50,9 @@ def _preferred_page_value_text(row: dict[str, str], *, lang: str) -> str:
         and _pick_usage_type(row) == "page_value"
         and _pick_value_role(row) == "label"
     ):
-        localized_row_label = _pick_lang_specific_value(row, "Row_label", normalized_lang)
-        source_row_label = _first_non_empty(row, ["Row_label_source", "row_label_source"])
-        source_value = _first_non_empty(row, ["Value_source", "value_source"])
+        localized_row_label = first_text(row, _spec_lang_columns("Row_label", normalized_lang))
+        source_row_label = first_text(row, ["Row_label_source", "row_label_source"])
+        source_value = first_text(row, ["Value_source", "value_source"])
         if (
             localized_row_label
             and not _looks_like_translation_note(localized_row_label)
@@ -225,7 +207,7 @@ def _compose_placeholder_line_value(row: dict[str, str], *, lang: str) -> str:
     param = _pick_lang_value(row, "Param", lang)
     value = _pick_lang_value(row, "Value", lang)
     if param and value:
-        separator = _first_non_empty(row, ["param_value_sep", "Param_value_sep"])
+        separator = first_text(row, ["param_value_sep", "Param_value_sep"])
         if not separator:
             separator = " : " if lang == "fr" else "：" if lang == "ja" else ": "
         return f"{param}{separator}{value}"
@@ -293,7 +275,7 @@ def resolve_template_substitutions_from_rows(
         if not value:
             continue
 
-        line_order_value = _first_non_empty(row, ["Line_order", "line_order"])
+        line_order_value = first_text(row, ["Line_order", "line_order"])
         if line_order_value not in {"", "1", "1.0"}:
             placeholder = f"{placeholder}_{line_order_value.replace('.', '_')}"
         substitutions.setdefault(placeholder, value)
@@ -307,7 +289,7 @@ def resolve_template_substitutions_from_rows(
             row_key=row_key,
             pages=pages,
         ):
-            line_order_value = _normalize_line_order_suffix(_first_non_empty(row, ["Line_order", "line_order"]))
+            line_order_value = _normalize_line_order_suffix(first_text(row, ["Line_order", "line_order"]))
             param = _pick_lang_value(row, "Param", lang)
             value = _pick_lang_value(row, "Value", lang)
             line_value = _compose_placeholder_line_value(row, lang=lang)
