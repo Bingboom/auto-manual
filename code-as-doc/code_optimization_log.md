@@ -1712,3 +1712,18 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - Debt: prepared/generated HTML parsing and retained markup, unregistered table
   ComponentSpecs, standalone specification's direct ComponentSpec path, other
   Web consumers, whole-manual assembly and separate Word/Flow source policies.
+
+
+## 2026-09-05: Standalone specification directive closes its public IR bypass
+
+- `SpecTableDirective` now consumes the existing specification IR pipeline;
+  duplicate ComponentSpec grouping, rowspan and final-table assembly were removed.
+- The standalone runtime stages existing specification modules. No additional
+  parser module, model config, CLI or serialized schema was added.
+- Real directive and isolated Sphinx tests observe public IR assembly/replay and
+  reject injected corrupt IR; continuation rows, inline markup and accessible
+  labels remain covered. One serialization-order assertion now checks actual
+  DOM attributes rather than their order in HTML text.
+- Remaining debt: whole-manual IR, other Web components, neutral rich text and
+  retained HTML, plus separate Word/Flow source policies. The earlier standalone
+  specification bypass is now closed; no JP native-acceptance claim is implied.

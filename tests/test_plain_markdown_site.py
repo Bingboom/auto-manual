@@ -5,6 +5,8 @@ from pathlib import Path
 import subprocess
 from tempfile import TemporaryDirectory
 
+from bs4 import BeautifulSoup
+
 from tools import plain_markdown_site as pms
 from tools import readthedocs_source
 from tools.manual_md_directives import DIRECTIVES, _cells
@@ -129,7 +131,10 @@ Power-on restart | Manual output off
     def test_spec_table_renders_label_column_rowspan_and_superscript(self) -> None:
         self.assertIn('class="hb-spec-table-composition"', self.html)
         self.assertIn('aria-label="INPUT PORTS"', self.html)
-        self.assertIn('<th class="manual-spec-label hb-spec-label" scope="row" rowspan="2">', self.html)
+        label = BeautifulSoup(self.html, "html.parser").select_one("th.hb-spec-label")
+        self.assertEqual(["manual-spec-label", "hb-spec-label"], label["class"])
+        self.assertEqual("row", label["scope"])
+        self.assertEqual("2", label["rowspan"])
         self.assertIn("<sup>①</sup>", self.html)
 
     def test_troubleshooting_splits_steps_into_a_line_block(self) -> None:

@@ -265,12 +265,21 @@ invent a registry registration or change `manual-ir/v1`.
 
 | Real consumer | Public IR status | Source boundary still present |
 | --- | --- | --- |
-| Prepared Web specifications | Scoped specification IR | Prepared HTML + retained rich markup |
+| Prepared Web / standalone MyST specifications | Shared scoped specification IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
-| Standalone MyST specification directive | ComponentSpec only | Direct directive projection |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
-These are **three scoped table consumers**, not whole-manual Web IR or a
+The standalone `{spec-table}` directive now encodes its authored title and
+inline rows for the existing specification IR adapter/consumer. Its duplicate
+ComponentSpec grouping, rowspan and final-table rendering path has been removed.
+The directive emits the figure only; the argument supplies IR section-title
+semantics without introducing an extra visible heading. Inline escaping and
+row tokenization remain the Markdown carrier's responsibility. Plain circled
+references now receive the same Web superscript style; authored superscripts
+are preserved without nesting. Staging reuses the existing specification modules,
+with no new parser module, config, registry entry or serialized schema.
+
+These are **three scoped table families across both Web entrances**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.

@@ -96,7 +96,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-043 | PR #1046（Web 规格表消费公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。之后从统一 main 开下一批公共 IR 调用方迁移；本条不扩大到后续 PR 或 JP 原生版式修复。 | 「合入 继续」2026-09-05 | #1046 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1046 squash `251c774c` 已合入；最终 head 17/17 成功、无待解决评审，随本次授权补记） |
 
-| MA-044 | PR #1047（Web LCD／故障排除公共 IR 消费，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1047 合入即失效；下次实质性触碰补记 | 生效 |
+| MA-044 | PR #1047（Web LCD／故障排除公共 IR 消费，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1047 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1047 squash `482b011a` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-045 | PR #1048（独立 Markdown 规格表接入公共 IR，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1048 合入即失效；下次实质性触碰补记 | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
