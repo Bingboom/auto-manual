@@ -1831,3 +1831,15 @@ binding fails before the original page is changed. The old direct Web
 ComponentSpec-only route exits; existing marker/filename language fallback,
 paragraph normalization, three-locale output and target admission remain.
 This is not a new general rich-text parser or a Word/IDML FCC migration.
+
+
+The prepared Web signal-word legend now crosses public IR before its figure is
+protected. The `web-symbol-signals` projection owns localized headers, labels,
+meanings, retained table markup and image references. The existing source gate
+still selects the table; replay verifies public hashes and semantic/markup/asset
+agreement before applying the completed figure. Every row's localized label and
+complete unspanned two-cell geometry are checked before any caller DOM mutation.
+This closes the former partial-change failure on a malformed final label. Rich
+meaning markup and whitespace left by print-column removal are preserved; the
+captured EN/FR/ES outputs are byte-identical. The adjacent symbol-pair table,
+other figure admission, CLI and `manual-ir/v1` stay unchanged.

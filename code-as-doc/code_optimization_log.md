@@ -1808,3 +1808,25 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
   normalization; other composite consumers, generic figure string protection,
   whole-manual IR, neutral rich text and Word/IDML parser migration. JP native
   layout remains separate.
+
+
+## 2026-09-05: Signal-word legend uses public IR and atomic validation
+
+- The actual RST/Web signal-table consumer now assembles and replays scoped
+  `web-symbol-signals` IR. Source selection and localized-label extraction move
+  to one source/contract adapter; direct caller DOM decoding exits.
+- The owned block retains headers, labels, meanings, rich table markup and image
+  references. Hashes and semantic/markup/asset agreement are verified before
+  replay; all labels and unspanned two-cell rows are validated before mutation.
+- Reproduced the old final-label failure changing earlier rows, then covered the
+  unchanged-caller behavior. Tests include real three-locale assembly, source-free
+  serialization, rich links/lists/images, corrupt/rehashed payloads, duplicate
+  candidates, surrounding tables and unchanged target admission.
+- Three captured EN/FR/ES outputs remain byte-identical. A parity check caught
+  repeated HTML parsing collapsing adjacent newlines; explicit table whitespace
+  preservation fixes it and is covered by a regression assertion.
+- One source module reuses the existing renderer with no raised size threshold,
+  new ComponentSpec registry, config or serialized schema. Remaining source
+  markup/filename admission, symbol-pair tables, other composite consumers,
+  generic figure string protection and whole-manual/neutral-rich-text work remain
+  separate. JP native layout is unchanged.

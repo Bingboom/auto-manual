@@ -1467,6 +1467,7 @@ def transform_web_fragment(
             source_path=source_path,
             expected_body_rows=int(meaning_symbols["signal_row_count"]),
             error_type=WebPresentationError,
+            language=language, model=model, region=region,
         )
         _transform_meaning_symbols_table(soup, source_path=source_path)
     if is_warranty:

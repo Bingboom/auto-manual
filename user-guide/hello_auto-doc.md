@@ -1149,6 +1149,12 @@ partial output. Existing EN/FR/ES copy, paragraph normalization, figure admissio
 and Word/IDML output are unchanged; this does not change legal text or approve
 an additional region.
 
+The signal-word legend also uses public IR while retaining its localized labels
+and rich meaning cells. Malformed final labels, ambiguous tables or unsupported
+row spans fail before the source table is partly changed. Existing EN/FR/ES
+output and surrounding symbol-pair tables are preserved; no additional target
+is admitted by this change.
+
 LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
