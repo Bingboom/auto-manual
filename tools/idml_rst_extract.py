@@ -131,6 +131,17 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
         source_ref="rst:list-table",
     )
 
+
+def _is_signal_word_definition_table(rows: list[list[str]]) -> bool:
+    """Keep complete, distinct signal-word definitions as an ordered table."""
+    if len(rows) < 2 or any(
+        len(row) != 2 or not _clean_rst_text(row[1]) for row in rows
+    ):
+        return False
+    labels = [notice_label_variant(_clean_rst_text(row[0])) for row in rows]
+    return all(label is not None for label in labels) and len(set(labels)) == len(labels)
+
+
 _ENUMERATED_ITEM = re.compile(r"^\d{1,2}[.)]\s+\S")
 
 
@@ -277,7 +288,10 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                     result.blocks.append(("component", _json.dumps(notice, ensure_ascii=False)))
                 elif rows:
                     first_cell = _clean_rst_text(rows[0][0]) if rows[0] else ""
-                    if notice_label_variant(first_cell) is not None:
+                    if (
+                        notice_label_variant(first_cell) is not None
+                        and not _is_signal_word_definition_table(rows)
+                    ):
                         raise ValueError(
                             "known notice label cannot fall back to a generic "
                             f"table: {first_cell!r}"

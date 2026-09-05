@@ -1675,6 +1675,19 @@ Field pairing now prefers stable source back-mapping before falling back to rend
 
 ## 8. Minimal Troubleshooting
 
+For JE-1000F/JP, `build.py md --config configs/config.ja.yaml --model JE-1000F
+--region JP --source runtime` supports the authored text-only inbox table and
+its following notes. The document adapter preserves a nonempty, one-row,
+three-column inventory with no images and no immediately adjacent table.
+Illustrated inbox compositions still require their three images and tip table.
+No placeholder images or synthetic tip copy are added.
+
+The prepared-bundle IR adapter distinguishes complete, multi-row signal-word
+definitions from single notice callouts using the shared label vocabulary.
+Each definition row needs two nonempty cells and a distinct recognized label;
+malformed tables beginning with a known signal word still fail. See the
+[same-source IR contract](dev/latex_indesign_same_source_plan.md) for the boundary.
+
 `Failed to resolve Product Name from Spec_Master.csv`
 
 - Check [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) for `Row_key=product_name`
