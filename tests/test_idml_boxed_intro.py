@@ -39,6 +39,8 @@ class BoxedIntroTests(unittest.TestCase):
             valid + r"\section{Extra}",
             valid.replace("First.", r"\unknown{Important}"),
             valid.replace("First.", r"\HBAppBody{Important}"),
+            valid.replace("First.", "$x_1$"),
+            valid.replace("First.", "A~B"),
             valid.replace("Symbols", " "),
             valid.replace("First.", " "),
             _intro("Symbols"),

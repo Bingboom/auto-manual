@@ -101,7 +101,7 @@ def _extract_boxed_intro(body: str) -> list[tuple[str, str]] | None:
     such as ``title``/``overlay`` and unknown inline commands can carry content
     and must stay visible to the skipped-raw diagnostic.
     """
-    plain = r"(?:\\[%&#_{}]|[^\\{}%])+"
+    plain = r"(?:\\[%&#_{}]|[^\\{}%$&#_^~])+"
     match = re.fullmatch(
         r"\s*\\par\s*\\noindent\s*\\begin\{tcolorbox\}\[(?P<options>[^\[\]]*)\]"
         r"\s*\{\\color\{white\}\\bfseries\s+(?P<title>" + plain + r")\}"
