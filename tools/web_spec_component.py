@@ -1,9 +1,4 @@
-"""Project explicitly declared specification HTML through HB-TABLE-SPEC.
-
-Source nodes retain rich inline copy; the public ComponentSpec adapter owns
-grouping and classes. No filename, target, title vocabulary or artwork grant
-is evidence that an ordinary table is a specification component.
-"""
+"""Render the validated public ManualIR Web specification projection."""
 
 from __future__ import annotations
 
@@ -11,106 +6,69 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from tools.component_specs.model import ComponentSpecError
-from tools.component_specs.spec_table import (
-    spec_table_component_spec,
-    web_spec_table_projection,
-)
+from tools.component_specs.model import ComponentSpec, ComponentSpecError
+from tools.component_specs.registry import require_valid_component_spec
+from tools.component_specs.spec_table import web_spec_table_projection
+from tools.component_specs.theme import require_component_theme_roles
 from tools.component_specs.web_source import superscript_circled_references
-
-
-def _source_rows(
-    table: Tag, *, source_ref: str, error_type: type[Exception]
-) -> list[list[Tag]]:
-    """Decode existing HTML spans, without discarding or manufacturing cells."""
-    if table.find("thead") or table.find("table") or len(table.find_all("tbody")) != 1:
-        raise error_type(
-            f"{source_ref}: specification requires one headerless table body"
-        )
-    rows = [
-        row.find_all(["th", "td"], recursive=False)
-        for row in table.select("tbody > tr")
-    ]
-    remaining = 0
-    for cells in rows:
-        if any(str(cell.get("colspan", "1")) != "1" for cell in cells):
-            raise error_type(f"{source_ref}: specification cells cannot span columns")
-        if len(cells) == 2 and remaining == 0:
-            try:
-                span = int(str(cells[0].get("rowspan", "1")))
-            except ValueError as exc:
-                raise error_type(
-                    f"{source_ref}: invalid specification label rowspan"
-                ) from exc
-            if span < 1:
-                raise error_type(
-                    f"{source_ref}: specification label rowspan must be positive"
-                )
-            remaining = span - 1
-        elif len(cells) == 1 and remaining > 0:
-            remaining -= 1
-        else:
-            raise error_type(
-                f"{source_ref}: specification lost its two-column row geometry"
-            )
-        if str(cells[-1].get("rowspan", "1")) != "1":
-            raise error_type(f"{source_ref}: specification values cannot span rows")
-    if not rows or remaining:
-        raise error_type(
-            f"{source_ref}: specification has missing rows for its label span"
-        )
-    return rows
+from tools.manual_ir import (
+    ManualIR,
+    ManualIRValidationError,
+    build_manual_ir_from_source,
+    validate_manual_ir,
+)
+from tools.manual_ir.web_specs import load_web_spec_source
 
 
 def _add_classes(tag: Tag, classes: str) -> None:
     tag["class"] = list(dict.fromkeys([*tag.get("class", []), *classes.split()]))
 
 
-def transform_specification_tables(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    language: str | None,
-    error_type: type[Exception],
-) -> bool:
-    """Render declared sections anywhere; return whether a section was found."""
-    headings = soup.select("h2.hb-spec-section")
-    for index, heading in enumerate(headings):
-        source_ref = f"{source_path}#specification-{index + 1}"
-        title = heading.select_one(".hb-spec-section-text")
-        if title is None:
-            raise error_type(
-                f"{source_ref}: specification heading lost its localized title span"
-            )
-        table = heading.find_next_sibling()
-        if (
-            not isinstance(table, Tag)
-            or table.name != "table"
-            or not {"hb-spec-table", "manual-spec-table"}.intersection(
-                table.get("class", [])
-            )
-        ):
-            raise error_type(
-                f"{source_ref}: declared specification must be followed by its governed table"
-            )
-        source_rows = _source_rows(table, source_ref=source_ref, error_type=error_type)
-        try:
-            spec = spec_table_component_spec(
-                section_title=title.get_text(" ", strip=True),
-                rows=[
-                    (
-                        cells[0].get_text("\n", strip=True) if len(cells) == 2 else "",
-                        cells[-1].get_text("\n", strip=True),
-                    )
-                    for cells in source_rows
-                ],
-                source_ref=source_ref,
-                language=str(table.get("lang") or language or "und"),
-            )
-            projection = web_spec_table_projection(spec)
-        except ComponentSpecError as exc:
-            raise error_type(f"{source_ref}: {exc}") from exc
+def render_specification_ir(ir: ManualIR) -> list[str]:
+    """Replay the scoped projection without reopening or reparsing source RST.
 
+    Validate the envelope and each owned component before returning any output.
+    The original inline HTML is a presentation payload, not a second source read.
+    """
+    issues = validate_manual_ir(ir, require_zero_skipped_raw=True)
+    if issues:
+        raise ManualIRValidationError(ir.source, issues)
+    if ir.metadata.get("projection") != "web-specifications" or len(ir.pages) != 1:
+        raise ValueError("expected a single-page web-specifications projection")
+    rendered = []
+    for block in ir.pages[0].blocks:
+        payload = block.payload
+        if block.kind != "web_specification" or not isinstance(payload, dict):
+            raise ValueError(f"{block.source_ref}: unsupported Web specification block")
+        if not isinstance(payload.get("component_spec"), dict) or not all(
+            isinstance(payload.get(key), str) for key in ("heading_html", "table_html")
+        ):
+            raise ValueError(
+                f"{block.source_ref}: incomplete Web specification payload"
+            )
+        spec = require_component_theme_roles(
+            require_valid_component_spec(
+                ComponentSpec.from_dict(payload["component_spec"])
+            )
+        )
+        projection = web_spec_table_projection(spec)
+        soup = BeautifulSoup(
+            payload["heading_html"] + payload["table_html"], "html.parser"
+        )
+        heading = soup.select_one("h2.hb-spec-section")
+        table = soup.find("table")
+        title = heading.select_one(".hb-spec-section-text") if heading else None
+        if heading is None or table is None or title is None:
+            raise ValueError(
+                f"{block.source_ref}: missing declared heading or table markup"
+            )
+        source_rows = [
+            row.find_all(["th", "td"], recursive=False)
+            for row in table.select("tbody > tr")
+        ]
+        # Semantic groups were decoded by the source adapter. Check that the
+        # retained markup still corresponds to them before any presentation.
+        _validate_markup(spec, source_rows, title, block.source_ref)
         # Only the declared decorative marker goes away. Links/emphasis and
         # any other authored heading content stay in the document outline.
         for bullet in heading.select(".hb-spec-bullet"):
@@ -164,4 +122,64 @@ def transform_specification_tables(
         )
         table.replace_with(composition)
         composition.append(table)
-    return bool(headings)
+        rendered.append(str(soup))
+    return rendered
+
+
+def _validate_markup(
+    spec: ComponentSpec, rows: list[list[Tag]], title: Tag, source_ref: str
+) -> None:
+    groups = spec.slot("rows").content
+    expected = [
+        (str(group["label"]) if index == 0 else "", str(value["text"]))
+        for group in groups
+        for index, value in enumerate(group["values"])
+    ]
+    actual = [
+        (
+            cells[0].get_text("\n", strip=True) if len(cells) == 2 else "",
+            cells[-1].get_text("\n", strip=True),
+        )
+        for cells in rows
+        if cells
+    ]
+    if (
+        any(len(cells) not in (1, 2) for cells in rows)
+        or actual != expected
+        or title.get_text(" ", strip=True) != spec.slot("section_title").content
+    ):
+        raise ValueError(
+            f"{source_ref}: component semantics do not match retained markup"
+        )
+
+
+def transform_specification_tables(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    language: str | None,
+    error_type: type[Exception],
+    model: str | None = None,
+    region: str | None = None,
+) -> bool:
+    """Actual Web entry: assemble and consume IR, then apply the complete result."""
+    try:
+        source = load_web_spec_source(
+            str(soup),
+            source_path=source_path,
+            language=language,
+            model=model,
+            region=region,
+        )
+        if source is None:
+            return False
+        rendered = render_specification_ir(build_manual_ir_from_source(source))
+    except (ValueError, ComponentSpecError) as exc:
+        raise error_type(f"{source_path}: {exc}") from exc
+    headings = soup.select("h2.hb-spec-section")
+    for heading, fragment in zip(headings, rendered, strict=True):
+        table = heading.find_next_sibling()
+        replacement = BeautifulSoup(fragment, "html.parser")
+        heading.replace_with(replacement)
+        table.decompose()
+    return True

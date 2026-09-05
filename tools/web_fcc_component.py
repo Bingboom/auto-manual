@@ -9,7 +9,8 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 
 from tools.component_specs.fcc import COMPONENT_ID
 from tools.component_specs.fcc_adapters import web_fcc_projection
-from tools.component_specs.fcc_html import parse_fcc_html
+from tools.manual_ir import ManualIR, build_manual_ir_from_source
+from tools.manual_ir.web_fcc import decode_fcc_ir, load_web_fcc_source
 
 
 def _append_paragraph_content(
@@ -70,22 +71,10 @@ def _opening_copy(soup: BeautifulSoup, lines: list[str]) -> Tag:
     return line_block
 
 
-def transform_fcc(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    config: Mapping[str, Any],
-    error_type: type[Exception],
-    language: str | None = None,
-) -> None:
-    source = parse_fcc_html(
-        soup,
-        source_path=source_path,
-        config=config,
-        error_type=error_type,
-        language=language,
-    )
-    projection = web_fcc_projection(source.spec)
+def render_fcc_ir(ir: ManualIR) -> str:
+    spec, mark_path = decode_fcc_ir(ir)
+    projection = web_fcc_projection(spec)
+    soup = BeautifulSoup("", "html.parser")
     composition = soup.new_tag(
         "figure",
         attrs={
@@ -112,7 +101,7 @@ def transform_fcc(
         "img",
         attrs={
             "class": projection["mark_class"],
-            "src": str(config["mark_path"]),
+            "src": mark_path,
             "alt": projection["accessibility_label"],
             "loading": "lazy",
         },
@@ -128,9 +117,27 @@ def transform_fcc(
     grid.append(right)
     composition.append(grid)
 
-    for node in source.consumed_nodes:
+    return str(composition)
+
+
+def transform_fcc(
+    soup: BeautifulSoup, *, source_path: Path, config: Mapping[str, Any],
+    error_type: type[Exception], language: str | None = None,
+    model: str | None = None, region: str | None = None,
+) -> None:
+    try:
+        source = load_web_fcc_source(
+            str(soup), source_path=source_path, config=config,
+            language=language, model=model, region=region,
+        )
+        rendered = render_fcc_ir(build_manual_ir_from_source(source))
+    except ValueError as exc:
+        raise error_type(str(exc)) from exc
+    # The parser owns all following FCC siblings; mutate only after replay.
+    heading = soup.find("h1")
+    for node in list(heading.find_next_siblings()):
         node.decompose()
-    source.heading.insert_after(composition)
+    heading.insert_after(BeautifulSoup(rendered, "html.parser").figure)
 
 
-__all__ = ["transform_fcc"]
+__all__ = ["transform_fcc", "render_fcc_ir"]

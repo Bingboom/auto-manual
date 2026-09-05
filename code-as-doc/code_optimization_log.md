@@ -1659,3 +1659,229 @@ Acceptance evidence:
   `6cf73fff`; the
   [published short URL](https://ht-doc.readthedocs.io/manual_je1000f_us.html)
   returned HTTP 200.
+
+
+## 2026-09-05 — Public IR integrity follow-up
+
+- Migrated the handoff report's last direct IR JSON read to public validation,
+  before artifact mutation; missing and malformed sidecars are distinct.
+- Prepared index discovery rejects missing declared pages. Registered prose
+  macros require complete arguments and account for uncovered raw content.
+  Strict CLI reports source failures without overwriting existing IR output.
+- Existing valid fixture identities/hashes and output goldens are retained;
+  regression cases cover actual strict CLI and handoff entrypoints.
+- This closes the bounded read/prose-integrity batch only. Web whole-ManualIR
+  adoption, Flow projection reconciliation, unresolved substitutions, merged
+  table semantics and specialized data-macro coverage remain separate debt.
+
+Validation evidence: the complete IR dictionaries for the prepared US fixture
+(17 source pages / 185 blocks) and frozen JP bundle (13 / 270) are identical
+with the baseline and revised prose decoder/conditional normalization. Both
+pass strict IR checks. Existing IDML goldens are not regenerated.
+
+
+## 2026-09-05: Web specifications consume public ManualIR
+
+- Real Web bundle specifications now call the public source assembler and IR
+  validator before component projection. Declared HTML parsing belongs to the
+  explicit `manual_ir.web_specs` source adapter; the neutral core imports no
+  HTML/IDML adapter.
+- Web no longer calls the Word specification extractor/re-renderer. Word remains
+  an active consumer of that implementation; it was not incorrectly deleted.
+- Scoped IR retains rich markup with validated ComponentSpec semantics and can
+  replay after public serialization. Invalid later sections no longer leave
+  earlier caller DOM sections modified.
+- Verified by a real bundle test with Word extraction disabled, scoped serialized
+  replay, source/markup integrity cases and exact existing transform output.
+- Debt remains: whole-manual Web IR, other Web components, prepared HTML parsing,
+  renderer-neutral rich text, and separate legacy Word/IDML/Flow source policies.
+
+
+## 2026-09-05: Shared public IR consumer for Web LCD and troubleshooting
+
+- Two real prepared-Web / standalone-MyST consumers now route through public
+  ManualSource assembly, ManualIR validation and one table replay module. The old
+  two direct DOM validation/render paths have become thin entrypoints.
+- A shared HTML provenance constructor also replaces the active specification
+  adapter's duplicate envelope assembly; existing specification IR is unchanged.
+- Declared table payloads preserve semantic row roles, authored headers, inline
+  assets and rich markup. Corrupt/rehashed-inconsistent payloads reject; a bad
+  later table no longer leaves earlier caller DOM modified.
+- Standalone staging ships the bounded public IR runtime and language registry,
+  verified in Python isolated mode without the source checkout or legacy IDML.
+- Debt: prepared/generated HTML parsing and retained markup, unregistered table
+  ComponentSpecs, standalone specification's direct ComponentSpec path, other
+  Web consumers, whole-manual assembly and separate Word/Flow source policies.
+
+
+## 2026-09-05: Standalone specification directive closes its public IR bypass
+
+- `SpecTableDirective` now consumes the existing specification IR pipeline;
+  duplicate ComponentSpec grouping, rowspan and final-table assembly were removed.
+- The standalone runtime stages existing specification modules. No additional
+  parser module, model config, CLI or serialized schema was added.
+- Real directive and isolated Sphinx tests observe public IR assembly/replay and
+  reject injected corrupt IR; continuation rows, inline markup and accessible
+  labels remain covered. One serialization-order assertion now checks actual
+  DOM attributes rather than their order in HTML text.
+- Remaining debt: whole-manual IR, other Web components, neutral rich text and
+  retained HTML, plus separate Word/Flow source policies. The earlier standalone
+  specification bypass is now closed; no JP native-acceptance claim is implied.
+
+
+## 2026-09-05: Prepared Web callouts cross Pandoc as public ManualIR
+
+- Replaced the raw-string callout placeholder transport with public IR. The
+  prepared HTML adapter supplies existing ComponentSpec semantics, exact markup,
+  image references and actual bundle/target provenance; the renderer checks both
+  envelope integrity and semantic/markup/asset agreement before returning bytes.
+- Existing `web_presentation` protection/restoration and `markdown_bundle` caller
+  are migrated. Two bounded adapter/replay modules reuse current ComponentSpec
+  and public source/assembly contracts; no new registry, config or IR schema.
+- Safety nets cover the real RST -> Web -> Pandoc -> Markdown entry in English
+  and Japanese, serialized replay after source removal, corrupt envelopes,
+  correctly rehashed but inconsistent payloads and malformed later callouts.
+  Six pre-change rich callout protection/restoration outputs match byte for byte.
+- Remaining: standalone MyST callout node carrier, already-protected composite
+  figure callouts, other components/whole-manual IR, neutral rich text and
+  existing language-label source lookup. JP native layout remains a separate lane.
+
+
+## 2026-09-05: Standalone MyST callout closes the ComponentSpec-only bypass
+
+- The directive keeps nested document nodes until HTML writing, then passes
+  resolved body markup through the existing callout source adapter, public IR
+  assembler and replay consumer. Direct ComponentSpec-only output exits this
+  Web path; Sphinx remains the Markdown/reference/image carrier.
+- Optional owned declaration fields preserve explicit variant/custom labels
+  and configured language. Invalid declarations or rehashed semantic mismatch
+  fail replay; existing prepared-Web IR payloads remain unchanged.
+- Staging includes existing callout modules, with an extension environment
+  version bump for old doctrees. No new implementation module, registry,
+  config or `manual-ir/v1` change.
+- Isolated Sphinx tests cover serialized replay, source context, resolved links,
+  image assets, default/explicit variants, corrupt IR, nested-table rejection
+  and non-HTML body compatibility. Five pre-change standalone table DOMs match;
+  six pre-change prepared-Web IR envelopes match.
+- Remaining: already-protected composite-figure callouts, whole-manual IR,
+  other components, neutral rich text and label lookup dependencies. Nested
+  tables/callouts are an explicit unsupported body shape under this contract.
+  JP native layout remains a separate workstream.
+
+
+## 2026-09-05: Prepared Inbox and its internal TIP consume public IR
+
+- The real RST/Web consumer now loads a scoped Inbox source, calls the public
+  assembler and replays verified IR before applying the figure. The old direct
+  ComponentSpec-only path and hardcoded `und` wrapper exit.
+- Three cards and the internal TIP remain one existing `HB-SPECIAL-INBOX`;
+  the new source adapter retains rich markup and all image references. No
+  parallel tip semantics, registry/config/schema change or extra renderer.
+- Replay verifies public hashes and owned semantic/asset agreement, including
+  correctly rehashed corrupt payloads. Incomplete/spanned/nested rows fail
+  before caller DOM mutation. Serialized replay survives source deletion.
+- Real RST tests cover EN/FR/ES, existing unsupported-target gating and source
+  context. Three pre-change localized Web outputs remain byte-identical.
+  Existing hotspot limits are unchanged.
+- Remaining: other composite figures, generic figure string protection,
+  whole-manual IR, renderer-neutral rich text, RST/LaTeX parser dependencies,
+  and other renderer consumer migration. JP native layout stays separate.
+
+
+## 2026-09-05: Prepared FCC consumes semantic public IR
+
+- The actual RST/Web FCC consumer now loads a source, assembles public IR and
+  replays the existing `HB-SPECIAL-FCC` semantic fields before changing caller
+  DOM. The direct ComponentSpec-only Web route has exited.
+- Opening lines, ordered paragraphs/measures, column break and logical/resolved
+  mark binding are sufficient for replay; no second retained-HTML interpretation
+  or source config read is introduced. Source identity includes target context
+  and active config/registry/theme hashes.
+- Envelope/owned-payload checks reject invalid semantics, unknown fields,
+  source/language drift and mismatched asset bindings. Real three-locale tests
+  first reproduced the bypass; serialization tests remove source/config and
+  forbid parser calls, including a legitimate semantic edit that drives output.
+  Three pre-change EN/FR/ES outputs remain byte-identical.
+- One source/contract module reuses the existing renderer and 150-line size
+  limit. No new config/schema/registry, dependency or workflow change.
+- Remaining: FCC source HTML/label/filename interpretation and existing paragraph
+  normalization; other composite consumers, generic figure string protection,
+  whole-manual IR, neutral rich text and Word/IDML parser migration. JP native
+  layout remains separate.
+
+
+## 2026-09-05: Signal-word legend uses public IR and atomic validation
+
+- The actual RST/Web signal-table consumer now assembles and replays scoped
+  `web-symbol-signals` IR. Source selection and localized-label extraction move
+  to one source/contract adapter; direct caller DOM decoding exits.
+- The owned block retains headers, labels, meanings, rich table markup and image
+  references. Hashes and semantic/markup/asset agreement are verified before
+  replay; all labels and unspanned two-cell rows are validated before mutation.
+- Reproduced the old final-label failure changing earlier rows, then covered the
+  unchanged-caller behavior. Tests include real three-locale assembly, source-free
+  serialization, rich links/lists/images, corrupt/rehashed payloads, duplicate
+  candidates, surrounding tables and unchanged target admission.
+- Three captured EN/FR/ES outputs remain byte-identical. A parity check caught
+  repeated HTML parsing collapsing adjacent newlines; explicit table whitespace
+  preservation fixes it and is covered by a regression assertion.
+- One source module reuses the existing renderer with no raised size threshold,
+  new ComponentSpec registry, config or serialized schema. Remaining source
+  markup/filename admission, symbol-pair tables, other composite consumers,
+  generic figure string protection and whole-manual/neutral-rich-text work remain
+  separate. JP native layout is unchanged.
+
+
+## 2026-09-05: Icon/meaning pair panels consume public IR
+
+- The real Web source/render path now goes through shared source assembly and
+  verified `web-symbol-pairs` IR. The direct matrix implementation
+  exits `web_presentation`; its rendering body moves to a dedicated consumer.
+- Reuse `manual_ir.web_symbols` for source-family ownership and common
+  provenance/envelope checks. Existing signal payloads and all three captured
+  IR envelopes remain unchanged; no parallel source registry/config/schema.
+- Retain four headers, ordered icon/meaning pairs, table markup and all image
+  references. The existing left-six/right-five contract remains. Reject
+  partial/spanned/nested matrices, duplicate candidates, missing/multiple icons
+  and content in unused cells before changing caller DOM.
+- Real EN/FR/ES whole-page outputs match pre-change bytes. Tests cover the
+  previously absent pair IR emission, source-free replay, rich meaning cells,
+  image order/completeness, corrupt/rehashed payloads and atomic application.
+  Existing hotspot size limits are unchanged.
+- Remaining: fixed matrix/source admission and retained-HTML interpretation,
+  other composite consumers, generic figure string protection, whole-manual
+  IR and neutral rich text. JP native layout stays separate.
+
+
+## 2026-09-05: App download columns consume public IR
+
+- The actual Web caller now assembles `web-app-download` IR and replays its
+  validated payload; the direct source/render function exits `web_presentation`.
+  Source parsing owns heading/copy/image selection and config/CSS provenance;
+  the consumer needs neither the source file nor config at replay.
+- Preserve two ordered rich-copy columns, original semantic image attributes,
+  store/QR artwork bindings and all copy image references. Reject ambiguous or
+  incomplete inputs and inconsistent payloads before caller mutation.
+- The real EN/FR/ES RST emission test failed before migration and passes after.
+  Whole-page HTML matches pre-change bytes with identical composite bindings;
+  tests cover serialized replay, rich content, asset order and atomic failures.
+- No new registry, config, schema or hotspot allowance. Remaining: paragraph
+  splitting/retained HTML, App inline controls and reference figures, other
+  composite callers, generic figure protection and whole-manual/neutral-rich-text
+  IR. JP native layout stays outside this batch.
+
+
+## 2026-09-05: App add-device inline control consumes public IR
+
+- The actual caller now assembles/replays `web-app-control`; its direct source/
+  render function exits `web_presentation`. Prefix/button-vocabulary matching
+  belongs to the source adapter, not the replay consumer.
+- Retain paragraph markup, localized accessible label and image references.
+  Validate the shared envelope and owned payload before replacing the paragraph;
+  ambiguous labels/paragraphs or artwork inside a consumed label fail atomically.
+- Real EN/FR/ES emission tests first fail on the old path, then pass after
+  migration. Source/config-free replay and byte-identical whole-page output are
+  verified, including adjacent rich content and asset retention.
+- No new config, registry, schema or hotspot allowance. Remaining: source
+  matching/retained HTML, generic inline/figure protection, reference components,
+  other callers and whole-manual/neutral-rich-text IR. JP native layout is separate.

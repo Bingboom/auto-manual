@@ -30,13 +30,26 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
     args: list[str] = []
     i = start
     for _ in range(count):
-        while i < len(text) and text[i] in " \t\n%":
-            i += 1
+        while i < len(text):
+            if text[i].isspace():
+                i += 1
+            elif text[i] == "%":
+                end = text.find("\n", i)
+                i = end + 1 if end >= 0 else len(text)
+            else:
+                break
         if i >= len(text) or text[i] != "{":
             break
         depth = 0
         j = i
         while j < len(text):
+            if text[j] == "\\":
+                j += 2
+                continue
+            if text[j] == "%":
+                end = text.find("\n", j)
+                j = end + 1 if end >= 0 else len(text)
+                continue
             if text[j] == "{":
                 depth += 1
             elif text[j] == "}":
@@ -44,6 +57,8 @@ def _read_braced_args(text: str, start: int, count: int) -> tuple[list[str], int
                 if depth == 0:
                     break
             j += 1
+        if depth != 0:
+            return args, len(text)
         args.append(text[i + 1:j])
         i = j + 1
     return args, i
@@ -186,6 +201,8 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
 
     i = 0
     consumed_any = False
+    uncovered: list[str] = []
+    covered_end = 0
     while i < len(body):
         nxt = None
         for macro, argc, kind in _MACROS:
@@ -212,7 +229,13 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
                 continue
             optional = body[j + 1:k]
             j = k + 1
-        args, j = _read_braced_args(body, j, argc if macro != "\\HBNoticeBlock" else 3)
+        required = argc if macro != "\\HBNoticeBlock" else 3
+        args, j = _read_braced_args(body, j, required)
+        if len(args) != required:
+            i = max(j, pos + len(macro))
+            continue
+        uncovered.append(body[covered_end:pos])
+        covered_end = j
         args = [_detex(a) for a in args]
         import json as _json
         if kind == "safetywarning" and args:
@@ -276,12 +299,12 @@ def _extract_raw_latex(body: str, result: ExtractResult) -> None:
             result.blocks.append(("layout", "page_break"))
         consumed_any = True
         i = j
-    if not consumed_any and body.strip():
-        # raw content with no recognizable macro (pure latex plumbing like
-        # \HBApplyLang, tabular constructs...) — plumbing is silent, real
-        # constructs count as skipped.
-        stripped = re.sub(r"\\HBApplyLang\{[^}]*\}", "", body).strip()
-        if stripped and not is_data_plumbing(stripped) \
-                and not stripped.startswith("\\begin{safetytwocol}") \
-                and not stripped.startswith("\\end{safetytwocol}"):
-            result.skipped_raw += 1
+    uncovered.append(body[covered_end:])
+    residue = " ".join(uncovered)
+    # Known layout wrappers carry no source copy. Anything else left around
+    # recognized calls still counts as skipped; one match cannot bless a block.
+    residue = re.sub(r"(?<!\\)%[^\n]*", "", residue)
+    residue = re.sub(r"\\HBApplyLang\{[^}]*\}", "", residue)
+    residue = re.sub(r"\\(?:begin|end)\{safetytwocol\}", "", residue).strip()
+    if residue and not is_data_plumbing(residue):
+        result.skipped_raw += 1

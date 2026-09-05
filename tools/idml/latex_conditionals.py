@@ -16,5 +16,6 @@ def active_lines(lines: list[str], tags: set[str]) -> list[str]:
         elif hidden and re.search(r"\\fi\b", line):
             hidden = False
         elif not hidden:
-            selected.append(line.replace(r"\HBPageBreak", r"\HBPageBreak{}"))
+            selected.append(re.sub(r"\\HBPageBreak\b(?:[ \t]*\{\}|(?![ \t]*\{))",
+                                   lambda _: r"\HBPageBreak{}", line))
     return selected

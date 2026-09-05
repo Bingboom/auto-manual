@@ -141,9 +141,62 @@ empty-cell policies are recorded in
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - web-profile figure/table composition and Pandoc-safe semantic restoration
-- [`tools/web_lcd_component.py`](../../tools/web_lcd_component.py)
-  - one declared LCD-table projection for prepared RST and standalone MyST;
-    assembly CSV identities select pages independently of filenames and artwork grants
+- [`tools/manual_ir/web_specs.py`](../../tools/manual_ir/web_specs.py)
+  - declared HTML specification source adapter into the public ManualSource contract;
+    isolated from the neutral core and IDML extraction
+- [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
+  - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
+    used by both the prepared Web bundle and standalone `SpecTableDirective`
+  - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
+- [`tools/manual_ir/web_source.py`](../../tools/manual_ir/web_source.py)
+  - shared scoped HTML-source provenance envelope; reused by specifications, declared tables, callouts, Inbox, FCC and signal legends
+- [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
+  - one declared LCD/troubleshooting source decoder and owned payload validation;
+    explicit CSV/class identities select tables independently of filenames or artwork grants
+- [`tools/web_table_ir.py`](../../tools/web_table_ir.py)
+  - shared public IR replay and atomic DOM application for LCD/troubleshooting;
+    `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
+- [`tools/manual_ir/web_callouts.py`](../../tools/manual_ir/web_callouts.py)
+  - declared/generated HTML callout decoder; owns one-row geometry, ComponentSpec, image references
+    and optional explicit carrier language/variant declarations
+- [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
+  - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
+  - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
+    standalone MyST uses the same consumer after Sphinx renders its resolved child nodes;
+    already-protected composite figures remain a separate path
+- [`tools/manual_ir/web_inbox.py`](../../tools/manual_ir/web_inbox.py)
+  - scoped Inbox source/payload adapter; reuses the existing three-card + internal TIP ComponentSpec
+  - records retained markup/assets and validates complete geometry plus semantic agreement
+- [`tools/web_inbox_component.py`](../../tools/web_inbox_component.py)
+  - real Web entrypoint assembles public IR, replays on detached tags, then atomically applies the figure
+  - existing target gate and projection remain; direct ComponentSpec-only Web reading has exited
+- [`tools/manual_ir/web_fcc.py`](../../tools/manual_ir/web_fcc.py)
+  - prepared FCC source and owned IR contract; carries existing semantic blocks and resolved mark binding
+  - validates canonical semantics, source identity and asset binding without reparsing HTML at replay
+- [`tools/web_fcc_component.py`](../../tools/web_fcc_component.py)
+  - actual Web consumer assembles public IR and renders its semantic slots before mutating caller DOM
+  - retains existing FCC projection/layout; source marker config is not a renderer input
+- [`tools/manual_ir/web_symbols.py`](../../tools/manual_ir/web_symbols.py)
+  - governed signal legend and icon/meaning pair sources; share provenance/envelope checks
+  - validate complete rows, labels and pair assets against retained rich table markup before replay
+- [`tools/web_symbol_components.py`](../../tools/web_symbol_components.py)
+  - actual signal-table Web consumer uses public IR and applies the figure only after validation
+  - raw caller-row decoding exits; signal payloads/hashes stay stable as pair consumers migrate
+- [`tools/web_symbol_pairs.py`](../../tools/web_symbol_pairs.py)
+  - public IR consumer for the existing left-six/right-five icon/meaning panels
+  - moves the direct source/render loop out of `web_presentation`; applies only fully validated replay
+- [`tools/manual_ir/web_app_download.py`](../../tools/manual_ir/web_app_download.py)
+  - prepared App download source and owned payload validation; binds two rich-copy columns and all artwork
+  - snapshots config/CSS provenance; replay validates data without reopening source/config
+- [`tools/web_app_download.py`](../../tools/web_app_download.py)
+  - real public IR consumer for store/QR columns; retains the original rendering body
+  - replaces image/removes consumed paragraphs only after complete validation and detached rendering
+- [`tools/manual_ir/web_app_controls.py`](../../tools/manual_ir/web_app_controls.py)
+  - prepared add-device paragraph source; validates localized label and markup/image agreement
+  - owns prefix/button-vocabulary admission and config/CSS provenance
+- [`tools/web_app_controls.py`](../../tools/web_app_controls.py)
+  - actual public IR consumer replaces only the validated paragraph after detached replay
+  - renders the existing accessible glyph without source/config access; old direct caller exits
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
