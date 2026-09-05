@@ -164,3 +164,16 @@ product image is pixel-identical to its reference crop. Source SHA-256:
 `d88b32fedb3f38bcbefc6df635079d10da52fd4b16e1046913c86c0c2fa65b0f`.
 New assets use the three dedicated asset Base tables; the legacy illustration
 table is read-only despite the older extraction skill's closing checklist.
+
+Approved artwork package: 69 files reproduced byte-for-byte by two independent
+intakes; package SHA `a18da95b614b8daa78dad188660bcf46bf3827308922ea31136a98106ac7924e`,
+manifest SHA `9bdf9771e9384cd316511cf210818504e56eddb0860c9dd2c51e6de7db62529f`.
+Six scoped local registry entries and 12 PDF/PNG exports pin the same recipe
+hashes. They retain empty annotation panels for editable-layout copy.
+
+**Archive debt:** live bot reads verified the three dedicated asset-table
+schemas and no matching source/asset/export records. Source creation returned
+`91403: you don't have permission`; no successful source record or attachment
+write was observed. Source, package and manifest are staged locally. Complete
+new-table archival and attachment download/hash verification when the bot has
+write permission. Never fall back to the read-only legacy illustration table.

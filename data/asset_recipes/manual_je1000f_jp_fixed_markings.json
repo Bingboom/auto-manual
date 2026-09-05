@@ -1,0 +1,829 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000f_jp_reference",
+    "expected_sha256": "d88b32fedb3f38bcbefc6df635079d10da52fd4b16e1046913c86c0c2fa65b0f",
+    "expected_page_count": 27
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 27
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "jp_reference_01",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 2,
+      "page_key": "jp_reference_02",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 3,
+      "page_key": "jp_reference_03",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 4,
+      "page_key": "jp_reference_04",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 5,
+      "page_key": "jp_reference_05",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 6,
+      "page_key": "jp_reference_06",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 7,
+      "page_key": "jp_reference_07",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 8,
+      "page_key": "jp_reference_08",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 9,
+      "page_key": "jp_reference_09",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 10,
+      "page_key": "jp_reference_10",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 11,
+      "page_key": "jp_reference_11",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 12,
+      "page_key": "jp_reference_12",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 13,
+      "page_key": "jp_reference_13",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 14,
+      "page_key": "jp_reference_14",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 15,
+      "page_key": "jp_reference_15",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 16,
+      "page_key": "jp_reference_16",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 17,
+      "page_key": "jp_reference_17",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 18,
+      "page_key": "jp_reference_18",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 19,
+      "page_key": "jp_reference_19",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 20,
+      "page_key": "jp_reference_20",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 21,
+      "page_key": "jp_reference_21",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 22,
+      "page_key": "jp_reference_22",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 23,
+      "page_key": "jp_reference_23",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 24,
+      "page_key": "jp_reference_24",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 25,
+      "page_key": "jp_reference_25",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 26,
+      "page_key": "jp_reference_26",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    },
+    {
+      "page": 27,
+      "page_key": "jp_reference_27",
+      "role": "manual_page",
+      "locale": "ja",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Supplied reference; candidate extraction only."
+        ]
+      },
+      "risk_tags": [
+        "localized-copy"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "overview/je1000f_jp/front_product",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            78,
+            330,
+            311
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_front.pdf",
+          "expected_sha256": "4daf8854c5c76cff22c7d2b09356248bce727465ee2e200592eb9751304e3eed"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_front.png",
+          "scale": 12,
+          "expected_sha256": "7518d2f183d04a7d2658854056294f45ef2986ff55196924277ae100bd313ae9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "operation/je1000f_jp/ups_mode",
+      "page": 16,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26,
+            269,
+            345,
+            497
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_ups.pdf",
+          "expected_sha256": "d03c136bbc09e70ab517f30db97da58c217779f2ab8685ce501fbc2c6ccf1855"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_ups.png",
+          "scale": 12,
+          "expected_sha256": "877603b9366f2db665dbca6370045c17a77a56f40a95d71ae59f384df11b47e5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "charging/je1000f_jp/ac_wall",
+      "page": 18,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.87,
+            101.01,
+            339.8,
+            232.27
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_ac_wall.pdf",
+          "expected_sha256": "16bf03930b88c8bb9d9c09ef6363873dd4c26710ab4f678f1622d3416e73de4a"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_ac_wall.png",
+          "scale": 12,
+          "expected_sha256": "f03e75aba528842d1d13081bb0f38b080a54fcb5ba14e73241fc6168e2d095b1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "charging/je1000f_jp/solar_direct",
+      "page": 19,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.94,
+            86.36,
+            339.75,
+            239.35
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_solar_direct.pdf",
+          "expected_sha256": "2a02e78fbdb3c335619b17e02c4990a258bdc3b9b186c6101a647fda337e700a"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_solar_direct.png",
+          "scale": 12,
+          "expected_sha256": "d2b78c2619a0bbaa221121e8bb6f115f810af3b31381df4c5a7eb8bb3935fd22"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "charging/je1000f_jp/solar_adapter",
+      "page": 19,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.9,
+            310.5,
+            340.84,
+            497.33
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_solar_adapter.pdf",
+          "expected_sha256": "fd069bbaf3e92f76c2eb21c17e7277251ee25787e210e656d756d3effbc20521"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_solar_adapter.png",
+          "scale": 12,
+          "expected_sha256": "65497180bada7f4c4ddfc2a2c936de871bbc13e087cbf0b3d7f6b2b6b57234e2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "charging/je1000f_jp/car_charge",
+      "page": 20,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "JP"
+        ],
+        "locales": [
+          "ja"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.6,
+            334.81,
+            338.91,
+            495.05
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "exports/je1000f_jp_car_charge.pdf",
+          "expected_sha256": "32e5547f00c9bf7a76ef5b321650bdb4567f9b7701ecadd4e5f6f5b1161e0bd6"
+        },
+        {
+          "format": "png",
+          "path": "exports/je1000f_jp_car_charge.png",
+          "scale": 12,
+          "expected_sha256": "60b7f65b4ece4c5686476d2762b4ea175234f48c0e66049b8eda69eb2910b09a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "Operator approved all six comparison images on 2026-09-05. Preserve logo and outlined product engravings; remove added annotation text only."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art"
+      ]
+    }
+  ]
+}
