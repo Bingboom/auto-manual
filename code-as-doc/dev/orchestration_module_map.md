@@ -148,6 +148,8 @@ empty-cell policies are recorded in
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
   - ordered assembly of the responsive base theme and focused component CSS modules into one public Sphinx stylesheet
+- [`tools/utils/spec_footnotes.py`](../../tools/utils/spec_footnotes.py)
+  - shared reference-ID parsing, numeric markers and marker attachment for CSV spec and IDML readers; row/language selection stays with callers
 - [`tools/build_docs_io.py`](../../tools/build_docs_io.py)
   - Sphinx, cleanup, Word/PDF I/O helpers
 - [`tools/build_docs_validation.py`](../../tools/build_docs_validation.py)

@@ -132,6 +132,29 @@ The migrated consumers deliberately retain different policies:
 | CSV spec parser | For `Row_label` / `Param` / `Value`, English or the row's source language uses source fields first and bypasses localized columns. Other requests try input aliases, then source fields/base, then the caller's explicit default keys |
 | Spec_Master utility lookup | For `Row_label` / `Param` / `Value`, English or the normalized source language bypasses localized fields. Otherwise try input spelling, lower, upper, underscore and lower underscore, followed only by literal br-family fallbacks; then source fields, bare base and `Spec_Value`. Other bases have no implicit source fields |
 
+The next consolidation is limited to **identical footnote interpretation** in
+[`tools/utils/spec_footnotes.py`](../../tools/utils/spec_footnotes.py). Both
+IDML `load_spec_sections` / annotations and CSV spec content collection import
+the same functions: comma-separated reference IDs are stripped and deduplicated
+in first-seen order; numeric orders are truncated to integers, 1–10 use circled
+markers, larger orders use `(n)`, and nonpositive orders have no marker.
+Appending markers preserves reference order, ignores unknown IDs, and leaves
+empty text empty. This helper does not strip the caller's visible text, select
+rows, resolve languages or escape renderer output. Existing private imports in
+the two consumers remain aliases, with no mirrored implementation.
+
+The 2026-09-05 audit did not justify merging the remaining policies:
+
+| Boundary | Preserved distinction |
+| --- | --- |
+| Source language | `source_language_for_row` is already shared; requested-language alias rules still differ as listed above |
+| Model / region filtering | CSV parsing uses canonical model/region/page matching and SKU scope; legacy IDML sections use exact `document_key`, `Is_Latest` and Page checks |
+| Row precedence | Utility lookups rank candidate rows; CSV and IDML readers collect, sort and merge sections rather than selecting one value |
+| Footnote selection | CSV can resolve referenced sibling-region definitions; legacy IDML marker loading uses its existing comma-list/ALL target selector |
+
+Changing these distinctions requires explicit output-policy decisions and
+characterization evidence; adding another generic reader would not resolve them.
+
 Spec_Master keeps its narrower policy in
 [`tools/utils/spec_master_row_helpers.py`](../../tools/utils/spec_master_row_helpers.py),
 shared by the product-name and template-substitution lookups. Only requests

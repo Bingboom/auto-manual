@@ -600,6 +600,9 @@ Carrier tag axes:
 `Spec_Footnotes.csv` note:
 
 - keep one row per reusable footnote definition
+- CSV/PDF and IDML readers share the same reference-ID deduplication and numeric
+  marker formatting. Put reference IDs in the desired order; repeated IDs print
+  once. This shared rule does not alter target/language selection or text fallback.
 - use `Footnote_id` as the stable reference key
 - use `Footnote_order` to control the rendered superscript order
 - keep `Type=Footnote` in the synced Feishu-backed rows so downstream renderers preserve the explicit trailer type
