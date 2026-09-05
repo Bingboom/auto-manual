@@ -1,41 +1,15 @@
-"""Build a deterministic semantic IR from one prepared RST bundle."""
+"""Assemble deterministic Manual IR from public source-page inputs."""
 from __future__ import annotations
 
-import hashlib
-import json
-import re
 from pathlib import Path
 from typing import Any
 
-import yaml
-
-from tools.build_docs_theme import normalize_sphinx_tag_value
-from tools.idml_rst_extract import bundle_page_order, extract_page
-from tools.idml.page_identity import page_language
-from tools.render_contract import (
-    LAYOUT_PARAMS_HASH_ALGORITHM,
-    contract_sha256,
-    layout_tokens_sha256,
-    load_layout_token_layers,
-    load_render_contract,
-)
-from tools.utils.path_utils import Paths
-
-from .hashing import file_sha256, ordered_files_sha256, value_sha256
+from .hashing import value_sha256
 from .model import ManualBlock, ManualIR, ManualPage
+from .source import ManualSource
 
 
-_JSON_BLOCK_KINDS = frozenset({"component", "data", "table"})
 _ASSET_KEYS = frozenset({"asset", "asset_ref", "figure", "image", "img", "src"})
-
-
-def _payload(kind: str, raw: str) -> Any:
-    if kind not in _JSON_BLOCK_KINDS:
-        return raw
-    try:
-        return json.loads(raw)
-    except json.JSONDecodeError:
-        return raw
 
 
 def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
@@ -54,130 +28,66 @@ def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
     return tuple(dict.fromkeys(found))
 
 
-# Matches `<semantic_name>_<feishu-file-token>.<ext>` wherever the basename
-# appears — full `_attachments/...` paths in CSV cells and RST directives, and
-# bare basenames inside rendered LaTeX macro arguments alike. The token is a
-# single 16+ char alphanumeric run; the all-lowercase lookahead keeps long
-# English name words (e.g. `internationalization`) out of the match.
-_ATTACHMENT_TOKEN_RE = re.compile(
-    r"([A-Za-z0-9_][A-Za-z0-9_.\-]*?)"
-    r"_(?![a-z]{16,}\.)[A-Za-z0-9]{16,}"
-    r"(\.(?:png|jpe?g|pdf|svg))"
-)
+def build_manual_ir_from_source(source: ManualSource) -> ManualIR:
+    """Assemble existing v1 pages/blocks without consulting a source renderer.
 
-
-def _token_normalized_sha256(text: str) -> str:
-    return hashlib.sha256(
-        _ATTACHMENT_TOKEN_RE.sub(r"\1\2", text).encode("utf-8")
-    ).hexdigest()
-
-
-def _normalized_table_sha256(path: Path) -> str:
-    """Digest of one synced table with volatile attachment tokens stripped.
-
-    Synced CSVs embed attachment file paths whose basenames end in a Feishu
-    file token, and tokens rotate on EVERY export — so the raw bytes of e.g.
-    ``symbols_blocks.csv`` differ between two syncs of identical data. Strip
-    the token (keep the semantic name and extension) before hashing so the
-    identity tracks content, not export runs.
+    Payloads are already decoded; source identifiers/languages/digests remain
+    exactly as supplied. Validation remains the shared validate_manual_ir
+    boundary, with strict language/raw policies selected by each consumer.
     """
-    return _token_normalized_sha256(path.read_text(encoding="utf-8", errors="replace"))
-
-
-def _normalized_page_sha256(path: Path) -> str:
-    """Digest of one bundle page with volatile attachment tokens stripped.
-
-    Finalized bundle pages embed staged attachment paths whose basenames end
-    in a Feishu file token, and tokens rotate on EVERY export — the same
-    volatility the snapshot identity already normalizes away. The per-page
-    ``source_sha256`` feeds the reference-layout contract pins, so hash the
-    token-normalized text: identical page content pins identically across
-    export runs, while any real content change still changes the digest.
-    """
-    return _token_normalized_sha256(path.read_text(encoding="utf-8", errors="replace"))
-
-
-def _snapshot_sha256(data_root: Path | None) -> str | None:
-    """Content identity of the phase2 snapshot, stable across re-syncs.
-
-    Two volatility sources used to make this pin structurally un-matchable on
-    CI (part of why the 1.6 publish had to bypass the same-source gate):
-    hashing the manifest FILE picked up ``generated_at``/tool metadata, and
-    the per-table digests picked up rotated attachment tokens embedded in the
-    CSVs. Hash the canonical set of token-normalized per-table digests
-    instead: identical data ⇒ identical identity, whenever and wherever the
-    sync ran; a real value change still changes the identity. Falls back to
-    the manifest file hash for legacy manifests without a tables list.
-    """
-    if data_root is None:
-        return None
-    manifest = data_root / "snapshot_manifest.json"
-    if not manifest.is_file():
-        return None
-    try:
-        payload = json.loads(manifest.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return file_sha256(manifest)
-    tables = payload.get("tables")
-    if not isinstance(tables, list) or not tables:
-        return file_sha256(manifest)
-    canonical: list[tuple[str, str, str]] = []
-    for entry in tables:
-        if not isinstance(entry, dict):
-            continue
-        logical_name = str(entry.get("logical_name"))
-        file_name = str(entry.get("file_name"))
-        table_path = data_root / file_name
-        if table_path.is_file():
-            digest = _normalized_table_sha256(table_path)
-        else:
-            digest = str(entry.get("sha256"))
-        canonical.append((logical_name, file_name, digest))
-    return value_sha256(sorted(canonical))
-
-
-def _declared_languages(root: Path, bundle_root: Path) -> list[str]:
-    """Snapshot the prepared bundle's manifest-declared language contract.
-
-    Small direct-export fixtures intentionally have no bundle manifest.  A
-    production bundle does, and its source page manifest is the authority for
-    the complete language set even if a generated include is accidentally
-    missing.  Keeping this declaration in the IR lets approved-layout
-    activation distinguish an incomplete production target from an ordinary
-    single-language fixture without consulting mutable source files later.
-    """
-    bundle_manifest = bundle_root / "bundle_manifest.json"
-    if not bundle_manifest.is_file():
-        return []
-    try:
-        bundle_payload = json.loads(bundle_manifest.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return []
-    manifest_ref = bundle_payload.get("page_manifest")
-    if not isinstance(manifest_ref, str) or not manifest_ref.strip():
-        return []
-    manifest_path = (root / manifest_ref).resolve()
-    try:
-        manifest_path.relative_to(root.resolve())
-        manifest_payload = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
-    except (OSError, ValueError, yaml.YAMLError):
-        return []
-    pages = manifest_payload.get("pages") if isinstance(manifest_payload, dict) else None
-    if not isinstance(pages, list):
-        return []
-    languages: list[str] = []
-    for page in pages:
-        if not isinstance(page, dict):
-            continue
-        raw_values = page.get("langs", page.get("lang"))
-        if raw_values is None:
-            continue
-        values = raw_values if isinstance(raw_values, list) else [raw_values]
-        for value in values:
-            language = str(value).strip().lower()
-            if language and "{" not in language and language not in languages:
-                languages.append(language)
-    return languages
+    if not source.pages:
+        raise ValueError("manual source has no pages")
+    pages: list[ManualPage] = []
+    all_assets: list[str] = []
+    all_block_hashes: list[str] = []
+    for page in source.pages:
+        blocks: list[ManualBlock] = []
+        for block_index, (kind, payload) in enumerate(page.blocks, start=1):
+            block_id = f"{page.page_id}:block-{block_index:04d}"
+            assets = (payload,) if kind == "image" else _asset_refs(payload)
+            block_hash = value_sha256({"kind": kind, "payload": payload})
+            blocks.append(ManualBlock(
+                block_id=block_id,
+                source_ref=f"{page.source_ref}#block-{block_index}",
+                kind=kind,
+                payload=payload,
+                content_sha256=block_hash,
+                asset_refs=assets,
+            ))
+            all_assets.extend(assets)
+            all_block_hashes.append(block_hash)
+        pages.append(ManualPage(
+            page_id=page.page_id,
+            source_ref=page.source_ref,
+            source_path=page.source_path,
+            language=page.language,
+            source_sha256=page.source_sha256,
+            skipped_raw=page.skipped_raw,
+            blocks=tuple(blocks),
+        ))
+    return ManualIR(
+        model=source.model,
+        region=source.region,
+        language=source.language,
+        source=source.source,
+        bundle_root=source.bundle_root,
+        bundle_sha256=source.bundle_sha256,
+        snapshot_sha256=source.snapshot_sha256,
+        layout_params_sha256=source.layout_params_sha256,
+        style_contract_sha256=source.style_contract_sha256,
+        content_sha256=value_sha256({
+            "page_ids": [page.page_id for page in pages],
+            "block_hashes": all_block_hashes,
+        }),
+        pages=tuple(pages),
+        asset_refs=tuple(dict.fromkeys(all_assets)),
+        metadata={
+            **source.metadata,
+            "page_count": len(pages),
+            "block_count": sum(len(page.blocks) for page in pages),
+            "skipped_raw": sum(page.skipped_raw for page in pages),
+        },
+    )
 
 
 def build_manual_ir(
@@ -194,100 +104,19 @@ def build_manual_ir(
     layout_param_overlays: tuple[Path, ...] = (),
     style_contract_path: Path | None = None,
 ) -> ManualIR:
-    paths = Paths(root=root)
-    layout_params_csv = layout_params_csv or paths.layout_params_csv
-    style_contract_path = style_contract_path or paths.manual_style_contract
-    ordered_pages = bundle_page_order(bundle_root)
-    if not ordered_pages:
-        raise ValueError(f"prepared bundle has no included page files: {bundle_root}")
+    """Compatibility entry for prepared RST callers (including production IDML).
 
-    contract = load_render_contract(style_contract_path)
-    base_tags = {
-        "latex",
-        # IDML consumes the LaTeX-capable source projection, but some pages
-        # also provide an editable semantic branch that must replace opaque
-        # raw-LaTeX artwork.  The dedicated tag lets those pages express
-        # ``latex and not idml`` / ``not latex or idml`` without changing the
-        # ordinary Sphinx builders.
-        "idml",
-        f"region_{region.lower()}",
-        "model_" + model.lower().replace("-", "_"),
-    }
-    # The product line, spelled exactly as the Sphinx plane spells it -- the
-    # same normalizer, so ``.. only:: category_bp`` cannot mean one thing to
-    # the PDF line and another to IDML.
-    normalized_category = normalize_sphinx_tag_value(category)
-    if normalized_category:
-        base_tags.add(f"category_{normalized_category}")
-    pages: list[ManualPage] = []
-    all_assets: list[str] = []
-    all_block_hashes: list[str] = []
+    New source producers call build_manual_ir_from_source directly. Import the
+    legacy adapter only when this RST-specific entry is invoked, so importing
+    and using the public source assembler never loads an IDML implementation.
+    """
+    from .prepared_rst import load_prepared_rst_source
 
-    for page_index, page in enumerate(ordered_pages, start=1):
-        page_lang = page_language(page, lang)
-        result = extract_page(page, base_tags | {f"lang_{page_lang}"})
-        blocks: list[ManualBlock] = []
-        page_id = f"page-{page_index:04d}-{page.stem}"
-        for block_index, (kind, raw) in enumerate(result.blocks, start=1):
-            payload = _payload(kind, raw)
-            block_id = f"{page_id}:block-{block_index:04d}"
-            assets = (raw,) if kind == "image" else _asset_refs(payload)
-            block_hash = value_sha256({"kind": kind, "payload": payload})
-            block = ManualBlock(
-                block_id=block_id,
-                source_ref=f"page/{page.name}#block-{block_index}",
-                kind=kind,
-                payload=payload,
-                content_sha256=block_hash,
-                asset_refs=assets,
-            )
-            blocks.append(block)
-            all_assets.extend(assets)
-            all_block_hashes.append(block_hash)
-        pages.append(
-            ManualPage(
-                page_id=page_id,
-                source_ref=f"page/{page.name}",
-                source_path=page.relative_to(bundle_root).as_posix(),
-                language=page_lang,
-                source_sha256=_normalized_page_sha256(page),
-                skipped_raw=result.skipped_raw,
-                blocks=tuple(blocks),
-            )
-        )
-
-    bundle_files: list[tuple[str, Path]] = [("index.rst", bundle_root / "index.rst")]
-    bundle_files.extend((page.relative_to(bundle_root).as_posix(), page) for page in ordered_pages)
-    manifest = bundle_root / "bundle_manifest.json"
-    if manifest.is_file():
-        bundle_files.append(("bundle_manifest.json", manifest))
-    bundle_sha = ordered_files_sha256(bundle_files)
-    content_sha = value_sha256(
-        {
-            "page_ids": [page.page_id for page in pages],
-            "block_hashes": all_block_hashes,
-        }
+    prepared = load_prepared_rst_source(
+        root=root, bundle_root=bundle_root, model=model, region=region,
+        lang=lang, source=source, category=category, data_root=data_root,
+        layout_params_csv=layout_params_csv,
+        layout_param_overlays=layout_param_overlays,
+        style_contract_path=style_contract_path,
     )
-    return ManualIR(
-        model=model,
-        region=region,
-        language=lang,
-        source=source,
-        bundle_root=bundle_root.as_posix(),
-        bundle_sha256=bundle_sha,
-        snapshot_sha256=_snapshot_sha256(data_root),
-        layout_params_sha256=layout_tokens_sha256(
-            load_layout_token_layers(layout_params_csv, layout_param_overlays)
-        ),
-        style_contract_sha256=contract_sha256(contract),
-        content_sha256=content_sha,
-        pages=tuple(pages),
-        asset_refs=tuple(dict.fromkeys(all_assets)),
-        metadata={
-            "page_count": len(pages),
-            "block_count": sum(len(page.blocks) for page in pages),
-            "skipped_raw": sum(page.skipped_raw for page in pages),
-            "declared_languages": _declared_languages(root, bundle_root),
-            "layout_params_hash_algorithm": LAYOUT_PARAMS_HASH_ALGORITHM,
-        },
-    )
+    return build_manual_ir_from_source(prepared)
