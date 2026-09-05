@@ -90,6 +90,76 @@ def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
     return tokens
 
 
+def _language_row_prefixes() -> tuple[frozenset[str], dict[str, str]]:
+    """Prefixes a build can actually look up, plus alias -> canonical hints.
+
+    Language rows are written ``lang_<code>_<base-key>``, and two lookup paths
+    build that prefix from two different spellings of the same language:
+
+    * ``resolve_layout_tokens`` and the IDML cascade use the canonical registry
+      code, taking the base subtag (``pt-BR`` -> ``pt``) or swapping the hyphen
+      (``pt_br``);
+    * the IDML page path runs the language through
+      :func:`tools.idml.loaders.normalize_lang` first, which deliberately maps
+      canonical ``ja`` onto the historical phase2 suffix ``jp``.
+
+    Both spellings are therefore reachable, and which one a given row needs
+    depends on the site that resolves its language — this gate cannot decide
+    that, so it only rejects a spelling **no** path builds, such as a
+    data-column alias (``ukr``, ``cn``) or a typo. Per-target reachability is
+    covered by ``tests/test_layout_language_row_reachability.py``.
+    """
+
+    try:
+        from tools.idml.loaders import normalize_lang
+        from tools.lang_registry import LANGUAGE_REGISTRY
+    except ImportError:  # pragma: no cover - direct script execution
+        from idml.loaders import normalize_lang  # type: ignore[no-redef]
+        from lang_registry import LANGUAGE_REGISTRY  # type: ignore[no-redef]
+
+    prefixes: set[str] = set()
+    canonical_for: dict[str, str] = {}
+    for spec in LANGUAGE_REGISTRY:
+        code = spec.code.casefold()
+        pipeline = normalize_lang(spec.code).casefold()
+        for spelling in (code, pipeline):
+            prefixes.update(
+                {spelling, spelling.replace("-", "_"), spelling.split("-", 1)[0]}
+            )
+        for alias in spec.aliases:
+            folded = alias.casefold()
+            if folded not in {code, pipeline}:
+                canonical_for[folded] = spec.code
+    return frozenset(prefixes), canonical_for
+
+
+def _reject_unreachable_language_rows(
+    tokens: dict[str, LayoutToken], source: Path,
+) -> None:
+    """Fail closed on a language row no lookup path can reach."""
+
+    prefixes, canonical_for = _language_row_prefixes()
+    for key in tokens:
+        if not key.startswith("lang_"):
+            continue
+        if any(key.startswith(f"lang_{prefix}_") for prefix in prefixes):
+            continue
+        spelling = key[len("lang_"):].split("_", 1)[0]
+        canonical = canonical_for.get(spelling.casefold())
+        hint = (
+            f"{spelling!r} is a data-column alias; use the canonical code "
+            f"{canonical!r} or its pipeline spelling"
+            if canonical
+            else f"{spelling!r} is not a registered language code"
+        )
+        raise ValueError(
+            f"layout token {source} declares an unreachable language row "
+            f"{key!r}: {hint}. No lookup path builds a lang_ prefix from that "
+            "spelling, so the row would be silently ignored and the base value "
+            "used instead."
+        )
+
+
 def resolve_layout_token_layers(
     base_csv: Path,
     overlay_csvs: tuple[Path, ...] = (),
@@ -123,12 +193,22 @@ def resolve_layout_token_layers(
     sizes and language literals: one more than the pinned baseline turns red.
     That makes a new override visible in review without taxing every
     legitimate one.
+
+    The unreachable-language gate below is the orthogonal half and still runs
+    on every layer. Allowing a layer to override a key says nothing about
+    whether the key's own spelling is one any lookup path can build: a row
+    written ``lang_ukr_*`` when the pipeline only ever spells ``lang_uk_`` is
+    not an override, it is a row nobody reads. One rule is about precedence,
+    the other about reachability.
     """
 
     tokens = load_layout_tokens(base_csv)
+    _reject_unreachable_language_rows(tokens, base_csv)
     applied: list[ResolvedOverride] = []
     for overlay_csv in overlay_csvs:
-        for key, token in load_layout_tokens(overlay_csv).items():
+        overlay = load_layout_tokens(overlay_csv)
+        _reject_unreachable_language_rows(overlay, overlay_csv)
+        for key, token in overlay.items():
             base = tokens.get(key)
             if base is not None:
                 applied.append(
