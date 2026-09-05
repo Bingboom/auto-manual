@@ -1709,6 +1709,16 @@ zero skipped blocks. The parser accepts only the complete supported shape;
 unknown TeX content still fails strict extraction. PDF source geometry is
 preserved; native InDesign layout acceptance remains a separate check.
 
+For measured fallback IDML plans, operation subsections now flow naturally
+instead of inheriting an extra final-page break from the legacy four-page
+assumption. Specification shells reserve the emitted cells' widths, insets
+and wrapped line heights. Approved reference, compact and no-plan export
+geometry stays unchanged. The single-character Celsius unit (`℃`) uses the
+existing bundled Noto Sans fallback without rewriting source copy. Native
+save/reopen and exported-PDF glyph checks are both required: zero overset
+alone does not prove a printable PDF. See the
+[JP native repair record](reviews/je1000f_jp_native_overflow_2026-09.md).
+
 `Failed to resolve Product Name from Spec_Master.csv`
 
 - Check [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) for `Row_key=product_name`
@@ -1733,6 +1743,53 @@ Need to release from reviewed text only
 - if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`
 
 
+### Prepared RST inline content in IDML
+
+The prepared-RST adapter slices grid tables by display columns, including wide
+CJK characters and partial horizontal borders. Local `replace`/`image`
+substitutions expand after cell boundaries are parsed. Table images and inline
+icons use portable Markdown image references in the existing string payload;
+Manual IR and flow manifests record these asset references. Both IDML writers
+resolve them through the shared render context and fail on missing inline
+assets instead of printing directive syntax. Native icon geometry is owned by
+the renderer; these parser checks do not certify final page composition.
+
+JP IDML uses its manifest-declared Japanese TOC payload with dynamically
+collected headings; the TOC is excluded from non-IDML builders. Its
+`front_matter_roles: ["cover", "toc"]` declaration controls both the TOC slot
+and fallback folios, so the first body page is 01. An explicit renderer page
+plan still owns its physical folios. Front-matter metadata alone does not
+create a reference-layout sidecar. Final story reflow and TOC page accuracy
+must be checked in InDesign screenshots of the identified candidate package.
+
+The six approved JE-1000F/JP illustrations resolve through scoped registry
+overrides. Product engravings and logos remain; added manual annotations are
+removed. Other targets retain their existing asset resolution. Local approved
+files are usable for review while dedicated asset-Base archival remains
+pending write permission; local hash checks do not prove online archival.
+
+Under the measured-LaTeX fallback plan a story's spread chain is the anchor
+distance to the next matched source. An *unmatched* source between them owns
+physical pages of its own and is emitted as its own spread, so charging that
+distance to the preceding story threads it through trailing blank linked
+frames. Such an unanchored gap now falls back to the height estimate instead;
+an explicit assembly contract is unaffected. Warranty and App Setup are also
+treated as dedicated sections that never share one linked chain, and a
+dedicated section under a fallback plan is never allocated below its own
+estimate. `[export-idml] STORY SPANS` reports each story's allocated pages and,
+where they differ, the height estimate, so an over- or under-allocated section
+is named in the build log instead of only in a native screenshot.
+
+A measured fallback span may also be *longer* than the section the IDML writer
+composes, because it measures a different engine: LaTeX spread JE-1000F/JP's
+symbols section over four physical pages where the writer fills three, and the
+surplus linked frame printed as blank folio 04. The exception the preface
+already carried — a physical gap in a fallback plan is not a request to thread
+a story through blank frames — now covers every fallback story: the plan may
+shorten a chain but never lengthen it past what the story needs, counted as its
+height estimate or one frame per authored page break, whichever is larger. An
+approved-reference or target-assembly contract stays authoritative in both
+directions, since a human mapped it page by page.
 Prepared-source integrity: a declared page include that is missing or is not a
 file now stops source discovery with the index and source path. Registered
 prose macros need complete arguments; unsupported content around recognized

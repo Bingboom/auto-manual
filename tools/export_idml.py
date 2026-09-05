@@ -280,9 +280,9 @@ def main() -> int:
             notes = list(data.annotations)
             if lang == args.lang:
                 sections[:] = secs
-            title = data.title
-            toc.note(title, page_cursor, lang)
-            sid = w.add_spec_story(secs, notes, lang=lang, title=title)
+            toc.note(data.title, page_cursor, lang)
+            sid = w.add_spec_story(secs, notes, lang=lang, title=data.title,
+                                   fit_content=bool(page_plan) and not approved_reference)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
             data = _ir_projection.lcd_page_data(
@@ -555,13 +555,12 @@ def main() -> int:
                 _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan)
         if back_cover_added:
             page_cursor += 1
+    toc_source, page_plan = _ir_projection.toc_with_front_matter(manual_ir, bundle_root, page_plan)
     if target_renderer.toc_planned:
         _toc.finalize(
-            w,
-            toc,
-            w._add_story_parts,
-            w._psr,
-            source=_ir_projection.toc_page_data(manual_ir, bundle_root),
+            w, toc, w._add_story_parts, w._psr,
+            source=toc_source,
+            has_back_cover=back_cover_added,
             page_plan=page_plan,
         )
     _folio.apply(
@@ -597,6 +596,7 @@ def main() -> int:
         _template_merge.bake_beside(out, args.template, check_idml)
     n_rows = sum(len(s["rows"]) for s in sections)
     print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
+    story_emitter.report_spans()
     print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "
           f"prose pages={prose_pages} skipped raw blocks={skipped_raw} | "
           f"spec rows={n_rows} lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")

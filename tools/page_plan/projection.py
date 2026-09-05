@@ -131,19 +131,18 @@ def legacy_folio_page_plan(
     physical_page_count: int,
     *,
     has_back_cover: bool,
+    front_matter_roles: tuple[str, ...] = ("cover", "preface", "toc"),
 ) -> PagePlan:
     """Compatibility plan for non-reference IDML builds, without XML sniffing."""
+    if (not front_matter_roles or front_matter_roles[0] != "cover"
+            or len(set(front_matter_roles)) != len(front_matter_roles)
+            or any(role not in {"cover", "preface", "toc"} for role in front_matter_roles)):
+        raise PagePlanError("invalid front-matter roles")
     pages: list[SourcePagePlan] = []
     for ordinal in range(1, physical_page_count + 1):
-        if ordinal == 1:
-            role = PageTemplateRole.FRONT_COVER
-            assembly_role = "cover"
-        elif ordinal == 2:
-            role = PageTemplateRole.NO_FOOTER
-            assembly_role = "preface"
-        elif ordinal == 3:
-            role = PageTemplateRole.TOC
-            assembly_role = "toc"
+        if ordinal <= len(front_matter_roles):
+            assembly_role = front_matter_roles[ordinal - 1]
+            role = page_template_role_for_assembly_role(assembly_role)
         elif has_back_cover and ordinal == physical_page_count:
             role = PageTemplateRole.BACK_COVER
             assembly_role = "back_cover"

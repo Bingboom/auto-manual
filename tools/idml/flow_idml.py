@@ -14,6 +14,7 @@ from . import params as _params
 from . import primitives as _prim
 from . import styles as _styles
 from .font_family import PRIMARY_FONT_FAMILY_TOKEN
+from .inline_images import prepare_inline_images
 from .inline_text import localize_cjk_fallback_font
 from .line_metrics import estimated_line_count
 from .params import IDPKG
@@ -261,7 +262,10 @@ class _FlowIdmlWriter:
 
     def _text_part(self, style_key: str, text: str, terminal: bool) -> str:
         style = self.style_map.get(style_key, self.style_map["paragraph"])
-        return _prim.psr(style, text, terminal=terminal)
+        tid = f"flow_text_{getattr(self, '_inline_count', 0)}"
+        self._inline_count = getattr(self, "_inline_count", 0) + 1
+        text, images = prepare_inline_images(text, self._render_context(), tid=tid)
+        return _prim.psr(style, text, terminal=terminal, inline_replacements=images)
 
     @staticmethod
     def _psr(style: str, text: str, *, terminal: bool = False) -> str:

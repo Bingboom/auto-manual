@@ -452,6 +452,10 @@ The tool's aggregate 38 counts both inspection passes, not 38 distinct defects.
 Native PDF export is blocked by overset. The same-source LaTeX PDF has 22 pages;
 reconciling the fallback page plan and native content budgets is a separate
 layout task, without changing constants solely to force equal page counts.
+The subsequent [JE-1000F JP native repair](../reviews/je1000f_jp_native_overflow_2026-09.md)
+removes the measured fallback's injected final operation break and fits its
+specification shells. That record supersedes these baseline failure counts;
+it also tracks the Celsius font issue exposed only after PDF export unblocked.
 This boundary does not change native acceptance
 D1–D4 (including the power on/off factual debt) or `production_eligible`.
 

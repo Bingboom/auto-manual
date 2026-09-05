@@ -23,6 +23,7 @@ from ..primitives import (
 from ..table_borders import suppress_outer_edges_xml
 from ..text_clean import strip_rst_inline
 from .base import RenderContext
+from .image_table import has_inline_images, render_image_table
 from .key_combinations import (
     is_key_combinations_rows,
     render_key_combinations,
@@ -978,6 +979,9 @@ def _body_data_table(
 def render_table_block(raw_rows: list[list], ctx: RenderContext, *, tid: str,
                        terminal: bool, span_columns: bool = True,
                        troubleshooting: bool = False) -> tuple[str, float]:
+    if has_inline_images(raw_rows):
+        return render_image_table(raw_rows, ctx, tid=tid, terminal=terminal,
+                                  span_columns=span_columns)
     n_cols = max(len(r) for r in raw_rows)
     first_cell = str(raw_rows[0][0]).replace("**", "").strip() if raw_rows else ""
     is_overview = first_cell in {"POWER Button", "Total Output", "Handle"}

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+import xml.etree.ElementTree as ET
 
 from tools.component_specs.spec_table import (
     idml_spec_table_rows,
@@ -9,7 +10,51 @@ from tools.component_specs.spec_table import (
 )
 
 from .params import param_pt
+from .line_metrics import estimated_line_count
 from .style_names import table_style_ref
+
+
+def measured_spec_table_height(
+    table_xml: str,
+    params: dict[str, tuple[str, str]],
+    *,
+    language: str,
+) -> float:
+    """Size fallback shells from the emitted cell geometry, not a master slot.
+
+    Reference rows can auto-grow in InDesign; their declared minimum heights
+    are not the enclosing frame's content budget. Read the actual insets and
+    column widths so this estimate cannot acquire a second geometry contract.
+    Approved reference and compact callers retain their fixed shells.
+    """
+    table = ET.fromstring(table_xml)
+    widths = [float(col.get("SingleColumnWidth")) for col in table.findall("Column")]
+    heights = [float(row.get("MinimumHeight", "0")) for row in table.findall("Row")]
+    for cell in table.findall("Cell"):
+        column, row = (int(value) for value in cell.get("Name").split(":"))
+        role = "label" if column == 0 else "value"
+        size_key = f"type_spec_{role}_font_size"
+        leading_key = f"type_spec_{role}_font_leading"
+        size = param_pt(params, f"lang_{language}_{size_key}",
+                        param_pt(params, size_key, 6.0))
+        leading = param_pt(params, f"lang_{language}_{leading_key}",
+                           param_pt(params, leading_key, 6.6))
+        measure = widths[column] - sum(
+            float(cell.get(key, "0")) for key in ("LeftInset", "RightInset")
+        )
+        content_height = 0.0
+        for paragraph in cell.findall("ParagraphStyleRange"):
+            text = "".join(
+                "\n" if node.tag == "Br" else (node.text or "")
+                for node in paragraph.iter() if node.tag in {"Content", "Br"}
+            )
+            content_height += max(size, leading) * estimated_line_count(
+                text, measure, point_size=size,
+            )
+        insets = sum(float(cell.get(key, "0")) for key in ("TopInset", "BottomInset"))
+        heights[row] = max(heights[row], content_height + insets)
+    # Reserve the enclosing 0.75 pt stroke and native composition rounding.
+    return sum(heights) + 1.0
 
 
 def spec_table_row_heights(

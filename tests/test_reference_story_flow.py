@@ -115,7 +115,15 @@ class _RecordingToc:
 
 
 class ReferenceStoryEmitterTests(unittest.TestCase):
-    def test_reference_span_overrides_smaller_height_estimate(self) -> None:
+    def test_fallback_span_never_exceeds_the_story_height_estimate(self) -> None:
+        """A measured physical gap is not a request to thread blank frames.
+
+        LaTeX and the IDML writer are different composition engines, so the
+        anchor distance can cover more pages than the writer actually composes
+        the section into, and every surplus frame in the chain is then a blank
+        body page.  This is the exception the preface already carried,
+        generalized to every fallback story (JE-1000F/JP folio 04).
+        """
         writer = _RecordingWriter()
         toc = _RecordingToc()
         plan = {"physical_page_count": 20, "pages": [
@@ -131,14 +139,71 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
             page_cursor=7,
         )
 
+        self.assertEqual(8, next_page)
+        self.assertEqual([("st_operation", 1, 7, 1)], writer.spread_chains)
+        self.assertEqual([("st_operation", 7)], writer.chain_frames)
+        self.assertEqual([1], toc.noted_pages)
+        self.assertEqual([], writer.story_frames)
+
+    def test_explicit_assembly_span_still_overrides_the_estimate(self) -> None:
+        """An approved contract mapped page-by-page by a human still wins."""
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        plan = {
+            "plan_source": "target-assembly",
+            "physical_page_count": 20,
+            "pages": [
+                {
+                    "source_path": "page/operation.rst",
+                    "latex_start_page": 10,
+                    "composition_id": "operation-en",
+                    "planned_page_count": 4,
+                },
+                {
+                    "source_path": "page/charging.rst",
+                    "latex_start_page": 14,
+                    "composition_id": "charging-en",
+                    "planned_page_count": 1,
+                },
+            ],
+        }
+        emitter = ReferenceStoryEmitter(writer, toc, ROOT, plan)
+
+        next_page = emitter.emit(
+            "st_operation",
+            "operation",
+            [("h1", "OPERATION")],
+            page_cursor=7,
+        )
+
         self.assertEqual(11, next_page)
         self.assertEqual([("st_operation", 4, 7, 1)], writer.spread_chains)
-        self.assertEqual(
-            [("st_operation", page) for page in (7, 8, 9, 10)],
-            writer.chain_frames,
+
+    def test_authored_page_breaks_keep_a_frame_each(self) -> None:
+        """The height estimate ignores forced breaks; the cap must not."""
+        writer = _RecordingWriter()
+        toc = _RecordingToc()
+        plan = {"physical_page_count": 20, "pages": [
+            {"source_path": "page/operation.rst", "latex_start_page": 10},
+            {"source_path": "page/charging.rst", "latex_start_page": 14},
+        ]}
+        emitter = ReferenceStoryEmitter(writer, toc, ROOT, plan)
+
+        next_page = emitter.emit(
+            "st_operation",
+            "operation",
+            [
+                ("h1", "OPERATION"),
+                ("layout", "page_break"),
+                ("body", "second page"),
+                ("layout", "page_break"),
+                ("body", "third page"),
+            ],
+            page_cursor=7,
         )
-        self.assertEqual([4], toc.noted_pages)
-        self.assertEqual([], writer.story_frames)
+
+        self.assertEqual(10, next_page)
+        self.assertEqual([("st_operation", 3, 7, 1)], writer.spread_chains)
 
     def test_preface_remains_one_page_when_plan_span_is_larger(self) -> None:
         writer = _RecordingWriter()

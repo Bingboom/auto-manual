@@ -45,6 +45,8 @@ def _resolve_page_plan(
     return legacy_folio_page_plan(
         physical_page_count,
         has_back_cover=has_back_cover,
+        front_matter_roles=tuple((raw_plan or {}).get(
+            "front_matter_roles", ("cover", "preface", "toc"))),
     )
 
 

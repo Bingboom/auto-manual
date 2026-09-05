@@ -112,6 +112,14 @@ preserved as editable IDML text. The previous single skipped-block debt is
 closed for this runtime source; this does not replace native InDesign checks
 for page layout, overset, fonts and links.
 
+The measured JP fallback now lets the final operation table flow into the
+existing page chain and sizes specification shells from their actual cells.
+The `℃` character stays unchanged and uses a bundled font containing its glyph.
+After `build.py idml`, still run native save/reopen and inspect the exported
+PDF: an IDML with no overset can still have missing glyphs at PDF export.
+See the [JE-1000F JP repair record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md)
+for the current acceptance state and remaining content debts.
+
 For a single-language family such as `configs/config.ja.yaml`, you do not need
 to repeat `--lang ja`: `build.py idml` forwards the config's sole language to
 the exporter. On a multilingual family, add `--lang` when exporting only one
@@ -1568,6 +1576,43 @@ Templates and CSV create the first draft.
 - OpenClaw dispatches `start-review`, `build-draft`, `publish`, and `web-publish` with the resolved Feishu `record_id`; both publish actions require explicit confirmation.
 
 
+JP IDML screenshot checks: safety icons must appear as images, energy-saving
+thresholds must show their resolved values, and recovery conditions must stay
+in the correct table column. Literal `.. image::`, `:alt:`, `:width:` or unresolved
+substitution names are failed output, even when the package has no overset.
+Keep the package version with each screenshot; see the
+[JP review record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md).
+
+JP IDML uses its manifest-declared Japanese TOC payload with dynamically
+collected headings; the TOC is excluded from non-IDML builders. Its
+`front_matter_roles: ["cover", "toc"]` declaration controls both the TOC slot
+and fallback folios, so the first body page is 01. An explicit renderer page
+plan still owns its physical folios. Front-matter metadata alone does not
+create a reference-layout sidecar. Final story reflow and TOC page accuracy
+must be checked in InDesign screenshots of the identified candidate package.
+
+The six approved JE-1000F/JP illustrations resolve through scoped registry
+overrides. Product engravings and logos remain; added manual annotations are
+removed. Other targets retain their existing asset resolution. Local approved
+files are usable for review while dedicated asset-Base archival remains
+pending write permission; local hash checks do not prove online archival.
+
+`build.py idml` now prints `[export-idml] STORY SPANS`: each prose story's
+allocated page chain, with the height estimate shown in brackets whenever the
+two differ. A story allocated more pages than its content composes into is
+what produces blank body pages, so read this line before asking for another
+screenshot round. Under the measured-LaTeX fallback plan an unmatched source
+between two anchors no longer donates its pages to the preceding story, and
+Warranty and App Setup are kept in separate linked chains so the App section
+starts its own page instead of continuing under the warranty tail.
+
+Under a measured fallback plan a story's chain is never longer than its own
+content needs. LaTeX and the IDML writer compose at different densities, so an
+anchor distance that is longer than the composed section used to leave trailing
+empty frames — blank body pages. Targets with an approved reference or target
+assembly plan are unaffected. When a section now runs out of room, InDesign
+marks it as overset rather than printing a blank page; that is the intended
+trade, so check the red overset markers after a rebuild.
 Prepared-source integrity: a declared page include that is missing or is not a
 file now stops source discovery with the index and source path. Registered
 prose macros need complete arguments; unsupported content around recognized

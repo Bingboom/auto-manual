@@ -28,6 +28,9 @@ SYMBOL_FONT_FALLBACKS = {
     # Keep the source Spanish ``Nº`` intact and route only that glyph through
     # the governed Unicode fallback so PDF/X export does not emit .notdef.
     "º": TEXT_SYMBOL_FONT,
+    # JP temperature values use the single U+2103 character. Gilroy lacks it;
+    # preserve the source unit and use the already bundled text-symbol face.
+    "℃": TEXT_SYMBOL_FONT,
     **{ch: TEXT_SYMBOL_FONT for ch in "₀₁₂₃₄₅₆₇₈₉"},
     # The shared regulatory contact row uses these three editable Unicode
     # icons.  Gilroy and the first Noto Symbols face do not cover U+260E;
