@@ -114,22 +114,31 @@ product name, bullets, page numbers and units all change typeface.
 ## 4. What this does not settle
 
 One question the next native round can answer in a glance, and nothing outside
-InDesign can. `HB Warranty Body` is declared with its leading equal to its size
-(6.00/6.00, `type_warranty_body_font_size` and `idml_warranty_body_font_leading`),
-so its 599 characters of prose depend entirely on a `Leading="7"` override --
-and that override is emitted on the `ParagraphStyleRange`, thirteen times, in
-`components/warranty.py::_variant_body_format`. In the whole package that is
-the only character-model attribute sitting on a paragraph range: `PointSize`
-appears there zero times against 248 on `CharacterStyleRange`, `HorizontalScale`
-zero against 355, and the same function puts `HorizontalScale` on the character
-range two lines later. But the form is not an accident either -- `lcdmode` emits
-it the same way and `tests/test_idml_lcdmode_editable.py:302` pins it -- so
-whether InDesign honours it is a question about InDesign, not about this repo.
+InDesign can. `HB Warranty Body` is declared with its leading equal to its size:
+in the package shipped from this branch it is `PointSize="6"` with
+`<Leading type="unit">6</Leading>`. **Its 599 characters of prose therefore set
+solid.**
 
-**So look at the warranty body on pages 11-12 and say whether the lines have
-interline space.** If they are set solid, the override is being dropped and the
-attribute belongs on the character range; if they breathe, the form is fine and
-this note can go away.
+An earlier revision of this section said the prose "depends entirely on a
+`Leading="7"` override" emitted thirteen times on the `ParagraphStyleRange` in
+`components/warranty.py::_variant_body_format`, and asked the reviewer to judge
+whether InDesign was dropping it. That question is now void, and a reviewer
+hunting for that attribute would find nothing: **the package contains zero
+attribute-form `Leading="` anywhere**, and the function's own docstring now
+reads "Leading is deliberately not among them". #1017 removed all of them after
+`tools/idml/character_metrics.py` was found to already document that InDesign
+silently ignores the attribute form -- so the override was never doing anything,
+and the body was already setting solid in InDesign before the removal. Nothing
+about the rendered book changed; the source stopped claiming otherwise.
+
+**So the question the native round should answer is the design one, not the
+mechanism one: look at the warranty body on pages 11-12 and say whether solid
+6.00/6.00 is what the approved master sets.** If the master's warranty prose
+breathes, the fix is a real leading value on the style -- in the honoured
+`<Leading type="unit">` form -- and this becomes a measurement to take from the
+master, not an attribute to relocate. Note that `HB Warranty Note` and
+`HB Warranty Lead` in the same package already carry 7.2 and 8.2 against sizes
+6 and 7, so the body is the outlier among its own siblings.
 
 
 Overset stories and overset table cells cannot be measured outside InDesign:
@@ -276,7 +285,7 @@ missing chrome, to take the troubleshooting shell. That shell needs the table
 segmented -- the shell is a fixed-height anchored group and the table flows
 across two spreads, which is why the spec table is segmented by section -- so
 it is its own change. The section bar is entangled with the page 02/03 heading
-structure still open in §7.
+structure still open in §6.
 
 ## 4c. Type scale: the specification row pitch, and why the rest is not a type change
 
@@ -348,7 +357,7 @@ The safety-page bullet list was going to be part of this change and was dropped:
 the reference role that looked like a bullet list at 7.00/11.50 turns out, on
 page 2 at x 29.9 and x 100.6, to be the page intro and the four signal-word
 legend definitions. The master's page 2 has no bullet list at all, so our
-fifteen bullets are a content-structure difference belonging with §7 rather than
+fifteen bullets are a content-structure difference belonging with §6 rather than
 a type delta.
 
 ## 4d. Safety bullets, and two corrections the adversarial pass forced
@@ -427,3 +436,39 @@ content — a first pass that skipped that step lost 39 of 84 stories and 2,886
 characters and produced per-page gaps that were artefacts rather than findings.
 Scripts are scratch and not committed; every number above is reproducible from
 the two artefacts named at the top.
+
+## 6. Open structural items
+
+§4b and §4c each hand an item to a section that did not exist -- both said "§7"
+in a document whose headings stop at §5. This section is that home. Neither item
+is a type or geometry delta, which is why the measurement pass could not close
+them; both are structure, and both are still open.
+
+1. **The page 02/03 heading structure**, handed over by §4b. The section bar is
+   entangled with it: the troubleshooting shell the operator selected needs the
+   table segmented, because the shell is a fixed-height anchored group while the
+   table flows across two spreads. Segmenting it is its own change and is not in
+   this branch.
+2. **Fifteen safety bullets that the master does not have**, handed over by §4c.
+   What looked like a bullet list at 7.00/11.50 turns out, at x 29.9 and x 100.6
+   on page 2, to be the page intro plus the four signal-word legend definitions.
+   The master's page 2 has no bullet list at all. So this is a content-structure
+   difference, not a type delta, and deciding it means deciding what page 2
+   should say -- not what size it should say it in.
+
+## 7. Residual debt carried into the freeze
+
+Two rows in `data/layout_params.idml-compact.csv` are live in the JP book and
+are **not measurements**. Freezing the acceptance version freezes both, so they
+are recorded here rather than left to read as if they came off the master.
+
+| Row | Value | What it actually is |
+| --- | --- | --- |
+| `lang_jp_idml_warranty_lead_height` | `40` | Self-labelled CANDIDATE-STAGE by #1019. The component's natural height for its three-line intro is **34.60 pt**, so the row carries **+5.40 pt with no content reason**. Its en/fr/es siblings are measured from the approved PDF; this one is not. It needs a measurement from the JP master, and until then the freeze contains a number nobody has justified. |
+| `lang_jp_idml_warranty_panel_height_adjust_7` | `5.5` | A declared compensation, not a measurement, and a JP-only one for a **shared** defect: `_section_body` budgets the panel at 6.0 while the `bp_default` variant renders at 7.0. The real fix is one line in `components/warranty.py`, but it grows every US and EU panel, so it was deliberately deferred. This row's removal condition is that fix landing. |
+
+Neither is a blocker for the native round -- they are geometry the round will
+either accept or send back -- but a reviewer comparing the frozen book to the
+master should know that these two numbers are the ones with no master behind
+them.
+

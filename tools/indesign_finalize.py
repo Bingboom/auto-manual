@@ -567,8 +567,19 @@ def main() -> int:
         print(f"[indesign-finalize] version-pin {pin_status}: {pin_message}")
         return 0 if pin_status == "match" else 2
 
+    if args.idml:
+        # Default the three outputs to sit beside the package. The package lives
+        # under docs/_build/<MODEL>/<REGION>/idml/, so this is what keeps a
+        # finalize report readable in the tree next to the artefact it
+        # describes, instead of wherever the host operator happened to be
+        # standing -- the JP round's ledger asked for exactly that and got a
+        # transcription instead. An explicit flag still wins.
+        package = Path(args.idml)
+        args.indd = args.indd or str(package.with_suffix(".indd"))
+        args.pdf = args.pdf or str(package.with_suffix(".pdf"))
+        args.report = args.report or str(package.parent / "finalize_report.json")
     if not all((args.idml, args.indd, args.pdf, args.report)):
-        parser.error("--idml, --indd, --pdf and --report are required to run finalize")
+        parser.error("--idml is required to run finalize (--indd/--pdf/--report default beside it)")
     if pin_status == "no_indesign":
         print(f"[indesign-finalize] ERROR: {pin_message}")
         return 2

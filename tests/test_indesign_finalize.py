@@ -536,6 +536,58 @@ class VersionPinTests(unittest.TestCase):
             with patch("sys.argv", ["indesign_finalize.py", "--check-host"]):
                 self.assertEqual(main(), 2)
 
+    def test_the_outputs_default_beside_the_package(self) -> None:
+        """A finalize report belongs next to the artefact it describes.
+
+        The JP round's ledger asked for the report to stay inside
+        docs/_build/<MODEL>/<REGION>/ so findings are readable in the tree; it
+        got a transcription into chat instead, because every path was a required
+        flag and the host operator supplied them by hand.
+        """
+        captured = {}
+
+        def fake_job(args):
+            captured.update(
+                indd=args.indd, pdf=args.pdf, report=args.report
+            )
+            raise SystemExit(0)
+
+        idml = "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml"
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("match", "ok")), \
+             patch("tools.indesign_finalize._job", side_effect=fake_job), \
+             patch("sys.argv", ["indesign_finalize.py", "--idml", idml]):
+            with self.assertRaises(SystemExit):
+                main()
+
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.indd", captured["indd"]
+        )
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.pdf", captured["pdf"]
+        )
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/finalize_report.json", captured["report"]
+        )
+
+    def test_an_explicit_output_path_still_wins(self) -> None:
+        captured = {}
+
+        def fake_job(args):
+            captured.update(report=args.report, pdf=args.pdf)
+            raise SystemExit(0)
+
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("match", "ok")), \
+             patch("tools.indesign_finalize._job", side_effect=fake_job), \
+             patch("sys.argv", ["indesign_finalize.py", "--idml", "a/b.idml",
+                                "--report", "elsewhere/r.json"]):
+            with self.assertRaises(SystemExit):
+                main()
+
+        self.assertEqual("elsewhere/r.json", captured["report"])
+        self.assertEqual("a/b.pdf", captured["pdf"])
+
     def test_run_refuses_on_mismatch_without_override_and_never_launches(self) -> None:
         with patch("tools.indesign_finalize.check_version_pin",
                    return_value=("mismatch", "drift")), \
