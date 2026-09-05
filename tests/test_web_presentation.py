@@ -47,7 +47,10 @@ def _web_composite_fixture():
     )
 
 
-def _web_fragment(source_name: str, *, with_composites: bool = True) -> str:
+def _web_fragment(
+    source_name: str, *, with_composites: bool = True,
+    declared_troubleshooting: bool = False,
+) -> str:
     source_path = REVIEW_PAGES / source_name
     with tempfile.TemporaryDirectory() as td:
         return _convert_rst_fragment_to_html(
@@ -59,6 +62,7 @@ def _web_fragment(source_name: str, *, with_composites: bool = True) -> str:
             composite_manifest=(_web_composite_fixture() if with_composites else None),
             model="JE-1000F",
             region="US",
+            declared_troubleshooting=declared_troubleshooting,
         )
 
 
@@ -769,7 +773,9 @@ class WebPresentationTests(unittest.TestCase):
             "troubleshooting_es.rst",
         ):
             with self.subTest(source=source_name):
-                soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
+                soup = BeautifulSoup(
+                    _web_fragment(source_name, declared_troubleshooting=True), "html.parser"
+                )
                 composition = soup.select_one("figure.hb-troubleshooting-composition")
                 self.assertIsNotNone(composition)
                 table = (

@@ -35,10 +35,42 @@ compatibility but its old `spec_*`, four-section and two-reference selectors
 no longer route or constrain rendering. The `{spec-table}` Markdown directive
 already consumes the same public adapter and requires no new interface.
 
+Troubleshooting follows the same semantic-before-figure boundary. In the
+RST-to-Web bundle path, [`word_bundle_html.py`](../../tools/word_bundle_html.py)
+resolves the current target's `plan_materialized_pages` once and passes a
+declaration for the exact materialized paths of `CsvPage(page="troubleshooting")`.
+The existing planner owns language/capability selection and `slot_id` naming;
+the Web adapter does not infer intent from filenames, translated headers or
+error codes. This also covers unmarked `review-asis` snapshots without editing
+their reviewed RST. Explicit `table.hb-troubleshooting-table` declarations can
+scope individual tables in mixed HTML fragments.
+
+[`web_troubleshooting_component.py`](../../tools/web_troubleshooting_component.py)
+shares validation and DOM projection with `{troubleshooting}`. It consumes the
+existing `HB-TABLE-TROUBLESHOOTING` CSS; that style binding is **not** a registered
+ComponentSpec, and this adapter adds no public schema. The standalone Markdown
+extension pack includes this module and is tested outside the repository's
+import path. Directive headers and its optional label remain source-owned;
+the existing English default headers and ` / ` step syntax remain supported.
+
+A declared CSV page must have exactly one table. Each declared table requires
+two nonempty, unspanned header cells and at least one two-cell data row; missing
+or ambiguous declared content fails with its source reference. An unmarked
+fragment without a page declaration stays unchanged. When an explicitly
+declared table has no `thead` (the current JP template uses `header-rows: 0`),
+its authored first row becomes `thead`/`th scope="col"`. Existing headers,
+ordered body rows, lists, line blocks, links and inline markup are retained.
+The existing figure scroll surface gains `tabindex="0"` for keyboard access;
+its accessible label comes from the directive label or source header cells.
+`web_manual.json.troubleshooting_table` remains readable for serialized
+compatibility, but its source patterns no longer route rendering and there is
+no fixed error-code inventory. CSV readers, templates and review snapshots
+are unchanged.
+
 `figure_targets`, per-figure source patterns, target instances and frozen
 composite approval/hash checks retain their existing scope. Other semantic
-compositions (LCD, troubleshooting, warranty, etc.) still use their legacy
-target routing; this slice migrates specifications only. For a target outside
+compositions (LCD, warranty, etc.) still use their legacy target routing;
+specifications and troubleshooting are migrated. For a target outside
 the frozen figure contract, Web starts at its manifest's first included page;
 it does not invent a preface. The frozen US target retains its preface rule.
 Cover/TOC/back-cover exclusions remain in force.

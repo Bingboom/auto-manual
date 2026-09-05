@@ -36,6 +36,7 @@ from tools.web_reference_components import (
 from tools.web_spec_component import transform_specification_tables
 from tools.web_symbol_components import transform_symbol_signal_table
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
+from tools.web_troubleshooting_component import transform_troubleshooting_tables
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
@@ -1043,91 +1044,6 @@ def _transform_lcd_icon_table(
     composition.append(table)
 
 
-def _transform_troubleshooting_table(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-) -> None:
-    expected_codes = ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FE"]
-    candidates: list[tuple[Tag, list[Tag], list[Tag]]] = []
-    for table in soup.find_all("table"):
-        if not isinstance(table, Tag):
-            continue
-        header_rows = table.select("thead > tr")
-        body_rows = table.select("tbody > tr")
-        if len(header_rows) != 1 or len(body_rows) != len(expected_codes):
-            continue
-        headers = [
-            cell
-            for cell in header_rows[0].find_all("th", recursive=False)
-            if isinstance(cell, Tag)
-        ]
-        if len(headers) != 2 or not all(
-            header.get_text(" ", strip=True) for header in headers
-        ):
-            continue
-        if not all(len(row.find_all("td", recursive=False)) == 2 for row in body_rows):
-            continue
-        codes = [
-            row.find_all("td", recursive=False)[0].get_text(" ", strip=True)
-            for row in body_rows
-        ]
-        if codes == expected_codes:
-            candidates.append((table, headers, body_rows))
-
-    if len(candidates) != 1:
-        raise WebPresentationError(
-            f"{source_path}: expected one governed troubleshooting table with codes "
-            f"{expected_codes}, found {len(candidates)}"
-        )
-
-    table, headers, body_rows = candidates[0]
-    for colgroup in table.find_all("colgroup", recursive=False):
-        colgroup.decompose()
-    colgroup = soup.new_tag("colgroup")
-    colgroup.append(
-        soup.new_tag("col", attrs={"class": "hb-troubleshooting-col-code"})
-    )
-    colgroup.append(
-        soup.new_tag("col", attrs={"class": "hb-troubleshooting-col-measures"})
-    )
-    table.insert(0, colgroup)
-    table.attrs.pop("style", None)
-    table["class"] = [*table.get("class", []), "hb-troubleshooting-table"]
-
-    for index, header in enumerate(headers):
-        header.attrs.pop("style", None)
-        header["scope"] = "col"
-        header["class"] = [
-            *header.get("class", []),
-            "hb-troubleshooting-code"
-            if index == 0
-            else "hb-troubleshooting-measures",
-        ]
-
-    for row in body_rows:
-        code, measures = row.find_all("td", recursive=False)
-        code.attrs.pop("style", None)
-        measures.attrs.pop("style", None)
-        code["class"] = [*code.get("class", []), "hb-troubleshooting-code"]
-        measures["class"] = [
-            *measures.get("class", []),
-            "hb-troubleshooting-measures",
-        ]
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-troubleshooting-composition",
-            "aria-label": " / ".join(
-                header.get_text(" ", strip=True) for header in headers
-            ),
-        },
-    )
-    table.replace_with(composition)
-    composition.append(table)
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1504,13 +1420,18 @@ def transform_web_fragment(
     model: str | None = None,
     region: str | None = None,
     language: str | None = None,
+    declared_troubleshooting: bool = False,
 ) -> str:
     """Render declared semantics, then apply target-governed figure composition."""
     soup = BeautifulSoup(html_fragment, "html.parser")
     has_specifications = transform_specification_tables(
         soup, source_path=source_path, language=language, error_type=WebPresentationError,
     )
-    semantic_fragment = str(soup) if has_specifications else html_fragment
+    has_troubleshooting = transform_troubleshooting_tables(
+        soup, source_path=source_path, declared_page=declared_troubleshooting,
+        error_type=WebPresentationError,
+    )
+    semantic_fragment = str(soup) if has_specifications or has_troubleshooting else html_fragment
     data = contract or load_web_manual_contract()
     preface = data["preface"]
     overview = data["product_overview"]
@@ -1518,7 +1439,6 @@ def transform_web_fragment(
     fcc = data["fcc"]
     lcd_icon_table = data["lcd_icon_table"]
     meaning_symbols = data["meaning_symbols"]
-    troubleshooting_table = data["troubleshooting_table"]
     warranty = data["warranty"]
     in_the_box = data["in_the_box"]
     reference_figures = data["reference_figures"]
@@ -1536,10 +1456,6 @@ def transform_web_fragment(
         source_path,
         list(meaning_symbols["source_patterns"]),
     )
-    is_troubleshooting_table = _matches_source(
-        source_path,
-        list(troubleshooting_table["source_patterns"]),
-    )
     is_warranty = _matches_source(source_path, list(warranty["source_patterns"]))
     is_in_the_box = _matches_source(source_path, list(in_the_box["source_patterns"]))
     is_reference_page = _matches_source(
@@ -1556,7 +1472,6 @@ def transform_web_fragment(
         or is_fcc
         or is_lcd_icon_table
         or is_meaning_symbols
-        or is_troubleshooting_table
         or is_warranty
         or is_in_the_box
         or is_reference_page
@@ -1602,8 +1517,6 @@ def transform_web_fragment(
             error_type=WebPresentationError,
         )
         _transform_meaning_symbols_table(soup, source_path=source_path)
-    if is_troubleshooting_table:
-        _transform_troubleshooting_table(soup, source_path=source_path)
     if is_warranty:
         _transform_warranty(
             soup,
