@@ -82,7 +82,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-034 | PR #1029（JP 候选产线及原生验收总 PR，含本登记行）进入 main。将 Draft 转为 Ready，最终 head 全部检查成功、无 changes-requested、无未解决讨论且对齐 main 后 squash merge。保留验收台账 D1–D4，不以代码合入声明产品事实或发布审批已完成。合入后以该 main 提交为统一基线，开启公共 IR、Web、数据读取规则三项独立工作；后续 PR 的合并不由本条扩张授权。 | 「合入总pr 然后 继续 三项后续工作」2026-09-04 | #1029 合入即失效；按 MA-029 在下次实质性触碰时补记，不另开关闭 PR | 已失效（2026-09-04 #1029 squash `24a10e9f` 进 main；最终 head 18/18 成功、CLEAN、无评审讨论。随本次三项合入授权补记） |
 
-| MA-035 | 公共 IR #1031、数据读取 #1032、Web #1030 三个首批迁移 PR 进入 main，含本登记行。按 #1031 → #1032 → #1030 依次 squash merge；每次合入后，剩余 PR 对齐最新 main，验证组合兼容性，在最终 head 全部检查成功、无 changes-requested、无未解决评审讨论后方可合入。保留 JP 原生验收 D1–D4 和各 PR 已列出的范围外债务。不扩大到后续细化 PR、生产发布、线上数据写入或其他独立审批事项。 | 「各自都完成了 先合入吧」及公共 IR、Web、数据读取三项清单，2026-09-04 | 三个 PR 全部合入即失效；按 MA-029 在下次实质性触碰时补记，不另开关闭 PR | 生效 |
+| MA-035 | 公共 IR #1031、数据读取 #1032、Web #1030 三个首批迁移 PR 进入 main，含本登记行。按 #1031 → #1032 → #1030 依次 squash merge；每次合入后，剩余 PR 对齐最新 main，验证组合兼容性，在最终 head 全部检查成功、无 changes-requested、无未解决评审讨论后方可合入。保留 JP 原生验收 D1–D4 和各 PR 已列出的范围外债务。不扩大到后续细化 PR、生产发布、线上数据写入或其他独立审批事项。 | 「各自都完成了 先合入吧」及公共 IR、Web、数据读取三项清单，2026-09-04 | 三个 PR 全部合入即失效；按 MA-029 在下次实质性触碰时补记，不另开关闭 PR | 已失效（2026-09-04 #1031 `3ca4dfb3`、#1032 `627ac716`、#1030 `d41ecaf7` 已按序合入 main；随本次第二批合入授权补记，未单开关闭 PR） |
+
+| MA-036 | 第二批公共 IR #1033、数据读取 #1034、Web #1035 进入 main，含本登记行。按 #1033 → #1034 → #1035 依次 squash merge；每次合入后剩余 PR 对齐最新 main，最终 head 全部检查成功、无 changes-requested、无未解决评审讨论后合入。随后从统一 main 基线另开修复分支，处理 JE-1000F/JP Web 包转 IR 的警告表识别失败与 document-profile Markdown 的装箱清单提示表失败。本条直接合入授权仅覆盖三个第二批 PR；后续修复 PR 交付评审，不扩张合入授权。保留 JP 原生验收 D1–D4，不涉及生产发布、线上数据写入或其他独立审批事项。 | 「先完成第二批合入，再优先修复两条可复现的 JP 构建失败路径」2026-09-04 | #1033/#1034/#1035 全部合入即失效；按 MA-029 在下次实质性触碰时补记，不另开关闭 PR | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.

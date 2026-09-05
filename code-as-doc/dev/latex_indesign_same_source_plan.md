@@ -162,10 +162,61 @@ counts. Reference-layout consumers retain their frozen-snapshot/layout-hash
 algorithm requirements. `write_manual_ir` remains a serializer; callers
 constructing IR in memory must validate before using it at a trusted boundary.
 
-Follow-up: `builder.py` still imports `tools.idml_rst_extract` and
-`tools.idml.page_identity`, and uses the existing IDML/LaTeX source projection.
-Making extraction renderer-neutral is a separate change; this read contract
-does not relocate the RST/LaTeX parser or change production eligibility.
+#### Public source-page assembly boundary
+
+[`build_manual_ir_from_source`](../../tools/manual_ir/builder.py) assembles the
+existing `ManualPage` / `ManualBlock` objects from
+[`ManualSource` and `SourcePage`](../../tools/manual_ir/source.py). These two
+unversioned Python inputs carry ordered, decoded `(kind, payload)` pairs and
+source provenance; they have no separate serializer, schema or component
+registry. `ComponentSpec` still owns component payloads, and `PagePlan` still
+owns physical assembly. Source page IDs, references, paths, languages and
+external digests are supplied by the adapter; the core derives block IDs,
+block/manual content hashes, ordered asset references and aggregate counts.
+It does not open source files, choose tags, decode RST or import IDML. Ordinary
+and strict validation remain the existing `validate_manual_ir` contract.
+
+[`prepared_rst.py`](../../tools/manual_ir/prepared_rst.py) is explicitly the
+**legacy IDML/LaTeX projection adapter**. It retains `bundle_page_order`,
+`extract_page`, `page_language`, manifest declarations and the existing
+`latex` / `idml` / region / model / normalized-category / per-page-language
+`only` tags. It decodes only the historical component/data/table JSON payloads;
+other text is unchanged. The former source digest functions now live in
+[`hashing.py`](../../tools/manual_ir/hashing.py), with identical attachment-token
+normalization and snapshot/layout hash semantics. The parser itself remains
+at its original paths and still depends on IDML implementations.
+
+Real callers and retired responsibilities:
+
+- `tools/manual_ir_cli.py` and `tools/idml/ir_sidecar.py` explicitly load a
+  prepared source and call the shared assembler. The sidecar's redundant
+  bundle traversal is removed; its optional empty-bundle behavior remains,
+  while CLI/public builds still reject empty bundles.
+- The exported `build_manual_ir` and `tools.manual_ir.builder.build_manual_ir`
+  retain their keyword signatures as a lazy compatibility facade. Production
+  `export_idml.main` reaches the same assembler through its existing
+  `ir_projection.build_same_source_ir` caller. This preserves its completeness,
+  asset and reference-layout gates without changing the IDML entrypoint.
+  The facade contains no second extraction, assembly or hashing implementation.
+- `tools/idml/flow_md.py` keeps its intentionally different tag selection:
+  requested language, `latex`, region/model, without production `idml` or
+  category tags. Flow export's IR sidecar uses the production projection as
+  before; flow Markdown is not silently made equivalent to that IR.
+
+The boundary test starts a fresh process that forbids **all** IDML imports and
+the prepared-RST adapter, then builds, validates and round-trips a source with
+non-RST identities. Real CLI, production exporter and sidecar tests observe
+the source assembler and verify the emitted IR is its exact result. Refactor
+checks also compare old/new CLI/public/sidecar IR JSON and IDML ZIP member
+bytes, including source hashes, IDs, source references and asset order. Existing
+goldens are not refreshed.
+
+Deferred: renderer-neutral extraction, remaining RST/LaTeX parser dependencies,
+and any deliberate reconciliation of flow policies. The JE-1000F/JP
+Web-prepared bundle still raises `known notice label cannot fall back to a
+generic table: '警告'` through the unchanged extractor; the guard is not bypassed
+and no product copy is changed. This boundary does not change native acceptance
+D1–D4 (including the power on/off factual debt) or `production_eligible`.
 
 ### Phase 2 - Shared tokens and production IDML renderer
 
