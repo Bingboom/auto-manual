@@ -118,6 +118,55 @@ Deliverables:
 - production IDML can consume the IR behind a config feature switch;
 - legacy IDML remains byte-identical until the new renderer is selected.
 
+#### Public v1 read contract
+
+[`read_manual_ir(path)`](../../tools/manual_ir/serialize.py) is the shared file
+boundary. A successful read returns a `ManualIR` satisfying the same base
+contract as [`validate_manual_ir(ir)`](../../tools/manual_ir/validate.py):
+
+- a typed `manual-ir/v1` envelope with at least one page; page/block collections
+  are arrays, identities are non-empty strings, and `skipped_raw` is a
+  non-negative integer (a boolean or numeric string does not qualify);
+- unique page IDs and page source references, and globally unique block IDs
+  and block source references; each block's source reference identifies its
+  containing page followed by a non-empty `#` fragment. IDs and fragment names
+  remain opaque; there is no new renderer-specific numbering convention;
+- lowercase 64-character SHA-256 digests, recomputed block content hashes and
+  aggregate content hash in page/block order, and the exact ordered union of
+  block asset references at manual level;
+- JSON payload/metadata values, with non-finite numbers, duplicate JSON keys,
+  malformed containers and implicit type conversions rejected.
+
+Invalid files raise the exported `ManualIRValidationError`, a `ValueError`
+subclass carrying `source` and `issues`; its message includes the input path
+and field/index or page/block identity. JSON syntax and decoding failures use
+the same error boundary. Reading never rewrites, rehashes or repairs input.
+Serialization format, hash algorithms and valid v1 content/order are unchanged.
+Absent optional `asset_refs`, `metadata`, `skipped_raw` and `snapshot_sha256`
+keep their previous defaults; explicit null is permitted only for the snapshot
+digest. Arbitrary component kinds and JSON payloads remain the owning component
+contract's concern, without a second IR or registry here.
+
+The migrated file consumers are PDF parity (`tools/idml_pdf_parity.py`),
+reference-layout rebind (single and all-registered), reference-layout scaffold,
+and `tools/idml/target_assembly_scaffold.py`. They reject invalid input before
+writing reports, drafts or rebound plans. The scaffold's in-memory entry also
+uses shared validation instead of its former local schema/digest-format check.
+No consumer currently needs an unchecked legacy file entrypoint.
+
+The base contract does not open external bundle/snapshot/assets to verify
+digest freshness, approve a layout, or prove renderer readiness. Language
+registration and zero skipped raw blocks remain opt-in flags on
+`validate_manual_ir`; ordinary reads preserve unknown languages and nonzero
+counts. Reference-layout consumers retain their frozen-snapshot/layout-hash
+algorithm requirements. `write_manual_ir` remains a serializer; callers
+constructing IR in memory must validate before using it at a trusted boundary.
+
+Follow-up: `builder.py` still imports `tools.idml_rst_extract` and
+`tools.idml.page_identity`, and uses the existing IDML/LaTeX source projection.
+Making extraction renderer-neutral is a separate change; this read contract
+does not relocate the RST/LaTeX parser or change production eligibility.
+
 ### Phase 2 - Shared tokens and production IDML renderer
 
 Files:

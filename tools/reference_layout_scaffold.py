@@ -32,7 +32,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             json.dumps(candidate, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-    except (OSError, KeyError, TypeError, ValueError, ReferenceLayoutPlanError) as exc:
+    except (OSError, ValueError, ReferenceLayoutPlanError) as exc:
         parser.error(str(exc))
 
     print(
