@@ -93,6 +93,30 @@ partially green, never re-run checks blindly to "wash" a real failure.
 | MA-041 | auto-manual #1042（`fix/kr-shared-copy-app-consumer-productname`，含本登记行，进 main）——KR `page_shared/ko` 共享模板家族级措辞回写(06_ups_mode UPS 전환 문장 → 본 제품은;11_warranty 표준 보증 기간 셀 → 본 제품의 + 该单元격仅去 소비자),源自 JE-2000E_KR 评审云文档回写(基准钉钉 JE-2000E_KR_ko-KR_0.2)。合入触发 sync-hello-docs 下发镜像后重播种 JE-2000E_KR。**不含**全文 본 제품 通扫、不越过 F6 线上源表写入/`.github/workflows/**`/公开 CLI/依赖/Base schema/approved reference-layout 晋升等独立 gate。 | 「授权你 gate-on-green 合 #1042」2026-09-05 | #1042 合入即失效;下次实质性触碰本文件时补记状态 | 已失效（2026-09-05 #1042 squash `f62a39b8` 进 main） |
 | MA-042 | auto-manual `fix/kr-shared-copy-productname-charging-operation`（含本登记行，进 main）——KR `본 제품` 通扫补齐剩余 4 处正文占位符:`page_shared/ko/08_charging_methods`(태양광 DC8020 intro + Voc DC 입력 범위 문장 → 본 제품) 与 `page_eu-kr/05_operation_guide_placeholder`(IEC 62368-1 주의 ×2 → 본 제품은);同步更新 `test_dc8020_ups_placeholders`(charging ko golden)与 `test_pv_input_range_placeholder`(ko golden) 两处 pre-migration 哈希。承接 #1042/MA-041,合入触发 sync 后随 JE-2000E_KR 重播种。**不越过** F6 线上源表写入/`.github/workflows/**`/公开 CLI/依赖/Base schema/approved reference-layout 晋升等独立 gate。 | 「开 PR 补齐这 4 处 并 gate-on-green 授权你合」2026-09-05 | 本 PR 合入即失效;下次实质性触碰补记状态 | 生效 |
 
+| MA-042 | PR #1045（公共 IR 读取与解析完整性修复，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论后 squash merge。下一批从统一 main 基线接入真实 Web 的公共 IR 消费路径并退出相应重复读取；后续 PR 另行评审，不扩大本次合入授权。 | 「好 合入 然后 下一批」2026-09-05 | #1045 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1045 squash `54779cf4` 已合入；最终 head 17/17 成功、无待解决评审，随本次授权补记） |
+
+| MA-043 | PR #1046（Web 规格表消费公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。之后从统一 main 开下一批公共 IR 调用方迁移；本条不扩大到后续 PR 或 JP 原生版式修复。 | 「合入 继续」2026-09-05 | #1046 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1046 squash `251c774c` 已合入；最终 head 17/17 成功、无待解决评审，随本次授权补记） |
+
+| MA-044 | PR #1047（Web LCD／故障排除公共 IR 消费，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1047 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1047 squash `482b011a` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-045 | PR #1048（独立 Markdown 规格表接入公共 IR，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1048 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1048 squash `39d71cfa` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-046 | PR #1049（Web 提示框通过公共 IR 交接，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 迁移独立 MyST 提示框；后续 PR 另行评审，不扩大合入授权或涉及 JP 原生版式。 | 「合入继续」2026-09-05 | #1049 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1049 squash `fa502dd0` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-047 | PR #1050（独立 MyST 提示框接入共享 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 继续处理复合插图内部提示框的公共 IR 路径；后续 PR 另行评审，不扩大合入授权或涉及 JP 原生版式。 | 「合入继续」2026-09-05 | #1050 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1050 squash `48aed2a7` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-048 | PR #1051（Web Inbox 与内部 TIP 接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 的真实组件调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1051 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1051 squash `4ec51446` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-049 | PR #1052（Web FCC 双栏组件接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续迁移公共 IR 真实组件调用方；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1052 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1052 squash `3a437a32` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-050 | PR #1053（Web 警示等级说明表接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续图标对照表的公共 IR 调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1053 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1053 squash `d14ae45e` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-051 | PR #1054（Web 图标对照表接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 真实组件调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1054 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1054 squash `b379331d` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-052 | PR #1055（Web App 下载双栏接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 真实调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1055 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1055 squash `2f295daf` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-053 | PR #1056（Web App 添加设备按钮接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后构建并展示本地网页效果；不授权其他 PR 合入、线上发布或 JP 原生版式调整。 | 「合入 给我看网效果」2026-09-05 | #1056 合入即失效；下次实质性触碰补记 | 生效 |
+
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
 

@@ -251,6 +251,7 @@ def is_data_plumbing(body: str) -> bool:
     return stripped in {
         r"\fi",
         r"\HBPageBreak",
+        r"\HBPrefacePageBegin",
         r"\HBPrefacePageEnd",
         r"\HBSpecPageEnd",
     }

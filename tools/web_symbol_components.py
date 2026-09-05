@@ -6,52 +6,12 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.manual_ir import ManualIR, build_manual_ir_from_source
+from tools.manual_ir.web_symbols import decode_signal_ir, load_web_signal_source
 
-def transform_symbol_signal_table(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    expected_body_rows: int,
-    error_type: type[RuntimeError],
-) -> None:
-    """Project the localized signal legend into the shared PDF-like Web table."""
-    candidates: list[tuple[Tag, list[Tag], list[Tag]]] = []
-    for table in soup.find_all("table"):
-        if not isinstance(table, Tag):
-            continue
-        header_rows = table.select("thead > tr")
-        body_rows = table.select("tbody > tr")
-        if len(header_rows) != 1 or len(body_rows) != expected_body_rows:
-            continue
-        headers = [
-            cell
-            for cell in header_rows[0].find_all("th", recursive=False)
-            if isinstance(cell, Tag)
-        ]
-        rows = [
-            [
-                cell
-                for cell in row.find_all("td", recursive=False)
-                if isinstance(cell, Tag)
-            ]
-            for row in body_rows
-        ]
-        if (
-            len(headers) == 2
-            and all(header.get_text(" ", strip=True) for header in headers)
-            and all(len(row) == 2 for row in rows)
-            and all(row[0].select_one(".hb-warning-lockup") for row in rows)
-            and all(row[1].get_text(" ", strip=True) for row in rows)
-        ):
-            candidates.append((table, headers, body_rows))
 
-    if len(candidates) != 1:
-        raise error_type(
-            f"{source_path}: expected one governed {expected_body_rows}-row signal table, "
-            f"found {len(candidates)}"
-        )
-
-    table, headers, body_rows = candidates[0]
+def render_signal_ir(ir: ManualIR) -> str:
+    soup, table, headers, body_rows, labels = decode_signal_ir(ir)
     for colgroup in table.find_all("colgroup", recursive=False):
         colgroup.decompose()
     table.attrs.pop("style", None)
@@ -75,30 +35,12 @@ def transform_symbol_signal_table(
             else "hb-symbol-signal-meaning-heading"
         ]
 
-    for row_index, row in enumerate(body_rows, start=1):
+    for row, localized_label in zip(body_rows, labels, strict=True):
         label_cell, meaning_cell = [
             cell
             for cell in row.find_all("td", recursive=False)
             if isinstance(cell, Tag)
         ]
-        source_badge = label_cell.select_one(".hb-warning-lockup")
-        visible_labels = (
-            [
-                node
-                for node in source_badge.find_all("span")
-                if isinstance(node, Tag)
-                and not node.has_attr("aria-hidden")
-                and node.get_text(" ", strip=True)
-            ]
-            if isinstance(source_badge, Tag)
-            else []
-        )
-        if len(visible_labels) != 1:
-            raise error_type(
-                f"{source_path}: signal row {row_index} must contain one localized label"
-            )
-        localized_label = visible_labels[0].get_text(" ", strip=True)
-
         label_cell.clear()
         label_cell.attrs.pop("style", None)
         label_cell["class"] = ["hb-symbol-signal-label-cell"]
@@ -134,6 +76,29 @@ def transform_symbol_signal_table(
     )
     table.replace_with(composition)
     composition.append(table)
+    return str(composition)
 
 
-__all__ = ["transform_symbol_signal_table"]
+def transform_symbol_signal_table(
+    soup: BeautifulSoup, *, source_path: Path, expected_body_rows: int,
+    error_type: type[RuntimeError], language: str | None = None,
+    model: str | None = None, region: str | None = None,
+) -> None:
+    try:
+        source = load_web_signal_source(
+            str(soup), source_path=source_path, expected_body_rows=expected_body_rows,
+            language=language, model=model, region=region,
+        )
+        rendered = render_signal_ir(build_manual_ir_from_source(source))
+    except ValueError as exc:
+        raise error_type(str(exc)) from exc
+    # Locate the already validated boundary by exact markup, without decoding again.
+    original = source.pages[0].blocks[0][1]["table_html"]
+    table = next(table for table in soup.find_all("table") if str(table) == original)
+    # Preserve adjacent whitespace left by removal of the print colgroup.
+    table.replace_with(BeautifulSoup(
+        rendered, "html.parser", preserve_whitespace_tags={"table"},
+    ).figure)
+
+
+__all__ = ["transform_symbol_signal_table", "render_signal_ir"]

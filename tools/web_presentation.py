@@ -17,7 +17,9 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from tools.component_specs.web_source import validate_web_callout_html
+from tools.manual_ir import ManualIR, build_manual_ir_from_source
+from tools.manual_ir.web_callouts import load_web_callout_source
+from tools.web_callout_ir import render_callout_ir
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
@@ -25,6 +27,8 @@ from tools.web_composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
 )
+from tools.web_app_controls import transform_app_control
+from tools.web_app_download import transform_app_download
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
 from tools.web_overview_component import transform_overview
@@ -35,6 +39,7 @@ from tools.web_reference_components import (
 )
 from tools.web_spec_component import transform_specification_tables
 from tools.web_symbol_components import transform_symbol_signal_table
+from tools.web_symbol_pairs import transform_symbol_pairs
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
@@ -141,22 +146,34 @@ def restore_web_figures_after_pandoc(
     return restored
 
 
-def protect_web_callouts_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]:
+def protect_web_callouts_for_pandoc(
+    html_text: str, *, source_path: Path | None = None,
+    model: str | None = None, region: str | None = None,
+) -> tuple[str, dict[str, ManualIR]]:
     """Replace semantic callout tables with stable tokens before Pandoc parses HTML.
 
     Without this guard, Pandoc can convert plain callouts into pipe tables while
     leaving callouts with richer body markup as raw HTML. That content-dependent
     split drops the semantic classes, creates empty table headers, and can inject
     a 50/50 colgroup. Restoring the original table keeps every signal type on the
-    same ``manual-callout-*`` component contract.
+    same ``manual-callout-*`` component contract. The handoff carries public IR;
+    restoration validates and consumes it without reopening the source file.
     """
-    protected: dict[str, str] = {}
+    protected: dict[str, ManualIR] = {}
 
     def replace(match: re.Match[str]) -> str:
         token = f"AUTOMANUALWEBCALLOUT{len(protected) + 1:04d}PLACEHOLDER"
         callout_html = match.group(0)
-        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
-        protected[token] = callout_html
+        try:
+            source = load_web_callout_source(
+                callout_html, source_path=Path(f"{source_path or 'pandoc'}#{token}"),
+                model=model, region=region,
+            )
+            ir = build_manual_ir_from_source(source)
+            render_callout_ir(ir)  # Fail before invoking Pandoc on corrupt IR.
+            protected[token] = ir
+        except ValueError as exc:
+            raise WebPresentationError(str(exc)) from exc
         return f"<p>{token}</p>"
 
     return _WEB_CALLOUT_TABLE_RE.sub(replace, html_text), protected
@@ -164,12 +181,15 @@ def protect_web_callouts_for_pandoc(html_text: str) -> tuple[str, dict[str, str]
 
 def restore_web_callouts_after_pandoc(
     markdown_text: str,
-    protected: dict[str, str],
+    protected: dict[str, ManualIR],
 ) -> str:
     """Restore each protected callout exactly once, failing closed on drift."""
     restored = markdown_text
-    for token, callout_html in protected.items():
-        validate_web_callout_html(callout_html, source_ref=f"pandoc:{token}", error_type=WebPresentationError)
+    for token, ir in protected.items():
+        try:
+            callout_html = render_callout_ir(ir)
+        except ValueError as exc:
+            raise WebPresentationError(str(exc)) from exc
         occurrences = restored.count(token)
         if occurrences != 1:
             raise WebPresentationError(
@@ -827,167 +847,6 @@ def _transform_reference_figures(
         )
 
 
-def _transform_app_download(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    contract: dict[str, Any],
-) -> None:
-    spec = contract["app_download"]
-    image = next(
-        (
-            candidate
-            for candidate in soup.find_all("img")
-            if _src_matches_key(str(candidate.get("src", "")), str(spec["image_key"]))
-        ),
-        None,
-    )
-    if not isinstance(image, Tag):
-        raise WebPresentationError(
-            f"{source_path}: App download section is missing governed image {spec['image_key']}"
-        )
-    section = image.find_parent("section")
-    if not isinstance(section, Tag):
-        raise WebPresentationError(f"{source_path}: App download image has no section")
-    heading = section.find("h2", recursive=False)
-    if not isinstance(heading, Tag):
-        raise WebPresentationError(f"{source_path}: App download section is missing its H2")
-
-    paragraphs = [
-        paragraph
-        for paragraph in section.find_all("p", recursive=False)
-        if isinstance(paragraph, Tag)
-    ]
-    copy_markup: list[str]
-    if len(paragraphs) == 2:
-        copy_markup = [paragraph.decode_contents().strip() for paragraph in paragraphs]
-    elif len(paragraphs) == 1:
-        parts = re.split(r"\s*\n+\s*", paragraphs[0].decode_contents().strip(), maxsplit=1)
-        if len(parts) != 2:
-            raise WebPresentationError(
-                f"{source_path}: App download copy must provide left and right columns"
-            )
-        copy_markup = [part.strip() for part in parts]
-    else:
-        raise WebPresentationError(
-            f"{source_path}: App download section has {len(paragraphs)} direct paragraphs; "
-            "expected one split paragraph or two column paragraphs"
-        )
-    if any(not BeautifulSoup(markup, "html.parser").get_text(" ", strip=True) for markup in copy_markup):
-        raise WebPresentationError(f"{source_path}: App download column copy is incomplete")
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-app-download-composition",
-            "aria-label": heading.get_text(" ", strip=True),
-        },
-    )
-    image["class"] = [*image.get("class", []), "hb-app-download-semantic-art"]
-    image.replace_with(composition)
-
-    copy_grid = soup.new_tag("div", attrs={"class": "hb-app-download-grid"})
-    for column_id, markup in zip(("store", "qr"), copy_markup, strict=True):
-        column = soup.new_tag(
-            "div",
-            attrs={
-                "class": ["hb-app-download-column", f"hb-app-download-column-{column_id}"],
-            },
-        )
-        art_frame = soup.new_tag("div", attrs={"class": "hb-app-download-art-frame"})
-        art = soup.new_tag(
-            "img",
-            attrs={
-                "class": ["hb-app-download-art", f"hb-app-download-art-{column_id}"],
-                "src": str(spec["artwork"][column_id]),
-                "alt": "",
-                "aria-hidden": "true",
-                "loading": "lazy",
-            },
-        )
-        art_frame.append(art)
-        column.append(art_frame)
-        copy = soup.new_tag(
-            "div",
-            attrs={"class": ["hb-app-download-copy", f"hb-app-download-copy-{column_id}"]},
-        )
-        paragraph = soup.new_tag("p")
-        _append_markup(paragraph, markup)
-        copy.append(paragraph)
-        column.append(copy)
-        copy_grid.append(column)
-    composition.append(copy_grid)
-    semantic = soup.new_tag("div", attrs={"class": "hb-app-download-semantic"})
-    semantic.append(image)
-    composition.append(semantic)
-    for paragraph in paragraphs:
-        paragraph.decompose()
-
-
-def _transform_app_inline_controls(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    contract: dict[str, Any],
-) -> None:
-    spec = contract["app_inline_controls"]
-    paragraph_prefix = str(spec["add_device_paragraph_prefix"])
-    paragraph = next(
-        (
-            candidate
-            for candidate in soup.find_all("p")
-            if candidate.get_text(" ", strip=True).startswith(paragraph_prefix)
-        ),
-        None,
-    )
-    if not isinstance(paragraph, Tag):
-        raise WebPresentationError(
-            f"{source_path}: App setup is missing its {paragraph_prefix} add-device paragraph"
-        )
-
-    icon = soup.new_tag(
-        "span",
-        attrs={
-            "class": "hb-inline-add-device-icon",
-            "role": "img",
-            "aria-label": str(spec["accessible_label"]),
-        },
-    )
-    icon.string = "+"
-
-    button_terms = [str(term) for term in spec["button_terms"]]
-    button_pattern = rf"\b(?:{'|'.join(re.escape(term) for term in button_terms)})\b"
-    if not re.search(button_pattern, paragraph.get_text(" ", strip=True), flags=re.IGNORECASE):
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} paragraph has no localized button term"
-        )
-
-    visible_labels = paragraph.find_all("strong")
-    if len(visible_labels) != 1:
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} paragraph must contain exactly one "
-            "visible add-device label"
-        )
-    visible_label = visible_labels[0]
-    localized_label = visible_label.get_text(" ", strip=True)
-    if not localized_label:
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} add-device label is empty"
-        )
-    icon["aria-label"] = localized_label
-    visible_label.replace_with(icon)
-
-
-def _transform_in_the_box(soup: BeautifulSoup, *, source_path: Path) -> None:
-    """Compatibility facade retained until the PR 9 cleanup."""
-    transform_inbox(
-        soup,
-        source_path=source_path,
-        language="und",
-        error_type=WebPresentationError,
-    )
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1191,126 +1050,6 @@ def _transform_warranty(
             card.append(block.extract())
 
 
-def _transform_meaning_symbols_table(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-) -> None:
-    """Split the source four-column symbol matrix into two independent panels."""
-    candidates: list[tuple[Tag, list[list[Tag]]]] = []
-    for table in soup.find_all("table"):
-        if not isinstance(table, Tag):
-            continue
-        rows = _table_rows(table)
-        if len(rows) != 7 or not all(len(row) == 4 for row in rows):
-            continue
-        header, *body_rows = rows
-        if not all(cell.get_text(" ", strip=True) for cell in header):
-            continue
-        if not all(
-            row[0].find("img")
-            and row[1].get_text(" ", strip=True)
-            and (
-                bool(row[2].find("img"))
-                == bool(row[3].get_text(" ", strip=True))
-            )
-            for row in body_rows
-        ):
-            continue
-        candidates.append((table, rows))
-
-    if len(candidates) != 1:
-        raise WebPresentationError(
-            f"{source_path}: expected one governed four-column symbol table, "
-            f"found {len(candidates)}"
-        )
-
-    source_table, rows = candidates[0]
-    header, *body_rows = rows
-    populated_right_rows = [
-        row for row in body_rows if row[2].find("img")
-    ]
-    if len(body_rows) != 6 or len(populated_right_rows) != 5:
-        raise WebPresentationError(
-            f"{source_path}: symbol panel row contract changed: "
-            f"left={len(body_rows)}, right={len(populated_right_rows)}"
-        )
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-symbol-pair-composition",
-            "aria-label": " / ".join(
-                cell.get_text(" ", strip=True) for cell in header[:2]
-            ),
-        },
-    )
-    grid = soup.new_tag("div", attrs={"class": "hb-symbol-pair-grid"})
-    composition.append(grid)
-
-    for panel_index, column_offset in enumerate((0, 2)):
-        panel = soup.new_tag(
-            "div",
-            attrs={
-                "class": ["hb-symbol-panel", f"hb-symbol-panel-{panel_index + 1}"],
-            },
-        )
-        table = soup.new_tag("table", attrs={"class": "hb-symbol-panel-table"})
-        colgroup = soup.new_tag("colgroup")
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-symbol-col-icon"}))
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-symbol-col-meaning"}))
-        table.append(colgroup)
-
-        thead = soup.new_tag("thead")
-        header_row = soup.new_tag("tr")
-        for cell_index, source_cell in enumerate(
-            header[column_offset : column_offset + 2]
-        ):
-            source_cell.extract()
-            source_cell.name = "th"
-            source_cell["scope"] = "col"
-            source_cell["class"] = [
-                "hb-symbol-icon-heading"
-                if cell_index == 0
-                else "hb-symbol-meaning-heading"
-            ]
-            header_row.append(source_cell)
-        thead.append(header_row)
-        table.append(thead)
-
-        tbody = soup.new_tag("tbody")
-        for source_row in body_rows:
-            pair = source_row[column_offset : column_offset + 2]
-            if not pair[0].find("img"):
-                if pair[1].get_text(" ", strip=True):
-                    raise WebPresentationError(
-                        f"{source_path}: symbol row has meaning copy without artwork"
-                    )
-                continue
-            row = soup.new_tag("tr")
-            icon_cell, meaning_cell = pair
-            icon_cell.extract()
-            meaning_cell.extract()
-            icon_cell["class"] = ["hb-symbol-icon"]
-            meaning_cell["class"] = ["hb-symbol-meaning"]
-            image = icon_cell.find("img")
-            if not isinstance(image, Tag):
-                raise WebPresentationError(
-                    f"{source_path}: symbol row is missing its governed artwork"
-                )
-            for attribute in ("style", "width", "height"):
-                image.attrs.pop(attribute, None)
-            image["class"] = [*image.get("class", []), "hb-symbol-art"]
-            row.append(icon_cell)
-            row.append(meaning_cell)
-            tbody.append(row)
-        table.append(tbody)
-        panel.append(table)
-        grid.append(panel)
-
-    source_table.replace_with(composition)
-
-
 def _transform_preface(
     soup: BeautifulSoup,
     *,
@@ -1371,13 +1110,16 @@ def transform_web_fragment(
     soup = BeautifulSoup(html_fragment, "html.parser")
     has_specifications = transform_specification_tables(
         soup, source_path=source_path, language=language, error_type=WebPresentationError,
+        model=model, region=region,
     )
     has_troubleshooting = transform_troubleshooting_tables(
         soup, source_path=source_path, declared_page=declared_troubleshooting,
+        language=language, model=model, region=region,
         error_type=WebPresentationError,
     )
     has_lcd = transform_lcd_icon_tables(
         soup, source_path=source_path, declared_page=declared_lcd_icons,
+        language=language, model=model, region=region,
         error_type=WebPresentationError,
     )
     semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd else html_fragment
@@ -1449,6 +1191,7 @@ def transform_web_fragment(
             config=fcc,
             error_type=WebPresentationError,
             language=language,
+            model=model, region=region,
         )
     if is_meaning_symbols:
         transform_symbol_signal_table(
@@ -1456,8 +1199,12 @@ def transform_web_fragment(
             source_path=source_path,
             expected_body_rows=int(meaning_symbols["signal_row_count"]),
             error_type=WebPresentationError,
+            language=language, model=model, region=region,
         )
-        _transform_meaning_symbols_table(soup, source_path=source_path)
+        transform_symbol_pairs(
+            soup, source_path=source_path, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_warranty:
         _transform_warranty(
             soup,
@@ -1466,11 +1213,20 @@ def transform_web_fragment(
             expected_years=[str(value) for value in warranty["period_years"]],
         )
     if is_in_the_box:
-        _transform_in_the_box(soup, source_path=source_path)
+        transform_inbox(
+            soup, source_path=source_path, language=language or "und",
+            model=model, region=region, error_type=WebPresentationError,
+        )
     if is_app_download:
-        _transform_app_download(soup, source_path=source_path, contract=data)
+        transform_app_download(
+            soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_app_inline_controls:
-        _transform_app_inline_controls(soup, source_path=source_path, contract=data)
+        transform_app_control(
+            soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_reference_page:
         _transform_reference_figures(
             soup,

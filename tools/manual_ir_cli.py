@@ -33,18 +33,22 @@ def main() -> int:
     parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
     bundle_root = args.bundle_root.resolve()
-    prepared = load_prepared_rst_source(
-        root=ROOT,
-        bundle_root=bundle_root,
-        model=args.model,
-        region=args.region,
-        lang=args.lang,
-        source=args.source,
-        category=args.category,
-        data_root=args.data_root,
-        layout_params_csv=args.layout_params,
-        style_contract_path=args.style_contract,
-    )
+    try:
+        prepared = load_prepared_rst_source(
+            root=ROOT,
+            bundle_root=bundle_root,
+            model=args.model,
+            region=args.region,
+            lang=args.lang,
+            source=args.source,
+            category=args.category,
+            data_root=args.data_root,
+            layout_params_csv=args.layout_params,
+            style_contract_path=args.style_contract,
+        )
+    except (OSError, ValueError) as exc:
+        print(f"[manual-ir] FAIL {exc}")
+        return 1
     ir = build_manual_ir_from_source(prepared)
     issues = validate_manual_ir(
         ir,

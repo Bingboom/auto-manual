@@ -1135,6 +1135,32 @@ RTD catalog behavior:
 - For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json) (currently `JE-1000F / US`), Product Overview becomes one `HB-SPECIAL-OVERVIEW` semantic instance with two views, two asset roles and 15 ordered live callouts; [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json) supplies only that target's Web/IDML geometry and locale/source bindings. Both views use centered locale-matched approved PDF artwork in English, French, and Spanish, with the complete searchable HTML/SVG labels retained as the fallback when no approved manifest entry matches. The image crop excludes the FRONT/RIGHT view heading so theme changes still control it. WHAT'S IN THE BOX is one `HB-SPECIAL-INBOX` semantic instance: three ordered cards each carry their number, image asset role, accessible alt and editable localized label, followed by the same instance's editable TIP label/body. The Web adapter renders equal rounded cards with even outer alignment and a responsive full-width TIP strip; the LaTeX, IDML and Word adapters keep their own layout geometry without rasterizing the labels. App Setup renders the store badges and QR as two distinct shared images, centers each in its own column, and keeps both descriptions as live responsive HTML. Step 2.1 uses the themeable plus while preserving its localized screen-reader label. The add-device panel combines one shared PDF-derived two-phone artwork, with 2.1/2.2 already positioned inside the image, and shared text-free device-control art with the three localized RST button labels as visible HTML. The approved control art keeps the complete grey panel and leader lines; CSS places only the localized labels in its reserved zones and never draws replacement line fragments. Operation figures and the car-charging connection panel retain centered locale-matched 2x crops; the App connect-result panel uses one shared PDF-derived three-phone image with 2.3/2.4/2.5 already embedded. Responsive CSS therefore does not independently place any App screenshot caption. Reference artwork never contains the section heading, and surrounding instructions remain live HTML. In the web profile, every ordinary standalone RST image fills the same responsive content width, remains centered, and preserves its aspect ratio instead of retaining inconsistent print-width hints such as 360 px. Unlisted targets retain ordinary source HTML until their own presentation is validated and added to the contract.
 - FCC is rendered from the localized RST as a searchable two-column card with the FCC mark, normalizes locale-specific trailing copy, uses one component-owned spacing token for paragraphs and measure items, and becomes one column on phones. Its H1 stays available to the page outline and RTD navigation but is visually hidden, so readers see only the FCC content card. H1 bars, generic tables, governed table frames, and FCC use one shared border-box component-band width, keeping their left/right edges aligned. Each localized MEANING OF SYMBOLS warning-definition table is rebuilt as semantic searchable HTML with the PDF's full dark grid and dark warning badges; the four labels and descriptions stay localized live text and source inline widths do not reach final HTML. The following safety-symbol matrix is rendered from the same localized RST as two independent rounded Symbol/Meaning tables, matching the PDF's left-six/right-five structure so a long right-side description does not stretch the paired left row. On desktop both panels share the same outer height and aligned top/bottom borders; phones stack the two tables. The LCD icon page remains a searchable four-column HTML table: `On` / `Blink` / `Off` line-blocks stay on separate lines; the rounded frame and every row/column rule mirror the PDF hierarchy; number/icon/name cells are lightly filled; compact number badges are centered in the first column; and phones use horizontal scrolling instead of crushing the copy.
 
+The prepared Web Inbox now passes its three cards and internal TIP through public
+IR before figure protection. Source language and target context are preserved;
+malformed card/tip rows or inconsistent IR fail before partial output is applied.
+Rich text, links, image references and existing EN/FR/ES appearance are retained.
+This does not admit new targets into the approved figure contract or change
+Word/IDML output. Other composite figure callouts remain separate work.
+
+Prepared Web FCC also passes through public IR. Its opening copy, measures,
+column split and mark binding can be replayed without reopening the source page.
+Invalid semantic data or an inconsistent mark binding stops the transform before
+partial output. Existing EN/FR/ES copy, paragraph normalization, figure admission
+and Word/IDML output are unchanged; this does not change legal text or approve
+an additional region.
+
+The signal-word legend also uses public IR while retaining its localized labels
+and rich meaning cells. Malformed final labels, ambiguous tables or unsupported
+row spans fail before the source table is partly changed. Existing EN/FR/ES
+output and surrounding symbol-pair tables are preserved; no additional target
+is admitted by this change.
+
+The adjacent icon/meaning table now follows the same public IR boundary while
+keeping its left-six/right-five panels. Invalid icon bindings, row spans or
+nonempty unused cells stop before partial output. Images, rich meaning cells
+and EN/FR/ES whole-page output are preserved; the existing signal legend and
+target-admission rules are unchanged.
+
 LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
@@ -1144,6 +1170,18 @@ name and description. Malformed rows fail instead of being padded or truncated.
 Status line breaks, inline emphasis, lists, icon sources and row order remain
 authored content. The scrollable table can also receive keyboard focus; artwork
 approval rules remain unchanged.
+
+App download's store and QR columns also consume public IR. Both live copy
+columns, links/emphasis, the original semantic image and artwork bindings survive
+serialized replay. Invalid or ambiguous source content stops before changing the
+page. The existing three-language layout and artwork selection remain unchanged;
+App button replacement and other reference figures are separate consumers.
+
+The App add-device inline button now also consumes public IR. Its localized
+accessible name and surrounding sentence, emphasis, links and images survive
+replay; ambiguous or incomplete labels fail before changing the page. Existing
+three-language output and Pandoc protection remain unchanged. Reference figures
+are still a separate migration.
 
 - The LCD screen-mode panel remains searchable HTML while matching the template's rounded illustration-plus-table composition across EN/FR/ES. The AC/DC Auto Resume matrix also remains searchable HTML with equal-width columns, a light left column, white right column, dark full-grid rules, and a true two-row Battery SOC cell. On phones each compact table scrolls inside its own frame instead of widening the page.
 - The EN/FR/ES Troubleshooting table remains searchable HTML with the PDF's rounded dark frame, full grid, 14% light error-code column, and 86% white corrective-measures column. F6/F7 actions keep their source line breaks through Pandoc. The four Specifications tables use a matching protected 31%/69% label/value grid and preserve row-spanning labels; the web transform removes the authored bullet glyph so the shared heading theme shows one section dot rather than two, and raises both governed `①` references as semantic superscripts. Both table types scroll inside their own frame on phones.
@@ -1528,3 +1566,47 @@ Templates and CSV create the first draft.
 - if your team uses OpenClaw as the operator entrypoint, install the repo package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) and use `/start-review`, `/build-draft`, `/publish`, `/web-publish`, and `/manual-status` instead of hand-calling the GitHub API.
 - the OpenClaw bridge does not move `build.py`, Feishu secrets, or queue writeback out of GitHub Actions. It only dispatches the existing workers on `main` and tracks them through `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact.
 - OpenClaw dispatches `start-review`, `build-draft`, `publish`, and `web-publish` with the resolved Feishu `record_id`; both publish actions require explicit confirmation.
+
+
+Prepared-source integrity: a declared page include that is missing or is not a
+file now stops source discovery with the index and source path. Registered
+prose macros need complete arguments; unsupported content around recognized
+macros increments `skipped_raw` and fails strict Manual IR validation. A valid
+macro no longer hides adjacent unsupported copy. Existing language/tag
+selection and successful payload formats remain unchanged.
+
+IDML handoff validates the source `manual.ir.json` before copying artifacts or
+writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
+not a zero-skipped report. This integrity work does not migrate Web to whole
+Manual IR and does not certify native JP layout. See the
+[shared-source plan](../code-as-doc/dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
+
+
+Web 规格表已接入公共 IR 校验，构建命令不变。Web 构建会保留规格中的链接、强调、
+换行和脚注，不再借用 Word 的纯文本抽取重建。任何声明规格表不合法时，本次规格
+转换整体失败，避免只转换前半页。这仅覆盖规格表投影，不能据此声明整本 Web
+或 JP 原生排版已完成验收。
+
+
+LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主构建与独立 Markdown
+站点共用，命令不变。图标替代文字、列表、链接、图注和表头仍来自原文；同一批
+表格中有一张不合法时，整批转换失败，不留下半页已转换的结果。这仍是表格级
+接入，整本 Web 和其他组件尚未全部迁移。
+
+
+独立 Markdown 的 `{spec-table}` 也已复用公共规格表 IR，不再单独计算合并行和
+拼装表格。参数标题继续用作组件标签，不增加可见标题；上下标和空标签续行保留，
+裸圆圈脚注编号使用统一上标样式。规格表、LCD、故障排除三类表格已在两种 Web
+入口接通，整本说明书及其他组件的迁移仍未完成。
+
+
+生成 Web 的警告／提示框在 Pandoc 转换前后也已通过公共 IR 交接，构建命令不变。
+框内原文、链接、列表和图片保持原样；IR 损坏或声明的标签／正文结构不完整时构建
+失败。已整体保护的复合插图内提示框仍待迁移，这不代表整本 Web 或 JP 版式
+验收完成。
+
+
+独立 Markdown 的 `{callout}` 也已接入同一个公共 IR 消费器。正文仍由 Sphinx
+处理，内部链接、图片、列表和强调保留；自定义标签的 `:variant:` 与配置语言会
+一起进入校验。提示框内嵌表格或其他提示框暂不受共享契约支持，会带来源位置报错，
+不会截断后继续输出。命令和编辑位置不变。

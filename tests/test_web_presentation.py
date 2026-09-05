@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup, Tag
 from PIL import Image
 
 from tools.component_specs.web_source import validate_web_callout_html
+from tools.web_callout_ir import render_callout_ir
 from tools.web_composite_manifest import load_web_composite_manifest
 from tools.web_presentation import (
     WebPresentationError,
@@ -142,10 +143,10 @@ class WebPresentationTests(unittest.TestCase):
         self.assertEqual(5, len(placeholders))
         before_specs = {
             token: validate_web_callout_html(
-                callout_html,
+                render_callout_ir(callout_ir),
                 source_ref=f"pandoc:{token}",
             )
-            for token, callout_html in placeholders.items()
+            for token, callout_ir in placeholders.items()
         }
         pandoc_output = "# Safety\n\n" + "\n\n".join(placeholders) + "\n"
         restored = restore_web_callouts_after_pandoc(pandoc_output, placeholders)
