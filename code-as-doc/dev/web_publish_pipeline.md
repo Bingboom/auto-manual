@@ -14,6 +14,50 @@ Read the Docs. Web delivery is intentionally separate from print delivery.
 artifacts. Both actions render reviewed content selected by
 `Document_link.Git_ref` with the current `main` toolchain.
 
+## 1.1 Semantic tables and frozen figures
+
+The Web profile renders explicitly declared specification sections across
+targets. `h2.hb-spec-section` with a source-authored
+`.hb-spec-section-text` title and its adjacent `hb-spec-table` or
+`manual-spec-table` are the declaration. The Web adapter in
+[`web_spec_component.py`](../../tools/web_spec_component.py) projects their
+label/value rows through the existing `HB-TABLE-SPEC` ComponentSpec and public
+`web_spec_table_projection`. It keeps inline markup, row order, label spans,
+references and adjacent footnotes/safety copy. Only the declared decorative
+heading bullet is removed; the Web theme supplies its heading marker.
+
+This semantic path runs before figure routing and does not require an artwork
+grant. A matching filename or an ordinary two-column table is insufficient;
+missing declarations stay unchanged, while malformed declared sections fail
+the build. Section and reference counts come from the source, not a target
+constant. `web_manual.json.specifications` remains readable for serialized
+compatibility but its old `spec_*`, four-section and two-reference selectors
+no longer route or constrain rendering. The `{spec-table}` Markdown directive
+already consumes the same public adapter and requires no new interface.
+
+`figure_targets`, per-figure source patterns, target instances and frozen
+composite approval/hash checks retain their existing scope. Other semantic
+compositions (LCD, troubleshooting, warranty, etc.) still use their legacy
+target routing; this slice migrates specifications only. For a target outside
+the frozen figure contract, Web starts at its manifest's first included page;
+it does not invent a preface. The frozen US target retains its preface rule.
+Cover/TOC/back-cover exclusions remain in force.
+
+Local verification uses the same Markdown-to-Sphinx path without a queue or
+online source update. For example, with a separate staging directory:
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.ja.yaml --model JE-1000F --region JP --source runtime --data-root tests/fixtures/phase2 --staging-root .tmp/web-check --no-clean --skip-root-index
+python tools/readthedocs_source.py --build-root .tmp/web-check/docs/_build --output-dir .tmp/web-check/docs/_build/rtd
+python -m sphinx -b html .tmp/web-check/docs/_build/rtd .tmp/web-check/html
+```
+
+Inspect both targets at narrow and wide widths, compare all ordered copy and
+asset hashes against the baseline, and compare document-profile outputs
+separately. This is local rendering evidence; it does not grant asset approval,
+change JP D1–D4 or promote production eligibility.
+
 ## 2. Web Publish transaction
 
 1. The business-plane worker claims only rows whose normalized action is
