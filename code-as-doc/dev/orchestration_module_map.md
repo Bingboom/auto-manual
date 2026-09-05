@@ -185,6 +185,12 @@ empty-cell policies are recorded in
 - [`tools/web_symbol_pairs.py`](../../tools/web_symbol_pairs.py)
   - public IR consumer for the existing left-six/right-five icon/meaning panels
   - moves the direct source/render loop out of `web_presentation`; applies only fully validated replay
+- [`tools/manual_ir/web_app_download.py`](../../tools/manual_ir/web_app_download.py)
+  - prepared App download source and owned payload validation; binds two rich-copy columns and all artwork
+  - snapshots config/CSS provenance; replay validates data without reopening source/config
+- [`tools/web_app_download.py`](../../tools/web_app_download.py)
+  - real public IR consumer for store/QR columns; retains the original rendering body
+  - replaces image/removes consumed paragraphs only after complete validation and detached rendering
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
