@@ -11,6 +11,11 @@ from pathlib import Path
 
 from tools.localized_copy import first_text, localized_cell, snapshot_language_suffixes
 from .text_clean import VariableSubstituter, clean_cell
+from tools.utils.spec_footnotes import (
+    append_footnote_markers as _append_footnote_markers,
+    footnote_marker_for_order as _footnote_marker_for_order,
+    parse_footnote_refs as _parse_footnote_refs,
+)
 
 
 def normalize_lang(lang: str | None) -> str:
@@ -19,39 +24,7 @@ def normalize_lang(lang: str | None) -> str:
     return suffixes[0] if suffixes else "en"
 
 
-# Footnote ① markers — MIRRORS tools/csv_pages/renderers_spec_parser.py
-# (_footnote_marker_for_order / _parse_footnote_refs / _append_footnote_markers),
-# parity is test-enforced so the IDML spec page can never drift from the PDF.
-_CIRCLED_NUMBER_MARKERS = {
-    1: "\u2460", 2: "\u2461", 3: "\u2462", 4: "\u2463", 5: "\u2464",
-    6: "\u2465", 7: "\u2466", 8: "\u2467", 9: "\u2468", 10: "\u2469",
-}
 _LEGACY_FOOTNOTE_PREFIX_RE = re.compile(r"^(?:[\u2460-\u2473]|\(\d+\)|\d+\.)\s*")
-
-
-def _footnote_marker_for_order(order: float) -> str:
-    normalized = int(order)
-    if normalized <= 0:
-        return ""
-    return _CIRCLED_NUMBER_MARKERS.get(normalized, f"({normalized})")
-
-
-def _parse_footnote_refs(value: str) -> list[str]:
-    refs: list[str] = []
-    for token in (value or "").split(","):
-        item = token.strip()
-        if item and item not in refs:
-            refs.append(item)
-    return refs
-
-
-def _append_footnote_markers(text: str, refs: list[str], marker_by_id: dict[str, str]) -> str:
-    if not text:
-        return text
-    markers = "".join(marker_by_id.get(ref, "") for ref in refs if marker_by_id.get(ref, ""))
-    if not markers:
-        return text
-    return f"{text}{markers}"
 
 
 def _target_matches(row: dict, model: str, region: str) -> bool:

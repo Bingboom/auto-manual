@@ -9,6 +9,11 @@ import re
 from typing import cast
 
 from .. import lang_registry
+from tools.utils.spec_footnotes import (
+    append_footnote_markers as _append_footnote_markers,
+    footnote_marker_for_order as _footnote_marker_for_order,
+    parse_footnote_refs as _parse_footnote_refs,
+)
 from ..localized_copy import first_text, localized_columns
 from .renderers_common import _enabled, _scope_allows, apply_vars, rst_escape
 from ..utils.spec_master import (
@@ -141,44 +146,7 @@ def _pick_title_lang(lang: str, vars_map: dict[str, str]) -> str:
     return "en"
 
 
-_CIRCLED_NUMBER_MARKERS: dict[int, str] = {
-    1: "\u2460",
-    2: "\u2461",
-    3: "\u2462",
-    4: "\u2463",
-    5: "\u2464",
-    6: "\u2465",
-    7: "\u2466",
-    8: "\u2467",
-    9: "\u2468",
-    10: "\u2469",
-}
 _LEGACY_FOOTNOTE_PREFIX_RE = re.compile(r"^(?:[\u2460-\u2473]|\(\d+\)|\d+\.)\s*")
-
-
-def _footnote_marker_for_order(order: float) -> str:
-    normalized = int(order)
-    if normalized <= 0:
-        return ""
-    return _CIRCLED_NUMBER_MARKERS.get(normalized, f"({normalized})")
-
-
-def _parse_footnote_refs(value: str) -> list[str]:
-    refs: list[str] = []
-    for token in (value or "").split(","):
-        item = token.strip()
-        if item and item not in refs:
-            refs.append(item)
-    return refs
-
-
-def _append_footnote_markers(text: str, refs: list[str], marker_by_id: dict[str, str]) -> str:
-    if not text:
-        return text
-    markers = "".join(marker_by_id.get(ref, "") for ref in refs if marker_by_id.get(ref, ""))
-    if not markers:
-        return text
-    return f"{text}{markers}"
 
 
 def _strip_legacy_footnote_prefix(text: str) -> str:
