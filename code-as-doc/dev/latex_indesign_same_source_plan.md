@@ -268,6 +268,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web / standalone MyST specifications | Shared scoped specification IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web callouts / standalone MyST callouts | Shared callout IR consumer | Rendered HTML + ComponentSpec; protected composite figures remain separate |
+| Prepared Web Inbox (three cards + internal TIP) | Scoped composite IR before figure protection | Existing Inbox HTML parser + retained markup; original figure-target gate |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -306,13 +307,27 @@ registry entry or serialized schema is introduced. The extension environment
 version invalidates old cached doctrees. Non-HTML writers keep the parsed body
 through their ordinary container visitors. The shared one-row label/body
 contract rejects nested tables/callouts with source context; these are not
-flattened or partially emitted. Callouts inside composite figures protected
-earlier in the prepared pipeline still remain on the figure path.
+flattened or partially emitted. Other composite callouts remain on the figure
+path; Inbox now has its own scoped public IR consumer described below.
 Remaining HTML parsing and language-label lookup are explicit source-adapter
 debt, not a renderer-neutral rich-text implementation.
 
+**Prepared Inbox composite:** `transform_web_fragment` retains the existing
+figure-target gate, then `transform_inbox` loads the public source and assembles
+`metadata.projection=web-inbox`. Its single `web_inbox` block owns the existing
+`HB-SPECIAL-INBOX` ComponentSpec, exact heading/card/tip markup and all markup
+image references. The internal TIP remains part of Inbox, not a second callout.
+`web_inbox_component.render_inbox_ir` validates the envelope and payload agreement,
+then uses the existing component projection on detached tags. The caller replaces
+its grid/tip only after replay succeeds. The former direct ComponentSpec-only
+entry and hardcoded language facade exit; serialized replay needs no source file.
+One source adapter is added; the existing renderer is reused without raising
+its hotspot limit. Real EN/FR/ES outputs remain byte-identical. This does not
+migrate the generic figure string-protection map, other composite figures or
+Word/IDML Inbox adapters, and does not expand approved target admission.
+
 These are **three scoped table families across both Web entrances plus the
-shared callout consumer**, not whole-manual Web IR or a
+shared callout consumer and one prepared Inbox composite**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.
