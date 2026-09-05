@@ -4,14 +4,14 @@
    "Échanger" instead of "Réparation ou remplacement". See
    en/11_warranty_eu.rst for why this is a separate carrier.
 
-   NOT fixed here, and it affects both this file and 11_warranty.rst: the
-   bodies of sections 4 and 5 are offset by one. Section 5 is headed "Limitée à
-   l'acheteur et consommateur d'origine" but its body is the repair-or-replace
-   remedy, and the non-transferability sentence is missing entirely -- the
-   approved French wording sits at page_shared/fr/11_warranty.rst:59. Of the
-   six BP warranty carriers only French has this; en, es, de, it and uk are
-   correct. It prints in the US booklet today, so correcting it changes shipped
-   copy and is a separate decision. Reported, not silently changed.
+   Section 5 used to carry the repair-or-replace remedy under the "Limitée à
+   l'acheteur et consommateur d'origine" heading, leaving the French book with
+   no non-transferability clause at all -- an offset that affected this file and
+   11_warranty.rst alike, and printed in the shipped US booklet. It is fixed in
+   both now; the clause is the reviewed wording from
+   page_shared/fr/11_warranty.rst. Section 4 needed no move here: replace-only
+   is what the EU booklet should say, so this file's body was already right and
+   only its heading had been wrong.
 
 GARANTIE
 ========
@@ -63,7 +63,7 @@ Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctio
 Limitée à l'acheteur et consommateur d'origine
 ----------------------------------------------
 
-Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.
+La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être transférée à un autre propriétaire.
 
 .. class:: warranty-section
 
