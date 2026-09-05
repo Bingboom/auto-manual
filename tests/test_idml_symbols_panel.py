@@ -11,6 +11,7 @@ from pathlib import Path
 from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml import page03, shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
+from tools.idml.components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from tools.idml.components.symbols_panel_metrics import distribute_compact_row_slack
 from tools.idml.components.fcc_inbox_panel import FccInboxPanel
 from tools.idml.components.safety_symbols_panel import SafetySymbolsPanel
@@ -22,6 +23,9 @@ from tools.idml.symbols_page import SafetySymbolsPageStyle
 ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = ROOT / "tests" / "fixtures" / "phase2"
 GOLDEN = ROOT / "tests" / "fixtures" / "idml_symbols_panel_golden.json"
+SECTION_GOLDEN = (
+    ROOT / "tests" / "fixtures" / "idml_symbol_sections_golden.json"
+)
 
 TITLES = {
     "en": "MEANING OF SYMBOLS",
@@ -109,7 +113,83 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
     }
 
 
+def _split_section_snapshot() -> dict[str, object]:
+    params = load_layout_params(ROOT / "data" / "layout_params.csv")
+    writer = IdmlWriter(
+        params,
+        model="JBP-2000B",
+        region="JP",
+        language="jp",
+    )
+    data = SymbolsPanelData(
+        title="記号の意味",
+        signal_headers=("記号", "意味"),
+        icon_headers=("記号", "意味"),
+        signals=(
+            ("警告", "警告の説明"),
+            ("注意", "注意の説明"),
+            ("説明", "説明の説明"),
+            ("ヒント", "ヒントの説明"),
+        ),
+        icons=(
+            {"figure": "", "text": "取扱説明書を読む"},
+            {"figure": "", "text": "火気厳禁"},
+        ),
+    )
+    signals = SignalWordsPanel(
+        writer,
+        sid="st_signal_split",
+        data=data,
+        bundle_root=ROOT,
+        language="jp",
+        include_header=False,
+    ).render(x=writer.m_l, y=300.0, width=312.0, available_height=220.0)
+    icons = SymbolIconsPanel(
+        writer,
+        sid="st_icon_split",
+        data=data,
+        language="jp",
+        include_header=False,
+    ).render(x=writer.m_l, y=27.7, width=312.0, available_height=460.0)
+
+    stories = dict(writer.stories)
+    signal_table = ET.fromstring(stories[signals.story_ids[0]]).find(".//Table")
+    icon_table = ET.fromstring(stories[icons.story_ids[1]]).find(".//Table")
+    assert signal_table is not None
+    assert icon_table is not None
+    return {
+        "SignalWordsPanel": {
+            "split": {
+                "jp": {
+                    "height": signals.height,
+                    "row_count": len(signal_table.findall("./Row")),
+                    "story_sha256": {
+                        story_id: _story_digest(stories[story_id])
+                        for story_id in signals.story_ids
+                    },
+                }
+            }
+        },
+        "SymbolIconsPanel": {
+            "split": {
+                "jp": {
+                    "height": icons.height,
+                    "row_count": len(icon_table.findall("./Row")),
+                    "story_sha256": {
+                        story_id: _story_digest(stories[story_id])
+                        for story_id in icons.story_ids
+                    },
+                }
+            }
+        },
+    }
+
+
 class SymbolsPanelTests(unittest.TestCase):
+    def test_split_symbol_panels_match_japanese_golden(self) -> None:
+        expected = json.loads(SECTION_GOLDEN.read_text(encoding="utf-8"))
+        self.assertEqual(expected, _split_section_snapshot())
+
     def test_eu_signal_badges_fit_the_shared_fixed_width(self) -> None:
         params = load_layout_params(
             ROOT / "data" / "layout_params.csv",

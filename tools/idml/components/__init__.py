@@ -23,7 +23,7 @@ from .emphasis import render_emphasispill, render_headingpill
 from .inbox import render_inbox
 from .lcdmode import render_lcdmode
 from .notice import render_notice
-from .prose_image import render_image_block
+from .prose_image import plan_figure_callouts, render_image_block
 from .prose_table import body_data_table_kind, render_table_block
 from .reference_figure import render_referencefigure
 
@@ -74,6 +74,7 @@ def render(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
 
 __all__ = [
     "ComponentRenderer", "RenderContext", "REGISTRY", "render",
-    "figure_paragraph", "render_image_block", "render_table_block",
+    "figure_paragraph", "plan_figure_callouts", "render_image_block",
+    "render_table_block",
     "body_data_table_kind",
 ]

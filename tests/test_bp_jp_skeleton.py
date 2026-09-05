@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import csv
 import tempfile
 import unittest
 from pathlib import Path
 
 from tools.config_pages import parse_config_pages_or_raise
+from tools.idml_rst_extract import extract_page
 from tools.skeleton_resolve import (
     SkeletonResolveError,
     build_header,
@@ -21,6 +23,18 @@ ROOT = Path(__file__).resolve().parents[1]
 SKELETON_DIR = ROOT / "docs" / "manifests" / "skeletons" / "bp-jp"
 REGION_PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "jp.yaml"
 COMMITTED = ROOT / "docs" / "manifests" / "manual_bp-jp.yaml"
+TARGET_PRODUCT_PLAN = (
+    ROOT / "docs" / "manifests" / "product_plans" / "jbp2000b_jp.yaml"
+)
+TARGET_MANIFEST = ROOT / "docs" / "manifests" / "manual_bp-jp-jbp2000b.yaml"
+TARGET_ASSEMBLY = (
+    ROOT
+    / "docs"
+    / "renderers"
+    / "contracts"
+    / "target_assembly"
+    / "jbp2000b_jp_v1_candidate.json"
+)
 
 
 def _carriers() -> tuple[
@@ -257,6 +271,208 @@ class BpJpSkeletonTests(unittest.TestCase):
         self.assertEqual([], plan["terminal_slots"])
         resolved = _resolve("loaded_plan", plan)
         self.assertIn("toc", _semantic_ids(resolved))
+
+    def test_jbp2000b_target_manifest_is_generated_from_its_product_plan(self) -> None:
+        blueprint, slots, profiles, region = _carriers()
+        product_plan = load_product_plan(TARGET_PRODUCT_PLAN, blueprint)
+        plan = resolve_plan(
+            blueprint,
+            slots,
+            region,
+            manifest_id="manual_bp_jp_jbp2000b",
+            product_plan=product_plan,
+            slot_template_profiles=profiles,
+        )
+        emitted = emit_manifest_yaml(
+            plan,
+            header=[
+                "Resolved Manifest — generated from the BP@JP skeleton and target Product Plan. Do not hand-edit.",
+                "Sources: docs/manifests/skeletons/bp-jp/{blueprint.yaml,slot_templates.yaml}",
+                "         + docs/manifests/region_profiles/jp.yaml",
+                "         + docs/manifests/product_plans/jbp2000b_jp.yaml",
+            ],
+        )
+        self.assertEqual(TARGET_MANIFEST.read_text(encoding="utf-8"), emitted)
+        self.assertEqual(
+            [
+                "cover",
+                "toc",
+                "safety_info",
+                "symbol_meaning",
+                "box_contents",
+                "product_overview",
+                "lcd_display",
+                "operation",
+                "connections",
+                "charging",
+                "troubleshooting",
+                "specifications",
+                "warranty",
+            ],
+            _semantic_ids(plan),
+        )
+
+    def test_jbp2000b_target_assembly_is_twelve_pages_and_ten_compositions(
+        self,
+    ) -> None:
+        import json
+
+        assembly = json.loads(TARGET_ASSEMBLY.read_text(encoding="utf-8"))
+        compositions = {
+            page["composition_id"]
+            for page in assembly["pages"]
+        }
+
+        self.assertEqual(12, assembly["physical_page_count"])
+        self.assertEqual(10, len(compositions))
+        self.assertEqual(
+            12,
+            max(
+                page["start_page"] + page["page_count"] - 1
+                for page in assembly["pages"]
+            ),
+        )
+        self.assertNotIn(
+            "back_cover",
+            {page["page_role"] for page in assembly["pages"]},
+        )
+        connections = next(
+            page for page in assembly["pages"]
+            if page["page_role"] == "connections"
+        )
+        inbox = next(
+            page for page in assembly["pages"]
+            if page["page_role"] == "inbox"
+        )
+        self.assertEqual(
+            "compact_with_tip",
+            inbox["composition_data"]["inbox"]["layout_variant"],
+        )
+        self.assertEqual(
+            {
+                "layout_variant": "stacking_guide",
+                "image_role": "reference_measure",
+            },
+            connections["composition_data"]["connections"],
+        )
+        specifications = next(
+            page for page in assembly["pages"]
+            if page["page_role"] == "spec"
+        )
+        self.assertEqual(
+            246.0,
+            specifications["composition_data"]["specifications"]["split"],
+        )
+
+    def test_jbp2000b_jp_fixture_uses_shipped_symbols_title(self) -> None:
+        from tools.localized_copy import LocalizedCopyResolver
+
+        resolver = LocalizedCopyResolver.from_csv(
+            ROOT / "tests" / "fixtures" / "phase2" / "Localized_Copy.csv"
+        )
+        self.assertEqual(
+            "絵表示の説明",
+            resolver.resolve(
+                "symbols.page_title",
+                lang="ja",
+                model="JBP-2000B",
+                region="JP",
+            ),
+        )
+
+    def test_jbp2000b_jp_fixture_preserves_htp017_spec_evidence(self) -> None:
+        with (ROOT / "tests" / "fixtures" / "phase2" / "Spec_Master.csv").open(
+            encoding="utf-8-sig", newline=""
+        ) as handle:
+            rows = [
+                row
+                for row in csv.DictReader(handle)
+                if row.get("document_key") == "JBP-2000B_JP"
+                and row.get("Page") == "specifications"
+                and row.get("Is_Latest") == "TRUE"
+            ]
+        values = {
+            (row["Section"], row["Row_key"]): (
+                row["Row_label_source"],
+                row["Value_source"],
+            )
+            for row in rows
+        }
+        self.assertEqual(
+            ("バッテリータイプ", "LiFePO4 (リン酸鉄リチウムイオン電池)"),
+            values[("GENERAL INFO", "cell_chemistry")],
+        )
+        self.assertEqual(
+            ("サイズ & 重量", "約365 × 255 × 191 mm (約 14.8kg)"),
+            values[("GENERAL INFO", "weight")],
+        )
+        self.assertEqual(
+            ("DC 拡張ポート (入力)", "36.8V-57.6V⎓最大 75A"),
+            values[("INPUT PORTS", "dc_expansion_port")],
+        )
+        self.assertEqual(
+            ("充電温度", "-10°C~45°C"),
+            values[("ENVIRONMENTAL OPERATING TEMPERATURE", "charging_temperature")],
+        )
+
+    def test_jbp2000b_jp_fixture_keeps_certification_and_host_note_as_data(self) -> None:
+        with (ROOT / "tests" / "fixtures" / "phase2" / "Spec_Notes.csv").open(
+            encoding="utf-8-sig", newline=""
+        ) as handle:
+            notes = {
+                row["Note_id"]: row["Text_ja"]
+                for row in csv.DictReader(handle)
+                if row.get("Model") == "JBP-2000B" and row.get("Region") == "JP"
+            }
+        self.assertEqual("認証：UN38.3", notes["certification_un38_3"])
+        self.assertEqual(
+            "本製品はJackery ポータブル電源 2000 Plus 専用となります。"
+            "他の機器には接続しないでください。",
+            notes["bp_host_compatibility"],
+        )
+
+    def test_jbp2000b_jp_troubleshooting_is_target_data_not_us_retagging(self) -> None:
+        with (
+            ROOT / "tests" / "fixtures" / "phase2" / "troubleshooting_blocks.csv"
+        ).open(encoding="utf-8-sig", newline="") as handle:
+            rows = [
+                row
+                for row in csv.DictReader(handle)
+                if row.get("Model") == "JBP-2000B"
+            ]
+        jp_rows = [row for row in rows if row.get("Region") == "JP"]
+        us_rows = [row for row in rows if row.get("Region") == "US"]
+        self.assertEqual(
+            ["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FC", "FF"],
+            [row["error_code"] for row in jp_rows],
+        )
+        self.assertEqual(13, len(jp_rows))
+        self.assertEqual(7, len(us_rows))
+        self.assertTrue(all(not row.get("corrective_measures_jp") for row in us_rows))
+
+    def test_jp_safety_signal_table_is_strict_manual_ir_data(self) -> None:
+        result = extract_page(
+            ROOT / "docs" / "templates" / "page_bp" / "ja" / "01_safety.rst",
+            {"latex", "idml", "lang_ja", "region_jp"},
+        )
+        payloads = [
+            block
+            for kind, block in result.blocks
+            if kind == "data"
+        ]
+        self.assertEqual(1, len(payloads))
+        import json
+
+        payload = json.loads(payloads[0])
+        self.assertEqual("symbol_signals", payload["kind"])
+        self.assertEqual(
+            ["warning", "caution", "note", "tips"],
+            [row["signal_key"] for row in payload["rows"]],
+        )
+        self.assertEqual(
+            ["警告", "注意", "説明", "ヒント"],
+            [row["label"] for row in payload["rows"]],
+        )
 
     def test_blueprint_keeps_fragments_and_host_topics_out_of_slot_universe(self) -> None:
         blueprint, _, _, _ = _carriers()

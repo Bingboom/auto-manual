@@ -1,0 +1,279 @@
+{
+  "schema_version": "localized-copy-approval/v1",
+  "target": "JBP-2000B_JP",
+  "reference_pdf_sha256": "f7830bf9fb96d9a3e36737bad5196bbfac2d262eaef642f3406fe77eecd02b0b",
+  "approved": true,
+  "write_executed": true,
+  "approval_scopes": {
+    "symbol_descriptions_from_pdf": true,
+    "symbol_labels_and_aliases_inferred_metadata": true,
+    "lcd_copy_from_pdf": true,
+    "troubleshooting_region_specific_rows_from_pdf": true
+  },
+  "preflight": {
+    "identity": "prod/bot",
+    "symbols_shape_verified": true,
+    "lcd_shape_verified": true,
+    "troubleshooting_shape_verified": true,
+    "existing_target_values": "all Japanese target fields below are currently empty",
+    "operation": "patch symbol/LCD localized fields; create JP-only troubleshooting rows; never delete or retag the existing US rows",
+    "symbols_market_option_required": "JP"
+  },
+  "symbols": {
+    "table_id": "tblSZX8hBzpJLqAe",
+    "description_evidence": "HTP017 printed page 02 direct text",
+    "label_alias_evidence": "semantic indexing metadata inferred from each printed symbol; requires separate operator approval",
+    "shared_market_patch": ["US", "EU", "pt-BR", "AU", "KR", "JP"],
+    "updates": [
+      {
+        "record_id": "rec277z0GFV6DG",
+        "symbol_key": "warning_triangle",
+        "patch": {
+          "label_jp": "警告・注意記号",
+          "aliases_jp": "警告|注意",
+          "text_jp": "潜在的な危険やリスクについて注意喚起するために、必ずお読みください。"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV6T6",
+        "symbol_key": "read_manual",
+        "patch": {
+          "label_jp": "取扱説明書を読む",
+          "aliases_jp": "取扱説明書|説明書",
+          "text_jp": "操作の前に取扱説明書をお読みください。"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV7wT",
+        "symbol_key": "do_not_dismantle",
+        "patch": {
+          "label_jp": "分解禁止",
+          "aliases_jp": "分解|改造",
+          "text_jp": "製品を分解、改造を禁止する記号"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV7Ej",
+        "symbol_key": "no_open_flame",
+        "patch": {
+          "label_jp": "火気厳禁",
+          "aliases_jp": "火気|炎",
+          "text_jp": "本製品を火気の近くに置かないでください。"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV7LR",
+        "symbol_key": "keep_away_from_children",
+        "patch": {
+          "label_jp": "子供の手の届かない場所",
+          "aliases_jp": "子供|お子様",
+          "text_jp": "小さなお子様の手の届かない場所に保管してください。"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV7Te",
+        "symbol_key": "li_ion",
+        "patch": {
+          "label_jp": "リチウムイオン電池",
+          "aliases_jp": "Li-ion|充電式電池",
+          "text_jp": "充電式電池のリサイクルについて\n本機はリサイクル可能な充電池を内蔵しています。\nこの商品を廃棄する場合は、当社のカスタマーサポートにご連絡ください。\n充電池の取りはずしはお客様自身では行わないでください。"
+        }
+      },
+      {
+        "record_id": "rec277z0GFV80p",
+        "symbol_key": "weee",
+        "patch": {
+          "label_jp": "WEEE",
+          "aliases_jp": "廃棄|リサイクル",
+          "text_jp": "このシンボルは、本製品を一般家庭ごみとして廃棄せず、リサイクルのために指定の回収施設に持ち込む必要があることを示しています。\n適切な廃棄およびリサイクルは、環境保護に役立ちます。\n本製品の廃棄やリサイクルについての詳細は、お住まいの自治体、廃棄物処理業者、または販売店にお問い合わせください。"
+        }
+      }
+    ],
+    "explicitly_excluded": [
+      "electric_shock",
+      "battery_charging",
+      "explosive_material",
+      "heavy_object"
+    ]
+  },
+  "lcd_icons": {
+    "table_id": "tblW5fCuJ6YdAcND",
+    "updates": [
+      {
+        "record_id": "recvsZG5nwlwlq",
+        "No.": 1,
+        "patch": {
+          "icon_jp": "バッテリー残量(%)/エラーコード",
+          "icon_desc_jp": "バッテリー残量(%)のところに現在の電力値が表示されますが、システム障害が発生した場合、エラーコードの「F0-FF」と表示されます。しばらく本製品を放置した後、自動的に回復することができますが、回復しない場合は、カスタマーサービスにご連絡ください。他のエラーコードが表示された場合はカスタマーサービスにご連絡ください。"
+        }
+      },
+      {
+        "record_id": "recvsZG5nwQVVQ",
+        "No.": 2,
+        "patch": {
+          "icon_jp": "充電マーク",
+          "icon_desc_jp": "充電のための接続が行われると、このマークが表示され、満充電になると消えます。"
+        }
+      }
+    ]
+  },
+  "troubleshooting": {
+    "table_id": "tblOmJoAfU35brkb",
+    "write_mode": "create_region_specific_rows",
+    "existing_us_rows_untouched": true,
+    "reason": "HTP017 prints F1/F2 and F6/F7/F8/F9/FA/FC as separate rows; JP target data must preserve the 13-row reference without changing US output",
+    "updates": [
+      {
+        "No.": 1,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F0",
+        "corrective_measures_jp": "製品を再起動してください。"
+      },
+      {
+        "No.": 2,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F1",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 3,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F2",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 4,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F3",
+        "corrective_measures_jp": "製品を再起動してください。"
+      },
+      {
+        "No.": 5,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F4",
+        "corrective_measures_jp": "製品に負荷を接続してバッテリーを放電し、エラーが消えるまで続けてください。"
+      },
+      {
+        "No.": 6,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F5",
+        "corrective_measures_jp": "ソーラーパネルまたはAC電源コンセントを使用して、エラーが消えるまで製品を充電してください。"
+      },
+      {
+        "No.": 7,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F6",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 8,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F7",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 9,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F8",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 10,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "F9",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 11,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "FA",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 12,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "FC",
+        "corrective_measures_jp": "Jackeryカスタマーサポートまでご連絡ください。"
+      },
+      {
+        "No.": 13,
+        "Model": "JBP-2000B",
+        "Region": "JP",
+        "Is_latest": true,
+        "Version": "V1.0",
+        "error_code": "FF",
+        "corrective_measures_jp": "製品を適切な温度環境に置き、障害が解消するまで待機します。"
+      }
+    ]
+  },
+  "write_evidence": {
+    "executed_on": "2026-08-31",
+    "identity": "prod/bot",
+    "symbol_record_ids": [
+      "rec277z0GFV6DG",
+      "rec277z0GFV6T6",
+      "rec277z0GFV7wT",
+      "rec277z0GFV7Ej",
+      "rec277z0GFV7LR",
+      "rec277z0GFV7Te",
+      "rec277z0GFV80p"
+    ],
+    "symbol_market_readback": ["US", "EU", "pt-BR", "AU", "KR", "JP"],
+    "lcd_record_ids": [
+      "recvsZG5nwlwlq",
+      "recvsZG5nwQVVQ"
+    ],
+    "troubleshooting_record_ids": [
+      "recvtRNswXZxP5",
+      "recvtRNswXmFb6",
+      "recvtRNswXnAXZ",
+      "recvtRNswXa7VL",
+      "recvtRNswXm1Lo",
+      "recvtRNswX4Plr",
+      "recvtRNswXcTyH",
+      "recvtRNswXuCao",
+      "recvtRNswXkfqR",
+      "recvtRNswXDdVF",
+      "recvtRNswXXJfg",
+      "recvtRNswXozKk",
+      "recvtRNswXbXnj"
+    ],
+    "readback": "7/7 symbol rows, 2/2 LCD rows, and 13/13 JP-only troubleshooting rows read back from the same live records"
+  }
+}

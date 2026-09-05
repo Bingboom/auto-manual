@@ -1,0 +1,123 @@
+{
+  "base_manifest_id": "manual_bp_jp",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_bp_jp_jbp2000b"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "asset:page/cover",
+          "slot_id": "cover",
+          "type": "cover_pdf"
+        },
+        {
+          "file": "templates/page_bp/ja/00_toc.rst",
+          "lang": "ja",
+          "slot_id": "toc",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/ja/01_safety.rst",
+          "lang": "ja",
+          "slot_id": "safety_info_ja",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_ja",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/ja/02_whats_in_the_box.rst",
+          "lang": "ja",
+          "slot_id": "box_contents_ja",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "ja"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-jp/03_product_overview.yaml",
+          "slot_id": "product_overview_ja",
+          "template": "templates/page_bp/ja/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_ja",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "ja"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-jp/05_operation_guide.yaml",
+          "slot_id": "operation_ja",
+          "template": "templates/page_bp/ja/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "file": "templates/page_bp/ja/04_connections.rst",
+          "lang": "ja",
+          "slot_id": "connections_ja",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/ja/08_charging_methods.rst",
+          "lang": "ja",
+          "slot_id": "charging_ja",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_ja",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "ja"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_ja",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/ja/11_warranty.rst",
+          "lang": "ja",
+          "slot_id": "warranty_ja",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_bp_jp_jbp2000b"
+}

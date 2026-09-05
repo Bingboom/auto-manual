@@ -18,10 +18,29 @@ def sphinx_tag_args(
     model: str | None = None,
     region: str | None = None,
     lang: str | None = None,
+    category: str | None = None,
     normalize_sphinx_tag_value: Callable[[str | None], str | None],
 ) -> list[str]:
+    """Emit the ``-t`` tags a carrier can branch on.
+
+    ``category`` is the product line -- ``build.skeleton_family`` in the config,
+    ``MAIN`` when unset -- and it completes the axis set the contract resolver
+    has always had: ``tools/page_contracts.py`` resolves
+    ``default -> category: -> region: -> capability: -> lang``, but until now
+    only the last three reached a carrier. So a page could differ per region in
+    one line of RST while differing per product line meant cloning the file.
+
+    ``manual_ir.builder`` emits the same ``category_<value>`` atom, because a
+    carrier that branches on a tag one renderer plane does not set would
+    silently drop that content there.
+    """
     args: list[str] = []
-    for prefix, value in (("model", model), ("region", region), ("lang", lang)):
+    for prefix, value in (
+        ("model", model),
+        ("region", region),
+        ("lang", lang),
+        ("category", category),
+    ):
         normalized = normalize_sphinx_tag_value(value)
         if normalized:
             args.extend(["-t", f"{prefix}_{normalized}"])

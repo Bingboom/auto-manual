@@ -257,6 +257,25 @@ class ContractContext:
 
 _TIER_PREFIXES = ("category:", "region:", "capability:")
 
+DEFAULT_CATEGORY = "MAIN"
+
+
+def resolve_category(build_cfg: object) -> str:
+    """The product line for one build, read from ``build.skeleton_family``.
+
+    Single source for the whole axis: the contract tiers resolved here, the
+    Sphinx ``-t category_*`` tag, and the manual IR's ``category_*`` atom all
+    read this. Were any of them to re-derive the value or the default on its
+    own, a carrier's ``category:`` requirement could resolve against one line
+    while its ``.. only:: category_*`` body resolved against another.
+    """
+
+    if isinstance(build_cfg, dict):
+        raw = str(build_cfg.get("skeleton_family") or "").strip()
+        if raw:
+            return raw
+    return DEFAULT_CATEGORY
+
 
 def contract_tier_keys(context: ContractContext) -> tuple[str, ...]:
     """Atoms this context selects, in fixed precedence order.

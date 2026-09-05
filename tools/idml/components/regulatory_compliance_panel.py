@@ -100,12 +100,11 @@ def _styled_psr(
     text: str,
     *,
     point_size: float,
-    leading: float,
     bold: bool = False,
     horizontal_scale: float = 100.0,
 ) -> str:
     attrs = (
-        f'PointSize="{point_size:g}" Leading="{leading:g}" '
+        f'PointSize="{point_size:g}" '
         f'HorizontalScale="{horizontal_scale:g}"'
     )
     if bold:
@@ -203,14 +202,12 @@ class RegulatoryCompliancePanel:
                     writer,
                     self.data.declaration_heading,
                     point_size=6.7,
-                    leading=7.2,
                     bold=True,
                 ),
                 _styled_psr(
                     writer,
                     self.data.declaration_copy,
                     point_size=5.6,
-                    leading=6.1,
                     horizontal_scale=97.0,
                 ),
             ],
@@ -223,7 +220,6 @@ class RegulatoryCompliancePanel:
                     writer,
                     f"{self.data.manufacturer_heading} {self.data.company}",
                     point_size=6.5,
-                    leading=7.0,
                     bold=True,
                     horizontal_scale=95.0,
                 ),
@@ -231,7 +227,6 @@ class RegulatoryCompliancePanel:
                     writer,
                     self.data.address,
                     point_size=5.2,
-                    leading=5.8,
                     horizontal_scale=96.0,
                 ),
             ],
@@ -244,7 +239,6 @@ class RegulatoryCompliancePanel:
                     writer,
                     "CE",
                     point_size=27.0,
-                    leading=27.0,
                     bold=True,
                     horizontal_scale=86.0,
                 )
@@ -265,7 +259,6 @@ class RegulatoryCompliancePanel:
                         writer,
                         f"{icon} {contact}",
                         point_size=5.8,
-                        leading=6.4,
                         horizontal_scale=95.0,
                     )
                 ],

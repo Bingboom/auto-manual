@@ -143,6 +143,7 @@ def main() -> int:
         _ir_sidecar.emit_manual_ir_sidecar(
             root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
             model=args.model, region=args.region, lang=args.lang, data_root=data_root,
+            category=args.category,
             layout_params_csv=layout_params_csv,
             layout_param_overlays=layout_param_overlays)
         print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
@@ -151,7 +152,7 @@ def main() -> int:
     try:
         manual_ir = _ir_projection.build_same_source_ir(
             root=ROOT, bundle_root=bundle_root, model=args.model, region=args.region,
-            lang=args.lang, data_root=data_root,
+            lang=args.lang, data_root=data_root, category=args.category,
             layout_params_csv=layout_params_csv,
             layout_param_overlays=layout_param_overlays)
         assembly_plan = Path(args.assembly_plan) if args.assembly_plan else None
@@ -260,6 +261,7 @@ def main() -> int:
 
     def emit_data_page(kind: str, lang: str) -> None:
         nonlocal page_cursor
+        lang = normalize_lang(lang)
         flush_prose_flow()
         flush_pending_fcc()
         flush_pending_prefix()
@@ -547,7 +549,7 @@ def main() -> int:
     for kind in ("spec", "lcd", "trouble", "symbols"):
         emit_data_page(kind, args.lang)
     back_cover_added = target_renderer.back_cover_added
-    if not back_cover_added:
+    if _target_assembly_render.needs_legacy_back_cover_fallback(target_renderer):
         back_cover_added = _placed.add_preferred_back_cover_page(
                 w, args.region, args.lang, ROOT / "docs", page_cursor,
                 _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan)

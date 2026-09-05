@@ -249,6 +249,18 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("SOLD SEPARATELY", "".join(stories.values()))
         self.assertGreater(height, 0.0)
 
+    def test_heading_width_reserves_a_full_em_for_wide_characters(self) -> None:
+        from tools.idml.components.emphasis import _gilroy_bold_upper_width
+
+        for text in ("ソーラー充電", "（別売）"):
+            with self.subTest(text=text):
+                self.assertGreaterEqual(_gilroy_bold_upper_width(text, 8.0), len(text) * 8.0)
+        # Mixed-script text retains the approved Latin advances.
+        self.assertAlmostEqual(
+            _gilroy_bold_upper_width("AC", 8.0) + 16.0,
+            _gilroy_bold_upper_width("AC充電", 8.0),
+        )
+
     def test_heading_pill_owns_compact_trilingual_column_geometry(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render
@@ -496,6 +508,69 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
 
+    def test_warranty_source_markers_are_not_prefixed_with_an_extra_bullet(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext
+        from tools.idml.components.warranty import _section_body
+
+        ctx = RenderContext(
+            params=load_layout_params(ROOT / "data/layout_params.csv"),
+            page_w=368.79, m_l=28.35, m_r=28.35, root=ROOT, bundle_root=ROOT,
+        )
+        for marker, kind in (("1.", "list"), ("12)", "list"), ("–", "sublist"), ("•", "list")):
+            with self.subTest(marker=marker):
+                parts, _ = _section_body(
+                    [{"kind": kind, "text": marker + " Warranty text"}], ctx,
+                    tid="source_marker", width=300, layout_spec={}, section_index=1,
+                )
+                root = ET.fromstring(parts[0])
+                text = "".join(node.text or "" for node in root.iter("Content"))
+                self.assertEqual(marker + "\tWarranty text", text)
+                indent = float(root.attrib["LeftIndent"])
+                self.assertGreaterEqual(indent, 5.67)
+
+    def test_warranty_sublist_marker_uses_portable_bullet_font(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext, render
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        stories: dict[str, str] = {}
+
+        def add_story(sid, _title, parts):
+            stories[sid] = "".join(parts)
+            return sid
+
+        render(
+            {
+                "kind": "warrantysection",
+                "title": "保証内容",
+                "index": 7,
+                "blocks": [{"kind": "sublist", "text": "◦ 修理条件"}],
+            },
+            RenderContext(
+                params=params,
+                page_w=368.79,
+                m_l=28.35,
+                m_r=28.35,
+                root=ROOT,
+                bundle_root=ROOT / "does-not-exist",
+                language="ja",
+                add_story=add_story,
+            ),
+            tid="warranty_sublist_font",
+            terminal=True,
+        )
+
+        story = stories["st_anchor_warranty_body_warranty_sublist_font"]
+        marker_range = story.split("<Content>◦</Content>", 1)[0].rsplit(
+            "<CharacterStyleRange", 1,
+        )[1]
+        self.assertIn('PointSize="4.8"', marker_range)
+        self.assertIn(
+            '<AppliedFont type="string">Noto Sans Symbols2</AppliedFont>',
+            marker_range,
+        )
+
     def test_app_numbered_headings_and_lists_share_hanging_contract(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.styles import styles_xml
@@ -659,7 +734,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("<Content>Standard Warranty</Content>", xml)
         self.assertNotIn("<Content>— Standard Warranty</Content>", xml)
         self.assertIn('HorizontalScale="100"', xml)
-        self.assertIn('Leading="7"', xml)
+        self.assertNotIn('Leading="', xml)
         self.assertIn('Hyphenation="false"', xml)
 
     def test_warranty_years_honor_section_estimate_scale(self) -> None:
@@ -771,11 +846,15 @@ class ComponentRegistryTests(unittest.TestCase):
         bp_xml, bp_body = rendered("bp_default")
         _base_xml, base_body = rendered("")
 
-        self.assertIn('Leading="7"', bp_body)
+        # The variant's rhythm is composition, not leading. A numeric Leading
+        # attribute on a style range is dropped by InDesign, so emitting one
+        # only ever created a value the page never used; body copy composes at
+        # HB Warranty Body's own leading under every variant.
+        self.assertNotIn('Leading="', bp_body)
+        self.assertNotIn('Leading="', base_body)
         self.assertIn('HorizontalScale="100"', bp_body)
         self.assertIn('Hyphenation="false"', bp_body)
         self.assertIn('Composer="HL Single"', bp_body)
-        self.assertNotIn('Leading="7"', base_body)
         self.assertNotIn('Hyphenation="false"', base_body)
         body_frame = bp_xml.split(
             'Self="tf_warranty_body_warranty_body_bp_default"', 1,
@@ -1061,7 +1140,7 @@ class ComponentRegistryTests(unittest.TestCase):
             "".join(parts) for sid, _title, parts in stories if "body" in sid
         )
         self.assertIn('HorizontalScale="97"', body)
-        self.assertIn('Leading="7"', body)
+        self.assertNotIn('Leading="', body)
         self.assertIn('Hyphenation="false"', body)
 
     def test_warranty_lead_uses_approved_shell_width_and_host_inset(self) -> None:

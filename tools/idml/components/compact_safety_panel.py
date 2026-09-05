@@ -1,6 +1,7 @@
 """Editable compact Safety block used above SymbolsPanel."""
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -27,17 +28,50 @@ class CompactSafetyPanelData:
         blocks: list[tuple[str, str]],
         *,
         story_title: str,
+        subbar_capsule: bool = False,
     ) -> "CompactSafetyPanelData":
+        body = [block for block in blocks if block[0] != "h1"]
+        if subbar_capsule:
+            body = _promote_first_h2_to_capsule(body)
         return cls(
             story_title=story_title,
             title=source_text(
                 next((text for kind, text in blocks if kind == "h1"), ""),
                 owner="compact Safety page title",
             ),
-            body_blocks=tuple(
-                block for block in blocks if block[0] != "h1"
-            ),
+            body_blocks=tuple(body),
         )
+
+
+def _promote_first_h2_to_capsule(
+    blocks: list[tuple[str, str]],
+) -> list[tuple[str, str]]:
+    """Set the page's one section heading in the capsule its master prints.
+
+    The heading is a real h2 in source, so Sphinx and Word keep reading it as
+    a heading; only the fixed-page composition promotes it. The first h2 is
+    the whole of it -- this page carries exactly one -- and a page with none
+    is returned untouched rather than growing an empty bar.
+    """
+    promoted: list[tuple[str, str]] = []
+    done = False
+    for kind, text in blocks:
+        if kind == "h2" and not done:
+            promoted.append((
+                "component",
+                json.dumps(
+                    {
+                        "kind": "emphasispill",
+                        "layout_variant": "section_capsule",
+                        "texts": [text],
+                    },
+                    ensure_ascii=False,
+                ),
+            ))
+            done = True
+        else:
+            promoted.append((kind, text))
+    return promoted
 
 
 @dataclass(frozen=True)

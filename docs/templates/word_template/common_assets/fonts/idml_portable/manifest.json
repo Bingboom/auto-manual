@@ -8,8 +8,70 @@
       "sha256": "76f45ef4a6bcff344c837c95a7dcc26e017e38b5846d5ae0cdcb5b86be2e2d31",
       "license_file": "OFL-NanumGothic.txt",
       "source": "https://github.com/google/fonts/blob/main/ofl/nanumgothic/NanumGothic-Regular.ttf",
-      "languages": ["ko"],
+      "languages": [
+        "ko"
+      ],
       "usage": "Korean editable text"
+    },
+    {
+      "family": "HB Manual Sans JP (OTF)",
+      "postscript_name": "HBManualSansJP-Regular",
+      "filename": "HBManualSansJP-Regular.ttf",
+      "sha256": "f9f17753c415ad76e82ae317c17e2260523deb73406d6baad14a817e5be957dd",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "instantiation": "fonttools varLib.instancer wght=400 --update-name-table; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; PANOSE bWeight set from usWeightClass (350->3 Light, 400->5 Book, 500->6 Medium, 700->8 Bold) because varLib.instancer carries the variable font's OS/2 through unchanged, leaving every instance at 2 (Very Light) and contradicting its own style bits",
+      "languages": [
+        "ja",
+        "jp"
+      ],
+      "usage": "Japanese editable text"
+    },
+    {
+      "family": "HB Manual Sans JP (OTF)",
+      "postscript_name": "HBManualSansJP-DemiLight",
+      "filename": "HBManualSansJP-DemiLight.ttf",
+      "sha256": "e23045b95f654af21d8b823b0ec1d15a27af23771da336a8b368911ad349bc2a",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "instantiation": "fonttools varLib.instancer wght=350; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; PANOSE bWeight set from usWeightClass (350->3 Light, 400->5 Book, 500->6 Medium, 700->8 Bold) because varLib.instancer carries the variable font's OS/2 through unchanged, leaving every instance at 2 (Very Light) and contradicting its own style bits",
+      "languages": [
+        "ja",
+        "jp"
+      ],
+      "usage": "Japanese editable text (demilight weight)"
+    },
+    {
+      "family": "HB Manual Sans JP (OTF)",
+      "postscript_name": "HBManualSansJP-Medium",
+      "filename": "HBManualSansJP-Medium.ttf",
+      "sha256": "1e8a2e2d0718e1bcb472b94ff4cd4b9dba4db3d299d3482be32cf177bc8d4fe4",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "instantiation": "fonttools varLib.instancer wght=500; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; non-RIBBI weight, so name ID 1 carries the weight and ID 2 stays Regular, with ID 16/17 giving the typographic family and style that InDesign links on; PANOSE bWeight set from usWeightClass (350->3 Light, 400->5 Book, 500->6 Medium, 700->8 Bold) because varLib.instancer carries the variable font's OS/2 through unchanged, leaving every instance at 2 (Very Light) and contradicting its own style bits",
+      "languages": [
+        "ja",
+        "jp"
+      ],
+      "usage": "Japanese editable text (medium weight)"
+    },
+    {
+      "family": "HB Manual Sans JP (OTF)",
+      "postscript_name": "HBManualSansJP-Bold",
+      "filename": "HBManualSansJP-Bold.ttf",
+      "sha256": "f579205a74cdec9d092205c9f2bdf14f5c69f93565202bc4e3eeb6a0881e3e43",
+      "license_file": "OFL-Noto.txt",
+      "source": "https://github.com/google/fonts/blob/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf",
+      "source_sha256": "c2f3b4d463500a2ddcd3849cded1fceeb9fd6d1c32e6cbecd568453ba50fc68f",
+      "instantiation": "fonttools varLib.instancer wght=700; Windows and Macintosh name IDs 1, 2, 3, 4, 6, 16, 17 and 25 set to the project-unique HB Manual Sans JP (OTF) identity; PANOSE bWeight set from usWeightClass (350->3 Light, 400->5 Book, 500->6 Medium, 700->8 Bold) because varLib.instancer carries the variable font's OS/2 through unchanged, leaving every instance at 2 (Very Light) and contradicting its own style bits",
+      "languages": [
+        "ja",
+        "jp"
+      ],
+      "usage": "Japanese editable text (bold weight)"
     },
     {
       "family": "Noto Sans",
@@ -18,7 +80,9 @@
       "sha256": "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf",
-      "languages": ["*"],
+      "languages": [
+        "*"
+      ],
       "usage": "reference marks, ordinals and subscript glyphs"
     },
     {
@@ -28,7 +92,9 @@
       "sha256": "8f02f31959bbdf6061547a188248e13f84dc5fdd940326ec494675f453f072bb",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols/NotoSansSymbols-Regular.ttf",
-      "languages": ["*"],
+      "languages": [
+        "*"
+      ],
       "usage": "direct-current and circled-number glyphs"
     },
     {
@@ -38,7 +104,9 @@
       "sha256": "630846d528dbe4c4981370a4d0a9475a1fd1491a129bb411f8e157cdb5de13c6",
       "license_file": "OFL-Noto.txt",
       "source": "https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSansSymbols2/NotoSansSymbols2-Regular.ttf",
-      "languages": ["*"],
+      "languages": [
+        "*"
+      ],
       "usage": "filled-circle and editable contact-icon fallback glyphs"
     }
   ]

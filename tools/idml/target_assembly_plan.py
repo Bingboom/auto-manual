@@ -33,9 +33,15 @@ SCHEMA_VERSION = "target-idml-assembly-plan/v1"
 WARRANTY_LAYOUT_VARIANTS = frozenset({"multiline_lead", "bp_default"})
 SPECIFICATION_LAYOUT_VARIANTS = frozenset({"reference", "compact"})
 OPERATION_LAYOUT_VARIANTS = frozenset({"guidance_stack"})
+CONNECTIONS_LAYOUT_VARIANTS = frozenset({
+    "notice_before_primary_figure",
+    "stacking_guide",
+})
 INBOX_LAYOUT_VARIANTS = frozenset({"compact_with_tip"})
+OVERVIEW_LAYOUT_VARIANTS = frozenset({"annotated_without_view_headings"})
 STORAGE_LAYOUT_VARIANTS = frozenset({"rounded_panel"})
 REGULATORY_LAYOUT_VARIANTS = frozenset({"bottom_card"})
+TOC_LAYOUT_VARIANTS = frozenset({"single_column"})
 
 
 # Every key a plan page may carry. Anything else fails validation: a
@@ -93,6 +99,39 @@ def _positive_int(value: object, *, label: str) -> int:
     if result <= 0:
         raise TargetAssemblyPlanError(f"{label} must be a positive integer")
     return result
+
+
+def _page_set_mismatch(raw_pages: list[Any], ir: ManualIR) -> str:
+    """Say which pages the plan and the prepared bundle disagree about.
+
+    Both directions matter and mean different things. Pages the plan wants and
+    the bundle lacks are the common case: the frozen plan was derived from a
+    book whose source cannot currently reproduce it -- typically a page that
+    lives only in the review derivative because no manifest entry declares it.
+    Pages the bundle has and the plan lacks mean the plan is stale.
+    """
+
+    planned = [
+        str(page.get("source_ref"))
+        for page in raw_pages
+        if isinstance(page, dict) and page.get("source_ref")
+    ]
+    built = [page.source_ref for page in ir.pages]
+    missing = [ref for ref in planned if ref not in set(built)]
+    extra = [ref for ref in built if ref not in set(planned)]
+    parts = [
+        f"plan declares {len(raw_pages)} page(s), prepared bundle has {len(ir.pages)}"
+    ]
+    if missing:
+        parts.append("planned but not in the bundle: " + ", ".join(missing))
+    if extra:
+        parts.append("in the bundle but not planned: " + ", ".join(extra))
+    if missing and not extra:
+        parts.append(
+            "check that the page manifest declares every page the plan expects, "
+            "or build this target from the source the plan was frozen against"
+        )
+    return "; ".join(parts)
 
 
 def _validate_flow_splits(
@@ -314,6 +353,27 @@ def _validate_composition_data(
             )
         if not data:
             continue
+        if set(data) == {"toc"}:
+            if page.get("page_role") != PageRole.TOC.value or page.get(
+                "composition_type"
+            ) != "toc":
+                issues.append(
+                    f"{source_ref}.composition_data.toc requires a TOC composition"
+                )
+                continue
+            toc = data["toc"]
+            if not isinstance(toc, dict) or set(toc) != {"layout_variant"}:
+                issues.append(
+                    f"{source_ref}.composition_data.toc must contain "
+                    "exactly ['layout_variant']"
+                )
+                continue
+            if toc.get("layout_variant") not in TOC_LAYOUT_VARIANTS:
+                issues.append(
+                    f"{source_ref}.composition_data.toc.layout_variant must be one of "
+                    + ", ".join(sorted(TOC_LAYOUT_VARIANTS))
+                )
+            continue
         if set(data) == {"symbols"}:
             if page.get("page_role") != PageRole.SYMBOLS.value or page.get(
                 "composition_type"
@@ -357,12 +417,20 @@ def _validate_composition_data(
                 )
                 continue
             expected = {"image_role", "h2_suffix_pill_indices"}
-            if set(charging) != expected:
+            # `figure_callouts` is optional so the contracts written before it
+            # stay valid and keep printing their label tables under the art.
+            if set(charging) - {"figure_callouts"} != expected:
                 issues.append(
                     f"{source_ref}.composition_data.charging must contain "
                     f"exactly {sorted(expected)}"
                 )
                 continue
+            issues.extend(
+                _figure_callout_issues(
+                    charging.get("figure_callouts"),
+                    label=f"{source_ref}.composition_data.charging.figure_callouts",
+                )
+            )
             if charging.get("image_role") not in {
                 "charging_diagram",
                 "full_measure",
@@ -435,12 +503,11 @@ def _validate_composition_data(
                     f"exactly {sorted(expected)}"
                 )
                 continue
-            if connections.get("layout_variant") != (
-                "notice_before_primary_figure"
-            ):
+            if connections.get("layout_variant") not in CONNECTIONS_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.connections.layout_variant "
-                    "must be notice_before_primary_figure"
+                    "must be one of "
+                    + ", ".join(sorted(CONNECTIONS_LAYOUT_VARIANTS))
                 )
             if connections.get("image_role") not in {
                 "full_measure",
@@ -486,12 +553,23 @@ def _validate_composition_data(
                 )
                 continue
             inbox = data["inbox"]
-            if not isinstance(inbox, dict) or set(inbox) != {"layout_variant"}:
+            # `corner_radii` is optional so the contracts written before it stay
+            # valid and keep rendering the shared defaults.
+            if not isinstance(inbox, dict) or set(inbox) - {"corner_radii"} != {
+                "layout_variant"
+            }:
                 issues.append(
                     f"{source_ref}.composition_data.inbox must contain "
                     "exactly ['layout_variant']"
                 )
                 continue
+            issues.extend(
+                _corner_radii_issues(
+                    inbox.get("corner_radii"),
+                    allowed=INBOX_CORNER_RADII,
+                    label=f"{source_ref}.composition_data.inbox.corner_radii",
+                )
+            )
             if inbox.get("layout_variant") not in INBOX_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.inbox.layout_variant "
@@ -511,11 +589,16 @@ def _validate_composition_data(
             if (
                 not isinstance(overview, dict)
                 or "instance_id" not in overview
-                or not set(overview) <= {"instance_id", "asset_refs"}
+                or not set(overview) <= {
+                    "instance_id",
+                    "asset_refs",
+                    "layout_variant",
+                }
             ):
                 issues.append(
                     f"{source_ref}.composition_data.overview must contain "
-                    "instance_id and supports optional asset_refs"
+                    "instance_id and supports optional asset_refs or "
+                    "layout_variant"
                 )
                 continue
             if not isinstance(overview.get("instance_id"), str) or not str(
@@ -546,6 +629,15 @@ def _validate_composition_data(
                         f"{source_ref}.composition_data.overview.asset_refs "
                         "values must be non-empty bundle-relative strings"
                     )
+            layout_variant = overview.get("layout_variant")
+            if layout_variant is not None and (
+                layout_variant not in OVERVIEW_LAYOUT_VARIANTS
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.overview.layout_variant "
+                    "must be one of "
+                    + ", ".join(sorted(OVERVIEW_LAYOUT_VARIANTS))
+                )
             continue
         if set(data) == {"app"}:
             if page.get("page_role") != PageRole.APP_SETUP.value or page.get(
@@ -626,7 +718,11 @@ def _validate_composition_data(
         ):
             if page.get("page_role") != PageRole.SPEC.value or page.get(
                 "composition_type"
-            ) not in {"storage_specifications", "specifications"}:
+            ) not in {
+                "storage_specifications",
+                "troubleshooting_specifications",
+                "specifications",
+            }:
                 issues.append(
                     f"{source_ref}.composition_data.specifications requires "
                     "a specifications composition on the spec source"
@@ -662,14 +758,31 @@ def _validate_composition_data(
                     f"{source_ref}.composition_data.specifications must be an object"
                 )
                 continue
-            allowed = {"layout_variant", "section_groups", "annotation_order"}
+            allowed = {
+                "layout_variant",
+                "section_groups",
+                "annotation_order",
+                "split",
+            }
             if "layout_variant" not in specifications or not set(
                 specifications
             ) <= allowed:
                 issues.append(
                     f"{source_ref}.composition_data.specifications must contain "
-                    "layout_variant and supports optional section_groups or "
-                    "annotation_order"
+                    "layout_variant and supports optional section_groups, "
+                    "annotation_order, or split"
+                )
+                continue
+            split = specifications.get("split")
+            if split is not None and (
+                isinstance(split, bool)
+                or not isinstance(split, (int, float))
+                or not math.isfinite(float(split))
+                or not 120.0 <= float(split) <= 400.0
+            ):
+                issues.append(
+                    f"{source_ref}.composition_data.specifications.split "
+                    "must be a finite number between 120 and 400 points"
                 )
                 continue
             if specifications.get(
@@ -797,12 +910,23 @@ def _validate_composition_data(
                     f"{source_ref}.composition_data.warranty must be an object"
                 )
                 continue
-            if set(warranty) != {"layout_variant"}:
+            # `corner_radii` is optional so the contracts written before it
+            # stay valid and keep rendering the shared arcs.
+            if set(warranty) - {"corner_radii"} != {"layout_variant"}:
                 issues.append(
                     f"{source_ref}.composition_data.warranty must contain "
                     "exactly ['layout_variant']"
                 )
                 continue
+            issues.extend(
+                _corner_radii_issues(
+                    warranty.get("corner_radii"),
+                    allowed=WARRANTY_CORNER_RADII,
+                    label=(
+                        f"{source_ref}.composition_data.warranty.corner_radii"
+                    ),
+                )
+            )
             if warranty.get("layout_variant") not in WARRANTY_LAYOUT_VARIANTS:
                 issues.append(
                     f"{source_ref}.composition_data.warranty.layout_variant "
@@ -867,7 +991,7 @@ def _validate_composition_data(
         if set(data) != {"lcd"}:
             issues.append(
                 f"{source_ref}.composition_data supports only charging, "
-                "connections, lcd, regulatory, specifications, storage, "
+                "connections, lcd, regulatory, specifications, storage, toc, "
                 "troubleshooting, or warranty component data"
             )
             continue
@@ -1104,7 +1228,13 @@ def normalize_target_assembly_plan(
     if not isinstance(raw_pages, list):
         raise TargetAssemblyPlanError("pages must be a list")
     if len(raw_pages) != len(ir.pages):
-        issues.append(f"pages must contain exactly {len(ir.pages)} entries")
+        # A count mismatch makes every later per-index check meaningless (each
+        # page reads as "out of order") and made `_validate_flow_splits` die on
+        # its strict zip -- so the real diagnosis, collected right here, used to
+        # be replaced by `zip() argument 2 is shorter than argument 1`. Raise it
+        # instead, naming the pages, because the cause is almost always a page
+        # the manifest does not declare rather than a wrong plan.
+        raise TargetAssemblyPlanError("; ".join([*issues, _page_set_mismatch(raw_pages, ir)]))
 
     normalized_pages: list[dict[str, Any]] = []
     for index, source_page in enumerate(ir.pages):
@@ -1209,3 +1339,92 @@ __all__ = (
     "load_target_assembly_plan",
     "normalize_target_assembly_plan",
 )
+
+
+def _figure_callout_issues(declared: object, *, label: str) -> list[str]:
+    """Reject callout geometry that cannot place a label inside its figure."""
+
+    if declared is None:
+        return []
+    if not isinstance(declared, list) or not declared:
+        return [f"{label} must be a non-empty list"]
+    issues: list[str] = []
+    for figure_index, figure in enumerate(declared):
+        if not isinstance(figure, list):
+            issues.append(f"{label}[{figure_index}] must be a list")
+            continue
+        seen: set[int] = set()
+        for index, callout in enumerate(figure):
+            where = f"{label}[{figure_index}][{index}]"
+            if not isinstance(callout, dict):
+                issues.append(f"{where} must be an object")
+                continue
+            expected = {"cell_index", "x", "y", "width"}
+            if set(callout) != expected:
+                issues.append(f"{where} must contain exactly {sorted(expected)}")
+                continue
+            cell_index = callout.get("cell_index")
+            if (
+                isinstance(cell_index, bool)
+                or not isinstance(cell_index, int)
+                or cell_index < 0
+            ):
+                issues.append(f"{where}.cell_index must be a non-negative integer")
+            elif cell_index in seen:
+                issues.append(f"{where}.cell_index is declared twice")
+            else:
+                seen.add(cell_index)
+            for key in ("x", "y", "width"):
+                value = callout.get(key)
+                if isinstance(value, bool) or not isinstance(value, (int, float)):
+                    issues.append(f"{where}.{key} must be a number")
+                elif not 0.0 <= float(value) <= 1.0:
+                    issues.append(
+                        f"{where}.{key} must be a fraction of the figure, 0..1"
+                    )
+            width = callout.get("width")
+            x = callout.get("x")
+            if (
+                isinstance(width, (int, float))
+                and not isinstance(width, bool)
+                and isinstance(x, (int, float))
+                and not isinstance(x, bool)
+                and float(x) + float(width) > 1.0
+            ):
+                issues.append(f"{where} runs past the figure's right edge")
+    return issues
+
+
+# Chrome a composition may declare a radius for, per composition. Named after
+# the chrome rather than the parameter behind it, so moving a shared default
+# does not invalidate a declaration.
+INBOX_CORNER_RADII = frozenset({"card", "tip_strip"})
+WARRANTY_CORNER_RADII = frozenset({"section", "lead"})
+
+
+def _corner_radii_issues(
+    declared: object, *, allowed: frozenset[str], label: str
+) -> list[str]:
+    """Reject a corner-radii map that names unknown chrome or absurd radii."""
+
+    if declared is None:
+        return []
+    if not isinstance(declared, dict) or not declared:
+        return [f"{label} must be a non-empty object"]
+    issues: list[str] = []
+    for name, value in declared.items():
+        # `chrome:<index>` addresses one member of a repeated piece of chrome
+        # by the structural ordinal its spec carries.
+        base, _, ordinal = str(name).partition(":")
+        if base not in allowed or (ordinal and not ordinal.isdigit()):
+            issues.append(
+                f"{label}.{name} is not declarable; expected one of "
+                + ", ".join(sorted(allowed))
+                + " optionally suffixed with :<index>"
+            )
+            continue
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            issues.append(f"{label}.{name} must be a number of points")
+        elif not 0.0 <= float(value) <= 40.0:
+            issues.append(f"{label}.{name} must be between 0 and 40 pt")
+    return issues

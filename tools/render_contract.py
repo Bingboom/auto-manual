@@ -48,6 +48,19 @@ class LayoutToken:
     comment: str
 
 
+@dataclass(frozen=True)
+class ResolvedOverride:
+    """One common value that a layer above it replaced."""
+
+    key: str
+    overlay: str
+    base_value: str
+    base_unit: str
+    value: str
+    unit: str
+    comment: str
+
+
 def load_layout_tokens(csv_path: Path) -> dict[str, LayoutToken]:
     tokens: dict[str, LayoutToken] = {}
     seen_keys: set[str] = set()
@@ -147,29 +160,79 @@ def _reject_unreachable_language_rows(
         )
 
 
-def load_layout_token_layers(
+def resolve_layout_token_layers(
     base_csv: Path,
     overlay_csvs: tuple[Path, ...] = (),
-) -> dict[str, LayoutToken]:
-    """Load one baseline plus additive target-selected token overlays.
+) -> tuple[dict[str, LayoutToken], tuple[ResolvedOverride, ...]]:
+    """Load one baseline, then let target-selected overlays extend or override it.
 
-    Overlays are deliberately additive.  A target may opt into tokens owned by
-    an additional composition family, but it may not silently replace an
-    approved baseline value through this path.
+    This is the layout plane's half of the repo's inheritance-and-override
+    principle, and it deliberately works the way the config plane already does
+    (``tools/config_loader.py``: ``extends:`` names the layer below, then a
+    deep merge in which the later definition wins; ``config.eu-de.yaml`` ->
+    ``eu-single-language-base.yaml`` -> ``us-single-language-base.yaml``).
+
+    So: the baseline is the common style definition every manual inherits, and
+    a bound overlay is a layer above it. Binding the overlay to a target *is*
+    the inheritance declaration -- the config's
+    ``idml_layout_params_overlays_by_target`` is this plane's ``import *`` --
+    and after that a key the layer defines simply wins. There is no per-row
+    ceremony, for the same reason ``zh_CN_conf.py`` does not annotate
+    ``project`` before reassigning it.
+
+    Overriding used to be banned outright, to stop a baseline value being
+    replaced *silently*. But a ban is not the only way to be non-silent, and it
+    cost the plane its override axis: with no legal way to say "this book
+    genuinely differs", the difference moved into key names instead. 46 keys
+    across the two live overlays are renamed shadows of a common key -- a
+    ``compact_`` category infix, or ``lang_ko_`` pressed into service as a
+    target axis while changing panel heights rather than any font metric.
+
+    Non-silence now comes from the returned audit trail plus a ratchet test
+    over it, which is how this repo already guards SKIP counts, warnings, file
+    sizes and language literals: one more than the pinned baseline turns red.
+    That makes a new override visible in review without taxing every
+    legitimate one.
+
+    The unreachable-language gate below is the orthogonal half and still runs
+    on every layer. Allowing a layer to override a key says nothing about
+    whether the key's own spelling is one any lookup path can build: a row
+    written ``lang_ukr_*`` when the pipeline only ever spells ``lang_uk_`` is
+    not an override, it is a row nobody reads. One rule is about precedence,
+    the other about reachability.
     """
 
     tokens = load_layout_tokens(base_csv)
     _reject_unreachable_language_rows(tokens, base_csv)
+    applied: list[ResolvedOverride] = []
     for overlay_csv in overlay_csvs:
         overlay = load_layout_tokens(overlay_csv)
         _reject_unreachable_language_rows(overlay, overlay_csv)
-        duplicates = sorted(set(tokens).intersection(overlay))
-        if duplicates:
-            raise ValueError(
-                f"layout token overlay {overlay_csv} redefines existing keys: "
-                + ", ".join(duplicates)
-            )
-        tokens.update(overlay)
+        for key, token in overlay.items():
+            base = tokens.get(key)
+            if base is not None:
+                applied.append(
+                    ResolvedOverride(
+                        key=key,
+                        overlay=overlay_csv.name,
+                        base_value=base.value,
+                        base_unit=base.unit,
+                        value=token.value,
+                        unit=token.unit,
+                        comment=token.comment,
+                    )
+                )
+            tokens[key] = token
+    return tokens, tuple(applied)
+
+
+def load_layout_token_layers(
+    base_csv: Path,
+    overlay_csvs: tuple[Path, ...] = (),
+) -> dict[str, LayoutToken]:
+    """Resolved tokens only; see `resolve_layout_token_layers` for the rules."""
+
+    tokens, _applied = resolve_layout_token_layers(base_csv, overlay_csvs)
     return tokens
 
 

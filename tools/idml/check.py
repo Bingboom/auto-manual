@@ -5,6 +5,7 @@ import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
+from .font_family import CJK_FONT_FAMILY_TOKEN, JAPANESE_FONT_FAMILY_TOKEN
 from .inline_text import fallback_font_for_character
 from .params import MIMETYPE
 
@@ -23,6 +24,7 @@ def _fallback_run_issues(
     part_name: str,
     root: ET.Element,
     paragraph_fonts: dict[str, str],
+    declared_font_families: set[str],
 ) -> list[str]:
     issues: list[str] = []
 
@@ -44,7 +46,13 @@ def _fallback_run_issues(
             for content in element.findall("Content"):
                 for character in content.text or "":
                     required = fallback_font_for_character(character)
-                    if required is None or applied_font == required:
+                    localized_cjk = (
+                        required == CJK_FONT_FAMILY_TOKEN.name
+                        and JAPANESE_FONT_FAMILY_TOKEN.name
+                        in declared_font_families
+                        and applied_font == JAPANESE_FONT_FAMILY_TOKEN.name
+                    )
+                    if required is None or applied_font == required or localized_cjk:
                         continue
                     issues.append(
                         f"{part_name}: character U+{ord(character):04X} "
@@ -80,12 +88,21 @@ def check_idml(path: Path) -> list[str]:
                 except ET.ParseError as exc:
                     issues.append(f"{name}: XML parse error: {exc}")
         styles = xml_roots.get("Resources/Styles.xml")
+        fonts = xml_roots.get("Resources/Fonts.xml")
+        declared_font_families = (
+            {
+                str(family.get("Name") or "")
+                for family in fonts.iter("FontFamily")
+            }
+            if fonts is not None
+            else set()
+        )
         if styles is not None:
             paragraph_fonts = _paragraph_fonts(styles)
             for name, root in xml_roots.items():
                 if name.startswith("Stories/"):
                     issues.extend(_fallback_run_issues(
-                        name, root, paragraph_fonts,
+                        name, root, paragraph_fonts, declared_font_families,
                     ))
         # designmap references must resolve
         dm = zf.read("designmap.xml").decode("utf-8")

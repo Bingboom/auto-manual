@@ -4,6 +4,7 @@ from __future__ import annotations
 import unicodedata
 
 from .. import page_objects as _po
+from ..character_metrics import with_character_metrics
 from ..line_metrics import estimated_text_width
 from ..params import param_pt
 from ..primitives import cell, component_table, psr, wrap_table_paragraph
@@ -55,8 +56,14 @@ def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
 
     normalized = unicodedata.normalize("NFD", text.upper())
     advances = 0.0
+    wide_ems = 0
     for char in normalized:
         if unicodedata.combining(char):
+            continue
+        if unicodedata.east_asian_width(char) in {"W", "F"}:
+            # Fullwidth glyphs use the portable CJK face, not Gilroy's Latin
+            # fallback advance or shaping adjustment.
+            wide_ems += 1
             continue
         advance = _GILROY_BOLD_UPPER_ADVANCES.get(char)
         if advance is None:
@@ -64,7 +71,84 @@ def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
             # allowance.  They do not silently switch back to full-row layout.
             advance = 530
         advances += advance
-    return advances * point_size * _GILROY_BOLD_SHAPING_FACTOR / 1000.0
+    return (advances * _GILROY_BOLD_SHAPING_FACTOR / 1000.0 + wide_ems) * point_size
+
+
+def _render_section_capsule(
+    text: str,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    terminal: bool,
+) -> tuple[str, float]:
+    """A section heading set in the shared subbar capsule, inline in the flow.
+
+    The house style has one subbar: ``comp_subbar_height`` tall, radius h/2,
+    ``type_subbar_font_size`` reversed type, ``comp_subbar_pad_lr`` inset. The
+    safety panel draws it as a page object; this draws the same object as an
+    anchored group so a heading inside running copy can carry it. Nothing here
+    is per-language -- a style is shared, and a book that differs is a
+    structural difference expressed by which heading takes the capsule, not by
+    new geometry.
+    """
+    width = ctx.text_measure
+    height = param_pt(ctx.params, "comp_subbar_height", 13.89)
+    size = param_pt(ctx.params, "type_subbar_font_size", 8.0)
+    leading = param_pt(ctx.params, "type_subbar_font_leading", 9.6)
+    inset = param_pt(ctx.params, "comp_subbar_pad_lr", 6.24)
+    space_before = param_pt(ctx.params, "idml_charging_emphasis_space_before", 5.0)
+    space_after = 1.5
+
+    content = with_character_metrics(
+        psr("HB Emphasis Pill", text, terminal=True),
+        point_size=size,
+        leading=leading,
+    )
+    # `HB Emphasis Pill` is not in the Japanese weight map, so a CJK run comes
+    # back carrying an explicit Regular that overrides the style's own Bold.
+    # The capsule is bold in every language; assert it on this one line.
+    content = content.replace('FontStyle="Regular"', 'FontStyle="Bold"')
+    # InDesign will not hold a one-sided InsetSpacing on an inline rounded
+    # frame, so the optical left edge rides the paragraph.
+    content = content.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange LeftIndent="{inset:g}" ',
+        1,
+    )
+
+    if ctx.add_story is None:
+        table = component_table(
+            tid,
+            [width],
+            [cell(f"{tid}c0", "0:0", content, fill="Color/HB Brand Dark",
+                  stroke=False, top=2, bottom=2, left=0, right=0,
+                  valign="CenterAlign")],
+            role="warning",
+        )
+        return wrap_table_paragraph(table, terminal, span_columns=True), height + 2.0
+
+    xml = _po.anchored_panel_group_paragraph(
+        ctx.add_story,
+        f"st_anchor_section_capsule_{tid}",
+        "section capsule",
+        [content],
+        width,
+        height,
+        terminal=terminal,
+        fill="Color/HB Brand Dark",
+        stroke="Swatch/None",
+        stroke_weight=0,
+        radius=height / 2.0,
+        valign="CenterAlign",
+        mask_content_corners=False,
+    )
+    xml = xml.replace(
+        "<ParagraphStyleRange ",
+        f'<ParagraphStyleRange SpaceBefore="{space_before:g}" '
+        f'SpaceAfter="{space_after:g}" ',
+        1,
+    )
+    return xml, height + space_before + space_after
 
 
 def render_emphasispill(
@@ -79,6 +163,8 @@ def render_emphasispill(
     text = " ".join(str(value).strip() for value in spec.get("texts", []) if value)
     if not text:
         return "", 0.0
+    if str(spec.get("layout_variant") or "").strip().lower() == "section_capsule":
+        return _render_section_capsule(text, ctx, tid=tid, terminal=terminal)
     body_w = measure_w or ctx.text_measure
     size = param_pt(ctx.params, "idml_charging_emphasis_font_size", 6.6)
     space_before = param_pt(

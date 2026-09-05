@@ -49,10 +49,10 @@ class IdmlWriter:
 
     # -- styles ------------------------------------------------------------
     def para_styles(self) -> list[tuple[str, float, float, str, str]]:
-        return _styles.para_styles(self.params)
+        return _styles.para_styles(self.params, self.language)
 
     def styles_xml(self) -> str:
-        return _styles.styles_xml(self.params)
+        return _styles.styles_xml(self.params, self.language)
 
     def graphic_xml(self) -> str:
         return _styles.graphic_xml(self.params)
@@ -178,6 +178,7 @@ class IdmlWriter:
                         inline_origin_shift: float = 0.0,
                         language: str | None = None,
                         image_roles: tuple[str, ...] = (),
+                        image_callouts: tuple[tuple[dict, ...], ...] = (),
                         disable_hyphenation: bool = False,
                         first_h1_space_after: float | None = None,
                         semantic_page_role: str | None = None) -> tuple[str, float]:
@@ -190,6 +191,7 @@ class IdmlWriter:
             inline_origin_shift=inline_origin_shift,
             language=language,
             image_roles=image_roles,
+            image_callouts=image_callouts,
             disable_hyphenation=disable_hyphenation,
             first_h1_space_after=first_h1_space_after,
             semantic_page_role=semantic_page_role,
@@ -301,6 +303,7 @@ class IdmlWriter:
                               signals: list[object], width: float,
                               bundle_root: Path, lang: str = "en", *,
                               headers: tuple[str, str],
+                              include_header: bool = True,
                               row_heights: list[float] | None = None,
                               left_col_width: float | None = None,
                               fit_body_to_row: bool = False,
@@ -315,6 +318,7 @@ class IdmlWriter:
             bundle_root,
             lang,
             headers=headers,
+            include_header=include_header,
             row_heights=row_heights,
             left_col_width=left_col_width,
             fit_body_to_row=fit_body_to_row,

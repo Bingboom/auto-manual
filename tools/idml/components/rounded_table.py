@@ -54,7 +54,7 @@ def rounded_table_panel(
         inner = inner.replace(
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]">',
             'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-            f'PointSize="{marker_size:g}" Leading="{marker_size:g}">',
+            f'PointSize="{marker_size:g}">',
             1,
         )
     xml = page_objects.anchored_panel_group_paragraph(

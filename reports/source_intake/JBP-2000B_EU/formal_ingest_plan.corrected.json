@@ -1,0 +1,1106 @@
+{
+ "schema_version": "jbp-eu-formal-ingest-plan/v1",
+ "write_status": "corrected_to_eu_house_style__blocked_until_operator_says_入库",
+ "document_key": {
+  "value": "JBP-2000B_EU",
+  "record_id": "recvtNbSrFZXfL"
+ },
+ "source_authority": {
+  "source_key": "source/manual_jbp2000b_eu_master_normalized",
+  "record_id": "recvtPCUCO3Jgp",
+  "languages": [
+   "en",
+   "fr",
+   "es",
+   "de",
+   "it",
+   "uk"
+  ],
+  "uk_means": "Ukrainian; not UK market",
+  "eu_host_display_name": "Jackery Explorer 2000 Plus",
+  "us_host_display_name": "Jackery HomePower 2000 Plus"
+ },
+ "prewrite_live_counts": {
+  "spec_master": 0,
+  "page_placeholders": 0,
+  "asset_definitions": 0,
+  "asset_exports": 0
+ },
+ "summary": {
+  "spec_create": 11,
+  "placeholder_create": 9,
+  "symbols_create": 1,
+  "lcd_update": 2,
+  "troubleshooting_create": 7
+ },
+ "spec_master": {
+  "table_id": "tblPUFJqt2uGGvTT",
+  "create_records": [
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBny7s"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Product Name",
+    "Value_source": "Jackery Battery Pack 2000",
+    "Row_label_fr": "Nom du produit",
+    "Value_fr": "Jackery Battery Pack 2000",
+    "Row_label_es": "Nombre del producto",
+    "Value_es": "Jackery Battery Pack 2000",
+    "Row_label_de": "Produktname",
+    "Value_de": "Jackery Battery Pack 2000",
+    "Row_label_it": "Nome del prodotto",
+    "Value_it": "Jackery Battery Pack 2000",
+    "Row_label_uk": "Назва продукту",
+    "Value_uk": "Jackery Battery Pack 2000"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnxQA"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 2,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Model No.",
+    "Value_source": "JBP-2000B",
+    "Row_label_fr": "N° modèle",
+    "Value_fr": "JBP-2000B",
+    "Row_label_es": "N° de modelo",
+    "Value_es": "JBP-2000B",
+    "Row_label_de": "Modell-Nr.",
+    "Value_de": "JBP-2000B",
+    "Row_label_it": "Modello n.",
+    "Value_it": "JBP-2000B",
+    "Row_label_uk": "№ моделі",
+    "Value_uk": "JBP-2000B"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnvOF"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 3,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Capacity",
+    "Value_source": "2048 Wh (40 Ah / 51.2 V ⎓)",
+    "Row_label_fr": "Capacité",
+    "Value_fr": "2048 Wh (40 Ah / 51,2 V ⎓)",
+    "Row_label_es": "Capacidad",
+    "Value_es": "2048 Wh (40 Ah / 51,2 V ⎓)",
+    "Row_label_de": "Kapazität",
+    "Value_de": "2048 Wh (40 Ah / 51,2 V ⎓)",
+    "Row_label_it": "Capacità",
+    "Value_it": "40 Ah / 51,2 V ⎓ (2048 Wh)",
+    "Row_label_uk": "Ємність",
+    "Value_uk": "2048 Вт-год (40 А-год / 51,2 В ⎓)"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnw4x"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 4,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Cell Chemistry",
+    "Value_source": "LiFePO₄",
+    "Row_label_fr": "Cellule Chimique",
+    "Value_fr": "LiFePO₄",
+    "Row_label_es": "Química Celular",
+    "Value_es": "LiFePO₄",
+    "Row_label_de": "Zellchemie",
+    "Value_de": "LiFePO₄",
+    "Row_label_it": "Chimica celle batteria",
+    "Value_it": "LiFePO₄",
+    "Row_label_uk": "Хімічний склад елемента",
+    "Value_uk": "LiFePO₄"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnzKZ"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 5,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Weight",
+    "Value_source": "About 14.8 kg",
+    "Row_label_fr": "Poids",
+    "Value_fr": "Environ 14,8 kg",
+    "Row_label_es": "Peso",
+    "Value_es": "Aproximadamente 14,8 kg",
+    "Row_label_de": "Gewicht",
+    "Value_de": "Etwa 14,8 kg",
+    "Row_label_it": "Peso",
+    "Value_it": "Circa 14,8 kg",
+    "Row_label_uk": "Вага",
+    "Value_uk": "Близько 14,8 кг"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnx3c"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 6,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Dimensions",
+    "Value_source": "36.5 x 25.5 x 19.1 cm",
+    "Row_label_fr": "Dimensions",
+    "Value_fr": "36,5 x 25,5 x 19,1 cm",
+    "Row_label_es": "Dimensiones",
+    "Value_es": "36,5 x 25,5 x 19,1 cm",
+    "Row_label_de": "Abmessungen",
+    "Value_de": "36,5 x 25,5 x 19,1 cm",
+    "Row_label_it": "Dimensioni",
+    "Value_it": "36,5 x 25,5 x 19,1 cm",
+    "Row_label_uk": "Розміри",
+    "Value_uk": "36,5 × 25,5 × 19,1 см"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnwiU"
+    ],
+    "Page": "specifications",
+    "Section": "GENERAL INFO",
+    "Section_order": 1,
+    "Row_order": 7,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": true,
+    "Row_label_source": "Cycle Life",
+    "Value_source": "6000 cycles to 70%+ capacity",
+    "Row_label_fr": "Durée de vie",
+    "Value_fr": "Capacité de 6000 cycles à 70 % ou plus",
+    "Row_label_es": "Ciclo de vida",
+    "Value_es": "6000 ciclos de carga hasta 70 % + de capacidad",
+    "Row_label_de": "Nutzungsdauer",
+    "Value_de": "6000 Zyklen bei über 70 % Restkapazität",
+    "Row_label_it": "Durata del ciclo",
+    "Value_it": "6000 cicli con capacità residua superiore al 70%",
+    "Row_label_uk": "Ресурс циклів",
+    "Value_uk": "6000 циклів до 70%+ ємності"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Page": "specifications",
+    "Section": "INPUT PORTS",
+    "Section_order": 2,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "DC Expansion Port (Input)",
+    "Value_source": "36.8V-57.6V⎓75A Max",
+    "Row_label_fr": "Port d’extension CC (Entrée)",
+    "Value_fr": "36,8V-57,6V⎓75A max.",
+    "Row_label_es": "Puerto de Expansión de CC (Entrada)",
+    "Value_es": "36,8 V-57,6 V⎓75 A Máx.",
+    "Row_label_de": "DC-Erweiterungsanschluss (Eingang)",
+    "Value_de": "36,8 V - 57,6 V ⎓ 75 A max.",
+    "Row_label_it": "Porta di espansione CC (Ingresso)",
+    "Value_it": "36,8 V-57,6 V⎓75 A max.",
+    "Row_label_uk": "Порт розширення DC (вхід)",
+    "Value_uk": "36,8 V-57,6 V⎓75 A макс."
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Page": "specifications",
+    "Section": "OUTPUT PORTS",
+    "Section_order": 3,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "DC Expansion Port (Output)",
+    "Value_source": "36.8V-57.6V⎓75A Max",
+    "Row_label_fr": "Port d’extension CC (Sortie)",
+    "Value_fr": "36,8V-57,6V⎓75A max.",
+    "Row_label_es": "Puerto de Expansión de CC (Salida)",
+    "Value_es": "36,8 V-57,6 V⎓75 A Máx.",
+    "Row_label_de": "DC-Erweiterungsanschluss (Ausgang)",
+    "Value_de": "36,8 V - 57,6 V ⎓ 75 A max.",
+    "Row_label_it": "Porta di espansione CC (Uscita)",
+    "Value_it": "36,8 V-57,6 V⎓75 A max.",
+    "Row_label_uk": "Порт розширення DC (вихід)",
+    "Value_uk": "36,8 V-57,6 V⎓75 A макс."
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnwbK"
+    ],
+    "Page": "specifications",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Section_order": 4,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Charge Temperature",
+    "Value_source": "-10 °C to 45 °C",
+    "Row_label_fr": "Température de charge",
+    "Value_fr": "-10 °C à 45 °C",
+    "Row_label_es": "Temperatura de carga",
+    "Value_es": "-10 °C a 45 °C",
+    "Row_label_de": "Ladetemperatur",
+    "Value_de": "von -10 °C bis 45 °C",
+    "Row_label_it": "Temperatura di carica",
+    "Value_it": "da -10 °C a 45 °C",
+    "Row_label_uk": "Температура заряджання",
+    "Value_uk": "від -10 °C до 45 °C"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnxbM"
+    ],
+    "Page": "specifications",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Section_order": 4,
+    "Row_order": 2,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "多语言复核": false,
+    "Row_label_source": "Discharge Temperature",
+    "Value_source": "-10 °C to 45 °C",
+    "Row_label_fr": "Température de décharge",
+    "Value_fr": "-10 °C à 45 °C",
+    "Row_label_es": "Temperatura de descarga",
+    "Value_es": "-10 °C a 45 °C",
+    "Row_label_de": "Entladetemperatur",
+    "Value_de": "von -10 °C bis 45 °C",
+    "Row_label_it": "Temperatura di scarica",
+    "Value_it": "da -10 °C a 45 °C",
+    "Row_label_uk": "Температура розряджання",
+    "Value_uk": "від -10 °C до 45 °C"
+   }
+  ]
+ },
+ "page_placeholders": {
+  "table_id": "tblEhqJVXiyKtnwq",
+  "create_records": [
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnxIw"
+    ],
+    "Slot_key_link": [
+     "recvlM8w60sPsc"
+    ],
+    "Page": "Product overview",
+    "Section": "CONTROLS",
+    "Section_order": 7,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "POWER button",
+    "Value_source": "POWER button",
+    "Row_label_fr": "Bouton d’alimentation principale",
+    "Value_fr": "Bouton d’alimentation principale",
+    "Row_label_es": "Botón de encendido principal",
+    "Value_es": "Botón de encendido principal",
+    "Row_label_de": "Hauptschalter",
+    "Value_de": "Hauptschalter",
+    "Row_label_it": "Pulsante Power principale",
+    "Value_it": "Pulsante Power principale",
+    "Row_label_uk": "Кнопка POWER",
+    "Value_uk": "Кнопка POWER"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Slot_key_link": [
+     "recvsZelIAkzOH"
+    ],
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Section_order": 3,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "DC Expansion Port A",
+    "Value_source": "DC Expansion Port A",
+    "Row_label_fr": "Port d’extension CC A",
+    "Value_fr": "Port d’extension CC A",
+    "Row_label_es": "Puerto de expansión A de CC",
+    "Value_es": "Puerto de expansión A de CC",
+    "Row_label_de": "DC-Erweiterungsport A",
+    "Value_de": "DC-Erweiterungsport A",
+    "Row_label_it": "Porta A di espansione CC",
+    "Value_it": "Porta A di espansione CC",
+    "Row_label_uk": "Порт розширення DC A",
+    "Value_uk": "Порт розширення DC A"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Slot_key_link": [
+     "recvsZelIAvx2D"
+    ],
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Section_order": 3,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "DC Expansion Port A",
+    "Value_source": "(Connect to Expansion Cable Terminal A)",
+    "Row_label_fr": "Port d’extension CC A",
+    "Value_fr": "(Connexion à la borne A du câble de rallonge)",
+    "Row_label_es": "Puerto de expansión A de CC",
+    "Value_es": "(Conectar a la Terminal A del Cable de Expansión)",
+    "Row_label_de": "DC-Erweiterungsport A",
+    "Value_de": "(Anschluss an Verlängerungskabel Terminal A)",
+    "Row_label_it": "Porta A di espansione CC",
+    "Value_it": "(da collegare al Cavo di espansione Terminale A)",
+    "Row_label_uk": "Порт розширення DC A",
+    "Value_uk": "(підключення до клеми A кабелю розширення)"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Slot_key_link": [
+     "recvsZelIAVvjV"
+    ],
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Section_order": 3,
+    "Row_order": 2,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "DC Expansion Port B",
+    "Value_source": "DC Expansion Port B",
+    "Row_label_fr": "Port d’extension CC B",
+    "Value_fr": "Port d’extension CC B",
+    "Row_label_es": "Puerto de expansión B de CC",
+    "Value_es": "Puerto de expansión B de CC",
+    "Row_label_de": "DC-Erweiterungsport B",
+    "Value_de": "DC-Erweiterungsport B",
+    "Row_label_it": "Porta B di espansione CC",
+    "Value_it": "Porta B di espansione CC",
+    "Row_label_uk": "Порт розширення DC B",
+    "Value_uk": "Порт розширення DC B"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "recvkvYtLcFY2k"
+    ],
+    "Slot_key_link": [
+     "recvsZelIAGMSH"
+    ],
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Section_order": 3,
+    "Row_order": 2,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "DC Expansion Port B",
+    "Value_source": "(Connect to Expansion Cable Terminal B)",
+    "Row_label_fr": "Port d’extension CC B",
+    "Value_fr": "(Connexion à la borne B du câble de rallonge)",
+    "Row_label_es": "Puerto de expansión B de CC",
+    "Value_es": "(Conectar a la Terminal B del Cable de Expansión)",
+    "Row_label_de": "DC-Erweiterungsport B",
+    "Value_de": "(Anschluss an Verlängerungskabel Terminal B)",
+    "Row_label_it": "Porta B di espansione CC",
+    "Value_it": "(da collegare al Cavo di espansione Terminale B)",
+    "Row_label_uk": "Порт розширення DC B",
+    "Value_uk": "(підключення до клеми B кабелю розширення)"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnwVT"
+    ],
+    "Slot_key_link": [
+     "recvlM8w60Vdmi"
+    ],
+    "Page": "operation_guide",
+    "Section": "SETTINGS",
+    "Section_order": 8,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "Default Standby Duration",
+    "Value_source": "2 hours",
+    "Value_fr": "2 heures",
+    "Value_es": "2 horas",
+    "Value_de": "2 Stunden",
+    "Value_it": "2 ore",
+    "Value_uk": "2 години"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnyfy"
+    ],
+    "Page": "storage",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Section_order": 4,
+    "Row_order": 1,
+    "Line_order": 1,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "Storage Temperature",
+    "Value_source": "-20 °C to 45 °C (0-60 % RH)",
+    "Param_source": "1 month",
+    "Value_fr": "-20 °C à 45 °C (0-60 % HR)",
+    "Param_fr": "1 mois",
+    "Value_es": "-20 °C a 45 °C (0-60 % HR)",
+    "Param_es": "1 mes",
+    "Value_de": "von -20 °C bis 45 °C (0–60 % rF)",
+    "Param_de": "1 Monat",
+    "Value_it": "da -20 °C a 45 °C (0-60% UR)",
+    "Param_it": "1 mese",
+    "Value_uk": "від -20 °C до 45 °C (0-60 % RH)",
+    "Param_uk": "1 місяць"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnyfy"
+    ],
+    "Page": "storage",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Section_order": 4,
+    "Row_order": 1,
+    "Line_order": 2,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "Storage Temperature",
+    "Value_source": "0 °C to 45 °C (0-60 % RH)",
+    "Param_source": "3 months",
+    "Value_fr": "0 °C à 45 °C (0-60 % HR)",
+    "Param_fr": "3 mois",
+    "Value_es": "0 °C a 45 °C (0-60 % HR)",
+    "Param_es": "3 meses",
+    "Value_de": "von 0 °C bis 45 °C (0–60 % rF)",
+    "Param_de": "3 Monate",
+    "Value_it": "da 0 °C a 45 °C (0-60% UR)",
+    "Param_it": "3 mesi",
+    "Value_uk": "від 0 °C до 45 °C (0-60 % RH)",
+    "Param_uk": "3 місяці"
+   },
+   {
+    "Document_key_link": [
+     "recvtNbSrFZXfL"
+    ],
+    "Row_key_link": [
+     "rec277z1LBnyfy"
+    ],
+    "Page": "storage",
+    "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+    "Section_order": 4,
+    "Row_order": 1,
+    "Line_order": 3,
+    "Version": "1.0",
+    "Is_Latest": "TRUE",
+    "Source_lang": "en",
+    "Row_label_source": "Storage Temperature",
+    "Value_source": "0 °C to 25 °C (0-60 % RH)",
+    "Param_source": "12 months",
+    "Value_fr": "0 °C à 25 °C (0-60 % HR)",
+    "Param_fr": "12 mois",
+    "Value_es": "0 °C a 25 °C (0-60 % HR)",
+    "Param_es": "12 meses",
+    "Value_de": "von 0 °C bis 25 °C (0–60 % rF)",
+    "Param_de": "12 Monate",
+    "Value_it": "da 0 °C a 25 °C (0-60% UR)",
+    "Param_it": "12 mesi",
+    "Value_uk": "від 0 °C до 25 °C (0-60 % RH)",
+    "Param_uk": "12 місяців"
+   }
+  ]
+ },
+ "symbols": {
+  "table_id": "tblSZX8hBzpJLqAe",
+  "create_records": [
+   {
+    "symbol_key": "weee2",
+    "order": 12,
+    "Source_lang": "en",
+    "Model": [
+     "JBP-2000B"
+    ],
+    "Market": [
+     "EU"
+    ],
+    "block_type": "table_row",
+    "Is_Latest": "TRUE",
+    "image_path": "templates/word_template/common_assets/symbols/weee2.png",
+    "text_en": "Batteries and accumulators must not be disposed of with household waste.\nAs a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.\nPlease return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.",
+    "text_fr": "Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.\nEn tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.\nVeuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.",
+    "text_es": "Las baterías y acumuladores no deben desecharse junto con los residuos domésticos.\nComo consumidor, usted está obligado por ley a desechar todas las baterías y acumuladores en los puntos de recolección designados, independientemente de si contienen sustancias peligrosas.\nDevuelva las baterías y acumuladores usados a un punto de recolección local, un centro de reciclaje o al minorista donde los compró. La eliminación adecuada garantiza un reciclaje responsable con el medio ambiente y evita posibles daños a la salud humana y al medio ambiente.",
+    "text_de": "Batterien und Akkumulatoren dürfen nicht über den Hausmüll entsorgt werden.\nAls Verbraucher sind Sie gesetzlich verpflichtet, alle Batterien und Akkumulatoren an dafür vorgesehenen Sammelstellen zu entsorgen, unabhängig davon, ob sie Schadstoffe enthalten.\nBitte geben Sie gebrauchte Batterien und Akkumulatoren an einer örtlichen Sammelstelle, einem Recyclingzentrum oder beim Händler zurück, bei dem sie gekauft wurden. Die ordnungsgemäße Entsorgung gewährleistet eine umweltgerechte Wiederverwertung und verhindert mögliche Schäden für die menschliche Gesundheit und die Umwelt.",
+    "text_it": "Le batterie e gli accumulatori non devono essere smaltiti insieme ai rifiuti domestici.\nCome consumatore, sei legalmente obbligato a smaltire tutte le batterie e gli accumulatori nei punti di raccolta designati, indipendentemente dal fatto che contengano sostanze pericolose.\nPer favore, restituisci le batterie e gli accumulatori usati a un punto di raccolta locale, a un centro di riciclo o al rivenditore presso cui sono stati acquistati. Un corretto smaltimento garantisce un riciclo responsabile per l'ambiente e previene potenziali danni alla salute umana e all'ambiente.",
+    "text_uk": "Батарейки та акумулятори не можна викидати разом із побутовими відходами.\nЯк споживач ви юридично зобов’язані здавати всі батарейки та акумулятори у визначені пункти збору, незалежно від того, чи містять вони небезпечні речовини.\nБудь ласка, повертайте використані батарейки та акумулятори до місцевих пунктів збору, центрів переробки або до продавця, у якого їх було придбано. Правильна утилізація забезпечує екологічно безпечну переробку та запобігає потенційній шкоді для здоров’я людей і довкілля.",
+    "notes": "JBP-2000B + EU scoped copy of the approved six-language weee2 row; do not widen the shared row because that would change US resolution."
+   }
+  ],
+  "post_create_attachment_upload": {
+   "field": "Figure",
+   "local_file": "docs/templates/word_template/common_assets/symbols/weee2.png",
+   "readback_required": true
+  }
+ },
+ "lcd_icons": {
+  "table_id": "tblW5fCuJ6YdAcND",
+  "updates": [
+   {
+    "record_id": "recvsZG5nwlwlq",
+    "key": "Power Percentage/Fault Code",
+    "patch": {
+     "icon_de": "Leistungsprozentanzeige/Fehlercode",
+     "icon_desc_de": "Die Anzeige zeigt den aktuellen Akkustand in Prozent an.\nBei einem Systemfehler wird der entsprechende Fehlercode F0-FF angezeigt.",
+     "icon_it": "Percentuale di potenza/Codice di errore",
+     "icon_desc_it": "Il display mostra la percentuale di carica attuale.\nIn caso di guasto del sistema, verrà visualizzato il codice di errore corrispondente F0-FF.",
+     "icon_ukr": "Відсоток заряду/код помилки",
+     "icon_desc_ukr": "На дисплеї відображається поточний рівень заряду.\nУ разі збою відображається відповідний код несправності F0-FF."
+    }
+   },
+   {
+    "record_id": "recvsZG5nwQVVQ",
+    "key": "Charging Indicator",
+    "patch": {
+     "icon_de": "Ladeanzeige",
+     "icon_desc_de": "Die Anzeige wird während des Ladevorgangs angezeigt und verschwindet, wenn das Gerät vollständig aufgeladen ist.",
+     "icon_it": "Indicatore di carica",
+     "icon_desc_it": "L'indicatore viene visualizzato durante la carica e scompare quando è completamente carico.",
+     "icon_ukr": "Індикатор заряджання",
+     "icon_desc_ukr": "Індикатор відображається під час заряджання та зникає після повного заряджання."
+    }
+   }
+  ]
+ },
+ "troubleshooting": {
+  "table_id": "tblOmJoAfU35brkb",
+  "create_records": [
+   {
+    "No.": "1",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "F0",
+    "render_preview_en": "F0: Restart the product.",
+    "corrective_measures_en": "Restart the product.",
+    "corrective_measures_fr": "Redémarrez le produit.",
+    "corrective_measures_es": "Reiniciar el producto.",
+    "corrective_measures_de": "Starten Sie das Gerät neu.",
+    "corrective_measures_it": "Riavviare il prodotto.",
+    "corrective_measures_ukr": "Перезапустіть продукт."
+   },
+   {
+    "No.": "2",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "F3",
+    "render_preview_en": "F3: Restart the product.",
+    "corrective_measures_en": "Restart the product.",
+    "corrective_measures_fr": "Redémarrez le produit.",
+    "corrective_measures_es": "Reiniciar el producto.",
+    "corrective_measures_de": "Starten Sie das Gerät neu.",
+    "corrective_measures_it": "Riavviare il prodotto.",
+    "corrective_measures_ukr": "Перезапустіть продукт."
+   },
+   {
+    "No.": "3",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "F4",
+    "render_preview_en": "F4: Connect the product to loads to discharge its battery until the fault disappears.",
+    "corrective_measures_en": "Connect the product to loads to discharge its battery until the fault disappears.",
+    "corrective_measures_fr": "Connectez le produit à des charges pour décharger sa batterie jusqu'à ce que l'erreur disparaisse.",
+    "corrective_measures_es": "Conecte el producto a cargas para descargar su batería hasta que la falla desaparezca.",
+    "corrective_measures_de": "Schließen Sie das Gerät an Verbraucher an, um die Batterie zu entladen, bis der Fehler verschwindet.",
+    "corrective_measures_it": "Collegare il prodotto ai carichi per scaricare la batteria fino a quando l'errore non scompare.",
+    "corrective_measures_ukr": "Підключіть продукт до навантажень, щоб розряджати його акумулятор, доки помилка не зникне."
+   },
+   {
+    "No.": "4",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "F5",
+    "render_preview_en": "F5: Charge the product via solar panels or AC wall outlet until the fault disappears.",
+    "corrective_measures_en": "Charge the product via solar panels or AC wall outlet until the fault disappears.",
+    "corrective_measures_fr": "Chargez le produit via des panneaux solaires ou une prise murale CA jusqu'à ce que l'erreur disparaisse.",
+    "corrective_measures_es": "Cargue el producto mediante paneles solares o toma de corriente CA hasta que la falla desaparezca.",
+    "corrective_measures_de": "Laden Sie das Gerät über Solarmodule oder eine AC-Wandsteckdose, bis der Fehler verschwindet.",
+    "corrective_measures_it": "Caricare il prodotto tramite pannelli solari o una presa a muro CA fino a quando il guasto non scompare.",
+    "corrective_measures_ukr": "Заряджайте продукт за допомогою сонячних панелей або від розетки змінного струму, доки помилка не зникне."
+   },
+   {
+    "No.": "5",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "F8",
+    "render_preview_en": "F8: Contact Jackery Customer Support.",
+    "corrective_measures_en": "Contact Jackery Customer Support.",
+    "corrective_measures_fr": "Contacter le service à la clientèle de Jackery.",
+    "corrective_measures_es": "Contacte con atención al cliente de Jackery.",
+    "corrective_measures_de": "Wenden Sie sich an den Jackery-Kundendienst.",
+    "corrective_measures_it": "Contattare l'assistenza clienti Jackery.",
+    "corrective_measures_ukr": "Зверніться до служби підтримки клієнтів Jackery."
+   },
+   {
+    "No.": "6",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "FE",
+    "render_preview_en": "FE: Contact Jackery Customer Support.",
+    "corrective_measures_en": "Contact Jackery Customer Support.",
+    "corrective_measures_fr": "Contacter le service à la clientèle de Jackery.",
+    "corrective_measures_es": "Contacte con atención al cliente de Jackery.",
+    "corrective_measures_de": "Wenden Sie sich an den Jackery-Kundendienst.",
+    "corrective_measures_it": "Contattare l'assistenza clienti Jackery.",
+    "corrective_measures_ukr": "Зверніться до служби підтримки клієнтів Jackery."
+   },
+   {
+    "No.": "7",
+    "Version": "V1.0",
+    "Is_latest": "TRUE",
+    "Model": "JBP-2000B",
+    "Region": "EU",
+    "error_code": "FF",
+    "render_preview_en": "FF: Place the product in an environment with a proper temperature and wait till the fault disappears.",
+    "corrective_measures_en": "Place the product in an environment with a proper temperature and wait till the fault disappears.",
+    "corrective_measures_fr": "Placez le produit dans un environnement à température appropriée et attendez que l'erreur disparaisse.",
+    "corrective_measures_es": "Coloque el producto en un ambiente con temperatura adecuada y espere hasta que la falla desaparezca.",
+    "corrective_measures_de": "Stellen Sie das Gerät in eine Umgebung mit geeigneter Temperatur und warten Sie, bis der Fehler verschwindet.",
+    "corrective_measures_it": "Collocare il prodotto in un ambiente a temperatura adeguata e attendere che il guasto scompaia.",
+    "corrective_measures_ukr": "Розмістіть продукт у середовищі з належною температурою та зачекайте, доки помилка не зникне."
+   }
+  ]
+ },
+ "review_flags": [
+  {
+   "severity": "needs_review",
+   "target": "spec_master/cycle_life/Value_it",
+   "value": "6000 cycles to 70%+ capacity",
+   "reason": "The Italian source page itself contains English residue. The batch preserves it verbatim and does not guess a translation."
+  },
+  {
+   "severity": "source_anomaly",
+   "target": "troubleshooting/es/error_code",
+   "reason": "Spanish source prints F1/F2 where EN/FR/DE/IT/UK print F8/FE. The EU row identity follows the five-language/English anchor set F8/FE while reusing the exact Spanish contact-support text; no Spanish translation was invented."
+  }
+ ],
+ "house_style_corrections": [
+  {
+   "table": "spec_master",
+   "row": "Capacity",
+   "param": null,
+   "field": "Value_source",
+   "before": "2048 Wh (40 Ah/51.2 V ⎓)",
+   "after": "2048 Wh (40 Ah / 51.2 V ⎓)",
+   "why": "JE-2000F EU (identical numbers and ⎓ symbol) spaces the slash; 4/4 EU siblings space it"
+  },
+  {
+   "table": "spec_master",
+   "row": "Capacity",
+   "param": null,
+   "field": "Value_fr",
+   "before": "2048 Wh (40 Ah/51,2 V ⎓)",
+   "after": "2048 Wh (40 Ah / 51,2 V ⎓)",
+   "why": "JE-2000F EU fr"
+  },
+  {
+   "table": "spec_master",
+   "row": "Capacity",
+   "param": null,
+   "field": "Value_es",
+   "before": "2048 Wh (40 Ah/51,2 V ⎓)",
+   "after": "2048 Wh (40 Ah / 51,2 V ⎓)",
+   "why": "JE-2000F EU es"
+  },
+  {
+   "table": "spec_master",
+   "row": "Capacity",
+   "param": null,
+   "field": "Value_de",
+   "before": "40 Ah / 51,2 V ⎓ (2048 Wh)",
+   "after": "2048 Wh (40 Ah / 51,2 V ⎓)",
+   "why": "German puts Wh first in 4/4 EU siblings; the Ah-first order is the ITALIAN pattern. JE-2000F EU de is byte-identical to this target"
+  },
+  {
+   "table": "spec_master",
+   "row": "Capacity",
+   "param": null,
+   "field": "Value_uk",
+   "before": "2048 Вт-год (40 A-год/51,2 В ⎓)",
+   "after": "2048 Вт-год (40 А-год / 51,2 В ⎓)",
+   "why": "taken whole from JE-2000F EU uk, the numeric AND symbol twin -- byte-identical to that shipping row. Note its 'А' is Cyrillic U+0410 (ампер-година), not the Latin A the plan had"
+  },
+  {
+   "table": "spec_master",
+   "row": "Weight",
+   "param": null,
+   "field": "Value_de",
+   "before": "Ca. 14,8 kg",
+   "after": "Etwa 14,8 kg",
+   "why": "4/4 EU siblings write 'Etwa'"
+  },
+  {
+   "table": "spec_master",
+   "row": "Dimensions",
+   "param": null,
+   "field": "Value_source",
+   "before": "36.5 × 25.5 × 19.1 cm",
+   "after": "36.5 x 25.5 x 19.1 cm",
+   "why": "JE-1000F/JE-2000E/JE-2000F EU use ASCII 'x'; only uk keeps '×' (with 'см')"
+  },
+  {
+   "table": "spec_master",
+   "row": "Dimensions",
+   "param": null,
+   "field": "Value_fr",
+   "before": "36,5 × 25,5 × 19,1 cm",
+   "after": "36,5 x 25,5 x 19,1 cm",
+   "why": "JE-1000F/JE-2000E/JE-2000F EU use ASCII 'x'; only uk keeps '×' (with 'см')"
+  },
+  {
+   "table": "spec_master",
+   "row": "Dimensions",
+   "param": null,
+   "field": "Value_es",
+   "before": "36,5 × 25,5 × 19,1 cm",
+   "after": "36,5 x 25,5 x 19,1 cm",
+   "why": "JE-1000F/JE-2000E/JE-2000F EU use ASCII 'x'; only uk keeps '×' (with 'см')"
+  },
+  {
+   "table": "spec_master",
+   "row": "Dimensions",
+   "param": null,
+   "field": "Value_de",
+   "before": "36,5 × 25,5 × 19,1 cm",
+   "after": "36,5 x 25,5 x 19,1 cm",
+   "why": "JE-1000F/JE-2000E/JE-2000F EU use ASCII 'x'; only uk keeps '×' (with 'см')"
+  },
+  {
+   "table": "spec_master",
+   "row": "Dimensions",
+   "param": null,
+   "field": "Value_it",
+   "before": "36,5 × 25,5 × 19,1 cm",
+   "after": "36,5 x 25,5 x 19,1 cm",
+   "why": "JE-1000F/JE-2000E/JE-2000F EU use ASCII 'x'; only uk keeps '×' (with 'см')"
+  },
+  {
+   "table": "spec_master",
+   "row": "Cycle Life",
+   "param": null,
+   "field": "Value_it",
+   "before": "6000 cycles to 70%+ capacity",
+   "after": "6000 cicli con capacità residua superiore al 70%",
+   "why": "the identical 6000-cycle spec already has reviewed Italian on 3/3 EU siblings; reusing approved wording, not inventing a translation"
+  },
+  {
+   "table": "spec_master",
+   "row": "Charge Temperature",
+   "param": null,
+   "field": "Value_source",
+   "before": "-10°C to 45°C",
+   "after": "-10 °C to 45 °C",
+   "why": "3/3 EU siblings space the degree sign"
+  },
+  {
+   "table": "spec_master",
+   "row": "Charge Temperature",
+   "param": null,
+   "field": "Value_fr",
+   "before": "-10°C à 45°C",
+   "after": "-10 °C à 45 °C",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "spec_master",
+   "row": "Charge Temperature",
+   "param": null,
+   "field": "Value_es",
+   "before": "-10°C a 45°C",
+   "after": "-10 °C a 45 °C",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "spec_master",
+   "row": "Charge Temperature",
+   "param": null,
+   "field": "Value_de",
+   "before": "-10°C und 45°C",
+   "after": "von -10 °C bis 45 °C",
+   "why": "'und' is 'and', not a range; 8/8 German rows on EU siblings write 'von X bis Y'"
+  },
+  {
+   "table": "spec_master",
+   "row": "Discharge Temperature",
+   "param": null,
+   "field": "Value_source",
+   "before": "-10°C to 45°C",
+   "after": "-10 °C to 45 °C",
+   "why": "3/3 EU siblings space the degree sign"
+  },
+  {
+   "table": "spec_master",
+   "row": "Discharge Temperature",
+   "param": null,
+   "field": "Value_fr",
+   "before": "-10°C à 45°C",
+   "after": "-10 °C à 45 °C",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "spec_master",
+   "row": "Discharge Temperature",
+   "param": null,
+   "field": "Value_es",
+   "before": "-10°C a 45°C",
+   "after": "-10 °C a 45 °C",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "spec_master",
+   "row": "Discharge Temperature",
+   "param": null,
+   "field": "Value_de",
+   "before": "-10°C und 45°C",
+   "after": "von -10 °C bis 45 °C",
+   "why": "'und' is 'and', not a range; 8/8 German rows on EU siblings write 'von X bis Y'"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "1 month",
+   "field": "Value_source",
+   "before": "-20°C to 45°C (0-60%RH)",
+   "after": "-20 °C to 45 °C (0-60 % RH)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "1 month",
+   "field": "Value_fr",
+   "before": "-20°C à 45°C (0-60% HR)",
+   "after": "-20 °C à 45 °C (0-60 % HR)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "1 month",
+   "field": "Value_de",
+   "before": "-20 °C bis 45 °C (0–60 % rL)",
+   "after": "von -20 °C bis 45 °C (0–60 % rF)",
+   "why": "3/3 EU siblings write 'von X bis Y' and abbreviate relative humidity 'rF', not 'rL'"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "1 month",
+   "field": "Value_uk",
+   "before": "від -20 °C до 45 °C (0-60% RH)",
+   "after": "від -20 °C до 45 °C (0-60 % RH)",
+   "why": "3/3 EU siblings space the percent sign"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "3 months",
+   "field": "Value_source",
+   "before": "0°C to 45°C (0-60%RH)",
+   "after": "0 °C to 45 °C (0-60 % RH)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "3 months",
+   "field": "Value_fr",
+   "before": "0°C à 45°C (0-60% HR)",
+   "after": "0 °C à 45 °C (0-60 % HR)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "3 months",
+   "field": "Value_de",
+   "before": "0 °C bis 45 °C (0–60 % rL)",
+   "after": "von 0 °C bis 45 °C (0–60 % rF)",
+   "why": "3/3 EU siblings write 'von X bis Y' and abbreviate relative humidity 'rF', not 'rL'"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "3 months",
+   "field": "Value_uk",
+   "before": "від 0 °C до 45 °C (0-60% RH)",
+   "after": "від 0 °C до 45 °C (0-60 % RH)",
+   "why": "3/3 EU siblings space the percent sign"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "12 months",
+   "field": "Value_source",
+   "before": "0°C to 25°C (0-60%RH)",
+   "after": "0 °C to 25 °C (0-60 % RH)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "12 months",
+   "field": "Value_fr",
+   "before": "0°C à 25°C (0-60% HR)",
+   "after": "0 °C à 25 °C (0-60 % HR)",
+   "why": "3/3 EU siblings"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "12 months",
+   "field": "Value_de",
+   "before": "0 °C bis 25 °C (0–60 % rL)",
+   "after": "von 0 °C bis 25 °C (0–60 % rF)",
+   "why": "3/3 EU siblings write 'von X bis Y' and abbreviate relative humidity 'rF', not 'rL'"
+  },
+  {
+   "table": "page_placeholders",
+   "row": "Storage Temperature",
+   "param": "12 months",
+   "field": "Value_uk",
+   "before": "від 0 °C до 25 °C (0-60% RH)",
+   "after": "від 0 °C до 25 °C (0-60 % RH)",
+   "why": "3/3 EU siblings space the percent sign"
+  }
+ ]
+}

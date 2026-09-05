@@ -9,6 +9,8 @@ from __future__ import annotations
 import zipfile
 from pathlib import Path
 
+from tools.lang_registry import canonical_language
+
 from .params import IDPKG, MIMETYPE
 from .stable_ids import apply_stable_labels
 from .story_frames import add_lcd_story_frames, add_story_frames
@@ -103,10 +105,12 @@ def designmap_xml(writer) -> str:
     story_refs = "\n".join(
         f'  <idPkg:Story src="Stories/Story_{sid}.xml"/>' for sid, _ in ordered
     )
+    language = canonical_language(str(writer.language or "").split("-", 1)[0])
+    document_label = ' Label="hb:language=ja"' if language == "ja" else ""
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
         '<?aid style="50" type="document" readerVersion="15.0" featureSet="257" product="15.0(100)"?>\n'
-        f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="15.0" Self="doc" '
+        f'<Document xmlns:idPkg="{IDPKG}" DOMVersion="15.0" Self="doc"{document_label} '
         'StoryList="' + " ".join(sid for sid, _ in ordered) + '" Name="manual">\n'
         '  <Language Self="Language/$ID/English%3a USA" Name="$ID/English: USA" '
         'SingleQuotes="&#8216;&#8217;" DoubleQuotes="&#8220;&#8221;"/>\n'

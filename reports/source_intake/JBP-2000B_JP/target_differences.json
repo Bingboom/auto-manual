@@ -1,0 +1,198 @@
+{
+  "schema_version": "source-intake-staging-overrides/v1",
+  "rows": [
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "CONTROLS",
+        "Row_key": "main_power_button",
+        "Slot_key": "label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "主電源ボタン",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p03 各部の名称",
+        "raw": "主電源ボタン",
+        "note": "日文母版直接证据。"
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.a.label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "DC 拡張ポート A",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p03 各部の名称",
+        "raw": "DC 拡張ポート A",
+        "note": "日文母版直接证据。"
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.a.spec",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "接続拡張ケーブルのプラグAに接続",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p03 各部の名称",
+        "raw": "接続拡張ケーブルのプラグAに接続",
+        "note": "日文母版直接证据。"
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.b.label",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "DC 拡張ポート B",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p03 各部の名称",
+        "raw": "DC 拡張ポート B",
+        "note": "日文母版直接证据。"
+      }
+    },
+    {
+      "key": {
+        "Page": "Product overview",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "side.b.spec",
+        "Line_order": 1
+      },
+      "fields": {
+        "Value_source": "接続拡張ケーブルのプラグBに接続",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p03 各部の名称",
+        "raw": "接続拡張ケーブルのプラグBに接続",
+        "note": "日文母版直接证据。"
+      }
+    },
+    {
+      "key": {
+        "Page": "operation_guide",
+        "Section": "SETTINGS",
+        "Row_key": "default_standby_duration",
+        "Slot_key": "value",
+        "Line_order": 1
+      },
+      "fields": {
+        "Row_label_source": "自動シャットダウン時間",
+        "Value_source": "2時間",
+        "status": "direct",
+        "spec_field": "HTP017 JP shipped manual p04 製品の使用方法について",
+        "raw": "負荷が2時間接続されていないと、製品は自動的にシャットダウンします。",
+        "note": "日文母版直接证据；系统行标签不在母版中显示，值用于正文替换。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "GENERAL INFO",
+        "Row_key": "cell_chemistry",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷 LiFePO4，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "GENERAL INFO",
+        "Row_key": "cycle_life",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷全角百分号，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "GENERAL INFO",
+        "Row_key": "weight",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷 & 与空格，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "INPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷括号和最大 75A 空格，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "OUTPUT PORTS",
+        "Row_key": "dc_expansion_port",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷括号和最大 75A 空格，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "charging_temperature",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷 °C，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "discharging_temperature",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷 °C，未写线上表。"
+      }
+    },
+    {
+      "key": {
+        "Page": "specifications",
+        "Section": "ENVIRONMENTAL OPERATING TEMPERATURE",
+        "Row_key": "storage_temperature",
+        "Slot_key": "",
+        "Line_order": 1
+      },
+      "fields": {
+        "note": "HTP017 日文母版 p08 直接证据；保留原印刷年月间距和 °C，未写线上表。"
+      }
+    }
+  ]
+}

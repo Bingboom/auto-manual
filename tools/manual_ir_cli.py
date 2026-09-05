@@ -24,6 +24,7 @@ def main() -> int:
     parser.add_argument("--region", required=True)
     parser.add_argument("--lang", default="en")
     parser.add_argument("--source", default="review")
+    parser.add_argument("--category", default=None)
     parser.add_argument("--data-root", type=Path)
     parser.add_argument("--layout-params", type=Path)
     parser.add_argument("--style-contract", type=Path)
@@ -38,6 +39,7 @@ def main() -> int:
         region=args.region,
         lang=args.lang,
         source=args.source,
+        category=args.category,
         data_root=args.data_root,
         layout_params_csv=args.layout_params,
         style_contract_path=args.style_contract,

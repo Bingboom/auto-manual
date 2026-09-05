@@ -13,9 +13,11 @@ import re
 from dataclasses import dataclass, field
 from xml.sax.saxutils import escape
 
+from .loaders import normalize_lang
 from .params import IDPKG, param_pt
 from . import page_objects as _po
 from .line_metrics import estimated_text_width
+from .inline_text import character_ranges, localize_cjk_fallback_font
 from .style_names import paragraph_style_ref
 from .language_contract import IDML_LANGUAGE_PACKS, LANGUAGE_REGISTRY
 
@@ -217,17 +219,41 @@ def _folio(spread_index: int) -> int:
     return max(1, spread_index - 1)
 
 
-def _entry_typography(title: str, col_w: float) -> tuple[float, float]:
+# What the entry has always set at, and the pitch its frame has always been
+# sized on. Both were literals in three places; a book that prints a different
+# scale declares them instead. See tests/test_idml_jp_toc_type_scale.py.
+_ENTRY_SIZE_DEFAULT = 6.5
+_ENTRY_LEADING_DEFAULT = 14.0
+
+
+def _entry_typography(
+    title: str,
+    col_w: float,
+    *,
+    cap: float = _ENTRY_SIZE_DEFAULT,
+) -> tuple[float, float]:
+    """The size an entry sets at, and its horizontal scale.
+
+    `cap` is the size the book asks for; a title too long for its column still
+    shrinks below it, down to the same 5.4 pt floor. Callers that do not
+    declare one keep the size this page has always set.
+    """
     available = col_w - 8.0
-    point_size = min(6.5, available / max(1.0, len(title) * 0.56))
+    point_size = min(cap, available / max(1.0, len(title) * 0.56))
     point_size = max(5.4, point_size)
     horizontal_scale = _ENTRY_HORIZONTAL_SCALE.get(title, 100.693)
     return point_size, horizontal_scale
 
 
-def _entry_text_end_x(title: str, entry_x: float, col_w: float) -> float:
+def _entry_text_end_x(
+    title: str,
+    entry_x: float,
+    col_w: float,
+    *,
+    cap: float = _ENTRY_SIZE_DEFAULT,
+) -> float:
     """Return the portable page-space estimate of an entry title's end."""
-    point_size, horizontal_scale = _entry_typography(title, col_w)
+    point_size, horizontal_scale = _entry_typography(title, col_w, cap=cap)
     width = estimated_text_width(
         title,
         point_size=point_size,
@@ -243,10 +269,11 @@ def _leader_metric_for_entry(
     metric: tuple[float, float, float, float, float, float],
     *,
     text_gap: float = _LEADER_TEXT_GAP,
+    cap: float = _ENTRY_SIZE_DEFAULT,
 ) -> tuple[float, float, float, float, float, float]:
     """Move only the leader start beyond this entry's rendered title."""
     _reference_x1, y, x2, weight, dash, gap = metric
-    text_end = _entry_text_end_x(title, entry_x, col_w)
+    text_end = _entry_text_end_x(title, entry_x, col_w, cap=cap)
     x1 = min(text_end + text_gap, x2 - _LEADER_MIN_LENGTH)
     return x1, y, x2, weight, dash, gap
 
@@ -261,27 +288,74 @@ def _offset_leader_metric_y(
     return x1, y + delta, x2, weight, dash, gap
 
 
-def _entry_psr(title: str, folio: int | str, col_w: float) -> str:
+def _localized_text_ranges(
+    text: str,
+    *,
+    language: str,
+    point_size: float,
+    font_style: str,
+    horizontal_scale: float | None = None,
+    point_size_format: str = "g",
+) -> str:
+    """Serialize TOC copy through the shared language-font run contract.
+
+    ``point_size_format`` exists because the approved reference bytes are not
+    uniform: entry runs carry ``PointSize="6.500"`` while the bar label
+    carries ``PointSize="7"``. Both spellings mean the same size, so the
+    format stays a caller's choice rather than being normalised here.
+    """
+    ranges = "".join(character_ranges(
+        text,
+        bold=False,
+        superscript_markers=False,
+        replacements={},
+    ))
+
+    def decorate(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        attributes = [f'PointSize="{point_size:{point_size_format}}"']
+        if " FontStyle=" not in tag:
+            attributes.append(f'FontStyle="{font_style}"')
+        if horizontal_scale is not None:
+            attributes.append(f'HorizontalScale="{horizontal_scale:g}"')
+        return tag[:-1] + " " + " ".join(attributes) + ">"
+
+    decorated = re.sub(r"<CharacterStyleRange\s[^>]*>", decorate, ranges)
+    return localize_cjk_fallback_font(decorated, language)
+
+
+def _entry_psr(
+    title: str,
+    folio: int | str,
+    col_w: float,
+    *,
+    language: str,
+    cap: float = _ENTRY_SIZE_DEFAULT,
+    native_leader: bool = False,
+) -> str:
     style = paragraph_style_ref("HB TOC Entry")
-    point_size, horizontal_scale = _entry_typography(title, col_w)
+    point_size, horizontal_scale = _entry_typography(title, col_w, cap=cap)
     right_tab = (
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
         '<AlignmentCharacter type="string">.</AlignmentCharacter>'
-        '<Leader type="string"></Leader>'
+        f'<Leader type="string">{"." if native_leader else ""}</Leader>'
         f'<Position type="unit">{col_w - 2:.1f}</Position>'
         "</ListItem></TabList></Properties>"
     )
-    safe = title.replace("&", "&amp;").replace("<", "&lt;")
+    title_ranges = _localized_text_ranges(
+        title,
+        language=language,
+        point_size=point_size,
+        font_style="Medium",
+        horizontal_scale=horizontal_scale,
+        point_size_format=".3f",
+    )
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">{right_tab}'
+        f'{title_ranges}'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="{point_size:.3f}" FontStyle="Medium" '
-        f'HorizontalScale="{horizontal_scale:g}">'
-        f"<Content>{safe}</Content>"
-        '</CharacterStyleRange>'
-        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        'PointSize="6.5" FontStyle="Regular"><Content>\t</Content>'
+        f'PointSize="{cap:g}" FontStyle="Regular"><Content>\t</Content>'
         '</CharacterStyleRange>'
         '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
         'PointSize="7" FontStyle="Regular" BaselineShift="0.20">'
@@ -328,13 +402,23 @@ def _bar_code_psr(code: str) -> str:
     )
 
 
-def _bar_label_psr(label: str, horizontal_scale: float) -> str:
+def _bar_label_psr(
+    label: str,
+    horizontal_scale: float,
+    *,
+    language: str,
+) -> str:
     style = paragraph_style_ref("HB TOC Bar")
+    label_ranges = _localized_text_ranges(
+        label,
+        language=language,
+        point_size=7.0,
+        font_style="Bold",
+        horizontal_scale=horizontal_scale,
+    )
     return (
         f'  <ParagraphStyleRange AppliedParagraphStyle="{style}">'
-        '<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-        f'PointSize="7" FontStyle="Bold" HorizontalScale="{horizontal_scale:g}">'
-        f'<Content>{escape(label)}</Content></CharacterStyleRange>'
+        f'{label_ranges}'
         '</ParagraphStyleRange>\n'
     )
 
@@ -373,7 +457,7 @@ def _toc_slot(page_plan: dict | None) -> int:
 
 
 def _planned_toc_page_count(page_plan: dict | None) -> int:
-    """Return the number of target-assembly carrier spreads to replace."""
+    """Return the maximum number of target-assembly TOC carriers to replace."""
     if (page_plan or {}).get("plan_source") != "target-assembly":
         return 0
     for page in (page_plan or {}).get("pages", []):
@@ -387,6 +471,45 @@ def _planned_toc_page_count(page_plan: dict | None) -> int:
     return 0
 
 
+def _toc_replacement_count(
+    page_plan: dict | None,
+    *,
+    current_page_count: int,
+    inserted_page_count: int,
+) -> int:
+    """Return how many already-rendered TOC carriers should be replaced.
+
+    A legacy prose TOC leaves a carrier spread in ``writer.spreads``; a
+    source-authored semantic TOC does not.  The target plan declares the final
+    physical count, so use that invariant to distinguish replacement from
+    insertion instead of assuming every TOC source emitted a placeholder.
+    """
+    planned = _planned_toc_page_count(page_plan)
+    if planned == 0:
+        return 0
+    try:
+        expected = int((page_plan or {}).get("physical_page_count"))
+    except (TypeError, ValueError):
+        return planned
+    required_replacement = current_page_count + inserted_page_count - expected
+    return min(planned, max(0, required_replacement))
+
+
+def _toc_layout_variant(page_plan: dict | None) -> str:
+    """Return an explicitly declared TOC composition variant, if any."""
+    for page in (page_plan or {}).get("pages", []):
+        if not isinstance(page, dict) or page.get("composition_type") != "toc":
+            continue
+        composition_data = page.get("composition_data")
+        if not isinstance(composition_data, dict):
+            return ""
+        toc = composition_data.get("toc")
+        if not isinstance(toc, dict):
+            return ""
+        return str(toc.get("layout_variant") or "")
+    return ""
+
+
 def finalize(
     writer, collector: TocCollector, add_story_parts, psr,
     source: dict | None = None,
@@ -395,6 +518,7 @@ def finalize(
     """Build one or more TOC spreads and splice them into the template slot."""
     title, segments = _display_segments(collector, source)
     toc_slot = _toc_slot(page_plan)
+    single_column = _toc_layout_variant(page_plan) == "single_column"
     if not segments or len(writer.spreads) <= toc_slot:
         return False
 
@@ -449,6 +573,29 @@ def finalize(
         for local_index, (header, rng, segment) in enumerate(page_segments):
             segment_index = segment_start + local_index
             code, _, label = header.partition("  ")
+            # A segment's own scale. The header carries the display code
+            # ("JP"); `normalize_lang` turns it into the phase2 suffix the
+            # layout rows are keyed on. A segment whose language declares
+            # nothing keeps the size and pitch this page has always set.
+            segment_lang = normalize_lang(code)
+            entry_size = param_pt(
+                writer.params,
+                f"lang_{segment_lang}_type_toc_entry_font_size",
+                param_pt(
+                    writer.params,
+                    "type_toc_entry_font_size",
+                    _ENTRY_SIZE_DEFAULT,
+                ),
+            )
+            entry_leading = param_pt(
+                writer.params,
+                f"lang_{segment_lang}_type_toc_entry_font_leading",
+                param_pt(
+                    writer.params,
+                    "type_toc_entry_font_leading",
+                    _ENTRY_LEADING_DEFAULT,
+                ),
+            )
             bar_sid = add_story_parts(
                 f"st_toc_bar_{segment_index}", f"TOC bar {segment_index}",
                 [_bar_code_psr(code)])
@@ -456,7 +603,9 @@ def finalize(
                 f"st_toc_bar_label_{segment_index}",
                 f"TOC bar label {segment_index}",
                 [_bar_label_psr(
-                    label, _LABEL_HORIZONTAL_SCALE[local_index],
+                    label,
+                    _LABEL_HORIZONTAL_SCALE[local_index],
+                    language=code,
                 )])
             range_xml = psr("HB TOC Range", rng, terminal=True).replace(
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
@@ -501,20 +650,25 @@ def finalize(
                 valign="CenterAlign", inset=(0, 0, 0, 0)))
             entry_y = y + 25.615 - (2.828 if local_index else 0.0)
             half = (len(segment) + 1) // 2
-            for column_index, chunk in enumerate(
-                (segment[:half], segment[half:])
-            ):
+            chunks = (segment,) if single_column else (
+                segment[:half], segment[half:],
+            )
+            for column_index, chunk in enumerate(chunks):
                 if not chunk:
                     continue
-                entry_x = (
-                    _LEFT_ENTRY_X[local_index]
-                    if column_index == 0 else _RIGHT_ENTRY_X
-                )
-                entry_w = (
-                    _LEFT_ENTRY_WIDTH[local_index]
-                    if column_index == 0 else _RIGHT_ENTRY_WIDTH[local_index]
-                )
-                if (
+                if single_column:
+                    entry_x = _LEFT_ENTRY_X[local_index]
+                    entry_w = _RANGE_RIGHT[local_index] - entry_x
+                else:
+                    entry_x = (
+                        _LEFT_ENTRY_X[local_index]
+                        if column_index == 0 else _RIGHT_ENTRY_X
+                    )
+                    entry_w = (
+                        _LEFT_ENTRY_WIDTH[local_index]
+                        if column_index == 0 else _RIGHT_ENTRY_WIDTH[local_index]
+                    )
+                if (not single_column and
                     local_index < len(_REFERENCE_LEADERS)
                     and column_index < len(_REFERENCE_LEADERS[local_index])
                 ):
@@ -532,6 +686,7 @@ def finalize(
                                 entry_w,
                                 metric,
                                 text_gap=leader_text_gap,
+                                cap=entry_size,
                             )
                         metric = _offset_leader_metric_y(
                             metric,
@@ -544,7 +699,14 @@ def finalize(
                             metric,
                         ))
                 xml = "".join(
-                    _entry_psr(entry_title, folio, entry_w)
+                    _entry_psr(
+                        entry_title,
+                        folio,
+                        entry_w,
+                        language=code,
+                        cap=entry_size,
+                        native_leader=single_column,
+                    )
                     for entry_title, folio in chunk
                 )
                 sid = add_story_parts(
@@ -555,7 +717,16 @@ def finalize(
                 frames.append(writer._frame_xml(
                     f"tf_toc_seg{segment_index}_c{column_index}", sid,
                     *writer._page_rect(
-                        entry_x, entry_y, entry_w, 14.0 * half + 14.0,
+                        entry_x,
+                        entry_y,
+                        entry_w,
+                        # Two-column segments size both frames off the larger
+                        # half, so an odd entry count does not shorten the
+                        # right column. Only the single-column path measures
+                        # its own chunk.
+                        entry_leading
+                        * (len(chunk) if single_column else half)
+                        + entry_leading,
                     ),
                     inset=(0, 0, 0, 0)))
             y += (
@@ -590,7 +761,11 @@ def finalize(
 
     renumbered: list[tuple[str, str]] = []
     inserted_page_count = len(toc_spreads)
-    replaced_page_count = _planned_toc_page_count(page_plan)
+    replaced_page_count = _toc_replacement_count(
+        page_plan,
+        current_page_count=len(writer.spreads),
+        inserted_page_count=inserted_page_count,
+    )
     page_number_delta = inserted_page_count - replaced_page_count
     tail_slot = toc_slot + replaced_page_count
     for sid, xml in writer.spreads[tail_slot:]:

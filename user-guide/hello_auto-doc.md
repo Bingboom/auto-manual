@@ -112,14 +112,18 @@ the ordinary editable-prose fallback, but it has no reviewed assembly role yet.
 Update the shared role table and its regression test before release; do not add
 a model/region-specific filename exception.
 
-The BP family now has two exact-target configs. `JBP-2000B_US + us-merged`
+The BP family now has three exact-target configs. `JBP-2000B_US + us-merged`
 selects `configs/config.bp-us.yaml`; `JBP-2000B_EU + eu-merged` selects
-`configs/config.bp-eu.yaml`. The EU target contains `en/fr/es/de/it/uk`, where
+`configs/config.bp-eu.yaml`; `JBP-2000B_JP + jp-ja` selects
+`configs/config.bp-jp.yaml`. The JP config has `family_default: false`, so MAIN
+JP remains on `configs/config.ja.yaml`. The EU target contains
+`en/fr/es/de/it/uk`, where
 `uk` is Ukrainian, not a UK-market selector. It uses the paired host display
 name `Jackery Explorer 2000 Plus`; only the US target uses
-`Jackery HomePower 2000 Plus`. Keep that distinction in target substitutions
-and assets, not in page-renderer conditions. The EU IDML plan remains a
-candidate until the separate promotion workflow approves it.
+`Jackery HomePower 2000 Plus`; JP uses
+`Jackery ポータブル電源 2000 Plus`. Keep those distinctions in target
+substitutions and assets, not in page-renderer conditions. The EU and JP IDML
+plans remain candidates until their separate promotion workflows approve them.
 
 The production handoff's `production/source_trace.json` also records the
 `skipped_raw_blocks` count from `manual.ir.json`. For ordinary/fallback targets
@@ -136,10 +140,16 @@ aliases such as `jp` and `pt_br` are accepted.
 For Japanese, Korean, or Chinese editable text, the IDML exporter writes
 explicit script-aware font runs instead of letting those characters inherit
 Gilroy. Korean uses the bundled SIL-OFL `NanumGothic` face. Japanese and
-Chinese continue to use the separate `idml_font_family_cjk` renderer token
-(`Arial Unicode MS`). Font routing is not a layout parameter, so changing a
-portable font does not require a reference-layout rebind when geometry,
-content bindings, and composition stay unchanged.
+LaTeX use the bundled static TrueType `HBManualSansJP-Regular.ttf`
+(`HB Manual Sans JP (OTF)` in InDesign, OpenTypeTT). Its project-unique family
+and PostScript identity prevent a host `Noto Sans JP (OTF)` from shadowing the
+packaged face after close/reopen. The `(OTF)` suffix is InDesign's normalized
+CJK family spelling, not a dependency on a host CFF font; the same
+hash-verified face travels with the designer package. Chinese continues to
+use the separate `idml_font_family_cjk` renderer token. Font routing is not a
+layout parameter, so changing a portable font does not require a
+reference-layout rebind when geometry, content bindings, and composition stay
+unchanged.
 
 Editable symbol runs are cross-platform too. The `※` reference mark is a native
 IDML vector, so reopening the saved INDD does not depend on a document font.
@@ -344,6 +354,14 @@ PDF, the finalizer saves the INDD, closes it, reopens it, recomposes it, and
 rechecks fonts, overset stories/cells, links, page count, and story count. The
 `indesign-preflight/v2` report records this under `post_reopen`; a first-open
 green result is no longer sufficient.
+
+For Japanese documents the portable-font rebind preserves each character's
+declared Regular/DemiLight/Medium/Bold face; an unavailable requested face stops
+finalization. The report records counts under `portable_font_rebinds[].style_counts`.
+Keep frozen inputs and native evidence outside the target build directory before
+running another `build.py idml` or `check`, because preparation cleans that target.
+The [JP twelve-page acceptance record](../code-as-doc/reviews/bp_jp_r3c_native_validation_2026-09.md)
+shows the package hashes, actual native results and explicitly retained debt.
 
 For a multi-target design handoff, run
 `python tools/indesign_finalize.py --jobs <manifest.json>` with one explicit

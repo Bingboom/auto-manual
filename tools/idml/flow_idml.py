@@ -14,6 +14,7 @@ from . import params as _params
 from . import primitives as _prim
 from . import styles as _styles
 from .font_family import PRIMARY_FONT_FAMILY_TOKEN
+from .inline_text import localize_cjk_fallback_font
 from .line_metrics import estimated_line_count
 from .params import IDPKG
 from .primitives import _ATTR_ENTITIES
@@ -322,13 +323,17 @@ class _FlowIdmlWriter:
     def _add_story_parts(self, sid: str, title: str,
                          parts: list[str]) -> str:
         safe_parts = [_sanitize_fallback_font_attrs(part) for part in parts]
+        story_parts = localize_cjk_fallback_font(
+            "".join(safe_parts),
+            self.language,
+        )
         xml = (
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
             f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
             f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
             f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
             '<StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>\n'
-            + "".join(safe_parts) + '</Story>\n</idPkg:Story>\n'
+            + story_parts + '</Story>\n</idPkg:Story>\n'
         )
         self.stories.append((sid, xml))
         return sid

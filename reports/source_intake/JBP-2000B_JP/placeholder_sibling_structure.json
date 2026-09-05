@@ -1,0 +1,62 @@
+[
+  {
+    "Page": "Product overview",
+    "Section": "CONTROLS",
+    "Row_key": "main_power_button",
+    "Slot_key": "label",
+    "Line_order": 1,
+    "Row_label_source": "主電源ボタン",
+    "Value_source": "主電源ボタン",
+    "Param_source": ""
+  },
+  {
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "side.a.label",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート A",
+    "Value_source": "DC 拡張ポート A",
+    "Param_source": ""
+  },
+  {
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "side.a.spec",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート A",
+    "Value_source": "接続拡張ケーブルのプラグAに接続",
+    "Param_source": ""
+  },
+  {
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "side.b.label",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート B",
+    "Value_source": "DC 拡張ポート B",
+    "Param_source": ""
+  },
+  {
+    "Page": "Product overview",
+    "Section": "OUTPUT PORTS",
+    "Row_key": "dc_expansion_port",
+    "Slot_key": "side.b.spec",
+    "Line_order": 1,
+    "Row_label_source": "DC 拡張ポート B",
+    "Value_source": "接続拡張ケーブルのプラグBに接続",
+    "Param_source": ""
+  },
+  {
+    "Page": "operation_guide",
+    "Section": "SETTINGS",
+    "Row_key": "default_standby_duration",
+    "Slot_key": "value",
+    "Line_order": 1,
+    "Row_label_source": "自動シャットダウン時間",
+    "Value_source": "2時間",
+    "Param_source": ""
+  }
+]

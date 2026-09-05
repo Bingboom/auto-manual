@@ -7,8 +7,20 @@ from collections.abc import Iterable
 
 Block = tuple[str, str]
 
+# Latin copy writes `Solar Charging (Sold Separately)`: a space, then ASCII
+# brackets.  Japanese writes `ソーラー充電（別売）` with full-width brackets and
+# no space, which is correct CJK typography and what the shipped JP book prints.
+# The two forms stay separate alternatives so the Latin branch matches exactly
+# what it matched before, and a mixed pair such as `（x)` is still refused.
+#
+# The full-width branch keeps its brackets in the pill copy: the shipped JP book
+# sets `（別売）` inside the pill, brackets included, where the Latin convention
+# drops them and sets `Sold Separately` bare.
 _TRAILING_PARENTHETICAL = re.compile(
-    r"^(?P<heading>.+?)\s+\((?P<pill>[^()]+)\)\s*$",
+    r"^(?P<heading>.+?)"
+    r"(?:\s+\((?P<ascii_pill>[^()]+)\)"
+    r"|\s*(?P<fullwidth_pill>（[^（）]+）))"
+    r"\s*$",
     re.S,
 )
 
@@ -20,7 +32,9 @@ def split_trailing_parenthetical(text: str) -> tuple[str, str] | None:
     if match is None:
         return None
     heading = match.group("heading").strip()
-    pill = match.group("pill").strip()
+    pill = (
+        match.group("ascii_pill") or match.group("fullwidth_pill") or ""
+    ).strip()
     if not heading or not pill:
         return None
     return heading, pill

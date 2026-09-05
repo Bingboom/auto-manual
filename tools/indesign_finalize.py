@@ -8,6 +8,7 @@ import re
 import subprocess
 import tempfile
 import unicodedata
+import zipfile
 from collections import defaultdict
 from pathlib import Path
 
@@ -99,9 +100,23 @@ def write_version_pin(pin_path: Path = VERSION_PIN, actual: str | None | object 
     return actual
 
 
+def _idml_document_language(path: Path) -> str:
+    if not path.is_file():
+        return ""
+    try:
+        with zipfile.ZipFile(path) as package:
+            designmap = package.read("designmap.xml").decode("utf-8")
+    except (KeyError, OSError, UnicodeDecodeError, zipfile.BadZipFile):
+        return ""
+    match = re.search(r'\bLabel="hb:language=([A-Za-z0-9_-]+)"', designmap)
+    return match.group(1) if match else ""
+
+
 def _job(args: argparse.Namespace) -> dict[str, str]:
+    input_idml = Path(args.idml).resolve()
     return {
-        "input_idml": str(Path(args.idml).resolve()),
+        "input_idml": str(input_idml),
+        "document_language": _idml_document_language(input_idml),
         "output_indd": str(Path(args.indd).resolve()),
         "output_pdf": str(Path(args.pdf).resolve()),
         "report_json": str(Path(args.report).resolve()),
@@ -552,8 +567,19 @@ def main() -> int:
         print(f"[indesign-finalize] version-pin {pin_status}: {pin_message}")
         return 0 if pin_status == "match" else 2
 
+    if args.idml:
+        # Default the three outputs to sit beside the package. The package lives
+        # under docs/_build/<MODEL>/<REGION>/idml/, so this is what keeps a
+        # finalize report readable in the tree next to the artefact it
+        # describes, instead of wherever the host operator happened to be
+        # standing -- the JP round's ledger asked for exactly that and got a
+        # transcription instead. An explicit flag still wins.
+        package = Path(args.idml)
+        args.indd = args.indd or str(package.with_suffix(".indd"))
+        args.pdf = args.pdf or str(package.with_suffix(".pdf"))
+        args.report = args.report or str(package.parent / "finalize_report.json")
     if not all((args.idml, args.indd, args.pdf, args.report)):
-        parser.error("--idml, --indd, --pdf and --report are required to run finalize")
+        parser.error("--idml is required to run finalize (--indd/--pdf/--report default beside it)")
     if pin_status == "no_indesign":
         print(f"[indesign-finalize] ERROR: {pin_message}")
         return 2

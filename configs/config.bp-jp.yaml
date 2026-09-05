@@ -1,0 +1,61 @@
+# BP (battery pack) family, JP target. The same paired host hardware is sold as
+# HomePower 2000 Plus in US, Explorer 2000 Plus in EU, and the authoritative
+# Japanese display name below in JP. This is target data, never page logic.
+extends: config-bases/phase2-sync-base.yaml
+
+doc_type: manual_bundle
+
+build:
+  family_id: bp-jp
+  language_family: jp-ja
+  family_default: false
+  queue_requires_target_match: true
+  skeleton_family: BP
+  languages: [ja]
+  include_lang_in_output_path: false
+  queue_by_document_key: true
+  default_model: JBP-2000B
+  default_region: JP
+  targets:
+    - model: JBP-2000B
+      region: JP
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}.docx
+  word_source: bundle
+  word_reference_doc: docs/templates/word_template/template.docx
+  word_title: "|PRODUCT_NAME| 取扱説明書"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: 日本語
+    WARRANTY_EMAIL: jackery.jp@jackery.com
+    BP_HOST_PRODUCT_NAME: Jackery ポータブル電源 2000 Plus
+    BP_HOST_PRODUCT_SHORT_NAME: ポータブル電源 2000 Plus
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  structured_data_dir: data/phase2
+  layout_params_csv: data/layout_params.csv
+  idml_layout_params_overlays:
+    - data/layout_params.idml-compact.csv
+  page_registry_csv: data/phase2/page_registry.csv
+  page_blocks_dir: data/phase2
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_notes_csv: data/phase2/Spec_Notes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
+  page_manifest: docs/manifests/manual_bp-jp-jbp2000b.yaml
+  idml_assembly_plan: docs/renderers/contracts/target_assembly/jbp2000b_jp_v1_candidate.json
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Battery Pack 2000
+    - Jackery ポータブル電源 2000 Plus

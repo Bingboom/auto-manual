@@ -20,6 +20,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     inline_origin_shift: float = 0.0,
                     language: str | None = None,
                     image_roles: tuple[str, ...] = (),
+                    image_callouts: tuple[tuple[dict, ...], ...] = (),
                     disable_hyphenation: bool = False,
                     first_h1_space_after: float | None = None, semantic_page_role: str | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
@@ -27,6 +28,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     est = 0.0
     img_n = 0
     image_role_index = 0
+    # A figure whose target declares callouts prints the labels over the art.
+    figure_callouts, consumed_label_tables = _components.plan_figure_callouts(
+        blocks, image_callouts,
+    )
     is_preface = semantic_page_role == "preface" or (semantic_page_role is None and title == "00_preface")
     content_indices = [i for i, (kind, _) in enumerate(blocks) if kind != "layout"]
     last_idx = content_indices[-1] if content_indices else -1
@@ -93,6 +98,8 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             continue
         if kind == "table":
             import json as _json
+            if bi in consumed_label_tables:
+                continue
             raw_rows = _json.loads(text)
             img_n += 1
             xml_part, h = _components.render_table_block(
@@ -112,11 +119,13 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
         if kind == "image":
             role = image_role(image_roles, image_role_index, title=title)
             image_role_index += 1
+            callouts = figure_callouts.get(bi, ())
             xml_part, h = _components.render_image_block(
                 text,
                 writer._render_context(bundle_root, language=page_language),
                 rect_id=f"{sid}_im{img_n + 1}", terminal=terminal, role=role,
-                spacing_variant=semantic_page_role)
+                spacing_variant=semantic_page_role,
+                callouts=callouts)
             if xml_part is None:
                 continue
             img_n += 1

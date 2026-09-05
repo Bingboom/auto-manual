@@ -1,6 +1,8 @@
 """Complete editable title, card, badge, and TIP panel for box contents."""
 from __future__ import annotations
 
+import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -18,12 +20,17 @@ from ..page_objects import (
     left_rounded_xml,
     page_rectangle_xml,
 )
+from ..corner_radii import declared_radius
 from ..params import param_pt, param_text
 from .fixed_panel_contract import (
     FixedPanelDensity,
     FrameRect,
     normalize_language,
 )
+
+# `page_rectangle_xml`'s own default, named here so a declaration in a
+# target contract reads as a deliberate override of a known value.
+_DEFAULT_CARD_RADIUS = 5.5
 from .fixed_panel_primitives import (
     add_story,
     apply_character_attrs,
@@ -36,6 +43,34 @@ from .notice import notice_box_layout, source_notice_label
 TITLE_HEIGHT = 20.0
 BADGE_DIAMETER = 13.785
 BADGE_Y_OFFSET = 22.431
+_LEGACY_IMAGE = re.compile(r"\.\.\s+image::\s+(\S+)")
+_LEGACY_LABEL = re.compile(r"\*\*(.+?)\*\*")
+
+
+def _legacy_inbox_payload(blocks: list[tuple[str, str]]) -> dict | None:
+    """Adapt a three-cell RST list-table into the shared Inbox ComponentSpec."""
+
+    raw = next((text for kind, text in blocks if kind == "table"), None)
+    if raw is None:
+        return None
+    try:
+        rows = json.loads(raw)
+    except (TypeError, json.JSONDecodeError):
+        return None
+    if not isinstance(rows, list) or len(rows) != 1 or len(rows[0]) != 3:
+        return None
+    items: list[dict[str, str]] = []
+    for cell in rows[0]:
+        image = _LEGACY_IMAGE.search(str(cell))
+        label = _LEGACY_LABEL.search(str(cell))
+        if image is None or label is None:
+            return None
+        items.append({
+            "img": image.group(1),
+            "label": label.group(1).strip(),
+            "alt": label.group(1).strip(),
+        })
+    return {"kind": "inbox", "items": items}
 
 
 @dataclass(frozen=True)
@@ -63,7 +98,7 @@ class InboxPanelData:
         ), "")
         if not title:
             raise ValueError("inbox title is required from source RST")
-        inbox_spec = component_spec(blocks, "inbox")
+        inbox_spec = component_spec(blocks, "inbox") or _legacy_inbox_payload(blocks)
         tip_spec = component_spec(blocks, "notice")
         profile = dict(reference_profile or {})
         layout_variant = str(profile.get("layout_variant") or "").strip()
@@ -156,14 +191,17 @@ def _tip_label(
     label: str,
     *,
     point_size: float,
-    leading: float,
     baseline_shift: float,
 ) -> str:
+    # No Leading attribute: InDesign drops the numeric attribute form on a
+    # style range, so the label composes at HB Callout Label's own leading.
+    # The value this used to emit was identical to that style's, so nothing
+    # about the rendered page changes.
     return centered_psr(
         "HB Callout Label",
         label.strip(),
         character_attrs=(
-            f'PointSize="{point_size:g}" Leading="{leading:g}" '
+            f'PointSize="{point_size:g}" '
             f'FontStyle="Bold" BaselineShift="{baseline_shift:g}"'
         ),
     )
@@ -355,6 +393,14 @@ class InboxPanel:
                 fill="Color/Paper",
                 stroke_color=stroke_color,
                 stroke_weight=stroke_weight,
+                # Nobody ever chose this radius: the card fell through to
+                # `page_rectangle_xml`'s own default while `comp_inbox_card_arc`
+                # sat unread in the layout table. A target whose master rounds
+                # the card differently declares it instead of moving a shared
+                # value that every other book reads.
+                corner_radius=declared_radius(
+                    self.data.reference_profile, "card", _DEFAULT_CARD_RADIUS,
+                ),
                 object_style=CARD_OBJECT_STYLE,
             ))
             frame_rects.append((f"card_{index + 1}_shell", card_rect))
@@ -467,7 +513,6 @@ class InboxPanel:
         add_story(self.writer, label_sid, "Inbox tip label", [_tip_label(
             label,
             point_size=layout.label_size,
-            leading=layout.label_leading,
             baseline_shift=layout.label_baseline_shift,
         )])
         body_xml = apply_character_attrs(
@@ -477,11 +522,17 @@ class InboxPanel:
                 terminal=True,
             ),
             f'PointSize="{layout.body_size:g}" '
-            f'Leading="{layout.body_leading:g}" FontStyle="Medium" '
+            f'FontStyle="Medium" '
             f'HorizontalScale="{layout.body_horizontal_scale * 100:g}" '
             f'BaselineShift="{layout.body_baseline_shift:g}"',
         )
         add_story(self.writer, body_sid, "Inbox tip body", [body_xml])
+        # The label plate stays optically inset from whichever corner the
+        # strip carries, so it follows a declared radius rather than the
+        # shared notice arc.
+        tip_arc = declared_radius(
+            self.data.reference_profile, "tip_strip", layout.arc,
+        )
         frames = [
             page_rectangle_xml(
                 self.writer,
@@ -490,7 +541,7 @@ class InboxPanel:
                 fill="Color/HB Bg K05",
                 stroke_color="Swatch/None",
                 stroke_weight=0,
-                corner_radius=layout.arc,
+                corner_radius=tip_arc,
                 object_style=PANEL_OBJECT_STYLE,
             ),
             left_rounded_xml(
@@ -500,7 +551,7 @@ class InboxPanel:
                 fill="Color/Paper",
                 corner_radius=max(
                     0.0,
-                    layout.arc - layout.plate_left / 2.0,
+                    tip_arc - layout.plate_left / 2.0,
                 ),
                 object_style=PANEL_OBJECT_STYLE,
             ),

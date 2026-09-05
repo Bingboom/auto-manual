@@ -30,6 +30,21 @@ class IdmlPortableFontsTest(unittest.TestCase):
             "NotoSans-Regular.ttf": (
                 "b85c38ecea8a7cfb39c24e395a4007474fa5a4fc864f6ee33309eb4948d232d5"
             ),
+            "HBManualSansJP-Regular.ttf": (
+                "f9f17753c415ad76e82ae317c17e2260523deb73406d6baad14a817e5be957dd"
+            ),
+            # Three further weights instanced from the same variable source the
+            # Regular came from, because the shipped book sets 57% of its
+            # Japanese characters in a non-Regular weight.
+            "HBManualSansJP-DemiLight.ttf": (
+                "e23045b95f654af21d8b823b0ec1d15a27af23771da336a8b368911ad349bc2a"
+            ),
+            "HBManualSansJP-Medium.ttf": (
+                "1e8a2e2d0718e1bcb472b94ff4cd4b9dba4db3d299d3482be32cf177bc8d4fe4"
+            ),
+            "HBManualSansJP-Bold.ttf": (
+                "f579205a74cdec9d092205c9f2bdf14f5c69f93565202bc4e3eeb6a0881e3e43"
+            ),
             "NotoSansSymbols-Regular.ttf": (
                 "8f02f31959bbdf6061547a188248e13f84dc5fdd940326ec494675f453f072bb"
             ),
@@ -39,7 +54,11 @@ class IdmlPortableFontsTest(unittest.TestCase):
         }
         self.assertEqual(
             set(expected),
-            {path.name for path in FONT_ROOT.glob("*.ttf")},
+            {
+                path.name
+                for suffix in ("*.ttf", "*.otf")
+                for path in FONT_ROOT.glob(suffix)
+            },
         )
         for filename, digest in expected.items():
             with self.subTest(filename=filename):

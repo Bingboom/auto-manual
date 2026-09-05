@@ -1,0 +1,170 @@
+{
+  "schema_version": "jbp2000b-jp-source-data-approval/v1",
+  "target": "JBP-2000B_JP",
+  "reference": {
+    "project_code": "HTP017",
+    "pdf_sha256": "f7830bf9fb96d9a3e36737bad5196bbfac2d262eaef642f3406fe77eecd02b0b",
+    "physical_page": 10,
+    "printed_page": "08"
+  },
+  "approved": true,
+  "write_executed": true,
+  "live_preflight": {
+    "identity": "prod/bot",
+    "staging_rows": 17,
+    "formal_spec_rows": 11,
+    "formal_placeholder_rows": 6,
+    "staging_mutation_executed": true,
+    "formal_mutation_executed": true
+  },
+  "staging_package": {
+    "spec_rows": 11,
+    "placeholder_rows": 6,
+    "review_file": "spec_intake_staging_review.md",
+    "payload_file": "spec_intake_staging_payload.json",
+    "corrections_to_existing_staging": [
+      {
+        "record_id": "recvtR9ZPPGpPf",
+        "row_key": "cell_chemistry",
+        "old": "LiFePO₄ (リン酸鉄リチウムイオン電池)",
+        "new": "LiFePO4 (リン酸鉄リチウムイオン電池)"
+      },
+      {
+        "record_id": "recvtR9ZPPI5q9",
+        "row_key": "cycle_life",
+        "old": "6,000回の充放電後も容量の70%以上を維持",
+        "new": "6,000回の充放電後も容量の70％以上を維持"
+      },
+      {
+        "record_id": "recvtR9ZPPERnB",
+        "row_key": "weight",
+        "old_label": "サイズ＆重量",
+        "new_label": "サイズ & 重量",
+        "old": "約365 × 255 × 191 mm (約14.8kg)",
+        "new": "約365 × 255 × 191 mm (約 14.8kg)"
+      },
+      {
+        "record_id": "recvtR9ZPPCh9L",
+        "row_key": "dc_expansion_port",
+        "section": "INPUT PORTS",
+        "old_label": "DC 拡張ポート（入力）",
+        "new_label": "DC 拡張ポート (入力)",
+        "old": "36.8V-57.6V⎓最大75A",
+        "new": "36.8V-57.6V⎓最大 75A"
+      },
+      {
+        "record_id": "recvtR9ZPPnYQk",
+        "row_key": "dc_expansion_port",
+        "section": "OUTPUT PORTS",
+        "old_label": "DC 拡張ポート（出力）",
+        "new_label": "DC 拡張ポート (出力)",
+        "old": "36.8V-57.6V⎓最大75A",
+        "new": "36.8V-57.6V⎓最大 75A"
+      },
+      {
+        "record_id": "recvtR9ZPP4Ljc",
+        "row_key": "charging_temperature",
+        "old": "-10℃~45℃",
+        "new": "-10°C~45°C"
+      },
+      {
+        "record_id": "recvtR9ZPPWR17",
+        "row_key": "discharging_temperature",
+        "old": "-10℃~45℃",
+        "new": "-10°C~45°C"
+      },
+      {
+        "record_id": "recvtR9ZPPLf7P",
+        "row_key": "storage_temperature",
+        "old": "1年間 0~25℃ / 3ヶ月 0~45℃ / 1ヶ月 -20~45℃",
+        "new": "1 年間 0~25°C / 3 ヶ月 0~45°C / 1 ヶ月 -20~45°C"
+      }
+    ]
+  },
+  "spec_notes_to_create_after_approval": [
+    {
+      "Note_id": "certification_un38_3",
+      "Region": "JP",
+      "Model": "JBP-2000B",
+      "Source_lang": "ja",
+      "Is_Latest": true,
+      "Page": "specifications",
+      "Note_order": 1,
+      "Type": "note",
+      "Text_ja": "認証：UN38.3",
+      "Enabled": true
+    },
+    {
+      "Note_id": "bp_host_compatibility",
+      "Region": "JP",
+      "Model": "JBP-2000B",
+      "Source_lang": "ja",
+      "Is_Latest": true,
+      "Page": "specifications",
+      "Note_order": 2,
+      "Type": "note",
+      "Text_ja": "本製品はJackery ポータブル電源 2000 Plus 専用となります。他の機器には接続しないでください。",
+      "Enabled": true
+    }
+  ],
+  "scope": {
+    "on_approval": "update the eight existing staging rows, read them back, create 11 spec + 6 placeholder formal rows, create two Spec_Notes rows, then read back every written record",
+    "not_in_scope": "localized-copy rows, asset enrollment, LEGAL_COMPANY_NAME, build queue"
+  },
+  "write_evidence": {
+    "executed_on": "2026-08-31",
+    "identity": "prod/bot",
+    "document_key_record_id": "recvp853V2kywb",
+    "staging_readback": {
+      "table_id": "tblIi0BEufjvGLIU",
+      "record_ids": [
+        "recvtR9ZPP52wa",
+        "recvtR9ZPPW3Rh",
+        "recvtR9ZPPs6Au",
+        "recvtR9ZPPNGgr",
+        "recvtR9ZPPTU3E",
+        "recvtR9ZPP27RS",
+        "recvtR9ZPP4Ljc",
+        "recvtR9ZPPWR17",
+        "recvtR9ZPPLf7P",
+        "recvtR9ZPP12aC",
+        "recvtR9ZPPGpPf",
+        "recvtR9ZPPI5q9",
+        "recvtR9ZPPTzzq",
+        "recvtR9ZPPhJPU",
+        "recvtR9ZPPERnB",
+        "recvtR9ZPPCh9L",
+        "recvtR9ZPPnYQk"
+      ],
+      "confirmed_true": 17,
+      "ingest_result": "2026-08-31 已入库 JBP-2000B_JP（规格11+占位6）；正式表逐条回读通过"
+    },
+    "spec_record_ids": [
+      "recvtRMSrq9IyF",
+      "recvtRMSrqN6KR",
+      "recvtRMSrq27s8",
+      "recvtRMSrqwENL",
+      "recvtRMSrq0r5c",
+      "recvtRMSrqvz8b",
+      "recvtRMSrqwvcg",
+      "recvtRMSrq4MYf",
+      "recvtRMSrqKwkH",
+      "recvtRMSrqaKet",
+      "recvtRMSrquu9z"
+    ],
+    "placeholder_record_ids": [
+      "recvtRMX9OlSiD",
+      "recvtRMX9OjgPu",
+      "recvtRMX9OPTGY",
+      "recvtRMX9Ose52",
+      "recvtRMX9OSgBh",
+      "recvtRMX9OVN6u"
+    ],
+    "spec_notes_table_id": "tblgJCepw4JvbMbH",
+    "spec_note_record_ids": [
+      "recvtRN0V2ozLk",
+      "recvtRN0V2bM7U"
+    ],
+    "readback": "17/17 staging rows confirmed; 11/11 specification rows, 6/6 placeholder rows, and 2/2 Spec_Notes records read back from the same live records"
+  }
+}

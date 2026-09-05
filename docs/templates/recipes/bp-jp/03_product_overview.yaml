@@ -1,0 +1,44 @@
+# BP@JP product overview reuses the shared BP overview contract. Only the
+# Japanese carrier path and source-table values differ from BP@INTL.
+page_id: 03_product_overview
+template: templates/page_bp/ja/03_product_overview_placeholder.rst
+field_map:
+  MAIN_POWER_BUTTON_LABEL:
+    row_key: main_power_button
+    pages: [Product overview]
+    usage_type: page_value
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_A_LABEL:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: a
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_A_SPEC:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: a
+    value_role: spec
+  SIDE_DC_EXPANSION_PORT_B_LABEL:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: b
+    value_role: label
+  SIDE_DC_EXPANSION_PORT_B_SPEC:
+    row_key: dc_expansion_port
+    pages: [Product overview]
+    usage_type: page_value
+    placement_key: side
+    variant_key: b
+    value_role: spec
+required_row_keys:
+  - product_name
+  - model_no
+snippet_slots: {}
+contracts:
+  - 03_product_overview

@@ -131,6 +131,9 @@ def _notice_from_list_table(rows: list[list[str]]) -> dict | None:
         source_ref="rst:list-table",
     )
 
+_ENUMERATED_ITEM = re.compile(r"^\d{1,2}[.)]\s+\S")
+
+
 # ---------------------------------------------------------------------------
 # page parser
 # ---------------------------------------------------------------------------
@@ -333,6 +336,34 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             result.blocks.append((
                 "sublist" if nested else "list",
                 ("– " if nested else "• ") + " ".join(item),
+            ))
+            continue
+
+        # enumerated lists
+        #
+        # Without this branch `1. ` falls into the paragraph branch below,
+        # which greedily absorbs any following line that does not start with
+        # a bullet, a line block or a directive -- so `2. ` joins the first
+        # item and the whole list ships as one paragraph. The printed books
+        # set these as separate numbered lines, and the enumerator is part of
+        # the copy, so it is kept rather than replaced with a marker.
+        enumerated = _ENUMERATED_ITEM.match(stripped)
+        if enumerated:
+            indent = len(line) - len(line.lstrip())
+            item = [stripped]
+            i += 1
+            while (
+                i < n
+                and lines[i].strip()
+                and not _ENUMERATED_ITEM.match(lines[i].strip())
+                and not lines[i].strip().startswith(("- ", "|", ".."))
+                and (len(lines[i]) - len(lines[i].lstrip())) >= 2
+            ):
+                item.append(lines[i].strip())
+                i += 1
+            result.blocks.append((
+                "sublist" if indent >= 2 else "list",
+                " ".join(item),
             ))
             continue
 

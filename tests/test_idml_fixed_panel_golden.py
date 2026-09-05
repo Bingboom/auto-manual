@@ -499,6 +499,37 @@ class FixedPanelGoldenTests(unittest.TestCase):
 
         self.assertEqual([12.2, 24.4], heights)
 
+    def test_compact_spec_three_line_row_reserves_line_boxes_and_insets(
+        self,
+    ) -> None:
+        heights = spec_table_row_heights(
+            [("保存温度", "1 year\n3 months\n1 month")],
+            {
+                "idml_compact_spec_table_row_height": ("11", "pt"),
+                "idml_compact_spec_table_multiline_min_height": ("13", "pt"),
+                "idml_compact_spec_table_cell_inset": ("2", "pt"),
+                "type_spec_value_font_leading": ("6.6", "pt"),
+            },
+            density="compact",
+            language="ja",
+        )
+
+        self.assertAlmostEqual(23.8, heights[0])
+
+    def test_reference_spec_multiline_row_keeps_autogrow_minimum(self) -> None:
+        heights = spec_table_row_heights(
+            [("Storage Temperature", "1 year\n3 months\n1 month")],
+            {
+                "idml_spec_table_row_height": ("10.3", "pt"),
+                "comp_spec_table_multiline_min_height": ("15", "pt"),
+                "type_spec_value_font_leading": ("6.6", "pt"),
+            },
+            density="reference",
+            language="en",
+        )
+
+        self.assertEqual([15.0], heights)
+
     def test_compact_with_tip_keeps_tip_and_owns_internal_geometry(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         params.update({
@@ -582,7 +613,11 @@ class FixedPanelGoldenTests(unittest.TestCase):
         self.assertGreater(len(content_ranges), 1)
         for element in content_ranges:
             self.assertEqual("6.5", element.attrib.get("PointSize"))
-            self.assertEqual("7.83", element.attrib.get("Leading"))
+            # No Leading attribute: InDesign drops the numeric attribute form
+            # on a style range, so the fallback runs take HB Callout Body's own
+            # leading -- which is the 7.83 this used to spell out here, so the
+            # composed page is unchanged.
+            self.assertIsNone(element.attrib.get("Leading"))
             self.assertEqual("106.9", element.attrib.get("HorizontalScale"))
             self.assertEqual("0.9", element.attrib.get("BaselineShift"))
         fallback_ranges = [

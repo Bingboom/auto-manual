@@ -20,6 +20,7 @@ from .components.native_marker import (
 )
 from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
+from .story_parts import add_story_parts
 from .source_copy import source_text
 from .spec_tables import spec_table_height
 from .style_names import paragraph_style_ref
@@ -576,13 +577,33 @@ def add_trouble_story(
     *,
     title: str,
     lang: str = "en",
+    intro: str = "",
+    header: tuple[str, str] | None = None,
+    label_column_fill: str = "",
 ) -> str:
+    """Build the Troubleshooting story.
+
+    ``intro``, ``header`` and ``label_column_fill`` default to empty so the
+    compositions that do not pass them render exactly what they rendered
+    before.
+    """
     sid = "st_trouble" if lang == "en" else f"st_trouble_{lang}"
     title = source_text(title, owner="Troubleshooting page title")
     parts = [_po.h1_pill_paragraph(
         writer, title, writer.page_w - writer.m_l - writer.m_r)]
+    if intro:
+        parts.append(writer._psr("HB Body", source_text(
+            intro, owner="Troubleshooting intro")))
     table_id = "tbl_trouble" if lang == "en" else f"tbl_trouble_{lang}"
+    if header is not None:
+        # The width logic already treats row 0 as the header and sizes it with
+        # `style.header_size`, so prepending it is what that code expects.
+        rows = [tuple(header), *rows]
     table = writer._table(table_id, rows, role="data")
+    if label_column_fill:
+        # The same tint the specification, LCD, symbol and signal-word
+        # tables give their label column.
+        table = _tb.fill_column_xml(table, 0, label_column_fill)
     body_style_ref = paragraph_style_ref("HB Body")
     parts.append(
         f'  <ParagraphStyleRange AppliedParagraphStyle="{body_style_ref}">\n'
@@ -592,18 +613,12 @@ def add_trouble_story(
         + '    <Content></Content></CharacterStyleRange>\n'
         '  </ParagraphStyleRange>\n'
     )
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" '
-        'FrameType="TextFrameType"/>\n'
-        + "".join(parts)
-        + '</Story>\n</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+    # Same sink as every other component story: it applies the duplicate-style
+    # collapse and binds generic CJK runs to the document language's portable
+    # face. Building the wrapper here instead left the two data-heaviest JP
+    # pages on the Arial Unicode MS system font while sixteen sibling stories
+    # carried the bundled JP face.
+    return add_story_parts(writer, sid, title, parts)
 
 
 def add_spec_story(
@@ -674,84 +689,85 @@ def add_spec_story(
         )
 
     for si, section in enumerate(sections):
-        title_baseline_shift = param_pt(
-            writer.params,
-            f"lang_{lang}_idml_spec_section_text_baseline_shift",
-            param_pt(
+        if str(section["title"]).strip():
+            title_baseline_shift = param_pt(
                 writer.params,
-                "idml_spec_section_text_baseline_shift",
-                0.0,
-            ),
-        )
-        bullet_baseline_shift = title_baseline_shift + param_pt(
-            writer.params,
-            "idml_spec_section_bullet_baseline_offset",
-            -1.56,
-        )
-        if writer.native_structure_markers:
-            section_title = writer._psr(
-                "HB Spec Section",
-                marked_text(section["title"]),
-                inline_replacements=marker_replacements(
-                    writer,
-                    marker_id=f"{sid}_section_marker_{si}",
+                f"lang_{lang}_idml_spec_section_text_baseline_shift",
+                param_pt(
+                    writer.params,
+                    "idml_spec_section_text_baseline_shift",
+                    0.0,
                 ),
             )
-        else:
-            section_title = writer._psr(
-                "HB Spec Section", "\u25cf " + section["title"])
-            section_title = section_title.replace(
-                'FontStyle="Regular"',
-                'FontStyle="Regular" PointSize="13.2" '
-                'HorizontalScale="100" '
-                f'BaselineShift="{bullet_baseline_shift:g}"',
-                1,
+            bullet_baseline_shift = title_baseline_shift + param_pt(
+                writer.params,
+                "idml_spec_section_bullet_baseline_offset",
+                -1.56,
             )
-        section_default = (
-            default_section_before[si]
-            if si < len(default_section_before) else 10.07
-        )
-        section_before = param_pt(
-            writer.params,
-            (
-                f"lang_{lang}_idml_compact_spec_section_{si + 1}_space_before"
-                if compact
-                else f"lang_{lang}_idml_spec_section_{si + 1}_space_before"
-            ),
-            param_pt(
+            if writer.native_structure_markers:
+                section_title = writer._psr(
+                    "HB Spec Section",
+                    marked_text(section["title"]),
+                    inline_replacements=marker_replacements(
+                        writer,
+                        marker_id=f"{sid}_section_marker_{si}",
+                    ),
+                )
+            else:
+                section_title = writer._psr(
+                    "HB Spec Section", "\u25cf " + section["title"])
+                section_title = section_title.replace(
+                    'FontStyle="Regular"',
+                    'FontStyle="Regular" PointSize="13.2" '
+                    'HorizontalScale="100" '
+                    f'BaselineShift="{bullet_baseline_shift:g}"',
+                    1,
+                )
+            section_default = (
+                default_section_before[si]
+                if si < len(default_section_before) else 10.07
+            )
+            section_before = param_pt(
                 writer.params,
                 (
-                    f"idml_compact_spec_section_{si + 1}_space_before"
+                    f"lang_{lang}_idml_compact_spec_section_{si + 1}_space_before"
                     if compact
-                    else f"idml_spec_section_{si + 1}_space_before"
+                    else f"lang_{lang}_idml_spec_section_{si + 1}_space_before"
                 ),
-                section_default,
-            ),
-        )
-        section_left_indent = param_pt(
-            writer.params,
-            f"lang_{lang}_idml_spec_section_left_indent",
-            param_pt(
+                param_pt(
+                    writer.params,
+                    (
+                        f"idml_compact_spec_section_{si + 1}_space_before"
+                        if compact
+                        else f"idml_spec_section_{si + 1}_space_before"
+                    ),
+                    section_default,
+                ),
+            )
+            section_left_indent = param_pt(
                 writer.params,
-                "idml_spec_section_left_indent",
-                0.0,
-            ),
-        )
-        section_title = section_title.replace(
-            "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceBefore="{section_before:g}" '
-            f'LeftIndent="{section_left_indent:g}" ',
-            1,
-        )
-        if title_baseline_shift:
+                f"lang_{lang}_idml_spec_section_left_indent",
+                param_pt(
+                    writer.params,
+                    "idml_spec_section_left_indent",
+                    0.0,
+                ),
+            )
             section_title = section_title.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-                '><Content> ',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                f'BaselineShift="{title_baseline_shift:g}"><Content> ',
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange SpaceBefore="{section_before:g}" '
+                f'LeftIndent="{section_left_indent:g}" ',
                 1,
             )
-        parts.append(section_title)
+            if title_baseline_shift:
+                section_title = section_title.replace(
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+                    '><Content> ',
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                    f'BaselineShift="{title_baseline_shift:g}"><Content> ',
+                    1,
+                )
+            parts.append(section_title)
         table = _tb.fill_column_xml(
             _tb.suppress_inner_vertical_edges_xml(
                 spec_table(
@@ -857,16 +873,4 @@ def add_spec_story(
                 1,
             )
         parts.append(note_xml)
-    xml = (
-        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-        f'<idPkg:Story xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
-        f'<Story Self="{sid}" AppliedTOCStyle="n" TrackChanges="false" '
-        f'StoryTitle="{escape(title, _ATTR_ENTITIES)}">\n'
-        '<StoryPreference OpticalMarginAlignment="false" '
-        'FrameType="TextFrameType"/>\n'
-        + "".join(parts)
-        + '</Story>\n'
-        '</idPkg:Story>\n'
-    )
-    writer.stories.append((sid, xml))
-    return sid
+    return add_story_parts(writer, sid, title, parts)

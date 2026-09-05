@@ -13,6 +13,8 @@ import tempfile
 import unittest
 import zipfile
 import shutil
+from collections.abc import Iterator
+from contextlib import contextmanager
 from pathlib import Path
 
 from tools.manual_ir import read_manual_ir, validate_manual_ir
@@ -27,6 +29,34 @@ def _run(*argv: str) -> subprocess.CompletedProcess:
     return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
 
 
+# `--mode flow` derives its own output directory from (model, region, lang) --
+# `--out` only names the production IDML -- so these two cases write into the
+# real `docs/_build` tree. They used to `shutil.rmtree` the whole
+# `JE-1000F/US/en` subtree afterwards, which deleted a package the operator had
+# built: one disappeared mid-session and was only noticed on the next rebuild.
+# AGENTS.md §6 says `_build` may hold user work.
+#
+# So: never delete, and never overwrite, a directory this test did not create.
+# In CI the path is absent (`docs/_build` is gitignored) and the case runs as
+# before; locally, if a real package is sitting there, the case skips rather
+# than destroying it. Redirecting the flow output instead would need a new CLI
+# flag, which is a production change and does not belong in a safety-net PR.
+FLOW_TARGET_ROOT = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en"
+
+
+@contextmanager
+def _owns_flow_output(test: unittest.TestCase) -> Iterator[Path]:
+    if FLOW_TARGET_ROOT.exists():
+        test.skipTest(
+            f"{FLOW_TARGET_ROOT.relative_to(ROOT)} already holds a built package; "
+            "refusing to overwrite or delete it"
+        )
+    try:
+        yield FLOW_TARGET_ROOT / "idml" / "flow"
+    finally:
+        shutil.rmtree(FLOW_TARGET_ROOT, ignore_errors=True)
+
+
 class ExportIdmlCliSmokeTests(unittest.TestCase):
     def test_model_is_required(self) -> None:
         result = _run(
@@ -39,9 +69,7 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
         self.assertIn("the following arguments are required: --model", result.stderr)
 
     def test_mode_flow_writes_markdown_trace_manifest_and_notes(self) -> None:
-        out_dir = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml" / "flow"
-        shutil.rmtree(out_dir, ignore_errors=True)
-        try:
+        with _owns_flow_output(self) as out_dir:
             result = _run(
                 "--model", "JE-1000F", "--region", "US", "--lang", "en",
                 "--data-root", str(DATA_FIXTURE),
@@ -80,15 +108,11 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
             manual_ir = read_manual_ir(out_dir / "manual.ir.json")
             self.assertEqual([], validate_manual_ir(manual_ir))
             self.assertEqual("JE-1000F", manual_ir.model)
-        finally:
-            shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
     def test_mode_both_keeps_production_idml_and_adds_flow_artifacts(self) -> None:
-        out_dir = ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en" / "idml" / "flow"
-        shutil.rmtree(out_dir, ignore_errors=True)
         with tempfile.TemporaryDirectory() as td:
             out = Path(td) / "production.idml"
-            try:
+            with _owns_flow_output(self) as out_dir:
                 result = _run(
                     "--model", "JE-1000F", "--region", "US", "--lang", "en",
                     "--data-root", str(DATA_FIXTURE),
@@ -110,8 +134,6 @@ class ExportIdmlCliSmokeTests(unittest.TestCase):
                 self.assertIn("[export-idml] FLOW OK:", result.stdout)
                 self.assertIn("FLOW IDML OK:", result.stdout)
                 self.assertIn("[export-idml] HANDOFF OK:", result.stdout)
-            finally:
-                shutil.rmtree(ROOT / "docs" / "_build" / "JE-1000F" / "US" / "en", ignore_errors=True)
 
     def test_export_then_check_roundtrip(self) -> None:
         with tempfile.TemporaryDirectory() as td:

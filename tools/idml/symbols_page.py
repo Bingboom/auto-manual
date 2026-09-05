@@ -371,13 +371,15 @@ def _symbols_signal_table(writer, tid: str, signals: list[object],
                           width: float, bundle_root: Path,
                           lang: str = "en", *,
                           headers: tuple[str, str],
+                          include_header: bool = True,
                           row_heights: list[float] | None = None,
                           left_col_width: float | None = None,
                           fit_body_to_row: bool = False,
                           cell_vertical_inset: float = 3.0,
                           disable_hyphenation: bool = False,
                           auto_grow_rows: bool = True) -> str:
-    rows = [("", headers[0], headers[1], True)] + [
+    header = [("", headers[0], headers[1], True)]
+    rows = (header if include_header else []) + [
         (*_signal_row_fields(row), False) for row in signals
     ]
     left_col = left_col_width
@@ -568,7 +570,7 @@ def _symbols_icon_table(
                 right_xml = right_xml.replace(
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                     'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                    'PointSize="5.6" Leading="6.15" HorizontalScale="96"',
+                    'PointSize="5.6" HorizontalScale="96"',
                     1,
                 )
             if disable_hyphenation:
@@ -611,7 +613,7 @@ def _table_story(writer, sid: str, title: str, table: str) -> str:
         marker_size = param_pt(
             writer.params, "idml_table_marker_point_size", 0.1,
         )
-        marker_attrs = f' PointSize="{marker_size:g}" Leading="{marker_size:g}"'
+        marker_attrs = f' PointSize="{marker_size:g}"'
     return writer._add_story_parts(
         sid, title,
          [f'  <ParagraphStyleRange AppliedParagraphStyle="{style_ref}">\n'

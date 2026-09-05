@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import unittest
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
@@ -17,6 +18,7 @@ from tools.indesign_finalize import (
     JSX,
     VERSION_PIN,
     _collect_finalize_result,
+    _idml_document_language,
     _job,
     _pdf_missing_glyphs,
     _overset_pages,
@@ -29,6 +31,17 @@ from tools.indesign_finalize import (
 
 
 class InDesignFinalizeTests(unittest.TestCase):
+    def test_idml_document_language_comes_from_the_frozen_package_label(self) -> None:
+        with temp_test_root() as root:
+            path = Path(root) / "manual.idml"
+            with zipfile.ZipFile(path, "w") as package:
+                package.writestr(
+                    "designmap.xml",
+                    '<Document Label="hb:language=ja" Name="manual"/>',
+                )
+
+            self.assertEqual("ja", _idml_document_language(path))
+
     def test_pdf_missing_glyphs_flags_replacement_and_notdef(self) -> None:
         class FakePage:
             def get_texttrace(self):
@@ -197,6 +210,20 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertIn("collectPostReopenState(doc)", jsx)
         self.assertIn('report.stage = "reopen_indd"', jsx)
         self.assertIn("doc = app.open(File(job.output_indd), false)", jsx)
+        self.assertIn("showPortableFontBootstrap", jsx)
+        self.assertIn(
+            "doc = app.open(File(job.output_indd), showPortableFontBootstrap)",
+            jsx,
+        )
+        self.assertIn('report.stage = "save_portable_font_rebind"', jsx)
+        self.assertIn(
+            'report.stage = "reopen_indd_after_portable_font_rebind"',
+            jsx,
+        )
+        self.assertLess(
+            jsx.index('report.stage = "save_portable_font_rebind"'),
+            jsx.index("report.post_reopen = collectPostReopenState(doc)"),
+        )
         self.assertIn("report.post_reopen.missing_fonts.length === 0", jsx)
         self.assertIn("backgroundTaskPreferences.enableBackgroundTask = false", jsx)
         self.assertIn("fitLcdCarrierFrames(doc)", jsx)
@@ -242,6 +269,16 @@ class InDesignFinalizeTests(unittest.TestCase):
         self.assertNotIn("allPageItems", symbol_fit)
         self.assertNotIn("item.geometricBounds", symbol_fit)
         self.assertIn("applyHostFontSubstitutions(doc)", jsx)
+        self.assertIn(
+            "rebindJapanesePortableFont(doc, fontName, documentLanguage)",
+            jsx,
+        )
+        self.assertIn("waitForInstalledApplicationFont(fontName)", jsx)
+        self.assertIn('"japanese_portable_font_rebind"', jsx)
+        self.assertIn('String(documentLanguage || "") !== "ja"', jsx)
+        self.assertIn("isJapaneseCodeUnit(contents.charCodeAt(0))", jsx)
+        self.assertIn('"HB Manual Sans JP (OTF)\\tRegular"', jsx)
+        self.assertIn("portable_font_rebinds", jsx)
         self.assertIn("font_substitutions", jsx)
         self.assertIn("fontHasTextUsage(doc, font)", jsx)
         self.assertIn("matches = doc.findText()", jsx)
@@ -498,6 +535,58 @@ class VersionPinTests(unittest.TestCase):
                    return_value=("mismatch", "drift")):
             with patch("sys.argv", ["indesign_finalize.py", "--check-host"]):
                 self.assertEqual(main(), 2)
+
+    def test_the_outputs_default_beside_the_package(self) -> None:
+        """A finalize report belongs next to the artefact it describes.
+
+        The JP round's ledger asked for the report to stay inside
+        docs/_build/<MODEL>/<REGION>/ so findings are readable in the tree; it
+        got a transcription into chat instead, because every path was a required
+        flag and the host operator supplied them by hand.
+        """
+        captured = {}
+
+        def fake_job(args):
+            captured.update(
+                indd=args.indd, pdf=args.pdf, report=args.report
+            )
+            raise SystemExit(0)
+
+        idml = "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml"
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("match", "ok")), \
+             patch("tools.indesign_finalize._job", side_effect=fake_job), \
+             patch("sys.argv", ["indesign_finalize.py", "--idml", idml]):
+            with self.assertRaises(SystemExit):
+                main()
+
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.indd", captured["indd"]
+        )
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.pdf", captured["pdf"]
+        )
+        self.assertEqual(
+            "docs/_build/JBP-2000B/JP/idml/finalize_report.json", captured["report"]
+        )
+
+    def test_an_explicit_output_path_still_wins(self) -> None:
+        captured = {}
+
+        def fake_job(args):
+            captured.update(report=args.report, pdf=args.pdf)
+            raise SystemExit(0)
+
+        with patch("tools.indesign_finalize.check_version_pin",
+                   return_value=("match", "ok")), \
+             patch("tools.indesign_finalize._job", side_effect=fake_job), \
+             patch("sys.argv", ["indesign_finalize.py", "--idml", "a/b.idml",
+                                "--report", "elsewhere/r.json"]):
+            with self.assertRaises(SystemExit):
+                main()
+
+        self.assertEqual("elsewhere/r.json", captured["report"])
+        self.assertEqual("a/b.pdf", captured["pdf"])
 
     def test_run_refuses_on_mismatch_without_override_and_never_launches(self) -> None:
         with patch("tools.indesign_finalize.check_version_pin",

@@ -14,6 +14,7 @@ from tools.build_docs_artifacts import (
 )
 from tools.asset_usage import ASSET_USAGE_MANIFEST_FILENAME
 from tools.gen_index_bundle_assets import raw_html_asset_values
+from tools.page_contracts import resolve_category
 from tools.safe_copy import copy_regular_file_no_symlinks
 from tools.utils.path_utils import PathSegments, latex_renderer_of
 
@@ -261,6 +262,11 @@ def build_target(
         draft_placeholders=draft_placeholders,
     )
 
+    # The product line, so a carrier can branch on it the way it already
+    # branches on region -- the same value the `category:` contract tier
+    # resolves against.
+    target_category = resolve_category(build_cfg)
+
     html_built = False
     latex_built = False
 
@@ -276,6 +282,7 @@ def build_target(
             model=target_model,
             region=target_region,
             lang=target_lang or artifact_plan.primary_lang,
+            category=target_category,
             minimal_theme=minimal_theme,
         )
         _copy_raw_html_assets_for_html(
@@ -297,11 +304,17 @@ def build_target(
             model=target_model,
             region=target_region,
             lang=target_lang or artifact_plan.primary_lang,
+            category=target_category,
         )
         _copy_attachment_images_for_latex(
             Path(bundle.bundle_dir), Path(artifact_plan.latex_out_dir), printer,
         )
-        patch_fonts(artifact_plan.patch_fonts_script, artifact_plan.main_tex, build_dir=artifact_plan.latex_out_dir)
+        patch_fonts(
+            artifact_plan.patch_fonts_script,
+            artifact_plan.main_tex,
+            build_dir=artifact_plan.latex_out_dir,
+            language=target_lang or artifact_plan.primary_lang,
+        )
         compile_xelatex(artifact_plan.main_tex, artifact_plan.xelatex_runs, cwd=artifact_plan.latex_out_dir)
         latex_built = True
 

@@ -4,7 +4,10 @@ from __future__ import annotations
 import re
 
 from .. import page_objects as _po
+from ..inline_text import character_ranges
 from ..line_metrics import estimated_line_count, estimated_text_width
+from ..corner_radii import declared_indexed_radius, declared_radius
+from ..loaders import normalize_lang
 from ..params import param_pt
 from ..primitives import (
     cell,
@@ -21,8 +24,16 @@ def _plain_strong(text: str) -> str:
 
 
 def _language_param(ctx: RenderContext, key: str, default: float) -> float:
+    """A warranty token a language may declare for itself.
+
+    `normalize_lang` because `ctx.language` carries the writer's own source
+    code -- "ja" -- while every layout row is keyed on the phase2 suffix
+    "jp". Without it this reads a prefix nothing declares and silently keeps
+    the shared value. No `lang_ja_` row exists anywhere, so normalizing takes
+    nothing away.
+    """
     base = param_pt(ctx.params, key, default)
-    language = (ctx.language or "").strip().lower()
+    language = normalize_lang(ctx.language) if ctx.language else ""
     if language:
         return param_pt(ctx.params, f"lang_{language}_{key}", base)
     return base
@@ -134,11 +145,19 @@ def _variant_body_format(
     ctx: RenderContext,
     *,
     horizontal_scale: float,
-    leading: float | None,
 ) -> str:
+    """Apply the variant's composition attributes to a body paragraph.
+
+    Leading is deliberately not among them. A numeric ``Leading`` attribute on
+    a style range is dropped by InDesign -- see
+    ``character_metrics.with_character_metrics``, which exists to strip exactly
+    this form and re-emit the honored ``<Leading type="unit">`` element. This
+    function used to append one, so the variant's declared body leading has
+    never reached a page; the copy has always composed at the leading its
+    paragraph style carries. ``Hyphenation`` and ``Composer`` below are genuine
+    paragraph attributes and are honored.
+    """
     attrs: list[str] = []
-    if leading is not None:
-        attrs.append(f'Leading="{leading:g}"')
     if _variant_value(spec, ctx, "disable_hyphenation", 0.0) >= 0.5:
         attrs.extend(('Hyphenation="false"', 'Composer="HL Single"'))
     if attrs:
@@ -262,9 +281,13 @@ def _year_heading(
             f'PointSize="{badge_size:g}" FontStyle="Bold"',
             1,
         )
+    # No Leading here: a numeric Leading attribute on a style range is dropped
+    # by InDesign (see character_metrics.with_character_metrics). The badge
+    # numeral takes HB Warranty Year Heading's own leading, and this paragraph
+    # is always the first line of its cell, so nothing shifts.
     xml = xml.replace(
         "<ParagraphStyleRange ",
-        f'<ParagraphStyleRange Leading="{badge_size + 1:g}" SpaceAfter="1.2" ',
+        '<ParagraphStyleRange SpaceAfter="1.2" ',
         1,
     )
     return xml
@@ -375,10 +398,6 @@ def _years_table(
             spec,
             ctx,
             horizontal_scale=horizontal_scale,
-            leading=(
-                rendered_body_leading
-                if rendered_body_leading != body_leading else None
-            ),
         )
         cells.append(cell(
             f"{tid}c{index}", f"{index}:0", content,
@@ -488,7 +507,11 @@ def render_warrantylead(
         fill="Color/HB Bg K05",
         stroke="Swatch/None",
         stroke_weight=0,
-        radius=param_pt(ctx.params, "comp_warranty_lead_arc", 9.07),
+        radius=declared_radius(
+            spec,
+            "lead",
+            param_pt(ctx.params, "comp_warranty_lead_arc", 9.07),
+        ),
         inset=(pad_tb, pad_lr, pad_tb, pad_lr),
         valign="CenterAlign",
         auto_height=False,
@@ -514,9 +537,12 @@ def _section_body(
     layout_spec: dict,
     section_index: int,
 ) -> tuple[list[str], float]:
-    body_size = param_pt(ctx.params, "type_warranty_body_font_size", 6.0)
-    body_leading = param_pt(ctx.params, "idml_warranty_body_font_leading", 6.0)
-    list_leading = param_pt(ctx.params, "type_warranty_body_font_leading", 7.2)
+    # These three must resolve exactly as `para_styles` resolves them: the
+    # panel height is computed from them, so a size the style prints but the
+    # estimate does not see would size every panel for the wrong type.
+    body_size = _language_param(ctx, "type_warranty_body_font_size", 6.0)
+    body_leading = _language_param(ctx, "idml_warranty_body_font_leading", 6.0)
+    list_leading = _language_param(ctx, "type_warranty_body_font_leading", 7.2)
     body_after = param_pt(ctx.params, "idml_warranty_paragraph_after", 2.83)
     list_after = param_pt(ctx.params, "idml_warranty_list_after", 1.0)
     horizontal_scale = _variant_value(
@@ -539,9 +565,12 @@ def _section_body(
         f"body_estimate_horizontal_scale_{section_index}",
         estimate_horizontal_scale,
     )
-    rendered_body_leading = _variant_value(
-        layout_spec, ctx, "body_font_leading", body_leading,
-    )
+    # `idml_warranty_variant_*_body_font_leading` is not read here any more.
+    # It only ever reached the page as a `Leading` attribute, which InDesign
+    # drops, so section body copy composes at HB Warranty Body's own leading
+    # and the budget below matches what prints. `_years_table` still reads the
+    # token for its own height estimate; that estimate is now the only thing
+    # the token affects, and it is a separate correction.
     list_indent = param_pt(
         ctx.params, "idml_warranty_list_left_indent", 5.67,
     )
@@ -583,14 +612,21 @@ def _section_body(
         paragraph_after = list_after if is_list else body_after
         list_marker = ""
         list_text = text
+        marker_size = 4.8
+        marker_indent = list_indent
         if is_list:
-            marker_match = re.match(r"^\s*([•◦])(?:\s+|$)", text)
+            marker_match = re.match(r"^\s*([•◦–-]|\d+[.)])(?:\s+|$)", text)
             if marker_match:
                 list_marker = marker_match.group(1)
                 list_text = text[marker_match.end():]
             else:
                 list_marker = "◦" if kind == "sublist" else "•"
                 list_text = text.lstrip()
+            if list_marker[0].isdigit():
+                marker_size = body_size
+                marker_indent = max(
+                    list_indent, estimated_text_width(list_marker, point_size=marker_size) + 1.5,
+                )
         paragraph = psr(
             style,
             list_text if is_list else text,
@@ -599,10 +635,10 @@ def _section_body(
         if is_list:
             first_line_indent = param_pt(
                 ctx.params, "idml_warranty_list_first_line_indent", -list_indent,
-            )
+            ) - (marker_indent - list_indent)
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange LeftIndent="{list_indent:g}" '
+                f'<ParagraphStyleRange LeftIndent="{marker_indent:g}" '
                 f'FirstLineIndent="{first_line_indent:g}" RightIndent="0" ',
                 1,
             )
@@ -614,15 +650,19 @@ def _section_body(
                 '<Alignment type="enumeration">LeftAlign</Alignment>'
                 '<AlignmentCharacter type="string"></AlignmentCharacter>'
                 '<Leader type="string"></Leader>'
-                f'<Position type="unit">{list_indent:g}</Position>'
+                f'<Position type="unit">{marker_indent:g}</Position>'
                 '</ListItem></TabList></Properties>'
             )
-            bullet_xml = (
-                '<CharacterStyleRange '
+            bullet_xml = "".join(character_ranges(
+                list_marker,
+                bold=False,
+                superscript_markers=False,
+                replacements={},
+            )).replace(
+                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'PointSize="4.8">'
-                f'<Content>{list_marker}</Content>'
-                '</CharacterStyleRange>'
+                f'PointSize="{marker_size:g}"',
+                1,
             )
             tab_xml = (
                 '<CharacterStyleRange '
@@ -640,10 +680,6 @@ def _section_body(
             layout_spec,
             ctx,
             horizontal_scale=horizontal_scale,
-            leading=(
-                rendered_body_leading
-                if not is_list and rendered_body_leading != body_leading else None
-            ),
         )
         if not terminal:
             paragraph = paragraph.replace(
@@ -653,7 +689,7 @@ def _section_body(
             )
         parts.append(paragraph)
         available = width - (
-            list_indent if kind in {"list", "sublist"} else 0.0
+            marker_indent if kind in {"list", "sublist"} else 0.0
         )
         height += _wrapped_lines(
             list_text if is_list else text,
@@ -777,7 +813,12 @@ def render_warrantysection(
         body_parts,
     )
     rule = param_pt(ctx.params, "comp_warranty_section_rule", 0.9)
-    arc = param_pt(ctx.params, "comp_warranty_section_arc", 6.8)
+    arc = declared_indexed_radius(
+        spec,
+        "section",
+        spec.get("index"),
+        param_pt(ctx.params, "comp_warranty_section_arc", 6.8),
+    )
     title_arc = param_pt(ctx.params, "comp_warranty_title_arc", 4.82)
     title_x = param_pt(ctx.params, "comp_warranty_title_inset", 8.50)
     outer = (

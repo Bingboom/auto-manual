@@ -3,7 +3,7 @@
 <Story Self="st_safety_ja_title" Label="hb:self=st_safety_ja_title" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="safety_ja title">
 <StoryPreference OpticalMarginAlignment="false" FrameType="TextFrameType"/>
   <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/带底Heading2">
-    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.5" FontStyle="Regular"><Properties><AppliedFont type="string">Arial Unicode MS</AppliedFont></Properties><Content>安全上の重要な注意事項</Content></CharacterStyleRange>
+    <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" BaselineShift="0.5" FontStyle="Bold"><Properties><AppliedFont type="string">HB Manual Sans JP (OTF)</AppliedFont></Properties><Content>安全上の重要な注意事項</Content></CharacterStyleRange>
   </ParagraphStyleRange>
 </Story>
 </idPkg:Story>

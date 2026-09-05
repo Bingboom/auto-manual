@@ -9,7 +9,7 @@ from __future__ import annotations
 import ast
 import re
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Mapping
 
 from tools.component_specs.overview import overview_spec_from_blocks
 from tools.component_specs.overview_adapters import idml_overview_projection
@@ -22,16 +22,18 @@ from .page_objects import (
     heading_text,
 )
 from .page_overview_assets import resolve_overview_assets
+from .page_overview_projection import (
+    break_vehicle_spec,
+    geometry_rect,
+    overview_semantic_blocks,
+    projection_cells,
+)
 from .page_overview_single_art import _graphic_frame, single_image_overview_frames
 from .params import IDPKG, param_pt
 
 Block = tuple[str, object]
 
 _LABEL = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
-_VEHICLE_LINE_START = re.compile(
-    r"\s+(?=(?:Car|Coche|Vehículo|Véhicule|Voiture|Auto|Veículo)\s*:)",
-    re.IGNORECASE,
-)
 _VALUE_VOLTAGE_SPACE = re.compile(r"(?<=\d) (?=V\b)")
 _EMPTY_CELL_MARKER_SUFFIX = re.compile(r"\s+-\s*$")
 
@@ -60,11 +62,6 @@ def _label_value(value: str) -> tuple[str, str]:
     if not match:
         return value.strip(), ""
     return match.group(1).strip(), match.group(2).strip()
-
-
-def _break_vehicle_spec(value: str) -> str:
-    """Keep the vehicle-input specification on its own visual line."""
-    return _VEHICLE_LINE_START.sub("\n", value)
 
 
 def _keep_voltage_pair(value: str) -> str:
@@ -247,7 +244,7 @@ def _right_cells(blocks: list[Block]) -> list[tuple[str, str]]:
     # visual page places DC on the lower left and AC on the lower right.
     cells.extend([("", "")] * max(0, 3 - len(cells)))
     handle, dc_input, ac_input = cells[0], cells[2], cells[1]
-    dc_input = (dc_input[0], _break_vehicle_spec(dc_input[1]))
+    dc_input = (dc_input[0], break_vehicle_spec(dc_input[1]))
     return [handle, dc_input, ac_input]
 
 
@@ -360,6 +357,7 @@ def product_overview_frames(
     *,
     instance_id: str | None = None,
     asset_refs: Mapping[str, str] | None = None,
+    show_view_headings: bool = True,
 ) -> list[str]:
     """Build the shared Overview component frames without owning a page."""
     h1 = next((str(value) for kind, value in blocks if kind == "h1"), "")
@@ -372,6 +370,10 @@ def product_overview_frames(
             blocks,
             bundle_root,
         )
+    semantic_blocks, h2s = overview_semantic_blocks(
+        blocks, h1=h1, h2s=h2s, image_count=len(image_refs),
+        show_view_headings=show_view_headings,
+    )
     if not h1 or len(h2s) != 2 or len(image_refs) != 2:
         raise ValueError("product overview requires one h1, two h2s, and two images")
     assets = resolve_overview_assets(writer, bundle_root, image_refs, asset_refs)
@@ -383,7 +385,7 @@ def product_overview_frames(
     )
     try:
         spec = overview_spec_from_blocks(
-            blocks,
+            semantic_blocks,
             instance=instance,
             source_ref=sid,
             language=str(writer.language or "und"),
@@ -400,53 +402,42 @@ def product_overview_frames(
 
     page_geometry = projection["page"]
 
-    def rect(values: object) -> tuple[float, float, float, float]:
-        if not isinstance(values, list) or len(values) != 4:
-            raise ValueError("product overview geometry rectangle must have four values")
-        return tuple(float(value) for value in values)  # type: ignore[return-value]
-
-    def cells(view: Mapping[str, Any]) -> list[tuple[str, str]]:
-        result: list[tuple[str, str]] = []
-        for callout in view["callouts"]:
-            value = "\n".join(str(item) for item in callout.get("body", []))
-            if callout["id"] == "dc_input":
-                value = _break_vehicle_spec(value)
-            result.append((str(callout["label"]), value))
-        return result
-
     title_sid = writer._add_story_parts(
         f"{sid}_title", h1, [heading_text(writer, h1, level=1)])
-    _, front_heading = _section_heading(
-        writer,
-        f"{sid}_front",
-        h2s[0],
-        text_y=float(front_view["heading_text_y"]),
-        bullet_rect=rect(front_view["heading_bullet_rect"]),
-        text_rect=(
-            rect(front_view["heading_text_rect"])
-            if "heading_text_rect" in front_view
-            else None
-        ),
-    )
-    _, right_heading = _section_heading(
-        writer,
-        f"{sid}_right",
-        h2s[1],
-        text_y=float(right_view["heading_text_y"]),
-        bullet_rect=rect(right_view["heading_bullet_rect"]),
-        text_rect=(
-            rect(right_view["heading_text_rect"])
-            if "heading_text_rect" in right_view
-            else None
-        ),
-    )
+    front_heading: list[str] = []
+    right_heading: list[str] = []
+    if show_view_headings:
+        _, front_heading = _section_heading(
+            writer,
+            f"{sid}_front",
+            h2s[0],
+            text_y=float(front_view["heading_text_y"]),
+            bullet_rect=geometry_rect(front_view["heading_bullet_rect"]),
+            text_rect=(
+                geometry_rect(front_view["heading_text_rect"])
+                if "heading_text_rect" in front_view
+                else None
+            ),
+        )
+        _, right_heading = _section_heading(
+            writer,
+            f"{sid}_right",
+            h2s[1],
+            text_y=float(right_view["heading_text_y"]),
+            bullet_rect=geometry_rect(right_view["heading_bullet_rect"]),
+            text_rect=(
+                geometry_rect(right_view["heading_text_rect"])
+                if "heading_text_rect" in right_view
+                else None
+            ),
+        )
 
-    title_rect = rect(page_geometry["title_frame"])
+    title_rect = geometry_rect(page_geometry["title_frame"])
     artwork_and_headings = [
         _graphic_frame(writer, f"art_{sid}_front", assets[0],
-                       rect(front_view["art_rect"])),  # type: ignore[arg-type]
+                       geometry_rect(front_view["art_rect"])),  # type: ignore[arg-type]
         _graphic_frame(writer, f"art_{sid}_right", assets[1],
-                       rect(right_view["art_rect"])),  # type: ignore[arg-type]
+                       geometry_rect(right_view["art_rect"])),  # type: ignore[arg-type]
         frame_with_background(
             writer, sid, "title", title_sid,
             title_rect,
@@ -499,11 +490,11 @@ def product_overview_frames(
         1.2,
     )
     front_rects = tuple(
-        (*rect(callout["rect"]), str(callout["align"]))
+        (*geometry_rect(callout["rect"]), str(callout["align"]))
         for callout in front_view["callouts"]
     )
     right_rects = tuple(
-        (*rect(callout["rect"]), str(callout["align"]))
+        (*geometry_rect(callout["rect"]), str(callout["align"]))
         for callout in right_view["callouts"]
     )
     front_roles = tuple(str(callout["id"]) for callout in front_view["callouts"])
@@ -518,7 +509,7 @@ def product_overview_frames(
         *_label_frames(
             writer,
             f"{sid}_front",
-            cells(front_view),
+            projection_cells(front_view),
             front_rects,
             front_roles,
             leader_gap=leader_gap,
@@ -527,7 +518,7 @@ def product_overview_frames(
         *_label_frames(
             writer,
             f"{sid}_right",
-            cells(right_view),
+            projection_cells(right_view),
             right_rects,
             right_roles,
             leader_gap=leader_gap,

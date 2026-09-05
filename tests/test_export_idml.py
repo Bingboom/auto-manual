@@ -9,6 +9,7 @@ import unittest
 import xml.etree.ElementTree as ET
 import zipfile
 from pathlib import Path
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -27,6 +28,9 @@ from tools.export_idml import (  # noqa: E402
 )
 from tools.idml import export_paths as idml_export_paths  # noqa: E402
 from tools.idml import page_placed  # noqa: E402
+from tools.idml.target_assembly_render import (  # noqa: E402
+    needs_legacy_back_cover_fallback,
+)
 from tools.idml.character_metrics import (  # noqa: E402
     signal_label_metrics,
     tail_label_metrics,
@@ -151,6 +155,15 @@ def _top_level_story_paragraphs(xml: str) -> list[ET.Element]:
 
 
 class ExportIdmlTests(unittest.TestCase):
+    def test_target_assembly_does_not_synthesize_undeclared_back_cover(self) -> None:
+        target = SimpleNamespace(enabled=True, back_cover_added=False)
+        legacy = SimpleNamespace(enabled=False, back_cover_added=False)
+        rendered_target = SimpleNamespace(enabled=True, back_cover_added=True)
+
+        self.assertFalse(needs_legacy_back_cover_fallback(target))
+        self.assertTrue(needs_legacy_back_cover_fallback(legacy))
+        self.assertFalse(needs_legacy_back_cover_fallback(rendered_target))
+
     def _write_package(self) -> Path:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         sections = load_spec_sections(FIXTURE_DATA_ROOT, "JE-1000F", "US")
@@ -663,6 +676,48 @@ class ExportIdmlTests(unittest.TestCase):
                     period["blocks"][0]["spec"]["kind"],
                 )
 
+    def test_bp_jp_warranty_uses_shared_sections_without_inventing_year_badges(
+        self,
+    ) -> None:
+        from tools.idml.oppanel import transform
+        from tools.idml_rst_extract import extract_page
+
+        page = (
+            ROOT / "docs" / "templates" / "page_bp" / "ja"
+            / "11_warranty.rst"
+        )
+        extracted = extract_page(page, {"latex"})
+        semantic = [
+            json.loads(payload)
+            for kind, payload in extracted.blocks
+            if kind == "semantic"
+        ]
+        self.assertEqual(
+            ["warranty_lead"] + ["warranty_section"] * 7,
+            [block["kind"] for block in semantic],
+        )
+        self.assertNotIn(
+            "warranty_years",
+            {role for block in semantic for role in block["roles"]},
+        )
+
+        projected = transform(extracted.blocks)
+        component_specs = [
+            json.loads(payload)
+            for kind, payload in projected
+            if kind == "component"
+        ]
+        self.assertEqual(
+            ["warrantylead"] + ["warrantysection"] * 7,
+            [spec["kind"] for spec in component_specs],
+        )
+        self.assertFalse(any(
+            child.get("spec", {}).get("kind") == "warrantyyears"
+            for spec in component_specs
+            for child in spec.get("blocks", [])
+            if isinstance(child, dict)
+        ))
+
     def test_inline_image_anchors_hang_from_baseline(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
@@ -1123,7 +1178,7 @@ class ExportIdmlTests(unittest.TestCase):
         story = dict(writer.stories)["st_operation_rhythm"]
 
         self.assertIn('SpaceAfter="7.5"', story)
-        self.assertIn('Leading="8.1" SpaceAfter="7"', story)
+        self.assertIn('SpaceAfter="7"', story)
         self.assertIn(
             'SpaceBefore="22" SpaceAfter="6.5" '
             'AppliedParagraphStyle="ParagraphStyle/Heading2" '
@@ -3745,11 +3800,11 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn(">TIP<", stories["st_fcc_inbox_tip_label"])
         self.assertNotIn("TIPS", stories["st_fcc_inbox_tip_label"])
         self.assertIn(
-            'PointSize="8" Leading="9" FontStyle="Bold" BaselineShift="2.63"',
+            'PointSize="8" FontStyle="Bold" BaselineShift="2.63"',
             stories["st_fcc_inbox_tip_label"],
         )
         self.assertIn(
-            'PointSize="6.5" Leading="7.83" FontStyle="Medium" '
+            'PointSize="6.5" FontStyle="Medium" '
             'HorizontalScale="106.9" BaselineShift="0.9"',
             stories["st_fcc_inbox_tip_body"],
         )

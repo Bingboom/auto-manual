@@ -125,6 +125,12 @@ def _logical_pdf_marker_counts(path: Path) -> dict[bytes, int]:
                 )
                 stream_bytes = document.xref_stream(xref) or b""
             except Exception as exc:
+                # xref_length() is the highest object number plus one, so a
+                # conforming PDF may contain free / never-assigned numbers in
+                # that range. PyMuPDF reports those gaps with this exact
+                # missing-object error; there are no logical bytes to scan.
+                if "cannot find object in xref" in str(exc):
+                    continue
                 raise ArtifactValidationError(
                     f"cannot inspect PDF object {xref} in {path}: {exc}"
                 ) from exc

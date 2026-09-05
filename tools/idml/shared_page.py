@@ -14,6 +14,7 @@ from . import oppanel
 from .components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
+    IMAGE_ROLE_HALF_MEASURE,
     IMAGE_ROLE_REFERENCE_MEASURE,
     IMAGE_ROLE_WIDE_DIAGRAM,
 )
@@ -30,6 +31,7 @@ from .components.regulatory_compliance_panel import (
     RegulatoryCompliancePanelData,
 )
 from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
+from .components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from .heading_suffix import promote_h2_suffix_pills
 from .params import IDPKG, param_pt
 from .prose_flow import mark_troubleshooting_table
@@ -193,6 +195,114 @@ def add_safety_symbols_page(
     return safety_sid, symbol_sid
 
 
+def add_safety_signals_page(
+    writer,
+    *,
+    safety_sid: str,
+    safety_title: str,
+    safety_blocks: list[tuple[str, str]],
+    symbol_data,
+    bundle_root: Path,
+    page_index: int,
+    language: str,
+) -> tuple[str, str]:
+    """Compose Safety with a headerless signal-word table below it."""
+
+    lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
+    body_x = writer.m_l
+    body_w = writer.page_w - writer.m_l - writer.m_r
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    signal_top = param_pt(
+        writer.params,
+        "idml_safety_signals_table_top",
+        350.0,
+    )
+    gap = param_pt(writer.params, "idml_compact_shared_page_gap", 4.0)
+    safety_panel = CompactSafetyPanel(
+        writer,
+        sid=safety_sid,
+        data=CompactSafetyPanelData.from_blocks(
+            safety_blocks,
+            story_title=safety_title,
+            # This page's master sets its 「絵表示について」 heading in the
+            # same dark capsule the symbols page uses for its title. The
+            # symbols-page composition next door keeps the plain heading.
+            subbar_capsule=True,
+        ),
+        bundle_root=bundle_root,
+        language=lang,
+    ).render(
+        x=body_x,
+        y=page_top,
+        width=body_w,
+        available_height=signal_top - gap - page_top,
+    )
+    signal_sid = f"st_signal_words_shared_{lang}"
+    signal_panel = SignalWordsPanel(
+        writer,
+        sid=signal_sid,
+        data=SymbolsPanelData.from_source(symbol_data),
+        bundle_root=bundle_root,
+        language=lang,
+        include_header=False,
+    ).render(
+        x=body_x,
+        y=signal_top,
+        width=body_w,
+        available_height=writer.page_h - writer.m_b - signal_top,
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join([*safety_panel.frames, *signal_panel.frames])
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return safety_sid, signal_sid
+
+
+def add_symbol_icons_page(
+    writer,
+    *,
+    sid: str,
+    symbol_data,
+    page_index: int,
+    language: str,
+) -> str:
+    """Place one headerless single-column icon-meaning component."""
+
+    lang = language.strip().casefold().replace("_", "-").split("-", 1)[0]
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    panel = SymbolIconsPanel(
+        writer,
+        sid=sid,
+        data=SymbolsPanelData.from_source(symbol_data),
+        language=lang,
+        include_header=False,
+    ).render(
+        x=writer.m_l,
+        y=page_top,
+        width=writer.page_w - writer.m_l - writer.m_r,
+        available_height=writer.page_h - writer.m_b - page_top,
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + "".join(panel.frames)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    return spread_id
+
+
 def add_symbols_page(
     writer,
     *,
@@ -323,6 +433,7 @@ def add_connections_page(
     bundle_root: Path,
     page_index: int,
     language: str,
+    page_count: int = 1,
     composition_data: dict | None = None,
 ) -> str:
     """Place Connections through target-declared shared semantic variants."""
@@ -330,11 +441,7 @@ def add_connections_page(
     options = dict((composition_data or {}).get("connections") or {})
     layout_variant = str(options.get("layout_variant") or "")
     prepared_blocks = list(blocks)
-    if layout_variant:
-        if layout_variant != "notice_before_primary_figure":
-            raise ValueError(
-                f"unsupported Connections layout variant: {layout_variant}"
-            )
+    if layout_variant == "notice_before_primary_figure":
         image_index = next((
             index for index, (kind, _payload) in enumerate(prepared_blocks)
             if kind == "image"
@@ -359,23 +466,28 @@ def add_connections_page(
             )
         notice = prepared_blocks.pop(notice_index)
         prepared_blocks.insert(image_index, notice)
-        notice_roles = ("bp_connection_caution", "bp_connection_notes")
-        notice_ordinal = 0
-        for index, (kind, payload) in enumerate(prepared_blocks):
-            if kind != "component" or notice_ordinal >= len(notice_roles):
-                continue
-            try:
-                spec = json.loads(payload)
-            except (TypeError, json.JSONDecodeError):
-                continue
-            if not isinstance(spec, dict) or spec.get("kind") != "notice":
-                continue
-            spec["layout_role"] = notice_roles[notice_ordinal]
-            prepared_blocks[index] = (
-                kind,
-                json.dumps(spec, ensure_ascii=False),
-            )
-            notice_ordinal += 1
+    elif layout_variant not in {"", "stacking_guide"}:
+        raise ValueError(
+            f"unsupported Connections layout variant: {layout_variant}"
+        )
+
+    notice_roles = ("bp_connection_caution", "bp_connection_notes")
+    notice_ordinal = 0
+    for index, (kind, payload) in enumerate(prepared_blocks):
+        if kind != "component" or notice_ordinal >= len(notice_roles):
+            continue
+        try:
+            spec = json.loads(payload)
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if not isinstance(spec, dict) or spec.get("kind") != "notice":
+            continue
+        spec["layout_role"] = notice_roles[notice_ordinal]
+        prepared_blocks[index] = (
+            kind,
+            json.dumps(spec, ensure_ascii=False),
+        )
+        notice_ordinal += 1
 
     image_role_name = str(options.get("image_role") or "full_measure")
     image_roles = {
@@ -389,6 +501,125 @@ def add_connections_page(
             f"unsupported Connections semantic image role: {image_role_name}"
         ) from exc
     image_count = sum(kind == "image" for kind, _payload in prepared_blocks)
+
+    if layout_variant == "stacking_guide":
+        if page_count != 2:
+            raise ValueError("stacking_guide requires exactly two physical pages")
+        image_indices = [
+            index for index, (kind, _payload) in enumerate(prepared_blocks)
+            if kind == "image"
+        ]
+        notice_indices: list[int] = []
+        for index, (kind, payload) in enumerate(prepared_blocks):
+            if kind != "component" or not isinstance(payload, str):
+                continue
+            try:
+                spec = json.loads(payload)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(spec, dict) and spec.get("kind") == "notice":
+                notice_indices.append(index)
+        if len(image_indices) != 5 or len(notice_indices) != 2:
+            raise ValueError(
+                "stacking_guide requires two notice components and five images"
+            )
+        primary, guidance, lock, unlock, result = image_indices
+        caution, notes = notice_indices
+        if not (caution < primary < guidance < notes < lock < unlock < result):
+            raise ValueError(
+                "stacking_guide requires caution/primary/guidance/notes/"
+                "lock/unlock/result block order"
+            )
+        left_blocks = prepared_blocks[lock:result]
+        if [kind for kind, _payload in left_blocks] != [
+            "image", "body", "image", "body",
+        ]:
+            raise ValueError(
+                "stacking_guide requires image/label/image/label controls"
+            )
+        first_blocks = prepared_blocks[:primary + 1]
+        guidance_blocks = prepared_blocks[guidance:notes + 1]
+        result_blocks = prepared_blocks[result:]
+        if [kind for kind, _payload in result_blocks] != ["image"]:
+            raise ValueError("stacking_guide requires one terminal result image")
+
+        writer.add_prose_story(
+            sid,
+            title,
+            first_blocks,
+            bundle_root,
+            language=language,
+            image_roles=(image_role,),
+        )
+        guidance_sid = f"{sid}_guidance"
+        controls_sid = f"{sid}_controls"
+        result_sid = f"{sid}_result"
+        writer.add_prose_story(
+            guidance_sid,
+            f"{title} guidance",
+            guidance_blocks,
+            bundle_root,
+            language=language,
+            image_roles=(image_role,),
+        )
+        writer.add_prose_story(
+            controls_sid,
+            f"{title} controls",
+            left_blocks,
+            bundle_root,
+            language=language,
+            image_roles=(IMAGE_ROLE_HALF_MEASURE, IMAGE_ROLE_HALF_MEASURE),
+        )
+        writer.add_prose_story(
+            result_sid,
+            f"{title} result",
+            result_blocks,
+            bundle_root,
+            language=language,
+            image_roles=(IMAGE_ROLE_HALF_MEASURE,),
+        )
+        page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+        bottom = writer.page_h - writer.m_b + param_pt(
+            writer.params,
+            "idml_compact_connections_frame_bottom_extra",
+            8.0,
+        )
+        upper_bottom = param_pt(
+            writer.params,
+            "idml_connections_stacking_guide_upper_bottom",
+            235.0,
+        )
+        vertical_gap = param_pt(
+            writer.params,
+            "idml_connections_stacking_guide_vertical_gap",
+            4.0,
+        )
+        column_gutter = param_pt(
+            writer.params,
+            "idml_connections_stacking_guide_column_gutter",
+            10.0,
+        )
+        measure = writer.page_w - writer.m_l - writer.m_r
+        column_width = (measure - column_gutter) / 2.0
+        right_column_left = writer.m_l + column_width + column_gutter
+        writer.add_story_frames(sid, [(page_index, page_top, bottom)])
+        writer.add_story_frames(
+            guidance_sid,
+            [(page_index + 1, page_top, upper_bottom)],
+        )
+        writer.add_story_frames(
+            controls_sid,
+            [(page_index + 1, upper_bottom + vertical_gap, bottom)],
+            margin_left=writer.m_l,
+            margin_right=writer.page_w - writer.m_l - column_width,
+        )
+        writer.add_story_frames(
+            result_sid,
+            [(page_index + 1, upper_bottom + vertical_gap, bottom)],
+            margin_left=right_column_left,
+            margin_right=writer.m_r,
+        )
+        return sid
 
     writer.add_prose_story(
         sid,
@@ -404,7 +635,13 @@ def add_connections_page(
         "idml_compact_connections_frame_bottom_extra",
         8.0,
     )
-    writer.add_story_frames(sid, [(page_index, page_top, bottom)])
+    writer.add_story_frames(
+        sid,
+        [
+            (page_index + offset, page_top, bottom)
+            for offset in range(page_count)
+        ],
+    )
     return sid
 
 
@@ -529,6 +766,10 @@ def add_inbox_overview_page(
         bundle_root,
         instance_id=str(overview_options.get("instance_id") or "") or None,
         asset_refs=overview_options.get("asset_refs"),
+        show_view_headings=(
+            overview_options.get("layout_variant")
+            != "annotated_without_view_headings"
+        ),
     )
     spread_id = f"sp_{page_index}"
     writer.spreads.append((
@@ -775,6 +1016,12 @@ def add_charging_page(
         variant="charging",
     )
     image_count = sum(kind == "image" for kind, _text in prepared_blocks)
+    # One entry per figure, in source order; a figure with no entry keeps its
+    # label table under the art, which is what every other target renders.
+    figure_callouts = tuple(
+        tuple(dict(callout) for callout in (figure or ()))
+        for figure in (options.get("figure_callouts") or ())
+    )
 
     writer.add_prose_story(
         sid,
@@ -783,6 +1030,7 @@ def add_charging_page(
         bundle_root,
         language=language,
         image_roles=(image_role,) * image_count,
+        image_callouts=figure_callouts,
         semantic_page_role="charging",
     )
     page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
@@ -823,8 +1071,19 @@ def grouped_spec_sections(
             for section in selected
             for row in list(section.get("rows") or [])
         ]
+        # A declared title is honoured verbatim, empty included: a group that
+        # says `"title": ""` is asking for no heading, which is how a book
+        # whose printed spec table runs continuously is expressed. Falling
+        # through to the source section's own title on an empty string would
+        # make that impossible to say. Groups that omit the key keep inheriting
+        # the first selected section's title, so every contract written before
+        # this renders exactly as it did.
+        if "title" in group:
+            title = str(group.get("title") or "")
+        else:
+            title = str(selected[0].get("title") or "")
         grouped.append({
-            "title": str(group.get("title") or selected[0].get("title") or ""),
+            "title": title,
             "rows": rows,
         })
         used.extend(indices)
@@ -964,6 +1223,61 @@ def add_specifications_page(
     return spec_sid, sections
 
 
+def add_troubleshooting_specifications_page(
+    writer,
+    *,
+    trouble_data,
+    spec_data,
+    page_index: int,
+    language: str,
+    composition_data: dict | None = None,
+) -> tuple[str, str, list[dict]]:
+    """Compose complete Troubleshooting and Specifications on one page."""
+
+    sections = grouped_spec_sections(list(spec_data.sections), composition_data)
+    options = dict((composition_data or {}).get("specifications") or {})
+    trouble_sid = writer.add_trouble_story(
+        list(trouble_data.rows),
+        title=trouble_data.title,
+        lang=language,
+        intro=getattr(trouble_data, "intro", ""),
+        header=getattr(trouble_data, "header", None),
+        label_column_fill="Color/HB Bg K05",
+    )
+    spec_sid = writer.add_spec_story(
+        sections,
+        ordered_spec_annotations(list(spec_data.annotations), composition_data),
+        lang=language,
+        title=spec_data.title,
+        layout_variant=str(options.get("layout_variant") or "compact"),
+    )
+    spread_id = f"sp_{page_index}"
+    writer.spreads.append((
+        spread_id,
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
+        f'<idPkg:Spread xmlns:idPkg="{IDPKG}" DOMVersion="15.0">\n'
+        f'<Spread Self="{spread_id}" PageCount="1" BindingLocation="0" '
+        'ShowMasterItems="true">\n'
+        + _spread_page(writer, spread_id, page_index + 1)
+        + '</Spread>\n</idPkg:Spread>\n',
+    ))
+    page_top = param_pt(writer.params, "idml_shared_page_top", 27.7)
+    split = (
+        float(options["split"])
+        if options.get("split") is not None
+        else param_pt(writer.params, "idml_compact_trouble_spec_split", 315.0)
+    )
+    gap = param_pt(writer.params, "idml_compact_shared_page_gap", 4.0)
+    bottom = writer.page_h - writer.m_b + param_pt(
+        writer.params,
+        "idml_compact_spec_frame_bottom_extra",
+        8.0,
+    )
+    writer.add_story_frames(trouble_sid, [(page_index, page_top, split)])
+    writer.add_story_frames(spec_sid, [(page_index, split + gap, bottom)])
+    return trouble_sid, spec_sid, sections
+
+
 def add_regulatory_compliance_page(
     writer,
     *,
@@ -1026,10 +1340,13 @@ __all__ = (
     "add_lcd_operations_page",
     "add_regulatory_compliance_page",
     "add_safety_symbols_page",
+    "add_safety_signals_page",
     "add_specifications_page",
+    "add_symbol_icons_page",
     "add_storage_troubleshooting_page",
     "add_symbols_page",
     "add_storage_specifications_page",
+    "add_troubleshooting_specifications_page",
     "grouped_spec_sections",
     "ordered_spec_annotations",
     "latex_start_page",

@@ -32,9 +32,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(137, report.records)
+        self.assertEqual(145, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(129, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(137, report.status_counts[APPROVED_STATUS])
         self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
@@ -61,12 +61,13 @@ class TestAssetRegistry(unittest.TestCase):
         for asset_key, languages in sorted(referenced.items()):
             for language in sorted(languages):
                 with self.subTest(asset_key=asset_key, language=language):
+                    region = "JP" if language == "ja" else "US"
                     resolution = resolve_asset(
                         self.records,
                         repo_root=ROOT,
                         asset_key=asset_key,
                         model="JBP-2000B",
-                        region="US",
+                        region=region,
                         language=language,
                     )
                     self.assertTrue(resolution.path)
@@ -132,7 +133,7 @@ class TestAssetRegistry(unittest.TestCase):
             source=ROOT / "data" / "asset_registry.csv",
         )
 
-        self.assertEqual(137, report.records)
+        self.assertEqual(145, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual((), report.updated)
         self.assertGreater(len(report.unchanged), 0)
@@ -349,6 +350,70 @@ class TestAssetRegistry(unittest.TestCase):
                 f"jbp2000b_eu_connection_locking_{language}.pdf",
                 Path(resolution.path).name,
             )
+
+    def test_battery_pack_jp_assets_resolve_only_for_the_jp_target(self) -> None:
+        cases = (
+            ("page/cover", "page/jbp2000b_jp/cover", "cover_jbp2000b-ja.pdf", "ja"),
+            (
+                "connections/jbp2000b/stack_clearance",
+                "connections/jbp2000b/jp/stack_clearance",
+                "jbp2000b_jp_stack_clearance.pdf",
+                None,
+            ),
+            (
+                "charging/jbp2000b/ac_wall",
+                "charging/jbp2000b/jp/ac_wall",
+                "jbp2000b_jp_ac_charging.pdf",
+                None,
+            ),
+            (
+                "charging/jbp2000b/solar",
+                "charging/jbp2000b/jp/solar",
+                "jbp2000b_jp_solar_charging.pdf",
+                None,
+            ),
+        )
+        for shared_key, jp_key, filename, language in cases:
+            with self.subTest(asset_key=shared_key):
+                resolution = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key=shared_key,
+                    format_name="pdf",
+                    language=language,
+                    model="JBP-2000B",
+                    region="JP",
+                )
+                self.assertEqual(jp_key, resolution.asset_key)
+                self.assertEqual(filename, Path(resolution.path).name)
+
+        direct_keys = (
+            "connections/jbp2000b/jp/stacking_guidance",
+            "connections/jbp2000b/jp/lock_steps",
+            "connections/jbp2000b/jp/unlock_steps",
+            "connections/jbp2000b/jp/locked_stack",
+        )
+        for asset_key in direct_keys:
+            with self.subTest(asset_key=asset_key):
+                resolution = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key=asset_key,
+                    format_name="pdf",
+                    model="JBP-2000B",
+                    region="JP",
+                )
+                self.assertEqual(asset_key, resolution.asset_key)
+
+                with self.assertRaisesRegex(AssetRegistryError, "region US"):
+                    resolve_asset(
+                        self.records,
+                        repo_root=ROOT,
+                        asset_key=asset_key,
+                        format_name="pdf",
+                        model="JBP-2000B",
+                        region="US",
+                    )
 
     def test_resolve_v2_vector_projection(self) -> None:
         resolution = resolve_asset(
@@ -617,7 +682,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(137, len(records))
+        self.assertEqual(145, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

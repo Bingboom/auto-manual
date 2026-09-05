@@ -169,6 +169,7 @@ Meaning:
 - Shared templates under `docs/templates/` are bulk-migrated: every `common_assets` image directive and raw-HTML `src` uses `asset:<asset_key>` and is therefore registry status/scope/hash gated at bundle prepare. Path-based references remain compatible (recorded as `legacy-path`) but are reserved for sources that have no registry key yet — new template references should use the registry identity. Release manifests do not yet carry this asset lineage; `bundle_manifest.json` is the current bundle-level provenance surface.
 - Target-specific exports do not replace a shared registry key. They use a unique `asset_key` plus `override_for=<shared asset_key>` and a narrow model/region/language scope. A shared template keeps the stable base URI; the frozen registry resolver selects exactly one matching override or falls back to the shared row, and rejects ambiguous override matches.
 - `build.py idml` prepares only RST when the exact model/region/language target is present in the approved reference-layout registry; its production exporter consumes that hash-bound physical plan directly. A matching approved contract on disk without its registry entry is a hard error, not permission to use fuzzy page matching. The historical LaTeX-PDF fallback remains available only when the target has no approved contract.
+- A candidate `target_assembly` plan is frozen against a specific book, so the target's page manifest has to declare every page the plan names — otherwise `build.py idml` prepares a bundle the plan rejects and the target is only buildable with an explicit `--source review`, through a derivative. [`tests/test_assembly_plan_manifest_coverage.py`](../tests/test_assembly_plan_manifest_coverage.py) pins which targets are in that state; `JE-3000C_KR` is the one known case (its cover and back cover exist only under `docs/_review`, and `manual_kr.yaml` is shared with `JE-1000F_KR`/`JE-2000E_KR`, so declaring a per-model cover needs a cover asset for all three or a per-model manifest). A count mismatch names the offending pages in both directions; it is not a code regression.
 - `sync-review`: refresh review files affected by CSV data changes
 - `tools/check_review_branch_sync.py --base <ref> --remote origin --json`: emit
   the read-only shared-source propagation ledger. It resolves targets from each
@@ -552,6 +553,13 @@ Parallel-language template note:
 - current example: keep the `charging.rst` JE-2000E battery-pack `.. only:: model_je_2000e` block aligned across `page_us-en`, `page_us-es`, `page_us-fr`, and `page_zh`
 - before you touch page templates for a new Markdown intake, fill out [`dev/manual_template_intake_checklist.md`](./dev/manual_template_intake_checklist.md) to decide manifest mapping, placeholder policy, and validation scope first
 
+Carrier tag axes:
+
+- a page can gate a body on four axes: `model_<model>`, `region_<region>`, `lang_<lang>`, and `category_<product line>`
+- the category is `build.skeleton_family` in the config (`BP` for the battery-pack line, `MAIN` when undeclared), resolved by `resolve_category` in [`tools/page_contracts.py`](../tools/page_contracts.py) — the same value the `category:` contract tier selects on, so a page's requirement and its `.. only::` body always agree
+- both renderer planes emit it: Sphinx as `-t category_<value>` and the manual IR as a `category_<value>` base tag. Never add an axis to one plane only — `.. only::` omits an unmatched body silently, so a one-plane tag prints in the PDF and vanishes from IDML with no error
+- prefer a category branch over cloning a page. Two carriers whose structure is identical and whose prose differs by product line belong in one file with two `.. only:: category_*` bodies; the parallel-language note above then applies once instead of twice
+
 `symbols_blocks.csv` note:
 
 - `image_path` stores the RST image reference path for each symbols-table icon
@@ -823,6 +831,19 @@ candidate, so a successful 54-page native PDF/X-4 pass proves candidate
 assembly health but does not register an approved reference layout. Current
 native evidence is recorded in
 [`reviews/jbp2000b_eu_r2_native_validation_2026-08.md`](reviews/jbp2000b_eu_r2_native_validation_2026-08.md).
+
+`JBP-2000B / JP / ja` is the first target resolved from the separate `BP@JP`
+skeleton. Build it with `configs/config.bp-jp.yaml`; this config is exact-target
+only and declares `family_default: false`, so ordinary MAIN JP continues to
+resolve through `configs/config.ja.yaml`. Its paired host display name is
+`Jackery ポータブル電源 2000 Plus`. The 12-page target plan adds only assembly
+data: split signal/icon compositions, Inbox+Overview, LCD+Operation, a two-page
+Connections stacking guide, Troubleshooting+Specifications, and the shared
+warranty composition. New target behavior must stay in the manifest, Product
+Manual Plan, target assembly JSON, region profile, localized carrier data, and
+assets; do not add `JBP-2000B` or `JP` branches to page renderers. The plan
+remains `candidate` until native InDesign/PDF/X and 12-page visual acceptance
+are recorded and it is promoted separately.
 
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
@@ -1343,9 +1364,16 @@ page roles `cover` and `toc` are exempt.
 
 Japanese, Korean, and Chinese characters in editable IDML are serialized as
 explicit script-aware character runs. Korean Hangul uses the committed
-SIL-OFL `NanumGothic` face; Japanese and Chinese continue through
-`CJK_FONT_FAMILY_TOKEN` (the renderer token `idml_font_family_cjk`, currently
-Arial Unicode MS). Font-family tokens intentionally stay outside
+SIL-OFL `NanumGothic` face. Japanese uses the committed static TrueType
+`HBManualSansJP-Regular.ttf` (`HB Manual Sans JP (OTF)` in InDesign,
+OpenTypeTT) in both IDML and LaTeX. It is the Noto Sans JP Regular outline under
+a project-unique family and PostScript identity, so a host-installed
+`Noto Sans JP (OTF)` cannot shadow the document font after close/reopen. The
+IDML token uses InDesign's normalized `(OTF)` family spelling while the TTF
+name table and PostScript identity stay project-unique. The file is
+hash-verified and packaged with the document. Chinese
+continues through `CJK_FONT_FAMILY_TOKEN` (the renderer token
+`idml_font_family_cjk`). Font-family routing intentionally stays outside
 `data/layout_params.csv`: changing font delivery is not page geometry and does
 not by itself require a reference-layout rebind.
 Latin-market editable symbols are governed separately: the U+203B reference
@@ -1371,7 +1399,20 @@ Line and coarse text-width budgeting is governed by
 remain stable, East Asian Width `W`/`F` characters consume one em, combining
 marks consume no width, and ambiguous-width characters remain narrow for
 cross-host determinism. The estimator does not load local font files and does
-not replace native InDesign finalize/parity checks.
+not replace native InDesign finalize/parity checks. Heading/suffix-pill sizing
+also reserves a full em for wide/fullwidth glyphs while preserving the approved
+Latin advances. Single-column contents use native tab leaders; multicolumn
+contents retain the reference line geometry. An explicitly empty specification
+group omits its heading and marker. Warranty lists retain their source numbering
+or nested dash once, using the existing hanging-tab layout.
+
+Japanese native finalization preserves each character's face when rebinding the
+portable font, and fails if that requested face is unavailable. The report's
+`portable_font_rebinds[].style_counts` exposes the result. Archive frozen inputs
+and native reports outside the target build directory before another `idml` or
+`check` run: preparation cleans that target. See the
+[JP native acceptance ledger](reviews/bp_jp_r3c_native_validation_2026-09.md)
+for an actual twelve-page run and its retained debt.
 
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one

@@ -65,7 +65,7 @@ def operation_story_rhythm(
     if kind == "h2_operation_energy":
         return 'SpaceAfter="7.5"', 7.5
     if kind == "body_operation_energy_intro":
-        return 'Leading="8.1" SpaceAfter="7"', 7.0
+        return 'SpaceAfter="7"', 7.0
     if kind != "h2_operation_led":
         return None, None
     extra_intro = max(0, (intro_lines or 0) - 7) * 8.1

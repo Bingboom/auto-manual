@@ -3,6 +3,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+try:
+    from tools.lang_registry import canonical_language
+except ModuleNotFoundError:  # direct tools/export_idml.py execution fallback
+    from lang_registry import canonical_language  # type: ignore
+
 
 @dataclass(frozen=True)
 class IdmlFontFace:
@@ -174,6 +179,60 @@ KOREAN_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
 )
 
 
+# Japanese prose uses a redistributable Noto Sans JP TrueType instance carried
+# beside the document under a project-unique family identity. Keep it
+# language-scoped: Chinese text must not silently inherit Japanese glyph forms
+# merely because both scripts share Unicode blocks. The unique identity avoids
+# a host-installed ``Noto Sans JP (OTF)`` winning InDesign's family resolution
+# after the mandatory close/reopen gate.
+JAPANESE_FONT_FAMILY_TOKEN = IdmlFontFamilyToken(
+    resource_id="ff_hb_manual_sans_jp",
+    # InDesign exposes this CJK OpenType-TT face through its normalized
+    # document-family name. Serializing that exact name prevents a dead
+    # unavailable-family reference from being retained after save/reopen.
+    name="HB Manual Sans JP (OTF)",
+    # The shipped HTP017 book sets 57% of its Japanese characters in a
+    # non-Regular weight, so a single face flattens every heading, emphasis and
+    # table header to body weight at once. All four are instanced from the one
+    # variable source recorded in the portable-font manifest.
+    faces=(
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_dl",
+            name="HB Manual Sans JP (OTF) DemiLight",
+            postscript_name="HBManualSansJP-DemiLight",
+            style_name="DemiLight",
+            font_type="OpenTypeTT",
+        ),
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_r",
+            name="HB Manual Sans JP (OTF) Regular",
+            postscript_name="HBManualSansJP-Regular",
+            style_name="Regular",
+            font_type="OpenTypeTT",
+        ),
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_m",
+            name="HB Manual Sans JP (OTF) Medium",
+            postscript_name="HBManualSansJP-Medium",
+            style_name="Medium",
+            font_type="OpenTypeTT",
+        ),
+        IdmlFontFace(
+            resource_id="ff_hb_manual_sans_jp_b",
+            name="HB Manual Sans JP (OTF) Bold",
+            postscript_name="HBManualSansJP-Bold",
+            style_name="Bold",
+            font_type="OpenTypeTT",
+        ),
+    ),
+    delivery_postscript_names=(
+        "HBManualSansJP-DemiLight / HBManualSansJP-Regular / "
+        "HBManualSansJP-Medium / HBManualSansJP-Bold"
+    ),
+    delivery_license="SIL OFL 1.1 (bundled renamed Japanese text; Adobe Noto)",
+)
+
+
 IDML_FONT_FAMILY_TOKENS = (
     PRIMARY_FONT_FAMILY_TOKEN,
     CJK_FONT_FAMILY_TOKEN,
@@ -186,6 +245,7 @@ IDML_FONT_FAMILY_TOKENS = (
 # Korean family listed even though it ships only inside Korean packages.
 DELIVERY_FONT_FAMILY_TOKENS = IDML_FONT_FAMILY_TOKENS + (
     KOREAN_FONT_FAMILY_TOKEN,
+    JAPANESE_FONT_FAMILY_TOKEN,
 )
 
 
@@ -193,7 +253,37 @@ def font_family_tokens(
     language: str | None = None,
 ) -> tuple[IdmlFontFamilyToken, ...]:
     """Return the font families a package for ``language`` must declare."""
-    code = (language or "").split("-", 1)[0].strip().casefold()
+    code = canonical_language((language or "").split("-", 1)[0])
     if code == "ko":
         return IDML_FONT_FAMILY_TOKENS + (KOREAN_FONT_FAMILY_TOKEN,)
+    if code == "ja":
+        return IDML_FONT_FAMILY_TOKENS + (JAPANESE_FONT_FAMILY_TOKEN,)
     return IDML_FONT_FAMILY_TOKENS
+
+
+def cjk_font_family_for_language(language: str | None) -> str:
+    """Resolve the document-scoped CJK text family without target logic."""
+    code = canonical_language((language or "").split("-", 1)[0])
+    if code == "ja":
+        return JAPANESE_FONT_FAMILY_TOKEN.name
+    return CJK_FONT_FAMILY_TOKEN.name
+
+
+_ALL_FAMILY_TOKENS = DELIVERY_FONT_FAMILY_TOKENS + (CIRCLED_NUMBER_FONT_FAMILY_TOKEN,)
+
+
+def family_declares_style(family_name: str, style_name: str) -> bool:
+    """Does ``family_name`` ship a face for ``style_name``?
+
+    Weight can only be requested where the package actually carries the face.
+    Asking InDesign for a style a bundled family does not provide produces a
+    missing-font substitution, which is worse than rendering at the one weight
+    that exists, so callers gate on this rather than assuming a family is
+    complete.
+    """
+    folded = style_name.casefold()
+    for token in _ALL_FAMILY_TOKENS:
+        if token.name != family_name:
+            continue
+        return any(face.style_name.casefold() == folded for face in token.faces)
+    return False

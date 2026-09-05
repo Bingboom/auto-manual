@@ -262,6 +262,24 @@ def _dispatch_build_action(args: argparse.Namespace, context: DispatchContext) -
     context.run_checked(context.build_docs_command(args))
 
 
+def _configured_category(config_path: Path) -> str:
+    """The product line this config builds, for the IDML plane's category tag.
+
+    Always passed, never conditional: an absent tag makes a carrier's
+    ``.. only:: category_<value>`` body vanish silently, which is the failure
+    this axis exists to prevent.
+    """
+
+    from tools.config_loader import load_config_mapping
+    from tools.page_contracts import resolve_category
+
+    try:
+        build = load_config_mapping(config_path).get("build", {})
+    except Exception:
+        return resolve_category(None)
+    return resolve_category(build)
+
+
 def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") -> None:
     """Export the editable InDesign handoff package (tools/export_idml.py)."""
     import sys as _sys
@@ -317,6 +335,7 @@ def _dispatch_idml_action(args: argparse.Namespace, context: "DispatchContext") 
     language = _effective_idml_language(args, config_path=context.config_path)
     if language:
         cmd += ["--lang", language]
+    cmd += ["--category", _configured_category(context.config_path)]
     if getattr(args, "data_root", None):
         cmd += ["--data-root", args.data_root]
     if mode:

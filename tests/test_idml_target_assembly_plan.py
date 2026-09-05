@@ -6,7 +6,9 @@ import unittest
 
 from tools.idml.composition_plan import build_composition_plan
 from tools.idml.target_assembly_plan import (
+    CONNECTIONS_LAYOUT_VARIANTS,
     OPERATION_LAYOUT_VARIANTS,
+    TOC_LAYOUT_VARIANTS,
     WARRANTY_LAYOUT_VARIANTS,
     TargetAssemblyPlanError,
     _PAGE_KEYS,
@@ -165,6 +167,23 @@ def _kr_manual_ir(payload: dict) -> ManualIR:
 
 
 class TargetAssemblyPlanTests(unittest.TestCase):
+    def test_toc_accepts_registered_single_column_variant(self) -> None:
+        self.assertEqual({"single_column"}, set(TOC_LAYOUT_VARIANTS))
+        issues = _validate_composition_data(
+            [{
+                "source_ref": "page/toc.rst",
+                "page_role": "toc",
+                "composition_type": "toc",
+                "composition_data": {
+                    "toc": {"layout_variant": "single_column"},
+                },
+            }],
+            {},
+            _manual_ir(_payload()),
+        )
+
+        self.assertEqual([], issues)
+
     def test_symbols_accepts_target_declared_column_split(self) -> None:
         issues = _validate_composition_data(
             [{
@@ -277,30 +296,39 @@ class TargetAssemblyPlanTests(unittest.TestCase):
             issues,
         )
 
-    def test_connections_composition_accepts_shared_layout_variant(self) -> None:
-        payload = _payload()
-        page = next(
-            page for page in payload["pages"]
-            if page["source_ref"] == "page/connections_en.rst"
+    def test_connections_composition_accepts_shared_layout_variants(self) -> None:
+        self.assertEqual(
+            {"notice_before_primary_figure", "stacking_guide"},
+            set(CONNECTIONS_LAYOUT_VARIANTS),
         )
-        page["composition_data"] = {
-            "connections": {
-                "layout_variant": "notice_before_primary_figure",
-                "image_role": "reference_measure",
-            }
-        }
+        for variant in CONNECTIONS_LAYOUT_VARIANTS:
+            with self.subTest(variant=variant):
+                payload = _payload()
+                page = next(
+                    page for page in payload["pages"]
+                    if page["source_ref"] == "page/connections_en.rst"
+                )
+                page["composition_data"] = {
+                    "connections": {
+                        "layout_variant": variant,
+                        "image_role": "reference_measure",
+                    }
+                }
 
-        plan = normalize_target_assembly_plan(
-            payload,
-            _manual_ir(payload),
-            source_path=PLAN_PATH,
-        )
+                plan = normalize_target_assembly_plan(
+                    payload,
+                    _manual_ir(payload),
+                    source_path=PLAN_PATH,
+                )
 
-        normalized = next(
-            item for item in plan["pages"]
-            if item["source_ref"] == "page/connections_en.rst"
-        )
-        self.assertEqual(page["composition_data"], normalized["composition_data"])
+                normalized = next(
+                    item for item in plan["pages"]
+                    if item["source_ref"] == "page/connections_en.rst"
+                )
+                self.assertEqual(
+                    page["composition_data"],
+                    normalized["composition_data"],
+                )
 
     def test_connections_composition_rejects_page_specific_variant(self) -> None:
         payload = _payload()
@@ -317,7 +345,98 @@ class TargetAssemblyPlanTests(unittest.TestCase):
 
         with self.assertRaisesRegex(
             TargetAssemblyPlanError,
-            "connections.layout_variant must be notice_before_primary_figure",
+            "connections.layout_variant must be one of",
+        ):
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(payload),
+                source_path=PLAN_PATH,
+            )
+
+    def test_a_bundle_missing_a_planned_page_names_it(self) -> None:
+        """The exporter's dead end used to be a raw strict-zip message.
+
+        JE-3000C_KR hits this on every default `build.py idml`: its plan wants
+        a cover and a back cover that no manifest declares, so the prepared
+        bundle is two pages short. The message has to name those pages -- the
+        count alone sent one investigation looking for a code regression.
+        """
+
+        payload = _payload()
+        dropped = payload["pages"][0]["source_ref"]
+        ir = _manual_ir(payload)
+        short_ir = ManualIR(**{
+            **{
+                field: getattr(ir, field)
+                for field in ir.__dataclass_fields__
+                if field != "pages"
+            },
+            "pages": ir.pages[1:],
+        })
+
+        with self.assertRaises(TargetAssemblyPlanError) as caught:
+            normalize_target_assembly_plan(
+                payload,
+                short_ir,
+                source_path=PLAN_PATH,
+            )
+
+        message = str(caught.exception)
+        self.assertIn(f"plan declares {len(payload['pages'])} page(s)", message)
+        self.assertIn(f"prepared bundle has {len(payload['pages']) - 1}", message)
+        self.assertIn("planned but not in the bundle: " + dropped, message)
+        self.assertIn("check that the page manifest declares", message)
+        self.assertNotIn("zip()", message)
+
+    def test_a_stale_plan_names_the_pages_it_does_not_know(self) -> None:
+        payload = _payload()
+        extra = payload["pages"].pop()["source_ref"]
+
+        with self.assertRaises(TargetAssemblyPlanError) as caught:
+            normalize_target_assembly_plan(
+                payload,
+                _manual_ir(_payload()),
+                source_path=PLAN_PATH,
+            )
+
+        message = str(caught.exception)
+        self.assertIn("in the bundle but not planned: " + extra, message)
+        self.assertNotIn("zip()", message)
+
+    def test_specifications_accepts_bounded_target_split(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "spec"
+        )
+        page["composition_data"]["specifications"]["split"] = 246.0
+
+        plan = normalize_target_assembly_plan(
+            payload,
+            _manual_ir(payload),
+            source_path=PLAN_PATH,
+        )
+
+        normalized = next(
+            item for item in plan["pages"]
+            if item["source_ref"] == page["source_ref"]
+        )
+        self.assertEqual(
+            246.0,
+            normalized["composition_data"]["specifications"]["split"],
+        )
+
+    def test_specifications_rejects_out_of_bounds_target_split(self) -> None:
+        payload = _payload()
+        page = next(
+            page for page in payload["pages"]
+            if page["page_role"] == "spec"
+        )
+        page["composition_data"]["specifications"]["split"] = 999.0
+
+        with self.assertRaisesRegex(
+            TargetAssemblyPlanError,
+            "specifications.split must be a finite number between 120 and 400",
         ):
             normalize_target_assembly_plan(
                 payload,
