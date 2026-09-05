@@ -22,7 +22,7 @@ from tools.attachment_identity import (
     frozen_attachment_names,
     preserve_frozen_attachment_names,
 )
-from tools.manual_ir.builder import _normalized_page_sha256, _snapshot_sha256
+from tools.manual_ir.hashing import _normalized_page_sha256, _snapshot_sha256
 
 
 FROZEN = """\

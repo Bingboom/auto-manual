@@ -13,7 +13,8 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.manual_ir import build_manual_ir, validate_manual_ir, write_manual_ir
+from tools.manual_ir import build_manual_ir_from_source, validate_manual_ir, write_manual_ir
+from tools.manual_ir.prepared_rst import load_prepared_rst_source
 from tools.utils.path_utils import Paths
 
 
@@ -32,7 +33,7 @@ def main() -> int:
     parser.add_argument("--strict", action="store_true")
     args = parser.parse_args()
     bundle_root = args.bundle_root.resolve()
-    ir = build_manual_ir(
+    prepared = load_prepared_rst_source(
         root=ROOT,
         bundle_root=bundle_root,
         model=args.model,
@@ -44,6 +45,7 @@ def main() -> int:
         layout_params_csv=args.layout_params,
         style_contract_path=args.style_contract,
     )
+    ir = build_manual_ir_from_source(prepared)
     issues = validate_manual_ir(
         ir,
         require_zero_skipped_raw=args.strict,

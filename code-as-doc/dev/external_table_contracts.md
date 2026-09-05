@@ -83,14 +83,19 @@ Snapshot compatibility rules:
 
 [`tools/lang_registry.py`](../../tools/lang_registry.py) owns language identity,
 input aliases, historical snapshot suffixes, and table-specific column names.
-[`tools/localized_copy.py`](../../tools/localized_copy.py) owns the shared column
-selection primitives. It does not choose a business table's fallback policy:
+[`tools/utils/csv_fields.py`](../../tools/utils/csv_fields.py) owns the shared
+column spelling and cell/header selection primitives, with no business-reader
+or language-registry dependency. [`tools/localized_copy.py`](../../tools/localized_copy.py)
+keeps compatible exports of the same functions, the registry-aware helpers and
+the strict copy-key resolver. The primitives do not choose a table's fallback policy:
 
 - `snapshot_language_suffixes` / `localized_cell` use exact snapshot suffixes
   in registry order, testing each cell for nonempty stripped text.
 - `localized_columns` expands caller-supplied suffixes into legacy CSV case and
   underscore spellings. `table_localized_columns` restricts candidates to the
-  registered table/field. Neither adds English or source columns.
+  registered table/field. Neither adds English or source columns. The default
+  case folding is unchanged; Spec_Master uses `casefold=False` to retain its
+  historical `lower()` spelling even for unknown language tokens.
 - `first_existing_column` tests headers, regardless of cell content;
   `first_text` tests cell values. Missing keys, `None`, and empty strings are
   unavailable to `first_text`; whitespace is unavailable with its default
@@ -125,6 +130,25 @@ The migrated consumers deliberately retain different policies:
 | CSV Symbols icon rows | Select from first-row headers using input alias order, then the legacy raw spelling, source-language spelling, and `text_en`. An empty selected cell remains an error; English is a missing-column fallback only |
 | CSV builder footnote/note normalization | Registered `spec_footnotes` columns first (including the historical bare Portuguese field), then input aliases and legacy spellings. Preserve raw whitespace and do not add English fallback |
 | CSV spec parser | For `Row_label` / `Param` / `Value`, English or the row's source language uses source fields first and bypasses localized columns. Other requests try input aliases, then source fields/base, then the caller's explicit default keys |
+| Spec_Master utility lookup | For `Row_label` / `Param` / `Value`, English or the normalized source language bypasses localized fields. Otherwise try input spelling, lower, upper, underscore and lower underscore, followed only by literal br-family fallbacks; then source fields, bare base and `Spec_Value`. Other bases have no implicit source fields |
+
+Spec_Master keeps its narrower policy in
+[`tools/utils/spec_master_row_helpers.py`](../../tools/utils/spec_master_row_helpers.py),
+shared by the product-name and template-substitution lookups. Only requests
+`br`, `pt-br` or `pt_br` (case-insensitive) append the literal fallbacks
+`br`, `pt-BR`, `pt-br`, `pt_BR`, `pt_br`; those fallbacks are not expanded again.
+For example a `br` request does not gain `Value_PT-BR`, and `ja` does not gain
+`Value_jp`. No registry alias search or silent English fallback is added.
+`Source_lang` normalization is unchanged and separate from requested-language
+spelling: a source `JP` normalizes to `ja`, but a request `jp` still looks for
+`*_jp`. Unknown source languages keep the existing unrecognized-source behavior.
+
+Source fields retain canonical-before-lowercase order. A source write selects
+the first **present header**, including an empty cell, or the canonical source
+header if neither exists. Page-label preference still rejects translation
+notes and source-equivalent labels before falling back to `Value`; the lookup's
+existing lowercasing of the requested label language, row ranking and filtering
+are unchanged.
 
 Old-path exit scope: IDML's `_SUFFIX_CANDIDATES`, `_lang_suffixes`, and
 `_localized_cell`, the LCD/trouble `_lang_suffix` / `_lang_suffix_candidates` /
@@ -133,14 +157,24 @@ are removed. Thin wrappers remain where they own table policy or RST text
 normalization. The IDML loaders are public compatibility readers exported by
 `tools/export_idml.py`; production IDML consumes the prepared-bundle IR.
 
-This slice leaves spec-master utility row/source-language policies, IDML's
-legacy spec-title mapping, status-word matching, filtering, paths, caches, and
+The second slice removes Spec_Master's `_first_non_empty` implementation,
+`_first_existing_key`, `_lang_suffix_candidates` and the lookup's duplicated
+`_pick_lang_specific_value` loop. Row helpers and lookups now call the shared
+primitives; the old `_first_non_empty` import is a direct compatibility alias
+for unchanged audit/mapping readers. The remaining `_spec_lang_columns` and
+`_pick_lang_value` wrappers own only Spec_Master candidate/source policy.
+
+This leaves spec-master source normalization and row ranking/filtering, IDML's
+legacy spec-title mapping, status-word matching, paths, caches, and
 target selection with their existing owners. It does not alter snapshot data,
 schema, online Base access, or the JP native-validation debt/eligibility state.
 Consumer boundary cases and real JP/French page builds are covered in
 [`tests/test_snapshot_localization.py`](../../tests/test_snapshot_localization.py);
 primitive selection cases are in
-[`tests/test_localized_copy.py`](../../tests/test_localized_copy.py).
+[`tests/test_localized_copy.py`](../../tests/test_localized_copy.py). Spec_Master
+source/candidate policy, public product/substitution behavior, and fresh-process
+import permutations are covered in
+[`tests/test_spec_master_read_policy.py`](../../tests/test_spec_master_read_policy.py).
 
 ## 2. Document_link
 
