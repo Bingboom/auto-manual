@@ -1856,3 +1856,16 @@ pair consumer. Both symbol-table families share provenance/envelope checks;
 the existing signal IR bytes remain unchanged. Actual EN/FR/ES whole-page
 outputs are byte-identical. Fixed matrix admission and retained-HTML parsing
 remain source debt; other components and JP native layout are separate.
+
+
+App download now follows `ManualSource → public IR → Web consumer` before
+figure protection. The `web-app-download` projection carries its heading label,
+original semantic image, two ordered rich-copy columns, store/QR artwork
+bindings and complete image references. The old direct source/render function
+exits `web_presentation`. Replay needs neither the source file nor source config;
+it checks hashes, column semantics/order and markup/assets before changing the
+caller. Ambiguous image/heading candidates, incomplete copy and empty artwork
+bindings fail atomically. Existing target admission, one-split/two-paragraph
+input forms and EN/FR/ES whole-page output stay unchanged. Paragraph splitting
+and retained inline HTML remain source-adapter debt; App inline controls,
+reference figures and JP native layout are separate.

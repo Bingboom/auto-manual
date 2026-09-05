@@ -272,6 +272,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web FCC | Scoped semantic component IR before figure protection | Existing FCC HTML/marker parser at source boundary; replay uses no HTML/config |
 | Prepared Web signal-word legend | Scoped table IR before figure protection | Governed warning-lockup markup/row-count selection + retained HTML |
 | Prepared Web icon/meaning pair panels | Scoped pair IR before figure protection | Existing 7 × 4 matrix and left 6 / right 5 contract + retained HTML |
+| Prepared Web App download | Scoped two-column IR before figure protection | Existing image/source gate, paragraph split and retained inline HTML |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -384,9 +385,24 @@ IR envelopes, including source-free pair replay, rich meaning markup, 6/5
 ordering and asset completeness. The fixed matrix/source gate remains; this
 does not generalize pair counts or complete whole-manual/neutral-rich-text work.
 
+**Prepared App download:** `web-app-download` records the heading label,
+original semantic image, ordered store/QR rich-copy columns, resolved artwork
+bindings and all image references. The source adapter alone interprets the
+existing paragraph split and source-image config. The consumer validates the
+public envelope and canonical column/markup/asset payload, renders in isolation,
+and applies only on success. Duplicate images/headings, missing copy or artwork,
+and consumed paragraphs containing the source image fail before mutation.
+
+The direct App download function exits `web_presentation`; its rendering body
+moves mechanically to `web_app_download`. Source-free/config-free serialized
+replay and exact EN/FR/ES whole-page parity are verified. No registry/config or
+schema is added, and source admission is unchanged. Retained inline HTML and
+paragraph splitting remain debt; App inline controls/reference figures are not
+migrated by this slice.
+
 These are **three scoped table families across both Web entrances plus the
 shared callout consumer, prepared signal-word legend and icon/meaning pairs,
-Inbox and FCC composites**, not whole-manual Web IR or a
+Inbox, FCC and App download composites**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.

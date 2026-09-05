@@ -1851,3 +1851,21 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - Remaining: fixed matrix/source admission and retained-HTML interpretation,
   other composite consumers, generic figure string protection, whole-manual
   IR and neutral rich text. JP native layout stays separate.
+
+
+## 2026-09-05: App download columns consume public IR
+
+- The actual Web caller now assembles `web-app-download` IR and replays its
+  validated payload; the direct source/render function exits `web_presentation`.
+  Source parsing owns heading/copy/image selection and config/CSS provenance;
+  the consumer needs neither the source file nor config at replay.
+- Preserve two ordered rich-copy columns, original semantic image attributes,
+  store/QR artwork bindings and all copy image references. Reject ambiguous or
+  incomplete inputs and inconsistent payloads before caller mutation.
+- The real EN/FR/ES RST emission test failed before migration and passes after.
+  Whole-page HTML matches pre-change bytes with identical composite bindings;
+  tests cover serialized replay, rich content, asset order and atomic failures.
+- No new registry, config, schema or hotspot allowance. Remaining: paragraph
+  splitting/retained HTML, App inline controls and reference figures, other
+  composite callers, generic figure protection and whole-manual/neutral-rich-text
+  IR. JP native layout stays outside this batch.

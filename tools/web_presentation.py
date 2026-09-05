@@ -27,6 +27,7 @@ from tools.web_composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
 )
+from tools.web_app_download import transform_app_download
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
 from tools.web_overview_component import transform_overview
@@ -845,103 +846,6 @@ def _transform_reference_figures(
         )
 
 
-def _transform_app_download(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    contract: dict[str, Any],
-) -> None:
-    spec = contract["app_download"]
-    image = next(
-        (
-            candidate
-            for candidate in soup.find_all("img")
-            if _src_matches_key(str(candidate.get("src", "")), str(spec["image_key"]))
-        ),
-        None,
-    )
-    if not isinstance(image, Tag):
-        raise WebPresentationError(
-            f"{source_path}: App download section is missing governed image {spec['image_key']}"
-        )
-    section = image.find_parent("section")
-    if not isinstance(section, Tag):
-        raise WebPresentationError(f"{source_path}: App download image has no section")
-    heading = section.find("h2", recursive=False)
-    if not isinstance(heading, Tag):
-        raise WebPresentationError(f"{source_path}: App download section is missing its H2")
-
-    paragraphs = [
-        paragraph
-        for paragraph in section.find_all("p", recursive=False)
-        if isinstance(paragraph, Tag)
-    ]
-    copy_markup: list[str]
-    if len(paragraphs) == 2:
-        copy_markup = [paragraph.decode_contents().strip() for paragraph in paragraphs]
-    elif len(paragraphs) == 1:
-        parts = re.split(r"\s*\n+\s*", paragraphs[0].decode_contents().strip(), maxsplit=1)
-        if len(parts) != 2:
-            raise WebPresentationError(
-                f"{source_path}: App download copy must provide left and right columns"
-            )
-        copy_markup = [part.strip() for part in parts]
-    else:
-        raise WebPresentationError(
-            f"{source_path}: App download section has {len(paragraphs)} direct paragraphs; "
-            "expected one split paragraph or two column paragraphs"
-        )
-    if any(not BeautifulSoup(markup, "html.parser").get_text(" ", strip=True) for markup in copy_markup):
-        raise WebPresentationError(f"{source_path}: App download column copy is incomplete")
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-app-download-composition",
-            "aria-label": heading.get_text(" ", strip=True),
-        },
-    )
-    image["class"] = [*image.get("class", []), "hb-app-download-semantic-art"]
-    image.replace_with(composition)
-
-    copy_grid = soup.new_tag("div", attrs={"class": "hb-app-download-grid"})
-    for column_id, markup in zip(("store", "qr"), copy_markup, strict=True):
-        column = soup.new_tag(
-            "div",
-            attrs={
-                "class": ["hb-app-download-column", f"hb-app-download-column-{column_id}"],
-            },
-        )
-        art_frame = soup.new_tag("div", attrs={"class": "hb-app-download-art-frame"})
-        art = soup.new_tag(
-            "img",
-            attrs={
-                "class": ["hb-app-download-art", f"hb-app-download-art-{column_id}"],
-                "src": str(spec["artwork"][column_id]),
-                "alt": "",
-                "aria-hidden": "true",
-                "loading": "lazy",
-            },
-        )
-        art_frame.append(art)
-        column.append(art_frame)
-        copy = soup.new_tag(
-            "div",
-            attrs={"class": ["hb-app-download-copy", f"hb-app-download-copy-{column_id}"]},
-        )
-        paragraph = soup.new_tag("p")
-        _append_markup(paragraph, markup)
-        copy.append(paragraph)
-        column.append(copy)
-        copy_grid.append(column)
-    composition.append(copy_grid)
-    semantic = soup.new_tag("div", attrs={"class": "hb-app-download-semantic"})
-    semantic.append(image)
-    composition.append(semantic)
-    for paragraph in paragraphs:
-        paragraph.decompose()
-
-
 def _transform_app_inline_controls(
     soup: BeautifulSoup,
     *,
@@ -1367,7 +1271,10 @@ def transform_web_fragment(
             model=model, region=region, error_type=WebPresentationError,
         )
     if is_app_download:
-        _transform_app_download(soup, source_path=source_path, contract=data)
+        transform_app_download(
+            soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_app_inline_controls:
         _transform_app_inline_controls(soup, source_path=source_path, contract=data)
     if is_reference_page:
