@@ -79,6 +79,69 @@ Snapshot compatibility rules:
 - `page_registry.csv` and `data/layout_params.csv` remain repo-maintained inputs
   outside the phase2 sync flow.
 
+### Localized columns in frozen snapshots
+
+[`tools/lang_registry.py`](../../tools/lang_registry.py) owns language identity,
+input aliases, historical snapshot suffixes, and table-specific column names.
+[`tools/localized_copy.py`](../../tools/localized_copy.py) owns the shared column
+selection primitives. It does not choose a business table's fallback policy:
+
+- `snapshot_language_suffixes` / `localized_cell` use exact snapshot suffixes
+  in registry order, testing each cell for nonempty stripped text.
+- `localized_columns` expands caller-supplied suffixes into legacy CSV case and
+  underscore spellings. `table_localized_columns` restricts candidates to the
+  registered table/field. Neither adds English or source columns.
+- `first_existing_column` tests headers, regardless of cell content;
+  `first_text` tests cell values. Missing keys, `None`, and empty strings are
+  unavailable to `first_text`; whitespace is unavailable with its default
+  `strip=True`. With `strip=False`, whitespace is a value and can stop the
+  search. `fallback_columns` is explicit and ordered in both APIs.
+- `LocalizedCopyResolver` retains its strict copy-key contract: missing target
+  language text is an error. The permissive primitives do not change it.
+
+Canonical identity and column spelling are separate:
+
+| Canonical language | Input aliases | Exact snapshot suffix order | Table-specific examples |
+| --- | --- | --- | --- |
+| `ja` | `ja`, `jp` | `jp`, `ja` | LCD/trouble use `jp`; footnotes use `Text_ja` |
+| `uk` | `uk`, `ukr` | `uk`, `ukr` | LCD/trouble use `ukr`; footnotes use `Text_uk` |
+| `pt-BR` | `pt-BR`, `pt_br`, `br` | `pt-BR`, `br` | LCD/trouble declare both; footnotes also declare bare `pt-BR` |
+| `zh` | `zh` | `zh`, `cn` | Current table schemas use `zh`; `cn` is only a historical suffix, not a registered input alias |
+
+Input-alias searches retain the requested alias first; exact snapshot searches
+retain registry suffix order. Unknown nonempty language tokens keep the legacy
+literal-column lookup. Empty language input adds no shared-helper candidates;
+IDML's public `normalize_lang` compatibility façade still supplies its existing
+`en` default and historical first suffix.
+
+The migrated consumers deliberately retain different policies:
+
+| Reader / fields | Candidate and fallback policy |
+| --- | --- |
+| IDML `load_spec_sections` | Exact snapshot suffixes per cell, then the corresponding `Row_label_source`, `Param_source`, or `Value_source`; no added English fallback |
+| IDML LCD / troubleshooting / annotations | Exact snapshot suffixes per cell, then the explicitly named `*_en` / `Text_en` cell |
+| IDML Symbols | Only the first historical suffix, then the matching English field per cell; it does not gain the other loaders' alias scan |
+| CSV LCD / troubleshooting | Select a column from table metadata by header presence, with explicit English column fallback. For each row, an empty selected cell uses English; whitespace stops selection before stripping. A blank primary alias never advances to another alias in that row |
+| CSV Symbols icon rows | Select from first-row headers using input alias order, then the legacy raw spelling, source-language spelling, and `text_en`. An empty selected cell remains an error; English is a missing-column fallback only |
+| CSV builder footnote/note normalization | Registered `spec_footnotes` columns first (including the historical bare Portuguese field), then input aliases and legacy spellings. Preserve raw whitespace and do not add English fallback |
+| CSV spec parser | For `Row_label` / `Param` / `Value`, English or the row's source language uses source fields first and bypasses localized columns. Other requests try input aliases, then source fields/base, then the caller's explicit default keys |
+
+Old-path exit scope: IDML's `_SUFFIX_CANDIDATES`, `_lang_suffixes`, and
+`_localized_cell`, the LCD/trouble `_lang_suffix` / `_lang_suffix_candidates` /
+`_first_existing` copies, and the builder/Symbols/spec-parser candidate loops
+are removed. Thin wrappers remain where they own table policy or RST text
+normalization. The IDML loaders are public compatibility readers exported by
+`tools/export_idml.py`; production IDML consumes the prepared-bundle IR.
+
+This slice leaves spec-master utility row/source-language policies, IDML's
+legacy spec-title mapping, status-word matching, filtering, paths, caches, and
+target selection with their existing owners. It does not alter snapshot data,
+schema, online Base access, or the JP native-validation debt/eligibility state.
+Consumer boundary cases and real JP/French page builds are covered in
+[`tests/test_snapshot_localization.py`](../../tests/test_snapshot_localization.py);
+primitive selection cases are in
+[`tests/test_localized_copy.py`](../../tests/test_localized_copy.py).
+
 ## 2. Document_link
 
 `Document_link` is the queue table for Build Draft Package and Publish. Start

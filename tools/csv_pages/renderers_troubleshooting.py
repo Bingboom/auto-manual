@@ -7,6 +7,7 @@ import re
 
 from .renderers_common import apply_vars, rst_escape
 from .. import lang_registry
+from ..localized_copy import first_existing_column, first_text, table_localized_columns
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens
 
@@ -25,41 +26,6 @@ def _truthy(value: str, *, default: bool = True) -> bool:
     if raw in _FALSE_VALUES:
         return False
     return default
-
-
-def _lang_suffix(lang: str) -> str:
-    candidates = _lang_suffix_candidates(lang)
-    return candidates[0] if candidates else (lang or "").strip()
-
-
-def _lang_suffix_candidates(lang: str) -> list[str]:
-    spec = lang_registry.language_spec(lang)
-    if spec is not None:
-        suffixes = [
-            column.removeprefix("corrective_measures_")
-            for column in spec.columns_for_table("troubleshooting")
-            if column.startswith("corrective_measures_")
-        ]
-    else:
-        suffixes = [(lang or "").strip()]
-    candidates: list[str] = []
-    for suffix in suffixes:
-        candidates.extend(
-            [
-                suffix,
-                suffix.casefold(),
-                suffix.replace("-", "_"),
-                suffix.casefold().replace("-", "_"),
-            ]
-        )
-    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
-
-
-def _first_existing(headers: set[str], candidates: list[str]) -> str:
-    for candidate in candidates:
-        if candidate in headers:
-            return candidate
-    return candidates[0]
 
 
 def _pick_target_model(vars_map: dict[str, str]) -> str:
@@ -143,12 +109,9 @@ def _collect_rows(
     if not blocks:
         raise ValueError(f"troubleshooting page has no rows for lang={lang}")
     headers = set(blocks[0].keys())
-    measures_col = _first_existing(
-        headers,
-        [
-            *(f"corrective_measures_{suffix}" for suffix in _lang_suffix_candidates(lang)),
-            "corrective_measures_en",
-        ],
+    measures_col = first_existing_column(
+        headers, table_localized_columns("troubleshooting", "corrective_measures", lang),
+        fallback_columns=("corrective_measures_en",),
     )
     if measures_col not in headers:
         raise ValueError(f"troubleshooting csv missing language corrective-measures column: {measures_col}")
@@ -174,7 +137,7 @@ def _collect_rows(
 
     for row in selected:
         code = (row.get("error_code") or "").strip()
-        measures = (row.get(measures_col) or row.get("corrective_measures_en") or "").strip()
+        measures = first_text(row, (measures_col,), fallback_columns=("corrective_measures_en",), strip=False).strip()
         if not code or not measures:
             continue
         rows.append(
