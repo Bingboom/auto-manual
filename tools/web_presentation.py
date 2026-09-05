@@ -1371,6 +1371,7 @@ def transform_web_fragment(
     soup = BeautifulSoup(html_fragment, "html.parser")
     has_specifications = transform_specification_tables(
         soup, source_path=source_path, language=language, error_type=WebPresentationError,
+        model=model, region=region,
     )
     has_troubleshooting = transform_troubleshooting_tables(
         soup, source_path=source_path, declared_page=declared_troubleshooting,

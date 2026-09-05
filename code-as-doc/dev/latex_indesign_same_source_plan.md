@@ -228,11 +228,30 @@ permissive extraction retains supported blocks and reports the skipped count.
 This is not a general TeX completeness proof: generated data macros and the
 special LCD decoder retain their separate interpretation paths.
 
-**Cross-renderer status:** public source assembly and input validation are
-prerequisites, not Web adoption. Web currently shares ComponentSpec projections
-but does not consume whole-manual ManualIR. A future Web migration must route
-a real consumer through IR and retire its corresponding repeated read/parse
-path; a zero-import Web adapter cannot count as that migration being complete.
+**Cross-renderer status:** declared Web specification tables now have a real
+public IR consumer: `build_word_bundle_html` / `transform_web_fragment` →
+`manual_ir.web_specs.load_web_spec_source` → `build_manual_ir_from_source` →
+`web_spec_component.render_specification_ir`. The Web profile no longer calls
+`_extract_spec_word_data` / `render_spec_word_html`; the document profile still
+owns that existing path. Undeclared tables are never selected by filename alone.
+
+The `manual-ir/v1` envelope is unchanged. This explicitly scoped
+`metadata.projection=web-specifications` contains only declared sections from
+one prepared HTML fragment. Each extension block (`web_specification`) owns a
+validated ComponentSpec plus retained heading/table HTML for authored links,
+emphasis and line breaks; markup/semantic disagreement fails closed. The
+adapter hashes the actual input fragment and loaded registry/theme, records
+snapshot as unavailable and layout parameters as unused, and indexes inline
+image sources in the public asset union. It does not manufacture snapshot
+provenance. All sections validate before the caller DOM changes, and a serialized
+projection can replay without the source file. Core imports remain independent
+of this HTML adapter and the legacy IDML extractor.
+
+This is **specification projection adoption**, not whole-manual Web IR or a
+renderer-neutral rich-text parser. Other Web components, Word's existing path,
+prepared HTML decoding and retained HTML payloads remain explicit migration
+debt. Tests observe the actual bundle calling the public assembler with the
+legacy Word parser disabled; a shared ComponentSpec helper alone does not count.
 
 Deferred: renderer-neutral extraction, remaining RST/LaTeX parser dependencies,
 and any deliberate reconciliation of flow policies. The prepared-RST adapter
