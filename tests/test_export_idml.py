@@ -1961,7 +1961,7 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertAlmostEqual(storage_first_top_offset(params, "fr"), 11.80)
         self.assertAlmostEqual(storage_first_top_offset(params, "es"), 11.82)
 
-    def test_four_page_operation_flow_keeps_final_h2_on_last_page(self) -> None:
+    def test_measured_operation_flow_does_not_invent_a_final_page_break(self) -> None:
         from tools.idml.prose_flow import align_operation_tail
 
         blocks = [("h1", "Operations"), ("h2", "LCD"), ("table", "[]"),
@@ -1973,7 +1973,11 @@ class ExportIdmlTests(unittest.TestCase):
 
         aligned = align_operation_tail(blocks, plan, "05_operation_guide")
 
-        self.assertEqual(aligned[-3], ("layout", "page_break"))
+        self.assertEqual(aligned, blocks)
+        explicit = [*blocks[:-2], ("layout", "page_break"), *blocks[-2:]]
+        self.assertEqual(
+            align_operation_tail(explicit, plan, "05_operation_guide"), explicit,
+        )
 
     def test_approved_operation_flow_uses_all_three_page_boundaries(self) -> None:
         from tools.idml.prose_flow import align_operation_tail

@@ -1709,6 +1709,16 @@ zero skipped blocks. The parser accepts only the complete supported shape;
 unknown TeX content still fails strict extraction. PDF source geometry is
 preserved; native InDesign layout acceptance remains a separate check.
 
+For measured fallback IDML plans, operation subsections now flow naturally
+instead of inheriting an extra final-page break from the legacy four-page
+assumption. Specification shells reserve the emitted cells' widths, insets
+and wrapped line heights. Approved reference, compact and no-plan export
+geometry stays unchanged. The single-character Celsius unit (`℃`) uses the
+existing bundled Noto Sans fallback without rewriting source copy. Native
+save/reopen and exported-PDF glyph checks are both required: zero overset
+alone does not prove a printable PDF. See the
+[JP native repair record](reviews/je1000f_jp_native_overflow_2026-09.md).
+
 `Failed to resolve Product Name from Spec_Master.csv`
 
 - Check [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) for `Row_key=product_name`

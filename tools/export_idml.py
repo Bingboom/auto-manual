@@ -280,9 +280,9 @@ def main() -> int:
             notes = list(data.annotations)
             if lang == args.lang:
                 sections[:] = secs
-            title = data.title
-            toc.note(title, page_cursor, lang)
-            sid = w.add_spec_story(secs, notes, lang=lang, title=title)
+            toc.note(data.title, page_cursor, lang)
+            sid = w.add_spec_story(secs, notes, lang=lang, title=data.title,
+                                   fit_content=bool(page_plan) and not approved_reference)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
             data = _ir_projection.lcd_page_data(

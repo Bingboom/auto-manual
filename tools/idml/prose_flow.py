@@ -726,10 +726,9 @@ def align_operation_tail(blocks: list[Block], page_plan: dict | None,
                     if ordinal == 6 else "page_break"
                 )
                 aligned.insert(h2_indices[ordinal - 1], ("layout", marker))
-    elif h2_indices:
-        # Legacy measured plans only guaranteed that the final section started
-        # on page four; preserve that behavior for unapproved targets.
-        aligned.insert(h2_indices[-1], ("layout", "page_break"))
+    # A measured LaTeX span does not locate the final subsection in native
+    # flow. Injecting another break here can request a page beyond the chain.
+    # Unapproved targets retain natural flow and any explicitly authored breaks.
     return aligned
 
 

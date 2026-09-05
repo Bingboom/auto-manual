@@ -112,6 +112,14 @@ preserved as editable IDML text. The previous single skipped-block debt is
 closed for this runtime source; this does not replace native InDesign checks
 for page layout, overset, fonts and links.
 
+The measured JP fallback now lets the final operation table flow into the
+existing page chain and sizes specification shells from their actual cells.
+The `℃` character stays unchanged and uses a bundled font containing its glyph.
+After `build.py idml`, still run native save/reopen and inspect the exported
+PDF: an IDML with no overset can still have missing glyphs at PDF export.
+See the [JE-1000F JP repair record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md)
+for the current acceptance state and remaining content debts.
+
 For a single-language family such as `configs/config.ja.yaml`, you do not need
 to repeat `--lang ja`: `build.py idml` forwards the config's sole language to
 the exporter. On a multilingual family, add `--lang` when exporting only one

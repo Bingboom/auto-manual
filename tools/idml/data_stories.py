@@ -22,7 +22,7 @@ from .params import IDPKG, component_param_pt, param_pt
 from .primitives import _ATTR_ENTITIES, spec_table
 from .story_parts import add_story_parts
 from .source_copy import source_text
-from .spec_tables import spec_table_height
+from .spec_tables import measured_spec_table_height, spec_table_height
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -629,6 +629,7 @@ def add_spec_story(
     *,
     title: str,
     layout_variant: str = "reference",
+    fit_content: bool = False,
 ) -> str:
     sid = "st_spec" if lang == "en" else f"st_spec_{lang}"
     title = source_text(title, owner="Specifications page title")
@@ -789,6 +790,11 @@ def add_spec_story(
         )
         last = si == len(sections) - 1 and not annotations
         if si < len(reference_table_heights):
+            panel_height = reference_table_heights[si]
+            if fit_content and not compact:
+                panel_height = max(panel_height, measured_spec_table_height(
+                    table, writer.params, language=lang,
+                ))
             table = _tb.suppress_outer_edges_xml(table, 2)
             inner = writer._wrap_table_paragraph(
                 table, True, span_columns=False)
@@ -798,7 +804,7 @@ def add_spec_story(
                 f"{section['title']} specification table",
                 [inner],
                 writer.page_w - writer.m_l - writer.m_r + 0.35,
-                reference_table_heights[si],
+                panel_height,
                 terminal=last,
                 fill="Color/Paper",
                 stroke="Color/HB Brand Dark",
