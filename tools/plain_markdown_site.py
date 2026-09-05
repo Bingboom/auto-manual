@@ -879,6 +879,7 @@ def stage_component_extension(staged_dir: Path) -> bool:
     """
     source = _SCRIPT_DIR / f"{_EXTENSION_MODULE}.py"
     component_specs = _SCRIPT_DIR / "component_specs"
+    troubleshooting = _SCRIPT_DIR / "web_troubleshooting_component.py"
     path_utils = _SCRIPT_DIR / "utils" / "path_utils.py"
     registry = (
         _MAYBE_REPO_ROOT
@@ -890,7 +891,7 @@ def stage_component_extension(staged_dir: Path) -> bool:
     theme = registry.with_name("manual_theme.yaml")
     if not all(
         path.is_file()
-        for path in (source, path_utils, registry, theme, _SCRIPT_DIR / "__init__.py")
+        for path in (source, troubleshooting, path_utils, registry, theme, _SCRIPT_DIR / "__init__.py")
     ) or not component_specs.is_dir():
         return False
     target_dir = staged_dir / _EXTENSION_DIRNAME
@@ -898,6 +899,7 @@ def stage_component_extension(staged_dir: Path) -> bool:
     shutil.copyfile(source, target_dir / f"{_EXTENSION_MODULE}.py")
     staged_tools = target_dir / "tools"
     staged_tools.mkdir()
+    shutil.copyfile(troubleshooting, staged_tools / troubleshooting.name)
     shutil.copyfile(_SCRIPT_DIR / "__init__.py", staged_tools / "__init__.py")
     shutil.copytree(
         component_specs,

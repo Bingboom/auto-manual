@@ -30,8 +30,10 @@ escaped inline subset so their column and row-span semantics stay deterministic.
 from __future__ import annotations
 
 import re
+from pathlib import Path
 from typing import Any
 
+from bs4 import BeautifulSoup
 from docutils import nodes
 from docutils.parsers.rst import directives
 from sphinx.util.docutils import SphinxDirective
@@ -42,6 +44,7 @@ from tools.component_specs.spec_table import (
     spec_table_component_spec,
     web_spec_table_projection,
 )
+from tools.web_troubleshooting_component import transform_troubleshooting_tables
 
 SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
@@ -228,20 +231,26 @@ class TroubleshootingDirective(_ManualDirective):
             "Corrective Measures",
         )
         rows = "".join(
-            f'<tr><td class="hb-troubleshooting-code">{_inline_html(row[0])}</td>'
-            f'<td class="hb-troubleshooting-measures">{_line_block(row[1] if len(row) > 1 else "")}</td></tr>'
+            "<tr>" + "".join(
+                f"<td>{_inline_html(cell) if index == 0 else _line_block(cell)}</td>"
+                for index, cell in enumerate(row)
+            ) + "</tr>"
             for row in self.rows()
         )
         head = "".join(f'<th class="head">{_inline_html(cell)}</th>' for cell in header)
-        return [
-            _raw(
-                f'<figure{self.aria()} class="hb-troubleshooting-composition">'
-                '<table class="manual-table hb-troubleshooting-table">'
-                '<colgroup><col class="hb-troubleshooting-col-code"/>'
-                '<col class="hb-troubleshooting-col-measures"/></colgroup>'
-                f"<thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></figure>"
+        soup = BeautifulSoup(
+            f'<figure{self.aria()} class="hb-troubleshooting-composition">'
+            '<table class="manual-table hb-troubleshooting-table">'
+            f"<thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table></figure>",
+            "html.parser",
+        )
+        try:
+            transform_troubleshooting_tables(
+                soup, source_path=Path(f"{self.env.docname}:{self.lineno}"),
             )
-        ]
+        except ValueError as exc:
+            raise self.error(str(exc)) from exc
+        return [_raw(str(soup))]
 
 
 class LcdIconsDirective(_ManualDirective):
