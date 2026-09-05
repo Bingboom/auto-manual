@@ -248,6 +248,7 @@ class TroubleshootingDirective(_ManualDirective):
         try:
             transform_troubleshooting_tables(
                 soup, source_path=Path(f"{self.env.docname}:{self.lineno}"),
+                language=self.env.config.language,
             )
         except ValueError as exc:
             raise self.error(str(exc)) from exc
@@ -277,6 +278,7 @@ class LcdIconsDirective(_ManualDirective):
         try:
             transform_lcd_icon_tables(
                 soup, source_path=Path(f"{self.env.docname}:{self.lineno}"),
+                language=self.env.config.language,
             )
         except ValueError as exc:
             raise self.error(str(exc)) from exc

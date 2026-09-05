@@ -1695,3 +1695,20 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
   replay, source/markup integrity cases and exact existing transform output.
 - Debt remains: whole-manual Web IR, other Web components, prepared HTML parsing,
   renderer-neutral rich text, and separate legacy Word/IDML/Flow source policies.
+
+
+## 2026-09-05: Shared public IR consumer for Web LCD and troubleshooting
+
+- Two real prepared-Web / standalone-MyST consumers now route through public
+  ManualSource assembly, ManualIR validation and one table replay module. The old
+  two direct DOM validation/render paths have become thin entrypoints.
+- A shared HTML provenance constructor also replaces the active specification
+  adapter's duplicate envelope assembly; existing specification IR is unchanged.
+- Declared table payloads preserve semantic row roles, authored headers, inline
+  assets and rich markup. Corrupt/rehashed-inconsistent payloads reject; a bad
+  later table no longer leaves earlier caller DOM modified.
+- Standalone staging ships the bounded public IR runtime and language registry,
+  verified in Python isolated mode without the source checkout or legacy IDML.
+- Debt: prepared/generated HTML parsing and retained markup, unregistered table
+  ComponentSpecs, standalone specification's direct ComponentSpec path, other
+  Web consumers, whole-manual assembly and separate Word/Flow source policies.
