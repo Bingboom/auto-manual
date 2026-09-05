@@ -107,6 +107,10 @@ retain their image/label/tip validation. The prepared-bundle IR adapter preserve
 complete signal-word definition tables as tables, including the JP definitions
 of warning, caution, note and tip; individual warning callouts retain their
 existing validation.
+The JP symbols page's boxed introductory title and both paragraphs are also
+preserved as editable IDML text. The previous single skipped-block debt is
+closed for this runtime source; this does not replace native InDesign checks
+for page layout, overset, fonts and links.
 
 For a single-language family such as `configs/config.ja.yaml`, you do not need
 to repeat `--lang ja`: `build.py idml` forwards the config's sole language to
