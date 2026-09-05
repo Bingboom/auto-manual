@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Responsive web-only composition for governed manual figures.
+"""Responsive web-only composition for declared tables and governed figures.
 
 The source RST remains authoritative for every image and localized string.
 This module consumes the generated HTML structure and applies only web
@@ -17,11 +17,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-from tools.component_specs.web_source import (
-    superscript_circled_references,
-    validate_web_callout_html,
-    validate_web_spec_table_html,
-)
+from tools.component_specs.web_source import validate_web_callout_html
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.utils.path_utils import get_paths
 from tools.web_composite_manifest import WebCompositeManifest
@@ -37,6 +33,7 @@ from tools.web_reference_components import (
     prepare_reference_caption_data,
     transform_app_add_device,
 )
+from tools.web_spec_component import transform_specification_tables
 from tools.web_symbol_components import transform_symbol_signal_table
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 
@@ -226,6 +223,10 @@ def is_web_entry_page(
     contract: dict[str, Any] | None = None,
 ) -> bool:
     data = contract or load_web_manual_contract()
+    # The frozen figure target owns the preface convention. Other targets keep
+    # the first included page selected by their source manifest.
+    if not supports_figure_contract(source_path, data):
+        return should_include_web_page(source_path, contract=data)
     pattern = str(data["profiles"][WEB_PRESENTATION_PROFILE]["entry_source_pattern"])
     return fnmatch.fnmatch(source_path.stem.lower(), pattern.lower())
 
@@ -1127,125 +1128,6 @@ def _transform_troubleshooting_table(
     composition.append(table)
 
 
-def _transform_specification_tables(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    expected_sections: int,
-    expected_circled_references: int,
-) -> None:
-    headings = [
-        heading
-        for heading in soup.select("h2.hb-spec-section")
-        if isinstance(heading, Tag)
-    ]
-    if len(headings) != expected_sections:
-        raise WebPresentationError(
-            f"{source_path}: expected {expected_sections} governed specification "
-            f"sections, found {len(headings)}"
-        )
-
-    observed_circled_references = 0
-    for heading in headings:
-        heading_text_node = heading.select_one(".hb-spec-section-text")
-        if not isinstance(heading_text_node, Tag):
-            raise WebPresentationError(
-                f"{source_path}: specification heading lost its localized title span"
-            )
-        heading_text = heading_text_node.get_text(" ", strip=True)
-        table = _next_tag_sibling(heading)
-        table_classes = table.get("class", []) if isinstance(table, Tag) else []
-        if (
-            not isinstance(table, Tag)
-            or table.name != "table"
-            or not ({"hb-spec-table", "manual-spec-table"} & set(table_classes))
-        ):
-            raise WebPresentationError(
-                f"{source_path}: specification section {heading_text!r} must be "
-                "followed by its governed table"
-            )
-        rows = table.select("tbody > tr")
-        if not rows:
-            raise WebPresentationError(
-                f"{source_path}: specification section {heading_text!r} lost its "
-                "two-column rows"
-            )
-
-        heading.clear()
-        heading.string = heading_text
-        heading.attrs.pop("class", None)
-
-        for colgroup in table.find_all("colgroup", recursive=False):
-            colgroup.decompose()
-        colgroup = soup.new_tag("colgroup")
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-spec-col-label"}))
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-spec-col-value"}))
-        table.insert(0, colgroup)
-        table.attrs.pop("style", None)
-        table["class"] = [*table.get("class", []), "hb-spec-table"]
-        active_label_rows = 0
-        for row in rows:
-            cells = row.find_all(["th", "td"], recursive=False)
-            if len(cells) == 2 and active_label_rows == 0:
-                label, value = cells
-                try:
-                    rowspan = int(str(label.get("rowspan", "1")))
-                except ValueError as exc:
-                    raise WebPresentationError(
-                        f"{source_path}: specification section {heading_text!r} has "
-                        "an invalid label rowspan"
-                    ) from exc
-                if rowspan < 1:
-                    raise WebPresentationError(
-                        f"{source_path}: specification section {heading_text!r} has "
-                        "a non-positive label rowspan"
-                    )
-                active_label_rows = rowspan - 1
-                label.name = "th"
-                label["scope"] = "row"
-                label.attrs.pop("style", None)
-                label["class"] = [*label.get("class", []), "hb-spec-label"]
-            elif len(cells) == 1 and active_label_rows > 0:
-                value = cells[0]
-                active_label_rows -= 1
-            else:
-                raise WebPresentationError(
-                    f"{source_path}: specification section {heading_text!r} lost its "
-                    "two-column row geometry"
-                )
-            value.attrs.pop("style", None)
-            value["class"] = [*value.get("class", []), "hb-spec-value"]
-        if active_label_rows:
-            raise WebPresentationError(
-                f"{source_path}: specification section {heading_text!r} ended inside "
-                "a row-spanning label"
-            )
-
-        for cell in table.select("th.hb-spec-label, td.hb-spec-value"):
-            observed_circled_references += superscript_circled_references(soup, cell)
-
-        composition = soup.new_tag(
-            "figure",
-            attrs={
-                "class": "hb-spec-table-composition",
-                "aria-label": heading_text,
-            },
-        )
-        table.replace_with(composition)
-        composition.append(table)
-        validate_web_spec_table_html(
-            str(composition),
-            source_ref=f"{source_path}#{heading_text}",
-            error_type=WebPresentationError,
-        )
-
-    if observed_circled_references != expected_circled_references:
-        raise WebPresentationError(
-            f"{source_path}: expected {expected_circled_references} circled "
-            f"specification references, found {observed_circled_references}"
-        )
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1623,7 +1505,12 @@ def transform_web_fragment(
     region: str | None = None,
     language: str | None = None,
 ) -> str:
-    """Apply web composition to governed figure pages; leave other pages byte-identical."""
+    """Render declared semantics, then apply target-governed figure composition."""
+    soup = BeautifulSoup(html_fragment, "html.parser")
+    has_specifications = transform_specification_tables(
+        soup, source_path=source_path, language=language, error_type=WebPresentationError,
+    )
+    semantic_fragment = str(soup) if has_specifications else html_fragment
     data = contract or load_web_manual_contract()
     preface = data["preface"]
     overview = data["product_overview"]
@@ -1632,7 +1519,6 @@ def transform_web_fragment(
     lcd_icon_table = data["lcd_icon_table"]
     meaning_symbols = data["meaning_symbols"]
     troubleshooting_table = data["troubleshooting_table"]
-    specifications = data["specifications"]
     warranty = data["warranty"]
     in_the_box = data["in_the_box"]
     reference_figures = data["reference_figures"]
@@ -1654,10 +1540,6 @@ def transform_web_fragment(
         source_path,
         list(troubleshooting_table["source_patterns"]),
     )
-    is_specifications = _matches_source(
-        source_path,
-        list(specifications["source_patterns"]),
-    )
     is_warranty = _matches_source(source_path, list(warranty["source_patterns"]))
     is_in_the_box = _matches_source(source_path, list(in_the_box["source_patterns"]))
     is_reference_page = _matches_source(
@@ -1675,18 +1557,16 @@ def transform_web_fragment(
         or is_lcd_icon_table
         or is_meaning_symbols
         or is_troubleshooting_table
-        or is_specifications
         or is_warranty
         or is_in_the_box
         or is_reference_page
         or is_app_download
         or is_app_inline_controls
     ):
-        return html_fragment
+        return semantic_fragment
     if not supports_figure_contract(source_path, data):
-        return html_fragment
+        return semantic_fragment
 
-    soup = BeautifulSoup(html_fragment, "html.parser")
     composites = WebCompositeContext(composite_manifest, model, region, WebPresentationError)
     if is_preface:
         _transform_preface(soup, source_path=source_path)
@@ -1724,15 +1604,6 @@ def transform_web_fragment(
         _transform_meaning_symbols_table(soup, source_path=source_path)
     if is_troubleshooting_table:
         _transform_troubleshooting_table(soup, source_path=source_path)
-    if is_specifications:
-        _transform_specification_tables(
-            soup,
-            source_path=source_path,
-            expected_sections=int(specifications["section_count"]),
-            expected_circled_references=int(
-                specifications["circled_reference_count"]
-            ),
-        )
     if is_warranty:
         _transform_warranty(
             soup,
