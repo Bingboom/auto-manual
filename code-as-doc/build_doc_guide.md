@@ -1745,3 +1745,13 @@ writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
 not a zero-skipped report. This integrity work does not migrate Web to whole
 Manual IR and does not certify native JP layout. See the
 [shared-source plan](dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
+
+
+Web specification IR: declared `h2.hb-spec-section` / governed table pairs now
+pass through the public ManualSource assembler and ManualIR validator before
+Web rendering. Web-profile builds bypass Word specification text extraction,
+preserving authored links, emphasis, line breaks and trailer content. Document
+profile behavior stays with its existing Word reader. All declared sections
+must pass before any section is replaced. The adapter is a scoped prepared-HTML
+projection, not a whole-book IR; other Web components and neutral rich-text
+parsing remain pending in the [shared-source plan](dev/latex_indesign_same_source_plan.md).

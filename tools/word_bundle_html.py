@@ -362,7 +362,7 @@ def _convert_rst_fragment_to_html(
 
     published_fragment = _publish_rst_fragment_to_html(rst_text, source_path, active_tags=active_tags)
 
-    if source_name.startswith("spec_"):
+    if profile == DOCUMENT_PRESENTATION_PROFILE and source_name.startswith("spec_"):
         spec_data = _extract_spec_word_data(published_fragment)
         if spec_data is not None:
             published_fragment = render_spec_word_html(spec_data)

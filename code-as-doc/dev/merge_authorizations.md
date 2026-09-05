@@ -92,7 +92,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 | MA-040 | 第三批公共 IR #1039、Web #1040、数据读取 #1041 进入 main，含本登记行。依次 squash merge；每次合入后剩余 PR 对齐最新 main，最终 head 全部检查成功、无 changes-requested 或未解决讨论后合入。随后从统一 main 开独立修复分支，处理 JE-1000F/JP 原生操作说明与规格表溢出并重新构建验收。本条合入授权仅覆盖上述三个 PR；后续版式修复提交评审，保留其他独立审批边界。 | 「合入三项，再集中修复 JP 版式溢出。」2026-09-05 | 三个 PR 全部合入即失效；下次实质性触碰补记 | 生效 |
 | MA-041 | auto-manual #1042（`fix/kr-shared-copy-app-consumer-productname`，含本登记行，进 main）——KR `page_shared/ko` 共享模板家族级措辞回写(06_ups_mode UPS 전환 문장 → 본 제품은;11_warranty 표준 보증 기간 셀 → 본 제품의 + 该单元격仅去 소비자),源自 JE-2000E_KR 评审云文档回写(基准钉钉 JE-2000E_KR_ko-KR_0.2)。合入触发 sync-hello-docs 下发镜像后重播种 JE-2000E_KR。**不含**全文 본 제품 通扫、不越过 F6 线上源表写入/`.github/workflows/**`/公开 CLI/依赖/Base schema/approved reference-layout 晋升等独立 gate。 | 「授权你 gate-on-green 合 #1042」2026-09-05 | #1042 合入即失效;下次实质性触碰本文件时补记状态 | 生效 |
 
-| MA-042 | PR #1045（公共 IR 读取与解析完整性修复，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论后 squash merge。下一批从统一 main 基线接入真实 Web 的公共 IR 消费路径并退出相应重复读取；后续 PR 另行评审，不扩大本次合入授权。 | 「好 合入 然后 下一批」2026-09-05 | #1045 合入即失效；下次实质性触碰补记 | 生效 |
+| MA-042 | PR #1045（公共 IR 读取与解析完整性修复，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论后 squash merge。下一批从统一 main 基线接入真实 Web 的公共 IR 消费路径并退出相应重复读取；后续 PR 另行评审，不扩大本次合入授权。 | 「好 合入 然后 下一批」2026-09-05 | #1045 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1045 squash `54779cf4` 已合入；最终 head 17/17 成功、无待解决评审，随本次授权补记） |
+
+| MA-043 | PR #1046（Web 规格表消费公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。之后从统一 main 开下一批公共 IR 调用方迁移；本条不扩大到后续 PR 或 JP 原生版式修复。 | 「合入 继续」2026-09-05 | #1046 合入即失效；下次实质性触碰补记 | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.

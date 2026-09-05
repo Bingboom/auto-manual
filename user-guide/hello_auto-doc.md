@@ -1542,3 +1542,9 @@ writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
 not a zero-skipped report. This integrity work does not migrate Web to whole
 Manual IR and does not certify native JP layout. See the
 [shared-source plan](../code-as-doc/dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
+
+
+Web 规格表已接入公共 IR 校验，构建命令不变。Web 构建会保留规格中的链接、强调、
+换行和脚注，不再借用 Word 的纯文本抽取重建。任何声明规格表不合法时，本次规格
+转换整体失败，避免只转换前半页。这仅覆盖规格表投影，不能据此声明整本 Web
+或 JP 原生排版已完成验收。

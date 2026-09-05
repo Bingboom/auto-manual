@@ -1678,3 +1678,20 @@ Validation evidence: the complete IR dictionaries for the prepared US fixture
 (17 source pages / 185 blocks) and frozen JP bundle (13 / 270) are identical
 with the baseline and revised prose decoder/conditional normalization. Both
 pass strict IR checks. Existing IDML goldens are not regenerated.
+
+
+## 2026-09-05: Web specifications consume public ManualIR
+
+- Real Web bundle specifications now call the public source assembler and IR
+  validator before component projection. Declared HTML parsing belongs to the
+  explicit `manual_ir.web_specs` source adapter; the neutral core imports no
+  HTML/IDML adapter.
+- Web no longer calls the Word specification extractor/re-renderer. Word remains
+  an active consumer of that implementation; it was not incorrectly deleted.
+- Scoped IR retains rich markup with validated ComponentSpec semantics and can
+  replay after public serialization. Invalid later sections no longer leave
+  earlier caller DOM sections modified.
+- Verified by a real bundle test with Word extraction disabled, scoped serialized
+  replay, source/markup integrity cases and exact existing transform output.
+- Debt remains: whole-manual Web IR, other Web components, prepared HTML parsing,
+  renderer-neutral rich text, and separate legacy Word/IDML/Flow source policies.

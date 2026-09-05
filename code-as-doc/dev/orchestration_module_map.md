@@ -141,6 +141,12 @@ empty-cell policies are recorded in
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/manual_ir/web_specs.py`](../../tools/manual_ir/web_specs.py)
+  - declared HTML specification source adapter into the public ManualSource contract;
+    isolated from the neutral core and IDML extraction
+- [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
+  - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
+    the Web bundle exits Word specification extraction/re-rendering
 - [`tools/web_lcd_component.py`](../../tools/web_lcd_component.py)
   - one declared LCD-table projection for prepared RST and standalone MyST;
     assembly CSV identities select pages independently of filenames and artwork grants
