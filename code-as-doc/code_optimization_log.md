@@ -1885,3 +1885,15 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - No new config, registry, schema or hotspot allowance. Remaining: source
   matching/retained HTML, generic inline/figure protection, reference components,
   other callers and whole-manual/neutral-rich-text IR. JP native layout is separate.
+
+
+## 2026-09-05: Whole-document Web IR checkpoint
+
+The actual Web bundle entry assembles one public `manual-ir/v1` content tree and
+consumes it without reopening source RST/CSV. Image staging was mechanically
+shared with Word; cold-process replay and RTD static-copy regressions protect the
+boundary. JBP-2000B JP builds with 12 PDF-derived illustration groups and a declared
+text-only LCD table. The structured on/off instructions remain authoritative over
+the incorrect reference-PDF labels. 3717 unit tests pass (22 skipped), plus target
+checks and US review Web parity. This completes the bounded Web checkpoint, not
+neutral rich text or all-renderer migration. See [the execution record](dev/ir_document_closeout.md).

@@ -700,6 +700,20 @@ Packaging rule:
 
 Web Publish / Read the Docs note:
 
+- Web-profile bundle export now reads prepared pages once into a complete
+  `manual-ir/v1` content tree and writes `manual.ir.json` beside the Markdown.
+  `tools.web_document_ir.render_document_fragments` consumes that IR and the
+  packaged `assets/` bytes without reopening RST/CSV. Word keeps its existing
+  conversion path. This is the whole-document Web boundary, not completion of
+  neutral rich text or migration of every output. See [the bounded execution
+  record](dev/ir_document_closeout.md) for replay, asset extraction and debt.
+- `paths.web_illustration_manifest` optionally binds a target/language to finished
+  PDF crops. The manifest freezes source PDF hash, page, bounding box, output
+  hash and exact input image basenames. One illustrated panel can replace several
+  split images; surrounding structured copy is retained. Wrong target, missing
+  images, changed bytes, repeated or unused bindings fail the build. These Web
+  variants preserve embedded text and never overwrite IDML textless assets.
+
 - `Review Preview Package` uploads the review-preview workspace as a GitHub artifact only
 - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`
 - [`.github/workflows/feishu-web-publish-queue.yml`](../.github/workflows/feishu-web-publish-queue.yml) runs only on the Hello-Docs business plane, consumes `Workflow_action=Web Publish`, pushes frozen sources to the `Hello-Docs/publish:docs/publish/` candidate, rejects any PR diff outside `docs/publish/**`, opens or updates `publish -> main`, and writes the deterministic root-level RTD alias (for example `https://ht-doc.readthedocs.io/manual_je1000f_us.html`) to `HTML_link`
@@ -728,7 +742,7 @@ LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
 ordinary undeclared tables stay ordinary. RST and standalone `{lcd-icons}` MyST
-share validation: exactly four unspanned cells, one icon, and nonempty number,
+share validation: exactly four unspanned cells, one icon (or an explicitly declared `lcd-text-only` empty icon cell), and nonempty number,
 name and description. Malformed rows fail instead of being padded or truncated.
 Status line breaks, inline emphasis, lists, icon sources and row order remain
 authored content. The scrollable table can also receive keyboard focus; artwork

@@ -117,6 +117,7 @@ class WebTableIRTests(unittest.TestCase):
             root = Path(tmp)
             pages = root / "page"
             pages.mkdir()
+            (pages / "icon.png").write_bytes(b"frozen test icon")
             fixtures = [
                 ("status_legend", "lcd_icons", lcd_table(False)),
                 (

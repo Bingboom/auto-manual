@@ -102,8 +102,9 @@ def _lcd_rows(table: Tag, source_ref: str) -> tuple[list[Tag], list[Tag]]:
             )
         icons = cells[1].find_all("img")
         if (
-            len(icons) != 1
-            or not str(icons[0].get("src", "")).strip()
+            not (len(icons) == 1 and str(icons[0].get("src", "")).strip()
+                 or "lcd-text-only" in table.get("class", []) and not icons
+                 and not cells[1].get_text(" ", strip=True))
             or not all(cells[i].get_text(" ", strip=True) for i in (0, 2, 3))
         ):
             raise error_type(
@@ -167,10 +168,10 @@ def decode_table(
         }
         if table_kind == "lcd":
             image = cells[1].img
-            record["icon"] = {
+            record["icon"] = ({
                 "src": str(image["src"]),
                 "alt": str(image.get("alt", "")),
-            }
+            } if image else None)
         values.append(record)
     boundary = table_boundary(table, table_kind)
     payload = {

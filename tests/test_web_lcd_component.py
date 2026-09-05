@@ -86,6 +86,7 @@ class WebLcdTests(unittest.TestCase):
             root = Path(td)
             pages = root / 'page'
             pages.mkdir()
+            (pages / "icon.png").write_bytes(b"frozen test icon")
             declared, ordinary = pages / 'status_legend.rst', pages / 'lcd_icons_ja.rst'
             rst = ('.. list-table::\n\n   * - 1\n     - .. image:: icon.png\n'
                    '          :alt: Wireless\n     - 状態\n     - | 点灯: 接続。\n       | 消灯: 未接続。\n')

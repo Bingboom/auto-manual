@@ -1,5 +1,12 @@
 # LaTeX to InDesign Same-Source Handoff Plan
 
+Current whole-document Web status (2026-09-05): the actual bundle entry now
+assembles one ordered public IR and replays it without RST/CSV access. Historical
+scoped projections below remain rendering details. This does not close neutral
+rich-text/print/Word migration. The [bounded execution record](ir_document_closeout.md)
+is the current acceptance ledger, including JBP-2000B JP finished PDF artwork.
+
+
 Status: implemented and verified on JE-1000F US
 
 Branch: `feat/latex-indesign-same-source`

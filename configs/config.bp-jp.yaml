@@ -39,6 +39,7 @@ build:
 
 paths:
   docs_dir: docs
+  web_illustration_manifest: docs/renderers/web/jbp2000b_jp_illustrations.json
   structured_data_dir: data/phase2
   layout_params_csv: data/layout_params.csv
   idml_layout_params_overlays:

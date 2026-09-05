@@ -437,7 +437,7 @@ def _rst_table(rows: list[dict[str, str]], *, status_labels: tuple[str, ...]) ->
         ".. list-table::",
         # longtable: allow page breaks between rows so oversized tables cannot
         # overflow the 130x185 text block into the footer (see reports/typography_gap)
-        "   :class: longtable",
+        "   :class: longtable" + (" lcd-text-only" if rows and all(not row["figure"].strip() for row in rows) else ""),
         "   :header-rows: 0",
         "   :widths: 8 12 28 52",
         "",
