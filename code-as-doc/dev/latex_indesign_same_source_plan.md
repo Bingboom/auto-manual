@@ -212,10 +212,19 @@ bytes, including source hashes, IDs, source references and asset order. Existing
 goldens are not refreshed.
 
 Deferred: renderer-neutral extraction, remaining RST/LaTeX parser dependencies,
-and any deliberate reconciliation of flow policies. The JE-1000F/JP
-Web-prepared bundle still raises `known notice label cannot fall back to a
-generic table: '警告'` through the unchanged extractor; the guard is not bypassed
-and no product copy is changed. This boundary does not change native acceptance
+and any deliberate reconciliation of flow policies. The prepared-RST adapter
+preserves a multi-row signal-word definition table when every row has exactly
+two nonempty cells and a distinct label recognized by the shared callout
+vocabulary. This resolves the JE-1000F/JP Web-bundle failure on its four-row
+definition table while keeping all rows and source wording. Single notices
+still become callouts; incomplete notices and malformed definition tables
+starting with a known label still fail instead of becoming generic tables.
+The ordinary JE-1000F/JP Web-bundle conversion now succeeds, but its symbols
+page still reports `skipped_raw=1`: the legacy raw-LaTeX `tcolorbox` heading
+and following two introductory paragraphs are not decoded. Strict IR
+validation continues to reject this incomplete extraction. Resolving the
+definition-table error is not a lossless-IR or production-delivery signoff.
+This boundary does not change native acceptance
 D1–D4 (including the power on/off factual debt) or `production_eligible`.
 
 ### Phase 2 - Shared tokens and production IDML renderer

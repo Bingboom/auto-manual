@@ -100,6 +100,14 @@ creates semantic Markdown plus an editable continuous-story IDML, style map,
 source trace, and asset manifest for a designer-owned template workflow. Both
 are generated outputs, never new content sources.
 
+Document-profile Markdown preserves a plain, three-item inventory such as the
+JP inbox as its authored text table and following notes. It does not require
+the images and tip table used by illustrated inbox cards. Illustrated cards
+retain their image/label/tip validation. The prepared-bundle IR adapter preserves
+complete signal-word definition tables as tables, including the JP definitions
+of warning, caution, note and tip; individual warning callouts retain their
+existing validation.
+
 For a single-language family such as `configs/config.ja.yaml`, you do not need
 to repeat `--lang ja`: `build.py idml` forwards the config's sole language to
 the exporter. On a multilingual family, add `--lang` when exporting only one
