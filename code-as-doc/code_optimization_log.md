@@ -1745,3 +1745,25 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - Remaining: standalone MyST callout node carrier, already-protected composite
   figure callouts, other components/whole-manual IR, neutral rich text and
   existing language-label source lookup. JP native layout remains a separate lane.
+
+
+## 2026-09-05: Standalone MyST callout closes the ComponentSpec-only bypass
+
+- The directive keeps nested document nodes until HTML writing, then passes
+  resolved body markup through the existing callout source adapter, public IR
+  assembler and replay consumer. Direct ComponentSpec-only output exits this
+  Web path; Sphinx remains the Markdown/reference/image carrier.
+- Optional owned declaration fields preserve explicit variant/custom labels
+  and configured language. Invalid declarations or rehashed semantic mismatch
+  fail replay; existing prepared-Web IR payloads remain unchanged.
+- Staging includes existing callout modules, with an extension environment
+  version bump for old doctrees. No new implementation module, registry,
+  config or `manual-ir/v1` change.
+- Isolated Sphinx tests cover serialized replay, source context, resolved links,
+  image assets, default/explicit variants, corrupt IR, nested-table rejection
+  and non-HTML body compatibility. Five pre-change standalone table DOMs match;
+  six pre-change prepared-Web IR envelopes match.
+- Remaining: already-protected composite-figure callouts, whole-manual IR,
+  other components, neutral rich text and label lookup dependencies. Nested
+  tables/callouts are an explicit unsupported body shape under this contract.
+  JP native layout remains a separate workstream.

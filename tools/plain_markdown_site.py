@@ -883,9 +883,9 @@ def stage_component_extension(staged_dir: Path) -> bool:
     troubleshooting = _SCRIPT_DIR / "web_troubleshooting_component.py"
     lcd = _SCRIPT_DIR / "web_lcd_component.py"
     path_utils = _SCRIPT_DIR / "utils" / "path_utils.py"
-    table_runtime = ("web_table_ir.py", "web_spec_component.py", "lang_registry.py")
+    table_runtime = ("web_table_ir.py", "web_spec_component.py", "web_callout_ir.py", "lang_registry.py")
     ir_runtime = ("__init__.py", "builder.py", "hashing.py", "model.py", "serialize.py",
-                  "source.py", "validate.py", "web_source.py", "web_tables.py", "web_specs.py")
+                  "source.py", "validate.py", "web_source.py", "web_tables.py", "web_specs.py", "web_callouts.py")
     ir_sources = tuple(_SCRIPT_DIR / "manual_ir" / name for name in ir_runtime)
     registry = (
         _MAYBE_REPO_ROOT

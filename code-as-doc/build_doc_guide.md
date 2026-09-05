@@ -1791,6 +1791,19 @@ then returns the original HTML bytes without reopening the source file. Actual
 bundle path/model/region are supplied by the build; table language is retained
 or reported as `und`. Corrupt IR or malformed declared callouts fail the build.
 The internal placeholder map no longer accepts raw HTML as a parallel restore
-path. CLI commands and `manual-ir/v1` remain unchanged. Standalone MyST callouts
-and notices inside already-protected composite figures are not migrated by this
-slice; see the [shared-source plan](dev/latex_indesign_same_source_plan.md).
+path. CLI commands and `manual-ir/v1` remain unchanged. Notices inside
+already-protected composite figures remain separate; see the
+[shared-source plan](dev/latex_indesign_same_source_plan.md).
+
+
+Standalone `{callout}` now uses that same public IR adapter and consumer after
+Sphinx renders its parsed child nodes. This preserves resolved cross-references,
+image paths, lists and inline markup. Explicit `:variant:` remains authoritative
+for custom labels; configured language is carried even when source HTML has no
+`lang` attribute. The owned optional declaration is validated and replayed with
+the component semantics. Old prepared-Web projection payloads remain unchanged.
+The staged runtime reuses existing callout modules; an extension environment
+version change invalidates old doctrees. Nested tables or callouts in a callout
+body fail the shared single-table contract with source context; they are not
+silently flattened. Other rich Markdown nodes continue through Sphinx, and
+non-HTML writers retain ordinary body rendering.

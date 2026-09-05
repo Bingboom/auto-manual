@@ -267,7 +267,7 @@ invent a registry registration or change `manual-ir/v1`.
 | --- | --- | --- |
 | Prepared Web / standalone MyST specifications | Shared scoped specification IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
-| Prepared Web callouts outside protected composite figures | Public IR across the Pandoc handoff | ComponentSpec + retained rich HTML |
+| Prepared Web callouts / standalone MyST callouts | Shared callout IR consumer | Rendered HTML + ComponentSpec; protected composite figures remain separate |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -292,14 +292,27 @@ rows, cells, spans or nested tables fail. Original HTML bytes, lists, links,
 images and label copy are retained. The actual bundle path/model/region are
 provided by the caller; language comes from the table or remains `und`.
 
-This slice does not migrate the standalone MyST `{callout}` directive (its
-nested document-node parser is a distinct carrier). Callouts inside composite
-figures protected earlier in the pipeline also remain on the figure path.
+**Standalone MyST callouts:** the directive now keeps parsed document nodes
+until Sphinx's HTML writer resolves their links, images and rich content. Its
+callout node then supplies the label/body HTML to the same source adapter,
+public assembler and replay consumer. Direct ComponentSpec-only HTML emission
+has exited this Web path. The optional owned `declaration` payload preserves
+configured language and an explicit `:variant:` (including custom labels);
+malformed declarations and declaration/semantic/markup disagreement fail.
+Prepared Web payloads without this declaration remain unchanged.
+
+Staging reuses the existing callout modules; no new implementation module,
+registry entry or serialized schema is introduced. The extension environment
+version invalidates old cached doctrees. Non-HTML writers keep the parsed body
+through their ordinary container visitors. The shared one-row label/body
+contract rejects nested tables/callouts with source context; these are not
+flattened or partially emitted. Callouts inside composite figures protected
+earlier in the prepared pipeline still remain on the figure path.
 Remaining HTML parsing and language-label lookup are explicit source-adapter
 debt, not a renderer-neutral rich-text implementation.
 
 These are **three scoped table families across both Web entrances plus the
-prepared Web callout handoff**, not whole-manual Web IR or a
+shared callout consumer**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.

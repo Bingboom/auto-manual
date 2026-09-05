@@ -100,7 +100,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-045 | PR #1048（独立 Markdown 规格表接入公共 IR，含本登记行）进入 main。最终 head 全部检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 调用方迁移；不扩大到后续 PR 或 JP 原生版式工作。 | 「合入继续」2026-09-05 | #1048 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1048 squash `39d71cfa` 已合入；最终 head 17/17 成功，随本次授权补记） |
 
-| MA-046 | PR #1049（Web 提示框通过公共 IR 交接，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 迁移独立 MyST 提示框；后续 PR 另行评审，不扩大合入授权或涉及 JP 原生版式。 | 「合入继续」2026-09-05 | #1049 合入即失效；下次实质性触碰补记 | 生效 |
+| MA-046 | PR #1049（Web 提示框通过公共 IR 交接，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 迁移独立 MyST 提示框；后续 PR 另行评审，不扩大合入授权或涉及 JP 原生版式。 | 「合入继续」2026-09-05 | #1049 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1049 squash `fa502dd0` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-047 | PR #1050（独立 MyST 提示框接入共享 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决评审讨论且对齐 main 后 squash merge。随后从统一 main 继续处理复合插图内部提示框的公共 IR 路径；后续 PR 另行评审，不扩大合入授权或涉及 JP 原生版式。 | 「合入继续」2026-09-05 | #1050 合入即失效；下次实质性触碰补记 | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
