@@ -1786,3 +1786,25 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 - Remaining: other composite figures, generic figure string protection,
   whole-manual IR, renderer-neutral rich text, RST/LaTeX parser dependencies,
   and other renderer consumer migration. JP native layout stays separate.
+
+
+## 2026-09-05: Prepared FCC consumes semantic public IR
+
+- The actual RST/Web FCC consumer now loads a source, assembles public IR and
+  replays the existing `HB-SPECIAL-FCC` semantic fields before changing caller
+  DOM. The direct ComponentSpec-only Web route has exited.
+- Opening lines, ordered paragraphs/measures, column break and logical/resolved
+  mark binding are sufficient for replay; no second retained-HTML interpretation
+  or source config read is introduced. Source identity includes target context
+  and active config/registry/theme hashes.
+- Envelope/owned-payload checks reject invalid semantics, unknown fields,
+  source/language drift and mismatched asset bindings. Real three-locale tests
+  first reproduced the bypass; serialization tests remove source/config and
+  forbid parser calls, including a legitimate semantic edit that drives output.
+  Three pre-change EN/FR/ES outputs remain byte-identical.
+- One source/contract module reuses the existing renderer and 150-line size
+  limit. No new config/schema/registry, dependency or workflow change.
+- Remaining: FCC source HTML/label/filename interpretation and existing paragraph
+  normalization; other composite consumers, generic figure string protection,
+  whole-manual IR, neutral rich text and Word/IDML parser migration. JP native
+  layout remains separate.

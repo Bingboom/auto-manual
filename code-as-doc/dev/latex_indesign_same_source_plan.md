@@ -269,6 +269,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web / standalone MyST LCD and troubleshooting | Shared scoped table IR | Prepared/generated HTML + retained rich markup |
 | Prepared Web callouts / standalone MyST callouts | Shared callout IR consumer | Rendered HTML + ComponentSpec; protected composite figures remain separate |
 | Prepared Web Inbox (three cards + internal TIP) | Scoped composite IR before figure protection | Existing Inbox HTML parser + retained markup; original figure-target gate |
+| Prepared Web FCC | Scoped semantic component IR before figure protection | Existing FCC HTML/marker parser at source boundary; replay uses no HTML/config |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -326,8 +327,26 @@ its hotspot limit. Real EN/FR/ES outputs remain byte-identical. This does not
 migrate the generic figure string-protection map, other composite figures or
 Word/IDML Inbox adapters, and does not expand approved target admission.
 
+**Prepared FCC composite:** the existing Web target/source gate reaches
+`load_web_fcc_source` → public assembler → `render_fcc_ir`. Its single `web_fcc`
+block contains the existing `HB-SPECIAL-FCC` instance and an explicit mark binding
+(`asset_ref`, `src`). Opening lines, ordered paragraphs/measures and column break
+already express the rendered FCC content, so replay consumes semantic data
+without retaining/reparsing a second HTML representation or loading source config.
+It validates public hashes, canonical ComponentSpec fields, source/language identity
+and the mark binding before caller DOM mutation. Source provenance includes
+actual HTML, target context and active FCC config/registry/theme hashes.
+
+The direct ComponentSpec-only Web route exits. Existing FCC parser rules,
+label/filename language fallback, paragraph normalization, target admission,
+Word/IDML behavior and generic figure protection remain. Three captured EN/FR/ES
+outputs match byte for byte. Serialization tests delete source/config and forbid
+parser calls; a valid semantic edit changes output, while inconsistent owned
+payloads fail. One source/contract adapter reuses the existing renderer without
+raising its 150-line limit. This does not promise arbitrary HTML rich-text fidelity.
+
 These are **three scoped table families across both Web entrances plus the
-shared callout consumer and one prepared Inbox composite**, not whole-manual Web IR or a
+shared callout consumer plus prepared Inbox and FCC composites**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.
