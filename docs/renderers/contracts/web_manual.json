@@ -67,6 +67,7 @@
     "period_years": ["3", "2"]
   },
   "in_the_box": {
+    "semantic_source_patterns": ["box_contents_*"],
     "source_patterns": [
       "*02_whats_in_the_box"
     ]

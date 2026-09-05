@@ -50,23 +50,38 @@ manual.ir.json → web_document_ir → 既有组件投影 → MyST → Sphinx �
   新进程导入 Web 消费者并禁止一切 RST/CSV 文件读取，仍成功重放实际 BP 整本。
 - LCD 源生成器在全部独立图标为空时显式声明 `lcd-text-only`；空名称/说明和
   未声明的缺图仍失败，不用虚假占位图补齐。
-- 实测 12 个源页、19 张图片，其中 12 组为 PDF 带字裁切；浏览器全部加载成功。
+- 实测 12 个源页、19 张图片，其中 9 组为 PDF 带字整图；浏览器全部加载成功。
   IR 素材位于现有 `assets/` 打包边界，RTD 静态路径可解析。
 - JE-1000F US 使用原有 `review-asis` 回归：正文文本与合入前一致，图片 210→210。
-- 完整单测 3717 项通过（22 skipped），59 项聚焦测试通过；Ruff、maintainability、
+- 完整单测 3721 项通过（22 skipped）；Ruff、maintainability、
   BP JP / US `build.py check` 通过。Guardrail 的 6 个 stale baseline 为已有提示。
-- 实际输出位于本任务工作树 `.tmp/bp-web-accepted/`：`html/` 为网站，
+- 实际输出位于本任务工作树 `.tmp/bp-web-whole/`：`html/` 为网站，
   `docs/_build/JBP-2000B/JP/md/manual.ir.json` 为 IR，`replay/body.html` 为独立重放，
   `acceptance.json` 为机器可读验收记录，`JBP-2000B-JP-web-preview.zip` 为离线站点包。
 - 最终 IR 内容 SHA-256：
-  `fccbe2457eab580017cd0d91bdd046d6be9f56db9fd65a6b423ea6457f52e511`。
+  `d4439b945c3475db43a3f52349fb047141677a0a014048cbb714f788ac488c40`。
 
 ### 已确认的参考 PDF 错误
 
 操作者明确确认结构源正确：**开机按一次，关机长按三秒**。
-参考 PDF 第 6 页图内标注相反。因此 Web 的 power 裁切排除那一小块错误外加标注，
-产品图及机身文字保留，正确说明继续来自结构源。没有反向改写结构源。
-其他插图的日语标注按 PDF 保留；recipe/manifest 同步记录该例外和新哈希。
+参考 PDF 第 6 页图内标注相反。Web 的 power 保留完整插图，在提取 recipe 中通过
+`swap_pdf_regions` 交换两处原生 PDF 开/关标题，原有时长、产品线稿、引线和机身文字保留。
+该操作只适用于白底、等尺寸、不相交且位于裁切内部的区域，冻结源和输出哈希；
+最终 PNG 经视觉核验，不修改原 PDF 或结构源。
+
+### 整图与共享组件的边界
+
+- 包装清单复用 `HB-SPECIAL-INBOX`：`box_contents_*` 源页接入既有公共组件，
+  编号、卡片、名称及注意事项由组件生成；使用现有单品插图，不使用 PDF 整卡截图。
+  recipe 中保留的三张早期整卡候选不再绑定到网页。
+- 产品总览、开关机、锁定和充电图由整图承载图内标注。
+  manifest 的 `covered_annotations` 以选择器和完整规范化文字绑定覆盖范围；
+  构建只移除七块准确匹配的冗余标注，缺失、重复或源文变化均失败。
+  同一份正确结构文字保留在图片 alt 与 IR provenance 中，避免失去无障碍说明。
+- LCD 功能解释表、注意事项、警告、规格和正文继续是结构内容；
+  不因插图带字而移除解释性正文，也不把整个文档栅格化。
+- 浏览器已核验共享包装组件 1 个、卡片 3 张、图片 19/19、重复标注退出；
+  安全、符号解释、LCD 定义、故障排除、规格、保修的正文与前版一致。
 
 ### 剩余边界（不能宣称已完成）
 

@@ -1122,8 +1122,14 @@ def transform_web_fragment(
         language=language, model=model, region=region,
         error_type=WebPresentationError,
     )
-    semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd else html_fragment
     data = contract or load_web_manual_contract()
+    has_inbox = _matches_source(source_path, list(data["in_the_box"].get("semantic_source_patterns", [])))
+    if has_inbox:
+        transform_inbox(
+            soup, source_path=source_path, language=language or "und",
+            model=model, region=region, error_type=WebPresentationError,
+        )
+    semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd or has_inbox else html_fragment
     preface = data["preface"]
     overview = data["product_overview"]
     operations = data["operations"]
@@ -1212,7 +1218,7 @@ def transform_web_fragment(
             expected_sections=int(warranty["section_count"]),
             expected_years=[str(value) for value in warranty["period_years"]],
         )
-    if is_in_the_box:
+    if is_in_the_box and not has_inbox:
         transform_inbox(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,

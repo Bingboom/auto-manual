@@ -1892,8 +1892,12 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
 The actual Web bundle entry assembles one public `manual-ir/v1` content tree and
 consumes it without reopening source RST/CSV. Image staging was mechanically
 shared with Word; cold-process replay and RTD static-copy regressions protect the
-boundary. JBP-2000B JP builds with 12 PDF-derived illustration groups and a declared
+boundary. JBP-2000B JP builds with 9 PDF-derived illustration groups, a shared Inbox component and a declared
 text-only LCD table. The structured on/off instructions remain authoritative over
-the incorrect reference-PDF labels. 3717 unit tests pass (22 skipped), plus target
+the incorrect reference-PDF labels. 3721 unit tests pass (22 skipped), plus target
 checks and US review Web parity. This completes the bounded Web checkpoint, not
 neutral rich text or all-renderer migration. See [the execution record](dev/ir_document_closeout.md).
+
+- 同一收口 PR 的展示验收修正：包装清单接入既有 `HB-SPECIAL-INBOX`，正文不栅格化；
+  PDF 整图覆盖的七块标注以源文精确匹配退出，开关机标题在原生 PDF 提取中更正。
+  19 张图片与独立 IR 重放通过，完整测试 3721 项（22 skipped）。

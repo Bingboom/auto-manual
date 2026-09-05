@@ -10,7 +10,10 @@ For the current JP / US family difference boundary, use [`../code-as-doc/manual_
 For the complete IR → Web build/replay acceptance target, including JBP-2000B
 Japanese PDF illustrations, see [`ir_document_closeout.md`](../code-as-doc/dev/ir_document_closeout.md).
 Web inserts finished illustrations with their embedded text; IDML's textless
-variants remain separate. The local fixture preview is not a published or
+variants remain separate. Packaging lists retain the shared `HB-SPECIAL-INBOX`
+component, including live numbers, labels and notes. Only explicitly matched
+annotations already embedded in a finished figure disappear from the visual
+page; explanatory copy remains live. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 
 For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).

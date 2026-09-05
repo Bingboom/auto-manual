@@ -41,6 +41,32 @@ def _sha256(path: Path) -> str:
 
 @unittest.skipIf(fitz is None, "PyMuPDF not installed")
 class TestAssetIntake(unittest.TestCase):
+    def test_native_pdf_region_swap_preserves_unaffected_art(self):
+        from types import SimpleNamespace
+        from tools.asset_pipeline.extract import _prepare_asset_source
+        from tools.asset_pipeline.models import TransformSpec
+        with TemporaryDirectory() as tmp:
+            source = Path(tmp) / "swap.pdf"
+            doc = fitz.open()
+            page = doc.new_page(width=120, height=100)
+            page.draw_rect(fitz.Rect(10, 10, 30, 20), color=None, fill=(1, 0, 0))
+            page.draw_rect(fitz.Rect(10, 30, 30, 40), color=None, fill=(0, 0, 1))
+            page.draw_circle(fitz.Point(80, 70), 8, fill=(0, 1, 0))
+            doc.save(source)
+            before = page.get_pixmap()
+            doc.close()
+            asset = SimpleNamespace(page=1, asset_key="test", crop_bbox=(0, 0, 120, 100), transforms=(
+                TransformSpec(op="crop", bbox_pt=(0, 0, 120, 100)),
+                TransformSpec(op="swap_pdf_regions", bbox_pt=(10, 10, 30, 20), other_bbox_pt=(10, 30, 30, 40)),
+            ))
+            result, _ = _prepare_asset_source(fitz=fitz, source_path=source, asset=asset)
+            after = result[0].get_pixmap()
+            self.assertEqual(after.pixel(15, 15), before.pixel(15, 35))
+            self.assertEqual(after.pixel(15, 35), before.pixel(15, 15))
+            self.assertEqual(after.pixel(80, 70), before.pixel(80, 70))
+            self.assertEqual(after.pixel(60, 50), before.pixel(60, 50))
+            result.close()
+
     def _make_source(
         self,
         path: Path,

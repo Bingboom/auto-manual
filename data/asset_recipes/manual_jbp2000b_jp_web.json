@@ -463,9 +463,24 @@
           "op": "crop",
           "bbox_pt": [
             29,
-            231,
-            264,
+            233,
+            340,
             313
+          ]
+        },
+        {
+          "op": "swap_pdf_regions",
+          "bbox_pt": [
+            277,
+            239,
+            301,
+            249
+          ],
+          "other_bbox_pt": [
+            277,
+            262.624,
+            301,
+            272.624
           ]
         }
       ],
@@ -474,14 +489,13 @@
           "format": "png",
           "path": "assets/power.png",
           "scale": 4,
-          "expected_sha256": "fb8f9203ac6b63392d8e94d2ccab6614774fa8db4a441593a795018567cc9af0"
+          "expected_sha256": "9bb60cbd941de68292b31fd7296f31068358dc4028c198f7365d5f6fe051b421"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "Operator confirmed structured source is authoritative on 2026-09-05: on = press once, off = hold 3 seconds. Crop excludes the erroneous external on/off labels in the reference PDF; product markings and button illustration remain.",
-          "Agent visually verified the final crop: incorrect external timing labels excluded; body uses authoritative structured copy."
+          "Operator confirmed structured source: on = press once; off = hold three seconds. Swap only the two native PDF on/off title regions, preserve timing labels, product art and markings. Whole illustration is reviewed after extraction."
         ]
       },
       "risk_tags": [

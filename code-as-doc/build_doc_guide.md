@@ -713,6 +713,19 @@ Web Publish / Read the Docs note:
   split images; surrounding structured copy is retained. Wrong target, missing
   images, changed bytes, repeated or unused bindings fail the build. These Web
   variants preserve embedded text and never overwrite IDML textless assets.
+  Optional `covered_annotations` entries bind a selector and exact normalized
+  source text already covered by an illustration. Only unique unchanged matches
+  are consumed; changed or ambiguous copy fails. Covered copy stays in image alt
+  and IR provenance. Explanatory tables and warnings stay live.
+- Packaging lists use the existing `HB-SPECIAL-INBOX` component. The explicit
+  `in_the_box.semantic_source_patterns` contract accepts `box_contents_*` outside
+  target-specific figure geometry; three original item images, labels and the
+  note form the shared component. Finished-illustration bindings do not replace
+  those cards with screenshots.
+- For an approved PDF artwork correction, `swap_pdf_regions` exchanges two
+  equal-size, disjoint native regions on white backgrounds, inside the asset
+  crop. Freeze source/output hashes and visually verify the final PNG. JBP-2000B
+  JP uses this to correct reversed on/off titles according to structured source.
 
 - `Review Preview Package` uploads the review-preview workspace as a GitHub artifact only
 - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`

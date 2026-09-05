@@ -9,48 +9,6 @@
   "illustrations": [
     {
       "replaces": [
-        "jbp2000b_in_box_main_unit.png"
-      ],
-      "path": "assets/jbp2000b_jp/inbox_unit.png",
-      "sha256": "5dfee47c20f5789ff1ea7c4f590921a8425fc09b92f221b0fdd214f7deeeead4",
-      "source_page": 5,
-      "bbox_pt": [
-        28,
-        62,
-        131,
-        217
-      ]
-    },
-    {
-      "replaces": [
-        "jbp2000b_expansion_cable.png"
-      ],
-      "path": "assets/jbp2000b_jp/inbox_cable.png",
-      "sha256": "7f4e201c44f717733b3ebc157f2cdda9be33ead91ec51b5f5815fa6014234789",
-      "source_page": 5,
-      "bbox_pt": [
-        132,
-        62,
-        236,
-        217
-      ]
-    },
-    {
-      "replaces": [
-        "manual_icon1.png"
-      ],
-      "path": "assets/jbp2000b_jp/inbox_manual.png",
-      "sha256": "1c2cc7c26c70cda480bb5c6db6d56f47bb072139b13950538eeb79df646345df",
-      "source_page": 5,
-      "bbox_pt": [
-        237,
-        62,
-        341,
-        217
-      ]
-    },
-    {
-      "replaces": [
         "jbp2000b_front_controls.png",
         "jbp2000b_left_side_ports.png"
       ],
@@ -62,6 +20,16 @@
         341,
         341,
         481
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "主電源ボタン ディスプレイ"
+        },
+        {
+          "selector": "table",
+          "text": "ハンドル DC 拡張ポート A 接続拡張ケーブルのプラグAに接続 DC 拡張ポート B 接続拡張ケーブルのプラグBに接続"
+        }
       ]
     },
     {
@@ -83,15 +51,21 @@
         "jbp2000b_power_control.png"
       ],
       "path": "assets/jbp2000b_jp/power.png",
-      "sha256": "fb8f9203ac6b63392d8e94d2ccab6614774fa8db4a441593a795018567cc9af0",
+      "sha256": "9bb60cbd941de68292b31fd7296f31068358dc4028c198f7365d5f6fe051b421",
       "source_page": 6,
       "bbox_pt": [
         29,
-        231,
-        264,
+        233,
+        340,
         313
       ],
-      "source_correction": "Operator confirmed structured source is correct: on = press once; off = hold 3 seconds. Exclude conflicting PDF labels from the crop."
+      "source_correction": "Structured source confirmed: on = press once; off = hold three seconds. Whole PDF panel retained with native on/off title regions exchanged by the recipe.",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "オン 1回押す オフ 3秒間長押し"
+        }
+      ]
     },
     {
       "replaces": [
@@ -149,6 +123,16 @@
         260,
         342,
         496
+      ],
+      "covered_annotations": [
+        {
+          "selector": "p",
+          "text": "ロック"
+        },
+        {
+          "selector": "p",
+          "text": "ロック解除"
+        }
       ]
     },
     {
@@ -163,6 +147,12 @@
         114,
         342,
         267
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "拡張ケーブル ACケーブル"
+        }
       ]
     },
     {
@@ -177,6 +167,12 @@
         317,
         342,
         497
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "拡張ケーブル SolarSaga 200"
+        }
       ]
     }
   ]

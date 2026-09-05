@@ -326,6 +326,19 @@ def _prepare_asset_source(
                     f"asset {asset.asset_key!r} expected {len(leaders) * 2} leader "
                     f"strokes, suppressed {suppressed}"
                 )
+        elif transform.op == "swap_pdf_regions":
+            # Copy the native PDF artwork from the immutable source, not a
+            # raster repaint. White backgrounds are part of this operator's
+            # contract; source hash and output hash still gate the recipe.
+            if transform.bbox_pt is None or transform.other_bbox_pt is None:
+                raise ArtifactValidationError("swap_pdf_regions requires two rectangles")
+            first, second = fitz.Rect(transform.bbox_pt), fitz.Rect(transform.other_bbox_pt)
+            if not crop.contains(first) or not crop.contains(second):
+                raise ArtifactValidationError("swapped PDF regions must stay within crop")
+            with fitz.open(str(source_path)) as original:
+                for destination, origin in ((first, second), (second, first)):
+                    page.draw_rect(destination, color=None, fill=(1, 1, 1), overlay=True)
+                    page.show_pdf_page(destination, original, asset.page - 1, clip=origin, overlay=True)
         elif transform.op == "whiteout":
             if transform.bbox_pt is None:
                 raise ArtifactValidationError(f"asset {asset.asset_key!r} has invalid whiteout")

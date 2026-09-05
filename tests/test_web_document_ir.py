@@ -15,10 +15,38 @@ from bs4 import BeautifulSoup
 from tools.manual_ir import read_manual_ir, write_manual_ir
 from tools.manual_ir.document import validate_document
 from tools.web_document_ir import render_document_fragments
+from tools.web_document_source import _consume_covered_annotations
 from tools.word_bundle_html import build_word_bundle_html
 
 
 class WebDocumentIRTests(unittest.TestCase):
+    def test_japanese_box_contents_uses_shared_inbox_outside_figure_target(self):
+        from tools.web_presentation import transform_web_fragment
+        cells = ''.join(f'<td><img src="{i}.png"><p>{label}</p></td>'
+                        for i, label in enumerate(('本体', '拡張ケーブル', '取扱説明書')))
+        markup = f'<h1>同梱品</h1><table><tr>{cells}</tr></table><table><tr><td>注意</td><td>付属品についての注意</td></tr></table>'
+        result = transform_web_fragment(markup, source_path=Path('box_contents_ja.rst'),
+                                        model='OTHER-BP', region='JP', language='ja')
+        soup = BeautifulSoup(result, 'html.parser')
+        self.assertEqual(len(soup.select('[data-component-id="HB-SPECIAL-INBOX"]')), 1)
+        self.assertEqual([n.get_text(strip=True) for n in soup.select('.hb-inbox-label')],
+                         ['本体', '拡張ケーブル', '取扱説明書'])
+        self.assertEqual(len(soup.select('.hb-inbox-card')), 3)
+        self.assertIn('付属品についての注意', soup.get_text())
+
+    def test_finished_art_consumes_only_exact_bound_annotations(self):
+        entry = {"covered_annotations": [{"selector": ".line-block", "text": "オン 1回押す オフ 3秒間長押し"}]}
+        markup = '<img src="power.png"><div class="line-block">オン 1回押す オフ 3秒間長押し</div><p>保留する説明</p>'
+        soup = BeautifulSoup(markup, "html.parser")
+        _consume_covered_annotations(soup, entry, soup.img)
+        self.assertIsNone(soup.select_one(".line-block"))
+        self.assertEqual(soup.img["alt"], entry["covered_annotations"][0]["text"])
+        self.assertEqual(soup.p.get_text(), "保留する説明")
+        for changed in (markup.replace("1回押す", "2回押す"), markup + '<div class="line-block">オン 1回押す オフ 3秒間長押し</div>'):
+            soup = BeautifulSoup(changed, "html.parser")
+            with self.assertRaisesRegex(ValueError, "changed or ambiguous"):
+                _consume_covered_annotations(soup, entry, soup.img)
+
     def build(self, root, manifest=None):
         pages = root / "source"
         pages.mkdir()

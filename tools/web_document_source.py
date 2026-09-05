@@ -15,6 +15,25 @@ from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.web_presentation import load_web_manual_contract
 
 
+def _consume_covered_annotations(soup, entry, image):
+    """Only consume explicitly bound, unchanged copy already present in art."""
+    covered = []
+    for binding in entry.get("covered_annotations", []):
+        expected = binding["text"]
+        if not isinstance(expected, str) or not expected.strip():
+            raise ValueError("covered illustration annotation requires nonempty text")
+        matches = [node for node in soup.select(binding["selector"])
+                   if " ".join(node.get_text(" ", strip=True).split()) == expected]
+        if len(matches) != 1 or matches[0].find(["img", "h1", "h2", "h3"]):
+            raise ValueError(f"covered illustration annotation changed or ambiguous: {expected}")
+        covered.append(expected)
+        matches[0].decompose()
+    if covered:
+        # Preserve the authoritative source copy for accessibility while the
+        # visual page uses one finished figure. It also gates stale artwork.
+        image["alt"] = "；".join(covered)
+
+
 def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
                       output_dir: Path, composite_manifest, illustration_manifest: Path | None = None):
     from tools.word_bundle_html import (
@@ -26,6 +45,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     target_language = materialized.lang or (languages[0] if len(languages) == 1 else "")
     hashes = {}
     replacements = {}
+    illustration_entries = {}
     provenance = None
     if illustration_manifest is not None:
         provenance = json.loads(illustration_manifest.read_text(encoding="utf-8"))
@@ -43,6 +63,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 if name in replacements:
                     raise ValueError("ambiguous Web illustration replacement")
                 replacements[name] = file if index == 0 else None
+                if index == 0:
+                    illustration_entries[name] = entry
 
     def package_asset(file: Path) -> str:
         digest = file_sha256(file)
@@ -78,6 +100,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                     image.attrs.pop("width", None)
                     image.attrs.pop("height", None)
                     image["style"] = "width: 100%; height: auto;"
+                    _consume_covered_annotations(soup, illustration_entries[name], image)
         staged = soup
         for image in staged.find_all("img"):
             src = str(image.get("src", ""))

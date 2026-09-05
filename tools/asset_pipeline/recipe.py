@@ -397,6 +397,15 @@ def _catalog(value: Any, *, archive: ArchiveSpec) -> tuple[PageCatalogEntry, ...
 def _transform(value: Any, location: str) -> TransformSpec:
     data = _mapping(value, location)
     op = _string(data.get("op"), f"{location}.op")
+    if op == "swap_pdf_regions":
+        _keys(data, location=location, required={"op", "bbox_pt", "other_bbox_pt"})
+        first = _bbox(data["bbox_pt"], f"{location}.bbox_pt")
+        second = _bbox(data["other_bbox_pt"], f"{location}.other_bbox_pt")
+        if any(abs((first[i + 2] - first[i]) - (second[i + 2] - second[i])) > 0.001 for i in (0, 1)):
+            raise _fail(location, "swapped PDF regions must have equal dimensions")
+        if first[0] < second[2] and second[0] < first[2] and first[1] < second[3] and second[1] < first[3]:
+            raise _fail(location, "swapped PDF regions must not overlap")
+        return TransformSpec(op=op, bbox_pt=first, other_bbox_pt=second)
     if op in {"crop", "whiteout"}:
         _keys(data, location=location, required={"op", "bbox_pt"})
         return TransformSpec(op=op, bbox_pt=_bbox(data["bbox_pt"], f"{location}.bbox_pt"))
@@ -528,7 +537,7 @@ def _transform(value: Any, location: str) -> TransformSpec:
     raise _fail(
         f"{location}.op",
         "must be crop, drop_leader_strokes, redact_text, redact_text_region, "
-        "retain_vector_drawings, or whiteout",
+        "retain_vector_drawings, swap_pdf_regions, or whiteout",
     )
 
 
