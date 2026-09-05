@@ -270,6 +270,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web callouts / standalone MyST callouts | Shared callout IR consumer | Rendered HTML + ComponentSpec; protected composite figures remain separate |
 | Prepared Web Inbox (three cards + internal TIP) | Scoped composite IR before figure protection | Existing Inbox HTML parser + retained markup; original figure-target gate |
 | Prepared Web FCC | Scoped semantic component IR before figure protection | Existing FCC HTML/marker parser at source boundary; replay uses no HTML/config |
+| Prepared Web signal-word legend | Scoped table IR before figure protection | Governed warning-lockup markup/row-count selection + retained HTML |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -345,8 +346,27 @@ parser calls; a valid semantic edit changes output, while inconsistent owned
 payloads fail. One source/contract adapter reuses the existing renderer without
 raising its 150-line limit. This does not promise arbitrary HTML rich-text fidelity.
 
+**Prepared signal-word legend:** `transform_symbol_signal_table` now loads
+`manual_ir.web_symbols` source, invokes the public assembler and consumes
+`web-symbol-signals` IR before applying a figure. One `web_signal_table` block
+retains headers, labels, meanings, table HTML and markup image references.
+The source adapter owns the existing warning-lockup/row-count selection and
+all visible-label extraction; the renderer no longer decodes raw caller rows.
+Public hash validation and re-decoding of the retained table verify owned payload
+agreement on replay. All rows must have complete unspanned geometry and exactly
+one visible label; validation precedes any source DOM mutation.
+
+The old direct DOM path exits, including its failure after partly rewriting a
+malformed table. Three real EN/FR/ES outputs remain byte-identical, including
+adjacent newlines left by removal of the print colgroup. One source/contract
+adapter reuses the existing renderer with no raised hotspot limit or new
+ComponentSpec registry/schema. This table did not already have a ComponentSpec;
+its owned table payload is not a new parallel registry. Source markup/filename
+admission remains debt; adjacent symbol-pair tables, generic figure protection
+and whole-manual migration remain separate.
+
 These are **three scoped table families across both Web entrances plus the
-shared callout consumer plus prepared Inbox and FCC composites**, not whole-manual Web IR or a
+shared callout consumer, prepared signal-word legend, Inbox and FCC composites**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.
