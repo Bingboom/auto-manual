@@ -1459,6 +1459,7 @@ def transform_web_fragment(
             config=fcc,
             error_type=WebPresentationError,
             language=language,
+            model=model, region=region,
         )
     if is_meaning_symbols:
         transform_symbol_signal_table(

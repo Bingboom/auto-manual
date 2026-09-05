@@ -149,7 +149,7 @@ empty-cell policies are recorded in
     used by both the prepared Web bundle and standalone `SpecTableDirective`
   - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
 - [`tools/manual_ir/web_source.py`](../../tools/manual_ir/web_source.py)
-  - shared scoped HTML-source provenance envelope; reused by specifications, declared tables, callouts and Inbox
+  - shared scoped HTML-source provenance envelope; reused by specifications, declared tables, callouts, Inbox and FCC
 - [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
   - one declared LCD/troubleshooting source decoder and owned payload validation;
     explicit CSV/class identities select tables independently of filenames or artwork grants
@@ -170,6 +170,12 @@ empty-cell policies are recorded in
 - [`tools/web_inbox_component.py`](../../tools/web_inbox_component.py)
   - real Web entrypoint assembles public IR, replays on detached tags, then atomically applies the figure
   - existing target gate and projection remain; direct ComponentSpec-only Web reading has exited
+- [`tools/manual_ir/web_fcc.py`](../../tools/manual_ir/web_fcc.py)
+  - prepared FCC source and owned IR contract; carries existing semantic blocks and resolved mark binding
+  - validates canonical semantics, source identity and asset binding without reparsing HTML at replay
+- [`tools/web_fcc_component.py`](../../tools/web_fcc_component.py)
+  - actual Web consumer assembles public IR and renders its semantic slots before mutating caller DOM
+  - retains existing FCC projection/layout; source marker config is not a renderer input
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)

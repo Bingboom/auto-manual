@@ -1818,3 +1818,16 @@ validates hashes, semantics and complete unspanned rows before replacing caller
 DOM. The direct ComponentSpec-only Web path and hardcoded `und` facade have
 exited. Existing figure-target admission and EN/FR/ES output stay unchanged;
 other composite figures and the generic figure protection map remain separate.
+
+
+Prepared Web FCC now uses the public source/assembler/consumer path as well.
+The `web-fcc` projection carries its existing `HB-SPECIAL-FCC` ComponentSpec
+(opening lines, ordered paragraphs/measures, column break) plus the resolved
+logical-mark-to-image binding. Rendering uses those semantics directly and
+needs neither original HTML nor FCC marker configuration after serialization.
+The source adapter records actual target context and hashes the active FCC
+config with registry/theme provenance. Invalid IR, source identity or mark
+binding fails before the original page is changed. The old direct Web
+ComponentSpec-only route exits; existing marker/filename language fallback,
+paragraph normalization, three-locale output and target admission remain.
+This is not a new general rich-text parser or a Word/IDML FCC migration.

@@ -1142,6 +1142,13 @@ Rich text, links, image references and existing EN/FR/ES appearance are retained
 This does not admit new targets into the approved figure contract or change
 Word/IDML output. Other composite figure callouts remain separate work.
 
+Prepared Web FCC also passes through public IR. Its opening copy, measures,
+column split and mark binding can be replayed without reopening the source page.
+Invalid semantic data or an inconsistent mark binding stops the transform before
+partial output. Existing EN/FR/ES copy, paragraph normalization, figure admission
+and Word/IDML output are unchanged; this does not change legal text or approve
+an additional region.
+
 LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
