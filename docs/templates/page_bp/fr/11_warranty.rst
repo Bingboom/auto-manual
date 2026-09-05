@@ -41,14 +41,14 @@ Période de garantie
 Réparation ou remplacement
 --------------------------
 
-Jackery remplacera (aux frais de Jackery) tout produit de Jackery qui ne fonctionne plus en raison d'un défaut de fabrication ou de matériau pendant la période de garantie applicable. Un produit remplacé reprend la garantie restante du produit d'origine.
+Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.
 
 .. class:: warranty-section
 
 Limitée à l'acheteur et consommateur d'origine
 ----------------------------------------------
 
-Jackery réparera ou remplacera (aux frais de Jackery) tout produit Jackery qui cesse de fonctionner pendant la période de garantie applicable en raison d'un défaut de fabrication ou de matériau. Le produit réparé ou remplacé bénéficie de la garantie restante de la date d'achat d'origine.
+La garantie d'un produit Jackery est limitée à l'acheteur et consommateur d'origine, elle ne peut pas être transférée à un autre propriétaire.
 
 .. class:: warranty-section
 
