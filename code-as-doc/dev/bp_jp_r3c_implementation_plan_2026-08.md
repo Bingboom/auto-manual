@@ -245,25 +245,19 @@ knowing before anyone repeats the sync:
 
 ## Phase 6 - native InDesign and twelve-page visual acceptance
 
-Status: in progress. **The operator ran native InDesign on 2026-09-01 and
-reported that the styling does not yet meet the final acceptance standard.**
-The specific findings are on the operator's host and are not reproduced here.
+Status: native engineering acceptance completed on the design Mac on
+2026-09-04, with explicit debt. The R3 portable package was opened, saved,
+reopened and exported with InDesign 21.0.1.6: 12 pages, 88 stories, zero overset,
+missing fonts, missing glyphs or bad links, and validated PDF/X-4.
 
-The three "zero" measurements previously recorded in this section — zero
-overset stories, zero overset table cells, zero missing-font findings — are
-**stale and must not be relied on**. They predate #985, #989 and #992, and the
-last two changed exactly the things they measured: #989 rerouted the data
-stories through the shared font sink, and #992 restored the `lang_jp_` prefix,
-which moves the inbox card from 108.0pt to a measured 145.0pt and changes the
-warranty lead and body baseline. Overset is a function of that geometry.
-Overset cannot be re-measured off-host: `tools/indesign_finalize.py::_overset_pages`
-reads a report produced by the JSX **inside** InDesign, so only a native run
-can settle it.
+The complete twelve-physical-page record, R1/R3 hashes, five verified repairs
+and retained debt are in
+[`../reviews/bp_jp_r3c_native_validation_2026-09.md`](../reviews/bp_jp_r3c_native_validation_2026-09.md).
+The operator allowed the power-button/reference conflict to remain as recorded
+product-fact debt. This does not assert product, legal or asset release approval.
 
-What the pipeline side can prove was re-measured on the current bytes, and is
-recorded below so the next native round starts from facts rather than from the
-stale trio. A fresh native run, PDF/X export, and the twelve-page visual ledger
-are still required.
+The earlier 2026-09-01 measurements below are historical pipeline evidence;
+the R3 ledger supersedes their page mapping, package shape and font conclusions.
 
 ### Pipeline-side mechanical acceptance (current bytes, no InDesign)
 
@@ -356,9 +350,10 @@ Acceptance:
 
 ## Phase 7 - clean-room package, PR, merge, and checklist backfill
 
-Status: pending Phase 6 completion. The validation ladder and the package
-mechanics have been pre-run so that nothing but the visual gate stands between
-Phase 6 passing and this phase closing.
+Status: R3 native engineering review and portable-package reopen complete;
+prepare the whole JP line for a main PR. The R3 ledger is the current evidence.
+Product/legal/asset release status and its four debt rows remain explicit;
+main integration is not a production-eligibility promotion.
 
 Required validation ladder — **all eight green on 2026-09-04**, re-run after the
 branch was aligned with `main` (#1027) and after the twelve commits that landed
@@ -380,7 +375,7 @@ set AGENTS.md §8.5 names for a build/quality-gate change. Each `check` rewrites
 189 tracked files under `docs/_build` plus one under `docs/_review`; they were
 restored with `git restore docs/_build docs/index.rst` after every run, per §6.
 
-The frozen JP package is pinned by content digest rather than by a claim:
+The original pre-native JP package was pinned by content digest:
 **107 zip members, 12 spreads, 88 stories,
 `a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1`**
 (sha256 over each member's name and content, so zip timestamps cannot mask a
@@ -394,7 +389,9 @@ assets collected with none missing, four OFL font files bundled, and all seven
 reports present including the `source_trace.json` / `designer_checklist.md` /
 `missing_assets_report.md` trio. It is a dry run, not the deliverable: the real
 package must be built from a clean worktree and must carry the native PDF and
-visual evidence that Phase 6 has not yet produced.
+visual evidence. The R3 extracted package and native report now provide the
+engineering evidence; the older handoff numbers in this paragraph remain a
+historical dry run.
 
 One packaging fact is worth stating before the clean-room reopen, because it
 will otherwise look like a package defect: the ZIP intentionally does **not**

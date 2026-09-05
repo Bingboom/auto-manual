@@ -1,149 +1,140 @@
 # JBP-2000B JP R3c native IDML validation (2026-09)
 
-**Status: shell. The pipeline half is filled in and reproducible; the native
-half is empty because it can only be produced on the design Mac.**
+**2026-09-04 design Mac / 2026-09-05 UTC: native engineering acceptance
+complete, with the explicit debt below.** R3 was opened from the portable
+handoff package, saved, closed, reopened and exported by InDesign. All twelve
+physical pages were reviewed. This is evidence for the main PR, not a claim
+that product facts, asset approval or legal release approval have been signed.
 
-This is the document `code-as-doc/reviews/` was missing. Its EU and US
-counterparts exist — `jbp2000b_eu_r2_native_validation_2026-08.md` and
-`jbp2000b_us_s6_reconciliation_2026-08.md` — and JP had only the pipeline-side
-`bp_jp_reference_vs_built_2026-09.md`. R3c Phase 6 records that a native round
-happened on 2026-09-01 and that the styling did not yet meet acceptance, but
-adds "the specific findings are on the operator's host and are not reproduced
-here", so nothing in the repo says what was seen or which items are now closed.
-That gap is what this file exists to close: fill the empty cells on the host
-rather than transcribing findings into a chat message.
+## Scope and lineage
 
-## Decision and scope
+PR #1027 merged first into `feat/bp-jp-target-onboarding` as `fe25a8f8`.
+PR #1028 was retargeted to that branch before the parent branch was deleted,
+aligned with the new base, and merged as `2c6315ff`. Both had all 17 checks
+successful on their final heads, with no unresolved review threads or
+changes-requested reviews. No force push was used.
 
-The frozen artefact is the JP battery-pack booklet as built from this branch.
-Freezing it means freezing everything in the table below, including the two rows
-of residual debt that `bp_jp_reference_vs_built_2026-09.md` §7 records as *not*
-measurements.
+R1 used the exact #1028 freeze. The first native export passed its mechanical
+gates but visual inspection found defects; it was never accepted as the final
+book. A later `build.py idml` preparation cleaned that first export directory.
+R1 was rerun from the unchanged frozen input, and all subsequent evidence was
+archived outside the build target so another build cannot remove it.
 
-Out of scope for this round, by the operator's closeout ruling: public IR, Web,
-and data-reading rules are subsequent system work and are not to be added to
-this line.
+The source snapshot was copied locally, without a live Base write. Before any
+renderer edit, a rebuild differed from the freeze in 15 XML members, exclusively
+in `LinkResourceURI` paths; every other member byte and all visible story
+content matched. R3 changes nine source IDML members for the fixes below.
+Packaging changes only link URIs and collects their files. It does not alter
+story copy or geometry.
 
-## Build evidence (filled — reproducible off-host)
+All paths below are relative to this checkout. Evidence root:
+`.tmp/native-acceptance/`. Current extracted candidate: `r3/`.
+`r3/acceptance_inputs.json` records the 77 snapshot-file hashes and reference
+PDF SHA; `artifact_manifest.json` records the input and native artifact hashes.
 
-```bash
-python3 build.py idml --config configs/config.bp-jp.yaml --model JBP-2000B --region JP
-```
+| Package | Members / spreads / stories | Member-name + content SHA-256 |
+| --- | --- | --- |
+| Original freeze, `r1/manual_jbp2000b_jp.idml` | 107 / 12 / 88 | `a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1` |
+| R3 source, `source_r3.idml` | 107 / 12 / 88 | `91d726cc302fe6613c4b128c2f3dc98263e796bfeaf6aa8d6c07055ba91019be` |
+| R3 packaged, `r3/manual_jbp2000b_jp.idml` | 107 / 12 / 88 | `7feafa1a114289641a33b9bf027fb1641a41705697b64f11f7d727f95130bb0c` |
 
-| Pipeline gate | Result |
-| --- | --- |
-| Package | `docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml` |
-| Zip members | `107` |
-| Spreads | `12` |
-| Stories | `88` |
-| Prose pages | `10` |
-| Spec rows / LCD rows / troubleshooting rows | `11 / 2 / 13` |
-| Skipped raw blocks | `0` |
-| Content digest (member-name + member-content sha256, order-independent of zip metadata) | `a7cc780f2fb6a6ce299cec6cb7027df8b08ec8c2810b0473165a0b5eefd7ebf1` |
+The handoff carries 31 linked assets, zero missing packaged links, seven OFL
+font files and their license. Gilroy is available on this licensed design Mac;
+no commercial font file was copied into the package. This run does not prove
+that a different host without Gilroy produces the same typography.
 
-The digest is the freeze pin. It hashes each member's name and its content, so
-it is stable across rebuilds (zip timestamps are excluded) and changes if any
-byte of any member changes. Recompute it with the snippet in "Method" below and
-compare, rather than trusting a rebuild to "look the same".
-
-## Native InDesign evidence (empty — needs the design Mac)
-
-Run on a host whose InDesign matches the committed pin
-`tools/idml/indesign_version_pin.json` → `Adobe InDesign 2026 21.0.1.6`.
-`--check-host` refuses a mismatch; `--allow-version-mismatch` records the
-override into the report's toolchain block rather than hiding it.
+## Native result
 
 ```bash
-python3 tools/indesign_finalize.py \
-  --idml docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml \
-  --indd docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp_r1.indd \
-  --pdf  docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp_r1.pdf \
-  --report docs/_build/JBP-2000B/JP/idml/finalize_report_r1.json
+python tools/indesign_finalize.py \
+  --idml .tmp/native-acceptance/r3/manual_jbp2000b_jp.idml \
+  --indd .tmp/native-acceptance/r3/manual_jbp2000b_jp_r3.indd \
+  --pdf .tmp/native-acceptance/r3/manual_jbp2000b_jp_r3.pdf \
+  --report .tmp/native-acceptance/r3/finalize_report_r3.json
 ```
 
-The `--report` path is deliberately inside `docs/_build/JBP-2000B/JP/`, which is
-what §4 of the reference-versus-built ledger asked for: the findings stay
-readable in the tree instead of being transcribed.
-
-| Native gate | Result |
+| Native gate | R3 measured result |
 | --- | --- |
-| InDesign version (must match the pin) | |
-| Pages | |
-| Overset stories / nested table cells | |
-| Missing fonts / glyphs / bad links | |
-| PDF glyph validation | |
-| PDF standard | |
-| Output intent / condition | |
-| INDD SHA-256 | |
-| PDF SHA-256 | |
-| Finalize-report SHA-256 | |
+| InDesign version | Adobe InDesign 2026 **21.0.1.6**, committed pin matches |
+| Pages / stories, including reopen | **12 / 88** |
+| Overset stories / nested table cells, including reopen | **0 / 0** |
+| Missing fonts / PDF missing glyphs / bad links | **0 / 0 / 0** |
+| PDF glyph validation | pass, zero replacement or `.notdef` glyphs |
+| PDF standard | **PDF/X-4**, independently validated after export |
+| Output intent / condition | **Japan Color 2001 Coated / JC200103**, both match |
+| Japanese font rebind | 3,196 characters; Bold 346, Medium 69, DemiLight 1,255, Regular 1,526 |
+| INDD SHA-256 | `fbff4844a6d7f0ec762b73d429a9515babb4d08b206d470dd925fc33b805b71e` |
+| PDF SHA-256 | `06e154ec8fee3d10c363e92dc3c58fa7083c183eb8d1b50b59867dd3801b9c33` |
+| Finalize-report SHA-256 | `cc6e4963f33dfdddc79d7d2fba31042902530d0888050d7763ca8517135d9034` |
 
-Overset is the one gate that cannot be pre-answered: `_overset_pages` in
-`tools/indesign_finalize.py` reads a report the JSX writes inside the
-application. Phase 6's earlier zeros were retired by #996 because they described
-bytes that no longer exist — do not carry them forward.
+## Repairs verified in native output
 
-## Phase 6 acceptance criteria
+| Finding in R1 | Change and measured closure |
+| --- | --- |
+| Japanese headings become Regular even when the IDML requests Bold | The finalizer preserves each character's original face during portable-font rebinding and stops if a required face is unavailable. Native PDF `目次` changes from HBManualSansJP-Regular to HBManualSansJP-Bold; the report records all four weights. |
+| Single-column TOC leader lines sit below the text | Use the paragraph's native tab leader and remove the separately positioned lines. All ten entries and folios align in R2/R3. Multicolumn TOCs retain their existing geometry. |
+| `ソーラー充電` and `（別売）` wrap inside a single-line heading/pill | The shared width estimator reserves one em for wide/fullwidth glyphs while retaining the Latin advances. Both strings fit on one line in R2/R3. |
+| Empty specification group title emits an orphan circle | Omit the entire empty section heading and its marker; all eleven table rows remain. R2/R3 has no circle between `主な仕様` and its table. |
+| Warranty lists add a bullet before source numbering or nested dashes | Preserve the source marker once, with the existing hanging-tab layout. R3 pages 11/12 contain single numbered/dash markers. R3 native rasters for pages 1–10 are byte-identical to R2 rasters at 180 dpi. |
 
-| # | Criterion | Result | Evidence |
-| ---: | --- | --- | --- |
-| 1 | Native import, save, reopen and PDF/X-4 export complete with overset 0, missing fonts 0, missing glyphs 0, bad links 0 | | |
-| 2 | The twelve pages match the approved master as a **structural key** — which heading takes which style, which table takes which component. Geometry is explicitly *not* the test: the operator's 2026-09-03 ruling is that the hand-made PDF carries production error and styles are shared across regions | | |
-| 3 | Japanese weight renders as intended across the hierarchy | | |
+Regression checks execute the actual font-rebinding JavaScript with a simulated
+InDesign face reset, cover missing-face failure, and exercise actual TOC,
+specification and warranty rendering. Final local suite: **3,564 tests passed,
+2 skipped**. Ruff, mypy (`tools/utils`, 14 files), maintainability guardrails,
+and BP-JP / JE-1000F-US / JE-1000F-JP build checks passed. Documentation link
+validation accompanies this evidence change.
 
 ## Twelve-page visual ledger
 
-Fill "Result" with pass, or with what is wrong. The "Watch for" column is
-pre-seeded from the pipeline-side findings so the round is not starting cold.
+Page means the **physical PDF page**, not the source-template index. R2 was
+inspected on all twelve pages; R3 pages 11/12 were inspected after the marker
+repair and pages 1–10 were proven raster-identical. Reference and R3 renders
+are in `r3/reference_pages/` and `r3/pages/`, at 180 dpi. The paired overview is
+`r3/twelve_page_reference_vs_r3.png`.
 
-| Page | Role | Watch for | Result |
-| ---: | --- | --- | --- |
-| 01 | cover | Placed approved asset, not live text — confirm it is the JP cover and not a substituted one | |
-| 02 | toc | Dot leaders are a leader tab, not literal `.` characters; all ten entries and the `01-10` range marker present. **§6 open item: the page 02/03 heading structure** | |
-| 03 | safety | Bullet marker: the build sets `•` U+2022 where the master sets `・` U+30FB (§4d, unactioned). **§6 open item: the master's page 2 has no bullet list at all** | |
-| 04 | symbols | Signal labels, rows and rounded shells fit | |
-| 05 | inbox | Card, content and tip panels use the JP-only heights (`lang_jp_idml_inbox_compact_*`, card 145.0 / content 119.0) | |
-| 06 | product_overview | Figure callouts inside the illustrations | |
-| 07 | lcd | LCD icon table composition | |
-| 08 | operation_guide | | |
-| 09 | connections | The `stacking_guide` variant is JP-declared; its three rows sit in the compact overlay | |
-| 10 | charging | Figure measure, suffix pill, redacted labels (§4a) | |
-| 11 | troubleshooting | Label-column tint; the shell is a fixed-height anchored group while the table flows across two spreads | |
-| 12 | spec + warranty | **The one question this round must answer**: `HB Warranty Body` is `PointSize 6` with `<Leading type="unit">6</Leading>` — it sets **solid**. Its siblings `HB Warranty Note` and `HB Warranty Lead` carry 7.2 and 8.2 against sizes 6 and 7. Does the master's warranty prose set solid, or does it breathe? See §4 of the ledger for why the old "is the `Leading="7"` override dropped" question is void | |
-
-## Residual debt this freeze locks in
-
-Both rows are live in the frozen book and neither came off the master. Full
-reasoning in `bp_jp_reference_vs_built_2026-09.md` §7.
-
-| Row | Value | Why it is not a measurement |
+| Physical page / printed folio | Role | Result and observation |
 | --- | --- | --- |
-| `lang_jp_idml_warranty_lead_height` | `40` | CANDIDATE-STAGE (#1019). Natural three-line height is 34.60 pt, so it carries +5.40 pt with no content reason |
-| `lang_jp_idml_warranty_panel_height_adjust_7` | `5.5` | JP-only compensation for a **shared** budget/render mismatch (`_section_body` budgets 6.0, `bp_default` renders 7.0); retired by the shared fix, which is deferred because it grows every US and EU panel |
+| 01 / — | Cover | Pass: JP Battery Pack 2000 / JBP-2000B cover, product illustration and contact information visible. Cover remains placed artwork. |
+| 02 / — | Contents | Pass: ten entries, correct `01–10` range, Bold title, Medium entries, native leaders and right-aligned folios. |
+| 03 / 01 | Safety + signal definitions | Pass: eleven safety bullets, section capsule and four signal rows visible and legible. The older claim that the reference has no safety list is incorrect. |
+| 04 / 02 | Symbols | Pass: seven symbol rows, captions and enclosing shell fit; native symbol-shell fitting records one adjustment. |
+| 05 / 03 | In-box + product overview | Pass: three supplied-item cards, notice panel, front/rear controls and callouts visible. Shared styles retained. |
+| 06 / 04 | LCD + operation | Layout pass; product-fact debt D1 retained by operator instruction. LCD table and both operation panels fit. |
+| 07 / 05 | Connections, first page | Layout pass with asset annotation follow-up D2: prose retains the 20 cm ventilation clearance; the figure lacks its reference label. |
+| 08 / 06 | Connections, second page | Pass: correct/incorrect stacking diagrams, caution text, lock/unlock steps and resulting connection diagram visible. |
+| 09 / 07 | Charging | Pass: AC/solar diagrams and cable labels visible; solar title and suffix pill remain on one line. |
+| 10 / 08 | Troubleshooting + specifications | Pass: all 13 error rows and 11 spec rows present; no orphan group marker, clipped row or overflow. |
+| 11 / 09 | Warranty, first page | Pass: lead and five sections readable; numbered items no longer receive extra bullets. Retained shared leading is not a new reference-matched measurement. |
+| 12 / 10 | Warranty, second page | Pass: service/disclaimer sections and contact rows readable; numbered and nested markers occur once. |
 
-## Artifacts to attach
+The approved PDF is a structural/style-role reference, **not geometry to copy**
+(the operator's #1015 ruling). Shared spacing or type-size differences are not
+silently promoted to new JP-only tokens. This is not a pixel-parity claim or a
+human product/legal sign-off.
 
-1. `manual_jbp2000b_jp_r1.indd`
-2. `manual_jbp2000b_jp_r1.pdf` (PDF/X-4)
-3. `finalize_report_r1.json` — inside `docs/_build/JBP-2000B/JP/`
-4. Page renders at 180 dpi for any page whose Result is not "pass"
+## Explicit debt and next boundary
 
-`docs/_build/**` is generated and excluded from commits; reference the artifacts
-by path and digest here rather than committing them.
+| ID | Debt / owner | Current treatment and closure evidence |
+| --- | --- | --- |
+| D1 | Power-button behavior / product owner | Current structured source says short press on, hold 3 seconds off; the reference PDF places these actions oppositely. Operator: “开关机操作与参考 PDF 相反，这个你直接做 保留债务就行” (2026-09-04). Retain the current source, record the conflict, and proceed with engineering review. Close only with a device check or approved product specification and matching source update; it is not a verified product fact. |
+| D2 | Figure clearance annotation / asset + document owner | Reference physical page 7 has `≥ 20cm`; the current figure has no label. Adjacent warning text explicitly retains at least 20 cm. Restore a source-backed editable callout or approved asset in a focused follow-up; no safety requirement was deleted from the prose. |
+| D3 | Warranty lead height / shared layout owner | `lang_jp_idml_warranty_lead_height=40` remains a candidate allowance, not a measured reference value. |
+| D4 | Warranty section allowance / shared layout owner | `lang_jp_idml_warranty_panel_height_adjust_7=5.5` remains declared compensation. Its retirement needs a shared budget/render investigation and sibling native evidence, not another JP-only constant. |
 
-## Method
+The next review is the **whole JP line into main**. Keep product/legal/asset
+approval status explicit; this evidence does not promote `production_eligible`.
+Public IR, Web and data-reading work must start from the same merged main SHA,
+in separate worktrees, after that PR lands. No implementation of those three
+workstreams was added during this acceptance round.
 
-Recompute the freeze digest:
+## Digest method
 
 ```python
 import hashlib, zipfile
-z = zipfile.ZipFile("docs/_build/JBP-2000B/JP/idml/manual_jbp2000b_jp.idml")
-h = hashlib.sha256()
-for name in sorted(z.namelist()):
-    h.update(name.encode())
-    h.update(hashlib.sha256(z.read(name)).digest())
-print(h.hexdigest())
+with zipfile.ZipFile(".tmp/native-acceptance/r3/manual_jbp2000b_jp.idml") as package:
+    digest = hashlib.sha256()
+    for name in sorted(package.namelist()):
+        digest.update(name.encode())
+        digest.update(hashlib.sha256(package.read(name)).digest())
+    print(digest.hexdigest())
 ```
-
-A mismatch means the build moved; diff member-by-member before assuming the
-freeze is stale, because a changed member names the change.

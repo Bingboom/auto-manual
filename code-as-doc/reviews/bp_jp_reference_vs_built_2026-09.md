@@ -15,6 +15,13 @@
 > three JP-only compositions — stands. Read §4b–§4d below as the record of a
 > measurement pass, not as the current build.
 
+> **Current native evidence, 2026-09-04:**
+> [R3 native validation](bp_jp_r3c_native_validation_2026-09.md) supersedes the
+> historical page-role mapping and unverified native/font conclusions below.
+> The finalizer now preserves the four declared Japanese weights. All twelve
+> physical pages were reviewed, five native defects were repaired, and retained
+> product/asset/layout debt is explicitly listed there.
+
 Date: 2026-09-01
 
 Reference: `Jackery Battery Pack 2000取扱説明書V2.0-2026-05-28.pdf`, the shipped
@@ -449,12 +456,10 @@ them; both are structure, and both are still open.
    table segmented, because the shell is a fixed-height anchored group while the
    table flows across two spreads. Segmenting it is its own change and is not in
    this branch.
-2. **Fifteen safety bullets that the master does not have**, handed over by §4c.
-   What looked like a bullet list at 7.00/11.50 turns out, at x 29.9 and x 100.6
-   on page 2, to be the page intro plus the four signal-word legend definitions.
-   The master's page 2 has no bullet list at all. So this is a content-structure
-   difference, not a type delta, and deciding it means deciding what page 2
-   should say -- not what size it should say it in.
+2. **Closed as an incorrect finding:** the reference has eleven safety
+   bullets on physical page 3 / printed folio 01, also present in R3. §4d had
+   already corrected the mistaken sample; this stale open item must not cause
+   safety copy to be removed.
 
 ## 7. Residual debt carried into the freeze
 

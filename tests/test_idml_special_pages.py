@@ -269,7 +269,8 @@ class IdmlSpecialPageTests(unittest.TestCase):
         )
         self.assertEqual(12, len(self.writer.spreads))
         spread = self.writer.spreads[1][1]
-        self.assertEqual(10, spread.count("gl_toc_leader_0_0_"))
+        self.assertNotIn("gl_toc_leader_0_0_", spread)
+        self.assertEqual(10, toc_story.count('<Leader type="string">.</Leader>'))
 
     def test_special_page_macros_form_complete_ir_payloads(self) -> None:
         with tempfile.TemporaryDirectory() as td:

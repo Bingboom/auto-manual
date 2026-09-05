@@ -612,14 +612,21 @@ def _section_body(
         paragraph_after = list_after if is_list else body_after
         list_marker = ""
         list_text = text
+        marker_size = 4.8
+        marker_indent = list_indent
         if is_list:
-            marker_match = re.match(r"^\s*([•◦])(?:\s+|$)", text)
+            marker_match = re.match(r"^\s*([•◦–-]|\d+[.)])(?:\s+|$)", text)
             if marker_match:
                 list_marker = marker_match.group(1)
                 list_text = text[marker_match.end():]
             else:
                 list_marker = "◦" if kind == "sublist" else "•"
                 list_text = text.lstrip()
+            if list_marker[0].isdigit():
+                marker_size = body_size
+                marker_indent = max(
+                    list_indent, estimated_text_width(list_marker, point_size=marker_size) + 1.5,
+                )
         paragraph = psr(
             style,
             list_text if is_list else text,
@@ -628,10 +635,10 @@ def _section_body(
         if is_list:
             first_line_indent = param_pt(
                 ctx.params, "idml_warranty_list_first_line_indent", -list_indent,
-            )
+            ) - (marker_indent - list_indent)
             paragraph = paragraph.replace(
                 "<ParagraphStyleRange ",
-                f'<ParagraphStyleRange LeftIndent="{list_indent:g}" '
+                f'<ParagraphStyleRange LeftIndent="{marker_indent:g}" '
                 f'FirstLineIndent="{first_line_indent:g}" RightIndent="0" ',
                 1,
             )
@@ -643,7 +650,7 @@ def _section_body(
                 '<Alignment type="enumeration">LeftAlign</Alignment>'
                 '<AlignmentCharacter type="string"></AlignmentCharacter>'
                 '<Leader type="string"></Leader>'
-                f'<Position type="unit">{list_indent:g}</Position>'
+                f'<Position type="unit">{marker_indent:g}</Position>'
                 '</ListItem></TabList></Properties>'
             )
             bullet_xml = "".join(character_ranges(
@@ -654,7 +661,7 @@ def _section_body(
             )).replace(
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"',
                 'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                'PointSize="4.8"',
+                f'PointSize="{marker_size:g}"',
                 1,
             )
             tab_xml = (
@@ -682,7 +689,7 @@ def _section_body(
             )
         parts.append(paragraph)
         available = width - (
-            list_indent if kind in {"list", "sublist"} else 0.0
+            marker_indent if kind in {"list", "sublist"} else 0.0
         )
         height += _wrapped_lines(
             list_text if is_list else text,

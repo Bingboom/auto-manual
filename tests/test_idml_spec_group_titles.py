@@ -17,9 +17,12 @@ from __future__ import annotations
 
 import json
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
+from tools.export_idml import IdmlWriter, load_layout_params
 from tools.idml.shared_page import grouped_spec_sections
+from tools.idml.style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACTS = ROOT / "docs/renderers/contracts/target_assembly"
@@ -40,6 +43,35 @@ def group(*groups: dict) -> list[dict]:
 
 
 class DeclaredGroupTitles(unittest.TestCase):
+    def test_empty_title_renders_rows_without_a_heading_or_orphan_marker(self) -> None:
+        for native in (False, True):
+            for title in ("", " ", "基本情報"):
+                with self.subTest(native=native, title=title):
+                    writer = IdmlWriter(
+                        load_layout_params(ROOT / "data/layout_params.csv"),
+                        language="ja", native_structure_markers=native,
+                    )
+                    sid = writer.add_spec_story(
+                        group({"source_indices": [0, 1, 2, 3], "title": title}),
+                        lang="ja", title="主な仕様", layout_variant="compact",
+                    )
+                    story = dict(writer.stories)[sid]
+                    all_stories = "".join(xml for _, xml in writer.stories)
+                    visible_text = "".join(
+                        node.text or "" for _, xml in writer.stories
+                        for node in ET.fromstring(xml).iter("Content")
+                    )
+                    self.assertEqual(
+                        bool(title.strip()),
+                        f'AppliedParagraphStyle="{paragraph_style_ref("HB Spec Section")}"' in story,
+                    )
+                    if not title.strip():
+                        self.assertFalse("section_marker" in all_stories)
+                        self.assertFalse("●" in story)
+                    for section in SECTIONS:
+                        for label, _value in section["rows"]:
+                            self.assertIn(label, visible_text)
+
     def test_empty_title_means_no_heading(self) -> None:
         result = group({"source_indices": [0, 1, 2, 3], "title": ""})
         self.assertEqual(1, len(result))

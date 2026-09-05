@@ -331,6 +331,7 @@ def _entry_psr(
     *,
     language: str,
     cap: float = _ENTRY_SIZE_DEFAULT,
+    native_leader: bool = False,
 ) -> str:
     style = paragraph_style_ref("HB TOC Entry")
     point_size, horizontal_scale = _entry_typography(title, col_w, cap=cap)
@@ -338,7 +339,7 @@ def _entry_psr(
         '<Properties><TabList type="list"><ListItem type="record">'
         '<Alignment type="enumeration">RightAlign</Alignment>'
         '<AlignmentCharacter type="string">.</AlignmentCharacter>'
-        '<Leader type="string"></Leader>'
+        f'<Leader type="string">{"." if native_leader else ""}</Leader>'
         f'<Position type="unit">{col_w - 2:.1f}</Position>'
         "</ListItem></TabList></Properties>"
     )
@@ -658,30 +659,6 @@ def finalize(
                 if single_column:
                     entry_x = _LEFT_ENTRY_X[local_index]
                     entry_w = _RANGE_RIGHT[local_index] - entry_x
-                    leader_right = entry_x + entry_w - 12.0
-                    for row_index, (entry_title, _) in enumerate(chunk):
-                        metric = (
-                            entry_x,
-                            entry_y + 12.0 + 14.0 * row_index,
-                            leader_right,
-                            0.25,
-                            0.976,
-                            0.976,
-                        )
-                        metric = _leader_metric_for_entry(
-                            entry_title,
-                            entry_x,
-                            entry_w,
-                            metric,
-                            text_gap=leader_text_gap,
-                            cap=entry_size,
-                        )
-                        frames.append(_leader_xml(
-                            writer,
-                            "gl_toc_leader_"
-                            f"{segment_index}_{column_index}_{row_index}",
-                            metric,
-                        ))
                 else:
                     entry_x = (
                         _LEFT_ENTRY_X[local_index]
@@ -728,6 +705,7 @@ def finalize(
                         entry_w,
                         language=code,
                         cap=entry_size,
+                        native_leader=single_column,
                     )
                     for entry_title, folio in chunk
                 )

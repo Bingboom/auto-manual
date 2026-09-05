@@ -355,6 +355,14 @@ rechecks fonts, overset stories/cells, links, page count, and story count. The
 `indesign-preflight/v2` report records this under `post_reopen`; a first-open
 green result is no longer sufficient.
 
+For Japanese documents the portable-font rebind preserves each character's
+declared Regular/DemiLight/Medium/Bold face; an unavailable requested face stops
+finalization. The report records counts under `portable_font_rebinds[].style_counts`.
+Keep frozen inputs and native evidence outside the target build directory before
+running another `build.py idml` or `check`, because preparation cleans that target.
+The [JP twelve-page acceptance record](../code-as-doc/reviews/bp_jp_r3c_native_validation_2026-09.md)
+shows the package hashes, actual native results and explicitly retained debt.
+
 For a multi-target design handoff, run
 `python tools/indesign_finalize.py --jobs <manifest.json>` with one explicit
 PDF preset, output intent, output condition, and PDF/X level on every job.

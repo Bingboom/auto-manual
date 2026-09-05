@@ -1399,7 +1399,20 @@ Line and coarse text-width budgeting is governed by
 remain stable, East Asian Width `W`/`F` characters consume one em, combining
 marks consume no width, and ambiguous-width characters remain narrow for
 cross-host determinism. The estimator does not load local font files and does
-not replace native InDesign finalize/parity checks.
+not replace native InDesign finalize/parity checks. Heading/suffix-pill sizing
+also reserves a full em for wide/fullwidth glyphs while preserving the approved
+Latin advances. Single-column contents use native tab leaders; multicolumn
+contents retain the reference line geometry. An explicitly empty specification
+group omits its heading and marker. Warranty lists retain their source numbering
+or nested dash once, using the existing hanging-tab layout.
+
+Japanese native finalization preserves each character's face when rebinding the
+portable font, and fails if that requested face is unavailable. The report's
+`portable_font_rebinds[].style_counts` exposes the result. Archive frozen inputs
+and native reports outside the target build directory before another `idml` or
+`check` run: preparation cleans that target. See the
+[JP native acceptance ledger](reviews/bp_jp_r3c_native_validation_2026-09.md)
+for an actual twelve-page run and its retained debt.
 
 On the publish queue path (`Workflow_action = Publish`), the worker runs the
 idml step with `--idml-mode both` and then packages the export into one

@@ -144,7 +144,9 @@ class TheBuiltContentsPage(unittest.TestCase):
         self.fail("no contents entry frame in the built spread")
 
     def test_the_leaders_are_intact(self) -> None:
-        self.assertEqual(self.ENTRIES, self.spread.count("gl_toc_leader"))
+        self.assertNotIn("gl_toc_leader", self.spread)
+        story = self.zip.read("Stories/Story_st_toc_seg0_c0.xml").decode("utf-8")
+        self.assertEqual(self.ENTRIES, story.count('<Leader type="string">.</Leader>'))
 
 
 if __name__ == "__main__":  # pragma: no cover

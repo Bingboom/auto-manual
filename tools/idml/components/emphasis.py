@@ -56,8 +56,14 @@ def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
 
     normalized = unicodedata.normalize("NFD", text.upper())
     advances = 0.0
+    wide_ems = 0
     for char in normalized:
         if unicodedata.combining(char):
+            continue
+        if unicodedata.east_asian_width(char) in {"W", "F"}:
+            # Fullwidth glyphs use the portable CJK face, not Gilroy's Latin
+            # fallback advance or shaping adjustment.
+            wide_ems += 1
             continue
         advance = _GILROY_BOLD_UPPER_ADVANCES.get(char)
         if advance is None:
@@ -65,7 +71,7 @@ def _gilroy_bold_upper_width(text: str, point_size: float) -> float:
             # allowance.  They do not silently switch back to full-row layout.
             advance = 530
         advances += advance
-    return advances * point_size * _GILROY_BOLD_SHAPING_FACTOR / 1000.0
+    return (advances * _GILROY_BOLD_SHAPING_FACTOR / 1000.0 + wide_ems) * point_size
 
 
 def _render_section_capsule(

@@ -689,84 +689,85 @@ def add_spec_story(
         )
 
     for si, section in enumerate(sections):
-        title_baseline_shift = param_pt(
-            writer.params,
-            f"lang_{lang}_idml_spec_section_text_baseline_shift",
-            param_pt(
+        if str(section["title"]).strip():
+            title_baseline_shift = param_pt(
                 writer.params,
-                "idml_spec_section_text_baseline_shift",
-                0.0,
-            ),
-        )
-        bullet_baseline_shift = title_baseline_shift + param_pt(
-            writer.params,
-            "idml_spec_section_bullet_baseline_offset",
-            -1.56,
-        )
-        if writer.native_structure_markers:
-            section_title = writer._psr(
-                "HB Spec Section",
-                marked_text(section["title"]),
-                inline_replacements=marker_replacements(
-                    writer,
-                    marker_id=f"{sid}_section_marker_{si}",
+                f"lang_{lang}_idml_spec_section_text_baseline_shift",
+                param_pt(
+                    writer.params,
+                    "idml_spec_section_text_baseline_shift",
+                    0.0,
                 ),
             )
-        else:
-            section_title = writer._psr(
-                "HB Spec Section", "\u25cf " + section["title"])
-            section_title = section_title.replace(
-                'FontStyle="Regular"',
-                'FontStyle="Regular" PointSize="13.2" '
-                'HorizontalScale="100" '
-                f'BaselineShift="{bullet_baseline_shift:g}"',
-                1,
+            bullet_baseline_shift = title_baseline_shift + param_pt(
+                writer.params,
+                "idml_spec_section_bullet_baseline_offset",
+                -1.56,
             )
-        section_default = (
-            default_section_before[si]
-            if si < len(default_section_before) else 10.07
-        )
-        section_before = param_pt(
-            writer.params,
-            (
-                f"lang_{lang}_idml_compact_spec_section_{si + 1}_space_before"
-                if compact
-                else f"lang_{lang}_idml_spec_section_{si + 1}_space_before"
-            ),
-            param_pt(
+            if writer.native_structure_markers:
+                section_title = writer._psr(
+                    "HB Spec Section",
+                    marked_text(section["title"]),
+                    inline_replacements=marker_replacements(
+                        writer,
+                        marker_id=f"{sid}_section_marker_{si}",
+                    ),
+                )
+            else:
+                section_title = writer._psr(
+                    "HB Spec Section", "\u25cf " + section["title"])
+                section_title = section_title.replace(
+                    'FontStyle="Regular"',
+                    'FontStyle="Regular" PointSize="13.2" '
+                    'HorizontalScale="100" '
+                    f'BaselineShift="{bullet_baseline_shift:g}"',
+                    1,
+                )
+            section_default = (
+                default_section_before[si]
+                if si < len(default_section_before) else 10.07
+            )
+            section_before = param_pt(
                 writer.params,
                 (
-                    f"idml_compact_spec_section_{si + 1}_space_before"
+                    f"lang_{lang}_idml_compact_spec_section_{si + 1}_space_before"
                     if compact
-                    else f"idml_spec_section_{si + 1}_space_before"
+                    else f"lang_{lang}_idml_spec_section_{si + 1}_space_before"
                 ),
-                section_default,
-            ),
-        )
-        section_left_indent = param_pt(
-            writer.params,
-            f"lang_{lang}_idml_spec_section_left_indent",
-            param_pt(
+                param_pt(
+                    writer.params,
+                    (
+                        f"idml_compact_spec_section_{si + 1}_space_before"
+                        if compact
+                        else f"idml_spec_section_{si + 1}_space_before"
+                    ),
+                    section_default,
+                ),
+            )
+            section_left_indent = param_pt(
                 writer.params,
-                "idml_spec_section_left_indent",
-                0.0,
-            ),
-        )
-        section_title = section_title.replace(
-            "<ParagraphStyleRange ",
-            f'<ParagraphStyleRange SpaceBefore="{section_before:g}" '
-            f'LeftIndent="{section_left_indent:g}" ',
-            1,
-        )
-        if title_baseline_shift:
+                f"lang_{lang}_idml_spec_section_left_indent",
+                param_pt(
+                    writer.params,
+                    "idml_spec_section_left_indent",
+                    0.0,
+                ),
+            )
             section_title = section_title.replace(
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
-                '><Content> ',
-                'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
-                f'BaselineShift="{title_baseline_shift:g}"><Content> ',
+                "<ParagraphStyleRange ",
+                f'<ParagraphStyleRange SpaceBefore="{section_before:g}" '
+                f'LeftIndent="{section_left_indent:g}" ',
                 1,
             )
-        parts.append(section_title)
+            if title_baseline_shift:
+                section_title = section_title.replace(
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]"'
+                    '><Content> ',
+                    'AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" '
+                    f'BaselineShift="{title_baseline_shift:g}"><Content> ',
+                    1,
+                )
+            parts.append(section_title)
         table = _tb.fill_column_xml(
             _tb.suppress_inner_vertical_edges_xml(
                 spec_table(

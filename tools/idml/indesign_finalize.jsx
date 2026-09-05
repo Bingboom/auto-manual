@@ -171,17 +171,32 @@
             );
         }
         var replacements = 0;
+        var familyName = String(fontName).split("\t")[0];
+        var fontsByStyle = {};
+        var styleCounts = {};
+        fontsByStyle[String(fontName).split("\t")[1]] = targetFont;
         for (var si = 0; si < doc.stories.length; si += 1) {
             var characters = doc.stories[si].characters.everyItem().getElements();
             for (var ci = 0; ci < characters.length; ci += 1) {
-                try {
-                    var contents = String(characters[ci].contents || "");
-                    if (contents.length > 0 &&
-                            isJapaneseCodeUnit(contents.charCodeAt(0))) {
-                        characters[ci].appliedFont = targetFont;
-                        replacements += 1;
+                var contents = String(characters[ci].contents || "");
+                if (contents.length > 0 &&
+                        isJapaneseCodeUnit(contents.charCodeAt(0))) {
+                    // Assigning a Font changes its face as well as its family.
+                    // Capture the composed weight before replacing the font;
+                    // a Regular-only rebind silently flattens the hierarchy.
+                    var style = String(characters[ci].fontStyle);
+                    var faceName = familyName + "\t" + style;
+                    if (!fontsByStyle[style]) {
+                        fontsByStyle[style] = waitForInstalledApplicationFont(faceName);
+                        if (fontsByStyle[style] === null) {
+                            throw Error("portable document font did not activate: " + faceName);
+                        }
                     }
-                } catch (_) {}
+                    characters[ci].appliedFont = fontsByStyle[style];
+                    characters[ci].fontStyle = style;
+                    styleCounts[style] = (styleCounts[style] || 0) + 1;
+                    replacements += 1;
+                }
             }
         }
         doc.recompose();
@@ -192,6 +207,7 @@
             target_location: targetLocation,
             outcome: "rebound",
             replacements: replacements,
+            style_counts: styleCounts,
             reason: "japanese_portable_font_rebind"
         };
     }

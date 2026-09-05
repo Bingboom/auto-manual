@@ -249,6 +249,18 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertIn("SOLD SEPARATELY", "".join(stories.values()))
         self.assertGreater(height, 0.0)
 
+    def test_heading_width_reserves_a_full_em_for_wide_characters(self) -> None:
+        from tools.idml.components.emphasis import _gilroy_bold_upper_width
+
+        for text in ("ソーラー充電", "（別売）"):
+            with self.subTest(text=text):
+                self.assertGreaterEqual(_gilroy_bold_upper_width(text, 8.0), len(text) * 8.0)
+        # Mixed-script text retains the approved Latin advances.
+        self.assertAlmostEqual(
+            _gilroy_bold_upper_width("AC", 8.0) + 16.0,
+            _gilroy_bold_upper_width("AC充電", 8.0),
+        )
+
     def test_heading_pill_owns_compact_trilingual_column_geometry(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render
@@ -495,6 +507,27 @@ class ComponentRegistryTests(unittest.TestCase):
         )[1].split("</ParagraphStyle>", 1)[0]
         self.assertIn('LeftIndent="5.67"', list_style)
         self.assertIn('FirstLineIndent="-5.67"', list_style)
+
+    def test_warranty_source_markers_are_not_prefixed_with_an_extra_bullet(self) -> None:
+        from tools.export_idml import load_layout_params
+        from tools.idml.components import RenderContext
+        from tools.idml.components.warranty import _section_body
+
+        ctx = RenderContext(
+            params=load_layout_params(ROOT / "data/layout_params.csv"),
+            page_w=368.79, m_l=28.35, m_r=28.35, root=ROOT, bundle_root=ROOT,
+        )
+        for marker, kind in (("1.", "list"), ("12)", "list"), ("–", "sublist"), ("•", "list")):
+            with self.subTest(marker=marker):
+                parts, _ = _section_body(
+                    [{"kind": kind, "text": marker + " Warranty text"}], ctx,
+                    tid="source_marker", width=300, layout_spec={}, section_index=1,
+                )
+                root = ET.fromstring(parts[0])
+                text = "".join(node.text or "" for node in root.iter("Content"))
+                self.assertEqual(marker + "\tWarranty text", text)
+                indent = float(root.attrib["LeftIndent"])
+                self.assertGreaterEqual(indent, 5.67)
 
     def test_warranty_sublist_marker_uses_portable_bullet_font(self) -> None:
         from tools.export_idml import load_layout_params

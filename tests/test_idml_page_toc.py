@@ -12,6 +12,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class IdmlPageTocTests(unittest.TestCase):
+    def test_single_column_leader_uses_the_native_tab_baseline(self) -> None:
+        xml = page_toc._entry_psr("安全上の注意", 1, 265.0, language="ja", native_leader=True)
+        self.assertIn('<Leader type="string">.</Leader>', xml)
+        self.assertIn('<Content>\t</Content>', xml)
+        legacy = page_toc._entry_psr("SAFETY", 1, 100.0, language="en")
+        self.assertIn('<Leader type="string"></Leader>', legacy)
+
     def test_compact_tokens_control_language_block_rhythm(self) -> None:
         writer = IdmlWriter(load_layout_params(
             ROOT / "data" / "layout_params.csv",
