@@ -45,6 +45,7 @@ from tools.component_specs.spec_table import (
     web_spec_table_projection,
 )
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
+from tools.web_lcd_component import transform_lcd_icon_tables
 
 SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
@@ -259,23 +260,27 @@ class LcdIconsDirective(_ManualDirective):
     def run(self) -> list[nodes.Node]:
         rows = ""
         for row in self.rows():
-            padded = row + [""] * (4 - len(row))
-            number, icon, name, description = padded[:4]
+            if len(row) != 4:
+                raise self.error("LCD icon row requires four cells")
+            number, icon, name, description = row
             rows += (
-                f'<tr><td class="hb-lcd-number">{_inline_html(number)}</td>'
-                f'<td class="hb-lcd-icon">{_image_html(icon, css_class="hb-lcd-icon-art")}</td>'
-                f'<td class="hb-lcd-name">{_inline_html(name)}</td>'
-                f'<td class="hb-lcd-description">{_line_block(description)}</td></tr>'
+                f'<tr><td>{_inline_html(number)}</td>'
+                f'<td>{_image_html(icon, css_class="")}</td>'
+                f'<td>{_inline_html(name)}</td>'
+                f'<td>{_line_block(description)}</td></tr>'
             )
-        return [
-            _raw(
-                f'<figure{self.aria()} class="hb-lcd-table-composition">'
-                '<table class="manual-table hb-lcd-icon-table">'
-                '<colgroup><col class="hb-lcd-col-number"/><col class="hb-lcd-col-icon"/>'
-                '<col class="hb-lcd-col-name"/><col class="hb-lcd-col-description"/></colgroup>'
-                f"<tbody>{rows}</tbody></table></figure>"
+        soup = BeautifulSoup(
+            f'<figure{self.aria()} class="hb-lcd-table-composition">'
+            '<table class="manual-table hb-lcd-icon-table">'
+            f"<tbody>{rows}</tbody></table></figure>", "html.parser",
+        )
+        try:
+            transform_lcd_icon_tables(
+                soup, source_path=Path(f"{self.env.docname}:{self.lineno}"),
             )
-        ]
+        except ValueError as exc:
+            raise self.error(str(exc)) from exc
+        return [_raw(str(soup))]
 
 
 class SymbolsDirective(_ManualDirective):
