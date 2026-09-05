@@ -141,6 +141,9 @@ empty-cell policies are recorded in
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/web_lcd_component.py`](../../tools/web_lcd_component.py)
+  - one declared LCD-table projection for prepared RST and standalone MyST;
+    assembly CSV identities select pages independently of filenames and artwork grants
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)

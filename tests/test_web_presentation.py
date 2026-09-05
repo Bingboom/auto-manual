@@ -50,6 +50,7 @@ def _web_composite_fixture():
 def _web_fragment(
     source_name: str, *, with_composites: bool = True,
     declared_troubleshooting: bool = False,
+    declared_lcd_icons: bool = False,
 ) -> str:
     source_path = REVIEW_PAGES / source_name
     with tempfile.TemporaryDirectory() as td:
@@ -63,6 +64,7 @@ def _web_fragment(
             model="JE-1000F",
             region="US",
             declared_troubleshooting=declared_troubleshooting,
+            declared_lcd_icons=declared_lcd_icons,
         )
 
 
@@ -736,7 +738,7 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIs(composition.previous_sibling, heading)
 
     def test_lcd_icons_use_searchable_four_column_pdf_grid(self) -> None:
-        soup = BeautifulSoup(_web_fragment("lcd_icons_en.rst"), "html.parser")
+        soup = BeautifulSoup(_web_fragment("lcd_icons_en.rst", declared_lcd_icons=True), "html.parser")
         composition = soup.select_one("figure.hb-lcd-table-composition")
 
         self.assertIsNotNone(composition)
