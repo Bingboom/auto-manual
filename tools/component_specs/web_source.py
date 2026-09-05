@@ -22,6 +22,8 @@ def validate_web_callout_html(
     *,
     source_ref: str,
     error_type: type[Exception] = ComponentSpecError,
+    language: str | None = None,
+    variant: str | None = None,
 ) -> ComponentSpec:
     """Validate protected Web callout HTML against the registered adapter."""
     soup = BeautifulSoup(callout_html, "html.parser")
@@ -34,7 +36,8 @@ def validate_web_callout_html(
         body=body_node.get_text("\n", strip=True),
         items=[item.get_text(" ", strip=True) for item in body_node.select("li")],
         source_ref=source_ref,
-        language=str((soup.table.get("lang") if soup.table else None) or "und"),
+        language=str((soup.table.get("lang") if soup.table else None) or language or "und"),
+        variant=variant,
     )
     table_class = web_callout_classes(spec)["table"]
     if soup.select_one(f"table.{table_class}") is None:

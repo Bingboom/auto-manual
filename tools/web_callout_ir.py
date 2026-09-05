@@ -29,7 +29,10 @@ def render_callout_ir(ir: ManualIR) -> str:
             or not isinstance(payload.get("component_spec"), dict)):
         raise ValueError(f"{block.source_ref}: incomplete Web callout payload")
     spec = require_valid_component_spec(ComponentSpec.from_dict(payload["component_spec"]))
-    decoded = decode_callout_payload(payload["table_html"], source_ref=ir.pages[0].source_ref)
+    decoded = decode_callout_payload(
+        payload["table_html"], source_ref=ir.pages[0].source_ref,
+        declaration=payload.get("declaration"),
+    )
     if (spec.language != ir.pages[0].language
             or value_sha256(decoded) != value_sha256(payload)):
         raise ValueError(f"{block.source_ref}: callout semantics/assets do not match retained markup")

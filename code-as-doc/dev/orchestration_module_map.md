@@ -157,11 +157,13 @@ empty-cell policies are recorded in
   - shared public IR replay and atomic DOM application for LCD/troubleshooting;
     `web_lcd_component` / `web_troubleshooting_component` are thin existing entrypoints
 - [`tools/manual_ir/web_callouts.py`](../../tools/manual_ir/web_callouts.py)
-  - declared prepared-HTML callout decoder; owns one-row geometry, ComponentSpec and image references
+  - declared/generated HTML callout decoder; owns one-row geometry, ComponentSpec, image references
+    and optional explicit carrier language/variant declarations
 - [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
   - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
   - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
-    standalone MyST and already-protected composite figures remain separate paths
+    standalone MyST uses the same consumer after Sphinx renders its resolved child nodes;
+    already-protected composite figures remain a separate path
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
