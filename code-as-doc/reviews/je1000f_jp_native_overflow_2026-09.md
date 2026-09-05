@@ -56,6 +56,15 @@ maintainability limit was raised.
 
 ## Remaining boundaries
 
+- Operator screenshot acceptance is **not passed**. Screenshots 1 and 3 show
+  literal `.. image::` directives instead of safety/warning icons; the current
+  generated `Story_st_01_meaning_of_symbols.xml` independently confirms 29 such
+  directives. Screenshot 2 shows an EN/FR/ES contents page with ranges through
+  page 54 inside the 28-page JP document; the current package confirms the same
+  non-JP TOC. These are blocking content/component defects, not frame guides or
+  cosmetic spacing. They need a separate table-image/target-TOC repair.
+- These screenshots do not show the final button table or temperature table,
+  so they do not close the screenshot check for this repair's two affected areas.
 - This is JE-1000F/JP; JBP-2000B/JP frozen-reference D1–D4 are separate.
 - Existing JP grid-table parsing can put separator text/image directives in cells
   or mix column content (operation conditions and symbol explanations). This repair
