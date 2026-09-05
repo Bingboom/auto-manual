@@ -10,6 +10,7 @@ import csv
 from pathlib import Path
 import re
 
+from tools.utils.csv_fields import first_existing_column, first_text, localized_columns
 from tools.utils.spec_master_shared import (
     PageValueBinding,
     _LEGACY_PAGE_VALUE_BINDINGS,
@@ -22,6 +23,10 @@ from tools.utils.spec_master_shared import (
     _SOURCE_SHARED_BASES,
 )
 
+# Existing audit/mapping readers may still import this private compatibility name.
+_first_non_empty = first_text
+
+
 def _read_csv_rows(path: Path) -> list[dict[str, str]]:
     if not path.exists():
         return []
@@ -33,31 +38,16 @@ def _read_csv_rows(path: Path) -> list[dict[str, str]]:
         return rows
 
 
-def _first_non_empty(row: dict[str, str], keys: list[str]) -> str:
-    for key in keys:
-        value = (row.get(key) or "").strip()
-        if value:
-            return value
-    return ""
-
-
-def _first_existing_key(row: dict[str, str], keys: tuple[str, ...]) -> str | None:
-    for key in keys:
-        if key in row:
-            return key
-    return None
-
-
 def _source_column_names(base: str) -> tuple[str, ...]:
     return _SOURCE_COLUMN_NAMES.get(base, (f"{base}_source", f"{base.lower()}_source"))
 
 
 def _pick_source_value(row: dict[str, str], base: str) -> str:
-    return _first_non_empty(row, list(_source_column_names(base)))
+    return first_text(row, list(_source_column_names(base)))
 
 
 def _source_column_name(row: dict[str, str], base: str) -> str:
-    return _first_existing_key(row, _source_column_names(base)) or f"{base}_source"
+    return first_existing_column(row, _source_column_names(base), default=f"{base}_source")
 
 
 def _set_source_value(row: dict[str, str], base: str, value: str) -> str:
@@ -72,7 +62,7 @@ def normalize_source_lang(value: str) -> str:
 
 
 def source_language_for_row(row: dict[str, str]) -> str:
-    return normalize_source_lang(_first_non_empty(row, ["Source_lang", "source_lang"]))
+    return normalize_source_lang(first_text(row, ["Source_lang", "source_lang"]))
 
 
 def _source_language_uses_latin_script(source_lang: str) -> bool:
@@ -109,7 +99,7 @@ def _parse_footnote_ref_ids(value: str) -> tuple[str, ...]:
 def iter_footnote_ref_ids(row: dict[str, str]) -> tuple[str, ...]:
     refs: list[str] = []
     for ref_column in _FOOTNOTE_REF_COLUMNS:
-        for footnote_id in _parse_footnote_ref_ids(_first_non_empty(row, [ref_column])):
+        for footnote_id in _parse_footnote_ref_ids(first_text(row, [ref_column])):
             if footnote_id not in refs:
                 refs.append(footnote_id)
     return tuple(refs)
@@ -118,7 +108,7 @@ def iter_footnote_ref_ids(row: dict[str, str]) -> tuple[str, ...]:
 def preferred_source_langs_for_rows(rows: list[dict[str, str]]) -> set[str]:
     return {
         normalized
-        for normalized in (normalize_source_lang(_first_non_empty(row, ["Source_lang", "source_lang"])) for row in rows)
+        for normalized in (normalize_source_lang(first_text(row, ["Source_lang", "source_lang"])) for row in rows)
         if normalized
     }
 
@@ -128,16 +118,16 @@ def collect_referenced_footnote_ids_by_page(rows: list[dict[str, str]]) -> dict[
     for row in rows:
         refs = set(iter_footnote_ref_ids(row))
         if refs:
-            page = _first_non_empty(row, ["Page", "page"]) or "specifications"
+            page = first_text(row, ["Page", "page"]) or "specifications"
             referenced_ids_by_page.setdefault(page, set()).update(refs)
     return referenced_ids_by_page
 
 
 def _footnote_row_is_referenced(row: dict[str, str], referenced_ids_by_page: Mapping[str, set[str]]) -> bool:
-    footnote_id = _first_non_empty(row, ["Footnote_id", "footnote_id"])
+    footnote_id = first_text(row, ["Footnote_id", "footnote_id"])
     if not footnote_id:
         return False
-    page = _first_non_empty(row, ["Page", "page"]) or "specifications"
+    page = first_text(row, ["Page", "page"]) or "specifications"
     return any(
         footnote_id in ids and page_value_matches(page, referenced_page)
         for referenced_page, ids in referenced_ids_by_page.items()
@@ -151,18 +141,18 @@ def _row_matches_footnote_target(
     region: str | None,
     page: str | None = None,
 ) -> bool:
-    if not _is_truthy(_first_non_empty(row, ["Enabled", "enabled"])):
+    if not _is_truthy(first_text(row, ["Enabled", "enabled"])):
         return False
-    if not _is_truthy(_first_non_empty(row, ["Is_Latest", "is_latest"])):
+    if not _is_truthy(first_text(row, ["Is_Latest", "is_latest"])):
         return False
-    if not _first_non_empty(row, ["Footnote_id", "footnote_id"]):
+    if not first_text(row, ["Footnote_id", "footnote_id"]):
         return False
-    if page and not page_value_matches(_first_non_empty(row, ["Page", "page"]), page):
+    if page and not page_value_matches(first_text(row, ["Page", "page"]), page):
         return False
 
     target_region = (region or "").strip()
-    row_region = _first_non_empty(row, ["Region", "region"])
-    row_model = _first_non_empty(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
+    row_region = first_text(row, ["Region", "region"])
+    row_model = first_text(row, ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"])
     if not model_value_matches_target(
         row_model,
         target_model=model,
@@ -196,9 +186,9 @@ def collect_matching_footnote_rows(
 
     def _has_selected_definition(page: str, footnote_id: str) -> bool:
         for candidate in selected:
-            if _first_non_empty(candidate, ["Footnote_id", "footnote_id"]) != footnote_id:
+            if first_text(candidate, ["Footnote_id", "footnote_id"]) != footnote_id:
                 continue
-            if page_value_matches(_first_non_empty(candidate, ["Page", "page"]), page):
+            if page_value_matches(first_text(candidate, ["Page", "page"]), page):
                 return True
         return False
 
@@ -215,11 +205,11 @@ def collect_matching_footnote_rows(
             for row in rows:
                 if not _row_matches_footnote_target(row, model=model, region=None, page=page):
                     continue
-                if _first_non_empty(row, ["Footnote_id", "footnote_id"]) != footnote_id:
+                if first_text(row, ["Footnote_id", "footnote_id"]) != footnote_id:
                     continue
 
-                row_region = _first_non_empty(row, ["Region", "region"])
-                row_model = _first_non_empty(
+                row_region = first_text(row, ["Region", "region"])
+                row_model = first_text(
                     row,
                     ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
                 )
@@ -236,7 +226,7 @@ def collect_matching_footnote_rows(
                     0 if not multi_value_tokens(row_region) else 1,
                     0 if not multi_value_tokens(row_model) else 1,
                     0 if not preferred_langs or source_lang in preferred_langs else 1,
-                    _first_non_empty(row, ["__line__"]) or "0",
+                    first_text(row, ["__line__"]) or "0",
                 )
                 if best_score is None or score < best_score:
                     best_rows = [row]
@@ -314,11 +304,11 @@ def _is_template_row(row_key: str, section: str, row: dict[str, str] | None = No
 
 
 def _pick_section(row: dict[str, str]) -> str:
-    return _first_non_empty(row, ["Section", "section"])
+    return first_text(row, ["Section", "section"])
 
 
 def _pick_section_order(row: dict[str, str]) -> str:
-    return _first_non_empty(row, ["Section_order", "section_order"])
+    return first_text(row, ["Section_order", "section_order"])
 
 
 def _pick_row_label_source(row: dict[str, str]) -> str:
@@ -333,20 +323,15 @@ def _normalize_section_summary(section: str) -> tuple[str, str, str]:
     return suggested_section, category, note
 
 
-def _lang_suffix_candidates(lang: str) -> tuple[str, ...]:
+def _spec_lang_columns(base: str, lang: str) -> tuple[str, ...]:
+    """Spec_Master's input-first spelling and narrow Brazilian alias policy."""
     raw = (lang or "").strip()
-    if not raw:
-        return ()
-    candidates = [
-        raw,
-        raw.lower(),
-        raw.upper(),
-        raw.replace("-", "_"),
-        raw.lower().replace("-", "_"),
-    ]
+    columns = localized_columns((base,), (raw,), uppercase=True, casefold=False)
     if raw.casefold() in {"br", "pt-br", "pt_br"}:
-        candidates.extend(["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
-    return tuple(dict.fromkeys(candidate for candidate in candidates if candidate))
+        # These are literal fallback fields, not aliases to expand again:
+        # requesting br must not start matching e.g. Value_PT-BR or Value_PT_BR.
+        columns += tuple(f"{base}_{suffix}" for suffix in ["br", "pt-BR", "pt-br", "pt_BR", "pt_br"])
+    return tuple(dict.fromkeys(columns))
 
 
 def _normalized_lang_key(lang: str) -> str:
@@ -366,27 +351,27 @@ def _pick_lang_value(row: dict[str, str], base: str, lang: str) -> str:
     ):
         keys.extend(_source_column_names(base))
     else:
-        keys.extend(f"{base}_{suffix}" for suffix in _lang_suffix_candidates(lang))
+        keys.extend(_spec_lang_columns(base, lang))
         if base in _SOURCE_SHARED_BASES:
             keys.extend(_source_column_names(base))
     keys.extend([base, "Spec_Value"])
     keys = list(dict.fromkeys(keys))
-    return _first_non_empty(row, keys)
+    return first_text(row, keys)
 
 
 def _pick_row_key(row: dict[str, str]) -> str:
-    return _first_non_empty(row, ["Row_key", "row_key"]).lower()
+    return first_text(row, ["Row_key", "row_key"]).lower()
 
 
 def _pick_row_model(row: dict[str, str]) -> str:
-    return _first_non_empty(
+    return first_text(
         row,
         ["Model", "model", "Product_Model", "product_model", "Model_No", "model_no"],
     )
 
 
 def _pick_row_region(row: dict[str, str]) -> str:
-    return _first_non_empty(row, ["Region", "region"])
+    return first_text(row, ["Region", "region"])
 
 
 def canonicalize_model_token(value: str, *, region: str | None = None) -> str:
@@ -496,7 +481,7 @@ def _parse_slot_key(raw: str) -> tuple[str, str, str] | None:
 
 
 def _pick_slot_key(row: dict[str, str]) -> str:
-    raw = _first_non_empty(row, ["Slot_key", "slot_key"])
+    raw = first_text(row, ["Slot_key", "slot_key"])
     if raw:
         return _normalize_slot_key(raw)
 
@@ -508,19 +493,19 @@ def _pick_slot_key(row: dict[str, str]) -> str:
             value_role=legacy_binding.value_role,
         )
 
-    usage_type = _first_non_empty(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
+    usage_type = first_text(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
     if usage_type != "page_value":
         return ""
 
     return _compose_slot_key(
-        placement_key=_first_non_empty(row, ["Placement_key", "placement_key"]).lower(),
-        variant_key=_first_non_empty(row, ["Variant_key", "variant_key"]).lower(),
-        value_role=_first_non_empty(row, ["Value_role", "value_role"]).lower(),
+        placement_key=first_text(row, ["Placement_key", "placement_key"]).lower(),
+        variant_key=first_text(row, ["Variant_key", "variant_key"]).lower(),
+        value_role=first_text(row, ["Value_role", "value_role"]).lower(),
     )
 
 
 def _pick_usage_type(row: dict[str, str]) -> str:
-    raw = _first_non_empty(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
+    raw = first_text(row, ["Usage_type", "usage_type", "Row_type", "row_type"]).lower()
     if raw:
         return raw
     if _pick_slot_key(row):
@@ -529,7 +514,7 @@ def _pick_usage_type(row: dict[str, str]) -> str:
 
 
 def _pick_placement_key(row: dict[str, str]) -> str:
-    raw = _first_non_empty(row, ["Placement_key", "placement_key"]).lower()
+    raw = first_text(row, ["Placement_key", "placement_key"]).lower()
     if raw:
         return raw
     parsed = _parse_slot_key(_pick_slot_key(row))
@@ -537,7 +522,7 @@ def _pick_placement_key(row: dict[str, str]) -> str:
 
 
 def _pick_value_role(row: dict[str, str]) -> str:
-    raw = _first_non_empty(row, ["Value_role", "value_role"]).lower()
+    raw = first_text(row, ["Value_role", "value_role"]).lower()
     if raw:
         return raw
     parsed = _parse_slot_key(_pick_slot_key(row))
@@ -545,7 +530,7 @@ def _pick_value_role(row: dict[str, str]) -> str:
 
 
 def _pick_variant_key(row: dict[str, str]) -> str:
-    raw = _first_non_empty(row, ["Variant_key", "variant_key"]).lower()
+    raw = first_text(row, ["Variant_key", "variant_key"]).lower()
     if raw:
         return raw
     parsed = _parse_slot_key(_pick_slot_key(row))
@@ -696,9 +681,9 @@ def _row_matches_target(
     value_role: str | None = None,
     variant_key: str | None = None,
 ) -> bool:
-    if not _is_truthy(_first_non_empty(row, ["enabled", "Enabled"])):
+    if not _is_truthy(first_text(row, ["enabled", "Enabled"])):
         return False
-    if not _is_truthy(_first_non_empty(row, ["Is_Latest", "is_latest"])):
+    if not _is_truthy(first_text(row, ["Is_Latest", "is_latest"])):
         return False
 
     target_key = (row_key or "").strip().lower()
@@ -724,7 +709,7 @@ def _row_matches_target(
     elif target_key and _pick_row_key(row) != target_key:
         return False
 
-    if not page_value_matches(_first_non_empty(row, ["Page", "page"]), pages):
+    if not page_value_matches(first_text(row, ["Page", "page"]), pages):
         return False
 
     target_region = (region or "").strip()
@@ -742,7 +727,7 @@ def _row_matches_target(
 
     if line_order is not None:
         wanted = str(line_order).strip()
-        if wanted and _first_non_empty(row, ["Line_order", "line_order"]) != wanted:
+        if wanted and first_text(row, ["Line_order", "line_order"]) != wanted:
             return False
 
     if usage_type or placement_key or value_role or variant_key:
@@ -792,7 +777,7 @@ def _score_row(
 
     if _pick_lang_value(row, "Value", lang):
         score += 2
-    if _first_non_empty(row, ["Is_Latest", "is_latest"]):
+    if first_text(row, ["Is_Latest", "is_latest"]):
         score += 1
     return score
 
