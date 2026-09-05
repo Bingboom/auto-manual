@@ -273,6 +273,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web signal-word legend | Scoped table IR before figure protection | Governed warning-lockup markup/row-count selection + retained HTML |
 | Prepared Web icon/meaning pair panels | Scoped pair IR before figure protection | Existing 7 × 4 matrix and left 6 / right 5 contract + retained HTML |
 | Prepared Web App download | Scoped two-column IR before figure protection | Existing image/source gate, paragraph split and retained inline HTML |
+| Prepared App add-device inline control | Scoped paragraph IR before inline protection | Existing prefix/vocabulary admission and retained paragraph HTML |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -400,9 +401,24 @@ schema is added, and source admission is unchanged. Retained inline HTML and
 paragraph splitting remain debt; App inline controls/reference figures are not
 migrated by this slice.
 
+**Prepared App inline control:** the real add-device paragraph caller now
+assembles `web-app-control` IR. Source matching owns the existing prefix and
+localized button vocabulary; the payload owns the retained paragraph, label and
+image references. The consumer validates the public envelope and canonical
+label/assets, then replaces only the fully rendered paragraph. It does not
+reopen source/config or repeat prefix/vocabulary admission. Duplicate source
+paragraphs, missing/multiple/empty labels and artwork inside a consumed label
+fail without caller mutation.
+
+The old direct function exits `web_presentation`. Tests observe real three-locale
+IR emission and source/config-free serialized replay, exact whole-page parity,
+rich adjacent content/assets and corrupt payload rejection. Existing source and
+target gates, inline Pandoc string protection and reference figures are unchanged.
+Retained paragraph HTML, source matching and the raw inline handoff remain debt.
+
 These are **three scoped table families across both Web entrances plus the
 shared callout consumer, prepared signal-word legend and icon/meaning pairs,
-Inbox, FCC and App download composites**, not whole-manual Web IR or a
+Inbox, FCC and App download composites, and the App inline control**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.

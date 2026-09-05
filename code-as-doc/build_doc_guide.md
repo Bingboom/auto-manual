@@ -1869,3 +1869,14 @@ bindings fail atomically. Existing target admission, one-split/two-paragraph
 input forms and EN/FR/ES whole-page output stay unchanged. Paragraph splitting
 and retained inline HTML remain source-adapter debt; App inline controls,
 reference figures and JP native layout are separate.
+
+
+The App add-device inline button also crosses public IR. `web-app-control`
+retains its source paragraph, localized label and image references; the source
+adapter owns prefix/button-vocabulary matching. Replay validates markup/label/
+asset agreement without reopening the source or config, then substitutes the
+same accessible `+` glyph in the same sentence position. Duplicate paragraphs,
+missing/multiple/empty labels or artwork inside the consumed label fail before
+caller mutation. The old direct function exits `web_presentation`. Existing
+EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
+retained HTML, source matching and the raw inline handoff remain adapter debt.

@@ -1869,3 +1869,19 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
   splitting/retained HTML, App inline controls and reference figures, other
   composite callers, generic figure protection and whole-manual/neutral-rich-text
   IR. JP native layout stays outside this batch.
+
+
+## 2026-09-05: App add-device inline control consumes public IR
+
+- The actual caller now assembles/replays `web-app-control`; its direct source/
+  render function exits `web_presentation`. Prefix/button-vocabulary matching
+  belongs to the source adapter, not the replay consumer.
+- Retain paragraph markup, localized accessible label and image references.
+  Validate the shared envelope and owned payload before replacing the paragraph;
+  ambiguous labels/paragraphs or artwork inside a consumed label fail atomically.
+- Real EN/FR/ES emission tests first fail on the old path, then pass after
+  migration. Source/config-free replay and byte-identical whole-page output are
+  verified, including adjacent rich content and asset retention.
+- No new config, registry, schema or hotspot allowance. Remaining: source
+  matching/retained HTML, generic inline/figure protection, reference components,
+  other callers and whole-manual/neutral-rich-text IR. JP native layout is separate.

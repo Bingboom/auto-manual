@@ -1177,6 +1177,12 @@ serialized replay. Invalid or ambiguous source content stops before changing the
 page. The existing three-language layout and artwork selection remain unchanged;
 App button replacement and other reference figures are separate consumers.
 
+The App add-device inline button now also consumes public IR. Its localized
+accessible name and surrounding sentence, emphasis, links and images survive
+replay; ambiguous or incomplete labels fail before changing the page. Existing
+three-language output and Pandoc protection remain unchanged. Reference figures
+are still a separate migration.
+
 - The LCD screen-mode panel remains searchable HTML while matching the template's rounded illustration-plus-table composition across EN/FR/ES. The AC/DC Auto Resume matrix also remains searchable HTML with equal-width columns, a light left column, white right column, dark full-grid rules, and a true two-row Battery SOC cell. On phones each compact table scrolls inside its own frame instead of widening the page.
 - The EN/FR/ES Troubleshooting table remains searchable HTML with the PDF's rounded dark frame, full grid, 14% light error-code column, and 86% white corrective-measures column. F6/F7 actions keep their source line breaks through Pandoc. The four Specifications tables use a matching protected 31%/69% label/value grid and preserve row-spanning labels; the web transform removes the authored bullet glyph so the shared heading theme shows one section dot rather than two, and raises both governed `①` references as semantic superscripts. Both table types scroll inside their own frame on phones.
 - Warranty also remains searchable HTML across EN/FR/ES. Both the current shared-template form (`warranty-lead` / `warranty-section` semantic containers) and an older flat review page are accepted; only those governed containers are unwrapped before HTML conversion so their nested headings are retained. The two opening paragraphs form the PDF-like rounded notice and local-law note; all six localized H2 headings stay theme-controlled and appear as floating dark labels on rounded cards. Five sections are ordinary copy cards, while Warranty Period is rebuilt from the source table as localized 3-year/2-year columns at approximately 61%/39% on desktop and one column on phones. The source 50/50 table geometry is removed, but email links, the four Exclusions items, and every localized paragraph remain live content.
