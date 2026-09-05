@@ -98,6 +98,14 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 3. Build Bundle And Export Modules
 
+[`tools/localized_copy.py`](../../tools/localized_copy.py) owns frozen-snapshot
+localized column selection and the existing strict copy-key resolver. IDML
+compatibility loaders and CSV page readers use its selection primitives;
+[`tools/lang_registry.py`](../../tools/lang_registry.py) remains the language
+metadata owner. Table-specific fallback and empty-cell policies stay with the
+readers, as recorded in
+[`external_table_contracts.md`](external_table_contracts.md#localized-columns-in-frozen-snapshots).
+
 [`tools/build_docs.py`](../../tools/build_docs.py) should stay a wrapper-compatible facade and delegate to:
 
 - [`tools/build_docs_main.py`](../../tools/build_docs_main.py)

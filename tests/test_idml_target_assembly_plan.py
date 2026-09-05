@@ -16,6 +16,7 @@ from tools.idml.target_assembly_plan import (
     normalize_target_assembly_plan,
 )
 from tools.manual_ir import ManualBlock, ManualIR, ManualPage
+from tools.manual_ir.hashing import value_sha256
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -89,10 +90,10 @@ def _manual_ir(payload: dict) -> ManualIR:
         blocks = tuple(
             ManualBlock(
                 block_id=f"block-{index}-{block_index}",
-                source_ref=entry["source_ref"],
+                source_ref=f"{entry['source_ref']}#block-{block_index}",
                 kind=kind,
                 payload=value,
-                content_sha256=f"{block_index:064x}",
+                content_sha256=value_sha256({"kind": kind, "payload": value}),
             )
             for block_index, (kind, value) in enumerate(block_specs, start=1)
         )
@@ -117,7 +118,10 @@ def _manual_ir(payload: dict) -> ManualIR:
         snapshot_sha256="1" * 64,
         layout_params_sha256="2" * 64,
         style_contract_sha256="3" * 64,
-        content_sha256="4" * 64,
+        content_sha256=value_sha256({
+            "page_ids": [page.page_id for page in pages],
+            "block_hashes": [block.content_sha256 for page in pages for block in page.blocks],
+        }),
         pages=tuple(pages),
     )
 

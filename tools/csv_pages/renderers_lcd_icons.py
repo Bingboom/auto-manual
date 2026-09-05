@@ -11,8 +11,8 @@ from pathlib import Path
 
 from ..lcd_table_layout import split_lcd_table_rows
 from .. import lang_registry
+from ..localized_copy import LocalizedCopyResolver, first_existing_column, first_text, table_localized_columns
 from .renderers_common import apply_vars, latex_arg_escape, rst_escape
-from ..localized_copy import LocalizedCopyResolver
 from ..utils.spec_master import canonicalize_model_token
 from ..utils.variable_resolver import parse_model_tokens, resolve_variable_value
 
@@ -48,41 +48,6 @@ def _truthy(value: object, *, default: bool = True) -> bool:
     if raw in _FALSE_VALUES:
         return False
     return default
-
-
-def _lang_suffix(lang: str) -> str:
-    candidates = _lang_suffix_candidates(lang)
-    return candidates[0] if candidates else (lang or "").strip()
-
-
-def _lang_suffix_candidates(lang: str) -> list[str]:
-    spec = lang_registry.language_spec(lang)
-    if spec is not None:
-        suffixes = [
-            column.removeprefix("icon_")
-            for column in spec.columns_for_table("lcd_icons")
-            if column.startswith("icon_") and not column.startswith("icon_desc_")
-        ]
-    else:
-        suffixes = [(lang or "").strip()]
-    candidates: list[str] = []
-    for suffix in suffixes:
-        candidates.extend(
-            [
-                suffix,
-                suffix.casefold(),
-                suffix.replace("-", "_"),
-                suffix.casefold().replace("-", "_"),
-            ]
-        )
-    return list(dict.fromkeys(candidate for candidate in candidates if candidate))
-
-
-def _first_existing(headers: set[str], candidates: list[str]) -> str:
-    for candidate in candidates:
-        if candidate in headers:
-            return candidate
-    return candidates[0]
 
 
 def _pick_target_model(vars_map: dict[str, str]) -> str:
@@ -221,13 +186,13 @@ def _collect_rows(
     if not blocks:
         raise ValueError(f"lcd_icons page has no rows for lang={lang}")
     headers = set().union(*(row.keys() for row in blocks))
-    name_col = _first_existing(
-        headers,
-        [*(f"icon_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_en"],
+    name_col = first_existing_column(
+        headers, table_localized_columns("lcd_icons", "icon", lang),
+        fallback_columns=("icon_en",),
     )
-    desc_col = _first_existing(
-        headers,
-        [*(f"icon_desc_{suffix}" for suffix in _lang_suffix_candidates(lang)), "icon_desc_en"],
+    desc_col = first_existing_column(
+        headers, table_localized_columns("lcd_icons", "icon_desc", lang),
+        fallback_columns=("icon_desc_en",),
     )
     if desc_col not in headers:
         raise ValueError(f"lcd_icons csv missing language description column: {desc_col}")
@@ -243,8 +208,8 @@ def _collect_rows(
                 continue
             if not allow_model_fallback and not _matches_model(row, target_model=target_model, target_region=target_region):
                 continue
-            name = (row.get(name_col) or row.get("icon_en") or "").strip()
-            description = (row.get(desc_col) or row.get("icon_desc_en") or "").strip()
+            name = first_text(row, (name_col,), fallback_columns=("icon_en",), strip=False).strip()
+            description = first_text(row, (desc_col,), fallback_columns=("icon_desc_en",), strip=False).strip()
             if not name or not description:
                 continue
             row_vars = _resolve_row_vars(

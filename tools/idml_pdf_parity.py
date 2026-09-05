@@ -39,7 +39,7 @@ from tools.idml.pdf_parity_visual import (  # noqa: E402
     _selected_pages,
     _visual_metrics,
 )
-from tools.manual_ir import read_manual_ir  # noqa: E402
+from tools.manual_ir import ManualIRValidationError, read_manual_ir  # noqa: E402
 
 
 __all__ = [
@@ -232,8 +232,12 @@ def _parser() -> argparse.ArgumentParser:
 
 
 def main() -> int:
-    args = _parser().parse_args()
-    report = build_report(args)
+    parser = _parser()
+    args = parser.parse_args()
+    try:
+        report = build_report(args)
+    except ManualIRValidationError as exc:
+        parser.error(str(exc))
     output = Path(args.out)
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(

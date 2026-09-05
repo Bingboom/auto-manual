@@ -25,6 +25,7 @@ from tools.utils.spec_master import resolve_product_name_from_spec_master
 from tools.utils.path_utils import Paths
 from tools.data_snapshot import STRUCTURED_DATA_DEFAULT_DIR
 from tools import lang_registry
+from tools.localized_copy import first_text, localized_columns
 
 
 def _read_csv(path: Path) -> list[dict[str, str]]:
@@ -210,22 +211,12 @@ class CsvPageBuilder:
         else:
             aliases = (raw, raw.casefold())
             candidates = []
-        for alias in aliases:
-            candidates.extend(
-                [
-                    f"Text_{alias}",
-                    f"text_{alias}",
-                    f"Text_{alias.casefold()}",
-                    f"text_{alias.casefold()}",
-                    f"Text_{alias.replace('-', '_')}",
-                    f"text_{alias.replace('-', '_')}",
-                    f"Text_{alias.casefold().replace('-', '_')}",
-                    f"text_{alias.casefold().replace('-', '_')}",
-                ]
-            )
+        candidates.extend(localized_columns(("Text", "text"), aliases))
+        if not raw:
+            candidates.extend(("Text_", "text_"))
         if raw.casefold() in {"br", "pt-br", "pt_br"}:
             candidates.extend(["Text_br", "text_br", "Text_pt-BR", "text_pt-BR", "pt-BR", "br"])
-        return next((row.get(key, "") or "" for key in dict.fromkeys(candidates) if row.get(key, "")), "")
+        return first_text(row, candidates, strip=False)
 
     @staticmethod
     def _trailer_text_fields(row: dict[str, str], *, kind: str) -> dict[str, str]:

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import re
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
@@ -22,6 +23,106 @@ _LANG_TEXT_COLUMNS = {
     for spec in lang_registry.LANGUAGE_REGISTRY
     for alias in spec.aliases
 }
+
+
+def snapshot_language_suffixes(lang: str | None) -> tuple[str, ...]:
+    """Exact historical snapshot suffixes, in registry order (not input order).
+
+    This is column spelling, not language normalization: Japanese remains
+    canonical ``ja`` even where the first snapshot suffix is ``jp``. An empty
+    language has no candidates; callers own any default language policy.
+    """
+    spec = lang_registry.language_spec(lang)
+    if spec is not None:
+        return spec.column_suffixes
+    raw = (lang or "").strip().lower()
+    return (raw,) if raw else ()
+
+
+def localized_columns(
+    bases: Iterable[str], suffixes: Iterable[str], *, uppercase: bool = False,
+) -> tuple[str, ...]:
+    """Expand CSV spelling variants without choosing aliases or fallbacks.
+
+    Callers supply registry alias order or table suffix order. Lowercase and
+    underscore spellings preserve legacy CSV readers; uppercase is opt-in for
+    the spec parser. Base variants are interleaved for each suffix spelling.
+    """
+    bases = tuple(bases)
+    columns: list[str] = []
+    for suffix in suffixes:
+        if not suffix:
+            continue
+        variants = [suffix, suffix.casefold()]
+        if uppercase:
+            variants.append(suffix.upper())
+        variants.extend((suffix.replace("-", "_"), suffix.casefold().replace("-", "_")))
+        columns.extend(f"{base}_{variant}" for variant in variants for base in bases)
+    return tuple(dict.fromkeys(columns))
+
+
+def table_localized_columns(table: str, base: str, lang: str) -> tuple[str, ...]:
+    """Only columns declared for this table/field, then their CSV spellings.
+
+    For example LCD Ukrainian uses ``ukr``; a global ``uk`` alias must not
+    outrank it. Bare legacy fields such as footnotes' ``pt-BR`` are not added
+    here: a caller using those must explicitly include the table's fields.
+    """
+    spec = lang_registry.language_spec(lang)
+    suffixes = (
+        tuple(suffix for column in spec.columns_for_table(table)
+              for suffix in spec.column_suffixes if column == f"{base}_{suffix}")
+        if spec is not None else ((lang or "").strip(),)
+    )
+    return localized_columns((base,), suffixes)
+
+
+def first_existing_column(
+    headers: Iterable[str], columns: Iterable[str], *,
+    fallback_columns: Iterable[str] = (), default: str | None = None,
+) -> str:
+    """Select by header presence only; blank cells never advance this search.
+
+    If no column exists, return the caller's diagnostic key (or the first
+    candidate). The caller retains responsibility for missing-column errors.
+    """
+    candidates = (*columns, *fallback_columns)
+    if not candidates and default is None:
+        raise ValueError("column selection requires candidates or an explicit default")
+    headers = set(headers)
+    return next((key for key in candidates if key in headers),
+                default if default is not None else candidates[0])
+
+
+def first_text(
+    row: Mapping[str, str | None], columns: Iterable[str], *,
+    fallback_columns: Iterable[str] = (), strip: bool = True,
+) -> str:
+    """First nonempty cell, followed only by explicitly supplied fallbacks.
+
+    Missing keys, None and empty strings are unavailable. By default whitespace
+    is also unavailable. ``strip=False`` preserves raw CSV truthiness, including
+    whitespace; callers may strip *after* selection when that is their policy.
+    There is no implicit source-language or English fallback.
+    """
+    for key in (*columns, *fallback_columns):
+        value = row.get(key) or ""
+        if strip:
+            value = value.strip()
+        if value:
+            return value
+    return ""
+
+
+def localized_cell(
+    row: Mapping[str, str | None], base: str, lang: str | None, *,
+    fallback_columns: Iterable[str] = (),
+) -> str:
+    """Read exact snapshot suffixes per cell, then explicit fallback columns."""
+    return first_text(
+        row, (f"{base}_{suffix}" for suffix in snapshot_language_suffixes(lang)),
+        fallback_columns=fallback_columns,
+    )
 
 
 @dataclass(frozen=True)
