@@ -1659,3 +1659,22 @@ Acceptance evidence:
   `6cf73fff`; the
   [published short URL](https://ht-doc.readthedocs.io/manual_je1000f_us.html)
   returned HTTP 200.
+
+
+## 2026-09-05 — Public IR integrity follow-up
+
+- Migrated the handoff report's last direct IR JSON read to public validation,
+  before artifact mutation; missing and malformed sidecars are distinct.
+- Prepared index discovery rejects missing declared pages. Registered prose
+  macros require complete arguments and account for uncovered raw content.
+  Strict CLI reports source failures without overwriting existing IR output.
+- Existing valid fixture identities/hashes and output goldens are retained;
+  regression cases cover actual strict CLI and handoff entrypoints.
+- This closes the bounded read/prose-integrity batch only. Web whole-ManualIR
+  adoption, Flow projection reconciliation, unresolved substitutions, merged
+  table semantics and specialized data-macro coverage remain separate debt.
+
+Validation evidence: the complete IR dictionaries for the prepared US fixture
+(17 source pages / 185 blocks) and frozen JP bundle (13 / 270) are identical
+with the baseline and revised prose decoder/conditional normalization. Both
+pass strict IR checks. Existing IDML goldens are not regenerated.

@@ -1731,3 +1731,17 @@ Need to release from reviewed text only
 
 - fix the template or review text if the model mention is stale
 - if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`
+
+
+Prepared-source integrity: a declared page include that is missing or is not a
+file now stops source discovery with the index and source path. Registered
+prose macros need complete arguments; unsupported content around recognized
+macros increments `skipped_raw` and fails strict Manual IR validation. A valid
+macro no longer hides adjacent unsupported copy. Existing language/tag
+selection and successful payload formats remain unchanged.
+
+IDML handoff validates the source `manual.ir.json` before copying artifacts or
+writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
+not a zero-skipped report. This integrity work does not migrate Web to whole
+Manual IR and does not certify native JP layout. See the
+[shared-source plan](dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.

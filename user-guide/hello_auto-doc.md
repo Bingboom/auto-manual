@@ -1528,3 +1528,17 @@ Templates and CSV create the first draft.
 - if your team uses OpenClaw as the operator entrypoint, install the repo package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) and use `/start-review`, `/build-draft`, `/publish`, `/web-publish`, and `/manual-status` instead of hand-calling the GitHub API.
 - the OpenClaw bridge does not move `build.py`, Feishu secrets, or queue writeback out of GitHub Actions. It only dispatches the existing workers on `main` and tracks them through `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact.
 - OpenClaw dispatches `start-review`, `build-draft`, `publish`, and `web-publish` with the resolved Feishu `record_id`; both publish actions require explicit confirmation.
+
+
+Prepared-source integrity: a declared page include that is missing or is not a
+file now stops source discovery with the index and source path. Registered
+prose macros need complete arguments; unsupported content around recognized
+macros increments `skipped_raw` and fails strict Manual IR validation. A valid
+macro no longer hides adjacent unsupported copy. Existing language/tag
+selection and successful payload formats remain unchanged.
+
+IDML handoff validates the source `manual.ir.json` before copying artifacts or
+writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
+not a zero-skipped report. This integrity work does not migrate Web to whole
+Manual IR and does not certify native JP layout. See the
+[shared-source plan](../code-as-doc/dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
