@@ -4,6 +4,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from tools.rst_inline import IMAGE
+
 from .hashing import value_sha256
 from .model import ManualBlock, ManualIR, ManualPage
 from .source import ManualSource
@@ -25,6 +27,8 @@ def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
             found.extend(_asset_refs(child, parent_key=parent_key))
     elif parent_key.lower() in _ASSET_KEYS and isinstance(value, str) and value.strip():
         found.append(value.strip())
+    elif isinstance(value, str):
+        found.extend(match.group(2) for match in IMAGE.finditer(value))
     return tuple(dict.fromkeys(found))
 
 

@@ -700,3 +700,29 @@ class TestAssetRecipe(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Je1000fJpApprovedArtworkTests(unittest.TestCase):
+    def test_approved_recipe_and_materialized_exports_share_exact_hashes(self):
+        import csv
+        import hashlib
+
+        root = Path(__file__).resolve().parents[1]
+        recipe = json.loads((root / "data/asset_recipes/manual_je1000f_jp_fixed_markings.json").read_text())
+        with (root / "data/asset_registry.csv").open() as handle:
+            registry = {row["asset_key"]: row for row in csv.DictReader(handle)}
+        self.assertEqual(6, len(recipe["assets"]))
+        for asset in recipe["assets"]:
+            self.assertEqual("fixed-product-markings", asset["text_policy"])
+            self.assertEqual("approved", asset["gate"]["status"])
+            self.assertEqual(["JE-1000F"], asset["scope"]["models"])
+            self.assertEqual(["JP"], asset["scope"]["regions"])
+            self.assertEqual(["crop", "redact_text"], [op["op"] for op in asset["transforms"]])
+            self.assertEqual("preserve", asset["transforms"][1]["graphics"])
+            row = registry[asset["asset_key"]]
+            for output in asset["outputs"]:
+                name = Path(output["path"]).name
+                data = (root / row["导出物路径"] / name).read_bytes()
+                digest = hashlib.sha256(data).hexdigest()
+                self.assertEqual(output["expected_sha256"], digest)
+                self.assertIn(name + ":" + digest, row["内容哈希"])

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 
 _SEP_SEGMENT_RE = re.compile(r"^[=+-]+$")
 
@@ -11,7 +12,7 @@ def _is_table_rule(line: str) -> bool:
 
 
 def _clean_grid_segment(segment: str) -> tuple[str, bool]:
-    text = segment.strip().strip("|").strip()
+    text = segment.strip()
     is_rule = bool(_SEP_SEGMENT_RE.fullmatch(text))
     return ("" if is_rule else text, is_rule)
 
@@ -31,6 +32,11 @@ def parse_grid_table(grid: list[str]) -> list[list[str]]:
     rows: list[list[str]] = []
     current: list[list[str]] | None = None
     for line in grid:
+        # RST borders measure display columns: Japanese glyphs occupy two.
+        # A padding slot after a wide glyph lets existing border offsets slice
+        # cells without consuming the next column.
+        line = "".join(ch + ("\0" if unicodedata.east_asian_width(ch) in "WF" else "")
+                       for ch in line)
         stripped = line.strip()
         if _is_table_rule(stripped):
             if current is not None:
@@ -38,14 +44,14 @@ def parse_grid_table(grid: list[str]) -> list[list[str]]:
                              for cell in current])
             current = None
             continue
-        if not stripped.startswith("|"):
+        if not stripped.startswith(("|", "+")):
             continue
         if current is None:
             current = [[] for _ in range(len(cols) - 1)]
         split_after_line = False
         for ci in range(len(cols) - 1):
             a, b = cols[ci] + 1, cols[ci + 1]
-            text, is_rule = _clean_grid_segment(line[a:b] if a < len(line) else "")
+            text, is_rule = _clean_grid_segment(line[a:b].replace("\0", "") if a < len(line) else "")
             split_after_line = split_after_line or is_rule
             if text:
                 current[ci].append(text)

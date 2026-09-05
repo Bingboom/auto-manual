@@ -254,9 +254,15 @@ def planned_span(plan: dict[str, Any] | None, stems: list[str], fallback: int) -
     if first_start is None:
         return fallback
     first_start = int(first_start)
+    # An unmatched source between this group and the next anchor owns physical
+    # pages of its own and is emitted as its own spread.  Taking the raw anchor
+    # distance would hand those pages to this story as trailing blank linked
+    # frames, so an unanchored gap falls back to the height estimate instead.
     for entry in entries[last_index + 1:]:
         next_start = entry.get("latex_start_page")
-        if next_start is not None and next_start > first_start:
+        if next_start is None:
+            return fallback
+        if next_start > first_start:
             return max(1, int(next_start) - int(first_start))
     if physical_page_count:
         return max(1, physical_page_count - first_start + 1)

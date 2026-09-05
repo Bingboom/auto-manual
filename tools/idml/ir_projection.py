@@ -137,6 +137,14 @@ def _special_payload(ir: ManualIR, kind: str) -> dict[str, Any] | None:
                  if payload.get("kind") == kind), None)
 
 
+def toc_with_front_matter(ir: ManualIR, bundle_root: Path, plan: dict | None):
+    """Project explicit TOC front matter once for both placement and folios."""
+    source = toc_page_data(ir, bundle_root)
+    if source and source.get("auto_entries") and "front_matter_roles" in source:
+        plan = {**(plan or {}), "front_matter_roles": source["front_matter_roles"]}
+    return source, plan
+
+
 def toc_page_data(ir: ManualIR, bundle_root: Path | None = None) -> dict[str, Any] | None:
     """Return the source-authored TOC title, language blocks, and folios."""
     payload = _special_payload(ir, "toc")
@@ -493,8 +501,8 @@ def build_reference_page_plan(
 
 
 def emit_reference_page_plan(plan: dict[str, Any] | None, *, out_dir: Path) -> Path | None:
-    """Write a validated LaTeX reference plan beside production IDML."""
-    if plan is None:
+    """Write an actual reference plan; front-matter metadata alone is not one."""
+    if plan is None or not plan.get("pages"):
         return None
     path = write_page_plan(plan, out_dir / PathSegments.LATEX_PAGE_PLAN_JSON)
     approved_contract = plan.get("approved_contract")

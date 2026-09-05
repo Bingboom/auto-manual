@@ -42,6 +42,7 @@ class PlainMarkdownSiteStyleContractTests(unittest.TestCase):
             self.assertTrue((extension / "manual_md_directives.py").is_file())
             self.assertTrue((extension / "tools" / "component_specs" / "callout.py").is_file())
             self.assertTrue((extension / "tools" / "component_specs" / "spec_table.py").is_file())
+            self.assertTrue((extension / "tools" / "rst_inline.py").is_file())
             self.assertTrue((extension / "tools" / "utils" / "path_utils.py").is_file())
             self.assertTrue(
                 (
