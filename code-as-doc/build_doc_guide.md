@@ -1741,3 +1741,15 @@ Need to release from reviewed text only
 
 - fix the template or review text if the model mention is stale
 - if the foreign literal is intentional, add it to `checks.allowed_foreign_identity_literals`
+
+
+### Prepared RST inline content in IDML
+
+The prepared-RST adapter slices grid tables by display columns, including wide
+CJK characters and partial horizontal borders. Local `replace`/`image`
+substitutions expand after cell boundaries are parsed. Table images and inline
+icons use portable Markdown image references in the existing string payload;
+Manual IR and flow manifests record these asset references. Both IDML writers
+resolve them through the shared render context and fail on missing inline
+assets instead of printing directive syntax. Native icon geometry is owned by
+the renderer; these parser checks do not certify final page composition.

@@ -160,7 +160,11 @@ def _only_matches(expr: str, tags: set[str]) -> bool:
 def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
     tags = tags if tags is not None else {"latex"}
     result = ExtractResult()
-    lines = active_lines(path.read_text(encoding="utf-8").splitlines(), tags)
+    from tools.rst_inline import collect_substitutions, expand_payload
+
+    lines, substitutions = collect_substitutions(
+        active_lines(path.read_text(encoding="utf-8").splitlines(), tags)
+    )
     i = 0
     n = len(lines)
 
@@ -317,7 +321,7 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
             grid = [line.rstrip()]
             k = i + 1
             while k < n and (lines[k].strip().startswith("|") or
-                             re.match(r"\+[=+-]+\+$", lines[k].strip())):
+                             re.match(r"\+[=+| \-]+[+|]$", lines[k].strip())):
                 grid.append(lines[k].rstrip())
                 k += 1
             rows = _parse_grid_table(grid)
@@ -398,6 +402,9 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
 
         i += 1
     result.blocks = [(k, _unescape_rst_stars(k, t)) for k, t in result.blocks if t.strip()]
+    result.blocks = [(k, json.dumps(expand_payload(json.loads(t), substitutions), ensure_ascii=False)
+                      if k in _JSON_BLOCK_KINDS else expand_payload(t, substitutions))
+                     for k, t in result.blocks]
     return result
 
 

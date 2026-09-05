@@ -114,6 +114,10 @@ class _FlowMarkdownWriter:
         ]
 
     def _render_block(self, kind: str, text: str, source_ref: str) -> list[str]:
+        from tools.rst_inline import IMAGE
+
+        for match in IMAGE.finditer(text):
+            self._record_asset(match.group(2), source_ref, "inline-image")
         if kind == "h1":
             return [f"# {text}"]
         if kind == "h2":

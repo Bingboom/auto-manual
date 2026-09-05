@@ -134,3 +134,14 @@ remains recorded and is not reopened by this screenshot review.
    appropriate repair/review decisions are made. This review adds no new code,
    changes no product source data and does not silently extend the overflow PR
    into a parser/asset/page-plan refactor.
+
+
+## Authorized continuation: parsing phase
+
+The operator authorized parsing → JP assets/TOC → pagination/components.
+The parsing phase fixes display-column slicing and partial grid rules, expands
+local replacements after parsing, and renders table/inline image references
+through shared production/flow asset resolution. Regression cases preserve the
+energy thresholds, recovery condition columns and actual linked safety icons.
+Native screenshots of the rebuilt artifact remain required. No source product
+values or accepted power-button copy were changed.

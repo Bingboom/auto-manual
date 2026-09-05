@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from .app_inline import prepare_app_body_inline
+from .inline_images import prepare_inline_images
 from .app_text_styles import (
     apply_marker_metrics,
     marked_paragraph_layout,
@@ -81,6 +82,11 @@ def build_text_paragraph(
                 marker_id=f"{story_id}_h2_marker_{block_index}",
             ),
         }
+    text, images = prepare_inline_images(
+        text, writer._render_context(bundle_root, language=page_language),
+        tid=f"{story_id}_{block_index}",
+    )
+    inline_replacements = {**(inline_replacements or {}), **images}
     paragraph = writer._psr(
         style,
         text,

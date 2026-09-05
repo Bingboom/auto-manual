@@ -1536,3 +1536,11 @@ Templates and CSV create the first draft.
 - if your team uses OpenClaw as the operator entrypoint, install the repo package under [`../integrations/openclaw/auto-manual-control-layer/`](../integrations/openclaw/auto-manual-control-layer) and use `/start-review`, `/build-draft`, `/publish`, `/web-publish`, and `/manual-status` instead of hand-calling the GitHub API.
 - the OpenClaw bridge does not move `build.py`, Feishu secrets, or queue writeback out of GitHub Actions. It only dispatches the existing workers on `main` and tracks them through `openclaw_dispatch_nonce` plus the `openclaw-run-metadata` artifact.
 - OpenClaw dispatches `start-review`, `build-draft`, `publish`, and `web-publish` with the resolved Feishu `record_id`; both publish actions require explicit confirmation.
+
+
+JP IDML screenshot checks: safety icons must appear as images, energy-saving
+thresholds must show their resolved values, and recovery conditions must stay
+in the correct table column. Literal `.. image::`, `:alt:`, `:width:` or unresolved
+substitution names are failed output, even when the package has no overset.
+Keep the package version with each screenshot; see the
+[JP review record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md).
