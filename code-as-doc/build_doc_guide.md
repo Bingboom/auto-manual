@@ -1843,3 +1843,16 @@ This closes the former partial-change failure on a malformed final label. Rich
 meaning markup and whitespace left by print-column removal are preserved; the
 captured EN/FR/ES outputs are byte-identical. The adjacent symbol-pair table,
 other figure admission, CLI and `manual-ir/v1` stay unchanged.
+
+
+The adjacent icon/meaning matrix now also uses public IR. Its scoped
+`web-symbol-pairs` block retains four localized headers, ordered left/right
+pairs, table markup and image references. The existing left-six/right-five
+contract is unchanged. The source decoder rejects ambiguous candidates,
+empty/spanned/nested rows, missing/multiple icon sources and nonempty content
+in a would-be-discarded right pair before caller mutation. The Web main module's
+direct matrix decoder/render loop has moved to the IR source and a dedicated
+pair consumer. Both symbol-table families share provenance/envelope checks;
+the existing signal IR bytes remain unchanged. Actual EN/FR/ES whole-page
+outputs are byte-identical. Fixed matrix admission and retained-HTML parsing
+remain source debt; other components and JP native layout are separate.

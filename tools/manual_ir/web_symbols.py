@@ -1,4 +1,4 @@
-"""Prepared signal-word legend source and its owned public IR contract."""
+"""Prepared symbol-table sources and their owned public IR contracts."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -104,34 +104,135 @@ def load_web_signal_source(
     payload, *_ = decode_signal_table(
         BeautifulSoup(html, "html.parser"), source_path=source_path, expected_body_rows=expected_body_rows,
     )
+    return _symbol_source(
+        html, payload=payload, source_path=source_path, language=language, model=model, region=region,
+        kind="web_signal_table", projection="web-symbol-signals", shape={"expected_body_rows": expected_body_rows},
+    )
+
+
+def _symbol_source(html, *, payload, source_path, language, model, region, kind, projection, shape):
     contracts = get_paths().renderer_contracts_dir
     return make_web_source(
-        html, source_path=source_path, blocks=(("web_signal_table", payload),),
-        projection="web-symbol-signals", language=language, model=model, region=region,
+        html, source_path=source_path, blocks=((kind, payload),),
+        projection=projection, language=language, model=model, region=region,
         style_contract_sha256=value_sha256({
-            "expected_body_rows": expected_body_rows,
+            **shape,
             "symbols_stylesheet": file_sha256(contracts / "web_symbols_fcc_components.css"),
             "manual_stylesheet": file_sha256(contracts / "web_manual.css"),
         }),
     )
 
 
-def decode_signal_ir(ir: ManualIR):
+def _symbol_ir_payload(ir: ManualIR, *, projection: str, kind: str):
     issues = validate_manual_ir(ir, require_zero_skipped_raw=True)
     if issues:
         raise ManualIRValidationError(ir.source, issues)
-    if (ir.metadata.get("projection") != "web-symbol-signals" or len(ir.pages) != 1
+    if (ir.metadata.get("projection") != projection or len(ir.pages) != 1
             or len(ir.pages[0].blocks) != 1):
-        raise ValueError("expected a single-block web-symbol-signals projection")
+        raise ValueError(f"expected a single-block {projection} projection")
     block = ir.pages[0].blocks[0]
     payload = block.payload
-    if (block.kind != "web_signal_table" or not isinstance(payload, dict)
+    if (block.kind != kind or not isinstance(payload, dict)
             or not isinstance(payload.get("table_html"), str)):
-        raise ValueError(f"{block.source_ref}: incomplete signal-table payload")
+        raise ValueError(f"{block.source_ref}: incomplete {kind} payload")
+    return payload
+
+
+def decode_signal_ir(ir: ManualIR):
+    payload = _symbol_ir_payload(ir, projection="web-symbol-signals", kind="web_signal_table")
     soup = BeautifulSoup(payload["table_html"], "html.parser")
     decoded, table, headers, rows = decode_signal_table(
         soup, source_path=Path(ir.pages[0].source_ref), expected_body_rows=payload.get("expected_body_rows"),
     )
     if decoded != payload:
-        raise ValueError(f"{block.source_ref}: signal semantics/assets do not match retained markup")
+        raise ValueError(f"{ir.pages[0].source_ref}: signal semantics/assets do not match retained markup")
     return soup, table, headers, rows, payload["labels"]
+
+
+def decode_pair_table(soup: BeautifulSoup, *, source_path: Path):
+    """Keep the existing matrix contract while rejecting dropped/ambiguous cells."""
+    candidates: list[tuple[Tag, list[list[Tag]]]] = []
+    for table in soup.find_all("table"):
+        if not isinstance(table, Tag):
+            continue
+        rows = [row.find_all(["th", "td"], recursive=False) for row in table.find_all("tr")]
+        if len(rows) != 7 or not all(len(row) == 4 for row in rows):
+            continue
+        header, *body_rows = rows
+        if not all(cell.get_text(" ", strip=True) for cell in header):
+            continue
+        if not all(
+            row[0].find("img")
+            and row[1].get_text(" ", strip=True)
+            and (
+                bool(row[2].find("img"))
+                == bool(row[3].get_text(" ", strip=True))
+            )
+            for row in body_rows
+        ):
+            continue
+        candidates.append((table, rows))
+
+    if len(candidates) != 1:
+        raise ValueError(
+            f"{source_path}: expected one governed four-column symbol table, "
+            f"found {len(candidates)}"
+        )
+
+    source_table, rows = candidates[0]
+    header, *body_rows = rows
+    populated_right_rows = [
+        row for row in body_rows if row[2].find("img")
+    ]
+    if len(body_rows) != 6 or len(populated_right_rows) != 5:
+        raise ValueError(
+            f"{source_path}: symbol panel row contract changed: "
+            f"left={len(body_rows)}, right={len(populated_right_rows)}"
+        )
+
+    if (source_table.find("table") or source_table.find_parent("table")
+            or any(str(cell.get(attr, "1")) != "1" for row in rows for cell in row
+                   for attr in ("rowspan", "colspan"))):
+        raise ValueError(f"{source_path}: symbol matrix requires unspanned four-cell rows")
+    panels = []
+    for offset in (0, 2):
+        pairs = []
+        for row in body_rows:
+            icon_cell, meaning_cell = row[offset:offset + 2]
+            images = icon_cell.find_all("img")
+            if not images:
+                if icon_cell.get_text(" ", strip=True) or meaning_cell.get_text(" ", strip=True) or meaning_cell.find("img"):
+                    raise ValueError(f"{source_path}: empty symbol pair must not contain discarded content")
+                continue
+            if len(images) != 1 or not str(images[0].get("src") or "").strip():
+                raise ValueError(f"{source_path}: symbol pair requires exactly one nonempty icon source")
+            pairs.append({
+                "icon": str(images[0]["src"]), "alt": str(images[0].get("alt") or ""),
+                "meaning": meaning_cell.get_text(" ", strip=True),
+            })
+        panels.append(pairs)
+    return {
+        "headers": [cell.get_text(" ", strip=True) for cell in header],
+        "panels": panels, "table_html": str(source_table),
+        "assets": [{"src": str(image["src"])} for image in source_table.select("img[src]") if image["src"]],
+    }, source_table, header, body_rows
+
+
+def load_web_pair_source(
+    html: str, *, source_path: Path, language: str | None = None,
+    model: str | None = None, region: str | None = None,
+) -> ManualSource:
+    payload, *_ = decode_pair_table(BeautifulSoup(html, "html.parser"), source_path=source_path)
+    return _symbol_source(
+        html, payload=payload, source_path=source_path, language=language, model=model, region=region,
+        kind="web_symbol_pairs", projection="web-symbol-pairs", shape={"panel_rows": [6, 5]},
+    )
+
+
+def decode_pair_ir(ir: ManualIR):
+    payload = _symbol_ir_payload(ir, projection="web-symbol-pairs", kind="web_symbol_pairs")
+    soup = BeautifulSoup(payload["table_html"], "html.parser")
+    decoded, table, header, rows = decode_pair_table(soup, source_path=Path(ir.pages[0].source_ref))
+    if decoded != payload:
+        raise ValueError(f"{ir.pages[0].source_ref}: symbol pairs/assets do not match retained markup")
+    return soup, table, header, rows

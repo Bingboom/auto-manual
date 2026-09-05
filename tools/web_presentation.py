@@ -37,6 +37,7 @@ from tools.web_reference_components import (
 )
 from tools.web_spec_component import transform_specification_tables
 from tools.web_symbol_components import transform_symbol_signal_table
+from tools.web_symbol_pairs import transform_symbol_pairs
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
@@ -1198,126 +1199,6 @@ def _transform_warranty(
             card.append(block.extract())
 
 
-def _transform_meaning_symbols_table(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-) -> None:
-    """Split the source four-column symbol matrix into two independent panels."""
-    candidates: list[tuple[Tag, list[list[Tag]]]] = []
-    for table in soup.find_all("table"):
-        if not isinstance(table, Tag):
-            continue
-        rows = _table_rows(table)
-        if len(rows) != 7 or not all(len(row) == 4 for row in rows):
-            continue
-        header, *body_rows = rows
-        if not all(cell.get_text(" ", strip=True) for cell in header):
-            continue
-        if not all(
-            row[0].find("img")
-            and row[1].get_text(" ", strip=True)
-            and (
-                bool(row[2].find("img"))
-                == bool(row[3].get_text(" ", strip=True))
-            )
-            for row in body_rows
-        ):
-            continue
-        candidates.append((table, rows))
-
-    if len(candidates) != 1:
-        raise WebPresentationError(
-            f"{source_path}: expected one governed four-column symbol table, "
-            f"found {len(candidates)}"
-        )
-
-    source_table, rows = candidates[0]
-    header, *body_rows = rows
-    populated_right_rows = [
-        row for row in body_rows if row[2].find("img")
-    ]
-    if len(body_rows) != 6 or len(populated_right_rows) != 5:
-        raise WebPresentationError(
-            f"{source_path}: symbol panel row contract changed: "
-            f"left={len(body_rows)}, right={len(populated_right_rows)}"
-        )
-
-    composition = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-symbol-pair-composition",
-            "aria-label": " / ".join(
-                cell.get_text(" ", strip=True) for cell in header[:2]
-            ),
-        },
-    )
-    grid = soup.new_tag("div", attrs={"class": "hb-symbol-pair-grid"})
-    composition.append(grid)
-
-    for panel_index, column_offset in enumerate((0, 2)):
-        panel = soup.new_tag(
-            "div",
-            attrs={
-                "class": ["hb-symbol-panel", f"hb-symbol-panel-{panel_index + 1}"],
-            },
-        )
-        table = soup.new_tag("table", attrs={"class": "hb-symbol-panel-table"})
-        colgroup = soup.new_tag("colgroup")
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-symbol-col-icon"}))
-        colgroup.append(soup.new_tag("col", attrs={"class": "hb-symbol-col-meaning"}))
-        table.append(colgroup)
-
-        thead = soup.new_tag("thead")
-        header_row = soup.new_tag("tr")
-        for cell_index, source_cell in enumerate(
-            header[column_offset : column_offset + 2]
-        ):
-            source_cell.extract()
-            source_cell.name = "th"
-            source_cell["scope"] = "col"
-            source_cell["class"] = [
-                "hb-symbol-icon-heading"
-                if cell_index == 0
-                else "hb-symbol-meaning-heading"
-            ]
-            header_row.append(source_cell)
-        thead.append(header_row)
-        table.append(thead)
-
-        tbody = soup.new_tag("tbody")
-        for source_row in body_rows:
-            pair = source_row[column_offset : column_offset + 2]
-            if not pair[0].find("img"):
-                if pair[1].get_text(" ", strip=True):
-                    raise WebPresentationError(
-                        f"{source_path}: symbol row has meaning copy without artwork"
-                    )
-                continue
-            row = soup.new_tag("tr")
-            icon_cell, meaning_cell = pair
-            icon_cell.extract()
-            meaning_cell.extract()
-            icon_cell["class"] = ["hb-symbol-icon"]
-            meaning_cell["class"] = ["hb-symbol-meaning"]
-            image = icon_cell.find("img")
-            if not isinstance(image, Tag):
-                raise WebPresentationError(
-                    f"{source_path}: symbol row is missing its governed artwork"
-                )
-            for attribute in ("style", "width", "height"):
-                image.attrs.pop(attribute, None)
-            image["class"] = [*image.get("class", []), "hb-symbol-art"]
-            row.append(icon_cell)
-            row.append(meaning_cell)
-            tbody.append(row)
-        table.append(tbody)
-        panel.append(table)
-        grid.append(panel)
-
-    source_table.replace_with(composition)
-
-
 def _transform_preface(
     soup: BeautifulSoup,
     *,
@@ -1469,7 +1350,10 @@ def transform_web_fragment(
             error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-        _transform_meaning_symbols_table(soup, source_path=source_path)
+        transform_symbol_pairs(
+            soup, source_path=source_path, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_warranty:
         _transform_warranty(
             soup,

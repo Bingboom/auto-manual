@@ -271,6 +271,7 @@ invent a registry registration or change `manual-ir/v1`.
 | Prepared Web Inbox (three cards + internal TIP) | Scoped composite IR before figure protection | Existing Inbox HTML parser + retained markup; original figure-target gate |
 | Prepared Web FCC | Scoped semantic component IR before figure protection | Existing FCC HTML/marker parser at source boundary; replay uses no HTML/config |
 | Prepared Web signal-word legend | Scoped table IR before figure protection | Governed warning-lockup markup/row-count selection + retained HTML |
+| Prepared Web icon/meaning pair panels | Scoped pair IR before figure protection | Existing 7 × 4 matrix and left 6 / right 5 contract + retained HTML |
 | Other Web components; Word; Flow | Not closed by these batches | Existing component/read/tag policies |
 
 The standalone `{spec-table}` directive now encodes its authored title and
@@ -362,11 +363,30 @@ adjacent newlines left by removal of the print colgroup. One source/contract
 adapter reuses the existing renderer with no raised hotspot limit or new
 ComponentSpec registry/schema. This table did not already have a ComponentSpec;
 its owned table payload is not a new parallel registry. Source markup/filename
-admission remains debt; adjacent symbol-pair tables, generic figure protection
-and whole-manual migration remain separate.
+admission remains debt; pair panels now have the consumer described below.
+Generic figure protection and whole-manual migration remain separate.
+
+**Prepared symbol pairs:** the actual Web call now loads `web-symbol-pairs`
+source, invokes the public assembler and consumes a `web_symbol_pairs` block
+before changing the selected table. It retains four headers, ordered semantic
+icon/meaning pairs, original table HTML and all image references. Pair replay
+verifies semantics/assets against retained markup. Full matrix geometry, one
+nonempty icon per populated pair and truly empty unused right cells are checked
+before mutation; nested tables, duplicate candidates and partial rows fail.
+
+The existing `manual_ir.web_symbols` module now owns both source families and
+shares their provenance/envelope helpers. Signal payloads and hashes remain
+unchanged. The old direct pair implementation exits `web_presentation`;
+`web_symbol_pairs` keeps its original rendering body behind the public IR
+consumer. No hotspot threshold, registry, config or serialized schema changes.
+Tests verify exact three-locale whole-page output and three unchanged signal
+IR envelopes, including source-free pair replay, rich meaning markup, 6/5
+ordering and asset completeness. The fixed matrix/source gate remains; this
+does not generalize pair counts or complete whole-manual/neutral-rich-text work.
 
 These are **three scoped table families across both Web entrances plus the
-shared callout consumer, prepared signal-word legend, Inbox and FCC composites**, not whole-manual Web IR or a
+shared callout consumer, prepared signal-word legend and icon/meaning pairs,
+Inbox and FCC composites**, not whole-manual Web IR or a
 renderer-neutral rich-text parser. Tests observe actual bundle invocations,
 standalone isolated-process builds, serialized replay, and unchanged existing
 outputs. A shared ComponentSpec helper alone does not count as IR adoption.

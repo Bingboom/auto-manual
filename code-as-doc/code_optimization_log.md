@@ -1830,3 +1830,24 @@ pass strict IR checks. Existing IDML goldens are not regenerated.
   markup/filename admission, symbol-pair tables, other composite consumers,
   generic figure string protection and whole-manual/neutral-rich-text work remain
   separate. JP native layout is unchanged.
+
+
+## 2026-09-05: Icon/meaning pair panels consume public IR
+
+- The real Web source/render path now goes through shared source assembly and
+  verified `web-symbol-pairs` IR. The direct matrix implementation
+  exits `web_presentation`; its rendering body moves to a dedicated consumer.
+- Reuse `manual_ir.web_symbols` for source-family ownership and common
+  provenance/envelope checks. Existing signal payloads and all three captured
+  IR envelopes remain unchanged; no parallel source registry/config/schema.
+- Retain four headers, ordered icon/meaning pairs, table markup and all image
+  references. The existing left-six/right-five contract remains. Reject
+  partial/spanned/nested matrices, duplicate candidates, missing/multiple icons
+  and content in unused cells before changing caller DOM.
+- Real EN/FR/ES whole-page outputs match pre-change bytes. Tests cover the
+  previously absent pair IR emission, source-free replay, rich meaning cells,
+  image order/completeness, corrupt/rehashed payloads and atomic application.
+  Existing hotspot size limits are unchanged.
+- Remaining: fixed matrix/source admission and retained-HTML interpretation,
+  other composite consumers, generic figure string protection, whole-manual
+  IR and neutral rich text. JP native layout stays separate.

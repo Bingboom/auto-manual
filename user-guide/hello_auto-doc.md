@@ -1155,6 +1155,12 @@ row spans fail before the source table is partly changed. Existing EN/FR/ES
 output and surrounding symbol-pair tables are preserved; no additional target
 is admitted by this change.
 
+The adjacent icon/meaning table now follows the same public IR boundary while
+keeping its left-six/right-five panels. Invalid icon bindings, row spans or
+nonempty unused cells stop before partial output. Images, rich meaning cells
+and EN/FR/ES whole-page output are preserved; the existing signal legend and
+target-admission rules are unchanged.
+
 LCD semantics now come from the assembly planner's `lcd_icons` CSV page identity
 or an explicit `hb-lcd-icon-table` declaration, rather than a filename or US
 figure grant. Renamed slots and JP targets use the same four-column projection;
