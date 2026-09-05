@@ -118,7 +118,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--manual-ir",
         type=Path,
         required=True,
-        help="validated manual.ir.json supplying the new binding",
+        help="manual.ir.json validated on read before supplying the new binding",
     )
     parser.add_argument(
         "--write",

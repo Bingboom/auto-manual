@@ -39,8 +39,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from tools.manual_ir import ManualIR
-from tools.manual_ir.serialize import read_manual_ir
+from tools.manual_ir import ManualIR, ManualIRValidationError, read_manual_ir
 
 from .page_roles import PageRole, classify_page_role
 from .target_assembly_plan import (
@@ -266,7 +265,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.out.exists() and not args.force:
         parser.error(f"{args.out} already exists; pass --force to overwrite")
 
-    ir = read_manual_ir(args.ir)
+    try:
+        ir = read_manual_ir(args.ir)
+    except ManualIRValidationError as exc:
+        parser.error(str(exc))
     payload, todos = scaffold_plan(
         ir,
         physical_pages=args.physical_pages,

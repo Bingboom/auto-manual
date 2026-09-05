@@ -7,7 +7,10 @@ import unittest
 from pathlib import Path
 
 from tools.idml.params import load_layout_params
-from tools.manual_ir import build_manual_ir, read_manual_ir, validate_manual_ir, write_manual_ir
+from tools.manual_ir import (
+    ManualIRValidationError, build_manual_ir, read_manual_ir,
+    validate_manual_ir, write_manual_ir,
+)
 from tools.utils.path_utils import Paths, manual_ir_dir_of
 
 
@@ -91,9 +94,8 @@ class ManualIRTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / "bad.ir.json"
             path.write_text(json.dumps(raw), encoding="utf-8")
-            loaded = read_manual_ir(path)
-        issues = validate_manual_ir(loaded)
-        self.assertTrue(any("content hash mismatch" in issue for issue in issues))
+            with self.assertRaisesRegex(ManualIRValidationError, "content hash mismatch"):
+                read_manual_ir(path)
 
     def test_unknown_languages_are_permissive_until_strict_validation(self) -> None:
         ir = self._build()

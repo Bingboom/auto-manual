@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from tools.manual_ir import ManualIR
+from tools.manual_ir import ManualIR, validate_manual_ir
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 
 from .page_roles import PageRole, classify_page_role
@@ -127,16 +127,15 @@ def _validate_seed_shape(seed: dict[str, Any], ir: ManualIR) -> None:
 
 
 def _draft_candidate(seed: dict[str, Any], ir: ManualIR, *, seed_path: Path) -> dict[str, Any]:
-    if ir.schema_version != "manual-ir/v1":
-        raise ReferenceLayoutPlanError(
-            f"reference layout scaffold requires manual-ir/v1; got {ir.schema_version!r}"
-        )
+    issues = validate_manual_ir(ir)
+    if issues:
+        raise ReferenceLayoutPlanError("reference layout scaffold: " + "; ".join(issues))
     if ir.metadata.get("layout_params_hash_algorithm") != LAYOUT_PARAMS_HASH_ALGORITHM:
         raise ReferenceLayoutPlanError(
             "reference layout scaffold requires Manual IR layout hash algorithm "
             f"{LAYOUT_PARAMS_HASH_ALGORITHM!r}"
         )
-    if not isinstance(ir.snapshot_sha256, str) or len(ir.snapshot_sha256) != 64:
+    if ir.snapshot_sha256 is None:
         raise ReferenceLayoutPlanError(
             "reference layout scaffold requires a frozen snapshot_sha256"
         )
