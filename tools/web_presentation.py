@@ -27,6 +27,7 @@ from tools.web_composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
 )
+from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
@@ -846,60 +847,6 @@ def _transform_reference_figures(
         )
 
 
-def _transform_app_inline_controls(
-    soup: BeautifulSoup,
-    *,
-    source_path: Path,
-    contract: dict[str, Any],
-) -> None:
-    spec = contract["app_inline_controls"]
-    paragraph_prefix = str(spec["add_device_paragraph_prefix"])
-    paragraph = next(
-        (
-            candidate
-            for candidate in soup.find_all("p")
-            if candidate.get_text(" ", strip=True).startswith(paragraph_prefix)
-        ),
-        None,
-    )
-    if not isinstance(paragraph, Tag):
-        raise WebPresentationError(
-            f"{source_path}: App setup is missing its {paragraph_prefix} add-device paragraph"
-        )
-
-    icon = soup.new_tag(
-        "span",
-        attrs={
-            "class": "hb-inline-add-device-icon",
-            "role": "img",
-            "aria-label": str(spec["accessible_label"]),
-        },
-    )
-    icon.string = "+"
-
-    button_terms = [str(term) for term in spec["button_terms"]]
-    button_pattern = rf"\b(?:{'|'.join(re.escape(term) for term in button_terms)})\b"
-    if not re.search(button_pattern, paragraph.get_text(" ", strip=True), flags=re.IGNORECASE):
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} paragraph has no localized button term"
-        )
-
-    visible_labels = paragraph.find_all("strong")
-    if len(visible_labels) != 1:
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} paragraph must contain exactly one "
-            "visible add-device label"
-        )
-    visible_label = visible_labels[0]
-    localized_label = visible_label.get_text(" ", strip=True)
-    if not localized_label:
-        raise WebPresentationError(
-            f"{source_path}: App setup {paragraph_prefix} add-device label is empty"
-        )
-    icon["aria-label"] = localized_label
-    visible_label.replace_with(icon)
-
-
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
     strong_tags = [tag for tag in cell.find_all("strong") if isinstance(tag, Tag)]
     if not strong_tags:
@@ -1276,7 +1223,10 @@ def transform_web_fragment(
             language=language, model=model, region=region,
         )
     if is_app_inline_controls:
-        _transform_app_inline_controls(soup, source_path=source_path, contract=data)
+        transform_app_control(
+            soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
+            language=language, model=model, region=region,
+        )
     if is_reference_page:
         _transform_reference_figures(
             soup,

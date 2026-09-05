@@ -191,6 +191,12 @@ empty-cell policies are recorded in
 - [`tools/web_app_download.py`](../../tools/web_app_download.py)
   - real public IR consumer for store/QR columns; retains the original rendering body
   - replaces image/removes consumed paragraphs only after complete validation and detached rendering
+- [`tools/manual_ir/web_app_controls.py`](../../tools/manual_ir/web_app_controls.py)
+  - prepared add-device paragraph source; validates localized label and markup/image agreement
+  - owns prefix/button-vocabulary admission and config/CSS provenance
+- [`tools/web_app_controls.py`](../../tools/web_app_controls.py)
+  - actual public IR consumer replaces only the validated paragraph after detached replay
+  - renders the existing accessible glyph without source/config access; old direct caller exits
 - [`tools/web_reference_components.py`](../../tools/web_reference_components.py)
   - reusable reference-figure label validation, themeable captions, and shared App artwork with live localized control labels
 - [`tools/web_stylesheets.py`](../../tools/web_stylesheets.py)
