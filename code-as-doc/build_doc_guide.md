@@ -1770,3 +1770,14 @@ table stylesheet contract; it does not import the source checkout or legacy IDML
 extractor. `web_source` is the shared provenance constructor, including the active
 specification adapter. Remaining whole-manual and HTML-parser boundaries are
 tracked in the [shared-source plan](dev/latex_indesign_same_source_plan.md).
+
+
+Standalone `{spec-table}` now uses the same public specification IR adapter and
+consumer as prepared Web builds. The directive keeps its inline escaping and
+row tokenization, supplies the authored section argument to IR, and emits only
+the figure (no extra heading). Its private grouping/rowspan/final-table renderer
+is retired. Empty, extra-column or orphan-continuation rows fail through the
+shared source contract; corrupt IR fails before raw HTML is returned. Plain
+circled footnote references use the common Web superscript style; explicit
+superscripts are not nested. Staging includes the existing specification adapter
+and consumer modules. Commands, editing surfaces and `manual-ir/v1` are unchanged.

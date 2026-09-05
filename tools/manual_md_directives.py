@@ -40,10 +40,7 @@ from sphinx.util.docutils import SphinxDirective
 
 from tools.component_specs.adapters import web_callout_classes
 from tools.component_specs.callout import CALLOUT_VARIANTS, callout_component_spec
-from tools.component_specs.spec_table import (
-    spec_table_component_spec,
-    web_spec_table_projection,
-)
+from tools.web_spec_component import transform_specification_tables
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
 
@@ -183,42 +180,29 @@ class SpecTableDirective(_ManualDirective):
     """``{spec-table} SECTION`` — label/value rows, blank label continues the previous."""
 
     def run(self) -> list[nodes.Node]:
-        language = str(getattr(self.env.config, "language", None) or "und")
-        spec = spec_table_component_spec(
-            section_title=self.label,
-            rows=self.rows(),
-            source_ref=f"{self.env.docname}:{self.lineno}",
-            language=language,
+        # Encode this carrier's declared title/rows; the shared IR consumer
+        # owns grouping, rowspans and Web presentation. The title supplies
+        # component semantics, while the directive emits only the figure.
+        body = "".join(
+            "<tr>" + "".join(f"<td>{_inline_html(cell)}</td>" for cell in row) + "</tr>"
+            for row in self.rows()
         )
-        projection = web_spec_table_projection(spec)
-        body: list[str] = []
-        for group in projection["groups"]:
-            label = str(group["label"])
-            values = group["values"]
-            span = int(group["label_rowspan"])
-            rowspan = f' rowspan="{span}"' if span > 1 else ""
-            body.append(
-                f'<tr><th class="{projection["label_classes"]}" scope="row"{rowspan}>'
-                f"{_inline_html(label)}</th>"
-                f'<td class="{projection["value_classes"]}">'
-                f'{_inline_html(str(values[0]["text"]))}</td>'
-                + "</tr>"
+        soup = BeautifulSoup(
+            '<h2 class="hb-spec-section"><span class="hb-spec-section-text">'
+            f'{_inline_html(self.label)}</span></h2>'
+            '<table class="manual-table manual-spec-table hb-spec-table">'
+            f'<tbody>{body}</tbody></table>',
+            "html.parser",
+        )
+        try:
+            transform_specification_tables(
+                soup, source_path=Path(f"{self.env.docname}:{self.lineno}"),
+                language=str(getattr(self.env.config, "language", None) or "und"),
+                error_type=ValueError,
             )
-            for value in values[1:]:
-                body.append(
-                    "<tr>"
-                    f'<td class="{projection["value_classes"]}">'
-                    f'{_inline_html(str(value["text"]))}</td>'
-                    + "</tr>"
-                )
-        return [
-            _raw(
-                f'<figure{self.aria()} class="{projection["composition_class"]}">'
-                f'<table class="{projection["table_classes"]}">'
-                '<colgroup><col class="hb-spec-col-label"/><col class="hb-spec-col-value"/></colgroup>'
-                f'<tbody>{"".join(body)}</tbody></table></figure>'
-            )
-        ]
+        except ValueError as exc:
+            raise self.error(str(exc)) from exc
+        return [_raw(str(soup.select_one("figure.hb-spec-table-composition")))]
 
 
 class TroubleshootingDirective(_ManualDirective):

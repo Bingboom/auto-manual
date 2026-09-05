@@ -146,7 +146,8 @@ empty-cell policies are recorded in
     isolated from the neutral core and IDML extraction
 - [`tools/web_spec_component.py`](../../tools/web_spec_component.py)
   - validated ManualIR specification consumer with rich markup replay and atomic DOM application;
-    the Web bundle exits Word specification extraction/re-rendering
+    used by both the prepared Web bundle and standalone `SpecTableDirective`
+  - Word extraction/re-rendering and directive-local grouping are absent from these Web paths
 - [`tools/manual_ir/web_source.py`](../../tools/manual_ir/web_source.py)
   - shared scoped HTML-source provenance envelope; reused by specifications and declared tables
 - [`tools/manual_ir/web_tables.py`](../../tools/manual_ir/web_tables.py)
