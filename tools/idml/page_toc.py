@@ -13,6 +13,8 @@ import re
 from dataclasses import dataclass, field
 from xml.sax.saxutils import escape
 
+from tools.page_plan import PagePlan, legacy_folio_page_plan
+
 from .loaders import normalize_lang
 from .params import IDPKG, param_pt
 from . import page_objects as _po
@@ -425,6 +427,7 @@ def _bar_label_psr(
 
 def _display_segments(
     collector: TocCollector, source: dict | None,
+    *, folio_plan: PagePlan | None = None, toc_slot: int = _TOC_SLOT,
 ) -> tuple[str, list[tuple[str, str, list[tuple[str, int | str]]]]]:
     if source and not source.get("auto_entries"):
         segments = []
@@ -438,12 +441,28 @@ def _display_segments(
     headers = {normalize_lang(item.get("code", "")):
                f"{item.get('code', '')}  {item.get('label', '')}"
                for item in (source or {}).get("languages", [])}
-    for lang, entries in _segments(collector.entries):
-        folios = [_folio(index) for _, index in entries]
+    def folio(index: int) -> int:
+        if folio_plan is None:
+            return _folio(index)
+        physical = index + 1 + (index >= toc_slot)
+        value = folio_plan.physical_page(physical).folio_number
+        if value is None:
+            raise ValueError(f"TOC entry points to unnumbered physical page {physical}")
+        return value
+
+    groups = _segments(collector.entries)
+    for group_index, (lang, entries) in enumerate(groups):
+        folios = [folio(index) for _, index in entries]
+        end = max(folios)
+        if folio_plan is not None:
+            end = (folio(groups[group_index + 1][1][0][1]) - 1
+                   if group_index + 1 < len(groups)
+                   else max(folio_plan.physical_page(i).folio_number or 0
+                            for i in range(1, folio_plan.physical_page_count + 1)))
         segments.append((headers.get(normalize_lang(lang),
                                      _LANG_HEADERS.get(normalize_lang(lang), lang.upper())),
-                         f"{min(folios):02d}-{max(folios):02d}",
-                         [(title, _folio(index)) for title, index in entries]))
+                         f"{min(folios):02d}-{end:02d}",
+                         [(title, folio(index)) for title, index in entries]))
     return str((source or {}).get("title") or "TABLE OF CONTENTS"), segments
 
 
@@ -457,6 +476,9 @@ def _toc_slot(page_plan: dict | None) -> int:
             return max(0, int(raw) - 1)
         except (TypeError, ValueError):
             break
+    roles = (page_plan or {}).get("front_matter_roles")
+    if roles and "toc" in roles:
+        return roles.index("toc")
     return _TOC_SLOT
 
 
@@ -518,10 +540,18 @@ def finalize(
     writer, collector: TocCollector, add_story_parts, psr,
     source: dict | None = None,
     page_plan: dict | None = None,
+    has_back_cover: bool = False,
 ) -> bool:
     """Build one or more TOC spreads and splice them into the template slot."""
-    title, segments = _display_segments(collector, source)
     toc_slot = _toc_slot(page_plan)
+    roles = (page_plan or {}).get("front_matter_roles")
+    folio_plan = (legacy_folio_page_plan(
+        len(writer.spreads) + 1, has_back_cover=has_back_cover,
+        front_matter_roles=tuple(roles),
+    ) if roles and not (page_plan or {}).get("renderer_page_plan") else None)
+    title, segments = _display_segments(
+        collector, source, folio_plan=folio_plan, toc_slot=toc_slot,
+    )
     single_column = _toc_layout_variant(page_plan) == "single_column"
     if not segments or len(writer.spreads) <= toc_slot:
         return False

@@ -1546,5 +1546,15 @@ Keep the package version with each screenshot; see the
 [JP review record](../code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md).
 
 JP IDML uses its manifest-declared Japanese TOC payload with dynamically
-collected headings; the TOC is excluded from non-IDML builders. Final physical
-page numbering still follows the selected layout plan and native acceptance.
+collected headings; the TOC is excluded from non-IDML builders. Its
+`front_matter_roles: ["cover", "toc"]` declaration controls both the TOC slot
+and fallback folios, so the first body page is 01. An explicit renderer page
+plan still owns its physical folios. Front-matter metadata alone does not
+create a reference-layout sidecar. Final story reflow and TOC page accuracy
+must be checked in InDesign screenshots of the identified candidate package.
+
+The six approved JE-1000F/JP illustrations resolve through scoped registry
+overrides. Product engravings and logos remain; added manual annotations are
+removed. Other targets retain their existing asset resolution. Local approved
+files are usable for review while dedicated asset-Base archival remains
+pending write permission; local hash checks do not prove online archival.

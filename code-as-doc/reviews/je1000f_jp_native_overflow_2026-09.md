@@ -177,3 +177,28 @@ schemas and no matching source/asset/export records. Source creation returned
 write was observed. Source, package and manifest are staged locally. Complete
 new-table archival and attachment download/hash verification when the bot has
 write permission. Never fall back to the read-only legacy illustration table.
+
+
+## Rebuilt screenshot candidate: approved artwork and front matter
+
+All six approved JE-1000F/JP artwork keys now override their generic keys only
+for that target. IDML XML contains all six replacement filenames. The candidate
+has 21 physical spreads, 96 stories and 266 IR blocks with zero skipped raw
+blocks. Content-node checks find zero literal image directives, alt/width
+options, energy-saving substitutions or intermediate inline-image tokens.
+The Japanese TOC is physical page 2; physical page 3 starts body folio 01.
+The range is 01–19 in this estimate-based candidate, not the reference's
+accepted pagination. Threaded-story headings may move under native reflow;
+TOC folios and all component bounds still require screenshot verification.
+
+No new InDesign automation or native PDF export was performed. Neither fewer
+estimated pages nor green automated checks certify that blank pages, overset,
+LED/LCD bounds, inbox artwork or warranty/App breaks are resolved. Source
+reference artwork, product values and accepted power-button-copy debt remain
+unchanged. PR #1043 remains draft and native acceptance remains pending.
+
+Automated validation for this candidate: 3,648 unit tests, 22 skipped and the
+rest passing; full Ruff, maintainability guardrails and documentation-link
+checks pass. US fixture and JP frozen-snapshot `build.py check` runs pass.
+Delivery packaging must collect and rewrite both production and flow links;
+its hash/asset/residual report is included with the screenshot candidate.

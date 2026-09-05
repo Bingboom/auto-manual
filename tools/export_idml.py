@@ -555,13 +555,12 @@ def main() -> int:
                 _ir_projection.back_cover_data(manual_ir), reference_plan=page_plan)
         if back_cover_added:
             page_cursor += 1
+    toc_source, page_plan = _ir_projection.toc_with_front_matter(manual_ir, bundle_root, page_plan)
     if target_renderer.toc_planned:
         _toc.finalize(
-            w,
-            toc,
-            w._add_story_parts,
-            w._psr,
-            source=_ir_projection.toc_page_data(manual_ir, bundle_root),
+            w, toc, w._add_story_parts, w._psr,
+            source=toc_source,
+            has_back_cover=back_cover_added,
             page_plan=page_plan,
         )
     _folio.apply(

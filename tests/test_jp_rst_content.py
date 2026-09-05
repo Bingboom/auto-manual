@@ -83,3 +83,45 @@ class TargetTocTests(unittest.TestCase):
         self.assertEqual(len(segments), 1)
         self.assertTrue(segments[0][0].startswith("JP"))
         self.assertEqual(segments[0][2], [("安全上のご注意", 1), ("主な仕様", 21)])
+
+
+class JpFolioContractTests(unittest.TestCase):
+    def test_front_matter_metadata_does_not_emit_a_reference_layout_plan(self):
+        from tools.idml.ir_projection import emit_reference_page_plan
+
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder)
+            self.assertIsNone(emit_reference_page_plan(
+                {"front_matter_roles": ["cover", "toc"]}, out_dir=output))
+            self.assertEqual([], list(output.iterdir()))
+
+    def test_japanese_contents_and_footer_share_two_front_pages(self):
+        from tools.idml.page_toc import TocCollector, _display_segments, _toc_slot
+        from tools.idml.page_folio import _resolve_page_plan
+
+        root = Path(__file__).resolve().parents[1]
+        blocks = _parse_text((root / "docs/templates/page_jp/toc.rst").read_text(), tags={"idml"}).blocks
+        source = next(json.loads(text) for kind, text in blocks if kind == "data")
+        raw = {"front_matter_roles": source["front_matter_roles"]}
+        plan = _resolve_page_plan(raw, physical_page_count=8, has_back_cover=True)
+        self.assertIsNone(plan.physical_page(2).folio_number)
+        self.assertEqual(1, plan.physical_page(3).folio_number)
+        self.assertEqual(5, plan.physical_page(7).folio_number)
+        self.assertIsNone(plan.physical_page(8).folio_number)
+        collector = TocCollector(entries=[("ja", "安全上のご注意", 1), ("ja", "保証について", 4)])
+        title, segments = _display_segments(collector, source, folio_plan=plan, toc_slot=_toc_slot(raw))
+        self.assertEqual("目次", title)
+        self.assertEqual("01-05", segments[0][1])
+        self.assertEqual([("安全上のご注意", 1), ("保証について", 4)], segments[0][2])
+
+    def test_assets_override_only_the_approved_product_and_region(self):
+        from tools.asset_registry import load_registry, resolve_asset
+
+        root = Path(__file__).resolve().parents[1]
+        records = load_registry(root / "data/asset_registry.csv")
+        for key in ("overview/front_product", "operation/ups_mode", "charging/ac_wall",
+                    "charging/solar_direct", "charging/solar_adapter", "charging/car_charge"):
+            jp = resolve_asset(records, repo_root=root, asset_key=key, model="JE-1000F", region="JP")
+            us = resolve_asset(records, repo_root=root, asset_key=key, model="JE-1000F", region="US")
+            self.assertIn("je1000f_jp_", Path(jp.path).name)
+            self.assertNotIn("je1000f_jp_", Path(us.path).name)
