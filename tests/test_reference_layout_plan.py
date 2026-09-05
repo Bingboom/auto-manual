@@ -15,6 +15,7 @@ from tools.idml.reference_layout_plan import (
     validate_approved_reference_plan,
 )
 from tools.manual_ir import ManualIR, ManualPage
+from tools.manual_ir.hashing import value_sha256
 from tools.utils.path_utils import PathSegments, Paths
 
 
@@ -47,7 +48,9 @@ def _manual_ir() -> ManualIR:
         snapshot_sha256="2" * 64,
         layout_params_sha256="3" * 64,
         style_contract_sha256="4" * 64,
-        content_sha256="1" * 64,
+        content_sha256=value_sha256({
+            "page_ids": [page.page_id for page in pages], "block_hashes": [],
+        }),
         pages=pages,
         metadata={"layout_params_hash_algorithm": "ordered-layout-tokens/v1"},
     )
