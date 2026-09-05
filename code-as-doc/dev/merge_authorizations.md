@@ -112,7 +112,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-051 | PR #1054（Web 图标对照表接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 真实组件调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1054 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1054 squash `b379331d` 已合入；最终 head 17/17 成功，随本次授权补记） |
 
-| MA-052 | PR #1055（Web App 下载双栏接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 真实调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1055 合入即失效；下次实质性触碰补记 | 生效 |
+| MA-052 | PR #1055（Web App 下载双栏接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后从统一 main 继续公共 IR 真实调用方迁移；后续 PR 另行评审，不扩大到 JP 原生版式。 | 「合入继续」2026-09-05 | #1055 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1055 squash `2f295daf` 已合入；最终 head 17/17 成功，随本次授权补记） |
+
+| MA-053 | PR #1056（Web App 添加设备按钮接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后构建并展示本地网页效果；不授权其他 PR 合入、线上发布或 JP 原生版式调整。 | 「合入 给我看网效果」2026-09-05 | #1056 合入即失效；下次实质性触碰补记 | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
