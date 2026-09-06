@@ -9,9 +9,7 @@ geometry: editable/searchable callouts, SVG leaders, and responsive fallbacks.
 from __future__ import annotations
 
 import fnmatch
-import json
 import re
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +42,10 @@ from tools.web_symbol_pairs import transform_symbol_pairs
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
+from tools.web_presentation_contract import (
+    WebPresentationContractError,
+    load_web_presentation_contract,
+)
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
@@ -98,21 +100,23 @@ def _contract_path() -> Path:
     return get_paths().renderer_contracts_dir / WEB_CONTRACT_NAME
 
 
-@lru_cache(maxsize=4)
-def _load_contract_cached(path_text: str) -> dict[str, Any]:
-    path = Path(path_text)
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        raise WebPresentationError(f"cannot load web manual contract {path}: {exc}") from exc
-    if data.get("schema_version") != "web-manual-presentation/v1":
-        raise WebPresentationError(f"unsupported web manual contract schema in {path}")
-    return data
+def load_web_manual_contract(
+    path: Path | None = None,
+    *,
+    model: str | None = None,
+    region: str | None = None,
+) -> dict[str, Any]:
+    """Resolve the shared/skeleton/target contract through the public facade."""
 
-
-def load_web_manual_contract(path: Path | None = None) -> dict[str, Any]:
     contract_path = (path or _contract_path()).resolve(strict=False)
-    return _load_contract_cached(str(contract_path))
+    try:
+        return load_web_presentation_contract(
+            contract_path,
+            model=model,
+            region=region,
+        )
+    except WebPresentationContractError as exc:
+        raise WebPresentationError(str(exc)) from exc
 
 
 def protect_web_figures_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]:
@@ -294,13 +298,10 @@ def _transform_product_overview(
     contract: dict[str, Any],
     composites: WebCompositeContext,
 ) -> None:
-    overview = contract["product_overview"]
     try:
-        instance_id = str(overview.get("instance_id") or "").strip() or None
         instance = resolve_overview_instance(
             model=composites.model,
             region=composites.region,
-            instance_id=instance_id,
         )
     except Exception as exc:
         raise WebPresentationError(f"{source_path}: {exc}") from exc
@@ -1158,7 +1159,7 @@ def transform_web_fragment(
             language=language, model=model, region=region,
             error_type=WebPresentationError,
         )
-    data = contract or load_web_manual_contract()
+    data = contract or load_web_manual_contract(model=model, region=region)
     has_inbox = "HB-SPECIAL-INBOX" in resolved or (
         not embedded_components_complete
         and _matches_source(

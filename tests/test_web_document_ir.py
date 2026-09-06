@@ -73,6 +73,14 @@ class WebDocumentIRTests(unittest.TestCase):
                 presentation_profile="web",
             )
             ir = read_manual_ir(package / "manual.ir.json")
+            frozen_contract = ir.metadata["web_contract"]
+            self.assertIsNone(
+                frozen_contract["presentation_layers"]["target_overlay"]
+            )
+            self.assertEqual([], frozen_contract["figure_targets"])
+            self.assertEqual([], frozen_contract["preface"]["targets"])
+            self.assertEqual([], frozen_contract["figure_coverage"]["requirements"])
+            self.assertNotIn("target_overlays", frozen_contract)
             self.assertEqual(
                 ["HB-TABLE-SPEC", "HB-CALLOUT-STRIP"],
                 [candidate.component_id for candidate in project_manual_ir_components(ir)],
