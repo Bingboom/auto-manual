@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {"garbage": 4, "clean": true, "deflate": true, "no_new_id": true},
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_js100i_eu_en_master",
+    "expected_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+    "expected_page_count": 10
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 10},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {"path_pattern": "archive/previews/page-{page:04d}.png", "default_scale": 1, "page_scale": {}}
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "cover", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 2, "page_key": "safety_inbox", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "product_views", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "unfold_1_3", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "unfold_4_fold", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "dc_connections", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "optional_connections", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "angle_device", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 9, "page_key": "specifications", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 10, "page_key": "warranty", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {"asset_key": "web/js100i/eu/en/inbox_panel", "page": 2, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [47, 260, 105, 328]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/inbox_panel.png", "scale": 4, "expected_sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/inbox_bag", "page": 2, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [155, 252, 215, 328]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/inbox_bag.png", "scale": 4, "expected_sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/inbox_cable", "page": 2, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [260, 247, 310, 328]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/inbox_cable.png", "scale": 4, "expected_sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/inbox_adapter", "page": 2, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [62, 375, 103, 428]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/inbox_adapter.png", "scale": 4, "expected_sha256": "2ef8624af0e7c186791e46be41b09cac73a548962a381667e7471fd85bf722b5"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/inbox_manual", "page": 2, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [165, 372, 203, 428]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/inbox_manual.png", "scale": 4, "expected_sha256": "d93feafa1c2c5c987c915a64d9ea076eaf375dd55f46db61e105925575fcc27c"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/product_views", "page": 3, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [30, 57, 341, 403]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/product_views.png", "scale": 4, "expected_sha256": "966069f8f78c491f61bc00ef7a2dca50c0a8aab780b2062c47c549b57d904298"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/unfold_steps_1_3", "page": 4, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [27, 51, 345, 493]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/unfold_steps_1_3.png", "scale": 4, "expected_sha256": "73e17cf2c009daec15123b51fb4b7db8bfbed043474d5a7e166b61fd62a765e7"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/unfold_step_4", "page": 5, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [27, 15, 345, 129]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/unfold_step_4.png", "scale": 4, "expected_sha256": "d10b0bff038014a4b0df8c749901c926da47a6171134c472af7cab8244cf93aa"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/fold_steps", "page": 5, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [27, 139, 345, 500]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/fold_steps.png", "scale": 4, "expected_sha256": "57cd5b938e761df6af232a5a0ad74d57c33eb2e779ce283e9bb680d684e0a9b0"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/dc_connections", "page": 6, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [25, 42, 345, 493]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/dc_connections.png", "scale": 4, "expected_sha256": "eb60e9c4e9ebeb0f3b99f8e1d9d737116bb968d6c4657ad29a990badcf882595"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/optional_connections", "page": 7, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [25, 28, 345, 500]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/optional_connections.png", "scale": 4, "expected_sha256": "9106d5c1b9df86b719139e34173d645c92347a8736df6403bf08368252818fc1"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/angle_and_device", "page": 8, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [25, 38, 345, 500]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/angle_and_device.png", "scale": 4, "expected_sha256": "4d13eb653050866121bb5de2f823f0309f0fd92156e470a602f63e6ad3c24fe6"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []},
+    {"asset_key": "web/js100i/eu/en/multifunctional_adapter", "page": 9, "build_eligible": true, "scope": {"models": ["JS-100I"], "regions": ["EU"], "locales": ["en"]}, "text_policy": "localized-full-page", "visual_review_required": false, "transforms": [{"op": "crop", "bbox_pt": [25, 10, 345, 130]}], "outputs": [{"format": "png", "path": "assets/js100i_eu_en/multifunctional_adapter.png", "scale": 4, "expected_sha256": "e2d23601137015dfd900301d9e19ef8a87a46e8a2c3f646a68d79d4715ee3218"}], "gate": {"status": "approved", "reasons": ["2026-09-06 visual verification against current English master"]}, "risk_tags": []}
+  ]
+}

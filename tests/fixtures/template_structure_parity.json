@@ -325,5 +325,47 @@
     "uk"
    ]
   ]
+ },
+ "page_solar": {
+  "01_safety_tips.rst": [
+   [
+    "en"
+   ]
+  ],
+  "02_whats_in_the_box.rst": [
+   [
+    "en"
+   ]
+  ],
+  "03_product_views.rst": [
+   [
+    "en"
+   ]
+  ],
+  "04_unfolding.rst": [
+   [
+    "en"
+   ]
+  ],
+  "05_folding.rst": [
+   [
+    "en"
+   ]
+  ],
+  "06_charging_connections.rst": [
+   [
+    "en"
+   ]
+  ],
+  "07_angle_and_device.rst": [
+   [
+    "en"
+   ]
+  ],
+  "09_warranty.rst": [
+   [
+    "en"
+   ]
+  ]
  }
 }

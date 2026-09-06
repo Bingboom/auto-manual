@@ -1,0 +1,54 @@
+# Skeleton Blueprint — Solar@INTL (portable solar-panel house style).
+# Owns category-level slot order only. Product facts and localized copy stay in
+# structured data and reusable language carriers.
+schema_version: skeleton-blueprint/v1
+skeleton_id: solar-intl
+skeleton_family: SOLAR
+house_style: INTL
+slots:
+  - slot_id: safety_tips
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: box_contents
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: product_views
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: unfolding
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: folding
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: charging_connections
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: angle_and_device
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: specifications
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: warranty
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+co_page_groups: []

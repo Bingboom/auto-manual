@@ -915,6 +915,18 @@ assets; do not add `JBP-2000B` or `JP` branches to page renderers. The plan
 remains `candidate` until native InDesign/PDF/X and 12-page visual acceptance
 are recorded and it is promoted separately.
 
+`JS-100I / EU / en` is the first portable-solar target resolved from the
+reusable `Solar@INTL` skeleton. Use `configs/config.solar-eu-en.yaml` with the
+Web presentation profile. Its manifest starts at Safety Tips and deliberately
+contains no cover, TOC, LCD, UPS, troubleshooting, or App slots. The five-item
+Inbox uses the variable-card component; specifications come from the phase2
+`Spec_Master`/notes contract; English-labelled figures are target-bound by a
+`web-illustrations/v1` manifest and source/output hashes. Local bootstrap data
+is in `tests/fixtures/js100i_eu_en_phase2`; formal Web Publish must freeze the
+approved live snapshot through the Hello-Docs publish PR, not publish this
+fixture or write the mirror engineering tree directly. See
+[`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound
