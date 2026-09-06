@@ -53,9 +53,11 @@ from tools.manual_ir import read_manual_ir
 from tools.render_contract import load_render_contract
 from tools.utils.path_utils import Paths
 from tools.web_composite_manifest import load_web_composite_manifest
+from tools.web_composite_presentation import WebCompositeContext
 from tools.web_document_ir import render_document_fragments
 from tools.web_document_source import load_web_document
-from tools.web_presentation import load_web_manual_contract
+from tools.web_operation_component import render_operation_component
+from tools.web_presentation import WebPresentationError, load_web_manual_contract
 from tools.word_bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
@@ -157,6 +159,70 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             idml_operation_payload(spec),
         )
         self.assertEqual("hb-operation-word-panel", word_operation_projection(spec)["panel_class"])
+
+    def test_operation_replay_restores_supporting_copy_before_residual_lines(self) -> None:
+        spec = operation_component_spec(
+            operation_id="main-power",
+            accessibility_label="Fonction marche/arrêt.",
+            layout="status-right",
+            steps=(
+                _step("on", ("summary", "Marche : appuyez une fois.", "Marche : appuyez une fois.")),
+                _step("off", ("summary", "Arrêt : maintenez pendant 3 secondes.", "Arrêt : maintenez pendant 3 secondes.")),
+            ),
+            prerequisite_html="",
+            supporting_copy=(
+                "<strong>Temps de veille par défaut :</strong> 2 heures.",
+                "Arrêt automatique après 2 heures.",
+                "*Réglable dans l'application Jackery.",
+            ),
+            artwork_ref="assets/ir/op_main_power.png",
+            source_ref="page/p26_05_operation_guide_placeholder.rst#operation-main-power",
+            language="fr",
+            registry=self.registry,
+            theme=self.theme,
+        )
+        carrier = """
+        <img src="assets/ir/op_main_power.png" alt="Fonction marche/arrêt.">
+        <div class="line-block">
+          <div class="line">Marche : appuyez une fois.</div>
+          <div class="line">Arrêt : maintenez pendant 3 secondes.</div>
+          <div class="line">Conserver cette explication après le panneau.</div>
+        </div>
+        """
+        rendered = render_operation_component(
+            spec,
+            carrier,
+            source_path=Path("page/p26_05_operation_guide_placeholder.rst"),
+            presentation={
+                "id": "main-power",
+                "image_key": "operation/main_power",
+                "layout": "status-right",
+                "step_ids": ["on", "off"],
+                "capture_following_lines": 3,
+                "web_replace_key": "operation.main-power",
+            },
+            composites=WebCompositeContext(
+                manifest=None,
+                model="JE-1000F",
+                region="US",
+                language="fr",
+                error_type=WebPresentationError,
+            ),
+        )
+        soup = BeautifulSoup(rendered, "html.parser")
+        supporting = soup.select_one(".hb-operation-supporting-copy")
+        self.assertIsNotNone(supporting)
+        self.assertEqual(
+            3,
+            len(supporting.find_all(class_="line", recursive=False)) if supporting else 0,
+        )
+        self.assertEqual(1, rendered.count("Temps de veille par défaut"))
+        residual = soup.select_one(".line-block > .line")
+        self.assertIsNotNone(residual)
+        self.assertIn(
+            "Conserver cette explication",
+            residual.get_text(" ", strip=True) if residual else "",
+        )
 
     def test_lcd_mode_four_renderer_projections_keep_hybrid_table(self) -> None:
         groups = (
@@ -269,7 +335,17 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 )
                 operation_claims = discover_registered_components(
                     BeautifulSoup(operation_html, "html.parser"),
-                    source_path=operation_path,
+                    source_path=(
+                        ROOT
+                        / "docs"
+                        / "_build"
+                        / "JE-1000F"
+                        / "EU"
+                        / language
+                        / "rst"
+                        / "page"
+                        / operation_path.name
+                    ),
                     contract=contract,
                     model="JE-1000F",
                     region="EU",
@@ -306,6 +382,85 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 )
                 self.assertEqual(["3", "2"], [item["number"] for item in years.slot("periods").content])
                 self.assertEqual([unit, unit], [item["unit"] for item in years.slot("periods").content])
+
+    def test_kr_skeleton_keeps_operations_as_flow_and_parses_compact_warranty_units(self) -> None:
+        operation_path = (
+            ROOT
+            / "docs"
+            / "templates"
+            / "page_eu-kr"
+            / "05_operation_guide_placeholder.rst"
+        )
+        operation_html = _rewrite_word_friendly_fragment(
+            _publish_rst_fragment_to_html(
+                operation_path.read_text(encoding="utf-8"),
+                operation_path,
+                active_tags=_build_word_only_tags(
+                    model="JE-3000C", region="KR", lang="ko"
+                ),
+            ),
+            lang="ko",
+        )
+        claims = discover_registered_components(
+            BeautifulSoup(operation_html, "html.parser"),
+            source_path=(
+                ROOT
+                / "docs"
+                / "_build"
+                / "JE-3000C"
+                / "KR"
+                / "ko"
+                / "rst"
+                / "page"
+                / operation_path.name
+            ),
+            contract=load_web_manual_contract(),
+            model="JE-3000C",
+            region="KR",
+            language="ko",
+        )
+        ids = [claim.spec.component_id for claim in claims]
+        self.assertNotIn(OPERATION_COMPONENT_ID, ids)
+        self.assertEqual(1, ids.count(LCD_MODE_COMPONENT_ID))
+
+        warranty_path = (
+            ROOT / "docs" / "templates" / "page_shared" / "ko" / "11_warranty.rst"
+        )
+        warranty_html = _rewrite_word_friendly_fragment(
+            _publish_rst_fragment_to_html(
+                warranty_path.read_text(encoding="utf-8"),
+                warranty_path,
+                active_tags=_build_word_only_tags(
+                    model="JE-3000C", region="KR", lang="ko"
+                ),
+            ),
+            lang="ko",
+        )
+        warranty_claims = discover_registered_components(
+            BeautifulSoup(warranty_html, "html.parser"),
+            source_path=(
+                ROOT
+                / "docs"
+                / "_build"
+                / "JE-3000C"
+                / "KR"
+                / "ko"
+                / "rst"
+                / "page"
+                / warranty_path.name
+            ),
+            contract=load_web_manual_contract(),
+            model="JE-3000C",
+            region="KR",
+            language="ko",
+        )
+        years = next(
+            claim.spec
+            for claim in warranty_claims
+            if claim.spec.component_id == WARRANTY_YEARS_COMPONENT_ID
+        )
+        self.assertEqual(["3", "2"], [item["number"] for item in years.slot("periods").content])
+        self.assertEqual(["년", "년"], [item["unit"] for item in years.slot("periods").content])
 
     def test_real_us_cold_replay_uses_embedded_components_and_keeps_composite_hashes(
         self,

@@ -169,3 +169,27 @@ Web composition transform 作为兼容层，第 7 刀才移除这层。
 `identity.style.style_contract_sha256`：52 个 page binding 无变化、content 未重批、
 58 页 composition map 无变化。3767 项全量测试（19 skipped）、reference pin、
 Ruff、62 个 maintainability hotspot、1708 条文档链接和隔离 target check 均通过。
+
+## 后续第 4 刀：LCD、Troubleshooting 与 Symbols（2026-09-05）
+
+整本 IR 再纳入四种既有样式语义：`HB-TABLE-LCD-ICON`、
+`HB-TABLE-TROUBLESHOOTING`、`HB-TABLE-SYMBOL-SIGNAL` 和
+`HB-TABLE-SYMBOL-ICON`。它们的行、表头、本地化富文本和图标引用进入共享
+ComponentSpec；Web 从冻结 IR 直接绘制原生表格，不再在回放时扫描 DOM，也没有把
+任何表格改成截图。
+
+Component registry 新增显式 `multiple: true` 资产合同。LCD 与 Symbol 图标共用一个
+有序 `icons` role，行内 `asset_index` 指向最终打包资产；未声明的重复 role、数量
+不匹配、空图片或语义/源结构不一致都会失败。Troubleshooting 与 LCD 的重命名 CSV
+slot 由 assembly planner 的 page declaration 识别，不靠文件名或译文表头。
+
+符号图标不再固化 JE-1000F/US 的 6+5 行：同一严格双面板 parser 同时接受真实
+US 6+5 与 JE-3000C/KR 5+2，仍拒绝 rowspan/colspan、半对图文、空资产和歧义表。
+四类组件均登记 Web/LaTeX/IDML/Word adapter；App/reference figures、presentation
+overlay 分层与旧兼容路径最终退役继续留给第 5–7 刀。
+
+全语料构建还补上两项第 3 刀的跨语言安全网：Operation 重放会把 ComponentSpec
+中的 supporting copy 放回步骤 block 的语义位置，再交给兼容 Web transform，因而
+法语多出的普通说明不会截断三条待机说明；未列入 `figure_targets` 的不同产品骨架
+不会被强套 JE-1000F 五面板合同，仍保留为 neutral flow。Warranty 年限 parser 同时
+接受 `3 YEARS` 一类空格单位和韩语 `3년` 一类紧邻单位。

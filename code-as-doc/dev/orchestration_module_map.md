@@ -142,8 +142,8 @@ empty-cell policies are recorded in
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - web-profile figure/table composition and Pandoc-safe semantic restoration
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
-  - whole-document ownership pass for the five registered component families;
-    claims Overview/FCC/Inbox/Spec/Callout source nodes once and preserves flow order
+  - whole-document ownership pass for the fourteen registered component types;
+    claims shared special sections and native table components once and preserves flow order
 - [`tools/manual_ir/components.py`](../../tools/manual_ir/components.py)
   - strict embedded ComponentSpec carrier validation, asset enumeration and
     renderer-neutral document-order traversal

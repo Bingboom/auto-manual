@@ -13,7 +13,7 @@ from tools.component_specs.warranty import (
 )
 
 
-_PERIOD_HEADING = re.compile(r"^(\d+)\s+(\S+)(?:\s+(.+))?$")
+_PERIOD_HEADING = re.compile(r"^(\d+)\s*(\D\S*)(?:\s+(.+))?$")
 
 
 def _period(cell: Tag, *, source_path: Path) -> dict[str, str]:

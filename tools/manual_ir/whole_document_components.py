@@ -16,6 +16,11 @@ from bs4 import BeautifulSoup, Comment, Tag
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
 from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
+from tools.component_specs.manual_table_html import (
+    parse_lcd_icon_html,
+    parse_symbol_tables_html,
+    parse_troubleshooting_html,
+)
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation_html import parse_operation_components
 from tools.component_specs.overview_html import parse_overview_html
@@ -106,11 +111,65 @@ def discover_registered_components(
     model: str,
     region: str,
     language: str,
+    declared_role: str | None = None,
 ) -> tuple[ComponentClaim, ...]:
     """Discover registered families in deterministic ownership order."""
 
     claims: list[ComponentClaim] = []
     claimed: set[int] = set()
+
+    if declared_role == "lcd_icons" or soup.select_one("table.hb-lcd-icon-table"):
+        spec, boundary, images = parse_lcd_icon_html(
+            soup,
+            source_path=source_path,
+            declared_page=declared_role == "lcd_icons",
+            language=language,
+        )
+        claim = ComponentClaim(
+            spec=spec,
+            owned_nodes=(boundary,),
+            asset_tags=tuple(("icons", image) for image in images),
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
+    if (
+        declared_role == "troubleshooting"
+        or soup.select_one("table.hb-troubleshooting-table")
+    ):
+        spec, boundary, images = parse_troubleshooting_html(
+            soup,
+            source_path=source_path,
+            declared_page=declared_role == "troubleshooting",
+            language=language,
+        )
+        claim = ComponentClaim(
+            spec=spec,
+            owned_nodes=(boundary,),
+            asset_tags=tuple(("icons", image) for image in images),
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
+    meaning_symbols = contract["meaning_symbols"]
+    if isinstance(meaning_symbols, Mapping) and (
+        declared_role == "symbols"
+        or _matches_source(source_path, meaning_symbols.get("source_patterns", []))
+    ):
+        parsed_symbol_claims = parse_symbol_tables_html(
+            soup,
+            source_path=source_path,
+            expected_signal_rows=int(meaning_symbols["signal_row_count"]),
+            language=language,
+        )
+        for spec, boundary, images in parsed_symbol_claims:
+            claim = ComponentClaim(
+                spec=spec,
+                owned_nodes=(boundary,),
+                asset_tags=tuple(("icons", image) for image in images),
+            )
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
 
     warranty_config = contract["warranty"]
     if isinstance(warranty_config, Mapping) and _matches_source(
@@ -131,20 +190,26 @@ def discover_registered_components(
     if isinstance(operation_config, Mapping) and _matches_source(
         source_path, operation_config.get("source_patterns", [])
     ):
-        for spec, owned_nodes, artwork, discard_nodes in parse_operation_components(
-            soup,
-            source_path=source_path,
-            config=operation_config,
-            language=language,
-        ):
-            claim = ComponentClaim(
-                spec=spec,
-                owned_nodes=owned_nodes,
-                asset_tags=(("artwork", artwork),),
-                discard_nodes=discard_nodes,
-            )
-            _claim_nodes(claim, claimed=claimed, source_path=source_path)
-            claims.append(claim)
+        # The current operation presentation contract describes the approved
+        # JE-1000F figure skeleton. Other skeletons retain their operation copy
+        # as neutral flow until a matching presentation overlay is declared;
+        # forcing this five-panel shape would either reject valid pages or drop
+        # copy for panels that do not exist on that product.
+        if supports_figure_contract(source_path, dict(contract)):
+            for spec, owned_nodes, artwork, discard_nodes in parse_operation_components(
+                soup,
+                source_path=source_path,
+                config=operation_config,
+                language=language,
+            ):
+                claim = ComponentClaim(
+                    spec=spec,
+                    owned_nodes=owned_nodes,
+                    asset_tags=(("artwork", artwork),),
+                    discard_nodes=discard_nodes,
+                )
+                _claim_nodes(claim, claimed=claimed, source_path=source_path)
+                claims.append(claim)
         lcd_config = operation_config["lcd_mode_table"]
         lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
             soup,
@@ -299,16 +364,41 @@ def _rebind_spec_assets(
     package_image: Callable[[Tag], str],
     package_file: Callable[[Path], str],
 ) -> ComponentSpec:
-    bound: dict[str, str] = {}
+    bound: dict[str, list[str]] = {}
     for role, image in claim.asset_tags:
-        bound[role] = package_image(image)
+        bound.setdefault(role, []).append(package_image(image))
     for role, path in claim.asset_paths:
-        bound[role] = package_file(path)
-    assets = tuple(
-        replace(asset, asset_ref=bound.get(asset.role, asset.asset_ref))
-        for asset in claim.spec.assets
-    )
-    return require_valid_component_spec(replace(claim.spec, assets=assets))
+        bound.setdefault(role, []).append(package_file(path))
+    expected_counts: dict[str, int] = {}
+    for asset in claim.spec.assets:
+        expected_counts[asset.role] = expected_counts.get(asset.role, 0) + 1
+    if {
+        role: (expected_counts.get(role, 0), len(values))
+        for role, values in bound.items()
+        if expected_counts.get(role, 0) != len(values)
+    } or any(role not in bound for role in expected_counts):
+        raise ValueError(
+            f"{claim.spec.source_ref}: component asset bindings do not match spec"
+        )
+    offsets: dict[str, int] = {}
+    assets = []
+    for asset in claim.spec.assets:
+        index = offsets.get(asset.role, 0)
+        candidates = bound.get(asset.role, [])
+        asset_ref = candidates[index] if index < len(candidates) else asset.asset_ref
+        offsets[asset.role] = index + 1
+        assets.append(replace(asset, asset_ref=asset_ref))
+    unused = {
+        role: len(values) - offsets.get(role, 0)
+        for role, values in bound.items()
+        if len(values) != offsets.get(role, 0)
+    }
+    if unused:
+        raise ValueError(
+            f"{claim.spec.source_ref}: component asset bindings do not match spec: "
+            f"{unused}"
+        )
+    return require_valid_component_spec(replace(claim.spec, assets=tuple(assets)))
 
 
 def embed_component_claims(

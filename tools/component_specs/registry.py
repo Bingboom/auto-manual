@@ -28,6 +28,10 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "hb_overview",
             "hb_operation",
             "hb_lcd_mode",
+            "hb_lcd_icon",
+            "hb_troubleshooting",
+            "hb_symbol_signal",
+            "hb_symbol_icon",
             "hb_warranty_lead",
             "hb_warranty_section",
             "hb_warranty_years",
@@ -42,6 +46,10 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "hb_latex_overview",
             "hb_latex_operation",
             "hb_latex_lcd_mode",
+            "hb_latex_lcd_icon",
+            "hb_latex_troubleshooting",
+            "hb_latex_symbol_signal",
+            "hb_latex_symbol_icon",
             "hb_latex_warranty_lead",
             "hb_latex_warranty_section",
             "hb_latex_warranty_years",
@@ -56,6 +64,10 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "idml_overview",
             "idml_operation",
             "idml_lcd_mode",
+            "idml_lcd_icon",
+            "idml_troubleshooting",
+            "idml_symbol_signal",
+            "idml_symbol_icon",
             "idml_warranty_lead",
             "idml_warranty_section",
             "idml_warranty_years",
@@ -70,6 +82,10 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "word_overview",
             "word_operation",
             "word_lcd_mode",
+            "word_lcd_icon",
+            "word_troubleshooting",
+            "word_symbol_signal",
+            "word_symbol_icon",
             "word_warranty_lead",
             "word_warranty_section",
             "word_warranty_years",
@@ -181,10 +197,16 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
                 if not isinstance(raw_asset, Mapping):
                     issues.append(f"{asset_prefix} must be a mapping")
                     continue
-                if set(raw_asset) != {"required", "locale_policies"}:
+                if not set(raw_asset).issubset(
+                    {"required", "locale_policies", "multiple"}
+                ) or not {"required", "locale_policies"}.issubset(raw_asset):
                     issues.append(f"{asset_prefix} has an invalid asset-role shape")
                 if not isinstance(raw_asset.get("required"), bool):
                     issues.append(f"{asset_prefix}.required must be boolean")
+                if "multiple" in raw_asset and not isinstance(
+                    raw_asset.get("multiple"), bool
+                ):
+                    issues.append(f"{asset_prefix}.multiple must be boolean")
                 policies = raw_asset.get("locale_policies")
                 if not _non_empty_strings(policies) or not set(policies).issubset(
                     LOCALE_POLICIES
@@ -293,14 +315,17 @@ def validate_component_spec(
     asset_definitions = definition.get("asset_roles")
     seen_assets: set[str] = set()
     for asset in spec.assets:
-        if asset.role in seen_assets:
-            issues.append(f"{spec.component_id}: duplicate asset role {asset.role!r}")
-        seen_assets.add(asset.role)
         asset_definition = (
             asset_definitions.get(asset.role)
             if isinstance(asset_definitions, Mapping)
             else None
         )
+        if asset.role in seen_assets and not (
+            isinstance(asset_definition, Mapping)
+            and asset_definition.get("multiple") is True
+        ):
+            issues.append(f"{spec.component_id}: duplicate asset role {asset.role!r}")
+        seen_assets.add(asset.role)
         if not isinstance(asset_definition, Mapping):
             issues.append(f"{spec.component_id}: unknown asset role {asset.role!r}")
         if not asset.asset_ref.strip():

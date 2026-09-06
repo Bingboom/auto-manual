@@ -166,19 +166,17 @@ class WebTableIRTests(unittest.TestCase):
                     output_dir=root / "web",
                     presentation_profile="web",
                 )
-            self.assertEqual(2, assemble.call_count)
-            self.assertEqual(
-                ["lcd", "troubleshooting"],
-                [
-                    call.args[0].pages[0].blocks[0][1]["table_kind"]
-                    for call in assemble.call_args_list
-                ],
+            assemble.assert_not_called()
+            from tools.component_specs.projection import project_manual_ir_components
+            from tools.manual_ir import read_manual_ir
+
+            specs = project_manual_ir_components(
+                read_manual_ir(root / "web" / "manual.ir.json")
             )
-            for call in assemble.call_args_list:
-                self.assertEqual(
-                    ("OTHER", "JP", "ja"),
-                    (call.args[0].model, call.args[0].region, call.args[0].language),
-                )
+            self.assertEqual(
+                ["HB-TABLE-LCD-ICON", "HB-TABLE-TROUBLESHOOTING"],
+                [spec.component_id for spec in specs],
+            )
             soup = BeautifulSoup(output.read_text(), "html.parser")
             self.assertEqual(1, len(soup.select("figure.hb-lcd-table-composition")))
             self.assertEqual(

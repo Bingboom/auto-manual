@@ -150,14 +150,14 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn(".hb-symbol-panel", css_text)
             self.assertIn("table.hb-symbol-panel-table", css_text)
             self.assertIn("grid-template-columns: repeat(2, minmax(0, 1fr))", css_text)
-            self.assertIn("align-items: stretch", css_text)
+            self.assertIn("align-items: start", css_text)
             symbol_panel_css = css_text.split(".hb-symbol-panel {", 1)[1].split("}", 1)[0]
             self.assertIn("display: flex", symbol_panel_css)
             symbol_table_css = css_text.split(
                 "#furo-main-content table.hb-symbol-panel-table {",
                 1,
             )[1].split("}", 1)[0]
-            self.assertIn("height: 100%", symbol_table_css)
+            self.assertNotIn("height: 100%", symbol_table_css)
             self.assertIn(".hb-troubleshooting-composition", css_text)
             self.assertIn("table.hb-troubleshooting-table", css_text)
             self.assertIn(".hb-troubleshooting-col-code", css_text)

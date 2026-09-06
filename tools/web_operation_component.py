@@ -33,14 +33,34 @@ def render_operation_component(
     soup.append(section)
     supporting_copy = projection["supporting_copy"]
     if supporting_copy:
-        supporting_block = soup.new_tag("div", attrs={"class": "line-block"})
+        image = soup.find("img")
+        if not isinstance(image, Tag):
+            raise ValueError(f"{spec.source_ref}: operation carrier has no artwork")
+        step_block = image.find_next_sibling()
+        if not isinstance(step_block, Tag) or "line-block" not in step_block.get(
+            "class", []
+        ):
+            raise ValueError(f"{spec.source_ref}: operation carrier has no step block")
+        step_line_count = sum(len(step["parts"]) for step in projection["steps"])
+        carrier_lines = step_block.find_all(class_="line", recursive=False)
+        if len(carrier_lines) < step_line_count:
+            raise ValueError(
+                f"{spec.source_ref}: operation carrier has fewer lines than its steps"
+            )
+        insertion_point = (
+            carrier_lines[step_line_count]
+            if len(carrier_lines) > step_line_count
+            else None
+        )
         for value in supporting_copy:
             line = soup.new_tag("div", attrs={"class": "line"})
             fragment = BeautifulSoup(str(value), "html.parser")
             for child in list(fragment.contents):
                 line.append(child.extract())
-            supporting_block.append(line)
-        section.append(supporting_block)
+            if insertion_point is None:
+                step_block.append(line)
+            else:
+                insertion_point.insert_before(line)
     image = soup.find("img")
     if not isinstance(image, Tag):
         raise ValueError(f"{spec.source_ref}: operation carrier has no artwork")

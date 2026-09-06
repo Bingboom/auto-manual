@@ -117,6 +117,11 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             model=materialized.model or "unspecified",
             region=materialized.region or "unspecified",
             language=lang or "und",
+            declared_role=(
+                declarations.get(path.resolve())
+                or declarations.get(path)
+                or None
+            ),
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
