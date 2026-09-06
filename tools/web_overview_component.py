@@ -141,6 +141,7 @@ def transform_overview(
         source_path=source_path,
         instance=instance,
         error_type=error_type,
+        language=composites.language,
     )
     projection = web_overview_projection(parsed.spec, instance)
     html_views = {view.view_id: view for view in parsed.views}

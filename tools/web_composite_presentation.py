@@ -23,7 +23,10 @@ def _matches_source(source_path: Path, patterns: list[str]) -> bool:
     return any(fnmatch.fnmatch(stem, pattern.casefold()) for pattern in patterns)
 
 
-def supports_figure_contract(source_path: Path, contract: dict[str, Any]) -> bool:
+def _supports_target_selectors(
+    source_path: Path,
+    selectors: list[dict[str, Any]],
+) -> bool:
     parts = list(source_path.parts)
     normalized = [part.casefold() for part in parts]
     target: tuple[str, str] | None = None
@@ -41,8 +44,17 @@ def supports_figure_contract(source_path: Path, contract: dict[str, Any]) -> boo
     return any(
         model.casefold() == str(selector["model"]).casefold()
         and region.casefold() == str(selector["region"]).casefold()
-        for selector in contract["figure_targets"]
+        for selector in selectors
     )
+
+
+def supports_figure_contract(source_path: Path, contract: dict[str, Any]) -> bool:
+    return _supports_target_selectors(source_path, contract["figure_targets"])
+
+
+def supports_preface_contract(source_path: Path, contract: dict[str, Any]) -> bool:
+    selectors = contract.get("preface", {}).get("targets", [])
+    return _supports_target_selectors(source_path, selectors)
 
 
 def _fragment_sha256(*values: object) -> str:
@@ -83,14 +95,36 @@ class WebCompositeContext:
     manifest: WebCompositeManifest | None
     model: str | None
     region: str | None
+    language: str | None
     error_type: type[Exception]
 
     def _locale(self, component: dict[str, Any], source_path: Path) -> str | None:
         if str(component.get("composite_locale") or "").strip().casefold() == "shared":
             return "shared"
+        mappings = [
+            mapping
+            for mapping in component.get("composite_locales", [])
+            if isinstance(mapping, dict)
+        ]
+        requested_language = str(self.language or "").strip().casefold()
+        if requested_language:
+            language_matches = [
+                str(mapping.get("locale") or "").strip()
+                for mapping in mappings
+                if str(mapping.get("locale") or "").strip().casefold()
+                == requested_language
+            ]
+            language_matches = [value for value in language_matches if value]
+            if len(language_matches) > 1:
+                raise self.error_type(
+                    f"{source_path}: Web composite document-language mapping is "
+                    f"ambiguous: {language_matches}"
+                )
+            if language_matches:
+                return language_matches[0]
         matches = [
             str(mapping.get("locale") or "").strip()
-            for mapping in component.get("composite_locales", [])
+            for mapping in mappings
             if _matches_source(
                 source_path,
                 [str(value) for value in mapping.get("source_patterns", [])],
@@ -143,6 +177,9 @@ class WebCompositeContext:
             )
         if entry is not None:
             figure["class"] = [*figure.get("class", []), "hb-has-composite-art"]
+            figure["data-web-composite-asset-key"] = entry.asset_key
+            figure["data-web-composite-locale"] = entry.locale
+            figure["data-web-composite-sha256"] = entry.content_sha256
             figure.append(_composite_stage(soup, entry.path))
 
     def append_semantic(
@@ -199,4 +236,4 @@ class WebCompositeContext:
         )
 
 
-__all__ = ("WebCompositeContext", "supports_figure_contract")
+__all__ = ("WebCompositeContext", "supports_figure_contract", "supports_preface_contract")

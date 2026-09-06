@@ -72,9 +72,33 @@ def validate_document(ir: ManualIR) -> None:
         raise ValueError("document image is missing from the asset manifest")
     if not isinstance(ir.metadata.get("web_contract"), dict) or not isinstance(ir.metadata.get("composites"), list):
         raise ValueError("document presentation bindings are missing")
+    figure_coverage = ir.metadata.get("web_figure_coverage")
+    if figure_coverage is not None:
+        from tools.web_figure_coverage import validate_web_figure_coverage
+
+        if not isinstance(figure_coverage, dict):
+            raise ValueError("invalid Web figure coverage")
+        validate_web_figure_coverage(figure_coverage)
+        if (
+            figure_coverage.get("model") != ir.model
+            or figure_coverage.get("region") != ir.region
+        ):
+            raise ValueError("Web figure coverage target does not match document")
     declarations = ir.metadata.get("page_declarations")
     if not isinstance(declarations, dict) or set(declarations) - {p.page_id for p in ir.pages}:
         raise ValueError("invalid document page declarations")
+    page_slots = ir.metadata.get("page_slots", {})
+    if (
+        not isinstance(page_slots, dict)
+        or set(page_slots) - {p.page_id for p in ir.pages}
+        or any(
+            not isinstance(page_id, str)
+            or not isinstance(slot, str)
+            or not slot.strip()
+            for page_id, slot in page_slots.items()
+        )
+    ):
+        raise ValueError("invalid document page slots")
     for page in ir.pages:
         if not page.blocks:
             raise ValueError(f"{page.page_id}: empty document page")

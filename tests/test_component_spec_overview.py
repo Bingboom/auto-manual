@@ -176,6 +176,37 @@ class OverviewComponentSpecTests(unittest.TestCase):
                 registry=self.instance_registry,
             )
 
+    def test_eu_instance_inherits_us_geometry_and_overrides_views_by_id(self) -> None:
+        eu = resolve_overview_instance(
+            model="JE-1000F",
+            region="EU",
+            registry=self.instance_registry,
+        )
+
+        self.assertEqual("je1000f-eu-v1", eu["instance_id"])
+        self.assertEqual(["front", "right"], [view["id"] for view in eu["views"]])
+        self.assertEqual(
+            [view["web"] for view in self.instance["views"]],
+            [view["web"] for view in eu["views"]],
+        )
+        self.assertEqual(
+            [view["idml"] for view in self.instance["views"]],
+            [view["idml"] for view in eu["views"]],
+        )
+        self.assertEqual(
+            [view["callouts"] for view in self.instance["views"]],
+            [view["callouts"] for view in eu["views"]],
+        )
+        self.assertEqual(
+            ["en", "fr", "es", "de", "it"],
+            [mapping["locale"] for mapping in eu["views"][0]["composite_locales"]],
+        )
+        self.assertEqual("overview/front_product", eu["views"][0]["image_key"])
+        self.assertEqual(
+            self.instance["views"][1]["image_key"],
+            eu["views"][1]["image_key"],
+        )
+
     def test_battery_pack_instance_projects_only_target_difference_slots(self) -> None:
         instance = resolve_overview_instance(
             model="JBP-2000B",

@@ -13,6 +13,7 @@ from tools.manual_ir import ManualSource, SourcePage, build_manual_ir_from_sourc
 from tools.manual_ir.document import content_tree, validate_document
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.web_presentation import load_web_manual_contract
+from tools.utils.path_utils import PathSegments
 
 
 def _consume_covered_annotations(soup, entry, image):
@@ -35,7 +36,8 @@ def _consume_covered_annotations(soup, entry, image):
 
 
 def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
-                      output_dir: Path, composite_manifest, illustration_manifest: Path | None = None):
+                      output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
+                      page_slots: dict[str, str] | None = None):
     from tools.word_bundle_html import (
         _extract_raw_html_blocks, _publish_rst_fragment_to_html,
         _resolve_fragment_lang, _rewrite_word_friendly_fragment, _resolve_fragment_asset_path,
@@ -97,6 +99,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 else:
                     image["src"] = replacements[name].as_uri()
                     image["class"] = [*image.get("class", []), "manual-finished-illustration"]
+                    image["data-web-finished-panel-path"] = illustration_entries[name]["path"]
+                    image["data-web-finished-panel-sha256"] = illustration_entries[name]["sha256"]
                     image.attrs.pop("width", None)
                     image.attrs.pop("height", None)
                     image["style"] = "width: 100%; height: auto;"
@@ -131,9 +135,14 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                   "declared_languages": list(languages), "asset_sha256": hashes,
                   "web_contract": contract, "composites": composites,
                   "illustration_provenance": provenance,
-                  "page_declarations": {path.name: role for path, role in declarations.items()}},
+                  "page_declarations": {path.name: role for path, role in declarations.items()},
+                  "page_slots": {
+                      path.name: str((page_slots or {}).get(path.name) or "")
+                      for path in page_paths
+                      if (page_slots or {}).get(path.name)
+                  }},
     )
     ir = build_manual_ir_from_source(source)
     validate_document(ir)
-    write_manual_ir(ir, output_dir / "manual.ir.json")
+    write_manual_ir(ir, output_dir / PathSegments.MANUAL_IR_JSON)
     return ir

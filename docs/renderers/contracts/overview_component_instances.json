@@ -178,6 +178,36 @@
         }
       ]
     },
+    "je1000f-eu-v1": {
+      "extends": "je1000f-us-v1",
+      "target": {
+        "model": "JE-1000F",
+        "region": "EU"
+      },
+      "views": [
+        {
+          "id": "front",
+          "image_key": "overview/front_product",
+          "composite_locales": [
+            {"locale": "en"},
+            {"locale": "fr"},
+            {"locale": "es"},
+            {"locale": "de"},
+            {"locale": "it"}
+          ]
+        },
+        {
+          "id": "right",
+          "composite_locales": [
+            {"locale": "en"},
+            {"locale": "fr"},
+            {"locale": "es"},
+            {"locale": "de"},
+            {"locale": "it"}
+          ]
+        }
+      ]
+    },
     "je3000c-kr-v1": {
       "component_id": "HB-SPECIAL-OVERVIEW",
       "target": {

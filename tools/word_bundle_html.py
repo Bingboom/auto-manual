@@ -10,7 +10,7 @@ from pathlib import Path
 from tools.config_pages import CsvPage
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle, plan_materialized_pages
 from tools.lang_registry import LANGUAGE_BY_ALIAS
-from tools.utils.path_utils import web_composite_manifest_of
+from tools.utils.path_utils import PathSegments, web_composite_manifest_of
 from tools.web_composite_manifest import (
     WebCompositeManifest,
     load_optional_web_composite_manifest,
@@ -380,6 +380,7 @@ def build_word_bundle_html(
     page_paths = list(materialized.page_paths)
     declared_csv_pages: dict[Path, str] = {}
     page_languages: dict[str, str] = {}
+    page_slots: dict[str, str] = {}
     if profile == WEB_PRESENTATION_PROFILE:
         # Reuse the target's declared CSV page identities once per bundle.
         # slot_id/renames are resolved by the existing assembly planner, not
@@ -390,6 +391,15 @@ def build_word_bundle_html(
                 langs=list(materialized.languages) or None,
             )
             page_languages = {p.file_name: p.lang or "" for p in planned_pages}
+            page_slots = {
+                planned.file_name: str(
+                    getattr(planned.page, "slot_id", None)
+                    or getattr(planned.page, "page", None)
+                    or getattr(planned.page, "file", None)
+                    or ""
+                )
+                for planned in planned_pages
+            }
             declared_csv_pages = {
                 (materialized.page_dir / planned.file_name).resolve(): planned.page.page
                 for planned in planned_pages
@@ -414,8 +424,16 @@ def build_word_bundle_html(
             active_tags=active_tags, output_dir=bundle_output_dir,
             composite_manifest=composite_manifest,
             illustration_manifest=(paths.root / illustration_path) if illustration_path else None,
+            page_slots=page_slots,
         )
         web_fragments = render_document_fragments(ir, package_root=bundle_output_dir)
+        from tools.manual_ir import write_manual_ir
+        from tools.manual_ir.document import validate_document
+        from tools.web_figure_coverage import attach_web_figure_coverage
+
+        ir = attach_web_figure_coverage(ir, web_fragments)
+        validate_document(ir)
+        write_manual_ir(ir, bundle_output_dir / PathSegments.MANUAL_IR_JSON)
 
     previous_was_cover = False
     for idx, rst_path in enumerate(page_paths):

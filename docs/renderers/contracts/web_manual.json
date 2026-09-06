@@ -17,10 +17,20 @@
     {
       "model": "JE-1000F",
       "region": "US"
+    },
+    {
+      "model": "JE-1000F",
+      "region": "EU"
     }
   ],
   "preface": {
-    "source_patterns": ["00_preface*"]
+    "source_patterns": ["00_preface*"],
+    "targets": [
+      {
+        "model": "JE-1000F",
+        "region": "US"
+      }
+    ]
   },
   "fcc": {
     "source_patterns": ["*01_fcc"],
@@ -75,8 +85,7 @@
   "product_overview": {
     "source_patterns": [
       "*03_product_overview_placeholder"
-    ],
-    "instance_id": "je1000f-us-v1"
+    ]
   },
   "operations": {
     "source_patterns": [
@@ -111,6 +120,12 @@
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       },
@@ -135,6 +150,12 @@
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       },
@@ -159,6 +180,12 @@
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       },
@@ -182,6 +209,12 @@
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       },
@@ -204,6 +237,12 @@
           {
             "source_patterns": ["p42_05_operation_guide_placeholder"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       }
@@ -225,10 +264,54 @@
   },
   "reference_figures": {
     "source_patterns": [
+      "*charging",
       "*08_charging_methods",
       "*12_app_setup_placeholder"
     ],
     "figures": [
+      {
+        "id": "charging-ac-wall",
+        "source_patterns": ["*charging"],
+        "image_key": "charging/ac_wall",
+        "capture_adjacent_paragraph": true,
+        "captions_embedded": true,
+        "web_replace_key": "reference.charging-ac-wall",
+        "composite_locales": [
+          {"locale": "en"},
+          {"locale": "fr"},
+          {"locale": "es"},
+          {"locale": "de"},
+          {"locale": "it"}
+        ]
+      },
+      {
+        "id": "charging-solar-direct",
+        "source_patterns": ["*08_charging_methods"],
+        "image_key": "charging/solar_direct",
+        "captions_embedded": true,
+        "web_replace_key": "reference.charging-solar-direct",
+        "composite_locales": [
+          {"locale": "en"},
+          {"locale": "fr"},
+          {"locale": "es"},
+          {"locale": "de"},
+          {"locale": "it"}
+        ]
+      },
+      {
+        "id": "charging-solar-adapter",
+        "source_patterns": ["*08_charging_methods"],
+        "image_key": "charging/solar_adapter",
+        "captions_embedded": true,
+        "web_replace_key": "reference.charging-solar-adapter",
+        "composite_locales": [
+          {"locale": "en"},
+          {"locale": "fr"},
+          {"locale": "es"},
+          {"locale": "de"},
+          {"locale": "it"}
+        ]
+      },
       {
         "id": "charging-car",
         "source_patterns": ["*08_charging_methods"],
@@ -247,6 +330,12 @@
           {
             "source_patterns": ["p45_08_charging_methods"],
             "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
           }
         ]
       },

@@ -45,6 +45,53 @@ def _non_empty(value: Any, *, field: str) -> str:
     return text
 
 
+def _merge_instance_value(base: Any, override: Any) -> Any:
+    """Merge one instance override, including stable ``id``-keyed lists.
+
+    Geometry-heavy component instances should be able to inherit a complete
+    view and override only target-local bindings such as composite locales.
+    Ordinary lists remain replace-on-write; lists of mappings with stable
+    ``id`` fields merge in place and preserve the base order.
+    """
+    if isinstance(base, Mapping) and isinstance(override, Mapping):
+        merged = deepcopy(dict(base))
+        for key, value in override.items():
+            merged[key] = (
+                _merge_instance_value(merged[key], value)
+                if key in merged
+                else deepcopy(value)
+            )
+        return merged
+    if isinstance(base, list) and isinstance(override, list):
+        keyed_base = all(
+            isinstance(item, Mapping) and str(item.get("id") or "").strip()
+            for item in base
+        )
+        keyed_override = all(
+            isinstance(item, Mapping) and str(item.get("id") or "").strip()
+            for item in override
+        )
+        if keyed_base and keyed_override:
+            override_by_id = {
+                str(item["id"]): item
+                for item in override
+            }
+            merged = [
+                _merge_instance_value(item, override_by_id[str(item["id"])])
+                if str(item["id"]) in override_by_id
+                else deepcopy(item)
+                for item in base
+            ]
+            base_ids = {str(item["id"]) for item in base}
+            merged.extend(
+                deepcopy(item)
+                for item in override
+                if str(item["id"]) not in base_ids
+            )
+            return merged
+    return deepcopy(override)
+
+
 def _resolve_instance_definition(
     instances: Mapping[str, Any],
     instance_id: str,
@@ -72,8 +119,9 @@ def _resolve_instance_definition(
         base_id,
         resolving=(*resolving, instance_id),
     )
-    materialized.update(
-        deepcopy({key: value for key, value in raw.items() if key != "extends"})
+    materialized = _merge_instance_value(
+        materialized,
+        {key: value for key, value in raw.items() if key != "extends"},
     )
     return materialized
 
@@ -141,10 +189,15 @@ def _validate_instance(instance_id: str, raw: Any) -> dict[str, Any]:
                     f"{view_prefix}: duplicate composite locale {locale!r}"
                 )
             locale_ids.add(locale)
-            patterns = mapping.get("source_patterns")
-            if not isinstance(patterns, list) or not patterns:
+            patterns = mapping.get("source_patterns", [])
+            if not isinstance(patterns, list):
                 raise ComponentSpecError(
-                    f"{locale_prefix}.source_patterns must be non-empty"
+                    f"{locale_prefix}.source_patterns must be a list"
+                )
+            for pattern_index, pattern in enumerate(patterns):
+                _non_empty(
+                    pattern,
+                    field=f"{locale_prefix}.source_patterns[{pattern_index}]",
                 )
 
         web = view.get("web")

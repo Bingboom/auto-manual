@@ -68,12 +68,66 @@ no fixed error-code inventory. CSV readers, templates and review snapshots
 are unchanged.
 
 `figure_targets`, per-figure source patterns, target instances and frozen
-composite approval/hash checks retain their existing scope. Other semantic
-compositions (LCD, warranty, etc.) still use their legacy target routing;
-specifications and troubleshooting are migrated. For a target outside
-the frozen figure contract, Web starts at its manifest's first included page;
-it does not invent a preface. The frozen US target retains its preface rule.
-Cover/TOC/back-cover exclusions remain in force.
+composite approval/hash checks retain their existing scope. Warranty is a
+shared semantic composition and runs independently of that artwork grant: its
+source-owned localized unit and label are retained while the Web adapter supplies
+the common 3-year/2-year badge treatment. LCD, specifications, troubleshooting
+and Inbox likewise follow their own declaration/semantic admission rules. For a
+target outside the frozen figure contract, Web starts at its manifest's first
+included page; it does not invent a preface. The frozen US target retains its
+preface rule. Cover/TOC/back-cover exclusions remain in force.
+
+Figure carrier choice is part of the component contract, not an extraction
+default:
+
+- Product Overview, the five Operation panels, and the four Charging panels use
+  locale-matched `localized-full-page` composites. Their visible callouts,
+  prerequisites, connection labels, and Operation `On` / `Off` instructions are
+  intentionally embedded in the approved crop. Extraction may crop the panel but
+  must not redact that localized text. The section heading remains live HTML.
+- The Operation LCD screen-mode block is deliberately hybrid: only the
+  market-correct product/display artwork is an image, while the six-row state /
+  action / explanation table remains searchable, responsive HTML. A screenshot
+  of the complete LCD table is not a valid replacement.
+- Specifications, troubleshooting, the LCD-icon glossary, Warranty and other
+  semantic tables remain live components unless their own contract explicitly
+  says otherwise.
+
+Target reuse follows inheritance plus narrow overrides. A child Product Overview
+instance may `extend` a validated base instance; lists whose members have stable
+`id` values merge by `id`, so the child can override only target identity,
+market-specific artwork keys and locale declarations while inheriting callout
+order and Web/IDML geometry. Ordinary lists still replace as a unit. Composite
+locale resolution prefers the materialized document language; filename patterns
+remain only a legacy fallback. Coverage provenance identifies an approved
+composite by `asset_key + locale + content_sha256`, including the case where two
+locales intentionally share identical bytes.
+
+`JE-1000F / EU` is admitted to the figure contract and its Overview instance
+extends `je1000f-us-v1`; EN/FR/ES/DE/IT use one shared component definition with
+locale-specific composite bindings. EU does not inherit the US-only preface
+rule. Extracted PDF composites remain quarantine candidates until pixel review
+and normal manifest/registry approval; contract admission alone is not asset
+promotion.
+
+Every newly generated Web `manual.ir.json` contains a
+`metadata.web_figure_coverage` payload with schema
+`web-figure-coverage/v1`. It audits actual rendered Overview, Operation and
+Charging slots through one status vocabulary:
+
+| Status | Meaning |
+| --- | --- |
+| `finished-panel` | A `web-illustrations/v1` entry replaced one or more source images with one approved, hash-pinned panel. |
+| `approved-composite` | A target/locale/source-matched `web-composite-manifest/v1` asset overrides the semantic fallback. |
+| `editable-fallback` | The governed semantic figure remains live/searchable because no approved composite was bound. |
+| `missing` | The rendered source image has neither an approved finished panel nor an admitted semantic fallback. |
+
+The inventory records page, section and stable slot identity; approved rows
+also retain their packaged path and SHA-256 evidence. Its totals are validated
+again before IR replay. It is an audit, not an automatic approval gate: known
+asset debt remains buildable and visible. A missing row is closed only by
+adding an approved manifest/recipe asset; copying another region's panel or
+adding page-specific Python/CSS is not a valid override.
 
 Local verification uses the same Markdown-to-Sphinx path without a queue or
 online source update. For example, with a separate staging directory:
