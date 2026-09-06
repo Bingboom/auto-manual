@@ -1157,6 +1157,21 @@ def transform_web_fragment(
     is_app_inline_controls = _matches_source(
         source_path, list(app_inline_controls["source_patterns"])
     )
+    # Warranty is a shared semantic component: its copy and localized unit stay
+    # source-owned, while the Web adapter only supplies the reusable card and
+    # number-badge treatment. It therefore must not inherit the target grant
+    # used for approved composite art and target-specific figure geometry.
+    has_target_context = bool(model and region) or supports_figure_contract(
+        source_path, data
+    )
+    if is_warranty and has_target_context:
+        _transform_warranty(
+            soup,
+            source_path=source_path,
+            expected_sections=int(warranty["section_count"]),
+            expected_years=[str(value) for value in warranty["period_years"]],
+        )
+        semantic_fragment = str(soup)
     if not (
         is_preface
         or is_overview
@@ -1210,13 +1225,6 @@ def transform_web_fragment(
         transform_symbol_pairs(
             soup, source_path=source_path, error_type=WebPresentationError,
             language=language, model=model, region=region,
-        )
-    if is_warranty:
-        _transform_warranty(
-            soup,
-            source_path=source_path,
-            expected_sections=int(warranty["section_count"]),
-            expected_years=[str(value) for value in warranty["period_years"]],
         )
     if is_in_the_box and not has_inbox:
         transform_inbox(

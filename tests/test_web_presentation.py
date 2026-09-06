@@ -1416,6 +1416,77 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertEqual(0, len(soup.find_all("colgroup")))
                 self.assertNotIn("width: 50%", str(soup))
 
+    def test_warranty_component_is_shared_across_je1000f_eu_locales(self) -> None:
+        localized = {
+            "en": ("YEARS", ["Standard Warranty", "Extended Warranty"]),
+            "fr": ("ANS", ["Garantie standard", "Garantie prolongée"]),
+            "es": ("AÑOS", ["Garantía estándar", "Garantía extendida"]),
+            "de": ("JAHRE", ["Standardgarantie", "Verlängerte Garantie"]),
+            "it": ("ANNI", ["Garanzia standard", "Garanzia estesa"]),
+        }
+
+        for language, (expected_unit, expected_labels) in localized.items():
+            with self.subTest(language=language), tempfile.TemporaryDirectory() as td:
+                root = Path(td)
+                rst_text = (
+                    ROOT
+                    / "docs"
+                    / "templates"
+                    / "page_shared"
+                    / language
+                    / "11_warranty.rst"
+                ).read_text(encoding="utf-8")
+                rst_text = (
+                    rst_text.replace("|LEGAL_COMPANY_NAME|", "Jackery Europe")
+                    .replace("|PRODUCT_NAME|", "Jackery Explorer 1000")
+                    .replace("|WARRANTY_EMAIL|", "hello.eu@jackery.com")
+                )
+                source_path = (
+                    root
+                    / "docs"
+                    / "_review"
+                    / "JE-1000F"
+                    / "EU"
+                    / "page"
+                    / "11_warranty.rst"
+                )
+                source_path.parent.mkdir(parents=True)
+                source_path.write_text(rst_text, encoding="utf-8")
+                output = _convert_rst_fragment_to_html(
+                    rst_text,
+                    source_path,
+                    root / "assets",
+                    active_tags={"region_eu"},
+                    presentation_profile="web",
+                    model="JE-1000F",
+                    region="EU",
+                    language=language,
+                )
+
+                soup = BeautifulSoup(output, "html.parser")
+                self.assertEqual(
+                    ["3", "2"],
+                    [
+                        node.get_text(" ", strip=True)
+                        for node in soup.select(".hb-warranty-year-badge")
+                    ],
+                )
+                self.assertEqual(
+                    [expected_unit, expected_unit],
+                    [
+                        node.get_text(" ", strip=True)
+                        for node in soup.select(".hb-warranty-years-unit")
+                    ],
+                )
+                self.assertEqual(
+                    expected_labels,
+                    [
+                        node.get_text(" ", strip=True)
+                        for node in soup.select(".hb-warranty-period-label")
+                    ],
+                )
+                self.assertEqual(0, len(soup.find_all("table")))
+
     def test_warranty_accepts_reseeded_semantic_containers(self) -> None:
         rst_text = (
             (ROOT / "docs" / "templates" / "page_shared" / "en" / "11_warranty.rst")
