@@ -1,6 +1,11 @@
 # ManualIR v2: LCD, Troubleshooting, and Symbols ComponentSpec Plan
 
-Status: implementation plan for the fourth cross-renderer IR cut.
+Status: complete
+
+Date: 2026-09-05
+Branch: `feat/manual-ir-lcd-troubleshooting-symbols`
+Baseline: `a901a656` (cut 3)
+Completed: `ef45a0df` ([#1062](https://github.com/Bingboom/auto-manual/pull/1062), merged 2026-09-06)
 
 ## Discovery
 
@@ -86,6 +91,30 @@ without filename heuristics.
 - Do not retire the compatibility source projectors until the final cut.
 - App/reference figures and presentation overlay inheritance belong to cuts 5
   and 6 respectively.
+
+## Execution outcome
+
+- Registered renderer-neutral ComponentSpec types for LCD Icons,
+  Troubleshooting, Signal Symbols, and Icon Symbols, each with explicit Web,
+  LaTeX, IDML, and Word projections. Web keeps all four as searchable,
+  editable native HTML tables; no screenshot carrier was introduced.
+- Extended the shared asset-role contract with opt-in repeated roles and
+  stable ordered rebinding. Undeclared duplicate roles, missing assets, and
+  changed packaged hashes fail before replay.
+- Whole-document discovery receives the materialized page declaration, claims
+  the four source carriers once, and embeds their specs and ordered assets in
+  `manual-ir/v2`. Frozen replay bypasses the corresponding legacy DOM
+  projectors and does not reopen RST or CSV sources.
+- Real cold replay passed for JE-1000F/US (49 pages, 83 assets), JE-1000F/EU
+  DE and IT (15 pages and 54 assets each), and JE-3000C/KR (16 pages, 51
+  assets). The variable symbol-panel shapes remained skeleton-owned instead of
+  gaining a model-specific row count.
+- Browser acceptance confirmed the Italian page has 26 LCD rows, 12
+  troubleshooting rows, 4+4 symbol rows, and the shared Warranty numeric cards
+  `3 ANNI` / `2 ANNI`.
+- Validation passed the full unit suite, repository Ruff, all 62 governed
+  maintainability hotspots, 1,713 documentation links, and the fixture-backed
+  JE-1000F/US target check.
 
 ## Verification ladder
 

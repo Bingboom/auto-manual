@@ -2028,3 +2028,142 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   both representative targets; no table was rasterized.
 - This is cut 4 of seven. App/reference figures, presentation overlays, and the
   final anti-copy/four-renderer acceptance remain cuts 5–7.
+
+
+## 2026-09-05: App and Reference Figures embedded in ManualIR
+
+- Registered `HB-SPECIAL-APP` and `HB-SPECIAL-REFERENCE-FIGURE`, bringing the
+  whole-document registry to 16 semantic component types. App download,
+  inline-control, and add-device variants retain localized rich copy,
+  accessibility labels, and role-bound shared artwork.
+- Reference Figure instances retain a complete carrier-backed semantic
+  fallback. Approved composites additionally bind replace key, exact/shared
+  locale policy, packaged asset key, content SHA-256, and source-fragment
+  SHA-256; mismatches fail before Web output and another locale is never
+  borrowed silently.
+- Frozen Web replay dispatches both families from ComponentSpec and no longer
+  scans reconstructed page DOM. JE-1000F/US EN/FR/ES produced 9 App and 15
+  Reference Figure instances with 6 approved composites; JE-1000F/EU DE/IT
+  retained localized semantic composition, while JE-3000C/KR retained neutral
+  flow and received no JE-1000F-specific instances.
+- Validation passed 107 focused and 3780 full-suite tests (19 skipped), full
+  Ruff, 62 hotspot guardrails, 1713 documentation links, reference-layout pins,
+  and the fixture-backed US check. Five representative packages cold-replayed
+  without RST/CSV reads; desktop and 390 px review found zero component
+  overflow and zero broken images after loading all 210 US images.
+- Operator-required follow-up 5B remains open: JE-1000F/EU DE/IT Overview,
+  Operation, and Charging slots must be replaced by locale-matched full panels
+  from the supplied EU/UK PDF. For those slots, `editable-fallback` is debt and
+  final acceptance permits only `finished-panel` or `approved-composite`.
+
+
+## 2026-09-05: JE-1000F/EU localized finished-panel gate (cut 5B)
+
+- Replayed the operator-supplied 92-page EU/UK V2.0 PDF from a pinned
+  `0b4424…11cfe` source digest and committed 55 locale-matched full-panel crops:
+  two Overview, five Operation, and four Charging figures for each of
+  EN/FR/ES/DE/IT. The panels retain the source PDF's localized text and leader
+  lines; text-free artwork plus HTML labels is recorded as historical debt and
+  is not an accepted final carrier for these slots.
+- Added one generic contract-driven required-slot gate. JE-1000F/EU declares
+  its five locales and 11 slots in `web_manual.json`; missing, duplicate, or
+  `editable-fallback` rows fail both IR assembly and source-free replay. No
+  model-specific Python branch or copied CSS was added.
+- The versioned recipe, local source registry, Web asset registry, composite
+  manifest, and committed fixture hashes agree. A fresh PDF replay produced
+  239 artifacts (92 archive pages, 92 previews, 55 exports) and all 55 exports
+  matched their approved SHA-256 pins. No live Base/F6 write was performed.
+- Real review-asis Web acceptance produced 76 ordered fragments and 60 figure
+  slots: 55 `approved-composite` plus five intentionally editable LCD Mode
+  fallbacks. Cold replay succeeded with every RST/CSV read forbidden; Italian
+  contributed 11/11 approved panels. The RTD/Sphinx build passed with warnings
+  treated as errors, and DE/IT desktop plus 390 px inspection showed zero
+  visible composite fallback and no horizontal overflow.
+- Validation passed 41 focused and 3785 full-suite tests (22 skipped), full
+  Ruff, 62 hotspot guardrails, 1714 documentation links, and the registry audit
+  (`162` rows, zero errors; 24 pre-existing source-only/debt warnings).
+
+
+## 2026-09-05: Target-layered Web presentation contracts (cut 6)
+
+- Split the monolithic Web presentation file into one shared semantic base,
+  two skeleton profiles, and six small target overlays. Mappings deep-merge,
+  stable-ID lists permit item-level override, ordinary lists replace as a
+  whole, and malformed/ambiguous/escaping layers fail closed.
+- Whole-document assembly now resolves the contract for the actual
+  `(model, region)` once and freezes only that result plus its base/profile/
+  overlay IDs into IR. Source-free replay consumes the frozen contract and
+  packaged assets; it does not reopen the overlay directory. Product Overview
+  always resolves its geometry by the current target instead of a global
+  `instance_id`.
+- Real cold replay with `.rst/.csv` reads forbidden passed for JE-1000F/US
+  (17 pages), JE-1000F/EU (76), JE-3000C/KR (16), and JBP-2000B/JP (12). On the
+  same US/EU IR, the pre-split monolith and resolved target contract produced
+  byte-identical fragments across 17/17 and 76/76 pages.
+- EU retained 55 localized `approved-composite` panels plus five intentionally
+  editable LCD Mode components; Italian remained 11/11 full panels. RTD-
+  equivalent Sphinx passed with warnings as errors, and IT AC Output at 1280
+  px and 390 px loaded the 1264 x 896 localized panel, hid the HTML fallback,
+  and had zero horizontal overflow.
+- The broader asset debt is now recorded instead of being mistaken for a
+  presentation-layer success: US EN still has three Charging
+  `editable-fallback` slots, and KR has nine missing Overview/Operation/Charging
+  panels. Cut 7 must ratchet these counts and reject new figure-capable targets
+  that omit an all-full-panel coverage policy. Only locale-matched
+  `finished-panel` / `approved-composite` artwork can close those rows; HTML
+  text/leader redraw cannot. LCD Mode remains outside this debt.
+- Validation passed 95 layering/IR/Overview tests, 232 Web + ComponentSpec
+  tests, and 3798 full-suite tests (22 skipped), plus full Ruff, mypy
+  `tools/utils`, 62 hotspot guardrails, 1716 documentation links, and the
+  fixture-backed JE-1000F/US check.
+
+
+## 2026-09-05: ManualIR final admission and replay gates (cut 7)
+
+- Added a finished-figure admission contract for every covered target. Locale
+  and required-slot lists must be complete, and accepted statuses are fixed to
+  `finished-panel` / `approved-composite`; textless art plus HTML/SVG labels or
+  leader lines remains `editable-fallback` debt in every language, including
+  EU Italian.
+- Moved the exact nine US Charging fallbacks and nine KR missing panels into a
+  versioned non-increasing debt baseline. Unregistered or worsening debt fails,
+  while a repaired panel makes its old baseline row stale and therefore also
+  fails until that row is deleted. EU has no exception and remains 55/55
+  localized approved composites, with Italian at 11/11.
+- New source-normalized `whole-document-components/v1` packages freeze the
+  ComponentSpec registry, manual theme, target-resolved Overview instance and
+  SHA-256 evidence. Replay dispatches embedded components and assets directly
+  and no longer calls the legacy DOM projector; historical v1/cut-1 packages
+  keep an explicit compatibility route.
+- Added a maintainability guardrail that rejects registered model literals in
+  shared Web/ManualIR/ComponentSpec Python and Web CSS. Target differences stay
+  in the layered presentation overlay, component instance, assets or data.
+- Four representative packages cold-replayed with RST, CSV, renderer-contract
+  reads and the old DOM projector forbidden. Their 401 embedded ComponentSpecs
+  produced 1604 validated Web/LaTeX/IDML/Word adapter bindings. US 49-page and
+  EU 76-page final bundles remained byte-identical to the pre-cut output after
+  normalizing only the output-root file URI; EU Sphinx passed with warnings as
+  errors and Italian kept 11/11 visible full panels with no mobile overflow.
+- Final validation passed 72 focused regression tests and the 3812-test full
+  suite (22 skipped), full Ruff, mypy `tools/utils`, all 62 maintainability
+  hotspots, 1718 documentation links, `git diff --check`, and the staging-safe
+  fixture-backed JE-1000F/US check. The compatibility suite caught and fixed
+  absent `metadata` in historical v1 files; the size ratchet also moved Overview
+  snapshot primitives into a focused helper instead of raising its threshold.
+
+
+## 2026-09-06: Review bundle page-language scope projection
+
+- Closed the final EU five-language rebuild gap exposed by the strict Overview
+  ComponentSpec parser. The historical JE-1000F/EU review index still named
+  fifteen standalone UK pages even though `data/model_languages.csv` now
+  declares EN/FR/ES/DE/IT for that target.
+- Review overlays now project standalone pages by their explicit
+  `\HBApplyLang{...}` declaration before asset finalization. Out-of-scope
+  includes leave the generated index without modifying any review page bytes;
+  unknown or genuinely multi-language pages remain fail-safe and the existing
+  inline block trimmer handles the shared preface.
+- The real merged `review-asis` Web entrypoint rebuilt 76 pages with zero UK
+  pages. Figure coverage remained 55 `approved-composite` panels plus five
+  native HTML LCD Mode compositions; Italian remained 11/11 localized full
+  panels across Overview, Operation, and Charging.

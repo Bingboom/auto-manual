@@ -193,3 +193,79 @@ overlay 分层与旧兼容路径最终退役继续留给第 5–7 刀。
 法语多出的普通说明不会截断三条待机说明；未列入 `figure_targets` 的不同产品骨架
 不会被强套 JE-1000F 五面板合同，仍保留为 neutral flow。Warranty 年限 parser 同时
 接受 `3 YEARS` 一类空格单位和韩语 `3년` 一类紧邻单位。
+
+## 后续第 5 刀：App 与 Reference Figure（2026-09-05）
+
+整本 IR 新增 `HB-SPECIAL-APP` 与 `HB-SPECIAL-REFERENCE-FIGURE`，注册组件总数
+由十四种增至十六种。App 的 download、inline-control、add-device 三个 variant
+保留本地化 rich copy、可访问标签和 role-bound 共享 artwork；Reference Figure 的
+semantic-fallback 与 approved-composite variant 则把完整 carrier flow、asset role、
+locale policy 和 composite provenance 一起写入 ComponentSpec。
+
+批准整图不再只是 Web 端的路径覆盖。实例同时记录稳定 replace key、locale、
+`content_sha256` 和 `source_fragment_sha256`，回放时与包内 asset union 逐项核对。
+`exact` locale 不会回退到另一语言，只有显式 `shared` 资产允许共享；没有批准整图
+的目标继续使用“无字底图 + 本地化 HTML 文字/引线”的完整 semantic fallback，
+不会借用 JE-1000F/US 图像。Web 冷重放直接消费组件声明的 carrier，不再扫描整页
+DOM 重新识别 App 或 Reference Figure。
+
+真实入口验收覆盖 JE-1000F/US EN/FR/ES 合订本、隔离审稿分支中的 JE-1000F/EU
+DE/IT，以及未获 JE-1000F figure contract 的 JE-3000C/KR。US 合订本得到 9 个 App、
+15 个 Reference Figure（其中 6 个 approved composite）；EU DE/IT 各得到完整 App/
+Reference semantic composition；KR 保持普通 flow，证明目标合同没有串用。五个包
+均可在禁止读取 RST/CSV 后从冻结 IR 重放，包内图片路径与哈希全部闭合。桌面和
+390 px 移动验收确认 Operation 的 On/Off 文字、App 三步、Charging 整图与 Warranty
+3/2 年数字徽章均可见且组件无横向溢出；滚动触发全部 210 张 US 图片后无破图。
+
+本刀不修改或重新批准 PDF/AI/composite artwork，也不把规格、LCD、Symbols、
+Troubleshooting 或 Warranty 转成截图。presentation base/profile/target overlay 分层
+仍属于第 6 刀；反型号专属代码闸门、四端整本入口验收和旧 DOM 兼容路径退役仍属于
+第 7 刀。完整设计与验证命令见
+[`manual_ir_app_reference_plan.md`](manual_ir_app_reference_plan.md)。
+
+### 已清零的 5B 资产债
+
+JE-1000F/EU 的 EN/FR/ES/DE/IT 已从操作者指定的 EU/UK 源 PDF 抽取并登记
+55/55 张完整面板：每语两张 Overview、五张 Operation、四张 Charging。每张图都
+保留该语言的文字与原生引线，并绑定 source page/crop、locale、content SHA-256 与
+source-fragment SHA-256。意大利语是 11/11 `approved-composite`；过去的“无字底图
++ HTML/SVG 本地化文字/引线”只是历史 fallback，不能作为最终交付，也不能销账。
+
+目标覆盖闸门只接受 `finished-panel` / `approved-composite`。任何
+`editable-fallback` / `missing`、重复槽位或缺槽都失败。该要求不适用于本应保持
+原生 HTML 的规格、Warranty、LCD、Troubleshooting 与 Symbols 表格。
+
+## 后续第 6 刀：分层 Web presentation 合同（2026-09-05）
+
+单体 Web presentation 合同已拆为 shared base、skeleton profile 和 `(model, region)`
+target overlay。映射递归合并、带稳定 `id` 的列表按项覆盖、普通列表整表替换；未知
+骨架、重复目标、越界路径和歧义目标均失败。新目标只提交能力、覆盖策略和真实差异，
+不能复制共享组件或整套骨架。
+
+整本生产路径只解析一次实际目标，将 resolved contract 与 layer identity 冻结进 IR；
+冷重放不再打开 layer registry。Overview 实例按实际目标解析，不再使用全局固定
+instance。JE-1000F/EU 保持 55/55 本地化成品整图，其中 IT 11/11；US 的 Charging
+fallback 与 KR 的缺图继续显式计债，不能被本次配置分层掩盖。
+
+## 后续第 7 刀：最终入口闸门与旧 DOM 退役（2026-09-05）
+
+新 `whole-document-components/v1` 包已把 ComponentSpec registry、manual theme、
+resolved Overview instance 及其 SHA-256 一起冻结进 `manual.ir.json`。figure-capable
+目标必须声明完整 locale/slot 集，且允许状态只能是 `finished-panel` 与
+`approved-composite`。既有 US 9 项 `editable-fallback` 和 KR 9 项 `missing` 放在
+独立版本化债务 baseline；新增或变差的债务失败，债务变成成品后未同步删除旧记录也
+失败。EU 没有债务例外，因此意大利语一旦退回无字底图加 HTML 文字/引线会立即失败。
+
+新生产 IR 已在 source adapter 阶段完成 Preface inventory 与 Auto Resume 的 Web
+normalization。冷重放只做 ComponentSpec dispatch、资产 rebasing 与 hash 校验，不再
+调用旧 `transform_web_fragment()`；历史 `manual-ir/v1` 与
+`whole-document-flow/v1` 仍通过显式兼容路径读取。
+
+共享 Web/ManualIR/ComponentSpec Python 与 Web CSS 还受反型号字面量 guardrail
+保护，目标差异只能进入 overlay、资产、实例和数据。四个代表包在禁读 RST、CSV、
+renderer contract 并禁用旧 DOM projector 后完成冷重放；共 401 个 ComponentSpec
+逐实例验证 Web、LaTeX、IDML、Word 四个 adapter binding，共 1604 个绑定。这里证明
+的是共享语义实例和四端 adapter 入口，不宣称 Web 与固定页输出逐像素或逐分页相同。
+
+完整设计、非目标和验收梯见
+[`manual_ir_final_gates_plan_2026-09.md`](manual_ir_final_gates_plan_2026-09.md)。

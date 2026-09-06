@@ -20,7 +20,9 @@ from tools.component_specs.overview_adapters import (
 )
 from tools.component_specs.overview_instance import (
     load_overview_instance_registry,
+    overview_instance_sha256,
     resolve_overview_instance,
+    validate_resolved_overview_instance,
     validate_overview_instance_registry,
 )
 from tools.component_specs.projection import project_manual_ir_components
@@ -149,6 +151,17 @@ class OverviewComponentSpecTests(unittest.TestCase):
                 region="CN",
                 registry=self.instance_registry,
             )
+
+    def test_resolved_instance_is_self_contained_and_hashable_for_ir_replay(self) -> None:
+        self.assertEqual([], validate_resolved_overview_instance(self.instance))
+        self.assertEqual(64, len(overview_instance_sha256(self.instance)))
+
+        unresolved = deepcopy(self.instance)
+        unresolved["extends"] = "je1000f-us-v1"
+        self.assertEqual(
+            ["resolved overview instance cannot retain extends"],
+            validate_resolved_overview_instance(unresolved),
+        )
 
     def test_instance_inheritance_fails_closed_for_missing_base_and_cycles(self) -> None:
         missing_base = deepcopy(self.instance_registry)

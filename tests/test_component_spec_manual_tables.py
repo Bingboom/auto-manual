@@ -279,6 +279,25 @@ class ManualTableComponentSpecTests(unittest.TestCase):
         self.assertEqual([LCD_ICON_COMPONENT_ID], [claim.spec.component_id for claim in lcd_claims])
         self.assertEqual([TROUBLESHOOTING_COMPONENT_ID], [claim.spec.component_id for claim in trouble_claims])
 
+    def test_text_only_lcd_table_stays_neutral_flow_even_when_declared(self) -> None:
+        markup = (
+            '<table class="hb-lcd-icon-table lcd-text-only"><tbody><tr>'
+            '<td>1</td><td></td><td>Battery level</td><td>Live copy</td>'
+            "</tr></tbody></table>"
+        )
+
+        claims = discover_registered_components(
+            BeautifulSoup(markup, "html.parser"),
+            source_path=Path("lcd_display_ja.rst"),
+            contract=load_web_manual_contract(model="JBP-2000B", region="JP"),
+            model="JBP-2000B",
+            region="JP",
+            language="ja",
+            declared_role="lcd_icons",
+        )
+
+        self.assertEqual((), claims)
+
     def test_whole_document_cold_replay_dispatches_native_tables_without_legacy_projectors(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

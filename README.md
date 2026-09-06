@@ -57,6 +57,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
 | JS-100I 欧规英语 Web 目标与验收 | [`目标实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) |
 | ManualIR v2 中立 flow、v1 兼容与后续组件边界 | [`ManualIR v2 plan`](code-as-doc/dev/manual_ir_v2_neutral_flow_plan.md) |
+| Web 共享层、产品骨架与目标差异如何继承 | [`Web presentation overlay`](code-as-doc/dev/web_presentation_overlay_plan_2026-09.md) |
 | 长期架构边界 | [`System Evolution Strategy.md`](code-as-doc/architecture/System%20Evolution%20Strategy.md) |
 | AI Agent 操作规则 | [`AGENTS.md`](AGENTS.md) |
 | 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |

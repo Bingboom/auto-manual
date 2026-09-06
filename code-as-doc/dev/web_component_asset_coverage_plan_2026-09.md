@@ -100,3 +100,21 @@ After product/design approval, add the missing localized finished panels or
 composites through manifests/recipes. Promote a slot only when target, locale,
 source fragment and SHA-256 evidence match. This implementation deliberately
 keeps such missing assets visible instead of concealing them with copied art.
+
+### Mandatory 5B closure: JE-1000F/EU DE/IT
+
+Status: complete via
+[#1068](https://github.com/Bingboom/auto-manual/pull/1068) (`4da3121a`),
+2026-09-06. The closure was expanded to every declared EU locale: 55/55
+EN/FR/ES/DE/IT slots are locale-matched `approved-composite` panels, including
+Italian 11/11. Text-free artwork plus HTML/SVG labels or leader lines remains
+debt and cannot pass the target gate.
+
+The operator has made the former follow-up mandatory. Overview, Operation, and
+Charging slots for JE-1000F/EU DE/IT must use locale-matched full panels from
+the supplied EU/UK source PDF. For these slots, `editable-fallback` is a visible
+debt state rather than acceptance; the final gate allows only
+`finished-panel` or `approved-composite`. Each promoted panel must retain source
+page/crop, locale, content SHA-256, and source-fragment SHA-256 evidence. This
+does not authorize rasterizing specifications, Warranty, LCD,
+Troubleshooting, or Symbols tables.
