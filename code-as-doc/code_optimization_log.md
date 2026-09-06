@@ -1901,3 +1901,17 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
 - 同一收口 PR 的展示验收修正：包装清单接入既有 `HB-SPECIAL-INBOX`，正文不栅格化；
   PDF 整图覆盖的七块标注以源文精确匹配退出，开关机标题在原生 PDF 提取中更正。
   19 张图片与独立 IR 重放通过，完整测试 3721 项（22 skipped）。
+
+## 2026-09-05: Web semantic inheritance and figure coverage audit
+
+- Warranty is no longer coupled to the approved composite/geometry target
+  allowlist. JE-1000F EU EN/FR/ES/DE/IT reuse the same live 3-year/2-year badge
+  component while retaining localized units, labels, links and copy.
+- `web-illustrations/v1` finished panels and `web-composite-manifest/v1`
+  component overrides now feed one `web-figure-coverage/v1` inventory in the
+  generated Web IR. Overview, Operation and Charging slots report
+  `finished-panel`, `approved-composite`, `editable-fallback` or `missing`.
+- Approved rows retain packaged asset identity and SHA-256 evidence; inventory
+  structure and totals are validated again before source-free replay. Existing
+  target/hash/source-fragment gates remain fail-closed, and missing localized
+  artwork stays visible instead of being copied from another target.

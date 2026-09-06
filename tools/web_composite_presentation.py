@@ -143,6 +143,8 @@ class WebCompositeContext:
             )
         if entry is not None:
             figure["class"] = [*figure.get("class", []), "hb-has-composite-art"]
+            figure["data-web-composite-asset-key"] = entry.asset_key
+            figure["data-web-composite-sha256"] = entry.content_sha256
             figure.append(_composite_stage(soup, entry.path))
 
     def append_semantic(

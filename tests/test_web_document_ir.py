@@ -51,7 +51,7 @@ class WebDocumentIRTests(unittest.TestCase):
         pages = root / "source"
         pages.mkdir()
         (pages / "figure.png").write_bytes(b"frozen illustration")
-        (pages / "intro_ja.rst").write_text(
+        (pages / "03_product_overview_placeholder.rst").write_text(
             "日語文書\n========\n\n説明 **重要**。\n\n.. image:: figure.png\n   :alt: 帯字図\n"
         )
         (pages / "spec_ja.rst").write_text(
@@ -95,6 +95,11 @@ class WebDocumentIRTests(unittest.TestCase):
                     ir, package, _ = self.build(root, path)
                     self.assertEqual((package / ir.asset_refs[0]).read_bytes(), art.read_bytes())
                     self.assertIn("manual-finished-illustration", "".join(render_document_fragments(ir, package_root=package)))
+                    coverage = ir.metadata["web_figure_coverage"]
+                    self.assertEqual("web-figure-coverage/v1", coverage["schema_version"])
+                    self.assertEqual(1, coverage["summary"]["total"])
+                    self.assertEqual(1, coverage["summary"]["by_status"]["finished-panel"])
+                    self.assertEqual(["figure.png"], coverage["slots"][0]["replaces"])
 
     def test_whole_document_replays_after_source_removed_and_package_moved(self):
         with tempfile.TemporaryDirectory() as td:
@@ -176,6 +181,17 @@ with patch.object(Path, "open", guarded):
             (output / "tampered.json").write_text(json.dumps(data))
             with self.assertRaisesRegex(ValueError, "hash mismatch"):
                 read_manual_ir(output / "tampered.json")
+
+    def test_figure_coverage_tampering_is_rejected_before_replay(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+            data = ir.to_dict()
+            data["metadata"]["web_figure_coverage"]["summary"]["total"] = 99
+            tampered = output / "tampered-coverage.json"
+            tampered.write_text(json.dumps(data), encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "summary total"):
+                render_document_fragments(read_manual_ir(tampered), package_root=output)
 
     def test_declared_lcd_without_separate_icons_keeps_all_copy(self):
         from tools.csv_pages.renderers_lcd_icons import _rst_table
