@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import tempfile
@@ -54,16 +55,103 @@ class WebCompositeManifestTests(unittest.TestCase):
             COMMITTED_FIXTURE_ROOT / "web_composite_manifest.json"
         )
 
-        self.assertEqual(25, len(manifest.entries))
+        self.assertEqual(80, len(manifest.entries))
         for entry in manifest.entries:
             with self.subTest(key=entry.web_replace_key, locale=entry.locale):
-                self.assertTrue(entry.definition_record_id)
-                self.assertTrue(entry.export_record_id)
+                if entry.region_scope == "US":
+                    self.assertTrue(entry.definition_record_id)
+                    self.assertTrue(entry.export_record_id)
                 self.assertTrue(entry.path.startswith("_attachments/web_composites/"))
                 self.assertNotIn("repo://", entry.path)
                 attachment = COMMITTED_FIXTURE_ROOT / entry.path
                 self.assertTrue(attachment.is_file())
                 self.assertEqual(entry.content_sha256, _sha256(attachment.read_bytes()))
+
+        required_slots = {
+            "product-overview.front",
+            "product-overview.right",
+            "operation.main-power",
+            "operation.ac-output",
+            "operation.dc-usb-output",
+            "operation.energy-saving",
+            "operation.led-light",
+            "reference.charging-ac-wall",
+            "reference.charging-solar-direct",
+            "reference.charging-solar-adapter",
+            "reference.charging-car",
+        }
+        eu_entries = [
+            entry for entry in manifest.entries if entry.region_scope == "EU"
+        ]
+        self.assertEqual(55, len(eu_entries))
+        self.assertEqual(
+            {
+                (locale, slot)
+                for locale in ("en", "fr", "es", "de", "it")
+                for slot in required_slots
+            },
+            {(entry.locale, entry.web_replace_key) for entry in eu_entries},
+        )
+        self.assertTrue(
+            all(
+                entry.asset_key
+                == f"web-composite/je1000f_eu/{entry.web_replace_key}"
+                for entry in eu_entries
+            )
+        )
+
+    def test_eu_recipe_manifest_registry_and_source_pins_agree(self) -> None:
+        recipe = json.loads(
+            (
+                ROOT
+                / "data"
+                / "asset_recipes"
+                / "manual_je1000f_eu_web_panels.json"
+            ).read_text(encoding="utf-8")
+        )
+        manifest = load_web_composite_manifest(
+            COMMITTED_FIXTURE_ROOT / "web_composite_manifest.json"
+        )
+        with (ROOT / "data" / "asset_registry.csv").open(encoding="utf-8") as handle:
+            registry = {row["asset_key"]: row for row in csv.DictReader(handle)}
+        with (ROOT / "data" / "asset_sources.csv").open(encoding="utf-8") as handle:
+            sources = {row["source_key"]: row for row in csv.DictReader(handle)}
+
+        source = sources[recipe["source"]["source_key"]]
+        self.assertEqual(recipe["source"]["expected_sha256"], source["sha256"])
+        self.assertEqual(str(recipe["source"]["expected_page_count"]), source["page_count"])
+        self.assertEqual(55, len(recipe["assets"]))
+
+        manifest_entries = {
+            (entry.asset_key, entry.locale): entry
+            for entry in manifest.entries
+            if entry.region_scope == "EU"
+        }
+        registry_keys: set[str] = set()
+        for asset in recipe["assets"]:
+            self.assertEqual("localized-full-page", asset["text_policy"])
+            self.assertEqual("approved", asset["gate"]["status"])
+            self.assertEqual(["crop"], [item["op"] for item in asset["transforms"]])
+            self.assertEqual(1, len(asset["outputs"]))
+            output = asset["outputs"][0]
+            locale = asset["scope"]["locales"][0]
+            registry_key = f"web-composite/je1000f_eu/{asset['asset_key'].rsplit('/', 1)[-1]}"
+            entry = manifest_entries[(registry_key, locale)]
+            self.assertEqual(output["expected_sha256"], entry.content_sha256)
+            self.assertEqual(Path(output["path"]).name, Path(entry.path).name)
+            self.assertEqual(asset["page"], entry.source_page)
+
+            row = registry[registry_key]
+            registry_keys.add(registry_key)
+            self.assertEqual("JE-1000F", row["适用机型"])
+            self.assertEqual("EU", row["适用区域"])
+            self.assertEqual("en,fr,es,de,it", row["语言变体"])
+            self.assertIn(
+                f"{Path(entry.path).name}:{entry.content_sha256[:12]}",
+                row["内容哈希"],
+            )
+
+        self.assertEqual(11, len(registry_keys))
 
     def test_manifest_round_trip_and_exact_locale_precedes_shared(self) -> None:
         with tempfile.TemporaryDirectory() as td:

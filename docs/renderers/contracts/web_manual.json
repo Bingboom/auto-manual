@@ -23,6 +23,34 @@
       "region": "EU"
     }
   ],
+  "figure_coverage": {
+    "requirements": [
+      {
+        "target": {
+          "model": "JE-1000F",
+          "region": "EU"
+        },
+        "locales": ["en", "fr", "es", "de", "it"],
+        "required_slots": [
+          "product-overview.front",
+          "product-overview.right",
+          "operation.main-power",
+          "operation.ac-output",
+          "operation.dc-usb-output",
+          "operation.energy-saving",
+          "operation.led-light",
+          "reference.charging-ac-wall",
+          "reference.charging-solar-direct",
+          "reference.charging-solar-adapter",
+          "reference.charging-car"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
+      }
+    ]
+  },
   "preface": {
     "source_patterns": ["00_preface*"],
     "targets": [

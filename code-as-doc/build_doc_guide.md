@@ -745,6 +745,13 @@ Web Publish / Read the Docs note:
   split images; surrounding structured copy is retained. Wrong target, missing
   images, changed bytes, repeated or unused bindings fail the build. These Web
   variants preserve embedded text and never overwrite IDML textless assets.
+  JE-1000F/EU additionally declares a required-slot policy in the shared Web
+  contract: all 11 Overview/Operation/Charging slots in each of
+  EN/FR/ES/DE/IT must resolve to a locale-matched approved full panel. Any
+  `editable-fallback`, `missing`, duplicate or absent required slot stops IR
+  assembly/replay. Its 55 crop/page/content/source-fragment pins are recorded
+  by `data/asset_recipes/manual_je1000f_eu_web_panels.json`; this target does
+  not use text-free artwork with HTML labels as its final figure carrier.
   Optional `covered_annotations` entries bind a selector and exact normalized
   source text already covered by an illustration. Only unique unchanged matches
   are consumed; changed or ambiguous copy fails. Covered copy stays in image alt
