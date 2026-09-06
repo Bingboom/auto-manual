@@ -141,6 +141,26 @@ class WebSpecComponentTests(unittest.TestCase):
                 region != "US", is_web_entry_page(root / "01_meaning_of_symbols.rst")
             )
 
+    def test_category_entry_patterns_are_explicit_and_fail_closed(self) -> None:
+        root = Path("docs/_build/JS-100I/EU/en/rst/page")
+        self.assertTrue(
+            is_web_entry_page(
+                root / "safety_tips_en.rst",
+                entry_source_patterns=("safety_tips*",),
+            )
+        )
+        self.assertFalse(
+            is_web_entry_page(
+                root / "00_preface.rst",
+                entry_source_patterns=("safety_tips*",),
+            )
+        )
+        with self.assertRaisesRegex(
+            WebPresentationError,
+            "web_entry_source_patterns",
+        ):
+            is_web_entry_page(root / "safety_tips_en.rst", entry_source_patterns=())
+
 
 if __name__ == "__main__":
     unittest.main()

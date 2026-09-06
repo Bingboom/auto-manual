@@ -6,6 +6,8 @@ import unittest
 from tools.component_specs.inbox import (
     CARD_ASSET_ROLES,
     COMPONENT_ID,
+    VARIABLE_CARD_ASSET_ROLE,
+    VARIABLE_VARIANT,
     inbox_component_spec,
     inbox_spec_from_payload,
 )
@@ -56,6 +58,25 @@ class InboxComponentSpecTests(unittest.TestCase):
             theme=self.theme,
         )
 
+    def _variable_spec(self):
+        return inbox_component_spec(
+            accessibility_label="What's in the Box",
+            cards=tuple(
+                {
+                    "image_ref": f"asset:item-{index}",
+                    "alt": f"Item {index}",
+                    "label": f"Item {index}",
+                }
+                for index in range(1, 6)
+            ),
+            tip_label="NOTE",
+            tip_body="Cable compatibility note.",
+            source_ref="page/box_contents_en.rst#block-2",
+            language="en",
+            registry=self.registry,
+            theme=self.theme,
+        )
+
     def test_registry_theme_and_style_bind_all_four_renderers(self) -> None:
         definition = self.registry["components"][COMPONENT_ID]
         self.assertEqual({"web", "latex", "idml", "word"}, set(definition["adapters"]))
@@ -77,6 +98,48 @@ class InboxComponentSpecTests(unittest.TestCase):
         self.assertEqual(list(CARD_ASSET_ROLES), [asset.role for asset in spec.assets])
         self.assertTrue(all(card["alt"] and card["label"] for card in cards))
         self.assertNotIn("geometry", spec.to_dict())
+
+    def test_variable_card_grid_keeps_order_and_is_web_only(self) -> None:
+        spec = self._variable_spec()
+        self.assertEqual(VARIABLE_VARIANT, spec.variant)
+        self.assertEqual([], validate_component_spec(spec, self.registry))
+        self.assertEqual(
+            [VARIABLE_CARD_ASSET_ROLE] * 5,
+            [asset.role for asset in spec.assets],
+        )
+        web = web_inbox_projection(spec)
+        self.assertEqual([1, 2, 3, 4, 5], [card["number"] for card in web["cards"]])
+        self.assertEqual(
+            [f"asset:item-{index}" for index in range(1, 6)],
+            [card["image_ref"] for card in web["cards"]],
+        )
+        for renderer, project in (
+            ("latex", latex_inbox_projection),
+            ("idml", idml_inbox_payload),
+            ("word", word_inbox_projection),
+        ):
+            with self.subTest(renderer=renderer), self.assertRaisesRegex(
+                ComponentSpecError,
+                f"not rendered by the {renderer} adapter",
+            ):
+                project(spec)
+
+    def test_explicit_legacy_variant_still_rejects_non_three_card_payload(self) -> None:
+        with self.assertRaisesRegex(ComponentSpecError, "exactly three"):
+            inbox_component_spec(
+                accessibility_label="Inbox",
+                cards=tuple(
+                    {"image_ref": str(index), "alt": str(index), "label": str(index)}
+                    for index in range(5)
+                ),
+                tip_label="TIP",
+                tip_body="Body",
+                source_ref="page/inbox.rst",
+                language="en",
+                variant="three-card-responsive",
+                registry=self.registry,
+                theme=self.theme,
+            )
 
     def test_four_adapters_share_copy_and_keep_renderer_geometry(self) -> None:
         spec = self._spec()
@@ -110,6 +173,18 @@ class InboxComponentSpecTests(unittest.TestCase):
             inbox_component_spec(
                 accessibility_label="Inbox",
                 cards=({"image_ref": "one", "alt": "one", "label": "one"},),
+                tip_label="TIP",
+                tip_body="Body",
+                source_ref="page/inbox.rst",
+                language="en",
+                registry=self.registry,
+                theme=self.theme,
+                variant="three-card-responsive",
+            )
+        with self.assertRaisesRegex(ComponentSpecError, "at least one card"):
+            inbox_component_spec(
+                accessibility_label="Inbox",
+                cards=(),
                 tip_label="TIP",
                 tip_body="Body",
                 source_ref="page/inbox.rst",
