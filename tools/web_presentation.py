@@ -26,6 +26,7 @@ from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import (
     WebCompositeContext,
     supports_figure_contract,
+    supports_preface_contract,
 )
 from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
@@ -247,7 +248,7 @@ def is_web_entry_page(
     data = contract or load_web_manual_contract()
     # The frozen figure target owns the preface convention. Other targets keep
     # the first included page selected by their source manifest.
-    if not supports_figure_contract(source_path, data):
+    if not supports_preface_contract(source_path, data):
         return should_include_web_page(source_path, contract=data)
     pattern = str(data["profiles"][WEB_PRESENTATION_PROFILE]["entry_source_pattern"])
     return fnmatch.fnmatch(source_path.stem.lower(), pattern.lower())
@@ -288,11 +289,7 @@ def _transform_product_overview(
 ) -> None:
     overview = contract["product_overview"]
     try:
-        instance_id = str(overview.get("instance_id") or "").strip()
-        if not instance_id:
-            raise WebPresentationError(
-                "product_overview.instance_id must name a versioned target instance"
-            )
+        instance_id = str(overview.get("instance_id") or "").strip() or None
         instance = resolve_overview_instance(
             model=composites.model,
             region=composites.region,
@@ -775,6 +772,23 @@ def _transform_reference_figure(
         source_path=source_path,
         error_type=WebPresentationError,
     )
+    adjacent_before: Tag | None = None
+    adjacent_after: Tag | None = None
+    if spec.get("capture_adjacent_paragraph"):
+        preceding = _previous_tag_sibling(image)
+        following = _next_tag_sibling(image)
+        candidates = [
+            candidate
+            for candidate in (preceding, following)
+            if isinstance(candidate, Tag) and candidate.name == "p"
+        ]
+        if len(candidates) != 1:
+            raise WebPresentationError(
+                f"{source_path}: reference figure {reference_id} must have exactly "
+                f"one adjacent governed paragraph; found {len(candidates)}"
+            )
+        adjacent_before = candidates[0] if candidates[0] is preceding else None
+        adjacent_after = candidates[0] if candidates[0] is following else None
     figure = soup.new_tag(
         "figure",
         attrs={
@@ -793,7 +807,11 @@ def _transform_reference_figure(
     )
     image["class"] = [*image.get("class", []), "hb-reference-art"]
     image.replace_with(figure)
+    if adjacent_before is not None:
+        semantic.append(adjacent_before.extract())
     semantic.append(image)
+    if adjacent_after is not None:
+        semantic.append(adjacent_after.extract())
     if label_block is not None:
         label_block["class"] = [*label_block.get("class", []), "hb-reference-labels"]
         semantic.append(label_block.extract())
@@ -1185,27 +1203,35 @@ def transform_web_fragment(
         or is_app_inline_controls
     ):
         return semantic_fragment
-    if not supports_figure_contract(source_path, data):
+    supports_figures = supports_figure_contract(source_path, data)
+    supports_legacy_target_components = supports_preface_contract(source_path, data)
+    if not supports_figures and not supports_legacy_target_components:
         return semantic_fragment
 
-    composites = WebCompositeContext(composite_manifest, model, region, WebPresentationError)
-    if is_preface:
+    composites = WebCompositeContext(
+        composite_manifest,
+        model,
+        region,
+        language,
+        WebPresentationError,
+    )
+    if is_preface and supports_legacy_target_components:
         _transform_preface(soup, source_path=source_path)
-    if is_overview:
+    if is_overview and supports_figures:
         _transform_product_overview(
             soup,
             source_path=source_path,
             contract=data,
             composites=composites,
         )
-    if is_operations:
+    if is_operations and supports_figures:
         _transform_operations(
             soup,
             source_path=source_path,
             contract=data,
             composites=composites,
         )
-    if is_fcc:
+    if is_fcc and supports_legacy_target_components:
         transform_fcc(
             soup,
             source_path=source_path,
@@ -1214,7 +1240,7 @@ def transform_web_fragment(
             language=language,
             model=model, region=region,
         )
-    if is_meaning_symbols:
+    if is_meaning_symbols and supports_legacy_target_components:
         transform_symbol_signal_table(
             soup,
             source_path=source_path,
@@ -1231,17 +1257,17 @@ def transform_web_fragment(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
         )
-    if is_app_download:
+    if is_app_download and supports_legacy_target_components:
         transform_app_download(
             soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_app_inline_controls:
+    if is_app_inline_controls and supports_legacy_target_components:
         transform_app_control(
             soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_reference_page:
+    if is_reference_page and supports_figures:
         _transform_reference_figures(
             soup,
             source_path=source_path,

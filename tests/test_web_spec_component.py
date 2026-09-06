@@ -133,12 +133,12 @@ class WebSpecComponentTests(unittest.TestCase):
         self.assertFalse(soup.select(".hb-annotated-figure, .hb-composite-art"))
 
     def test_manifest_entry_keeps_frozen_target_preface_rule(self) -> None:
-        for region in ("US", "JP"):
+        for region in ("US", "EU", "JP"):
             root = Path(f"docs/_build/JE-1000F/{region}/rst/page")
             self.assertTrue(is_web_entry_page(root / "00_preface.rst"))
             self.assertFalse(is_web_entry_page(root / "cover_jp.rst"))
             self.assertEqual(
-                region == "JP", is_web_entry_page(root / "01_meaning_of_symbols.rst")
+                region != "US", is_web_entry_page(root / "01_meaning_of_symbols.rst")
             )
 
 

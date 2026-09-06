@@ -65,6 +65,7 @@ class WebFigureCoverageTests(unittest.TestCase):
             '<figure class="hb-operation-figure hb-has-composite-art" '
             'data-web-replace-key="operation.main-power" '
             'data-web-composite-asset-key="operation.main-power.de" '
+            'data-web-composite-locale="de" '
             f'data-web-composite-sha256="{"b" * 64}">'
             '<div class="hb-composite-stage"><img src="main-power-de.png"></div>'
             '<div class="hb-operation-stage"><img src="power.png"></div>'
@@ -174,6 +175,51 @@ class WebFigureCoverageTests(unittest.TestCase):
         self.assertEqual(1, coverage["summary"]["total"])
         self.assertEqual("overview", coverage["slots"][0]["section"])
         self.assertEqual("finished-panel", coverage["slots"][0]["status"])
+
+    def test_same_asset_hash_across_locales_is_disambiguated_by_locale(self) -> None:
+        digest = "d" * 64
+        ir = SimpleNamespace(
+            model="JE-1000F",
+            region="EU",
+            pages=(SimpleNamespace(page_id="05_operation_guide_placeholder.rst"),),
+            metadata={
+                "web_contract": {
+                    "product_overview": {"source_patterns": []},
+                    "operations": {
+                        "source_patterns": ["*05_operation_guide_placeholder"],
+                    },
+                    "reference_figures": {"figures": []},
+                },
+                "illustration_provenance": {"illustrations": []},
+                "composites": [
+                    {
+                        "asset_key": "operation.energy-saving",
+                        "locale": locale,
+                        "path": f"assets/energy-saving-{locale}.png",
+                        "content_sha256": digest,
+                    }
+                    for locale in ("de", "it")
+                ],
+            },
+        )
+        fragment = (
+            '<figure class="hb-operation-figure hb-has-composite-art" '
+            'data-web-replace-key="operation.energy-saving" '
+            'data-web-composite-asset-key="operation.energy-saving" '
+            'data-web-composite-locale="it" '
+            f'data-web-composite-sha256="{digest}">'
+            '<div class="hb-composite-stage"><img src="energy-saving-it.png"></div>'
+            '</figure>'
+        )
+
+        coverage = build_web_figure_coverage(ir, (fragment,))
+
+        self.assertEqual("approved-composite", coverage["slots"][0]["status"])
+        self.assertEqual("it", coverage["slots"][0]["asset"]["locale"])
+        self.assertEqual(
+            "assets/energy-saving-it.png",
+            coverage["slots"][0]["asset"]["path"],
+        )
 
 
 if __name__ == "__main__":

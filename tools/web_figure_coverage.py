@@ -132,23 +132,25 @@ def _composite_asset(
     composites: list[dict[str, Any]],
 ) -> dict[str, str]:
     asset_key = str(figure.get("data-web-composite-asset-key") or "").strip()
+    locale = str(figure.get("data-web-composite-locale") or "").strip()
     sha256 = str(figure.get("data-web-composite-sha256") or "").strip()
     matches = [
         entry
         for entry in composites
         if isinstance(entry, dict)
         and str(entry.get("asset_key") or "") == asset_key
+        and str(entry.get("locale") or "") == locale
         and str(entry.get("content_sha256") or "") == sha256
     ]
     if len(matches) != 1:
         raise ValueError(
             "approved Web composite is missing unambiguous manifest provenance: "
-            f"asset_key={asset_key!r} sha256={sha256!r}"
+            f"asset_key={asset_key!r} locale={locale!r} sha256={sha256!r}"
         )
     entry = matches[0]
     return {
         "asset_key": asset_key,
-        "locale": str(entry.get("locale") or ""),
+        "locale": locale,
         "path": str(entry.get("path") or ""),
         "sha256": sha256,
     }

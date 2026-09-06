@@ -1915,3 +1915,19 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   structure and totals are validated again before source-free replay. Existing
   target/hash/source-fragment gates remain fail-closed, and missing localized
   artwork stays visible instead of being copied from another target.
+
+## 2026-09-05: JE-1000F EU localized Web figure reuse
+
+- Admitted `JE-1000F / EU` to the existing Overview/Operation/Charging figure
+  contract without copying US geometry. `je1000f-eu-v1` extends the US Overview
+  instance; stable-`id` list merging preserves callouts and Web/IDML geometry
+  while EU overrides target, market artwork and EN/FR/ES/DE/IT locale bindings.
+- Localized document language now wins over page-number filename conventions.
+  Coverage includes locale in composite provenance so intentionally identical
+  bytes in different languages remain unambiguous. EU no longer inherits the
+  US-only Preface entry rule.
+- The PDF intake boundary is explicit: 11 localized full-panel composites per
+  language retain Overview, Operation `On` / `Off` and Charging labels. LCD is
+  the separate hybrid component—market-correct hardware/display artwork plus a
+  live six-row HTML table. Quarantine crops remain unpromoted until operator
+  pixel approval and the normal asset registry/read-back process.

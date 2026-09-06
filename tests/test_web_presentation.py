@@ -12,6 +12,7 @@ from PIL import Image
 from tools.component_specs.web_source import validate_web_callout_html
 from tools.web_callout_ir import render_callout_ir
 from tools.web_composite_manifest import load_web_composite_manifest
+from tools.web_composite_presentation import WebCompositeContext
 from tools.web_presentation import (
     WebPresentationError,
     protect_web_callouts_for_pandoc,
@@ -70,6 +71,29 @@ def _web_fragment(
 
 
 class WebPresentationTests(unittest.TestCase):
+    def test_document_language_selects_composite_without_filename_prefix(self) -> None:
+        context = WebCompositeContext(
+            manifest=None,
+            model="JE-1000F",
+            region="EU",
+            language="it",
+            error_type=WebPresentationError,
+        )
+        component = {
+            "composite_locales": [
+                {"locale": "en"},
+                {"locale": "fr"},
+                {"locale": "es"},
+                {"locale": "de"},
+                {"locale": "it"},
+            ]
+        }
+
+        self.assertEqual(
+            "it",
+            context._locale(component, Path("page/05_operation_guide_placeholder.rst")),
+        )
+
     def test_web_preface_hides_language_inventory_but_keeps_live_copy(self) -> None:
         output = _web_fragment("00_preface.rst")
         soup = BeautifulSoup(output, "html.parser")
@@ -1091,6 +1115,51 @@ class WebPresentationTests(unittest.TestCase):
                     following_callout.get_text(" ", strip=True)
                     if following_callout
                     else "",
+                )
+
+    def test_ac_wall_composite_captures_caption_on_either_side_of_image(self) -> None:
+        localized = {
+            "en": (
+                '<p id="instruction">Connect the AC charging cable.</p>'
+                '<img src="asset:charging/ac_wall" alt="AC wall charging">',
+                ["instruction", "art"],
+            ),
+            "fr": (
+                '<img src="asset:charging/ac_wall" alt="Charge murale CA">'
+                '<p id="instruction">Connectez le câble de charge CA.</p>',
+                ["art", "instruction"],
+            ),
+        }
+
+        for language, (fragment, expected_order) in localized.items():
+            with self.subTest(language=language):
+                source_path = Path(
+                    f"docs/_build/JE-1000F/EU/{language}/page/charging.rst"
+                )
+                soup = BeautifulSoup(
+                    transform_web_fragment(
+                        f"<h1>CHARGING</h1><h2>AC WALL</h2>{fragment}",
+                        source_path=source_path,
+                        model="JE-1000F",
+                        region="EU",
+                        language=language,
+                    ),
+                    "html.parser",
+                )
+                figure = soup.select_one(
+                    'figure[data-reference-id="charging-ac-wall"]'
+                )
+                self.assertIsNotNone(figure)
+                semantic = figure.select_one(".hb-reference-semantic") if figure else None
+                self.assertIsNotNone(semantic)
+                observed_order = [
+                    "instruction" if child.get("id") == "instruction" else "art"
+                    for child in semantic.find_all(recursive=False)
+                ] if semantic else []
+                self.assertEqual(expected_order, observed_order)
+                self.assertEqual(
+                    "embedded",
+                    figure.get("data-step-captions") if figure else None,
                 )
 
     def test_app_add_device_embeds_steps_and_keeps_live_localized_labels(self) -> None:

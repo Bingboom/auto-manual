@@ -77,6 +77,39 @@ target outside the frozen figure contract, Web starts at its manifest's first
 included page; it does not invent a preface. The frozen US target retains its
 preface rule. Cover/TOC/back-cover exclusions remain in force.
 
+Figure carrier choice is part of the component contract, not an extraction
+default:
+
+- Product Overview, the five Operation panels, and the four Charging panels use
+  locale-matched `localized-full-page` composites. Their visible callouts,
+  prerequisites, connection labels, and Operation `On` / `Off` instructions are
+  intentionally embedded in the approved crop. Extraction may crop the panel but
+  must not redact that localized text. The section heading remains live HTML.
+- The Operation LCD screen-mode block is deliberately hybrid: only the
+  market-correct product/display artwork is an image, while the six-row state /
+  action / explanation table remains searchable, responsive HTML. A screenshot
+  of the complete LCD table is not a valid replacement.
+- Specifications, troubleshooting, the LCD-icon glossary, Warranty and other
+  semantic tables remain live components unless their own contract explicitly
+  says otherwise.
+
+Target reuse follows inheritance plus narrow overrides. A child Product Overview
+instance may `extend` a validated base instance; lists whose members have stable
+`id` values merge by `id`, so the child can override only target identity,
+market-specific artwork keys and locale declarations while inheriting callout
+order and Web/IDML geometry. Ordinary lists still replace as a unit. Composite
+locale resolution prefers the materialized document language; filename patterns
+remain only a legacy fallback. Coverage provenance identifies an approved
+composite by `asset_key + locale + content_sha256`, including the case where two
+locales intentionally share identical bytes.
+
+`JE-1000F / EU` is admitted to the figure contract and its Overview instance
+extends `je1000f-us-v1`; EN/FR/ES/DE/IT use one shared component definition with
+locale-specific composite bindings. EU does not inherit the US-only preface
+rule. Extracted PDF composites remain quarantine candidates until pixel review
+and normal manifest/registry approval; contract admission alone is not asset
+promotion.
+
 Every newly generated Web `manual.ir.json` contains a
 `metadata.web_figure_coverage` payload with schema
 `web-figure-coverage/v1`. It audits actual rendered Overview, Operation and

@@ -118,14 +118,35 @@ def _source_slots(view_id: str, section: Tag) -> dict[str, dict[str, Any]]:
     return {}
 
 
-def _language_for_source(instance: Mapping[str, Any], source_path: Path) -> str:
+def _language_for_source(
+    instance: Mapping[str, Any],
+    source_path: Path,
+    language: str | None,
+) -> str:
+    requested = str(language or "").strip().casefold()
+    if requested:
+        resolved: list[str] = []
+        for view in instance["views"]:
+            matches = [
+                str(mapping.get("locale") or "").strip()
+                for mapping in view["composite_locales"]
+                if str(mapping.get("locale") or "").strip().casefold() == requested
+            ]
+            if len(matches) != 1:
+                raise ValueError(
+                    f"{source_path}: overview document language {language!r} must be "
+                    f"declared once for view {view['id']!r}; got {matches!r}"
+                )
+            resolved.extend(matches)
+        if len(set(resolved)) == 1:
+            return resolved[0]
     stem = source_path.stem.casefold()
     locales: set[str] = set()
     for view in instance["views"]:
         for mapping in view["composite_locales"]:
             if any(
                 fnmatch.fnmatch(stem, str(pattern).casefold())
-                for pattern in mapping["source_patterns"]
+                for pattern in mapping.get("source_patterns", [])
             ):
                 locales.add(str(mapping["locale"]))
     if len(locales) != 1:
@@ -141,6 +162,7 @@ def parse_overview_html(
     source_path: Path,
     instance: Mapping[str, Any],
     error_type: type[Exception],
+    language: str | None = None,
 ) -> OverviewHtmlSource:
     heading = soup.find("h1")
     if not isinstance(heading, Tag):
@@ -199,7 +221,7 @@ def parse_overview_html(
             views=semantic_views,
             geometry_ref=str(instance["instance_id"]),
             source_ref=source_path.as_posix(),
-            language=_language_for_source(instance, source_path),
+            language=_language_for_source(instance, source_path, language),
         )
     except Exception as exc:
         raise error_type(f"{source_path}: {exc}") from exc
