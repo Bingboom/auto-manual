@@ -5,8 +5,9 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Comment, NavigableString
 
-from tools.manual_ir import ManualIR
+from tools.manual_ir import V1_SCHEMA_VERSION, ManualIR
 from tools.manual_ir.document import validate_document, validate_tree
+from tools.manual_ir.flow import flow_nodes_to_html
 from tools.manual_ir.hashing import file_sha256
 from tools.web_composite_manifest import WebCompositeEntry, WebCompositeManifest
 from tools.web_presentation import transform_web_fragment
@@ -46,7 +47,10 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
     paths = get_paths()
     fragments = []
     for page in ir.pages:
-        markup = "".join(tree_to_html(block.payload) for block in page.blocks)
+        if ir.schema_version == V1_SCHEMA_VERSION:
+            markup = "".join(tree_to_html(block.payload) for block in page.blocks)
+        else:
+            markup = flow_nodes_to_html([block.payload for block in page.blocks])
         soup = BeautifulSoup(markup, "html.parser")
         for image in soup.find_all("img"):
             src = str(image["src"])

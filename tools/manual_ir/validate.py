@@ -8,7 +8,7 @@ from typing import Any
 from tools.lang_registry import canonical_language
 
 from .hashing import value_sha256
-from .model import ManualIR, SCHEMA_VERSION
+from .model import ManualIR, SUPPORTED_SCHEMA_VERSIONS, V2_SCHEMA_VERSION
 
 
 _NEUTRAL_PAGE_LANGUAGES = frozenset(("", "cover", "toc"))
@@ -162,7 +162,7 @@ def validate_manual_ir(
     """Validate the same envelope and semantics required by read_manual_ir.
 
     Language registration and zero skipped raw blocks are opt-in production
-    policies, independent of whether a v1 document is safe to read.
+    policies, independent of whether a supported document is safe to read.
     """
     issues = _payload_issues(ir.to_dict(), require_zero_skipped_raw=require_zero_skipped_raw)
     if require_known_languages and not _structure_issues(ir.to_dict()):
@@ -176,8 +176,11 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
         return issues
     # All shapes/types below have been checked; no coercion or repair occurs.
     pages = raw["pages"]
-    if raw["schema_version"] != SCHEMA_VERSION:
-        issues.append(f"schema_version must be {SCHEMA_VERSION}; got {raw['schema_version']!r}")
+    if raw["schema_version"] not in SUPPORTED_SCHEMA_VERSIONS:
+        issues.append(
+            "schema_version must be one of "
+            f"{sorted(SUPPORTED_SCHEMA_VERSIONS)}; got {raw['schema_version']!r}"
+        )
     if not pages:
         issues.append("manual IR has no pages")
     page_ids: set[str] = set()
@@ -212,6 +215,18 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
             expected = value_sha256({"kind": block["kind"], "payload": block["payload"]})
             if block["content_sha256"] != expected:
                 issues.append(f"{block_loc}: content hash mismatch")
+            if raw["schema_version"] == V2_SCHEMA_VERSION:
+                if block["kind"] == "document_content":
+                    issues.append(
+                        f"{block_loc}: document_content is not valid in manual-ir/v2"
+                    )
+                elif block["kind"] == "flow":
+                    from .flow import validate_flow_node
+
+                    issues.extend(
+                        f"{block_loc}.payload{issue[1:] if issue.startswith('$') else ': ' + issue}"
+                        for issue in validate_flow_node(block["payload"])
+                    )
             block_hashes.append(block["content_sha256"])
     expected_content = value_sha256(
         {"page_ids": [page["page_id"] for page in pages], "block_hashes": block_hashes}

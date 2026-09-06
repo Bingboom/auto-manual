@@ -1931,3 +1931,26 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   the separate hybrid component—market-correct hardware/display artwork plus a
   live six-row HTML table. Quarantine crops remain unpromoted until operator
   pixel approval and the normal asset registry/read-back process.
+
+
+## 2026-09-05: Whole-document ManualIR v2 neutral flow substrate
+
+- New whole-document Web packages use `manual-ir/v2` with ordered neutral
+  flow/rich-text blocks. HTML tag names no longer form serialized semantic
+  authority; heading levels, lists, links, table spans/scopes, image source/alt,
+  anchors and accessibility state are explicit fields.
+- Web-only classes, styles and data attributes live under optional presentation
+  hints. Removing every hint still yields structured, renderable HTML. Empty
+  fragments retain one empty text block so page/block identity does not vanish.
+- The reader and Web consumer remain compatible with historical
+  `manual-ir/v1` whole-document trees without upgrading or rehashing them. New
+  neutral image references continue through the ordered asset union and frozen
+  SHA-256 replay gate; existing v1 producers remain byte-compatible.
+- This is cut 1 of the seven-cut convergence plan. Existing ComponentSpecs are
+  embedded in cut 2; Operation/Warranty/LCD, Symbols/Troubleshooting, App/reference
+  figures, presentation overlays and anti-copy acceptance gates remain cuts 3–7.
+- Acceptance: 90 focused and 3756 full-suite tests pass (19 skipped); Ruff,
+  maintainability and 1698 documentation links are green. A real 49-page US
+  bundle produced 353 flow blocks and 57 frozen assets, retained 210 final Web
+  images, matched both v1 compatibility and the pre-change fragments exactly,
+  and replayed with all RST/CSV reads forbidden.

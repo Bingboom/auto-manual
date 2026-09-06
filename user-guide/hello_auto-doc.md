@@ -19,6 +19,9 @@ Overview, Operation and Charging coverage under
 editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
+New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
+historical `manual-ir/v1` packages remain replayable. This is the shared document
+substrate, not yet proof that Word, LaTeX and IDML consume every same ComponentSpec.
 For JE-1000F, Overview, Operation and Charging use localized crops with their
 visible labels intact—including Operation `On` / `Off`, prerequisites and action
 copy. Do not feed those slots textless exports. The LCD screen-mode block is the
@@ -1643,33 +1646,34 @@ selection and successful payload formats remain unchanged.
 
 IDML handoff validates the source `manual.ir.json` before copying artifacts or
 writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
-not a zero-skipped report. This integrity work does not migrate Web to whole
-Manual IR and does not certify native JP layout. See the
+not a zero-skipped report. This IDML integrity path remains on its existing v1
+producer and does not by itself consume the Web whole-document v2 flow or
+certify native JP layout. See the
 [shared-source plan](../code-as-doc/dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
 
 
 Web 规格表已接入公共 IR 校验，构建命令不变。Web 构建会保留规格中的链接、强调、
 换行和脚注，不再借用 Word 的纯文本抽取重建。任何声明规格表不合法时，本次规格
-转换整体失败，避免只转换前半页。这仅覆盖规格表投影，不能据此声明整本 Web
-或 JP 原生排版已完成验收。
+转换整体失败，避免只转换前半页。这仅证明规格表组件投影；整本 Web 已有 v2
+中立 flow 底座，但四端共享同一规格 ComponentSpec 和 JP 原生排版仍需分别验收。
 
 
 LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主构建与独立 Markdown
 站点共用，命令不变。图标替代文字、列表、链接、图注和表头仍来自原文；同一批
 表格中有一张不合法时，整批转换失败，不留下半页已转换的结果。这仍是表格级
-接入，整本 Web 和其他组件尚未全部迁移。
+组件接入；整本 v2 flow 已建立，其他组件和四端 adapters 尚未全部迁移。
 
 
 独立 Markdown 的 `{spec-table}` 也已复用公共规格表 IR，不再单独计算合并行和
 拼装表格。参数标题继续用作组件标签，不增加可见标题；上下标和空标签续行保留，
 裸圆圈脚注编号使用统一上标样式。规格表、LCD、故障排除三类表格已在两种 Web
-入口接通，整本说明书及其他组件的迁移仍未完成。
+入口接通；它们写入整本 v2 IR 并由四端共享消费仍是后续组件刀。
 
 
 生成 Web 的警告／提示框在 Pandoc 转换前后也已通过公共 IR 交接，构建命令不变。
 框内原文、链接、列表和图片保持原样；IR 损坏或声明的标签／正文结构不完整时构建
-失败。已整体保护的复合插图内提示框仍待迁移，这不代表整本 Web 或 JP 版式
-验收完成。
+失败。已整体保护的复合插图内提示框仍待迁移；整本 Web 的 v2 flow 底座已完成，
+但复合组件和 JP 原生版式仍需独立验收。
 
 
 独立 Markdown 的 `{callout}` 也已接入同一个公共 IR 消费器。正文仍由 Sphinx

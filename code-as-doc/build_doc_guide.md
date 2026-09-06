@@ -700,13 +700,16 @@ Packaging rule:
 
 Web Publish / Read the Docs note:
 
-- Web-profile bundle export now reads prepared pages once into a complete
-  `manual-ir/v1` content tree and writes `manual.ir.json` beside the Markdown.
-  `tools.web_document_ir.render_document_fragments` consumes that IR and the
-  packaged `assets/` bytes without reopening RST/CSV. Word keeps its existing
-  conversion path. This is the whole-document Web boundary, not completion of
-  neutral rich text or migration of every output. See [the bounded execution
-  record](dev/ir_document_closeout.md) for replay, asset extraction and debt.
+- Web-profile bundle export reads prepared pages once and writes
+  `manual-ir/v2` / `whole-document-flow/v1` beside the Markdown. Its ordered
+  flow/rich-text nodes carry neutral headings, prose, lists, tables, links and
+  images; optional `presentation.html.attributes` retains only Web hints needed
+  for output parity. `tools.web_document_ir.render_document_fragments` consumes
+  that IR and packaged `assets/` without reopening RST/CSV. Historical
+  `manual-ir/v1` whole-document files still replay without being upgraded.
+  Word keeps its existing conversion path, and ComponentSpec embedding plus the
+  other renderer adapters remain later cuts. See [the bounded execution record](dev/ir_document_closeout.md)
+  and [v2 plan](dev/manual_ir_v2_neutral_flow_plan.md).
 - `paths.web_illustration_manifest` optionally binds a target/language to finished
   PDF crops. The manifest freezes source PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several
@@ -1827,8 +1830,9 @@ selection and successful payload formats remain unchanged.
 
 IDML handoff validates the source `manual.ir.json` before copying artifacts or
 writing reports. Missing IR is explicitly unavailable; corrupt IR is an error,
-not a zero-skipped report. This integrity work does not migrate Web to whole
-Manual IR and does not certify native JP layout. See the
+not a zero-skipped report. This IDML integrity path remains on its existing v1
+producer and does not by itself consume the new whole-document v2 flow or
+certify native JP layout. See the
 [shared-source plan](dev/latex_indesign_same_source_plan.md) for remaining consumer and parser boundaries.
 
 

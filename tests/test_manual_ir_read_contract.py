@@ -14,9 +14,11 @@ from unittest.mock import patch
 
 from tools.idml_pdf_parity import build_report
 from tools.manual_ir import (
-    ManualIRValidationError, build_manual_ir, read_manual_ir,
-    validate_manual_ir, write_manual_ir,
+    ManualIRValidationError, ManualSource, SourcePage, build_manual_ir,
+    build_manual_ir_from_source, read_manual_ir, validate_manual_ir,
+    write_manual_ir,
 )
+from tools.manual_ir.flow import html_to_flow_nodes
 from tools.manual_ir.hashing import value_sha256
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -132,7 +134,7 @@ class ManualIRReadContractTests(unittest.TestCase):
         page = self.ir.pages[0]
         block = page.blocks[0]
         cases = [
-            (replace(self.ir, schema_version="manual-ir/v2"), "schema_version"),
+            (replace(self.ir, schema_version="manual-ir/v3"), "schema_version"),
             (replace(self.ir, pages=()), "has no pages"),
             (replace(self.ir, pages=(page, *self.ir.pages)), "duplicate page_id"),
             (replace(self.ir, pages=(replace(page, page_id="unique"), *self.ir.pages)),
@@ -154,6 +156,84 @@ class ManualIRReadContractTests(unittest.TestCase):
                 with self.assertRaises(ManualIRValidationError) as caught:
                     self._read(ir.to_dict())
                 self.assertEqual(tuple(issues), caught.exception.issues)
+
+    def test_valid_v2_neutral_flow_round_trips_without_upgrading_v1(self) -> None:
+        page = SourcePage(
+            page_id="intro",
+            source_ref="page/intro",
+            source_path="page/intro.rst",
+            language="en",
+            source_sha256="4" * 64,
+            blocks=tuple(
+                ("flow", node)
+                for node in html_to_flow_nodes(
+                    '<h1 id="intro">Title</h1><p>Body <strong>copy</strong>.</p>'
+                )
+            ),
+        )
+        source = ManualSource(
+            model="TEST",
+            region="US",
+            language="en",
+            source="neutral-flow",
+            bundle_root="unmounted",
+            bundle_sha256="1" * 64,
+            snapshot_sha256=None,
+            layout_params_sha256="2" * 64,
+            style_contract_sha256="3" * 64,
+            pages=(page,),
+            schema_version="manual-ir/v2",
+        )
+        ir = build_manual_ir_from_source(source)
+        self.assertEqual("manual-ir/v2", ir.schema_version)
+        self.assertEqual([], validate_manual_ir(ir))
+        loaded = self._read(ir.to_dict())
+        self.assertEqual(ir, loaded)
+        self.assertEqual("manual-ir/v2", loaded.schema_version)
+
+        v1 = self._read(self.raw)
+        self.assertEqual("manual-ir/v1", v1.schema_version)
+        self.assertEqual(self.ir.content_sha256, v1.content_sha256)
+
+    def test_v2_rejects_legacy_document_content_and_malformed_flow(self) -> None:
+        page = SourcePage(
+            page_id="intro",
+            source_ref="page/intro",
+            source_path="page/intro.rst",
+            language="en",
+            source_sha256="4" * 64,
+            blocks=(("flow", html_to_flow_nodes("<p>Body.</p>")[0]),),
+        )
+        source = ManualSource(
+            model="TEST",
+            region="US",
+            language="en",
+            source="neutral-flow",
+            bundle_root="unmounted",
+            bundle_sha256="1" * 64,
+            snapshot_sha256=None,
+            layout_params_sha256="2" * 64,
+            style_contract_sha256="3" * 64,
+            pages=(page,),
+            schema_version="manual-ir/v2",
+        )
+        valid = build_manual_ir_from_source(source)
+        for kind, payload, diagnostic in (
+            ("document_content", [], "document_content"),
+            ("flow", {"schema_version": "manual-flow/v1", "kind": "html_div"}, "unknown kind"),
+        ):
+            changed = build_manual_ir_from_source(
+                replace(
+                    source,
+                    pages=(replace(page, blocks=((kind, payload),)),),
+                )
+            )
+            with self.subTest(diagnostic=diagnostic):
+                issues = validate_manual_ir(changed)
+                self.assertTrue(any(diagnostic in issue for issue in issues), issues)
+                with self.assertRaisesRegex(ManualIRValidationError, diagnostic):
+                    self._read(changed.to_dict())
+        self.assertEqual([], validate_manual_ir(valid))
 
     def test_valid_v1_defaults_and_extension_payloads_remain_compatible(self) -> None:
         raw = deepcopy(self.raw)
@@ -216,7 +296,7 @@ class ManualIRReadContractTests(unittest.TestCase):
 
     def test_all_file_consumers_reject_before_output_or_plan_mutation(self) -> None:
         cases = [
-            (("schema_version",), "manual-ir/v2", "schema_version"),
+            (("schema_version",), "manual-ir/v3", "schema_version"),
             (("pages",), None, "pages"),
             (("pages", 0, "blocks", 0, "payload"), "changed", "content hash mismatch"),
             (("pages", 1, "page_id"), self.raw["pages"][0]["page_id"], "duplicate page_id"),

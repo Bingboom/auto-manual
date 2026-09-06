@@ -5,7 +5,14 @@ from dataclasses import asdict, dataclass, field
 from typing import Any
 
 
-SCHEMA_VERSION = "manual-ir/v1"
+V1_SCHEMA_VERSION = "manual-ir/v1"
+V2_SCHEMA_VERSION = "manual-ir/v2"
+SUPPORTED_SCHEMA_VERSIONS = frozenset({V1_SCHEMA_VERSION, V2_SCHEMA_VERSION})
+
+# Existing prepared-RST/IDML and scoped component producers stay byte-stable
+# until their own migration cuts. New neutral-flow producers opt into v2.
+SCHEMA_VERSION = V1_SCHEMA_VERSION
+CURRENT_SCHEMA_VERSION = V2_SCHEMA_VERSION
 
 
 @dataclass(frozen=True)

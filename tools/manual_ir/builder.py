@@ -7,24 +7,39 @@ from typing import Any
 from tools.rst_inline import IMAGE
 
 from .hashing import value_sha256
-from .model import ManualBlock, ManualIR, ManualPage
+from .model import V2_SCHEMA_VERSION, ManualBlock, ManualIR, ManualPage
 from .source import ManualSource
 
 
 _ASSET_KEYS = frozenset({"asset", "asset_ref", "figure", "image", "img", "src"})
 
 
-def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
+def _asset_refs(
+    value: Any, *, parent_key: str = "", neutral_flow: bool = False
+) -> tuple[str, ...]:
     found: list[str] = []
     if isinstance(value, dict):
+        if (
+            neutral_flow
+            and value.get("kind") == "image"
+            and isinstance(value.get("source"), str)
+            and value["source"].strip()
+        ):
+            found.append(value["source"].strip())
         for key, child in value.items():
+            if neutral_flow and key == "source" and value.get("kind") == "image":
+                continue
             if key.lower() in _ASSET_KEYS and isinstance(child, str) and child.strip():
                 found.append(child.strip())
             else:
-                found.extend(_asset_refs(child, parent_key=key))
+                found.extend(
+                    _asset_refs(child, parent_key=key, neutral_flow=neutral_flow)
+                )
     elif isinstance(value, list):
         for child in value:
-            found.extend(_asset_refs(child, parent_key=parent_key))
+            found.extend(
+                _asset_refs(child, parent_key=parent_key, neutral_flow=neutral_flow)
+            )
     elif parent_key.lower() in _ASSET_KEYS and isinstance(value, str) and value.strip():
         found.append(value.strip())
     elif isinstance(value, str):
@@ -33,7 +48,7 @@ def _asset_refs(value: Any, *, parent_key: str = "") -> tuple[str, ...]:
 
 
 def build_manual_ir_from_source(source: ManualSource) -> ManualIR:
-    """Assemble existing v1 pages/blocks without consulting a source renderer.
+    """Assemble versioned pages/blocks without consulting a source renderer.
 
     Payloads are already decoded; source identifiers/languages/digests remain
     exactly as supplied. Validation remains the shared validate_manual_ir
@@ -48,7 +63,17 @@ def build_manual_ir_from_source(source: ManualSource) -> ManualIR:
         blocks: list[ManualBlock] = []
         for block_index, (kind, payload) in enumerate(page.blocks, start=1):
             block_id = f"{page.page_id}:block-{block_index:04d}"
-            assets = (payload,) if kind == "image" else _asset_refs(payload)
+            assets = (
+                (payload,)
+                if kind == "image"
+                else _asset_refs(
+                    payload,
+                    neutral_flow=(
+                        source.schema_version == V2_SCHEMA_VERSION
+                        and kind == "flow"
+                    ),
+                )
+            )
             block_hash = value_sha256({"kind": kind, "payload": payload})
             blocks.append(ManualBlock(
                 block_id=block_id,
@@ -85,6 +110,7 @@ def build_manual_ir_from_source(source: ManualSource) -> ManualIR:
         }),
         pages=tuple(pages),
         asset_refs=tuple(dict.fromkeys(all_assets)),
+        schema_version=source.schema_version,
         metadata={
             **source.metadata,
             "page_count": len(pages),

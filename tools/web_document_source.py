@@ -9,8 +9,15 @@ from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup
 
-from tools.manual_ir import ManualSource, SourcePage, build_manual_ir_from_source, write_manual_ir
-from tools.manual_ir.document import content_tree, validate_document
+from tools.manual_ir import (
+    V2_SCHEMA_VERSION,
+    ManualSource,
+    SourcePage,
+    build_manual_ir_from_source,
+    write_manual_ir,
+)
+from tools.manual_ir.document import validate_document
+from tools.manual_ir.flow import html_to_flow_nodes
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.web_presentation import load_web_manual_contract
 from tools.utils.path_utils import PathSegments
@@ -115,7 +122,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             image["src"] = package_asset(resolved)
         source_pages.append(SourcePage(
             page_id=path.name, source_ref=path.name, source_path=str(path), language=lang,
-            source_sha256=hashlib.sha256(source_bytes).hexdigest(), blocks=(("document_content", content_tree(str(staged))),),
+            source_sha256=hashlib.sha256(source_bytes).hexdigest(),
+            blocks=tuple(("flow", node) for node in html_to_flow_nodes(str(staged))),
         ))
     if set(replacements) != used_replacements:
         raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
@@ -131,7 +139,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         bundle_sha256=value_sha256([(p.page_id, p.source_sha256) for p in source_pages]),
         snapshot_sha256=None, layout_params_sha256=value_sha256({"layout": "web"}),
         style_contract_sha256=value_sha256(contract), pages=tuple(source_pages),
-        metadata={"projection": "whole-document-content/v1", "title": materialized.title,
+        metadata={"projection": "whole-document-flow/v1", "title": materialized.title,
                   "declared_languages": list(languages), "asset_sha256": hashes,
                   "web_contract": contract, "composites": composites,
                   "illustration_provenance": provenance,
@@ -141,6 +149,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                       for path in page_paths
                       if (page_slots or {}).get(path.name)
                   }},
+        schema_version=V2_SCHEMA_VERSION,
     )
     ir = build_manual_ir_from_source(source)
     validate_document(ir)

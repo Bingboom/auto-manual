@@ -51,7 +51,7 @@ def _unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
 
 
 def read_manual_ir(path: Path) -> ManualIR:
-    """Read v1 JSON or raise ManualIRValidationError with file/field context.
+    """Read supported JSON versions or raise with file/field context.
 
     Success guarantees the public envelope, identities, content hashes and
     ordered asset union. External-file digest freshness and renderer-specific
