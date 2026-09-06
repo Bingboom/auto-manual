@@ -23,7 +23,12 @@ _COMPONENT_SPEC_FIELDS = frozenset(
 )
 
 
-def _component_spec(payload: Any, *, location: str) -> ComponentSpec:
+def _component_spec(
+    payload: Any,
+    *,
+    location: str,
+    component_registry: Mapping[str, Any] | None = None,
+) -> ComponentSpec:
     if not isinstance(payload, Mapping):
         raise ComponentSpecError(f"{location}: expected a mapping")
     extra = set(payload) - _COMPONENT_SPEC_FIELDS
@@ -35,7 +40,10 @@ def _component_spec(payload: Any, *, location: str) -> ComponentSpec:
         if extra:
             details.append("unknown " + ", ".join(sorted(map(str, extra))))
         raise ComponentSpecError(f"{location}: invalid shape ({'; '.join(details)})")
-    return require_valid_component_spec(ComponentSpec.from_dict(payload))
+    return require_valid_component_spec(
+        ComponentSpec.from_dict(payload),
+        component_registry,
+    )
 
 
 def _nested_carrier_node(value: Any) -> dict[str, Any]:
@@ -74,7 +82,10 @@ def component_flow_node(
 
 
 def validate_component_flow_node(
-    node: Mapping[str, Any], *, location: str = "$"
+    node: Mapping[str, Any],
+    *,
+    location: str = "$",
+    component_registry: Mapping[str, Any] | None = None,
 ) -> list[str]:
     """Return strict semantic and carrier issues for one component leaf."""
 
@@ -83,6 +94,7 @@ def validate_component_flow_node(
         _component_spec(
             node.get("component_spec"),
             location=f"{location}.component_spec",
+            component_registry=component_registry,
         )
     except (ComponentSpecError, TypeError, ValueError) as exc:
         issues.append(str(exc))
@@ -101,6 +113,7 @@ def validate_component_flow_node(
                     location=candidate_location,
                     root=False,
                     flow_version=FLOW_V2_SCHEMA_VERSION,
+                    component_registry=component_registry,
                 )
                 issues.extend(candidate_issues)
                 if isinstance(candidate, Mapping) and candidate.get("kind") == "component":
@@ -122,6 +135,8 @@ def _walk(nodes: Iterable[Mapping[str, Any]]) -> Iterable[Mapping[str, Any]]:
 
 def component_specs_in_flow(
     nodes: Sequence[Mapping[str, Any]],
+    *,
+    component_registry: Mapping[str, Any] | None = None,
 ) -> tuple[ComponentSpec, ...]:
     """Decode embedded ComponentSpecs in deterministic document order."""
 
@@ -130,7 +145,11 @@ def component_specs_in_flow(
     for node in _walk(nodes):
         if node.get("kind") != "component":
             continue
-        spec = _component_spec(node.get("component_spec"), location="component_spec")
+        spec = _component_spec(
+            node.get("component_spec"),
+            location="component_spec",
+            component_registry=component_registry,
+        )
         if spec.source_ref in source_refs:
             raise ComponentSpecError(
                 f"duplicate embedded component source_ref {spec.source_ref!r}"
@@ -140,12 +159,20 @@ def component_specs_in_flow(
     return tuple(specs)
 
 
-def component_spec_from_flow_node(node: Mapping[str, Any]) -> ComponentSpec:
+def component_spec_from_flow_node(
+    node: Mapping[str, Any],
+    *,
+    component_registry: Mapping[str, Any] | None = None,
+) -> ComponentSpec:
     """Decode and validate the semantic authority of one component node."""
 
     if node.get("kind") != "component":
         raise ComponentSpecError("expected a component flow node")
-    return _component_spec(node.get("component_spec"), location="component_spec")
+    return _component_spec(
+        node.get("component_spec"),
+        location="component_spec",
+        component_registry=component_registry,
+    )
 
 
 __all__ = [

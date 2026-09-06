@@ -53,6 +53,24 @@ component_roles:
       - type.table.label
       - type.table.value
       - width.component-band
+  component.special.app:
+    component_ids: [HB-SPECIAL-APP]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.special.reference-figure:
+    component_ids: [HB-SPECIAL-REFERENCE-FIGURE]
+    theme_roles:
+      - surface.paper
+      - border.strong
+      - radius.panel
+      - type.table.value
+      - width.component-band
   component.table.lcd-mode:
     component_ids: [HB-TABLE-LCD-MODE]
     theme_roles:

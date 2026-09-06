@@ -297,6 +297,7 @@ def _validate_node(
     location: str,
     root: bool,
     flow_version: str | None = None,
+    component_registry: Mapping[str, Any] | None = None,
 ) -> list[str]:
     if not isinstance(node, Mapping):
         return [f"{location}: flow node must be an object"]
@@ -335,7 +336,11 @@ def _validate_node(
             from tools.manual_ir.components import validate_component_flow_node
 
             issues.extend(
-                validate_component_flow_node(node, location=location)
+                validate_component_flow_node(
+                    node,
+                    location=location,
+                    component_registry=component_registry,
+                )
             )
         except (ImportError, RuntimeError) as exc:
             issues.append(f"{location}.component_spec: cannot validate: {exc}")
@@ -359,6 +364,7 @@ def _validate_node(
                         location=f"{location}.children[{index}]",
                         root=False,
                         flow_version=active_flow_version,
+                        component_registry=component_registry,
                     )
                 )
 
@@ -408,10 +414,19 @@ def _validate_node(
     return issues
 
 
-def validate_flow_node(node: Any) -> list[str]:
+def validate_flow_node(
+    node: Any,
+    *,
+    component_registry: Mapping[str, Any] | None = None,
+) -> list[str]:
     """Return strict neutral-flow issues for one top-level block payload."""
 
-    return _validate_node(node, location="$", root=True)
+    return _validate_node(
+        node,
+        location="$",
+        root=True,
+        component_registry=component_registry,
+    )
 
 
 def _tag_for(node: Mapping[str, Any], *, parent_kind: str | None) -> str:
@@ -541,6 +556,7 @@ def flow_nodes_to_html(
     nodes: Sequence[Mapping[str, Any]],
     *,
     component_renderer: Callable[[Mapping[str, Any]], str] | None = None,
+    component_registry: Mapping[str, Any] | None = None,
 ) -> str:
     """Render neutral flow through the Web adapter.
 
@@ -551,7 +567,10 @@ def flow_nodes_to_html(
     soup = BeautifulSoup("", "html.parser")
     component_fragments: dict[str, str] = {}
     for index, node in enumerate(nodes):
-        issues = validate_flow_node(node)
+        issues = validate_flow_node(
+            node,
+            component_registry=component_registry,
+        )
         if issues:
             raise ValueError(
                 f"invalid neutral flow root {index}: " + "; ".join(issues)

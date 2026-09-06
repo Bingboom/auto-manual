@@ -66,6 +66,7 @@ def prepare_manual_bundle(
     repo_root: Path,
     printer: Callable[[str], None] = print,
     trim_bundle_language_blocks: Callable[..., list[tuple[str, tuple[str, ...]]]] | None = None,
+    trim_bundle_language_pages: Callable[..., list[tuple[str, str]]] | None = None,
 ) -> Any:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -154,6 +155,15 @@ def prepare_manual_bundle(
     # region's merged and single-language configs, so it carries every language
     # the merged book needs. Re-trim the overlaid copy against this target's
     # language scope; docs/_review stays untouched.
+    if review_applied and trim_bundle_language_pages is not None:
+        for file_name, dropped_language in trim_bundle_language_pages(
+            bundle_dir=bundle.bundle_dir,
+            languages=bundle.languages,
+        ):
+            printer(
+                f"[build] Review overlay {file_name}: dropped out-of-scope "
+                f"{dropped_language!r} page"
+            )
     if review_applied and trim_bundle_language_blocks is not None:
         for file_name, dropped in trim_bundle_language_blocks(
             bundle_dir=bundle.bundle_dir,

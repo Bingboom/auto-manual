@@ -28,7 +28,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 
 ### 0.1 哪个文件决定什么
 
-“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面六层各守边界：
+“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面七层各守边界：
 
 | 层 | 权威来源 | 决定什么 | 不应该放什么 |
 |---|---|---|---|
@@ -36,6 +36,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 | 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 32 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
 | 组件实例合同 | [`component_registry.yaml`](component_registry.yaml) + [`tools/component_specs/`](../../../tools/component_specs/) | 可跨 renderer 传递的 ComponentSpec 类型、variant、slot、asset role、token role 与 adapter key | CSS/TeX/XML/DOCX 几何实现、逐页坐标 |
 | 主题投影合同 | [`manual_theme.yaml`](manual_theme.yaml) | 稳定 `theme_id`、组件视觉角色及四端具体 binding | 单位值、目标/语言几何、页面实例坐标 |
+| Web presentation stack | [`web_manual.json`](web_manual.json) + [`web_presentation/`](web_presentation/) | shared base、产品 skeleton、目标 overlay、Web 图能力授权与必需槽位 | 可见文案、跨 renderer 语义、另一个产品的整套复制配置 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
 | 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
 
@@ -126,14 +127,18 @@ renderer-local 常量称为批准变体。
 
 ### 0.4 “流水线”的定义
 
-本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 组合成 prepared RST bundle，再由 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) 提取为 `manual-ir/v1`，最后投影到 Web、PDF、IDML 或 Word。它不是“根据文字长得像什么来猜组件”，也不是本 PR 新增的 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
+本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web_document_source.py`](../../../tools/web_document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
 ```text
 phase2 / 模板
     → prepared RST bundle（数据已替换、语言与页面顺序已确定）
-    → RST extractor（识别结构标识）
-    → manual-ir/v1（有类型、有来源、有哈希）
-    → renderer projection（Web / PDF / IDML / Word）
+    ├→ Web source adapter（识别结构标识与 ComponentSpec，一次读取）
+    │   → manual-ir/v2 / whole-document-components/v1
+    │   → 冻结 registry / theme / target contract / Overview instance / assets
+    │   → Web replay（不重读 RST/CSV，不重跑旧 DOM projector）
+    └→ PDF / IDML / Word adapters（消费同一 ComponentSpec 语义合同；各自拥有几何）
+
+历史 manual-ir/v1 与 whole-document-flow/v1 只走显式兼容读取，不是新包的生产格式。
 ```
 
 “流水线”一栏表示：该语义由源表字段、模板宏、显式 RST 容器、页面清单或页面角色共同产生，普通作者不能只写一段同名文案就触发它。例如正文出现 `Warranty Period` 不会自动变成质保年限卡；模板必须显式写出 `warranty-section warranty-years`。
@@ -331,6 +336,7 @@ minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 操作面板 | `HB-SPECIAL-OPERATION` | 流水线 | `.hb-operation-figure` | `HBOperationPanel` | `oppanel` + `HB Operation Row Label`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
+| 参考整图 | `HB-SPECIAL-REFERENCE-FIGURE` | 流水线 | `.hb-reference-figure` | 通用图片投影 | `referencefigure`（可移动文本框） | 经 HTML 转换 | **aligned** |
 
 ### 质保与页面
 
@@ -621,9 +627,15 @@ FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
-产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。Web adapter 支持 `annotated-live` 和 `approved-composite`：批准图匹配时显示完整图文资产，无匹配时保留完整可搜索 HTML/SVG fallback；LaTeX、IDML、Word 分别消费自己的 projection。生产投影必须解析一个版本化 `instance_id`；旧 target-local 默认实例已删除，缺失或未知实例会失败。
+产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。新整本 IR 按实际 `(model, region)` 解析一次实例，并把实例与 SHA-256 冻结到 metadata；冷重放不再打开实例注册表。Web adapter 支持 `annotated-live` 和 `approved-composite`，但前者只是语义 fallback：对声明 finished-figure coverage 的槽位，无字底图加 HTML/SVG 文字或引线仍是 `editable-fallback` 债务，只有 locale-matched `finished-panel` / `approved-composite` 能通过最终准入。LaTeX、IDML、Word 分别消费自己的 projection；缺失、未知、目标不匹配或 hash 被篡改的实例都会失败。
 
-`web_manual.json` 里登记的目标（当前 `JE-1000F / US`）会把其中部分图替换为审批过的 PDF 派生图，标题与说明仍保持可搜索的活 HTML。
+`web_manual.json` 是分层入口：shared base 只放跨目标语义，skeleton profile 放同一
+产品骨架复用的 Overview / Operation / App / Charging 规则，target overlay 只选骨架、
+授权能力并声明差异与覆盖闸门。`JE-1000F / US` 与 `JE-1000F / EU` 共享同一
+`portable-power-station-v1` 骨架，但只有自己的目标 overlay 可以启用审批图，不能从
+全局 `instance_id` 或另一个目标借用几何。EU 五语的 11 个 Overview / Operation /
+Charging 槽位只接受含完整文字与引线的成品整图；无字底图加 HTML 文字/引线是已登记
+且已封口的历史债务，不是允许回退的最终载体。
 
 ---
 
@@ -787,7 +799,8 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → table.manual-callout-table 等
 
 (3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web_presentation.py）
-           按 web_manual.json 的 source_patterns 认页（按页名 pattern，如
+           先按实际 model/region 解析 shared base → skeleton → target overlay，
+           再按 resolved contract 的 source_patterns 认页（按页名 pattern，如
            spec_* / troubleshooting_* / *11_warranty，不猜内容），
            把 docutils 结构升级为 figure.hb-*-composition 骨架；
            结构不满足契约 → WebPresentationError，fail-closed
@@ -796,7 +809,11 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → furo Sphinx 站点 + web_manual.css = 最终版面
 ```
 
-两点边界：figure 升级只对 [`web_manual.json`](web_manual.json) `figure_targets` 里登记的 `(model, region)`（当前 JE-1000F / US）生效，未登记目标保持 docutils 原样结构、只有基础排版；Web publish 的入口就是 `AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md …`（见 [`user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)）。
+两点边界：figure 升级只对目标 overlay 明确授权的 `(model, region)`（当前
+JE-1000F / US 与 EU）生效，未授权目标保持中立 flow / 基础排版；生产整本 IR 冻结
+该目标已经解析完成的合同与 layer ID，冷重放不重读 layer registry。Web publish 的
+入口仍是 `AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md …`（见
+[`user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)）。
 
 存量转换链（本分支）只有两层：
 

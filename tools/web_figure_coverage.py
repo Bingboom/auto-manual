@@ -22,6 +22,7 @@ WEB_FIGURE_STATUSES = (
     "missing",
 )
 _FIGURE_SECTIONS = ("overview", "operation", "charging")
+_FINAL_FIGURE_STATUSES = frozenset({"finished-panel", "approved-composite"})
 _STAGED_DIGEST_SUFFIX_RE = re.compile(r"_[0-9a-f]{12}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
@@ -225,6 +226,189 @@ def validate_web_figure_coverage(payload: dict[str, Any]) -> None:
         raise ValueError("Web figure coverage section summary does not match slots")
 
 
+def _target_requirement_matches(
+    requirement: dict[str, Any],
+    *,
+    model: str,
+    region: str,
+) -> bool:
+    target = requirement.get("target")
+    if not isinstance(target, dict):
+        raise ValueError("Web figure coverage requirement target must be an object")
+    required_model = str(target.get("model") or "").strip()
+    required_region = str(target.get("region") or "").strip()
+    if not required_model or not required_region:
+        raise ValueError("Web figure coverage requirement target is incomplete")
+    return (
+        required_model.casefold() == model.casefold()
+        and required_region.casefold() == region.casefold()
+    )
+
+
+def enforce_required_web_figure_coverage(
+    ir: ManualIR,
+    coverage: dict[str, Any],
+) -> None:
+    """Fail when a contract-governed target retains required figure debt."""
+
+    if (
+        str(coverage.get("model") or "").casefold() != ir.model.casefold()
+        or str(coverage.get("region") or "").casefold() != ir.region.casefold()
+    ):
+        raise ValueError("Web figure coverage target does not match document target")
+    contract = ir.metadata.get("web_contract")
+    if not isinstance(contract, dict):
+        raise ValueError("Web figure coverage requirements need a presentation contract")
+    policy = contract.get("figure_coverage") or {}
+    if not isinstance(policy, dict):
+        raise ValueError("Web figure coverage policy must be an object")
+    requirements = policy.get("requirements") or []
+    if not isinstance(requirements, list):
+        raise ValueError("Web figure coverage requirements must be a list")
+
+    matching: list[dict[str, Any]] = []
+    for requirement in requirements:
+        if not isinstance(requirement, dict):
+            raise ValueError("Web figure coverage requirement must be an object")
+        if _target_requirement_matches(
+            requirement,
+            model=ir.model,
+            region=ir.region,
+        ):
+            matching.append(requirement)
+    if len(matching) > 1:
+        raise ValueError(
+            f"multiple Web figure coverage requirements match {ir.model}/{ir.region}"
+        )
+    if not matching:
+        return
+
+    requirement = matching[0]
+    locales = requirement.get("locales")
+    required_slots = requirement.get("required_slots")
+    allowed_statuses = requirement.get("allowed_statuses")
+    if not isinstance(locales, list) or not locales:
+        raise ValueError("Web figure coverage requirement locales must be non-empty")
+    if not isinstance(required_slots, list) or not required_slots:
+        raise ValueError("Web figure coverage required_slots must be non-empty")
+    if not isinstance(allowed_statuses, list) or not allowed_statuses:
+        raise ValueError("Web figure coverage allowed_statuses must be non-empty")
+
+    normalized_locales = [str(value).strip().casefold() for value in locales]
+    normalized_slots = [str(value).strip() for value in required_slots]
+    normalized_statuses = {str(value).strip() for value in allowed_statuses}
+    if (
+        any(not value for value in normalized_locales)
+        or len(set(normalized_locales)) != len(normalized_locales)
+    ):
+        raise ValueError("Web figure coverage requirement locales are invalid or duplicate")
+    if (
+        any(not value for value in normalized_slots)
+        or len(set(normalized_slots)) != len(normalized_slots)
+    ):
+        raise ValueError("Web figure coverage required_slots are invalid or duplicate")
+    if normalized_statuses != _FINAL_FIGURE_STATUSES:
+        raise ValueError(
+            "Web figure coverage allowed_statuses must contain only finished artwork"
+        )
+
+    raw_debt = requirement.get("known_debt", [])
+    if not isinstance(raw_debt, list):
+        raise ValueError("Web figure coverage known_debt must be a list")
+    debt: dict[tuple[str, str], str] = {}
+    for index, entry in enumerate(raw_debt):
+        if not isinstance(entry, dict):
+            raise ValueError(f"Web figure coverage known_debt {index} must be an object")
+        locale = str(entry.get("locale") or "").strip().casefold()
+        slot_id = str(entry.get("slot_id") or "").strip()
+        status = str(entry.get("status") or "").strip()
+        identity = (locale, slot_id)
+        if (
+            not locale
+            or not slot_id
+            or status not in {"editable-fallback", "missing"}
+        ):
+            raise ValueError(f"Web figure coverage known_debt {index} is invalid")
+        if locale not in normalized_locales or slot_id not in normalized_slots:
+            raise ValueError(
+                f"Web figure coverage known_debt {locale}/{slot_id} is outside policy"
+            )
+        if identity in debt:
+            raise ValueError(
+                f"duplicate Web figure coverage debt entry: {locale}/{slot_id}"
+            )
+        debt[identity] = status
+
+    declared_languages = ir.metadata.get("declared_languages")
+    if isinstance(declared_languages, list) and declared_languages:
+        active_languages = {
+            str(value).strip().casefold()
+            for value in declared_languages
+            if str(value).strip()
+        }
+        normalized_locales = [
+            locale for locale in normalized_locales if locale in active_languages
+        ]
+    elif getattr(ir, "language", ""):
+        normalized_locales = [
+            locale
+            for locale in normalized_locales
+            if locale == ir.language.strip().casefold()
+        ]
+    if not normalized_locales:
+        return
+
+    failures: list[str] = []
+    stale_debt: list[str] = []
+    slots = coverage.get("slots")
+    if not isinstance(slots, list):
+        raise ValueError("Web figure coverage slots must be a list")
+    for locale in normalized_locales:
+        for required_slot in normalized_slots:
+            matches = [
+                slot
+                for slot in slots
+                if isinstance(slot, dict)
+                and str(slot.get("locale") or "").casefold() == locale
+                and (
+                    str(slot.get("slot_id") or "") == required_slot
+                    or str(slot.get("slot_id") or "").startswith(
+                        f"{required_slot}#"
+                    )
+                )
+            ]
+            if len(matches) != 1:
+                failures.append(f"{locale}/{required_slot}=count:{len(matches)}")
+                continue
+            status = str(matches[0].get("status") or "")
+            registered = debt.get((locale, required_slot))
+            if status in normalized_statuses:
+                if registered is not None:
+                    stale_debt.append(
+                        f"{locale}/{required_slot}=registered:{registered},current:{status}"
+                    )
+                continue
+            if registered != status:
+                suffix = (
+                    f" (registered:{registered})"
+                    if registered is not None
+                    else " (unregistered debt)"
+                )
+                failures.append(
+                    f"{locale}/{required_slot}={status or 'missing'}{suffix}"
+                )
+    if stale_debt:
+        raise ValueError(
+            f"stale debt baseline for {ir.model}/{ir.region}: "
+            + ", ".join(stale_debt)
+        )
+    if failures:
+        raise ValueError(
+            f"required Web figure coverage failed for {ir.model}/{ir.region}: "
+            + ", ".join(failures)
+        )
+
+
 def build_web_figure_coverage(
     ir: ManualIR,
     rendered_fragments: Sequence[str],
@@ -243,6 +427,11 @@ def build_web_figure_coverage(
 
     slots: list[dict[str, Any]] = []
     for page, fragment in zip(ir.pages, rendered_fragments, strict=True):
+        locale = str(
+            getattr(page, "language", None)
+            or getattr(ir, "language", "")
+            or "und"
+        )
         section = _figure_section(
             page.page_id,
             contract,
@@ -261,6 +450,7 @@ def build_web_figure_coverage(
             replace_key = str(figure.get("data-web-replace-key") or "").strip()
             slot: dict[str, Any] = {
                 "page_id": page.page_id,
+                "locale": locale,
                 "section": section,
                 "slot_id": _unique_slot_id(replace_key, observed_ids),
                 "status": "editable-fallback",
@@ -284,6 +474,7 @@ def build_web_figure_coverage(
             slots.append(
                 {
                     "page_id": page.page_id,
+                    "locale": locale,
                     "section": section,
                     "slot_id": _unique_slot_id(
                         f"semantic.{figure_class.removeprefix('hb-')}", observed_ids
@@ -303,6 +494,7 @@ def build_web_figure_coverage(
                 slots.append(
                     {
                         "page_id": page.page_id,
+                        "locale": locale,
                         "section": section,
                         "slot_id": _unique_slot_id(slot_id, observed_ids),
                         "status": "finished-panel",
@@ -316,6 +508,7 @@ def build_web_figure_coverage(
             slots.append(
                 {
                     "page_id": page.page_id,
+                    "locale": locale,
                     "section": section,
                     "slot_id": _unique_slot_id(slot_id, observed_ids),
                     "status": "missing",
@@ -340,6 +533,7 @@ def attach_web_figure_coverage(
 ) -> ManualIR:
     """Return the same content IR with a validated, read-only coverage report."""
     coverage = build_web_figure_coverage(ir, rendered_fragments)
+    enforce_required_web_figure_coverage(ir, coverage)
     return replace(ir, metadata={**ir.metadata, "web_figure_coverage": coverage})
 
 
@@ -348,5 +542,6 @@ __all__ = (
     "WEB_FIGURE_STATUSES",
     "attach_web_figure_coverage",
     "build_web_figure_coverage",
+    "enforce_required_web_figure_coverage",
     "validate_web_figure_coverage",
 )

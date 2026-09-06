@@ -5,6 +5,7 @@ import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from unittest.mock import patch
 
 from bs4 import BeautifulSoup, Tag
 from PIL import Image
@@ -14,6 +15,7 @@ from tools.web_callout_ir import render_callout_ir
 from tools.web_composite_manifest import load_web_composite_manifest
 from tools.web_composite_presentation import WebCompositeContext
 from tools.web_presentation import (
+    _transform_product_overview,
     WebPresentationError,
     protect_web_callouts_for_pandoc,
     protect_web_figures_for_pandoc,
@@ -71,6 +73,36 @@ def _web_fragment(
 
 
 class WebPresentationTests(unittest.TestCase):
+    def test_overview_always_resolves_geometry_from_the_actual_target(self) -> None:
+        context = WebCompositeContext(
+            manifest=None,
+            model="JE-1000F",
+            region="US",
+            language="en",
+            error_type=WebPresentationError,
+        )
+        stale_global_override = {
+            "product_overview": {"instance_id": "je1000f-eu-v1"}
+        }
+        resolved = {"instance_id": "je1000f-us-v1"}
+
+        with (
+            patch(
+                "tools.web_presentation.resolve_overview_instance",
+                return_value=resolved,
+            ) as resolver,
+            patch("tools.web_presentation.transform_overview") as transform,
+        ):
+            _transform_product_overview(
+                BeautifulSoup("<section></section>", "html.parser"),
+                source_path=Path("page/03_product_overview_placeholder.rst"),
+                contract=stale_global_override,
+                composites=context,
+            )
+
+        resolver.assert_called_once_with(model="JE-1000F", region="US")
+        self.assertIs(resolved, transform.call_args.kwargs["instance"])
+
     def test_document_language_selects_composite_without_filename_prefix(self) -> None:
         context = WebCompositeContext(
             manifest=None,

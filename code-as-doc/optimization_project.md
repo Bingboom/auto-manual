@@ -1,19 +1,33 @@
 # Optimization Project
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
-acceptance](dev/ir_document_closeout.md). Cuts 1–4 now give new whole-document
+acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document
 Web packages a renderer-neutral `manual-ir/v2` flow/rich-text projection and
-embed fourteen registered ComponentSpec types in document order. Operation, hybrid
-LCD Mode, Warranty Lead/Section/Years, Callout, Spec, FCC, Inbox and Overview
-plus LCD Icons, Troubleshooting, signal-word Symbols and symbol-icon panels
-replay from the same semantic instances while historical `manual-ir/v1` and
-cut-1 replay remain supported. The remaining cuts add App/reference figures, split presentation overlays
-and enforce anti-copy gates; do not describe the current fourteen-type embedding as
-full cross-renderer convergence. See the [neutral-flow
+embed sixteen registered ComponentSpec types in document order. Operation,
+hybrid LCD Mode, Warranty Lead/Section/Years, Callout, Spec, FCC, Inbox,
+Overview, LCD Icons, Troubleshooting, both Symbols tables, App, and governed
+Reference Figures replay from the same semantic instances while historical
+`manual-ir/v1` and cut-1 replay remain supported. Cut 5B is complete:
+JE-1000F/EU EN/FR/ES/DE/IT Overview, Operation and Charging now use 55/55
+locale-matched, hash-registered full panels extracted from the operator-supplied
+source PDF, and a target contract rejects fallback or missing required slots.
+Cut 6 splits Web presentation into a shared base, skeleton profiles, and small
+target overlays, while whole-document IR freezes only the resolved target
+contract. Cut 7 is complete: new figure targets must declare a complete
+finished-art policy; a non-increasing baseline contains only explicitly known
+US/KR debt; shared Web/IR Python and CSS reject model literals; and new
+source-normalized v2 replay consumes frozen component registry, theme, Overview
+instance, and ComponentSpecs without the old DOM projector. Four representative
+packages projected 401 embedded instances through all four registered adapters
+(1604 bindings). This proves the shared semantic/adapter entry contract, not
+pixel or pagination identity between responsive Web and fixed-page outputs.
+See the [neutral-flow
 plan](dev/manual_ir_v2_neutral_flow_plan.md), [embedded-component
 record](dev/manual_ir_embedded_components_plan.md), [cut-3
 record](dev/manual_ir_operation_warranty_lcd_plan.md), and [cut-4
-record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md).
+record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md), and [cut-5
+record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence is
+recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
 Updated: 2026-09-05
@@ -220,6 +234,7 @@ Keep this section short and current.
 7. Milestone J's asset loop has deterministic AI intake, a verified first live archive in the three new `04_资产*` tables, and a post-review bundle finalizer, but remains open on four concrete legs: syncing the Base registry mirror through `sync-data`, migrating current template paths to `asset:`, explicit IDML consumption from the finalized bundle root, and release-manifest asset lineage. Track the exact status in [`next_optimization_checklist.md`](next_optimization_checklist.md) §6h and [`dev/asset_ai_master_intake_plan.md`](dev/asset_ai_master_intake_plan.md).
 8. Enterprise ops gaps (2026-07-17 review): CI never installs from `requirements.lock` (loose ranges only), TeXLive is reinstalled unpinned on every queue run, there is no point-in-time backup/restore of the Feishu phase2 source tables, queue-processing failures notify no one (only the sentinel crons open Issues), there is no `CODEOWNERS` / secret scanning / dependabot, and the InDesign finalize leg runs on one Mac with no version lock. Tracked as Workstream T.
 9. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
+10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
 
 ## 6. Active Workstreams
 

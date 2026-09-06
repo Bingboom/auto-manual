@@ -120,6 +120,15 @@ def validate_document(ir: ManualIR) -> None:
         )
     ):
         raise ValueError("invalid document page slots")
+    component_registry = ir.metadata.get("component_registry")
+    if not isinstance(component_registry, dict):
+        component_registry = None
+    overview_instance = ir.metadata.get("overview_instance")
+    overview_instance_id = (
+        str(overview_instance.get("instance_id") or "")
+        if isinstance(overview_instance, dict)
+        else ""
+    )
     for page in ir.pages:
         if not page.blocks:
             raise ValueError(f"{page.page_id}: empty document page")
@@ -143,9 +152,31 @@ def validate_document(ir: ManualIR) -> None:
                     raise ValueError(
                         f"{location}: expected {expected_flow_version}"
                     )
-                flow_issues = validate_flow_node(block.payload)
+                flow_issues = validate_flow_node(
+                    block.payload,
+                    component_registry=component_registry,
+                )
                 if flow_issues:
                     raise ValueError(
                         f"{location}: invalid flow block: "
                         + "; ".join(flow_issues)
                     )
+                if overview_instance_id:
+                    from tools.component_specs.overview import (
+                        COMPONENT_ID as OVERVIEW_COMPONENT_ID,
+                    )
+                    from tools.manual_ir.components import component_specs_in_flow
+
+                    for spec in component_specs_in_flow(
+                        (block.payload,),
+                        component_registry=component_registry,
+                    ):
+                        if (
+                            spec.component_id == OVERVIEW_COMPONENT_ID
+                            and str(spec.slot("geometry_ref").content)
+                            != overview_instance_id
+                        ):
+                            raise ValueError(
+                                f"{location}: Overview geometry_ref does not match "
+                                "the frozen target instance"
+                            )

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import fnmatch
-import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -11,6 +10,10 @@ from typing import Any
 from bs4 import BeautifulSoup, Tag
 
 from tools.utils.path_utils import PathSegments
+from tools.web_composite_hashing import (
+    reference_source_fragment_sha256,
+    semantic_source_fragment_sha256,
+)
 from tools.web_composite_manifest import (
     WebCompositeEntry,
     WebCompositeManifest,
@@ -57,18 +60,6 @@ def supports_preface_contract(source_path: Path, contract: dict[str, Any]) -> bo
     return _supports_target_selectors(source_path, selectors)
 
 
-def _fragment_sha256(*values: object) -> str:
-    payload = "\n".join(str(value) for value in values)
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
-
-
-def _normalized_fragment(fragment: Tag, *, image_key: str) -> str:
-    normalized = BeautifulSoup(str(fragment), "html.parser")
-    for image in normalized.find_all("img"):
-        image["src"] = f"asset:{image_key}"
-    return str(normalized)
-
-
 def _composite_stage(soup: BeautifulSoup, artwork_path: str) -> Tag:
     stage = soup.new_tag(
         "div",
@@ -98,7 +89,9 @@ class WebCompositeContext:
     language: str | None
     error_type: type[Exception]
 
-    def _locale(self, component: dict[str, Any], source_path: Path) -> str | None:
+    def resolve_locale(
+        self, component: dict[str, Any], source_path: Path
+    ) -> str | None:
         if str(component.get("composite_locale") or "").strip().casefold() == "shared":
             return "shared"
         mappings = [
@@ -137,13 +130,18 @@ class WebCompositeContext:
             )
         return matches[0] if matches else None
 
-    def _entry(
+    def _locale(self, component: dict[str, Any], source_path: Path) -> str | None:
+        """Compatibility alias retained until the final legacy-path cut."""
+
+        return self.resolve_locale(component, source_path)
+
+    def resolve_entry(
         self,
         component: dict[str, Any],
         source_path: Path,
     ) -> WebCompositeEntry | None:
         key = str(component.get("web_replace_key") or "").strip()
-        locale = self._locale(component, source_path)
+        locale = self.resolve_locale(component, source_path)
         if not key or not locale or self.manifest is None:
             return None
         try:
@@ -155,6 +153,13 @@ class WebCompositeContext:
             )
         except WebCompositeManifestError as exc:
             raise self.error_type(str(exc)) from exc
+
+    def _entry(
+        self, component: dict[str, Any], source_path: Path
+    ) -> WebCompositeEntry | None:
+        """Compatibility alias retained until the final legacy-path cut."""
+
+        return self.resolve_entry(component, source_path)
 
     def _append(
         self,
@@ -169,7 +174,7 @@ class WebCompositeContext:
         if key:
             figure["data-web-replace-key"] = key
         figure["data-source-fragment-sha256"] = source_fragment_sha256
-        entry = self._entry(component, source_path)
+        entry = self.resolve_entry(component, source_path)
         if entry is not None and entry.source_fragment_sha256 != source_fragment_sha256:
             raise self.error_type(
                 f"{source_path}: Web composite source changed for {key!r}; "
@@ -197,8 +202,8 @@ class WebCompositeContext:
             figure=figure,
             component=component,
             source_path=source_path,
-            source_fragment_sha256=_fragment_sha256(
-                _normalized_fragment(semantic, image_key=image_key)
+            source_fragment_sha256=semantic_source_fragment_sha256(
+                semantic, image_key=image_key
             ),
         )
 
@@ -212,21 +217,12 @@ class WebCompositeContext:
         source_path: Path,
         caption_labels: list[str],
     ) -> None:
-        if self._locale(component, source_path) == "shared":
-            source_hash = _fragment_sha256(
-                str(component["id"]),
-                str(component["image_key"]),
-                bool(component.get("captions_embedded")),
-                int(component.get("capture_following_lines") or 0),
-            )
-        else:
-            source_hash = _fragment_sha256(
-                _normalized_fragment(
-                    semantic,
-                    image_key=str(component["image_key"]),
-                ),
-                "\n".join(caption_labels),
-            )
+        source_hash = reference_source_fragment_sha256(
+            component=component,
+            semantic=semantic,
+            caption_labels=caption_labels,
+            composite_locale=self.resolve_locale(component, source_path),
+        )
         self._append(
             soup=soup,
             figure=figure,
@@ -236,4 +232,8 @@ class WebCompositeContext:
         )
 
 
-__all__ = ("WebCompositeContext", "supports_figure_contract", "supports_preface_contract")
+__all__ = (
+    "WebCompositeContext",
+    "supports_figure_contract",
+    "supports_preface_contract",
+)

@@ -25,7 +25,9 @@ from .overview_adapters import (
 )
 from .overview_instance import (
     load_overview_instance_registry,
+    overview_instance_sha256,
     resolve_overview_instance,
+    validate_resolved_overview_instance,
 )
 from .registry import (
     adapter_binding,
@@ -59,6 +61,7 @@ __all__ = [
     "load_manual_theme",
     "load_overview_instance_registry",
     "overview_component_spec",
+    "overview_instance_sha256",
     "overview_spec_from_blocks",
     "require_valid_component_spec",
     "resolve_overview_instance",
@@ -66,6 +69,7 @@ __all__ = [
     "validate_component_registry",
     "validate_component_spec",
     "validate_manual_theme",
+    "validate_resolved_overview_instance",
     "web_fcc_projection",
     "web_inbox_projection",
     "web_overview_projection",
