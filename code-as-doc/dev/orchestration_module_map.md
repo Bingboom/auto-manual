@@ -140,7 +140,10 @@ empty-cell policies are recorded in
 - [`tools/build_docs_html.py`](../../tools/build_docs_html.py)
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
-  - web-profile figure/table composition and Pandoc-safe semantic restoration
+  - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/web_presentation_contract.py`](../../tools/web_presentation_contract.py)
+  - fail-closed resolver for `shared base → skeleton profile → target overlay`
+  - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
   - whole-document ownership pass for the fourteen registered component types;
     claims shared special sections and native table components once and preserves flow order
@@ -538,7 +541,10 @@ Keep future extraction notes here once those boundaries stabilize again.
 
 `word_bundle_html` selects ordered pages once; `web_document_source` owns the
 RST/HTML adapter, target illustration bindings, component ownership and asset
-packaging, then calls `manual_ir.builder.build_manual_ir_from_source`.
+packaging, resolves the actual `(model, region)` Web presentation stack, then
+calls `manual_ir.builder.build_manual_ir_from_source`. The IR freezes that
+resolved target-only contract and its selected layer IDs; replay never reopens
+the shared/skeleton/overlay files.
 `manual_ir.document`, `manual_ir.flow` and `manual_ir.components` own finite
 flow/component validation. `web_document_ir` consumes the complete IR and
 dispatches the five embedded registered families through

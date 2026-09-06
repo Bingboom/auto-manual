@@ -28,7 +28,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 
 ### 0.1 哪个文件决定什么
 
-“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面六层各守边界：
+“一份文档”不等于把机器合同改写成散文。可持续维护依赖下面七层各守边界：
 
 | 层 | 权威来源 | 决定什么 | 不应该放什么 |
 |---|---|---|---|
@@ -36,6 +36,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 | 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 32 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
 | 组件实例合同 | [`component_registry.yaml`](component_registry.yaml) + [`tools/component_specs/`](../../../tools/component_specs/) | 可跨 renderer 传递的 ComponentSpec 类型、variant、slot、asset role、token role 与 adapter key | CSS/TeX/XML/DOCX 几何实现、逐页坐标 |
 | 主题投影合同 | [`manual_theme.yaml`](manual_theme.yaml) | 稳定 `theme_id`、组件视觉角色及四端具体 binding | 单位值、目标/语言几何、页面实例坐标 |
+| Web presentation stack | [`web_manual.json`](web_manual.json) + [`web_presentation/`](web_presentation/) | shared base、产品 skeleton、目标 overlay、Web 图能力授权与必需槽位 | 可见文案、跨 renderer 语义、另一个产品的整套复制配置 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
 | 渲染实现 | Web CSS、LaTeX 模块、IDML renderer、Word remapper | 把合同投影成目标格式 | 自创未登记语义或渲染器本地可见常量 |
 
@@ -622,7 +623,13 @@ FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍
 
 产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。Web adapter 支持 `annotated-live` 和 `approved-composite`：批准图匹配时显示完整图文资产，无匹配时保留完整可搜索 HTML/SVG fallback；LaTeX、IDML、Word 分别消费自己的 projection。生产投影必须解析一个版本化 `instance_id`；旧 target-local 默认实例已删除，缺失或未知实例会失败。
 
-`web_manual.json` 里登记的目标（当前 `JE-1000F / US`）会把其中部分图替换为审批过的 PDF 派生图，标题与说明仍保持可搜索的活 HTML。
+`web_manual.json` 是分层入口：shared base 只放跨目标语义，skeleton profile 放同一
+产品骨架复用的 Overview / Operation / App / Charging 规则，target overlay 只选骨架、
+授权能力并声明差异与覆盖闸门。`JE-1000F / US` 与 `JE-1000F / EU` 共享同一
+`portable-power-station-v1` 骨架，但只有自己的目标 overlay 可以启用审批图，不能从
+全局 `instance_id` 或另一个目标借用几何。EU 五语的 11 个 Overview / Operation /
+Charging 槽位只接受含完整文字与引线的成品整图；无字底图加 HTML 文字/引线是已登记
+且已封口的历史债务，不是允许回退的最终载体。
 
 ---
 
@@ -786,7 +793,8 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → table.manual-callout-table 等
 
 (3) 升级   Web 档案（AUTO_MANUAL_PRESENTATION_PROFILE=web → tools/web_presentation.py）
-           按 web_manual.json 的 source_patterns 认页（按页名 pattern，如
+           先按实际 model/region 解析 shared base → skeleton → target overlay，
+           再按 resolved contract 的 source_patterns 认页（按页名 pattern，如
            spec_* / troubleshooting_* / *11_warranty，不猜内容），
            把 docutils 结构升级为 figure.hb-*-composition 骨架；
            结构不满足契约 → WebPresentationError，fail-closed
@@ -795,7 +803,11 @@ reference-layout plan 或[执行状态](../../../code-as-doc/dev/style_debt_exec
            → furo Sphinx 站点 + web_manual.css = 最终版面
 ```
 
-两点边界：figure 升级只对 [`web_manual.json`](web_manual.json) `figure_targets` 里登记的 `(model, region)`（当前 JE-1000F / US）生效，未登记目标保持 docutils 原样结构、只有基础排版；Web publish 的入口就是 `AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md …`（见 [`user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)）。
+两点边界：figure 升级只对目标 overlay 明确授权的 `(model, region)`（当前
+JE-1000F / US 与 EU）生效，未授权目标保持中立 flow / 基础排版；生产整本 IR 冻结
+该目标已经解析完成的合同与 layer ID，冷重放不重读 layer registry。Web publish 的
+入口仍是 `AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md …`（见
+[`user-guide/hello_auto-doc.md`](../../../user-guide/hello_auto-doc.md)）。
 
 存量转换链（本分支）只有两层：
 

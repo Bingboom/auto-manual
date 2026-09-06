@@ -2082,3 +2082,37 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
 - Validation passed 41 focused and 3785 full-suite tests (22 skipped), full
   Ruff, 62 hotspot guardrails, 1714 documentation links, and the registry audit
   (`162` rows, zero errors; 24 pre-existing source-only/debt warnings).
+
+
+## 2026-09-05: Target-layered Web presentation contracts (cut 6)
+
+- Split the monolithic Web presentation file into one shared semantic base,
+  two skeleton profiles, and six small target overlays. Mappings deep-merge,
+  stable-ID lists permit item-level override, ordinary lists replace as a
+  whole, and malformed/ambiguous/escaping layers fail closed.
+- Whole-document assembly now resolves the contract for the actual
+  `(model, region)` once and freezes only that result plus its base/profile/
+  overlay IDs into IR. Source-free replay consumes the frozen contract and
+  packaged assets; it does not reopen the overlay directory. Product Overview
+  always resolves its geometry by the current target instead of a global
+  `instance_id`.
+- Real cold replay with `.rst/.csv` reads forbidden passed for JE-1000F/US
+  (17 pages), JE-1000F/EU (76), JE-3000C/KR (16), and JBP-2000B/JP (12). On the
+  same US/EU IR, the pre-split monolith and resolved target contract produced
+  byte-identical fragments across 17/17 and 76/76 pages.
+- EU retained 55 localized `approved-composite` panels plus five intentionally
+  editable LCD Mode components; Italian remained 11/11 full panels. RTD-
+  equivalent Sphinx passed with warnings as errors, and IT AC Output at 1280
+  px and 390 px loaded the 1264 x 896 localized panel, hid the HTML fallback,
+  and had zero horizontal overflow.
+- The broader asset debt is now recorded instead of being mistaken for a
+  presentation-layer success: US EN still has three Charging
+  `editable-fallback` slots, and KR has nine missing Overview/Operation/Charging
+  panels. Cut 7 must ratchet these counts and reject new figure-capable targets
+  that omit an all-full-panel coverage policy. Only locale-matched
+  `finished-panel` / `approved-composite` artwork can close those rows; HTML
+  text/leader redraw cannot. LCD Mode remains outside this debt.
+- Validation passed 95 layering/IR/Overview tests, 232 Web + ComponentSpec
+  tests, and 3798 full-suite tests (22 skipped), plus full Ruff, mypy
+  `tools/utils`, 62 hotspot guardrails, 1716 documentation links, and the
+  fixture-backed JE-1000F/US check.

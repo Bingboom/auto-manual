@@ -731,8 +731,12 @@ Web Publish / Read the Docs note:
   fallback and admit an exact-locale or explicitly shared approved composite
   only when its packaged content hash and source-fragment hash still match.
   Missing approved artwork never borrows another locale or target. Word keeps
-  its existing whole-document conversion path; presentation-overlay splitting
-  and renderer-entry migration are later cuts. See
+  its existing whole-document conversion path. The Web presentation contract is
+  now resolved as `shared base → skeleton profile → target overlay`; mappings
+  merge recursively, stable-`id` lists merge item-by-item, and ordinary lists
+  replace. The resolved target-only contract and layer IDs are frozen in the
+  whole-document IR, so cold replay does not reopen the layer registry. Renderer-
+  entry migration remains a later cut. See
   [the bounded execution record](dev/ir_document_closeout.md),
   [v2 plan](dev/manual_ir_v2_neutral_flow_plan.md), and
   [embedded-component record](dev/manual_ir_embedded_components_plan.md),
@@ -745,8 +749,8 @@ Web Publish / Read the Docs note:
   split images; surrounding structured copy is retained. Wrong target, missing
   images, changed bytes, repeated or unused bindings fail the build. These Web
   variants preserve embedded text and never overwrite IDML textless assets.
-  JE-1000F/EU additionally declares a required-slot policy in the shared Web
-  contract: all 11 Overview/Operation/Charging slots in each of
+  JE-1000F/EU additionally declares a required-slot policy in its target Web
+  overlay: all 11 Overview/Operation/Charging slots in each of
   EN/FR/ES/DE/IT must resolve to a locale-matched approved full panel. Any
   `editable-fallback`, `missing`, duplicate or absent required slot stops IR
   assembly/replay. Its 55 crop/page/content/source-fragment pins are recorded

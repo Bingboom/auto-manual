@@ -1,0 +1,109 @@
+{
+  "schema_version": "web-manual-target-overlays/v1",
+  "overlays": [
+    {
+      "overlay_id": "je1000f-us-v1",
+      "target": {
+        "model": "JE-1000F",
+        "region": "US"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": true,
+        "legacy_target_components": true
+      },
+      "contract_overrides": {}
+    },
+    {
+      "overlay_id": "je1000f-eu-v1",
+      "target": {
+        "model": "JE-1000F",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": true,
+        "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "locales": [
+          "en",
+          "fr",
+          "es",
+          "de",
+          "it"
+        ],
+        "required_slots": [
+          "product-overview.front",
+          "product-overview.right",
+          "operation.main-power",
+          "operation.ac-output",
+          "operation.dc-usb-output",
+          "operation.energy-saving",
+          "operation.led-light",
+          "reference.charging-ac-wall",
+          "reference.charging-solar-direct",
+          "reference.charging-solar-adapter",
+          "reference.charging-car"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
+      },
+      "contract_overrides": {}
+    },
+    {
+      "overlay_id": "je3000c-kr-v1",
+      "target": {
+        "model": "JE-3000C",
+        "region": "KR"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
+    },
+    {
+      "overlay_id": "jbp2000b-us-v1",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "US"
+      },
+      "skeleton_profile": "battery-pack-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
+    },
+    {
+      "overlay_id": "jbp2000b-eu-v1",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "EU"
+      },
+      "skeleton_profile": "battery-pack-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
+    },
+    {
+      "overlay_id": "jbp2000b-jp-v1",
+      "target": {
+        "model": "JBP-2000B",
+        "region": "JP"
+      },
+      "skeleton_profile": "battery-pack-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
+    }
+  ]
+}

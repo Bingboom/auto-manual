@@ -1,0 +1,119 @@
+{
+  "schema_version": "web-manual-shared-base/v1",
+  "base_id": "shared-manual-semantics-v1",
+  "contract": {
+    "profiles": {
+      "document": {
+        "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+      },
+      "web": {
+        "entry_source_pattern": "00_preface*",
+        "excluded_source_patterns": [
+          "cover*",
+          "00_toc*",
+          "99_back_cover*"
+        ]
+      }
+    },
+    "figure_coverage": {
+      "requirements": []
+    },
+    "preface": {
+      "source_patterns": [
+        "00_preface*"
+      ],
+      "targets": []
+    },
+    "fcc": {
+      "source_patterns": [
+        "*01_fcc"
+      ],
+      "mark_asset_ref": "mark/fcc",
+      "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+      "right_column_markers": [
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "en",
+          "marker": "If this equipment does cause harmful interference"
+        },
+        {
+          "source_patterns": [
+            "p22_01_fcc"
+          ],
+          "language": "fr",
+          "marker": "Si cet équipement trouble la réception"
+        },
+        {
+          "source_patterns": [
+            "p38_01_fcc"
+          ],
+          "language": "es",
+          "marker": "Si este aparato causa interferencias dañinas"
+        },
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "pt-BR",
+          "marker": "Se este equipamento causar interferência prejudicial"
+        }
+      ]
+    },
+    "meaning_symbols": {
+      "source_patterns": [
+        "symbols_*"
+      ],
+      "signal_row_count": 4
+    },
+    "troubleshooting_table": {
+      "source_patterns": [
+        "troubleshooting_*"
+      ]
+    },
+    "specifications": {
+      "source_patterns": [
+        "spec_*"
+      ],
+      "section_count": 4,
+      "circled_reference_count": 2
+    },
+    "warranty": {
+      "source_patterns": [
+        "*11_warranty"
+      ],
+      "section_count": 6,
+      "period_years": [
+        "3",
+        "2"
+      ]
+    },
+    "in_the_box": {
+      "semantic_source_patterns": [
+        "box_contents_*"
+      ],
+      "source_patterns": [
+        "*02_whats_in_the_box"
+      ]
+    },
+    "product_overview": {
+      "source_patterns": [
+        "*03_product_overview_placeholder"
+      ]
+    },
+    "operations": {
+      "source_patterns": []
+    },
+    "app_download": {
+      "source_patterns": []
+    },
+    "app_inline_controls": {
+      "source_patterns": []
+    },
+    "reference_figures": {
+      "source_patterns": [],
+      "figures": []
+    }
+  }
+}

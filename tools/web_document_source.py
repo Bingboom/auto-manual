@@ -57,7 +57,10 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     languages = tuple(getattr(materialized, "languages", ()))
     target_language = materialized.lang or (languages[0] if len(languages) == 1 else "")
     hashes = {}
-    contract = load_web_manual_contract()
+    contract = load_web_manual_contract(
+        model=materialized.model,
+        region=materialized.region,
+    )
     replacements = {}
     illustration_entries = {}
     provenance = None
