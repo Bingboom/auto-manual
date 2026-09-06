@@ -103,6 +103,13 @@ keeps such missing assets visible instead of concealing them with copied art.
 
 ### Mandatory 5B closure: JE-1000F/EU DE/IT
 
+Status: complete via
+[#1068](https://github.com/Bingboom/auto-manual/pull/1068) (`4da3121a`),
+2026-09-06. The closure was expanded to every declared EU locale: 55/55
+EN/FR/ES/DE/IT slots are locale-matched `approved-composite` panels, including
+Italian 11/11. Text-free artwork plus HTML/SVG labels or leader lines remains
+debt and cannot pass the target gate.
+
 The operator has made the former follow-up mandatory. Overview, Operation, and
 Charging slots for JE-1000F/EU DE/IT must use locale-matched full panels from
 the supplied EU/UK source PDF. For these slots, `editable-fallback` is a visible
