@@ -329,6 +329,7 @@ minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 操作面板 | `HB-SPECIAL-OPERATION` | 流水线 | `.hb-operation-figure` | `HBOperationPanel` | `oppanel` + `HB Operation Row Label`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
+| 参考整图 | `HB-SPECIAL-REFERENCE-FIGURE` | 流水线 | `.hb-reference-figure` | 通用图片投影 | `referencefigure`（可移动文本框） | 经 HTML 转换 | **aligned** |
 
 ### 质保与页面
 

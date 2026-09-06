@@ -2028,3 +2028,30 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   both representative targets; no table was rasterized.
 - This is cut 4 of seven. App/reference figures, presentation overlays, and the
   final anti-copy/four-renderer acceptance remain cuts 5–7.
+
+
+## 2026-09-05: App and Reference Figures embedded in ManualIR
+
+- Registered `HB-SPECIAL-APP` and `HB-SPECIAL-REFERENCE-FIGURE`, bringing the
+  whole-document registry to 16 semantic component types. App download,
+  inline-control, and add-device variants retain localized rich copy,
+  accessibility labels, and role-bound shared artwork.
+- Reference Figure instances retain a complete carrier-backed semantic
+  fallback. Approved composites additionally bind replace key, exact/shared
+  locale policy, packaged asset key, content SHA-256, and source-fragment
+  SHA-256; mismatches fail before Web output and another locale is never
+  borrowed silently.
+- Frozen Web replay dispatches both families from ComponentSpec and no longer
+  scans reconstructed page DOM. JE-1000F/US EN/FR/ES produced 9 App and 15
+  Reference Figure instances with 6 approved composites; JE-1000F/EU DE/IT
+  retained localized semantic composition, while JE-3000C/KR retained neutral
+  flow and received no JE-1000F-specific instances.
+- Validation passed 107 focused and 3780 full-suite tests (19 skipped), full
+  Ruff, 62 hotspot guardrails, 1713 documentation links, reference-layout pins,
+  and the fixture-backed US check. Five representative packages cold-replayed
+  without RST/CSV reads; desktop and 390 px review found zero component
+  overflow and zero broken images after loading all 210 US images.
+- Operator-required follow-up 5B remains open: JE-1000F/EU DE/IT Overview,
+  Operation, and Charging slots must be replaced by locale-matched full panels
+  from the supplied EU/UK PDF. For those slots, `editable-fallback` is debt and
+  final acceptance permits only `finished-panel` or `approved-composite`.

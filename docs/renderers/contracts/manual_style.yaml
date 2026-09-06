@@ -553,6 +553,7 @@ styles:
   HB-SPECIAL-APP:
     role: App setup primitives
     semantic_source_kinds: [app_step, app_asset, app_notice, overview_control_labels]
+    variants: [download, inline-control, add-device]
     token_refs: [type_body_font_size, type_body_font_leading, comp_note_arc, idml_app_control_label_font_size, idml_app_control_label_font_leading, idml_app_control_label_min_height, idml_app_control_label_leader_gap, idml_app_control_leader_extension_weight, idml_app_connect_step_font_size, idml_app_connect_step_font_leading, idml_app_connect_note_font_size, idml_app_connect_note_font_leading, idml_app_connect_note_width, idml_app_text_frame_safety, idml_app_notice_text_frame_safety]
     layout_token_refs: [idml_app_h2_font_size, idml_app_h2_font_leading, idml_app_h2_marker_font_size, idml_app_h2_marker_baseline_shift, idml_app_download_h2_space_after, idml_app_h2_space_after, idml_app_primary_body_font_size, idml_app_primary_body_font_leading, idml_app_tail_body_font_size, idml_app_tail_body_font_leading, idml_app_result_body_font_size, idml_app_result_body_font_leading, idml_app_section_body_font_size, idml_app_section_body_font_leading, idml_app_notes_font_size, idml_app_notes_font_leading, idml_app_primary_body_left_indent, idml_app_tail_body_left_indent, idml_app_result_body_left_indent, idml_app_section_body_left_indent, idml_app_notes_left_indent, idml_app_list_left_indent, idml_app_list_first_line_indent, idml_app_add_device_space_before, idml_app_add_device_space_after, idml_app_connect_result_space_before, idml_app_page_extra_height]
     latex: {owner: components_special_pages.tex, entrypoints: [HBAppStep, HBAppAsset, HBAppNotice]}
@@ -563,6 +564,24 @@ styles:
     conformance: {state: aligned, debt: []}
     constraints: []
     approved_variants: []
+
+  HB-SPECIAL-REFERENCE-FIGURE:
+    role: Governed reference figure with semantic fallback
+    semantic_source_kinds: [reference_figure]
+    variants: [semantic-fallback, approved-composite]
+    token_refs: [type_body_font_size, type_body_font_leading, idml_figure_space_before, idml_figure_space_after]
+    latex: {owner: components_special_pages.tex, entrypoints: [includegraphics]}
+    indesign: {renderer: referencefigure, paragraph_style: HB Body, text_layer: native_movable_frames}
+    theme_token_roles: [component.special.reference-figure]
+    web: {capability: rendered, selectors: [.hb-reference-figure], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants:
+      - reason: Web may show one target/locale/hash-matched composite while retaining a complete semantic fallback.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [tests/test_component_spec_app_reference.py, tests/test_web_presentation.py]
 
   HB-WARRANTY-LEAD:
     role: Warranty lead panel

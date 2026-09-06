@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Mapping
 
 from tools.component_specs.fcc import COMPONENT_ID as FCC_ID
+from tools.component_specs.app import APP_COMPONENT_ID
 from tools.component_specs.inbox import COMPONENT_ID as INBOX_ID
 from tools.component_specs.lcd_mode import LCD_MODE_COMPONENT_ID
 from tools.component_specs.manual_tables import (
@@ -15,6 +16,7 @@ from tools.component_specs.manual_tables import (
     TROUBLESHOOTING_COMPONENT_ID,
 )
 from tools.component_specs.operation import OPERATION_COMPONENT_ID
+from tools.component_specs.reference_figure import REFERENCE_FIGURE_COMPONENT_ID
 from tools.component_specs.overview import COMPONENT_ID as OVERVIEW_ID
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.spec_table import COMPONENT_ID as SPEC_ID
@@ -27,6 +29,7 @@ from tools.component_specs.warranty import (
 from tools.manual_ir.components import component_spec_from_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, flow_nodes_to_html
 from tools.web_callout_ir import render_callout_component
+from tools.web_app_component import render_app_component
 from tools.web_composite_manifest import WebCompositeManifest
 from tools.web_composite_presentation import WebCompositeContext
 from tools.web_composite_presentation import supports_figure_contract
@@ -36,6 +39,7 @@ from tools.web_lcd_mode_component import render_lcd_mode_component
 from tools.web_manual_table_components import render_manual_table_component
 from tools.web_operation_component import render_operation_component
 from tools.web_overview_component import render_overview_component
+from tools.web_reference_figure_component import render_reference_figure_component
 from tools.web_presentation import WebPresentationError
 from tools.web_spec_component import render_specification_component
 from tools.web_warranty_component import render_warranty_component
@@ -143,6 +147,17 @@ def render_embedded_web_component(
             source_path=source_path,
             presentation=candidates[0],
             composites=context,
+        )
+    if spec.component_id == APP_COMPONENT_ID:
+        return render_app_component(spec, _carrier_html(node))
+    if spec.component_id == REFERENCE_FIGURE_COMPONENT_ID:
+        return render_reference_figure_component(
+            spec,
+            _carrier_html(node),
+            source_path=source_path,
+            model=model,
+            region=region,
+            language=language,
         )
     raise ValueError(f"unregistered embedded Web component: {spec.component_id}")
 

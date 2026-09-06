@@ -1330,17 +1330,25 @@ def transform_web_fragment(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
         )
-    if is_app_download and supports_legacy_target_components:
+    if (
+        is_app_download
+        and supports_legacy_target_components
+        and not embedded_components_complete
+    ):
         transform_app_download(
             soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_app_inline_controls and supports_legacy_target_components:
+    if (
+        is_app_inline_controls
+        and supports_legacy_target_components
+        and not embedded_components_complete
+    ):
         transform_app_control(
             soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_reference_page and supports_figures:
+    if is_reference_page and supports_figures and not embedded_components_complete:
         _transform_reference_figures(
             soup,
             source_path=source_path,
