@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -14,6 +15,7 @@ from tools.gen_index_bundle_assets import (  # noqa: E402
 )
 from tools.language_block_trim import (  # noqa: E402
     marker_languages,
+    trim_bundle_language_pages,
     trim_language_blocks,
 )
 
@@ -77,6 +79,34 @@ class TrimTests(unittest.TestCase):
             self.assertIn(tag, trimmed)
         self.assertNotIn("**UK", trimmed)
         self.assertIn("|MANUAL_LANGUAGE_SCOPE|", trimmed)
+
+    def test_review_preface_scope_catalogue_drops_removed_language(self):
+        text = (
+            "English / French / Spanish / German / Italian / Ukrainian\n\n"
+            "**IMPORTANT**\n\nbody\n\n"
+            "**UK ВАЖЛИВО**\n\nтекст\n"
+        )
+        trimmed, dropped = trim_language_blocks(
+            text,
+            languages=["en", "fr", "es", "de", "it"],
+            page_lang="en",
+        )
+        self.assertEqual(("uk",), dropped)
+        self.assertIn(
+            "English / French / Spanish / German / Italian\n",
+            trimmed,
+        )
+        self.assertNotIn("Ukrainian", trimmed)
+
+    def test_unrecognized_slash_copy_is_not_rewritten(self):
+        text = "Input / Output / Ukrainian\n\n**UK ВАЖЛИВО**\n\nтекст\n"
+        trimmed, dropped = trim_language_blocks(
+            text,
+            languages=["en"],
+            page_lang="en",
+        )
+        self.assertEqual(("uk",), dropped)
+        self.assertIn("Input / Output / Ukrainian", trimmed)
 
     def test_shared_preface_trimmed_to_english_matches_the_hand_forked_template(self):
         """The mechanism must reproduce the AU precedent, not approximate it.
@@ -150,6 +180,126 @@ class TrimTests(unittest.TestCase):
             text, languages=["en", "uk"], page_lang="en")
         self.assertEqual((), dropped)
         self.assertEqual(text, trimmed)
+
+
+class BundlePageTrimTests(unittest.TestCase):
+    def test_drops_only_review_pages_outside_the_target_language_scope(self):
+        with tempfile.TemporaryDirectory() as td:
+            bundle_dir = Path(td)
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            (page_dir / "00_preface.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{en}\n\n"
+                "**IT IMPORTANTE**\n\ncopy\n",
+                encoding="utf-8",
+            )
+            (page_dir / "p66_03_product_overview_placeholder.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{it}\n",
+                encoding="utf-8",
+            )
+            (page_dir / "p81_03_product_overview_placeholder.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{uk}\n",
+                encoding="utf-8",
+            )
+            (bundle_dir / "index.rst").write_text(
+                ".. include:: page/00_preface.rst\n\n"
+                ".. include:: page/p66_03_product_overview_placeholder.rst\n\n"
+                ".. include:: page/p81_03_product_overview_placeholder.rst\n",
+                encoding="utf-8",
+            )
+
+            dropped = trim_bundle_language_pages(
+                bundle_dir=bundle_dir,
+                languages=["en", "fr", "es", "de", "it"],
+            )
+
+            self.assertEqual(
+                [("p81_03_product_overview_placeholder.rst", "uk")],
+                dropped,
+            )
+            index = (bundle_dir / "index.rst").read_text(encoding="utf-8")
+            self.assertIn("page/00_preface.rst", index)
+            self.assertIn("page/p66_03_product_overview_placeholder.rst", index)
+            self.assertNotIn("page/p81_03_product_overview_placeholder.rst", index)
+
+    def test_all_in_scope_review_pages_keep_the_index_byte_identical(self):
+        with tempfile.TemporaryDirectory() as td:
+            bundle_dir = Path(td)
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            (page_dir / "overview_it.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{it}\n",
+                encoding="utf-8",
+            )
+            original = (
+                "heading\n=======\n\n"
+                ".. include:: page/overview_it.rst\n"
+            )
+            (bundle_dir / "index.rst").write_text(original, encoding="utf-8")
+
+            dropped = trim_bundle_language_pages(
+                bundle_dir=bundle_dir,
+                languages=["it"],
+            )
+
+            self.assertEqual([], dropped)
+            self.assertEqual(
+                original,
+                (bundle_dir / "index.rst").read_text(encoding="utf-8"),
+            )
+
+    def test_unknown_and_multi_language_pages_stay_in_the_index(self):
+        with tempfile.TemporaryDirectory() as td:
+            bundle_dir = Path(td)
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            (page_dir / "shared.rst").write_text(
+                "shared page without a language marker\n",
+                encoding="utf-8",
+            )
+            (page_dir / "mixed.rst").write_text(
+                "\\HBApplyLang{en}\n\\HBApplyLang{it}\n",
+                encoding="utf-8",
+            )
+            original = (
+                ".. include:: page/shared.rst\n\n"
+                ".. include:: page/mixed.rst\n"
+            )
+            (bundle_dir / "index.rst").write_text(original, encoding="utf-8")
+
+            dropped = trim_bundle_language_pages(
+                bundle_dir=bundle_dir,
+                languages=["it"],
+            )
+
+            self.assertEqual([], dropped)
+            self.assertEqual(
+                original,
+                (bundle_dir / "index.rst").read_text(encoding="utf-8"),
+            )
+
+    def test_filename_suffix_alone_does_not_declare_page_language(self):
+        with tempfile.TemporaryDirectory() as td:
+            bundle_dir = Path(td)
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            (page_dir / "shared_uk.rst").write_text(
+                "shared page without an explicit language declaration\n",
+                encoding="utf-8",
+            )
+            original = ".. include:: page/shared_uk.rst\n"
+            (bundle_dir / "index.rst").write_text(original, encoding="utf-8")
+
+            dropped = trim_bundle_language_pages(
+                bundle_dir=bundle_dir,
+                languages=["it"],
+            )
+
+            self.assertEqual([], dropped)
+            self.assertEqual(
+                original,
+                (bundle_dir / "index.rst").read_text(encoding="utf-8"),
+            )
 
 
 if __name__ == "__main__":

@@ -462,6 +462,16 @@ flow use the approved page assembly. Explicit `runtime`, `review`, or
 `review-asis` remains unchanged; unregistered targets still default to
 runtime.
 
+`review-asis` preserves the committed review page bytes, but the prepared
+bundle always applies the target's current language registry. If a historical
+merged review index still includes a language that this model no longer ships,
+the build removes only those out-of-scope page includes by their explicit
+`\HBApplyLang{...}` declarations and trims the matching block from shared
+multi-language pages. A fully recognized `English / French / ...` language
+catalogue on that shared page is trimmed to the same scope. It does not edit
+`docs/_review`, infer language from filenames or translated headings, or relabel
+the stale page as another locale.
+
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
 the bare `.idml`: it bundles the production IDML with its image links
