@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-08-16
+Updated: 2026-09-05
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -20,15 +20,24 @@ editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
-historical `manual-ir/v1` packages remain replayable. Fourteen ComponentSpec types are
-now embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
-Icons, Troubleshooting and both Symbols tables; this
-is still not proof that Word, LaTeX and IDML consume every same ComponentSpec.
+historical `manual-ir/v1` packages remain replayable. Sixteen ComponentSpec types
+are embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
+Icons, Troubleshooting, both Symbols tables, App and governed Reference Figures.
+The package freezes the component registry, theme, target presentation contract
+and resolved Overview instance; cold replay does not read RST/CSV or rerun the
+old DOM projector. Representative-package tests project every embedded instance
+through the registered Web, LaTeX, IDML and Word adapters. This is shared semantic
+and adapter-entry proof; responsive Web and fixed-page outputs still own different
+geometry and are not expected to be pixel- or pagination-identical.
 For JE-1000F, Overview, Operation and Charging use localized crops with their
-visible labels intact—including Operation `On` / `Off`, prerequisites and action
-copy. Do not feed those slots textless exports. The LCD screen-mode block is the
-exception: keep only the market-correct product/display artwork as an image and
-render its six-row explanation table in HTML.
+visible labels and leader lines intact—including Operation `On` / `Off`,
+prerequisites and action copy. Do not feed those slots textless exports. In every
+locale, including EU Italian, “textless base art + localized HTML/SVG text or
+leader lines” is `editable-fallback` debt; only locale-matched `finished-panel`
+or `approved-composite` artwork can close it. EU Italian is currently 11/11
+approved full panels. The LCD screen-mode block is the exception: keep only the
+market-correct product/display artwork as an image and render its six-row
+explanation table in HTML.
 
 For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
 For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
@@ -452,6 +461,16 @@ For reference-layout-registered targets, the IDML command's default
 flow use the approved page assembly. Explicit `runtime`, `review`, or
 `review-asis` remains unchanged; unregistered targets still default to
 runtime.
+
+`review-asis` preserves the committed review page bytes, but the prepared
+bundle always applies the target's current language registry. If a historical
+merged review index still includes a language that this model no longer ships,
+the build removes only those out-of-scope page includes by their explicit
+`\HBApplyLang{...}` declarations and trims the matching block from shared
+multi-language pages. A fully recognized `English / French / ...` language
+catalogue on that shared page is trimmed to the same scope. It does not edit
+`docs/_review`, infer language from filenames or translated headings, or relabel
+the stale page as another locale.
 
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
@@ -1155,20 +1174,22 @@ PR preview note:
 RTD catalog behavior:
 
 - RTD builds the frozen `docs/publish/web/` catalog from `Hello-Docs/main`. The generated `publish` branch is only a release candidate; `review/*` is only a build input, and neither branch is merged wholesale. The review/fixture command in [`.readthedocs.yaml`](../.readthedocs.yaml) is only the bootstrap fallback before the first snapshot.
-- PDF-like fixed figure panels use a separate, approval-gated Web composite chain. In `04_资产定义`, `web_replace_key` names the component. In `04_资产导出物`, upload exactly one image to `export_file`, select `web_locale` (`en`, `fr`, `es`, or `shared`), fill both the file and source-fragment SHA-256 values, then set both the definition and export to `gate_status=approved`, `build_eligible=true`, and `visual_review_required=false`. `artifact_kind` must be `web-composite`.
+- PDF-like fixed figure panels use a separate, approval-gated Web composite chain. In `04_资产定义`, `web_replace_key` names the component. In `04_资产导出物`, upload exactly one image to `export_file`, select the registered output `web_locale` (for example `en`, `fr`, `es`, `de`, `it`, or explicitly `shared`), fill both the file and source-fragment SHA-256 values, then set both the definition and export to `gate_status=approved`, `build_eligible=true`, and `visual_review_required=false`. `artifact_kind` must be `web-composite`.
 - Choose the carrier per component. JE-1000F Product Overview, its five Operation panels and its four Charging panels use `text_policy=localized-full-page`: crop the PDF panel with localized labels intact, including Operation `On` / `Off`, prerequisites and instructions. The LCD screen-mode block does not use a full-table screenshot; it combines the correct UK or continental hardware/display artwork with the shared six-row HTML table. Specifications, troubleshooting, LCD-icon glossary and Warranty stay live HTML components.
 - Reuse target geometry through [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json): a child instance uses `extends`, and stable-`id` lists merge by `id`, so a new region normally overrides only `target`, market artwork keys and locale declarations. The materialized document language selects the composite; page-number filename patterns are compatibility fallback only. Coverage resolves duplicate bytes safely with `asset_key + locale + SHA-256`.
 - `sync-data` downloads only those approved rows into `_attachments/web_composites/` and writes `web_composite_manifest.json`. The next Web materialization selects by `web_replace_key + model + region + locale`, verifies the bytes and the current semantic source fragment, and replaces the governed figure plus its associated copy while leaving the section title live. With no approved match it keeps the searchable HTML fallback. Ambiguous rows, missing attachments, or either hash mismatch stop the build.
-- After a local or queue Web build, inspect `manual.ir.json -> metadata.web_figure_coverage`. `finished-panel` is the approved whole-panel illustration path; `approved-composite` is the approved component override; `editable-fallback` is an intentional searchable semantic rendering; `missing` means the slot still needs approved localized artwork or a governed semantic component. Approved rows include the packaged path and SHA-256. The report does not promote assets and does not block an otherwise valid build solely because debt remains visible.
+- After a local or queue Web build, inspect `manual.ir.json -> metadata.web_figure_coverage`. `finished-panel` is the approved whole-panel illustration path; `approved-composite` is the approved component override; `editable-fallback` is searchable semantic rendering but remains finished-art debt; `missing` means the slot still lacks approved localized artwork. Approved rows include the packaged path and SHA-256. The report never promotes assets. A coverage policy must list the complete locale/slot matrix and accepts only `finished-panel` / `approved-composite`. Existing exceptions live in [`figure_debt_baseline.json`](../docs/renderers/contracts/web_presentation/figure_debt_baseline.json) as exact locale/slot/status rows; new or worsening debt fails, while a repaired row must delete its now-stale baseline entry. EU has no exception, so Italian textless art plus HTML/SVG text or leaders fails the build. LCD Mode and the other native HTML tables are outside this finished-art matrix.
+- [`web_manual.json`](../docs/renderers/contracts/web_manual.json) is only the Web presentation stack entry. The loader resolves `shared base → skeleton profile → target overlay`: shared semantic components are written once, a skeleton owns reusable Overview/Operation/App/Charging shape, and `(model, region)` overlays contain only capability grants, required artwork coverage and real differences. Mapping values merge recursively, lists with stable `id` values merge by `id`, and ordinary lists replace as a whole. A new figure-capable target must provide a complete zero-debt coverage policy; only pre-existing rows may appear in the separate ratcheted debt baseline. Unknown targets receive no figure grant; duplicate targets, unknown skeletons, bad schemas and paths escaping the contract directory fail closed. A whole-document Web IR freezes its resolved target contract, selected layer IDs, component registry, theme and target-matched Overview instance, so source-free replay never reopens those registries.
 - A local live freeze must use the business-plane HT-Docs bot, not another bot belonging to the same user. `sync-data` uses the active lark-cli profile; on the maintained Mac, first verify `lark-cli --profile prod whoami --as bot`, temporarily select profile `prod`, keep `FEISHU_PHASE2_IDENTITY=bot`, and restore the previous profile after the sync. The identity flag chooses bot versus user, while the profile chooses the Feishu application/tenant.
 - RTD itself has no Feishu credentials. Web Publish uses the HT-Docs bot to freeze verified attachments and their manifest into Git first; RTD consumes that immutable snapshot. `tests/fixtures/phase2` remains a CI/bootstrap fixture.
 - To show **ordinary hand-written Markdown** in the same web-manual style — a single note or a whole folder rendered as one site with a sidebar — run [`tools/plain_markdown_site.py`](../tools/plain_markdown_site.py): `python tools/plain_markdown_site.py --source <file-or-folder> --output-dir <site-out> --title "My Docs"`. For a backlog of existing documents, swap `--source` for `--manifest inventory.csv` (columns `source,title,section,order`; `section` becomes a sidebar group). No Feishu table is involved — this lane has no publish state to govern, so a CSV inventory (or just the folder tree) is the right level. Broken image paths inherited from wherever a document used to live are repointed automatically by filename. Legacy tables are upgraded on the way in: a headerless label/value pipe table becomes the manual's real spec-table markup (grey `<th>` label column, merged labels, `^(①)` superscripts, bordered wrapper) instead of rendering with the phantom empty header row a converter leaves behind — a plain pipe table cannot express any of that, which is why an untouched one looks nothing like the published table. Callout boxes that a cloud editor flattened into a header-only table are restored as callouts, tables whose first data row was captured as the header are un-headered, in-table `### SECTION` rows split a spec table into one block per section, and `^①^`/`V~oc~` become real superscripts — measured on a real HTE153 export: 17 malformed tables down to 1, 16 callouts and 4 spec blocks recovered. The conversion writes an **intermediate Markdown** form rather than HTML: `--to-intermediate DIR` gives you a reviewable file of `{callout}` / `{spec-table}` / `{lcd-mode}` / `{comparison}` / `{manual-table}` directives (tables it cannot classify stay pipe tables with a comment naming the candidates), and rendering that directory is a plain `--source` run that compiles the directives deterministically. Add `--download-images` to localize artwork hosted on a cloud editor. Use `--keep-tables` to opt out of the conversion, and `components/COOKBOOK.md` in the exported bundle when a document needs a component the shape alone cannot imply. The output directory is self-contained, so you can zip it or hand it over as-is. This is a preview/sharing lane only: it refuses to write into `docs/_build`, `reports/releases` or `docs/publish`, and it cannot put anything on the RTD site, which only renders the Web Publish snapshot. Plain Markdown gets the prose styling (typography, paper card, headings, table panels, images); the `hb-*` figure/spec/LCD components need pipeline-generated markup and will not appear. Do not try to "downgrade" a generated manual `.md` into plain Markdown with `pandoc -t gfm-raw_html`: measured on `JE-1000F / US`, that silently drops roughly a third of the visible text plus 26 images and 38 tables, because constructs that plain Markdown cannot express are discarded rather than degraded.
 - 中间态里可写的 8 个指令、单元格能用的行内标记子集、类型化 option 和 strict 排错，见 [`md_site_guide.md`](md_site_guide.md)。存量转换的两条命令也在那份里。
 - Web Publish enables `AUTO_MANUAL_PRESENTATION_PROFILE=web`. Normal `build.py md`, print Publish, IDML and DOCX exports keep the default `document` profile.
 - the web profile skips `cover*`, `00_toc*`, and `99_back_cover*`. JE-1000F / US opens directly at the `IMPORTANT` content in `00_preface`; if the source still carries the merged-language inventory line, Web hides it. A valid reseeded US review page may already start with the governed bold `IMPORTANT` marker and is accepted as-is, while an unrelated leading block still stops the build. Targets without that explicit preface contract—including JE-1000F / EU—start at the first included manifest page instead of inheriting the US rule.
-- For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json), Product Overview becomes one `HB-SPECIAL-OVERVIEW` semantic instance with target-approved presentation geometry. [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json) keeps the JE-1000F US geometry in `je1000f-us-v1`; the EU instance extends it and overrides only target, the front artwork key and EN/FR/ES/DE/IT locale bindings. Both views use centered locale-matched approved PDF artwork, with complete searchable HTML/SVG labels retained as fallback when no approved manifest entry matches. The crop excludes the FRONT/RIGHT heading so theme changes still control it. JBP-3600A / EU / en uses its own source-AI finished panels and BP carriers; it does not inherit JBP-2000B or JE-1000F artwork. WHAT'S IN THE BOX is one `HB-SPECIAL-INBOX` semantic instance: three ordered cards each carry their number, image asset role, accessible alt and editable localized label. When the approved source contains a TIP row, the same instance keeps its editable TIP label/body and renders a responsive full-width strip; a source manual with no TIP is valid and renders only the cards. LaTeX, IDML and Word keep their own layout geometry without rasterizing the labels. App Setup renders store badges and QR as distinct shared images, centers each in its own column and keeps both descriptions as live HTML. Step 2.1 uses the themeable plus while preserving its localized screen-reader label. The add-device panel combines one shared PDF-derived two-phone artwork, with 2.1/2.2 positioned inside the image, and shared text-free device-control art with three localized RST button labels as visible HTML. The approved control art keeps the full grey panel and leader lines; CSS places only localized labels in its reserved zones. Operation and Charging figures retain centered locale-matched crops with their labels embedded; the App connect-result panel uses one shared three-phone image with 2.3/2.4/2.5 embedded. Reference artwork never contains the section heading, and surrounding non-panel instructions remain live HTML. Ordinary standalone RST images fill the responsive content width, remain centered and preserve aspect ratio. Unlisted targets retain ordinary source HTML until their own presentation is validated and added to the contract.
+- For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json) (currently `JE-1000F / US` and `JE-1000F / EU`), Product Overview becomes one `HB-SPECIAL-OVERVIEW` semantic instance with two views, two asset roles and 15 ordered live callouts. [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json) keeps the US geometry in `je1000f-us-v1`; the EU instance extends it and overrides only target, the front artwork key and EN/FR/ES/DE/IT locale bindings. A view uses centered locale-matched approved PDF artwork only when an exact manifest entry matches; otherwise its complete searchable HTML/SVG labels and text-free art remain visible as a semantic fallback. The crop excludes the FRONT/RIGHT heading so theme changes still control it. WHAT'S IN THE BOX is one `HB-SPECIAL-INBOX` semantic instance: three ordered cards each carry their number, image asset role, accessible alt and editable localized label, followed by the same instance's editable TIP label/body. The Web adapter renders equal rounded cards with even outer alignment and a responsive full-width TIP strip; LaTeX, IDML and Word keep their own layout geometry without rasterizing the labels. App Setup renders store badges and QR as distinct shared images, centers each in its own column and keeps both descriptions as live HTML. Step 2.1 uses the themeable plus while preserving its localized screen-reader label. The add-device panel combines one shared PDF-derived two-phone artwork, with 2.1/2.2 positioned inside the image, and shared text-free device-control art with three localized RST button labels as visible HTML. The approved control art keeps the full grey panel and leader lines; CSS places only localized labels in its reserved zones. Operation and Charging figures use centered locale-matched crops with embedded labels when approved, and otherwise preserve their live localized semantic composition. The App connect-result panel uses one shared PDF-derived three-phone image with 2.3/2.4/2.5 embedded. Reference artwork never contains the section heading, and surrounding non-panel instructions remain live HTML. JE-1000F/EU now requires and resolves all 55 EN/FR/ES/DE/IT Overview/Operation/Charging slots as source-PDF-faithful composites; the build rejects fallback, missing, duplicate or absent required slots. The former DE/IT text-free-art-plus-HTML-label path remains documented only as paid debt, not as final delivery. Specifications, Warranty, LCD, Troubleshooting and Symbols remain native HTML. Ordinary standalone RST images fill the responsive content width, remain centered and preserve aspect ratio. Unlisted targets retain ordinary source HTML until their own presentation is validated and added to the contract.
 - The generated MyST source keeps `assets/` beside the manual and its generated Sphinx config copies that directory under the same URL prefix. For local acceptance, build the generated directory with Sphinx and verify zero broken images at desktop and 375 px; `manual_bundle.html` alone is an intermediate conversion artifact, not the published-page acceptance surface.
 - `JBP-3600A / EU / en` engineering builds use [`config.bp-eu-en-web.yaml`](../configs/config.bp-eu-en-web.yaml) and the source/acceptance record at [`jbp3600a_eu_en_web_intake_2026-09.md`](../code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md). The committed target fixture and asset hashes do not replace live Base approval: create and read back the matching build, source, capability, language and asset records before dispatching Web Publish.
+- Web Inbox preserves an optional source TIP; a source without TIP renders cards only. Word/default intake remains strict.
 - FCC is rendered from the localized RST as a searchable two-column card with the FCC mark, normalizes locale-specific trailing copy, uses one component-owned spacing token for paragraphs and measure items, and becomes one column on phones. Its H1 stays available to the page outline and RTD navigation but is visually hidden, so readers see only the FCC content card. H1 bars, generic tables, governed table frames, and FCC use one shared border-box component-band width, keeping their left/right edges aligned. Each localized MEANING OF SYMBOLS warning-definition table is rebuilt as semantic searchable HTML with the PDF's full dark grid and dark warning badges; the four labels and descriptions stay localized live text and source inline widths do not reach final HTML. The following safety-symbol matrix is rendered from the same localized RST as two independent rounded Symbol/Meaning tables, matching the PDF's left-six/right-five structure so a long right-side description does not stretch the paired left row. On desktop both panels share the same outer height and aligned top/bottom borders; phones stack the two tables. The LCD icon page remains a searchable four-column HTML table: `On` / `Blink` / `Off` line-blocks stay on separate lines; the rounded frame and every row/column rule mirror the PDF hierarchy; number/icon/name cells are lightly filled; compact number badges are centered in the first column; and phones use horizontal scrolling instead of crushing the copy.
 
 The prepared Web Inbox now passes its three cards and optional internal TIP
@@ -1180,21 +1201,29 @@ Word/IDML output. Other composite figure callouts remain separate work.
 
 For new whole-document Web builds, Inbox is no longer a temporary page-level
 IR detour. Inbox, Overview, FCC, Specifications, Callout, governed Operation,
-hybrid LCD Mode, Warranty, LCD Icons, Troubleshooting and both Symbols table
+hybrid LCD Mode, Warranty, LCD Icons, Troubleshooting, both Symbols tables,
+App and governed Reference Figure
 instances are written once into ordered `manual-ir/v2` flow
 and replayed from those embedded specs. Their source projectors run only while
 assembling a new package; opening or publishing the frozen package does not
-reparse RST/CSV or rediscover those fourteen component types from HTML. Historical
+reparse RST/CSV or rediscover those sixteen component types from HTML. Historical
 packages remain supported. German `JAHRE` and Italian `ANNI` use the same
 component-owned 3/2 numeric badge adapter; compact Korean `3년` / `2년` headings
 are parsed by that same language-neutral warranty component. Operation instances
-are embedded only when the target is admitted by `figure_targets`; other product
+are embedded only when the resolved target overlay grants figures; other product
 skeletons keep their distinct operation panels as neutral editable flow until a
-matching presentation overlay is declared, rather than inheriting JE-1000F's
+matching overlay grants them, rather than inheriting JE-1000F's
 five-panel geometry. LCD and Symbols icon collections use
 one repeatable, ordered asset role, so every row remains bound to the correct
 packaged image. LCD, Troubleshooting and Symbols remain editable native tables,
-not screenshots. App and reference figures enter in later cuts.
+not screenshots. App download, its inline control, and add-device panels retain
+their localized copy and role-bound shared artwork in the same ComponentSpec.
+Each Reference Figure retains its complete semantic fallback; an approved
+composite additionally records target replace key, locale, packaged asset key,
+content SHA-256 and source-fragment SHA-256. Exact-locale figures never fall
+back to another language. The live semantic composition prevents broken output,
+but for a finished-figure coverage slot it remains `editable-fallback` debt and
+cannot pass unless that exact pre-existing row is in the ratcheted baseline.
 
 Prepared Web FCC also passes through public IR. Its opening copy, measures,
 column split and mark binding can be replayed without reopening the source page.
@@ -1228,14 +1257,16 @@ approval rules remain unchanged.
 App download's store and QR columns also consume public IR. Both live copy
 columns, links/emphasis, the original semantic image and artwork bindings survive
 serialized replay. Invalid or ambiguous source content stops before changing the
-page. The existing three-language layout and artwork selection remain unchanged;
-App button replacement and other reference figures are separate consumers.
+page. The download, inline-control, and add-device variants now enter the frozen
+whole-document IR as one registered App component family.
 
-The App add-device inline button now also consumes public IR. Its localized
+The App add-device inline button also consumes public IR. Its localized
 accessible name and surrounding sentence, emphasis, links and images survive
 replay; ambiguous or incomplete labels fail before changing the page. Existing
-three-language output and Pandoc protection remain unchanged. Reference figures
-are still a separate migration.
+three-language output and Pandoc protection remain unchanged. Governed Charging
+and App reference panels use the registered Reference Figure family described
+above; missing composites remain visible semantic fallbacks but do not count as
+finished artwork.
 
 - The LCD screen-mode panel remains searchable HTML while matching the template's rounded illustration-plus-table composition across EN/FR/ES. The AC/DC Auto Resume matrix also remains searchable HTML with equal-width columns, a light left column, white right column, dark full-grid rules, and a true two-row Battery SOC cell. On phones each compact table scrolls inside its own frame instead of widening the page.
 - The EN/FR/ES Troubleshooting table remains searchable HTML with the PDF's rounded dark frame, full grid, 14% light error-code column, and 86% white corrective-measures column. F6/F7 actions keep their source line breaks through Pandoc. The four Specifications tables use a matching protected 31%/69% label/value grid and preserve row-spanning labels; the web transform removes the authored bullet glyph so the shared heading theme shows one section dot rather than two, and raises both governed `①` references as semantic superscripts. Both table types scroll inside their own frame on phones.

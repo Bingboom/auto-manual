@@ -152,6 +152,72 @@ components:
       idml: {capability: rendered, key: idml_operation}
       word: {capability: projection-only, key: word_operation}
 
+  HB-SPECIAL-APP:
+    style_id: HB-SPECIAL-APP
+    source_kinds: [app_download, app_inline_control, app_add_device]
+    variants: [download, inline-control, add-device]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      columns:
+        required: false
+        content_kinds: [ordered_columns]
+      paragraph:
+        required: false
+        content_kinds: [rich_text]
+      reference_id:
+        required: false
+        content_kinds: [inline_text]
+      labels:
+        required: false
+        content_kinds: [ordered_labels]
+    asset_roles:
+      source_art: {required: false, locale_policies: [exact]}
+      store_art: {required: false, locale_policies: [shared]}
+      qr_art: {required: false, locale_policies: [shared]}
+      phone_art: {required: false, locale_policies: [shared]}
+      control_art: {required: false, locale_policies: [shared]}
+    token_roles: [component.special.app]
+    adapters:
+      web: {capability: rendered, key: hb_app}
+      latex: {capability: rendered, key: hb_latex_app}
+      idml: {capability: rendered, key: idml_app}
+      word: {capability: projection-only, key: word_app}
+
+  HB-SPECIAL-REFERENCE-FIGURE:
+    style_id: HB-SPECIAL-REFERENCE-FIGURE
+    source_kinds: [reference_figure]
+    variants: [semantic-fallback, approved-composite]
+    slots:
+      reference_id:
+        required: true
+        content_kinds: [inline_text]
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      caption_mode:
+        required: true
+        content_kinds: [inline_text]
+      caption_layout:
+        required: true
+        content_kinds: [inline_text]
+      captions:
+        required: false
+        content_kinds: [ordered_labels]
+      adjacent_copy:
+        required: false
+        content_kinds: [rich_text]
+    asset_roles:
+      source_art: {required: true, locale_policies: [exact, shared]}
+      approved_composite: {required: false, locale_policies: [exact, shared]}
+    token_roles: [component.special.reference-figure]
+    adapters:
+      web: {capability: rendered, key: hb_reference_figure}
+      latex: {capability: projection-only, key: hb_latex_reference_figure}
+      idml: {capability: projection-only, key: idml_reference_figure}
+      word: {capability: projection-only, key: word_reference_figure}
+
   HB-TABLE-LCD-MODE:
     style_id: HB-TABLE-LCD-MODE
     source_kinds: [table_lcd_mode]

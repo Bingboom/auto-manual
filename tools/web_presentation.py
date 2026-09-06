@@ -9,9 +9,7 @@ geometry: editable/searchable callouts, SVG leaders, and responsive fallbacks.
 from __future__ import annotations
 
 import fnmatch
-import json
 import re
-from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +42,10 @@ from tools.web_symbol_pairs import transform_symbol_pairs
 from tools.web_stylesheets import WEB_STYLESHEET_NAME, copy_web_stylesheet
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
+from tools.web_presentation_contract import (
+    WebPresentationContractError,
+    load_web_presentation_contract,
+)
 
 
 DOCUMENT_PRESENTATION_PROFILE = "document"
@@ -98,21 +100,23 @@ def _contract_path() -> Path:
     return get_paths().renderer_contracts_dir / WEB_CONTRACT_NAME
 
 
-@lru_cache(maxsize=4)
-def _load_contract_cached(path_text: str) -> dict[str, Any]:
-    path = Path(path_text)
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        raise WebPresentationError(f"cannot load web manual contract {path}: {exc}") from exc
-    if data.get("schema_version") != "web-manual-presentation/v1":
-        raise WebPresentationError(f"unsupported web manual contract schema in {path}")
-    return data
+def load_web_manual_contract(
+    path: Path | None = None,
+    *,
+    model: str | None = None,
+    region: str | None = None,
+) -> dict[str, Any]:
+    """Resolve the shared/skeleton/target contract through the public facade."""
 
-
-def load_web_manual_contract(path: Path | None = None) -> dict[str, Any]:
     contract_path = (path or _contract_path()).resolve(strict=False)
-    return _load_contract_cached(str(contract_path))
+    try:
+        return load_web_presentation_contract(
+            contract_path,
+            model=model,
+            region=region,
+        )
+    except WebPresentationContractError as exc:
+        raise WebPresentationError(str(exc)) from exc
 
 
 def protect_web_figures_for_pandoc(html_text: str) -> tuple[str, dict[str, str]]:
@@ -294,13 +298,10 @@ def _transform_product_overview(
     contract: dict[str, Any],
     composites: WebCompositeContext,
 ) -> None:
-    overview = contract["product_overview"]
     try:
-        instance_id = str(overview.get("instance_id") or "").strip() or None
         instance = resolve_overview_instance(
             model=composites.model,
             region=composites.region,
-            instance_id=instance_id,
         )
     except Exception as exc:
         raise WebPresentationError(f"{source_path}: {exc}") from exc
@@ -1121,6 +1122,35 @@ def _transform_preface(
     )
 
 
+def normalize_web_source_fragment(
+    html_fragment: str,
+    *,
+    source_path: Path,
+    contract: dict[str, Any] | None = None,
+    model: str | None = None,
+    region: str | None = None,
+) -> str:
+    """Freeze non-component Web normalization before whole-document IR replay."""
+
+    data = contract or load_web_manual_contract(model=model, region=region)
+    soup = BeautifulSoup(html_fragment, "html.parser")
+    if _matches_source(source_path, list(data["preface"]["source_patterns"])) and supports_preface_contract(
+        source_path, data
+    ):
+        _transform_preface(soup, source_path=source_path)
+    if _matches_source(
+        source_path, list(data["operations"]["source_patterns"])
+    ) and supports_figure_contract(source_path, data):
+        _transform_auto_resume_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(
+                data["operations"]["auto_resume_table"]["body_rows"]
+            ),
+        )
+    return str(soup)
+
+
 def transform_web_fragment(
     html_fragment: str,
     *,
@@ -1158,7 +1188,7 @@ def transform_web_fragment(
             language=language, model=model, region=region,
             error_type=WebPresentationError,
         )
-    data = contract or load_web_manual_contract()
+    data = contract or load_web_manual_contract(model=model, region=region)
     has_inbox = "HB-SPECIAL-INBOX" in resolved or (
         not embedded_components_complete
         and _matches_source(
@@ -1330,17 +1360,25 @@ def transform_web_fragment(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
         )
-    if is_app_download and supports_legacy_target_components:
+    if (
+        is_app_download
+        and supports_legacy_target_components
+        and not embedded_components_complete
+    ):
         transform_app_download(
             soup, source_path=source_path, config=app_download, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_app_inline_controls and supports_legacy_target_components:
+    if (
+        is_app_inline_controls
+        and supports_legacy_target_components
+        and not embedded_components_complete
+    ):
         transform_app_control(
             soup, source_path=source_path, config=app_inline_controls, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_reference_page and supports_figures:
+    if is_reference_page and supports_figures and not embedded_components_complete:
         _transform_reference_figures(
             soup,
             source_path=source_path,
@@ -1359,6 +1397,7 @@ __all__ = [
     "copy_web_stylesheet",
     "is_web_entry_page",
     "load_web_manual_contract",
+    "normalize_web_source_fragment",
     "normalize_presentation_profile",
     "protect_web_callouts_for_pandoc",
     "protect_web_figures_for_pandoc",

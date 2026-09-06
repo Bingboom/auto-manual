@@ -4,8 +4,11 @@ from __future__ import annotations
 import hashlib
 import json
 from collections.abc import Collection, Mapping
+from contextlib import contextmanager
+from contextvars import ContextVar
+from copy import deepcopy
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 try:
     import yaml
@@ -37,6 +40,10 @@ _BINDING_KINDS = {
         {"html-class", "property-adapter", "style", "table-style"}
     ),
 }
+_ACTIVE_MANUAL_THEME: ContextVar[Mapping[str, Any] | None] = ContextVar(
+    "active_manual_theme",
+    default=None,
+)
 
 
 def default_theme_path() -> Path:
@@ -175,6 +182,9 @@ def load_manual_theme(
     component_registry: Mapping[str, Any] | None = None,
     layout_token_names: Collection[str] | None = None,
 ) -> dict[str, Any]:
+    active = _ACTIVE_MANUAL_THEME.get()
+    if path is None and active is not None:
+        return deepcopy(dict(active))
     theme_path = (path or default_theme_path()).resolve()
     try:
         payload = yaml.safe_load(theme_path.read_text(encoding="utf-8"))
@@ -190,6 +200,29 @@ def load_manual_theme(
     if issues:
         raise ComponentSpecError("invalid manual theme: " + "; ".join(issues))
     return payload
+
+
+@contextmanager
+def manual_theme_context(
+    theme: Mapping[str, Any] | None,
+    *,
+    component_registry: Mapping[str, Any] | None = None,
+) -> Iterator[None]:
+    """Use a validated frozen theme without reopening its source contract."""
+
+    if theme is None:
+        yield
+        return
+    issues = validate_manual_theme(theme, component_registry=component_registry)
+    if issues:
+        raise ComponentSpecError(
+            "invalid embedded manual theme: " + "; ".join(issues)
+        )
+    token = _ACTIVE_MANUAL_THEME.set(deepcopy(dict(theme)))
+    try:
+        yield
+    finally:
+        _ACTIVE_MANUAL_THEME.reset(token)
 
 
 def require_component_theme_roles(
@@ -225,6 +258,7 @@ __all__ = [
     "THEME_SCHEMA_VERSION",
     "default_theme_path",
     "load_manual_theme",
+    "manual_theme_context",
     "require_component_theme_roles",
     "theme_sha256",
     "validate_manual_theme",

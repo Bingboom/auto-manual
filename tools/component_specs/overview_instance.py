@@ -8,6 +8,13 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from tools.component_specs.model import ComponentSpecError
+from tools.component_specs.overview_instance_validation import (
+    non_empty as _non_empty,
+    number_list as _number_list,
+    overview_instance_sha256,
+    point_list as _point_list,
+    resolved_overview_instance_issues,
+)
 from tools.utils.path_utils import Paths, repo_root
 
 
@@ -17,32 +24,6 @@ COMPONENT_ID = "HB-SPECIAL-OVERVIEW"
 
 def default_overview_instances_path() -> Path:
     return Paths(root=repo_root()).overview_component_instances_contract
-
-
-def _number_list(value: Any, *, length: int, field: str) -> list[float]:
-    if (
-        not isinstance(value, list)
-        or len(value) != length
-        or any(isinstance(item, bool) or not isinstance(item, (int, float)) for item in value)
-    ):
-        raise ComponentSpecError(f"{field} must contain {length} numbers")
-    return [float(item) for item in value]
-
-
-def _point_list(value: Any, *, field: str) -> list[list[float]]:
-    if not isinstance(value, list) or len(value) < 2:
-        raise ComponentSpecError(f"{field} must contain at least two points")
-    return [
-        _number_list(point, length=2, field=f"{field}[{index}]")
-        for index, point in enumerate(value)
-    ]
-
-
-def _non_empty(value: Any, *, field: str) -> str:
-    text = str(value or "").strip()
-    if not text:
-        raise ComponentSpecError(f"{field} must be a non-empty string")
-    return text
 
 
 def _merge_instance_value(base: Any, override: Any) -> Any:
@@ -359,6 +340,12 @@ def validate_overview_instance_registry(payload: Mapping[str, Any]) -> list[str]
     return issues
 
 
+def validate_resolved_overview_instance(payload: Mapping[str, Any]) -> list[str]:
+    """Validate one fully materialized target instance for frozen IR replay."""
+
+    return resolved_overview_instance_issues(payload, validator=_validate_instance)
+
+
 @lru_cache(maxsize=4)
 def _load_cached(path_text: str) -> dict[str, Any]:
     path = Path(path_text)
@@ -424,6 +411,8 @@ __all__ = [
     "SCHEMA_VERSION",
     "default_overview_instances_path",
     "load_overview_instance_registry",
+    "overview_instance_sha256",
     "resolve_overview_instance",
+    "validate_resolved_overview_instance",
     "validate_overview_instance_registry",
 ]

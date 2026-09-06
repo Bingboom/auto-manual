@@ -39,7 +39,7 @@ class WebManualIRTests(unittest.TestCase):
             bundle = SimpleNamespace(
                 title="Example",
                 reference_doc=None,
-                model="JE-1000F",
+                model="OTHER",
                 region="US",
                 lang="en",
                 languages=("en",),
@@ -57,7 +57,7 @@ class WebManualIRTests(unittest.TestCase):
             ):
                 result, _, _ = build_word_bundle_html(
                     {},
-                    "JE-1000F",
+                    "OTHER",
                     "US",
                     materialized_bundle=bundle,
                     output_dir=root / "out",
