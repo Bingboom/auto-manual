@@ -45,6 +45,7 @@ EXPECTED_OWNERS = {
         "HBAppStep",
         "HBInBoxThree",
         "HBOverviewPanel",
+        "HBOperationPanel",
         "HBFccBlock",
         "HBPrefacePageBegin",
         "HBTocPageBegin",
@@ -144,7 +145,7 @@ class LatexComponentModuleTests(unittest.TestCase):
             encoding="utf-8"
         )
         style_ids = re.findall(r"\| `(HB-[A-Z0-9-]+)` \|", definition)
-        self.assertEqual(31, len(style_ids))
+        self.assertEqual(32, len(style_ids))
         self.assertEqual(len(style_ids), len(set(style_ids)))
         for name in COMPONENT_LOAD_ORDER:
             self.assertIn(name, definition)

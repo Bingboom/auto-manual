@@ -704,18 +704,23 @@ Web Publish / Read the Docs note:
   `manual-ir/v2` / `whole-document-components/v1` beside the Markdown. Its ordered
   flow/rich-text nodes carry neutral headings, prose, lists, tables, links and
   images; optional `presentation.html.attributes` retains only Web hints needed
-  for output parity. Callout, Spec, FCC, Inbox and Overview are embedded as
+  for output parity. Callout, Spec, FCC, Inbox, Overview, five Operation panels,
+  the hybrid LCD Mode table, and Warranty Lead/Section/Years are embedded as
   validated ComponentSpecs at their original flow positions. Their Web adapters
-  dispatch directly from the IR instead of rediscovering semantics from DOM;
+  dispatch from the IR instead of rediscovering those semantics from DOM;
   all component/carrier images join the ordered packaged-asset SHA-256 gate.
   `tools.web_document_ir.render_document_fragments` consumes that IR and
   packaged `assets/` without reopening RST/CSV. Historical `manual-ir/v1` and
   cut-1 `whole-document-flow/v1` files still replay without being upgraded.
-  Word keeps its existing whole-document conversion path; the remaining
-  component families and renderer-entry migrations are later cuts. See
+  LCD Mode keeps its six action/description rows as editable text beside the
+  governed display artwork. Operation keeps target geometry in the Web contract,
+  and an approved composite is accepted only when its existing source-fragment
+  hash still matches. Word keeps its existing whole-document conversion path;
+  the remaining component families and renderer-entry migrations are later cuts. See
   [the bounded execution record](dev/ir_document_closeout.md),
   [v2 plan](dev/manual_ir_v2_neutral_flow_plan.md), and
-  [embedded-component record](dev/manual_ir_embedded_components_plan.md).
+  [embedded-component record](dev/manual_ir_embedded_components_plan.md), and
+  [Operation/Warranty/LCD record](dev/manual_ir_operation_warranty_lcd_plan.md).
 - `paths.web_illustration_manifest` optionally binds a target/language to finished
   PDF crops. The manifest freezes source PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several

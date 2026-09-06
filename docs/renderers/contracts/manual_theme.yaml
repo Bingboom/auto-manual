@@ -43,6 +43,50 @@ component_roles:
       - line.overview.leader
       - type.overview.label
       - width.component-band
+  component.special.operation:
+    component_ids: [HB-SPECIAL-OPERATION]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.table.lcd-mode:
+    component_ids: [HB-TABLE-LCD-MODE]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.warranty.lead:
+    component_ids: [HB-WARRANTY-LEAD]
+    theme_roles:
+      - surface.muted
+      - radius.panel
+      - type.table.value
+      - width.component-band
+  component.warranty.section:
+    component_ids: [HB-WARRANTY-SECTION]
+    theme_roles:
+      - surface.paper
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.warranty.years:
+    component_ids: [HB-WARRANTY-YEARS]
+    theme_roles:
+      - surface.paper
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
 
 roles:
   surface.brand:

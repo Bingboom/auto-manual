@@ -141,3 +141,31 @@ SHA-256 闸门保护。其他 renderer 已能按文档顺序取得同一批 Comp
 比较均为零差异（仅规范化包根 file URI）。JBP-JP 仍使用含日文标注的 Overview
 整图，没有退回两张无字图。完整设计与验收见
 [`manual_ir_embedded_components_plan.md`](manual_ir_embedded_components_plan.md)。
+
+## 后续第 3 刀：Operation、Warranty 与 LCD Mode（2026-09-05）
+
+整本 `whole-document-components/v1` 现在再嵌入五种 ComponentSpec：
+`HB-SPECIAL-OPERATION`、`HB-TABLE-LCD-MODE`、`HB-WARRANTY-LEAD`、
+`HB-WARRANTY-SECTION` 和 `HB-WARRANTY-YEARS`。Operation 的步骤、前置条件、
+附加说明和 artwork role 属于中立语义；Web 坐标及 composite locale 仍由 Web
+presentation contract 管理。US 已批准 composite 继续以原
+`source_fragment_sha256` 闸门校验，没有重算 golden 来放行变化。
+
+LCD Mode 明确保留为“市场图 + 两组状态 + 六行可编辑表格”，没有截成整表图片。
+Warranty 的引导、五个正文卡片和 3/2 年限卡分别拥有独立语义实例；德语
+`JAHRE`、意大利语 `ANNI` 与英语 `YEARS` 进入同一个数字徽章 adapter。回放时旧
+Warranty/LCD DOM projector 不再运行；Operation 在本刀内复用既有、哈希稳定的
+Web composition transform 作为兼容层，第 7 刀才移除这层。
+
+真实入口验收包括 JE-1000F/US review-asis，以及从
+`origin/review/JE-1000F-EU@7d764e22` 隔离 worktree 物化的 DE/IT 审稿页。US
+输出 5 个 Operation、5 个既有 approved composite、1 个可编辑 LCD Mode 和
+`3/2 YEARS`；DE/IT 各输出 5 个 Operation、1 个可编辑 LCD Mode，年限分别为
+`3/2 JAHRE`、`3/2 ANNI`。完整边界、非目标与验收梯见
+[`manual_ir_operation_warranty_lcd_plan.md`](manual_ir_operation_warranty_lcd_plan.md)。
+
+新增 `HB-SPECIAL-OPERATION` 后，共享 style contract 的 hash 发生预期变化。
+正式 rebind 工具只刷新 JE-1000F/US 批准合同的
+`identity.style.style_contract_sha256`：52 个 page binding 无变化、content 未重批、
+58 页 composition map 无变化。3767 项全量测试（19 skipped）、reference pin、
+Ruff、62 个 maintainability hotspot、1708 条文档链接和隔离 target check 均通过。

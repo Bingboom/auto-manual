@@ -532,6 +532,24 @@ styles:
         scope: [web, JE-1000F, US, en, fr, es]
         evidence: [tests/test_component_spec_overview.py, tests/test_web_presentation.py]
 
+  HB-SPECIAL-OPERATION:
+    role: Operation illustration panel with editable localized controls
+    semantic_source_kinds: [operation_panel]
+    variants: [status-right, footer-overlay, footer-panel]
+    token_refs: [comp_table_outer_arc, comp_table_outer_rule, type_body_font_size, type_body_font_leading, idml_operation_row_label_font_size, idml_operation_row_label_font_leading]
+    latex: {owner: components_special_pages.tex, entrypoints: [HBOperationPanel]}
+    indesign: {renderer: oppanel, paragraph_styles: [HB Body, HB Operation Row Label], object_style: HB Rounded Panel, text_layer: native_movable_frames}
+    theme_token_roles: [component.special.operation]
+    web: {capability: rendered, selectors: [.hb-operation-figure], component_adapter: web_presentation}
+    word: {capability: projection-only, paragraph_styles: [BodyText, FirstParagraph], table_styles: [], component_adapter: word_bundle_html}
+    conformance: {state: aligned, debt: []}
+    constraints: []
+    approved_variants:
+      - reason: Web may replace the semantic fallback with a hash-matched locale composite while retaining the complete accessible source copy.
+        owner: renderer-contract-maintainers
+        scope: [web]
+        evidence: [tests/test_web_presentation.py, tests/test_component_spec_manual_sections.py]
+
   HB-SPECIAL-APP:
     role: App setup primitives
     semantic_source_kinds: [app_step, app_asset, app_notice, overview_control_labels]

@@ -37,6 +37,25 @@
 }
 
 % App-setup page primitives.
+\providecommand{\HBOperationPanel}[4]{%
+  \par\noindent
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=BrandDark,
+    arc=\csname HBcomp_table_outer_arc\endcsname,
+    boxrule=\csname HBcomp_table_outer_rule\endcsname,
+    boxsep=0mm,
+    left=1.4mm,right=1.4mm,top=1.2mm,bottom=1.2mm,
+  ]
+    \begin{center}\HBImageOrPlaceholder{\linewidth}{52mm}{#1}\end{center}%
+    \HBIfBlankTF{#2}{}{{\HBFontSemiBold #2\par}}%
+    #3\par
+    \HBIfBlankTF{#4}{}{#4\par}%
+  \end{tcolorbox}
+  \par
+}
+
 \providecommand{\HBAppStep}[2]{%
   \par\vspace{1.1mm}\noindent
   {\HBFontBold\fontsize{8pt}{9pt}\selectfont

@@ -106,6 +106,7 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
                     region=ir.region,
                     language=page.language,
                     composite_manifest=composites,
+                    contract=ir.metadata["web_contract"],
                 ),
             )
         if embedded_components_complete:
