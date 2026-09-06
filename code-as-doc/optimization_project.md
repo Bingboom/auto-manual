@@ -7,10 +7,11 @@ embed sixteen registered ComponentSpec types in document order. Operation,
 hybrid LCD Mode, Warranty Lead/Section/Years, Callout, Spec, FCC, Inbox,
 Overview, LCD Icons, Troubleshooting, both Symbols tables, App, and governed
 Reference Figures replay from the same semantic instances while historical
-`manual-ir/v1` and cut-1 replay remain supported. Before cuts 6–7, cut 5B must
-replace JE-1000F/EU DE/IT Overview, Operation and Charging fallbacks with
-locale-matched, hash-registered full panels extracted from the approved source
-PDF. The remaining architecture cuts split presentation overlays and enforce
+`manual-ir/v1` and cut-1 replay remain supported. Cut 5B is complete:
+JE-1000F/EU EN/FR/ES/DE/IT Overview, Operation and Charging now use 55/55
+locale-matched, hash-registered full panels extracted from the operator-supplied
+source PDF, and a target contract rejects fallback or missing required slots.
+The remaining architecture cuts split presentation overlays and enforce
 anti-copy/four-renderer entry gates; do not
 describe the current sixteen-type embedding as full cross-renderer convergence.
 See the [neutral-flow
@@ -18,7 +19,8 @@ plan](dev/manual_ir_v2_neutral_flow_plan.md), [embedded-component
 record](dev/manual_ir_embedded_components_plan.md), [cut-3
 record](dev/manual_ir_operation_warranty_lcd_plan.md), and [cut-4
 record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md), and [cut-5
-record](dev/manual_ir_app_reference_plan.md).
+record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence is
+recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
 Updated: 2026-09-05

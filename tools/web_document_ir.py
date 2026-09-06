@@ -61,6 +61,17 @@ def _rebase_packaged_flow(value, *, root: Path, assets: dict[str, str]):
 def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str, ...]:
     """Replay content + bundled assets; source_path is an identity, not an input."""
     validate_document(ir)
+    coverage = ir.metadata.get("web_figure_coverage")
+    if coverage is not None:
+        from tools.web_figure_coverage import (
+            enforce_required_web_figure_coverage,
+            validate_web_figure_coverage,
+        )
+
+        if not isinstance(coverage, dict):
+            raise ValueError("Web figure coverage metadata must be an object")
+        validate_web_figure_coverage(coverage)
+        enforce_required_web_figure_coverage(ir, coverage)
     root = package_root.resolve()
     for relative, expected in ir.metadata["asset_sha256"].items():
         asset = (root / relative).resolve()

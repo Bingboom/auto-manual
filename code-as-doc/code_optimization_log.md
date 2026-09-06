@@ -2055,3 +2055,30 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   Operation, and Charging slots must be replaced by locale-matched full panels
   from the supplied EU/UK PDF. For those slots, `editable-fallback` is debt and
   final acceptance permits only `finished-panel` or `approved-composite`.
+
+
+## 2026-09-05: JE-1000F/EU localized finished-panel gate (cut 5B)
+
+- Replayed the operator-supplied 92-page EU/UK V2.0 PDF from a pinned
+  `0b4424…11cfe` source digest and committed 55 locale-matched full-panel crops:
+  two Overview, five Operation, and four Charging figures for each of
+  EN/FR/ES/DE/IT. The panels retain the source PDF's localized text and leader
+  lines; text-free artwork plus HTML labels is recorded as historical debt and
+  is not an accepted final carrier for these slots.
+- Added one generic contract-driven required-slot gate. JE-1000F/EU declares
+  its five locales and 11 slots in `web_manual.json`; missing, duplicate, or
+  `editable-fallback` rows fail both IR assembly and source-free replay. No
+  model-specific Python branch or copied CSS was added.
+- The versioned recipe, local source registry, Web asset registry, composite
+  manifest, and committed fixture hashes agree. A fresh PDF replay produced
+  239 artifacts (92 archive pages, 92 previews, 55 exports) and all 55 exports
+  matched their approved SHA-256 pins. No live Base/F6 write was performed.
+- Real review-asis Web acceptance produced 76 ordered fragments and 60 figure
+  slots: 55 `approved-composite` plus five intentionally editable LCD Mode
+  fallbacks. Cold replay succeeded with every RST/CSV read forbidden; Italian
+  contributed 11/11 approved panels. The RTD/Sphinx build passed with warnings
+  treated as errors, and DE/IT desktop plus 390 px inspection showed zero
+  visible composite fallback and no horizontal overflow.
+- Validation passed 41 focused and 3785 full-suite tests (22 skipped), full
+  Ruff, 62 hotspot guardrails, 1714 documentation links, and the registry audit
+  (`162` rows, zero errors; 24 pre-existing source-only/debt warnings).

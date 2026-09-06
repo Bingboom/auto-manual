@@ -1,0 +1,3793 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000f_eu_uk_20260618",
+    "expected_sha256": "0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe",
+    "expected_page_count": 92
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 92
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_page_0001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "source_page_0002",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "source_page_0003",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "source_page_0004",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "source_page_0005",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "source_page_0006",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "source_page_0007",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "source_page_0008",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "source_page_0009",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "source_page_0010",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "source_page_0011",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "source_page_0012",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "source_page_0013",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "source_page_0014",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "source_page_0015",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "source_page_0016",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "source_page_0017",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "source_page_0018",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "source_page_0019",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "source_page_0020",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "source_page_0021",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "source_page_0022",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "source_page_0023",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "source_page_0024",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "source_page_0025",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "source_page_0026",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "source_page_0027",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "source_page_0028",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "source_page_0029",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "source_page_0030",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "source_page_0031",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "source_page_0032",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "source_page_0033",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "source_page_0034",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "source_page_0035",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "source_page_0036",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "source_page_0037",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "source_page_0038",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "source_page_0039",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "source_page_0040",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "source_page_0041",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "source_page_0042",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "source_page_0043",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "source_page_0044",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "source_page_0045",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "source_page_0046",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "source_page_0047",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "source_page_0048",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "source_page_0049",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "source_page_0050",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "source_page_0051",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "source_page_0052",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "source_page_0053",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "source_page_0054",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "source_page_0055",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "source_page_0056",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "source_page_0057",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "source_page_0058",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "source_page_0059",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "source_page_0060",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "source_page_0061",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "source_page_0062",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "source_page_0063",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "source_page_0064",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "source_page_0065",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "source_page_0066",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "source_page_0067",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "source_page_0068",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "source_page_0069",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "source_page_0070",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "source_page_0071",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "source_page_0072",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "source_page_0073",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "source_page_0074",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "source_page_0075",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "source_page_0076",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "source_page_0077",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "source_page_0078",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "source_page_0079",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "source_page_0080",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "source_page_0081",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "source_page_0082",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "source_page_0083",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "source_page_0084",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "source_page_0085",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "source_page_0086",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "source_page_0087",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 88,
+      "page_key": "source_page_0088",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 89,
+      "page_key": "source_page_0089",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 90,
+      "page_key": "source_page_0090",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 91,
+      "page_key": "source_page_0091",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 92,
+      "page_key": "source_page_0092",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web-composite/je1000f_eu/en/product-overview.front",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            95.0,
+            344.0,
+            300.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.front_en_29bdd9e2f9e6.png",
+          "scale": 4,
+          "expected_sha256": "29bdd9e2f9e601bf4e508c86279d43697a281fb74622f67f2156f53aacdfd99a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/product-overview.right",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            333.0,
+            344.0,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.right_en_51e55d14c7f2.png",
+          "scale": 4,
+          "expected_sha256": "51e55d14c7f2ff6b7b6b9b87867c15bab685aafd08dbe95c04eb52d33a9b8e1e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/operation.main-power",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.84,
+            70.67,
+            337.57,
+            199.37
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.main-power_en_d146a09b705b.png",
+          "scale": 4,
+          "expected_sha256": "d146a09b705bc34e26589e29286c303c529044936772d8621f71865cf4644471"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/operation.ac-output",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.33,
+            273.31,
+            337.07,
+            497.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.ac-output_en_d775fac753d4.png",
+          "scale": 4,
+          "expected_sha256": "d775fac753d482ca3a40c0f61f6bfc28c74280d746b9ee220c671a24b444e019"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/operation.dc-usb-output",
+      "page": 12,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.62,
+            42.19,
+            346.36,
+            263.91
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.dc-usb-output_en_8d9c9faed173.png",
+          "scale": 4,
+          "expected_sha256": "8d9c9faed173010decc8adc7513a284aea7def5bd2f94e51c46a6fccc6b22e8c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/operation.energy-saving",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.23,
+            35.99,
+            342.97,
+            229.39
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.energy-saving_en_0172891c9485.png",
+          "scale": 4,
+          "expected_sha256": "0172891c9485e9d554a4f81b2a688af4492834a3a505fd96d3e107089196aa55"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/operation.led-light",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.14,
+            336.43,
+            341.87,
+            484.55
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.led-light_en_ca664bce0375.png",
+          "scale": 4,
+          "expected_sha256": "ca664bce037561c5ac6e172569be4f2a3248401d4b5189be16b8c07842dd4ed7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/reference.charging-ac-wall",
+      "page": 16,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.05,
+            51.17,
+            340.78,
+            153.61
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-ac-wall_en_4f2729db0ddb.png",
+          "scale": 4,
+          "expected_sha256": "4f2729db0ddb09e4125d08171902dbc761bb1a5deb236b5b9c91f5188d8ef9ef"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/reference.charging-solar-direct",
+      "page": 16,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            22.35,
+            266.27,
+            337.96,
+            423.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-direct_en_5c91e2f80ff4.png",
+          "scale": 4,
+          "expected_sha256": "5c91e2f80ff4ac164680ff48fe9419a32abbf67e8c11de357695c72a82b75e50"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/reference.charging-solar-adapter",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.22,
+            34.64,
+            341.96,
+            181.06
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-adapter_en_c57e7dbb85f0.png",
+          "scale": 4,
+          "expected_sha256": "c57e7dbb85f0c3833192c7331fc7495c233e8dd62845a380ed97eddd601d335b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/en/reference.charging-car",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.18,
+            356.08,
+            340.91,
+            492.27
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-car_en_11ef39e9a113.png",
+          "scale": 4,
+          "expected_sha256": "11ef39e9a1133dff3b94e994203d796a24250aa5732f153f85a04f11f00ebcae"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/product-overview.front",
+      "page": 25,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            95.0,
+            344.0,
+            300.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.front_fr_80e4af9abe10.png",
+          "scale": 4,
+          "expected_sha256": "80e4af9abe10d0654c3746532bfa3de338d02cd6bf90640ce543e1f9b5f48fd9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/product-overview.right",
+      "page": 25,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            333.0,
+            344.0,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.right_fr_d00533ec20fb.png",
+          "scale": 4,
+          "expected_sha256": "d00533ec20fb9f0c929be1bbea28322067cf11617b2c09cdd3ab946f4fd10087"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/operation.main-power",
+      "page": 28,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.14,
+            73.02,
+            342.87,
+            201.71
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.main-power_fr_28a0fab1fb35.png",
+          "scale": 4,
+          "expected_sha256": "28a0fab1fb35bba52bbf384c6e4826dacddb2377acca847809b8630049f1beb6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/operation.ac-output",
+      "page": 28,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.14,
+            342.74,
+            495.89
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.ac-output_fr_6efe223dae51.png",
+          "scale": 4,
+          "expected_sha256": "6efe223dae51a4ed12038f782bf0daad4927b34b62622ead6a115d25341b4409"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/operation.dc-usb-output",
+      "page": 29,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.68,
+            45.31,
+            345.42,
+            266.35
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.dc-usb-output_fr_cca746bf84aa.png",
+          "scale": 4,
+          "expected_sha256": "cca746bf84aab963823421bfff4098f932515ffd55bf0ee85e5feb4fc3ec9b80"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/operation.energy-saving",
+      "page": 30,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.54,
+            29.82,
+            344.27,
+            247.64
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.energy-saving_fr_196db2418826.png",
+          "scale": 4,
+          "expected_sha256": "196db2418826e717a2c32008c46f01abf8fd03ac6f6192eb1904cdba74493cfc"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/operation.led-light",
+      "page": 30,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.2,
+            332.63,
+            342.94,
+            488.59
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.led-light_fr_3870cb1a99ae.png",
+          "scale": 4,
+          "expected_sha256": "3870cb1a99ae7bb0a67ddc7f74482aff10f068e382eda5a2939695348e18132b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/reference.charging-ac-wall",
+      "page": 33,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.46,
+            41.12,
+            344.19,
+            143.56
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-ac-wall_fr_68839eb0e574.png",
+          "scale": 4,
+          "expected_sha256": "68839eb0e574ba3c5a64ad1402486ae92a85fa26b9dcfd4e5beffc7b89bc2d1b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/reference.charging-solar-direct",
+      "page": 33,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.79,
+            274.54,
+            343.4,
+            431.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-direct_fr_3d1d76c2ff5d.png",
+          "scale": 4,
+          "expected_sha256": "3d1d76c2ff5da5a4b5a2108c31c0310c16748e5fdb3d849da177fc0ffa3e7ef0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/reference.charging-solar-adapter",
+      "page": 34,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            31.66,
+            32.0,
+            347.4,
+            178.42
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-adapter_fr_e9e777b55c2f.png",
+          "scale": 4,
+          "expected_sha256": "e9e777b55c2fb65b6945630d28ebb3ac2c50ff47221fe63c9c5880e27d2c8d58"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/fr/reference.charging-car",
+      "page": 34,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.04,
+            356.06,
+            344.77,
+            492.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-car_fr_62d32ac8ac4e.png",
+          "scale": 4,
+          "expected_sha256": "62d32ac8ac4e8ab6bdc873f3067dccc96726ddc25ef14f618cb7e31509d39a3a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/product-overview.front",
+      "page": 42,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            95.0,
+            344.0,
+            300.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.front_es_9721230d3a53.png",
+          "scale": 4,
+          "expected_sha256": "9721230d3a531d55891350e932924825b7f7ebc1296f8f1fa10799052334271e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/product-overview.right",
+      "page": 42,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            333.0,
+            344.0,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.right_es_c65945c9bd4f.png",
+          "scale": 4,
+          "expected_sha256": "c65945c9bd4fc0990e1e3a2e8270f1dfd93037840dc818c0cb8f8e199d4bc5a5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/operation.main-power",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            71.69,
+            343.66,
+            200.38
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.main-power_es_671911ee2461.png",
+          "scale": 4,
+          "expected_sha256": "671911ee24617ce810667c42c88751db21a91369f20ea7eb61f2f8c78914a7c4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/operation.ac-output",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            272.38,
+            343.66,
+            496.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.ac-output_es_a71f9ff80a2f.png",
+          "scale": 4,
+          "expected_sha256": "a71f9ff80a2f0d00f1e2613295d97bde4b45118bc4e00b9d7c57d97bd95572d3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/operation.dc-usb-output",
+      "page": 46,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.56,
+            47.4,
+            344.29,
+            279.82
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.dc-usb-output_es_46ade2b744a8.png",
+          "scale": 4,
+          "expected_sha256": "46ade2b744a87255c414707bd4b6cacc459c8159a1261ac22c935af0ea069f72"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/operation.energy-saving",
+      "page": 47,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.83,
+            30.11,
+            342.56,
+            249.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.energy-saving_es_e42fd7ad5c73.png",
+          "scale": 4,
+          "expected_sha256": "e42fd7ad5c73c708cf3cc3ba58fd0726debace6077864b5da98b40f1a7c803a5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/operation.led-light",
+      "page": 47,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.07,
+            334.56,
+            341.81,
+            490.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.led-light_es_7b6b8e0b9379.png",
+          "scale": 4,
+          "expected_sha256": "7b6b8e0b937950dd39a211f0d364451db720e799d6c6b06c5a0ff6a41c977e81"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/reference.charging-ac-wall",
+      "page": 50,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.07,
+            37.21,
+            340.8,
+            139.65
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-ac-wall_es_9f7e4fac69bc.png",
+          "scale": 4,
+          "expected_sha256": "9f7e4fac69bce45a7fedcb0fa3283b689ac5eefe24f63812559ae73821aae6a4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/reference.charging-solar-direct",
+      "page": 50,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.15,
+            274.45,
+            341.77,
+            431.23
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-direct_es_2e3b2cbda5f2.png",
+          "scale": 4,
+          "expected_sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/reference.charging-solar-adapter",
+      "page": 51,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.26,
+            31.9,
+            344.99,
+            178.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-adapter_es_6eb8244df99a.png",
+          "scale": 4,
+          "expected_sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/es/reference.charging-car",
+      "page": 51,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.14,
+            359.59,
+            342.87,
+            495.79
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-car_es_bc528286d032.png",
+          "scale": 4,
+          "expected_sha256": "bc528286d0324b037e234764b337ae77b9bf3813679f445039e9278eb895de49"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/product-overview.front",
+      "page": 60,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            95.0,
+            344.0,
+            300.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.front_de_95164f86b2b7.png",
+          "scale": 4,
+          "expected_sha256": "95164f86b2b7cbeb3018ea08d76e63567893af3277eaef37413afad4a268c86e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/product-overview.right",
+      "page": 60,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            333.0,
+            344.0,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.right_de_3edc17cfcca3.png",
+          "scale": 4,
+          "expected_sha256": "3edc17cfcca3ef6d8bd75f3898a20c9fa80e0bb1fe67070a710c05fdc6ba8a2a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/operation.main-power",
+      "page": 63,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            71.69,
+            343.66,
+            216.52
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.main-power_de_41b0974b8970.png",
+          "scale": 4,
+          "expected_sha256": "41b0974b8970b9e4c5b84c57f583b8aa5e3a27fc54bcf0189b01226e22740e0f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/operation.ac-output",
+      "page": 63,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            272.38,
+            343.66,
+            496.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.ac-output_de_eefd36599ef3.png",
+          "scale": 4,
+          "expected_sha256": "eefd36599ef35e40de93411e4523119731d40ac2c019fab04190e7ee78934d5e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/operation.dc-usb-output",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.56,
+            47.4,
+            344.29,
+            279.82
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.dc-usb-output_de_db2e22568da0.png",
+          "scale": 4,
+          "expected_sha256": "db2e22568da0b8b8bb6df8935e553843c712414ef675494f3488dd1d8c8bc8ff"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/operation.energy-saving",
+      "page": 65,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.83,
+            28.92,
+            342.56,
+            244.57
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.energy-saving_de_b9eb96b32d60.png",
+          "scale": 4,
+          "expected_sha256": "b9eb96b32d6054e8e82031603d5dc9638b010d2cf45c8fa742511ada38f66abd"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/operation.led-light",
+      "page": 65,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.07,
+            334.56,
+            341.81,
+            490.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.led-light_de_f35210360304.png",
+          "scale": 4,
+          "expected_sha256": "f35210360304e03ecb5349b2a2f9c5d916ef43e73dab1c1e54e4c2399723291e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/reference.charging-ac-wall",
+      "page": 68,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.07,
+            37.21,
+            340.8,
+            139.65
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-ac-wall_de_816f5bfb098b.png",
+          "scale": 4,
+          "expected_sha256": "816f5bfb098b3ce45e0a4e4bcd556775773ae7b5bb98712d25b0286481258969"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/reference.charging-solar-direct",
+      "page": 68,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.15,
+            274.45,
+            341.77,
+            431.23
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-direct_de_2e3b2cbda5f2.png",
+          "scale": 4,
+          "expected_sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/reference.charging-solar-adapter",
+      "page": 69,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.26,
+            31.9,
+            344.99,
+            178.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-adapter_de_6eb8244df99a.png",
+          "scale": 4,
+          "expected_sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/de/reference.charging-car",
+      "page": 69,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.14,
+            359.59,
+            342.87,
+            495.79
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-car_de_4e3894dbfbe0.png",
+          "scale": 4,
+          "expected_sha256": "4e3894dbfbe0bbd9fbfa171ab2e00a0c672acf21cc5cd90fd3542a446c5425d2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/product-overview.front",
+      "page": 77,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            95.0,
+            344.0,
+            300.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.front_it_94e88239416f.png",
+          "scale": 4,
+          "expected_sha256": "94e88239416ffa759355428ec0afc8b5127ca20e6a09ff748fd32fbbe436770b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/product-overview.right",
+      "page": 77,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            333.0,
+            344.0,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/product-overview.right_it_92b0ed2a03fb.png",
+          "scale": 4,
+          "expected_sha256": "92b0ed2a03fbce944c2f31abab8046c46fc31f69bf3362c2292027edfd54e838"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/operation.main-power",
+      "page": 80,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            71.69,
+            343.66,
+            217.33
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.main-power_it_b6ba22bf8a02.png",
+          "scale": 4,
+          "expected_sha256": "b6ba22bf8a029b653a15556e33f2015a13a517eaa08721f9b4e37264c7a14329"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/operation.ac-output",
+      "page": 80,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.92,
+            272.38,
+            343.66,
+            496.12
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.ac-output_it_3fae4a706b6f.png",
+          "scale": 4,
+          "expected_sha256": "3fae4a706b6f459b1e95c4237009ed4b6c916d096b8ae33c9c90947d15441b6b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/operation.dc-usb-output",
+      "page": 81,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.56,
+            47.4,
+            344.29,
+            279.82
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.dc-usb-output_it_46e632819072.png",
+          "scale": 4,
+          "expected_sha256": "46e63281907266fd50150c7d0d7b85d72b2f848d9b164fe18a0fd1fa269db8d0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/operation.energy-saving",
+      "page": 82,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.83,
+            25.69,
+            342.56,
+            247.7
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.energy-saving_it_57a3296be38a.png",
+          "scale": 4,
+          "expected_sha256": "57a3296be38aa85fc52fdfa0fd563693fd8fc83a99bf796c8f30c7ed90575bd9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/operation.led-light",
+      "page": 82,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.07,
+            330.43,
+            341.81,
+            490.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/operation.led-light_it_cbd02dc0d35e.png",
+          "scale": 4,
+          "expected_sha256": "cbd02dc0d35ee8d0a481c68dc8c7cb27c94c1a8379164c3ae6c12fe399cbd54e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/reference.charging-ac-wall",
+      "page": 85,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.07,
+            37.21,
+            340.8,
+            139.65
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-ac-wall_it_8415ace8180e.png",
+          "scale": 4,
+          "expected_sha256": "8415ace8180ea42ce80fab1c7a4c81c626363a92ae3679d0b03fba1ffb546f6c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/reference.charging-solar-direct",
+      "page": 85,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.15,
+            274.45,
+            341.77,
+            431.23
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-direct_it_2e3b2cbda5f2.png",
+          "scale": 4,
+          "expected_sha256": "2e3b2cbda5f222d16714244d5be6b10c15e8b957001c3ce1552230fdc4933e14"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/reference.charging-solar-adapter",
+      "page": 86,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.26,
+            31.9,
+            344.99,
+            178.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-solar-adapter_it_6eb8244df99a.png",
+          "scale": 4,
+          "expected_sha256": "6eb8244df99af302a5d115bad73b941dc29e575e1a945947d31de3afeafff7f8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/it/reference.charging-car",
+      "page": 86,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.14,
+            359.59,
+            342.87,
+            495.79
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "tests/fixtures/phase2/_attachments/web_composites/reference.charging-car_it_ed8f8cb22483.png",
+          "scale": 4,
+          "expected_sha256": "ed8f8cb224835522353ee77d78a4635b940028ca2f082ff300df220f11c55c1e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "source-PDF-faithful localized full panel approved for JE-1000F/EU Web 5B"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific",
+        "web-composite"
+      ]
+    }
+  ]
+}
