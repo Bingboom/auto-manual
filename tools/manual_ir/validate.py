@@ -175,6 +175,142 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
     if issues:
         return issues
     # All shapes/types below have been checked; no coercion or repair occurs.
+    component_registry = None
+    metadata = raw.get("metadata", {})
+    embedded_registry = metadata.get("component_registry")
+    embedded_registry_sha256 = metadata.get("component_registry_sha256")
+    requires_embedded_registry = (
+        metadata.get("projection") == "whole-document-components/v1"
+        and metadata.get("web_source_normalization") == "preface-auto-resume/v1"
+    )
+    if embedded_registry is not None or embedded_registry_sha256 is not None:
+        from tools.component_specs.registry import (
+            registry_sha256,
+            validate_component_registry,
+        )
+
+        if not isinstance(embedded_registry, dict):
+            issues.append("metadata.component_registry: expected an object")
+        else:
+            registry_issues = validate_component_registry(embedded_registry)
+            issues.extend(
+                f"metadata.component_registry: {issue}"
+                for issue in registry_issues
+            )
+            if not registry_issues:
+                component_registry = embedded_registry
+        if not isinstance(embedded_registry_sha256, str):
+            issues.append(
+                "metadata.component_registry_sha256: expected a lowercase SHA-256 digest"
+            )
+        elif (
+            isinstance(embedded_registry, dict)
+            and embedded_registry_sha256 != registry_sha256(embedded_registry)
+        ):
+            issues.append("metadata.component_registry_sha256: hash mismatch")
+    elif requires_embedded_registry:
+        issues.append(
+            "whole-document-components/v1 source-normalized IR requires a frozen "
+            "component registry"
+        )
+    embedded_theme = metadata.get("manual_theme")
+    embedded_theme_sha256 = metadata.get("manual_theme_sha256")
+    if embedded_theme is not None or embedded_theme_sha256 is not None:
+        from tools.component_specs.theme import theme_sha256, validate_manual_theme
+
+        if not isinstance(embedded_theme, dict):
+            issues.append("metadata.manual_theme: expected an object")
+        elif component_registry is None:
+            issues.append(
+                "metadata.manual_theme: requires a valid embedded component registry"
+            )
+        else:
+            theme_issues = validate_manual_theme(
+                embedded_theme,
+                component_registry=component_registry,
+            )
+            issues.extend(
+                f"metadata.manual_theme: {issue}"
+                for issue in theme_issues
+            )
+        if not isinstance(embedded_theme_sha256, str):
+            issues.append(
+                "metadata.manual_theme_sha256: expected a lowercase SHA-256 digest"
+            )
+        elif (
+            isinstance(embedded_theme, dict)
+            and embedded_theme_sha256 != theme_sha256(embedded_theme)
+        ):
+            issues.append("metadata.manual_theme_sha256: hash mismatch")
+    elif requires_embedded_registry:
+        issues.append(
+            "whole-document-components/v1 source-normalized IR requires a frozen "
+            "manual theme"
+        )
+    embedded_overview = metadata.get("overview_instance")
+    embedded_overview_sha256 = metadata.get("overview_instance_sha256")
+    if embedded_overview is not None or embedded_overview_sha256 is not None:
+        from tools.component_specs.overview_instance import (
+            overview_instance_sha256,
+            validate_resolved_overview_instance,
+        )
+
+        if not isinstance(embedded_overview, dict):
+            issues.append("metadata.overview_instance: expected an object")
+        else:
+            overview_issues = validate_resolved_overview_instance(
+                embedded_overview
+            )
+            issues.extend(
+                f"metadata.overview_instance: {issue}"
+                for issue in overview_issues
+            )
+            target = embedded_overview.get("target")
+            if isinstance(target, dict) and (
+                str(target.get("model") or "").casefold()
+                != str(raw["model"]).casefold()
+                or str(target.get("region") or "").casefold()
+                != str(raw["region"]).casefold()
+            ):
+                issues.append(
+                    "metadata.overview_instance: target does not match document"
+                )
+        if not isinstance(embedded_overview_sha256, str):
+            issues.append(
+                "metadata.overview_instance_sha256: expected a lowercase "
+                "SHA-256 digest"
+            )
+        elif (
+            isinstance(embedded_overview, dict)
+            and embedded_overview_sha256
+            != overview_instance_sha256(embedded_overview)
+        ):
+            issues.append("metadata.overview_instance_sha256: hash mismatch")
+    web_contract = metadata.get("web_contract")
+    figure_targets = (
+        web_contract.get("figure_targets", [])
+        if isinstance(web_contract, dict)
+        else []
+    )
+    if not isinstance(figure_targets, list):
+        figure_targets = []
+    requires_overview_instance = requires_embedded_registry and any(
+        isinstance(target, dict)
+        and str(target.get("model") or "").casefold()
+        == str(raw["model"]).casefold()
+        and str(target.get("region") or "").casefold()
+        == str(raw["region"]).casefold()
+        for target in figure_targets
+    )
+    if (
+        embedded_overview is None
+        and embedded_overview_sha256 is None
+        and requires_overview_instance
+    ):
+        issues.append(
+            "whole-document-components/v1 source-normalized figure IR requires "
+            "a frozen Overview instance"
+        )
     pages = raw["pages"]
     if raw["schema_version"] not in SUPPORTED_SCHEMA_VERSIONS:
         issues.append(
@@ -225,7 +361,10 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
 
                     issues.extend(
                         f"{block_loc}.payload{issue[1:] if issue.startswith('$') else ': ' + issue}"
-                        for issue in validate_flow_node(block["payload"])
+                        for issue in validate_flow_node(
+                            block["payload"],
+                            component_registry=component_registry,
+                        )
                     )
             block_hashes.append(block["content_sha256"])
     expected_content = value_sha256(

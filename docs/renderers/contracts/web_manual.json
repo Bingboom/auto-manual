@@ -8,5 +8,6 @@
   "compatibility_skeleton_profile": "portable-power-station-v1",
   "target_overlays": [
     "web_presentation/target_overlays.json"
-  ]
+  ],
+  "figure_debt_baseline": "web_presentation/figure_debt_baseline.json"
 }

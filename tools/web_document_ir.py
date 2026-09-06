@@ -6,6 +6,8 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Comment, NavigableString
 
+from tools.component_specs.registry import component_registry_context
+from tools.component_specs.theme import manual_theme_context
 from tools.manual_ir import V1_SCHEMA_VERSION, ManualIR
 from tools.manual_ir.document import validate_document, validate_tree
 from tools.manual_ir.flow import flow_nodes_to_html
@@ -58,7 +60,7 @@ def _rebase_packaged_flow(value, *, root: Path, assets: dict[str, str]):
     return deepcopy(value)
 
 
-def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str, ...]:
+def _render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str, ...]:
     """Replay content + bundled assets; source_path is an identity, not an input."""
     validate_document(ir)
     coverage = ir.metadata.get("web_figure_coverage")
@@ -87,6 +89,10 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
         embedded_components_complete = (
             ir.metadata.get("projection") == "whole-document-components/v1"
         )
+        source_normalized = (
+            ir.metadata.get("web_source_normalization")
+            == "preface-auto-resume/v1"
+        )
         page_nodes = [block.payload for block in page.blocks]
         if embedded_components_complete:
             page_nodes = [
@@ -97,19 +103,16 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
                 )
                 for node in page_nodes
             ]
-        embedded_specs = (
-            component_specs_in_flow(tuple(page_nodes))
-            if ir.metadata.get("projection") == "whole-document-components/v1"
-            else ()
-        )
-        resolved_component_ids = frozenset(
-            spec.component_id for spec in embedded_specs
-        )
         if ir.schema_version == V1_SCHEMA_VERSION:
             markup = "".join(tree_to_html(block.payload) for block in page.blocks)
         else:
             markup = flow_nodes_to_html(
                 page_nodes,
+                component_registry=(
+                    ir.metadata.get("component_registry")
+                    if isinstance(ir.metadata.get("component_registry"), dict)
+                    else None
+                ),
                 component_renderer=lambda node: render_embedded_web_component(
                     node,
                     source_path=Path(page.source_path),
@@ -118,6 +121,11 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
                     language=page.language,
                     composite_manifest=composites,
                     contract=ir.metadata["web_contract"],
+                    overview_instance=(
+                        ir.metadata.get("overview_instance")
+                        if isinstance(ir.metadata.get("overview_instance"), dict)
+                        else None
+                    ),
                 ),
             )
         if embedded_components_complete:
@@ -129,15 +137,41 @@ def render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str,
                 if src in ir.metadata["asset_sha256"]:
                     image["src"] = (root / src).as_uri()
             presentation_markup = str(soup)
-        declaration = ir.metadata["page_declarations"].get(page.page_id)
-        fragment = transform_web_fragment(
-            presentation_markup, source_path=Path(page.source_path),
-            contract=ir.metadata["web_contract"], composite_manifest=composites,
-            model=ir.model, region=ir.region, language=page.language,
-            declared_troubleshooting=declaration == "troubleshooting",
-            declared_lcd_icons=declaration == "lcd_icons",
-            resolved_component_ids=resolved_component_ids,
-            embedded_components_complete=embedded_components_complete,
-        )
+        if embedded_components_complete and source_normalized:
+            fragment = presentation_markup
+        else:
+            declaration = ir.metadata["page_declarations"].get(page.page_id)
+            resolved_component_ids = frozenset(
+                spec.component_id
+                for spec in component_specs_in_flow(tuple(page_nodes))
+            ) if embedded_components_complete else frozenset()
+            fragment = transform_web_fragment(
+                presentation_markup, source_path=Path(page.source_path),
+                contract=ir.metadata["web_contract"], composite_manifest=composites,
+                model=ir.model, region=ir.region, language=page.language,
+                declared_troubleshooting=declaration == "troubleshooting",
+                declared_lcd_icons=declaration == "lcd_icons",
+                resolved_component_ids=resolved_component_ids,
+                embedded_components_complete=embedded_components_complete,
+            )
         fragments.append(stage_fragment_assets(fragment, Path(page.source_path), root, (paths.docs_dir, paths.root)))
     return tuple(fragments)
+
+
+def render_document_fragments(
+    ir: ManualIR,
+    *,
+    package_root: Path,
+) -> tuple[str, ...]:
+    """Replay a package against its frozen component registry when available."""
+
+    registry = ir.metadata.get("component_registry")
+    theme = ir.metadata.get("manual_theme")
+    with component_registry_context(
+        registry if isinstance(registry, dict) else None
+    ):
+        with manual_theme_context(
+            theme if isinstance(theme, dict) else None,
+            component_registry=(registry if isinstance(registry, dict) else None),
+        ):
+            return _render_document_fragments(ir, package_root=package_root)

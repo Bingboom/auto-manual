@@ -22,10 +22,26 @@ from tools.manual_ir import (
 from tools.manual_ir.document import content_tree, validate_document
 from tools.manual_ir.flow import flow_nodes_to_html
 from tools.component_specs.projection import project_manual_ir_components
+from tools.component_specs.overview_instance import (
+    overview_instance_sha256,
+    resolve_overview_instance,
+)
+from tools.component_specs.overview_adapters import (
+    idml_overview_projection,
+    latex_overview_projection,
+    web_overview_projection,
+    word_overview_projection,
+)
+from tools.component_specs.registry import registry_sha256
+from tools.component_specs.theme import theme_sha256
 from tools.web_presentation import protect_web_callouts_for_pandoc
+from tools.web_presentation import transform_web_fragment
 from tools.web_document_ir import render_document_fragments
-from tools.web_document_source import _consume_covered_annotations
+from tools.web_document_source import _consume_covered_annotations, load_web_document
 from tools.word_bundle_html import build_word_bundle_html
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class WebDocumentIRTests(unittest.TestCase):
@@ -206,6 +222,26 @@ class WebDocumentIRTests(unittest.TestCase):
             self.assertEqual(len(ir.pages), 2)
             self.assertEqual("manual-ir/v2", ir.schema_version)
             self.assertEqual("whole-document-components/v1", ir.metadata["projection"])
+            self.assertEqual(
+                "preface-auto-resume/v1",
+                ir.metadata["web_source_normalization"],
+            )
+            self.assertEqual(
+                "component-registry/v1",
+                ir.metadata["component_registry"]["schema_version"],
+            )
+            self.assertEqual(
+                registry_sha256(ir.metadata["component_registry"]),
+                ir.metadata["component_registry_sha256"],
+            )
+            self.assertEqual(
+                "manual-theme/v1",
+                ir.metadata["manual_theme"]["schema_version"],
+            )
+            self.assertEqual(
+                theme_sha256(ir.metadata["manual_theme"]),
+                ir.metadata["manual_theme_sha256"],
+            )
             self.assertTrue(all(
                 block.payload["schema_version"] == "manual-flow/v2"
                 for page in ir.pages
@@ -225,6 +261,200 @@ class WebDocumentIRTests(unittest.TestCase):
             self.assertIn("2042.8Wh", "".join(after))
             self.assertTrue(ir.asset_refs)
             self.assertIn("<strong>重要</strong>", "".join(after))
+
+    def test_whole_document_components_replay_never_calls_legacy_dom_projector(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+
+            with patch(
+                "tools.web_document_ir.transform_web_fragment",
+                side_effect=AssertionError("legacy DOM projector called"),
+            ):
+                fragments = render_document_fragments(ir, package_root=output)
+
+            self.assertEqual(2, len(fragments))
+            self.assertIn("2042.8Wh", "".join(fragments))
+
+    def test_overview_replay_and_four_adapters_use_frozen_target_instance(self):
+        source_page = (
+            ROOT
+            / "docs"
+            / "_review"
+            / "JE-1000F"
+            / "US"
+            / "page"
+            / "03_product_overview_placeholder.rst"
+        )
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            page = (
+                root
+                / "docs"
+                / "_review"
+                / "JE-1000F"
+                / "US"
+                / "page"
+                / source_page.name
+            )
+            page.parent.mkdir(parents=True)
+            artwork = page.parent / "overview"
+            artwork.mkdir()
+            (artwork / "front_controls.png").write_bytes(b"front")
+            (artwork / "right_side_ports.png").write_bytes(b"right")
+            page.write_text(
+                source_page.read_text(encoding="utf-8")
+                .replace(
+                    "asset:overview/front_controls",
+                    "overview/front_controls.png",
+                )
+                .replace(
+                    "asset:overview/right_side_ports",
+                    "overview/right_side_ports.png",
+                ),
+                encoding="utf-8",
+            )
+            output = root / "package"
+            materialized = SimpleNamespace(
+                bundle_dir=page.parent,
+                title="Jackery Explorer 1000",
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                languages=("en",),
+            )
+            ir = load_web_document(
+                materialized,
+                page_paths=(page,),
+                declarations={},
+                page_languages={page.name: "en"},
+                active_tags={"region_us"},
+                output_dir=output,
+                composite_manifest=None,
+            )
+            instance = ir.metadata["overview_instance"]
+            self.assertEqual("je1000f-us-v1", instance["instance_id"])
+            self.assertEqual(
+                overview_instance_sha256(instance),
+                ir.metadata["overview_instance_sha256"],
+            )
+
+            with patch(
+                "tools.web_embedded_components.resolve_overview_instance",
+                side_effect=AssertionError("external Overview contract reopened"),
+            ):
+                fragment = render_document_fragments(ir, package_root=output)[0]
+            self.assertEqual(2, fragment.count("hb-annotated-figure"))
+
+            spec = next(
+                candidate
+                for candidate in project_manual_ir_components(ir)
+                if candidate.component_id == "HB-SPECIAL-OVERVIEW"
+            )
+            projections = (
+                web_overview_projection(spec, instance),
+                latex_overview_projection(spec, instance),
+                idml_overview_projection(spec, instance),
+                word_overview_projection(spec, instance),
+            )
+            self.assertTrue(
+                all(
+                    result["geometry_ref"] == "je1000f-us-v1"
+                    for result in projections
+                )
+            )
+
+    def test_pre_cut7_component_ir_uses_explicit_compatibility_projector(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+            metadata = dict(ir.metadata)
+            metadata.pop("component_registry")
+            metadata.pop("component_registry_sha256")
+            metadata.pop("manual_theme")
+            metadata.pop("manual_theme_sha256")
+            metadata.pop("web_source_normalization")
+            legacy = replace(ir, metadata=metadata)
+
+            with patch(
+                "tools.web_document_ir.transform_web_fragment",
+                wraps=transform_web_fragment,
+            ) as projector:
+                fragments = render_document_fragments(legacy, package_root=output)
+
+            self.assertEqual(2, len(fragments))
+            self.assertGreater(projector.call_count, 0)
+
+    def test_source_normalized_component_ir_requires_untampered_frozen_registry(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+            path = output / "tampered-registry.json"
+            payload = ir.to_dict()
+            payload["metadata"].pop("component_registry")
+            payload["metadata"].pop("component_registry_sha256")
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(
+                ValueError,
+                "requires a frozen component registry",
+            ):
+                read_manual_ir(path)
+
+            payload = ir.to_dict()
+            payload["metadata"].pop("manual_theme")
+            payload["metadata"].pop("manual_theme_sha256")
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(
+                ValueError,
+                "requires a frozen manual theme",
+            ):
+                read_manual_ir(path)
+
+            payload = ir.to_dict()
+            payload["metadata"]["component_registry"]["registry_id"] += "-changed"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "hash mismatch"):
+                read_manual_ir(path)
+
+    def test_source_normalized_figure_ir_requires_target_frozen_overview(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+            path = output / "figure-target.json"
+            payload = ir.to_dict()
+            payload["model"] = "JE-1000F"
+            payload["region"] = "US"
+            payload["metadata"]["web_contract"]["figure_targets"] = [
+                {"model": "JE-1000F", "region": "US"}
+            ]
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(
+                ValueError,
+                "requires a frozen Overview instance",
+            ):
+                read_manual_ir(path)
+
+            instance = resolve_overview_instance(model="JE-1000F", region="US")
+            payload["metadata"]["overview_instance"] = instance
+            payload["metadata"]["overview_instance_sha256"] = (
+                overview_instance_sha256(instance)
+            )
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            loaded = read_manual_ir(path)
+            self.assertEqual(
+                "je1000f-us-v1",
+                loaded.metadata["overview_instance"]["instance_id"],
+            )
+
+            payload["metadata"]["overview_instance"]["instance_id"] += "-changed"
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "hash mismatch"):
+                read_manual_ir(path)
+
+            instance = resolve_overview_instance(model="JE-1000F", region="EU")
+            payload["metadata"]["overview_instance"] = instance
+            payload["metadata"]["overview_instance_sha256"] = (
+                overview_instance_sha256(instance)
+            )
+            path.write_text(json.dumps(payload), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "target does not match document"):
+                read_manual_ir(path)
 
     def test_missing_or_changed_asset_fails_before_render(self):
         with tempfile.TemporaryDirectory() as td:
@@ -247,7 +477,8 @@ from unittest.mock import patch
 import sys
 original = Path.open
 def guarded(path, *args, **kwargs):
-    if path.suffix in {".rst", ".csv"}:
+    normalized = path.as_posix()
+    if path.suffix in {".rst", ".csv"} or "/docs/renderers/contracts/" in normalized:
         raise AssertionError("source read during replay: " + str(path))
     return original(path, *args, **kwargs)
 with patch.object(Path, "open", guarded):

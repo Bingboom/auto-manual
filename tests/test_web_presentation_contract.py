@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from copy import deepcopy
 import hashlib
 import json
 import tempfile
@@ -24,6 +25,7 @@ def _write_layered_contract(
     root: Path,
     *,
     overlays: list[dict[str, object]],
+    debt_targets: list[dict[str, object]] | None = None,
     shared_schema: str = "web-manual-shared-base/v1",
 ) -> Path:
     contracts = root / "contracts"
@@ -36,6 +38,9 @@ def _write_layered_contract(
                 "contract": {
                     "preface": {"targets": []},
                     "figure_coverage": {"requirements": []},
+                    "product_overview": {
+                        "source_patterns": ["*03_product_overview_placeholder"]
+                    },
                 },
             }
         ),
@@ -60,6 +65,15 @@ def _write_layered_contract(
         ),
         encoding="utf-8",
     )
+    (contracts / "figure_debt.json").write_text(
+        json.dumps(
+            {
+                "schema_version": "web-figure-debt-baseline/v1",
+                "targets": debt_targets or [],
+            }
+        ),
+        encoding="utf-8",
+    )
     entry = contracts / "web_manual.json"
     entry.write_text(
         json.dumps(
@@ -69,6 +83,7 @@ def _write_layered_contract(
                 "skeleton_profiles": {"test-skeleton": "skeleton.json"},
                 "compatibility_skeleton_profile": "test-skeleton",
                 "target_overlays": ["overlays.json"],
+                "figure_debt_baseline": "figure_debt.json",
             }
         ),
         encoding="utf-8",
@@ -82,6 +97,17 @@ class WebPresentationContractTests(unittest.TestCase):
         legacy_shape = dict(contract)
         legacy_shape.pop("presentation_layers")
         legacy_shape["schema_version"] = "web-manual-presentation/v1"
+        legacy_requirement = deepcopy(
+            next(
+                requirement
+                for requirement in legacy_shape["figure_coverage"]["requirements"]
+                if requirement["target"]
+                == {"model": "JE-1000F", "region": "EU"}
+            )
+        )
+        legacy_requirement.pop("policy_id")
+        legacy_requirement.pop("known_debt")
+        legacy_shape["figure_coverage"]["requirements"] = [legacy_requirement]
 
         self.assertEqual("web-manual-presentation/v2", contract["schema_version"])
         self.assertEqual(LEGACY_CANONICAL_SHA256, _canonical_sha256(legacy_shape))
@@ -99,11 +125,41 @@ class WebPresentationContractTests(unittest.TestCase):
         self.assertEqual([{"model": "JE-1000F", "region": "EU"}], eu["figure_targets"])
         self.assertEqual([{"model": "JE-1000F", "region": "US"}], us["preface"]["targets"])
         self.assertEqual([], eu["preface"]["targets"])
-        self.assertEqual([], us["figure_coverage"]["requirements"])
+        self.assertEqual(
+            "je1000f-us-finished-figures-v1",
+            us["figure_coverage"]["requirements"][0]["policy_id"],
+        )
         self.assertEqual("JE-1000F", eu["figure_coverage"]["requirements"][0]["target"]["model"])
         self.assertEqual("EU", eu["figure_coverage"]["requirements"][0]["target"]["region"])
         self.assertEqual(us["operations"], eu["operations"])
         self.assertNotIn("instance_id", us["product_overview"])
+
+    def test_us_and_kr_debt_is_explicit_without_weakening_final_statuses(self) -> None:
+        us = load_web_manual_contract(model="JE-1000F", region="US")
+        kr = load_web_manual_contract(model="JE-3000C", region="KR")
+
+        us_requirement = us["figure_coverage"]["requirements"][0]
+        self.assertEqual(["en", "fr", "es"], us_requirement["locales"])
+        self.assertEqual(11, len(us_requirement["required_slots"]))
+        self.assertEqual(
+            ["finished-panel", "approved-composite"],
+            us_requirement["allowed_statuses"],
+        )
+        self.assertEqual(9, len(us_requirement["known_debt"]))
+        self.assertEqual(
+            {"editable-fallback"},
+            {entry["status"] for entry in us_requirement["known_debt"]},
+        )
+
+        self.assertEqual([], kr["figure_targets"])
+        kr_requirement = kr["figure_coverage"]["requirements"][0]
+        self.assertEqual(["ko"], kr_requirement["locales"])
+        self.assertEqual(9, len(kr_requirement["required_slots"]))
+        self.assertEqual(9, len(kr_requirement["known_debt"]))
+        self.assertEqual(
+            {"missing"},
+            {entry["status"] for entry in kr_requirement["known_debt"]},
+        )
 
     def test_eu_finished_art_policy_covers_italian_and_forbids_html_fallback(self) -> None:
         eu = load_web_manual_contract(model="JE-1000F", region="EU")
@@ -139,7 +195,10 @@ class WebPresentationContractTests(unittest.TestCase):
         self.assertEqual("portable-power-station-v1", kr["presentation_layers"]["skeleton_profile"])
         self.assertEqual([], kr["figure_targets"])
         self.assertEqual([], kr["preface"]["targets"])
-        self.assertEqual([], kr["figure_coverage"]["requirements"])
+        self.assertEqual(
+            "je3000c-kr-finished-figures-v1",
+            kr["figure_coverage"]["requirements"][0]["policy_id"],
+        )
         self.assertEqual("operation/lcd_mode", kr["operations"]["lcd_mode_table"]["image_key"])
 
     def test_unknown_target_receives_only_shared_semantics(self) -> None:
@@ -266,6 +325,93 @@ class WebPresentationContractTests(unittest.TestCase):
             entry = _write_layered_contract(Path(td), overlays=[overlay])
             with self.assertRaisesRegex(WebPresentationError, "cannot override"):
                 load_web_manual_contract(entry)
+
+    def test_figure_capability_requires_complete_strict_coverage(self) -> None:
+        base_overlay = {
+            "overlay_id": "one",
+            "target": {"model": "JE-1000F", "region": "US"},
+            "skeleton_profile": "test-skeleton",
+            "capabilities": {"figures": True},
+        }
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[base_overlay])
+            with self.assertRaisesRegex(WebPresentationError, "requires figure_coverage"):
+                load_web_manual_contract(entry, model="JE-1000F", region="US")
+
+        invalid = {
+            **base_overlay,
+            "figure_coverage": {
+                "policy_id": "test-policy",
+                "locales": ["en"],
+                "required_slots": [
+                    "product-overview.front",
+                    "product-overview.right",
+                ],
+                "allowed_statuses": [
+                    "finished-panel",
+                    "approved-composite",
+                    "editable-fallback",
+                ],
+            },
+        }
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[invalid])
+            with self.assertRaisesRegex(WebPresentationError, "only finished artwork"):
+                load_web_manual_contract(entry, model="JE-1000F", region="US")
+
+        incomplete = deepcopy(invalid)
+        incomplete["figure_coverage"]["allowed_statuses"] = [
+            "finished-panel",
+            "approved-composite",
+        ]
+        incomplete["figure_coverage"]["required_slots"] = [
+            "product-overview.front"
+        ]
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[incomplete])
+            with self.assertRaisesRegex(WebPresentationError, "required_slots are incomplete"):
+                load_web_manual_contract(entry, model="JE-1000F", region="US")
+
+    def test_debt_baseline_cannot_grant_an_unmatched_or_rebound_exception(self) -> None:
+        policy = {
+            "policy_id": "test-policy",
+            "locales": ["en"],
+            "required_slots": [
+                "product-overview.front",
+                "product-overview.right",
+            ],
+            "allowed_statuses": ["finished-panel", "approved-composite"],
+        }
+        overlay = {
+            "overlay_id": "one",
+            "target": {"model": "JE-1000F", "region": "US"},
+            "skeleton_profile": "test-skeleton",
+            "capabilities": {"figures": True},
+            "figure_coverage": policy,
+        }
+        debt = {
+            "target": {"model": "OTHER", "region": "XX"},
+            "policy_id": "test-policy",
+            "known_debt": [],
+        }
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(
+                Path(td), overlays=[overlay], debt_targets=[debt]
+            )
+            with self.assertRaisesRegex(WebPresentationError, "has no target overlay"):
+                load_web_manual_contract(entry, model="JE-1000F", region="US")
+
+        rebound = {
+            **debt,
+            "target": {"model": "JE-1000F", "region": "US"},
+            "policy_id": "other-policy",
+        }
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(
+                Path(td), overlays=[overlay], debt_targets=[rebound]
+            )
+            with self.assertRaisesRegex(WebPresentationError, "policy_id does not match"):
+                load_web_manual_contract(entry, model="JE-1000F", region="US")
 
 
 if __name__ == "__main__":

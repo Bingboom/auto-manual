@@ -3,8 +3,11 @@ from __future__ import annotations
 
 import hashlib
 import json
+from contextlib import contextmanager
+from contextvars import ContextVar
+from copy import deepcopy
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Iterator, Mapping
 
 try:
     import yaml
@@ -101,6 +104,10 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     ),
 }
 LOCALE_POLICIES = frozenset({"exact", "shared"})
+_ACTIVE_COMPONENT_REGISTRY: ContextVar[Mapping[str, Any] | None] = ContextVar(
+    "active_component_registry",
+    default=None,
+)
 
 
 def default_registry_path() -> Path:
@@ -244,6 +251,9 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
 
 
 def load_component_registry(path: Path | None = None) -> dict[str, Any]:
+    active = _ACTIVE_COMPONENT_REGISTRY.get()
+    if path is None and active is not None:
+        return deepcopy(dict(active))
     registry_path = (path or default_registry_path()).resolve()
     try:
         payload = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
@@ -255,6 +265,27 @@ def load_component_registry(path: Path | None = None) -> dict[str, Any]:
     if issues:
         raise ComponentSpecError("invalid component registry: " + "; ".join(issues))
     return payload
+
+
+@contextmanager
+def component_registry_context(
+    registry: Mapping[str, Any] | None,
+) -> Iterator[None]:
+    """Use a validated frozen registry without reopening its source contract."""
+
+    if registry is None:
+        yield
+        return
+    issues = validate_component_registry(registry)
+    if issues:
+        raise ComponentSpecError(
+            "invalid embedded component registry: " + "; ".join(issues)
+        )
+    token = _ACTIVE_COMPONENT_REGISTRY.set(deepcopy(dict(registry)))
+    try:
+        yield
+    finally:
+        _ACTIVE_COMPONENT_REGISTRY.reset(token)
 
 
 def registry_sha256(registry: Mapping[str, Any]) -> str:
@@ -401,6 +432,7 @@ __all__ = [
     "REGISTRY_SCHEMA_VERSION",
     "RENDERERS",
     "adapter_binding",
+    "component_registry_context",
     "default_registry_path",
     "load_component_registry",
     "registry_sha256",

@@ -13,9 +13,14 @@ locale-matched, hash-registered full panels extracted from the operator-supplied
 source PDF, and a target contract rejects fallback or missing required slots.
 Cut 6 splits Web presentation into a shared base, skeleton profiles, and small
 target overlays, while whole-document IR freezes only the resolved target
-contract. The remaining architecture cut enforces anti-copy/four-renderer entry
-gates; do not
-describe the current sixteen-type embedding as full cross-renderer convergence.
+contract. Cut 7 is complete: new figure targets must declare a complete
+finished-art policy; a non-increasing baseline contains only explicitly known
+US/KR debt; shared Web/IR Python and CSS reject model literals; and new
+source-normalized v2 replay consumes frozen component registry, theme, Overview
+instance, and ComponentSpecs without the old DOM projector. Four representative
+packages projected 401 embedded instances through all four registered adapters
+(1604 bindings). This proves the shared semantic/adapter entry contract, not
+pixel or pagination identity between responsive Web and fixed-page outputs.
 See the [neutral-flow
 plan](dev/manual_ir_v2_neutral_flow_plan.md), [embedded-component
 record](dev/manual_ir_embedded_components_plan.md), [cut-3
@@ -229,7 +234,7 @@ Keep this section short and current.
 7. Milestone J's asset loop has deterministic AI intake, a verified first live archive in the three new `04_资产*` tables, and a post-review bundle finalizer, but remains open on four concrete legs: syncing the Base registry mirror through `sync-data`, migrating current template paths to `asset:`, explicit IDML consumption from the finalized bundle root, and release-manifest asset lineage. Track the exact status in [`next_optimization_checklist.md`](next_optimization_checklist.md) §6h and [`dev/asset_ai_master_intake_plan.md`](dev/asset_ai_master_intake_plan.md).
 8. Enterprise ops gaps (2026-07-17 review): CI never installs from `requirements.lock` (loose ranges only), TeXLive is reinstalled unpinned on every queue run, there is no point-in-time backup/restore of the Feishu phase2 source tables, queue-processing failures notify no one (only the sentinel crons open Issues), there is no `CODEOWNERS` / secret scanning / dependabot, and the InDesign finalize leg runs on one Mac with no version lock. Tracked as Workstream T.
 9. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
-10. Web finished-figure debt is now explicit and cannot be closed by rebuilding text and leader lines in HTML. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11), but the representative `JE-1000F/US` EN package still has three Charging fallbacks and `JE-3000C/KR` has nine missing Overview/Operation/Charging panels. Cut 7 must add a non-increasing debt ratchet plus a new-target admission gate; each existing row closes only with a locale-matched `finished-panel` / `approved-composite` from authoritative artwork. LCD Mode's editable HTML table is intentionally outside this debt.
+10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
 
 ## 6. Active Workstreams
 

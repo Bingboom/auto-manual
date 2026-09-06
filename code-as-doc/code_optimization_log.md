@@ -2116,3 +2116,37 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   tests, and 3798 full-suite tests (22 skipped), plus full Ruff, mypy
   `tools/utils`, 62 hotspot guardrails, 1716 documentation links, and the
   fixture-backed JE-1000F/US check.
+
+
+## 2026-09-05: ManualIR final admission and replay gates (cut 7)
+
+- Added a finished-figure admission contract for every covered target. Locale
+  and required-slot lists must be complete, and accepted statuses are fixed to
+  `finished-panel` / `approved-composite`; textless art plus HTML/SVG labels or
+  leader lines remains `editable-fallback` debt in every language, including
+  EU Italian.
+- Moved the exact nine US Charging fallbacks and nine KR missing panels into a
+  versioned non-increasing debt baseline. Unregistered or worsening debt fails,
+  while a repaired panel makes its old baseline row stale and therefore also
+  fails until that row is deleted. EU has no exception and remains 55/55
+  localized approved composites, with Italian at 11/11.
+- New source-normalized `whole-document-components/v1` packages freeze the
+  ComponentSpec registry, manual theme, target-resolved Overview instance and
+  SHA-256 evidence. Replay dispatches embedded components and assets directly
+  and no longer calls the legacy DOM projector; historical v1/cut-1 packages
+  keep an explicit compatibility route.
+- Added a maintainability guardrail that rejects registered model literals in
+  shared Web/ManualIR/ComponentSpec Python and Web CSS. Target differences stay
+  in the layered presentation overlay, component instance, assets or data.
+- Four representative packages cold-replayed with RST, CSV, renderer-contract
+  reads and the old DOM projector forbidden. Their 401 embedded ComponentSpecs
+  produced 1604 validated Web/LaTeX/IDML/Word adapter bindings. US 49-page and
+  EU 76-page final bundles remained byte-identical to the pre-cut output after
+  normalizing only the output-root file URI; EU Sphinx passed with warnings as
+  errors and Italian kept 11/11 visible full panels with no mobile overflow.
+- Final validation passed 72 focused regression tests and the 3812-test full
+  suite (22 skipped), full Ruff, mypy `tools/utils`, all 62 maintainability
+  hotspots, 1718 documentation links, `git diff --check`, and the staging-safe
+  fixture-backed JE-1000F/US check. The compatibility suite caught and fixed
+  absent `metadata` in historical v1 files; the size ratchet also moved Overview
+  snapshot primitives into a focused helper instead of raising its threshold.

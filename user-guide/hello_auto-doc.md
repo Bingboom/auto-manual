@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-Updated: 2026-08-16
+Updated: 2026-09-05
 
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
@@ -20,15 +20,24 @@ editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
-historical `manual-ir/v1` packages remain replayable. Fourteen ComponentSpec types are
-now embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
-Icons, Troubleshooting and both Symbols tables; this
-is still not proof that Word, LaTeX and IDML consume every same ComponentSpec.
+historical `manual-ir/v1` packages remain replayable. Sixteen ComponentSpec types
+are embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
+Icons, Troubleshooting, both Symbols tables, App and governed Reference Figures.
+The package freezes the component registry, theme, target presentation contract
+and resolved Overview instance; cold replay does not read RST/CSV or rerun the
+old DOM projector. Representative-package tests project every embedded instance
+through the registered Web, LaTeX, IDML and Word adapters. This is shared semantic
+and adapter-entry proof; responsive Web and fixed-page outputs still own different
+geometry and are not expected to be pixel- or pagination-identical.
 For JE-1000F, Overview, Operation and Charging use localized crops with their
-visible labels intact—including Operation `On` / `Off`, prerequisites and action
-copy. Do not feed those slots textless exports. The LCD screen-mode block is the
-exception: keep only the market-correct product/display artwork as an image and
-render its six-row explanation table in HTML.
+visible labels and leader lines intact—including Operation `On` / `Off`,
+prerequisites and action copy. Do not feed those slots textless exports. In every
+locale, including EU Italian, “textless base art + localized HTML/SVG text or
+leader lines” is `editable-fallback` debt; only locale-matched `finished-panel`
+or `approved-composite` artwork can close it. EU Italian is currently 11/11
+approved full panels. The LCD screen-mode block is the exception: keep only the
+market-correct product/display artwork as an image and render its six-row
+explanation table in HTML.
 
 For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
 For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
@@ -1159,8 +1168,8 @@ RTD catalog behavior:
 - Choose the carrier per component. JE-1000F Product Overview, its five Operation panels and its four Charging panels use `text_policy=localized-full-page`: crop the PDF panel with localized labels intact, including Operation `On` / `Off`, prerequisites and instructions. The LCD screen-mode block does not use a full-table screenshot; it combines the correct UK or continental hardware/display artwork with the shared six-row HTML table. Specifications, troubleshooting, LCD-icon glossary and Warranty stay live HTML components.
 - Reuse target geometry through [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json): a child instance uses `extends`, and stable-`id` lists merge by `id`, so a new region normally overrides only `target`, market artwork keys and locale declarations. The materialized document language selects the composite; page-number filename patterns are compatibility fallback only. Coverage resolves duplicate bytes safely with `asset_key + locale + SHA-256`.
 - `sync-data` downloads only those approved rows into `_attachments/web_composites/` and writes `web_composite_manifest.json`. The next Web materialization selects by `web_replace_key + model + region + locale`, verifies the bytes and the current semantic source fragment, and replaces the governed figure plus its associated copy while leaving the section title live. With no approved match it keeps the searchable HTML fallback. Ambiguous rows, missing attachments, or either hash mismatch stop the build.
-- After a local or queue Web build, inspect `manual.ir.json -> metadata.web_figure_coverage`. `finished-panel` is the approved whole-panel illustration path; `approved-composite` is the approved component override; `editable-fallback` is an intentional searchable semantic rendering; `missing` means the slot still needs approved localized artwork or a governed semantic component. Approved rows include the packaged path and SHA-256. The report never promotes assets. A target may declare required locales/slots/statuses in `web_manual.json`; for such a target the same inventory is a hard build gate, while targets without a requirement keep debt visible without being blocked.
-- [`web_manual.json`](../docs/renderers/contracts/web_manual.json) is only the Web presentation stack entry. The loader resolves `shared base → skeleton profile → target overlay`: shared semantic components are written once, a skeleton owns reusable Overview/Operation/App/Charging shape, and `(model, region)` overlays contain only capability grants, required artwork coverage and real differences. Mapping values merge recursively, lists with stable `id` values merge by `id`, and ordinary lists replace as a whole. Unknown targets receive no figure grant; duplicate targets, unknown skeletons, bad schemas and paths escaping the contract directory fail closed. A whole-document Web IR freezes only its resolved target contract plus the selected layer IDs, so source-free replay never reopens the overlay directory.
+- After a local or queue Web build, inspect `manual.ir.json -> metadata.web_figure_coverage`. `finished-panel` is the approved whole-panel illustration path; `approved-composite` is the approved component override; `editable-fallback` is searchable semantic rendering but remains finished-art debt; `missing` means the slot still lacks approved localized artwork. Approved rows include the packaged path and SHA-256. The report never promotes assets. A coverage policy must list the complete locale/slot matrix and accepts only `finished-panel` / `approved-composite`. Existing exceptions live in [`figure_debt_baseline.json`](../docs/renderers/contracts/web_presentation/figure_debt_baseline.json) as exact locale/slot/status rows; new or worsening debt fails, while a repaired row must delete its now-stale baseline entry. EU has no exception, so Italian textless art plus HTML/SVG text or leaders fails the build. LCD Mode and the other native HTML tables are outside this finished-art matrix.
+- [`web_manual.json`](../docs/renderers/contracts/web_manual.json) is only the Web presentation stack entry. The loader resolves `shared base → skeleton profile → target overlay`: shared semantic components are written once, a skeleton owns reusable Overview/Operation/App/Charging shape, and `(model, region)` overlays contain only capability grants, required artwork coverage and real differences. Mapping values merge recursively, lists with stable `id` values merge by `id`, and ordinary lists replace as a whole. A new figure-capable target must provide a complete zero-debt coverage policy; only pre-existing rows may appear in the separate ratcheted debt baseline. Unknown targets receive no figure grant; duplicate targets, unknown skeletons, bad schemas and paths escaping the contract directory fail closed. A whole-document Web IR freezes its resolved target contract, selected layer IDs, component registry, theme and target-matched Overview instance, so source-free replay never reopens those registries.
 - A local live freeze must use the business-plane HT-Docs bot, not another bot belonging to the same user. `sync-data` uses the active lark-cli profile; on the maintained Mac, first verify `lark-cli --profile prod whoami --as bot`, temporarily select profile `prod`, keep `FEISHU_PHASE2_IDENTITY=bot`, and restore the previous profile after the sync. The identity flag chooses bot versus user, while the profile chooses the Feishu application/tenant.
 - RTD itself has no Feishu credentials. Web Publish uses the HT-Docs bot to freeze verified attachments and their manifest into Git first; RTD consumes that immutable snapshot. `tests/fixtures/phase2` remains a CI/bootstrap fixture.
 - To show **ordinary hand-written Markdown** in the same web-manual style — a single note or a whole folder rendered as one site with a sidebar — run [`tools/plain_markdown_site.py`](../tools/plain_markdown_site.py): `python tools/plain_markdown_site.py --source <file-or-folder> --output-dir <site-out> --title "My Docs"`. For a backlog of existing documents, swap `--source` for `--manifest inventory.csv` (columns `source,title,section,order`; `section` becomes a sidebar group). No Feishu table is involved — this lane has no publish state to govern, so a CSV inventory (or just the folder tree) is the right level. Broken image paths inherited from wherever a document used to live are repointed automatically by filename. Legacy tables are upgraded on the way in: a headerless label/value pipe table becomes the manual's real spec-table markup (grey `<th>` label column, merged labels, `^(①)` superscripts, bordered wrapper) instead of rendering with the phantom empty header row a converter leaves behind — a plain pipe table cannot express any of that, which is why an untouched one looks nothing like the published table. Callout boxes that a cloud editor flattened into a header-only table are restored as callouts, tables whose first data row was captured as the header are un-headered, in-table `### SECTION` rows split a spec table into one block per section, and `^①^`/`V~oc~` become real superscripts — measured on a real HTE153 export: 17 malformed tables down to 1, 16 callouts and 4 spec blocks recovered. The conversion writes an **intermediate Markdown** form rather than HTML: `--to-intermediate DIR` gives you a reviewable file of `{callout}` / `{spec-table}` / `{lcd-mode}` / `{comparison}` / `{manual-table}` directives (tables it cannot classify stay pipe tables with a comment naming the candidates), and rendering that directory is a plain `--source` run that compiles the directives deterministically. Add `--download-images` to localize artwork hosted on a cloud editor. Use `--keep-tables` to opt out of the conversion, and `components/COOKBOOK.md` in the exported bundle when a document needs a component the shape alone cannot imply. The output directory is self-contained, so you can zip it or hand it over as-is. This is a preview/sharing lane only: it refuses to write into `docs/_build`, `reports/releases` or `docs/publish`, and it cannot put anything on the RTD site, which only renders the Web Publish snapshot. Plain Markdown gets the prose styling (typography, paper card, headings, table panels, images); the `hb-*` figure/spec/LCD components need pipeline-generated markup and will not appear. Do not try to "downgrade" a generated manual `.md` into plain Markdown with `pandoc -t gfm-raw_html`: measured on `JE-1000F / US`, that silently drops roughly a third of the visible text plus 26 images and 38 tables, because constructs that plain Markdown cannot express are discarded rather than degraded.
@@ -1199,8 +1208,9 @@ their localized copy and role-bound shared artwork in the same ComponentSpec.
 Each Reference Figure retains its complete semantic fallback; an approved
 composite additionally records target replace key, locale, packaged asset key,
 content SHA-256 and source-fragment SHA-256. Exact-locale figures never fall
-back to another language, and targets without approved artwork keep the live
-semantic composition instead of borrowing JE-1000F/US pixels.
+back to another language. The live semantic composition prevents broken output,
+but for a finished-figure coverage slot it remains `editable-fallback` debt and
+cannot pass unless that exact pre-existing row is in the ratcheted baseline.
 
 Prepared Web FCC also passes through public IR. Its opening copy, measures,
 column split and mark binding can be replayed without reopening the source page.
@@ -1242,7 +1252,8 @@ accessible name and surrounding sentence, emphasis, links and images survive
 replay; ambiguous or incomplete labels fail before changing the page. Existing
 three-language output and Pandoc protection remain unchanged. Governed Charging
 and App reference panels use the registered Reference Figure family described
-above; missing composites remain live semantic fallbacks.
+above; missing composites remain visible semantic fallbacks but do not count as
+finished artwork.
 
 - The LCD screen-mode panel remains searchable HTML while matching the template's rounded illustration-plus-table composition across EN/FR/ES. The AC/DC Auto Resume matrix also remains searchable HTML with equal-width columns, a light left column, white right column, dark full-grid rules, and a true two-row Battery SOC cell. On phones each compact table scrolls inside its own frame instead of widening the page.
 - The EN/FR/ES Troubleshooting table remains searchable HTML with the PDF's rounded dark frame, full grid, 14% light error-code column, and 86% white corrective-measures column. F6/F7 actions keep their source line breaks through Pandoc. The four Specifications tables use a matching protected 31%/69% label/value grid and preserve row-spanning labels; the web transform removes the authored bullet glyph so the shared heading theme shows one section dot rather than two, and raises both governed `①` references as semantic superscripts. Both table types scroll inside their own frame on phones.

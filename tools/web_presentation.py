@@ -1122,6 +1122,35 @@ def _transform_preface(
     )
 
 
+def normalize_web_source_fragment(
+    html_fragment: str,
+    *,
+    source_path: Path,
+    contract: dict[str, Any] | None = None,
+    model: str | None = None,
+    region: str | None = None,
+) -> str:
+    """Freeze non-component Web normalization before whole-document IR replay."""
+
+    data = contract or load_web_manual_contract(model=model, region=region)
+    soup = BeautifulSoup(html_fragment, "html.parser")
+    if _matches_source(source_path, list(data["preface"]["source_patterns"])) and supports_preface_contract(
+        source_path, data
+    ):
+        _transform_preface(soup, source_path=source_path)
+    if _matches_source(
+        source_path, list(data["operations"]["source_patterns"])
+    ) and supports_figure_contract(source_path, data):
+        _transform_auto_resume_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(
+                data["operations"]["auto_resume_table"]["body_rows"]
+            ),
+        )
+    return str(soup)
+
+
 def transform_web_fragment(
     html_fragment: str,
     *,
@@ -1368,6 +1397,7 @@ __all__ = [
     "copy_web_stylesheet",
     "is_web_entry_page",
     "load_web_manual_contract",
+    "normalize_web_source_fragment",
     "normalize_presentation_profile",
     "protect_web_callouts_for_pandoc",
     "protect_web_figures_for_pandoc",

@@ -68,6 +68,7 @@ def render_embedded_web_component(
     language: str,
     composite_manifest: WebCompositeManifest | None,
     contract: Mapping[str, object],
+    overview_instance: Mapping[str, object] | None = None,
 ) -> str:
     """Dispatch one validated component without a source-projector round trip."""
 
@@ -87,7 +88,11 @@ def render_embedded_web_component(
             carrier_html=_carrier_html(node),
         )
     if spec.component_id == OVERVIEW_ID:
-        instance = resolve_overview_instance(model=model, region=region)
+        instance = (
+            dict(overview_instance)
+            if overview_instance is not None
+            else resolve_overview_instance(model=model, region=region)
+        )
         context = WebCompositeContext(
             composite_manifest,
             model,

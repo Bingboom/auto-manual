@@ -14,8 +14,11 @@ STACK_SCHEMA_VERSION = "web-manual-presentation-stack/v1"
 BASE_SCHEMA_VERSION = "web-manual-shared-base/v1"
 SKELETON_SCHEMA_VERSION = "web-manual-skeleton-profile/v1"
 TARGET_OVERLAYS_SCHEMA_VERSION = "web-manual-target-overlays/v1"
+FIGURE_DEBT_SCHEMA_VERSION = "web-figure-debt-baseline/v1"
 CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v2"
 LEGACY_CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v1"
+_FINISHED_FIGURE_STATUSES = ("finished-panel", "approved-composite")
+_DEBT_FIGURE_STATUSES = frozenset({"editable-fallback", "missing"})
 
 
 class WebPresentationContractError(ValueError):
@@ -240,6 +243,219 @@ def _load_target_overlays(
     return overlays
 
 
+def _string_list(value: Any, *, field: str) -> list[str]:
+    if not isinstance(value, list) or not value:
+        raise WebPresentationContractError(f"{field} must be a non-empty list")
+    normalized = [str(item).strip() for item in value]
+    if any(not item for item in normalized) or len(normalized) != len(set(normalized)):
+        raise WebPresentationContractError(
+            f"{field} contains an empty or duplicate value"
+        )
+    return normalized
+
+
+def _derived_figure_slots(
+    contract: Mapping[str, Any],
+    *,
+    target: Mapping[str, str],
+) -> list[str]:
+    """Return every final-art slot declared by this resolved target skeleton."""
+
+    from tools.component_specs.overview_instance import resolve_overview_instance
+
+    slots: list[str] = []
+    overview = contract.get("product_overview")
+    if isinstance(overview, Mapping) and overview.get("source_patterns"):
+        try:
+            instance = resolve_overview_instance(
+                model=target["model"],
+                region=target["region"],
+            )
+        except Exception as exc:
+            raise WebPresentationContractError(
+                "figure-capable target has no unambiguous Overview instance: "
+                f"{target['model']}/{target['region']}: {exc}"
+            ) from exc
+        for view in instance.get("views", []):
+            if isinstance(view, Mapping):
+                key = str(view.get("web_replace_key") or "").strip()
+                if key:
+                    slots.append(key)
+
+    operations = contract.get("operations")
+    if isinstance(operations, Mapping):
+        for figure in operations.get("figures", []):
+            if isinstance(figure, Mapping):
+                key = str(figure.get("web_replace_key") or "").strip()
+                if key:
+                    slots.append(key)
+
+    references = contract.get("reference_figures")
+    if isinstance(references, Mapping):
+        for figure in references.get("figures", []):
+            if not isinstance(figure, Mapping):
+                continue
+            identifier = str(figure.get("id") or "").casefold()
+            image_key = str(figure.get("image_key") or "").casefold()
+            if not (
+                identifier.startswith("charging-")
+                or image_key.startswith("charging/")
+            ):
+                continue
+            key = str(figure.get("web_replace_key") or "").strip()
+            if key:
+                slots.append(key)
+
+    if len(slots) != len(set(slots)):
+        raise WebPresentationContractError(
+            f"figure-capable target has duplicate derived slots: {target['model']}/"
+            f"{target['region']}"
+        )
+    return slots
+
+
+def _normalize_coverage_policy(
+    overlay: Mapping[str, Any],
+    *,
+    resolved_contract: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    prefix = f"target_overlays.{overlay['overlay_id']}.figure_coverage"
+    coverage = overlay.get("figure_coverage")
+    figures_enabled = bool(overlay["capabilities"]["figures"])
+    if not isinstance(coverage, Mapping):
+        if figures_enabled:
+            raise WebPresentationContractError(
+                f"{prefix}: figures=true requires figure_coverage"
+            )
+        return None
+    if "known_debt" in coverage:
+        raise WebPresentationContractError(
+            f"{prefix}.known_debt must live in the figure debt baseline"
+        )
+    policy_id = _non_empty(coverage.get("policy_id"), field=f"{prefix}.policy_id")
+    locales = [
+        locale.casefold()
+        for locale in _string_list(coverage.get("locales"), field=f"{prefix}.locales")
+    ]
+    if len(locales) != len(set(locales)):
+        raise WebPresentationContractError(f"{prefix}.locales contains duplicates")
+    required_slots = _string_list(
+        coverage.get("required_slots"), field=f"{prefix}.required_slots"
+    )
+    allowed_statuses = _string_list(
+        coverage.get("allowed_statuses"), field=f"{prefix}.allowed_statuses"
+    )
+    if tuple(allowed_statuses) != _FINISHED_FIGURE_STATUSES:
+        raise WebPresentationContractError(
+            f"{prefix}.allowed_statuses must contain only finished artwork: "
+            f"{list(_FINISHED_FIGURE_STATUSES)}"
+        )
+    if figures_enabled:
+        derived = _derived_figure_slots(resolved_contract, target=overlay["target"])
+        missing = [slot for slot in derived if slot not in required_slots]
+        extra = [slot for slot in required_slots if slot not in derived]
+        if missing or extra:
+            raise WebPresentationContractError(
+                f"{prefix}.required_slots are incomplete or out of scope; "
+                f"missing={missing}, extra={extra}"
+            )
+    return {
+        "policy_id": policy_id,
+        "locales": locales,
+        "required_slots": required_slots,
+        "allowed_statuses": allowed_statuses,
+    }
+
+
+def _load_figure_debt(
+    root: Path,
+    raw_path: Any,
+    *,
+    overlays: list[dict[str, Any]],
+) -> dict[tuple[str, str], list[dict[str, str]]]:
+    path = _layer_path(root, raw_path, field="figure_debt_baseline")
+    payload = _read_mapping(path, field="figure debt baseline")
+    if payload.get("schema_version") != FIGURE_DEBT_SCHEMA_VERSION:
+        raise WebPresentationContractError(
+            f"unsupported figure debt baseline schema in {path}"
+        )
+    raw_targets = payload.get("targets")
+    if not isinstance(raw_targets, list):
+        raise WebPresentationContractError(f"{path}: targets must be a list")
+    overlay_by_target = {
+        (
+            str(overlay["target"]["model"]).casefold(),
+            str(overlay["target"]["region"]).casefold(),
+        ): overlay
+        for overlay in overlays
+    }
+    result: dict[tuple[str, str], list[dict[str, str]]] = {}
+    for index, raw_target in enumerate(raw_targets):
+        prefix = f"{path}: targets[{index}]"
+        if not isinstance(raw_target, Mapping):
+            raise WebPresentationContractError(f"{prefix} must be an object")
+        target = raw_target.get("target")
+        if not isinstance(target, Mapping):
+            raise WebPresentationContractError(f"{prefix}.target must be an object")
+        model = _non_empty(target.get("model"), field=f"{prefix}.target.model")
+        region = _non_empty(target.get("region"), field=f"{prefix}.target.region")
+        target_key = (model.casefold(), region.casefold())
+        if target_key in result:
+            raise WebPresentationContractError(
+                f"duplicate figure debt baseline target {model}/{region}"
+            )
+        overlay = overlay_by_target.get(target_key)
+        if overlay is None:
+            raise WebPresentationContractError(
+                f"figure debt baseline target {model}/{region} has no target overlay"
+            )
+        coverage = overlay.get("figure_coverage")
+        if not isinstance(coverage, Mapping):
+            raise WebPresentationContractError(
+                f"figure debt baseline target {model}/{region} has no coverage policy"
+            )
+        policy_id = _non_empty(raw_target.get("policy_id"), field=f"{prefix}.policy_id")
+        if policy_id != coverage["policy_id"]:
+            raise WebPresentationContractError(
+                f"{prefix}.policy_id does not match target coverage policy"
+            )
+        raw_debt = raw_target.get("known_debt")
+        if not isinstance(raw_debt, list):
+            raise WebPresentationContractError(f"{prefix}.known_debt must be a list")
+        normalized: list[dict[str, str]] = []
+        identities: set[tuple[str, str]] = set()
+        for debt_index, raw_entry in enumerate(raw_debt):
+            debt_prefix = f"{prefix}.known_debt[{debt_index}]"
+            if not isinstance(raw_entry, Mapping):
+                raise WebPresentationContractError(f"{debt_prefix} must be an object")
+            locale = _non_empty(raw_entry.get("locale"), field=f"{debt_prefix}.locale").casefold()
+            slot_id = _non_empty(raw_entry.get("slot_id"), field=f"{debt_prefix}.slot_id")
+            status = _non_empty(raw_entry.get("status"), field=f"{debt_prefix}.status")
+            if locale not in coverage["locales"]:
+                raise WebPresentationContractError(
+                    f"{debt_prefix}.locale is outside the coverage policy"
+                )
+            if slot_id not in coverage["required_slots"]:
+                raise WebPresentationContractError(
+                    f"{debt_prefix}.slot_id is outside the coverage policy"
+                )
+            if status not in _DEBT_FIGURE_STATUSES:
+                raise WebPresentationContractError(
+                    f"{debt_prefix}.status must be editable-fallback or missing"
+                )
+            identity = (locale, slot_id)
+            if identity in identities:
+                raise WebPresentationContractError(
+                    f"{prefix}.known_debt repeats {locale}/{slot_id}"
+                )
+            identities.add(identity)
+            normalized.append(
+                {"locale": locale, "slot_id": slot_id, "status": status}
+            )
+        result[target_key] = normalized
+    return result
+
+
 def _coverage_requirement(overlay: Mapping[str, Any]) -> dict[str, Any] | None:
     coverage = overlay.get("figure_coverage")
     if not isinstance(coverage, Mapping):
@@ -313,6 +529,44 @@ def _load_cached(path_text: str, model: str, region: str) -> dict[str, Any]:
         entry.get("target_overlays"),
         skeletons=skeletons,
     )
+    policy_ids: set[str] = set()
+    for overlay in overlays:
+        profile_id = str(overlay["skeleton_profile"])
+        resolved_overlay = merge_contract_layers(
+            base,
+            skeletons[profile_id],
+            field=f"skeleton_profiles.{profile_id}",
+        )
+        resolved_overlay = merge_contract_layers(
+            resolved_overlay,
+            overlay["contract_overrides"],
+            field=f"target_overlays.{overlay['overlay_id']}.contract_overrides",
+        )
+        coverage = _normalize_coverage_policy(
+            overlay,
+            resolved_contract=resolved_overlay,
+        )
+        if coverage is not None:
+            if coverage["policy_id"] in policy_ids:
+                raise WebPresentationContractError(
+                    f"duplicate figure coverage policy_id {coverage['policy_id']!r}"
+                )
+            policy_ids.add(coverage["policy_id"])
+        overlay["figure_coverage"] = coverage
+    debt_by_target = _load_figure_debt(
+        root,
+        entry.get("figure_debt_baseline"),
+        overlays=overlays,
+    )
+    for overlay in overlays:
+        coverage = overlay.get("figure_coverage")
+        if not isinstance(coverage, dict):
+            continue
+        key = (
+            str(overlay["target"]["model"]).casefold(),
+            str(overlay["target"]["region"]).casefold(),
+        )
+        coverage["known_debt"] = deepcopy(debt_by_target.get(key, []))
 
     if model and region:
         matches = [
@@ -420,6 +674,7 @@ def load_web_presentation_contract(
 __all__ = [
     "BASE_SCHEMA_VERSION",
     "CONTRACT_SCHEMA_VERSION",
+    "FIGURE_DEBT_SCHEMA_VERSION",
     "SKELETON_SCHEMA_VERSION",
     "STACK_SCHEMA_VERSION",
     "TARGET_OVERLAYS_SCHEMA_VERSION",

@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import argparse
+import ast
+import json
 import re
 import sys
 from dataclasses import dataclass
@@ -13,6 +15,7 @@ if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
 from tools import check_language_literal_ratchet
+from tools.utils.path_utils import PathSegments, renderer_contracts_of
 
 
 # Thresholds are set ~25-100 lines above the current size of files that have
@@ -143,6 +146,13 @@ class TargetScopedIdmlPagePredicate:
     identifier: str
 
 
+@dataclass(frozen=True)
+class WebTargetLiteral:
+    path: str
+    line: int
+    target: str
+
+
 _TARGET_SCOPED_IDML_PAGE_PREDICATE_RE = re.compile(
     r"\b(is_[a-z][a-z0-9]*\d[a-z0-9]*_[a-z]{2}"
     r"(?:_[a-z]{2})?_[a-z0-9_]*(?:page|owner)[a-z0-9_]*)\b"
@@ -215,6 +225,94 @@ def collect_target_scoped_idml_page_predicates(
     return failures
 
 
+def _registered_web_models(repo_root: Path) -> tuple[str, ...]:
+    contracts = renderer_contracts_of(repo_root / PathSegments.DOCS)
+    entry_path = contracts / "web_manual.json"
+    try:
+        entry = json.loads(entry_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError(f"Cannot load Web presentation registry: {entry_path}") from exc
+    raw_paths = entry.get("target_overlays") if isinstance(entry, dict) else None
+    if not isinstance(raw_paths, list):
+        raise RuntimeError(f"Web presentation registry has no target_overlays: {entry_path}")
+    models: set[str] = set()
+    root = contracts.resolve(strict=False)
+    for raw_path in raw_paths:
+        path = (root / str(raw_path)).resolve(strict=False)
+        if not path.is_relative_to(root):
+            raise RuntimeError(f"Web target overlay escapes its registry: {raw_path}")
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Cannot load Web target overlay: {path}") from exc
+        overlays = payload.get("overlays") if isinstance(payload, dict) else None
+        if not isinstance(overlays, list):
+            raise RuntimeError(f"Web target overlay has no overlays list: {path}")
+        for overlay in overlays:
+            target = overlay.get("target") if isinstance(overlay, dict) else None
+            model = str(target.get("model") or "").strip() if isinstance(target, dict) else ""
+            if model:
+                models.add(model)
+    return tuple(sorted(models, key=str.casefold))
+
+
+def _shared_web_python_files(repo_root: Path) -> tuple[Path, ...]:
+    tools_root = repo_root / PathSegments.TOOLS
+    paths = set(tools_root.glob("web_*.py"))
+    for directory in (tools_root / "manual_ir", tools_root / "component_specs"):
+        if directory.is_dir():
+            paths.update(directory.rglob("*.py"))
+    return tuple(sorted(path for path in paths if path.is_file()))
+
+
+def _css_without_comments(value: str) -> str:
+    return re.sub(
+        r"/\*.*?\*/",
+        lambda match: "".join("\n" if char == "\n" else " " for char in match.group()),
+        value,
+        flags=re.DOTALL,
+    )
+
+
+def collect_web_target_literal_failures(repo_root: Path) -> list[WebTargetLiteral]:
+    """Reject model literals in shared Web/IR Python and Web CSS implementation."""
+
+    models = _registered_web_models(repo_root)
+    failures: list[WebTargetLiteral] = []
+    for path in _shared_web_python_files(repo_root):
+        relative = path.relative_to(repo_root).as_posix()
+        try:
+            tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+        except (OSError, SyntaxError) as exc:
+            raise RuntimeError(f"Cannot inspect shared Web Python: {path}") from exc
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Constant) or not isinstance(node.value, str):
+                continue
+            folded = node.value.casefold()
+            for model in models:
+                if model.casefold() in folded:
+                    failures.append(
+                        WebTargetLiteral(relative, int(node.lineno), model)
+                    )
+
+    contracts = renderer_contracts_of(repo_root / PathSegments.DOCS)
+    for path in sorted(contracts.glob("web_*.css")):
+        relative = path.relative_to(repo_root).as_posix()
+        try:
+            lines = _css_without_comments(path.read_text(encoding="utf-8")).splitlines()
+        except OSError as exc:
+            raise RuntimeError(f"Cannot inspect shared Web CSS: {path}") from exc
+        for line_number, line in enumerate(lines, start=1):
+            folded = line.casefold()
+            for model in models:
+                if model.casefold() in folded:
+                    failures.append(WebTargetLiteral(relative, line_number, model))
+    return sorted(
+        failures,
+        key=lambda failure: (failure.path, failure.line, failure.target.casefold()),
+    )
+
+
 def _render_failure(failure: GuardrailFailure) -> str:
     over_by = failure.actual_lines - failure.max_lines
     return (
@@ -241,6 +339,15 @@ def main(argv: list[str] | None = None) -> int:
             print(
                 f"[maintainability] {failure.path}:{failure.line}: "
                 f"{failure.identifier}"
+            )
+        return 1
+
+    web_target_literals = collect_web_target_literal_failures(args.repo_root.resolve())
+    if web_target_literals:
+        print("[maintainability] Target literals detected in shared Web implementation:")
+        for failure in web_target_literals:
+            print(
+                f"[maintainability] {failure.path}:{failure.line}: {failure.target}"
             )
         return 1
 

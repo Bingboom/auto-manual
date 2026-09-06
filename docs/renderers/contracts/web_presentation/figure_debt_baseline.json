@@ -1,0 +1,113 @@
+{
+  "schema_version": "web-figure-debt-baseline/v1",
+  "targets": [
+    {
+      "target": {
+        "model": "JE-1000F",
+        "region": "US"
+      },
+      "policy_id": "je1000f-us-finished-figures-v1",
+      "known_debt": [
+        {
+          "locale": "en",
+          "slot_id": "reference.charging-ac-wall",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "en",
+          "slot_id": "reference.charging-solar-direct",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "en",
+          "slot_id": "reference.charging-solar-adapter",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "fr",
+          "slot_id": "reference.charging-ac-wall",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "fr",
+          "slot_id": "reference.charging-solar-direct",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "fr",
+          "slot_id": "reference.charging-solar-adapter",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "es",
+          "slot_id": "reference.charging-ac-wall",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "es",
+          "slot_id": "reference.charging-solar-direct",
+          "status": "editable-fallback"
+        },
+        {
+          "locale": "es",
+          "slot_id": "reference.charging-solar-adapter",
+          "status": "editable-fallback"
+        }
+      ]
+    },
+    {
+      "target": {
+        "model": "JE-3000C",
+        "region": "KR"
+      },
+      "policy_id": "je3000c-kr-finished-figures-v1",
+      "known_debt": [
+        {
+          "locale": "ko",
+          "slot_id": "source-image.front_product",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.right_side_ports",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.op_main_power",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.op_ac_output",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.op_dc_usb_output",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.energy_saving",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.ac_wall",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.solar_adapter",
+          "status": "missing"
+        },
+        {
+          "locale": "ko",
+          "slot_id": "source-image.car_charge",
+          "status": "missing"
+        }
+      ]
+    }
+  ]
+}

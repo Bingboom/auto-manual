@@ -223,12 +223,49 @@ Troubleshooting 或 Warranty 转成截图。presentation base/profile/target ove
 第 7 刀。完整设计与验证命令见
 [`manual_ir_app_reference_plan.md`](manual_ir_app_reference_plan.md)。
 
-### 必须清零的 5B 资产债
+### 已清零的 5B 资产债
 
-JE-1000F/EU DE/IT 当前仍有 Overview、Operation、Charging slot 以 semantic
-fallback 呈现；这只是安全降级，不满足最终“含本地化文字完整面板图”的交付口径。
-第 5 刀合入后必须从指定 EU/UK 源 PDF 抽取各语言完整面板，登记 source page/crop、
-locale、content SHA-256 与 source-fragment SHA-256，并接入批准 manifest。最终闸门
-对 JE-1000F/EU DE/IT 要求这些 slot 全部为 `finished-panel` 或
-`approved-composite`；任何 `editable-fallback` / `missing` 都算未完成。该要求不
-适用于本应保持原生 HTML 的规格、Warranty、LCD、Troubleshooting 与 Symbols 表格。
+JE-1000F/EU 的 EN/FR/ES/DE/IT 已从操作者指定的 EU/UK 源 PDF 抽取并登记
+55/55 张完整面板：每语两张 Overview、五张 Operation、四张 Charging。每张图都
+保留该语言的文字与原生引线，并绑定 source page/crop、locale、content SHA-256 与
+source-fragment SHA-256。意大利语是 11/11 `approved-composite`；过去的“无字底图
++ HTML/SVG 本地化文字/引线”只是历史 fallback，不能作为最终交付，也不能销账。
+
+目标覆盖闸门只接受 `finished-panel` / `approved-composite`。任何
+`editable-fallback` / `missing`、重复槽位或缺槽都失败。该要求不适用于本应保持
+原生 HTML 的规格、Warranty、LCD、Troubleshooting 与 Symbols 表格。
+
+## 后续第 6 刀：分层 Web presentation 合同（2026-09-05）
+
+单体 Web presentation 合同已拆为 shared base、skeleton profile 和 `(model, region)`
+target overlay。映射递归合并、带稳定 `id` 的列表按项覆盖、普通列表整表替换；未知
+骨架、重复目标、越界路径和歧义目标均失败。新目标只提交能力、覆盖策略和真实差异，
+不能复制共享组件或整套骨架。
+
+整本生产路径只解析一次实际目标，将 resolved contract 与 layer identity 冻结进 IR；
+冷重放不再打开 layer registry。Overview 实例按实际目标解析，不再使用全局固定
+instance。JE-1000F/EU 保持 55/55 本地化成品整图，其中 IT 11/11；US 的 Charging
+fallback 与 KR 的缺图继续显式计债，不能被本次配置分层掩盖。
+
+## 后续第 7 刀：最终入口闸门与旧 DOM 退役（2026-09-05）
+
+新 `whole-document-components/v1` 包已把 ComponentSpec registry、manual theme、
+resolved Overview instance 及其 SHA-256 一起冻结进 `manual.ir.json`。figure-capable
+目标必须声明完整 locale/slot 集，且允许状态只能是 `finished-panel` 与
+`approved-composite`。既有 US 9 项 `editable-fallback` 和 KR 9 项 `missing` 放在
+独立版本化债务 baseline；新增或变差的债务失败，债务变成成品后未同步删除旧记录也
+失败。EU 没有债务例外，因此意大利语一旦退回无字底图加 HTML 文字/引线会立即失败。
+
+新生产 IR 已在 source adapter 阶段完成 Preface inventory 与 Auto Resume 的 Web
+normalization。冷重放只做 ComponentSpec dispatch、资产 rebasing 与 hash 校验，不再
+调用旧 `transform_web_fragment()`；历史 `manual-ir/v1` 与
+`whole-document-flow/v1` 仍通过显式兼容路径读取。
+
+共享 Web/ManualIR/ComponentSpec Python 与 Web CSS 还受反型号字面量 guardrail
+保护，目标差异只能进入 overlay、资产、实例和数据。四个代表包在禁读 RST、CSV、
+renderer contract 并禁用旧 DOM projector 后完成冷重放；共 401 个 ComponentSpec
+逐实例验证 Web、LaTeX、IDML、Word 四个 adapter binding，共 1604 个绑定。这里证明
+的是共享语义实例和四端 adapter 入口，不宣称 Web 与固定页输出逐像素或逐分页相同。
+
+完整设计、非目标和验收梯见
+[`manual_ir_final_gates_plan_2026-09.md`](manual_ir_final_gates_plan_2026-09.md)。
