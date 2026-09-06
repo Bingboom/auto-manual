@@ -719,6 +719,7 @@ def _transform_operations(
     source_path: Path,
     contract: dict[str, Any],
     composites: WebCompositeContext,
+    resolved_component_ids: frozenset[str] = frozenset(),
 ) -> None:
     operation_contract = contract["operations"]
     _transform_auto_resume_table(
@@ -726,14 +727,15 @@ def _transform_operations(
         source_path=source_path,
         expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
     )
-    _transform_lcd_mode_table(
-        soup,
-        source_path=source_path,
-        image_key=str(operation_contract["lcd_mode_table"]["image_key"]),
-        expected_body_rows=int(operation_contract["lcd_mode_table"]["body_rows"]),
-    )
+    if "HB-TABLE-LCD-MODE" not in resolved_component_ids:
+        _transform_lcd_mode_table(
+            soup,
+            source_path=source_path,
+            image_key=str(operation_contract["lcd_mode_table"]["image_key"]),
+            expected_body_rows=int(operation_contract["lcd_mode_table"]["body_rows"]),
+        )
     figures = operation_contract["figures"]
-    for spec in figures:
+    for spec in figures if "HB-SPECIAL-OPERATION" not in resolved_component_ids else []:
         image = next(
             (
                 candidate
@@ -1222,7 +1224,12 @@ def transform_web_fragment(
     has_target_context = bool(model and region) or supports_figure_contract(
         source_path, data
     )
-    if is_warranty and has_target_context:
+    warranty_component_ids = {
+        "HB-WARRANTY-LEAD",
+        "HB-WARRANTY-SECTION",
+        "HB-WARRANTY-YEARS",
+    }
+    if is_warranty and has_target_context and not (resolved & warranty_component_ids):
         _transform_warranty(
             soup,
             source_path=source_path,
@@ -1275,6 +1282,7 @@ def transform_web_fragment(
             source_path=source_path,
             contract=data,
             composites=composites,
+            resolved_component_ids=resolved,
         )
     if (
         is_fcc

@@ -1980,3 +1980,29 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
 - This is cut 2 of seven. Operation/Warranty/LCD, Symbols/Troubleshooting,
   App/reference figures, presentation overlays and anti-copy/four-renderer
   acceptance remain independently reversible follow-up PRs.
+
+
+## 2026-09-05: Operation, Warranty, and LCD Mode embedded in ManualIR
+
+- Registered `HB-SPECIAL-OPERATION`, `HB-TABLE-LCD-MODE`,
+  `HB-WARRANTY-LEAD`, `HB-WARRANTY-SECTION`, and `HB-WARRANTY-YEARS` with
+  renderer-neutral slots plus explicit Web, LaTeX, IDML, and Word projections.
+- Whole-document assembly claims the five Operation panels, hybrid LCD Mode,
+  Warranty lead, five section cards, and 3/2-year card in document order. Cold
+  Web replay dispatches these embedded specs without reopening RST/CSV or
+  rerunning the retired Warranty/LCD source projectors.
+- Operation keeps the approved target-specific composite transform as a bounded
+  cut-3 compatibility adapter, preserving all five existing
+  `source_fragment_sha256` values. LCD Mode remains market artwork plus six
+  editable action rows; it is not rasterized into a table screenshot.
+- JE-1000F/US produces five Operation figures, one LCD Mode composition and
+  `3/2 YEARS`. The detached `origin/review/JE-1000F-EU@7d764e22` bundle produces
+  the same structures with `3/2 JAHRE` and `3/2 ANNI` for DE/IT.
+- The shared style-contract change required a mechanical approved-plan pin
+  refresh. `reference_layout_rebind.py` changed only
+  `identity.style.style_contract_sha256`; it reported zero page-binding drift,
+  no content reapproval, and an unchanged 58-page composition map.
+- Validation passed 127 focused and 3767 full-suite tests (19 skipped), full
+  Ruff, 62 hotspot guardrails, 1708 documentation links, reference-pin checks,
+  and the isolated fixture-backed JE-1000F/US target check. This is cut 3 of
+  seven; LCD Icons/Troubleshooting/Symbols remain cut 4.

@@ -20,8 +20,9 @@ editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
-historical `manual-ir/v1` packages remain replayable. This is the shared document
-substrate, not yet proof that Word, LaTeX and IDML consume every same ComponentSpec.
+historical `manual-ir/v1` packages remain replayable. Ten ComponentSpec types are
+now embedded, including Operation, LCD Mode and the three Warranty shapes; this
+is still not proof that Word, LaTeX and IDML consume every same ComponentSpec.
 For JE-1000F, Overview, Operation and Charging use localized crops with their
 visible labels intact—including Operation `On` / `Off`, prerequisites and action
 copy. Do not feed those slots textless exports. The LCD screen-mode block is the
@@ -1175,13 +1176,15 @@ This does not admit new targets into the approved figure contract or change
 Word/IDML output. Other composite figure callouts remain separate work.
 
 For new whole-document Web builds, Inbox is no longer a temporary page-level
-IR detour. Inbox, Overview, FCC, Specifications and Callout instances are written
-once into ordered `manual-ir/v2` flow and replayed from those embedded specs.
-Their source projectors run only while assembling a new package; opening or
-publishing the frozen package does not reparse RST/CSV or rediscover those five
-families from HTML. Historical packages remain supported. This lowers the next
-target's cost when it reuses one of these shapes, but Operation, Warranty, LCD,
-Symbols, Troubleshooting, App and reference figures still enter in later cuts.
+IR detour. Inbox, Overview, FCC, Specifications, Callout, Operation, hybrid LCD
+Mode and Warranty instances are written once into ordered `manual-ir/v2` flow
+and replayed from those embedded specs. Their source projectors run only while
+assembling a new package; opening or publishing the frozen package does not
+reparse RST/CSV or rediscover those ten component types from HTML. Historical
+packages remain supported. German `JAHRE` and Italian `ANNI` use the same
+component-owned 3/2 numeric badge adapter; the LCD table remains editable text,
+not a screenshot. Symbols, Troubleshooting, App and reference figures enter in
+later cuts.
 
 Prepared Web FCC also passes through public IR. Its opening copy, measures,
 column split and mark binding can be replayed without reopening the source page.

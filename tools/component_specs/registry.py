@@ -26,6 +26,11 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "hb_fcc",
             "hb_inbox",
             "hb_overview",
+            "hb_operation",
+            "hb_lcd_mode",
+            "hb_warranty_lead",
+            "hb_warranty_section",
+            "hb_warranty_years",
         }
     ),
     "latex": frozenset(
@@ -35,6 +40,11 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "hb_latex_fcc",
             "hb_latex_inbox",
             "hb_latex_overview",
+            "hb_latex_operation",
+            "hb_latex_lcd_mode",
+            "hb_latex_warranty_lead",
+            "hb_latex_warranty_section",
+            "hb_latex_warranty_years",
         }
     ),
     "idml": frozenset(
@@ -44,6 +54,11 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "idml_fcc",
             "idml_inbox",
             "idml_overview",
+            "idml_operation",
+            "idml_lcd_mode",
+            "idml_warranty_lead",
+            "idml_warranty_section",
+            "idml_warranty_years",
         }
     ),
     "word": frozenset(
@@ -53,6 +68,11 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
             "word_fcc",
             "word_inbox",
             "word_overview",
+            "word_operation",
+            "word_lcd_mode",
+            "word_warranty_lead",
+            "word_warranty_section",
+            "word_warranty_years",
         }
     ),
 }

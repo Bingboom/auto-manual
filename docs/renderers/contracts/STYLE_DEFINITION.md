@@ -33,7 +33,7 @@ reference-layout 记录；复制进规范只会制造第二份过期事实。
 | 层 | 权威来源 | 决定什么 | 不应该放什么 |
 |---|---|---|---|
 | 人类规范 | **本文** | 视觉意图、四端对照、实现归属、修改与验证方法 | 构建快照、临时排期、一次性 hash |
-| 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 31 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
+| 语义合同 | [`manual_style.yaml`](manual_style.yaml) | 32 个稳定 `HB-*` ID、四端 capability/binding、theme-token role、`conformance`、`constraints`、`approved_variants` | CSS 像素值、逐页坐标 |
 | 组件实例合同 | [`component_registry.yaml`](component_registry.yaml) + [`tools/component_specs/`](../../../tools/component_specs/) | 可跨 renderer 传递的 ComponentSpec 类型、variant、slot、asset role、token role 与 adapter key | CSS/TeX/XML/DOCX 几何实现、逐页坐标 |
 | 主题投影合同 | [`manual_theme.yaml`](manual_theme.yaml) | 稳定 `theme_id`、组件视觉角色及四端具体 binding | 单位值、目标/语言几何、页面实例坐标 |
 | 数值 token | [`data/layout_params.csv`](../../../data/layout_params.csv) | PDF/IDML 共用的字号、间距、线宽、圆角及语言覆盖 | 组件路由和可见文案 |
@@ -327,6 +327,7 @@ minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
 | FCC 面板 | `HB-SPECIAL-FCC` | 流水线 | `.hb-fcc-composition` | `HBFccBlock` @ `components_special_pages` | `HB Rounded Panel` + `无表头表格` | `.hb-fcc-word-table` 双栏活文本 | **aligned** |
 | 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition` | `HBInBoxThree` | `Item List Text` + `HB Inbox Card` + `无表头表格` | `.hb-inbox-word-table` 活图文卡 | **aligned** |
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
+| 操作面板 | `HB-SPECIAL-OPERATION` | 流水线 | `.hb-operation-figure` | `HBOperationPanel` | `oppanel` + `HB Operation Row Label`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
 
 ### 质保与页面

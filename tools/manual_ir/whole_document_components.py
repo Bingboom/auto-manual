@@ -15,10 +15,13 @@ from bs4 import BeautifulSoup, Comment, Tag
 
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
-from tools.component_specs.model import ComponentAsset, ComponentSpec
+from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
+from tools.component_specs.model import ComponentSpec
+from tools.component_specs.operation_html import parse_operation_components
 from tools.component_specs.overview_html import parse_overview_html
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.registry import require_valid_component_spec
+from tools.component_specs.warranty_html import parse_warranty_html
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, html_to_flow_nodes
 from tools.manual_ir.web_callouts import decode_callout_payload
@@ -41,6 +44,7 @@ class ComponentClaim:
     owned_nodes: tuple[Tag, ...]
     asset_tags: tuple[tuple[str, Tag], ...] = ()
     asset_paths: tuple[tuple[str, Path], ...] = ()
+    discard_nodes: tuple[Tag, ...] = ()
     consume_interstitial: bool = False
 
 
@@ -81,6 +85,17 @@ def _claim_nodes(
     for node in claim.owned_nodes:
         claimed.add(id(node))
         claimed.update(id(descendant) for descendant in node.find_all(True))
+    for node in claim.discard_nodes:
+        inside_current_claim = any(
+            node is owner or owner in node.parents for owner in claim.owned_nodes
+        )
+        if _is_claimed(node, claimed) and not inside_current_claim:
+            raise ValueError(
+                f"{source_path}: overlapping semantic-only source node for "
+                f"{claim.spec.component_id}"
+            )
+        claimed.add(id(node))
+        claimed.update(id(descendant) for descendant in node.find_all(True))
 
 
 def discover_registered_components(
@@ -92,10 +107,59 @@ def discover_registered_components(
     region: str,
     language: str,
 ) -> tuple[ComponentClaim, ...]:
-    """Discover the five registered families in deterministic ownership order."""
+    """Discover registered families in deterministic ownership order."""
 
     claims: list[ComponentClaim] = []
     claimed: set[int] = set()
+
+    warranty_config = contract["warranty"]
+    if isinstance(warranty_config, Mapping) and _matches_source(
+        source_path, warranty_config.get("source_patterns", [])
+    ):
+        for spec, owned_nodes in parse_warranty_html(
+            soup,
+            source_path=source_path,
+            expected_sections=int(warranty_config["section_count"]),
+            expected_years=[str(value) for value in warranty_config["period_years"]],
+            language=language,
+        ):
+            claim = ComponentClaim(spec=spec, owned_nodes=owned_nodes)
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
+
+    operation_config = contract["operations"]
+    if isinstance(operation_config, Mapping) and _matches_source(
+        source_path, operation_config.get("source_patterns", [])
+    ):
+        for spec, owned_nodes, artwork, discard_nodes in parse_operation_components(
+            soup,
+            source_path=source_path,
+            config=operation_config,
+            language=language,
+        ):
+            claim = ComponentClaim(
+                spec=spec,
+                owned_nodes=owned_nodes,
+                asset_tags=(("artwork", artwork),),
+                discard_nodes=discard_nodes,
+            )
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
+        lcd_config = operation_config["lcd_mode_table"]
+        lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
+            soup,
+            source_path=source_path,
+            image_key=str(lcd_config["image_key"]),
+            expected_body_rows=int(lcd_config["body_rows"]),
+            language=language,
+        )
+        lcd_claim = ComponentClaim(
+            spec=lcd_spec,
+            owned_nodes=(lcd_table,),
+            asset_tags=(("artwork", lcd_artwork),),
+        )
+        _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
+        claims.append(lcd_claim)
 
     overview_config = contract["product_overview"]
     if (
@@ -269,6 +333,19 @@ def embed_component_claims(
             for image in node.select("img[src]"):
                 if not str(image.get("src") or "").startswith("assets/ir/"):
                     package_image(image)
+        discard_parents: list[Tag] = []
+        for node in claim.discard_nodes:
+            parent = node.parent
+            if not isinstance(parent, Tag):
+                raise ValueError(
+                    f"{claim.spec.source_ref}: semantic-only source node detached "
+                    "before embedding"
+                )
+            discard_parents.append(parent)
+            node.extract()
+        for parent in discard_parents:
+            if parent.parent is not None and not parent.get_text(" ", strip=True):
+                parent.decompose()
         carrier_nodes: list[object]
         if claim.consume_interstitial:
             parent = claim.owned_nodes[0].parent
