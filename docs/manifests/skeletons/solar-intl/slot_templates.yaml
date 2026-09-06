@@ -1,0 +1,32 @@
+# Slot carriers shared by English-language international solar-panel manuals.
+schema_version: skeleton-slot-templates/v1
+skeleton_id: solar-intl
+slots:
+  safety_tips:
+    type: rst_include
+    file: templates/page_solar/{lang}/01_safety_tips.rst
+  box_contents:
+    type: rst_include
+    file: templates/page_solar/{lang}/02_whats_in_the_box.rst
+  product_views:
+    type: rst_include
+    file: templates/page_solar/{lang}/03_product_views.rst
+  unfolding:
+    type: rst_include
+    file: templates/page_solar/{lang}/04_unfolding.rst
+  folding:
+    type: rst_include
+    file: templates/page_solar/{lang}/05_folding.rst
+  charging_connections:
+    type: rst_include
+    file: templates/page_solar/{lang}/06_charging_connections.rst
+  angle_and_device:
+    type: rst_include
+    file: templates/page_solar/{lang}/07_angle_and_device.rst
+  specifications:
+    type: csv_page
+    page: spec
+    include_dir: generated/{model}
+  warranty:
+    type: rst_include
+    file: templates/page_solar/{lang}/09_warranty.rst

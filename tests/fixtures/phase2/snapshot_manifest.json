@@ -40,8 +40,8 @@
       "logical_name": "symbols_blocks",
       "file_name": "symbols_blocks.csv",
       "path": "tests/fixtures/phase2/symbols_blocks.csv",
-      "row_count": 18,
-      "sha256": "c71682d33b60c3ed0312b4bebe8f33f0bbf65b1eea3d630d4aeff3e1d3fe7033",
+      "row_count": 26,
+      "sha256": "f3470c9e8c737e01b56fd9d7983916c5cd1e74f593d6e152d1123703612e7bfc",
       "previous_sha256": null,
       "changed": true
     },
@@ -49,8 +49,8 @@
       "logical_name": "lcd_icons",
       "file_name": "lcd_icons_blocks.csv",
       "path": "tests/fixtures/phase2/lcd_icons_blocks.csv",
-      "row_count": 29,
-      "sha256": "ea0809d70381b109a1667941c3c26d49c3f325e8d4bfd42da0057078cc31fffd",
+      "row_count": 31,
+      "sha256": "2c94b8d4cdc7dfda80913e0236a423d2d44f822c189db01ff6b07092fce38a5b",
       "previous_sha256": null,
       "changed": true
     },
@@ -58,8 +58,8 @@
       "logical_name": "troubleshooting",
       "file_name": "troubleshooting_blocks.csv",
       "path": "tests/fixtures/phase2/troubleshooting_blocks.csv",
-      "row_count": 63,
-      "sha256": "0a440b206d42e920836beff1c988a4b08e906fdad19073201693695b247a2174",
+      "row_count": 83,
+      "sha256": "b6fa0a221f00755d2d196b8ce2a34b9df36efdc87c574ebd17b42d4323a302ab",
       "previous_sha256": null,
       "changed": true
     },
@@ -94,8 +94,8 @@
       "logical_name": "spec_master",
       "file_name": "Spec_Master.csv",
       "path": "tests/fixtures/phase2/Spec_Master.csv",
-      "row_count": 419,
-      "sha256": "eb05bb65c290c9fe6d7aa48aafeb1a97822b52f9d4a7d0185292dce946c128f5",
+      "row_count": 457,
+      "sha256": "2bdae7375112abc32dc4d0e1be842e7c24d1fbe73e71974807fe05b2857707fa",
       "previous_sha256": null,
       "changed": true
     }

@@ -63,18 +63,18 @@ def render_inbox_component(
         card.append(label)
         grid.append(card)
 
-    tip = soup.new_tag("div", attrs={"class": projection["tip_class"], "role": "note"})
-    tip_label = soup.new_tag("div", attrs={"class": "hb-inbox-tip-label"})
-    tip_body = soup.new_tag("div", attrs={"class": "hb-inbox-tip-body"})
-    for child in list(tip_cells[0].contents):
-        tip_label.append(child.extract())
-    for child in list(tip_cells[1].contents):
-        tip_body.append(child.extract())
-    tip.append(tip_label)
-    tip.append(tip_body)
-
     composition.append(grid)
-    composition.append(tip)
+    if tip_cells:
+        tip = soup.new_tag("div", attrs={"class": projection["tip_class"], "role": "note"})
+        tip_label = soup.new_tag("div", attrs={"class": "hb-inbox-tip-label"})
+        tip_body = soup.new_tag("div", attrs={"class": "hb-inbox-tip-body"})
+        for child in list(tip_cells[0].contents):
+            tip_label.append(child.extract())
+        for child in list(tip_cells[1].contents):
+            tip_body.append(child.extract())
+        tip.append(tip_label)
+        tip.append(tip_body)
+        composition.append(tip)
     return str(composition)
 
 
@@ -92,7 +92,7 @@ def render_inbox_ir(ir: ManualIR) -> str:
     )
     return render_inbox_component(
         source.spec,
-        str(source.inbox_table) + str(source.tip_table),
+        str(source.inbox_table) + str(source.tip_table or ""),
         source_ref=str(source_path),
     )
 
@@ -109,12 +109,12 @@ def transform_inbox(
         html = render_inbox_ir(build_manual_ir_from_source(source))
     except ValueError as exc:
         raise error_type(str(exc)) from exc
-    # The validated input is unchanged; these are the exact source boundaries
-    # used by parse_inbox_html, not another content/ComponentSpec read.
+    # Replace the exact source boundaries validated by parse_inbox_html.
     inbox = soup.find("h1").find_next_sibling()
     tip = inbox.find_next_sibling()
     inbox.replace_with(BeautifulSoup(html, "html.parser").figure)
-    tip.decompose()
+    if source.pages[0].blocks[0][1]["tip_html"]:
+        tip.decompose()
 
 
 __all__ = ["render_inbox_component", "transform_inbox", "render_inbox_ir"]

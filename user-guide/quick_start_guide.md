@@ -760,3 +760,26 @@ python -m sphinx -b html .tmp/bp-web/docs/_build/rtd .tmp/bp-web/html
 
 Web 图采用 PDF 带字裁切，正确操作说明以结构源为准。
 IR、源读取退出路径与剩余边界见[完整执行记录](../code-as-doc/dev/ir_document_closeout.md)。
+
+### SolarSaga 100 Air 欧规英语 Web 本地验收
+
+该目标从 Safety Tips 开始，不包含封面、目录或电源产品专属章节。使用提交的
+bootstrap fixture 进行只读本地验收：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
+  --config configs/config.solar-eu-en.yaml \
+  --model JS-100I --region EU --lang en \
+  --data-root tests/fixtures/js100i_eu_en_phase2 \
+  --staging-root .tmp/js100i-web
+python tools/readthedocs_source.py \
+  --build-root .tmp/js100i-web/docs/_build \
+  --output-dir .tmp/js100i-web/docs/_build/rtd \
+  --title "JS-100I Web Acceptance"
+python -m sphinx -b html \
+  .tmp/js100i-web/docs/_build/rtd .tmp/js100i-web/html
+```
+
+这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
+线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
+不要直接修改业务镜像工程树。

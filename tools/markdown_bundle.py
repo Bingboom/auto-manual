@@ -118,6 +118,27 @@ def _write_myst_sphinx_scaffold(
                 f'html_css_files = ["{WEB_STYLESHEET_NAME}"]',
             ]
         )
+        if (source_dir / "assets").is_dir():
+            # Web components keep their images in raw HTML so Pandoc can
+            # preserve the approved composition. Sphinx does not discover
+            # image references inside raw HTML. Preserve the ``assets/`` path
+            # segment in the built site so those relative URLs stay valid.
+            conf_lines.extend(
+                [
+                    "",
+                    "from pathlib import Path",
+                    "from shutil import copytree",
+                    "",
+                    "def _copy_packaged_assets(app, exception):",
+                    "    if exception is None:",
+                    '        source = Path(app.srcdir) / "assets"',
+                    '        target = Path(app.outdir) / "assets"',
+                    "        copytree(source, target, dirs_exist_ok=True)",
+                    "",
+                    "def setup(app):",
+                    '    app.connect("build-finished", _copy_packaged_assets)',
+                ]
+            )
     conf_lines.append("")
     conf_path.write_text("\n".join(conf_lines), encoding="utf-8")
     if markdown_path.name == "index.md":

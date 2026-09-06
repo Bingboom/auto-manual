@@ -779,7 +779,9 @@ class ExportIdmlTests(unittest.TestCase):
 
     def test_symbols_story_has_signal_and_icon_tables(self) -> None:
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT)
+        signals, icons = load_symbols_rows(
+            FIXTURE_DATA_ROOT, model="JBP-2000B", region="EU"
+        )
         self.assertTrue(signals)
         w = IdmlWriter(params)
         w.add_symbols_story(
@@ -812,7 +814,9 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(icons[0]["order"], "1")
 
     def test_symbols_rows_use_requested_language(self) -> None:
-        signals, icons = load_symbols_rows(FIXTURE_DATA_ROOT, "fr")
+        signals, icons = load_symbols_rows(
+            FIXTURE_DATA_ROOT, "fr", model="JBP-2000B", region="EU"
+        )
         self.assertIn(
             ("AVERTISSEMENT",
              "Pratiques dangereuses pouvant entraîner des blessures graves, "
@@ -3448,7 +3452,9 @@ class ExportIdmlTests(unittest.TestCase):
             ("h1", "INSTRUCTIONS D'ENTRETIEN PAR L'UTILISATEUR"),
             ("body", "Pendant le cycle de vie des produits de stockage d'énergie."),
         ]
-        signals, _ = load_symbols_rows(FIXTURE_DATA_ROOT, "fr")
+        signals, _ = load_symbols_rows(
+            FIXTURE_DATA_ROOT, "fr", model="JBP-2000B", region="EU"
+        )
         icons = [{"figure": "", "text": "Icône localisée"}]
         w.add_safety_symbols_page(
             "st_safety_symbols_fr",

@@ -1,0 +1,73 @@
+# BP (battery pack) family, exact EU/en Web-first target.
+extends: config-bases/phase2-sync-base.yaml
+
+doc_type: manual_bundle
+
+build:
+  family_id: bp-eu-en-web
+  language_family: eu-en
+  family_default: false
+  queue_requires_target_match: true
+  skeleton_family: BP
+  languages: [en]
+  include_lang_in_output_path: true
+  queue_by_document_key: true
+  default_model: JBP-3600A
+  default_region: EU
+  targets:
+    - model: JBP-3600A
+      region: EU
+  main_tex: manual_demo.tex
+  output_pdf: manual_{model_slug}_{region_slug}.pdf
+  xelatex_runs: 3
+  open_pdf: false
+  build_word: true
+  word_output: manual_{model_slug}_{region_slug}.docx
+  word_source: bundle
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English
+    WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
+    BP_HOST_PRODUCT_NAME: Jackery Explorer 3600 Plus
+    BP_HOST_PRODUCT_SHORT_NAME: Explorer 3600 Plus
+    BP_INBOX_UNIT_FILE: jbp3600a_inbox_unit.png
+    BP_INBOX_CABLE_FILE: jbp3600a_expansion_cable.png
+    BP_INBOX_MANUAL_FILE: jbp3600a_user_manual.png
+    BP_INBOX_UNIT_ASSET: asset:in_the_box/jbp3600a/main_unit
+    BP_INBOX_CABLE_ASSET: asset:in_the_box/jbp3600a/expansion_cable
+    BP_INBOX_MANUAL_ASSET: asset:in_the_box/jbp3600a/user_manual
+    BP_OVERVIEW_FRONT_ASSET: asset:overview/jbp3600a/front_controls
+    BP_OVERVIEW_SIDE_ASSET: asset:overview/jbp3600a/left_side_ports
+    BP_OPERATION_POWER_ASSET: asset:operation/jbp3600a/power_control
+    BP_OPERATION_LCD_ASSET: asset:operation/jbp3600a/lcd_control
+    BP_CONNECTION_CLEARANCE_ASSET: asset:connections/jbp3600a/clearance
+    BP_CONNECTION_LOCKING_ASSET: asset:connections/jbp3600a/stacking_locking
+    BP_CHARGING_AC_ASSET: asset:charging/jbp3600a/ac_wall
+    BP_CHARGING_SOLAR_ASSET: asset:charging/jbp3600a/solar
+  open_word: false
+  build_html: false
+  open_html: false
+
+paths:
+  docs_dir: docs
+  web_illustration_manifest: docs/renderers/web/jbp3600a_eu_en_illustrations.json
+  structured_data_dir: data/phase2
+  layout_params_csv: data/layout_params.csv
+  idml_layout_params_overlays:
+    - data/layout_params.idml-compact.csv
+  page_registry_csv: data/phase2/page_registry.csv
+  page_blocks_dir: data/phase2
+  spec_master_csv: data/phase2/Spec_Master.csv
+  spec_footnotes_csv: data/phase2/Spec_Footnotes.csv
+  spec_notes_csv: data/phase2/Spec_Notes.csv
+  spec_titles_csv: data/phase2/spec_titles.csv
+  page_manifest: docs/manifests/manual_bp-eu-en-web.yaml
+
+tools:
+  patch_fonts: tools/patch_latex_fonts.py
+
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery Explorer 3600 Plus
