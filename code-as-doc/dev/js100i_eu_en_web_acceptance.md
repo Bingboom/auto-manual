@@ -57,3 +57,12 @@ Formal publication is out of scope here. After review approval, Web Publish
 must freeze the exact live snapshot and advance only the Hello-Docs
 `docs/publish/**` candidate PR. No direct Hello-Docs engineering-tree edit and
 no live Base write was performed by this implementation.
+
+## Latest-main integration (2026-09-06)
+
+The first isolated Sphinx output exposed 13 missing raw-HTML image files even
+though Sphinx returned success. The target therefore also depends on #1066's
+shared packaged-asset copy hook, and is merged after that PR. After integration,
+real Pandoc/Sphinx output contains all 13 referenced images. A regression test
+executes the generated Sphinx build-finished callback and verifies nested asset
+bytes at the published relative path, instead of checking only config strings.

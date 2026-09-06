@@ -1,0 +1,32 @@
+# Region profile — EU English-only Web-first Battery Pack line.
+# The target-neutral carriers accept target data and asset bindings from config;
+# the slot order and required/optional decisions remain blueprint-owned.
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set: [en]
+primary_lang: en
+terminal_slots: [regulatory_compliance]
+slot_overrides:
+  preface_important:
+    file: templates/page_bp/intl/00_preface_six_language.rst
+  toc:
+    file: templates/page_bp/en-web/jbp3600a_00_toc.rst
+  safety_info:
+    file: templates/page_bp/en/01_safety.rst
+  box_contents:
+    file: templates/page_bp/en-web/jbp3600a_02_whats_in_the_box.rst
+  product_overview:
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
+    template: templates/page_bp/en-web/jbp3600a_03_product_overview_placeholder.rst
+  operation:
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
+    template: templates/page_bp/en-web/jbp3600a_05_operation_guide_placeholder.rst
+  connections:
+    file: templates/page_bp/en-web/jbp3600a_04_connections.rst
+  charging:
+    file: templates/page_bp/en-web/jbp3600a_08_charging_methods.rst
+  warranty:
+    file: templates/page_bp/en/11_warranty.rst
+  regulatory_compliance:
+    file: templates/page_bp/intl/99_regulatory_compliance_eu_configurable.rst
+compliance: []

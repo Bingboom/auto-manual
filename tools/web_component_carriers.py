@@ -43,9 +43,18 @@ def validate_inbox_carrier(
 
     carrier = BeautifulSoup(carrier_html, "html.parser")
     tables = carrier.find_all("table", recursive=False)
-    if len(tables) != 2:
-        raise ValueError(f"{source_ref}: Inbox carrier requires card and tip tables")
-    inbox_rows, tip_rows = (table.find_all("tr") for table in tables)
+    has_tip = bool(
+        str(spec.slot("tip_label").content).strip()
+        or str(spec.slot("tip_body").content).strip()
+    )
+    expected_table_count = 2 if has_tip else 1
+    if len(tables) != expected_table_count:
+        raise ValueError(
+            f"{source_ref}: Inbox carrier requires a card table"
+            + (" and tip table" if has_tip else " without a tip table")
+        )
+    inbox_rows = tables[0].find_all("tr")
+    tip_rows = tables[1].find_all("tr") if has_tip else []
     source_cells = (
         inbox_rows[0].find_all(["th", "td"], recursive=False)
         if len(inbox_rows) == 1
@@ -57,7 +66,7 @@ def validate_inbox_carrier(
         else []
     )
     projection = web_inbox_projection(spec)
-    if len(source_cells) != len(projection["cards"]) or len(tip_cells) != 2:
+    if len(source_cells) != len(projection["cards"]) or len(tip_cells) != (2 if has_tip else 0):
         raise ValueError(f"{source_ref}: Inbox carrier geometry changed")
     for card_data, cell in zip(projection["cards"], source_cells, strict=True):
         image = cell.find("img")
@@ -69,7 +78,7 @@ def validate_inbox_carrier(
             raise ValueError(
                 f"{source_ref}: Inbox carrier does not match component semantics"
             )
-    if (
+    if has_tip and (
         tip_cells[0].get_text(" ", strip=True) != projection["tip_label"]
         or tip_cells[1].get_text(" ", strip=True) != projection["tip_body"]
     ):

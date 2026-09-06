@@ -151,6 +151,36 @@
         "legacy_target_components": false
       },
       "contract_overrides": {}
+    },
+    {
+      "overlay_id": "jbp3600a-eu-en-v1",
+      "target": {
+        "model": "JBP-3600A",
+        "region": "EU"
+      },
+      "skeleton_profile": "battery-pack-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "policy_id": "jbp3600a-eu-en-finished-figures-v1",
+        "locales": [
+          "en"
+        ],
+        "required_slots": [
+          "finished-panel.overview",
+          "finished-panel.power",
+          "finished-panel.lcd_control",
+          "finished-panel.ac_charging",
+          "finished-panel.solar_charging"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
+      },
+      "contract_overrides": {}
     }
   ]
 }

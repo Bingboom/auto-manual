@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jbp3600a_eu_master",
+    "expected_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+    "expected_page_count": 10
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 10},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {"1": 4, "4": 4, "5": 4, "6": 4, "7": 4, "8": 4}
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "cover", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["model-specific", "localized-copy"]},
+    {"page": 2, "page_key": "preface", "role": "frontmatter", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "en_01", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "en_02", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "en_03", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "en_04", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art"]},
+    {"page": 7, "page_key": "en_05", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art", "localized-copy"]},
+    {"page": 8, "page_key": "en_06", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": ["region-locked-art"]},
+    {"page": 9, "page_key": "en_07", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 10, "page_key": "en_08", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {
+      "asset_key": "page/jbp3600a_eu/cover", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [0, 0, 368.754, 524.659]}],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/cover_jbp3600a_eu-en.pdf", "expected_sha256": "890f5ee8abcf4b701cb2ebc80c8eecbaafb5f23d4a2bff1e3e182f524702d965"},
+        {"format": "png", "path": "docs/renderers/latex/assets/cover_jbp3600a_eu-en.png", "scale": 12, "expected_sha256": "ce85d8d8e7a1688ba43b3aeec0aba0d881f0fce6add430eb64976e598aa349b5"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 exact-page export verified visually at 12x against the source master; visible model and contact details are intact."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "in_the_box/jbp3600a/main_unit", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [28, 62, 132, 177]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_inbox_unit.png", "scale": 4, "expected_sha256": "8872b0b8392c52b4bd9c655be1883cb0fbbeea226a7642b0ea7e456aee5ede26"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 deterministic source crop visually verified; no source content was redrawn or removed."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "in_the_box/jbp3600a/expansion_cable", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [132, 62, 238, 177]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_expansion_cable.png", "scale": 4, "expected_sha256": "1c117a76679b04836c2996afe39b3784c47b32dec71a8213735a97178ed42024"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 deterministic source crop visually verified; no source content was redrawn or removed."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "in_the_box/jbp3600a/user_manual", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [238, 62, 341, 177]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_user_manual.png", "scale": 4, "expected_sha256": "8680d65769528354c36adf993c24d53dbe96c484bdc55c4ef3e66d22f0e34716"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 deterministic source crop visually verified; no source content was redrawn or removed."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "overview/jbp3600a/front_controls", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 279, 176, 486]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_front_controls.png", "scale": 4, "expected_sha256": "033dc78b9f2a4af767250d0c7571d7f79a3d4c00a35fe9a7b1747a7aca137746"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 deterministic source crop visually verified; no source content was redrawn or removed."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "overview/jbp3600a/left_side_ports", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [176, 279, 342, 486]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_left_side_ports.png", "scale": 4, "expected_sha256": "db9d6235920d75ec90c1092e4410f20cdf526c499a0b90985c4d3eceb99f21e6"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 deterministic source crop visually verified; no source content was redrawn or removed."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/jbp3600a/eu/overview", "page": 4, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 279, 342, 486]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/overview.png", "scale": 4, "expected_sha256": "5a72ce9c7bb2cafb17bfdd02e349601bc9cdc0d0840ae0ae7faf5c6ad39bc972"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "lcd/jbp3600a/display", "page": 5, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 55, 342, 174]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_lcd_screen.png", "scale": 4, "expected_sha256": "99ebd2c47426a2d2d8929643534e65774afc717474b371def0d80a36a8f5cf61"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/lcd.png", "scale": 4, "expected_sha256": "99ebd2c47426a2d2d8929643534e65774afc717474b371def0d80a36a8f5cf61"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "lcd/jbp3600a/charging_indicator", "page": 5, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [223, 60, 234, 80]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_charging_indicator.png", "scale": 8, "expected_sha256": "e7f30b293864bc56b9eef638a3f75afbf28e05b7c923ff15edff58ef195b45ac"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 source battery-charge icon crop visually verified with no adjacent label or percentage glyph."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "operation/jbp3600a/power_control", "page": 5, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 202, 342, 354]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_power_control.png", "scale": 4, "expected_sha256": "cac2944fb3d3189b1b5e400031343461fc0e3dc7c178d85a2383bc006fb30f1a"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/power.png", "scale": 4, "expected_sha256": "cac2944fb3d3189b1b5e400031343461fc0e3dc7c178d85a2383bc006fb30f1a"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "operation/jbp3600a/lcd_control", "page": 5, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 357, 342, 495]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_lcd_control.png", "scale": 4, "expected_sha256": "c9faba9de405cb0960918841b7aef59fe8cdd7746e4715a2b56c02b43bc64a2b"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/lcd_control.png", "scale": 4, "expected_sha256": "c9faba9de405cb0960918841b7aef59fe8cdd7746e4715a2b56c02b43bc64a2b"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp3600a/clearance", "page": 6, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 280, 342, 495]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_clearance.png", "scale": 4, "expected_sha256": "5501e619ed381e57f62aa570cc65a99b0c69148663a1d0eaf778edcfc701e3a7"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/clearance.png", "scale": 4, "expected_sha256": "5501e619ed381e57f62aa570cc65a99b0c69148663a1d0eaf778edcfc701e3a7"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "connections/jbp3600a/stacking_locking", "page": 7, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 10, 342, 495]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_stacking_locking.png", "scale": 4, "expected_sha256": "55c449da0da26e4224e3f3d2ab9964180618a6179d1eb9d8d9c37351569f892f"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/stacking_locking.png", "scale": 4, "expected_sha256": "55c449da0da26e4224e3f3d2ab9964180618a6179d1eb9d8d9c37351569f892f"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "charging/jbp3600a/ac_wall", "page": 8, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 105, 342, 274]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_ac_wall.png", "scale": 4, "expected_sha256": "d20b1c0b5c927514f698b41d41e37d4e675bbb78ac0846994b636f6b031748d8"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/ac_charging.png", "scale": 4, "expected_sha256": "d20b1c0b5c927514f698b41d41e37d4e675bbb78ac0846994b636f6b031748d8"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    },
+    {
+      "asset_key": "charging/jbp3600a/solar", "page": 8, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [27, 318, 342, 498]}],
+      "outputs": [
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_solar.png", "scale": 4, "expected_sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"},
+        {"format": "png", "path": "docs/renderers/web/assets/jbp3600a_eu_en/solar_charging.png", "scale": 4, "expected_sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768"}
+      ],
+      "gate": {"status": "approved", "reasons": ["2026-09-06 complete labeled source panel visually verified at native extraction scale."]},
+      "risk_tags": ["model-specific", "region-locked-art", "localized-copy"]
+    }
+  ]
+}

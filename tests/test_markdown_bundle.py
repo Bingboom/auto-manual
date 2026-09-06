@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import runpy
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -211,6 +212,7 @@ class MarkdownBundleTests(unittest.TestCase):
         with TemporaryDirectory() as td:
             out_dir = Path(td) / "md"
             out_dir.mkdir(parents=True)
+            (out_dir / "assets").mkdir()
             bundle_html = out_dir / "manual_bundle.html"
             bundle_html.write_text("<html></html>", encoding="utf-8")
             out_path = out_dir / "manual_demo.md"
@@ -252,6 +254,18 @@ class MarkdownBundleTests(unittest.TestCase):
                 )
 
             self.assertEqual("web", build_html.call_args.kwargs["presentation_profile"])
+            asset = out_dir / "assets" / "ir" / "digest" / "panel.svg"
+            asset.parent.mkdir(parents=True)
+            asset.write_bytes(b"<svg>approved panel</svg>")
+            events = {}
+            app = SimpleNamespace(
+                srcdir=str(out_dir), outdir=str(Path(td) / "html"),
+                connect=lambda name, callback: events.update({name: callback}),
+            )
+            runpy.run_path(str(out_dir / "conf.py"))["setup"](app)
+            events["build-finished"](app, None)
+            published_asset = Path(app.outdir) / asset.relative_to(out_dir)
+            self.assertEqual(asset.read_bytes(), published_asset.read_bytes())
 
 
 if __name__ == "__main__":
