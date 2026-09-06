@@ -1,0 +1,34 @@
+# Portable solar-panel family, EU English Web target.
+extends: config-bases/eu-single-language-base.yaml
+
+build:
+  family_id: solar-eu-en
+  language_family: eu-en
+  skeleton_family: SOLAR
+  languages: [en]
+  default_model: JS-100I
+  default_region: EU
+  targets:
+    - model: JS-100I
+      region: EU
+  include_lang_in_output_path: true
+  build_word: false
+  build_html: false
+  word_title: "Jackery SolarSaga 100 Air User Manual"
+  web_entry_source_patterns:
+    - "01_safety_tips*"
+    - "safety_tips*"
+  rst_substitutions:
+    PRODUCT_NAME: Jackery SolarSaga 100 Air
+    PRODUCT_NAME_BOLD: "**Jackery SolarSaga 100 Air**"
+    MODEL_NO: JS-100I
+    WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
+
+paths:
+  page_manifest: docs/manifests/manual_solar-eu-en.yaml
+  web_illustration_manifest: docs/renderers/web/js100i_eu_en_illustrations.json
+
+checks:
+  allowed_foreign_identity_literals:
+    - Jackery portable power station

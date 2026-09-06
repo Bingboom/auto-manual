@@ -1,11 +1,12 @@
 {
   "schema_version": 1,
-  "skip_count": 5,
-  "reason": "The current fixture snapshot has no document_key rows for AU, JE-1000F_KR, JE-2000E_KR, JE-3000C_KR, and pt-BR targets. JBP-2000B_US was skipped until its rows landed in the fixtures; it now runs and passes.",
+  "skip_count": 6,
+  "reason": "The current fixture snapshot has no document_key rows for AU, JE-1000F_KR, JE-2000E_KR, JE-3000C_KR, pt-BR, and JS-100I_EU targets. JS-100I_EU uses the dedicated tests/fixtures/js100i_eu_en_phase2 bootstrap snapshot; JBP-2000B_US was skipped until its rows landed in the shared fixtures and now runs and passes.",
   "skipped_configs": [
     "configs/config.au-en.yaml",
     "configs/config.kr.yaml",
-    "configs/config.pt-br.yaml"
+    "configs/config.pt-br.yaml",
+    "configs/config.solar-eu-en.yaml"
   ],
   "fail_count": 2,
   "fail_reason": "check-all runs with --observation, which reports FAIL rows without failing the job, so before this ratchet a target regressing from PASS to FAIL was invisible in CI. These two are known and separately tracked; one more than this fails the job.",

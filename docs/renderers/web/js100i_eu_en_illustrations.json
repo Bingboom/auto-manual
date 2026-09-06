@@ -1,0 +1,25 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JS-100I",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
+  "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+  "source_master_name": "371JNuMVqZ.ai",
+  "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+  "illustrations": [
+    {"replaces": ["inbox_panel.png"], "path": "assets/js100i_eu_en/inbox_panel.png", "sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a", "source_page": 2, "bbox_pt": [47, 260, 105, 328]},
+    {"replaces": ["inbox_bag.png"], "path": "assets/js100i_eu_en/inbox_bag.png", "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515", "source_page": 2, "bbox_pt": [155, 252, 215, 328]},
+    {"replaces": ["inbox_cable.png"], "path": "assets/js100i_eu_en/inbox_cable.png", "sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f", "source_page": 2, "bbox_pt": [260, 247, 310, 328]},
+    {"replaces": ["inbox_adapter.png"], "path": "assets/js100i_eu_en/inbox_adapter.png", "sha256": "2ef8624af0e7c186791e46be41b09cac73a548962a381667e7471fd85bf722b5", "source_page": 2, "bbox_pt": [62, 375, 103, 428]},
+    {"replaces": ["inbox_manual.png"], "path": "assets/js100i_eu_en/inbox_manual.png", "sha256": "d93feafa1c2c5c987c915a64d9ea076eaf375dd55f46db61e105925575fcc27c", "source_page": 2, "bbox_pt": [165, 372, 203, 428]},
+    {"replaces": ["product_views.png"], "path": "assets/js100i_eu_en/product_views.png", "sha256": "966069f8f78c491f61bc00ef7a2dca50c0a8aab780b2062c47c549b57d904298", "source_page": 3, "bbox_pt": [30, 57, 341, 403]},
+    {"replaces": ["unfold_steps_1_3.png"], "path": "assets/js100i_eu_en/unfold_steps_1_3.png", "sha256": "73e17cf2c009daec15123b51fb4b7db8bfbed043474d5a7e166b61fd62a765e7", "source_page": 4, "bbox_pt": [27, 51, 345, 493]},
+    {"replaces": ["unfold_step_4.png"], "path": "assets/js100i_eu_en/unfold_step_4.png", "sha256": "d10b0bff038014a4b0df8c749901c926da47a6171134c472af7cab8244cf93aa", "source_page": 5, "bbox_pt": [27, 15, 345, 129]},
+    {"replaces": ["fold_steps.png"], "path": "assets/js100i_eu_en/fold_steps.png", "sha256": "57cd5b938e761df6af232a5a0ad74d57c33eb2e779ce283e9bb680d684e0a9b0", "source_page": 5, "bbox_pt": [27, 139, 345, 500]},
+    {"replaces": ["dc_connections.png"], "path": "assets/js100i_eu_en/dc_connections.png", "sha256": "eb60e9c4e9ebeb0f3b99f8e1d9d737116bb968d6c4657ad29a990badcf882595", "source_page": 6, "bbox_pt": [25, 42, 345, 493]},
+    {"replaces": ["optional_connections.png"], "path": "assets/js100i_eu_en/optional_connections.png", "sha256": "9106d5c1b9df86b719139e34173d645c92347a8736df6403bf08368252818fc1", "source_page": 7, "bbox_pt": [25, 28, 345, 500]},
+    {"replaces": ["angle_and_device.png"], "path": "assets/js100i_eu_en/angle_and_device.png", "sha256": "4d13eb653050866121bb5de2f823f0309f0fd92156e470a602f63e6ad3c24fe6", "source_page": 8, "bbox_pt": [25, 38, 345, 500]},
+    {"replaces": ["multifunctional_adapter.png"], "path": "assets/js100i_eu_en/multifunctional_adapter.png", "sha256": "e2d23601137015dfd900301d9e19ef8a87a46e8a2c3f646a68d79d4715ee3218", "source_page": 9, "bbox_pt": [25, 10, 345, 130]}
+  ]
+}

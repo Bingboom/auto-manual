@@ -11,6 +11,9 @@ anchors:
   # Target-neutral BP@JP core anchor. Optional/product-terminal selections are
   # supplied by Product Manual Plan data; the first production target is R3c.
   - docs/manifests/manual_bp-jp.yaml
+  # Solar accessory manuals use a dedicated chapter grammar; JS-100I@EU/en is
+  # the first resolved anchor for this family.
+  - docs/manifests/manual_solar-eu-en.yaml
 entries:
   - family_id: us-single
     base: docs/manifests/manual_us-single-en.yaml

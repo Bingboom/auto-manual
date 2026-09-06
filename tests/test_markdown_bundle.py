@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import runpy
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -253,9 +254,18 @@ class MarkdownBundleTests(unittest.TestCase):
                 )
 
             self.assertEqual("web", build_html.call_args.kwargs["presentation_profile"])
-            conf_text = (out_dir / "conf.py").read_text(encoding="utf-8")
-            self.assertIn('target = Path(app.outdir) / "assets"', conf_text)
-            self.assertIn('app.connect("build-finished", _copy_packaged_assets)', conf_text)
+            asset = out_dir / "assets" / "ir" / "digest" / "panel.svg"
+            asset.parent.mkdir(parents=True)
+            asset.write_bytes(b"<svg>approved panel</svg>")
+            events = {}
+            app = SimpleNamespace(
+                srcdir=str(out_dir), outdir=str(Path(td) / "html"),
+                connect=lambda name, callback: events.update({name: callback}),
+            )
+            runpy.run_path(str(out_dir / "conf.py"))["setup"](app)
+            events["build-finished"](app, None)
+            published_asset = Path(app.outdir) / asset.relative_to(out_dir)
+            self.assertEqual(asset.read_bytes(), published_asset.read_bytes())
 
 
 if __name__ == "__main__":

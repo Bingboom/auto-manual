@@ -1,0 +1,9 @@
+# EU English solar-panel target profile. Regional wording remains in target
+# data; the category skeleton and slot carriers contain no model branches.
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set: [en]
+primary_lang: en
+terminal_slots: []
+slot_overrides: {}
+compliance: []

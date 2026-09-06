@@ -1,2 +1,3 @@
 Document_key,reason
+JS-100I_EU,Solar@INTL has no portable-power capability-gated slots; the first Web target intentionally omits LCD UPS troubleshooting and App chapters.
 JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.
