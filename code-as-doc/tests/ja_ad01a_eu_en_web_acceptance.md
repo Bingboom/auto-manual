@@ -1,45 +1,152 @@
-# JA-AD01A / EU / en Web-first acceptance record
+# JA-AD01A / EU / en Web acceptance — 2026-09-06
 
-## Discovery baseline
+Engineering candidate is ready for review. Production source authority, approved
+business data and formal Web publication remain pending. A fixture build is not a
+production release.
 
-- Branch baseline: `origin/main` at `ef45a0df`.
-- Target: `JA-AD01A` / `EU` / `en`, project `HTO847`, product name
-  `Jackery 102W GaN 3-Port Fast Charger`.
-- Candidate source: `/tmp/auto-manual-web-intake-20260906/xG4bYnERxR.ai`,
-  SHA-256 `0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc`,
-  nine PDF-compatible pages. Printed English manual content is on source pages 3-9.
-- Authority boundary: the source-list row has no linked reference manual, and
-  exact project searches in the current publication/material views returned no
-  row. The implementation therefore treats this file as a candidate source;
-  it does not claim an approved published version or authorize publication.
-- Live source-table writes are outside this change. No Feishu source record is
-  created or modified by this branch.
+## Scope and baseline
 
-## Implementation plan
+- Current main verified after fetch: `9b356ecadfe355aae0eb474ef4c49bf168a01e4c`.
+- Migrated the sole target commit `a32abf055bae8445868cbbc55dcaeb144d11183c`
+  into independent branch `codex/web-ja-ad01a-eu-en-closeout`; the original
+  worktree was not edited. No pre-existing PR was found for the old branch.
+- The branch wrapper was attempted but could not switch to main because another
+  worktree owns it. Created this branch directly from fetched `origin/main` in
+  the clean independent checkout.
+- Reuses merged shared IR/Inbox/asset-copy/navigation work; no shared Python,
+  CSS, workflow, JP or IDML implementation changed. Registry/family test counts
+  include both existing Solar/BP additions and these five charger assets.
+- The charger family has seven content blocks: Inbox, overview, specifications,
+  usage, warning, warranty, legal tail. No LCD, UPS or App chapters.
 
-1. Add a reusable charger/accessory skeleton and a single-language EU region
-   profile, then commit the byte-identical resolved manifest.
-2. Add target-owned English templates and exact structured specification rows.
-   Preserve every advertised voltage/current combination; do not infer missing
-   wattage splits.
-3. Extract target-owned Web illustrations from the candidate source with a
-   committed recipe and bind them through `web-illustrations/v1`.
-4. Add a target-specific phase2 fixture and regression tests for manifest
-   resolution, content fidelity, semantic components, asset provenance, public
-   IR replay, and asset-tamper rejection.
-5. Run the target Web build/check, desktop and 375 px browser acceptance, cold
-   replay, and the existing `JE-1000F` EU/en regression before opening an
-   engineering PR.
+## Source and live business evidence
 
-## Ownership and non-goals
+[Exact intake view](https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCDojvAQdJ3pmz5aA?entrance=data&sheetId=97v7518&viewId=xWo5UbG)
+was read live, including a second selected-field read of record `xG4bYnERxR`.
 
-- This branch owns only JA-AD01A target/category files and target tests.
-- Shared Web runtime work for variable Inbox cards, short-manual entry policy,
-  and Word-bundle HTML remains in the separate shared branch and must be merged
-  before final acceptance.
-- This branch does not edit shared registry/style files, publish artifacts,
-  external business-plane repositories, or live source tables.
+- `Ai文件` / `Lklgsec`: resource
+  `ea84efd5-f2a9-43fc-ba19-16788f488cf3`, 918848 bytes.
+- Filename: `(翻译用）38-0001-000880 HTO847-EU-JAK 102W充电器 说明书 RoSH REACH.ai`.
+- Local byte recomputation: SHA256
+  `0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc`.
+  This matches the cached downloaded file and recipe, rather than the typo in
+  the initial task prompt. The existing cache was hashed; no fresh download
+  is claimed in this closeout.
+- `当前纸质说明书` / `W7Skax1`, `文档业务` / `MqRDuc9`,
+  `发布资料（自动）` / `O3QP6wT`, `当前说明书 副本` / `OSqfpzv`,
+  `英文文案` / `cLWX441`, `当前说明书料号` / `UHqmpJp`: absent in readback.
+- `是否有说明书` is a lookup containing “最新说明书”; this label alone does
+  not establish a published version or authoritative file link.
+- Feishu published-manual catalog: skill query and direct full-table read,
+  45 records, no JA-AD01A/HTO847 match. DingTalk `05-01-发布资料` (`6yVXdVK`)
+  keyword queries for both codes returned zero records.
+- Business Base `LD3lb4G1ua4GOVs1vxAc9W2enje` was queried with the configured
+  bot profile `cli_aaa0db0d4b39dcca` (this machine has no `prod` alias).
+  Exact field shapes were read before filters were composed. The target
+  Document_key, queue Document_ID, spec and placeholder document_key queries
+  each returned zero rows with `has_more=false`. Asset source model/hash and
+  definition/export asset-key queries also returned zero rows. These are
+  explicit query results, not a claim about undiscovered aliases.
+- No live source-table, attachment, queue or publication-link writes occurred.
 
-## Acceptance results
+The precise remaining operator fact is the current published EU English manual
+link/version, or explicit confirmation that this AI is authoritative. Current
+published content takes precedence where it overlaps; no historical comparison
+is requested. The [source candidate](ja_ad01a_eu_en_source_candidate.json)
+contains the 21 proposed specification lines and five assets for review, plus
+live query results. It is not an approved API payload: product/region/row/slot
+links, select options and production version must be resolved before submission.
 
-Pending implementation and verification.
+## Acceptance checklist
+
+- [x] Target migration preserves merged shared work and existing manifest anchors.
+- [x] Runtime `build.py md` invokes the charger config with EU/en and isolated
+  target fixture. Real Pandoc conversion and `sphinx -W -b html` pass.
+- [x] Seven blocks produce `whole-document-components/v1` IR.
+- [x] Three-card `HB-SPECIAL-INBOX` with TIP and `HB-CALLOUT-STRIP` warning
+  are present in actual runtime IR; warning retains all 11 list items.
+- [x] Four native specification tables preserve 21 structured source lines:
+  single C1/C2 100W profiles, USB-A 18W, the distinct C1+C2 and C1+A profiles,
+  C2+A shared 5V/3A, triple C1 20V/4.35A plus C2+A 5V/3A, and all PPS lines.
+  Total product power is not substituted for each port.
+- [x] All five actual image URLs are bound in the illustration manifest and
+  match file hashes. Two finished diagrams retain their product labels;
+  Inbox pictures are assets inside native cards. No full-page screenshot is
+  used as content and no Web illustration is made textless.
+- [x] Relocated serialized IR replays seven fragments while `.rst`, `.csv`
+  and renderer-contract reads are denied. Packaged-asset tampering is rejected.
+- [x] Final Sphinx HTML: all five image URLs resolve to files; Chrome loads all
+  five at 1440px and 375px. Zero broken images and zero whole-page overflow.
+  Mobile specification tables retain local horizontal scrolling; they do not
+  force the document wider than the viewport. Screenshot visually inspected.
+- [x] JE-1000F EU frozen-review regression: 76 fragments, 340 images, five-language
+  anchors, cold replay and tamper rejection, real Pandoc/Sphinx, both viewports
+  with zero broken images and whole-page overflow.
+- [x] Full unit suite: 3855 tests pass, 22 skipped. Target suite: 8 pass.
+- [x] Ruff, maintainability guardrails, document links, JA target check and
+  JE-1000F US/en baseline check pass. Mypy also passes all 16 utils files;
+  its missing local dependency was installed only into the isolated evidence
+  directory, without changing project dependencies.
+- [ ] Operator confirms authoritative published source/version.
+- [ ] Exact business input and asset payloads approved, written, and every
+  same-record field/attachment token read back.
+- [ ] Engineering PR centrally reviewed and merged; mirror sync verified again.
+- [ ] Frozen production input, target queue record and Web Publish release.
+- [ ] `docs/publish/**`-only snapshot PR, formal site and release-link readback.
+
+## Reproduction and evidence
+
+Use the existing Python 3.12 environment (system Python 3.9 is not supported).
+Run from repository root; `$PY` below means that environment's Python.
+
+```bash
+export AUTO_MANUAL_PRESENTATION_PROFILE=web
+$PY build.py check --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root tests/fixtures/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/check
+$PY build.py md --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root tests/fixtures/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/staging
+$PY -m sphinx -W -b html /tmp/ja-ad01a-closeout/staging/docs/_build/JA-AD01A/EU/en/md /tmp/ja-ad01a-closeout/html
+$PY -m unittest
+$PY -m ruff check build.py integrations tools tests scripts
+$PY tools/check_maintainability_guardrails.py
+$PY tools/check_doc_link_integrity.py
+$PY build.py check --config configs/config.us-en.yaml --model JE-1000F --region US --data-root tests/fixtures/phase2 --staging-root /tmp/ja-ad01a-closeout/us-check
+```
+
+JE regression uses frozen review `7d764e22c3050103d59e96268dc43ac9f181a1c9`,
+not generic runtime fixtures or current live data. The review files were copied
+into this independent checkout for the run, then preserved outside the checkout
+at `/tmp/ja-ad01a-closeout/frozen-je-review`. Its exact data-root is
+`/tmp/web-stage-je-source`. Command: `build.py md --config configs/config.eu.yaml
+--model JE-1000F --region EU --source review-asis --data-root
+/tmp/web-stage-je-source --staging-root /tmp/ja-ad01a-closeout/je-regression`.
+The first attempt with the main checkout's current attachment cache failed
+closed on ambiguous WEEE aliases; selecting the accepted frozen cache resolved
+it without code changes or resetting hashes.
+
+[Tracked measurements](ja_ad01a_eu_en_web_evidence.json) include every JA final
+image URL. Full JE/JA image URL inventories, browser results, screenshots and
+command logs are preserved in `/tmp/ja-ad01a-closeout/`. Browser script:
+`browser.cjs`; machine-readable data: `verification.json` and `browser.json`.
+The local preview at `http://127.0.0.1:18779/html/manual_jaad01a_eu_en.html`
+is an engineering candidate, not the formal site.
+
+## Formal publication readiness
+
+The `hello-docs-pipeline-dispatch-triage` skill was followed for read-only
+readiness checks. Mirror main `f6df757e601ef505446828118b2d3aa272822be6` identifies
+source engineering main `9b356eca`. Its recursive tree is complete and contains
+no JA-AD01A Web publication snapshot. `FEISHU_BUILD_QUEUE_PAUSED=false`; no open
+`publish` PR was present. Latest three Web Publish runs were all completed,
+with outcomes success/failure/success; none was dispatched for this task.
+
+After source approval, approved business readbacks, engineering merge/mirror
+sync and a frozen reviewed `Git_ref`, the central task should dispatch exactly
+one record on Hello-Docs main:
+
+```bash
+gh workflow run feishu-web-publish-queue.yml --repo Bingboom/Hello-Docs --ref main -f queue_record_id=<approved-JA-record-id>
+```
+
+This is the Web lane. The generated shared `publish` candidate must contain only
+`docs/publish/**` changes, followed by central PR review, formal-site image and
+viewport checks and same-record release-link readback. This task does not own
+the shared publishing sequence and has not dispatched it.

@@ -3,10 +3,19 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
+from bs4 import BeautifulSoup
 import yaml
+
+from tools.manual_ir import read_manual_ir
+from tools.web_document_ir import render_document_fragments
 
 from tools.asset_registry import load_registry, resolve_asset
 from tools.skeleton_resolve import (
@@ -29,6 +38,75 @@ ILLUSTRATION_MANIFEST = (
 
 
 class JaAd01aEuEnTargetTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.staging = Path(cls._tmp.name) / "staging"
+        # This suite validates the upstream HTML/IR package, not Pandoc syntax.
+        # Real Pandoc + Sphinx conversion is checked in target acceptance.
+        fake_bin = Path(cls._tmp.name) / "bin"
+        fake_bin.mkdir()
+        fake_pandoc = fake_bin / "pandoc"
+        fake_pandoc.write_text(
+            "#!/usr/bin/env python3\n"
+            "from pathlib import Path\n"
+            "import sys\n"
+            "if '--list-output-formats' in sys.argv:\n"
+            "    print('myst')\n"
+            "    raise SystemExit(0)\n"
+            "source = Path(sys.argv[1])\n"
+            "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
+            "target.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')\n",
+            encoding="utf-8",
+        )
+        fake_pandoc.chmod(0o755)
+        env = {
+            **os.environ,
+            "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
+            "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+        }
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "build.py"),
+                "md",
+                "--config",
+                str(CONFIG),
+                "--model",
+                "JA-AD01A",
+                "--region",
+                "EU",
+                "--lang",
+                "en",
+                "--data-root",
+                str(FIXTURE),
+                "--staging-root",
+                str(cls.staging),
+            ],
+            cwd=ROOT,
+            env=env,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode:
+            raise AssertionError("JA-AD01A Web fixture build failed:\n" + result.stdout + result.stderr)
+        cls.package = (
+            cls.staging
+            / "docs"
+            / "_build"
+            / "JA-AD01A"
+            / "EU"
+            / "en"
+            / "md"
+        )
+        cls.ir = read_manual_ir(cls.package / "manual.ir.json")
+        cls.html = (cls.package / "manual_bundle.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
     def test_charger_skeleton_is_compact_and_target_agnostic(self) -> None:
         blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
         slots = load_slot_templates(SKELETON_DIR / "slot_templates.yaml", blueprint)
@@ -139,8 +217,10 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
                 hashlib.sha256(path.read_bytes()).hexdigest(),
             )
 
+        self.assertEqual(5, len(manifest["illustrations"]))
         manifest_assets = {
             item["path"]: item["sha256"] for item in manifest["illustrations"]
+            if not Path(item["path"]).name.startswith("inbox_")
         }
         self.assertEqual(
             {
@@ -149,6 +229,72 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
             },
             manifest_assets,
         )
+
+    def test_runtime_uses_shared_components_and_all_manifest_assets(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        self.assertEqual(3, len(soup.select(".hb-inbox-card")))
+        self.assertIsNotNone(soup.select_one(".hb-inbox-tip"))
+        self.assertEqual(4, len(soup.select(".hb-spec-table-composition")))
+        self.assertEqual(11, len(soup.select(".manual-callout-body li")))
+        self.assertEqual(7, len(self.ir.pages))
+        self.assertEqual("box_contents_en.rst", self.ir.pages[0].page_id)
+        self.assertEqual("whole-document-components/v1", self.ir.metadata["projection"])
+        components = [
+            block.payload["component_spec"]["component_id"]
+            for page in self.ir.pages for block in page.blocks
+            if "component_spec" in block.payload
+        ]
+        self.assertIn("HB-SPECIAL-INBOX", components)
+        self.assertIn("HB-CALLOUT-STRIP", components)
+        manifest = json.loads(ILLUSTRATION_MANIFEST.read_text(encoding="utf-8"))
+        sources = [str(node.get("src", "")) for node in soup.select("img")]
+        self.assertEqual(5, len(sources))
+        for entry in manifest["illustrations"]:
+            self.assertTrue(any(entry["sha256"] in src for src in sources), entry["path"])
+        spec_text = " ".join(node.get_text(" ", strip=True) for node in soup.select(".hb-spec-table-composition"))
+        for value in ("20V⎓ 5A", "20V⎓ 3.25A", "20V⎓ 4.35A", "5V-11V⎓ 2.7A", "USB-C2+USB-A output"):
+            self.assertIn(value, spec_text)
+        self.assertNotIn("102W Max", spec_text)
+        for forbidden in ("LCD DISPLAY", "UPS MODE", "APP CONTROL"):
+            self.assertNotIn(forbidden, soup.get_text().upper())
+
+    def test_public_ir_cold_replay_reads_no_rst_or_csv(self) -> None:
+        script = r'''
+from pathlib import Path
+from unittest.mock import patch
+import sys
+original = Path.open
+def guarded(path, *args, **kwargs):
+    if path.suffix in {".rst", ".csv"} or "contracts" in path.parts:
+        raise AssertionError("source read during replay: " + str(path))
+    return original(path, *args, **kwargs)
+with patch.object(Path, "open", guarded):
+    from tools.manual_ir import read_manual_ir
+    from tools.web_document_ir import render_document_fragments
+    package = Path(sys.argv[1])
+    result = render_document_fragments(
+        read_manual_ir(package / "manual.ir.json"), package_root=package
+    )
+    assert len(result) == 7
+'''
+        subprocess.run(
+            [sys.executable, "-c", script, str(self.package)],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+
+    def test_public_ir_rejects_changed_packaged_asset(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            copied = Path(td) / "package"
+            shutil.copytree(self.package, copied)
+            ir = read_manual_ir(copied / "manual.ir.json")
+            relative = next(iter(ir.metadata["asset_sha256"]))
+            (copied / relative).write_bytes(b"changed")
+            with self.assertRaisesRegex(ValueError, "asset missing or changed"):
+                render_document_fragments(ir, package_root=copied)
+
 
 
 if __name__ == "__main__":
