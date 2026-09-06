@@ -332,6 +332,45 @@ class TestWordBundle(unittest.TestCase):
                 [meta.page_role for meta in document_metas],
             )
 
+    def test_web_profile_accepts_only_the_declared_category_entry(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            page_dir = root / "page"
+            page_dir.mkdir()
+            safety = page_dir / "safety_tips_en.rst"
+            safety.write_text("SAFETY TIPS\n===========\n\nStay dry.\n", encoding="utf-8")
+            bundle = SimpleNamespace(
+                title="Solar panel",
+                reference_doc=None,
+                model="JS-100I",
+                region="EU",
+                lang="en",
+                languages=("en",),
+                page_paths=(safety,),
+            )
+            cfg = {"build": {"web_entry_source_patterns": ["safety_tips*"]}}
+
+            output, _reference, metas = build_word_bundle_html(
+                cfg,
+                "JS-100I",
+                "EU",
+                materialized_bundle=bundle,
+                output_dir=root / "web",
+                presentation_profile="web",
+            )
+            self.assertIn("SAFETY TIPS", output.read_text(encoding="utf-8"))
+            self.assertEqual([safety], [meta.source_path for meta in metas])
+
+            with self.assertRaisesRegex(RuntimeError, "governed entry patterns"):
+                build_word_bundle_html(
+                    {"build": {"web_entry_source_patterns": ["00_preface*"]}},
+                    "JS-100I",
+                    "EU",
+                    materialized_bundle=bundle,
+                    output_dir=root / "rejected",
+                    presentation_profile="web",
+                )
+
     def test_resolve_reference_doc_supports_glob(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

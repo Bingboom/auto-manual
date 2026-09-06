@@ -1,4 +1,4 @@
-/* HB-SPECIAL-INBOX: responsive three-card composition plus editable tip. */
+/* HB-SPECIAL-INBOX: responsive card composition plus editable tip. */
 
 .hb-inbox-composition {
   --hb-inbox-card-radius: 0.82rem;
@@ -15,6 +15,19 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+#furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
+}
+
+.hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-card {
+  min-height: clamp(16rem, 29vw, 20rem);
+  padding-inline: clamp(0.35rem, 0.8vw, 0.7rem);
+}
+
+#furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-art {
+  height: clamp(7rem, 12vw, 9rem) !important;
 }
 
 .hb-inbox-card {
@@ -151,4 +164,17 @@
     padding: 0.7rem 0.62rem;
     font-size: 0.78rem;
   }
+
+  #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-card {
+    min-height: 14rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 900px) {
+  #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }

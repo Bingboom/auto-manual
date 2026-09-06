@@ -18,7 +18,8 @@ from tools.manual_ir.web_source import make_web_source
 
 def inbox_payload(source: InboxHtmlSource) -> dict:
     """Validate complete row geometry without changing other source adapters."""
-    for table, width in ((source.inbox_table, 3), (source.tip_table, 2)):
+    card_count = len(source.spec.slot("cards").content)
+    for table, width in ((source.inbox_table, card_count), (source.tip_table, 2)):
         rows = table.find_all("tr")
         cells = rows[0].find_all(["td", "th"], recursive=False) if len(rows) == 1 else []
         if (table.find("table") or len(rows) != 1 or len(cells) != width

@@ -27,7 +27,6 @@ def render_inbox_component(
     identity = source_ref or spec.source_ref
     _carrier, projection, source_cells, tip_cells = validate_inbox_carrier(
         spec, carrier_html, source_ref=identity)
-
     soup = BeautifulSoup("", "html.parser")
     composition = soup.new_tag(
         "figure",
@@ -35,6 +34,8 @@ def render_inbox_component(
             "class": projection["composition_class"],
             "aria-label": projection["accessibility_label"],
             "data-component-id": COMPONENT_ID,
+            "data-inbox-variant": spec.variant,
+            "data-card-count": str(len(projection["cards"])),
         },
     )
     grid = soup.new_tag("ol", attrs={"class": projection["grid_class"]})
@@ -48,7 +49,6 @@ def render_inbox_component(
         image["class"] = [*image.get("class", []), projection["art_class"]]
         for attribute in ("style", "width", "height"):
             image.attrs.pop(attribute, None)
-
         card = soup.new_tag(
             "li",
             attrs={

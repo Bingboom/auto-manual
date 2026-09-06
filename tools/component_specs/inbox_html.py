@@ -54,9 +54,9 @@ def parse_inbox_html(
     if not isinstance(inbox_table, Tag) or inbox_table.name != "table":
         raise error_type(f"{source_path}: in-the-box H1 must be followed by a table")
     rows = _table_rows(inbox_table)
-    if len(rows) != 1 or len(rows[0]) != 3:
+    if len(rows) != 1 or not rows[0]:
         raise error_type(
-            f"{source_path}: in-the-box table must contain one row with three items"
+            f"{source_path}: in-the-box table must contain one non-empty item row"
         )
 
     tip_table = _next_tag_sibling(inbox_table)
