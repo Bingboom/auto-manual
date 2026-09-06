@@ -122,6 +122,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-053 | PR #1056（Web App 添加设备按钮接入公共 IR，含本登记行）进入 main。最终 head 全检查通过、无 changes-requested 或未解决讨论且对齐 main 后 squash merge。随后构建并展示本地网页效果；不授权其他 PR 合入、线上发布或 JP 原生版式调整。 | 「合入 给我看网效果」2026-09-05 | #1056 合入即失效；下次实质性触碰补记 | 已失效（2026-09-05 #1056 squash `5788b59f` 已合入；本次新增 MA-054 时补记） |
 
+| MA-060 | PR #1064、#1065、#1066、#1073 按最新 main 解冲突、验证并依次合入，含本登记行；#1065 在 #1064 合入后改 base 为 main。每次合入前最终 head 全部检查成功、无 changes-requested 或未解决评审讨论，且包含最新 main。保留已收口的跨渲染器 IR，不涉及线上 Base 写入或正式 Web 发布。 | 「把#1064、#1065 、#1066 、#1073按照最新main，无冲突合入，然后再针对文档web化，做一轮阶段分析」2026-09-06 | 四个 PR 全部合入即失效 | 生效 |
+
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
 

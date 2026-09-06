@@ -145,6 +145,15 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
         self.assertEqual(4, len(soup.select(".hb-spec-table-composition")))
         self.assertGreaterEqual(len(soup.select(".manual-finished-illustration")), 7)
+        # The LCD adapter owns its image class; assert every finished asset by
+        # its content-addressed URL, not only standalone figure CSS classes.
+        provenance = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
+        image_sources = [str(image.get("src", "")) for image in soup.select("img")]
+        for entry in provenance["illustrations"]:
+            self.assertTrue(any(entry["sha256"] in src for src in image_sources), entry["path"])
+        coverage = self.ir.metadata["web_figure_coverage"]
+        self.assertEqual(5, len(coverage["slots"]))
+        self.assertTrue(all(slot["status"] == "finished-panel" for slot in coverage["slots"]))
         self.assertIn("Jackery Explorer 3600 Plus", self.html)
         self.assertIn("F6-F9, FA, FC, FE", self.html)
         self.assertNotIn("Jackery Battery Pack 2000", self.html)

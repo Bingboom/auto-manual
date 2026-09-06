@@ -407,10 +407,27 @@ def build_word_bundle_html(
                 and planned.page.page in {"troubleshooting", "lcd_icons"}
             }
         page_paths = [path for path in page_paths if should_include_web_page(path)]
-        if page_paths and not is_web_entry_page(page_paths[0]):
+        entry_source_patterns = cfg.get("build", {}).get(
+            "web_entry_source_patterns"
+        )
+        if entry_source_patterns is not None and (
+            not isinstance(entry_source_patterns, list)
+            or not all(isinstance(pattern, str) for pattern in entry_source_patterns)
+        ):
             raise RuntimeError(
-                "web manual must begin with the governed preface/IMPORTANT page; "
-                f"got {page_paths[0]}"
+                "build.web_entry_source_patterns must be a list of source patterns"
+            )
+        if page_paths and not is_web_entry_page(
+            page_paths[0], entry_source_patterns=entry_source_patterns
+        ):
+            expected = (
+                entry_source_patterns
+                if entry_source_patterns is not None
+                else ["00_preface*"]
+            )
+            raise RuntimeError(
+                "web manual first page does not match its governed entry patterns "
+                f"{expected!r}; got {page_paths[0]}"
             )
 
     web_fragments = None

@@ -66,7 +66,7 @@ def validate_inbox_carrier(
         else []
     )
     projection = web_inbox_projection(spec)
-    if len(source_cells) != 3 or len(tip_cells) != (2 if has_tip else 0):
+    if len(source_cells) != len(projection["cards"]) or len(tip_cells) != (2 if has_tip else 0):
         raise ValueError(f"{source_ref}: Inbox carrier geometry changed")
     for card_data, cell in zip(projection["cards"], source_cells, strict=True):
         image = cell.find("img")

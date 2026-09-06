@@ -128,3 +128,15 @@ formal publish remains blocked until an operator creates and reads back the
 approved live source, target asset, Document_key, and build records, and resolves
 the external PDF's JBP-3000A title mismatch. Hello-Docs can then create and
 review the frozen `docs/publish/**` snapshot PR.
+
+## Latest-main integration (2026-09-06)
+
+The target now uses a `battery-pack-v1` presentation overlay. It does not opt
+into the portable-power-station Overview geometry. The five Overview, Operation
+and Charging slots are required finished panels under the shared coverage gate;
+the LCD panel and two connection panels remain bound by the eight-entry
+illustration manifest, whose assets are all checked in the rendered HTML by hash.
+Variable-card and optional-TIP Inbox changes coexist, including a combined
+five-card/no-TIP regression. The unit fixture substitutes only the external
+Pandoc conversion step; real Pandoc/Sphinx conversion is a separate local
+acceptance check, and subprocess failures now include build stderr.

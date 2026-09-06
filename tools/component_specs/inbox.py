@@ -17,7 +17,9 @@ from tools.component_specs.theme import load_manual_theme, require_component_the
 
 COMPONENT_ID = "HB-SPECIAL-INBOX"
 VARIANT = "three-card-responsive"
+VARIABLE_VARIANT = "responsive-card-grid"
 CARD_ASSET_ROLES = ("card_1_art", "card_2_art", "card_3_art")
+VARIABLE_CARD_ASSET_ROLE = "card_art"
 
 
 def _normalize_card(
@@ -62,9 +64,19 @@ def inbox_component_spec(
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
     require_tip: bool = True,
+    variant: str | None = None,
 ) -> ComponentSpec:
-    if len(cards) != 3:
+    resolved_variant = variant or (
+        VARIANT if len(cards) == len(CARD_ASSET_ROLES) else VARIABLE_VARIANT
+    )
+    if resolved_variant == VARIANT and len(cards) != len(CARD_ASSET_ROLES):
         raise ComponentSpecError(f"{COMPONENT_ID}: exactly three cards are required")
+    if resolved_variant == VARIABLE_VARIANT and not cards:
+        raise ComponentSpecError(f"{COMPONENT_ID}: at least one card is required")
+    if resolved_variant not in {VARIANT, VARIABLE_VARIANT}:
+        raise ComponentSpecError(
+            f"{COMPONENT_ID}: unsupported Inbox variant {resolved_variant!r}"
+        )
     label = str(accessibility_label).strip()
     normalized_tip_label = str(tip_label).strip()
     normalized_tip_body = str(tip_body).strip()
@@ -75,8 +87,13 @@ def inbox_component_spec(
 
     normalized_cards: list[dict[str, Any]] = []
     assets: list[ComponentAsset] = []
+    asset_roles = (
+        CARD_ASSET_ROLES
+        if resolved_variant == VARIANT
+        else (VARIABLE_CARD_ASSET_ROLE,) * len(cards)
+    )
     for number, (card, asset_role) in enumerate(
-        zip(cards, CARD_ASSET_ROLES, strict=True),
+        zip(cards, asset_roles, strict=True),
         start=1,
     ):
         normalized_card, asset = _normalize_card(
@@ -91,7 +108,7 @@ def inbox_component_spec(
     active_theme = theme or load_manual_theme(component_registry=active_registry)
     spec = ComponentSpec(
         component_id=COMPONENT_ID,
-        variant=VARIANT,
+        variant=resolved_variant,
         source_ref=str(source_ref),
         language=str(language or "und"),
         slots=(
@@ -119,6 +136,7 @@ def inbox_spec_from_payload(
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
     require_tip: bool = True,
+    variant: str | None = None,
 ) -> ComponentSpec:
     """Combine a typed inbox payload with its source-authored H1 and tip."""
     if str(payload.get("kind") or "") != "inbox":
@@ -148,14 +166,28 @@ def inbox_spec_from_payload(
         registry=registry,
         theme=theme,
         require_tip=require_tip,
+        variant=variant,
     )
 
 
 def inbox_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
     cards = deepcopy(spec.slot("cards").content)
-    assets = {asset.role: asset.asset_ref for asset in spec.assets}
-    for card in cards:
-        card["image_ref"] = assets[card["image_asset_role"]]
+    if spec.variant == VARIABLE_VARIANT:
+        assets = [
+            asset.asset_ref
+            for asset in spec.assets
+            if asset.role == VARIABLE_CARD_ASSET_ROLE
+        ]
+        if len(assets) != len(cards):
+            raise ComponentSpecError(
+                f"{COMPONENT_ID}: card assets must match the ordered card count"
+            )
+        for card, image_ref in zip(cards, assets, strict=True):
+            card["image_ref"] = image_ref
+    else:
+        assets_by_role = {asset.role: asset.asset_ref for asset in spec.assets}
+        for card in cards:
+            card["image_ref"] = assets_by_role[card["image_asset_role"]]
     return {
         "accessibility_label": str(spec.slot("accessibility_label").content),
         "cards": cards,
@@ -168,6 +200,8 @@ __all__ = [
     "CARD_ASSET_ROLES",
     "COMPONENT_ID",
     "VARIANT",
+    "VARIABLE_CARD_ASSET_ROLE",
+    "VARIABLE_VARIANT",
     "inbox_component_spec",
     "inbox_semantic_projection",
     "inbox_spec_from_payload",

@@ -18,7 +18,8 @@ from tools.manual_ir.web_source import make_web_source
 
 def inbox_payload(source: InboxHtmlSource) -> dict:
     """Validate complete row geometry without changing other source adapters."""
-    tables = [(source.inbox_table, 3)]
+    card_count = len(source.spec.slot("cards").content)
+    tables = [(source.inbox_table, card_count)]
     if source.tip_table is not None:
         tables.append((source.tip_table, 2))
     for table, width in tables:
