@@ -1,0 +1,22 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Model,Source_lang
+JA-AD01A_EU,EU,TRUE,specifications,GENERAL,1,1,product_name,,Product Name,,1,,,Jackery 102W GaN 3-Port Fast Charger,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,GENERAL,1,2,model_no,,Model,,1,,,JA-AD01A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,GENERAL,1,3,dimensions,,Dimensions,,1,,,62*95*33mm,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,GENERAL,1,4,weight,,Weight,,1,,,195g±5g,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,GENERAL,1,5,input,,Input,,1,,,"100-240V~50/60Hz, 1.8A Max",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,SINGLE-PORT OUTPUT,2,1,usb_c1_single,,USB-C1 output,,1,,,"100W Max, 5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 5A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,SINGLE-PORT OUTPUT,2,1,usb_c1_single,,USB-C1 output,,2,,,PPS: 5V-11V⎓4.05A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,SINGLE-PORT OUTPUT,2,2,usb_c2_single,,USB-C2 output,,1,,,"100W Max, 5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 5A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,SINGLE-PORT OUTPUT,2,2,usb_c2_single,,USB-C2 output,,2,,,PPS: 5V-11V⎓4.05A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,SINGLE-PORT OUTPUT,2,3,usb_a_single,,USB-A output,,1,,,"18W Max, 5V⎓ 3A, 9V⎓ 2A, 12V⎓ 1.5A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,1,usb_c1_c2_dual,,USB-C1+USB-C2 output,,1,USB-C1 output,,"5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 3.25A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,1,usb_c1_c2_dual,,USB-C1+USB-C2 output,,2,PPS,,5V-11V⎓ 4.05A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,1,usb_c1_c2_dual,,USB-C1+USB-C2 output,,3,USB-C2 output,,"5V⎓ 3A, 9V⎓ 3A, 12V⎓ 2.5A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,1,usb_c1_c2_dual,,USB-C1+USB-C2 output,,4,PPS,,5V-11V⎓ 2.7A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,2,usb_c1_a_dual,,USB-C1+USB-A output,,1,USB-C1 output,,"5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 3.25A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,2,usb_c1_a_dual,,USB-C1+USB-A output,,2,PPS,,5V-11V⎓ 4.05A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,2,usb_c1_a_dual,,USB-C1+USB-A output,,3,USB-A output,,"5V⎓ 3A, 9V⎓ 2A, 12V⎓ 1.5A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,DUAL-PORT OUTPUT,3,3,usb_c2_a_dual,,USB-C2+USB-A output,,1,,,5V⎓ 3A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,TRIPLE-PORT OUTPUT,4,1,usb_c1_c2_a_triple,,USB-C1+(USB-C2+USB-A) output,,1,USB-C1 output,,"5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 4.35A",,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,TRIPLE-PORT OUTPUT,4,1,usb_c1_c2_a_triple,,USB-C1+(USB-C2+USB-A) output,,2,PPS,,5V-11V⎓ 4.05A,,JA-AD01A,en
+JA-AD01A_EU,EU,TRUE,specifications,TRIPLE-PORT OUTPUT,4,1,usb_c1_c2_a_triple,,USB-C1+(USB-C2+USB-A) output,,3,USB-C2+USB-A output,,5V⎓ 3A,,JA-AD01A,en

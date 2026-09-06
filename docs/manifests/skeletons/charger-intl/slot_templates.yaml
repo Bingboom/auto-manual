@@ -1,0 +1,27 @@
+# Slot carriers for compact charger/accessory international manuals.
+schema_version: skeleton-slot-templates/v1
+skeleton_id: charger-intl
+slots:
+  box_contents:
+    type: rst_include
+    file: templates/page_charger/{lang}/box_contents.rst
+  product_overview:
+    type: rst_include
+    file: templates/page_charger/{lang}/product_overview.rst
+  specifications:
+    type: csv_page
+    page: spec
+    include_dir: generated/{model}
+  using_product:
+    type: rst_include
+    file: templates/page_charger/{lang}/using_product.rst
+  warning:
+    type: rst_include
+    file: templates/page_charger/{lang}/safety_warning.rst
+  warranty:
+    type: rst_include
+    file: templates/page_charger/{lang}/warranty.rst
+  legal_tail:
+    type: rst_include
+    file: templates/page_charger/{primary_lang}/legal_tail.rst
+    lang: primary

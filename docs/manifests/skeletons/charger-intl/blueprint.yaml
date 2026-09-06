@@ -1,0 +1,44 @@
+# Skeleton Blueprint - compact charger/accessory international manual.
+# Content slots reflect the recurring short-manual structure; language,
+# region, and file paths remain in the companion carriers.
+schema_version: skeleton-blueprint/v1
+skeleton_id: charger-intl
+skeleton_family: CHARGER
+house_style: INTL-COMPACT
+slots:
+  - slot_id: box_contents
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: product_overview
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: specifications
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: using_product
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: warning
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: warranty
+    block: body
+    requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: legal_tail
+    block: back
+    requirement: required
+    presentation: untitled_block
+    toc: false
+co_page_groups: []

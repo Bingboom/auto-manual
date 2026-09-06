@@ -1,0 +1,24 @@
+# Compact EU English charger/accessory family. The first registered target is
+# the JA-AD01A 102W GaN charger; future models reuse the same page skeleton.
+extends: config-bases/eu-single-language-base.yaml
+
+build:
+  family_id: charger-eu-en
+  skeleton_family: CHARGER
+  languages: [en]
+  default_model: JA-AD01A
+  default_region: EU
+  targets:
+    - model: JA-AD01A
+      region: EU
+  web_entry_source_patterns: [box_contents*]
+  word_reference_doc: docs/templates/word_template/reference_en.docx
+  word_title: "|PRODUCT_NAME| User Manual"
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English
+    WARRANTY_EMAIL: hello.eu@jackery.com
+    LEGAL_COMPANY_NAME: Jackery
+
+paths:
+  page_manifest: docs/manifests/manual_charger-eu-en.yaml
+  web_illustration_manifest: docs/renderers/web/ja_ad01a_eu_en_illustrations.json

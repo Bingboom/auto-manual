@@ -11,6 +11,10 @@ anchors:
   # Target-neutral BP@JP core anchor. Optional/product-terminal selections are
   # supplied by Product Manual Plan data; the first production target is R3c.
   - docs/manifests/manual_bp-jp.yaml
+  # Compact charger/accessory manuals are structurally independent of the
+  # host-power and battery-pack families, so their resolved skeleton is an
+  # anchor rather than a diff of an unrelated long-manual manifest.
+  - docs/manifests/manual_charger-eu-en.yaml
 entries:
   - family_id: us-single
     base: docs/manifests/manual_us-single-en.yaml
