@@ -1174,6 +1174,15 @@ Rich text, links, image references and existing EN/FR/ES appearance are retained
 This does not admit new targets into the approved figure contract or change
 Word/IDML output. Other composite figure callouts remain separate work.
 
+For new whole-document Web builds, Inbox is no longer a temporary page-level
+IR detour. Inbox, Overview, FCC, Specifications and Callout instances are written
+once into ordered `manual-ir/v2` flow and replayed from those embedded specs.
+Their source projectors run only while assembling a new package; opening or
+publishing the frozen package does not reparse RST/CSV or rediscover those five
+families from HTML. Historical packages remain supported. This lowers the next
+target's cost when it reuses one of these shapes, but Operation, Warranty, LCD,
+Symbols, Troubleshooting, App and reference figures still enter in later cuts.
+
 Prepared Web FCC also passes through public IR. Its opening copy, measures,
 column split and mark binding can be replayed without reopening the source page.
 Invalid semantic data or an inconsistent mark binding stops the transform before
@@ -1654,8 +1663,9 @@ certify native JP layout. See the
 
 Web 规格表已接入公共 IR 校验，构建命令不变。Web 构建会保留规格中的链接、强调、
 换行和脚注，不再借用 Word 的纯文本抽取重建。任何声明规格表不合法时，本次规格
-转换整体失败，避免只转换前半页。这仅证明规格表组件投影；整本 Web 已有 v2
-中立 flow 底座，但四端共享同一规格 ComponentSpec 和 JP 原生排版仍需分别验收。
+转换整体失败，避免只转换前半页。新整本 Web 包已把规格 ComponentSpec 写入 v2
+中立 flow，并从冻结 IR 直接重放；Word/LaTeX/IDML 的整本入口和 JP 原生排版仍需
+分别验收。
 
 
 LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主构建与独立 Markdown

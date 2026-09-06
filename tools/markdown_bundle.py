@@ -14,7 +14,8 @@ from tools.gen_index_bundle import MaterializedBundle
 from tools.word_bundle_common import paths
 from tools.word_bundle_docx_pandoc import resolve_pandoc_binary
 from tools.word_bundle_html import build_word_bundle_html
-from tools.manual_ir import ManualIR
+from tools.manual_ir import ManualIR, read_manual_ir
+from tools.utils.path_utils import PathSegments
 from tools.web_presentation import (
     DOCUMENT_PRESENTATION_PROFILE,
     PRESENTATION_PROFILE_ENV,
@@ -176,16 +177,28 @@ def export_markdown_from_bundle(
     markdown_writer = resolve_markdown_writer(pandoc_bin)
     markdown_reader = "html" if markdown_writer == "myst" else "html-native_divs-native_spans"
     pandoc_source = bundle_html
-    protected_callouts: dict[str, ManualIR] = {}
+    protected_callouts: dict[str, ManualIR | str] = {}
     protected_figures: dict[str, str] = {}
     protected_inline_controls: dict[str, str] = {}
     temporary_input: tempfile.TemporaryDirectory[str] | None = None
     if presentation_profile == WEB_PRESENTATION_PROFILE:
+        document_ir_path = bundle_html.parent / PathSegments.MANUAL_IR_JSON
+        embedded_components_complete = False
+        if document_ir_path.is_file():
+            document_ir = read_manual_ir(document_ir_path)
+            embedded_components_complete = (
+                document_ir.metadata.get("projection")
+                == "whole-document-components/v1"
+            )
         protected_html, protected_figures = protect_web_figures_for_pandoc(
             bundle_html.read_text(encoding="utf-8")
         )
         protected_html, protected_callouts = protect_web_callouts_for_pandoc(
-            protected_html, source_path=bundle_html, model=model, region=region
+            protected_html,
+            source_path=bundle_html,
+            model=model,
+            region=region,
+            embedded_components_complete=embedded_components_complete,
         )
         protected_html, protected_inline_controls = protect_web_inline_controls_for_pandoc(
             protected_html

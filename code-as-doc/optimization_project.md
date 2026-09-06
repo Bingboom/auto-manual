@@ -1,12 +1,15 @@
 # Optimization Project
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
-acceptance](dev/ir_document_closeout.md). The first follow-up cut now gives new
-whole-document Web packages a renderer-neutral `manual-ir/v2` flow/rich-text
-projection while preserving historical `manual-ir/v1` replay. The remaining
-cuts are ComponentSpec embedding, four-renderer adapters, presentation overlays
-and anti-copy gates; do not describe the neutral substrate alone as full
-cross-renderer convergence. See the [seven-cut execution plan](dev/manual_ir_v2_neutral_flow_plan.md).
+acceptance](dev/ir_document_closeout.md). Cuts 1–2 now give new whole-document
+Web packages a renderer-neutral `manual-ir/v2` flow/rich-text projection and
+embed the five registered ComponentSpec families in document order while
+preserving historical `manual-ir/v1` and cut-1 replay. The remaining cuts add
+the unregistered component families, complete their four-renderer adapters,
+split presentation overlays and enforce anti-copy gates; do not describe the
+current five-family embedding as full cross-renderer convergence. See the
+[neutral-flow plan](dev/manual_ir_v2_neutral_flow_plan.md) and
+[embedded-component record](dev/manual_ir_embedded_components_plan.md).
 
 
 Updated: 2026-09-05

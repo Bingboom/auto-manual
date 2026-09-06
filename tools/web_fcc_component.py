@@ -5,75 +5,32 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from bs4 import BeautifulSoup, NavigableString, Tag
+from bs4 import BeautifulSoup
 
 from tools.component_specs.fcc import COMPONENT_ID
 from tools.component_specs.fcc_adapters import web_fcc_projection
+from tools.component_specs.model import ComponentSpec
+from tools.component_specs.registry import require_valid_component_spec
+from tools.component_specs.theme import require_component_theme_roles
 from tools.manual_ir import ManualIR, build_manual_ir_from_source
 from tools.manual_ir.web_fcc import decode_fcc_ir, load_web_fcc_source
+from tools.web_component_carriers import validate_fcc_carrier
+from tools.web_fcc_markup import append_fcc_blocks, fcc_opening_copy
 
 
-def _append_paragraph_content(
-    soup: BeautifulSoup,
-    paragraph: Tag,
-    block: Mapping[str, Any],
+def render_fcc_component(
+    spec: ComponentSpec,
     *,
-    continuation: bool,
-) -> None:
-    if continuation:
-        paragraph.append(NavigableString(" "))
-    label_text = str(block.get("label") or "").strip()
-    if label_text:
-        label = soup.new_tag("strong")
-        label.string = label_text
-        paragraph.append(label)
-    body = str(block.get("text") or "").strip()
-    if body:
-        paragraph.append(NavigableString(f" {body}" if label_text else body))
+    mark_path: str,
+    carrier_html: str | None = None,
+) -> str:
+    """Render one embedded FCC spec without reopening its source carrier."""
 
-
-def _append_blocks(
-    soup: BeautifulSoup,
-    parent: Tag,
-    blocks: list[Mapping[str, Any]],
-) -> None:
-    paragraph: Tag | None = None
-    for block in blocks:
-        if block["kind"] != "list":
-            if paragraph is None:
-                paragraph = soup.new_tag("p")
-                parent.append(paragraph)
-            _append_paragraph_content(
-                soup,
-                paragraph,
-                block,
-                continuation=bool(paragraph.contents),
-            )
-            continue
-
-        paragraph = None
-        list_node = soup.new_tag("ul", attrs={"class": "simple"})
-        for text in block["items"]:
-            item = soup.new_tag("li")
-            item_paragraph = soup.new_tag("p")
-            item_paragraph.string = str(text)
-            item.append(item_paragraph)
-            list_node.append(item)
-        parent.append(list_node)
-
-
-def _opening_copy(soup: BeautifulSoup, lines: list[str]) -> Tag:
-    line_block = soup.new_tag("div", attrs={"class": "line-block"})
-    for text in lines:
-        line = soup.new_tag("div", attrs={"class": "line"})
-        line.string = text
-        line_block.append(line)
-    return line_block
-
-
-def render_fcc_ir(ir: ManualIR) -> str:
-    spec, mark_path = decode_fcc_ir(ir)
+    spec = require_component_theme_roles(require_valid_component_spec(spec))
     projection = web_fcc_projection(spec)
+    retained_whitespace = (
+        validate_fcc_carrier(spec, carrier_html) if carrier_html is not None else ""
+    )
     soup = BeautifulSoup("", "html.parser")
     composition = soup.new_tag(
         "figure",
@@ -107,17 +64,22 @@ def render_fcc_ir(ir: ManualIR) -> str:
         },
     )
     opening_copy = soup.new_tag("div", attrs={"class": "hb-fcc-opening-copy"})
-    opening_copy.append(_opening_copy(soup, projection["opening_copy"]))
+    opening_copy.append(fcc_opening_copy(soup, projection["opening_copy"]))
     opening_row.append(logo)
     opening_row.append(opening_copy)
     left.append(opening_row)
-    _append_blocks(soup, left, projection["left_blocks"])
-    _append_blocks(soup, right, projection["right_blocks"])
+    append_fcc_blocks(soup, left, projection["left_blocks"])
+    append_fcc_blocks(soup, right, projection["right_blocks"])
     grid.append(left)
     grid.append(right)
     composition.append(grid)
 
-    return str(composition)
+    return str(composition) + retained_whitespace
+
+
+def render_fcc_ir(ir: ManualIR) -> str:
+    spec, mark_path = decode_fcc_ir(ir)
+    return render_fcc_component(spec, mark_path=mark_path)
 
 
 def transform_fcc(
@@ -140,4 +102,4 @@ def transform_fcc(
     heading.insert_after(BeautifulSoup(rendered, "html.parser").figure)
 
 
-__all__ = ["transform_fcc", "render_fcc_ir"]
+__all__ = ["render_fcc_component", "transform_fcc", "render_fcc_ir"]

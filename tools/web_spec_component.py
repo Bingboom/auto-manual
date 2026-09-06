@@ -24,6 +24,80 @@ def _add_classes(tag: Tag, classes: str) -> None:
     tag["class"] = list(dict.fromkeys([*tag.get("class", []), *classes.split()]))
 
 
+def render_specification_component(
+    spec: ComponentSpec,
+    carrier_html: str,
+    *,
+    source_ref: str | None = None,
+) -> str:
+    """Render one embedded spec without invoking the HTML source projector."""
+
+    spec = require_component_theme_roles(require_valid_component_spec(spec))
+    projection = web_spec_table_projection(spec)
+    soup = BeautifulSoup(carrier_html, "html.parser")
+    heading = soup.select_one("h2.hb-spec-section")
+    table = soup.find("table")
+    title = heading.select_one(".hb-spec-section-text") if heading else None
+    identity = source_ref or spec.source_ref
+    if heading is None or table is None or title is None:
+        raise ValueError(f"{identity}: missing declared heading or table markup")
+    source_rows = [
+        row.find_all(["th", "td"], recursive=False)
+        for row in table.select("tbody > tr")
+    ]
+    _validate_markup(spec, source_rows, title, identity)
+    for bullet in heading.select(".hb-spec-bullet"):
+        bullet.decompose()
+    title.unwrap()
+    heading["class"] = [
+        value for value in heading.get("class", []) if value != "hb-spec-section"
+    ]
+    if not heading["class"]:
+        del heading["class"]
+
+    for colgroup in table.find_all("colgroup", recursive=False):
+        colgroup.decompose()
+    colgroup = soup.new_tag("colgroup")
+    for role in ("label", "value"):
+        colgroup.append(soup.new_tag("col", attrs={"class": f"hb-spec-col-{role}"}))
+    table.insert(0, colgroup)
+    table.attrs.pop("style", None)
+    _add_classes(table, projection["table_classes"])
+
+    row_index = 0
+    for group in projection["groups"]:
+        label = source_rows[row_index][0]
+        label.name = "th"
+        label["scope"] = "row"
+        label.attrs.pop("style", None)
+        _add_classes(label, projection["label_classes"])
+        span = group["label_rowspan"]
+        if span > 1:
+            label["rowspan"] = str(span)
+        superscript_circled_references(soup, label)
+        for offset, _value in enumerate(group["values"]):
+            cells = source_rows[row_index + offset]
+            if offset and len(cells) == 2:
+                cells[0].decompose()
+            value = cells[-1]
+            value.name = "td"
+            value.attrs.pop("style", None)
+            _add_classes(value, projection["value_classes"])
+            superscript_circled_references(soup, value)
+        row_index += span
+
+    composition = soup.new_tag(
+        "figure",
+        attrs={
+            "class": projection["composition_class"],
+            "aria-label": str(spec.slot("section_title").content),
+        },
+    )
+    table.replace_with(composition)
+    composition.append(table)
+    return str(soup)
+
+
 def render_specification_ir(ir: ManualIR) -> list[str]:
     """Replay the scoped projection without reopening or reparsing source RST.
 
@@ -51,78 +125,13 @@ def render_specification_ir(ir: ManualIR) -> list[str]:
                 ComponentSpec.from_dict(payload["component_spec"])
             )
         )
-        projection = web_spec_table_projection(spec)
-        soup = BeautifulSoup(
-            payload["heading_html"] + payload["table_html"], "html.parser"
-        )
-        heading = soup.select_one("h2.hb-spec-section")
-        table = soup.find("table")
-        title = heading.select_one(".hb-spec-section-text") if heading else None
-        if heading is None or table is None or title is None:
-            raise ValueError(
-                f"{block.source_ref}: missing declared heading or table markup"
+        rendered.append(
+            render_specification_component(
+                spec,
+                payload["heading_html"] + payload["table_html"],
+                source_ref=block.source_ref,
             )
-        source_rows = [
-            row.find_all(["th", "td"], recursive=False)
-            for row in table.select("tbody > tr")
-        ]
-        # Semantic groups were decoded by the source adapter. Check that the
-        # retained markup still corresponds to them before any presentation.
-        _validate_markup(spec, source_rows, title, block.source_ref)
-        # Only the declared decorative marker goes away. Links/emphasis and
-        # any other authored heading content stay in the document outline.
-        for bullet in heading.select(".hb-spec-bullet"):
-            bullet.decompose()
-        title.unwrap()
-        heading["class"] = [
-            value for value in heading.get("class", []) if value != "hb-spec-section"
-        ]
-        if not heading["class"]:
-            del heading["class"]
-
-        for colgroup in table.find_all("colgroup", recursive=False):
-            colgroup.decompose()
-        colgroup = soup.new_tag("colgroup")
-        for role in ("label", "value"):
-            colgroup.append(soup.new_tag("col", attrs={"class": f"hb-spec-col-{role}"}))
-        table.insert(0, colgroup)
-        table.attrs.pop("style", None)
-        _add_classes(table, projection["table_classes"])
-
-        row_index = 0
-        for group in projection["groups"]:
-            label = source_rows[row_index][0]
-            label.name = "th"
-            label["scope"] = "row"
-            label.attrs.pop("style", None)
-            _add_classes(label, projection["label_classes"])
-            span = group["label_rowspan"]
-            if span > 1:
-                label["rowspan"] = str(span)
-            superscript_circled_references(soup, label)
-            for offset, _value in enumerate(group["values"]):
-                cells = source_rows[row_index + offset]
-                if offset and len(cells) == 2:
-                    # The registered blank-label continuation now has a real
-                    # rowspan; only its empty placeholder cell is removed.
-                    cells[0].decompose()
-                value = cells[-1]
-                value.name = "td"
-                value.attrs.pop("style", None)
-                _add_classes(value, projection["value_classes"])
-                superscript_circled_references(soup, value)
-            row_index += span
-
-        composition = soup.new_tag(
-            "figure",
-            attrs={
-                "class": projection["composition_class"],
-                "aria-label": str(spec.slot("section_title").content),
-            },
         )
-        table.replace_with(composition)
-        composition.append(table)
-        rendered.append(str(soup))
     return rendered
 
 
@@ -151,6 +160,13 @@ def _validate_markup(
         raise ValueError(
             f"{source_ref}: component semantics do not match retained markup"
         )
+
+
+__all__ = [
+    "render_specification_component",
+    "render_specification_ir",
+    "transform_specification_tables",
+]
 
 
 def transform_specification_tables(

@@ -157,7 +157,7 @@ class ManualIRFlowTests(unittest.TestCase):
         cases.append((extra, "unknown field"))
 
         bad_version = deepcopy(node)
-        bad_version["schema_version"] = "manual-flow/v2"
+        bad_version["schema_version"] = "manual-flow/v3"
         cases.append((bad_version, "schema_version"))
 
         for candidate, diagnostic in cases:

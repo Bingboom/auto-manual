@@ -141,6 +141,17 @@ empty-cell policies are recorded in
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
+  - whole-document ownership pass for the five registered component families;
+    claims Overview/FCC/Inbox/Spec/Callout source nodes once and preserves flow order
+- [`tools/manual_ir/components.py`](../../tools/manual_ir/components.py)
+  - strict embedded ComponentSpec carrier validation, asset enumeration and
+    renderer-neutral document-order traversal
+- [`tools/web_embedded_components.py`](../../tools/web_embedded_components.py)
+  - whole-document Web dispatch from embedded component identity to the existing adapters
+- [`tools/web_component_carriers.py`](../../tools/web_component_carriers.py)
+  - rich carrier/semantic agreement checks shared by Inbox, FCC and Overview adapters;
+    `web_fcc_markup` holds FCC-only HTML construction helpers below hotspot limits
 - [`tools/manual_ir/web_specs.py`](../../tools/manual_ir/web_specs.py)
   - declared HTML specification source adapter into the public ManualSource contract;
     isolated from the neutral core and IDML extraction
@@ -526,12 +537,15 @@ Keep future extraction notes here once those boundaries stabilize again.
 ### Whole-document Web boundary
 
 `word_bundle_html` selects ordered pages once; `web_document_source` owns the
-RST/HTML adapter, target illustration bindings and asset packaging, then calls
-`manual_ir.builder.build_manual_ir_from_source`. `manual_ir.document` owns the
-finite content-tree validation. `web_document_ir` consumes the complete IR and
-invokes existing scoped component projections as rendering details. Source-page
-reads no longer occur inside the actual Web rendering loop. Word's compatibility
-converter remains separate. See [execution evidence](ir_document_closeout.md).
+RST/HTML adapter, target illustration bindings, component ownership and asset
+packaging, then calls `manual_ir.builder.build_manual_ir_from_source`.
+`manual_ir.document`, `manual_ir.flow` and `manual_ir.components` own finite
+flow/component validation. `web_document_ir` consumes the complete IR and
+dispatches the five embedded registered families through
+`web_embedded_components`; it does not invoke their scoped DOM source projectors.
+Source-page reads no longer occur inside the actual Web rendering loop. Historical
+v1/cut-1 packages keep compatibility paths, and Word's whole-document converter
+remains separate. See [execution evidence](ir_document_closeout.md).
 
 `document_assets` owns the shared local image probing/copying implementation;
 Word keeps compatibility wrappers, and the Web IR renderer imports the lightweight

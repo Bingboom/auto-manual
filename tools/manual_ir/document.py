@@ -17,7 +17,11 @@ from tools.manual_ir import (
     ManualIRValidationError,
     validate_manual_ir,
 )
-from tools.manual_ir.flow import validate_flow_node
+from tools.manual_ir.flow import (
+    FLOW_V1_SCHEMA_VERSION,
+    FLOW_V2_SCHEMA_VERSION,
+    validate_flow_node,
+)
 
 # This vocabulary is deliberately finite. Unknown content must not vanish.
 CONTENT_TAGS = frozenset("section div span p h1 h2 h3 h4 h5 h6 table thead tbody tfoot tr td th colgroup col img figure figcaption a ul ol li dl dt dd strong em b i sup sub br hr blockquote pre code small abbr aside header footer caption".split())
@@ -67,12 +71,17 @@ def validate_document(ir: ManualIR) -> None:
     if issues:
         raise ManualIRValidationError(ir.source, issues)
     projection = ir.metadata.get("projection")
-    expected_projection = {
-        V1_SCHEMA_VERSION: "whole-document-content/v1",
-        V2_SCHEMA_VERSION: "whole-document-flow/v1",
-    }.get(ir.schema_version)
-    if projection != expected_projection:
-        raise ValueError(f"expected {expected_projection}")
+    expected_projections = {
+        V1_SCHEMA_VERSION: {"whole-document-content/v1"},
+        V2_SCHEMA_VERSION: {
+            "whole-document-flow/v1",
+            "whole-document-components/v1",
+        },
+    }.get(ir.schema_version, set())
+    if projection not in expected_projections:
+        raise ValueError(
+            "expected one of " + ", ".join(sorted(expected_projections))
+        )
     assets = ir.metadata.get("asset_sha256")
     if not isinstance(assets, dict) or any(
         not isinstance(path, str) or not path.startswith("assets/")
@@ -125,6 +134,15 @@ def validate_document(ir: ManualIR) -> None:
             else:
                 if block.kind != "flow":
                     raise ValueError(f"{location}: unexpected block {block.kind}")
+                expected_flow_version = (
+                    FLOW_V2_SCHEMA_VERSION
+                    if projection == "whole-document-components/v1"
+                    else FLOW_V1_SCHEMA_VERSION
+                )
+                if block.payload.get("schema_version") != expected_flow_version:
+                    raise ValueError(
+                        f"{location}: expected {expected_flow_version}"
+                    )
                 flow_issues = validate_flow_node(block.payload)
                 if flow_issues:
                     raise ValueError(
