@@ -2150,3 +2150,20 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   fixture-backed JE-1000F/US check. The compatibility suite caught and fixed
   absent `metadata` in historical v1 files; the size ratchet also moved Overview
   snapshot primitives into a focused helper instead of raising its threshold.
+
+
+## 2026-09-06: Review bundle page-language scope projection
+
+- Closed the final EU five-language rebuild gap exposed by the strict Overview
+  ComponentSpec parser. The historical JE-1000F/EU review index still named
+  fifteen standalone UK pages even though `data/model_languages.csv` now
+  declares EN/FR/ES/DE/IT for that target.
+- Review overlays now project standalone pages by their explicit
+  `\HBApplyLang{...}` declaration before asset finalization. Out-of-scope
+  includes leave the generated index without modifying any review page bytes;
+  unknown or genuinely multi-language pages remain fail-safe and the existing
+  inline block trimmer handles the shared preface.
+- The real merged `review-asis` Web entrypoint rebuilt 76 pages with zero UK
+  pages. Figure coverage remained 55 `approved-composite` panels plus five
+  native HTML LCD Mode compositions; Italian remained 11/11 localized full
+  panels across Overview, Operation, and Charging.

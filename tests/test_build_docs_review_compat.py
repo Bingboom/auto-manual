@@ -218,6 +218,68 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
         self.assertEqual("review preface\n", preface_text)
         self.assertEqual("review spec\n", spec_text)
 
+    def test_review_asis_drops_pages_outside_resolved_bundle_languages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "EU" / "rst"
+            (bundle_dir / "page").mkdir(parents=True, exist_ok=True)
+            (bundle_dir / "index.rst").write_text(
+                "five-language skeleton index\n",
+                encoding="utf-8",
+            )
+
+            review_dir = docs_dir / "_review" / "JE-1000F" / "EU"
+            (review_dir / "page").mkdir(parents=True, exist_ok=True)
+            (review_dir / "index.rst").write_text(
+                ".. include:: page/p66_03_product_overview_placeholder.rst\n\n"
+                ".. include:: page/p81_03_product_overview_placeholder.rst\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "p66_03_product_overview_placeholder.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{it}\n",
+                encoding="utf-8",
+            )
+            (review_dir / "page" / "p81_03_product_overview_placeholder.rst").write_text(
+                ".. raw:: latex\n\n   \\HBApplyLang{uk}\n",
+                encoding="utf-8",
+            )
+
+            bundle = MaterializedBundle(
+                bundle_dir=bundle_dir,
+                page_dir=bundle_dir / "page",
+                index_path=bundle_dir / "index.rst",
+                conf_path=bundle_dir / "conf.py",
+                conf_base_path=bundle_dir / "conf_base.py",
+                wrapper_index_path=docs_dir / "index.rst",
+                page_paths=(),
+                title="Demo",
+                reference_doc=None,
+                model="JE-1000F",
+                region="EU",
+                lang=None,
+                languages=("en", "fr", "es", "de", "it"),
+            )
+
+            with (
+                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
+                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
+                mock.patch.object(
+                    build_docs,
+                    "finalize_materialized_bundle",
+                    return_value=bundle,
+                ),
+            ):
+                build_docs.prepare_manual_bundle(
+                    {"doc_type": "manual_bundle"},
+                    model="JE-1000F",
+                    region="EU",
+                    source_mode="review-asis",
+                )
+
+            index = (bundle_dir / "index.rst").read_text(encoding="utf-8")
+            self.assertIn("p66_03_product_overview_placeholder.rst", index)
+            self.assertNotIn("p81_03_product_overview_placeholder.rst", index)
+
 
 class TestSharedReviewPagePathPairs(unittest.TestCase):
     def test_shared_preface_pairs_across_language_scopes(self) -> None:

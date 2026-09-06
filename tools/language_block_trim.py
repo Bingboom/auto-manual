@@ -48,6 +48,8 @@ from tools.lang_registry import LANGUAGE_REGISTRY, canonical_language
 # so `**FRAGILE**` is not read as a French block.
 _BOLD_TAG_RE = re.compile(r"^\s*\*\*([A-Za-z][A-Za-z_-]{1,5})[ \-—]")
 _LANG_TAG_LINE_RE = re.compile(r"\\HBLangTagLine\{([A-Za-z_-]+)\}")
+_APPLY_LANG_RE = re.compile(r"\\HBApplyLang\{([^{}]+)\}")
+_PAGE_INCLUDE_RE = re.compile(r"^\s*\.\.\s+include::\s+(\S+)\s*$")
 _DIRECTIVE_RE = re.compile(r"^\s*\.\.\s+\S+::")
 _RAW_LATEX_RE = re.compile(r"^\s*\.\.\s+raw::\s*latex\s*$")
 
@@ -56,6 +58,9 @@ _RAW_LATEX_RE = re.compile(r"^\s*\.\.\s+raw::\s*latex\s*$")
 _KNOWN_TAGS = frozenset(
     alias.upper() for spec in LANGUAGE_REGISTRY for alias in spec.aliases
 )
+_DISPLAY_NAME_LANGUAGES = {
+    spec.display_name.casefold(): spec.code for spec in LANGUAGE_REGISTRY
+}
 
 
 def _tag_language(token: str) -> str | None:
@@ -90,6 +95,32 @@ def _marker_in(block: list[str]) -> str | None:
             if lang:
                 return lang
     return None
+
+
+def _trim_language_scope_line(line: str, *, scope: set[str]) -> str:
+    """Trim an explicit ``English / French`` catalogue when fully recognized."""
+    newline = ""
+    body = line
+    if body.endswith("\r\n"):
+        body, newline = body[:-2], "\r\n"
+    elif body.endswith("\n"):
+        body, newline = body[:-1], "\n"
+    leading = body[: len(body) - len(body.lstrip())]
+    trailing = body[len(body.rstrip()) :]
+    tokens = [token.strip() for token in body.strip().split("/")]
+    if len(tokens) < 2:
+        return line
+    resolved = [_DISPLAY_NAME_LANGUAGES.get(token.casefold()) for token in tokens]
+    if any(language is None for language in resolved):
+        return line
+    kept = [
+        token
+        for token, language in zip(tokens, resolved, strict=True)
+        if language in scope
+    ]
+    if not kept or len(kept) == len(tokens):
+        return line
+    return f"{leading}{' / '.join(kept)}{trailing}{newline}"
 
 
 def marker_languages(text: str) -> tuple[str, ...]:
@@ -169,6 +200,7 @@ def trim_language_blocks(
             kept.append(lines[index])
         index += 1
 
+    kept = [_trim_language_scope_line(line, scope=scope) for line in kept]
     trimmed = "".join(kept)
     if trimmed and not trimmed.endswith("\n"):
         trimmed += "\n"
@@ -209,3 +241,70 @@ def trim_bundle_language_blocks(
         page_path.write_text(trimmed, encoding="utf-8")
         changed.append((file_name, dropped))
     return changed
+
+
+def _declared_page_language(page_path: Path) -> str | None:
+    """Return one explicit page language, or ``None`` when not unambiguous."""
+    try:
+        text = page_path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+
+    marker_tokens = _APPLY_LANG_RE.findall(text)
+    marker_languages = {
+        canonical_language(token.strip()) for token in marker_tokens
+    }
+    if None in marker_languages or len(marker_languages) != 1:
+        return None
+    return next(iter(marker_languages))
+
+
+def trim_bundle_language_pages(
+    *,
+    bundle_dir: Path,
+    languages: list[str] | tuple[str, ...],
+) -> list[tuple[str, str]]:
+    """Remove out-of-scope review page includes from the bundle index.
+
+    A committed merged review derivative may predate a target-language scope
+    reduction. Keep the review files byte-identical and project only its
+    explicitly declared in-scope pages into the generated bundle index.
+    Unknown and genuinely multi-language pages remain included; inline
+    language blocks are handled separately by ``trim_bundle_language_blocks``.
+    """
+    scope = {
+        code for code in (canonical_language(lang) for lang in languages) if code
+    }
+    index_path = bundle_dir / "index.rst"
+    if not scope or not index_path.is_file():
+        return []
+
+    lines = index_path.read_text(encoding="utf-8").splitlines(keepends=True)
+    kept: list[str] = []
+    dropped: list[tuple[str, str]] = []
+    for line in lines:
+        match = _PAGE_INCLUDE_RE.match(line.rstrip("\r\n"))
+        if match is None:
+            kept.append(line)
+            continue
+
+        relative = Path(match.group(1))
+        if (
+            relative.is_absolute()
+            or ".." in relative.parts
+            or len(relative.parts) < 2
+            or relative.parts[0] != "page"
+            or relative.suffix.casefold() != ".rst"
+        ):
+            kept.append(line)
+            continue
+
+        language = _declared_page_language(bundle_dir / relative)
+        if language is None or language in scope:
+            kept.append(line)
+            continue
+        dropped.append((relative.relative_to("page").as_posix(), language))
+
+    if dropped:
+        index_path.write_text("".join(kept), encoding="utf-8")
+    return dropped
