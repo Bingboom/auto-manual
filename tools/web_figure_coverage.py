@@ -22,6 +22,7 @@ WEB_FIGURE_STATUSES = (
     "missing",
 )
 _FIGURE_SECTIONS = ("overview", "operation", "charging")
+_FINAL_FIGURE_STATUSES = frozenset({"finished-panel", "approved-composite"})
 _STAGED_DIGEST_SUFFIX_RE = re.compile(r"_[0-9a-f]{12}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
@@ -306,8 +307,37 @@ def enforce_required_web_figure_coverage(
         or len(set(normalized_slots)) != len(normalized_slots)
     ):
         raise ValueError("Web figure coverage required_slots are invalid or duplicate")
-    if not normalized_statuses.issubset(WEB_FIGURE_STATUSES):
-        raise ValueError("Web figure coverage allowed_statuses contain an invalid status")
+    if normalized_statuses != _FINAL_FIGURE_STATUSES:
+        raise ValueError(
+            "Web figure coverage allowed_statuses must contain only finished artwork"
+        )
+
+    raw_debt = requirement.get("known_debt", [])
+    if not isinstance(raw_debt, list):
+        raise ValueError("Web figure coverage known_debt must be a list")
+    debt: dict[tuple[str, str], str] = {}
+    for index, entry in enumerate(raw_debt):
+        if not isinstance(entry, dict):
+            raise ValueError(f"Web figure coverage known_debt {index} must be an object")
+        locale = str(entry.get("locale") or "").strip().casefold()
+        slot_id = str(entry.get("slot_id") or "").strip()
+        status = str(entry.get("status") or "").strip()
+        identity = (locale, slot_id)
+        if (
+            not locale
+            or not slot_id
+            or status not in {"editable-fallback", "missing"}
+        ):
+            raise ValueError(f"Web figure coverage known_debt {index} is invalid")
+        if locale not in normalized_locales or slot_id not in normalized_slots:
+            raise ValueError(
+                f"Web figure coverage known_debt {locale}/{slot_id} is outside policy"
+            )
+        if identity in debt:
+            raise ValueError(
+                f"duplicate Web figure coverage debt entry: {locale}/{slot_id}"
+            )
+        debt[identity] = status
 
     declared_languages = ir.metadata.get("declared_languages")
     if isinstance(declared_languages, list) and declared_languages:
@@ -329,6 +359,7 @@ def enforce_required_web_figure_coverage(
         return
 
     failures: list[str] = []
+    stale_debt: list[str] = []
     slots = coverage.get("slots")
     if not isinstance(slots, list):
         raise ValueError("Web figure coverage slots must be a list")
@@ -350,8 +381,27 @@ def enforce_required_web_figure_coverage(
                 failures.append(f"{locale}/{required_slot}=count:{len(matches)}")
                 continue
             status = str(matches[0].get("status") or "")
-            if status not in normalized_statuses:
-                failures.append(f"{locale}/{required_slot}={status or 'missing'}")
+            registered = debt.get((locale, required_slot))
+            if status in normalized_statuses:
+                if registered is not None:
+                    stale_debt.append(
+                        f"{locale}/{required_slot}=registered:{registered},current:{status}"
+                    )
+                continue
+            if registered != status:
+                suffix = (
+                    f" (registered:{registered})"
+                    if registered is not None
+                    else " (unregistered debt)"
+                )
+                failures.append(
+                    f"{locale}/{required_slot}={status or 'missing'}{suffix}"
+                )
+    if stale_debt:
+        raise ValueError(
+            f"stale debt baseline for {ir.model}/{ir.region}: "
+            + ", ".join(stale_debt)
+        )
     if failures:
         raise ValueError(
             f"required Web figure coverage failed for {ir.model}/{ir.region}: "

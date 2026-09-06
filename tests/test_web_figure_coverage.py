@@ -10,7 +10,13 @@ from tools.web_figure_coverage import (
 
 
 class WebFigureCoverageTests(unittest.TestCase):
-    def _required_ir(self, *, model: str = "JE-1000F", region: str = "EU"):
+    def _required_ir(
+        self,
+        *,
+        model: str = "JE-1000F",
+        region: str = "EU",
+        known_debt: list[dict[str, str]] | None = None,
+    ):
         return SimpleNamespace(
             model=model,
             region=region,
@@ -28,6 +34,7 @@ class WebFigureCoverageTests(unittest.TestCase):
                                     "finished-panel",
                                     "approved-composite",
                                 ],
+                                "known_debt": known_debt or [],
                             }
                         ]
                     }
@@ -267,7 +274,7 @@ class WebFigureCoverageTests(unittest.TestCase):
 
         enforce_required_web_figure_coverage(self._required_ir(), coverage)
 
-    def test_required_coverage_rejects_editable_fallback(self) -> None:
+    def test_eu_italian_textless_art_with_html_copy_remains_debt(self) -> None:
         coverage = {
             "model": "JE-1000F",
             "region": "EU",
@@ -297,6 +304,61 @@ class WebFigureCoverageTests(unittest.TestCase):
             "it/operation.main-power=count:0",
         ):
             enforce_required_web_figure_coverage(self._required_ir(), coverage)
+
+    def test_exact_registered_debt_is_tolerated_but_cannot_change_status(self) -> None:
+        debt = [
+            {
+                "locale": "it",
+                "slot_id": "operation.main-power",
+                "status": "editable-fallback",
+            }
+        ]
+        coverage = {
+            "model": "JE-1000F",
+            "region": "EU",
+            "slots": [
+                {
+                    "locale": "it",
+                    "slot_id": "operation.main-power",
+                    "status": "editable-fallback",
+                }
+            ],
+        }
+
+        enforce_required_web_figure_coverage(
+            self._required_ir(known_debt=debt), coverage
+        )
+
+        coverage["slots"][0]["status"] = "missing"
+        with self.assertRaisesRegex(ValueError, "registered:editable-fallback"):
+            enforce_required_web_figure_coverage(
+                self._required_ir(known_debt=debt), coverage
+            )
+
+    def test_paid_debt_requires_the_baseline_to_shrink_in_the_same_change(self) -> None:
+        debt = [
+            {
+                "locale": "it",
+                "slot_id": "operation.main-power",
+                "status": "editable-fallback",
+            }
+        ]
+        coverage = {
+            "model": "JE-1000F",
+            "region": "EU",
+            "slots": [
+                {
+                    "locale": "it",
+                    "slot_id": "operation.main-power",
+                    "status": "approved-composite",
+                }
+            ],
+        }
+
+        with self.assertRaisesRegex(ValueError, "stale debt baseline"):
+            enforce_required_web_figure_coverage(
+                self._required_ir(known_debt=debt), coverage
+            )
 
     def test_required_coverage_does_not_apply_to_other_target(self) -> None:
         coverage = {"model": "JBP-2000B", "region": "JP", "slots": []}

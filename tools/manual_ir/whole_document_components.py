@@ -128,13 +128,20 @@ def discover_registered_components(
     language: str,
     declared_role: str | None = None,
     composite_manifest: WebCompositeManifest | None = None,
+    overview_instance: Mapping[str, object] | None = None,
 ) -> tuple[ComponentClaim, ...]:
     """Discover registered families in deterministic ownership order."""
 
     claims: list[ComponentClaim] = []
     claimed: set[int] = set()
 
-    if declared_role == "lcd_icons" or soup.select_one("table.hb-lcd-icon-table"):
+    lcd_icon_table = soup.select_one("table.hb-lcd-icon-table")
+    lcd_text_only = soup.select_one("table.lcd-text-only")
+    if lcd_text_only is None and (
+        declared_role == "lcd_icons"
+        or lcd_icon_table is not None
+        and lcd_icon_table.select_one("img") is not None
+    ):
         spec, boundary, images = parse_lcd_icon_html(
             soup,
             source_path=source_path,
@@ -355,7 +362,11 @@ def discover_registered_components(
         and _matches_source(source_path, overview_config.get("source_patterns", []))
         and supports_figure_contract(source_path, dict(contract))
     ):
-        instance = resolve_overview_instance(model=model, region=region)
+        instance = (
+            dict(overview_instance)
+            if overview_instance is not None
+            else resolve_overview_instance(model=model, region=region)
+        )
         parsed = parse_overview_html(
             soup,
             source_path=source_path,

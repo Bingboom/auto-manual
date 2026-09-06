@@ -9,6 +9,15 @@ from urllib.parse import unquote, urlparse
 
 from bs4 import BeautifulSoup
 
+from tools.component_specs.registry import (
+    load_component_registry,
+    registry_sha256,
+)
+from tools.component_specs.overview_instance import (
+    overview_instance_sha256,
+    resolve_overview_instance,
+)
+from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.manual_ir import (
     V2_SCHEMA_VERSION,
     ManualSource,
@@ -23,7 +32,10 @@ from tools.manual_ir.whole_document_components import (
     discover_registered_components,
     embed_component_claims,
 )
-from tools.web_presentation import load_web_manual_contract
+from tools.web_presentation import (
+    load_web_manual_contract,
+    normalize_web_source_fragment,
+)
 from tools.utils.path_utils import PathSegments
 
 
@@ -60,6 +72,16 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     contract = load_web_manual_contract(
         model=materialized.model,
         region=materialized.region,
+    )
+    component_registry = load_component_registry()
+    manual_theme = load_manual_theme(component_registry=component_registry)
+    overview_instance = (
+        resolve_overview_instance(
+            model=materialized.model,
+            region=materialized.region,
+        )
+        if contract.get("figure_targets")
+        else None
     )
     replacements = {}
     illustration_entries = {}
@@ -112,6 +134,13 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         raw = _extract_raw_html_blocks(text, active_tags=active_tags) if path.name.startswith("safety_") else None
         markup = raw or _publish_rst_fragment_to_html(text, path, active_tags=active_tags)
         markup = _rewrite_word_friendly_fragment(markup, lang=lang)
+        markup = normalize_web_source_fragment(
+            markup,
+            source_path=path,
+            contract=contract,
+            model=materialized.model,
+            region=materialized.region,
+        )
         soup = BeautifulSoup(markup, "html.parser")
         claims = discover_registered_components(
             soup,
@@ -126,6 +155,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 or None
             ),
             composite_manifest=composite_manifest,
+            overview_instance=overview_instance,
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
@@ -183,6 +213,27 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     if composite_manifest:
         for entry in composite_manifest.entries:
             composites.append({**entry.to_payload(), "path": package_asset(composite_manifest.source.parent / entry.path)})
+    metadata = {"projection": "whole-document-components/v1",
+                "web_source_normalization": "preface-auto-resume/v1",
+                "title": materialized.title,
+                "declared_languages": list(languages), "asset_sha256": hashes,
+                "component_registry": component_registry,
+                "component_registry_sha256": registry_sha256(component_registry),
+                "manual_theme": manual_theme,
+                "manual_theme_sha256": theme_sha256(manual_theme),
+                "web_contract": contract, "composites": composites,
+                "illustration_provenance": provenance,
+                "page_declarations": {path.name: role for path, role in declarations.items()},
+                "page_slots": {
+                    path.name: str((page_slots or {}).get(path.name) or "")
+                    for path in page_paths
+                    if (page_slots or {}).get(path.name)
+                }}
+    if overview_instance is not None:
+        metadata["overview_instance"] = overview_instance
+        metadata["overview_instance_sha256"] = overview_instance_sha256(
+            overview_instance
+        )
     source = ManualSource(
         model=materialized.model or "unspecified", region=materialized.region or "unspecified",
         language=target_language, source="prepared-document",
@@ -190,16 +241,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         bundle_sha256=value_sha256([(p.page_id, p.source_sha256) for p in source_pages]),
         snapshot_sha256=None, layout_params_sha256=value_sha256({"layout": "web"}),
         style_contract_sha256=value_sha256(contract), pages=tuple(source_pages),
-        metadata={"projection": "whole-document-components/v1", "title": materialized.title,
-                  "declared_languages": list(languages), "asset_sha256": hashes,
-                  "web_contract": contract, "composites": composites,
-                  "illustration_provenance": provenance,
-                  "page_declarations": {path.name: role for path, role in declarations.items()},
-                  "page_slots": {
-                      path.name: str((page_slots or {}).get(path.name) or "")
-                      for path in page_paths
-                      if (page_slots or {}).get(path.name)
-                  }},
+        metadata=metadata,
         schema_version=V2_SCHEMA_VERSION,
     )
     ir = build_manual_ir_from_source(source)

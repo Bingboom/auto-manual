@@ -12,6 +12,31 @@
         "figures": true,
         "legacy_target_components": true
       },
+      "figure_coverage": {
+        "policy_id": "je1000f-us-finished-figures-v1",
+        "locales": [
+          "en",
+          "fr",
+          "es"
+        ],
+        "required_slots": [
+          "product-overview.front",
+          "product-overview.right",
+          "operation.main-power",
+          "operation.ac-output",
+          "operation.dc-usb-output",
+          "operation.energy-saving",
+          "operation.led-light",
+          "reference.charging-ac-wall",
+          "reference.charging-solar-direct",
+          "reference.charging-solar-adapter",
+          "reference.charging-car"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
+      },
       "contract_overrides": {}
     },
     {
@@ -26,6 +51,7 @@
         "legacy_target_components": false
       },
       "figure_coverage": {
+        "policy_id": "je1000f-eu-finished-figures-v1",
         "locales": [
           "en",
           "fr",
@@ -63,6 +89,27 @@
       "capabilities": {
         "figures": false,
         "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "policy_id": "je3000c-kr-finished-figures-v1",
+        "locales": [
+          "ko"
+        ],
+        "required_slots": [
+          "source-image.front_product",
+          "source-image.right_side_ports",
+          "source-image.op_main_power",
+          "source-image.op_ac_output",
+          "source-image.op_dc_usb_output",
+          "source-image.energy_saving",
+          "source-image.ac_wall",
+          "source-image.solar_adapter",
+          "source-image.car_charge"
+        ],
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
       },
       "contract_overrides": {}
     },

@@ -125,14 +125,18 @@ renderer-local 常量称为批准变体。
 
 ### 0.4 “流水线”的定义
 
-本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 组合成 prepared RST bundle，再由 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) 提取为 `manual-ir/v1`，最后投影到 Web、PDF、IDML 或 Word。它不是“根据文字长得像什么来猜组件”，也不是本 PR 新增的 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
+本文的**流水线**特指以 [`build.py`](../../../build.py) 为入口的生产手册链路：源表数据与 [`docs/templates/`](../../templates/) 先组合成 prepared RST bundle。Web 生产路径由 [`tools/web_document_source.py`](../../../tools/web_document_source.py) 一次读取有序源页，写出 `manual-ir/v2` / `whole-document-components/v1`；PDF、IDML 与 Word 保留各自的固定页/文档 adapter，历史 [`tools/idml_rst_extract.py`](../../../tools/idml_rst_extract.py) `manual-ir/v1` 入口继续兼容。它不是“根据文字长得像什么来猜组件”，也不是 plain-Markdown 预览链路；[`tools/plain_markdown_site.py`](../../../tools/plain_markdown_site.py) 只是把历史 Markdown 转成可审阅的中间指令并构建静态站点，不参与 production 发布装配。
 
 ```text
 phase2 / 模板
     → prepared RST bundle（数据已替换、语言与页面顺序已确定）
-    → RST extractor（识别结构标识）
-    → manual-ir/v1（有类型、有来源、有哈希）
-    → renderer projection（Web / PDF / IDML / Word）
+    ├→ Web source adapter（识别结构标识与 ComponentSpec，一次读取）
+    │   → manual-ir/v2 / whole-document-components/v1
+    │   → 冻结 registry / theme / target contract / Overview instance / assets
+    │   → Web replay（不重读 RST/CSV，不重跑旧 DOM projector）
+    └→ PDF / IDML / Word adapters（消费同一 ComponentSpec 语义合同；各自拥有几何）
+
+历史 manual-ir/v1 与 whole-document-flow/v1 只走显式兼容读取，不是新包的生产格式。
 ```
 
 “流水线”一栏表示：该语义由源表字段、模板宏、显式 RST 容器、页面清单或页面角色共同产生，普通作者不能只写一段同名文案就触发它。例如正文出现 `Warranty Period` 不会自动变成质保年限卡；模板必须显式写出 `warranty-section warranty-years`。
@@ -621,7 +625,7 @@ FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍
 
 开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、严格三卡以及相邻 TIP label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
-产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。Web adapter 支持 `annotated-live` 和 `approved-composite`：批准图匹配时显示完整图文资产，无匹配时保留完整可搜索 HTML/SVG fallback；LaTeX、IDML、Word 分别消费自己的 projection。生产投影必须解析一个版本化 `instance_id`；旧 target-local 默认实例已删除，缺失或未知实例会失败。
+产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。新整本 IR 按实际 `(model, region)` 解析一次实例，并把实例与 SHA-256 冻结到 metadata；冷重放不再打开实例注册表。Web adapter 支持 `annotated-live` 和 `approved-composite`，但前者只是语义 fallback：对声明 finished-figure coverage 的槽位，无字底图加 HTML/SVG 文字或引线仍是 `editable-fallback` 债务，只有 locale-matched `finished-panel` / `approved-composite` 能通过最终准入。LaTeX、IDML、Word 分别消费自己的 projection；缺失、未知、目标不匹配或 hash 被篡改的实例都会失败。
 
 `web_manual.json` 是分层入口：shared base 只放跨目标语义，skeleton profile 放同一
 产品骨架复用的 Overview / Operation / App / Charging 规则，target overlay 只选骨架、
