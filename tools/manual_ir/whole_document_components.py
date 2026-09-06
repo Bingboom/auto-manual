@@ -13,6 +13,11 @@ from typing import Callable, Mapping, Sequence
 
 from bs4 import BeautifulSoup, Comment, Tag
 
+from tools.component_specs.app_html import (
+    parse_app_add_device_html,
+    parse_app_download_html,
+    parse_app_inline_control_html,
+)
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
 from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
@@ -26,6 +31,7 @@ from tools.component_specs.operation_html import parse_operation_components
 from tools.component_specs.overview_html import parse_overview_html
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.registry import require_valid_component_spec
+from tools.component_specs.reference_figure_html import parse_reference_figure_html
 from tools.component_specs.warranty_html import parse_warranty_html
 from tools.manual_ir.components import component_flow_node
 from tools.manual_ir.flow import FLOW_V2_SCHEMA_VERSION, html_to_flow_nodes
@@ -33,9 +39,11 @@ from tools.manual_ir.web_callouts import decode_callout_payload
 from tools.manual_ir.web_specs import load_web_spec_source
 from tools.utils.path_utils import repo_root
 from tools.web_composite_presentation import (
+    WebCompositeContext,
     supports_figure_contract,
     supports_preface_contract,
 )
+from tools.web_composite_manifest import WebCompositeManifest
 
 
 _PLACEHOLDER_PREFIX = "AUTOMANUALIRCOMPONENT"
@@ -49,6 +57,7 @@ class ComponentClaim:
     owned_nodes: tuple[Tag, ...]
     asset_tags: tuple[tuple[str, Tag], ...] = ()
     asset_paths: tuple[tuple[str, Path], ...] = ()
+    frozen_asset_paths: tuple[tuple[str, Path], ...] = ()
     discard_nodes: tuple[Tag, ...] = ()
     consume_interstitial: bool = False
 
@@ -56,6 +65,12 @@ class ComponentClaim:
 def _matches_source(source_path: Path, patterns: Sequence[str]) -> bool:
     stem = source_path.stem.casefold()
     return any(fnmatch.fnmatch(stem, str(pattern).casefold()) for pattern in patterns)
+
+
+def _matches_asset_source(source: str, image_key: str) -> bool:
+    normalized = source.replace("\\", "/").casefold()
+    key = image_key.replace("\\", "/").casefold()
+    return bool(key) and (key in normalized or key.rsplit("/", 1)[-1] in normalized)
 
 
 def _is_claimed(node: Tag, claimed: set[int]) -> bool:
@@ -112,6 +127,7 @@ def discover_registered_components(
     region: str,
     language: str,
     declared_role: str | None = None,
+    composite_manifest: WebCompositeManifest | None = None,
 ) -> tuple[ComponentClaim, ...]:
     """Discover registered families in deterministic ownership order."""
 
@@ -225,6 +241,113 @@ def discover_registered_components(
         )
         _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
         claims.append(lcd_claim)
+
+    supports_figures = supports_figure_contract(source_path, dict(contract))
+    if supports_figures:
+        app_download = contract["app_download"]
+        if isinstance(app_download, Mapping) and _matches_source(
+            source_path, app_download.get("source_patterns", [])
+        ):
+            spec, owned, asset_tags, asset_paths = parse_app_download_html(
+                soup,
+                source_path=source_path,
+                config=app_download,
+                language=language,
+                model=model,
+                region=region,
+            )
+            claim = ComponentClaim(
+                spec=spec,
+                owned_nodes=owned,
+                asset_tags=asset_tags,
+                asset_paths=asset_paths,
+            )
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
+
+        app_inline = contract["app_inline_controls"]
+        if isinstance(app_inline, Mapping) and _matches_source(
+            source_path, app_inline.get("source_patterns", [])
+        ):
+            spec, owned = parse_app_inline_control_html(
+                soup,
+                source_path=source_path,
+                config=app_inline,
+                language=language,
+            )
+            claim = ComponentClaim(spec=spec, owned_nodes=owned)
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
+
+        reference_config = contract["reference_figures"]
+        reference_context = WebCompositeContext(
+            composite_manifest,
+            model,
+            region,
+            language,
+            ValueError,
+        )
+        for raw_reference in reference_config.get("figures", []):
+            if not isinstance(raw_reference, Mapping) or not _matches_source(
+                source_path, raw_reference.get("source_patterns", [])
+            ):
+                continue
+            image_key = str(raw_reference.get("image_key") or "")
+            images = [
+                image
+                for image in soup.find_all("img")
+                if _matches_asset_source(str(image.get("src") or ""), image_key)
+            ]
+            if len(images) != 1:
+                raise ValueError(
+                    f"{source_path}: reference {raw_reference.get('id')!r} needs one "
+                    f"governed image; found {len(images)}"
+                )
+            image = images[0]
+            if raw_reference.get("presentation") == "shared-art-live-labels":
+                spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
+                    soup,
+                    source_path=source_path,
+                    config=raw_reference,
+                    language=language,
+                )
+                claim = ComponentClaim(
+                    spec=spec,
+                    owned_nodes=owned,
+                    asset_tags=asset_tags,
+                    asset_paths=asset_paths,
+                )
+            else:
+                reference = dict(raw_reference)
+                entry = reference_context.resolve_entry(reference, source_path)
+                approved_path = None
+                if entry is not None and composite_manifest is not None:
+                    raw_path = Path(entry.path)
+                    approved_path = (
+                        raw_path
+                        if raw_path.is_absolute()
+                        else composite_manifest.source.parent / raw_path
+                    )
+                spec, owned, asset_tags, frozen_assets = parse_reference_figure_html(
+                    soup,
+                    image=image,
+                    config=reference,
+                    source_path=source_path,
+                    language=language,
+                    composite_locale=reference_context.resolve_locale(
+                        reference, source_path
+                    ),
+                    approved_entry=entry,
+                    approved_path=approved_path,
+                )
+                claim = ComponentClaim(
+                    spec=spec,
+                    owned_nodes=owned,
+                    asset_tags=asset_tags,
+                    frozen_asset_paths=frozen_assets,
+                )
+            _claim_nodes(claim, claimed=claimed, source_path=source_path)
+            claims.append(claim)
 
     overview_config = contract["product_overview"]
     if (
@@ -363,12 +486,16 @@ def _rebind_spec_assets(
     *,
     package_image: Callable[[Tag], str],
     package_file: Callable[[Path], str],
+    package_frozen_file: Callable[[Path], str] | None = None,
 ) -> ComponentSpec:
     bound: dict[str, list[str]] = {}
     for role, image in claim.asset_tags:
         bound.setdefault(role, []).append(package_image(image))
     for role, path in claim.asset_paths:
         bound.setdefault(role, []).append(package_file(path))
+    frozen_packager = package_frozen_file or package_file
+    for role, path in claim.frozen_asset_paths:
+        bound.setdefault(role, []).append(frozen_packager(path))
     expected_counts: dict[str, int] = {}
     for asset in claim.spec.assets:
         expected_counts[asset.role] = expected_counts.get(asset.role, 0) + 1
@@ -407,6 +534,7 @@ def embed_component_claims(
     *,
     package_image: Callable[[Tag], str],
     package_file: Callable[[Path], str],
+    package_frozen_file: Callable[[Path], str],
 ) -> tuple[dict, ...]:
     """Bind final assets, replace claimed tags, and return v2 flow roots."""
 
@@ -416,6 +544,7 @@ def embed_component_claims(
             claim,
             package_image=package_image,
             package_file=package_file,
+            package_frozen_file=package_frozen_file,
         )
         # Package non-semantic carrier images too. The semantic role binding
         # above runs first so the final role points to the exact rendered tag.

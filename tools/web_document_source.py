@@ -122,6 +122,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 or declarations.get(path)
                 or None
             ),
+            composite_manifest=composite_manifest,
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
@@ -166,6 +167,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             claims,
             package_image=package_image,
             package_file=package_presentation_asset,
+            package_frozen_file=package_asset,
         )
         source_pages.append(SourcePage(
             page_id=path.name, source_ref=path.name, source_path=str(path), language=lang,

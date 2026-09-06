@@ -1166,7 +1166,7 @@ RTD catalog behavior:
 - 中间态里可写的 8 个指令、单元格能用的行内标记子集、类型化 option 和 strict 排错，见 [`md_site_guide.md`](md_site_guide.md)。存量转换的两条命令也在那份里。
 - Web Publish enables `AUTO_MANUAL_PRESENTATION_PROFILE=web`. Normal `build.py md`, print Publish, IDML and DOCX exports keep the default `document` profile.
 - the web profile skips `cover*`, `00_toc*`, and `99_back_cover*`. JE-1000F / US opens directly at the `IMPORTANT` content in `00_preface`; if the source still carries the merged-language inventory line, Web hides it. A valid reseeded US review page may already start with the governed bold `IMPORTANT` marker and is accepted as-is, while an unrelated leading block still stops the build. Targets without that explicit preface contract—including JE-1000F / EU—start at the first included manifest page instead of inheriting the US rule.
-- For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json) (currently `JE-1000F / US` and `JE-1000F / EU`), Product Overview becomes one `HB-SPECIAL-OVERVIEW` semantic instance with two views, two asset roles and 15 ordered live callouts. [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json) keeps the US geometry in `je1000f-us-v1`; the EU instance extends it and overrides only target, the front artwork key and EN/FR/ES/DE/IT locale bindings. Both views use centered locale-matched approved PDF artwork, with complete searchable HTML/SVG labels retained as fallback when no approved manifest entry matches. The crop excludes the FRONT/RIGHT heading so theme changes still control it. WHAT'S IN THE BOX is one `HB-SPECIAL-INBOX` semantic instance: three ordered cards each carry their number, image asset role, accessible alt and editable localized label, followed by the same instance's editable TIP label/body. The Web adapter renders equal rounded cards with even outer alignment and a responsive full-width TIP strip; LaTeX, IDML and Word keep their own layout geometry without rasterizing the labels. App Setup renders store badges and QR as distinct shared images, centers each in its own column and keeps both descriptions as live HTML. Step 2.1 uses the themeable plus while preserving its localized screen-reader label. The add-device panel combines one shared PDF-derived two-phone artwork, with 2.1/2.2 positioned inside the image, and shared text-free device-control art with three localized RST button labels as visible HTML. The approved control art keeps the full grey panel and leader lines; CSS places only localized labels in its reserved zones. Operation and Charging figures retain centered locale-matched crops with their labels embedded; the App connect-result panel uses one shared PDF-derived three-phone image with 2.3/2.4/2.5 embedded. Reference artwork never contains the section heading, and surrounding non-panel instructions remain live HTML. Ordinary standalone RST images fill the responsive content width, remain centered and preserve aspect ratio. Unlisted targets retain ordinary source HTML until their own presentation is validated and added to the contract.
+- For targets listed in [`web_manual.json`](../docs/renderers/contracts/web_manual.json) (currently `JE-1000F / US` and `JE-1000F / EU`), Product Overview becomes one `HB-SPECIAL-OVERVIEW` semantic instance with two views, two asset roles and 15 ordered live callouts. [`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json) keeps the US geometry in `je1000f-us-v1`; the EU instance extends it and overrides only target, the front artwork key and EN/FR/ES/DE/IT locale bindings. A view uses centered locale-matched approved PDF artwork only when an exact manifest entry matches; otherwise its complete searchable HTML/SVG labels and text-free art remain visible as a semantic fallback. The crop excludes the FRONT/RIGHT heading so theme changes still control it. WHAT'S IN THE BOX is one `HB-SPECIAL-INBOX` semantic instance: three ordered cards each carry their number, image asset role, accessible alt and editable localized label, followed by the same instance's editable TIP label/body. The Web adapter renders equal rounded cards with even outer alignment and a responsive full-width TIP strip; LaTeX, IDML and Word keep their own layout geometry without rasterizing the labels. App Setup renders store badges and QR as distinct shared images, centers each in its own column and keeps both descriptions as live HTML. Step 2.1 uses the themeable plus while preserving its localized screen-reader label. The add-device panel combines one shared PDF-derived two-phone artwork, with 2.1/2.2 positioned inside the image, and shared text-free device-control art with three localized RST button labels as visible HTML. The approved control art keeps the full grey panel and leader lines; CSS places only localized labels in its reserved zones. Operation and Charging figures use centered locale-matched crops with embedded labels when approved, and otherwise preserve their live localized semantic composition. The App connect-result panel uses one shared PDF-derived three-phone image with 2.3/2.4/2.5 embedded. Reference artwork never contains the section heading, and surrounding non-panel instructions remain live HTML. JE-1000F/EU DE/IT still has required Overview/Operation/Charging fallback slots; cut 5B must replace them with hash-registered locale panels before final convergence acceptance. Ordinary standalone RST images fill the responsive content width, remain centered and preserve aspect ratio. Unlisted targets retain ordinary source HTML until their own presentation is validated and added to the contract.
 - FCC is rendered from the localized RST as a searchable two-column card with the FCC mark, normalizes locale-specific trailing copy, uses one component-owned spacing token for paragraphs and measure items, and becomes one column on phones. Its H1 stays available to the page outline and RTD navigation but is visually hidden, so readers see only the FCC content card. H1 bars, generic tables, governed table frames, and FCC use one shared border-box component-band width, keeping their left/right edges aligned. Each localized MEANING OF SYMBOLS warning-definition table is rebuilt as semantic searchable HTML with the PDF's full dark grid and dark warning badges; the four labels and descriptions stay localized live text and source inline widths do not reach final HTML. The following safety-symbol matrix is rendered from the same localized RST as two independent rounded Symbol/Meaning tables, matching the PDF's left-six/right-five structure so a long right-side description does not stretch the paired left row. On desktop both panels share the same outer height and aligned top/bottom borders; phones stack the two tables. The LCD icon page remains a searchable four-column HTML table: `On` / `Blink` / `Off` line-blocks stay on separate lines; the rounded frame and every row/column rule mirror the PDF hierarchy; number/icon/name cells are lightly filled; compact number badges are centered in the first column; and phones use horizontal scrolling instead of crushing the copy.
 
 The prepared Web Inbox now passes its three cards and internal TIP through public
@@ -1178,11 +1178,12 @@ Word/IDML output. Other composite figure callouts remain separate work.
 
 For new whole-document Web builds, Inbox is no longer a temporary page-level
 IR detour. Inbox, Overview, FCC, Specifications, Callout, governed Operation,
-hybrid LCD Mode, Warranty, LCD Icons, Troubleshooting and both Symbols table
+hybrid LCD Mode, Warranty, LCD Icons, Troubleshooting, both Symbols tables,
+App and governed Reference Figure
 instances are written once into ordered `manual-ir/v2` flow
 and replayed from those embedded specs. Their source projectors run only while
 assembling a new package; opening or publishing the frozen package does not
-reparse RST/CSV or rediscover those fourteen component types from HTML. Historical
+reparse RST/CSV or rediscover those sixteen component types from HTML. Historical
 packages remain supported. German `JAHRE` and Italian `ANNI` use the same
 component-owned 3/2 numeric badge adapter; compact Korean `3년` / `2년` headings
 are parsed by that same language-neutral warranty component. Operation instances
@@ -1192,7 +1193,13 @@ matching presentation overlay is declared, rather than inheriting JE-1000F's
 five-panel geometry. LCD and Symbols icon collections use
 one repeatable, ordered asset role, so every row remains bound to the correct
 packaged image. LCD, Troubleshooting and Symbols remain editable native tables,
-not screenshots. App and reference figures enter in later cuts.
+not screenshots. App download, its inline control, and add-device panels retain
+their localized copy and role-bound shared artwork in the same ComponentSpec.
+Each Reference Figure retains its complete semantic fallback; an approved
+composite additionally records target replace key, locale, packaged asset key,
+content SHA-256 and source-fragment SHA-256. Exact-locale figures never fall
+back to another language, and targets without approved artwork keep the live
+semantic composition instead of borrowing JE-1000F/US pixels.
 
 Prepared Web FCC also passes through public IR. Its opening copy, measures,
 column split and mark binding can be replayed without reopening the source page.
@@ -1226,14 +1233,15 @@ approval rules remain unchanged.
 App download's store and QR columns also consume public IR. Both live copy
 columns, links/emphasis, the original semantic image and artwork bindings survive
 serialized replay. Invalid or ambiguous source content stops before changing the
-page. The existing three-language layout and artwork selection remain unchanged;
-App button replacement and other reference figures are separate consumers.
+page. The download, inline-control, and add-device variants now enter the frozen
+whole-document IR as one registered App component family.
 
-The App add-device inline button now also consumes public IR. Its localized
+The App add-device inline button also consumes public IR. Its localized
 accessible name and surrounding sentence, emphasis, links and images survive
 replay; ambiguous or incomplete labels fail before changing the page. Existing
-three-language output and Pandoc protection remain unchanged. Reference figures
-are still a separate migration.
+three-language output and Pandoc protection remain unchanged. Governed Charging
+and App reference panels use the registered Reference Figure family described
+above; missing composites remain live semantic fallbacks.
 
 - The LCD screen-mode panel remains searchable HTML while matching the template's rounded illustration-plus-table composition across EN/FR/ES. The AC/DC Auto Resume matrix also remains searchable HTML with equal-width columns, a light left column, white right column, dark full-grid rules, and a true two-row Battery SOC cell. On phones each compact table scrolls inside its own frame instead of widening the page.
 - The EN/FR/ES Troubleshooting table remains searchable HTML with the PDF's rounded dark frame, full grid, 14% light error-code column, and 86% white corrective-measures column. F6/F7 actions keep their source line breaks through Pandoc. The four Specifications tables use a matching protected 31%/69% label/value grid and preserve row-spanning labels; the web transform removes the authored bullet glyph so the shared heading theme shows one section dot rather than two, and raises both governed `①` references as semantic superscripts. Both table types scroll inside their own frame on phones.
