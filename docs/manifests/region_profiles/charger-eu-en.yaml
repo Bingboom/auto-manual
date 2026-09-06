@@ -1,0 +1,8 @@
+# Single-language EU carrier for the compact charger/accessory skeleton.
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set: [en]
+primary_lang: en
+terminal_slots: [legal_tail]
+slot_overrides: {}
+compliance: []

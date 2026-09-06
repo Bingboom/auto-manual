@@ -14,6 +14,10 @@ anchors:
   # Solar accessory manuals use a dedicated chapter grammar; JS-100I@EU/en is
   # the first resolved anchor for this family.
   - docs/manifests/manual_solar-eu-en.yaml
+  # Compact charger/accessory manuals are structurally independent of the
+  # host-power and battery-pack families, so their resolved skeleton is an
+  # anchor rather than a diff of an unrelated long-manual manifest.
+  - docs/manifests/manual_charger-eu-en.yaml
 entries:
   - family_id: us-single
     base: docs/manifests/manual_us-single-en.yaml

@@ -1,0 +1,25 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JA-AD01A",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc",
+  "source_pdf_name": "xG4bYnERxR.ai",
+  "recipe": "data/asset_recipes/manual_ja_ad01a_eu_en_web.json",
+  "illustrations": [
+    {
+      "replaces": ["product_overview.png"],
+      "path": "assets/ja_ad01a_eu_en/product_overview.png",
+      "sha256": "d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f",
+      "source_page": 3,
+      "bbox_pt": [7, 119, 163, 178]
+    },
+    {
+      "replaces": ["using_product.png"],
+      "path": "assets/ja_ad01a_eu_en/using_product.png",
+      "sha256": "e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8",
+      "source_page": 6,
+      "bbox_pt": [7, 33, 163, 113]
+    }
+  ]
+}
