@@ -12,6 +12,74 @@ from tools import markdown_bundle
 
 
 class MarkdownBundleTests(unittest.TestCase):
+    def test_web_profile_preserves_language_navigation_across_pandoc(self) -> None:
+        with TemporaryDirectory() as td:
+            out_dir = Path(td) / "md"
+            out_dir.mkdir(parents=True)
+            bundle_html = out_dir / "manual_bundle.html"
+            bundle_html.write_text(
+                '<html><body><nav class="hb-language-nav" '
+                'aria-label="Manual language navigation"><ul class="hb-language-list">'
+                '<li><a class="hb-language-link" href="#hb-lang-en" lang="en" '
+                'hreflang="en">English</a></li><li><a class="hb-language-link" '
+                'href="#hb-lang-fr" lang="fr" hreflang="fr">Français</a></li>'
+                '</ul></nav><span id="hb-lang-en" class="hb-language-anchor" '
+                'aria-hidden="true"></span><h1>English</h1><span id="hb-lang-fr" '
+                'class="hb-language-anchor" aria-hidden="true"></span><h1>Français</h1>'
+                "</body></html>",
+                encoding="utf-8",
+            )
+            out_path = out_dir / "manual_demo.md"
+            bundle = SimpleNamespace(title="Demo Manual")
+
+            def fake_pandoc(cmd: list[str], **_: object) -> SimpleNamespace:
+                source = Path(cmd[1]).read_text(encoding="utf-8")
+                tokens = re.findall(
+                    r"AUTOMANUALWEBLANGUAGE\d{4}PLACEHOLDER",
+                    source,
+                )
+                self.assertEqual(3, len(tokens))
+                target = Path(cmd[cmd.index("-o") + 1])
+                target.write_text("\n\n".join(tokens), encoding="utf-8")
+                return SimpleNamespace(stdout="")
+
+            with mock.patch.dict(
+                markdown_bundle.os.environ,
+                {"AUTO_MANUAL_PRESENTATION_PROFILE": "web"},
+                clear=True,
+            ), mock.patch.object(
+                markdown_bundle,
+                "build_word_bundle_html",
+                return_value=(bundle_html, None, ()),
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_pandoc_binary",
+                return_value="pandoc",
+            ), mock.patch.object(
+                markdown_bundle,
+                "resolve_markdown_writer",
+                return_value="myst",
+            ), mock.patch.object(
+                markdown_bundle.subprocess,
+                "run",
+                side_effect=fake_pandoc,
+            ):
+                markdown_bundle.export_markdown_from_bundle(
+                    {},
+                    "MODEL",
+                    "EU",
+                    str(out_path),
+                    materialized_bundle=bundle,
+                    output_dir=out_dir,
+                )
+
+            output = out_path.read_text(encoding="utf-8")
+            self.assertIn('class="hb-language-nav"', output)
+            self.assertIn('href="#hb-lang-fr"', output)
+            self.assertIn('id="hb-lang-en"', output)
+            self.assertIn('id="hb-lang-fr"', output)
+            self.assertNotIn("AUTOMANUALWEBLANGUAGE", output)
+
     def test_web_profile_restores_scientific_subscripts_after_pandoc(self) -> None:
         with TemporaryDirectory() as td:
             out_dir = Path(td) / "md"

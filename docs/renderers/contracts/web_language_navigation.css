@@ -1,0 +1,90 @@
+/* Shared top-of-manual navigation for merged multilingual Web documents. */
+
+#furo-main-content .hb-language-nav {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 1.35rem;
+  padding: 0.82rem;
+  overflow: hidden;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-surface-strong);
+}
+
+#furo-main-content .hb-language-list {
+  display: flex;
+  gap: 0.72rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+#furo-main-content .hb-language-list > li {
+  flex: 0 0 auto;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+#furo-main-content a.hb-language-link {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.58rem 1.25rem;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: 999px;
+  background: var(--hb-paper);
+  box-shadow: 0 0.12rem 0.32rem rgba(52, 48, 49, 0.08);
+  color: var(--hb-brand-dark);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#furo-main-content a.hb-language-link:hover {
+  border-color: var(--hb-line);
+  background: var(--hb-surface);
+}
+
+#furo-main-content a.hb-language-link:focus-visible {
+  outline: 0.18rem solid var(--hb-brand-dark);
+  outline-offset: 0.14rem;
+}
+
+#furo-main-content .hb-language-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  #furo-main-content .hb-language-nav {
+    margin-bottom: 1.1rem;
+    padding: 0.68rem;
+  }
+
+  #furo-main-content .hb-language-list {
+    gap: 0.58rem;
+    padding-bottom: 0.18rem;
+  }
+
+  #furo-main-content a.hb-language-link {
+    min-height: 2.72rem;
+    padding: 0.52rem 1rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media print {
+  #furo-main-content .hb-language-nav,
+  #furo-main-content .hb-language-anchor {
+    display: none;
+  }
+}

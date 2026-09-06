@@ -472,6 +472,14 @@ catalogue on that shared page is trimmed to the same scope. It does not edit
 `docs/_review`, infer language from filenames or translated headings, or relabel
 the stale page as another locale.
 
+The merged Web manual turns that resolved language order into a top jump bar.
+Each pill uses the language's native name and jumps to the first page of that
+language; the old plain-text language catalogue is therefore not shown twice.
+This is automatic for any whole-document Web build with at least two declared
+languages, so a new target does not add model-specific HTML or CSS. On phones
+the pills scroll inside the bar without widening the page; print output hides
+the bar. A single-language manual keeps its previous output unchanged.
+
 Publish queue runs use `--idml-mode both` automatically and upload a single
 designer delivery zip (`manual_..._publish_<version>_handoff.zip`) instead of
 the bare `.idml`: it bundles the production IDML with its image links
