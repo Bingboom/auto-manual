@@ -172,6 +172,96 @@ components:
       idml: {capability: rendered, key: idml_lcd_mode}
       word: {capability: projection-only, key: word_lcd_mode}
 
+  HB-TABLE-LCD-ICON:
+    style_id: HB-TABLE-LCD-ICON
+    source_kinds: [table_lcd_icon, lcd-icons]
+    variants: [icon-catalog]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      rows:
+        required: true
+        content_kinds: [ordered_rows]
+    asset_roles:
+      icons:
+        required: true
+        multiple: true
+        locale_policies: [shared, exact]
+    token_roles: [component.table.lcd-icon]
+    adapters:
+      web: {capability: rendered, key: hb_lcd_icon}
+      latex: {capability: rendered, key: hb_latex_lcd_icon}
+      idml: {capability: rendered, key: idml_lcd_icon}
+      word: {capability: projection-only, key: word_lcd_icon}
+
+  HB-TABLE-TROUBLESHOOTING:
+    style_id: HB-TABLE-TROUBLESHOOTING
+    source_kinds: [table_troubleshooting, troubleshooting]
+    variants: [two-column]
+    slots:
+      headers:
+        required: true
+        content_kinds: [ordered_headers]
+      rows:
+        required: true
+        content_kinds: [ordered_rows]
+    asset_roles: {}
+    token_roles: [component.table.troubleshooting]
+    adapters:
+      web: {capability: rendered, key: hb_troubleshooting}
+      latex: {capability: rendered, key: hb_latex_troubleshooting}
+      idml: {capability: rendered, key: idml_troubleshooting}
+      word: {capability: projection-only, key: word_troubleshooting}
+
+  HB-TABLE-SYMBOL-SIGNAL:
+    style_id: HB-TABLE-SYMBOL-SIGNAL
+    source_kinds: [table_symbol_signal]
+    variants: [localized-badges]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      headers:
+        required: true
+        content_kinds: [ordered_headers]
+      rows:
+        required: true
+        content_kinds: [ordered_rows]
+    asset_roles: {}
+    token_roles: [component.table.symbol-signal]
+    adapters:
+      web: {capability: rendered, key: hb_symbol_signal}
+      latex: {capability: rendered, key: hb_latex_symbol_signal}
+      idml: {capability: rendered, key: idml_symbol_signal}
+      word: {capability: projection-only, key: word_symbol_signal}
+
+  HB-TABLE-SYMBOL-ICON:
+    style_id: HB-TABLE-SYMBOL-ICON
+    source_kinds: [table_symbol_icon, symbols]
+    variants: [two-panel-responsive]
+    slots:
+      accessibility_label:
+        required: true
+        content_kinds: [inline_text]
+      headers:
+        required: true
+        content_kinds: [ordered_headers]
+      panels:
+        required: true
+        content_kinds: [ordered_panels]
+    asset_roles:
+      icons:
+        required: true
+        multiple: true
+        locale_policies: [shared, exact]
+    token_roles: [component.table.symbol-icon]
+    adapters:
+      web: {capability: rendered, key: hb_symbol_icon}
+      latex: {capability: rendered, key: hb_latex_symbol_icon}
+      idml: {capability: rendered, key: idml_symbol_icon}
+      word: {capability: projection-only, key: word_symbol_icon}
+
   HB-WARRANTY-LEAD:
     style_id: HB-WARRANTY-LEAD
     source_kinds: [warranty_lead]

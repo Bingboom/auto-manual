@@ -1144,16 +1144,20 @@ def transform_web_fragment(
             soup, source_path=source_path, language=language, error_type=WebPresentationError,
             model=model, region=region,
         )
-    has_troubleshooting = transform_troubleshooting_tables(
-        soup, source_path=source_path, declared_page=declared_troubleshooting,
-        language=language, model=model, region=region,
-        error_type=WebPresentationError,
-    )
-    has_lcd = transform_lcd_icon_tables(
-        soup, source_path=source_path, declared_page=declared_lcd_icons,
-        language=language, model=model, region=region,
-        error_type=WebPresentationError,
-    )
+    has_troubleshooting = "HB-TABLE-TROUBLESHOOTING" in resolved
+    if not has_troubleshooting and not embedded_components_complete:
+        has_troubleshooting = transform_troubleshooting_tables(
+            soup, source_path=source_path, declared_page=declared_troubleshooting,
+            language=language, model=model, region=region,
+            error_type=WebPresentationError,
+        )
+    has_lcd = "HB-TABLE-LCD-ICON" in resolved
+    if not has_lcd and not embedded_components_complete:
+        has_lcd = transform_lcd_icon_tables(
+            soup, source_path=source_path, declared_page=declared_lcd_icons,
+            language=language, model=model, region=region,
+            error_type=WebPresentationError,
+        )
     data = contract or load_web_manual_contract()
     has_inbox = "HB-SPECIAL-INBOX" in resolved or (
         not embedded_components_complete
@@ -1298,18 +1302,24 @@ def transform_web_fragment(
             language=language,
             model=model, region=region,
         )
-    if is_meaning_symbols and supports_legacy_target_components:
-        transform_symbol_signal_table(
-            soup,
-            source_path=source_path,
-            expected_body_rows=int(meaning_symbols["signal_row_count"]),
-            error_type=WebPresentationError,
-            language=language, model=model, region=region,
-        )
-        transform_symbol_pairs(
-            soup, source_path=source_path, error_type=WebPresentationError,
-            language=language, model=model, region=region,
-        )
+    if (
+        is_meaning_symbols
+        and supports_legacy_target_components
+        and not embedded_components_complete
+    ):
+        if "HB-TABLE-SYMBOL-SIGNAL" not in resolved:
+            transform_symbol_signal_table(
+                soup,
+                source_path=source_path,
+                expected_body_rows=int(meaning_symbols["signal_row_count"]),
+                error_type=WebPresentationError,
+                language=language, model=model, region=region,
+            )
+        if "HB-TABLE-SYMBOL-ICON" not in resolved:
+            transform_symbol_pairs(
+                soup, source_path=source_path, error_type=WebPresentationError,
+                language=language, model=model, region=region,
+            )
     if (
         is_in_the_box
         and not has_inbox

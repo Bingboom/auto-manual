@@ -150,13 +150,13 @@ def decode_signal_ir(ir: ManualIR):
 
 
 def decode_pair_table(soup: BeautifulSoup, *, source_path: Path):
-    """Keep the existing matrix contract while rejecting dropped/ambiguous cells."""
+    """Decode two ordered symbol panels with target-independent row counts."""
     candidates: list[tuple[Tag, list[list[Tag]]]] = []
     for table in soup.find_all("table"):
         if not isinstance(table, Tag):
             continue
         rows = [row.find_all(["th", "td"], recursive=False) for row in table.find_all("tr")]
-        if len(rows) != 7 or not all(len(row) == 4 for row in rows):
+        if len(rows) < 2 or not all(len(row) == 4 for row in rows):
             continue
         header, *body_rows = rows
         if not all(cell.get_text(" ", strip=True) for cell in header):
@@ -171,25 +171,18 @@ def decode_pair_table(soup: BeautifulSoup, *, source_path: Path):
             for row in body_rows
         ):
             continue
+        if not any(row[2].find("img") for row in body_rows):
+            continue
         candidates.append((table, rows))
 
     if len(candidates) != 1:
         raise ValueError(
-            f"{source_path}: expected one governed four-column symbol table, "
+            f"{source_path}: expected one governed four-column symbol pair table, "
             f"found {len(candidates)}"
         )
 
     source_table, rows = candidates[0]
     header, *body_rows = rows
-    populated_right_rows = [
-        row for row in body_rows if row[2].find("img")
-    ]
-    if len(body_rows) != 6 or len(populated_right_rows) != 5:
-        raise ValueError(
-            f"{source_path}: symbol panel row contract changed: "
-            f"left={len(body_rows)}, right={len(populated_right_rows)}"
-        )
-
     if (source_table.find("table") or source_table.find_parent("table")
             or any(str(cell.get(attr, "1")) != "1" for row in rows for cell in row
                    for attr in ("rowspan", "colspan"))):
@@ -225,7 +218,8 @@ def load_web_pair_source(
     payload, *_ = decode_pair_table(BeautifulSoup(html, "html.parser"), source_path=source_path)
     return _symbol_source(
         html, payload=payload, source_path=source_path, language=language, model=model, region=region,
-        kind="web_symbol_pairs", projection="web-symbol-pairs", shape={"panel_rows": [6, 5]},
+        kind="web_symbol_pairs", projection="web-symbol-pairs",
+        shape={"panel_rows": [len(panel) for panel in payload["panels"]]},
     )
 
 

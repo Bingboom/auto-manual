@@ -8,6 +8,12 @@ from typing import Mapping
 from tools.component_specs.fcc import COMPONENT_ID as FCC_ID
 from tools.component_specs.inbox import COMPONENT_ID as INBOX_ID
 from tools.component_specs.lcd_mode import LCD_MODE_COMPONENT_ID
+from tools.component_specs.manual_tables import (
+    LCD_ICON_COMPONENT_ID,
+    SYMBOL_ICON_COMPONENT_ID,
+    SYMBOL_SIGNAL_COMPONENT_ID,
+    TROUBLESHOOTING_COMPONENT_ID,
+)
 from tools.component_specs.operation import OPERATION_COMPONENT_ID
 from tools.component_specs.overview import COMPONENT_ID as OVERVIEW_ID
 from tools.component_specs.overview_instance import resolve_overview_instance
@@ -27,6 +33,7 @@ from tools.web_composite_presentation import supports_figure_contract
 from tools.web_fcc_component import render_fcc_component
 from tools.web_inbox_component import render_inbox_component
 from tools.web_lcd_mode_component import render_lcd_mode_component
+from tools.web_manual_table_components import render_manual_table_component
 from tools.web_operation_component import render_operation_component
 from tools.web_overview_component import render_overview_component
 from tools.web_presentation import WebPresentationError
@@ -93,6 +100,13 @@ def render_embedded_web_component(
         )
     if spec.component_id == LCD_MODE_COMPONENT_ID:
         return render_lcd_mode_component(spec)
+    if spec.component_id in {
+        LCD_ICON_COMPONENT_ID,
+        TROUBLESHOOTING_COMPONENT_ID,
+        SYMBOL_SIGNAL_COMPONENT_ID,
+        SYMBOL_ICON_COMPONENT_ID,
+    }:
+        return render_manual_table_component(spec)
     if spec.component_id in {
         WARRANTY_LEAD_COMPONENT_ID,
         WARRANTY_SECTION_COMPONENT_ID,

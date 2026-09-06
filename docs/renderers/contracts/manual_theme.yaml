@@ -63,6 +63,45 @@ component_roles:
       - type.table.label
       - type.table.value
       - width.component-band
+  component.table.lcd-icon:
+    component_ids: [HB-TABLE-LCD-ICON]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.table.troubleshooting:
+    component_ids: [HB-TABLE-TROUBLESHOOTING]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.table.symbol-signal:
+    component_ids: [HB-TABLE-SYMBOL-SIGNAL]
+    theme_roles:
+      - surface.paper
+      - surface.muted
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
+  component.table.symbol-icon:
+    component_ids: [HB-TABLE-SYMBOL-ICON]
+    theme_roles:
+      - surface.paper
+      - border.strong
+      - radius.panel
+      - type.table.label
+      - type.table.value
+      - width.component-band
   component.warranty.lead:
     component_ids: [HB-WARRANTY-LEAD]
     theme_roles:

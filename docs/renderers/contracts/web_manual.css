@@ -318,7 +318,7 @@ body {
 .hb-symbol-pair-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
+  align-items: start;
   gap: clamp(0.72rem, 1.8vw, 1rem);
 }
 
@@ -333,7 +333,6 @@ body {
 
 #furo-main-content table.hb-symbol-panel-table {
   width: 100% !important;
-  height: 100%;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;

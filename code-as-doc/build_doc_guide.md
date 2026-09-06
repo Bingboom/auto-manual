@@ -704,23 +704,35 @@ Web Publish / Read the Docs note:
   `manual-ir/v2` / `whole-document-components/v1` beside the Markdown. Its ordered
   flow/rich-text nodes carry neutral headings, prose, lists, tables, links and
   images; optional `presentation.html.attributes` retains only Web hints needed
-  for output parity. Callout, Spec, FCC, Inbox, Overview, five Operation panels,
-  the hybrid LCD Mode table, and Warranty Lead/Section/Years are embedded as
-  validated ComponentSpecs at their original flow positions. Their Web adapters
+  for output parity. Callout, Spec, FCC, Inbox, Overview, the five governed
+  Operation panels on targets admitted by `figure_targets`,
+  the hybrid LCD Mode table, Warranty Lead/Section/Years, the LCD icon table,
+  Troubleshooting table, signal-word table, and two-panel symbol-icon table are
+  embedded as fourteen validated ComponentSpec types at their original flow positions. Their Web adapters
   dispatch from the IR instead of rediscovering those semantics from DOM;
   all component/carrier images join the ordered packaged-asset SHA-256 gate.
+  LCD and symbol-icon rows use a registry-declared repeatable `icons` asset role;
+  each row stores an asset index, so packaging and every renderer preserve the
+  authored icon order without inventing numbered asset-role names.
   `tools.web_document_ir.render_document_fragments` consumes that IR and
   packaged `assets/` without reopening RST/CSV. Historical `manual-ir/v1` and
   cut-1 `whole-document-flow/v1` files still replay without being upgraded.
   LCD Mode keeps its six action/description rows as editable text beside the
-  governed display artwork. Operation keeps target geometry in the Web contract,
+  governed display artwork. LCD Icons, Troubleshooting and both Symbols tables
+  remain native, searchable, editable tables—not screenshots. US `6+5` and KR
+  `5+2` symbol panels share the same variable-row component contract. Operation keeps target geometry in the Web contract;
+  an unlisted skeleton such as JE-3000C/KR keeps its different operation-panel
+  set as neutral flow until a matching overlay is declared, while its shared LCD
+  Mode still enters ComponentSpec. Warranty duration parsing accepts both spaced
+  units such as `3 YEARS` and compact units such as Korean `3년`.
   and an approved composite is accepted only when its existing source-fragment
   hash still matches. Word keeps its existing whole-document conversion path;
-  the remaining component families and renderer-entry migrations are later cuts. See
+  App/reference figures and renderer-entry migrations are later cuts. See
   [the bounded execution record](dev/ir_document_closeout.md),
   [v2 plan](dev/manual_ir_v2_neutral_flow_plan.md), and
-  [embedded-component record](dev/manual_ir_embedded_components_plan.md), and
-  [Operation/Warranty/LCD record](dev/manual_ir_operation_warranty_lcd_plan.md).
+  [embedded-component record](dev/manual_ir_embedded_components_plan.md),
+  [Operation/Warranty/LCD record](dev/manual_ir_operation_warranty_lcd_plan.md),
+  and [LCD/Troubleshooting/Symbols record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md).
 - `paths.web_illustration_manifest` optionally binds a target/language to finished
   PDF crops. The manifest freezes source PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several

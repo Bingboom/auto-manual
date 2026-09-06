@@ -2006,3 +2006,25 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   Ruff, 62 hotspot guardrails, 1708 documentation links, reference-pin checks,
   and the isolated fixture-backed JE-1000F/US target check. This is cut 3 of
   seven; LCD Icons/Troubleshooting/Symbols remain cut 4.
+
+
+## 2026-09-05: LCD, Troubleshooting, and Symbols embedded in ManualIR
+
+- Registered `HB-TABLE-LCD-ICON`, `HB-TABLE-TROUBLESHOOTING`,
+  `HB-TABLE-SYMBOL-SIGNAL`, and `HB-TABLE-SYMBOL-ICON` with renderer-neutral
+  rows and explicit Web, LaTeX, IDML, and Word projections.
+- Extended asset-role declarations with opt-in `multiple: true`. LCD and symbol
+  icons reuse one ordered `icons` role, and row-level `asset_index` values bind
+  each semantic row to its packaged, SHA-256-checked asset. Roles remain unique
+  by default and mismatched binding counts fail closed.
+- Whole-document assembly consumes manifest-declared LCD/Troubleshooting slots
+  without filename guessing, while both Symbols tables retain their governed
+  source-pattern and structural checks. Cold Web replay dispatches native HTML
+  tables directly and does not invoke the old LCD/Troubleshooting/Symbols DOM
+  projectors.
+- The shared symbol-icon parser no longer freezes JE-1000F's geometry: US keeps
+  6+5 panels and JE-3000C/KR keeps 5+2 panels under the same two-panel contract.
+  LCD keeps 26 editable rows and Troubleshooting keeps 11 editable data rows in
+  both representative targets; no table was rasterized.
+- This is cut 4 of seven. App/reference figures, presentation overlays, and the
+  final anti-copy/four-renderer acceptance remain cuts 5–7.
