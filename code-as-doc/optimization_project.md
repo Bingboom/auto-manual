@@ -1,13 +1,15 @@
 # Optimization Project
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
-acceptance](dev/ir_document_closeout.md). Subsequent work must be chosen from its
-explicit remaining boundaries, not another indefinite sequence of Web component
-projections. This checkpoint does not claim that Word/print or neutral rich text
-has migrated.
+acceptance](dev/ir_document_closeout.md). The first follow-up cut now gives new
+whole-document Web packages a renderer-neutral `manual-ir/v2` flow/rich-text
+projection while preserving historical `manual-ir/v1` replay. The remaining
+cuts are ComponentSpec embedding, four-renderer adapters, presentation overlays
+and anti-copy gates; do not describe the neutral substrate alone as full
+cross-renderer convergence. See the [seven-cut execution plan](dev/manual_ir_v2_neutral_flow_plan.md).
 
 
-Updated: 2026-07-17
+Updated: 2026-09-05
 
 ## 1. Role
 

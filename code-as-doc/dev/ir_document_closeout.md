@@ -85,9 +85,11 @@ manual.ir.json → web_document_ir → 既有组件投影 → MyST → Sphinx �
 
 ### 剩余边界（不能宣称已完成）
 
-1. 内容树仍保留 HTML 元素/属性等适配提示，原有组件 payload 也有 HTML 片段；
-   中立富文本语法以及 Word、print、IDML 全部消费同一语义树尚未完成。
-   当前交付明确是公共 envelope + 整本 Web 入口闭环。
+1. 后续第 1 刀已让新整本 Web IR 改用 `manual-ir/v2` 中立 flow/rich-text
+   节点；HTML tag 不再是序列化语义权威，历史 `manual-ir/v1` 仍可原样读取和重放。
+   为保持 Web 输出稳定，CSS class/style/data 属性暂存于可删除的
+   `presentation.html.attributes`；原有复杂组件 payload 中的 HTML 片段，以及
+   Word、print、IDML 全部消费同一语义实例，仍由后续第 2–5 刀完成。
 2. 源 RST 中仅面向 LaTeX 的宏仍由既有前置选择器排除；原始指令解析/严格诊断
    及旧 prepared-RST→IDML 适配器不是本轮的退出路径。
 3. 本地 PDF 裁切已提交 recipe、绑定和图片，但没有登记到线上 Base 或发布站点；
@@ -98,3 +100,21 @@ manual.ir.json → web_document_ir → 既有组件投影 → MyST → Sphinx �
 
 以上是显式后续边界，不继续追加无结束条件的 Web 小组件批次。
 
+## 后续第 1 刀：ManualIR v2 中立 flow（2026-09-05）
+
+新整本 Web 生产路径现在写出 `manual-ir/v2` 和
+`whole-document-flow/v1`。标题层级、段落、列表顺序、链接目标、图片来源与
+alt、表格表头及跨行/跨列、锚点和隐藏状态均为中立字段；Web 专属 class、style
+和 `data-*` 只在可选 presentation hints 中。删除全部 hints 后仍可重建结构化
+HTML，且空页面以空文本 flow root 保持页面/块身份而不产生可见标签。
+
+读取端双版本兼容：已有 v1 文件不升级、不重写、不重算哈希，整本 Web consumer
+在内存中适配旧 `document_content`；新生产文件只写 v2 `flow`。素材仍由
+`image.source` 汇总并受打包 SHA-256 闸门保护。第 2 刀才会把现有五类
+ComponentSpec 直接嵌入整本 IR，因此本节不宣称四端已经共享组件实例。
+
+设计、非目标、逐刀依赖和验收命令见
+[`manual_ir_v2_neutral_flow_plan.md`](manual_ir_v2_neutral_flow_plan.md)。
+本地验收为聚焦测试 90 项、完整单测 3756 项（19 skipped）、49 页/353 个
+flow block/57 个冻结素材；v1/v2 片段、修改前片段和禁读 RST/CSV 的冷重放均
+逐字一致（仅比较修改前包时规范化包根 file URI），最终仍为 210 张网页图片。

@@ -12,8 +12,15 @@ from unittest.mock import patch
 
 from bs4 import BeautifulSoup
 
-from tools.manual_ir import read_manual_ir, write_manual_ir
-from tools.manual_ir.document import validate_document
+from tools.manual_ir import (
+    ManualSource,
+    SourcePage,
+    build_manual_ir_from_source,
+    read_manual_ir,
+    write_manual_ir,
+)
+from tools.manual_ir.document import content_tree, validate_document
+from tools.manual_ir.flow import flow_nodes_to_html
 from tools.web_document_ir import render_document_fragments
 from tools.web_document_source import _consume_covered_annotations
 from tools.word_bundle_html import build_word_bundle_html
@@ -115,6 +122,19 @@ class WebDocumentIRTests(unittest.TestCase):
                              [x.replace(str(relocated), "PACKAGE") for x in after])
             self.assertEqual(ir.language, "ja")
             self.assertEqual(len(ir.pages), 2)
+            self.assertEqual("manual-ir/v2", ir.schema_version)
+            self.assertEqual("whole-document-flow/v1", ir.metadata["projection"])
+            self.assertTrue(all(
+                block.kind == "flow"
+                for page in ir.pages
+                for block in page.blocks
+            ))
+            block_json = json.dumps(
+                [block.payload for page in ir.pages for block in page.blocks],
+                ensure_ascii=False,
+            )
+            self.assertNotIn('"type":', block_json)
+            self.assertNotIn('"tag":', block_json)
             self.assertIn("2042.8Wh", "".join(after))
             self.assertTrue(ir.asset_refs)
             self.assertIn("<strong>重要</strong>", "".join(after))
@@ -173,14 +193,57 @@ with patch.object(Path, "open", guarded):
     def test_tree_tampering_and_wrong_projection_rejected(self):
         with tempfile.TemporaryDirectory() as td:
             ir, output, _ = self.build(Path(td))
-            with self.assertRaisesRegex(ValueError, "whole-document-content"):
+            with self.assertRaisesRegex(ValueError, "whole-document-flow"):
                 validate_document(replace(ir, metadata={**ir.metadata, "projection": "other"}))
             write_manual_ir(ir, output / "tampered.json")
             data = json.loads((output / "tampered.json").read_text())
-            data["pages"][0]["blocks"][0]["payload"].append({"type": "text", "text": "changed"})
+            data["pages"][0]["blocks"][0]["payload"].setdefault("children", []).append(
+                {"kind": "text", "text": "changed"}
+            )
             (output / "tampered.json").write_text(json.dumps(data))
             with self.assertRaisesRegex(ValueError, "hash mismatch"):
                 read_manual_ir(output / "tampered.json")
+
+    def test_existing_v1_document_content_replays_identically(self):
+        with tempfile.TemporaryDirectory() as td:
+            ir, output, _ = self.build(Path(td))
+            legacy_pages = tuple(
+                SourcePage(
+                    page_id=page.page_id,
+                    source_ref=page.source_ref,
+                    source_path=page.source_path,
+                    language=page.language,
+                    source_sha256=page.source_sha256,
+                    skipped_raw=page.skipped_raw,
+                    blocks=((
+                        "document_content",
+                        content_tree(
+                            flow_nodes_to_html(
+                                [block.payload for block in page.blocks]
+                            )
+                        ),
+                    ),),
+                )
+                for page in ir.pages
+            )
+            legacy = build_manual_ir_from_source(ManualSource(
+                model=ir.model,
+                region=ir.region,
+                language=ir.language,
+                source=ir.source,
+                bundle_root=ir.bundle_root,
+                bundle_sha256=ir.bundle_sha256,
+                snapshot_sha256=ir.snapshot_sha256,
+                layout_params_sha256=ir.layout_params_sha256,
+                style_contract_sha256=ir.style_contract_sha256,
+                pages=legacy_pages,
+                metadata={**ir.metadata, "projection": "whole-document-content/v1"},
+            ))
+            self.assertEqual("manual-ir/v1", legacy.schema_version)
+            self.assertEqual(
+                render_document_fragments(ir, package_root=output),
+                render_document_fragments(legacy, package_root=output),
+            )
 
     def test_figure_coverage_tampering_is_rejected_before_replay(self):
         with tempfile.TemporaryDirectory() as td:

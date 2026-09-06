@@ -107,6 +107,30 @@ class ManualIRSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "manual source has no pages"):
             build_manual_ir_from_source(replace(source, pages=()))
 
+    def test_source_selects_v2_without_changing_the_v1_default(self) -> None:
+        from tools.manual_ir.flow import html_to_flow_nodes
+
+        source = _source()
+        legacy_page = replace(
+            source.pages[0],
+            blocks=(("component", {"kind": "image", "source": "hint.png"}),),
+        )
+        legacy = build_manual_ir_from_source(
+            replace(source, pages=(legacy_page,))
+        )
+        self.assertEqual((), legacy.asset_refs)
+
+        source = _source()
+        page = replace(
+            source.pages[0],
+            blocks=(("flow", html_to_flow_nodes("<p>Hello.</p>")[0]),),
+        )
+        neutral = build_manual_ir_from_source(
+            replace(source, pages=(page,), schema_version="manual-ir/v2")
+        )
+        self.assertEqual("manual-ir/v1", legacy.schema_version)
+        self.assertEqual("manual-ir/v2", neutral.schema_version)
+
     def test_prepared_adapter_and_public_compatibility_have_exact_fixture_parity(self) -> None:
         args = dict(root=ROOT, bundle_root=BUNDLE, model="JE-1000F", region="US",
                     lang="en", source="review", data_root=DATA)

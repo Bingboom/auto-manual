@@ -8,6 +8,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from .model import SCHEMA_VERSION
+
 
 @dataclass(frozen=True)
 class SourcePage:
@@ -29,7 +31,7 @@ class SourcePage:
 
 @dataclass(frozen=True)
 class ManualSource:
-    """Source pages plus the provenance already required by manual-ir/v1.
+    """Source pages plus the provenance required by supported ManualIR versions.
 
     External digests belong to the source adapter; content digests, block IDs,
     asset ordering and page/block/skipped counts belong to the IR assembler.
@@ -47,3 +49,4 @@ class ManualSource:
     style_contract_sha256: str
     pages: tuple[SourcePage, ...]
     metadata: dict[str, Any] = field(default_factory=dict)
+    schema_version: str = SCHEMA_VERSION
