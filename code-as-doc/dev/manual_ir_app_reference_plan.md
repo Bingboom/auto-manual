@@ -130,8 +130,22 @@ and Symbols remain live semantic HTML and are outside this raster-art closure.
 - Validation passed 107 focused tests and 3780 full-suite tests (19 skipped),
   full Ruff, 62 maintainability hotspots, 1713 documentation links, the
   reference-layout pin gate, and the fixture-backed JE-1000F/US target check.
-  The 5B asset debt above remains deliberately open and is not counted as final
-  convergence acceptance.
+  At the cut-5 merge point, the 5B asset debt above remained deliberately open
+  and was not counted as final convergence acceptance.
+
+## Follow-up closure: cut 5B
+
+Cut 5B was closed by
+[#1068](https://github.com/Bingboom/auto-manual/pull/1068) (`4da3121a`) on
+2026-09-06. The pinned EU/UK PDF supplied 55 locale-matched complete panels:
+EN/FR/ES/DE/IT each use two Overview, five Operation, and four Charging images
+with their localized text and leader lines already embedded. Italian is 11/11
+`approved-composite`; JE-1000F/EU has no required-slot figure debt.
+
+The target gate accepts only `finished-panel` or `approved-composite` for these
+slots. A text-free base image with HTML/SVG labels or leader lines remains a
+debt state and cannot satisfy acceptance. Specifications, Warranty, LCD,
+Troubleshooting, and Symbols remain native HTML components.
 
 ## Verification ladder
 
