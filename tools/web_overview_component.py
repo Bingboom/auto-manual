@@ -9,7 +9,9 @@ from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.overview_adapters import web_overview_projection
 from tools.component_specs.overview_html import parse_overview_html
+from tools.component_specs.model import ComponentSpec
 from tools.web_composite_presentation import WebCompositeContext
+from tools.web_component_carriers import validate_overview_carrier
 
 
 def _append_markup(target: Tag, markup: str) -> None:
@@ -159,4 +161,30 @@ def transform_overview(
             table.decompose()
 
 
-__all__ = ["transform_overview"]
+def render_overview_component(
+    spec: ComponentSpec,
+    carrier_html: str,
+    *,
+    source_path: Path,
+    instance: Mapping[str, Any],
+    composites: WebCompositeContext,
+) -> str:
+    """Render embedded overview semantics without running its source projector."""
+
+    soup, resolved_views = validate_overview_carrier(
+        spec, carrier_html, instance=instance, source_path=source_path
+    )
+    for view, image, section in resolved_views:
+        _overview_figure(
+            soup,
+            image=image,
+            view=view,
+            source_path=source_path,
+            composites=composites,
+        )
+        for table in list(section.find_all("table", recursive=False)):
+            table.decompose()
+    return str(soup)
+
+
+__all__ = ["render_overview_component", "transform_overview"]

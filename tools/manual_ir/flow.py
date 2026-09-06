@@ -8,12 +8,19 @@ table spans or accessibility state.
 from __future__ import annotations
 
 from copy import deepcopy
-from typing import Any, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
 
-FLOW_SCHEMA_VERSION = "manual-flow/v1"
+FLOW_V1_SCHEMA_VERSION = "manual-flow/v1"
+FLOW_V2_SCHEMA_VERSION = "manual-flow/v2"
+SUPPORTED_FLOW_SCHEMA_VERSIONS = frozenset(
+    {FLOW_V1_SCHEMA_VERSION, FLOW_V2_SCHEMA_VERSION}
+)
+
+# Compatibility alias for callers that produce the historical flow carrier.
+FLOW_SCHEMA_VERSION = FLOW_V1_SCHEMA_VERSION
 
 _TAG_KIND = {
     "section": "section",
@@ -61,9 +68,11 @@ for _level in range(1, 7):
     _TAG_KIND[f"h{_level}"] = "heading"
 
 _GROUP_ROLES = frozenset({"container", "aside", "header", "footer"})
-_LEAF_KINDS = frozenset({"image", "column", "line_break", "thematic_break"})
+_LEAF_KINDS = frozenset(
+    {"image", "column", "line_break", "thematic_break", "component"}
+)
 _TEXT_KINDS = frozenset({"text", "comment"})
-FLOW_KINDS = frozenset({*_TAG_KIND.values(), *_TEXT_KINDS})
+FLOW_KINDS = frozenset({*_TAG_KIND.values(), *_TEXT_KINDS, "component"})
 
 _BASE_FIELDS = frozenset({"schema_version", "kind"})
 _ELEMENT_FIELDS = frozenset({"presentation", "anchor", "hidden"})
@@ -80,6 +89,7 @@ _KIND_FIELDS = {
     "image": frozenset({"source", "alt"}),
     "link": frozenset({"target"}),
     "abbreviation": frozenset({"expansion"}),
+    "component": frozenset({"component_spec", "carrier_flow"}),
 }
 _SEMANTIC_HTML_ATTRIBUTES = frozenset(
     {
@@ -281,7 +291,13 @@ def _presentation_issues(
     return issues
 
 
-def _validate_node(node: Any, *, location: str, root: bool) -> list[str]:
+def _validate_node(
+    node: Any,
+    *,
+    location: str,
+    root: bool,
+    flow_version: str | None = None,
+) -> list[str]:
     if not isinstance(node, Mapping):
         return [f"{location}: flow node must be an object"]
     issues: list[str] = []
@@ -299,15 +315,31 @@ def _validate_node(node: Any, *, location: str, root: bool) -> list[str]:
         issues.append(
             f"{location}: unknown field(s): " + ", ".join(sorted(map(str, extra)))
         )
+    active_flow_version = flow_version
     if root:
-        if node.get("schema_version") != FLOW_SCHEMA_VERSION:
+        active_flow_version = node.get("schema_version")
+        if active_flow_version not in SUPPORTED_FLOW_SCHEMA_VERSIONS:
             issues.append(
-                f"{location}.schema_version: must be {FLOW_SCHEMA_VERSION!r}"
+                f"{location}.schema_version: must be one of "
+                f"{sorted(SUPPORTED_FLOW_SCHEMA_VERSIONS)!r}"
             )
     elif "schema_version" in node:
         issues.append(f"{location}.schema_version: allowed only on a flow root")
 
-    if kind in _TEXT_KINDS:
+    if kind == "component":
+        if active_flow_version != FLOW_V2_SCHEMA_VERSION:
+            issues.append(
+                f"{location}: component requires {FLOW_V2_SCHEMA_VERSION}"
+            )
+        try:
+            from tools.manual_ir.components import validate_component_flow_node
+
+            issues.extend(
+                validate_component_flow_node(node, location=location)
+            )
+        except (ImportError, RuntimeError) as exc:
+            issues.append(f"{location}.component_spec: cannot validate: {exc}")
+    elif kind in _TEXT_KINDS:
         if not isinstance(node.get("text"), str):
             issues.append(f"{location}.text: expected a string")
         if "children" in node:
@@ -323,7 +355,10 @@ def _validate_node(node: Any, *, location: str, root: bool) -> list[str]:
             for index, child in enumerate(children):
                 issues.extend(
                     _validate_node(
-                        child, location=f"{location}.children[{index}]", root=False
+                        child,
+                        location=f"{location}.children[{index}]",
+                        root=False,
+                        flow_version=active_flow_version,
                     )
                 )
 
@@ -461,22 +496,52 @@ def _html_attributes(node: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def _decode(
-    node: Mapping[str, Any], soup: BeautifulSoup, *, parent_kind: str | None = None
+    node: Mapping[str, Any],
+    soup: BeautifulSoup,
+    *,
+    parent_kind: str | None = None,
+    component_renderer: Callable[[Mapping[str, Any]], str] | None = None,
+    component_fragments: dict[str, str] | None = None,
 ):
     kind = str(node["kind"])
     if kind == "text":
         return NavigableString(str(node["text"]))
     if kind == "comment":
         return Comment(str(node["text"]))
+    if kind == "component":
+        if component_renderer is None:
+            raise ValueError("component renderer is required for component flow")
+        rendered = component_renderer(node)
+        if not isinstance(rendered, str):
+            raise ValueError("component renderer must return HTML text")
+        if component_fragments is None:
+            raise ValueError("component fragment collector is required")
+        token = f"AUTOMANUALFLOWCOMPONENT{len(component_fragments) + 1:04d}"
+        component_fragments[token] = rendered
+        return Comment(token)
     tag = soup.new_tag(
         _tag_for(node, parent_kind=parent_kind), attrs=_html_attributes(node)
     )
     for child in node.get("children", []):
-        tag.append(_decode(child, soup, parent_kind=kind))
+        decoded = _decode(
+            child,
+            soup,
+            parent_kind=kind,
+            component_renderer=component_renderer,
+            component_fragments=component_fragments,
+        )
+        if isinstance(decoded, list):
+            tag.extend(decoded)
+        else:
+            tag.append(decoded)
     return tag
 
 
-def flow_nodes_to_html(nodes: Sequence[Mapping[str, Any]]) -> str:
+def flow_nodes_to_html(
+    nodes: Sequence[Mapping[str, Any]],
+    *,
+    component_renderer: Callable[[Mapping[str, Any]], str] | None = None,
+) -> str:
     """Render neutral flow through the Web adapter.
 
     The neutral kind selects the element. Optional HTML attributes only restore
@@ -484,14 +549,30 @@ def flow_nodes_to_html(nodes: Sequence[Mapping[str, Any]]) -> str:
     """
 
     soup = BeautifulSoup("", "html.parser")
+    component_fragments: dict[str, str] = {}
     for index, node in enumerate(nodes):
         issues = validate_flow_node(node)
         if issues:
             raise ValueError(
                 f"invalid neutral flow root {index}: " + "; ".join(issues)
             )
-        soup.append(_decode(node, soup))
-    return str(soup)
+        decoded = _decode(
+            node,
+            soup,
+            component_renderer=component_renderer,
+            component_fragments=component_fragments,
+        )
+        if isinstance(decoded, list):
+            soup.extend(decoded)
+        else:
+            soup.append(decoded)
+    rendered = str(soup)
+    for token, fragment in component_fragments.items():
+        placeholder = f"<!--{token}-->"
+        if rendered.count(placeholder) != 1:
+            raise ValueError(f"component placeholder {token} must occur exactly once")
+        rendered = rendered.replace(placeholder, fragment)
+    return rendered
 
 
 def strip_presentation_hints(value: Any) -> Any:
@@ -512,6 +593,9 @@ def strip_presentation_hints(value: Any) -> Any:
 __all__ = [
     "FLOW_KINDS",
     "FLOW_SCHEMA_VERSION",
+    "FLOW_V1_SCHEMA_VERSION",
+    "FLOW_V2_SCHEMA_VERSION",
+    "SUPPORTED_FLOW_SCHEMA_VERSIONS",
     "flow_nodes_to_html",
     "html_to_flow_nodes",
     "strip_presentation_hints",

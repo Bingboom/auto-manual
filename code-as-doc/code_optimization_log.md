@@ -1954,3 +1954,29 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   bundle produced 353 flow blocks and 57 frozen assets, retained 210 final Web
   images, matched both v1 compatibility and the pre-change fragments exactly,
   and replayed with all RST/CSV reads forbidden.
+
+
+## 2026-09-05: Registered ComponentSpecs embedded in whole-document ManualIR
+
+- New whole-document packages write `whole-document-components/v1` with
+  `manual-flow/v2` roots. Callout, Spec, FCC, Inbox and Overview ComponentSpecs
+  retain their original page/section order; optional carrier flow preserves
+  rich markup not yet modeled as semantic slots.
+- Web replay dispatches the five embedded families directly and marks them
+  complete before the remaining presentation pass. Replacing all five source
+  projectors with failing doubles still replays the frozen packages, proving
+  the consumer no longer rediscovers their semantics from reconstructed DOM.
+- Component assets and carrier images share the ordered package asset union and
+  SHA-256 gate. Unknown components, duplicate source references, malformed v1
+  component nodes, nested component carriers and slot/carrier disagreement fail
+  before partial output.
+- Real acceptance covered JE-1000F/US (49 pages, 66 specs), JE-1000F/EU
+  (76 pages, 99 specs) and JBP-2000B/JP (12 pages, 9 specs). All three matched
+  detached cut-1 same-source HTML page by page after normalizing only package
+  root URIs; JBP-JP retained its localized finished Overview illustration.
+- Validation passed 120 focused and 3761 full-suite tests (19 skipped), full
+  Ruff, 62 hotspot maintainability checks, documentation-link integrity and the
+  fixture-backed JE-1000F/US target check.
+- This is cut 2 of seven. Operation/Warranty/LCD, Symbols/Troubleshooting,
+  App/reference figures, presentation overlays and anti-copy/four-renderer
+  acceptance remain independently reversible follow-up PRs.

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import unittest
 
-from tools.manual_ir import ManualIR
+from tools.manual_ir import ManualIR, read_manual_ir
 from tools.web_presentation import protect_web_callouts_for_pandoc
 
 
@@ -187,9 +187,11 @@ class WebCalloutIRTests(unittest.TestCase):
                         {}, 'OTHER', region, str(root / 'manual.md'),
                         materialized_bundle=bundle, output_dir=root / 'out',
                     )
-                assembler.assert_called_once()
-                source = assembler.call_args.args[0]
-                self.assertEqual((source.model, source.region), ('OTHER', region))
+                assembler.assert_not_called()
+                ir = read_manual_ir(root / 'out' / 'manual.ir.json')
+                self.assertEqual(
+                    ir.metadata['projection'], 'whole-document-components/v1'
+                )
                 text = output.read_text()
                 self.assertIn(label, text)
                 self.assertIn('manual-callout-table', text)

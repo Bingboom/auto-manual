@@ -21,12 +21,86 @@ from tools.manual_ir import (
 )
 from tools.manual_ir.document import content_tree, validate_document
 from tools.manual_ir.flow import flow_nodes_to_html
+from tools.component_specs.projection import project_manual_ir_components
+from tools.web_presentation import protect_web_callouts_for_pandoc
 from tools.web_document_ir import render_document_fragments
 from tools.web_document_source import _consume_covered_annotations
 from tools.word_bundle_html import build_word_bundle_html
 
 
 class WebDocumentIRTests(unittest.TestCase):
+    def test_embedded_spec_and_callout_replay_without_source_projectors(self):
+        spec = (
+            '<h2 class="hb-spec-section"><span class="hb-spec-bullet">•</span>'
+            '<span class="hb-spec-section-text">INPUT</span></h2>'
+            '<table class="manual-spec-table"><tbody><tr><td>Voltage</td>'
+            '<td><em>100 V</em></td></tr></tbody></table>'
+        )
+        callout = (
+            '<table class="manual-callout-table" lang="en"><tbody><tr>'
+            '<td class="manual-callout-label">WARNING</td>'
+            '<td class="manual-callout-body"><p>Keep <strong>dry</strong>.</p>'
+            '</td></tr></tbody></table>'
+        )
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            page = root / "page_en.rst"
+            markup = "<h1>Demo</h1>" + spec + callout
+            page.write_text(
+                ".. raw:: html\n\n" + "\n".join(
+                    f"   {line}" for line in markup.splitlines()
+                ) + "\n",
+                encoding="utf-8",
+            )
+            bundle = SimpleNamespace(
+                bundle_dir=root,
+                page_dir=root,
+                page_paths=(page,),
+                title="Demo",
+                reference_doc=None,
+                model="OTHER",
+                region="US",
+                lang="en",
+                languages=("en",),
+            )
+            package = root / "package"
+            build_word_bundle_html(
+                {},
+                "OTHER",
+                "US",
+                materialized_bundle=bundle,
+                output_dir=package,
+                presentation_profile="web",
+            )
+            ir = read_manual_ir(package / "manual.ir.json")
+            self.assertEqual(
+                ["HB-TABLE-SPEC", "HB-CALLOUT-STRIP"],
+                [candidate.component_id for candidate in project_manual_ir_components(ir)],
+            )
+            page.unlink()
+            source_projector_error = AssertionError(
+                "source projector called during embedded replay"
+            )
+            with (
+                patch(
+                    "tools.web_presentation.transform_specification_tables",
+                    side_effect=source_projector_error,
+                ),
+                patch(
+                    "tools.web_presentation.load_web_callout_source",
+                    side_effect=source_projector_error,
+                ),
+            ):
+                fragment = render_document_fragments(ir, package_root=package)[0]
+                protected, callouts = protect_web_callouts_for_pandoc(
+                    fragment,
+                    embedded_components_complete=True,
+                )
+            self.assertIn("hb-spec-table-composition", fragment)
+            self.assertIn("manual-callout-table", fragment)
+            self.assertEqual(1, len(callouts))
+            self.assertIn("AUTOMANUALWEBCALLOUT", protected)
+
     def test_japanese_box_contents_uses_shared_inbox_outside_figure_target(self):
         from tools.web_presentation import transform_web_fragment
         cells = ''.join(f'<td><img src="{i}.png"><p>{label}</p></td>'
@@ -123,7 +197,12 @@ class WebDocumentIRTests(unittest.TestCase):
             self.assertEqual(ir.language, "ja")
             self.assertEqual(len(ir.pages), 2)
             self.assertEqual("manual-ir/v2", ir.schema_version)
-            self.assertEqual("whole-document-flow/v1", ir.metadata["projection"])
+            self.assertEqual("whole-document-components/v1", ir.metadata["projection"])
+            self.assertTrue(all(
+                block.payload["schema_version"] == "manual-flow/v2"
+                for page in ir.pages
+                for block in page.blocks
+            ))
             self.assertTrue(all(
                 block.kind == "flow"
                 for page in ir.pages

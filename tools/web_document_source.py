@@ -19,6 +19,10 @@ from tools.manual_ir import (
 from tools.manual_ir.document import validate_document
 from tools.manual_ir.flow import html_to_flow_nodes
 from tools.manual_ir.hashing import file_sha256, value_sha256
+from tools.manual_ir.whole_document_components import (
+    discover_registered_components,
+    embed_component_claims,
+)
 from tools.web_presentation import load_web_manual_contract
 from tools.utils.path_utils import PathSegments
 
@@ -53,6 +57,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     languages = tuple(getattr(materialized, "languages", ()))
     target_language = materialized.lang or (languages[0] if len(languages) == 1 else "")
     hashes = {}
+    contract = load_web_manual_contract()
     replacements = {}
     illustration_entries = {}
     provenance = None
@@ -85,6 +90,16 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         hashes[relative] = digest
         return relative
 
+    def package_presentation_asset(file: Path) -> str:
+        digest = file_sha256(file)
+        relative = f"assets/{file.stem}_{digest[:12]}{file.suffix}"
+        target = output_dir / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        if target.resolve() != file.resolve():
+            shutil.copy2(file, target)
+        hashes[relative] = digest
+        return relative
+
     source_pages = []
     used_replacements = set()
     for path in page_paths:
@@ -95,6 +110,14 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         markup = raw or _publish_rst_fragment_to_html(text, path, active_tags=active_tags)
         markup = _rewrite_word_friendly_fragment(markup, lang=lang)
         soup = BeautifulSoup(markup, "html.parser")
+        claims = discover_registered_components(
+            soup,
+            source_path=path,
+            contract=contract,
+            model=materialized.model or "unspecified",
+            region=materialized.region or "unspecified",
+            language=lang or "und",
+        )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if name in replacements:
@@ -112,18 +135,37 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                     image.attrs.pop("height", None)
                     image["style"] = "width: 100%; height: auto;"
                     _consume_covered_annotations(soup, illustration_entries[name], image)
+        def package_image(image) -> str:
+            src = str(image.get("src", ""))
+            if src.startswith("assets/ir/"):
+                return src
+            parsed = urlparse(src)
+            resolved = (
+                Path(unquote(parsed.path))
+                if parsed.scheme == "file"
+                else _resolve_fragment_asset_path(src, path)
+            )
+            if resolved is None or not resolved.is_file():
+                raise ValueError(
+                    f"{path}: document image is not a packaged local asset: {src}"
+                )
+            packaged = package_asset(resolved)
+            image["src"] = packaged
+            return packaged
+
         staged = soup
         for image in staged.find_all("img"):
-            src = str(image.get("src", ""))
-            parsed = urlparse(src)
-            resolved = Path(unquote(parsed.path)) if parsed.scheme == "file" else _resolve_fragment_asset_path(src, path)
-            if resolved is None or not resolved.is_file():
-                raise ValueError(f"{path}: document image is not a packaged local asset: {src}")
-            image["src"] = package_asset(resolved)
+            package_image(image)
+        flow_nodes = embed_component_claims(
+            staged,
+            claims,
+            package_image=package_image,
+            package_file=package_presentation_asset,
+        )
         source_pages.append(SourcePage(
             page_id=path.name, source_ref=path.name, source_path=str(path), language=lang,
             source_sha256=hashlib.sha256(source_bytes).hexdigest(),
-            blocks=tuple(("flow", node) for node in html_to_flow_nodes(str(staged))),
+            blocks=tuple(("flow", node) for node in flow_nodes),
         ))
     if set(replacements) != used_replacements:
         raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
@@ -131,7 +173,6 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     if composite_manifest:
         for entry in composite_manifest.entries:
             composites.append({**entry.to_payload(), "path": package_asset(composite_manifest.source.parent / entry.path)})
-    contract = load_web_manual_contract()
     source = ManualSource(
         model=materialized.model or "unspecified", region=materialized.region or "unspecified",
         language=target_language, source="prepared-document",
@@ -139,7 +180,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         bundle_sha256=value_sha256([(p.page_id, p.source_sha256) for p in source_pages]),
         snapshot_sha256=None, layout_params_sha256=value_sha256({"layout": "web"}),
         style_contract_sha256=value_sha256(contract), pages=tuple(source_pages),
-        metadata={"projection": "whole-document-flow/v1", "title": materialized.title,
+        metadata={"projection": "whole-document-components/v1", "title": materialized.title,
                   "declared_languages": list(languages), "asset_sha256": hashes,
                   "web_contract": contract, "composites": composites,
                   "illustration_provenance": provenance,

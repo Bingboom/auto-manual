@@ -63,10 +63,11 @@ class WebManualIRTests(unittest.TestCase):
                     output_dir=root / "out",
                     presentation_profile="web",
                 )
-            self.assertEqual(1, assemble.call_count)
-            source = assemble.call_args.args[0]
+            self.assertEqual(0, assemble.call_count)
+            whole_ir = read_manual_ir(root / "out" / "manual.ir.json")
             self.assertEqual(
-                ("JE-1000F", "US", "en"), (source.model, source.region, source.language)
+                "whole-document-components/v1",
+                whole_ir.metadata["projection"],
             )
             soup = BeautifulSoup(result.read_text(), "html.parser")
             self.assertEqual(

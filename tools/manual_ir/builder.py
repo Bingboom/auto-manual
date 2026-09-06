@@ -35,7 +35,7 @@ def _asset_refs(
                 found.extend(
                     _asset_refs(child, parent_key=key, neutral_flow=neutral_flow)
                 )
-    elif isinstance(value, list):
+    elif isinstance(value, (list, tuple)):
         for child in value:
             found.extend(
                 _asset_refs(child, parent_key=parent_key, neutral_flow=neutral_flow)

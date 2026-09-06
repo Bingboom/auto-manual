@@ -88,8 +88,9 @@ manual.ir.json → web_document_ir → 既有组件投影 → MyST → Sphinx �
 1. 后续第 1 刀已让新整本 Web IR 改用 `manual-ir/v2` 中立 flow/rich-text
    节点；HTML tag 不再是序列化语义权威，历史 `manual-ir/v1` 仍可原样读取和重放。
    为保持 Web 输出稳定，CSS class/style/data 属性暂存于可删除的
-   `presentation.html.attributes`；原有复杂组件 payload 中的 HTML 片段，以及
-   Word、print、IDML 全部消费同一语义实例，仍由后续第 2–5 刀完成。
+   `presentation.html.attributes`。后续第 2 刀又把已注册的 Callout、Spec、FCC、
+   Inbox、Overview ComponentSpec 写进整本 IR；其余复杂组件以及 Word、print、
+   IDML 全部从整本 IR 消费同一语义实例，仍由第 3–5 刀完成。
 2. 源 RST 中仅面向 LaTeX 的宏仍由既有前置选择器排除；原始指令解析/严格诊断
    及旧 prepared-RST→IDML 适配器不是本轮的退出路径。
 3. 本地 PDF 裁切已提交 recipe、绑定和图片，但没有登记到线上 Base 或发布站点；
@@ -118,3 +119,25 @@ ComponentSpec 直接嵌入整本 IR，因此本节不宣称四端已经共享组
 本地验收为聚焦测试 90 项、完整单测 3756 项（19 skipped）、49 页/353 个
 flow block/57 个冻结素材；v1/v2 片段、修改前片段和禁读 RST/CSV 的冷重放均
 逐字一致（仅比较修改前包时规范化包根 file URI），最终仍为 210 张网页图片。
+
+## 后续第 2 刀：现有 ComponentSpec 嵌入整本 IR（2026-09-05）
+
+新生产路径现在写出 `whole-document-components/v1`，并在 `manual-flow/v2`
+中按原始页面、区段和节点顺序嵌入 `component` leaf。ComponentSpec 是组件身份、
+variant、本地化 slot、asset role 和 token role 的语义权威；可选 `carrier_flow`
+只保留链接、强调、图片属性等尚未完全进入 slot 的中立富文本。未知组件、重复
+`source_ref`、嵌套 component carrier、语义与 carrier 不一致均在渲染前失败。
+
+整本 Web replay 直接按 `component_id` 分发五类已注册 adapter，不再重跑
+Overview、FCC、Inbox、Spec、Callout 的 DOM source projector；旧 v1 和第 1 刀的
+v2 包仍走兼容路径。Inbox 先于 Callout 认领内部 TIP，避免一个源节点生成两个
+实例。ComponentSpec asset 与 carrier image 共同进入有序 `asset_refs` 并受包内
+SHA-256 闸门保护。其他 renderer 已能按文档顺序取得同一批 ComponentSpec，
+但剩余组件及整本消费迁移仍属于第 3–5 刀。
+
+真实冻结语料验收覆盖 JE-1000F/US 49 页 66 个组件、JE-1000F/EU 76 页
+99 个组件、JBP-2000B/JP 12 页 9 个组件。将五类旧 source projector 全部替换为
+抛错桩后，三目标仍可脱离 RST/CSV 冷重放；与第 1 刀代码对同源重建的逐页 HTML
+比较均为零差异（仅规范化包根 file URI）。JBP-JP 仍使用含日文标注的 Overview
+整图，没有退回两张无字图。完整设计与验收见
+[`manual_ir_embedded_components_plan.md`](manual_ir_embedded_components_plan.md)。

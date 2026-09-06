@@ -150,7 +150,8 @@ def restore_web_figures_after_pandoc(
 def protect_web_callouts_for_pandoc(
     html_text: str, *, source_path: Path | None = None,
     model: str | None = None, region: str | None = None,
-) -> tuple[str, dict[str, ManualIR]]:
+    embedded_components_complete: bool = False,
+) -> tuple[str, dict[str, ManualIR | str]]:
     """Replace semantic callout tables with stable tokens before Pandoc parses HTML.
 
     Without this guard, Pandoc can convert plain callouts into pipe tables while
@@ -160,11 +161,14 @@ def protect_web_callouts_for_pandoc(
     same ``manual-callout-*`` component contract. The handoff carries public IR;
     restoration validates and consumes it without reopening the source file.
     """
-    protected: dict[str, ManualIR] = {}
+    protected: dict[str, ManualIR | str] = {}
 
     def replace(match: re.Match[str]) -> str:
         token = f"AUTOMANUALWEBCALLOUT{len(protected) + 1:04d}PLACEHOLDER"
         callout_html = match.group(0)
+        if embedded_components_complete:
+            protected[token] = callout_html
+            return f"<p>{token}</p>"
         try:
             source = load_web_callout_source(
                 callout_html, source_path=Path(f"{source_path or 'pandoc'}#{token}"),
@@ -182,15 +186,18 @@ def protect_web_callouts_for_pandoc(
 
 def restore_web_callouts_after_pandoc(
     markdown_text: str,
-    protected: dict[str, ManualIR],
+    protected: dict[str, ManualIR | str],
 ) -> str:
     """Restore each protected callout exactly once, failing closed on drift."""
     restored = markdown_text
-    for token, ir in protected.items():
-        try:
-            callout_html = render_callout_ir(ir)
-        except ValueError as exc:
-            raise WebPresentationError(str(exc)) from exc
+    for token, payload in protected.items():
+        if isinstance(payload, str):
+            callout_html = payload
+        else:
+            try:
+                callout_html = render_callout_ir(payload)
+            except ValueError as exc:
+                raise WebPresentationError(str(exc)) from exc
         occurrences = restored.count(token)
         if occurrences != 1:
             raise WebPresentationError(
@@ -1123,13 +1130,18 @@ def transform_web_fragment(
     language: str | None = None,
     declared_troubleshooting: bool = False,
     declared_lcd_icons: bool = False,
+    resolved_component_ids: frozenset[str] | set[str] = frozenset(),
+    embedded_components_complete: bool = False,
 ) -> str:
     """Render declared semantics, then apply target-governed figure composition."""
     soup = BeautifulSoup(html_fragment, "html.parser")
-    has_specifications = transform_specification_tables(
-        soup, source_path=source_path, language=language, error_type=WebPresentationError,
-        model=model, region=region,
-    )
+    resolved = frozenset(resolved_component_ids)
+    has_specifications = "HB-TABLE-SPEC" in resolved
+    if not has_specifications and not embedded_components_complete:
+        has_specifications = transform_specification_tables(
+            soup, source_path=source_path, language=language, error_type=WebPresentationError,
+            model=model, region=region,
+        )
     has_troubleshooting = transform_troubleshooting_tables(
         soup, source_path=source_path, declared_page=declared_troubleshooting,
         language=language, model=model, region=region,
@@ -1141,13 +1153,29 @@ def transform_web_fragment(
         error_type=WebPresentationError,
     )
     data = contract or load_web_manual_contract()
-    has_inbox = _matches_source(source_path, list(data["in_the_box"].get("semantic_source_patterns", [])))
-    if has_inbox:
+    has_inbox = "HB-SPECIAL-INBOX" in resolved or (
+        not embedded_components_complete
+        and _matches_source(
+            source_path, list(data["in_the_box"].get("semantic_source_patterns", []))
+        )
+    )
+    if (
+        has_inbox
+        and "HB-SPECIAL-INBOX" not in resolved
+        and not embedded_components_complete
+    ):
         transform_inbox(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
         )
-    semantic_fragment = str(soup) if has_specifications or has_troubleshooting or has_lcd or has_inbox else html_fragment
+    semantic_fragment = (
+        str(soup)
+        if has_troubleshooting
+        or has_lcd
+        or (has_specifications and not embedded_components_complete)
+        or (has_inbox and not embedded_components_complete)
+        else html_fragment
+    )
     preface = data["preface"]
     overview = data["product_overview"]
     operations = data["operations"]
@@ -1175,6 +1203,18 @@ def transform_web_fragment(
     is_app_inline_controls = _matches_source(
         source_path, list(app_inline_controls["source_patterns"])
     )
+    if embedded_components_complete and not (
+        is_preface
+        or is_operations
+        or is_meaning_symbols
+        or is_warranty
+        or is_reference_page
+        or is_app_download
+        or is_app_inline_controls
+        or has_troubleshooting
+        or has_lcd
+    ):
+        return semantic_fragment
     # Warranty is a shared semantic component: its copy and localized unit stay
     # source-owned, while the Web adapter only supplies the reusable card and
     # number-badge treatment. It therefore must not inherit the target grant
@@ -1217,7 +1257,12 @@ def transform_web_fragment(
     )
     if is_preface and supports_legacy_target_components:
         _transform_preface(soup, source_path=source_path)
-    if is_overview and supports_figures:
+    if (
+        is_overview
+        and supports_figures
+        and "HB-SPECIAL-OVERVIEW" not in resolved
+        and not embedded_components_complete
+    ):
         _transform_product_overview(
             soup,
             source_path=source_path,
@@ -1231,7 +1276,12 @@ def transform_web_fragment(
             contract=data,
             composites=composites,
         )
-    if is_fcc and supports_legacy_target_components:
+    if (
+        is_fcc
+        and supports_legacy_target_components
+        and "HB-SPECIAL-FCC" not in resolved
+        and not embedded_components_complete
+    ):
         transform_fcc(
             soup,
             source_path=source_path,
@@ -1252,7 +1302,12 @@ def transform_web_fragment(
             soup, source_path=source_path, error_type=WebPresentationError,
             language=language, model=model, region=region,
         )
-    if is_in_the_box and not has_inbox:
+    if (
+        is_in_the_box
+        and not has_inbox
+        and "HB-SPECIAL-INBOX" not in resolved
+        and not embedded_components_complete
+    ):
         transform_inbox(
             soup, source_path=source_path, language=language or "und",
             model=model, region=region, error_type=WebPresentationError,
