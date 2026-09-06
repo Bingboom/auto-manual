@@ -38,7 +38,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
         cls.staging = Path(cls.temp.name) / "staging"
         env = dict(os.environ)
         env["AUTO_MANUAL_PRESENTATION_PROFILE"] = "web"
-        subprocess.run(
+        result = subprocess.run(
             [
                 sys.executable,
                 str(ROOT / "build.py"),
@@ -58,10 +58,16 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             ],
             cwd=ROOT,
             env=env,
-            check=True,
+            check=False,
             capture_output=True,
             text=True,
         )
+        if result.returncode:
+            raise AssertionError(
+                "JS-100I Web fixture build failed:\n"
+                f"stdout:\n{result.stdout}\n"
+                f"stderr:\n{result.stderr}"
+            )
         cls.package = cls.staging / "docs" / "_build" / "JS-100I" / "EU" / "en" / "md"
         cls.ir = read_manual_ir(cls.package / "manual.ir.json")
         cls.markdown = (cls.package / "manual_js100i_eu_en.md").read_text(encoding="utf-8")
