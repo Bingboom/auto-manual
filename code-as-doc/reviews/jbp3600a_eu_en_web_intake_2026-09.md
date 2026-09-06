@@ -108,7 +108,8 @@ python -m sphinx -b html \
   /tmp/jbp3600a-sphinx-acceptance-20260906-final
 ```
 
-Final artifact SHA-256 values:
+Artifact SHA-256 values from the original implementation acceptance (historical,
+not the latest-main integration artifacts):
 
 | Artifact | SHA-256 |
 | --- | --- |
@@ -125,9 +126,11 @@ horizontal overflow.
 
 Passing fixture builds prove the engineering target and frozen Web package. A
 formal publish remains blocked until an operator creates and reads back the
-approved live source, target asset, Document_key, and build records, and resolves
-the external PDF's JBP-3000A title mismatch. Hello-Docs can then create and
-review the frozen `docs/publish/**` snapshot PR.
+approved live source, target asset, Document_key, and build records. The source
+association must preserve the verified JBP-3600A identity and source hash; the
+external JBP-3000A filename is naming debt, not a reason to repeat a version
+comparison or replace the current published content. Hello-Docs can then create
+and review the frozen `docs/publish/**` snapshot PR.
 
 ## Latest-main integration (2026-09-06)
 
