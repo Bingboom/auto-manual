@@ -30,6 +30,10 @@ from tools.web_presentation import (
     restore_web_figures_after_pandoc,
     restore_web_inline_controls_after_pandoc,
 )
+from tools.web_language_navigation import (
+    protect_web_language_navigation_for_pandoc,
+    restore_web_language_navigation_after_pandoc,
+)
 
 
 MYST_COMPATIBLE_WRITER = "commonmark_x+pipe_tables+yaml_metadata_block-fenced_divs-bracketed_spans-attributes"
@@ -180,6 +184,7 @@ def export_markdown_from_bundle(
     protected_callouts: dict[str, ManualIR | str] = {}
     protected_figures: dict[str, str] = {}
     protected_inline_controls: dict[str, str] = {}
+    protected_language_navigation: dict[str, str] = {}
     temporary_input: tempfile.TemporaryDirectory[str] | None = None
     if presentation_profile == WEB_PRESENTATION_PROFILE:
         document_ir_path = bundle_html.parent / PathSegments.MANUAL_IR_JSON
@@ -203,7 +208,15 @@ def export_markdown_from_bundle(
         protected_html, protected_inline_controls = protect_web_inline_controls_for_pandoc(
             protected_html
         )
-        if protected_figures or protected_callouts or protected_inline_controls:
+        protected_html, protected_language_navigation = (
+            protect_web_language_navigation_for_pandoc(protected_html)
+        )
+        if (
+            protected_figures
+            or protected_callouts
+            or protected_inline_controls
+            or protected_language_navigation
+        ):
             temporary_input = tempfile.TemporaryDirectory(
                 prefix="auto-manual-web-pandoc-",
                 dir=bundle_html.parent,
@@ -230,8 +243,17 @@ def export_markdown_from_bundle(
     finally:
         if temporary_input is not None:
             temporary_input.cleanup()
-    if protected_figures or protected_callouts or protected_inline_controls:
+    if (
+        protected_figures
+        or protected_callouts
+        or protected_inline_controls
+        or protected_language_navigation
+    ):
         markdown_text = out_path.read_text(encoding="utf-8")
+        markdown_text = restore_web_language_navigation_after_pandoc(
+            markdown_text,
+            protected_language_navigation,
+        )
         markdown_text = restore_web_figures_after_pandoc(
             markdown_text,
             protected_figures,

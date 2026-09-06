@@ -9,6 +9,7 @@ from tools.utils.path_utils import PathSegments, get_paths
 WEB_STYLESHEET_NAME = "web_manual.css"
 WEB_STYLESHEET_PARTS = (
     WEB_STYLESHEET_NAME,
+    "web_language_navigation.css",
     "web_fcc_components.css",
     "web_inbox_components.css",
     "web_symbols_fcc_components.css",
@@ -22,10 +23,8 @@ def copy_web_stylesheet(destination_dir: Path) -> Path:
     sources = [contracts_dir / name for name in WEB_STYLESHEET_PARTS]
     missing = [source for source in sources if not source.is_file()]
     if missing:
-        raise RuntimeError(
-            "web manual stylesheet is missing: "
-            + ", ".join(str(source) for source in missing)
-        )
+        names = ", ".join(str(source) for source in missing)
+        raise RuntimeError(f"web manual stylesheet is missing: {names}")
     static_dir = destination_dir / PathSegments.STATIC
     static_dir.mkdir(parents=True, exist_ok=True)
     destination = static_dir / WEB_STYLESHEET_NAME

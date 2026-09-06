@@ -43,6 +43,7 @@ class LanguageRegistryTest(unittest.TestCase):
         for spec in specs:
             with self.subTest(language=spec.code):
                 self.assertTrue(spec.display_name)
+                self.assertTrue(spec.native_name)
                 self.assertTrue(spec.template_directory)
                 self.assertIn(spec.code, spec.aliases)
                 self.assertTrue(spec.column_suffixes)
@@ -55,6 +56,13 @@ class LanguageRegistryTest(unittest.TestCase):
                     self.assertIn(table_name, lang_registry.CORE_TABLE_NAMES)
                     self.assertTrue(columns)
                     self.assertEqual(len(columns), len(set(columns)))
+
+        for code, pack in lang_registry.IDML_LANGUAGE_PACKS.items():
+            with self.subTest(native_name=code):
+                self.assertEqual(
+                    lang_registry.LANGUAGE_BY_CODE[code].native_name,
+                    pack.toc_label,
+                )
 
     def test_table_schema_language_columns_match_registry(self) -> None:
         language_column_patterns = {

@@ -44,6 +44,7 @@ fake = replace(
     status_word_column="xx",
     spec_title_column="title_xx",
     display_name="Fake Language",
+    native_name="Fake Language",
     template_directory="page_shared/xx",
 )
 

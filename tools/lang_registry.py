@@ -33,6 +33,7 @@ class LanguageSpec:
     status_word_column: str
     spec_title_column: str | None
     display_name: str
+    native_name: str
     template_directory: str
     separator: str
 
@@ -82,6 +83,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="en",
         spec_title_column="title_en",
         display_name="English",
+        native_name="English",
         template_directory="page_shared/en",
         separator=": ",
     ),
@@ -103,6 +105,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="zh",
         spec_title_column="title_zh",
         display_name="Chinese",
+        native_name="中文",
         template_directory="page_zh",
         separator=": ",
     ),
@@ -124,6 +127,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="jp",
         spec_title_column="title_jp",
         display_name="Japanese",
+        native_name="日本語",
         template_directory="page_jp",
         separator="：",
     ),
@@ -144,6 +148,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="fr",
         spec_title_column="title_fr",
         display_name="French",
+        native_name="Français",
         template_directory="page_shared/fr",
         separator=" : ",
     ),
@@ -164,6 +169,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="es",
         spec_title_column="title_es",
         display_name="Spanish",
+        native_name="Español",
         template_directory="page_shared/es",
         separator=": ",
     ),
@@ -196,6 +202,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="pt-BR",
         spec_title_column=None,
         display_name="Portuguese (Brazil)",
+        native_name="Português (Brasil)",
         template_directory="page_shared/pt-BR",
         separator=": ",
     ),
@@ -216,6 +223,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="de",
         spec_title_column="title_de",
         display_name="German",
+        native_name="Deutsch",
         template_directory="page_shared/de",
         separator=": ",
     ),
@@ -236,6 +244,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="it",
         spec_title_column="title_it",
         display_name="Italian",
+        native_name="Italiano",
         template_directory="page_shared/it",
         separator=": ",
     ),
@@ -256,6 +265,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="uk",
         spec_title_column="title_uk",
         display_name="Ukrainian",
+        native_name="Українська",
         template_directory="page_shared/uk",
         separator=": ",
     ),
@@ -276,6 +286,7 @@ LANGUAGE_REGISTRY = (
         status_word_column="ko",
         spec_title_column="title_ko",
         display_name="Korean",
+        native_name="한국어",
         template_directory="page_shared/ko",
         separator=": ",
     ),
