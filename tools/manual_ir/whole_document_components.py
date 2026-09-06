@@ -295,11 +295,16 @@ def discover_registered_components(
             source_path=source_path,
             language=language,
             error_type=ValueError,
+            require_tip=False,
         )
         images = parsed.inbox_table.select("img[src]")
         claim = ComponentClaim(
             spec=parsed.spec,
-            owned_nodes=(parsed.inbox_table, parsed.tip_table),
+            owned_nodes=tuple(
+                node
+                for node in (parsed.inbox_table, parsed.tip_table)
+                if node is not None
+            ),
             asset_tags=tuple(
                 (asset.role, image)
                 for asset, image in zip(parsed.spec.assets, images, strict=True)

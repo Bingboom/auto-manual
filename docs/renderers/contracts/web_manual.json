@@ -21,6 +21,10 @@
     {
       "model": "JE-1000F",
       "region": "EU"
+    },
+    {
+      "model": "JBP-3600A",
+      "region": "EU"
     }
   ],
   "preface": {

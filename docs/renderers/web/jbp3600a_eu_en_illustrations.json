@@ -1,0 +1,67 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JBP-3600A",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+  "source_pdf_name": "hgXiHot5Ow.ai",
+  "recipe": "data/asset_recipes/manual_jbp3600a_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": ["jbp3600a_front_controls.png", "jbp3600a_left_side_ports.png"],
+      "path": "assets/jbp3600a_eu_en/overview.png",
+      "sha256": "5a72ce9c7bb2cafb17bfdd02e349601bc9cdc0d0840ae0ae7faf5c6ad39bc972",
+      "source_page": 4,
+      "bbox_pt": [27, 279, 342, 486]
+    },
+    {
+      "replaces": ["jbp3600a_lcd_screen.png"],
+      "path": "assets/jbp3600a_eu_en/lcd.png",
+      "sha256": "99ebd2c47426a2d2d8929643534e65774afc717474b371def0d80a36a8f5cf61",
+      "source_page": 5,
+      "bbox_pt": [27, 55, 342, 174]
+    },
+    {
+      "replaces": ["jbp3600a_power_control.png"],
+      "path": "assets/jbp3600a_eu_en/power.png",
+      "sha256": "cac2944fb3d3189b1b5e400031343461fc0e3dc7c178d85a2383bc006fb30f1a",
+      "source_page": 5,
+      "bbox_pt": [27, 202, 342, 354]
+    },
+    {
+      "replaces": ["jbp3600a_lcd_control.png"],
+      "path": "assets/jbp3600a_eu_en/lcd_control.png",
+      "sha256": "c9faba9de405cb0960918841b7aef59fe8cdd7746e4715a2b56c02b43bc64a2b",
+      "source_page": 5,
+      "bbox_pt": [27, 357, 342, 495]
+    },
+    {
+      "replaces": ["jbp3600a_clearance.png"],
+      "path": "assets/jbp3600a_eu_en/clearance.png",
+      "sha256": "5501e619ed381e57f62aa570cc65a99b0c69148663a1d0eaf778edcfc701e3a7",
+      "source_page": 6,
+      "bbox_pt": [27, 280, 342, 495]
+    },
+    {
+      "replaces": ["jbp3600a_stacking_locking.png"],
+      "path": "assets/jbp3600a_eu_en/stacking_locking.png",
+      "sha256": "55c449da0da26e4224e3f3d2ab9964180618a6179d1eb9d8d9c37351569f892f",
+      "source_page": 7,
+      "bbox_pt": [27, 10, 342, 495]
+    },
+    {
+      "replaces": ["jbp3600a_ac_wall.png"],
+      "path": "assets/jbp3600a_eu_en/ac_charging.png",
+      "sha256": "d20b1c0b5c927514f698b41d41e37d4e675bbb78ac0846994b636f6b031748d8",
+      "source_page": 8,
+      "bbox_pt": [27, 105, 342, 274]
+    },
+    {
+      "replaces": ["jbp3600a_solar.png"],
+      "path": "assets/jbp3600a_eu_en/solar_charging.png",
+      "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
+      "source_page": 8,
+      "bbox_pt": [27, 318, 342, 498]
+    }
+  ]
+}

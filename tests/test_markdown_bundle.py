@@ -211,6 +211,7 @@ class MarkdownBundleTests(unittest.TestCase):
         with TemporaryDirectory() as td:
             out_dir = Path(td) / "md"
             out_dir.mkdir(parents=True)
+            (out_dir / "assets").mkdir()
             bundle_html = out_dir / "manual_bundle.html"
             bundle_html.write_text("<html></html>", encoding="utf-8")
             out_path = out_dir / "manual_demo.md"
@@ -252,6 +253,9 @@ class MarkdownBundleTests(unittest.TestCase):
                 )
 
             self.assertEqual("web", build_html.call_args.kwargs["presentation_profile"])
+            conf_text = (out_dir / "conf.py").read_text(encoding="utf-8")
+            self.assertIn('target = Path(app.outdir) / "assets"', conf_text)
+            self.assertIn('app.connect("build-finished", _copy_packaged_assets)', conf_text)
 
 
 if __name__ == "__main__":

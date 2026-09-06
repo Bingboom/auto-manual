@@ -18,19 +18,26 @@ from tools.manual_ir.web_source import make_web_source
 
 def inbox_payload(source: InboxHtmlSource) -> dict:
     """Validate complete row geometry without changing other source adapters."""
-    for table, width in ((source.inbox_table, 3), (source.tip_table, 2)):
+    tables = [(source.inbox_table, 3)]
+    if source.tip_table is not None:
+        tables.append((source.tip_table, 2))
+    for table, width in tables:
         rows = table.find_all("tr")
         cells = rows[0].find_all(["td", "th"], recursive=False) if len(rows) == 1 else []
         if (table.find("table") or len(rows) != 1 or len(cells) != width
                 or any(str(cell.get(attr, "1")) != "1" for cell in cells
                        for attr in ("rowspan", "colspan"))):
             raise ValueError(f"{source.spec.source_ref}: Inbox requires complete unspanned card/tip rows")
-    nodes = (source.heading, source.inbox_table, source.tip_table)
+    nodes = tuple(
+        node
+        for node in (source.heading, source.inbox_table, source.tip_table)
+        if node is not None
+    )
     return {
         "component_spec": source.spec.to_dict(),
         "heading_html": str(source.heading),
         "inbox_html": str(source.inbox_table),
-        "tip_html": str(source.tip_table),
+        "tip_html": str(source.tip_table or ""),
         "markup_assets": [{"src": str(image["src"])} for node in nodes
                           for image in node.select("img[src]") if image["src"]],
     }
@@ -42,7 +49,7 @@ def load_web_inbox_source(
 ) -> ManualSource:
     source = parse_inbox_html(
         BeautifulSoup(html, "html.parser"), source_path=source_path,
-        language=language, error_type=ValueError,
+        language=language, error_type=ValueError, require_tip=False,
     )
     registry = load_component_registry()
     return make_web_source(
@@ -72,6 +79,7 @@ def decode_inbox_payload(block: ManualBlock, *, source_path: Path, language: str
     )
     source = parse_inbox_html(
         soup, source_path=source_path, language=language, error_type=ValueError,
+        require_tip=False,
     )
     if value_sha256(inbox_payload(source)) != value_sha256(payload):
         raise ValueError(f"{block.source_ref}: Inbox semantics/assets do not match retained markup")

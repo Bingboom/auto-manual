@@ -155,7 +155,13 @@ def load_spec_annotations(data_root: Path, model: str, region: str,
     return out
 
 
-def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str, str]], list[dict]]:
+def load_symbols_rows(
+    data_root: Path,
+    lang: str = "en",
+    *,
+    model: str | None = None,
+    region: str | None = None,
+) -> tuple[list[tuple[str, str]], list[dict]]:
     """symbols_blocks.csv -> localized (signal rows [label, meaning], icon rows)."""
     path = data_root / "symbols_blocks.csv"
     signals: list[tuple[str, str]] = []
@@ -170,6 +176,28 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
         ]
     rows.sort(key=lambda r: float(r.get("order") or 0))
     for r in rows:
+        models = {
+            token.strip().casefold()
+            for token in re.split(r"[,;|]", r.get("Model") or "")
+            if token.strip()
+        }
+        if models and (
+            model is None
+            or (model.casefold() not in models and "all" not in models)
+        ):
+            continue
+        markets = {
+            token.strip().casefold()
+            for token in re.split(r"[,;|]", r.get("Market") or "")
+            if token.strip()
+        }
+        if (
+            region
+            and markets
+            and region.casefold() not in markets
+            and not markets & {"all", "global"}
+        ):
+            continue
         # Symbols retain their single historical suffix, unlike the other loaders.
         text = first_text(r, (text_col,), fallback_columns=("text_en",))
         if r.get("block_type") == "signal_row":
@@ -177,6 +205,8 @@ def load_symbols_rows(data_root: Path, lang: str = "en") -> tuple[list[tuple[str
                 label = first_text(r, (label_col,), fallback_columns=("label_en",))
                 signals.append((label, text))
         elif r.get("block_type") == "table_row":
+            if lang != "en" and not (r.get(text_col) or "").strip():
+                continue
             icons.append({
                 "symbol_key": (r.get("symbol_key") or "").strip(),
                 "order": (r.get("order") or "").strip(),

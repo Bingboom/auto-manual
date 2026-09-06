@@ -15,7 +15,7 @@ class InboxHtmlSource:
     spec: ComponentSpec
     heading: Tag
     inbox_table: Tag
-    tip_table: Tag
+    tip_table: Tag | None
 
 
 def _next_tag_sibling(tag: Tag) -> Tag | None:
@@ -46,6 +46,7 @@ def parse_inbox_html(
     source_path: Path,
     language: str,
     error_type: type[Exception],
+    require_tip: bool = True,
 ) -> InboxHtmlSource:
     heading = soup.find("h1")
     if not isinstance(heading, Tag):
@@ -59,11 +60,16 @@ def parse_inbox_html(
             f"{source_path}: in-the-box table must contain one row with three items"
         )
 
-    tip_table = _next_tag_sibling(inbox_table)
-    if not isinstance(tip_table, Tag) or tip_table.name != "table":
-        raise error_type(f"{source_path}: in-the-box grid is missing its tip table")
-    tip_rows = _table_rows(tip_table)
-    if len(tip_rows) != 1 or len(tip_rows[0]) != 2:
+    candidate_tip = _next_tag_sibling(inbox_table)
+    tip_table = (
+        candidate_tip
+        if isinstance(candidate_tip, Tag) and candidate_tip.name == "table"
+        else None
+    )
+    if require_tip and tip_table is None:
+        raise error_type(f"{source_path}: in-the-box page is missing its tip table")
+    tip_rows = _table_rows(tip_table) if tip_table is not None else []
+    if tip_table is not None and (len(tip_rows) != 1 or len(tip_rows[0]) != 2):
         raise error_type(
             f"{source_path}: in-the-box tip must contain one label cell and one body cell"
         )
@@ -84,9 +90,8 @@ def parse_inbox_html(
             }
         )
 
-    tip_label_cell, tip_body_cell = tip_rows[0]
-    tip_label = tip_label_cell.get_text(" ", strip=True)
-    tip_body = tip_body_cell.get_text(" ", strip=True)
+    tip_label = tip_rows[0][0].get_text(" ", strip=True) if tip_rows else ""
+    tip_body = tip_rows[0][1].get_text(" ", strip=True) if tip_rows else ""
     try:
         spec = inbox_component_spec(
             accessibility_label=heading.get_text(" ", strip=True),
@@ -95,6 +100,7 @@ def parse_inbox_html(
             tip_body=tip_body,
             source_ref=source_path.as_posix(),
             language=language,
+            require_tip=tip_table is not None,
         )
     except Exception as exc:
         raise error_type(f"{source_path}: {exc}") from exc
