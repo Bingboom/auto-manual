@@ -36,8 +36,26 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.temp = tempfile.TemporaryDirectory()
         cls.staging = Path(cls.temp.name) / "staging"
+        fake_bin = Path(cls.temp.name) / "bin"
+        fake_bin.mkdir()
+        fake_pandoc = fake_bin / "pandoc"
+        fake_pandoc.write_text(
+            "#!/usr/bin/env python3\n"
+            "from pathlib import Path\n"
+            "import sys\n"
+            "if '--list-output-formats' in sys.argv:\n"
+            "    print('myst')\n"
+            "    raise SystemExit(0)\n"
+            "source = Path(sys.argv[1])\n"
+            "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
+            "text = source.read_text(encoding='utf-8')\n"
+            "target.write_text(text.replace('–', '--').replace('—', '---'), encoding='utf-8')\n",
+            encoding="utf-8",
+        )
+        fake_pandoc.chmod(0o755)
         env = dict(os.environ)
         env["AUTO_MANUAL_PRESENTATION_PROFILE"] = "web"
+        env["PATH"] = str(fake_bin) + os.pathsep + env.get("PATH", "")
         result = subprocess.run(
             [
                 sys.executable,
