@@ -45,6 +45,26 @@ FIVE_CARD_HTML = (
 
 
 class WebInboxIRTests(unittest.TestCase):
+    def test_three_card_source_without_tip_is_a_complete_component(self) -> None:
+        from tools.manual_ir.web_inbox import load_web_inbox_source
+        from tools.web_inbox_component import render_inbox_ir
+
+        html = HTML.split("\n<table><tbody><tr><td>TIP", 1)[0] + '<p id="after">After</p>'
+        source = load_web_inbox_source(
+            html,
+            source_path=Path("box_contents_en.rst"),
+            language="en",
+            model="JBP-3600A",
+            region="EU",
+        )
+        result = render_inbox_ir(build_manual_ir_from_source(source))
+        soup = BeautifulSoup(result, "html.parser")
+
+        self.assertEqual(3, len(soup.select(".hb-inbox-card")))
+        self.assertIsNone(soup.select_one(".hb-inbox-tip"))
+        spec = source.pages[0].blocks[0][1]["component_spec"]
+        self.assertEqual("", spec["slots"][-1]["content"])
+
     def test_five_card_variant_round_trips_public_ir_and_reflows_on_web(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source
         from tools.web_inbox_component import render_inbox_ir
@@ -72,6 +92,19 @@ class WebInboxIRTests(unittest.TestCase):
             {f"item-{index}.svg" for index in range(1, 6)},
             set(ir.asset_refs),
         )
+
+    def test_five_card_source_without_tip_preserves_both_contract_extensions(self) -> None:
+        from tools.manual_ir.web_inbox import load_web_inbox_source
+        from tools.web_inbox_component import render_inbox_ir
+
+        html = FIVE_CARD_HTML.split('<table><tbody><tr><td>NOTE', 1)[0]
+        source = load_web_inbox_source(
+            html, source_path=Path("box_contents_en.rst"), language="en",
+            model="JS-100I", region="EU",
+        )
+        soup = BeautifulSoup(render_inbox_ir(build_manual_ir_from_source(source)), "html.parser")
+        self.assertEqual(5, len(soup.select(".hb-inbox-card")))
+        self.assertIsNone(soup.select_one(".hb-inbox-tip"))
 
     def test_real_rst_entrypoint_assembles_ir_for_three_locales(self) -> None:
         from tests.test_web_presentation import _web_fragment

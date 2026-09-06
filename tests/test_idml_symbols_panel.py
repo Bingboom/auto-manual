@@ -52,7 +52,9 @@ def _snapshot(density: str, language: str) -> dict[str, object]:
     )
     params = load_layout_params(ROOT / "data" / "layout_params.csv", overlays)
     writer = IdmlWriter(params)
-    signals, icons = load_symbols_rows(DATA_ROOT, language)
+    signals, icons = load_symbols_rows(
+        DATA_ROOT, language, model="JBP-2000B", region="EU"
+    )
     data = SymbolsPanelData(
         title=TITLES[language],
         signal_headers=HEADERS[language],
@@ -270,7 +272,9 @@ class SymbolsPanelTests(unittest.TestCase):
             (ROOT / "data" / "layout_params.idml-compact.csv",),
         )
         writer = IdmlWriter(params)
-        signals, icons = load_symbols_rows(DATA_ROOT, "en")
+        signals, icons = load_symbols_rows(
+            DATA_ROOT, "en", model="JBP-2000B", region="EU"
+        )
         rendered = SymbolsPanel(
             writer,
             sid="st_symbols_contract",
