@@ -52,7 +52,9 @@ component adapter、capability 和边界记录。本文仍是四端维护入口�
 `component_registry.yaml` 当前使用 `component-registry/v1`。它不取代
 `manual_style.yaml`：前者约束“一个具体组件实例带什么语义内容并调用哪个 adapter”，
 后者约束“这个语义样式在四端由谁实现、当前是否对齐”。两者以同一个 `HB-*` style ID、
-variant、capability 和 token role 做机器校验，不能各自维护一套组件分类。
+variant、capability 和 token role 做机器校验，不能各自维护一套组件分类。若某个 variant
+只适用于部分 renderer，`variant_adapters` 必须把四端逐项声明为 `rendered`、
+`projection-only` 或 `not-applicable`；不能继承组件级 capability 后假称已支持。
 
 `manual_theme.yaml` 当前使用 `manual-theme/v1`。它把
 `component.callout`、`component.table.spec` 这类组件 token role 展开为
@@ -330,7 +332,7 @@ minima；紧凑表使用 `idml_trouble_extra_row_min_height` 和
 | 语义 | 语义 ID | 源写法 | Web | PDF | IDML | Word | 状态 |
 |---|---|---|---|---|---|---|---|
 | FCC 面板 | `HB-SPECIAL-FCC` | 流水线 | `.hb-fcc-composition` | `HBFccBlock` @ `components_special_pages` | `HB Rounded Panel` + `无表头表格` | `.hb-fcc-word-table` 双栏活文本 | **aligned** |
-| 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition` | `HBInBoxThree` | `Item List Text` + `HB Inbox Card` + `无表头表格` | `.hb-inbox-word-table` 活图文卡 | **aligned** |
+| 开箱清单卡 | `HB-SPECIAL-INBOX` | 流水线 | `.hb-inbox-composition`（三卡/可变卡） | `HBInBoxThree`（仅三卡） | `Item List Text` + `HB Inbox Card` + `无表头表格`（仅三卡） | `.hb-inbox-word-table` 活图文卡（仅三卡） | **aligned** |
 | 产品概览 | `HB-SPECIAL-OVERVIEW` | 流水线 | `.hb-annotated-figure` | `HBOverviewPanel` | `HB Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 操作面板 | `HB-SPECIAL-OPERATION` | 流水线 | `.hb-operation-figure` | `HBOperationPanel` | `oppanel` + `HB Operation Row Label`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | App 设置 | `HB-SPECIAL-APP` | 流水线 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | `HBAppStep`、`HBAppAsset`、`HBAppNotice` | `HB Body` / `HB Callout Label` / `HB Callout Body` + `HB Rounded Panel` | 经 HTML 转换 | **aligned** |
@@ -623,7 +625,7 @@ IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽�
 
 FCC 的单一语义实例是 `HB-SPECIAL-FCC` ComponentSpec：它保存无障碍标签、开场文案、按源顺序排列的段落/列表、逻辑分栏点和 `compliance_mark` 资产角色；资产实例只引用注册表语义键 `mark/fcc`，各 renderer adapter 再解析自己的 PDF/PNG 路径。Web、LaTeX、IDML、Word 分别消费自己的适配器；两栏宽度、固定页坐标、DOCX 表格属性和 CSS 断点不进入 ComponentSpec。Web 只渲染审批过的浅灰 FCC 外框，导航里的 `FCC` H1 保留给目录和无障碍技术但视觉隐藏，不合成黑色标题条；外框继续服从 §8.1 的通栏等宽契约。源 payload 先类型化为 ComponentSpec；IDML/LaTeX 再从语义 block 重建自己的结构，不保留或回放旧双文本 payload。
 
-开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec：它固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label，并把相邻 TIP 的 label/body 纳入同一实例。Web adapter 输出等宽三卡和响应式 tip；LaTeX adapter 继续投影 `HBInBoxThree` 六个实参；IDML adapter 保留批准的绝对坐标卡片 composer；Word adapter 输出三列活图片/活文本表格和 16/84 tip 表。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、严格三卡以及相邻 TIP label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
+开箱清单的单一语义实例是 `HB-SPECIAL-INBOX` ComponentSpec。兼容变体 `three-card-responsive` 固定保存三张有序卡，每张卡包含序号、独立 `card_N_art` 资产角色、可访问 alt 和可编辑本地化 label；`responsive-card-grid` 保存任意非空有序卡组，按顺序复用可重复的 `card_art` 资产角色。两种变体都把相邻 TIP/NOTE 的 label/body 纳入同一实例。Web adapter 支持两种变体：三卡继续等宽，动态卡片在桌面自适应、平板三列、手机单列。LaTeX 的 `HBInBoxThree`、IDML 绝对坐标 composer 和 Word 三列表格只对旧三卡变体声明 `rendered`；动态变体在注册表中逐端标为 `not-applicable`，调用这些 adapter 会显式失败，不假称完成印刷排版。卡片宽度、图高、断点、IDML 坐标和 DOCX 单元格属性属于各自 adapter，不进入 ComponentSpec。source projector 必须显式提供源 H1、非空卡片组以及相邻 TIP/NOTE label/body；缺任一项即失败，不再保留 partial-list 或页面形状 fallback。
 
 产品概览的单一语义实例是 `HB-SPECIAL-OVERVIEW` ComponentSpec：它保存 H1 无障碍标签、`front` / `right` 两个有序视图、`front_art` / `right_art` 资产角色，以及 15 个稳定 callout 的 ID、可编辑 label/body 和源引用。JE-1000F/US 的百分比 Web 坐标、固定页 IDML 坐标、16 条引线顺序、composite locale/source mapping 与 `web_replace_key` 统一登记在版本化 [`overview_component_instances.json`](overview_component_instances.json)，不进入语义实例。新整本 IR 按实际 `(model, region)` 解析一次实例，并把实例与 SHA-256 冻结到 metadata；冷重放不再打开实例注册表。Web adapter 支持 `annotated-live` 和 `approved-composite`，但前者只是语义 fallback：对声明 finished-figure coverage 的槽位，无字底图加 HTML/SVG 文字或引线仍是 `editable-fallback` 债务，只有 locale-matched `finished-panel` / `approved-composite` 能通过最终准入。LaTeX、IDML、Word 分别消费自己的 projection；缺失、未知、目标不匹配或 hash 被篡改的实例都会失败。
 
@@ -1087,7 +1089,7 @@ IDML 的可见 LCD 圆角外壳高度必须等于表格行高之和，最后一�
         - …
 ```
 
-**L2/L3** source projector 把 H1、三列图文表和紧随其后的 TIP 表组合为一个 `HB-SPECIAL-INBOX` ComponentSpec；Web adapter 再输出 `.hb-inbox-composition > .hb-inbox-grid`：三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条（版面见 §5）。projector 以显式 H1、三卡和 TIP 合同 fail-closed，不再从不完整列表或页面邻接形状补造实例。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
+**L2/L3** source projector 把 H1、单行非空图文表和紧随其后的 TIP/NOTE 表组合为一个 `HB-SPECIAL-INBOX` ComponentSpec；三列源表保持 `three-card-responsive` 与原 `card_1_art`–`card_3_art` 序列，其他项数进入 `responsive-card-grid` 与有序重复 `card_art`。Web adapter 再输出 `.hb-inbox-composition > .hb-inbox-grid`：有序圆角卡 + 数字角标 + 通栏提示条（版面见 §5）。projector 以显式 H1、非空卡片组和提示合同 fail-closed，不再从不完整列表或页面邻接形状补造实例。**md 无等价写法**（角标与卡片组版是流水线重组的产物）。
 
 ### 10.11 例外：模板自带双分支的页（安全页、FCC）
 

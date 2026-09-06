@@ -247,6 +247,38 @@ def validate_component_registry(registry: Mapping[str, Any]) -> list[str]:
             key = binding.get("key")
             if key not in REGISTERED_ADAPTER_KEYS[renderer]:
                 issues.append(f"{adapter_prefix}.key is unregistered: {key!r}")
+        variant_adapters = raw_component.get("variant_adapters", {})
+        if not isinstance(variant_adapters, Mapping):
+            issues.append(f"{prefix}.variant_adapters must be a mapping")
+            continue
+        for variant, raw_bindings in variant_adapters.items():
+            variant_prefix = f"{prefix}.variant_adapters.{variant}"
+            if variant not in (variants or []):
+                issues.append(f"{variant_prefix}: variant is not registered")
+            if not isinstance(raw_bindings, Mapping):
+                issues.append(f"{variant_prefix} must be a mapping")
+                continue
+            unknown_renderers = set(raw_bindings) - set(RENDERERS)
+            if unknown_renderers:
+                issues.append(
+                    f"{variant_prefix} has unknown renderers {sorted(unknown_renderers)!r}"
+                )
+            if set(raw_bindings) != set(RENDERERS):
+                issues.append(f"{variant_prefix} must declare every renderer")
+            for renderer in RENDERERS:
+                binding = raw_bindings.get(renderer)
+                binding_prefix = f"{variant_prefix}.{renderer}"
+                if not isinstance(binding, Mapping):
+                    issues.append(f"{binding_prefix} must be a mapping")
+                    continue
+                capability = binding.get("capability")
+                if capability not in CAPABILITIES:
+                    issues.append(
+                        f"{binding_prefix}.capability is invalid: {capability!r}"
+                    )
+                key = binding.get("key")
+                if key not in REGISTERED_ADAPTER_KEYS[renderer]:
+                    issues.append(f"{binding_prefix}.key is unregistered: {key!r}")
     return issues
 
 
@@ -418,7 +450,13 @@ def adapter_binding(
     require_valid_component_spec(spec, active_registry)
     if renderer not in RENDERERS:
         raise ComponentSpecError(f"unknown renderer {renderer!r}")
-    binding = active_registry["components"][spec.component_id]["adapters"][renderer]
+    definition = active_registry["components"][spec.component_id]
+    variant_bindings = definition.get("variant_adapters", {}).get(spec.variant)
+    binding = (
+        variant_bindings[renderer]
+        if isinstance(variant_bindings, Mapping)
+        else definition["adapters"][renderer]
+    )
     if binding["key"] not in REGISTERED_ADAPTER_KEYS[renderer]:
         raise ComponentSpecError(
             f"{spec.component_id}: unregistered {renderer} adapter {binding['key']!r}"

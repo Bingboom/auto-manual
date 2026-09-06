@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import fnmatch
 import re
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
@@ -255,8 +256,19 @@ def is_web_entry_page(
     source_path: Path,
     *,
     contract: dict[str, Any] | None = None,
+    entry_source_patterns: Sequence[str] | None = None,
 ) -> bool:
     data = contract or load_web_manual_contract()
+    if entry_source_patterns is not None:
+        patterns = [str(pattern).strip() for pattern in entry_source_patterns]
+        if not patterns or any(not pattern for pattern in patterns):
+            raise WebPresentationError(
+                "build.web_entry_source_patterns must contain non-empty patterns"
+            )
+        return should_include_web_page(source_path, contract=data) and any(
+            fnmatch.fnmatch(source_path.stem.lower(), pattern.lower())
+            for pattern in patterns
+        )
     # The frozen figure target owns the preface convention. Other targets keep
     # the first included page selected by their source manifest.
     if not supports_preface_contract(source_path, data):

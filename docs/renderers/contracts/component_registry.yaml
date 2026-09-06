@@ -74,7 +74,7 @@ components:
   HB-SPECIAL-INBOX:
     style_id: HB-SPECIAL-INBOX
     source_kinds: [inbox]
-    variants: [three-card-responsive]
+    variants: [three-card-responsive, responsive-card-grid]
     slots:
       accessibility_label:
         required: true
@@ -89,15 +89,22 @@ components:
         required: true
         content_kinds: [rich_text]
     asset_roles:
-      card_1_art: {required: true, locale_policies: [shared]}
-      card_2_art: {required: true, locale_policies: [shared]}
-      card_3_art: {required: true, locale_policies: [shared]}
+      card_1_art: {required: false, locale_policies: [shared]}
+      card_2_art: {required: false, locale_policies: [shared]}
+      card_3_art: {required: false, locale_policies: [shared]}
+      card_art: {required: false, multiple: true, locale_policies: [shared]}
     token_roles: [component.special.inbox]
     adapters:
       web: {capability: rendered, key: hb_inbox}
       latex: {capability: rendered, key: hb_latex_inbox}
       idml: {capability: rendered, key: idml_inbox}
       word: {capability: rendered, key: word_inbox}
+    variant_adapters:
+      responsive-card-grid:
+        web: {capability: rendered, key: hb_inbox}
+        latex: {capability: not-applicable, key: hb_latex_inbox}
+        idml: {capability: not-applicable, key: idml_inbox}
+        word: {capability: not-applicable, key: word_inbox}
 
   HB-SPECIAL-OVERVIEW:
     style_id: HB-SPECIAL-OVERVIEW

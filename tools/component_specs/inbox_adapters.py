@@ -24,6 +24,11 @@ def _projection(spec: ComponentSpec, renderer: str) -> dict[str, Any]:
             f"{spec.component_id}: expected {renderer} adapter {expected!r}; "
             f"got {binding.get('key')!r}"
         )
+    if binding.get("capability") != "rendered":
+        raise ComponentSpecError(
+            f"{spec.component_id}: variant {spec.variant!r} is not rendered by "
+            f"the {renderer} adapter ({binding.get('capability')})"
+        )
     return inbox_semantic_projection(spec)
 
 
