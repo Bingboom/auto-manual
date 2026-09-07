@@ -1,0 +1,146 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JBP-3600A",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0"
+  },
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "published_revision": "V2.0-2026-08-04",
+    "published_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+    "source_artwork_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+    "source_list_record_id": "hgXiHot5Ow",
+    "audit_record": "code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md"
+  },
+  "engineering_content_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+  "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
+    "sha256": "68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",
+    "sha256": "b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4"
+  },
+  "files": [
+    {
+      "path": "phase2/Localized_Copy.csv",
+      "size": 9590,
+      "sha256": "841cc0c382a2dd52ac8b1fb528650532f1224c023ffa2cadbc401bdc4edbc457"
+    },
+    {
+      "path": "phase2/Manual_Copy_Source.csv",
+      "size": 3437,
+      "sha256": "276d5ce2fab4e7293d92f410a33c8d44cb0e7952384aba0fd9ee69720db12986"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 1460,
+      "sha256": "2c1927a127a96b854ab5b2836ea39f3aa15dcc45c0fab63f96266ad2e5f9d0df"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 3685,
+      "sha256": "9bb40057c5a2f473a3f3ff08836d5322d354651be461b6077478a509441caf3c"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 1171,
+      "sha256": "997ef993eefa80a3b3efe16e9ff605cd6a45f52090b226d1e5d1e5df3ff9391b"
+    },
+    {
+      "path": "phase2/Status_Words.csv",
+      "size": 296,
+      "sha256": "9b6946dc85e7a17b53b1a1384912c8e30c56b34a70723c92688c2a0fc30ee321"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 195,
+      "sha256": "84cc0a148eee66f2e2437c29a3dbf233496a4c84ebb565ff963a875f0adece80"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 509,
+      "sha256": "384b4f8f57d46ffd7c3be843fa3e81edac89950a7efca9c18f509f4a995bc306"
+    },
+    {
+      "path": "phase2/_attachments/symbols/10_do_not_dismantle_Ml7EbCjtYohuKAxWNDUc93UMnVc.png",
+      "size": 1580,
+      "sha256": "66c3df77e4f84cccad4b9f162798b181c007e89d3f0e9dd4fdf52c392827cbab"
+    },
+    {
+      "path": "phase2/_attachments/symbols/10_warning_triangle_RkOwbJ9j1oUHJgxFEx3cqhVynjb.png",
+      "size": 6055,
+      "sha256": "1c272a00fbd28d6562d4126040ba43e5747f6a6550878c4b13e05a5c28014577"
+    },
+    {
+      "path": "phase2/_attachments/symbols/20_no_open_flame_SAbnbxa6iohb2rxxk3PcEh8cnuf.png",
+      "size": 2101,
+      "sha256": "422379347e71e7827c3da380e421f2cb106da5d2f74781fc45782a2f86d493d2"
+    },
+    {
+      "path": "phase2/_attachments/symbols/20_read_manual_VK1Ab1MGIoOHdgx1rkUchOHRntb.png",
+      "size": 974,
+      "sha256": "d14506fa5a9d449039887db61a259f1841f1826de2f190f54063f96195b955f5"
+    },
+    {
+      "path": "phase2/_attachments/symbols/30_keep_away_from_children_Nc5NbV2kyoMaTSxvismcAlzbnlh.png",
+      "size": 1813,
+      "sha256": "e345b3278827691751b6beac9c8343c75ac7a98100618fbef1db73a27329b99d"
+    },
+    {
+      "path": "phase2/_attachments/symbols/40_li_ion_ZEcHbhY0Eo3XOExtXKCcbEVjnpe.png",
+      "size": 1946,
+      "sha256": "ea7766d417e962cf711bccf3de79d6f639602848ace780353cb329329d13cc91"
+    },
+    {
+      "path": "phase2/_attachments/symbols/50_weee_L9o3bcXq0oSsqdxSX86covnpnle.png",
+      "size": 1274,
+      "sha256": "eb094578bf165fa39399de1d957cc71a92191f2b0e7ed0a620885065ebedf8a3"
+    },
+    {
+      "path": "phase2/_attachments/symbols/70_weee2_VL7tbeJhHoy9wBxRZIdcygPBnmf.png",
+      "size": 3417,
+      "sha256": "7fb57972ebd1fb8bf82abc75d0d320ecaa9abc6544020f2374da2f1272a46171"
+    },
+    {
+      "path": "phase2/lcd_icons_blocks.csv",
+      "size": 937,
+      "sha256": "0846ca914775e63ce7adb3066053ba2c487c075a236fdb6989d8198a38fcf826"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 520,
+      "sha256": "edc6b13c4186310fd132e175d3e7368528af1827ab460a1e1ce0910374032c75"
+    },
+    {
+      "path": "phase2/row_key_mapping.csv",
+      "size": 3764,
+      "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 932,
+      "sha256": "f15101378c4fd7e1e7dfdffdd6dd8e487f27e4939be64917a5552354cf325361"
+    },
+    {
+      "path": "phase2/symbols_blocks.csv",
+      "size": 8788,
+      "sha256": "966c4802d6d78dc383cda753c6ca78c6980e9e1b0e5c444b57b194d60d655900"
+    },
+    {
+      "path": "phase2/troubleshooting_blocks.csv",
+      "size": 1490,
+      "sha256": "6e44243dd70a16785f2e20d5544a40fc038581e3bbb01ba1d0a90617e1f5483d"
+    },
+    {
+      "path": "phase2/web_composite_manifest.json",
+      "size": 116,
+      "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
+    }
+  ],
+  "files_inventory_sha256": "aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574",
+  "live_bitable_dependency": false
+}
