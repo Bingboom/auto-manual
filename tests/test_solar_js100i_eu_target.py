@@ -26,7 +26,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "config.solar-eu-en.yaml"
 MANIFEST = ROOT / "docs" / "manifests" / "manual_solar-eu-en.yaml"
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "js100i_eu_en_illustrations.json"
-DATA_ROOT = ROOT / "tests" / "fixtures" / "js100i_eu_en_phase2"
+SOURCE_ROOT = ROOT / "data" / "manual_sources" / "JS-100I" / "EU" / "en" / "2.0"
+DATA_ROOT = SOURCE_ROOT / "phase2"
+SOURCE_MANIFEST = SOURCE_ROOT / "source_manifest.json"
 SKELETON = ROOT / "docs" / "manifests" / "skeletons" / "solar-intl"
 PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "solar-eu-en.yaml"
 
@@ -82,7 +84,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
         )
         if result.returncode:
             raise AssertionError(
-                "JS-100I Web fixture build failed:\n"
+                "JS-100I formal Git-source build failed:\n"
                 f"stdout:\n{result.stdout}\n"
                 f"stderr:\n{result.stderr}"
             )
@@ -123,6 +125,26 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
         self.assertEqual([{"model": "JS-100I", "region": "EU"}], config["build"]["targets"])
         self.assertIn("safety_tips*", config["build"]["web_entry_source_patterns"])
         self.assertEqual(str(MANIFEST.relative_to(ROOT)), config["paths"]["page_manifest"])
+
+    def test_formal_source_manifest_pins_every_structured_data_file(self) -> None:
+        payload = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual("auto-manual-git-source-snapshot/v1", payload["schema_version"])
+        self.assertEqual(
+            ("JS-100I", "EU", "en", "2.0"),
+            tuple(payload["target"][field] for field in ("model", "region", "lang", "version")),
+        )
+        inventory: list[str] = []
+        for entry in payload["files"]:
+            source = SOURCE_ROOT / entry["path"]
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+            self.assertEqual(entry["sha256"], digest, entry["path"])
+            inventory.append(f"{digest}  {source.name}\n")
+        snapshot_digest = hashlib.sha256("".join(sorted(inventory)).encode()).hexdigest()
+        self.assertEqual(payload["build_input"]["snapshot_sha256"], snapshot_digest)
+        self.assertEqual(
+            "data/manual_sources/JS-100I/EU/en/2.0/phase2",
+            payload["build_input"]["data_root"],
+        )
 
     def test_build_starts_at_safety_and_has_no_power_station_only_chapters(self) -> None:
         self.assertEqual("manual-ir/v2", self.ir.schema_version)

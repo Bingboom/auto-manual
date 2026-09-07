@@ -1,6 +1,14 @@
 {
   "schema_version": "js100i-eu-formal-business-input-plan/v1",
-  "write_status": "blocked_until_operator_approves_the_numbered_batches_in_formal_business_input_review.md",
+  "write_status": "disabled_and_deferred_not_a_release_gate_no_online_writes_authorized_for_this_batch",
+  "release_gate": false,
+  "current_batch_policy": {
+    "purpose": "read_only_gap_evidence_for_optional_future_normalization",
+    "bitable_writes_allowed": false,
+    "build_queue_dispatch_allowed": false,
+    "published_link_writeback_allowed": false,
+    "formal_release_path": "Git frozen Web package -> Hello-Docs docs/publish/** PR -> Read the Docs"
+  },
   "target": {
     "model": "JS-100I",
     "region": "EU",
@@ -51,7 +59,7 @@
   },
   "phase_1_document_key": {
     "table_id": "tbltnkDIdwiDOP7d",
-    "operation": "create_one_then_read_back_formula",
+    "operation": "deferred_candidate_only_do_not_execute_in_current_release",
     "record": {
       "Model": [
         {
@@ -104,10 +112,10 @@
   },
   "phase_3_spec_master": {
     "table_id": "tblPUFJqt2uGGvTT",
-    "source_csv": "tests/fixtures/js100i_eu_en_phase2/Spec_Master.csv",
+    "source_csv": "data/manual_sources/JS-100I/EU/en/2.0/phase2/Spec_Master.csv",
     "source_csv_sha256": "782fad05b56735a28746497b4257cd0b81e65513d0be23425c3f74ec5e7b35bb",
     "common_fields": {
-      "Document_key_link": "resolve_from_phase_1",
+      "Document_key_link": null,
       "Page": "specifications",
       "Version": "1.0",
       "Is_Latest": "TRUE",
@@ -146,7 +154,7 @@
   },
   "phase_4_spec_notes": {
     "table_id": "tblgJCepw4JvbMbH",
-    "source_csv": "tests/fixtures/js100i_eu_en_phase2/Spec_Notes.csv",
+    "source_csv": "data/manual_sources/JS-100I/EU/en/2.0/phase2/Spec_Notes.csv",
     "source_csv_sha256": "ce46f0b5f17860a6b0114254b31cedc45f687a3fbf9a1eefee94969d44f92dbf",
     "schema_precondition": {
       "field_id": "fld1ydKpoS",
@@ -244,7 +252,7 @@
   },
   "phase_7_build_record": {
     "table_id": "tblbnRHjpJeCVTtj",
-    "operation": "create_only_after_source_and_asset_readback_and_after_shared_queue_routing_fix",
+    "operation": "omitted_from_current_release_deferred_candidate_only",
     "record": {
       "Document_Key": "resolve_from_phase_1",
       "Market_Group": [
@@ -269,6 +277,6 @@
       "Git_ref_check": "OK",
       "Document_ID_check": "OK"
     },
-    "known_blocker": "With Build_family=eu-merged, queue resolution currently selects config.eu.yaml instead of configs/config.solar-eu-en.yaml. The target-specific eu-en family is also rejected for Web Publish because include_lang_in_output_path=true. Do not create or trigger the row until a shared queue-routing fix is merged and mirrored."
+    "known_non_blocking_observation": "The online queue resolver does not currently select configs/config.solar-eu-en.yaml for this identity. The current release deliberately bypasses the online queue and uses the Git-only publish_branch_assembly path, so this observation is not a publication blocker."
   }
 }

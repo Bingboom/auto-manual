@@ -1,183 +1,161 @@
 # JS-100I EU English Web release readiness — 2026-09-06
 
-Status: engineering output revalidated on final main; exact business-input
-increments prepared; formal publication is blocked by approvals and one shared
-queue-routing defect. No live Base write, workflow dispatch, mirror PR, or
-production publication occurred in this run.
+Status: Git-traceable V2.0 Web package built and accepted locally from final
+engineering main. It is ready for the shared Hello-Docs `docs/publish/**`
+candidate. No online Base write, queue dispatch, Hello-Docs engineering edit,
+or production publication occurred in this target task.
 
-## Checklist
+## Release identity
 
-| Gate | Status | Evidence |
-| --- | --- | --- |
-| Final engineering base | Complete | `origin/main=9b356ecadfe355aae0eb474ef4c49bf168a01e4c` |
-| Current published source | Complete | Catalog `rec27BPMtc8kJl`; V2.0-2026-04-01; PDF English physical pages 4–12 |
-| PDF/master identity | Complete | PDF `cec27af…`; 10-page AI master `5d7ded6b…` |
-| Target structure/content | Complete on fixture | 9 IR pages, Safety Tips first, five-card Inbox, STC/BNPI notes, no LCD/UPS/App chapters |
-| Asset package | Complete offline | Two deterministic runs; 33 artifacts; 13/13 semantic exports match committed assets |
-| IR cold replay | Complete on fixture | Replays 9 fragments with `.rst`/`.csv` reads denied |
-| IR tamper rejection | Complete on fixture | Mutated packaged image rejected with `asset missing or changed` |
-| Real Sphinx HTML | Complete on fixture | Pandoc → Sphinx 8.2.3 with `-W`; no warning |
-| Final image URLs | Complete on fixture | 13/13 loaded over HTTP 200 from final Sphinx tree |
-| 1440×900 browser | Complete on fixture | 13 images, 0 broken, 0 image overflow, 0 page horizontal overflow, five Inbox columns |
-| 375×812 browser | Complete on fixture | 13 images, 0 broken, 0 image overflow, 0 page horizontal overflow, one Inbox column |
-| Live business input | Pending approval | Target records are all zero; exact additive plan prepared |
-| Queue target routing | Blocked | `eu-merged` selects generic `config.eu.yaml`; `eu-en` is rejected for Web Publish |
-| Review branch | Not started | `review/JS-100I-EU` does not exist |
-| Hello-Docs publish snapshot | Not started | No open `publish -> main` PR and no JS-100I path under `docs/publish/**` |
-| Formal URL/link readback | Not started | Must follow the generated snapshot PR and production-site verification |
+| Field | Value |
+| --- | --- |
+| Target | `JS-100I / EU / en` |
+| Product | Jackery SolarSaga 100 Air |
+| Version basis | Published manual `V2.0-2026-04-01`; release version `2.0` |
+| Engineering implementation base | `9b356ecadfe355aae0eb474ef4c49bf168a01e4c` |
+| Frozen-source Git ref | `50bdf3f56f72dac49f5489a9f69b93a4952fba94` |
+| Config | `configs/config.solar-eu-en.yaml` |
+| Structured copy | `docs/templates/page_solar/en/` |
+| Frozen structured-data input | `data/manual_sources/JS-100I/EU/en/2.0/phase2/` |
+| Structured-data snapshot SHA-256 | `190b63b33cc0c86002ad6d88dd8e7ca88962ee8350f8050c1e5748cc67ac515c` |
+| Published PDF SHA-256 | `cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596` |
+| Illustrator master SHA-256 | `5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a` |
+| Asset recipe SHA-256 | `45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14` |
+| Illustration manifest SHA-256 | `d2d63eac57d98272c6367a133b82a22d7831ce0d263867e458b79b039f700e52` |
 
-The fixture build is regression evidence only. It is not a formal live-source
-build and is not publication evidence.
+The current published V2.0 English manual is the content authority: its English
+body is physical pages 4–12. The Git-tracked `data/manual_sources` snapshot is
+the actual build input for this release and was validated against that
+authority. Its five CSV hashes and aggregate snapshot hash are pinned by
+`source_manifest.json`; this does not claim that any online source was
+synchronized.
 
-## Source and build evidence
+## Frozen target package
 
-The source of authority is the current published manual, not a historical
-comparison:
+The target handoff produced the exact release-root contract consumed by
+`tools/publish_branch_assembly.py`:
 
-- [Jackery SolarSaga 100 Air User Manual V2.0-2026-04-01](https://alidocs.dingtalk.com/i/nodes/lyQod3RxJK3XrMnMUONl9pAxJkb4Mw9r?utm_scene=team_space)
-- Catalog identity: JS-100I, 欧英规, English, PVT, `Is_latest=TRUE`, version
-  V2.0.
-- Published PDF SHA-256:
-  `cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596`.
-- `371JNuMVqZ.ai` SHA-256:
-  `5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a`.
+```text
+<release-root>/
+└── JS-100I/EU/en/
+    ├── latest/web/publish_meta.json
+    └── versions/2.0/web/
+        ├── md/
+        │   ├── conf.py
+        │   ├── index.md
+        │   ├── manual_js100i_eu_en.md
+        │   ├── _static/web_manual.css
+        │   └── assets/ir/<sha256>/<13 semantic images>
+        ├── html/index.html
+        └── release_input_manifest.json
+```
 
-Latest-main fixture outputs:
+Local handoff for this run:
+
+```text
+/tmp/auto-manual-web-release-js100i-formal-20260906.qvYe7v/releases
+```
+
+The release metadata uses schema `auto-manual-web-publish/v1`, identifies
+version `2.0`, carries the frozen-source Git ref above, points only inside
+the release root, and has an empty `queue_record_ids` array.
+
+Frozen output hashes:
 
 | Artifact | SHA-256 |
 | --- | --- |
-| `manual.ir.json` | `b49ee1b0da00418ee63a7440152192fcd2fa1720b8722dc0a235c0781a8ace6f` |
 | `manual_js100i_eu_en.md` | `5126285d0a34d91786ed7fe7084d376d7994cee2891946874e025fc12ef50dc9` |
-| final nested Sphinx HTML | `4f7bf8aac16d92c13f441bb17d5c09968814e32aa021071a096b235e3e683447` |
+| `manual.ir.json` | `eaa6cef4d8ca3da47dbd352b5033340d38ab5a9a225a488a57b408e22a1c5732` |
+| verification `html/index.html` | `ec4235f26d910abdd9a47cd62fc1a789e1d77bd93a16677a1884936c128a9780` |
+| verification nested manual HTML | `b611d2ba657a7d04330760a30c0d954d89fcd42c4d5e7c3acbc49ff8f38717e4` |
 
-The IR declares `manual-ir/v2` with projection
-`whole-document-components/v1`, target `(JS-100I, EU, en)`, 9 pages, and 13
-asset references.
+The package retains all 13 localized full-image illustrations with their
+English in-figure annotations. It does not contain PDF, DOCX, IDML, AI, ZIP,
+LaTeX, or other print/source artifacts.
 
-Commands used:
+## Acceptance results
+
+| Gate | Result |
+| --- | --- |
+| Target tests | 8/8 passed, including formal source-manifest hash pins |
+| Composition | 9 pages; Safety Tips first; five-card Inbox |
+| Semantics | STC/BNPI notes retained; no LCD/UPS/App chapters |
+| IR replay | Cold replay passed with `.rst`/`.csv` reads denied |
+| Asset integrity | Tampered image rejected; 13/13 refs packaged |
+| Direct target Sphinx | Sphinx 8.2.3 `-W` passed |
+| Shared assembler | 1 target, route `JS-100I/EU/md`, 51 files inventoried |
+| Assembled candidate Sphinx | Sphinx 8.2.3 `-W` passed |
+| Candidate assets | 13/13 present; no forbidden print/source file |
+| Root alias | `manual_js100i_eu_en.html` → canonical nested route |
+
+The earlier direct-target browser run passed at 1440×900 and 375×812 with all
+13 images loaded, zero image/page overflow, and five/one Inbox columns. The
+assembled candidate uses byte-identical manual Markdown and assets and passed
+the strict Sphinx rebuild. A second visual browser launch was unavailable only
+because the Mac was locked; the shared publishing task can repeat that visual
+check on the combined candidate before opening its PR.
+
+Commands used for the formal Git-only handoff:
 
 ```bash
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --config configs/config.solar-eu-en.yaml \
   --model JS-100I --region EU --lang en \
-  --data-root tests/fixtures/js100i_eu_en_phase2 \
-  --staging-root <temporary-directory>
+  --data-root data/manual_sources/JS-100I/EU/en/2.0/phase2 \
+  --staging-root <build-stage>
 python tools/readthedocs_source.py \
-  --build-root <temporary-directory>/docs/_build \
-  --output-dir <temporary-directory>/docs/_build/rtd \
-  --title "JS-100I Web Release Readiness"
+  --build-root <build-stage>/docs/_build \
+  --output-dir <build-stage>/docs/_build/rtd \
+  --title "Jackery SolarSaga 100 Air User Manual"
 python -m sphinx -W -b html \
-  <temporary-directory>/docs/_build/rtd <temporary-directory>/html
-python -m unittest tests.test_solar_js100i_eu_target -v
+  <build-stage>/docs/_build/rtd <build-stage>/html
+python tools/publish_branch_assembly.py \
+  --releases-root /tmp/auto-manual-web-release-js100i-formal-20260906.qvYe7v/releases \
+  --output-dir <independent-candidate>/docs/publish \
+  --title "Hello Docs Manual Library"
+python -m sphinx -W -b html \
+  <independent-candidate>/docs/publish/web <independent-candidate>/rtd-html
 ```
 
-The test command passed all 7 cases. It covers slot order, target identity,
-required copy, exact figure hashes, cold replay, and fail-closed art tampering.
-
-## Full image-URL acceptance
-
-The browser-loaded URLs are rooted at:
+The target-only assembled candidate for this run is:
 
 ```text
-/_static/manual-assets/JS-100I/EU/en/md/assets/ir/<sha256>/<filename>
+/tmp/hello-docs-js100i-formal-candidate-20260906.MpB3qm/docs/publish
 ```
 
-All thirteen target files returned HTTP 200 and had a non-zero
-`naturalWidth`: `inbox_panel.png`, `inbox_bag.png`, `inbox_cable.png`,
-`inbox_adapter.png`, `inbox_manual.png`, `product_views.png`,
-`unfold_steps_1_3.png`, `unfold_step_4.png`, `fold_steps.png`,
-`dc_connections.png`, `optional_connections.png`, `angle_and_device.png`, and
-`multifunctional_adapter.png`. The unrelated browser request for
-`/favicon.ico` returned 404 and is not a manual asset.
+Its `publish_manifest.json` SHA-256 is
+`4bb8aebbbc4dfd49e3ea2f94cc3afd89aa8c87d344b4377cbe2c7eebe7dda907`.
+The centralized publisher should use the release root, not this target-only
+candidate, so it can preserve existing Hello-Docs targets while assembling the
+shared range.
 
-This confirms the shared packaged-asset copy fix is active; no temporary copy
-workaround was used.
+## Formal publication route
 
-## Live business-input readiness
-
-The exact additive plan and approval wording are in:
-
-- [`../../reports/source_intake/JS-100I_EU/formal_business_input_plan.json`](../../reports/source_intake/JS-100I_EU/formal_business_input_plan.json)
-- [`../../reports/source_intake/JS-100I_EU/formal_business_input_review.md`](../../reports/source_intake/JS-100I_EU/formal_business_input_review.md)
-
-The live product and EU region dimensions already exist, but Document_key,
-specification rows, notes, the three new asset-table layers, and the build row
-do not. The plan contains:
-
-- 1 Document_key record;
-- 18 new row-key dimensions, reusing 3 existing English keys;
-- 21 specification rows and 0 page placeholders;
-- 3 specification notes after the `JS-100I` Model option is promoted;
-- 1 asset source with 3 hash-bound attachments;
-- 13 asset definitions and 33 export records;
-- 1 inert Web Publish build row, created only after routing is fixed.
-
-The asset package was reproduced twice from the committed recipe. Both runs
-gave package SHA-256
-`d3f56e541c5522548066991026dd375925264a41678884b540c6a8786d726a1b`
-and manifest SHA-256
-`87c9be492c71d172aeb559d89650e269b78484172b5986d09d1d8a7cf8e7c7f1`.
-
-## Shared queue-routing blocker
-
-The target cannot safely be placed into the current Web Publish lane yet.
-Using the exact live row identity (`Build_family=eu-merged`, blank `Lang`) gives:
+The shared publishing task should run the same assembler against an independent
+candidate seeded with the current Hello-Docs `docs/publish/**` tree. The
+assembler stages this target under:
 
 ```text
-resolve_config_path_for_task(
-  model="JS-100I", region="EU", lang=None,
-  build_family="eu-merged", workflow_action="Web Publish"
-) -> config.eu.yaml
+docs/publish/sources/web/JS-100I/EU/md/
+docs/publish/web/JS-100I/EU/md/
+docs/publish/web/manual_js100i_eu_en.md
 ```
 
-That is the generic JE-1000F EU carrier, not the target's
-`config.solar-eu-en.yaml`. Removing the live family does not fix it:
+After a `docs/publish/**`-only PR is reviewed and merged into Hello-Docs main,
+`.readthedocs.yaml` builds `docs/publish/web/`. The expected public alias is:
 
 ```text
-build_family=None, lang=None
--> RuntimeError: Web Publish queue rows must use a whole-book Build_family,
-   not a single-language family
-
-build_family=None, lang="en"
--> RuntimeError: Web Publish queue rows must leave Lang blank
+https://ht-doc.readthedocs.io/manual_js100i_eu_en.html
 ```
 
-This is a shared resolver/queue-contract issue, so this target branch does not
-alter `tools/queue_config_resolution.py` or the Web Publish workflow.
+Formal completion requires that real URL to return the intended V2.0 manual
+after the Hello-Docs merge. Empty online association fields are not a blocker
+for this Git-only release.
 
-The centralized fix must prove all of the following before this target's build
-row is created or triggered:
+## Deferred online normalization
 
-1. `(JS-100I, EU, blank Lang, live Build_family=eu-merged, Web Publish)`
-   resolves to `configs/config.solar-eu-en.yaml` by exact target identity.
-2. A one-language whole-manual Web Publish is accepted without allowing a
-   language-fragment row to masquerade as a whole-book release.
-3. Existing JE-1000F EU merged and JBP target routing remains unchanged.
-4. The Hello-Docs mirror commit explicitly names the auto-manual fix SHA.
-
-## Mirror and publication state
-
-Hello-Docs main is `f6df757e601ef505446828118b2d3aa272822be6`; its
-commit message confirms source `Bingboom/auto-manual@9b356eca…`. The business
-queue pause variable is `false`. There is no `review/JS-100I-EU` branch, no
-open `publish -> main` PR, and the current Hello-Docs main tree contains no
-JS-100I path under `docs/publish/**`.
-
-After approvals and the shared routing fix, the coordinating task must execute
-in this order:
-
-1. Apply and read back the approved business-input batches.
-2. Freeze a live data snapshot and build JS-100I with that snapshot; rerun IR,
-   tamper, Sphinx, image URL, and 1440/375 browser checks on the live-derived
-   package.
-3. Start `review/JS-100I-EU` and verify its exact tip/content before Web
-   Publish.
-4. Trigger only the JS-100I Web Publish row in the agreed shared order.
-5. Verify the workflow settled, the generated PR diff contains only
-   `docs/publish/**`, and all checks are green; do not self-merge without a
-   valid authorization.
-6. After merge, verify the production URL and read the same URL back from the
-   build record's published-link field.
-
-Until step 6 succeeds, the correct release state is **ready for approved data
-intake, not formally published**.
+The read-only gap audit in
+`reports/source_intake/JS-100I_EU/formal_business_input_*` is retained only as
+optional future normalization context. It is not an approval request, release
+dependency, or instruction to write online data in this batch. The current
+batch explicitly performs no online Bitable or build-queue writes.
