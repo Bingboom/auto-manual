@@ -6,6 +6,8 @@ Target: `JBP-3600A / EU / en` (`HTP011`, Jackery Battery Pack 3600)
 
 Engineering content baseline: `9b356ecadfe355aae0eb474ef4c49bf168a01e4c`
 
+Formal source commit: `d25a34eb5f2199d8f414eb682241452b58698662`
+
 Status: **the target-specific Git-only release root and single-target
 `docs/publish/**` candidate are generated and locally accepted.** This batch
 does not require or permit a live Bitable write. The central release task owns
@@ -31,13 +33,17 @@ used as the product identity.
 | `data/asset_recipes/manual_jbp3600a_eu_web.json` | 15 source assets, 23 semantic outputs | `68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1` |
 | `docs/renderers/web/jbp3600a_eu_en_illustrations.json` | eight source-page full-panel bindings | `b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4` |
 
-The formal build currently reads `tests/fixtures/phase2`, but that directory is
-not presented as an unaudited test authority. For this target it is an audited,
-Git-frozen projection of the published manual: 21 specification rows, 8 Symbol
-rows, 2 LCD rows and 7 troubleshooting rows were checked against the published
-source and locked by target-filtered canonical JSON hashes in the handoff file.
-Page structure remains BP-specific; no table normalization, IR redesign or
-IDML pagination was introduced for publication.
+The formal build reads
+[`manual_sources/JBP-3600A/EU/en/phase2`](../../manual_sources/JBP-3600A/EU/en/phase2),
+not `tests/fixtures`. Its
+[`source_manifest.json`](../../manual_sources/JBP-3600A/EU/en/source_manifest.json)
+locks 23 target/shared input files with inventory SHA-256
+`aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574`.
+The directory contains 21 specification rows, 8 target Symbol rows plus 5
+shared signal rows, 2 LCD rows, 7 troubleshooting rows, the eight used Symbol
+attachments, and only the shared dictionaries required to render them. Page
+structure remains BP-specific; no table normalization, IR redesign or IDML
+pagination was introduced for publication.
 
 Live business-plane reads on 2026-09-06 found no matching target rows. That is
 inventory context only, not a release blocker. No staging, source, asset, build
@@ -61,7 +67,7 @@ The latest-main target build used:
 AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --config configs/config.bp-eu-en-web.yaml \
   --model JBP-3600A --region EU --lang en \
-  --data-root tests/fixtures/phase2 \
+  --data-root manual_sources/JBP-3600A/EU/en/phase2 \
   --staging-root <fresh-root>
 
 python -m sphinx -W -b html \
@@ -85,8 +91,8 @@ Core output hashes:
 | Artifact | SHA-256 |
 | --- | --- |
 | Generated MyST manual | `38940fef9baf637f625b0cbc58773b445e88c5e14de3965c5796cff0d79f467d` |
-| `manual.ir.json` file | `a38375c2a5f698ec9ee59a1c73fa748ed53c2c6c5db3146e7e1351e9afad5250` |
-| IR content | `6c7be734c08d4a9ed8d93ad97a9b879b7b4cdb24bcdb339b971ac2ded5d7ea19` |
+| `manual.ir.json` file | `dace88e79704276b78e4395302c1f6090b966f403be635d4cedf5ee321261c10` |
+| IR content | `b457050d47835f8b2dee7f77e6ccdbc84428f6710528ec28b9cd0eed5dc5e594` |
 | IR bundle | `78b144f79fcc60c38d1bbc111c8acdfbbfe5da97643d40f892381719f1abf0a3` |
 
 ## Git-only release-root handoff
@@ -107,7 +113,7 @@ JBP-3600A/EU/en/versions/2.0/web/html/index.html
 
 `publish_meta.json` uses `auto-manual-web-publish/v1`, version `2.0`, language
 `en`, route `JBP-3600A/EU/md`, exact Git ref
-`9b356ecadfe355aae0eb474ef4c49bf168a01e4c`, and an empty
+`d25a34eb5f2199d8f414eb682241452b58698662`, and an empty
 `queue_record_ids` array. It records no live-sync or queue claim.
 
 The central release task can merge this release root with the other prepared
@@ -142,9 +148,9 @@ The existing assembler produced a self-contained candidate at:
 | Output | Result |
 | --- | --- |
 | Inventory | 73 files plus `publish_manifest.json` |
-| Publish manifest SHA-256 | `ec397276c609d8e4c9e78cd26e0c5bbea545f849363c0b3b69b0ff1275b0812f` |
-| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate.zip` |
-| Candidate ZIP SHA-256 | `833ee2860be7cad949eff18bf68d3627fc4b2d9be6255c819ea881e40a88a4d0` |
+| Publish manifest SHA-256 | `b0c99d0f42d4a2953d098faca26ee45bd51539a90f9cd4d30ee5f07533514448` |
+| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-formal.zip` |
+| Candidate ZIP SHA-256 | `3609a1c2dd9457dc8961690fad14088773612b89d4f319c1f4d41e196bda91bf` |
 | RTD-source Sphinx `-W` | passed |
 | Root alias HTML SHA-256 | `d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480` |
 

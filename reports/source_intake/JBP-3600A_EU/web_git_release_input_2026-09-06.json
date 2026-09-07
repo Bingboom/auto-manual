@@ -1,6 +1,6 @@
 {
   "schema_version": "jbp3600a-eu-web-git-release-input/v1",
-  "prepared_at": "2026-09-07T00:07:29+00:00",
+  "prepared_at": "2026-09-07T00:15:15+00:00",
   "release_policy": {
     "carrier": "git-only-frozen-web-snapshot",
     "live_bitable_required": false,
@@ -39,9 +39,16 @@
     }
   },
   "git_build_input": {
-    "engineering_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
-    "data_root": "tests/fixtures/phase2",
-    "data_root_role": "published-source-audited Git snapshot for this target; not a claim that the live Base contains these rows",
+    "engineering_content_base_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+    "formal_source_commit": "d25a34eb5f2199d8f414eb682241452b58698662",
+    "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
+    "data_root_role": "target-scoped, published-source-audited formal Git input; not a test fixture and not a claim that the live Base contains these rows",
+    "source_manifest": {
+      "path": "manual_sources/JBP-3600A/EU/en/source_manifest.json",
+      "sha256": "2e880a7d562ff7ca1477216a02a934b0add79a2ba5c2a3105b401690308ff32d",
+      "files": 23,
+      "files_inventory_sha256": "aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574"
+    },
     "config": {
       "path": "configs/config.bp-eu-en-web.yaml",
       "sha256": "be43f160a88d4d25a0b890288e45a45aa12fe0f546b4d17ee8a0b909e66d4dea"
@@ -52,25 +59,25 @@
     },
     "structured_target_rows": [
       {
-        "path": "tests/fixtures/phase2/Spec_Master.csv",
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/Spec_Master.csv",
         "selector": "document_key == JBP-3600A_EU",
         "rows": 21,
         "canonical_target_json_sha256": "eb1a4d639b30ddb4d7f805bc9452b6029de73727d2a98e56de5a9a7c6e1ff664"
       },
       {
-        "path": "tests/fixtures/phase2/symbols_blocks.csv",
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/symbols_blocks.csv",
         "selector": "Model == JBP-3600A",
         "rows": 8,
         "canonical_target_json_sha256": "1f529d76cec9188461e76c74acdbad6cf9b8bcd4f63f1660baf04d7adb0f75b2"
       },
       {
-        "path": "tests/fixtures/phase2/lcd_icons_blocks.csv",
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/lcd_icons_blocks.csv",
         "selector": "Model == JBP-3600A",
         "rows": 2,
         "canonical_target_json_sha256": "2583f8ea569ae0da8ebb7244e7a2055208591e8243da2764ae0ec4aa8fdbff11"
       },
       {
-        "path": "tests/fixtures/phase2/troubleshooting_blocks.csv",
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/troubleshooting_blocks.csv",
         "selector": "Model == JBP-3600A",
         "rows": 7,
         "canonical_target_json_sha256": "8ffd35844579eee9c7567f5e8eab481d4808d4b5f06bcdbceae3de89e8449006"
@@ -95,8 +102,8 @@
   "accepted_build": {
     "presentation_profile": "web",
     "markdown_sha256": "38940fef9baf637f625b0cbc58773b445e88c5e14de3965c5796cff0d79f467d",
-    "manual_ir_file_sha256": "a38375c2a5f698ec9ee59a1c73fa748ed53c2c6c5db3146e7e1351e9afad5250",
-    "manual_ir_content_sha256": "6c7be734c08d4a9ed8d93ad97a9b879b7b4cdb24bcdb339b971ac2ded5d7ea19",
+    "manual_ir_file_sha256": "dace88e79704276b78e4395302c1f6090b966f403be635d4cedf5ee321261c10",
+    "manual_ir_content_sha256": "b457050d47835f8b2dee7f77e6ccdbc84428f6710528ec28b9cd0eed5dc5e594",
     "manual_ir_bundle_sha256": "78b144f79fcc60c38d1bbc111c8acdfbbfe5da97643d40f892381719f1abf0a3",
     "source_fragments": 15,
     "ir_blocks": 78,
@@ -117,15 +124,15 @@
     "target_source": "JBP-3600A/EU/en/versions/2.0/web/md/manual_jbp3600a_eu.md",
     "target_verified_html": "JBP-3600A/EU/en/versions/2.0/web/html/index.html",
     "publish_metadata_schema": "auto-manual-web-publish/v1",
-    "git_ref": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+    "git_ref": "d25a34eb5f2199d8f414eb682241452b58698662",
     "queue_record_ids": []
   },
   "single_target_candidate": {
     "path": "/tmp/jbp3600a-git-publish-20260906/candidate/docs/publish",
-    "publish_manifest_sha256": "ec397276c609d8e4c9e78cd26e0c5bbea545f849363c0b3b69b0ff1275b0812f",
+    "publish_manifest_sha256": "b0c99d0f42d4a2953d098faca26ee45bd51539a90f9cd4d30ee5f07533514448",
     "inventory_files_excluding_manifest": 73,
-    "zip_path": "/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate.zip",
-    "zip_sha256": "833ee2860be7cad949eff18bf68d3627fc4b2d9be6255c819ea881e40a88a4d0",
+    "zip_path": "/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-formal.zip",
+    "zip_sha256": "3609a1c2dd9457dc8961690fad14088773612b89d4f319c1f4d41e196bda91bf",
     "rtd_sphinx_build": "passed with -W",
     "root_alias_html_sha256": "d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480"
   },

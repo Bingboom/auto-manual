@@ -125,9 +125,10 @@ all 21 images loaded, and the three inbox cards remained readable without
 horizontal overflow.
 
 Passing fixture builds prove the engineering target and frozen Web package. For
-the approved 2026-09-06 Git-only release batch, the audited Git snapshot is the
-formal publishing input and live source, asset, Document_key, build, and link
-records are neither prerequisites nor write targets. The source association
+the approved 2026-09-06 Git-only release batch, the audited target snapshot at
+[`manual_sources/JBP-3600A/EU/en`](../../manual_sources/JBP-3600A/EU/en) is
+the formal publishing input and live source, asset, Document_key, build, and
+link records are neither prerequisites nor write targets. The source association
 still preserves the verified JBP-3600A identity and source hash; the external
 JBP-3000A filename is naming debt, not a reason to replace the current
 published content. The queue-free release handoff and `docs/publish/**`
