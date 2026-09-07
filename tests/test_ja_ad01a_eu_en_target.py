@@ -30,7 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SKELETON_DIR = ROOT / "docs" / "manifests" / "skeletons" / "charger-intl"
 PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "charger-eu-en.yaml"
 CONFIG = ROOT / "configs" / "config.charger-eu-en.yaml"
-FIXTURE = ROOT / "tests" / "fixtures" / "ja_ad01a_eu_en"
+FIXTURE = ROOT / "data" / "manual_sources" / "ja_ad01a_eu_en"
 ASSET_RECIPE = ROOT / "data" / "asset_recipes" / "manual_ja_ad01a_eu_en_web.json"
 ILLUSTRATION_MANIFEST = (
     ROOT / "docs" / "renderers" / "web" / "ja_ad01a_eu_en_illustrations.json"

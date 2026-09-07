@@ -1,8 +1,9 @@
 # JA-AD01A / EU / en Web acceptance — 2026-09-06
 
-Engineering candidate is ready for review. Production source authority, approved
-business data and formal Web publication remain pending. A fixture build is not a
-production release.
+Engineering candidate is ready for review. This batch uses Git-frozen structure
+and assets followed by a docs/publish snapshot PR and Read the Docs. No online
+Bitable writes or build queue are required or permitted. Source authority is the user-designated intake AI; formal RTD deployment
+remains pending. The current printed-manual version is unknown.
 
 ## Scope and baseline
 
@@ -49,19 +50,32 @@ was read live, including a second selected-field read of record `xG4bYnERxR`.
   explicit query results, not a claim about undiscovered aliases.
 - No live source-table, attachment, queue or publication-link writes occurred.
 
-The precise remaining operator fact is the current published EU English manual
-link/version, or explicit confirmation that this AI is authoritative. Current
-published content takes precedence where it overlaps; no historical comparison
-is requested. The [source candidate](ja_ad01a_eu_en_source_candidate.json)
-contains the 21 proposed specification lines and five assets for review, plus
-live query results. It is not an approved API payload: product/region/row/slot
-links, select options and production version must be resolved before submission.
+The user designated the intake AI files for this batch. Since no conflicting
+current published source was identified, this exact AI is the authorized Web
+input; another adoption approval is not required. If a current published source
+is found, it takes precedence where it overlaps; no historical comparison is
+requested. The [source candidate](ja_ad01a_eu_en_source_candidate.json)
+contains the 21 specification lines and five assets for content review, plus
+historical read-only query results. They are not online ingestion prerequisites.
+The six CSVs were moved unchanged into `data/manual_sources/ja_ad01a_eu_en`;
+`source_manifest.json` locks their bytes plus target templates, config, manifest
+and assets. The technical snapshot version is `git-20260906-0252cb5d`, derived
+from the source hash; no historical paper version is invented.
+
+AI pages 4-5 (power profiles), 7-8 (all warning items and 24-month warranty),
+and 9 (legal contacts) were rendered and visually reviewed in this closeout.
+The source’s malformed extracted DC glyph is normalized to ⎓, without changing
+voltage/current numbers. Paper cover/contents/page numbers and the unverified
+QR destination are excluded; warning item 11 also appears as Inbox TIP.
+Source limitation: the AI filename contains “翻译用” and no independent current
+printed version is identified. This does not block the user-designated Web
+conversion. Empty online links do not block Git publication.
 
 ## Acceptance checklist
 
 - [x] Target migration preserves merged shared work and existing manifest anchors.
 - [x] Runtime `build.py md` invokes the charger config with EU/en and isolated
-  target fixture. Real Pandoc conversion and `sphinx -W -b html` pass.
+  Git release inputs. Real Pandoc conversion and `sphinx -W -b html` pass.
 - [x] Seven blocks produce `whole-document-components/v1` IR.
 - [x] Three-card `HB-SPECIAL-INBOX` with TIP and `HB-CALLOUT-STRIP` warning
   are present in actual runtime IR; warning retains all 11 list items.
@@ -87,12 +101,14 @@ links, select options and production version must be resolved before submission.
   JE-1000F US/en baseline check pass. Mypy also passes all 16 utils files;
   its missing local dependency was installed only into the isolated evidence
   directory, without changing project dependencies.
-- [ ] Operator confirms authoritative published source/version.
-- [ ] Exact business input and asset payloads approved, written, and every
-  same-record field/attachment token read back.
+- [x] User-designated intake AI authority established for this Web batch;
+  paper version remains unknown, not fabricated.
+- [x] Exact Git structure source, source hash and asset manifest prepared; no
+  online tables are written.
 - [ ] Engineering PR centrally reviewed and merged; mirror sync verified again.
-- [ ] Frozen production input, target queue record and Web Publish release.
-- [ ] `docs/publish/**`-only snapshot PR, formal site and release-link readback.
+- [ ] Git-frozen release bundle centrally combined into Hello-Docs snapshot PR.
+- [ ] `docs/publish/**`-only snapshot PR merged and real RTD URL verified.
+  No online release-link field writeback is performed.
 
 ## Reproduction and evidence
 
@@ -101,8 +117,8 @@ Run from repository root; `$PY` below means that environment's Python.
 
 ```bash
 export AUTO_MANUAL_PRESENTATION_PROFILE=web
-$PY build.py check --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root tests/fixtures/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/check
-$PY build.py md --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root tests/fixtures/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/staging
+$PY build.py check --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root data/manual_sources/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/check
+$PY build.py md --config configs/config.charger-eu-en.yaml --model JA-AD01A --region EU --lang en --data-root data/manual_sources/ja_ad01a_eu_en --staging-root /tmp/ja-ad01a-closeout/staging
 $PY -m sphinx -W -b html /tmp/ja-ad01a-closeout/staging/docs/_build/JA-AD01A/EU/en/md /tmp/ja-ad01a-closeout/html
 $PY -m unittest
 $PY -m ruff check build.py integrations tools tests scripts
@@ -129,24 +145,47 @@ command logs are preserved in `/tmp/ja-ad01a-closeout/`. Browser script:
 The local preview at `http://127.0.0.1:18779/html/manual_jaad01a_eu_en.html`
 is an engineering candidate, not the formal site.
 
-## Formal publication readiness
+## Git-only formal publication handoff
 
-The `hello-docs-pipeline-dispatch-triage` skill was followed for read-only
-readiness checks. Mirror main `f6df757e601ef505446828118b2d3aa272822be6` identifies
-source engineering main `9b356eca`. Its recursive tree is complete and contains
-no JA-AD01A Web publication snapshot. `FEISHU_BUILD_QUEUE_PAUSED=false`; no open
-`publish` PR was present. Latest three Web Publish runs were all completed,
-with outcomes success/failure/success; none was dispatched for this task.
+The earlier Bitable/queue prerequisites are superseded by the operator’s updated
+instruction. No staging/source/asset/build/link table writes are permitted.
+The `hello-docs-pipeline-dispatch-triage` skill supplied mirror/snapshot boundaries;
+its queue-driven forced sync is not used in this batch.
 
-After source approval, approved business readbacks, engineering merge/mirror
-sync and a frozen reviewed `Git_ref`, the central task should dispatch exactly
-one record on Hello-Docs main:
+Read-only readiness snapshot: Hello-Docs main
+`f6df757e601ef505446828118b2d3aa272822be6` mirrors engineering `9b356eca`.
+Its complete recursive tree contains no JA target snapshot. No open `publish`
+PR was present. These facts must be refreshed by the central publisher.
+
+Existing `tools/publish_branch_assembly.py` accepts a local release-root via
+`auto-manual-web-publish/v1` metadata at
+`JA-AD01A/EU/en/latest/web/publish_meta.json`. This adapter requires a real
+verified Markdown package and HTML `index.html`, both inside releases-root;
+it does not require any Bitable row or queue. The central task preserves existing
+Hello-Docs publications and combines all three targets serially.
+
+- Release-root: `/tmp/ja-ad01a-closeout/releases`
+- Independent publish tree: `/tmp/ja-ad01a-closeout/frozen/docs/publish`
+- Version: `git-20260906-0252cb5d` (technical Git snapshot of the identified AI)
+- Stored source route: `sources/web/JA-AD01A/EU/md`
+- RTD route: `JA-AD01A/EU/md/manual_jaad01a_eu_en.html`
+- Root alias: `manual_jaad01a_eu_en.html`
+- Expected formal alias: `https://ht-doc.readthedocs.io/manual_jaad01a_eu_en.html`
+  (expected route only; this report does not claim it has deployed).
 
 ```bash
-gh workflow run feishu-web-publish-queue.yml --repo Bingboom/Hello-Docs --ref main -f queue_record_id=<approved-JA-record-id>
+$PY tools/publish_branch_assembly.py --releases-root /tmp/ja-ad01a-closeout/releases --output-dir /tmp/ja-ad01a-closeout/frozen/docs/publish
+$PY -m sphinx -W -b html /tmp/ja-ad01a-closeout/frozen/docs/publish/web /tmp/ja-ad01a-closeout/frozen-html
 ```
 
-This is the Web lane. The generated shared `publish` candidate must contain only
-`docs/publish/**` changes, followed by central PR review, formal-site image and
-viewport checks and same-record release-link readback. This task does not own
-the shared publishing sequence and has not dispatched it.
+`input_manifest.json` in the release-root identifies Git ref, all source inputs,
+source authority status and all output hashes. The assembler’s manifest inventories
+the resulting Web snapshot. The existing assembler does not copy `manual.ir.json`
+or arbitrary sidecars into the site; those remain in the release-root evidence,
+while the Git ref and source manifest permit reconstruction. No shared adapter
+change is needed for this target’s webpage.
+
+After engineering merge/mirror sync, the main task
+owns the docs/publish-only snapshot PR and RTD deployment/URL verification. This
+task does not mutate the shared publish branch. A technical package ready for
+assembly is distinct from a deployed page.

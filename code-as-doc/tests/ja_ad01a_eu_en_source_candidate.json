@@ -1,5 +1,5 @@
 {
-  "status": "candidate-only; source authority and live writes not approved",
+  "status": "Git-only release inputs from user-designated intake AI; online tables must not be written",
   "target": {
     "model": "JA-AD01A",
     "region": "EU",
@@ -21,7 +21,8 @@
     "document_business_field": "MqRDuc9",
     "document_business_value": null,
     "publication_field": "O3QP6wT",
-    "publication_value": null
+    "publication_value": null,
+    "authority": "user-designated intake AI"
   },
   "live_queries_2026_09_06": {
     "document-key": {
@@ -720,10 +721,10 @@
     }
   ],
   "approval_sequence": [
-    "Identify current published EU English manual URL/version or explicitly confirm candidate AI authority.",
-    "Resolve product/region/row-key/slot links and select options against live schemas; present exact source-table payloads including 21 spec rows and approved assets for operator confirmation.",
-    "After confirmation, write only approved records and read back every record_id/field, including nonempty attachment tokens and redownloaded byte hashes.",
-    "Merge engineering PR via central review, verify mirror sync, freeze reviewed production inputs.",
-    "Central task dispatches one JA Web Publish queue record and verifies docs/publish-only PR, deployed site and release-link readback."
-  ]
+    "User designated this intake AI for Web conversion; preserve its identity/hash and unknown printed version.",
+    "Build using Git-tracked data/manual_sources/ja_ad01a_eu_en and source_manifest.json; no live data or queue is required.",
+    "Central review merges engineering PR and verifies mirror code sync.",
+    "Central task assembles this isolated release-root into preserved Hello-Docs docs/publish only, opens the snapshot PR and verifies real RTD URL."
+  ],
+  "proposed_spec_rows_note": "Historical exact intake evidence; these values now live in Git release inputs. This file does not request online table ingestion."
 }
