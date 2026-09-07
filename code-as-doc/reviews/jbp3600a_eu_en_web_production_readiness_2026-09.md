@@ -6,7 +6,7 @@ Target: `JBP-3600A / EU / en` (`HTP011`, Jackery Battery Pack 3600)
 
 Engineering content baseline: `9b356ecadfe355aae0eb474ef4c49bf168a01e4c`
 
-Formal source commit: `d25a34eb5f2199d8f414eb682241452b58698662`
+Formal source commit: `75b7cd668403c08305eb1edcc761575a127e7383`
 
 Status: **the target-specific Git-only release root and single-target
 `docs/publish/**` candidate are generated and locally accepted.** This batch
@@ -38,7 +38,7 @@ The formal build reads
 not `tests/fixtures`. Its
 [`source_manifest.json`](../../manual_sources/JBP-3600A/EU/en/source_manifest.json)
 locks 23 target/shared input files with inventory SHA-256
-`aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574`.
+`ba03b7fb799bdf689a3d0c7c63721b7a658014e64021228b76ca5f08f4cb23a3`.
 The directory contains 21 specification rows, 8 target Symbol rows plus 5
 shared signal rows, 2 LCD rows, 7 troubleshooting rows, the eight used Symbol
 attachments, and only the shared dictionaries required to render them. Page
@@ -113,7 +113,7 @@ JBP-3600A/EU/en/versions/2.0/web/html/index.html
 
 `publish_meta.json` uses `auto-manual-web-publish/v1`, version `2.0`, language
 `en`, route `JBP-3600A/EU/md`, exact Git ref
-`d25a34eb5f2199d8f414eb682241452b58698662`, and an empty
+`75b7cd668403c08305eb1edcc761575a127e7383`, and an empty
 `queue_record_ids` array. It records no live-sync or queue claim.
 
 The central release task can merge this release root with the other prepared
@@ -148,9 +148,9 @@ The existing assembler produced a self-contained candidate at:
 | Output | Result |
 | --- | --- |
 | Inventory | 73 files plus `publish_manifest.json` |
-| Publish manifest SHA-256 | `b0c99d0f42d4a2953d098faca26ee45bd51539a90f9cd4d30ee5f07533514448` |
-| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-formal.zip` |
-| Candidate ZIP SHA-256 | `3609a1c2dd9457dc8961690fad14088773612b89d4f319c1f4d41e196bda91bf` |
+| Publish manifest SHA-256 | `b464eb68341f289e3ef94b727afb42768ea914ad9682fc878d37cac644ab1fb0` |
+| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-final.zip` |
+| Candidate ZIP SHA-256 | `54212047a9a9a0dd10044a9375e9e8c5f7b886961dcc89d39fffffd14f7a4a81` |
 | RTD-source Sphinx `-W` | passed |
 | Root alias HTML SHA-256 | `d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480` |
 

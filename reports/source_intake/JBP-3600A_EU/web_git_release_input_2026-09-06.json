@@ -1,6 +1,6 @@
 {
   "schema_version": "jbp3600a-eu-web-git-release-input/v1",
-  "prepared_at": "2026-09-07T00:15:15+00:00",
+  "prepared_at": "2026-09-07T00:21:02+00:00",
   "release_policy": {
     "carrier": "git-only-frozen-web-snapshot",
     "live_bitable_required": false,
@@ -40,14 +40,14 @@
   },
   "git_build_input": {
     "engineering_content_base_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
-    "formal_source_commit": "d25a34eb5f2199d8f414eb682241452b58698662",
+    "formal_source_commit": "75b7cd668403c08305eb1edcc761575a127e7383",
     "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
     "data_root_role": "target-scoped, published-source-audited formal Git input; not a test fixture and not a claim that the live Base contains these rows",
     "source_manifest": {
       "path": "manual_sources/JBP-3600A/EU/en/source_manifest.json",
-      "sha256": "2e880a7d562ff7ca1477216a02a934b0add79a2ba5c2a3105b401690308ff32d",
+      "sha256": "3072da0199183f67c8431be64edaaec8fbb8e1d88abb9c58464ec9c86fb69525",
       "files": 23,
-      "files_inventory_sha256": "aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574"
+      "files_inventory_sha256": "ba03b7fb799bdf689a3d0c7c63721b7a658014e64021228b76ca5f08f4cb23a3"
     },
     "config": {
       "path": "configs/config.bp-eu-en-web.yaml",
@@ -124,15 +124,15 @@
     "target_source": "JBP-3600A/EU/en/versions/2.0/web/md/manual_jbp3600a_eu.md",
     "target_verified_html": "JBP-3600A/EU/en/versions/2.0/web/html/index.html",
     "publish_metadata_schema": "auto-manual-web-publish/v1",
-    "git_ref": "d25a34eb5f2199d8f414eb682241452b58698662",
+    "git_ref": "75b7cd668403c08305eb1edcc761575a127e7383",
     "queue_record_ids": []
   },
   "single_target_candidate": {
     "path": "/tmp/jbp3600a-git-publish-20260906/candidate/docs/publish",
-    "publish_manifest_sha256": "b0c99d0f42d4a2953d098faca26ee45bd51539a90f9cd4d30ee5f07533514448",
+    "publish_manifest_sha256": "b464eb68341f289e3ef94b727afb42768ea914ad9682fc878d37cac644ab1fb0",
     "inventory_files_excluding_manifest": 73,
-    "zip_path": "/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-formal.zip",
-    "zip_sha256": "3609a1c2dd9457dc8961690fad14088773612b89d4f319c1f4d41e196bda91bf",
+    "zip_path": "/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-final.zip",
+    "zip_sha256": "54212047a9a9a0dd10044a9375e9e8c5f7b886961dcc89d39fffffd14f7a4a81",
     "rtd_sphinx_build": "passed with -W",
     "root_alias_html_sha256": "d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480"
   },
