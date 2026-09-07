@@ -72,7 +72,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       PUBLISH_BASE_BRANCH: main
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
@@ -293,7 +293,7 @@ jobs:
 
       - name: Upload Web Publish verification artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: feishu-web-publish-queue-output
           path: |
@@ -307,7 +307,7 @@ jobs:
 
       - name: Upload OpenClaw run metadata
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: openclaw-run-metadata
           path: .tmp/openclaw/feishu-web-publish-queue-run.json
