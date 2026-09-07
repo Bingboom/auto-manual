@@ -2,6 +2,12 @@
 
 Status: engineering implementation complete; not formally published.
 
+The latest-main release-readiness rerun, live business-table gap audit, exact
+approval batches, and formal Web Publish blocker are recorded in
+[`js100i_eu_en_web_release_readiness.md`](js100i_eu_en_web_release_readiness.md).
+The fixture remains regression evidence only; the formal release still requires
+approved live data, a queue-routing fix, and production-link readback.
+
 ## Source authority
 
 - Current published English PDF: V2.0-2026-04-01; English body is physical
