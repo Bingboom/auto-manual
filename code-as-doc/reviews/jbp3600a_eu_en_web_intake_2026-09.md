@@ -124,13 +124,15 @@ and an emulated 375 x 812 mobile viewport. Both had equal client/scroll widths,
 all 21 images loaded, and the three inbox cards remained readable without
 horizontal overflow.
 
-Passing fixture builds prove the engineering target and frozen Web package. A
-formal publish remains blocked until an operator creates and reads back the
-approved live source, target asset, Document_key, and build records. The source
-association must preserve the verified JBP-3600A identity and source hash; the
-external JBP-3000A filename is naming debt, not a reason to repeat a version
-comparison or replace the current published content. Hello-Docs can then create
-and review the frozen `docs/publish/**` snapshot PR.
+Passing fixture builds prove the engineering target and frozen Web package. For
+the approved 2026-09-06 Git-only release batch, the audited Git snapshot is the
+formal publishing input and live source, asset, Document_key, build, and link
+records are neither prerequisites nor write targets. The source association
+still preserves the verified JBP-3600A identity and source hash; the external
+JBP-3000A filename is naming debt, not a reason to replace the current
+published content. The queue-free release handoff and `docs/publish/**`
+acceptance evidence are recorded in
+[`jbp3600a_eu_en_web_production_readiness_2026-09.md`](jbp3600a_eu_en_web_production_readiness_2026-09.md).
 
 ## Latest-main integration (2026-09-06)
 
