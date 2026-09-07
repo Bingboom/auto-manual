@@ -106,7 +106,8 @@ conversion. Empty online links do not block Git publication.
 - [x] Exact Git structure source, source hash and asset manifest prepared; no
   online tables are written.
 - [ ] Engineering PR centrally reviewed and merged; mirror sync verified again.
-- [ ] Git-frozen release bundle centrally combined into Hello-Docs snapshot PR.
+- [x] Git-frozen release bundle assembled and verified independently.
+- [ ] Release bundle centrally combined into Hello-Docs snapshot PR.
 - [ ] `docs/publish/**`-only snapshot PR merged and real RTD URL verified.
   No online release-link field writeback is performed.
 
@@ -189,3 +190,13 @@ After engineering merge/mirror sync, the main task
 owns the docs/publish-only snapshot PR and RTD deployment/URL verification. This
 task does not mutate the shared publish branch. A technical package ready for
 assembly is distinct from a deployed page.
+
+Final Git-only package evidence: [measurements](ja_ad01a_eu_en_git_release_evidence.json).
+The release-root has 58 inventoried files; the assembled Web snapshot has 27.
+All recorded hashes match. Its real Sphinx HTML again loads 5/5 images at both
+1440 and 375px, with 3 Inbox cards, 4 native spec tables, 11 warning items and
+zero broken images or whole-page overflow. The final release IR cold-replays
+7 fragments with source/contract reads denied and rejects modified assets.
+Source-input commit: `614a46229448d910dba53fe8064659a6b976fa9a`.
+Publish manifest SHA256:
+`ee78542cedebc94c1c8b40ce87b7fdf86e097d23d121d268c087d9395042f1ad`.

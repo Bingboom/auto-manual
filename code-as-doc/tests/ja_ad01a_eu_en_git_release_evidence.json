@@ -1,0 +1,73 @@
+{
+  "source_git_ref": "614a46229448d910dba53fe8064659a6b976fa9a",
+  "technical_version": "git-20260906-0252cb5d",
+  "release_root": "/tmp/ja-ad01a-closeout/releases",
+  "cold_replay_fragments": 7,
+  "tampered_asset_rejected": true,
+  "publish_manifest_sha256": "ee78542cedebc94c1c8b40ce87b7fdf86e097d23d121d268c087d9395042f1ad",
+  "frozen_files": 27,
+  "browser": [
+    {
+      "key": "ja-frozen",
+      "width": 1440,
+      "overflow": 0,
+      "images": [
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902/inbox_charger.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921/inbox_cable.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49/inbox_manual.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f/product_overview.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8/using_product.png",
+          "loaded": true
+        }
+      ],
+      "nav": [],
+      "cards": 3,
+      "specTables": 4,
+      "warnings": 11
+    },
+    {
+      "key": "ja-frozen",
+      "width": 375,
+      "overflow": 0,
+      "images": [
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902/inbox_charger.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921/inbox_cable.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49/inbox_manual.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f/product_overview.png",
+          "loaded": true
+        },
+        {
+          "url": "http://127.0.0.1:18779/frozen-html/_static/manual-assets/JA-AD01A/EU/md/assets/ir/e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8/using_product.png",
+          "loaded": true
+        }
+      ],
+      "nav": [],
+      "cards": 3,
+      "specTables": 4,
+      "warnings": 11
+    }
+  ]
+}
