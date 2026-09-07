@@ -149,8 +149,11 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         self.assertFalse(source_manifest["live_bitable_dependency"])
         for record in source_manifest["files"]:
             path = FORMAL_SOURCE / record["path"]
-            self.assertEqual(record["size"], path.stat().st_size)
-            self.assertEqual(record["sha256"], hashlib.sha256(path.read_bytes()).hexdigest())
+            data = path.read_bytes()
+            if path.suffix.casefold() == ".csv":
+                data = data.replace(b"\r\n", b"\n")
+            self.assertEqual(record["size"], len(data))
+            self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
         inventory = json.dumps(
             source_manifest["files"],
             ensure_ascii=False,

@@ -16,6 +16,7 @@
   },
   "engineering_content_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
   "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
+  "text_hash_normalization": "CSV CRLF and LF are normalized to LF before size and SHA-256 comparison",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
     "sha256": "68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1"
@@ -27,18 +28,18 @@
   "files": [
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 9590,
-      "sha256": "841cc0c382a2dd52ac8b1fb528650532f1224c023ffa2cadbc401bdc4edbc457"
+      "size": 9562,
+      "sha256": "aafc64c8b6c72f6c18f7aa27813650c47e24c3267ccc41cf662095935c5acb9e"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
-      "size": 3437,
-      "sha256": "276d5ce2fab4e7293d92f410a33c8d44cb0e7952384aba0fd9ee69720db12986"
+      "size": 3410,
+      "sha256": "e31a95a08cbe79be4907fcb02d834ffcf0c7569459f9e0712b8f535b3536ff3d"
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 1460,
-      "sha256": "2c1927a127a96b854ab5b2836ea39f3aa15dcc45c0fab63f96266ad2e5f9d0df"
+      "size": 1456,
+      "sha256": "bc31b2d93fe905e00dd9337a00aabdf9101c824be60c78baa5b551f759a101a3"
     },
     {
       "path": "phase2/Spec_Master.csv",
@@ -47,23 +48,23 @@
     },
     {
       "path": "phase2/Spec_Notes.csv",
-      "size": 1171,
-      "sha256": "997ef993eefa80a3b3efe16e9ff605cd6a45f52090b226d1e5d1e5df3ff9391b"
+      "size": 1166,
+      "sha256": "7b4fde2dcb96262b69c92a7db65609434db2bac2f63c10fe85c8165e960db62c"
     },
     {
       "path": "phase2/Status_Words.csv",
-      "size": 296,
-      "sha256": "9b6946dc85e7a17b53b1a1384912c8e30c56b34a70723c92688c2a0fc30ee321"
+      "size": 292,
+      "sha256": "0da3dc8b383da2466c13ee292f49854ede9e307670fa22db60eb52bf6b02ed2e"
     },
     {
       "path": "phase2/Variable_Defaults.csv",
-      "size": 195,
-      "sha256": "84cc0a148eee66f2e2437c29a3dbf233496a4c84ebb565ff963a875f0adece80"
+      "size": 191,
+      "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5"
     },
     {
       "path": "phase2/Variable_Lang_Overrides.csv",
-      "size": 509,
-      "sha256": "384b4f8f57d46ffd7c3be843fa3e81edac89950a7efca9c18f509f4a995bc306"
+      "size": 499,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482"
     },
     {
       "path": "phase2/_attachments/symbols/10_do_not_dismantle_Ml7EbCjtYohuKAxWNDUc93UMnVc.png",
@@ -107,28 +108,28 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 937,
-      "sha256": "0846ca914775e63ce7adb3066053ba2c487c075a236fdb6989d8198a38fcf826"
+      "size": 936,
+      "sha256": "e77739a8a9690eda7f9a1263e41cb0f44c667653e679ac5eeba4d0aa5c40c92e"
     },
     {
       "path": "phase2/page_registry.csv",
-      "size": 520,
-      "sha256": "edc6b13c4186310fd132e175d3e7368528af1827ab460a1e1ce0910374032c75"
+      "size": 515,
+      "sha256": "ded23f8869e52538cfd318c105fa688d00df8455f39745ee6a62b3021399dcc0"
     },
     {
       "path": "phase2/row_key_mapping.csv",
-      "size": 3764,
-      "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11"
+      "size": 3652,
+      "sha256": "996ccb992ece165f4397019119eb6a56d7bb73ba7955cc5537a22abe1eadd2f7"
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 932,
-      "sha256": "f15101378c4fd7e1e7dfdffdd6dd8e487f27e4939be64917a5552354cf325361"
+      "size": 926,
+      "sha256": "1276cc3e7b551a6182dbf501b0ef75ee7ddd6d51f0fc7211149c6df84668e15d"
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 8788,
-      "sha256": "966c4802d6d78dc383cda753c6ca78c6980e9e1b0e5c444b57b194d60d655900"
+      "size": 8786,
+      "sha256": "34238740cd4253456f53a58f5b72e508ff0c642823b71fb5099bf3e5d9d20752"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -141,6 +142,6 @@
       "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
     }
   ],
-  "files_inventory_sha256": "aab46b4bc00aed1209ae4c6657c740875548913e7cae0caac21f3b83437c6574",
+  "files_inventory_sha256": "ba03b7fb799bdf689a3d0c7c63721b7a658014e64021228b76ca5f08f4cb23a3",
   "live_bitable_dependency": false
 }
