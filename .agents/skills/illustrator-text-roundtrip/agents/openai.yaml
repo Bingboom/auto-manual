@@ -1,0 +1,4 @@
+interface:
+  display_name: "Illustrator Text Round-Trip"
+  short_description: "Export .ai copy to CSV, translate, import run-by-run"
+  default_prompt: "Use $illustrator-text-roundtrip to export the editable text from this Illustrator artwork, translate it with repo terminology, and write it back run-by-run so mixed formatting survives."
