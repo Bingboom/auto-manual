@@ -40,6 +40,7 @@ deployment, or a live asset-register write.
 | Generated-site media | Pass: 28 image references, zero missing files; localhost returned HTTP 200 for the manual and representative hash-addressed artwork |
 | Browser layout | Pass: localhost preview was opened in the in-app browser; safety, LCD, charging, warranty, and App sections were visually inspected at the available narrow viewport without whole-page screenshot substitution |
 | Asset registry | Pass: 219 records, 211 approved, zero registry errors; known missing/unmaterialized debt remains warning-only |
+| Shared CI fixture | Pass: JE-1000H/EU/en runs instead of skipping; config-derived observation stays at 18 pass / 6 baseline skips / 2 baseline failures with both ratchets clean |
 | Repository regression | Pass: 3,873 tests, 22 skipped |
 | Static and policy checks | Pass: Ruff, maintainability guardrails, documentation links (170 files / 1,745 links / zero broken), Git diff check, and gitleaks |
 
