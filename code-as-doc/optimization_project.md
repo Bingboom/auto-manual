@@ -30,7 +30,7 @@ record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence i
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
-Updated: 2026-09-05
+Updated: 2026-09-08
 
 ## 1. Role
 
@@ -235,6 +235,7 @@ Keep this section short and current.
 8. Enterprise ops gaps (2026-07-17 review): CI never installs from `requirements.lock` (loose ranges only), TeXLive is reinstalled unpinned on every queue run, there is no point-in-time backup/restore of the Feishu phase2 source tables, queue-processing failures notify no one (only the sentinel crons open Issues), there is no `CODEOWNERS` / secret scanning / dependabot, and the InDesign finalize leg runs on one Mac with no version lock. Tracked as Workstream T.
 9. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
 10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
+11. Whole-document production inputs have not converged across renderers: Web consumes v2 IR, while IDML still builds its prepared-RST projection, the ordinary Word path reads RST pages, and Sphinx consumes the source bundle. Shared ComponentSpec bindings do not prove whole-document output migration. Workstream Y tracks this debt and is deferred until the current EU single-language Web release batch is accepted; see the [migration plan and debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md).
 
 ## 6. Active Workstreams
 
@@ -886,9 +887,36 @@ Exit criteria:
 - every PR row in the workstream ledger is marked complete with commit, PR,
   merge, and verification evidence.
 
+### Workstream Y: Shared ManualIR Production Inputs
+
+Status: deferred — registered 2026-09-08; complete and accept the current EU
+single-language Web release batch before starting migration.
+
+The [detailed plan and IR-D01–IR-D07 debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md)
+owns phase scope, entry conditions, evidence and closeout. Registration is not
+implementation, parallel-task dispatch, publishing or merge authorization.
+
+First bounded milestone: one frozen package produces real JBP-2000B/JP/ja Web
+and IDML outputs with original RST/CSV reads forbidden, plus JE-1000F/US
+regression. Reuse existing assembly, ComponentSpec, PagePlan and renderer
+capabilities; preserve complete semantics before output-specific transforms.
+Keep physical geometry in output adapters and retain historical IR reads.
+
+Resource policy: one main development window, a short independent review at
+phase boundaries, and no standing parallel implementation while the common
+contract is changing. Word, LaTeX/ordinary HTML and additional targets wait for
+the first milestone's acceptance and a new phase-start decision. Retire old
+paths only within the verified migration scope.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
+
+Operator priority update (2026-09-08): finish the current EU single-language
+Web release batch and preserve its acceptance baseline first. Workstream Y
+remains deferred; only a delivery-blocking issue justifies a separately scoped
+minimal fix during that release. The historical workstreams below retain their
+own status and triggers; they do not authorize concurrent IR migration.
 
 1. Keep the current `check` + smoke-CI baseline green.
 2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".

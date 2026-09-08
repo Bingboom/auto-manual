@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-08-21
+Updated: 2026-09-08
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -1552,6 +1552,14 @@ report-only items: K3 new-binary LFS routing evidence, bus-factor report,
 HTML_link alias semantics).
 
 ## 7. Deferred: Do Not Touch Yet
+
+- [ ] Deferred 6: shared ManualIR whole-document production migration (Workstream Y)
+  - Status: `deferred` — registered 2026-09-08; implementation has not started.
+  - Why deferred: the operator is completing EU single-language Web releases and wants to conserve token usage; finish the current release batch and retain its actual acceptance evidence first.
+  - Authoritative phase plan and debt ledger: [`dev/manual_ir_production_migration_debt_plan_2026-09.md`](dev/manual_ir_production_migration_debt_plan_2026-09.md), IR-D01–IR-D07. Keep item-level state there rather than duplicating the ledger here.
+  - First milestone after the release gate and operator start: JBP-2000B/JP/ja Web and IDML consume one frozen package, with original RST/CSV reads forbidden and JE-1000F/US regression preserved.
+  - Execution: one main development window plus short phase-end review; no automatic parallel dispatch. Word, LaTeX/ordinary HTML, wider target rollout and legacy retirement follow only after bounded acceptance.
+  - Done when: the plan's declared target/output scope has actual production artifacts, cold-replay and visual evidence, retired-path records and merged changes; adapter registration alone is insufficient.
 
 - [ ] Deferred 1: large multi-target conditional-content redesign
   - Status: `deferred`
