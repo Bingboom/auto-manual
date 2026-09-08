@@ -1,0 +1,76 @@
+{
+  "base_manifest_id": "manual_charger_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_charger_eu_en_ja_ad600a"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_charger/ja_ad600a/en/disclaimer.rst",
+          "lang": "en",
+          "slot_id": "disclaimer_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/dimensions.rst",
+          "lang": "en",
+          "slot_id": "dimensions_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/box_contents.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/product_overview.rst",
+          "lang": "en",
+          "slot_id": "product_overview_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/important_safety.rst",
+          "lang": "en",
+          "slot_id": "important_safety_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/faq.rst",
+          "lang": "en",
+          "slot_id": "faq_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/installation.rst",
+          "lang": "en",
+          "slot_id": "installation_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ad600a/en/warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_charger_eu_en_ja_ad600a"
+}

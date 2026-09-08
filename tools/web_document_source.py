@@ -75,12 +75,15 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     )
     component_registry = load_component_registry()
     manual_theme = load_manual_theme(component_registry=component_registry)
+    overview_contract = contract.get("product_overview", {})
     overview_instance = (
         resolve_overview_instance(
             model=materialized.model,
             region=materialized.region,
         )
         if contract.get("figure_targets")
+        and isinstance(overview_contract, dict)
+        and overview_contract.get("source_patterns")
         else None
     )
     replacements = {}

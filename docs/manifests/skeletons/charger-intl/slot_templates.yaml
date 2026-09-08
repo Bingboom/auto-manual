@@ -2,6 +2,9 @@
 schema_version: skeleton-slot-templates/v1
 skeleton_id: charger-intl
 slots:
+  disclaimer:
+    type: rst_include
+    file: templates/page_charger/{lang}/disclaimer.rst
   box_contents:
     type: rst_include
     file: templates/page_charger/{lang}/box_contents.rst
@@ -12,12 +15,24 @@ slots:
     type: csv_page
     page: spec
     include_dir: generated/{model}
+  dimensions:
+    type: rst_include
+    file: templates/page_charger/{lang}/dimensions.rst
   using_product:
     type: rst_include
     file: templates/page_charger/{lang}/using_product.rst
   warning:
     type: rst_include
     file: templates/page_charger/{lang}/safety_warning.rst
+  important_safety:
+    type: rst_include
+    file: templates/page_charger/{lang}/important_safety.rst
+  faq:
+    type: rst_include
+    file: templates/page_charger/{lang}/faq.rst
+  installation:
+    type: rst_include
+    file: templates/page_charger/{lang}/installation.rst
   warranty:
     type: rst_include
     file: templates/page_charger/{lang}/warranty.rst
@@ -25,3 +40,22 @@ slots:
     type: rst_include
     file: templates/page_charger/{primary_lang}/legal_tail.rst
     lang: primary
+house_style_versions:
+  compact-v1: {}
+  dc-dc-v1:
+    disclaimer:
+      file: templates/page_charger/ja_ad600a/{lang}/disclaimer.rst
+    dimensions:
+      file: templates/page_charger/ja_ad600a/{lang}/dimensions.rst
+    box_contents:
+      file: templates/page_charger/ja_ad600a/{lang}/box_contents.rst
+    product_overview:
+      file: templates/page_charger/ja_ad600a/{lang}/product_overview.rst
+    important_safety:
+      file: templates/page_charger/ja_ad600a/{lang}/important_safety.rst
+    faq:
+      file: templates/page_charger/ja_ad600a/{lang}/faq.rst
+    installation:
+      file: templates/page_charger/ja_ad600a/{lang}/installation.rst
+    warranty:
+      file: templates/page_charger/ja_ad600a/{lang}/warranty.rst

@@ -11,6 +11,7 @@ from tools.config_pages import CsvPage
 from tools.gen_index_bundle import MaterializedBundle, materialize_bundle, plan_materialized_pages
 from tools.lang_registry import LANGUAGE_BY_ALIAS
 from tools.utils.path_utils import PathSegments, web_composite_manifest_of
+from tools.utils.targets import format_tokenized
 from tools.web_composite_manifest import (
     WebCompositeManifest,
     load_optional_web_composite_manifest,
@@ -435,6 +436,13 @@ def build_word_bundle_html(
         from tools.web_document_source import load_web_document
         from tools.web_document_ir import render_document_fragments
         illustration_path = cfg.get("paths", {}).get("web_illustration_manifest")
+        if illustration_path:
+            illustration_path = format_tokenized(
+                illustration_path,
+                None,
+                materialized.model,
+                materialized.region,
+            )
         ir = load_web_document(
             materialized, page_paths=page_paths, declarations=declared_csv_pages,
             page_languages=page_languages,

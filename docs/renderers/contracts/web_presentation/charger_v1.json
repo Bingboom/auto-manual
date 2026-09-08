@@ -1,0 +1,13 @@
+{
+  "schema_version": "web-manual-skeleton-profile/v1",
+  "profile_id": "charger-v1",
+  "contract": {
+    "product_overview": {
+      "source_patterns": []
+    },
+    "operations": {
+      "source_patterns": [],
+      "figures": []
+    }
+  }
+}

@@ -1152,7 +1152,9 @@ def normalize_web_source_fragment(
         _transform_preface(soup, source_path=source_path)
     if _matches_source(
         source_path, list(data["operations"]["source_patterns"])
-    ) and supports_figure_contract(source_path, data):
+    ) and supports_figure_contract(source_path, data) and data["operations"].get(
+        "auto_resume_table"
+    ):
         _transform_auto_resume_table(
             soup,
             source_path=source_path,

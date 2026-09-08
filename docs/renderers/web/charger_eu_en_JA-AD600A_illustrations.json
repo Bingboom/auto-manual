@@ -1,0 +1,28 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JA-AD600A",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9",
+  "source_pdf_name": "Jackery_DC-DC_Charger_User_Manual_JA-AD600A_EUUK_V2.0_2026-05-29.pdf",
+  "source_node": "Gl6Pm2Db8D39waXaU9LzewOeJxLq0Ee4",
+  "recipe": "data/asset_recipes/manual_ja_ad600a_eu_en_web.json",
+  "illustrations": [
+    {"replaces": ["dimensions.png"], "path": "assets/ja_ad600a_eu_en/dimensions.png", "sha256": "8ad364d07cff5010b530266d332d4045c98193a06fe80bd74cc0b7f881b4ae0b", "source_page": 5, "bbox_pt": [25, 260, 345, 490]},
+    {"replaces": ["inbox_charger.png"], "path": "assets/ja_ad600a_eu_en/inbox_charger.png", "sha256": "d3cc869a3a097df38f28854cc09bbebf0d497f4f7225aca660b3ad24ea33941f", "source_page": 6, "bbox_pt": [25, 70, 110, 120]},
+    {"replaces": ["inbox_input_cable.png"], "path": "assets/ja_ad600a_eu_en/inbox_input_cable.png", "sha256": "f885eb8fccc778ae3cd41e0745fe3725202e9b6d623b06a8ab6a2a34bebf147a", "source_page": 6, "bbox_pt": [25, 150, 110, 220]},
+    {"replaces": ["inbox_fuse.png"], "path": "assets/ja_ad600a_eu_en/inbox_fuse.png", "sha256": "7184a6201fa9351fbb3335c0a92e276b742b7bf216a22a73e571e06d0bf70dc6", "source_page": 6, "bbox_pt": [120, 150, 160, 220]},
+    {"replaces": ["inbox_output_cable.png"], "path": "assets/ja_ad600a_eu_en/inbox_output_cable.png", "sha256": "86f2ee9a8bccd6f0030d2c3e1ef69651eec92dd7d6a00d556fd136acab976a12", "source_page": 6, "bbox_pt": [170, 150, 255, 220]},
+    {"replaces": ["inbox_acc_cable.png"], "path": "assets/ja_ad600a_eu_en/inbox_acc_cable.png", "sha256": "e8c340c50d1bbaeb9d06220e19db1f9ea0d1dd9689860360c56f23c57a0086df", "source_page": 6, "bbox_pt": [270, 150, 350, 220]},
+    {"replaces": ["inbox_st55_screws.png"], "path": "assets/ja_ad600a_eu_en/inbox_st55_screws.png", "sha256": "5ee6df63edab08d202d8f0ab857235f5e5250fba04009d6bc278cb3250480fd1", "source_page": 6, "bbox_pt": [48, 258, 94, 286]},
+    {"replaces": ["inbox_m6_bolts.png"], "path": "assets/ja_ad600a_eu_en/inbox_m6_bolts.png", "sha256": "aa8e6d12771c58662cc8ebd75e6180554fe94e0a574ff7c7f3d6de2f8ea4708e", "source_page": 6, "bbox_pt": [124, 258, 160, 286]},
+    {"replaces": ["inbox_m6_nuts.png"], "path": "assets/ja_ad600a_eu_en/inbox_m6_nuts.png", "sha256": "4fc2170fdcae8dde4cb0beeb2cc7413cdc7f4efd9f563ea546b000a58bfecd33", "source_page": 6, "bbox_pt": [200, 260, 230, 286]},
+    {"replaces": ["inbox_user_guide.png"], "path": "assets/ja_ad600a_eu_en/inbox_user_guide.png", "sha256": "80ae68800b5d4e38520cf51fc5805ec8fd34fecfe5728a4e95602fced0d0d09f", "source_page": 6, "bbox_pt": [294, 260, 325, 288]},
+    {"replaces": ["product_overview.png"], "path": "assets/ja_ad600a_eu_en/product_overview.png", "sha256": "28e62973748c726213b187bd177492403aee48259a3ba4e69588fb23364bbaa8", "source_page": 6, "bbox_pt": [22, 350, 348, 480]},
+    {"replaces": ["installation_diagram.png"], "path": "assets/ja_ad600a_eu_en/installation_diagram.png", "sha256": "d42f682f1934fd47e634ae0460230cd93ab7c5d8c613e7b6f1911f3e005e562e", "source_page": 10, "bbox_pt": [26, 72, 344, 487]},
+    {"replaces": ["wiring_steps.png"], "path": "assets/ja_ad600a_eu_en/wiring_steps.png", "sha256": "d7631335a38de10e4aad0f1157c3b54d979b89f9fe463ffda553e61d82f63aeb", "source_page": 13, "bbox_pt": [195, 115, 347, 500]},
+    {"replaces": ["secure_vehicle_body.png"], "path": "assets/ja_ad600a_eu_en/secure_vehicle_body.png", "sha256": "390d68411fda72ee49f68fc3bb8c9433fff0cc1fc94d8f95f651c16b3801dba7", "source_page": 14, "bbox_pt": [190, 82, 347, 502]},
+    {"replaces": ["secure_modification_panel.png"], "path": "assets/ja_ad600a_eu_en/secure_modification_panel.png", "sha256": "dbf64e5af1da595556d1e5e617f67f5d1554162e7cd3c692c71d492b5a259833", "source_page": 15, "bbox_pt": [190, 47, 347, 400]},
+    {"replaces": ["connection_diagram.png"], "path": "assets/ja_ad600a_eu_en/connection_diagram.png", "sha256": "87983ba275dd7f23060920a5bd1e26eed7b79f2cb74001f78f0a73725319e1c7", "source_page": 16, "bbox_pt": [45, 10, 345, 190]}
+  ]
+}

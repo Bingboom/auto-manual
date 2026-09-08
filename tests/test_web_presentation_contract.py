@@ -97,6 +97,11 @@ class WebPresentationContractTests(unittest.TestCase):
         legacy_shape = dict(contract)
         legacy_shape.pop("presentation_layers")
         legacy_shape["schema_version"] = "web-manual-presentation/v1"
+        legacy_shape["figure_targets"] = [
+            target
+            for target in legacy_shape["figure_targets"]
+            if target["model"] == "JE-1000F"
+        ]
         legacy_requirement = deepcopy(
             next(
                 requirement
@@ -111,6 +116,25 @@ class WebPresentationContractTests(unittest.TestCase):
 
         self.assertEqual("web-manual-presentation/v2", contract["schema_version"])
         self.assertEqual(LEGACY_CANONICAL_SHA256, _canonical_sha256(legacy_shape))
+
+    def test_charger_target_uses_its_own_finished_art_contract(self) -> None:
+        contract = load_web_manual_contract(model="JA-AD600A", region="EU")
+
+        self.assertEqual("charger-v1", contract["presentation_layers"]["skeleton_profile"])
+        self.assertEqual(
+            [{"model": "JA-AD600A", "region": "EU"}],
+            contract["figure_targets"],
+        )
+        self.assertEqual([], contract["preface"]["targets"])
+        requirement = contract["figure_coverage"]["requirements"][0]
+        self.assertEqual("ja-ad600a-eu-en-finished-figures-v1", requirement["policy_id"])
+        self.assertEqual(5, len(requirement["required_slots"]))
+        self.assertEqual(
+            ["finished-panel", "approved-composite"],
+            requirement["allowed_statuses"],
+        )
+        self.assertNotIn("lcd_mode_table", contract["operations"])
+        self.assertNotIn("auto_resume_table", contract["operations"])
 
     def test_us_and_eu_share_one_skeleton_but_keep_target_grants_isolated(self) -> None:
         us = load_web_manual_contract(model="JE-1000F", region="US")
