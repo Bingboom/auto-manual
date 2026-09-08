@@ -1,0 +1,282 @@
+{
+  "schema_version": "js100i-eu-formal-business-input-plan/v1",
+  "write_status": "disabled_and_deferred_not_a_release_gate_no_online_writes_authorized_for_this_batch",
+  "release_gate": false,
+  "current_batch_policy": {
+    "purpose": "read_only_gap_evidence_for_optional_future_normalization",
+    "bitable_writes_allowed": false,
+    "build_queue_dispatch_allowed": false,
+    "published_link_writeback_allowed": false,
+    "formal_release_path": "Git frozen Web package -> Hello-Docs docs/publish/** PR -> Read the Docs"
+  },
+  "target": {
+    "model": "JS-100I",
+    "region": "EU",
+    "language": "en",
+    "document_key": "JS-100I_EU",
+    "manual_version": "2.0",
+    "published_revision": "V2.0-2026-04-01"
+  },
+  "source_authority": {
+    "published_catalog_record_id": "rec27BPMtc8kJl",
+    "published_manual_name": "Jackery SolarSaga 100 Air User Manual V2.0-2026-04-01",
+    "published_manual_url": "https://alidocs.dingtalk.com/i/nodes/lyQod3RxJK3XrMnMUONl9pAxJkb4Mw9r?utm_scene=team_space",
+    "published_pdf_physical_pages": "4-12",
+    "published_pdf_sha256": "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
+    "source_master_name": "371JNuMVqZ.ai",
+    "source_master_page_count": 10,
+    "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+    "asset_recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+    "asset_recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+    "source_policy": "current-published-version-only; no historical-version comparison"
+  },
+  "live_identity": {
+    "base_token": "LD3lb4G1ua4GOVs1vxAc9W2enje",
+    "product_record": {
+      "record_id": "recvg5TR1QpQPq",
+      "Model": "JS-100I",
+      "product_name_en": "Jackery SolarSaga 100 Air",
+      "category": "光伏板",
+      "project_record_id": "recvg5UGmRb9bV",
+      "project_code": "HTS006"
+    },
+    "region_record": {
+      "record_id": "recvg5S7r6OdTt",
+      "Region": "EU",
+      "regulation": "欧规",
+      "Build_family": "eu-merged"
+    }
+  },
+  "prewrite_live_counts": {
+    "document_key": 0,
+    "spec_master": 0,
+    "page_placeholders": 0,
+    "spec_notes": 0,
+    "asset_sources": 0,
+    "asset_definitions": 0,
+    "asset_exports": 0,
+    "build_queue": 0
+  },
+  "phase_1_document_key": {
+    "table_id": "tbltnkDIdwiDOP7d",
+    "operation": "deferred_candidate_only_do_not_execute_in_current_release",
+    "record": {
+      "Model": [
+        {
+          "id": "recvg5TR1QpQPq"
+        }
+      ],
+      "Region": [
+        {
+          "id": "recvg5S7r6OdTt"
+        }
+      ],
+      "产品名称": "Jackery SolarSaga 100 Air",
+      "Description": "JS-100I EU English Web target"
+    },
+    "readback_acceptance": {
+      "Document_key": "JS-100I_EU",
+      "项目代码": "HTS006",
+      "Model_record_id": "recvg5TR1QpQPq",
+      "Region_record_id": "recvg5S7r6OdTt"
+    }
+  },
+  "phase_2_row_key_dimensions": {
+    "table_id": "tbl8yQfXYe3KKyAM",
+    "existing": {
+      "product_name": "rec277z1LBny7s",
+      "model_no": "rec277z1LBnxQA",
+      "weight": "rec277z1LBnzKZ"
+    },
+    "create_records": [
+      {"Row_key": "dimensions_unfolded", "Row_label_source": "Dimensions (unfolded)"},
+      {"Row_key": "dimensions_folded", "Row_label_source": "Dimensions (folded)"},
+      {"Row_key": "ip_rating", "Row_label_source": "IP Rating"},
+      {"Row_key": "operating_temperature", "Row_label_source": "Operating Temperature Range"},
+      {"Row_key": "maximum_power", "Row_label_source": "Maximum Power (Pₘₐₓ)"},
+      {"Row_key": "open_circuit_voltage", "Row_label_source": "Open-Circuit Voltage (Vₒ꜀)"},
+      {"Row_key": "short_circuit_current", "Row_label_source": "Short-Circuit Current (Iₛ꜀)"},
+      {"Row_key": "maximum_power_voltage", "Row_label_source": "Maximum Power Voltage (Vₘₚ)"},
+      {"Row_key": "maximum_power_current", "Row_label_source": "Maximum Power Current (Iₘₚ)"},
+      {"Row_key": "maximum_system_voltage", "Row_label_source": "Maximum System Voltage"},
+      {"Row_key": "maximum_reverse_current", "Row_label_source": "Maximum Reverse Current"},
+      {"Row_key": "protection_class", "Row_label_source": "Protection Class Against Electric Shock"},
+      {"Row_key": "bifaciality_coefficient", "Row_label_source": "Bifaciality Coefficient (back/front)"},
+      {"Row_key": "voltage_temperature_coefficient", "Row_label_source": "Voltage Temperature Coefficient"},
+      {"Row_key": "power_temperature_coefficient", "Row_label_source": "Power Temperature Coefficient"},
+      {"Row_key": "photovoltaic_consumer_products", "Row_label_source": "Photovoltaic Consumer Products"},
+      {"Row_key": "usb_a_output", "Row_label_source": "USB-A Output"},
+      {"Row_key": "usb_c_output", "Row_label_source": "USB-C Output"}
+    ],
+    "readback_acceptance": "18 unique new Row_key records; no duplicate key creation; retain the three existing English record ids above"
+  },
+  "phase_3_spec_master": {
+    "table_id": "tblPUFJqt2uGGvTT",
+    "source_csv": "data/manual_sources/JS-100I/EU/en/2.0/phase2/Spec_Master.csv",
+    "source_csv_sha256": "782fad05b56735a28746497b4257cd0b81e65513d0be23425c3f74ec5e7b35bb",
+    "common_fields": {
+      "Document_key_link": null,
+      "Page": "specifications",
+      "Version": "1.0",
+      "Is_Latest": "TRUE",
+      "Source_lang": "en",
+      "多语言复核": false
+    },
+    "create_records": [
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 1, "Row_key": "product_name", "Row_label_source": "Product Name", "Line_order": 1, "Value_source": "Jackery SolarSaga 100 Air"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 2, "Row_key": "model_no", "Row_label_source": "Model", "Line_order": 1, "Value_source": "JS-100I"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 3, "Row_key": "dimensions_unfolded", "Row_label_source": "Dimensions (unfolded)", "Line_order": 1, "Value_source": "1630 × 423 × 17 mm"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 4, "Row_key": "dimensions_folded", "Row_label_source": "Dimensions (folded)", "Line_order": 1, "Value_source": "423.5 × 423 × 47 mm"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 5, "Row_key": "weight", "Row_label_source": "Weight", "Line_order": 1, "Value_source": "3.2 kg ± 0.2 kg"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 6, "Row_key": "ip_rating", "Row_label_source": "IP Rating", "Line_order": 1, "Value_source": "IP68"},
+      {"Section": "BASIC INFORMATION", "Section_order": 1, "Row_order": 7, "Row_key": "operating_temperature", "Row_label_source": "Operating Temperature Range", "Line_order": 1, "Value_source": "-20°C to 65°C"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 1, "Row_key": "maximum_power", "Row_label_source": "Maximum Power (Pₘₐₓ)", "Line_order": 1, "Value_source": "STC*: 100 W ± 5% / BNPI*: 110 W ± 5%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 2, "Row_key": "open_circuit_voltage", "Row_label_source": "Open-Circuit Voltage (Vₒ꜀)", "Line_order": 1, "Value_source": "STC*: 26.0 V ± 5% / BNPI*: 26.3 V ± 5%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 3, "Row_key": "short_circuit_current", "Row_label_source": "Short-Circuit Current (Iₛ꜀)", "Line_order": 1, "Value_source": "STC*: 4.95 A ± 5% / BNPI*: 5.38 A ± 5%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 4, "Row_key": "maximum_power_voltage", "Row_label_source": "Maximum Power Voltage (Vₘₚ)", "Line_order": 1, "Value_source": "STC*: 21.7 V ± 5% / BNPI*: 22.0 V ± 5%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 5, "Row_key": "maximum_power_current", "Row_label_source": "Maximum Power Current (Iₘₚ)", "Line_order": 1, "Value_source": "STC*: 4.67 A ± 5% / BNPI*: 5.08 A ± 5%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 6, "Row_key": "maximum_system_voltage", "Row_label_source": "Maximum System Voltage", "Line_order": 1, "Value_source": "80 V"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 7, "Row_key": "maximum_reverse_current", "Row_label_source": "Maximum Reverse Current", "Line_order": 1, "Value_source": "15 A"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 8, "Row_key": "protection_class", "Row_label_source": "Protection Class Against Electric Shock", "Line_order": 1, "Value_source": "Class II"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 9, "Row_key": "bifaciality_coefficient", "Row_label_source": "Bifaciality Coefficient (back/front)", "Line_order": 1, "Value_source": "Pₘₐₓ >65%, Vₒ꜀ >97%, Iₛ꜀ >65%"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 10, "Row_key": "voltage_temperature_coefficient", "Row_label_source": "Voltage Temperature Coefficient", "Line_order": 1, "Value_source": "-0.27%/°C"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 11, "Row_key": "power_temperature_coefficient", "Row_label_source": "Power Temperature Coefficient", "Line_order": 1, "Value_source": "-0.33%/°C"},
+      {"Section": "ELECTRICAL DATA", "Section_order": 2, "Row_order": 12, "Row_key": "photovoltaic_consumer_products", "Row_label_source": "Photovoltaic Consumer Products", "Line_order": 1, "Value_source": "IEC TS 63163 Consumer Product Category 2"},
+      {"Section": "MULTIFUNCTIONAL ADAPTER", "Section_order": 3, "Row_order": 1, "Row_key": "usb_a_output", "Row_label_source": "USB-A Output", "Line_order": 1, "Value_source": "5 V⎓2.4 A"},
+      {"Section": "MULTIFUNCTIONAL ADAPTER", "Section_order": 3, "Row_order": 2, "Row_key": "usb_c_output", "Row_label_source": "USB-C Output", "Line_order": 1, "Value_source": "5 V⎓3 A"}
+    ],
+    "page_placeholders": {
+      "table_id": "tblEhqJVXiyKtnwq",
+      "create_count": 0,
+      "reason": "Solar@INTL body copy is carried by target RST; only the specifications page consumes phase2 rows"
+    },
+    "readback_acceptance": "21 records; every document_key formula equals JS-100I_EU; every Row_key lookup and source_row_key formula is non-empty"
+  },
+  "phase_4_spec_notes": {
+    "table_id": "tblgJCepw4JvbMbH",
+    "source_csv": "data/manual_sources/JS-100I/EU/en/2.0/phase2/Spec_Notes.csv",
+    "source_csv_sha256": "ce46f0b5f17860a6b0114254b31cedc45f687a3fbf9a1eefee94969d44f92dbf",
+    "schema_precondition": {
+      "field_id": "fld1ydKpoS",
+      "field": "Model",
+      "current_options": ["JE-1000F", "JE-1500D", "JE-2000E", "JE-2000F", "JE-900B", "JE-1800B", "JE-3000C", "JBP-2000B"],
+      "required_additive_option": "JS-100I",
+      "routing": "add in the engineering-plane old base, then promote to the business-plane new base; do not mutate the new-base schema directly"
+    },
+    "create_records": [
+      {"Note_id": "stc_conditions", "Region": "EU", "Model": ["JS-100I"], "Source_lang": "en", "Is_Latest": "TRUE", "Page": "specifications", "Note_order": 1, "Type": "Note", "Text_en": "* STC (Standard Test Conditions, 1000 W/m², 25°C, AM1.5).", "Enabled": "TRUE"},
+      {"Note_id": "bnpi_conditions", "Region": "EU", "Model": ["JS-100I"], "Source_lang": "en", "Is_Latest": "TRUE", "Page": "specifications", "Note_order": 2, "Type": "Note", "Text_en": "* BNPI (Bifacial Nameplate Irradiance, Front 1000 W/m², Rear 135 W/m², 25°C, AM1.5).", "Enabled": "TRUE"},
+      {"Note_id": "design_load", "Region": "EU", "Model": ["JS-100I"], "Source_lang": "en", "Is_Latest": "TRUE", "Page": "specifications", "Note_order": 3, "Type": "Note", "Text_en": "Unfold the bracket and place it on a flat surface. The design load is 1600 Pa, and the safety factor is 1.5 times.", "Enabled": "TRUE"}
+    ],
+    "readback_acceptance": "3 records in order 1-3; Model includes JS-100I; Text_en is byte-identical to the source CSV"
+  },
+  "phase_5_asset_source": {
+    "table_id": "tblsXlZx61Ff5pQC",
+    "source_key": "source/manual_js100i_eu_en_master",
+    "record": {
+      "source_kind": "design-master",
+      "source_format": "pdf-illustrator-compatible",
+      "source_scope_model": "JS-100I",
+      "source_scope_region": "EU",
+      "source_scope_lang": "en",
+      "registry_revision": "2026-09-06-intake",
+      "document_revision": "V2.0-2026-04-01",
+      "page_count": 10,
+      "page_width_mm": 130,
+      "page_height_mm": 185,
+      "source_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "package_sha256": "d3f56e541c5522548066991026dd375925264a41678884b540c6a8786d726a1b",
+      "manifest_sha256": "87c9be492c71d172aeb559d89650e269b78484172b5986d09d1d8a7cf8e7c7f1",
+      "archive_status": "待校验",
+      "notes": "Current published JS-100I EU/en V2.0 source. PDF body is physical pages 4-12. The PDF-compatible Illustrator master and deterministic package are bound to the hashes in this plan; the 13 localized English figure crops intentionally retain in-figure copy and are not textless derivatives."
+    },
+    "attachments": {
+      "source_file": {"name": "371JNuMVqZ.ai", "sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a"},
+      "asset_package": {"name": "asset-package.zip", "sha256": "d3f56e541c5522548066991026dd375925264a41678884b540c6a8786d726a1b"},
+      "manifest_file": {"name": "manifest.json", "sha256": "87c9be492c71d172aeb559d89650e269b78484172b5986d09d1d8a7cf8e7c7f1"}
+    },
+    "post_attachment_readback_patch": {
+      "archive_status": "已归档"
+    },
+    "readback_acceptance": "one source record; all three attachment fields have a non-empty file_token; each attachment re-download matches its listed SHA-256 before archive_status is accepted as 已归档"
+  },
+  "phase_6_asset_definitions_and_exports": {
+    "definition_table_id": "tblWilXeN5FXPraC",
+    "export_table_id": "tblavT0dcjZGK9DR",
+    "definition_count": 13,
+    "export_count": 33,
+    "export_breakdown": {"archive-page": 10, "preview": 10, "semantic-export": 13},
+    "generated_package": {
+      "artifact_count": 33,
+      "artifacts_csv_sha256": "c4ca2f9e114340098d2a9225f254c71e6cd37aaed39d8762cda9df9d12c8cd2d",
+      "manifest_sha256": "87c9be492c71d172aeb559d89650e269b78484172b5986d09d1d8a7cf8e7c7f1",
+      "package_sha256": "d3f56e541c5522548066991026dd375925264a41678884b540c6a8786d726a1b",
+      "deterministic_replay_count": 2,
+      "semantic_exports_match_committed_assets": "13/13 byte-identical"
+    },
+    "definitions": [
+      {"asset_key": "web/js100i/eu/en/inbox_panel", "source_page": 2, "web_replace_key": "inbox_panel.png", "sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a"},
+      {"asset_key": "web/js100i/eu/en/inbox_bag", "source_page": 2, "web_replace_key": "inbox_bag.png", "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515"},
+      {"asset_key": "web/js100i/eu/en/inbox_cable", "source_page": 2, "web_replace_key": "inbox_cable.png", "sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f"},
+      {"asset_key": "web/js100i/eu/en/inbox_adapter", "source_page": 2, "web_replace_key": "inbox_adapter.png", "sha256": "2ef8624af0e7c186791e46be41b09cac73a548962a381667e7471fd85bf722b5"},
+      {"asset_key": "web/js100i/eu/en/inbox_manual", "source_page": 2, "web_replace_key": "inbox_manual.png", "sha256": "d93feafa1c2c5c987c915a64d9ea076eaf375dd55f46db61e105925575fcc27c"},
+      {"asset_key": "web/js100i/eu/en/product_views", "source_page": 3, "web_replace_key": "product_views.png", "sha256": "966069f8f78c491f61bc00ef7a2dca50c0a8aab780b2062c47c549b57d904298"},
+      {"asset_key": "web/js100i/eu/en/unfold_steps_1_3", "source_page": 4, "web_replace_key": "unfold_steps_1_3.png", "sha256": "73e17cf2c009daec15123b51fb4b7db8bfbed043474d5a7e166b61fd62a765e7"},
+      {"asset_key": "web/js100i/eu/en/unfold_step_4", "source_page": 5, "web_replace_key": "unfold_step_4.png", "sha256": "d10b0bff038014a4b0df8c749901c926da47a6171134c472af7cab8244cf93aa"},
+      {"asset_key": "web/js100i/eu/en/fold_steps", "source_page": 5, "web_replace_key": "fold_steps.png", "sha256": "57cd5b938e761df6af232a5a0ad74d57c33eb2e779ce283e9bb680d684e0a9b0"},
+      {"asset_key": "web/js100i/eu/en/dc_connections", "source_page": 6, "web_replace_key": "dc_connections.png", "sha256": "eb60e9c4e9ebeb0f3b99f8e1d9d737116bb968d6c4657ad29a990badcf882595"},
+      {"asset_key": "web/js100i/eu/en/optional_connections", "source_page": 7, "web_replace_key": "optional_connections.png", "sha256": "9106d5c1b9df86b719139e34173d645c92347a8736df6403bf08368252818fc1"},
+      {"asset_key": "web/js100i/eu/en/angle_and_device", "source_page": 8, "web_replace_key": "angle_and_device.png", "sha256": "4d13eb653050866121bb5de2f823f0309f0fd92156e470a602f63e6ad3c24fe6"},
+      {"asset_key": "web/js100i/eu/en/multifunctional_adapter", "source_page": 9, "web_replace_key": "multifunctional_adapter.png", "sha256": "e2d23601137015dfd900301d9e19ef8a87a46e8a2c3f646a68d79d4715ee3218"}
+    ],
+    "definition_common_fields": {
+      "source_key": "source/manual_js100i_eu_en_master",
+      "source_record": "resolve_from_phase_5",
+      "category": "图文混排",
+      "language_dimension": "按语言",
+      "language_variants": "en",
+      "text_policy": "localized-full-page",
+      "status": "✅成品",
+      "gate_status": "approved",
+      "build_eligible": true,
+      "visual_review_required": false,
+      "generator_allowed": false,
+      "textless_pending": false,
+      "model_scope": "JS-100I",
+      "region_scope": "EU",
+      "recipe_revision": "schema-v1:45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+      "source_crop": "resolve exact transforms from data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    "export_generation": "create all 33 rows from the hash-pinned generated manifest; semantic-export rows link to the definition resolved by asset_key; archive rows have no asset link",
+    "readback_acceptance": "13 unique definitions and 33 unique export_key values; all links resolve; all semantic-export content_sha256 values equal expected_sha256; no row is written to legacy table tblxFBWaDG4OYhqu"
+  },
+  "phase_7_build_record": {
+    "table_id": "tblbnRHjpJeCVTtj",
+    "operation": "omitted_from_current_release_deferred_candidate_only",
+    "record": {
+      "Document_Key": "resolve_from_phase_1",
+      "Market_Group": [
+        {
+          "id": "recvg5S7r6OdTt"
+        }
+      ],
+      "Version": "2.0",
+      "Review_status": "NotStarted",
+      "Workflow_action": "Web Publish",
+      "Git_ref": "review/JS-100I-EU",
+      "Lang": null,
+      "是否强制刷新数据": true,
+      "是否触发文档构建": null,
+      "Remarks": "JS-100I EU/en V2.0 Web Publish; source PDF cec27af653d; source master 5d7ded6ba7; package d3f56e541c; do not trigger until coordinated publish order"
+    },
+    "expected_formulas": {
+      "Document_ID": "JS-100I_EU_2.0",
+      "Task_id": "JS-100I_EU_2.0_Web Publish",
+      "项目代码": "HTS006",
+      "Build_family": "eu-merged",
+      "Git_ref_check": "OK",
+      "Document_ID_check": "OK"
+    },
+    "known_non_blocking_observation": "The online queue resolver does not currently select configs/config.solar-eu-en.yaml for this identity. The current release deliberately bypasses the online queue and uses the Git-only publish_branch_assembly path, so this observation is not a publication blocker."
+  }
+}
