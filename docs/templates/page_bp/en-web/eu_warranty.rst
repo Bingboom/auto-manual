@@ -25,10 +25,10 @@ Warranty Period
    :header-rows: 0
    :widths: 50 50
 
-   * - **3 YEARS — Standard Warranty**
+   * - **3 YEARS** **Standard Warranty**
 
        The standard warranty period for |PRODUCT_NAME| is 36 months. In each case, the warranty period is measured starting on the date of purchase by the original consumer purchaser. The sales receipt from the first consumer purchase, or other reasonable documentary proof, is required in order to establish the start date of the warranty period.
-     - **2 YEARS — Extended Warranty**
+     - **2 YEARS** **Extended Warranty**
 
        To activate the Warranty Extension, you must register your product online or contact our customer service team at |WARRANTY_EMAIL| to extend the standard warranty period.
 

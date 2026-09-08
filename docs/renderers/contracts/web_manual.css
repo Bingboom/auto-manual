@@ -1692,3 +1692,209 @@ body {
 }
 #furo-main-content table.lcd-text-only col:nth-child(3) { width: 35% !important; }
 #furo-main-content table.lcd-text-only col:nth-child(4) { width: 65% !important; }
+
+/*
+ * JBP-2000B EU page 8 keeps the published composition: a compact LCD map and
+ * bordered two-column legend, followed by two rounded operation cards.  The
+ * selectors are pinned to the frozen EU artwork paths so the treatment cannot
+ * leak into another battery-pack target that happens to reuse these headings.
+ */
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"] {
+  display: block;
+  width: 78% !important;
+  max-width: 34rem !important;
+  height: auto !important;
+  margin: 0.7rem auto 0.65rem !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > table.lcd-text-only {
+  width: 100% !important;
+  max-width: var(--hb-reading-width);
+  margin: 0 auto 2.15rem !important;
+  overflow: hidden;
+  border: 1.5px solid var(--hb-line) !important;
+  border-radius: 0.72rem;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  background: var(--hb-paper);
+  table-layout: fixed !important;
+  font-size: 0.78rem;
+  line-height: 1.24;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > table.lcd-text-only tr > :nth-child(n + 3) {
+  box-sizing: border-box;
+  padding: 0.62rem 0.72rem !important;
+  border: 0 !important;
+  vertical-align: middle !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > table.lcd-text-only tr:not(:last-child) > :nth-child(n + 3) {
+  border-bottom: 1px solid var(--hb-line) !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > table.lcd-text-only tr > :nth-child(3) {
+  border-right: 1px solid var(--hb-line) !important;
+  background: var(--hb-surface) !important;
+  font-weight: 700;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+  )
+  > table.lcd-text-only p {
+  margin: 0;
+}
+
+#furo-main-content
+  #power-on-off:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+  )
+  > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"],
+#furo-main-content
+  #lcd-display-on-off:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"]
+  )
+  > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"] {
+  display: block;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: var(--hb-reading-width) !important;
+  height: auto !important;
+  margin: 0.45rem auto 0 !important;
+  padding: clamp(0.65rem, 1.8vw, 1.05rem) clamp(0.55rem, 1.6vw, 0.95rem) 0.35rem;
+  border: 2px solid var(--hb-line-soft);
+  border-bottom: 0;
+  border-radius: 0.82rem 0.82rem 0 0;
+  background: var(--hb-paper);
+}
+
+#furo-main-content
+  #power-on-off:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+  )
+  > table.manual-callout-table {
+  width: 100% !important;
+  margin: 0 auto 1.35rem !important;
+  border-top: 1px solid var(--hb-line-soft) !important;
+  border-radius: 0 0 0.82rem 0.82rem;
+}
+
+#furo-main-content
+  #lcd-display-on-off:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"]
+  )
+  > p:last-child {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0 auto 1.35rem;
+  padding: 0.72rem 0.85rem;
+  border: 2px solid var(--hb-line-soft);
+  border-top: 1px solid var(--hb-line-soft);
+  border-radius: 0 0 0.82rem 0.82rem;
+  background: var(--hb-surface);
+  font-size: 0.78rem;
+  line-height: 1.28;
+}
+
+#furo-main-content
+  #operations
+  > #lcd-display-on-off:has(
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"]
+  ) {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 520px) {
+  #furo-main-content
+    #lcd-display:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+    )
+    > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"] {
+    width: 100% !important;
+  }
+
+  #furo-main-content
+    #lcd-display:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"]
+    )
+    > table.lcd-text-only {
+    font-size: 0.72rem;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table {
+    display: table;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table tbody {
+    display: table-row-group;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table tr {
+    display: table-row;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table .manual-callout-label,
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table .manual-callout-body {
+    display: table-cell;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table .manual-callout-label {
+    width: 22% !important;
+    text-align: center;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img[data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"]
+    )
+    > table.manual-callout-table .manual-callout-body {
+    width: 78% !important;
+  }
+}

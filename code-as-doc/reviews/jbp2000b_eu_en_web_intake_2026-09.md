@@ -87,7 +87,7 @@ Full validation also registered the English manifest in the family index and
 updated the explicit template/capability inventory. The English Web configuration
 no longer inherits the unrelated six-language candidate IDML assembly plan.
 
-Final correction validation: 3,857 unit tests passed (22 skipped); 88 focused
+Final correction validation: 3,859 unit tests passed (22 skipped); 88 focused
 Word/Markdown tests passed; Ruff, doc links and maintainability passed. Both
 JBP-2000B EU/en frozen-source and JE-1000F US review-source checks passed.
 
@@ -97,3 +97,18 @@ The target overlay now maps `warranty_en` and `eu_warranty` to the shared warran
 component. Both 3/2 year badges render again without changing warranty copy.
 Desktop (1100 px) and mobile (375 px) screenshots show parallel/stacked periods
 with zero document overflow. The 68 Web presentation and contract tests passed.
+
+## Published page-8 layout parity
+
+The LCD and Operations area now follows the published page composition instead
+of expanding its parts into loose Web flow. The LCD artwork is compact and
+centred above a rounded, bordered two-row legend. POWER ON/OFF and LCD DISPLAY
+ON/OFF each keep the subsection title outside one continuous rounded card; the
+artwork and its supporting copy share the same frame. These rules are scoped to
+the three frozen `jbp2000b_eu_en` artwork paths and do not affect other targets.
+
+The warranty year cards also remove the source separator before “Standard
+Warranty” and “Extended Warranty”; the labels now render without an extra dash.
+Real Sphinx output was inspected at 1440 px and 375 px: all three page-8 panels
+retain their published grouping, both viewports have zero horizontal overflow,
+and the two warranty labels read back without separators.
