@@ -6,7 +6,9 @@ Target: `JBP-3600A / EU / en` (`HTP011`, Jackery Battery Pack 3600)
 
 Engineering content baseline: `9b356ecadfe355aae0eb474ef4c49bf168a01e4c`
 
-Formal source commit: `75b7cd668403c08305eb1edcc761575a127e7383`
+Formal source commit: `3609e42f4a506870c250b40172c77029c3689ed1`
+
+Final release build Git ref: `359c7edc833d659aaf78e0b128eea595c3ce58e4`
 
 Status: **the target-specific Git-only release root and single-target
 `docs/publish/**` candidate are generated and locally accepted.** This batch
@@ -30,15 +32,17 @@ used as the product identity.
 | `16-0102-000334 说明书 HTP0113600A-EU-JAK RoHS REACH.ai`, 10 pages | source artwork and localized full panels | `e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761` |
 | `configs/config.bp-eu-en-web.yaml` | exact target configuration | `be43f160a88d4d25a0b890288e45a45aa12fe0f546b4d17ee8a0b909e66d4dea` |
 | `docs/manifests/manual_bp-eu-en-web.yaml` | BP-specific page structure | `f283ab204f1f95b4640dd30e3978d01eb052de0757d33a72cd30fd33506986bd` |
-| `data/asset_recipes/manual_jbp3600a_eu_web.json` | 15 source assets, 23 semantic outputs | `68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1` |
+| `data/asset_recipes/manual_jbp3600a_eu_web.json` | 16 source assets, 25 semantic outputs, including the JBP-specific LCD hero override | `89db92842423a202701493b76ae954d3308d5be8572589fc649a9c32e975c591` |
 | `docs/renderers/web/jbp3600a_eu_en_illustrations.json` | eight source-page full-panel bindings | `b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4` |
 
 The formal build reads
 [`manual_sources/JBP-3600A/EU/en/phase2`](../../manual_sources/JBP-3600A/EU/en/phase2),
 not `tests/fixtures`. Its
 [`source_manifest.json`](../../manual_sources/JBP-3600A/EU/en/source_manifest.json)
-locks 23 target/shared input files with inventory SHA-256
-`ba03b7fb799bdf689a3d0c7c63721b7a658014e64021228b76ca5f08f4cb23a3`.
+locks 24 target/shared input files with inventory SHA-256
+`b3f0f0021a85e5fa6a0b8bd0bce0a68bf49d8806105af74bac72d5c70a5ecc56`.
+The target-local `.gitattributes` pins all formal CSV inputs to LF; a detached
+clean checkout confirmed both the attributes and the raw manifest hashes.
 The directory contains 21 specification rows, 8 target Symbol rows plus 5
 shared signal rows, 2 LCD rows, 7 troubleshooting rows, the eight used Symbol
 attachments, and only the shared dictionaries required to render them. Page
@@ -58,6 +62,12 @@ artwork consistently identify `JBP-3600A`, so no operator choice between two
 competing manuscripts is required. No missing English body, specification,
 warranty or EU-tail source was found; empty online association fields are not
 treated as missing content.
+
+The exact 45-page published PDF was also re-downloaded and rendered. Page 45
+visibly states that Jackery Battery Pack 3600 with Bluetooth and Wi-Fi,
+JBP-3600A, is covered by the RED declaration. That wording is therefore
+published-manual authority and is retained even though the separate 10-page
+Illustrator source does not contain the EU tail.
 
 ## Accepted target build
 
@@ -80,6 +90,7 @@ python -m sphinx -W -b html \
 | Target suite | 7/7 passed |
 | Real Pandoc build and Sphinx `-W` | passed |
 | Public IR | 15 source fragments, 78 blocks, 21 packaged images |
+| LCD hero | JBP-3600A override `5e793d99`; percentage and charging icon only |
 | Cold replay | passed with `.rst` and `.csv` reads denied |
 | Tamper rejection | a changed packaged asset was rejected |
 | Finished-panel policy | 5/5 |
@@ -90,10 +101,10 @@ Core output hashes:
 
 | Artifact | SHA-256 |
 | --- | --- |
-| Generated MyST manual | `38940fef9baf637f625b0cbc58773b445e88c5e14de3965c5796cff0d79f467d` |
-| `manual.ir.json` file | `dace88e79704276b78e4395302c1f6090b966f403be635d4cedf5ee321261c10` |
-| IR content | `b457050d47835f8b2dee7f77e6ccdbc84428f6710528ec28b9cd0eed5dc5e594` |
-| IR bundle | `78b144f79fcc60c38d1bbc111c8acdfbbfe5da97643d40f892381719f1abf0a3` |
+| Generated MyST manual | `dec447799ba563640061d77fa2a11e5534b478ed04aee3ac7dc01e84db9a1c79` |
+| `manual.ir.json` file | `6360e8b42b19424137f42ff74078ef764bd230e3fbd11cfd501526d83b1ac67d` |
+| IR content | `7c63e9a22bf065a50137e136f9654ed61049f4c15cffee77f4fa627132788199` |
+| IR bundle | `63dbc0bccd6ad521786e2bf58dcd6a6587971464b2396f67548023977c60f67c` |
 
 ## Git-only release-root handoff
 
@@ -113,7 +124,7 @@ JBP-3600A/EU/en/versions/2.0/web/html/index.html
 
 `publish_meta.json` uses `auto-manual-web-publish/v1`, version `2.0`, language
 `en`, route `JBP-3600A/EU/md`, exact Git ref
-`75b7cd668403c08305eb1edcc761575a127e7383`, and an empty
+`359c7edc833d659aaf78e0b128eea595c3ce58e4`, and an empty
 `queue_record_ids` array. It records no live-sync or queue claim.
 
 The central release task can merge this release root with the other prepared
@@ -142,15 +153,15 @@ is deliberately serialized by the central release task.
 The existing assembler produced a self-contained candidate at:
 
 ```text
-/tmp/jbp3600a-git-publish-20260906/candidate/docs/publish
+/tmp/jbp3600a-git-publish-20260907-final-main/candidate/docs/publish
 ```
 
 | Output | Result |
 | --- | --- |
 | Inventory | 73 files plus `publish_manifest.json` |
-| Publish manifest SHA-256 | `b464eb68341f289e3ef94b727afb42768ea914ad9682fc878d37cac644ab1fb0` |
-| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260906/jbp3600a-eu-web-publish-candidate-final.zip` |
-| Candidate ZIP SHA-256 | `54212047a9a9a0dd10044a9375e9e8c5f7b886961dcc89d39fffffd14f7a4a81` |
+| Publish manifest SHA-256 | `f72c5e1377051c217a2cf597421906d78ba4504c27d6d2bdd73d5d05bb86a28c` |
+| Candidate ZIP | `/tmp/jbp3600a-git-publish-20260907-final-main/jbp3600a-eu-web-publish-candidate-final-main.zip` |
+| Candidate ZIP SHA-256 | `8e4eeb18d9a5b2aa86f455cb64295724146ad88288512d9bc567a9d304f92cc5` |
 | RTD-source Sphinx `-W` | passed |
 | Root alias HTML SHA-256 | `d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480` |
 
