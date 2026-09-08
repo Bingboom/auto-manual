@@ -90,3 +90,10 @@ no longer inherits the unrelated six-language candidate IDML assembly plan.
 Final correction validation: 3,857 unit tests passed (22 skipped); 88 focused
 Word/Markdown tests passed; Ruff, doc links and maintainability passed. Both
 JBP-2000B EU/en frozen-source and JE-1000F US review-source checks passed.
+
+## Warranty presentation correction
+
+The target overlay now maps `warranty_en` and `eu_warranty` to the shared warranty
+component. Both 3/2 year badges render again without changing warranty copy.
+Desktop (1100 px) and mobile (375 px) screenshots show parallel/stacked periods
+with zero document overflow. The 68 Web presentation and contract tests passed.

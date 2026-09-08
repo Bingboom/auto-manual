@@ -261,6 +261,11 @@
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/web_composite_manifest.json",
       "sha256": "ea8402a7d22629eb4ea247336ea604f0ed0ae71de431f80d5352e68aab6ef38b",
       "size_bytes": 69
+    },
+    {
+      "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
+      "sha256": "7dbf9f11383e0bb16f2bf51277e1973b3804a15b407d8e60b0d8c88980759ee5",
+      "size_bytes": 4995
     }
   ],
   "superseded_source": {
