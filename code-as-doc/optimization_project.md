@@ -236,6 +236,7 @@ Keep this section short and current.
 9. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
 10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
 11. Whole-document production inputs have not converged across renderers: Web consumes v2 IR, while IDML still builds its prepared-RST projection, the ordinary Word path reads RST pages, and Sphinx consumes the source bundle. Shared ComponentSpec bindings do not prove whole-document output migration. Workstream Y tracks this debt and is deferred until the current EU single-language Web release batch is accepted; see the [migration plan and debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md).
+12. Editable illustration delivery needs a bounded acceptance loop: design masters, actual SVG editability, cloud file retrieval, immutable export versions and document usage must be verified together. The existing three asset tables and SVG format option were read live on 2026-09-08; whole-library coverage was not audited. Workstream Z records the [editable asset delivery plan and debt](dev/editable_asset_delivery_debt_plan_2026-09.md), deferred until the current EU Web release batch is accepted.
 
 ## 6. Active Workstreams
 
@@ -908,15 +909,38 @@ contract is changing. Word, LaTeX/ordinary HTML and additional targets wait for
 the first milestone's acceptance and a new phase-start decision. Retire old
 paths only within the verified migration scope.
 
+### Workstream Z: Editable Asset Delivery And Frozen Build Consumption
+
+Status: deferred — registered 2026-09-08; a planning record, not asset intake,
+table modification, designer notification or publishing authorization.
+
+The [editable asset delivery plan and AS-D01–AS-D06 ledger](dev/editable_asset_delivery_debt_plan_2026-09.md)
+defines design-team handoff, AI/SVG master preservation, live-text editability,
+versioned SVG/PNG/PDF exports, cloud retrieval, frozen build use and usage
+traceability. Reuse the existing three asset tables, resolver and manifests.
+
+Start with one already accepted EU single-language manual and a few actual
+asset samples after the current release. Verify native editing, file download
+hashes, cold asset retrieval and the real Web output before wider rollout.
+Designer handoff includes both a real revision delivered into the system and
+an asset package retrieved for subsequent editing. File extension alone does
+not prove vector or text editability.
+
+This asset pilot can be scheduled independently of Workstream Y's document-IR
+migration. Use one main window and short phase-end review; do not make all
+historical assets editable or migrate all renderers as an initial requirement.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
 Operator priority update (2026-09-08): finish the current EU single-language
-Web release batch and preserve its acceptance baseline first. Workstream Y
-remains deferred; only a delivery-blocking issue justifies a separately scoped
+Web release batch and preserve its acceptance baseline first. Workstreams Y
+and Z remain deferred; only a delivery-blocking issue justifies a separately scoped
 minimal fix during that release. The historical workstreams below retain their
 own status and triggers; they do not authorize concurrent IR migration.
+After acceptance, the operator may start Z's bounded asset pilot independently
+of Y; neither plan automatically starts parallel implementation.
 
 1. Keep the current `check` + smoke-CI baseline green.
 2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".

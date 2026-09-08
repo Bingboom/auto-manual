@@ -1553,6 +1553,14 @@ HTML_link alias semantics).
 
 ## 7. Deferred: Do Not Touch Yet
 
+- [ ] Deferred 7: editable design assets and cloud-to-build consumption (Workstream Z)
+  - Status: `deferred` — registered 2026-09-08; finish the current EU single-language Web release batch first.
+  - Authoritative plan and debt ledger: [`dev/editable_asset_delivery_debt_plan_2026-09.md`](dev/editable_asset_delivery_debt_plan_2026-09.md), AS-D01–AS-D06.
+  - First milestone: one manual's assets have editable AI/SVG masters, versioned export files and cloud retrieval verified against exact bytes; the real Web build uses a frozen asset selection.
+  - Designer handoff: verify object/text editing, saved-file reopening, required dependencies, a real design revision and retrieval for subsequent editing. An SVG extension or upload success is insufficient.
+  - Execution: reuse the existing three tables, resolver and manifests; one main window with short review. This pilot can run before full IR migration but does not start automatically.
+  - Done when: the declared scope has native-editing, cloud-download, version-retention, actual-build and usage-traceability evidence; wider assets/renderers remain explicitly deferred.
+
 - [ ] Deferred 6: shared ManualIR whole-document production migration (Workstream Y)
   - Status: `deferred` — registered 2026-09-08; implementation has not started.
   - Why deferred: the operator is completing EU single-language Web releases and wants to conserve token usage; finish the current release batch and retain its actual acceptance evidence first.
