@@ -20,3 +20,11 @@ paths:
   web_illustration_manifests:
     JE-2000F_EU: docs/renderers/web/je2000f_eu_en_illustrations.json
     JE-3600A_EU: docs/renderers/web/je3600a_eu_en_illustrations.json
+
+checks:
+  # This list replaces the base list. Battery Pack 3600 is verified compatible
+  # accessory copy on the JE-3600A connection page, not the manual identity.
+  allowed_foreign_identity_literals:
+    - 占位符
+    - Jackery Battery Pack 2000
+    - Jackery Battery Pack 3600

@@ -293,8 +293,11 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
+                expected_identity_allowlist = ["占位符", "Jackery Battery Pack 2000"]
+                if expected_lang == "en":
+                    expected_identity_allowlist.append("Jackery Battery Pack 3600")
                 self.assertEqual(
-                    ["占位符", "Jackery Battery Pack 2000"],
+                    expected_identity_allowlist,
                     cfg.get("checks", {}).get("allowed_foreign_identity_literals"),
                 )
                 phase2 = cfg.get("sync", {}).get("phase2", {})

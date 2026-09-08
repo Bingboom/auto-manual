@@ -63,6 +63,7 @@ editable Web content.
 | Browser review | Pass on localhost at desktop and 375 px mobile width; LCD content remains readable and semantic |
 
 | Existing-target regression | Pass: JE-1000F EU/en with the shared fixture source |
+| CI shared-fixture target check | Pass after adding the target specification, note, footnote, LCD, troubleshooting and table-symbol rows; verified Battery Pack 3600 compatibility copy is narrowly allowlisted in the EU English config |
 | Manifest-family fold | Pass: all 24 manifests rebuilt byte-identically from six anchors and 18 diff carriers |
 | Python lint | Pass: Ruff reported no errors |
 | Unit tests | Pass: 3,871 tests, 22 skipped |

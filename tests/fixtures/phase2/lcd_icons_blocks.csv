@@ -261,3 +261,42 @@ In caso di guasto del sistema, verrà visualizzato il codice di errore corrispon
 1,JBP-3600A,TRUE,V2.0-2026-08-04,Power Percentage/Fault Code,,,,,,,,,,"The display shows the current power percentage.
 When the system fails, it will display the corresponding fault code F0-FF. If the FF code appears, remove the loads and the product may recover by itself. If not, contact Jackery Customer Support. If any other code appears, contact Customer Support.",,,,,,,,,,FALSE,,asset:lcd/jbp3600a/display,,,
 2,JBP-3600A,TRUE,V2.0-2026-08-04,Charging Indicator,,,,,,,,,,The indicator is displayed when charging and disappears when it is fully charged.,,,,,,,,,,FALSE,,asset:lcd/jbp3600a/charging_indicator,,,
+1,JE-3600A,TRUE,2026-05-25,Wi-Fi,,,,,,,,,,"On: Wi-Fi connected.
+Blink: Ready to connect to Wi-Fi.
+Off: Wi-Fi disconnected.",,,,,,,,,,FALSE,,,"Wi-Fi: On: Wi-Fi connected.
+Blink: Ready to connect to Wi-Fi.
+Off: Wi-Fi disconnected.",,
+2,JE-3600A,TRUE,2026-05-25,Bluetooth,,,,,,,,,,"On: Bluetooth connected.
+Blink: Ready to connect to Bluetooth.
+Off: Bluetooth disconnected.",,,,,,,,,,FALSE,,,"Bluetooth: On: Bluetooth connected.
+Blink: Ready to connect to Bluetooth.
+Off: Bluetooth disconnected.",,
+3,JE-3600A,TRUE,2026-05-25,Quiet Charging Mode,,,,,,,,,,"On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.
+Off: Quiet Charging Mode is disabled.
+Enable/disable this feature in the Jackery App.",,,,,,,,,,FALSE,,,"Quiet Charging Mode: On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.
+Off: Quiet Charging Mode is disabled.
+Enable/disable this feature in the Jackery App.",,
+4,JE-3600A,TRUE,2026-05-25,Battery Saving Mode / Self-powered Mode,,,,,,,,,,"Battery Saving Mode: Limits the maximum usable battery capacity to extend battery life. Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).
+Self-powered Mode: Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy. Enable/disable this feature in the Jackery App. The power station must be connected to both solar panels and the grid simultaneously, with load power limited by bypass power.",,,,,,,,,,FALSE,,,"Battery Saving Mode / Self-powered Mode: Battery Saving Mode: Limits the maximum usable battery capacity to extend battery life. Enable/disable this feature in the Jackery App. This feature is not available when the product is connected to battery pack(s).
+Self-powered Mode: Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy. Enable/disable this feature in the Jackery App. The power station must be connected to both solar panels and the grid simultaneously, with load power limited by bypass power.",,
+5,JE-3600A,TRUE,2026-05-25,Charging Plan,,,,,,,,,,"Customizes the charging time of the Jackery Explorer 3600 Plus. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs. Set this feature in the Jackery App.",,,,,,,,,,FALSE,,,"Charging Plan: Customizes the charging time of the Jackery Explorer 3600 Plus. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs. Set this feature in the Jackery App.",,
+6,JE-3600A,TRUE,2026-05-25,AC Power Indicator,,,,,,,,,,The AC output (pure sine wave) is on.,,,,,,,,,,FALSE,,,AC Power Indicator: The AC output (pure sine wave) is on.,,
+7,JE-3600A,TRUE,2026-05-25,Output Voltage and Frequency,,,,,,,,,,Displays the output voltage and frequency when the AC output is turned on.,,,,,,,,,,FALSE,,,Output Voltage and Frequency: Displays the output voltage and frequency when the AC output is turned on.,,
+8,JE-3600A,TRUE,2026-05-25,Input Power,,,,,,,,,,Displays the input power in watts.,,,,,,,,,,FALSE,,,Input Power: Displays the input power in watts.,,
+9,JE-3600A,TRUE,2026-05-25,Remaining Charge Time,,,,,,,,,,Displays the remaining charging time.,,,,,,,,,,FALSE,,,Remaining Charge Time: Displays the remaining charging time.,,
+10,JE-3600A,TRUE,2026-05-25,AC Wall Charging Indicator,,,,,,,,,,The product is charged via the AC Input using grid power.,,,,,,,,,,FALSE,,,AC Wall Charging Indicator: The product is charged via the AC Input using grid power.,,
+11,JE-3600A,TRUE,2026-05-25,Car Charging Indicator,,,,,,,,,,The product is charged via the DC Input (DC8020) using DC 12 V (car charging).,,,,,,,,,,FALSE,,,Car Charging Indicator: The product is charged via the DC Input (DC8020) using DC 12 V (car charging).,,
+12,JE-3600A,TRUE,2026-05-25,Solar Charging Indicator,,,,,,,,,,The product is charged via the DC Input (DC8020) using solar panel(s).,,,,,,,,,,FALSE,,,Solar Charging Indicator: The product is charged via the DC Input (DC8020) using solar panel(s).,,
+13,JE-3600A,TRUE,2026-05-25,Battery Power Indicator,,,,,,,,,,"When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",,,,,,,,,,FALSE,,,"Battery Power Indicator: When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.",,
+14,JE-3600A,TRUE,2026-05-25,Low Battery Indicator,,,,,,,,,,"On: The battery level is below 20%.
+Blink: The battery level is below 5%.
+Off: The battery level is not below 20% or the product is charging.",,,,,,,,,,FALSE,,,"Low Battery Indicator: On: The battery level is below 20%.
+Blink: The battery level is below 5%.
+Off: The battery level is not below 20% or the product is charging.",,
+15,JE-3600A,TRUE,2026-05-25,Remaining Battery Percentage,,,,,,,,,,Displays the remaining battery percentage.,,,,,,,,,,FALSE,,,Remaining Battery Percentage: Displays the remaining battery percentage.,,
+16,JE-3600A,TRUE,2026-05-25,Battery Pack Indicator and Number of Connected Batteries,,,,,,,,,,Displays the quantity of battery packs if any is connected.,,,,,,,,,,FALSE,,,Battery Pack Indicator and Number of Connected Batteries: Displays the quantity of battery packs if any is connected.,,
+17,JE-3600A,TRUE,2026-05-25,Fault Code,,,,,,,,,,A product error has occurred. Please refer to the Troubleshooting section for details.,,,,,,,,,,FALSE,,,Fault Code: A product error has occurred. Please refer to the Troubleshooting section for details.,,
+18,JE-3600A,TRUE,2026-05-25,High Temperature Indicator / Low Temperature Indicator,,,,,,,,,,High temperature protection or low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.,,,,,,,,,,FALSE,,,High Temperature Indicator / Low Temperature Indicator: High temperature protection or low temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.,,
+19,JE-3600A,TRUE,2026-05-25,Energy Saving Mode,,,,,,,,,,When the AC or USB output is turned on by pressing the AC or USB power button: On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled.,,,,,,,,,,FALSE,,,Energy Saving Mode: When the AC or USB output is turned on by pressing the AC or USB power button: On: Energy Saving Mode is enabled. Off: Energy Saving Mode is disabled.,,
+20,JE-3600A,TRUE,2026-05-25,Output Power,,,,,,,,,,Displays the output power in watts.,,,,,,,,,,FALSE,,,Output Power: Displays the output power in watts.,,
+21,JE-3600A,TRUE,2026-05-25,Remaining Discharge Time,,,,,,,,,,Displays the remaining discharging time.,,,,,,,,,,FALSE,,,Remaining Discharge Time: Displays the remaining discharging time.,,
