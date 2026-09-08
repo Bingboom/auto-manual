@@ -63,6 +63,10 @@ For the multi-year platform maturity view (phases, gates, KPIs), use:
 
 - [`code-as-doc/architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md)
 
+For the dated structured-content/TM + skeleton → Web/IDML capability assessment,
+cross-workstream acceptance debt and benefit metrics, use the
+[manual platform architecture debt plan](dev/manual_platform_architecture_debt_plan_2026-09.md).
+
 ## 2. Maintenance Rules
 
 Update this file when one of these happens:
@@ -237,6 +241,7 @@ Keep this section short and current.
 10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
 11. Whole-document production inputs have not converged across renderers: Web consumes v2 IR, while IDML still builds its prepared-RST projection, the ordinary Word path reads RST pages, and Sphinx consumes the source bundle. Shared ComponentSpec bindings do not prove whole-document output migration. Workstream Y tracks this debt and is deferred until the current EU single-language Web release batch is accepted; see the [migration plan and debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md).
 12. Editable illustration delivery needs a bounded acceptance loop: design masters, actual SVG editability, cloud file retrieval, immutable export versions and document usage must be verified together. The existing three asset tables and SVG format option were read live on 2026-09-08; whole-library coverage was not audited. Workstream Z records the [editable asset delivery plan and debt](dev/editable_asset_delivery_debt_plan_2026-09.md), deferred until the current EU Web release batch is accepted.
+13. End-to-end platform maturity needs target-level readiness evidence, translation lifecycle, real skeleton scale proof, sustained revision reflow, change-impact propagation and comparable operating metrics. The [overall architecture debt ledger](dev/manual_platform_architecture_debt_plan_2026-09.md) owns AR-D01–AR-D07 and maps implementation back to existing workstreams; it does not duplicate IR/asset debt or reopen completed operations work. AR-D01 also covers stale overview statements versus dated completion records.
 
 ## 6. Active Workstreams
 
@@ -935,6 +940,21 @@ This asset pilot can be scheduled independently of Workstream Y's document-IR
 migration. Use one main window and short phase-end review; do not make all
 historical assets editable or migrate all renderers as an initial requirement.
 
+### Cross-Workstream Acceptance: Manual Content Platform
+
+Status: newly registered acceptance/operations debt is deferred (2026-09-08).
+The [overall plan and AR-D01–AR-D07 ledger](dev/manual_platform_architecture_debt_plan_2026-09.md)
+tracks current capability/readiness evidence, source completeness, translation
+lifecycle, skeleton onboarding, sustained revision reflow, change impact and
+measured operator cost. Existing L/M/N/Q/R/S/U/V/W/Y/Z own implementation in
+their scopes; this record adds no parallel engine or duplicate task ledger.
+
+Use actual delivery evidence for each model/region/language/version and output
+format. Preserve completed K1/K4/K5/K7 mechanisms; overview reconciliation is
+documentation debt, not authorization to rebuild them. Asset A0/A1 discovery
+already has a separate [PR #1084](https://github.com/Bingboom/auto-manual/pull/1084);
+its evidence and stage state remain owned there and in Workstream Z.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
@@ -946,6 +966,15 @@ minimal fix during that release. The historical workstreams below retain their
 own status and triggers; they do not authorize concurrent IR migration.
 After acceptance, the operator may start Z's bounded asset pilot independently
 of Y; neither plan automatically starts parallel implementation.
+
+Whole-platform recommendation: release acceptance/readiness evidence → bounded
+asset closure → Web/IDML same-package trial → real target onboarding proof →
+revision/translation/impact closure → measured self-service. Day-to-day TM
+review, revision reconciliation and metric collection may accompany authorized
+business work; they do not depend on completing all IR migration. The
+[dated overall plan](dev/manual_platform_architecture_debt_plan_2026-09.md)
+records scope and evidence limits; older ordering below must be reconciled
+against completed work rather than restarting it (AR-D01).
 
 1. Keep the current `check` + smoke-CI baseline green.
 2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".

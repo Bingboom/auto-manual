@@ -1553,6 +1553,14 @@ HTML_link alias semantics).
 
 ## 7. Deferred: Do Not Touch Yet
 
+- [ ] Deferred 8: whole-platform capability acceptance and operating evidence
+  - Status: `deferred` — registered 2026-09-08 for AR-D01–AR-D07; this does not reset separately started work.
+  - Authoritative ledger: [manual platform architecture debt plan](dev/manual_platform_architecture_debt_plan_2026-09.md). Covers target readiness/current-state reconciliation, source completeness, translation lifecycle, real skeleton scale proof, sustained revision reflow, impact propagation and comparable benefit metrics.
+  - Ownership: reuse existing L/M/N/Q/R/S/U/V/W workstreams; IR-D01–IR-D07 and AS-D01–AS-D07 remain in their original ledgers. Completed backup/alerting/toolchain/second-host work is not reopened.
+  - Order: current release evidence → bounded asset closure → real Web/IDML same-package trial → target onboarding proof → reflow/impact closure → measured self-service. Daily TM/revision/metric work may proceed with authorized business rounds.
+  - Scope: one implementation slice at a time; actual artifacts and declared target coverage determine completion, not module counts or historical reconstruction percentages. Asset A0/A1 has separate [PR #1084](https://github.com/Bingboom/auto-manual/pull/1084) and retains its own progress.
+  - Done when: each declared sub-scope has implementation ownership, real acceptance evidence and reproducible metrics; unresolved targets stay visible. No new automatic schema writes, deployment or parallel dispatch follows from this entry.
+
 - [ ] Deferred 7: editable design assets and cloud-to-build consumption (Workstream Z)
   - Status: `deferred` — registered 2026-09-08; finish the current EU single-language Web release batch first.
   - Authoritative plan and debt ledger: [`dev/editable_asset_delivery_debt_plan_2026-09.md`](dev/editable_asset_delivery_debt_plan_2026-09.md), AS-D01–AS-D07.
