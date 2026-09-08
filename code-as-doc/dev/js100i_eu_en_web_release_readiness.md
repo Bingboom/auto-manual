@@ -17,7 +17,7 @@ or production publication occurred in this target task.
 | Config | `configs/config.solar-eu-en.yaml` |
 | Structured copy | `docs/templates/page_solar/en/` |
 | Frozen structured-data input | `data/manual_sources/JS-100I/EU/en/2.0/phase2/` |
-| Structured-data snapshot SHA-256 | `190b63b33cc0c86002ad6d88dd8e7ca88962ee8350f8050c1e5748cc67ac515c` |
+| Structured-data snapshot SHA-256 | `231232f4d334a5c9bfe3d41117cfe97020d892b838b7d02d654713ae94a39fcd` |
 | Published PDF SHA-256 | `cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596` |
 | Illustrator master SHA-256 | `5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a` |
 | Asset recipe SHA-256 | `45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14` |
@@ -27,8 +27,9 @@ The current published V2.0 English manual is the content authority: its English
 body is physical pages 4–12. The Git-tracked `data/manual_sources` snapshot is
 the actual build input for this release and was validated against that
 authority. Its five CSV hashes and aggregate snapshot hash are pinned by
-`source_manifest.json`; this does not claim that any online source was
-synchronized.
+`source_manifest.json`. A target-local `.gitattributes` pins those CSVs to LF,
+so the manifest hashes are checkout-independent; this does not claim that any
+online source was synchronized.
 
 ## Frozen target package
 

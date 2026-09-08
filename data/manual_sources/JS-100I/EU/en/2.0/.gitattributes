@@ -1,0 +1,2 @@
+# Frozen manifest hashes must be identical in every checkout.
+phase2/*.csv text eol=lf
