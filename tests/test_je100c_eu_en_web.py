@@ -25,6 +25,24 @@ class Je100cEuEnWebTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls._tmp = tempfile.TemporaryDirectory()
         cls.staging = Path(cls._tmp.name) / "staging"
+        # This suite validates the upstream HTML/IR package, not Pandoc syntax.
+        # Real Pandoc + Sphinx conversion is checked in target acceptance.
+        fake_bin = Path(cls._tmp.name) / "bin"
+        fake_bin.mkdir()
+        fake_pandoc = fake_bin / "pandoc"
+        fake_pandoc.write_text(
+            "#!/usr/bin/env python3\n"
+            "from pathlib import Path\n"
+            "import sys\n"
+            "if '--list-output-formats' in sys.argv:\n"
+            "    print('myst')\n"
+            "    raise SystemExit(0)\n"
+            "source = Path(sys.argv[1])\n"
+            "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
+            "target.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')\n",
+            encoding="utf-8",
+        )
+        fake_pandoc.chmod(0o755)
         result = subprocess.run(
             [
                 sys.executable,
@@ -48,6 +66,7 @@ class Je100cEuEnWebTests(unittest.TestCase):
                 **os.environ,
                 "AUTO_MANUAL_OSS_ARCHIVE_CONFIG": "off",
                 "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
+                "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
             },
             check=False,
             capture_output=True,
