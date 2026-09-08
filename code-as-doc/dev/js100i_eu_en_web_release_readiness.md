@@ -13,7 +13,7 @@ or production publication occurred in this target task.
 | Product | Jackery SolarSaga 100 Air |
 | Version basis | Published manual `V2.0-2026-04-01`; release version `2.0` |
 | Engineering implementation base | `9b356ecadfe355aae0eb474ef4c49bf168a01e4c` |
-| Frozen-source Git ref | `50bdf3f56f72dac49f5489a9f69b93a4952fba94` |
+| Frozen-source Git ref | `513abdb97309bbb1fdc3dd24a9a74838062c96a3` |
 | Config | `configs/config.solar-eu-en.yaml` |
 | Structured copy | `docs/templates/page_solar/en/` |
 | Frozen structured-data input | `data/manual_sources/JS-100I/EU/en/2.0/phase2/` |
@@ -54,7 +54,7 @@ The target handoff produced the exact release-root contract consumed by
 Local handoff for this run:
 
 ```text
-/tmp/auto-manual-web-release-js100i-formal-20260906.qvYe7v/releases
+/tmp/auto-manual-web-release-js100i-final-20260907.8eQxSQ/releases
 ```
 
 The release metadata uses schema `auto-manual-web-publish/v1`, identifies
@@ -66,7 +66,7 @@ Frozen output hashes:
 | Artifact | SHA-256 |
 | --- | --- |
 | `manual_js100i_eu_en.md` | `5126285d0a34d91786ed7fe7084d376d7994cee2891946874e025fc12ef50dc9` |
-| `manual.ir.json` | `eaa6cef4d8ca3da47dbd352b5033340d38ab5a9a225a488a57b408e22a1c5732` |
+| `manual.ir.json` | `18d65c38b0a082aa84288fb92236f7da7a5edef812db7fee1cedc7769105be4c` |
 | verification `html/index.html` | `ec4235f26d910abdd9a47cd62fc1a789e1d77bd93a16677a1884936c128a9780` |
 | verification nested manual HTML | `b611d2ba657a7d04330760a30c0d954d89fcd42c4d5e7c3acbc49ff8f38717e4` |
 
@@ -111,7 +111,7 @@ python tools/readthedocs_source.py \
 python -m sphinx -W -b html \
   <build-stage>/docs/_build/rtd <build-stage>/html
 python tools/publish_branch_assembly.py \
-  --releases-root /tmp/auto-manual-web-release-js100i-formal-20260906.qvYe7v/releases \
+  --releases-root /tmp/auto-manual-web-release-js100i-final-20260907.8eQxSQ/releases \
   --output-dir <independent-candidate>/docs/publish \
   --title "Hello Docs Manual Library"
 python -m sphinx -W -b html \
@@ -121,11 +121,11 @@ python -m sphinx -W -b html \
 The target-only assembled candidate for this run is:
 
 ```text
-/tmp/hello-docs-js100i-formal-candidate-20260906.MpB3qm/docs/publish
+/tmp/hello-docs-js100i-final-candidate-20260907.Q7KS20/docs/publish
 ```
 
 Its `publish_manifest.json` SHA-256 is
-`4bb8aebbbc4dfd49e3ea2f94cc3afd89aa8c87d344b4377cbe2c7eebe7dda907`.
+`5f72ebadb8e4ce76e1042e8e3acffbe96da5c256e7ab9f84f9180db50c4fd6fc`.
 The centralized publisher should use the release root, not this target-only
 candidate, so it can preserve existing Hello-Docs targets while assembling the
 shared range.
