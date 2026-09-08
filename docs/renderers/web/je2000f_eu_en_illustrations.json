@@ -1,0 +1,207 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000F",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+  "source_pdf_name": "16-0102-000443 HTE1542000A-EU UK-JAK V2.0.pdf",
+  "recipe": "data/asset_recipes/manual_je2000f_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000f_eu_en/overview_front.png",
+      "sha256": "0c21f8cfd3c86a1eaf0e42e0a199df4b71f832f24d0a24adbd11998d230e5243",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        83,
+        342,
+        315
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000f_eu_en/overview_side.png",
+      "sha256": "44d3f01ebbc1b8af923ee1686722c53baeb2ad2a0fe7aa06bd845bf915654352",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        333,
+        350,
+        485
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000f_eu_en/lcd_map.png",
+      "sha256": "535d0174e0009616bd36cdc19c4ec2cec9fe44586b81c4e975dc9f33bf8c580e",
+      "source_page": 9,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_power.png",
+      "sha256": "ee292b193d90dd768a20ef8ab7a47f9c202c2340e92073c34399e89220fe355e",
+      "source_page": 11,
+      "bbox_pt": [
+        28,
+        83,
+        342,
+        190
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_ac.png",
+      "sha256": "9fa7c5a763a8ebe30f69a15900678bb9debc8d48ef628a0178b8709f1e8c5817",
+      "source_page": 11,
+      "bbox_pt": [
+        28,
+        293,
+        342,
+        494
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_dc.png",
+      "sha256": "3cdcb69df90bf11612f6186c1fc6a03bbc32b215af815953fe78a9a48c459a76",
+      "source_page": 12,
+      "bbox_pt": [
+        28,
+        68,
+        360,
+        220
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_led.png",
+      "sha256": "55d7d72cff72eefa9660f060d9205e7ffa42740a8a27ca33ab2a19024bad2bff",
+      "source_page": 12,
+      "bbox_pt": [
+        28,
+        397,
+        342,
+        495
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_lcd.png",
+      "sha256": "b9883b6da99aceff1c1fdb073999528ce186750df6589993059f4c389f6d2a6f",
+      "source_page": 13,
+      "bbox_pt": [
+        35,
+        140,
+        176,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_energy.png",
+      "sha256": "1f30e580810622aeeb8c2e45e03295a499747ec3ea1ce49b467e732dd94bed01",
+      "source_page": 13,
+      "bbox_pt": [
+        28,
+        384,
+        350,
+        475
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000f_eu_en/ups.png",
+      "sha256": "c95f1e192790e66ed0f0db29fead4a18f40e837a6f18f38ebf405a600b54e63a",
+      "source_page": 14,
+      "bbox_pt": [
+        27,
+        238,
+        342,
+        385
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000f_eu_en/charging_ac.png",
+      "sha256": "77639c879ead3f1b02b218c2b81e1061f09836fef0c47981ae6bfcfe69d9490a",
+      "source_page": 15,
+      "bbox_pt": [
+        28,
+        171,
+        342,
+        248
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je2000f_eu_en/charging_solar_direct.png",
+      "sha256": "cb86f4db76d21fc8dffe9732b666ff9e3b66bd8cc0d62ef56bdd46dc5dddb35f",
+      "source_page": 15,
+      "bbox_pt": [
+        27,
+        386,
+        342,
+        502
+      ]
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000f_eu_en/charging_solar_adapter.png",
+      "sha256": "76630b6f82ea0589c397041c24a140d6c3362b181cd759f6d82814ea1bc5f13b",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        29,
+        342,
+        165
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000f_eu_en/charging_car.png",
+      "sha256": "27aa79ccbf18eaf91554d4f4d482965eb14fceecd73e4ae1f8b9cf91178b9af7",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        372,
+        342,
+        493
+      ]
+    }
+  ]
+}

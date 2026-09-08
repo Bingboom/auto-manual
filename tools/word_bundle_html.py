@@ -432,15 +432,21 @@ def build_word_bundle_html(
 
     web_fragments = None
     if profile == WEB_PRESENTATION_PROFILE:
+        from tools.build_paths import resolve_web_illustration_manifest_from_config
         from tools.web_document_source import load_web_document
         from tools.web_document_ir import render_document_fragments
-        illustration_path = cfg.get("paths", {}).get("web_illustration_manifest")
+        illustration_manifest = resolve_web_illustration_manifest_from_config(
+            cfg,
+            repo_root=paths.root,
+            model=materialized.model,
+            region=materialized.region,
+        )
         ir = load_web_document(
             materialized, page_paths=page_paths, declarations=declared_csv_pages,
             page_languages=page_languages,
             active_tags=active_tags, output_dir=bundle_output_dir,
             composite_manifest=composite_manifest,
-            illustration_manifest=(paths.root / illustration_path) if illustration_path else None,
+            illustration_manifest=illustration_manifest,
             page_slots=page_slots,
         )
         web_fragments = render_document_fragments(ir, package_root=bundle_output_dir)
