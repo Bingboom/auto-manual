@@ -619,7 +619,7 @@ IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对
 | FCC | `.hb-fcc-composition` > `.hb-fcc-grid` | 开场文案 + 分栏条款，IDML 用无表头表格承载 |
 | 开箱清单 | `.hb-inbox-composition` > `.hb-inbox-grid` | 三张等宽圆角卡 + 1/2/3 角标 + 通栏 TIP 条 |
 | 产品概览 | `.hb-annotated-figure` > `.hb-annotated-stage` + `.hb-leader-layer` | 带引线标注：标注位置靠逐图百分比坐标，是流水线独有的能力 |
-| App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图，标签是活文本不是烧进图片 |
+| App 设置 | `.hb-app-download-composition`、`.hb-app-add-device-composition` | 商店徽章 / QR / 双机图；默认的共享按键底图不依赖目标插图授权，标签保持为覆盖活文本。仅当 target 的已核准 finished-panel 明确包含该组标签时，允许在 presentation 前以整图消费该 reference，并同时移除重复活文本；JE-2000F/EU/en 的三键控制面板属于此批准变体。LCD 模式表不属于此例外，仍由设备图与语义化 CSS/HTML 表格组成 |
 
 IDML App 下载构图以左右两个活文本栏的中心分别对齐商店徽章和 QR，不以整页中心或固定左边缘对齐；控制面板的三条原生延长线统一消费 `idml_app_control_leader_extension_weight`，与链接底图中的引线保持同一视觉线宽。
 

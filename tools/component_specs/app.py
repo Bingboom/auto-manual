@@ -3,7 +3,9 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from copy import deepcopy
+import re
 from typing import Any
+import unicodedata
 
 from tools.component_specs.model import (
     ComponentAsset,
@@ -18,6 +20,41 @@ from tools.component_specs.theme import load_manual_theme, require_component_the
 APP_COMPONENT_ID = "HB-SPECIAL-APP"
 APP_VARIANTS = frozenset({"download", "inline-control", "add-device"})
 _DOWNLOAD_ROLES = ("store", "qr")
+_CONTROL_LABEL_TOKEN_RE = re.compile(r"[a-z0-9]+")
+
+
+def resolve_app_control_label_role(text: str, fallback: str) -> str:
+    """Resolve AC/DC roles from localized technical abbreviations."""
+
+    folded = unicodedata.normalize("NFKD", text.casefold())
+    tokens = set(
+        _CONTROL_LABEL_TOKEN_RE.findall(
+            "".join(char for char in folded if not unicodedata.combining(char))
+        )
+    )
+    if "usb" in tokens and tokens & {"dc", "cc"}:
+        return "dc-usb"
+    if tokens & {"ac", "ca"}:
+        return "ac-power"
+    return fallback
+
+
+def resolve_app_control_label_roles(
+    texts: Sequence[str],
+    fallbacks: Sequence[str],
+    *,
+    owner: str,
+    error_type: type[Exception] = ValueError,
+) -> list[str]:
+    """Resolve and validate the complete set of App control-label roles."""
+
+    roles = [
+        resolve_app_control_label_role(text, fallback)
+        for text, fallback in zip(texts, fallbacks, strict=True)
+    ]
+    if set(roles) != set(fallbacks):
+        raise error_type(f"{owner} labels do not resolve to unique roles")
+    return roles
 
 
 def _contracts(
@@ -281,4 +318,6 @@ __all__ = [
     "app_download_component_spec",
     "app_inline_control_component_spec",
     "app_semantic_projection",
+    "resolve_app_control_label_role",
+    "resolve_app_control_label_roles",
 ]

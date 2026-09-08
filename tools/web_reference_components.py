@@ -7,6 +7,8 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.component_specs.app import resolve_app_control_label_roles
+
 
 def prepare_reference_caption_data(
     *,
@@ -105,14 +107,11 @@ def transform_app_add_device(
             f"{source_path}: {reference_id} embeds captions but has no approved phone artwork"
         )
 
-    figure = soup.new_tag(
-        "figure",
-        attrs={
-            "class": "hb-app-add-device-composition",
-            "data-reference-id": reference_id,
-            "data-step-captions": "embedded",
-        },
-    )
+    figure = soup.new_tag("figure", attrs={
+        "class": "hb-app-add-device-composition",
+        "data-reference-id": reference_id,
+        "data-step-captions": "embedded",
+    })
     for attribute in ("style", "width", "height"):
         image.attrs.pop(attribute, None)
     if phone_artwork:
@@ -128,18 +127,20 @@ def transform_app_add_device(
         "div",
         attrs={"class": "hb-app-add-device-control-panel"},
     )
-    control_art = soup.new_tag(
-        "img",
-        attrs={
-            "class": "hb-app-add-device-control-art",
-            "src": control_artwork,
-            "alt": "",
-            "aria-hidden": "true",
-            "loading": "lazy",
-        },
-    )
+    control_art = soup.new_tag("img", attrs={
+        "class": "hb-app-add-device-control-art",
+        "src": control_artwork,
+        "alt": "",
+        "aria-hidden": "true",
+        "loading": "lazy",
+    })
     control_panel.append(control_art)
-    for role, line in zip(roles, lines, strict=True):
+    resolved_roles = resolve_app_control_label_roles(
+        [line.get_text(" ", strip=True) for line in lines],
+        roles,
+        owner=f"{source_path}: {reference_id}", error_type=error_type,
+    )
+    for role, line in zip(resolved_roles, lines, strict=True):
         line.extract()
         line.name = "span"
         line.attrs = {

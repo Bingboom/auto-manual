@@ -904,6 +904,15 @@ def _transform_reference_figures(
         spec_patterns = [str(value) for value in spec["source_patterns"]]
         if not _matches_source(source_path, spec_patterns):
             continue
+        reference_id = str(spec["id"])
+        if soup.select_one(
+            f'figure.hb-app-add-device-composition[data-reference-id="{reference_id}"]'
+        ):
+            continue
+        if soup.select_one(
+            f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
+        ):
+            continue
         image = next(
             (
                 candidate
@@ -923,6 +932,59 @@ def _transform_reference_figures(
             source_path=source_path,
             composites=composites,
         )
+
+
+def _transform_shared_reference_figures(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    contract: dict[str, Any],
+) -> bool:
+    """Render shared reference art without requiring a target figure grant."""
+
+    transformed = False
+    for spec in contract["reference_figures"]["figures"]:
+        if (
+            spec.get("presentation") != "shared-art-live-labels"
+            or spec.get("asset_scope") != "shared"
+            or not _matches_source(
+                source_path, [str(value) for value in spec["source_patterns"]]
+            )
+        ):
+            continue
+        reference_id = str(spec["id"])
+        if soup.select_one(
+            f'figure.hb-app-add-device-composition[data-reference-id="{reference_id}"]'
+        ):
+            continue
+        if soup.select_one(
+            f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
+        ):
+            continue
+        image = next(
+            (
+                candidate
+                for candidate in soup.find_all("img")
+                if _src_matches_key(
+                    str(candidate.get("src", "")), str(spec["image_key"])
+                )
+            ),
+            None,
+        )
+        if not isinstance(image, Tag):
+            raise WebPresentationError(
+                f"{source_path}: shared reference page is missing governed image "
+                f"{spec['image_key']}"
+            )
+        transform_app_add_device(
+            soup,
+            image=image,
+            spec=spec,
+            source_path=source_path,
+            error_type=WebPresentationError,
+        )
+        transformed = True
+    return transformed
 
 
 def _warranty_period_title(cell: Tag, *, source_path: Path) -> tuple[str, str, str]:
@@ -1287,6 +1349,20 @@ def transform_web_fragment(
     is_app_inline_controls = _matches_source(
         source_path, list(app_inline_controls["source_patterns"])
     )
+    has_target_context = bool(model and region) or supports_figure_contract(
+        source_path, data
+    )
+    if (
+        is_reference_page
+        and has_target_context
+        and not embedded_components_complete
+        and _transform_shared_reference_figures(
+            soup,
+            source_path=source_path,
+            contract=data,
+        )
+    ):
+        semantic_fragment = str(soup)
     if is_operations and "HB-TABLE-AUTO-RESUME" not in resolved:
         _ensure_auto_resume_table(
             soup,
@@ -1322,9 +1398,6 @@ def transform_web_fragment(
     # source-owned, while the Web adapter only supplies the reusable card and
     # number-badge treatment. It therefore must not inherit the target grant
     # used for approved composite art and target-specific figure geometry.
-    has_target_context = bool(model and region) or supports_figure_contract(
-        source_path, data
-    )
     warranty_component_ids = {
         "HB-WARRANTY-LEAD",
         "HB-WARRANTY-SECTION",

@@ -9,6 +9,7 @@
   "source_role": "formal-published-source-audited-git-input",
   "authority": {
     "published_revision": "V2.0-2026-08-04",
+    "published_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
     "published_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
     "source_artwork_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
     "review_branch": "origin/review/JE-2000F-EU",
@@ -21,9 +22,13 @@
     "path": "data/asset_recipes/manual_je2000f_eu_web.json",
     "sha256": "986b3c5d5588b43d791e1e52860ddba97f52b2d5faee93652d8d7e9df89b3c29"
   },
+  "corrective_asset_recipe": {
+    "path": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+    "sha256": "a8a202b0a44a3646bfea9c4279947eab98b32ff03c4715c16445bf52c8f15de6"
+  },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000f_eu_en_illustrations.json",
-    "sha256": "5d7a6f43c72d086b97adf0d93398b897ac1f579194a0a79e23278cdff89019de"
+    "sha256": "0b01dab2215e9b11df97caf561ff7c3a09a0f7c61a664d6d05006030706ec1f3"
   },
   "files": [
     {

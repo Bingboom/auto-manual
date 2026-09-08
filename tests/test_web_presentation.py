@@ -1314,6 +1314,51 @@ class WebPresentationTests(unittest.TestCase):
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["fr"])
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["es"])
 
+    def test_app_add_device_shared_art_does_not_require_target_figure_grant(self) -> None:
+        fragment = (
+            '<img src="assets/app/add_device.png" alt="App add device" />'
+            '<div class="line-block">'
+            '<div class="line">Main POWER Button</div>'
+            '<div class="line">AC Power Button</div>'
+            '<div class="line">DC / USB Power Button</div>'
+            '</div>'
+        )
+        soup = BeautifulSoup(
+            transform_web_fragment(
+                fragment,
+                source_path=Path(
+                    "docs/_build/JE-2000F/EU/en/page/12_app_setup_placeholder.rst"
+                ),
+                model="JE-2000F",
+                region="EU",
+                language="en",
+            ),
+            "html.parser",
+        )
+
+        figure = soup.select_one("figure.hb-app-add-device-composition")
+        self.assertIsNotNone(figure)
+        self.assertIsNotNone(
+            figure.select_one(".hb-app-add-device-control-art") if figure else None
+        )
+        self.assertEqual(
+            "AC Power Button",
+            figure.select_one(
+                ".hb-app-add-device-live-label-ac-power"
+            ).get_text(" ", strip=True)
+            if figure
+            else "",
+        )
+        self.assertEqual(
+            "DC / USB Power Button",
+            figure.select_one(
+                ".hb-app-add-device-live-label-dc-usb"
+            ).get_text(" ", strip=True)
+            if figure
+            else "",
+        )
+        self.assertEqual([], soup.select(".line-block"))
+
     def test_app_connect_result_embeds_shared_step_captions(self) -> None:
         localized = (
             "12_app_setup_placeholder.rst",

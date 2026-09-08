@@ -250,7 +250,38 @@ def discover_registered_components(
             _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
             claims.append(lcd_claim)
 
+    reference_config = contract["reference_figures"]
     supports_figures = supports_figure_contract(source_path, dict(contract))
+    for raw_reference in reference_config.get("figures", []):
+        if (
+            not isinstance(raw_reference, Mapping)
+            or raw_reference.get("presentation") != "shared-art-live-labels"
+            or raw_reference.get("asset_scope") != "shared"
+            or not _matches_source(
+                source_path, raw_reference.get("source_patterns", [])
+            )
+        ):
+            continue
+        reference_id = str(raw_reference.get("id") or "")
+        if soup.select_one(
+            f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
+        ):
+            continue
+        spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
+            soup,
+            source_path=source_path,
+            config=raw_reference,
+            language=language,
+        )
+        claim = ComponentClaim(
+            spec=spec,
+            owned_nodes=owned,
+            asset_tags=asset_tags,
+            asset_paths=asset_paths,
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
     if supports_figures:
         app_download = contract["app_download"]
         if isinstance(app_download, Mapping) and _matches_source(
@@ -287,7 +318,6 @@ def discover_registered_components(
             _claim_nodes(claim, claimed=claimed, source_path=source_path)
             claims.append(claim)
 
-        reference_config = contract["reference_figures"]
         reference_context = WebCompositeContext(
             composite_manifest,
             model,
@@ -298,6 +328,11 @@ def discover_registered_components(
         for raw_reference in reference_config.get("figures", []):
             if not isinstance(raw_reference, Mapping) or not _matches_source(
                 source_path, raw_reference.get("source_patterns", [])
+            ):
+                continue
+            if (
+                raw_reference.get("presentation") == "shared-art-live-labels"
+                and raw_reference.get("asset_scope") == "shared"
             ):
                 continue
             image_key = str(raw_reference.get("image_key") or "")

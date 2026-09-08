@@ -7,8 +7,10 @@ release of `JE-2000F / EU / en`, version `2.0`.
   identified in [`source_manifest.json`](source_manifest.json).
 - Structured source: [`phase2/`](phase2) contains the target rows and shared
   dictionaries required to render the English manual.
-- Artwork: source-derived, hash-locked panels are bound through the extraction
-  recipe and Web illustration manifest named in `source_manifest.json`.
+- Artwork: the original extraction recipe plus the operator-approved corrective
+  full-frame recipe are hash-locked through `source_manifest.json`. Eleven
+  panels retain their complete grey frame and image-owned text boxes; the LCD
+  mode remains a device-only illustration beside a semantic CSS/HTML table.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:
