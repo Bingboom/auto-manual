@@ -750,8 +750,12 @@ Web Publish / Read the Docs note:
   [Operation/Warranty/LCD record](dev/manual_ir_operation_warranty_lcd_plan.md),
   [LCD/Troubleshooting/Symbols record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md),
   and [App/Reference Figure record](dev/manual_ir_app_reference_plan.md).
-- `paths.web_illustration_manifest` optionally binds a target/language to finished
-  PDF crops. The manifest freezes source PDF hash, page, bounding box, output
+- `paths.web_illustration_manifest` optionally binds one config target/language
+  to finished PDF crops. A shared family config can instead use
+  `paths.web_illustration_manifests`, mapping exact `Document_Key` values to
+  manifest paths; an unlisted target receives no manifest, and the scalar and
+  mapping forms are mutually exclusive. Each selected manifest freezes source
+  PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several
   split images; surrounding structured copy is retained. Wrong target, missing
   images, changed bytes, repeated or unused bindings fail the build. These Web
