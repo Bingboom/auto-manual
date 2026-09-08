@@ -139,3 +139,24 @@ mutated during these implementation checks. The local host configuration is
 enabled; other runners still require their own configuration and credentials.
 
 Final local suite: 3,876 tests passed, 22 skipped; 20 focused archive/queue tests passed. Ruff, maintainability guardrails, 1,754 documentation links and both isolated build checks passed.
+
+## Deferred debt: cloud runner OSS credentials
+
+**Status: explicitly deferred by the operator; not a blocker for this local-host
+implementation. Cloud automatic archival remains disabled/unconfigured.**
+
+Before enabling archival on GitHub Actions or the Hello-Docs execution host:
+
+- [ ] Confirm which host executes Web Publish and have its administrator provision
+  OSS credentials through that host's secret mechanism, scoped to the approved
+  bucket/prefix. Do not copy this Mac's credential file into Git or artifacts.
+- [ ] Configure that host's archive settings and confirm the optional SDK and
+  package runtime are available. Workflow edits require their own approved change.
+- [ ] Run an authorized Web Publish on that host and retain an `archived` receipt
+  with remote read-back verification; verify retry behavior and no latest writes.
+
+Closure evidence must come from the cloud execution host. Local tests, this
+Mac's successful OSS access, and the existing manual archive do not close this
+debt. IT/runner administration provides credentials; the publishing integration
+then verifies the host configuration. No cloud credentials are configured in
+this PR.
