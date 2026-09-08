@@ -186,6 +186,51 @@ class Je2000fEuEnWebTests(unittest.TestCase):
         self.assertNotIn("|PV_INPUT_RANGE|", self.html)
         self.assertNotIn("|DC_INPUT_CONNECTOR|", self.html)
 
+    def test_finished_text_bearing_illustrations_consume_covered_copy(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        self.assertEqual([], soup.select("#front-view > table"))
+        self.assertEqual([], soup.select("#right-side-view > table"))
+        self.assertIsNone(soup.select_one("#ac-output-on-off > .line-block"))
+        self.assertNotIn(
+            "On Press once Off Press once",
+            soup.select_one("#dc-12v-usb-output-on-off").get_text(" ", strip=True),
+        )
+        self.assertIsNone(soup.select_one("#energy-saving-mode > .line-block"))
+        self.assertIsNone(soup.select_one("#led-light-on-off > .line-block"))
+        self.assertNotIn(
+            "Vehicle",
+            [
+                node.get_text(" ", strip=True)
+                for node in soup.select(
+                    "#charging-via-a-car-charger-sold-separately "
+                    "> .line-block > .line"
+                )
+            ],
+        )
+        power_copy = soup.select_one("#power-on-off").get_text(" ", strip=True)
+        self.assertNotIn("On: Press once.", power_copy)
+        self.assertNotIn("Default standby time:", power_copy)
+        self.assertIn(
+            "When Energy Saving Mode is enabled, the product will automatically "
+            "shut down after 12 hours",
+            power_copy,
+        )
+        for path in (
+            "overview_front.png",
+            "overview_side.png",
+            "operation_power.png",
+            "operation_ac.png",
+            "operation_dc.png",
+            "operation_energy.png",
+            "operation_led.png",
+            "charging_car.png",
+        ):
+            image = soup.select_one(
+                f'[data-web-finished-panel-path$="/{path}"]'
+            )
+            self.assertIsNotNone(image, path)
+            self.assertTrue(str(image.get("alt") or "").strip(), path)
+
     def test_illustration_recipe_manifest_and_files_are_hash_locked(self) -> None:
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         recipe = json.loads(
