@@ -798,6 +798,7 @@ Web Publish / Read the Docs note:
 - `Review Preview Package` uploads the review-preview workspace as a GitHub artifact only
 - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`
 - [`.github/workflows/feishu-web-publish-queue.yml`](../.github/workflows/feishu-web-publish-queue.yml) runs only on the Hello-Docs business plane, consumes `Workflow_action=Web Publish`, pushes frozen sources to the `Hello-Docs/publish:docs/publish/` candidate, rejects any PR diff outside `docs/publish/**`, opens or updates `publish -> main`, and writes the deterministic root-level RTD alias (for example `https://ht-doc.readthedocs.io/manual_je1000f_us.html`) to `HTML_link`
+- An authorized Git-only Web release uses committed source plus `source_manifest.json`, exact-ref `check`/Web MyST/strict Sphinx evidence, real release metadata, and the same assembler against a candidate copied from current `Hello-Docs/main:docs/publish/**`. It creates no queue or online-table writes. Both input paths use the same `docs/publish/**`-only PR and RTD outlet; Git-only completion is proven by commits, hashes, metadata, and real URLs instead of `HTML_link` readback. See [`dev/web_publish_pipeline.md`](dev/web_publish_pipeline.md#22-git-only-transaction)
 - Web Publish verification artifacts expire after 7 days; the generated `publish` branch is the durable candidate and `Hello-Docs/main:docs/publish/**` is the production snapshot. Print Publish artifacts retain their 14-day CI inspection window, and the nightly phase2 backup retains 90 days
 - [`.readthedocs.yaml`](../.readthedocs.yaml) builds `docs/publish/web/` when the frozen Web Publish snapshot exists on `main`. Its review/fixture command is only a bootstrap fallback before the first merged snapshot
 - RTD builds from a bare clone with no Feishu credentials. The project listens to `Hello-Docs/main`; it renders the PR-merged MyST source and never runs live `sync-data`
@@ -963,9 +964,12 @@ contains no cover, TOC, LCD, UPS, troubleshooting, or App slots. The five-item
 Inbox uses the variable-card component; specifications come from the phase2
 `Spec_Master`/notes contract; English-labelled figures are target-bound by a
 `web-illustrations/v1` manifest and source/output hashes. Local bootstrap data
-is in `tests/fixtures/js100i_eu_en_phase2`; formal Web Publish must freeze the
-approved live snapshot through the Hello-Docs publish PR, not publish this
-fixture or write the mirror engineering tree directly. See
+is in `tests/fixtures/js100i_eu_en_phase2`. For the authorized three-target
+Git-only batch, reviewed Git sources and their `source_manifest.json` records
+are the release authority; no live Base copy or write is required. Formal Web
+release still goes through the generated Hello-Docs `docs/publish/**`-only PR
+and RTD verification. Do not publish an unidentified fixture or write the
+mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
 
 IDML-localized symbol copy and table-of-contents language headers are language

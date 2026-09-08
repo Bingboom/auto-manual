@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_ja_ad01a_eu_en_candidate",
+    "expected_sha256": "0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc",
+    "expected_page_count": 9
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 9
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "3": 4,
+        "6": 4
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "cover_front",
+      "role": "cover_front",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": ["Candidate source page contains a QR mark."]
+      },
+      "risk_tags": ["qr-code"]
+    },
+    {
+      "page": 2,
+      "page_key": "contents",
+      "role": "frontmatter",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "english_01",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "english_02",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "english_03",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "english_04",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "english_05",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "english_06",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "legal_tail",
+      "role": "backmatter",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": ["Candidate source page contains a QR mark."]
+      },
+      "risk_tags": ["qr-code"]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-charger",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": ["JA-AD01A"],
+        "regions": ["EU"],
+        "locales": ["en"]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [12, 48, 56, 78]}],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_charger.png",
+          "scale": 6,
+          "expected_sha256": "a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": ["2026-09-06 engineering visual verification against source page 3; product markings are retained and surrounding labels are excluded."]
+      },
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-cable",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": ["JA-AD01A"],
+        "regions": ["EU"],
+        "locales": ["en"]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [74, 49, 112, 77]}],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_cable.png",
+          "scale": 6,
+          "expected_sha256": "374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": ["2026-09-06 engineering visual verification against source page 3; the crop contains only the charging cable illustration."]
+      },
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-manual",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": ["JA-AD01A"],
+        "regions": ["EU"],
+        "locales": ["en"]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [124, 47, 158, 79]}],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_manual.png",
+          "scale": 6,
+          "expected_sha256": "2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": ["2026-09-06 engineering visual verification against source page 3; the complete manual cover illustration is retained."]
+      },
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/product-overview",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": ["JA-AD01A"],
+        "regions": ["EU"],
+        "locales": ["en"]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [7, 119, 163, 178]}],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/product_overview.png",
+          "scale": 6,
+          "expected_sha256": "d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": ["2026-09-06 engineering visual verification against source page 3; USB-C and USB-A callouts and fixed product markings are retained without the printed folio."]
+      },
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/using-product",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {
+        "models": ["JA-AD01A"],
+        "regions": ["EU"],
+        "locales": ["en"]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [7, 33, 163, 113]}],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/using_product.png",
+          "scale": 6,
+          "expected_sha256": "e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": ["2026-09-06 engineering visual verification against source page 6; the complete three-port device connection illustration is retained."]
+      },
+      "risk_tags": ["region-locked-art"]
+    }
+  ]
+}

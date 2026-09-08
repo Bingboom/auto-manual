@@ -1,0 +1,730 @@
+{
+  "status": "Git-only release inputs from user-designated intake AI; online tables must not be written",
+  "target": {
+    "model": "JA-AD01A",
+    "region": "EU",
+    "language": "en",
+    "project": "HTO847",
+    "published_version": null
+  },
+  "source": {
+    "base_id": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "table_id": "97v7518",
+    "record_id": "xG4bYnERxR",
+    "attachment_field_id": "Lklgsec",
+    "attachment_resource_id": "ea84efd5-f2a9-43fc-ba19-16788f488cf3",
+    "filename": "(翻译用）38-0001-000880 HTO847-EU-JAK 102W充电器 说明书 RoSH REACH.ai",
+    "size_bytes": 918848,
+    "sha256": "0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc",
+    "current_manual_field": "W7Skax1",
+    "current_manual_value": null,
+    "document_business_field": "MqRDuc9",
+    "document_business_value": null,
+    "publication_field": "O3QP6wT",
+    "publication_value": null,
+    "authority": "user-designated intake AI"
+  },
+  "live_queries_2026_09_06": {
+    "document-key": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "queue": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "spec": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "placeholder": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "source": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "source-hash": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "asset": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    },
+    "export": {
+      "record_ids": [],
+      "count": 0,
+      "has_more": false
+    }
+  },
+  "proposed_spec_rows": [
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "GENERAL",
+      "Section_order": "1",
+      "Row_order": "1",
+      "Row_key": "product_name",
+      "Slot_key": "",
+      "Row_label_source": "Product Name",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "Jackery 102W GaN 3-Port Fast Charger",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "GENERAL",
+      "Section_order": "1",
+      "Row_order": "2",
+      "Row_key": "model_no",
+      "Slot_key": "",
+      "Row_label_source": "Model",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "JA-AD01A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "GENERAL",
+      "Section_order": "1",
+      "Row_order": "3",
+      "Row_key": "dimensions",
+      "Slot_key": "",
+      "Row_label_source": "Dimensions",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "62*95*33mm",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "GENERAL",
+      "Section_order": "1",
+      "Row_order": "4",
+      "Row_key": "weight",
+      "Slot_key": "",
+      "Row_label_source": "Weight",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "195g±5g",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "GENERAL",
+      "Section_order": "1",
+      "Row_order": "5",
+      "Row_key": "input",
+      "Slot_key": "",
+      "Row_label_source": "Input",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "100-240V~50/60Hz, 1.8A Max",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "SINGLE-PORT OUTPUT",
+      "Section_order": "2",
+      "Row_order": "1",
+      "Row_key": "usb_c1_single",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "100W Max, 5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 5A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "SINGLE-PORT OUTPUT",
+      "Section_order": "2",
+      "Row_order": "1",
+      "Row_key": "usb_c1_single",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "2",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "PPS: 5V-11V⎓4.05A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "SINGLE-PORT OUTPUT",
+      "Section_order": "2",
+      "Row_order": "2",
+      "Row_key": "usb_c2_single",
+      "Slot_key": "",
+      "Row_label_source": "USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "100W Max, 5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 5A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "SINGLE-PORT OUTPUT",
+      "Section_order": "2",
+      "Row_order": "2",
+      "Row_key": "usb_c2_single",
+      "Slot_key": "",
+      "Row_label_source": "USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "2",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "PPS: 5V-11V⎓4.05A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "SINGLE-PORT OUTPUT",
+      "Section_order": "2",
+      "Row_order": "3",
+      "Row_key": "usb_a_single",
+      "Slot_key": "",
+      "Row_label_source": "USB-A output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "18W Max, 5V⎓ 3A, 9V⎓ 2A, 12V⎓ 1.5A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "USB-C1 output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 3.25A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "2",
+      "Param_source": "PPS",
+      "Param_footnote_refs": "",
+      "Value_source": "5V-11V⎓ 4.05A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "3",
+      "Param_source": "USB-C2 output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A, 9V⎓ 3A, 12V⎓ 2.5A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-C2 output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "4",
+      "Param_source": "PPS",
+      "Param_footnote_refs": "",
+      "Value_source": "5V-11V⎓ 2.7A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "2",
+      "Row_key": "usb_c1_a_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-A output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "USB-C1 output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 3.25A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "2",
+      "Row_key": "usb_c1_a_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-A output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "2",
+      "Param_source": "PPS",
+      "Param_footnote_refs": "",
+      "Value_source": "5V-11V⎓ 4.05A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "2",
+      "Row_key": "usb_c1_a_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+USB-A output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "3",
+      "Param_source": "USB-A output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A, 9V⎓ 2A, 12V⎓ 1.5A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "DUAL-PORT OUTPUT",
+      "Section_order": "3",
+      "Row_order": "3",
+      "Row_key": "usb_c2_a_dual",
+      "Slot_key": "",
+      "Row_label_source": "USB-C2+USB-A output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "TRIPLE-PORT OUTPUT",
+      "Section_order": "4",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_a_triple",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+(USB-C2+USB-A) output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "1",
+      "Param_source": "USB-C1 output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A, 9V⎓ 3A, 12V⎓ 3A, 15V⎓ 3A, 20V⎓ 4.35A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "TRIPLE-PORT OUTPUT",
+      "Section_order": "4",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_a_triple",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+(USB-C2+USB-A) output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "2",
+      "Param_source": "PPS",
+      "Param_footnote_refs": "",
+      "Value_source": "5V-11V⎓ 4.05A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    },
+    {
+      "document_key": "JA-AD01A_EU",
+      "Region": "EU",
+      "Is_Latest": "TRUE",
+      "Page": "specifications",
+      "Section": "TRIPLE-PORT OUTPUT",
+      "Section_order": "4",
+      "Row_order": "1",
+      "Row_key": "usb_c1_c2_a_triple",
+      "Slot_key": "",
+      "Row_label_source": "USB-C1+(USB-C2+USB-A) output",
+      "Row_label_footnote_refs": "",
+      "Line_order": "3",
+      "Param_source": "USB-C2+USB-A output",
+      "Param_footnote_refs": "",
+      "Value_source": "5V⎓ 3A",
+      "Value_footnote_refs": "",
+      "Model": "JA-AD01A",
+      "Source_lang": "en"
+    }
+  ],
+  "proposed_assets": [
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-charger",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD01A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            12,
+            48,
+            56,
+            78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_charger.png",
+          "scale": 6,
+          "expected_sha256": "a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-06 engineering visual verification against source page 3; product markings are retained and surrounding labels are excluded."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-cable",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD01A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            74,
+            49,
+            112,
+            77
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_cable.png",
+          "scale": 6,
+          "expected_sha256": "374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-06 engineering visual verification against source page 3; the crop contains only the charging cable illustration."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/inbox-manual",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD01A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            124,
+            47,
+            158,
+            79
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/inbox_manual.png",
+          "scale": 6,
+          "expected_sha256": "2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-06 engineering visual verification against source page 3; the complete manual cover illustration is retained."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/product-overview",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD01A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7,
+            119,
+            163,
+            178
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/product_overview.png",
+          "scale": 6,
+          "expected_sha256": "d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-06 engineering visual verification against source page 3; USB-C and USB-A callouts and fixed product markings are retained without the printed folio."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-ad01a/eu/en/using-product",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-AD01A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            7,
+            33,
+            163,
+            113
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_ad01a_eu_en/using_product.png",
+          "scale": 6,
+          "expected_sha256": "e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-06 engineering visual verification against source page 6; the complete three-port device connection illustration is retained."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ],
+  "approval_sequence": [
+    "User designated this intake AI for Web conversion; preserve its identity/hash and unknown printed version.",
+    "Build using Git-tracked data/manual_sources/ja_ad01a_eu_en and source_manifest.json; no live data or queue is required.",
+    "Central review merges engineering PR and verifies mirror code sync.",
+    "Central task assembles this isolated release-root into preserved Hello-Docs docs/publish only, opens the snapshot PR and verifies real RTD URL."
+  ],
+  "proposed_spec_rows_note": "Historical exact intake evidence; these values now live in Git release inputs. This file does not request online table ingestion."
+}

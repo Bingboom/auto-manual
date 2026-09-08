@@ -1,0 +1,147 @@
+{
+  "verification": [
+    {
+      "key": "ja",
+      "model": "JA-AD01A",
+      "region": "EU",
+      "languages": [
+        "en"
+      ],
+      "pages": 7,
+      "projection": "whole-document-components/v1",
+      "cold_replay_fragments": 7,
+      "tampered_asset_rejected": true,
+      "html_image_urls": [
+        "assets/ir/a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902/inbox_charger.png",
+        "assets/ir/374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921/inbox_cable.png",
+        "assets/ir/2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49/inbox_manual.png",
+        "assets/ir/d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f/product_overview.png",
+        "assets/ir/e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8/using_product.png"
+      ],
+      "missing_urls": [],
+      "ir_sha256": "eb8af6b4b9df4652250a2085a99188420e654392c57b0b9b8e0add66a7b28fd6",
+      "content_sha256": "ebbf754bb45218ec75708d6b993e2e231ee8aba599441b08260613cde05ae43e",
+      "image_count": 5
+    },
+    {
+      "key": "je",
+      "model": "JE-1000F",
+      "region": "EU",
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it"
+      ],
+      "pages": 76,
+      "projection": "whole-document-components/v1",
+      "cold_replay_fragments": 76,
+      "tampered_asset_rejected": true,
+      "missing_urls": [],
+      "ir_sha256": "308d8d8669845870c6b9dfaceaf1e4c40ae559f9e1dd8e93df7814976a0ba03e",
+      "content_sha256": "8aaca80cd65c815fe60126be5a3f100290a56d9995f84bbf05a2bb13e1c9da4b",
+      "image_count": 340
+    }
+  ],
+  "browser": [
+    {
+      "key": "ja",
+      "width": 1440,
+      "overflow": 0,
+      "nav": [],
+      "cards": 3,
+      "specTables": 4,
+      "warnings": 11,
+      "image_count": 5,
+      "broken_images": []
+    },
+    {
+      "key": "ja",
+      "width": 375,
+      "overflow": 0,
+      "nav": [],
+      "cards": 3,
+      "specTables": 4,
+      "warnings": 11,
+      "image_count": 5,
+      "broken_images": []
+    },
+    {
+      "key": "je",
+      "width": 1440,
+      "overflow": 0,
+      "nav": [
+        {
+          "label": "English",
+          "href": "#hb-lang-en",
+          "exists": true
+        },
+        {
+          "label": "Fran\u00e7ais",
+          "href": "#hb-lang-fr",
+          "exists": true
+        },
+        {
+          "label": "Espa\u00f1ol",
+          "href": "#hb-lang-es",
+          "exists": true
+        },
+        {
+          "label": "Deutsch",
+          "href": "#hb-lang-de",
+          "exists": true
+        },
+        {
+          "label": "Italiano",
+          "href": "#hb-lang-it",
+          "exists": true
+        }
+      ],
+      "cards": 15,
+      "specTables": 20,
+      "warnings": 100,
+      "image_count": 340,
+      "broken_images": []
+    },
+    {
+      "key": "je",
+      "width": 375,
+      "overflow": 0,
+      "nav": [
+        {
+          "label": "English",
+          "href": "#hb-lang-en",
+          "exists": true
+        },
+        {
+          "label": "Fran\u00e7ais",
+          "href": "#hb-lang-fr",
+          "exists": true
+        },
+        {
+          "label": "Espa\u00f1ol",
+          "href": "#hb-lang-es",
+          "exists": true
+        },
+        {
+          "label": "Deutsch",
+          "href": "#hb-lang-de",
+          "exists": true
+        },
+        {
+          "label": "Italiano",
+          "href": "#hb-lang-it",
+          "exists": true
+        }
+      ],
+      "cards": 15,
+      "specTables": 20,
+      "warnings": 100,
+      "image_count": 340,
+      "broken_images": []
+    }
+  ],
+  "full_image_inventory": "/tmp/ja-ad01a-closeout/verification.json",
+  "browser_image_inventory": "/tmp/ja-ad01a-closeout/browser.json"
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": "manual-git-source/v1",
+  "target": {
+    "model": "JA-AD01A",
+    "region": "EU",
+    "language": "en"
+  },
+  "snapshot_version": "git-20260906-0252cb5d",
+  "version_basis": "Technical Git snapshot label derived from source SHA256, not a claimed printed-manual version.",
+  "source_name": "(翻译用）38-0001-000880 HTO847-EU-JAK 102W充电器 说明书 RoSH REACH.ai",
+  "source_sha256": "0252cb5db68fb67b3fe0947824de4655e13e26f90b3dde1f6bada3b64aa390fc",
+  "source_authority": "User-designated intake AI for this Web batch; current printed-manual version has not been independently established.",
+  "source_pages": [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "inputs_origin": "21 specification lines transcribed from supplied AI pages 4-5; six CSVs moved unchanged from original intake fixture into explicit Git release inputs. Prose from pages 3,6-9; diagrams from pages 3 and 6.",
+  "normalizations": [
+    "Extracted DC control glyph U+001F normalized to U+2393; voltage/current figures unchanged.",
+    "Source line wraps and typographic ligatures normalized for native prose.",
+    "Warning item 11 is also displayed in the shared Inbox TIP.",
+    "Paper cover, contents/page numbering and unverified QR link are excluded from Web content."
+  ],
+  "live_table_reads_required": false,
+  "live_table_writes_permitted": false,
+  "files": [
+    {
+      "path": "configs/config.charger-eu-en.yaml",
+      "sha256": "7cb8a332ef7256129d4035753f55cd4ca33d71d8f6a2cdafe41eb26b9a4af2b4",
+      "size_bytes": 817
+    },
+    {
+      "path": "data/asset_recipes/manual_ja_ad01a_eu_en_web.json",
+      "sha256": "5f52577348e5b55982a60f7b6ca2662a2f13addd7d3131c43e3fb6f1057c3130",
+      "size_bytes": 7652
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/Localized_Copy.csv",
+      "sha256": "5c46999c0cf0449aa85b59c4a0fbdb0c2d255abacbd7143836cc827c59c75e92",
+      "size_bytes": 85
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d",
+      "size_bytes": 84
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/Spec_Master.csv",
+      "sha256": "f088fbeddb7aa9376c877706955f676264017a8c2178ce3f998db24e60b3ab14",
+      "size_bytes": 3160
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/Spec_Notes.csv",
+      "sha256": "a87495461ed2e9ff8fe3a50ca4ada991df9325cf5dc8b6ed104a367293dc49ab",
+      "size_bytes": 76
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/page_registry.csv",
+      "sha256": "f41c0b5bdbadb8a6311cc2cc5e947384393515817c33d4e67c4c58f7b1b8a893",
+      "size_bytes": 141
+    },
+    {
+      "path": "data/manual_sources/ja_ad01a_eu_en/spec_titles.csv",
+      "sha256": "d15862eb0badafa3017da386844ed672491e5af3e766c19286fc39c03839ab8d",
+      "size_bytes": 99
+    },
+    {
+      "path": "docs/manifests/manual_charger-eu-en.yaml",
+      "sha256": "d05c8b808374e4994dbde7cd28c8abaf89e0c57f2a06c32ebd86049d81b0e529",
+      "size_bytes": 1326
+    },
+    {
+      "path": "docs/renderers/web/assets/ja_ad01a_eu_en/inbox_cable.png",
+      "sha256": "374329d66fdc7ea6b80344070fa0765b404316b91a20e918083c944e603cb921",
+      "size_bytes": 3359
+    },
+    {
+      "path": "docs/renderers/web/assets/ja_ad01a_eu_en/inbox_charger.png",
+      "sha256": "a396d8928907bc7b10a5e141799aba30d83fd635b06d4596e65762200ba0e902",
+      "size_bytes": 11484
+    },
+    {
+      "path": "docs/renderers/web/assets/ja_ad01a_eu_en/inbox_manual.png",
+      "sha256": "2c01ae279f52fb0060bd61c931786a7d587a65d9d9f1a31ae542ad98b2402c49",
+      "size_bytes": 7078
+    },
+    {
+      "path": "docs/renderers/web/assets/ja_ad01a_eu_en/product_overview.png",
+      "sha256": "d05f6b83b300a74601b84d82705d771def9e701682d5bc0fcc22b697a649af7f",
+      "size_bytes": 50156
+    },
+    {
+      "path": "docs/renderers/web/assets/ja_ad01a_eu_en/using_product.png",
+      "sha256": "e72a51b3fe88ee3ec0a029c171935d753daa1d4e45be7765e957dc62aa5b38a8",
+      "size_bytes": 47042
+    },
+    {
+      "path": "docs/renderers/web/ja_ad01a_eu_en_illustrations.json",
+      "sha256": "b9c8d0c93887db93b61070d90f118098d48f77c6b8d0dcfa23d4f6a2f986e731",
+      "size_bytes": 1878
+    },
+    {
+      "path": "docs/templates/page_charger/en/box_contents.rst",
+      "sha256": "65daf3ac59a822c43f9042d9ad1a40030fc68c774c743c805b80d99dd483606a",
+      "size_bytes": 812
+    },
+    {
+      "path": "docs/templates/page_charger/en/legal_tail.rst",
+      "sha256": "051ffe102eccb9ac9cb42a70fb11e222be1e4ad3d6d3a9e8bb3d1324a58e3a1d",
+      "size_bytes": 419
+    },
+    {
+      "path": "docs/templates/page_charger/en/product_overview.rst",
+      "sha256": "6eefe52f98b0bd573c9609176e3288a7ffe4e540bc043ffdc8a82416a152e8c5",
+      "size_bytes": 191
+    },
+    {
+      "path": "docs/templates/page_charger/en/safety_warning.rst",
+      "sha256": "35fb8b35730633f3f82272557f1092769871e26f3244f58548ea7ee1871b212b",
+      "size_bytes": 1668
+    },
+    {
+      "path": "docs/templates/page_charger/en/using_product.rst",
+      "sha256": "b80cf5be49d507e886b3ce0571ee87bcd0494d3564d7e61f2d4e62c1d8e64b17",
+      "size_bytes": 245
+    },
+    {
+      "path": "docs/templates/page_charger/en/warranty.rst",
+      "sha256": "417725eed304cf438eff5825a32c836e61e72fdc4f34570494b8999b25f2dc22",
+      "size_bytes": 629
+    }
+  ]
+}

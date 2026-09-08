@@ -14,6 +14,12 @@ Read the Docs. Web delivery is intentionally separate from print delivery.
 artifacts. Both actions render reviewed content selected by
 `Document_link.Git_ref` with the current `main` toolchain.
 
+The table above describes the queue-driven input path. An authorized Git-only
+release can instead use reviewed, committed sources and assets without creating
+queue rows or reading or writing online tables. It does not change either
+workflow. Both input paths converge on the same assembler, the same
+`docs/publish/**`-only release PR, and the same Read the Docs production build.
+
 ## 1.1 Semantic tables and frozen figures
 
 The Web profile renders explicitly declared specification sections across
@@ -144,7 +150,9 @@ asset hashes against the baseline, and compare document-profile outputs
 separately. This is local rendering evidence; it does not grant asset approval,
 change JP D1–D4 or promote production eligibility.
 
-## 2. Web Publish transaction
+## 2. Web Publish input paths and shared release outlet
+
+### 2.1 Queue-driven transaction
 
 1. The business-plane worker claims only rows whose normalized action is
    `web_publish`; `Git_ref` is required.
@@ -176,15 +184,65 @@ change JP D1–D4 or promote production eligibility.
    workflow artifact retains the Web release evidence; the Git branch remains
    the durable snapshot.
 
+### 2.2 Git-only transaction
+
+Use this path only when the operator has designated reviewed Git content as the
+release authority and explicitly excluded online-table writes. It does not
+create synthetic queue rows or write `HTML_link`.
+
+1. Commit the complete target structure, sources and assets with a
+   `source_manifest.json`. Record the target identity, source authority,
+   original filename and SHA-256, included pages, deliberate normalizations,
+   and an input SHA-256 inventory. If the printed-manual version is unknown,
+   keep it unknown. A technical snapshot version such as
+   `git-<date>-<source-sha-prefix>` identifies the Git release input; it is not
+   a paper-manual version.
+2. At the exact source Git ref, run the target `build.py check`, render the Web
+   presentation profile to MyST, build it with strict Sphinx, and inspect the
+   actual page at desktop and mobile widths for image URLs and page overflow.
+   When the target uses public IR or packaged assets, retain cold-replay and
+   asset-tamper evidence as applicable.
+3. Put the verified MyST and verification HTML in an isolated release root.
+   Write a real `auto-manual-web-publish/v1` record at
+   `<model>/<region>/<lang>/latest/web/publish_meta.json`. Its
+   `md_output_path` and `html_dir` must stay inside that release root, and the
+   HTML directory must contain `index.html`. Record at least `model`, `region`,
+   `lang`, `version`, `built_at`, `git_ref`, `md_output_path`, and `html_dir`.
+4. Start from current `Hello-Docs/main:docs/publish/**` in an isolated checkout
+   so previously published targets remain present. Assemble and verify the
+   candidate with:
+
+   ```bash
+   python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
+   python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
+   ```
+
+   The assembler replaces matching target routes, retains the other stored
+   targets, rebuilds the aggregate Sphinx tree, and rewrites
+   `publish_manifest.json`.
+5. Commit that candidate on the normal Hello-Docs release branch and open the
+   usual `docs/publish/**`-only PR. Do not include engineering code, review
+   branches, print artifacts, or unrelated targets.
+6. After the approved PR merges, verify the Read the Docs build commit, each
+   canonical target route, each short root alias, all referenced assets, and
+   desktop/mobile rendering.
+
+The durable evidence is the source Git commit, source-manifest and input hashes,
+release metadata, publish-manifest hash, Hello-Docs snapshot commit, Read the
+Docs build commit, and the verified production URLs. `Document_link.HTML_link`
+readback belongs only to the queue-driven transaction. A Git-only transaction
+does not write online staging, source, asset, build, or link records.
+
 ## 3. Repository and hosting boundaries
 
 - Code changes land only in `Bingboom/auto-manual`, then
   `sync-hello-docs.yml` mirrors the engineering tree into
   `Bingboom/Hello-Docs/main` while preserving the business-owned
   `docs/publish/**` subtree already merged there.
-- `Hello-Docs/publish` is a generated release-candidate branch. Operators do
-  not edit it by hand, and it is not the GitHub repository's development or
-  production branch.
+- `Hello-Docs/publish` is a generated release-candidate branch. It is produced
+  by the Web Publish workflow or by the same assembler in an isolated Git-only
+  checkout. Operators do not edit its generated files by hand, and it is not
+  the GitHub repository's development or production branch.
 - The only release PR into `Hello-Docs/main` is `publish -> main`, and its diff
   must contain only `docs/publish/**`. A whole `review/*` branch is never a
   release PR and must never be merged into `main`.
@@ -208,6 +266,8 @@ the release PR.
 
 ## 4. Operator contract
 
+The requirements below apply to the queue-driven path only.
+
 Before dispatch, the `Document_link` row must have:
 
 - `Workflow_action = Web Publish`
@@ -229,9 +289,13 @@ Success requires all three pieces of evidence:
 - after that PR is merged, `Hello-Docs/main` contains the same manifest and the
   RTD page opens at the `HTML_link` route.
 
+For the Git-only path, use the evidence contract in section 2.2. Do not create
+placeholder online records or write `HTML_link` to imitate queue completion.
+
 ## 5. Rollback
 
-Do not force-push `publish`. Re-run Web Publish from the approved review ref and
-asset rows to append a corrected candidate snapshot. For an urgent hosting
-rollback, prepare a `docs/publish/**`-only revert PR into `main`, verify the
-generated manifest, merge it, and let the `main` webhook rebuild RTD.
+Do not force-push `publish`. For the queue-driven path, re-run Web Publish from
+the approved review ref and asset rows. For the Git-only path, rebuild from the
+recorded source Git ref and release metadata. In either case, append a corrected
+candidate snapshot or prepare a `docs/publish/**`-only revert PR into `main`,
+verify the generated manifest, merge it, and let the `main` webhook rebuild RTD.
