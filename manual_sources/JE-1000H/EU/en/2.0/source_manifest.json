@@ -1,0 +1,116 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JE-1000H",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0"
+  },
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "published_revision": "V2.0-2026-08-03",
+    "published_pdf_name": "Jackery Explorer 1000 Plus User Manual (JE-1000H) EUUK V2.0-2026-08-03.pdf",
+    "published_pdf_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+    "source_artwork_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+    "audit_record": "code-as-doc/reviews/je1000h_eu_en_web_intake_2026-09.md"
+  },
+  "engineering_content_commit": null,
+  "data_root": "manual_sources/JE-1000H/EU/en/2.0/phase2",
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je1000h_eu_web.json",
+    "sha256": "14ae4e31bc26f3d90ba1b4c992cce750d143b66dd99e5bc3e42d6bba65959652"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je1000h_eu_en_illustrations.json",
+    "sha256": "1f54a9c180606f16943ac576bfdece1ec314bf1a4a920d37c010ce18bb434a21"
+  },
+  "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 43,
+      "sha256": "8f2e4a76e6b9975b7aee9bed58836c8c8cf70fed0371604e5d12d30edf067e12"
+    },
+    {
+      "path": "phase2/Localized_Copy.csv",
+      "size": 3436,
+      "sha256": "d86eeef37194581f1834d36615f72a2ec13db29087a02317f433f1f1129469d0"
+    },
+    {
+      "path": "phase2/Manual_Copy_Source.csv",
+      "size": 3192,
+      "sha256": "6144a223ffebb68c8fb529ed2993f5c33733a4656e27e2d2f8b30a21ed30eef2"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 674,
+      "sha256": "e21004213b7c04a45082b0d0d16329699a12651828a21039a4ba74764f37f4b6"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 12479,
+      "sha256": "b26e8d175dc13130b229e1aaabd07cde8098377ee0ee288e2659cae92d579927"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 305,
+      "sha256": "d3df2a71ea5f0a1ef1d51bffe67f5997fdf9dcf96f919bda2cee492d14188636"
+    },
+    {
+      "path": "phase2/Status_Words.csv",
+      "size": 309,
+      "sha256": "2b7137ba193ba282cd1d9a1824a2b23099b397730c4329861a47a123f79fd2c0"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 123,
+      "sha256": "27d8d0a76252c2d38306d7c7333e3d40bd7291b4ac2e891941130036b10cfbc9"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 499,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482"
+    },
+    {
+      "path": "phase2/lcd_icons_blocks.csv",
+      "size": 6848,
+      "sha256": "f1836456d26b189e923453a528ea6e5b460a46e2240d25ddba14ab33a71c1228"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 524,
+      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+    },
+    {
+      "path": "phase2/row_key_mapping.csv",
+      "size": 3817,
+      "sha256": "50532c74b0dea9f61d4621795b7259d3ec7af77d43289adfcad3f2e4d67d0188"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 233,
+      "sha256": "ead5c0f541d919aae2dfc251d8229630ee7ab8889e69a60b58af8efaf29f0703"
+    },
+    {
+      "path": "phase2/symbols_blocks.csv",
+      "size": 2949,
+      "sha256": "861faa245ee086dc90ac83d2e1237bfdddba4f583a627859dc4e2b4acac848a2"
+    },
+    {
+      "path": "phase2/troubleshooting_blocks.csv",
+      "size": 2799,
+      "sha256": "9fecb7535fb9e3a297ee437505b6e3c4584bece003af93c331fc417ebf3f3639"
+    },
+    {
+      "path": "phase2/web_composite_manifest.json",
+      "size": 60,
+      "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
+    }
+  ],
+  "files_inventory_sha256": "0b06081e752c8cb90df9cd073e039cecc29766a5a9572bf2868b53a2b3931bcf",
+  "live_bitable_dependency": false,
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  }
+}

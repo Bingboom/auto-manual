@@ -1,0 +1,2372 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je1000h_eu_uk_20260803",
+    "expected_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+    "expected_page_count": 108
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 108
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "6": 4,
+        "7": 4,
+        "8": 4,
+        "9": 4,
+        "10": 4,
+        "11": 4,
+        "12": 4,
+        "13": 4,
+        "14": 4,
+        "15": 4,
+        "16": 4,
+        "17": 4,
+        "18": 4,
+        "19": 4,
+        "20": 4,
+        "21": 4,
+        "22": 4,
+        "108": 4
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "page_001",
+      "role": "cover_front",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 2,
+      "page_key": "page_002",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 3,
+      "page_key": "page_003",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 4,
+      "page_key": "page_004",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 5,
+      "page_key": "page_005",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 6,
+      "page_key": "page_006",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 7,
+      "page_key": "page_007",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 8,
+      "page_key": "page_008",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 9,
+      "page_key": "page_009",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 10,
+      "page_key": "page_010",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 11,
+      "page_key": "page_011",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 12,
+      "page_key": "page_012",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 13,
+      "page_key": "page_013",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 14,
+      "page_key": "page_014",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 15,
+      "page_key": "page_015",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 16,
+      "page_key": "page_016",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 17,
+      "page_key": "page_017",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 18,
+      "page_key": "page_018",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 19,
+      "page_key": "page_019",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 20,
+      "page_key": "page_020",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 21,
+      "page_key": "page_021",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 22,
+      "page_key": "page_022",
+      "role": "manual_page",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 23,
+      "page_key": "page_023",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 24,
+      "page_key": "page_024",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 25,
+      "page_key": "page_025",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 26,
+      "page_key": "page_026",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 27,
+      "page_key": "page_027",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 28,
+      "page_key": "page_028",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 29,
+      "page_key": "page_029",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 30,
+      "page_key": "page_030",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 31,
+      "page_key": "page_031",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 32,
+      "page_key": "page_032",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 33,
+      "page_key": "page_033",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 34,
+      "page_key": "page_034",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 35,
+      "page_key": "page_035",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 36,
+      "page_key": "page_036",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 37,
+      "page_key": "page_037",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 38,
+      "page_key": "page_038",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 39,
+      "page_key": "page_039",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 40,
+      "page_key": "page_040",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 41,
+      "page_key": "page_041",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 42,
+      "page_key": "page_042",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 43,
+      "page_key": "page_043",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 44,
+      "page_key": "page_044",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 45,
+      "page_key": "page_045",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 46,
+      "page_key": "page_046",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 47,
+      "page_key": "page_047",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 48,
+      "page_key": "page_048",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 49,
+      "page_key": "page_049",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 50,
+      "page_key": "page_050",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 51,
+      "page_key": "page_051",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 52,
+      "page_key": "page_052",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 53,
+      "page_key": "page_053",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 54,
+      "page_key": "page_054",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 55,
+      "page_key": "page_055",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 56,
+      "page_key": "page_056",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 57,
+      "page_key": "page_057",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 58,
+      "page_key": "page_058",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 59,
+      "page_key": "page_059",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 60,
+      "page_key": "page_060",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 61,
+      "page_key": "page_061",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 62,
+      "page_key": "page_062",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 63,
+      "page_key": "page_063",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 64,
+      "page_key": "page_064",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 65,
+      "page_key": "page_065",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 66,
+      "page_key": "page_066",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 67,
+      "page_key": "page_067",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 68,
+      "page_key": "page_068",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 69,
+      "page_key": "page_069",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 70,
+      "page_key": "page_070",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 71,
+      "page_key": "page_071",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 72,
+      "page_key": "page_072",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 73,
+      "page_key": "page_073",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 74,
+      "page_key": "page_074",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 75,
+      "page_key": "page_075",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 76,
+      "page_key": "page_076",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 77,
+      "page_key": "page_077",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 78,
+      "page_key": "page_078",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 79,
+      "page_key": "page_079",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 80,
+      "page_key": "page_080",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 81,
+      "page_key": "page_081",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 82,
+      "page_key": "page_082",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 83,
+      "page_key": "page_083",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 84,
+      "page_key": "page_084",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 85,
+      "page_key": "page_085",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 86,
+      "page_key": "page_086",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 87,
+      "page_key": "page_087",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 88,
+      "page_key": "page_088",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 89,
+      "page_key": "page_089",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 90,
+      "page_key": "page_090",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 91,
+      "page_key": "page_091",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 92,
+      "page_key": "page_092",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 93,
+      "page_key": "page_093",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 94,
+      "page_key": "page_094",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 95,
+      "page_key": "page_095",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 96,
+      "page_key": "page_096",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 97,
+      "page_key": "page_097",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 98,
+      "page_key": "page_098",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 99,
+      "page_key": "page_099",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 100,
+      "page_key": "page_100",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 101,
+      "page_key": "page_101",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 102,
+      "page_key": "page_102",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 103,
+      "page_key": "page_103",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 104,
+      "page_key": "page_104",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 105,
+      "page_key": "page_105",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 106,
+      "page_key": "page_106",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 107,
+      "page_key": "page_107",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    },
+    {
+      "page": 108,
+      "page_key": "page_108",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je1000h/eu/en/inbox_unit",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            310,
+            112,
+            394
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "3feaa38f0be1906ad7c304e8cbe259f533650f0d4a005827334156798fabd4b1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/inbox_cable",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            150,
+            315,
+            210,
+            394
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "12cb6f3e1b9cd8aefa23be1e914b5afad27b9067f4529baacf48a5b840f4138c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/inbox_documents",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            260,
+            320,
+            315,
+            394
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/inbox_documents.png",
+          "scale": 12,
+          "expected_sha256": "fabb53c578d2fa84e895afe88b15c126815e8a530644931256e72122fe7c354d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/overview_front",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            54,
+            342,
+            245
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "2298352a28a627ff06d80ccc62558d117c65076472a3453dc46afac8d64deef3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/overview_side",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            250,
+            342,
+            493
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "d05603c9df9169e01285c7d143f08de9d8497db0d1172d1c718343dd3f295b30"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/lcd_map",
+      "page": 9,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            55,
+            325,
+            231
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "7db529f2da0d6e6669bc164b9d7b49b0f761ebbbcaf8682d2ffdf087cf189c29"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_power",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            71,
+            342,
+            233
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "b588b6586986f29615f6141292e41b9c7b5705e47cb58c6079202718c41c55df"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_ac",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            249,
+            342,
+            495
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "24e0dc38a1e34f6a2774f674608fefe0e8aef940acc93b411026747e7d5520a5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_dc",
+      "page": 12,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            41,
+            342,
+            212
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "e29bb5a9493a02437c6ecfac6654d63518236e00541d653f2f9c458740cd9379"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_led",
+      "page": 12,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            362,
+            342,
+            498
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "2f5dab488e9cbe54ac6be58e0d0e13ada384f965bee0abe2a48f78ed65fd20c8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_lcd",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            40,
+            180,
+            150
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "6acfbae768cd11ba0b6b6bc4a34de79f05b42f0845caa479f842b071dd3019ef"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/operation_energy",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            229,
+            342,
+            374
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "7df27385f9a5cb6fc9632fb10ff09e3a700ea6d666c007db2ee904c23b5012e4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/ups",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            257,
+            342,
+            496
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/ups.png",
+          "scale": 12,
+          "expected_sha256": "638a8ee9e9b951e6325c01d36b9b380fb0c0c0da56fbe977b057e49142c3d114"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/battery_pack",
+      "page": 15,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            203,
+            342,
+            410
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/battery_pack.png",
+          "scale": 12,
+          "expected_sha256": "9caac72ff94d2f04310efee34e7897b2d490dfbefe56acb16847ca168b618056"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/charging_ac",
+      "page": 16,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27,
+            247,
+            342,
+            362
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "b19d42044757c96f1e684490e92abd7a057e8f58a5c71e40b2ab65cb189fa237"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/charging_solar",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            31,
+            342,
+            175
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "139c61822de1bc7bb3bd567e641698131ba326e41ac5b9000b0f398f3806557d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/charging_solar_adapter",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            150,
+            31,
+            342,
+            175
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/charging_solar_adapter.png",
+          "scale": 12,
+          "expected_sha256": "5bf687729ceaabae2249719984667676a2c428735fe6bea5e37233e9c99015de"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H solar connector crop visually verified at 12x."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/charging_car",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28,
+            358,
+            342,
+            494
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "39ca23e7236727c81ef3065fd7f639dbcad39091d1e8d6c723709e9c0ba0dc2e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/download_panel",
+      "page": 21,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45,
+            70,
+            340,
+            151
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/app_download.png",
+          "scale": 12,
+          "expected_sha256": "fcbd24d9755519e191fcfb716cefcb294821566540275b791a8aa451e6a5dcc7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/control_panel",
+      "page": 21,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            400,
+            340,
+            484
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/app_control_panel.png",
+          "scale": 12,
+          "expected_sha256": "8fe49742d4139dea0a90d60693f77e6b4d6985e9df96c9e76c655bc4561c61c5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je1000h/eu/en/connect_result_panel",
+      "page": 22,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-1000H"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            48,
+            141,
+            320,
+            293
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je1000h_eu_en/app_connect_result.png",
+          "scale": 12,
+          "expected_sha256": "ce4b7f91c9cab96df5c7d41e4e4db9fa3f19fcdfbed734faa35a36a1cba32603"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    }
+  ]
+}

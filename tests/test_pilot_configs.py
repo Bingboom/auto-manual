@@ -275,7 +275,7 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 17, ["JE-1000F", "JE-2000F"]),
+            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 18, ["JE-1000F", "JE-1000H", "JE-2000F"]),
             ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15, ["JE-1000F"]),
             ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15, ["JE-1000F"]),
         )

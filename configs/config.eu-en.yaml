@@ -6,6 +6,8 @@ build:
   targets:
     - model: JE-1000F
       region: EU
+    - model: JE-1000H
+      region: EU
     - model: JE-2000F
       region: EU
   word_reference_doc: docs/templates/word_template/reference_en.docx
@@ -16,4 +18,5 @@ build:
 paths:
   page_manifest: docs/manifests/manual_eu-en.yaml
   web_illustration_manifests:
+    JE-1000H_EU: docs/renderers/web/je1000h_eu_en_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_en_illustrations.json
