@@ -26,7 +26,9 @@ from tools.web_document_ir import render_document_fragments
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "config.bp-eu-en-web.yaml"
-FIXTURE = ROOT / "tests" / "fixtures" / "phase2"
+FORMAL_SOURCE = ROOT / "manual_sources" / "JBP-3600A" / "EU" / "en"
+FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
+SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "eu-en-web.yaml"
 MANIFEST = ROOT / "docs" / "manifests" / "manual_bp-eu-en-web.yaml"
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "jbp3600a_eu_en_illustrations.json"
@@ -77,7 +79,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
                 "--lang",
                 "en",
                 "--data-root",
-                str(FIXTURE),
+                str(FORMAL_DATA_ROOT),
                 "--staging-root",
                 str(cls.staging),
             ],
@@ -88,7 +90,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             text=True,
         )
         if result.returncode:
-            raise AssertionError("JBP-3600A Web fixture build failed:\n" + result.stdout + result.stderr)
+            raise AssertionError("JBP-3600A formal-source Web build failed:\n" + result.stdout + result.stderr)
         cls.package = (
             cls.staging
             / "docs"
@@ -124,8 +126,8 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         self.assertEqual(checked_in, resolved)
         self.assertEqual(["en"], profile["language_set"])
 
-    def test_source_backed_fixture_contains_only_target_values(self) -> None:
-        with (FIXTURE / "Spec_Master.csv").open(encoding="utf-8-sig", newline="") as handle:
+    def test_formal_git_source_contains_only_target_values(self) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8-sig", newline="") as handle:
             spec_rows = [
                 row for row in csv.DictReader(handle)
                 if row["document_key"] == "JBP-3600A_EU"
@@ -136,6 +138,30 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         self.assertEqual("36.4V-50.4V⎓100A Max", values["dc_expansion_port"])
         self.assertTrue(all(row["Model"] == "JBP-3600A" for row in spec_rows))
         self.assertNotIn("Jackery Battery Pack 2000", "\n".join(values.values()))
+
+        source_manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual("auto-manual-git-source/v1", source_manifest["schema_version"])
+        self.assertEqual("formal-published-source-audited-git-input", source_manifest["source_role"])
+        self.assertEqual(
+            "manual_sources/JBP-3600A/EU/en/phase2",
+            source_manifest["data_root"],
+        )
+        self.assertFalse(source_manifest["live_bitable_dependency"])
+        for record in source_manifest["files"]:
+            path = FORMAL_SOURCE / record["path"]
+            data = path.read_bytes()
+            self.assertEqual(record["size"], len(data))
+            self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
+        inventory = json.dumps(
+            source_manifest["files"],
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode()
+        self.assertEqual(
+            source_manifest["files_inventory_sha256"],
+            hashlib.sha256(inventory).hexdigest(),
+        )
 
     def test_web_output_has_real_components_and_finished_target_art(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")

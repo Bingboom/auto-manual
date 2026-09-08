@@ -1,0 +1,4 @@
+No.,Model,Is_latest,Version,icon_en,icon_zh,icon_jp,icon_fr,icon_es,icon_pt-BR,icon_br,icon_de,icon_it,icon_ukr,icon_desc_en,icon_desc_zh,icon_desc_jp,icon_desc_fr,icon_desc_es,icon_desc_pt-BR,icon_desc_br,icon_desc_de,icon_desc_it,icon_desc_ukr,has_variables,variable_keys,figure,render_preview_en,icon_ko,icon_desc_ko
+1,JBP-3600A,TRUE,V2.0-2026-08-04,Power Percentage/Fault Code,,,,,,,,,,"The display shows the current power percentage.
+When the system fails, it will display the corresponding fault code F0-FF. If the FF code appears, remove the loads and the product may recover by itself. If not, contact Jackery Customer Support. If any other code appears, contact Customer Support.",,,,,,,,,,FALSE,,asset:lcd/jbp3600a/display,,,
+2,JBP-3600A,TRUE,V2.0-2026-08-04,Charging Indicator,,,,,,,,,,The indicator is displayed when charging and disappears when it is fully charged.,,,,,,,,,,FALSE,,asset:lcd/jbp3600a/charging_indicator,,,

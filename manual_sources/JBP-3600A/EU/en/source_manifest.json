@@ -1,0 +1,156 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JBP-3600A",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0"
+  },
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "published_revision": "V2.0-2026-08-04",
+    "published_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+    "source_artwork_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+    "source_list_record_id": "hgXiHot5Ow",
+    "audit_record": "code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md"
+  },
+  "engineering_content_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+  "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
+    "sha256": "68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",
+    "sha256": "b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4"
+  },
+  "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
+    {
+      "path": "phase2/Localized_Copy.csv",
+      "size": 9562,
+      "sha256": "aafc64c8b6c72f6c18f7aa27813650c47e24c3267ccc41cf662095935c5acb9e"
+    },
+    {
+      "path": "phase2/Manual_Copy_Source.csv",
+      "size": 3410,
+      "sha256": "e31a95a08cbe79be4907fcb02d834ffcf0c7569459f9e0712b8f535b3536ff3d"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 1456,
+      "sha256": "bc31b2d93fe905e00dd9337a00aabdf9101c824be60c78baa5b551f759a101a3"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 3685,
+      "sha256": "9bb40057c5a2f473a3f3ff08836d5322d354651be461b6077478a509441caf3c"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 1166,
+      "sha256": "7b4fde2dcb96262b69c92a7db65609434db2bac2f63c10fe85c8165e960db62c"
+    },
+    {
+      "path": "phase2/Status_Words.csv",
+      "size": 292,
+      "sha256": "0da3dc8b383da2466c13ee292f49854ede9e307670fa22db60eb52bf6b02ed2e"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 191,
+      "sha256": "45d4e52b1ad8b4e9c93548f8617b89ef36c40173882dbc1ceff14c3d61a86be5"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 499,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482"
+    },
+    {
+      "path": "phase2/_attachments/symbols/10_do_not_dismantle_Ml7EbCjtYohuKAxWNDUc93UMnVc.png",
+      "size": 1580,
+      "sha256": "66c3df77e4f84cccad4b9f162798b181c007e89d3f0e9dd4fdf52c392827cbab"
+    },
+    {
+      "path": "phase2/_attachments/symbols/10_warning_triangle_RkOwbJ9j1oUHJgxFEx3cqhVynjb.png",
+      "size": 6055,
+      "sha256": "1c272a00fbd28d6562d4126040ba43e5747f6a6550878c4b13e05a5c28014577"
+    },
+    {
+      "path": "phase2/_attachments/symbols/20_no_open_flame_SAbnbxa6iohb2rxxk3PcEh8cnuf.png",
+      "size": 2101,
+      "sha256": "422379347e71e7827c3da380e421f2cb106da5d2f74781fc45782a2f86d493d2"
+    },
+    {
+      "path": "phase2/_attachments/symbols/20_read_manual_VK1Ab1MGIoOHdgx1rkUchOHRntb.png",
+      "size": 974,
+      "sha256": "d14506fa5a9d449039887db61a259f1841f1826de2f190f54063f96195b955f5"
+    },
+    {
+      "path": "phase2/_attachments/symbols/30_keep_away_from_children_Nc5NbV2kyoMaTSxvismcAlzbnlh.png",
+      "size": 1813,
+      "sha256": "e345b3278827691751b6beac9c8343c75ac7a98100618fbef1db73a27329b99d"
+    },
+    {
+      "path": "phase2/_attachments/symbols/40_li_ion_ZEcHbhY0Eo3XOExtXKCcbEVjnpe.png",
+      "size": 1946,
+      "sha256": "ea7766d417e962cf711bccf3de79d6f639602848ace780353cb329329d13cc91"
+    },
+    {
+      "path": "phase2/_attachments/symbols/50_weee_L9o3bcXq0oSsqdxSX86covnpnle.png",
+      "size": 1274,
+      "sha256": "eb094578bf165fa39399de1d957cc71a92191f2b0e7ed0a620885065ebedf8a3"
+    },
+    {
+      "path": "phase2/_attachments/symbols/70_weee2_VL7tbeJhHoy9wBxRZIdcygPBnmf.png",
+      "size": 3417,
+      "sha256": "7fb57972ebd1fb8bf82abc75d0d320ecaa9abc6544020f2374da2f1272a46171"
+    },
+    {
+      "path": "phase2/lcd_icons_blocks.csv",
+      "size": 936,
+      "sha256": "e77739a8a9690eda7f9a1263e41cb0f44c667653e679ac5eeba4d0aa5c40c92e"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 515,
+      "sha256": "ded23f8869e52538cfd318c105fa688d00df8455f39745ee6a62b3021399dcc0"
+    },
+    {
+      "path": "phase2/row_key_mapping.csv",
+      "size": 3652,
+      "sha256": "996ccb992ece165f4397019119eb6a56d7bb73ba7955cc5537a22abe1eadd2f7"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 926,
+      "sha256": "1276cc3e7b551a6182dbf501b0ef75ee7ddd6d51f0fc7211149c6df84668e15d"
+    },
+    {
+      "path": "phase2/symbols_blocks.csv",
+      "size": 8786,
+      "sha256": "34238740cd4253456f53a58f5b72e508ff0c642823b71fb5099bf3e5d9d20752"
+    },
+    {
+      "path": "phase2/troubleshooting_blocks.csv",
+      "size": 1490,
+      "sha256": "6e44243dd70a16785f2e20d5544a40fc038581e3bbb01ba1d0a90617e1f5483d"
+    },
+    {
+      "path": "phase2/web_composite_manifest.json",
+      "size": 116,
+      "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
+    }
+  ],
+  "files_inventory_sha256": "b3f0f0021a85e5fa6a0b8bd0bce0a68bf49d8806105af74bac72d5c70a5ecc56",
+  "live_bitable_dependency": false,
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  }
+}
