@@ -26,3 +26,8 @@ paths:
   idml_assembly_plan: null
   page_manifest: docs/manifests/manual_bp-eu-en.yaml
   web_illustration_manifest: docs/renderers/web/jbp2000b_eu_en_illustrations.json
+checks:
+  allowed_foreign_identity_literals:
+  - Jackery Battery Pack 2000
+  - Jackery Explorer 2000 Plus
+  - Jackery Explorer 1000 Plus

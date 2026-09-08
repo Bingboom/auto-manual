@@ -6,6 +6,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 CSS = ROOT / "docs" / "renderers" / "contracts" / "web_manual.css"
+CONFIG = ROOT / "configs" / "config.bp-eu-en.yaml"
 WARRANTY = ROOT / "docs" / "templates" / "page_bp" / "en-web" / "eu_warranty.rst"
 
 
@@ -29,6 +30,12 @@ class Jbp2000bEuEnWebLayoutTests(unittest.TestCase):
         self.assertIn("**3 YEARS** **Standard Warranty**", warranty)
         self.assertIn("**2 YEARS** **Extended Warranty**", warranty)
         self.assertNotIn("YEARS —", warranty)
+
+    def test_compatible_host_models_are_allowed_identity_literals(self) -> None:
+        config = CONFIG.read_text(encoding="utf-8")
+
+        self.assertIn("- Jackery Explorer 2000 Plus", config)
+        self.assertIn("- Jackery Explorer 1000 Plus", config)
 
 
 if __name__ == "__main__":

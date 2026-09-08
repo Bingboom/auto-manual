@@ -87,7 +87,7 @@ Full validation also registered the English manifest in the family index and
 updated the explicit template/capability inventory. The English Web configuration
 no longer inherits the unrelated six-language candidate IDML assembly plan.
 
-Final correction validation: 3,859 unit tests passed (22 skipped); 88 focused
+Final correction validation: 3,860 unit tests passed (22 skipped); 88 focused
 Word/Markdown tests passed; Ruff, doc links and maintainability passed. Both
 JBP-2000B EU/en frozen-source and JE-1000F US review-source checks passed.
 
@@ -112,3 +112,7 @@ Warranty” and “Extended Warranty”; the labels now render without an extra 
 Real Sphinx output was inspected at 1440 px and 375 px: all three page-8 panels
 retain their published grouping, both viewports have zero horizontal overflow,
 and the two warranty labels read back without separators.
+
+The English configuration also allows both named compatible host models during
+identity-drift checks. Its fixture-backed `check-all` target now passes without
+masking unrelated identities.
