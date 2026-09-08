@@ -124,7 +124,7 @@ class WebInboxIRTests(unittest.TestCase):
                 self.assertEqual(len(soup.select('.hb-inbox-card')), 3)
                 self.assertIsNotNone(soup.select_one('.hb-inbox-tip-body'))
 
-    def test_actual_context_and_existing_target_gate(self) -> None:
+    def test_actual_context_and_common_source_pattern(self) -> None:
         for language, label in (('en', 'TIP'), ('fr', 'CONSEILS'), ('es', 'CONSEJOS')):
             with self.subTest(language=language), patch.object(
                 web_inbox_component, 'build_manual_ir_from_source',
@@ -140,13 +140,22 @@ class WebInboxIRTests(unittest.TestCase):
                 self.assertIn(label, result)
                 self.assertIn('<p id="after">Unrelated copy</p>', result)
                 self.assertIn('<h1>In <em>the box</em></h1>', result)
-        with patch.object(web_inbox_component, 'build_manual_ir_from_source') as assembler:
+        with patch.object(
+            web_inbox_component,
+            'build_manual_ir_from_source',
+            wraps=build_manual_ir_from_source,
+        ) as assembler:
             result = transform_web_fragment(
                 HTML, source_path=Path('/tmp/docs/_review/OTHER/XX/page/02_whats_in_the_box.rst'),
                 language='en', model='OTHER', region='XX',
             )
-            assembler.assert_not_called()
-            self.assertNotIn('hb-inbox-composition', result)
+            assembler.assert_called_once()
+            soup = BeautifulSoup(result, 'html.parser')
+            self.assertEqual(3, len(soup.select('.hb-inbox-card')))
+            self.assertEqual(
+                ['1', '2', '3'],
+                [str(card['data-item-number']) for card in soup.select('.hb-inbox-card')],
+            )
 
     def test_serialized_replay_preserves_rich_tip_assets_without_source(self) -> None:
         from tools.manual_ir.web_inbox import load_web_inbox_source

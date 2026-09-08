@@ -8,16 +8,6 @@
       ]
     },
     "operations": {
-      "source_patterns": [
-        "*05_operation_guide_placeholder"
-      ],
-      "auto_resume_table": {
-        "body_rows": 4
-      },
-      "lcd_mode_table": {
-        "image_key": "operation/lcd_mode",
-        "body_rows": 6
-      },
       "figures": [
         {
           "id": "main-power",
@@ -363,24 +353,6 @@
               "locale": "it"
             }
           ]
-        },
-        {
-          "id": "app-add-device",
-          "source_patterns": [
-            "*12_app_setup_placeholder"
-          ],
-          "image_key": "app/add_device",
-          "capture_following_lines": 3,
-          "presentation": "shared-art-live-labels",
-          "captions_embedded": true,
-          "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
-          "label_roles": [
-            "main-power",
-            "dc-usb",
-            "ac-power"
-          ],
-          "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
-          "asset_scope": "shared"
         },
         {
           "id": "app-connect-result",

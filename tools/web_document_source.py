@@ -85,6 +85,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     )
     replacements = {}
     illustration_entries = {}
+    text_corrections = []
     provenance = None
     if illustration_manifest is not None:
         provenance = json.loads(illustration_manifest.read_text(encoding="utf-8"))
@@ -104,6 +105,16 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                 replacements[name] = file if index == 0 else None
                 if index == 0:
                     illustration_entries[name] = entry
+        text_corrections = list(provenance.get("text_corrections", []))
+        for correction in text_corrections:
+            if not all(
+                isinstance(correction.get(field), str)
+                and correction[field].strip()
+                for field in ("selector", "expected", "replacement")
+            ):
+                raise ValueError(
+                    "Web illustration text correction requires selector, expected, and replacement"
+                )
 
     def package_asset(file: Path) -> str:
         digest = file_sha256(file)
@@ -127,6 +138,28 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
 
     source_pages = []
     used_replacements = set()
+    used_text_corrections = set()
+
+    def apply_illustration_replacement(soup, image, name):
+        if name in used_replacements:
+            raise ValueError(f"repeated Web illustration source: {name}")
+        used_replacements.add(name)
+        replacement = replacements[name]
+        if replacement is None:
+            image.decompose()
+            return
+        entry = illustration_entries[name]
+        image["src"] = replacement.as_uri()
+        image["class"] = [*image.get("class", []), "manual-finished-illustration"]
+        image["data-web-finished-panel-path"] = entry["path"]
+        image["data-web-finished-panel-sha256"] = entry["sha256"]
+        if entry.get("reference_id"):
+            image["data-reference-id"] = str(entry["reference_id"])
+        image.attrs.pop("width", None)
+        image.attrs.pop("height", None)
+        image["style"] = "width: 100%; height: auto;"
+        _consume_covered_annotations(soup, entry, image)
+
     for path in page_paths:
         source_bytes = path.read_bytes()
         text = source_bytes.decode("utf-8")
@@ -134,6 +167,15 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         raw = _extract_raw_html_blocks(text, active_tags=active_tags) if path.name.startswith("safety_") else None
         markup = raw or _publish_rst_fragment_to_html(text, path, active_tags=active_tags)
         markup = _rewrite_word_friendly_fragment(markup, lang=lang)
+        early_soup = BeautifulSoup(markup, "html.parser")
+        for image in early_soup.find_all("img"):
+            name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
+            if (
+                name in illustration_entries
+                and illustration_entries[name].get("consume_before_presentation")
+            ):
+                apply_illustration_replacement(early_soup, image, name)
+        markup = str(early_soup)
         markup = normalize_web_source_fragment(
             markup,
             source_path=path,
@@ -142,6 +184,27 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             region=materialized.region,
         )
         soup = BeautifulSoup(markup, "html.parser")
+        for index, correction in enumerate(text_corrections):
+            if index in used_text_corrections:
+                continue
+            expected = " ".join(correction["expected"].split())
+            matches = [
+                node
+                for node in soup.select(correction["selector"])
+                if " ".join(node.get_text(" ", strip=True).split()) == expected
+            ]
+            if len(matches) > 1:
+                raise ValueError(
+                    f"ambiguous Web illustration text correction: {correction['expected']}"
+                )
+            if matches:
+                node = matches[0]
+                if node.string is None:
+                    raise ValueError(
+                        f"Web illustration text correction is not a text-only node: {correction['expected']}"
+                    )
+                node.string.replace_with(correction["replacement"])
+                used_text_corrections.add(index)
         claims = discover_registered_components(
             soup,
             source_path=path,
@@ -160,20 +223,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if name in replacements:
-                if name in used_replacements:
-                    raise ValueError(f"repeated Web illustration source: {name}")
-                used_replacements.add(name)
-                if replacements[name] is None:
-                    image.decompose()
-                else:
-                    image["src"] = replacements[name].as_uri()
-                    image["class"] = [*image.get("class", []), "manual-finished-illustration"]
-                    image["data-web-finished-panel-path"] = illustration_entries[name]["path"]
-                    image["data-web-finished-panel-sha256"] = illustration_entries[name]["sha256"]
-                    image.attrs.pop("width", None)
-                    image.attrs.pop("height", None)
-                    image["style"] = "width: 100%; height: auto;"
-                    _consume_covered_annotations(soup, illustration_entries[name], image)
+                apply_illustration_replacement(soup, image, name)
         def package_image(image) -> str:
             src = str(image.get("src", ""))
             if src.startswith("assets/ir/"):
@@ -209,6 +259,13 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         ))
     if set(replacements) != used_replacements:
         raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
+    if len(used_text_corrections) != len(text_corrections):
+        unused = [
+            correction["expected"]
+            for index, correction in enumerate(text_corrections)
+            if index not in used_text_corrections
+        ]
+        raise ValueError(f"unused Web illustration text corrections: {unused}")
     composites = []
     if composite_manifest:
         for entry in composite_manifest.entries:
