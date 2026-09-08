@@ -25,7 +25,7 @@ Baseline: auto-manual `d1b12bf8`; existing RTD publication remains unchanged.
 - [x] Verify EN/FR/ES body and both TOCs, search isolation, nested-prefix relocation,
   moving one package alone, language navigation, PDF visibility and asset closure.
 - [x] Run unit/lint/guardrails/doc links and the existing US/JP build checks.
-- [ ] Open the implementation PR with actual validation evidence.
+- [x] Open [implementation PR #1079](https://github.com/Bingboom/auto-manual/pull/1079) with actual validation evidence.
 - Upload is deferred by the operator; no OSS setup is needed for this milestone.
 - [ ] Continue the remaining table-scoped Web intake using the validated common path.
 
