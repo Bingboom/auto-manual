@@ -34,6 +34,14 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+Standalone Web packages use [`tools/build_web_packages.py`](../../tools/build_web_packages.py)
+as a bounded local adapter. [`web_language_bundle.py`](../../tools/web_language_bundle.py)
+projects the frozen source index into language derivatives; the existing shared
+IR/MyST exporter consumes them. [`web_manual_package.py`](../../tools/web_manual_package.py)
+owns the independent Sphinx consumer and archives, with browser PDF printing in
+[`scripts/print_web_manual.cjs`](../../scripts/print_web_manual.cjs). It does not
+change the RTD catalog assembler or perform remote writes.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)

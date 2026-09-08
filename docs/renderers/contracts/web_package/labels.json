@@ -1,0 +1,23 @@
+{
+  "en": {
+    "label": "English",
+    "navigation": "Manual languages and PDF",
+    "contents": "Contents",
+    "download": "Download PDF",
+    "unavailable": "PDF unavailable"
+  },
+  "fr": {
+    "label": "Français",
+    "navigation": "Langues et PDF du manuel",
+    "contents": "Sommaire",
+    "download": "Télécharger le PDF",
+    "unavailable": "PDF indisponible"
+  },
+  "es": {
+    "label": "Español",
+    "navigation": "Idiomas y PDF del manual",
+    "contents": "Contenido",
+    "download": "Descargar PDF",
+    "unavailable": "PDF no disponible"
+  }
+}

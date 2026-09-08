@@ -1746,3 +1746,18 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 处理，内部链接、图片、列表和强调保留；自定义标签的 `:variant:` 与配置语言会
 一起进入校验。提示框内嵌表格或其他提示框暂不受共享契约支持，会带来源位置报错，
 不会截断后继续输出。命令和编辑位置不变。
+
+
+### Local independent Web packages
+
+A language package opens directly at `index.html` and includes its own images,
+search index and browser-printed PDF. Unzip `en`, `fr` and `es` beside each other
+to enable the language controls; each language folder can also be moved alone.
+Only sibling language navigation depends on the other packages. These local ZIPs
+do not require an OSS client, credentials or a live Base write. Existing RTD
+library publication stays unchanged. Commands and acceptance checklist:
+[Independent single-language Web packages](../code-as-doc/dev/single_language_web_packages.md).
+
+Mac/Safari 本地验收请使用 `_all.zip` 合包，解压后双击 `打开手册.command`
+（本机需 Python 3）。阅读时保留终端窗口；它仅通过本机地址提供网页，
+不上传文件。单语目录和单语 ZIP 仍可分别交付，语言按钮固定为浅灰底深色字。

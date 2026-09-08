@@ -783,3 +783,8 @@ python -m sphinx -b html \
 这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
+
+
+For the JE-1000F/US EN/FR/ES standalone ZIP example, follow
+[the local package recipe](../code-as-doc/dev/single_language_web_packages.md#local-build).
+This uses the frozen review source and produces local delivery files only.
