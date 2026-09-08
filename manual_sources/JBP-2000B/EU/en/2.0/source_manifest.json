@@ -34,8 +34,8 @@
   "files": [
     {
       "path": "configs/config.bp-eu-en.yaml",
-      "sha256": "7e16393fd9c2b2446911be36d9b0b5f9a47c5227306f0e89d88af3e187dcc363",
-      "size_bytes": 1171
+      "sha256": "d48500c72080fbd3d9e0da580135827a427a039c4a9dc6ec14e174d03b2d29ef",
+      "size_bytes": 1269
     },
     {
       "path": "docs/manifests/manual_bp-eu-en.yaml",
@@ -104,8 +104,8 @@
     },
     {
       "path": "docs/renderers/web/jbp2000b_eu_en_illustrations.json",
-      "sha256": "f4d8db5d140f6a3961251d9d0d88ff004052e3fa7f1022691ffd8c25e6433987",
-      "size_bytes": 4389
+      "sha256": "5465d58562b3feab6f17df28fb0326381ca5d8de214fb30d7c3f4171c2cc2fbb",
+      "size_bytes": 4553
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_charging.rst",
@@ -114,8 +114,8 @@
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_connections.rst",
-      "sha256": "bee5e1393336497c35534bc1edb96ed7a29e3a741f1d47d11b748221f0efe256",
-      "size_bytes": 1529
+      "sha256": "f132574c86f41230c365f92141b598fb770622864d6bf7bf2f3024df19f14657",
+      "size_bytes": 1521
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_preface.rst",

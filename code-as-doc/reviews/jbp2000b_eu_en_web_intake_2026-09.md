@@ -73,3 +73,20 @@ edit to generated HTML or a live-table backport.
 
 The same target quality check, 55 tests, real Sphinx build and browser acceptance
 were rerun for this source revision. Production publication remains pending.
+
+## Visual correction after operator review
+
+The LCD text-only table now displays name and description only; number/icon
+columns remain in the source schema but are not displayed. The complete power
+figure consumes its redundant On/Off text via the existing exact-text coverage
+contract. NOTES remains its printed label and uses the shared note callout.
+Browser assertions verify hidden columns, absent duplicate text, and the
+callout class; screenshots confirm the grey body and rounded frame.
+
+Full validation also registered the English manifest in the family index and
+updated the explicit template/capability inventory. The English Web configuration
+no longer inherits the unrelated six-language candidate IDML assembly plan.
+
+Final correction validation: 3,857 unit tests passed (22 skipped); 88 focused
+Word/Markdown tests passed; Ruff, doc links and maintainability passed. Both
+JBP-2000B EU/en frozen-source and JE-1000F US review-source checks passed.

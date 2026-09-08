@@ -2055,3 +2055,5 @@ retained HTML, source matching and the raw inline handoff remain adapter debt.
 JBP-2000B EU English Web intake uses `configs/config.bp-eu-en.yaml` and the
 [versioned Git source](../manual_sources/JBP-2000B/EU/en/2.0/README.md); the
 existing six-language BP configuration remains available.
+
+Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图标的编号和空图标列。已包含在整图中的开关文字，通过插图覆盖声明移除重复显示。

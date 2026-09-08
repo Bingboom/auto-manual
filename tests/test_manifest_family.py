@@ -34,9 +34,9 @@ class ManifestFamilyTests(unittest.TestCase):
             MANIFESTS / "family" / "index.yaml",
         )
         self.assertTrue(report["passed"], report["errors"])
-        self.assertEqual(24, report["manifest_count"])
+        self.assertEqual(25, report["manifest_count"])
         self.assertEqual(6, report["anchor_count"])
-        self.assertEqual(18, report["folded_count"])
+        self.assertEqual(19, report["folded_count"])
         self.assertTrue(all(item["byte_identical"] for item in report["checks"]))
 
     def test_two_us_single_language_pilot_lines_roundtrip_byte_identically(self) -> None:

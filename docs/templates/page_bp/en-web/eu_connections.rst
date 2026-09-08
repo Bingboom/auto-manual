@@ -27,6 +27,6 @@ Up to five battery packs can be used with |BP_HOST_PRODUCT_NAME| to provide addi
        - Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.
        - If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.
 
-.. image:: asset:connections/jbp2000b/locking_en
+.. image:: |BP_CONNECTION_LOCKING_ASSET|
    :alt: Correct connection order and expansion-cable locking and unlocking steps.
    :width: 100%

@@ -1684,3 +1684,11 @@ body {
     break-inside: avoid;
   }
 }
+
+/* Text-only LCD legends have no numbered icon references in their artwork. */
+#furo-main-content table.lcd-text-only col:nth-child(-n+2),
+#furo-main-content table.lcd-text-only tr > :nth-child(-n+2) {
+  display: none;
+}
+#furo-main-content table.lcd-text-only col:nth-child(3) { width: 35% !important; }
+#furo-main-content table.lcd-text-only col:nth-child(4) { width: 65% !important; }
