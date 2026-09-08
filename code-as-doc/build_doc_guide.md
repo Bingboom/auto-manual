@@ -1,5 +1,11 @@
 # Windows Build Guide
 
+For local, self-contained language ZIPs, see
+[Independent single-language Web packages](dev/single_language_web_packages.md).
+This consumer shares the frozen source and IR/MyST export with RTD, but has its
+own Sphinx root, search index and browser-printed PDF. It needs no OSS credentials
+and does not alter the existing library publication.
+
 Updated: 2026-08-17
 
 This file is the maintainer-facing Windows and PowerShell build guide.

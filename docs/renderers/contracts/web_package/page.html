@@ -1,0 +1,19 @@
+{% extends "!page.html" %}
+{% block content %}
+<nav class="manual-package-toolbar" aria-label="{{ package_ui.navigation }}">
+  <div class="manual-package-languages">
+  {% for item in package_languages %}
+    <a href="../{{ item.code }}/index.html" lang="{{ item.code }}" hreflang="{{ item.code }}"{% if item.code == language %} aria-current="page"{% endif %}>{{ item.label }}</a>
+  {% endfor %}
+  </div>
+  <a class="manual-package-pdf" href="{{ package_pdf }}" download data-unavailable="{{ package_ui.unavailable }}">{{ package_ui.download }}</a>
+</nav>
+{{ super() }}
+{% endblock %}
+{% block left_sidebar %}
+<div class="sidebar-sticky">
+  {% include "sidebar/brand.html" %}
+  {% include "sidebar/search.html" %}
+  <nav class="manual-package-toc sidebar-scroll" aria-label="{{ package_ui.contents }}">{{ toc }}</nav>
+</div>
+{% endblock %}
