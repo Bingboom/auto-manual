@@ -1,0 +1,257 @@
+{
+  "schema_version": "manual-git-source/v1",
+  "target": {
+    "model": "JBP-2000B",
+    "region": "EU",
+    "language": "en"
+  },
+  "version": "2.0",
+  "source_authority": "Current published EUUK V2.0-2026-08-03",
+  "source_url": "https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCRnbQv0xJ3pmz5aA",
+  "source_sha256": "0a240f2653ab4135b354e0d697e692842027689de578a72c1c802174a644c1c6",
+  "source_pages": [
+    2,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    54
+  ],
+  "live_table_writes_permitted": false,
+  "status": "engineering-verified; RTD publication pending",
+  "config": "configs/config.bp-eu-en.yaml",
+  "illustration_manifest": "docs/renderers/web/jbp2000b_eu_en_illustrations.json",
+  "rendering": {
+    "engine": "PyMuPDF",
+    "version": "1.28.0",
+    "scale": 4,
+    "colorspace": "RGB",
+    "text_policy": "preserve finished labels and product markings"
+  },
+  "files": [
+    {
+      "path": "configs/config.bp-eu-en.yaml",
+      "sha256": "58bf103177660458c577746a843a25e1b1ee48d84b0ae1c5d6a743a8bb450582",
+      "size_bytes": 966
+    },
+    {
+      "path": "docs/manifests/manual_bp-eu-en.yaml",
+      "sha256": "0f900bc91d18ddf6d40b2e3746a6f4db67c5082de1905c0cc4f8fe5d9161be2b",
+      "size_bytes": 3065
+    },
+    {
+      "path": "docs/manifests/region_profiles/eu-en.yaml",
+      "sha256": "daf26791b95d0dc954883661d8b0e9202e2eacb66fb003085c89523fd024750b",
+      "size_bytes": 1059
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/ac_charging.png",
+      "sha256": "0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d",
+      "size_bytes": 84901
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/clearance.png",
+      "sha256": "f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239",
+      "size_bytes": 78468
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/inbox_cable.png",
+      "sha256": "08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524",
+      "size_bytes": 9725
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/inbox_manual.png",
+      "sha256": "9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48",
+      "size_bytes": 3253
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/inbox_unit.png",
+      "sha256": "c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41",
+      "size_bytes": 11547
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/lcd.png",
+      "sha256": "6f61db7caf815d28f215a36484b265b246a58ec07a1393da2e39f1e336d801af",
+      "size_bytes": 14856
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/lcd_control.png",
+      "sha256": "1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207",
+      "size_bytes": 44961
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/locking.png",
+      "sha256": "979f98e8cd5c8668442656db231bffd8aff53321496da30585aaf5da213ee669",
+      "size_bytes": 197437
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/overview.png",
+      "sha256": "0fa91d8a07e2b1d1df783526554aefb589aa1cbfd930605973ee105b005b8228",
+      "size_bytes": 63897
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/power.png",
+      "sha256": "3243b5e04fe279d9ea9fad1f42096ac4d535eb26edf6043488c332d63cd88349",
+      "size_bytes": 52517
+    },
+    {
+      "path": "docs/renderers/web/assets/jbp2000b_eu_en/solar_charging.png",
+      "sha256": "7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1",
+      "size_bytes": 187144
+    },
+    {
+      "path": "docs/renderers/web/jbp2000b_eu_en_illustrations.json",
+      "sha256": "75587f0520cb80b89fe59f433ac48ecf5c6f749079a7877e5449a70bcacb0626",
+      "size_bytes": 4374
+    },
+    {
+      "path": "docs/templates/page_bp/en-web/eu_connections.rst",
+      "sha256": "618c151fdf7b91e27b9bd97303e3fd8d21ea05ec95fb4750bb61c37c2bcadf7f",
+      "size_bytes": 1555
+    },
+    {
+      "path": "docs/templates/page_bp/en-web/eu_warranty.rst",
+      "sha256": "6e058fea1e84c34988b70773dffba8b89034a1aba643a473635b0553a6aeabf4",
+      "size_bytes": 2925
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Localized_Copy.csv",
+      "sha256": "c6dc9da37a524e3c196200c85d47505d94b788163b0a752a44098d00fd19b865",
+      "size_bytes": 9463
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Manual_Copy_Source.csv",
+      "sha256": "276d5ce2fab4e7293d92f410a33c8d44cb0e7952384aba0fd9ee69720db12986",
+      "size_bytes": 3437
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Footnotes.csv",
+      "sha256": "fc990fdfa322549ef6fcc2783de7246636e15f709785f6097b180ba2ce48776d",
+      "size_bytes": 140
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Master.csv",
+      "sha256": "40c2d52b65d63a194b523f468c131ee39b5fc9eb8260ffa4e4f8fb0d4dd08eff",
+      "size_bytes": 8026
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Notes.csv",
+      "sha256": "9e694a307d26fbfb74d9cbb931d86d98294363294f763652f76ed66ea4e5b5d2",
+      "size_bytes": 132
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Status_Words.csv",
+      "sha256": "71a28e09ae3803e0fbd7fe015abe058d198da9ff0c30788db4644883ed58ab8d",
+      "size_bytes": 299
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Variable_Defaults.csv",
+      "sha256": "788f873a39e83f0a0d2afd23a6f276855c14cce89a304154b03e9ff6aeead8ef",
+      "size_bytes": 124
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Variable_Lang_Overrides.csv",
+      "sha256": "384b4f8f57d46ffd7c3be843fa3e81edac89950a7efca9c18f509f4a995bc306",
+      "size_bytes": 509
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/10_do_not_dismantle_Ml7EbCjtYohuKAxWNDUc93UMnVc.png",
+      "sha256": "66c3df77e4f84cccad4b9f162798b181c007e89d3f0e9dd4fdf52c392827cbab",
+      "size_bytes": 1580
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/10_warning_triangle_RkOwbJ9j1oUHJgxFEx3cqhVynjb.png",
+      "sha256": "1c272a00fbd28d6562d4126040ba43e5747f6a6550878c4b13e05a5c28014577",
+      "size_bytes": 6055
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/20_no_open_flame_SAbnbxa6iohb2rxxk3PcEh8cnuf.png",
+      "sha256": "422379347e71e7827c3da380e421f2cb106da5d2f74781fc45782a2f86d493d2",
+      "size_bytes": 2101
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/20_read_manual_VK1Ab1MGIoOHdgx1rkUchOHRntb.png",
+      "sha256": "d14506fa5a9d449039887db61a259f1841f1826de2f190f54063f96195b955f5",
+      "size_bytes": 974
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/30_electric_shock_CnuEbmK42oBYWcxtPKZcszcxnzh.png",
+      "sha256": "b4074b0fbc2b2e38f6a67eae852506e9b0c88ec12149936bfe1b34df0f08cfe4",
+      "size_bytes": 1263
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/30_keep_away_from_children_Nc5NbV2kyoMaTSxvismcAlzbnlh.png",
+      "sha256": "e345b3278827691751b6beac9c8343c75ac7a98100618fbef1db73a27329b99d",
+      "size_bytes": 1813
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/40_battery_charging_M9QrbVytWoXNkYxxu5wcoT8gnXc.png",
+      "sha256": "bede1519a91b4681064f911e232785ade7277032a403bf7ff4be468f9a700252",
+      "size_bytes": 1488
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/40_li_ion_ZEcHbhY0Eo3XOExtXKCcbEVjnpe.png",
+      "sha256": "ea7766d417e962cf711bccf3de79d6f639602848ace780353cb329329d13cc91",
+      "size_bytes": 1946
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/50_explosive_material_S2CJb4a0Uo8Cetxpf5lcL2yCnVV.png",
+      "sha256": "829ebad24300b81a91854d428a193e77da5b57fffe7cc010e7a569a493c2f704",
+      "size_bytes": 2140
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/50_weee_L9o3bcXq0oSsqdxSX86covnpnle.png",
+      "sha256": "eb094578bf165fa39399de1d957cc71a92191f2b0e7ed0a620885065ebedf8a3",
+      "size_bytes": 1274
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/60_heavy_object_MBWRbs0niovY4Pxc2szcrcnhnhc.png",
+      "sha256": "bc954e37c7388f43bb3b3ceedf9643ac124f3e3563b6e3ba6d6542aa0d06a327",
+      "size_bytes": 1432
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/_attachments/symbols/70_weee2_VL7tbeJhHoy9wBxRZIdcygPBnmf.png",
+      "sha256": "7fb57972ebd1fb8bf82abc75d0d320ecaa9abc6544020f2374da2f1272a46171",
+      "size_bytes": 3417
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/lcd_icons_blocks.csv",
+      "sha256": "ab71d73ebda5b0d597c1640c85238c156cd842fdad1c90b738150d3d137f9ef6",
+      "size_bytes": 3507
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/page_registry.csv",
+      "sha256": "edc6b13c4186310fd132e175d3e7368528af1827ab460a1e1ce0910374032c75",
+      "size_bytes": 520
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/row_key_mapping.csv",
+      "sha256": "c8695a9534ed2fadba88f00bf7e4e4b8049e48282bd6f8daed0e01c51adf0c11",
+      "size_bytes": 3764
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/spec_titles.csv",
+      "sha256": "1b90d563ef16d98c6d7fb653f4b8126a4442f7282ab7d925567097ce7b9f64b8",
+      "size_bytes": 1044
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/symbols_blocks.csv",
+      "sha256": "bb2706a7d29208569a136068085c468556fa84208cd3cb0c33bdb45f190b592e",
+      "size_bytes": 17658
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/troubleshooting_blocks.csv",
+      "sha256": "603c644289a902e3a6057630220a0522787ff4ba254779ed0bb017ee0d127a56",
+      "size_bytes": 3902
+    },
+    {
+      "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/web_composite_manifest.json",
+      "sha256": "ea8402a7d22629eb4ea247336ea604f0ed0ae71de431f80d5352e68aab6ef38b",
+      "size_bytes": 69
+    }
+  ]
+}

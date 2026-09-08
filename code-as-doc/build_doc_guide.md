@@ -2051,3 +2051,7 @@ missing/multiple/empty labels or artwork inside the consumed label fail before
 caller mutation. The old direct function exits `web_presentation`. Existing
 EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
 retained HTML, source matching and the raw inline handoff remain adapter debt.
+
+JBP-2000B EU English Web intake uses `configs/config.bp-eu-en.yaml` and the
+[versioned Git source](../manual_sources/JBP-2000B/EU/en/2.0/README.md); the
+existing six-language BP configuration remains available.
