@@ -124,6 +124,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-060 | PR #1064、#1065、#1066、#1073 按最新 main 解冲突、验证并依次合入，含本登记行；#1065 在 #1064 合入后改 base 为 main。每次合入前最终 head 全部检查成功、无 changes-requested 或未解决评审讨论，且包含最新 main。保留已收口的跨渲染器 IR，不涉及线上 Base 写入或正式 Web 发布。 | 「把#1064、#1065 、#1066 、#1073按照最新main，无冲突合入，然后再针对文档web化，做一轮阶段分析」2026-09-06 | 四个 PR 全部合入即失效 | 生效 |
 
+| MA-062 | 「先发再清」序列：auto-manual PR #1078（JBP-3600A LCD 错挂修复，含本登记行）先合，随后按 MA-061 已授范围依次合 #1074、#1075、#1076，最后合 Hello-Docs 的 `docs/publish/**`-only 发布 PR #69 并完成三目标 RTD 真实页面验收。每次合入前该 PR 最终 head 必须包含当时 latest main、全部检查成功（含非 required；pending/queued 不算成功）、无 changes-requested、无未解决评审讨论。**不含** 16 张带印刷版式残骸插图的裁切重切（明确留到上线之后的独立 PR），也不含任何线上多维表写入、Print Publish 触发或 IR 重构。 | 「A」2026-09-07（在「先发再清 / 先清再发」两案中选定 A：先合 #1078 → #1074/#1075/#1076 → #69 上线，重切后置） | #1078 合入、MA-061 批次全部合入且三目标 RTD 页面验收完成即失效 | 生效 |
+
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
 
