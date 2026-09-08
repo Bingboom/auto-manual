@@ -2,16 +2,19 @@
 from __future__ import annotations
 
 import hashlib
+import runpy
 import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest.mock import patch
+from urllib.request import urlopen
 
 from bs4 import BeautifulSoup
 
 from tools.gen_index_bundle import MaterializedBundle
 from tools.web_language_bundle import split_web_bundle
-from tools.web_manual_package import archive_package, build_package_site
+from tools.web_manual_package import archive_package, build_local_preview_bundle, build_package_site
 
 
 class LanguageBundleTests(unittest.TestCase):
@@ -69,6 +72,31 @@ class LanguageBundleTests(unittest.TestCase):
 
 
 class PackageConsumerTests(unittest.TestCase):
+    def test_local_preview_serves_sibling_languages_and_preserves_launcher_mode(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            release = root / "release"
+            for language in ("en", "fr"):
+                (release / language).mkdir(parents=True)
+                (release / language / "index.html").write_text(f"Manual {language}")
+            preview = build_local_preview_bundle(release, destination=root / "preview", languages=("en", "fr"))
+            namespace = runpy.run_path(str(preview / "open_manual.py"))
+
+            def verify(url):
+                self.assertTrue(url.startswith("http://127.0.0.1:"))
+                for language in ("en", "fr"):
+                    with urlopen(url + language + "/index.html", timeout=5) as response:
+                        self.assertEqual(response.read().decode(), f"Manual {language}")
+                return True
+
+            with patch("webbrowser.open", side_effect=verify) as opened, patch("threading.Thread.join", side_effect=KeyboardInterrupt):
+                namespace["main"]()
+            opened.assert_called_once()
+            archive_package(preview, root / "preview.zip")
+            with zipfile.ZipFile(root / "preview.zip") as archive:
+                launcher = archive.getinfo("preview/打开手册.command")
+                self.assertEqual((launcher.external_attr >> 16) & 0o777, 0o755)
+
     def test_actual_sphinx_root_search_toolbar_and_archive(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

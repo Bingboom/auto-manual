@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
 import re
 import shutil
@@ -118,7 +119,8 @@ def archive_package(package: Path, archive: Path) -> dict[str, object]:
         for item in inventory:
             relative = str(item["path"])
             entry = zipfile.ZipInfo(f"{package.name}/{relative}", date_time=(1980, 1, 1, 0, 0, 0))
-            entry.external_attr = 0o100644 << 16
+            mode = 0o755 if (package / relative).stat().st_mode & 0o111 else 0o644
+            entry.external_attr = (0o100000 | mode) << 16
             entry.compress_type = zipfile.ZIP_DEFLATED
             zip_file.writestr(entry, (package / relative).read_bytes())
     return {"archive": archive.name, "sha256": hashlib.sha256(archive.read_bytes()).hexdigest(),
@@ -127,3 +129,29 @@ def archive_package(package: Path, archive: Path) -> dict[str, object]:
 
 def write_json(path: Path, payload: object) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def build_local_preview_bundle(release: Path, *, destination: Path, languages: tuple[str, ...]) -> Path:
+    """Collect the independent folders and one loopback launcher for local Safari."""
+    if destination.exists() or not languages:
+        raise ValueError("Preview bundle needs a new destination and declared languages")
+    destination.mkdir(parents=True)
+    for language in languages:
+        safe_segment(language)
+        shutil.copytree(release / language, destination / language)
+    contracts = renderer_contracts_of(Paths(repo_root()).docs_dir) / "web_package"
+    shutil.copy2(contracts / "open_manual.py", destination / "open_manual.py")
+    launcher = destination / "打开手册.command"
+    shutil.copy2(contracts / "open_manual.command", launcher)
+    launcher.chmod(0o755)
+    first = html.escape(languages[0], quote=True)
+    (destination / "index.html").write_text(
+        f'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url={first}/index.html">'
+        f'<title>Manual</title><a href="{first}/index.html">Open manual</a>', encoding="utf-8")
+    (destination / "使用说明.txt").write_text(
+        "Mac / Safari：双击「打开手册.command」。本机需已安装 Python 3。\n"
+        "阅读期间保留打开的终端窗口，结束后关闭即可。仅在本机预览，不上传。\n"
+        "三个语言文件夹请放在一起；页面顶部可切换语言。\n"
+        "直接双击语言文件夹内 index.html 也能阅读；Safari 本地文件模式下跨文件夹切换可能受限。\n",
+        encoding="utf-8")
+    return destination

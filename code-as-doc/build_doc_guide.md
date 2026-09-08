@@ -2057,3 +2057,8 @@ missing/multiple/empty labels or artwork inside the consumed label fail before
 caller mutation. The old direct function exits `web_presentation`. Existing
 EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
 retained HTML, source matching and the raw inline handoff remain adapter debt.
+
+The local package adapter also writes an `_all.zip` preview bundle for Mac/Safari.
+Its `打开手册.command` launcher uses Python 3 and binds only `127.0.0.1` on an
+automatically selected port; the three independent language packages are unchanged
+in structure. Archive metadata preserves the launcher executable permission.

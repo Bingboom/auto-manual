@@ -88,9 +88,17 @@ language folder, so extracting the three archives into one directory enables
 `../fr/index.html` navigation. Unchanged input bytes produce identical ZIP bytes;
 Chrome's PDF metadata can vary between independent print runs.
 
-Open `<language>/index.html` to read offline; PDF links remain enabled for local
-files. For full browser search snippets, serve the extracted parent directory
-with `python -m http.server 8000` and open `http://localhost:8000/en/index.html`.
+For Mac/Safari, extract the additional `_all.zip` preview bundle and double-click
+`打开手册.command` (Python 3 must be available). It starts a loopback-only server
+on an available port and opens the manual in the default browser. Keep that
+terminal window open while reading; closing it stops the preview. This avoids
+depending on Safari file-to-file navigation across sibling folders and enables
+full search snippets. Nothing is uploaded and no browser security setting changes.
+
+Open `<language>/index.html` for direct offline reading in browsers that allow
+sibling file navigation; PDF links remain enabled for local files. Alternatively,
+serve the extracted parent with `python -m http.server 8000` and open
+`http://localhost:8000/en/index.html`.
 Each search index includes only its own language. Moving one folder preserves
 manual/images/search/PDF; language links need the sibling folders.
 
@@ -131,3 +139,19 @@ Deferred: uploading, RTD release integration for the standalone consumer, the
 legacy merged-review `--lang` overlay, and existing low-resolution artwork. The
 existing shared Web figure selectors still depend on target path segments; this
 consumer preserves that contract without broadening the shared-renderer refactor.
+
+
+### Operator acceptance correction
+
+The initial local navigation check covered Chrome, not Safari. The operator
+reported Safari sibling-language navigation failure after double-clicking an HTML
+file. Delivery now includes a combined local-preview archive with the three
+independent folders and a loopback launcher. This is a local-serving path, not a
+change that makes Safari file-mode navigation unrestricted. Launch-script execute
+permissions are retained in ZIP metadata. A regression test starts the actual
+server and reads two sibling language pages without opening a browser.
+
+Dark system appearance also exposed a black toolbar with dark links. Package
+controls now use the same light gray surface as the warning panels, explicit dark
+text for normal/visited/current links, and a stronger gray border for selection.
+This presentation is checked under both light and dark browser appearance.

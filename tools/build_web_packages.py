@@ -12,7 +12,7 @@ from tools.markdown_bundle import export_markdown_from_bundle
 from tools.utils.path_utils import docs_build_dir_of
 from tools.web_language_bundle import split_web_bundle
 from tools.web_manual_package import (
-    PACKAGE_UI, archive_package, build_package_site, print_package_pdf, safe_segment, write_json,
+    PACKAGE_UI, archive_package, build_local_preview_bundle, build_package_site, print_package_pdf, safe_segment, write_json,
 )
 
 
@@ -64,9 +64,12 @@ def main() -> None:
         packages[language] = archive_package(package, release / f"{stem}_{args.version}.zip")
         packages[language]["source_projection"] = json.loads(derivative.manifest_path.read_text(encoding="utf-8"))
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    preview = build_local_preview_bundle(release, destination=work / "manual-preview", languages=languages)
+    preview_archive = archive_package(preview, release / f"manual_{args.model.lower()}_{args.region.lower()}_{args.version}_all.zip")
     write_json(release / "release.json", {
         "schema_version": "web-package-release/v1", "model": args.model, "region": args.region,
         "version": args.version, "source_revision": revision, "packages": packages,
+        "local_preview": preview_archive,
     })
     write_json(release.parent / "catalog.json", {
         "model": args.model, "region": args.region, "version": args.version,
