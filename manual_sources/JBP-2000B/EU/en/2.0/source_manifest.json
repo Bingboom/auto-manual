@@ -6,9 +6,8 @@
     "language": "en"
   },
   "version": "2.0",
-  "source_authority": "Current published EUUK V2.0-2026-08-03",
-  "source_url": "https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCRnbQv0xJ3pmz5aA",
-  "source_sha256": "0a240f2653ab4135b354e0d697e692842027689de578a72c1c802174a644c1c6",
+  "source_authority": "User-supplied current published EUUK V2.0-2026-09-08",
+  "source_sha256": "7cc9bd61fc993752ed4711e876ad946a48ff73c50250c77dce0e06118d636eb1",
   "source_pages": [
     2,
     6,
@@ -35,18 +34,18 @@
   "files": [
     {
       "path": "configs/config.bp-eu-en.yaml",
-      "sha256": "58bf103177660458c577746a843a25e1b1ee48d84b0ae1c5d6a743a8bb450582",
-      "size_bytes": 966
+      "sha256": "7e16393fd9c2b2446911be36d9b0b5f9a47c5227306f0e89d88af3e187dcc363",
+      "size_bytes": 1171
     },
     {
       "path": "docs/manifests/manual_bp-eu-en.yaml",
-      "sha256": "0f900bc91d18ddf6d40b2e3746a6f4db67c5082de1905c0cc4f8fe5d9161be2b",
-      "size_bytes": 3065
+      "sha256": "e78c2223910c8f5c9c38a202a14cdd622ca6182a918779510a9780dee747e497",
+      "size_bytes": 3050
     },
     {
       "path": "docs/manifests/region_profiles/eu-en.yaml",
-      "sha256": "daf26791b95d0dc954883661d8b0e9202e2eacb66fb003085c89523fd024750b",
-      "size_bytes": 1059
+      "sha256": "d833cbc885e206d047b0d2d285bed1108d03aa8c28bf38585b415591783b91ce",
+      "size_bytes": 1044
     },
     {
       "path": "docs/renderers/web/assets/jbp2000b_eu_en/ac_charging.png",
@@ -105,13 +104,23 @@
     },
     {
       "path": "docs/renderers/web/jbp2000b_eu_en_illustrations.json",
-      "sha256": "75587f0520cb80b89fe59f433ac48ecf5c6f749079a7877e5449a70bcacb0626",
-      "size_bytes": 4374
+      "sha256": "f4d8db5d140f6a3961251d9d0d88ff004052e3fa7f1022691ffd8c25e6433987",
+      "size_bytes": 4389
+    },
+    {
+      "path": "docs/templates/page_bp/en-web/eu_charging.rst",
+      "sha256": "ca5a70c6e9afbd6e75e255946c59149f3806be8ac1497662353e38e9b6157a58",
+      "size_bytes": 888
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_connections.rst",
-      "sha256": "618c151fdf7b91e27b9bd97303e3fd8d21ea05ec95fb4750bb61c37c2bcadf7f",
-      "size_bytes": 1555
+      "sha256": "bee5e1393336497c35534bc1edb96ed7a29e3a741f1d47d11b748221f0efe256",
+      "size_bytes": 1529
+    },
+    {
+      "path": "docs/templates/page_bp/en-web/eu_preface.rst",
+      "sha256": "586124fc88ce6433dbb7070ed04e53857fc5d5c7ba76c6f3eca089289c5ee261",
+      "size_bytes": 1177
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_warranty.rst",
@@ -253,5 +262,13 @@
       "sha256": "ea8402a7d22629eb4ea247336ea604f0ed0ae71de431f80d5352e68aab6ef38b",
       "size_bytes": 69
     }
-  ]
+  ],
+  "superseded_source": {
+    "source_url": "https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCRnbQv0xJ3pmz5aA",
+    "source_sha256": "0a240f2653ab4135b354e0d697e692842027689de578a72c1c802174a644c1c6",
+    "source_authority": "Current published EUUK V2.0-2026-08-03"
+  },
+  "source_name": "Jackery\u00a0Battery\u00a0Pack\u00a02000 User Manual (JBP-2000B) EUUK V2.0-2026-09-08.pdf",
+  "revision_date": "2026-09-08",
+  "revision_note": "Adds Explorer 1000 Plus compatibility; operations, connections and charging use portable power station terminology."
 }

@@ -8,6 +8,7 @@ build:
   include_lang_in_output_path: true
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: English
+    BP_COMPATIBLE_HOST_MODELS: the Jackery Explorer 2000 Plus and the Jackery Explorer 1000 Plus
     BP_OVERVIEW_FRONT_ASSET: asset:overview/jbp2000b/front_controls
     BP_OVERVIEW_SIDE_ASSET: asset:overview/jbp2000b/left_side_ports
     BP_OPERATION_POWER_ASSET: asset:operation/jbp2000b/power_control
@@ -18,6 +19,8 @@ build:
     BP_INBOX_UNIT_ASSET: asset:in_the_box/jbp2000b/main_unit
     BP_INBOX_CABLE_ASSET: asset:in_the_box/jbp2000b/expansion_cable
     BP_INBOX_MANUAL_ASSET: asset:in_the_box/manual_icon1
+    BP_HOST_PRODUCT_NAME: the portable power station
+    BP_HOST_PRODUCT_SHORT_NAME: portable power station
 paths:
   page_manifest: docs/manifests/manual_bp-eu-en.yaml
   web_illustration_manifest: docs/renderers/web/jbp2000b_eu_en_illustrations.json

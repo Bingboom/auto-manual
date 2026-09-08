@@ -1,7 +1,7 @@
 CONNECTIONS
 ===========
 
-Up to 5 sets of these products can be used along with |BP_HOST_PRODUCT_NAME| to meet the increased capacity needs.
+Up to five battery packs can be used with |BP_HOST_PRODUCT_NAME| to provide additional capacity.
 
 .. image:: asset:connections/jbp2000b/stack_clearance
    :alt: Battery Pack connection, stacking, and clearance diagram.
@@ -22,8 +22,8 @@ Up to 5 sets of these products can be used along with |BP_HOST_PRODUCT_NAME| to 
 
    * - **NOTES**
      -
-       - The display of the connection icon on the LCD screen (|BP_HOST_PRODUCT_NAME|) signifies a successful connection between the battery pack and the |BP_HOST_PRODUCT_NAME|.
-       - Please do not stack the product on the top of the |BP_HOST_PRODUCT_NAME|.
+       - The display of the connection icon on the LCD screen (|BP_HOST_PRODUCT_NAME|) signifies a successful connection between the battery pack and |BP_HOST_PRODUCT_NAME|.
+       - Please do not stack the product on the top of |BP_HOST_PRODUCT_NAME|.
        - Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.
        - If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.
 

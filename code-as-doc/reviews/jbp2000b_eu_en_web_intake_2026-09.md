@@ -1,7 +1,7 @@
 # JBP-2000B EU/en Web intake
 
 Baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`.
-Target: JBP-2000B / EU / en, published V2.0-2026-08-03.
+Target: JBP-2000B / EU / en, published V2.0-2026-09-08.
 
 ## Scope and checklist
 
@@ -56,3 +56,20 @@ OSS upload or public-link generation is part of this intake.
 - Documentation link integrity and maintainability guardrails passed.
 
 This is local engineering acceptance, not a claim of RTD publication.
+
+## Source revision, 2026-09-08
+
+The user supplied a newer V2.0 PDF before this intake was merged. It now owns
+the source manifest and illustration hashes; the earlier source hash is retained
+as superseded provenance. This is an update to the structure source, not an
+edit to generated HTML or a live-table backport.
+
+- English preface: adds compatibility with Explorer 2000 Plus and Explorer 1000 Plus.
+- Operation: host naming becomes “the portable power station”.
+- Connections: new opening sentence and portable-power-station terminology.
+- Charging: updated AC and solar instructions and warning wording.
+- All eleven finished panels were rendered again from the new PDF using recorded crops.
+- Existing other-language and other-target carriers were not modified.
+
+The same target quality check, 55 tests, real Sphinx build and browser acceptance
+were rerun for this source revision. Production publication remains pending.

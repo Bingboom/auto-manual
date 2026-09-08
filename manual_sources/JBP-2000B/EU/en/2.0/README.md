@@ -1,6 +1,6 @@
 # JBP-2000B EU English Web source, version 2.0
 
-Authority: the current published EUUK booklet, V2.0-2026-08-03, linked and hashed
+Authority: the current published EUUK booklet, V2.0-2026-09-08, linked and hashed
 in [source_manifest.json](source_manifest.json). This is a Git-only source; no
 online source-table or build-queue write is required.
 
@@ -29,3 +29,7 @@ python -m sphinx -b html \
 
 RTD publication follows the existing reviewed Git release handoff. Building
 locally does not prove that the production preview has been published.
+
+The printed version remains 2.0. The 2026-09-08 revision supersedes the earlier
+2026-08-03 source within this unmerged intake; its previous hash is retained in
+the source manifest. No published archive was overwritten.

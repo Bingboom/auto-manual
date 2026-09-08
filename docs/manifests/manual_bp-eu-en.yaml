@@ -10,7 +10,7 @@ pages:
   - type: rst_include
     slot_id: preface_important
     lang: en
-    file: templates/page_bp/intl/00_preface_six_language.rst
+    file: templates/page_bp/en-web/eu_preface.rst
     lang_blocks: true
   - type: rst_include
     slot_id: toc
@@ -75,7 +75,7 @@ pages:
   - type: rst_include
     slot_id: charging_en
     lang: en
-    file: templates/page_bp/en/08_charging_methods.rst
+    file: templates/page_bp/en-web/eu_charging.rst
   - type: rst_include
     slot_id: storage_en
     lang: en

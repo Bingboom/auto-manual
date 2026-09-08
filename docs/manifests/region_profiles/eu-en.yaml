@@ -7,7 +7,7 @@ terminal_slots:
 - regulatory_compliance
 slot_overrides:
   preface_important:
-    file: templates/page_bp/intl/00_preface_six_language.rst
+    file: templates/page_bp/en-web/eu_preface.rst
   toc:
     file: templates/page_bp/en-web/jbp3600a_00_toc.rst
   safety_info:
@@ -23,7 +23,7 @@ slot_overrides:
   connections:
     file: templates/page_bp/en-web/eu_connections.rst
   charging:
-    file: templates/page_bp/en/08_charging_methods.rst
+    file: templates/page_bp/en-web/eu_charging.rst
   warranty:
     file: templates/page_bp/en-web/eu_warranty.rst
   regulatory_compliance:
