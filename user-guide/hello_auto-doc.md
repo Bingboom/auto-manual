@@ -1761,3 +1761,7 @@ library publication stays unchanged. Commands and acceptance checklist:
 Mac/Safari 本地验收请使用 `_all.zip` 合包，解压后双击 `打开手册.command`
 （本机需 Python 3）。阅读时保留终端窗口；它仅通过本机地址提供网页，
 不上传文件。单语目录和单语 ZIP 仍可分别交付，语言按钮固定为浅灰底深色字。
+
+## Web Publish 后的 OSS 归档
+
+Web Publish 可在本机启用自动 OSS 归档：正式包准备完成、Web Publish 成功后上传并读回校验。Read the Docs 仍用于内部预览；外链和 latest 由 IT 管理。归档失败单独记录，可重试原包，不重新执行发布。配置与重试见 [OSS 归档流程](../code-as-doc/dev/web_oss_archive.md)。每个执行主机需独立配置凭据，未配置主机不会自动上传。

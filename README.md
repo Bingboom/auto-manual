@@ -66,3 +66,5 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
+
+- [Web Publish OSS archive](code-as-doc/dev/web_oss_archive.md): optional post-publish archival and frozen-package retry.

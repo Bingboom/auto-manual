@@ -788,3 +788,7 @@ python -m sphinx -b html \
 For the JE-1000F/US EN/FR/ES standalone ZIP example, follow
 [the local package recipe](../code-as-doc/dev/single_language_web_packages.md#local-build).
 This uses the frozen review source and produces local delivery files only.
+
+### 可选：Web Publish 后自动归档
+
+在执行主机配置 [OSS 归档](../code-as-doc/dev/web_oss_archive.md) 后，原 Web Publish 入口会准备并归档正式网页包。检查 `oss-archive-result.json` 为 `archived`；队列发布成功本身不代表归档成功。

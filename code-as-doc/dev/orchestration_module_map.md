@@ -564,3 +564,14 @@ remains separate. See [execution evidence](ir_document_closeout.md).
 `document_assets` owns the shared local image probing/copying implementation;
 Word keeps compatibility wrappers, and the Web IR renderer imports the lightweight
 helper directly so cold replay never imports source-table readers.
+
+### Web Publish OSS archival
+
+- `web_publish_archive.py`: optional per-host configuration, preparation while
+  the review worktree exists, post-success hook and frozen-package retries.
+- `web_archive_package.py`: verified standalone package to product/version/locale/document
+  layout; dependency closure and immutable manifest.
+- `oss_archive_store.py`: isolated optional SDK process, reservation, non-overwrite
+  upload, read-back hashes and completion receipt. Never changes OSS latest.
+- Queue wiring stays in `queue_build_execution.py` (prepare) and
+  `queue_group_processing.py` (after success metadata). Print Publish is unchanged.

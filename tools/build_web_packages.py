@@ -23,7 +23,7 @@ def main() -> None:
     parser.add_argument("--region", required=True, type=safe_segment)
     parser.add_argument("--version", required=True, type=safe_segment)
     parser.add_argument("--languages", nargs="+", choices=tuple(PACKAGE_UI), required=True)
-    parser.add_argument("--data-root", required=True)
+    parser.add_argument("--data-root")
     parser.add_argument("--source", choices=("review-asis", "auto"), default="review-asis")
     parser.add_argument("--work-dir", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
