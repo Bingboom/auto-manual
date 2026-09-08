@@ -98,6 +98,7 @@ exact normalized text binding.
 | Strict Sphinx | Pass: `python -m sphinx -W --keep-going -b html` |
 | Generated-site references | Pass: 54 image references, zero missing files, 14 finished panels, and responsive-media CSS present |
 | Target check | Pass: `python build.py check --config configs/config.eu-en.yaml --model JE-2000F --region EU --lang en --data-root manual_sources/JE-2000F/EU/en/2.0/phase2` |
+| CI shared-fixture target check | Pass after adding the target's specification, note, footnote, and symbol rows to `tests/fixtures/phase2`; the all-target lane no longer classifies JE-2000F EU/en as a new skip |
 | Existing-target regression | Pass with `tests/fixtures/phase2`: JE-1000F EU/en check; the repository's default `data/phase2` snapshot does not contain `Spec_Master.csv` |
 | Python lint | Pass: `python -m ruff check build.py integrations tools tests scripts` |
 | Unit tests | Pass: 3,865 tests, 22 skipped |
