@@ -388,6 +388,13 @@ def build_document_for_task(
                 region=region,
                 version=version,
             )
+            from tools.web_publish_archive import prepare_web_archive
+
+            prepare_web_archive(
+                config_path=effective_config_path, model=model, region=region,
+                version=version, lang=lang, data_root=effective_data_root,
+                source_repo=effective_repo_root, staged_md=staged_md_output_path, git_ref=git_ref,
+            )
             return BuiltDocumentOutputs(
                 md_output_path=staged_md_output_path,
                 html_output_dir=staged_html_output_dir,

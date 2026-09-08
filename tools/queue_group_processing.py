@@ -470,7 +470,7 @@ def process_queue_record_group(
                 raise RuntimeError("Web Publish output is missing Markdown source or HTML verification output")
             if write_web_publish_metadata is None:
                 raise RuntimeError("Web Publish metadata writer is not configured")
-            write_web_publish_metadata(
+            web_metadata_path = write_web_publish_metadata(
                 config_path=resolved_config_path,
                 model=model,
                 region=region,
@@ -481,6 +481,9 @@ def process_queue_record_group(
                 html_dir=html_output_dir,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
             )
+            from tools.web_publish_archive import finish_web_archive
+
+            finish_web_archive(web_metadata_path, staged_md=md_output_path)
         print(
             f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
             f"{group_key} ({row_count} row(s)): "

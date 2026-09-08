@@ -1,0 +1,43 @@
+.main { min-width: 0; flex: 1; }
+.content { min-width: 0; box-sizing: border-box; flex: 1; overflow: visible; }
+.manual-package-toolbar {
+  position: sticky; top: 0; z-index: 20; display: flex;
+  justify-content: space-between; align-items: center; gap: .5rem;
+  padding: .5rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+  background: var(--hb-surface, #f4f3f3); border: 1px solid var(--hb-line-soft, #dedcdd);
+  border-radius: .62rem; color: #343031;
+  font-size: .875rem;
+}
+.manual-package-languages { display: flex; flex-wrap: wrap; gap: .4rem; }
+#furo-main-content .manual-package-toolbar a {
+  padding: .35rem .55rem; border-radius: .3rem; border: 1px solid transparent;
+  background: #f4f3f3; color: #343031; text-decoration: none;
+}
+#furo-main-content .manual-package-toolbar a:hover,
+#furo-main-content .manual-package-toolbar a:focus-visible { background: #e9e7e8; border-color: #a7a5a6; }
+#furo-main-content .manual-package-languages [aria-current="page"] {
+  background: #e9e7e8; border-color: #a7a5a6; font-weight: bold;
+}
+.manual-package-pdf[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+.manual-package-toc { padding: 1rem; font-size: .82rem; }
+.manual-package-toc ul { list-style: none; margin: .35rem 0; padding-left: .8rem; }
+.manual-package-toc > ul { padding-left: 0; }
+.manual-package-toc li { margin: .4rem 0; }
+.toc-tree > ul > li:first-child > a { display: inline; }
+article [id] { scroll-margin-top: 5rem; }
+@media (max-width: 46em) {
+  .manual-package-toolbar { top: 0; font-size: .8rem; }
+  .manual-package-toolbar a { padding: .35rem; }
+}
+@media print {
+  @page { size: A4; margin: 14mm 12mm; }
+  .manual-package-toolbar, .mobile-header, .sidebar-drawer, .toc-drawer, .skip-to-content,
+  .back-to-top, .related-pages, footer, .headerlink, .content-icon-container,
+  .sidebar-toggle, .toc-toggle { display: none !important; }
+  html, body, .page, .main, .content, article { width: auto !important; max-width: none !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+  body { color: #111 !important; background: #fff !important; font-size: 9pt; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  img { max-width: 100% !important; break-inside: avoid; }
+  tr, figure, .admonition { break-inside: avoid; }
+  a { color: inherit !important; text-decoration: none !important; }
+}

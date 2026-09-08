@@ -1,5 +1,11 @@
 # Windows Build Guide
 
+For local, self-contained language ZIPs, see
+[Independent single-language Web packages](dev/single_language_web_packages.md).
+This consumer shares the frozen source and IR/MyST export with RTD, but has its
+own Sphinx root, search index and browser-printed PDF. It needs no OSS credentials
+and does not alter the existing library publication.
+
 Updated: 2026-08-17
 
 This file is the maintainer-facing Windows and PowerShell build guide.
@@ -2051,3 +2057,12 @@ missing/multiple/empty labels or artwork inside the consumed label fail before
 caller mutation. The old direct function exits `web_presentation`. Existing
 EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
 retained HTML, source matching and the raw inline handoff remain adapter debt.
+
+The local package adapter also writes an `_all.zip` preview bundle for Mac/Safari.
+Its `打开手册.command` launcher uses Python 3 and binds only `127.0.0.1` on an
+automatically selected port; the three independent language packages are unchanged
+in structure. Archive metadata preserves the launcher executable permission.
+
+## Web Publish 后的 OSS 归档
+
+Web Publish 可在本机启用自动 OSS 归档：正式包准备完成、Web Publish 成功后上传并读回校验。Read the Docs 仍用于内部预览；外链和 latest 由 IT 管理。归档失败单独记录，可重试原包，不重新执行发布。配置与重试见 [OSS 归档流程](dev/web_oss_archive.md)。每个执行主机需独立配置凭据，未配置主机不会自动上传。

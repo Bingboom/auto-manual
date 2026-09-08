@@ -783,3 +783,12 @@ python -m sphinx -b html \
 这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
+
+
+For the JE-1000F/US EN/FR/ES standalone ZIP example, follow
+[the local package recipe](../code-as-doc/dev/single_language_web_packages.md#local-build).
+This uses the frozen review source and produces local delivery files only.
+
+### 可选：Web Publish 后自动归档
+
+在执行主机配置 [OSS 归档](../code-as-doc/dev/web_oss_archive.md) 后，原 Web Publish 入口会准备并归档正式网页包。检查 `oss-archive-result.json` 为 `archived`；队列发布成功本身不代表归档成功。

@@ -49,6 +49,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
 | 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
 | Web 发布：队列与 Git-only 输入、冻结快照和 RTD | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md) |
+| 单语 Web 独立包：本地 ZIP、搜索与浏览器 PDF | [`code-as-doc/dev/single_language_web_packages.md`](code-as-doc/dev/single_language_web_packages.md) |
 | 当前工作流和编辑规则 | [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) |
 | 复用已有样式和完整组件 | [`code-as-doc/dev/style_component_usage_guide.md`](code-as-doc/dev/style_component_usage_guide.md) |
 | 规格书结构化入库 | [`.agents/skills/spec-sheet-structured-intake/SKILL.md`](.agents/skills/spec-sheet-structured-intake/SKILL.md) |
@@ -65,3 +66,5 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 钉钉悟空 MCP Bridge 源码与部署 | [`agent/wukong-bridge/README.md`](agent/wukong-bridge/README.md) |
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
+
+- [Web Publish OSS archive](code-as-doc/dev/web_oss_archive.md): optional post-publish archival and frozen-package retry.

@@ -34,6 +34,14 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+Standalone Web packages use [`tools/build_web_packages.py`](../../tools/build_web_packages.py)
+as a bounded local adapter. [`web_language_bundle.py`](../../tools/web_language_bundle.py)
+projects the frozen source index into language derivatives; the existing shared
+IR/MyST exporter consumes them. [`web_manual_package.py`](../../tools/web_manual_package.py)
+owns the independent Sphinx consumer and archives, with browser PDF printing in
+[`scripts/print_web_manual.cjs`](../../scripts/print_web_manual.cjs). It does not
+change the RTD catalog assembler or perform remote writes.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)
@@ -556,3 +564,14 @@ remains separate. See [execution evidence](ir_document_closeout.md).
 `document_assets` owns the shared local image probing/copying implementation;
 Word keeps compatibility wrappers, and the Web IR renderer imports the lightweight
 helper directly so cold replay never imports source-table readers.
+
+### Web Publish OSS archival
+
+- `web_publish_archive.py`: optional per-host configuration, preparation while
+  the review worktree exists, post-success hook and frozen-package retries.
+- `web_archive_package.py`: verified standalone package to product/version/locale/document
+  layout; dependency closure and immutable manifest.
+- `oss_archive_store.py`: isolated optional SDK process, reservation, non-overwrite
+  upload, read-back hashes and completion receipt. Never changes OSS latest.
+- Queue wiring stays in `queue_build_execution.py` (prepare) and
+  `queue_group_processing.py` (after success metadata). Print Publish is unchanged.
