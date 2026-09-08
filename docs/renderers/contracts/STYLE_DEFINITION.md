@@ -573,7 +573,7 @@ plate、mask 或 outline。EN/FR/ES 共用这一结构回归，应用方法见
 | ≤760px | 转单列（图在上、表在下），圆角 `0.9rem` |
 | 列 | `状态 / 动作 / 说明`，每列独立向上合并 |
 
-IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、panel 宽度和插图目标均为语言 token；其他语言按内容动态计算列宽与行高。字号、leading、inset、内外线和圆角也全部 token 化，portable fallback 只消费登记的 fallback token。传入空参数时保留兼容默认，不改变旧调用者。
+IDML 侧的 EN/FR/ES 批准 panel/row/column/margin/spacing、参考 measure、panel 宽度和插图目标均为语言 token；其他语言按内容动态计算列宽与行高。字号、leading、inset、内外线和圆角也全部 token 化，portable fallback 只消费登记的 fallback token。传入空参数时保留兼容默认，不改变旧调用者。Web 的 `HB-TABLE-LCD-MODE` 是共享语义组件，不依赖某个目标的插图能力授权。
 
 ### 4.6 符号表两类
 

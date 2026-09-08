@@ -216,7 +216,11 @@ class WebPresentationContractTests(unittest.TestCase):
             contract["operations"]["source_patterns"],
         )
         self.assertEqual(4, contract["operations"]["auto_resume_table"]["body_rows"])
-        self.assertNotIn("lcd_mode_table", contract["operations"])
+        self.assertEqual(
+            "operation/lcd_mode",
+            contract["operations"]["lcd_mode_table"]["image_key"],
+        )
+        self.assertEqual(6, contract["operations"]["lcd_mode_table"]["body_rows"])
         self.assertEqual(["*11_warranty"], contract["warranty"]["source_patterns"])
         self.assertEqual(["box_contents_*"], contract["in_the_box"]["semantic_source_patterns"])
 

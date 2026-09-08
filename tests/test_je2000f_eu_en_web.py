@@ -156,7 +156,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             self.assertEqual(record["size"], len(data))
             self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
 
-    def test_web_output_has_complete_finished_figure_coverage(self) -> None:
+    def test_web_output_has_complete_figure_coverage(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         inbox = soup.select_one('[data-component-id="HB-SPECIAL-INBOX"]')
         self.assertIsNotNone(inbox)
@@ -174,11 +174,28 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             if auto_resume
             else None
         )
+        lcd_mode = soup.select_one("figure.hb-lcd-mode-composition")
+        self.assertIsNotNone(lcd_mode)
+        self.assertIsNotNone(
+            lcd_mode.select_one(".hb-lcd-mode-art-panel img") if lcd_mode else None
+        )
+        self.assertIsNotNone(
+            lcd_mode.select_one("table.hb-lcd-mode-table") if lcd_mode else None
+        )
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
-        self.assertEqual(12, coverage["summary"]["by_status"]["finished-panel"])
-        self.assertEqual(14, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(11, coverage["summary"]["by_status"]["finished-panel"])
+        self.assertEqual(1, coverage["summary"]["by_status"]["editable-fallback"])
+        self.assertEqual(
+            ["semantic.lcd-mode-composition"],
+            [
+                slot["slot_id"]
+                for slot in coverage["slots"]
+                if slot["status"] == "editable-fallback"
+            ],
+        )
+        self.assertEqual(13, len(soup.select(".manual-finished-illustration")))
         self.assertEqual(17, len(self.ir.pages))
         for expected in (
             "4000 cycles to 70%+ capacity",

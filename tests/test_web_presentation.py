@@ -697,7 +697,7 @@ class WebPresentationTests(unittest.TestCase):
                     continuation_cell.get("class", []) if continuation_cell else [],
                 )
 
-    def test_auto_resume_table_is_shared_without_a_target_figure_grant(self) -> None:
+    def test_operation_tables_are_shared_without_a_target_figure_grant(self) -> None:
         fragment = """
         <table>
           <thead><tr><th>Auto</th><th>Not auto</th></tr></thead>
@@ -706,6 +706,16 @@ class WebPresentationTests(unittest.TestCase):
             <tr><td>Battery limit</td><td>Energy saving</td></tr>
             <tr><td></td><td>Protection</td></tr>
             <tr><td>OTA complete</td><td>Timer</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td rowspan="6"><img src="operation/lcd_mode.png" alt="LCD" /></td><td rowspan="3">Shortly On</td><td>Turn on</td><td>Press POWER.</td></tr>
+            <tr><td>Turn off</td><td>Press POWER.</td></tr>
+            <tr><td>Auto-off</td><td>After 2 minutes.</td></tr>
+            <tr><td rowspan="3">Steady On</td><td>Turn on</td><td>Press twice.</td></tr>
+            <tr><td>Turn off</td><td>Press POWER.</td></tr>
+            <tr><td>Auto-off</td><td>After 2 hours.</td></tr>
           </tbody>
         </table>
         """
@@ -727,6 +737,10 @@ class WebPresentationTests(unittest.TestCase):
             "2",
             str(table.select("tbody > tr")[1].find("td", recursive=False)["rowspan"]),
         )
+        lcd = soup.select_one("figure.hb-lcd-mode-composition")
+        self.assertIsNotNone(lcd)
+        self.assertIsNotNone(lcd.select_one(".hb-lcd-mode-art-panel img"))
+        self.assertIsNotNone(lcd.select_one("table.hb-lcd-mode-table"))
 
     def test_lcd_mode_uses_live_template_composition_across_locales(self) -> None:
         localized_sources = {

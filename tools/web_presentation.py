@@ -745,6 +745,25 @@ def _transform_lcd_mode_table(
     composition.append(table_panel)
 
 
+def _ensure_lcd_mode_table(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    image_key: str,
+    expected_body_rows: int,
+) -> None:
+    """Apply the shared LCD image-and-table composition exactly once."""
+
+    if soup.select_one("figure.hb-lcd-mode-composition > .hb-lcd-mode-table-panel"):
+        return
+    _transform_lcd_mode_table(
+        soup,
+        source_path=source_path,
+        image_key=image_key,
+        expected_body_rows=expected_body_rows,
+    )
+
+
 def _transform_operations(
     soup: BeautifulSoup,
     *,
@@ -760,7 +779,7 @@ def _transform_operations(
         expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
     )
     if "HB-TABLE-LCD-MODE" not in resolved_component_ids:
-        _transform_lcd_mode_table(
+        _ensure_lcd_mode_table(
             soup,
             source_path=source_path,
             image_key=str(operation_contract["lcd_mode_table"]["image_key"]),
@@ -1273,6 +1292,18 @@ def transform_web_fragment(
             soup,
             source_path=source_path,
             expected_body_rows=int(operations["auto_resume_table"]["body_rows"]),
+        )
+        semantic_fragment = str(soup)
+    if (
+        is_operations
+        and "HB-TABLE-LCD-MODE" not in resolved
+        and not embedded_components_complete
+    ):
+        _ensure_lcd_mode_table(
+            soup,
+            source_path=source_path,
+            image_key=str(operations["lcd_mode_table"]["image_key"]),
+            expected_body_rows=int(operations["lcd_mode_table"]["body_rows"]),
         )
         semantic_fragment = str(soup)
     if embedded_components_complete and not (

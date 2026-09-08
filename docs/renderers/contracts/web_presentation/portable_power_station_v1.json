@@ -8,10 +8,6 @@
       ]
     },
     "operations": {
-      "lcd_mode_table": {
-        "image_key": "operation/lcd_mode",
-        "body_rows": 6
-      },
       "figures": [
         {
           "id": "main-power",

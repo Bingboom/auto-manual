@@ -108,6 +108,10 @@
       ],
       "auto_resume_table": {
         "body_rows": 4
+      },
+      "lcd_mode_table": {
+        "image_key": "operation/lcd_mode",
+        "body_rows": 6
       }
     },
     "app_download": {
