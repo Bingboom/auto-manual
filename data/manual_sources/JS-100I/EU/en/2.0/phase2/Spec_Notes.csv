@@ -1,0 +1,4 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_en,Enabled
+stc_conditions,EU,JS-100I,en,TRUE,specifications,1,"* STC (Standard Test Conditions, 1000 W/m², 25°C, AM1.5).",TRUE
+bnpi_conditions,EU,JS-100I,en,TRUE,specifications,2,"* BNPI (Bifacial Nameplate Irradiance, Front 1000 W/m², Rear 135 W/m², 25°C, AM1.5).",TRUE
+design_load,EU,JS-100I,en,TRUE,specifications,3,"Unfold the bracket and place it on a flat surface. The design load is 1600 Pa, and the safety factor is 1.5 times.",TRUE

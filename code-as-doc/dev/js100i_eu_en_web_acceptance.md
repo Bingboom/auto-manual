@@ -1,6 +1,14 @@
 # JS-100I EU English Web target — implementation and acceptance
 
-Status: engineering implementation complete; not formally published.
+Status: engineering implementation complete; Git-only frozen Web package
+accepted locally and ready for the shared Hello-Docs publish candidate.
+
+The latest-main release-readiness rerun, frozen-package handoff, and formal
+Read the Docs route are recorded in
+[`js100i_eu_en_web_release_readiness.md`](js100i_eu_en_web_release_readiness.md).
+This release does not depend on an online Base write or queue row. The final
+completion gate remains the merged Hello-Docs `docs/publish/**` snapshot and a
+successful readback of the real Read the Docs URL.
 
 ## Source authority
 
@@ -14,7 +22,8 @@ Status: engineering implementation complete; not formally published.
   body. The Web target therefore uses the published text as authority and the
   current master as the figure source; no historical-version diff was used.
 - `data/asset_sources.csv` assigns the stable source key. Online asset-source
-  attachment archival remains pending and must not be reported as complete.
+  attachment archival is outside this Git-only release and is not a release
+  prerequisite.
 
 ## Composition
 
@@ -25,8 +34,11 @@ those slots in that order. It intentionally has no cover, TOC, LCD, UPS,
 troubleshooting, or App carrier.
 
 JS-100I copy lives in `docs/templates/page_solar/en/`; specification facts and
-STC/BNPI notes use the same phase2 CSV contract as other manuals. The committed
-fixture is a bootstrap/test snapshot only. Five Inbox items use
+STC/BNPI notes use the same phase2 CSV contract as other manuals. For this
+release, `data/manual_sources/JS-100I/EU/en/2.0/` is the explicit Git-tracked
+structured-data input, validated against the current published V2.0 manual and
+bound by `source_manifest.json`; it is not presented as a live Base snapshot.
+Five Inbox items use
 `HB-SPECIAL-INBOX/responsive-card-grid`; the unchanged three-card variant
 remains the legacy default for existing manuals.
 
@@ -53,10 +65,10 @@ used a 375×812 mobile viewport and a 1440×900 desktop viewport. Both had zero
 image overflow; the five-card Inbox resolved to one column on mobile and five
 columns on desktop. The first visible chapter was Safety Tips in both views.
 
-Formal publication is out of scope here. After review approval, Web Publish
-must freeze the exact live snapshot and advance only the Hello-Docs
-`docs/publish/**` candidate PR. No direct Hello-Docs engineering-tree edit and
-no live Base write was performed by this implementation.
+The formal lane consumes the versioned MyST/assets frozen package through
+`tools/publish_branch_assembly.py` and advances only the shared Hello-Docs
+`docs/publish/**` candidate PR. No direct Hello-Docs engineering-tree edit,
+online queue dispatch, or live Base write is part of this target handoff.
 
 ## Latest-main integration (2026-09-06)
 

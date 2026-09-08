@@ -1,0 +1,60 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JS-100I",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0",
+    "published_revision": "V2.0-2026-04-01"
+  },
+  "authority": {
+    "policy": "current-published-version-only",
+    "published_pdf_physical_pages": "4-12",
+    "published_pdf_sha256": "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
+    "source_master_name": "371JNuMVqZ.ai",
+    "source_master_page_count": 10,
+    "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a"
+  },
+  "build_input": {
+    "config": "configs/config.solar-eu-en.yaml",
+    "structured_copy": "docs/templates/page_solar/en",
+    "data_root": "data/manual_sources/JS-100I/EU/en/2.0/phase2",
+    "snapshot_sha256": "231232f4d334a5c9bfe3d41117cfe97020d892b838b7d02d654713ae94a39fcd",
+    "snapshot_hash_algorithm": "sha256 of the LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the five CSV files"
+  },
+  "files": [
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "sha256": "d3b143510a602a23ac120a21fb5a362639dc68b25c719a5135fe4e71e3690a76"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "sha256": "81eba5688d9b49c2ff541ec68b17452594a8de174a3cff7fb6e624ce2c35fe5c"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "sha256": "27e919b45bb7e79ced64da10ad6e8355aa62ba5329a3a68f1568de00cf7edaa2"
+    }
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+    "recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
+    "illustration_manifest": "docs/renderers/web/js100i_eu_en_illustrations.json",
+    "illustration_manifest_sha256": "d2d63eac57d98272c6367a133b82a22d7831ce0d263867e458b79b039f700e52",
+    "semantic_asset_count": 13,
+    "text_policy": "localized-full-image"
+  },
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false
+  }
+}
