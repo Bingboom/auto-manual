@@ -7,327 +7,159 @@
       "value": "manual_eu_en"
     },
     {
-      "op": "add",
-      "path": "/pages/0/lang_blocks",
-      "value": true
-    },
-    {
       "op": "replace",
-      "path": "/pages/1/file",
-      "value": "templates/page_eu-en/safety_en.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/4/file",
-      "value": "templates/page_shared/en/02_whats_in_the_box.rst"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/5/file"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/5/lang"
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/engine",
-      "value": "draft_v1"
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/include_dir",
-      "value": "generated/{model}/draft"
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/langs",
+      "path": "/pages",
       "value": [
-        "en"
-      ]
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/model_overrides",
-      "value": {
-        "JE-300E": {
-          "recipe": "templates/recipes/eu-en/03_product_overview_je300e.yaml",
-          "template": "templates/page_eu-en/03_product_overview_je300e.rst"
+        {
+          "file": "templates/page_shared/en/00_preface.rst",
+          "lang": "en",
+          "lang_blocks": true,
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_eu-en/safety_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/01_user_maintenance_instructions.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "symbols",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_shared/en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "model_overrides": {
+            "JE-300E": {
+              "recipe": "templates/recipes/eu-en/03_product_overview_je300e.yaml",
+              "template": "templates/page_eu-en/03_product_overview_je300e.rst"
+            },
+            "JE-3600A": {
+              "recipe": "templates/recipes/eu-en/03_product_overview_je3600a.yaml",
+              "template": "templates/targets/je3600a/03_product_overview.rst"
+            }
+          },
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/eu-en/03_product_overview.yaml",
+          "template": "templates/page_eu-en/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "lcd_icons",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "model_overrides": {
+            "JE-3600A": {
+              "recipe": "templates/recipes/eu-en/05_operation_guide_je3600a.yaml",
+              "template": "templates/targets/je3600a/05_operation_guide.rst"
+            }
+          },
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
+          "template": "templates/page_eu-en/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/en/06_ups_mode.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/targets/je3600a/07_extra_battery.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/charging.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/08_charging_methods.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/09_storage_and_maintenance.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "troubleshooting",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_shared/en/11_warranty.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "model_overrides": {
+            "JE-3600A": {
+              "recipe": "templates/recipes/eu-shared-en/12_app_setup_je3600a.yaml",
+              "template": "templates/targets/je3600a/12_app_setup.rst"
+            }
+          },
+          "page": "12_app_setup",
+          "recipe": "templates/recipes/eu-shared-en/12_app_setup.yaml",
+          "template": "templates/page_shared/en/12_app_setup_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "file": "templates/page_eu-en/99_regulatory_compliance.rst",
+          "lang": "en",
+          "type": "rst_include"
         }
-      }
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/page",
-      "value": "03_product_overview"
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/recipe",
-      "value": "templates/recipes/eu-en/03_product_overview.yaml"
-    },
-    {
-      "op": "add",
-      "path": "/pages/5/template",
-      "value": "templates/page_eu-en/03_product_overview_placeholder.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/5/type",
-      "value": "generated_page"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/6/file"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/6/lang"
-    },
-    {
-      "op": "add",
-      "path": "/pages/6/include_dir",
-      "value": "generated/{model}"
-    },
-    {
-      "op": "add",
-      "path": "/pages/6/langs",
-      "value": [
-        "en"
       ]
-    },
-    {
-      "op": "add",
-      "path": "/pages/6/page",
-      "value": "lcd_icons"
-    },
-    {
-      "op": "add",
-      "path": "/pages/6/source",
-      "value": "phase2"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/6/type",
-      "value": "csv_page"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/7/source"
-    },
-    {
-      "op": "add",
-      "path": "/pages/7/engine",
-      "value": "draft_v1"
-    },
-    {
-      "op": "add",
-      "path": "/pages/7/recipe",
-      "value": "templates/recipes/eu-en/05_operation_guide.yaml"
-    },
-    {
-      "op": "add",
-      "path": "/pages/7/template",
-      "value": "templates/page_eu-en/05_operation_guide_placeholder.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/7/include_dir",
-      "value": "generated/{model}/draft"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/7/page",
-      "value": "05_operation_guide"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/7/type",
-      "value": "generated_page"
-    },
-    {
-      "op": "add",
-      "path": "/pages/8/capability",
-      "value": "UPS功能"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/8/file",
-      "value": "templates/page_shared/en/06_ups_mode.rst"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/9/capability"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/9/file",
-      "value": "templates/page_shared/en/charging.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/10/file",
-      "value": "templates/page_shared/en/08_charging_methods.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/11/file",
-      "value": "templates/page_shared/en/09_storage_and_maintenance.rst"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/12/file"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/12/lang"
-    },
-    {
-      "op": "add",
-      "path": "/pages/12/include_dir",
-      "value": "generated/{model}"
-    },
-    {
-      "op": "add",
-      "path": "/pages/12/langs",
-      "value": [
-        "en"
-      ]
-    },
-    {
-      "op": "add",
-      "path": "/pages/12/page",
-      "value": "troubleshooting"
-    },
-    {
-      "op": "add",
-      "path": "/pages/12/source",
-      "value": "phase2"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/12/type",
-      "value": "csv_page"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/13/page",
-      "value": "spec"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/14/include_dir"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/14/langs"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/14/page"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/14/source"
-    },
-    {
-      "op": "add",
-      "path": "/pages/14/file",
-      "value": "templates/page_shared/en/11_warranty.rst"
-    },
-    {
-      "op": "add",
-      "path": "/pages/14/lang",
-      "value": "en"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/14/type",
-      "value": "rst_include"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/15/file"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/15/lang"
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/engine",
-      "value": "draft_v1"
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/include_dir",
-      "value": "generated/{model}/draft"
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/langs",
-      "value": [
-        "en"
-      ]
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/page",
-      "value": "12_app_setup"
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/recipe",
-      "value": "templates/recipes/eu-shared-en/12_app_setup.yaml"
-    },
-    {
-      "op": "add",
-      "path": "/pages/15/template",
-      "value": "templates/page_shared/en/12_app_setup_placeholder.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/15/type",
-      "value": "generated_page"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/engine"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/include_dir"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/langs"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/page"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/recipe"
-    },
-    {
-      "op": "remove",
-      "path": "/pages/16/template"
-    },
-    {
-      "op": "add",
-      "path": "/pages/16/file",
-      "value": "templates/page_eu-en/99_regulatory_compliance.rst"
-    },
-    {
-      "op": "add",
-      "path": "/pages/16/lang",
-      "value": "en"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/16/type",
-      "value": "rst_include"
     }
   ],
   "schema_version": "family-manifest-diff/v1",

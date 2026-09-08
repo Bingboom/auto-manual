@@ -1,0 +1,7 @@
+page_id: 12_app_setup
+template: templates/targets/je3600a/12_app_setup.rst
+field_map: {}
+required_row_keys: []
+snippet_slots: {}
+contracts:
+  - 12_app_setup

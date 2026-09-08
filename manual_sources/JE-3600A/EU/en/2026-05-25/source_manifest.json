@@ -1,0 +1,156 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JE-3600A",
+    "region": "EU",
+    "lang": "en",
+    "version": "2026-05-25"
+  },
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "delivery_record": "电子说明书新增语言/QRo3FviEOb",
+    "published_revision": "2026-05-25",
+    "published_pdf_name": "Jackery Explorer 3600 Plus User Manual-EU-UK-2026-05-25.pdf",
+    "published_pdf_sha256": "bfbcc4377fb474952f5e0850818289449016c8df11b1df48aff192b646eedf6d",
+    "structure_text_sha256": "ca480fda5f11334e6dd20d618dd152ef9f76736019bf0a723dc48272fb50be9f",
+    "source_artwork_sha256": "d87b5474fca3008f2ad8578d8da7b6001f81bb8e1969c351a87043cfe05f6656"
+  },
+  "data_root": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2",
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je3600a_eu_web.json",
+    "sha256": "9d1a690315b1185df7fd425bc84b9cb2a6f5c46730bb12bed5ba0b87aa2c1948"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je3600a_eu_en_illustrations.json",
+    "sha256": "c20da63a369258365a0181d4ab58c0fb4c367d26e9a1182b7a8a467563edab62"
+  },
+  "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 43,
+      "sha256": "8f2e4a76e6b9975b7aee9bed58836c8c8cf70fed0371604e5d12d30edf067e12"
+    },
+    {
+      "path": "phase2/Localized_Copy.csv",
+      "size": 9615,
+      "sha256": "b257e9badfec4c3cf501b1496b2d90f479b1ee4d3a5fc8e80e63c3f57e0d7d86"
+    },
+    {
+      "path": "phase2/Manual_Copy_Source.csv",
+      "size": 3192,
+      "sha256": "6144a223ffebb68c8fb529ed2993f5c33733a4656e27e2d2f8b30a21ed30eef2"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 453,
+      "sha256": "c748fbc56ceb3134fdee0337c551f56bc54430ae1589a853b446a53803079845"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 10768,
+      "sha256": "6c8b5768601ce3689fbd5c1717279e82ea98558117845179f0caa27aee236705"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 305,
+      "sha256": "b8f237246305a9dbc7f4aa23ecfadd5d0a0e692ec2ccc8fd49b298b343c97f48"
+    },
+    {
+      "path": "phase2/Status_Words.csv",
+      "size": 309,
+      "sha256": "2b7137ba193ba282cd1d9a1824a2b23099b397730c4329861a47a123f79fd2c0"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 115,
+      "sha256": "d9d9a41c20b168a0f4ae3a920416a0252cbe6dd1a81cb841a9d59bcf690ba4d6"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 499,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482"
+    },
+    {
+      "path": "phase2/_attachments/symbols/battery_disposal.png",
+      "size": 3423,
+      "sha256": "c2bcb028b70040e2242004f31ec0e611d420081c85e609341c74454f82c624fe"
+    },
+    {
+      "path": "phase2/_attachments/symbols/do_not_dismantle.png",
+      "size": 2699,
+      "sha256": "e80dd654688b0e08d114bdf65eea7ff4fe45f1c78c94da1760cf62b3951ccdf9"
+    },
+    {
+      "path": "phase2/_attachments/symbols/keep_away_from_children.png",
+      "size": 3143,
+      "sha256": "8c65096005f70912215be1b2d24e744c6fcb92c8b4dccfb1b29e4c4bb469e0ea"
+    },
+    {
+      "path": "phase2/_attachments/symbols/li_ion.png",
+      "size": 3419,
+      "sha256": "ff9fba0a2b117b5061f2c698e7ec60759aadcbb0a4eb60c8cdf15d2b7ef324ea"
+    },
+    {
+      "path": "phase2/_attachments/symbols/no_open_flame.png",
+      "size": 3534,
+      "sha256": "1dcd41d6ababd9c9d5c9d9ad08bdc2d5f2b6c0c3ad301dcb7b5260e0ec08d45e"
+    },
+    {
+      "path": "phase2/_attachments/symbols/read_manual.png",
+      "size": 1204,
+      "sha256": "66609a9cc0f1869e79e44e5047372110ec1ff10396d880c96893814c0c07891e"
+    },
+    {
+      "path": "phase2/_attachments/symbols/warning_triangle.png",
+      "size": 2093,
+      "sha256": "928144ad19fa6b76c0fb278183af72ada10cc23289731a26a8b2b407afb3373f"
+    },
+    {
+      "path": "phase2/_attachments/symbols/weee.png",
+      "size": 2528,
+      "sha256": "fe0e23b319fae67f446b21dd4393a0b62d97ebf1d30ba158fd35b66ef013cda0"
+    },
+    {
+      "path": "phase2/lcd_icons_blocks.csv",
+      "size": 7470,
+      "sha256": "ecef50768789a59bcdc4dda26d9aa083c8e748c43f7fb1854f902685eff05467"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 524,
+      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+    },
+    {
+      "path": "phase2/row_key_mapping.csv",
+      "size": 3817,
+      "sha256": "50532c74b0dea9f61d4621795b7259d3ec7af77d43289adfcad3f2e4d67d0188"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 990,
+      "sha256": "54ec1e1d9988d56d04bf27e64b1fe1208039492779502f1991cbac52f367bc9d"
+    },
+    {
+      "path": "phase2/symbols_blocks.csv",
+      "size": 19454,
+      "sha256": "ee4ccd0127325809f9918785ebc0ae3875ab0fa460443d3c6f30478d99ae2b30"
+    },
+    {
+      "path": "phase2/troubleshooting_blocks.csv",
+      "size": 3612,
+      "sha256": "46be326a0e926d0de26be4bc98ba6821ce2930dd956d552730d768ef97b353ba"
+    },
+    {
+      "path": "phase2/web_composite_manifest.json",
+      "size": 60,
+      "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
+    }
+  ],
+  "files_inventory_sha256": "fb53b2ce0e51660439698058f60ac0e88dbf5def64ba968440d922a617d0e630",
+  "live_bitable_dependency": false,
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  }
+}
