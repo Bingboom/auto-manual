@@ -8,6 +8,8 @@ build:
       region: EU
     - model: JE-2000F
       region: EU
+    - model: JE-2000E
+      region: EU
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
@@ -17,3 +19,4 @@ paths:
   page_manifest: docs/manifests/manual_eu-en.yaml
   web_illustration_manifests:
     JE-2000F_EU: docs/renderers/web/je2000f_eu_en_illustrations.json
+    JE-2000E_EU: docs/renderers/web/je2000e_eu_en_illustrations.json

@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-2000E / EU / en` (`HTE152`, Jackery Explorer 2000 Plus)
 
-Status: implementation in progress.
+Status: local Web implementation and verification complete; PR pending review.
 
 ## Authority and source inventory
 
@@ -74,3 +74,33 @@ pages were rendered for visual review.
 - No copied JE-2000F/JBP-2000B artwork, product names or target parameters.
 - No hand edits under `docs/_build/` and no cleanup of unrelated generated or
   review artifacts.
+
+## Implemented source calibration
+
+- Froze only `JE-2000E_EU` plus required shared rows and referenced attachments
+  under `manual_sources/JE-2000E/EU/en/2.0/phase2/`; the build has no live Base
+  dependency.
+- Corrected the target-local weight to the visible paper value `About 19.1 kg`
+  and added the paper-only `10 ms`, `16 V-60 V`, `DC8020`, 75 A expansion-input,
+  and 55 A expansion-output values. No online source row was modified.
+- Registered the existing JE-2000E battery-pack section with the explicit
+  capability page-plan slot and replaced its generic device placeholder with
+  the target-local connection panel, without duplicating visible copy.
+- Bound 16 Web replacements to 12× target-local source crops. The 12 public-IR
+  figure slots report `finished-panel=11`, `editable-fallback=1`, `missing=0`;
+  the one editable fallback is the intentional LCD device-art + semantic-table
+  composition. Inbox remains the shared
+  semantic three-card component because its canonical line art already matches
+  the JE-2000E paper manual.
+- Kept LCD as the target device-only crop plus the semantic HTML/CSS table and
+  retained editable specification, troubleshooting, warranty, and regulatory
+  sections.
+
+## Naming and publication boundary
+
+The DingTalk file title uses `HomePower 2000 Plus`, while the visible V2.0 EU
+PDF cover, diagrams, and Specifications table use `Jackery Explorer 2000 Plus`.
+The Web copy follows the visible formal PDF and records the title mismatch as a
+source fact; it does not introduce the JE-2000F `Explorer 2000` product. This
+work proves only a local Git-replayable Web build. It does not prove a live Base
+write, asset archive upload, OSS upload, Hello-Docs publish, or public release.
