@@ -40,6 +40,7 @@ python -m unittest \
 - Real Pandoc Web build: passed.
 - Sphinx 8.2.3 `-W`: passed with zero warnings.
 - Target regressions: 15 tests passed, including source-snapshot identity and tamper rejection.
+- Repository unit suite: 3,864 tests passed; 22 skipped.
 - Browser visual QA: desktop and 375 × 812 mobile views passed. Inbox cards reflow from multiple columns to one column; installation figures retain complete gray frames and labels; the 2-year warranty badge and cards remain readable; no broken images or horizontal crop was observed.
 - Local preview route: `http://127.0.0.1:18821/manual_jaad600a_eu_en.html` while the documented local server is running.
 
