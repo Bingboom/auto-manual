@@ -16,7 +16,6 @@
   },
   "engineering_content_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
   "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
-  "text_hash_normalization": "CSV CRLF and LF are normalized to LF before size and SHA-256 comparison",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
     "sha256": "68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1"
@@ -26,6 +25,11 @@
     "sha256": "b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4"
   },
   "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
     {
       "path": "phase2/Localized_Copy.csv",
       "size": 9562,
@@ -142,6 +146,11 @@
       "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
     }
   ],
-  "files_inventory_sha256": "ba03b7fb799bdf689a3d0c7c63721b7a658014e64021228b76ca5f08f4cb23a3",
-  "live_bitable_dependency": false
+  "files_inventory_sha256": "b3f0f0021a85e5fa6a0b8bd0bce0a68bf49d8806105af74bac72d5c70a5ecc56",
+  "live_bitable_dependency": false,
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  }
 }
