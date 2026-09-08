@@ -1,0 +1,10 @@
+Variable_key,lang,source_value,Value,from_prefix,to_prefix
+AC_POWER_BUTTON_LABEL,es,AC,CA,,
+AC_POWER_BUTTON_LABEL,es,AC1/2,CA1/2,,
+AC_POWER_BUTTON_LABEL,fr,AC,CA,,
+AC_POWER_BUTTON_LABEL,fr,AC1/2,CA1/2,,
+AC_POWER_BUTTON_LABEL,ukr,AC,змінного струму,,
+AC_POWER_BUTTON_LABEL,ukr,AC1/2,змінного струму 1/2,,
+DC_USB_POWER_BUTTON_LABEL,es,DC/USB,CC/USB,,
+DC_USB_POWER_BUTTON_LABEL,fr,DC/USB,CC/USB,,
+DC_USB_POWER_BUTTON_LABEL,ukr,DC/USB,постійного струму/USB,,
