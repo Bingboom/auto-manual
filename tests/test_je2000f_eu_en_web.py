@@ -158,6 +158,15 @@ class Je2000fEuEnWebTests(unittest.TestCase):
 
     def test_web_output_has_complete_finished_figure_coverage(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
+        inbox = soup.select_one('[data-component-id="HB-SPECIAL-INBOX"]')
+        self.assertIsNotNone(inbox)
+        self.assertEqual(
+            ["1", "2", "3"],
+            [
+                str(card["data-item-number"])
+                for card in inbox.select(".hb-inbox-card")
+            ],
+        )
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])

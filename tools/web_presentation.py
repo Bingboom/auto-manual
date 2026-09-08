@@ -1298,7 +1298,14 @@ def transform_web_fragment(
         return semantic_fragment
     supports_figures = supports_figure_contract(source_path, data)
     supports_legacy_target_components = supports_preface_contract(source_path, data)
-    if not supports_figures and not supports_legacy_target_components:
+    # Inbox is a shared component, not target-specific figure geometry.  Keep
+    # legacy fragment rendering aligned with the whole-document IR path so a
+    # declared What's in the Box page always receives its numbered cards.
+    if (
+        not supports_figures
+        and not supports_legacy_target_components
+        and not is_in_the_box
+    ):
         return semantic_fragment
 
     composites = WebCompositeContext(

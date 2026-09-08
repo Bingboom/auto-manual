@@ -415,13 +415,12 @@ def discover_registered_components(
     semantic_inbox = isinstance(inbox_config, Mapping) and _matches_source(
         source_path, inbox_config.get("semantic_source_patterns", [])
     )
-    legacy_inbox = (
-        isinstance(inbox_config, Mapping)
-        and _matches_source(source_path, inbox_config.get("source_patterns", []))
-        and (
-            supports_preface_contract(source_path, dict(contract))
-            or supports_figure_contract(source_path, dict(contract))
-        )
+    # Inbox is shared semantic presentation, just like specifications and
+    # callouts.  Its numbered-card layout does not depend on a target-specific
+    # figure or preface grant; every declared Inbox source pattern must embed
+    # the same component before the whole-document IR is frozen.
+    legacy_inbox = isinstance(inbox_config, Mapping) and _matches_source(
+        source_path, inbox_config.get("source_patterns", [])
     )
     if semantic_inbox or legacy_inbox:
         parsed = parse_inbox_html(
