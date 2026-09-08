@@ -914,10 +914,15 @@ paths only within the verified migration scope.
 Status: deferred — registered 2026-09-08; a planning record, not asset intake,
 table modification, designer notification or publishing authorization.
 
-The [editable asset delivery plan and AS-D01–AS-D06 ledger](dev/editable_asset_delivery_debt_plan_2026-09.md)
+The [editable asset delivery plan and AS-D01–AS-D07 ledger](dev/editable_asset_delivery_debt_plan_2026-09.md)
 defines design-team handoff, AI/SVG master preservation, live-text editability,
 versioned SVG/PNG/PDF exports, cloud retrieval, frozen build use and usage
 traceability. Reuse the existing three asset tables, resolver and manifests.
+Shared art uses explicitly scoped base assets with one level of target overrides.
+Keep design-source derivation separate from build replacement, reject ambiguous
+or invalid selections, and freeze the resolved asset/version for release replay.
+AS-D07 covers this acceptance gap on top of the existing override implementation;
+SVG layer inheritance and automatic artwork merging remain outside the pilot.
 
 Start with one already accepted EU single-language manual and a few actual
 asset samples after the current release. Verify native editing, file download
