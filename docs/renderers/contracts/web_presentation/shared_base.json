@@ -103,7 +103,12 @@
       ]
     },
     "operations": {
-      "source_patterns": []
+      "source_patterns": [
+        "*05_operation_guide_placeholder"
+      ],
+      "auto_resume_table": {
+        "body_rows": 4
+      }
     },
     "app_download": {
       "source_patterns": []

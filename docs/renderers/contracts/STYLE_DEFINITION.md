@@ -600,7 +600,7 @@ IDML 的完整可编辑单元是 `SymbolsPanel`，而不是页面 composer 中�
 | 左列底色 | `--hb-surface`；右列 `--hb-paper` |
 | 合并 | 每列独立向上合并 |
 
-IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对比语义可由 IR 到最终 IDML 单独审计。
+IDML 使用独立的 `table_auto_resume` 角色，不再退化成普通表；对比语义可由 IR 到最终 IDML 单独审计。Web 的 `HB-TABLE-AUTO-RESUME` 同样属于共享语义组件，不依赖某个目标的插图能力授权。
 
 ### 4.8 按键组合表
 

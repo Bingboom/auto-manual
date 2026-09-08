@@ -697,6 +697,37 @@ class WebPresentationTests(unittest.TestCase):
                     continuation_cell.get("class", []) if continuation_cell else [],
                 )
 
+    def test_auto_resume_table_is_shared_without_a_target_figure_grant(self) -> None:
+        fragment = """
+        <table>
+          <thead><tr><th>Auto</th><th>Not auto</th></tr></thead>
+          <tbody>
+            <tr><td>Restart</td><td>Manual off</td></tr>
+            <tr><td>Battery limit</td><td>Energy saving</td></tr>
+            <tr><td></td><td>Protection</td></tr>
+            <tr><td>OTA complete</td><td>Timer</td></tr>
+          </tbody>
+        </table>
+        """
+
+        transformed = transform_web_fragment(
+            fragment,
+            source_path=Path("page/05_operation_guide_placeholder.rst"),
+            model="OTHER",
+            region="XX",
+        )
+        soup = BeautifulSoup(transformed, "html.parser")
+
+        composition = soup.select_one("figure.hb-auto-resume-composition")
+        self.assertIsNotNone(composition)
+        table = composition.select_one("table.hb-auto-resume-table")
+        self.assertIsNotNone(table)
+        self.assertEqual(2, len(table.select("col.hb-auto-resume-col")))
+        self.assertEqual(
+            "2",
+            str(table.select("tbody > tr")[1].find("td", recursive=False)["rowspan"]),
+        )
+
     def test_lcd_mode_uses_live_template_composition_across_locales(self) -> None:
         localized_sources = {
             "en": ("05_operation_guide_placeholder.rst", "Shortly On"),

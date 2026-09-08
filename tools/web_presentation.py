@@ -637,6 +637,25 @@ def _transform_auto_resume_table(
     composition.append(table)
 
 
+def _ensure_auto_resume_table(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    expected_body_rows: int,
+) -> None:
+    """Apply the shared comparison-table component exactly once."""
+
+    if soup.select_one(
+        "figure.hb-auto-resume-composition > table.hb-auto-resume-table"
+    ):
+        return
+    _transform_auto_resume_table(
+        soup,
+        source_path=source_path,
+        expected_body_rows=expected_body_rows,
+    )
+
+
 def _transform_lcd_mode_table(
     soup: BeautifulSoup,
     *,
@@ -735,7 +754,7 @@ def _transform_operations(
     resolved_component_ids: frozenset[str] = frozenset(),
 ) -> None:
     operation_contract = contract["operations"]
-    _transform_auto_resume_table(
+    _ensure_auto_resume_table(
         soup,
         source_path=source_path,
         expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
@@ -1150,10 +1169,8 @@ def normalize_web_source_fragment(
         source_path, data
     ):
         _transform_preface(soup, source_path=source_path)
-    if _matches_source(
-        source_path, list(data["operations"]["source_patterns"])
-    ) and supports_figure_contract(source_path, data):
-        _transform_auto_resume_table(
+    if _matches_source(source_path, list(data["operations"]["source_patterns"])):
+        _ensure_auto_resume_table(
             soup,
             source_path=source_path,
             expected_body_rows=int(
@@ -1251,6 +1268,13 @@ def transform_web_fragment(
     is_app_inline_controls = _matches_source(
         source_path, list(app_inline_controls["source_patterns"])
     )
+    if is_operations and "HB-TABLE-AUTO-RESUME" not in resolved:
+        _ensure_auto_resume_table(
+            soup,
+            source_path=source_path,
+            expected_body_rows=int(operations["auto_resume_table"]["body_rows"]),
+        )
+        semantic_fragment = str(soup)
     if embedded_components_complete and not (
         is_preface
         or is_operations

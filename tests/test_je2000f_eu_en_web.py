@@ -167,6 +167,13 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 for card in inbox.select(".hb-inbox-card")
             ],
         )
+        auto_resume = soup.select_one("figure.hb-auto-resume-composition")
+        self.assertIsNotNone(auto_resume)
+        self.assertIsNotNone(
+            auto_resume.select_one("table.hb-auto-resume-table")
+            if auto_resume
+            else None
+        )
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])

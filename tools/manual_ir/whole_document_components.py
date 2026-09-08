@@ -233,21 +233,22 @@ def discover_registered_components(
                 )
                 _claim_nodes(claim, claimed=claimed, source_path=source_path)
                 claims.append(claim)
-        lcd_config = operation_config["lcd_mode_table"]
-        lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
-            soup,
-            source_path=source_path,
-            image_key=str(lcd_config["image_key"]),
-            expected_body_rows=int(lcd_config["body_rows"]),
-            language=language,
-        )
-        lcd_claim = ComponentClaim(
-            spec=lcd_spec,
-            owned_nodes=(lcd_table,),
-            asset_tags=(("artwork", lcd_artwork),),
-        )
-        _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
-        claims.append(lcd_claim)
+        lcd_config = operation_config.get("lcd_mode_table")
+        if isinstance(lcd_config, Mapping):
+            lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
+                soup,
+                source_path=source_path,
+                image_key=str(lcd_config["image_key"]),
+                expected_body_rows=int(lcd_config["body_rows"]),
+                language=language,
+            )
+            lcd_claim = ComponentClaim(
+                spec=lcd_spec,
+                owned_nodes=(lcd_table,),
+                asset_tags=(("artwork", lcd_artwork),),
+            )
+            _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
+            claims.append(lcd_claim)
 
     supports_figures = supports_figure_contract(source_path, dict(contract))
     if supports_figures:
