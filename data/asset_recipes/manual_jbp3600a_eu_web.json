@@ -134,6 +134,21 @@
       "risk_tags": ["model-specific"]
     },
     {
+      "asset_key": "lcd/jbp3600a/screen", "page": 5, "build_eligible": true,
+      "scope": {"models": ["JBP-3600A"], "regions": ["ALL"], "locales": ["und"]},
+      "text_policy": "numeric-only", "visual_review_required": false,
+      "transforms": [
+        {"op": "crop", "bbox_pt": [154, 55, 243, 108]},
+        {"op": "drop_leader_strokes", "halo_width_pt": 2.0, "line_width_pt": 0.3, "note": "this master strokes leaders at 2.0pt halo + 0.3pt line, not the JE-1000F 1.821pt default; the two callout leaders overrun the panel by 5-7pt, so dropping them as objects keeps the crop edge free of sliced stubs"}
+      ],
+      "outputs": [
+        {"format": "pdf", "path": "docs/renderers/latex/assets/jbp3600a_lcd_map.pdf", "expected_sha256": "195029e3386fafca2b1f67a1c1780111b596c400ee551efcbe46c7ea40517dad"},
+        {"format": "png", "path": "docs/renderers/latex/assets/jbp3600a_lcd_map.png", "scale": 12, "expected_sha256": "5e793d99a847adcde354e0512007d592d6cad53d40c380899208fe905898cb6e"}
+      ],
+      "gate": {"status": "approved", "reasons": ["Crop-only from shipped page 5 plus leader-stroke removal. The panel carries numeric segments, percentage and the charging icon only; both localized external callouts stay outside the crop, so the export is language-neutral and overrides lcd/lcd_map for JBP-3600A."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
       "asset_key": "operation/jbp3600a/power_control", "page": 5, "build_eligible": true,
       "scope": {"models": ["JBP-3600A"], "regions": ["EU"], "locales": ["en"]},
       "text_policy": "localized-full-page", "visual_review_required": false,
