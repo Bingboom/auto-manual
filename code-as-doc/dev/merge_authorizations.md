@@ -126,6 +126,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-061 | 本批三个 EU 英文 Web 目标的必要合入与 Git-only 正式发布步骤：auto-manual PR #1074（JBP-3600A）、#1075（JS-100I）、#1076（JA-AD01A，含本登记行）的 Git 结构源、资产、验证记录及本批 Git-only 发布说明；以及 Hello-Docs 中由这三目标新增 `sources/web/**`、对应聚合 `web/**` 与 manifest 组成的 `docs/publish/**`-only 发布 PR。保留 Hello-Docs 既有发布源，禁止写入任何线上多维表、触发 Print Publish、夹带额外 IDML 或 IR 重构。每个 PR 的最终 head 必须包含当时 latest main、全部检查成功（包括非 required，pending/queued 不算成功）、无 changes-requested、无未解决评审讨论且可合并，方可 squash merge；Hello-Docs 发布 PR 还必须通过范围门禁并只包含上述三目标的发布增量。 | 「需要先通过不写线上多维表的形式实现上线（能在read the doc访问），你把这个执行贯彻下去」2026-09-06 | #1074/#1075/#1076 及限定的 Hello-Docs 发布 PR 全部按门禁合入，且三目标 Read the Docs 真实页面完成访问验收；或操作者撤销 | 生效 |
 
+| MA-062 | 「先发再清」序列：auto-manual PR #1078（JBP-3600A LCD 错挂修复，含本登记行）先合，随后按 MA-061 已授范围依次合 #1074、#1075、#1076，最后合 Hello-Docs 的 `docs/publish/**`-only 发布 PR #69 并完成三目标 RTD 真实页面验收。每次合入前该 PR 最终 head 必须包含当时 latest main、全部检查成功（含非 required；pending/queued 不算成功）、无 changes-requested、无未解决评审讨论。**不含** 16 张带印刷版式残骸插图的裁切重切（明确留到上线之后的独立 PR），也不含任何线上多维表写入、Print Publish 触发或 IR 重构。 | 「A」2026-09-07（在「先发再清 / 先清再发」两案中选定 A：先合 #1078 → #1074/#1075/#1076 → #69 上线，重切后置） | #1078 合入、MA-061 批次全部合入且三目标 RTD 页面验收完成即失效 | 生效 |
+
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
 

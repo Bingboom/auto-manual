@@ -1,0 +1,155 @@
+{
+  "schema_version": "jbp3600a-eu-web-git-release-input/v1",
+  "prepared_at": "2026-09-08T01:54:51+00:00",
+  "release_policy": {
+    "carrier": "git-only-frozen-web-snapshot",
+    "live_bitable_required": false,
+    "live_bitable_writes_permitted": false,
+    "queue_record_ids": [],
+    "shared_publish_branch_owner": "central_release_task"
+  },
+  "target": {
+    "model": "JBP-3600A",
+    "project_code": "HTP011",
+    "document_key": "JBP-3600A_EU",
+    "region": "EU",
+    "language": "en",
+    "version": "2.0",
+    "published_revision": "V2.0-2026-08-04",
+    "manual_stem": "manual_jbp3600a_eu",
+    "publish_route": "JBP-3600A/EU/md",
+    "formal_alias": "https://ht-doc.readthedocs.io/manual_jbp3600a_eu.html"
+  },
+  "authority": {
+    "status": "audited_against_current_published_manual_and_source_artwork",
+    "current_published_pdf": {
+      "title": "Jackery Battery Pack 3600 User Manual (JBP-3000A) EUUK V2.0-2026-08-04.pdf",
+      "url": "https://alidocs.dingtalk.com/i/nodes/NZQYprEoWoeAawzwfBwMeb25J1waOeDk",
+      "sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+      "pages_used": "cover 1; shared English preface 2; English body 5-12; EU declaration/manufacturer tail 45",
+      "naming_debt": "The external filename says JBP-3000A; the visible cover/body and source artwork identify JBP-3600A."
+    },
+    "source_artwork": {
+      "source_list_record_id": "hgXiHot5Ow",
+      "source_key": "source/manual_jbp3600a_eu_master",
+      "filename": "16-0102-000334 说明书 HTP0113600A-EU-JAK RoHS REACH.ai",
+      "size_bytes": 8923381,
+      "page_count": 10,
+      "sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761"
+    }
+  },
+  "git_build_input": {
+    "engineering_content_base_commit": "9b356ecadfe355aae0eb474ef4c49bf168a01e4c",
+    "formal_source_commit": "3609e42f4a506870c250b40172c77029c3689ed1",
+    "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
+    "data_root_role": "target-scoped, published-source-audited formal Git input; not a test fixture and not a claim that the live Base contains these rows",
+    "source_manifest": {
+      "path": "manual_sources/JBP-3600A/EU/en/source_manifest.json",
+      "sha256": "87f9fdf0fcf5f5fe346bb05c9ab1981239246de767657c4218c36983750a775e",
+      "files": 24,
+      "files_inventory_sha256": "b3f0f0021a85e5fa6a0b8bd0bce0a68bf49d8806105af74bac72d5c70a5ecc56",
+      "checkout_contract": "phase2/.gitattributes pins manifest-locked CSV inputs to LF on every Git checkout"
+    },
+    "config": {
+      "path": "configs/config.bp-eu-en-web.yaml",
+      "sha256": "be43f160a88d4d25a0b890288e45a45aa12fe0f546b4d17ee8a0b909e66d4dea"
+    },
+    "page_manifest": {
+      "path": "docs/manifests/manual_bp-eu-en-web.yaml",
+      "sha256": "f283ab204f1f95b4640dd30e3978d01eb052de0757d33a72cd30fd33506986bd"
+    },
+    "structured_target_rows": [
+      {
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/Spec_Master.csv",
+        "selector": "document_key == JBP-3600A_EU",
+        "rows": 21,
+        "canonical_target_json_sha256": "eb1a4d639b30ddb4d7f805bc9452b6029de73727d2a98e56de5a9a7c6e1ff664"
+      },
+      {
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/symbols_blocks.csv",
+        "selector": "Model == JBP-3600A",
+        "rows": 8,
+        "canonical_target_json_sha256": "1f529d76cec9188461e76c74acdbad6cf9b8bcd4f63f1660baf04d7adb0f75b2"
+      },
+      {
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/lcd_icons_blocks.csv",
+        "selector": "Model == JBP-3600A",
+        "rows": 2,
+        "canonical_target_json_sha256": "2583f8ea569ae0da8ebb7244e7a2055208591e8243da2764ae0ec4aa8fdbff11"
+      },
+      {
+        "path": "manual_sources/JBP-3600A/EU/en/phase2/troubleshooting_blocks.csv",
+        "selector": "Model == JBP-3600A",
+        "rows": 7,
+        "canonical_target_json_sha256": "8ffd35844579eee9c7567f5e8eab481d4808d4b5f06bcdbceae3de89e8449006"
+      }
+    ],
+    "asset_recipe": {
+      "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
+      "sha256": "89db92842423a202701493b76ae954d3308d5be8572589fc649a9c32e975c591",
+      "source_sha256": "e0ccc33427f89c77c30d32e073a3027123f4c8a9c9f5029d2378172a7f0a3761",
+      "assets": 16,
+      "outputs": 25,
+      "archive_pages": 10,
+      "archive_previews": 10,
+      "lcd_override_png_sha256": "5e793d99a847adcde354e0512007d592d6cad53d40c380899208fe905898cb6e",
+      "lcd_override_pdf_sha256": "195029e3386fafca2b1f67a1c1780111b596c400ee551efcbe46c7ea40517dad"
+    },
+    "web_illustrations": {
+      "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",
+      "sha256": "b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4",
+      "localized_full_panels": 8,
+      "binding": "source artwork pages 4-8; source hash locked; visible English labels retained"
+    }
+  },
+  "accepted_build": {
+    "presentation_profile": "web",
+    "markdown_sha256": "dec447799ba563640061d77fa2a11e5534b478ed04aee3ac7dc01e84db9a1c79",
+    "manual_ir_file_sha256": "6360e8b42b19424137f42ff74078ef764bd230e3fbd11cfd501526d83b1ac67d",
+    "manual_ir_content_sha256": "7c63e9a22bf065a50137e136f9654ed61049f4c15cffee77f4fa627132788199",
+    "manual_ir_bundle_sha256": "63dbc0bccd6ad521786e2bf58dcd6a6587971464b2396f67548023977c60f67c",
+    "source_fragments": 15,
+    "ir_blocks": 78,
+    "packaged_images": 21,
+    "finished_panels": "5/5",
+    "target_tests": "7/7 passed",
+    "cold_replay": "passed with RST and CSV reads denied",
+    "asset_tamper_rejection": "passed",
+    "sphinx_warnings_as_errors": "passed",
+    "lcd_hero": "JBP-3600A override 5e793d99; numeric percentage and charging icon only; no Explorer UPS, TOU, Wi-Fi or AC indicators",
+    "responsive_browser": {
+      "desktop_1440x900": "21/21 images loaded; 0 px document overflow; 3 inbox cards",
+      "mobile_375x812": "21/21 images loaded; 0 px document overflow; 3 inbox cards"
+    }
+  },
+  "release_root_handoff": {
+    "absolute_path": "/Users/hello-tech-team/.codex/worktrees/7603/auto-manual-codex/reports/releases",
+    "target_metadata": "JBP-3600A/EU/en/latest/web/publish_meta.json",
+    "target_source": "JBP-3600A/EU/en/versions/2.0/web/md/manual_jbp3600a_eu.md",
+    "target_verified_html": "JBP-3600A/EU/en/versions/2.0/web/html/index.html",
+    "publish_metadata_schema": "auto-manual-web-publish/v1",
+    "git_ref": "359c7edc833d659aaf78e0b128eea595c3ce58e4",
+    "queue_record_ids": []
+  },
+  "single_target_candidate": {
+    "path": "/tmp/jbp3600a-git-publish-20260907-final-main/candidate/docs/publish",
+    "publish_manifest_sha256": "f72c5e1377051c217a2cf597421906d78ba4504c27d6d2bdd73d5d05bb86a28c",
+    "inventory_files_excluding_manifest": 73,
+    "zip_path": "/tmp/jbp3600a-git-publish-20260907-final-main/jbp3600a-eu-web-publish-candidate-final-main.zip",
+    "zip_sha256": "8e4eeb18d9a5b2aa86f455cb64295724146ad88288512d9bc567a9d304f92cc5",
+    "rtd_sphinx_build": "passed with -W",
+    "root_alias_html_sha256": "d2638eaf2d6a23034fe61b199b5bc1d05959a8639afc47b0cdd5e7eee2f38480"
+  },
+  "central_release_interface": {
+    "assembler": "python tools/publish_branch_assembly.py --releases-root <combined-release-root> --output-dir <hello-docs-publish-worktree>/docs/publish",
+    "preserve_existing_targets": true,
+    "merge_this_release_root_with_other_target_release_roots": true,
+    "allowed_pr_diff": "docs/publish/** only",
+    "forbidden_actions_in_this_target_task": [
+      "write any live Bitable record or attachment",
+      "dispatch a live build queue",
+      "write or push the shared Hello-Docs/publish branch",
+      "merge the publish PR"
+    ]
+  }
+}
