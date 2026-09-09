@@ -2,5 +2,6 @@ Document_key,reason
 JS-100I_EU,Solar@INTL has no portable-power capability-gated slots; the first Web target intentionally omits LCD UPS troubleshooting and App chapters.
 JA-AD01A_EU,CHARGER Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are intentionally omitted without a live capability row.
 JA-AD600A_EU,CHARGER Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are intentionally omitted without a live capability row.
+JA-CC30A_EU,CHARGER accessory Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are not applicable.
 JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.
 JE-100C_EU,Published compact power-bank manual has no UPS LED or App capability-gated chapters; the target-local manifest intentionally omits them.

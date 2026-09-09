@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_ja_cc30a_eu_en_ai_38-0001-000673",
+    "expected_sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.1,
+      "page_scale": {
+        "1": 0.1
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "ai_master_artboard",
+      "role": "engineering_overview",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-cc30a/eu/en/product-overview",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1388,
+            596,
+            1698,
+            818
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/product_overview.png",
+          "scale": 4,
+          "expected_sha256": "6cec45bc23b5418046efa1cf3861bc393ec422d93ce7e2a66af07b92eac4d7ce"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/inbox-bag",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1750,
+            690,
+            1855,
+            770
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/inbox_bag.png",
+          "scale": 5,
+          "expected_sha256": "5ec32ef467f46e92109c8238d668e6e64568ce814719c316e636475b518190ee"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/inbox-heating-module",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1858,
+            690,
+            1968,
+            770
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/inbox_heating_module.png",
+          "scale": 5,
+          "expected_sha256": "b3e74db5441d5b172390ccd9001d59f9910c9695217f6e3e2e24ad3c8349d5f0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/inbox-user-guide",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            1972,
+            700,
+            2055,
+            756
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/inbox_user_guide.png",
+          "scale": 5,
+          "expected_sha256": "e7e9020fc7977b50f8016a0f8841c6d19d68309166b230e1cb2be12962ec24cb"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": []
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/how-to-use-steps-0-1",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2125,
+            425,
+            2430,
+            642
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/how_to_use_steps_0_1.png",
+          "scale": 4,
+          "expected_sha256": "3e4af66950f349ef2c8ef33fb40a6838d6bc590aa652b9eb27004298950669a2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/how-to-use-step-2",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2125,
+            648,
+            2430,
+            875
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/how_to_use_step_2.png",
+          "scale": 4,
+          "expected_sha256": "dc88e000e4b67c4346e6871e6f69f448cb26cc30f936945486e6e02681006112"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/how-to-use-steps-3-4",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2495,
+            405,
+            2795,
+            598
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/how_to_use_steps_3_4.png",
+          "scale": 4,
+          "expected_sha256": "852506133d1e162c37d58e854967a175a7800a9f709d7a4e0fa57225bb4f6ed7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    },
+    {
+      "asset_key": "web/ja-cc30a/eu/en/support-bars",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JA-CC30A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            2495,
+            675,
+            2798,
+            885
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "assets/ja_cc30a_eu_en/support_bars.png",
+          "scale": 4,
+          "expected_sha256": "0c250c3d0eb96b99fbd6b2a3ca3aa39995d9173c9d7a2faac615227ec64352a2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-09 visual verification against the user-supplied PDF-compatible Illustrator source; crop retains the complete intended panel without adjacent page content."
+        ]
+      },
+      "risk_tags": [
+        "region-locked-art"
+      ]
+    }
+  ]
+}

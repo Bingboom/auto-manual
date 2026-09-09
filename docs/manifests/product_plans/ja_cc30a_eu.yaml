@@ -1,0 +1,6 @@
+# JA-CC30A / EU target-owned Product Manual Plan.
+schema_version: skeleton-product-plan/v1
+plan_id: ja_cc30a_eu
+house_style_version: powered-protection-accessory-v1
+enabled_optional_slots: [disclaimer, warning, using_product, maintenance]
+terminal_slots: [legal_tail]

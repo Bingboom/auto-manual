@@ -1,6 +1,7 @@
 # Skeleton Blueprint - charger/accessory international manual.
-# Order profiles and optional slots cover both compact wall chargers and
-# vehicle-mounted DC-DC chargers without model branches in shared code.
+# Order profiles and optional slots cover compact wall chargers,
+# vehicle-mounted DC-DC chargers, and powered protection accessories without
+# model branches in shared code.
 schema_version: skeleton-blueprint/v1
 skeleton_id: charger-intl
 skeleton_family: CHARGER
@@ -9,10 +10,16 @@ default_order_profile: compact-v1
 order_profiles:
   compact-v1:
     [box_contents, product_overview, specifications, dimensions, using_product,
-     warning, disclaimer, important_safety, faq, installation, warranty, legal_tail]
+     warning, disclaimer, important_safety, faq, installation, maintenance,
+     warranty, legal_tail]
   dc-dc-v1:
     [disclaimer, specifications, dimensions, box_contents, product_overview,
-     important_safety, faq, installation, using_product, warning, warranty, legal_tail]
+     important_safety, faq, installation, using_product, warning, maintenance,
+     warranty, legal_tail]
+  powered-protection-accessory-v1:
+    [disclaimer, product_overview, warning, specifications, dimensions,
+     box_contents, using_product, important_safety, faq, installation,
+     maintenance, warranty, legal_tail]
 slots:
   - slot_id: disclaimer
     block: body
@@ -60,6 +67,11 @@ slots:
     presentation: chapter
     toc: true
   - slot_id: installation
+    block: body
+    requirement: optional
+    presentation: chapter
+    toc: true
+  - slot_id: maintenance
     block: body
     requirement: optional
     presentation: chapter

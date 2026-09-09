@@ -1,0 +1,62 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {"model": "JA-CC30A", "region": "EU", "lang": "en", "version": "git-0eb2b7ba"},
+  "authority": {
+    "policy": "operator-designated-current-artwork-source",
+    "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "table_id": "97v7518",
+    "record_id": "Li32wwM6MY",
+    "source_name": "38-0001-000673 HTO859A-US CA EU UK-JAK 说明书 RoHS REACH.ai",
+    "source_sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3",
+    "source_page_count": 1,
+    "source_artboard_pt": [5687.26, 4011],
+    "english_manual_extent_pt": [1386, 392, 3189, 904],
+    "published_pdf_link_present": false,
+    "publication_claim": "none; the operator instructed this Web intake to use the existing AI without version calibration"
+  },
+  "build_input": {
+    "config": "configs/config.charger-eu-en.yaml",
+    "config_sha256": "68b6a7e55e09892336cad580ea4799f0aad6cac8d88ba83e3592dca47641d8aa",
+    "page_manifest": "docs/manifests/manual_charger-eu-en-JA-CC30A.yaml",
+    "page_manifest_sha256": "5bb3f4a4cb10a226bd363e570f376bbbde2f00ce3f873add12f48b9a1fb42fa1",
+    "product_plan": "docs/manifests/product_plans/ja_cc30a_eu.yaml",
+    "product_plan_sha256": "8c7c6db57371fb4990fd8dc270e5ed5d2423153af7d02fe5faeb3d35930f27e1",
+    "structured_copy": "docs/templates/page_charger/powered_protection_accessory/en",
+    "structured_copy_snapshot_sha256": "3c81145a3013f9f0c5d7e2feb7b69a9879d911a1fc454886cd0444eae2ecf55a",
+    "data_root": "data/manual_sources/ja_cc30a_eu_en",
+    "snapshot_sha256": "0a51b495193e713db370a6428df48fade85a9cec0d42c0af552dcda384119376",
+    "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the eight frozen source files"
+  },
+  "files": [
+    {"path": ".gitattributes", "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"},
+    {"path": "JA-CC30A-eu-source.ai", "sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3"},
+    {"path": "Localized_Copy.csv", "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"},
+    {"path": "Spec_Footnotes.csv", "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"},
+    {"path": "Spec_Master.csv", "sha256": "c760aad55c2a8c4ff431a90d39464970ae7965c5c70d99040c06b390a577b39a"},
+    {"path": "Spec_Notes.csv", "sha256": "9f3accbbb808050a84a0d5662ae49479b312185bd98ba67441157afa40e2778d"},
+    {"path": "page_registry.csv", "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"},
+    {"path": "spec_titles.csv", "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"}
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_ja_cc30a_eu_en_web.json",
+    "recipe_sha256": "6139aa165e9791616b71f26ea6bbef73626bd3a2f27105acdd1c446a283e281e",
+    "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-CC30A_illustrations.json",
+    "illustration_manifest_sha256": "80094330d9ed5c46ce1a73f457d071427299498c8e5547c1b68a67655ff7eb88",
+    "semantic_asset_count": 8,
+    "text_policy": "native-web-copy-with-complete-text-bearing-operation-panels"
+  },
+  "normalizations": [
+    "Source line wraps and ligatures were normalized for native Web prose.",
+    "The source DC input glyph was normalized to U+2393 while retaining 20V and 2.5A.",
+    "The repeated 2-year warranty references were consolidated in one native Customer Service section.",
+    "The package-list User Guide crop excludes the unverified QR code.",
+    "Cover, contents, printed page numbers, manufacturer production marks, and artboard annotations are excluded from the Web body."
+  ],
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "artwork_source_file_required_for_reproduction": true,
+    "artwork_source_current_location_in_git": true
+  }
+}

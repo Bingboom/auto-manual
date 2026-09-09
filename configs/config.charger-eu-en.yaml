@@ -13,6 +13,8 @@ build:
       region: EU
     - model: JA-AD600A
       region: EU
+    - model: JA-CC30A
+      region: EU
   web_entry_source_patterns: [box_contents*, disclaimer*]
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"

@@ -17,7 +17,7 @@
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
-    "config_sha256": "6a26e99c70d65205a96b6e701e6d2337b000d14d8bafc2bab1087a4e0bec96a5",
+    "config_sha256": "68b6a7e55e09892336cad580ea4799f0aad6cac8d88ba83e3592dca47641d8aa",
     "page_manifest": "docs/manifests/manual_charger-eu-en-JA-AD600A.yaml",
     "page_manifest_sha256": "f3a838ed540dcd3de2c2758af9e2e81c4cbe0b641c506815e56635913a402ec3",
     "product_plan": "docs/manifests/product_plans/ja_ad600a_eu.yaml",
