@@ -136,8 +136,8 @@ class WebPresentationContractTests(unittest.TestCase):
             ["finished-panel", "approved-composite"],
             requirement["allowed_statuses"],
         )
-        self.assertNotIn("lcd_mode_table", contract["operations"])
-        self.assertNotIn("auto_resume_table", contract["operations"])
+        self.assertIsNone(contract["operations"]["lcd_mode_table"])
+        self.assertIsNone(contract["operations"]["auto_resume_table"])
 
     def test_us_and_eu_share_one_skeleton_but_keep_target_grants_isolated(self) -> None:
         us = load_web_manual_contract(model="JE-1000F", region="US")

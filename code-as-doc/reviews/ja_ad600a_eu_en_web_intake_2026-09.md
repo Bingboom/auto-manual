@@ -53,3 +53,7 @@ The approved artwork recipe archives all 15 Illustrator pages and exports 16 tar
 ## Publication boundary
 
 Local build, Sphinx output, localhost preview, pushed branch, opened pull request, and green CI are separate evidence. None proves merge, centralized Hello-Docs publication, or live table update. Formal publication remains an operator-owned post-merge step.
+
+## Main integration
+
+The target uses the shared Web illustration path resolver, including `{model}` / `{region}` expansion. The charger skeleton explicitly disables inherited LCD and auto-resume table contracts with null values; optional component discovery respects those declarations. Both JA-AD01A and JA-AD600A build through the same shared IR entrypoint. Full regression and current-main CI are required before merging.

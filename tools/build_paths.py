@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.config_loader import load_config_mapping
+from tools.utils.targets import format_tokenized
 from tools.utils.path_utils import (
     Paths,
     PathSegments,
@@ -135,7 +136,9 @@ def resolve_web_illustration_manifest_from_config(
             raise ValueError(
                 "paths.web_illustration_manifest must be a non-empty path"
             )
-        return resolve_path_from_root(repo_root, raw.strip())
+        return resolve_path_from_root(
+            repo_root, format_tokenized(raw.strip(), None, model, region)
+        )
     if raw_by_target is None:
         return None
     if not isinstance(raw_by_target, dict) or any(

@@ -1764,3 +1764,5 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 先本地验收，再按已有流程提交 Read the Docs 预览；不需要写线上多维表。
 
 Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图标的编号和空图标列。已包含在整图中的开关文字，通过插图覆盖声明移除重复显示。
+
+For the EU charger family, the Web illustration path resolves from the selected model and region. Charger pages retain their installation components without inheriting power-station LCD or auto-resume tables.

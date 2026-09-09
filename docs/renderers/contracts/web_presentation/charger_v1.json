@@ -7,7 +7,9 @@
     },
     "operations": {
       "source_patterns": [],
-      "figures": []
+      "figures": [],
+      "auto_resume_table": null,
+      "lcd_mode_table": null
     }
   }
 }
