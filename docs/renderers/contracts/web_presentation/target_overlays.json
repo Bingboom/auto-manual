@@ -2,6 +2,37 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
+      "overlay_id": "je500a-eu-en-v1",
+      "target": {
+        "model": "JE-500A",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "policy_id": "je500a-eu-en-finished-figures-v1",
+        "locales": ["en"],
+        "required_slots": [
+          "finished-panel.overview",
+          "finished-panel.operation_power",
+          "finished-panel.operation_ac",
+          "finished-panel.operation_dc",
+          "finished-panel.operation_energy",
+          "finished-panel.operation_led",
+          "finished-panel.operation_lcd_device",
+          "finished-panel.charging_ac",
+          "finished-panel.charging_solar_single",
+          "finished-panel.charging_solar_dual",
+          "finished-panel.charging_car"
+        ],
+        "allowed_statuses": ["finished-panel", "approved-composite"]
+      },
+      "contract_overrides": {}
+    },
+    {
       "overlay_id": "je100c-eu-en-v1",
       "target": {
         "model": "JE-100C",
