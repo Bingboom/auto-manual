@@ -203,6 +203,11 @@ Meaning:
 - `queue-query`: OpenClaw Phase 2 queue resolution helper; it reads the Feishu-bound review/build rows and returns the concrete `record_id`, optional `Task_id`, workflow intent, `Git_ref`, status fields, and explicit `delivery_kind / delivery_url / delivery_ready` contract that a natural-language control layer needs before dispatch or status reporting
 - `queue-resolve-action`: structured OpenClaw dry-run resolver; it turns one natural-language ask into the bounded action contract from the control-layer plan, including `action_name`, `resolution_status`, required confirmation, missing required fields, and the matched queue row
 - `manual-index-query`: read-only OpenClaw helper for the `发布文档管理` Base view. It answers product/manual-link inventory and overview asks such as `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息`; it respects `FEISHU_MANUAL_INDEX_*` overrides and does not dispatch builds.
+- Formal-source Web targets such as `JE-2000E / EU / en` keep their audited,
+  target-only phase2 snapshot under `manual_sources/<MODEL>/<REGION>/<lang>/<version>/`.
+  Build them with that `--data-root` and `AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off`;
+  the frozen source manifest and Web illustration manifest make the local build
+  replayable without treating it as a live Base update or publication.
 - for this repo, treat **BlockClaw** as the OpenClaw-backed document-build operator rather than a generic assistant: its primary job is to work with content blocks, run review/build/publish work, inspect queue state, explain build failures, and only secondarily help with translation or copy work that supports the manuals
 - `translation-memory`: query the repo-owned `data/phase2` multilingual snapshot and return compact translation memory context for OpenClaw or human translation tasks; combine it with `sync-data` when freshness matters
 - `validate`: catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not declared in `build.languages`, before `sync-data` or a build reaches runtime
@@ -2055,3 +2060,9 @@ missing/multiple/empty labels or artwork inside the consumed label fail before
 caller mutation. The old direct function exits `web_presentation`. Existing
 EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
 retained HTML, source matching and the raw inline handoff remain adapter debt.
+
+JBP-2000B EU English Web intake uses `configs/config.bp-eu-en.yaml` and the
+[versioned Git source](../manual_sources/JBP-2000B/EU/en/2.0/README.md); the
+existing six-language BP configuration remains available.
+
+Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图标的编号和空图标列。已包含在整图中的开关文字，通过插图覆盖声明移除重复显示。

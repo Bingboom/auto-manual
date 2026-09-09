@@ -86,7 +86,7 @@ class CapabilityPageFilterTests(unittest.TestCase):
         # 24 host UPS pages + 3 BP@INTL US language blocks + 6 BP@INTL EU
         # language blocks.  Each resolved target must carry the capability
         # annotation rather than relying on a renderer-side region branch.
-        self.assertEqual(len(annotated_pages), 34)
+        self.assertEqual(len(annotated_pages), 35)
 
     def test_false_capability_drops_the_page(self) -> None:
         kept, notes = filter_pages_by_capability(

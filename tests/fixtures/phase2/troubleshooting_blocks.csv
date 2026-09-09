@@ -173,3 +173,21 @@ FA, FC",Contact Jackery Customer Support.,Contacter le service à la clientèle 
 5,JBP-3600A,EU,TRUE,V2.0-2026-08-04,F5,Charge the product via solar panels or an AC wall outlet until the fault disappears.,,,,,,,,,,F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.,
 6,JBP-3600A,EU,TRUE,V2.0-2026-08-04,"F6-F9, FA, FC, FE",Contact Jackery Customer Support.,,,,,,,,,,"F6-F9, FA, FC, FE: Contact Jackery Customer Support.",
 7,JBP-3600A,EU,TRUE,V2.0-2026-08-04,FF,Place the product in an environment with a proper temperature and wait until the fault disappears.,,,,,,,,,,FF: Place the product in an environment with a proper temperature and wait until the fault disappears.,
+1,JE-1000H,"EU, AU, KR",TRUE,V2.0,F0,Restart the product.,,,,,,,,,,F0: Restart the product.,
+2,JE-1000H,"EU, AU, KR",TRUE,V2.0,F1,Restart the product.,,,,,,,,,,F1: Restart the product.,
+3,JE-1000H,"EU, AU, KR",TRUE,V2.0,F2,Restart the product.,,,,,,,,,,F2: Restart the product.,
+4,JE-1000H,"EU, AU, KR",TRUE,V2.0,F3,Restart the product.,,,,,,,,,,F3: Restart the product.,
+5,JE-1000H,"EU, AU, KR",TRUE,V2.0,F4,Connect the product to loads to discharge its battery until the fault disappears.,,,,,,,,,,F4: Connect the product to loads to discharge its battery until the fault disappears.,
+6,JE-1000H,"EU, AU, KR",TRUE,V2.0,F5,Charge the product via solar panels or an AC wall outlet until the fault disappears.,,,,,,,,,,F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.,
+7,JE-1000H,"EU, AU, KR",TRUE,V2.0,F6,"1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.
+3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
+4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
+5. Restart the product.",,,,,,,,,,F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.,
+8,JE-1000H,"EU, AU, KR",TRUE,V2.0,F7,"1. Remove all DC inputs from the product.
+2. Check the open-circuit voltage (V\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.
+3. Restart the product and keep it idle. Wait until the fault disappears.",,,,,,,,,,F7: 1. Remove all DC inputs from the product.,
+9,JE-1000H,"EU, AU, KR",TRUE,V2.0,F8,Contact Jackery Customer Support.,,,,,,,,,,F8: Contact Jackery Customer Support.,
+10,JE-1000H,"EU, AU, KR",TRUE,V2.0,F9,Remove the load connected to the USB ports of the product. Wait until the fault disappears.,,,,,,,,,,F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.,
+11,JE-1000H,"EU, AU, KR",TRUE,V2.0,FC,"Restart the battery packs and Jackery Explorer 1000 Plus. If the fault persists, reconnect the battery packs.",,,,,,,,,,"FC: Restart the battery packs and Jackery Explorer 1000 Plus. If the fault persists, reconnect the battery packs.",
+12,JE-1000H,"EU, AU, KR",TRUE,V2.0,FE,Contact Jackery Customer Support.,,,,,,,,,,FE: Contact Jackery Customer Support.,

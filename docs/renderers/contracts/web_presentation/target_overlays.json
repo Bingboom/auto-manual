@@ -164,7 +164,15 @@
         "figures": false,
         "legacy_target_components": false
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "*11_warranty",
+            "warranty_en",
+            "eu_warranty"
+          ]
+        }
+      }
     },
     {
       "overlay_id": "jbp2000b-jp-v1",
