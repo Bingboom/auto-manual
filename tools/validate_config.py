@@ -368,6 +368,8 @@ def validate(cfg: dict, strict_files: bool) -> list[Issue]:
             cfg,
             default_languages=languages if is_list_of_str(languages) else None,
             root=ROOT,
+            model=(build.get("default_model") if isinstance(build, dict) else None),
+            region=(build.get("default_region") if isinstance(build, dict) else None),
         )
     except RuntimeError as exc:
         issues.append(Issue("ERROR", str(exc)))

@@ -1,0 +1,41 @@
+# Resolved Manifest — charger-intl + charger-eu-en + ja_ad600a_eu.
+manifest_id: manual_charger_eu_en_ja_ad600a
+pages:
+  - type: rst_include
+    slot_id: disclaimer_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/disclaimer.rst
+  - type: csv_page
+    slot_id: specifications_en
+    source: phase2
+    page: spec
+    langs: [en]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: dimensions_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/dimensions.rst
+  - type: rst_include
+    slot_id: box_contents_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/box_contents.rst
+  - type: rst_include
+    slot_id: product_overview_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/product_overview.rst
+  - type: rst_include
+    slot_id: important_safety_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/important_safety.rst
+  - type: rst_include
+    slot_id: faq_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/faq.rst
+  - type: rst_include
+    slot_id: installation_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/installation.rst
+  - type: rst_include
+    slot_id: warranty_en
+    lang: en
+    file: templates/page_charger/ja_ad600a/en/warranty.rst

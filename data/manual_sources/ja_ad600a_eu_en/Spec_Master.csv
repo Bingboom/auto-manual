@@ -1,0 +1,14 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Model,Source_lang
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,1,product_name,,Product Name,,1,,,Jackery DC-DC Charger,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,2,model_no,,Model,,1,,,JA-AD600A,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,3,dc_input,,DC Input,,1,,,"11.8V–32V⎓, 60A",,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,4,output_voltage,,Output Voltage,,1,,,50V⎓,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,5,output_current,,Output Current,,1,,,12A Max,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,6,output_power,,Output Power,,1,,,600W Max,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,7,working_temperature,,Working Temperature,,1,,,−20°C–60°C,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,8,working_humidity,,Working Humidity,,1,,,5%–95%,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,9,storage_temperature,,Storage Temperature,,1,,,−30°C–80°C,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,10,working_altitude,,Working Altitude,,1,,,≤3000 m,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,11,protection_rating,,Protection Rating,,1,,,IP40,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,12,weight,,Weight,,1,,,Around 1.6 kg,,JA-AD600A,en
+JA-AD600A_EU,EU,TRUE,specifications,GENERAL,1,13,dimensions,,Dimensions,,1,,,259 × 154.5 × 39.3 mm,,JA-AD600A,en

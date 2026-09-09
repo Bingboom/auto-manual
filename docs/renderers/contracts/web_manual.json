@@ -3,7 +3,8 @@
   "shared_base": "web_presentation/shared_base.json",
   "skeleton_profiles": {
     "portable-power-station-v1": "web_presentation/portable_power_station_v1.json",
-    "battery-pack-v1": "web_presentation/battery_pack_v1.json"
+    "battery-pack-v1": "web_presentation/battery_pack_v1.json",
+    "charger-v1": "web_presentation/charger_v1.json"
   },
   "compatibility_skeleton_profile": "portable-power-station-v1",
   "target_overlays": [

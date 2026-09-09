@@ -31,8 +31,8 @@
   "files": [
     {
       "path": "configs/config.charger-eu-en.yaml",
-      "sha256": "7cb8a332ef7256129d4035753f55cd4ca33d71d8f6a2cdafe41eb26b9a4af2b4",
-      "size_bytes": 817
+      "sha256": "6a26e99c70d65205a96b6e701e6d2337b000d14d8bafc2bab1087a4e0bec96a5",
+      "size_bytes": 870
     },
     {
       "path": "data/asset_recipes/manual_ja_ad01a_eu_en_web.json",
@@ -70,9 +70,14 @@
       "size_bytes": 99
     },
     {
-      "path": "docs/manifests/manual_charger-eu-en.yaml",
-      "sha256": "d05c8b808374e4994dbde7cd28c8abaf89e0c57f2a06c32ebd86049d81b0e529",
-      "size_bytes": 1326
+      "path": "docs/manifests/manual_charger-eu-en-JA-AD01A.yaml",
+      "sha256": "11e6c699835d7d744bdd7914a7256d419b5bd43af25b28868857966f76ee066b",
+      "size_bytes": 947
+    },
+    {
+      "path": "docs/manifests/product_plans/ja_ad01a_eu.yaml",
+      "sha256": "d1b181840a4df2a44dda91ea2f456167471b9fc9a2a8b8acfec46ae6c885a31e",
+      "size_bytes": 222
     },
     {
       "path": "docs/renderers/web/assets/ja_ad01a_eu_en/inbox_cable.png",
@@ -100,7 +105,7 @@
       "size_bytes": 47042
     },
     {
-      "path": "docs/renderers/web/ja_ad01a_eu_en_illustrations.json",
+      "path": "docs/renderers/web/charger_eu_en_JA-AD01A_illustrations.json",
       "sha256": "b9c8d0c93887db93b61070d90f118098d48f77c6b8d0dcfa23d4f6a2f986e731",
       "size_bytes": 1878
     },

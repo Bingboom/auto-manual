@@ -1250,7 +1250,7 @@ def normalize_web_source_fragment(
         source_path, data
     ):
         _transform_preface(soup, source_path=source_path)
-    if _matches_source(source_path, list(data["operations"]["source_patterns"])):
+    if _matches_source(source_path, list(data["operations"]["source_patterns"])) and data["operations"].get("auto_resume_table"):
         _ensure_auto_resume_table(
             soup,
             source_path=source_path,
@@ -1363,7 +1363,7 @@ def transform_web_fragment(
         )
     ):
         semantic_fragment = str(soup)
-    if is_operations and "HB-TABLE-AUTO-RESUME" not in resolved:
+    if is_operations and operations.get("auto_resume_table") and "HB-TABLE-AUTO-RESUME" not in resolved:
         _ensure_auto_resume_table(
             soup,
             source_path=source_path,
@@ -1372,6 +1372,7 @@ def transform_web_fragment(
         semantic_fragment = str(soup)
     if (
         is_operations
+        and operations.get("lcd_mode_table")
         and "HB-TABLE-LCD-MODE" not in resolved
         and not embedded_components_complete
     ):

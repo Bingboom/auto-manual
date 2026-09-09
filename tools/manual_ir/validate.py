@@ -294,13 +294,23 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
     )
     if not isinstance(figure_targets, list):
         figure_targets = []
-    requires_overview_instance = requires_embedded_registry and any(
+    overview_contract = (
+        web_contract.get("product_overview", {})
+        if isinstance(web_contract, dict)
+        else {}
+    )
+    requires_overview_instance = (
+        requires_embedded_registry
+        and isinstance(overview_contract, dict)
+        and bool(overview_contract.get("source_patterns"))
+        and any(
         isinstance(target, dict)
         and str(target.get("model") or "").casefold()
         == str(raw["model"]).casefold()
         and str(target.get("region") or "").casefold()
         == str(raw["region"]).casefold()
         for target in figure_targets
+        )
     )
     if (
         embedded_overview is None

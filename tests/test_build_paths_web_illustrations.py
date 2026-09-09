@@ -30,6 +30,18 @@ class WebIllustrationManifestPathTests(unittest.TestCase):
                 root / "docs/renderers/web/illustrations.json",
             )
 
+    def test_expands_model_and_region_in_family_manifest(self) -> None:
+        for model in ("JA-AD01A", "JA-AD600A"):
+            with self.subTest(model=model):
+                resolved = resolve_web_illustration_manifest(
+                    Path("config.yaml"), repo_root=Path("/repo"),
+                    model=model, region="EU",
+                    config_loader=lambda _: {"paths": {
+                        "web_illustration_manifest": "art/{region}/{model}.json"
+                    }},
+                )
+                self.assertEqual(Path(f"/repo/art/EU/{model}.json"), resolved)
+
     def test_unselected_target_has_no_manifest(self) -> None:
         resolved = resolve_web_illustration_manifest(
             Path("config.yaml"),

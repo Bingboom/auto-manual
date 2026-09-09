@@ -95,6 +95,14 @@ entries:
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_us.yaml
     diff: docs/manifests/family/diffs/manual_us-single-en__manual_us.json
+  - family_id: charger-eu-en-target
+    base: docs/manifests/manual_charger-eu-en.yaml
+    manifest: docs/manifests/manual_charger-eu-en-JA-AD01A.yaml
+    diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-AD01A.json
+  - family_id: charger-eu-en-target
+    base: docs/manifests/manual_charger-eu-en.yaml
+    manifest: docs/manifests/manual_charger-eu-en-JA-AD600A.yaml
+    diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-AD600A.json
   - family_id: zh
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_zh.yaml
