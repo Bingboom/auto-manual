@@ -1,0 +1,51 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JS-200E",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0",
+    "product_name": "Jackery SolarSaga 200"
+  },
+  "authority": {
+    "policy": "user-designated-source-attachment",
+    "source_system": "DingTalk Bitable",
+    "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "table_id": "97v7518",
+    "record_id": "DFV5KKDywi",
+    "source_master_name": "JS-200E-eu-source.ai",
+    "source_master_format": "PDF-compatible Illustrator",
+    "source_master_page_count": 1,
+    "source_master_sha256": "db150930c307590ad45daf236d1ed54ecbe05ca64e92b8b105abf5e058ff0f70",
+    "english_panel_page_count": 6,
+    "english_panel_bbox_pt": [4600.747, 1479.456, 6941.733, 2003.866]
+  },
+  "build_input": {
+    "config": "configs/config.solar-eu-en.yaml",
+    "page_manifest": "docs/manifests/manual_js200e_solar-eu-en.yaml",
+    "structured_copy": "docs/templates/page_solar/js200e/en",
+    "data_root": "data/manual_sources/JS-200E/EU/en/2.0/phase2",
+    "snapshot_sha256": "c33d0d35e775d3d82455493432b1fe0502d8debc928dc7afea296681ec39fb58",
+    "snapshot_hash_algorithm": "sha256 of the LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the five CSV files"
+  },
+  "files": [
+    {"path": "phase2/Spec_Footnotes.csv", "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18", "size": 83},
+    {"path": "phase2/Spec_Master.csv", "sha256": "fb868b5b22406bb2516db394f862db949dd8087222b49b5edb2360a90d4515f2", "size": 3032},
+    {"path": "phase2/Spec_Notes.csv", "sha256": "1fd6fd4409aeb0cf4838b6ffc6b069b243f170c283bd6ba0574daabea95f8c53", "size": 510},
+    {"path": "phase2/page_registry.csv", "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5", "size": 139},
+    {"path": "phase2/spec_titles.csv", "sha256": "00a297133dba2df89d89b7f7e622dd8dbc284fdaebc0c4564f088b705b6d0532", "size": 247}
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_js200e_eu_en_web.json",
+    "recipe_sha256": "842dd38fd67136ed3f5ae2a448e5921c2fdc13ef018ff052e4ecbd6f93f9f679",
+    "illustration_manifest": "docs/renderers/web/js200e_eu_en_illustrations.json",
+    "illustration_manifest_sha256": "a041cca447993cfb44e2dc7348c5e8300a6528876194229378be212890115b97",
+    "semantic_asset_count": 10,
+    "text_policy": "image-owned English panels plus native Web copy, specifications, notes, and warranty components"
+  },
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false
+  }
+}

@@ -122,7 +122,13 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
 
     def test_config_declares_safety_as_web_entry_and_true_target(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
-        self.assertEqual([{"model": "JS-100I", "region": "EU"}], config["build"]["targets"])
+        self.assertEqual(
+            [
+                {"model": "JS-100I", "region": "EU"},
+                {"model": "JS-200E", "region": "EU"},
+            ],
+            config["build"]["targets"],
+        )
         self.assertIn("safety_tips*", config["build"]["web_entry_source_patterns"])
         self.assertEqual(str(MANIFEST.relative_to(ROOT)), config["paths"]["page_manifest"])
 
