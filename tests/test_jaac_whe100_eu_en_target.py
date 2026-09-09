@@ -9,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import textwrap
 import unittest
 from pathlib import Path
 
@@ -278,9 +279,12 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
                     / "how_to_controls.png"
                 )
             if result.returncode and generated_controls.exists():
+                encoded_controls = base64.b64encode(
+                    generated_controls.read_bytes()
+                ).decode("ascii")
                 diagnostic = (
                     "\nCONTROLS_PNG_BASE64_BEGIN\n"
-                    + base64.b64encode(generated_controls.read_bytes()).decode("ascii")
+                    + "\n".join(textwrap.wrap(encoded_controls, width=120))
                     + "\nCONTROLS_PNG_BASE64_END\n"
                 )
             self.assertEqual(
