@@ -16,6 +16,8 @@ from bs4 import BeautifulSoup
 import yaml
 
 from tools.asset_registry import load_registry, resolve_asset
+from tools.asset_pipeline import load_recipe
+from tools.asset_pipeline.extract import extract_artifacts
 from tools.manual_ir import read_manual_ir
 from tools.skeleton_resolve import (
     load_blueprint,
@@ -262,6 +264,19 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
                 / "jaac_whe100_eu_en"
                 / "how_to_controls.png"
             )
+            if result.returncode and not generated_controls.exists():
+                diagnostic_root = Path(td) / "diagnostic-artifacts"
+                diagnostic_root.mkdir()
+                try:
+                    extract_artifacts(SOURCE, load_recipe(RECIPE), diagnostic_root)
+                except RuntimeError:
+                    pass
+                generated_controls = (
+                    diagnostic_root
+                    / "assets"
+                    / "jaac_whe100_eu_en"
+                    / "how_to_controls.png"
+                )
             if result.returncode and generated_controls.exists():
                 diagnostic = (
                     "\nCONTROLS_PNG_BASE64_BEGIN\n"
