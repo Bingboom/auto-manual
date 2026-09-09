@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import csv
 import hashlib
 import json
@@ -253,7 +254,25 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
-            self.assertEqual(0, result.returncode, result.stdout + result.stderr)
+            diagnostic = ""
+            generated_controls = (
+                output_root
+                / "artifacts"
+                / "assets"
+                / "jaac_whe100_eu_en"
+                / "how_to_controls.png"
+            )
+            if result.returncode and generated_controls.exists():
+                diagnostic = (
+                    "\nCONTROLS_PNG_BASE64_BEGIN\n"
+                    + base64.b64encode(generated_controls.read_bytes()).decode("ascii")
+                    + "\nCONTROLS_PNG_BASE64_END\n"
+                )
+            self.assertEqual(
+                0,
+                result.returncode,
+                result.stdout + result.stderr + diagnostic,
+            )
             summary = json.loads(result.stdout.split("\n[build.py]", 1)[0])
             self.assertEqual(9, summary["artifact_count"])
             self.assertEqual(
