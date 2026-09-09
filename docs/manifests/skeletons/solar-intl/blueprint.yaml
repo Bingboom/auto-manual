@@ -5,6 +5,14 @@ schema_version: skeleton-blueprint/v1
 skeleton_id: solar-intl
 skeleton_family: SOLAR
 house_style: INTL
+default_order_profile: air-100-v1
+order_profiles:
+  air-100-v1:
+    [safety_tips, box_contents, product_views, unfolding, folding,
+     charging_connections, angle_and_device, storage, specifications, warranty]
+  air-40-v1:
+    [safety_tips, box_contents, product_views, unfolding, folding,
+     charging_connections, angle_and_device, storage, specifications, warranty]
 slots:
   - slot_id: safety_tips
     block: body
@@ -23,12 +31,12 @@ slots:
     toc: true
   - slot_id: unfolding
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: folding
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: charging_connections
@@ -39,6 +47,11 @@ slots:
   - slot_id: angle_and_device
     block: body
     requirement: required
+    presentation: chapter
+    toc: true
+  - slot_id: storage
+    block: body
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: specifications
