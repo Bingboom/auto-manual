@@ -10,30 +10,23 @@ import sys
 import tempfile
 import unittest
 
+from bs4 import BeautifulSoup
 import yaml
 
 from tools.manual_ir import read_manual_ir
-from tools.skeleton_resolve import (
-    load_blueprint,
-    load_region_profile,
-    load_slot_templates,
-    resolve_plan,
-)
 from tools.web_document_ir import render_document_fragments
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "config.solar-eu-en.yaml"
-MANIFEST = ROOT / "docs" / "manifests" / "manual_solar-eu-en.yaml"
-ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "js100i_eu_en_illustrations.json"
-SOURCE_ROOT = ROOT / "data" / "manual_sources" / "JS-100I" / "EU" / "en" / "2.0"
+MANIFEST = ROOT / "docs" / "manifests" / "manual_solar-eu-en-JS-100F.yaml"
+ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "js100f_eu_en_illustrations.json"
+SOURCE_ROOT = ROOT / "data" / "manual_sources" / "JS-100F" / "EU" / "en" / "1.0"
 DATA_ROOT = SOURCE_ROOT / "phase2"
 SOURCE_MANIFEST = SOURCE_ROOT / "source_manifest.json"
-SKELETON = ROOT / "docs" / "manifests" / "skeletons" / "solar-intl"
-PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "solar-eu-en.yaml"
 
 
-class SolarJs100iEuTargetTests(unittest.TestCase):
+class SolarJs100fEuTargetTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.temp = tempfile.TemporaryDirectory()
@@ -50,14 +43,16 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
             "    raise SystemExit(0)\n"
             "source = Path(sys.argv[1])\n"
             "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
-            "text = source.read_text(encoding='utf-8')\n"
-            "target.write_text(text.replace('–', '--').replace('—', '---'), encoding='utf-8')\n",
+            "target.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')\n",
             encoding="utf-8",
         )
         fake_pandoc.chmod(0o755)
-        env = dict(os.environ)
-        env["AUTO_MANUAL_PRESENTATION_PROFILE"] = "web"
-        env["PATH"] = str(fake_bin) + os.pathsep + env.get("PATH", "")
+        env = {
+            **os.environ,
+            "AUTO_MANUAL_OSS_ARCHIVE_CONFIG": "off",
+            "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
+            "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+        }
         result = subprocess.run(
             [
                 sys.executable,
@@ -66,7 +61,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
                 "--config",
                 str(CONFIG),
                 "--model",
-                "JS-100I",
+                "JS-100F",
                 "--region",
                 "EU",
                 "--lang",
@@ -84,119 +79,127 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
         )
         if result.returncode:
             raise AssertionError(
-                "JS-100I formal Git-source build failed:\n"
+                "JS-100F formal Git-source build failed:\n"
                 f"stdout:\n{result.stdout}\n"
                 f"stderr:\n{result.stderr}"
             )
-        cls.package = cls.staging / "docs" / "_build" / "JS-100I" / "EU" / "en" / "md"
+        cls.package = cls.staging / "docs" / "_build" / "JS-100F" / "EU" / "en" / "md"
         cls.ir = read_manual_ir(cls.package / "manual.ir.json")
-        cls.markdown = (cls.package / "manual_js100i_eu_en.md").read_text(encoding="utf-8")
+        cls.markdown = (cls.package / "manual_js100f_eu_en.md").read_text(encoding="utf-8")
+        cls.html = (cls.package / "manual_bundle.html").read_text(encoding="utf-8")
 
     @classmethod
     def tearDownClass(cls) -> None:
         cls.temp.cleanup()
 
-    def test_category_skeleton_resolves_exact_web_body_order(self) -> None:
-        blueprint = load_blueprint(SKELETON / "blueprint.yaml")
-        slots = load_slot_templates(SKELETON / "slot_templates.yaml", blueprint)
-        profile = load_region_profile(PROFILE, blueprint)
-        plan = resolve_plan(blueprint, slots, profile, manifest_id="manual_solar_eu_en")
-
-        self.assertEqual("solar-intl", blueprint["skeleton_id"])
-        self.assertEqual(
-            [
-                "safety_tips_en",
-                "box_contents_en",
-                "product_views_en",
-                "unfolding_en",
-                "folding_en",
-                "charging_connections_en",
-                "angle_and_device_en",
-                "specifications_en",
-                "warranty_en",
-            ],
-            [page["slot_id"] for page in plan["pages"]],
-        )
-        committed = yaml.safe_load(MANIFEST.read_text(encoding="utf-8"))
-        self.assertEqual(plan, committed)
-
-    def test_config_declares_safety_as_web_entry_and_true_target(self) -> None:
+    def test_shared_config_selects_target_manifest_and_illustrations(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
+        self.assertIn({"model": "JS-100F", "region": "EU"}, config["build"]["targets"])
         self.assertEqual(
-            [
-                {"model": "JS-100I", "region": "EU"},
-                {"model": "JS-100F", "region": "EU"},
-            ],
-            config["build"]["targets"],
+            "docs/manifests/manual_solar-eu-en-JS-100F.yaml",
+            config["paths"]["page_manifests"]["JS-100F_EU"],
         )
-        self.assertIn("safety_tips*", config["build"]["web_entry_source_patterns"])
-        self.assertEqual(str(MANIFEST.relative_to(ROOT)), config["paths"]["page_manifest"])
+        self.assertEqual(
+            "docs/renderers/web/js100f_eu_en_illustrations.json",
+            config["paths"]["web_illustration_manifests"]["JS-100F_EU"],
+        )
 
-    def test_formal_source_manifest_pins_every_structured_data_file(self) -> None:
+    def test_source_manifest_locks_every_input_and_asset_contract(self) -> None:
         payload = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertEqual("auto-manual-git-source-snapshot/v1", payload["schema_version"])
         self.assertEqual(
-            ("JS-100I", "EU", "en", "2.0"),
+            ("JS-100F", "EU", "en", "1.0"),
             tuple(payload["target"][field] for field in ("model", "region", "lang", "version")),
+        )
+        self.assertEqual(
+            "2074ddc390cf0e218a94a6ad267721c6f85cb5a34a29c96e45093791602f8952",
+            payload["authority"]["source_master_sha256"],
         )
         inventory: list[str] = []
         for entry in payload["files"]:
             source = SOURCE_ROOT / entry["path"]
-            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+            data = source.read_bytes()
+            digest = hashlib.sha256(data).hexdigest()
+            self.assertEqual(entry["size"], len(data), entry["path"])
             self.assertEqual(entry["sha256"], digest, entry["path"])
-            inventory.append(f"{digest}  {source.name}\n")
-        snapshot_digest = hashlib.sha256("".join(sorted(inventory)).encode()).hexdigest()
-        self.assertEqual(payload["build_input"]["snapshot_sha256"], snapshot_digest)
+            if source.suffix == ".csv":
+                inventory.append(f"{digest}  {source.name}\n")
         self.assertEqual(
-            "data/manual_sources/JS-100I/EU/en/2.0/phase2",
-            payload["build_input"]["data_root"],
+            payload["build_input"]["snapshot_sha256"],
+            hashlib.sha256("".join(sorted(inventory)).encode()).hexdigest(),
         )
+        self.assertEqual(
+            payload["assets"]["recipe_sha256"],
+            hashlib.sha256((ROOT / payload["assets"]["recipe"]).read_bytes()).hexdigest(),
+        )
+        self.assertEqual(
+            payload["assets"]["illustration_manifest_sha256"],
+            hashlib.sha256(
+                (ROOT / payload["assets"]["illustration_manifest"]).read_bytes()
+            ).hexdigest(),
+        )
+        self.assertFalse(any(payload["online_dependencies"].values()))
 
-    def test_build_starts_at_safety_and_has_no_power_station_only_chapters(self) -> None:
+    def test_manual_order_and_source_backed_scope(self) -> None:
         self.assertEqual("manual-ir/v2", self.ir.schema_version)
-        self.assertEqual("JS-100I", self.ir.model)
+        self.assertEqual("JS-100F", self.ir.model)
         self.assertEqual("EU", self.ir.region)
         self.assertEqual("en", self.ir.language)
-        self.assertEqual("safety_tips_en.rst", self.ir.pages[0].page_id)
-        page_ids = [page.page_id for page in self.ir.pages]
-        self.assertEqual(9, len(page_ids))
-        self.assertFalse(any("cover" in page or "toc" in page for page in page_ids))
-        for forbidden in ("LCD DISPLAY", "UPS MODE", "APP CONTROL"):
-            self.assertNotIn(forbidden, self.markdown.upper())
-
-    def test_complete_copy_components_and_five_item_inbox_are_present(self) -> None:
-        for required in (
-            "SAFETY TIPS",
+        self.assertEqual(
+            [
+                "specifications_en.rst",
+                "safety_tips_en.rst",
+                "how_to_use_en.rst",
+                "sun_angle_indicator_en.rst",
+                "power_your_device_en.rst",
+                "warranty_en.rst",
+            ],
+            [page.page_id for page in self.ir.pages],
+        )
+        for forbidden in (
+            "JS-100I",
+            "SolarSaga 100 Air",
+            "LCD DISPLAY",
+            "UPS MODE",
+            "APP CONTROL",
             "WHAT'S IN THE BOX",
-            'data-card-count="5"',
-            'data-inbox-variant="responsive-card-grid"',
-            "DC8020--DC7909 Adapter",
-            "SUN ANGLE INDICATOR",
-            "STC*: 100 W ± 5% / BNPI*: 110 W ± 5%",
+            "==MISSING:",
+        ):
+            self.assertNotIn(forbidden, self.markdown)
+
+    def test_semantic_specs_notes_warnings_and_warranty_are_preserved(self) -> None:
+        for required in (
+            "Jackery SolarSaga 100",
+            "STC*: 100 W ± 5 W / BNPI*: 104 W ± 5 W",
+            "-20°C to 65°C (-4°F to 149°F)",
             "IEC TS 63163 Consumer Product Category 2",
-            "2 YEARS --- Extended Warranty",
+            "design load is 1600 Pa",
+            "multiply the short-circuit current (Iₛ꜀) and open-circuit voltage (Vₒ꜀)",
+            "DC8020-DC7909 adapter",
+            "3 YEARS — Limited Warranty",
+            "36 months",
+            "2 YEARS — Extended Warranty",
             "hello.eu@jackery.com",
         ):
             self.assertIn(required, self.markdown)
-        self.assertEqual(13, len(self.ir.asset_refs))
-        provenance = self.ir.metadata["illustration_provenance"]
-        self.assertEqual("web-illustrations/v1", provenance["schema_version"])
-        self.assertEqual(13, len(provenance["illustrations"]))
+        soup = BeautifulSoup(self.html, "html.parser")
+        self.assertEqual(3, len(soup.select("table.manual-spec-table")))
+        notes = soup.select("table.manual-callout-table")
+        self.assertEqual(3, len(notes))
+        self.assertTrue(
+            all(note.select_one(".manual-callout-label").get_text(strip=True) == "NOTE" for note in notes)
+        )
+        self.assertEqual(4, len(soup.select("img.manual-finished-illustration")))
 
-    def test_illustration_manifest_binds_target_source_and_exact_asset_hashes(self) -> None:
+    def test_illustration_manifest_binds_exact_source_crops_and_hashes(self) -> None:
         payload = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         self.assertEqual(
-            ("JS-100I", "EU", "en"),
+            ("JS-100F", "EU", "en"),
             (payload["model"], payload["region"], payload["language"]),
         )
-        self.assertEqual(
-            "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
-            payload["source_pdf_sha256"],
-        )
-        self.assertEqual(
-            "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
-            payload["source_master_sha256"],
-        )
+        self.assertEqual([1712, 600, 2861, 1120], payload["english_panel_bbox_pt"])
+        self.assertEqual(4, len(payload["illustrations"]))
+        self.assertEqual(4, len(self.ir.asset_refs))
         for entry in payload["illustrations"]:
             asset = ILLUSTRATIONS.parent / entry["path"]
             self.assertEqual(entry["sha256"], hashlib.sha256(asset.read_bytes()).hexdigest())
@@ -220,8 +223,8 @@ with patch.object(Path, "open", guarded):
     rendered = render_document_fragments(
         read_manual_ir(package / "manual.ir.json"), package_root=package
     )
-    assert len(rendered) == 9
-    assert "Jackery SolarSaga 100 Air" in "".join(rendered)
+    assert len(rendered) == 6
+    assert "Jackery SolarSaga 100" in "".join(rendered)
 '''
         subprocess.run(
             [sys.executable, "-c", script, str(relocated)],
