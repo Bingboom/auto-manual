@@ -14,6 +14,8 @@
   `manual_sources/JE-1000H/EU/en/2.0/phase2`; no live Bitable query is required.
 - Product, port, LCD-map, battery-pack, charging, and App images are extracted
   from this JE-1000H source. No product illustration from another model is used.
+- Product-overview crops exclude the source artwork's embedded FRONT VIEW and
+  LEFT/RIGHT SIDE VIEW headings so the Web section headings are not duplicated.
 - Text-bearing illustration frames consume their duplicated Web annotations.
   The LCD detail remains a searchable semantic HTML/CSS table beside the source
   numbered overview image; the manual is not published as PDF-page screenshots.

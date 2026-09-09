@@ -1526,7 +1526,7 @@
           "op": "crop",
           "bbox_pt": [
             28,
-            54,
+            68,
             342,
             245
           ]
@@ -1537,13 +1537,13 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je1000h_eu_en/overview_front.png",
           "scale": 12,
-          "expected_sha256": "2298352a28a627ff06d80ccc62558d117c65076472a3453dc46afac8d64deef3"
+          "expected_sha256": "56719582b38d07315aeaadedb43420450ea0dd428f7b87a7346a2fecb7cf6b3b"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; the embedded FRONT VIEW heading is excluded while all diagram labels remain complete."
         ]
       },
       "risk_tags": [
@@ -1574,9 +1574,18 @@
           "op": "crop",
           "bbox_pt": [
             28,
-            250,
+            269,
             342,
             493
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            28,
+            369,
+            111,
+            389
           ]
         }
       ],
@@ -1585,13 +1594,13 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je1000h_eu_en/overview_side.png",
           "scale": 12,
-          "expected_sha256": "d05603c9df9169e01285c7d143f08de9d8497db0d1172d1c718343dd3f295b30"
+          "expected_sha256": "dbc969c18fdee845ceacc0e3d017e625ece67e9ec1bd2d76ed8d2abdc243b5d8"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
+          "2026-09-08 source-matched JE-1000H crop visually verified at 12x; the embedded LEFT SIDE VIEW and RIGHT SIDE VIEW headings are excluded while all diagram labels remain complete."
         ]
       },
       "risk_tags": [
