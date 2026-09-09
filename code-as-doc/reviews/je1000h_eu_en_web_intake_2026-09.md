@@ -56,3 +56,7 @@ deployment, or a live asset-register write.
   and exact record read-back.
 - No Hello-Docs snapshot, OSS deployment, Read the Docs route, or production
   link has been created or verified.
+
+## 2026-09-09 integration
+
+The shared EU battery-pack slot uses generated-page model overrides so JE-1000H receives its reviewed chapter while JE-2000E retains its existing charging-page chapter without duplicates or foreign assets. Both target Web regression suites are included in integration validation.
