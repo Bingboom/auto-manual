@@ -37,7 +37,7 @@ The package-list User Guide crop excludes the source QR because its destination 
 - [x] Asset registry, links, secrets, lint, maintainability, and full repository regression (3,910 tests; 22 skipped) pass.
 - [x] Clean-checkout replay passes from committed source inputs (10 deterministic asset artifacts; 6 target tests).
 - [x] Latest `origin/main` (`d1eeb282`) integrated normally after validation (`Already up to date`; no rebase).
-- [ ] Branch pushed and PR opened to `main`; merge and formal publication remain pending.
+- [x] Branch pushed and PR #1099 opened to `main`; merge and formal publication remain pending.
 
 ## Publication boundary
 
