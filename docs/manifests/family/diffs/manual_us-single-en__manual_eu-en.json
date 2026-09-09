@@ -55,6 +55,10 @@
               "recipe": "templates/recipes/eu-en/03_product_overview_je2000e.yaml",
               "template": "templates/targets/je2000e/03_product_overview_placeholder.rst"
             },
+            "JE-3000C": {
+              "recipe": "templates/recipes/eu-en/03_product_overview_je3000c.yaml",
+              "template": "templates/targets/je3000c/03_product_overview_placeholder.rst"
+            },
             "JE-300E": {
               "recipe": "templates/recipes/eu-en/03_product_overview_je300e.yaml",
               "template": "templates/page_eu-en/03_product_overview_je300e.rst"
@@ -88,6 +92,10 @@
             "JE-2000E": {
               "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
               "template": "templates/targets/je2000e/05_operation_guide_placeholder.rst"
+            },
+            "JE-3000C": {
+              "recipe": "templates/recipes/eu-en/05_operation_guide_je3000c.yaml",
+              "template": "templates/targets/je3000c/05_operation_guide_placeholder.rst"
             }
           },
           "page": "05_operation_guide",

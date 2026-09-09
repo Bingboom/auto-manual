@@ -25,6 +25,9 @@ pages:
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-en/03_product_overview_placeholder.rst
     model_overrides:
+      JE-3000C:
+        recipe: templates/recipes/eu-en/03_product_overview_je3000c.yaml
+        template: templates/targets/je3000c/03_product_overview_placeholder.rst
       JE-1000H:
         recipe: templates/recipes/eu-en/03_product_overview_je1000h.yaml
         template: templates/targets/je1000h/03_product_overview.rst
@@ -47,6 +50,9 @@ pages:
     recipe: templates/recipes/eu-en/05_operation_guide.yaml
     template: templates/page_eu-en/05_operation_guide_placeholder.rst
     model_overrides:
+      JE-3000C:
+        recipe: templates/recipes/eu-en/05_operation_guide_je3000c.yaml
+        template: templates/targets/je3000c/05_operation_guide_placeholder.rst
       JE-1000H:
         recipe: templates/recipes/eu-en/05_operation_guide_je1000h.yaml
         template: templates/targets/je1000h/05_operation_guide.rst
