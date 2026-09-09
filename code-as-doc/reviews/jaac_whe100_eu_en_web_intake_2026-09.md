@@ -16,7 +16,8 @@
 - [x] No LCD, UPS, App, charger-only safety/FAQ/installation, or warranty content is invented.
 - [x] Asset recipe cold-replays from the Git-frozen AI and verifies all seven promoted hashes.
 - [x] Target build/check, full regression, and exact 375 px narrow-screen browser review are complete.
-- [ ] Latest-main integration, push, and open-PR evidence are complete.
+- [x] Latest `origin/main` (`d1eeb282`) was integrated without rebase, branch
+  `codex/web-jaacwhe100-eu-en` was pushed, and PR #1097 was opened against `main`.
 
 ## Shared architecture
 
