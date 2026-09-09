@@ -697,6 +697,51 @@ class WebPresentationTests(unittest.TestCase):
                     continuation_cell.get("class", []) if continuation_cell else [],
                 )
 
+    def test_operation_tables_are_shared_without_a_target_figure_grant(self) -> None:
+        fragment = """
+        <table>
+          <thead><tr><th>Auto</th><th>Not auto</th></tr></thead>
+          <tbody>
+            <tr><td>Restart</td><td>Manual off</td></tr>
+            <tr><td>Battery limit</td><td>Energy saving</td></tr>
+            <tr><td></td><td>Protection</td></tr>
+            <tr><td>OTA complete</td><td>Timer</td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td rowspan="6"><img src="operation/lcd_mode.png" alt="LCD" /></td><td rowspan="3">Shortly On</td><td>Turn on</td><td>Press POWER.</td></tr>
+            <tr><td>Turn off</td><td>Press POWER.</td></tr>
+            <tr><td>Auto-off</td><td>After 2 minutes.</td></tr>
+            <tr><td rowspan="3">Steady On</td><td>Turn on</td><td>Press twice.</td></tr>
+            <tr><td>Turn off</td><td>Press POWER.</td></tr>
+            <tr><td>Auto-off</td><td>After 2 hours.</td></tr>
+          </tbody>
+        </table>
+        """
+
+        transformed = transform_web_fragment(
+            fragment,
+            source_path=Path("page/05_operation_guide_placeholder.rst"),
+            model="OTHER",
+            region="XX",
+        )
+        soup = BeautifulSoup(transformed, "html.parser")
+
+        composition = soup.select_one("figure.hb-auto-resume-composition")
+        self.assertIsNotNone(composition)
+        table = composition.select_one("table.hb-auto-resume-table")
+        self.assertIsNotNone(table)
+        self.assertEqual(2, len(table.select("col.hb-auto-resume-col")))
+        self.assertEqual(
+            "2",
+            str(table.select("tbody > tr")[1].find("td", recursive=False)["rowspan"]),
+        )
+        lcd = soup.select_one("figure.hb-lcd-mode-composition")
+        self.assertIsNotNone(lcd)
+        self.assertIsNotNone(lcd.select_one(".hb-lcd-mode-art-panel img"))
+        self.assertIsNotNone(lcd.select_one("table.hb-lcd-mode-table"))
+
     def test_lcd_mode_uses_live_template_composition_across_locales(self) -> None:
         localized_sources = {
             "en": ("05_operation_guide_placeholder.rst", "Shortly On"),
@@ -1268,6 +1313,51 @@ class WebPresentationTests(unittest.TestCase):
                 )
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["fr"])
         self.assertEqual(artwork_by_locale["en"], artwork_by_locale["es"])
+
+    def test_app_add_device_shared_art_does_not_require_target_figure_grant(self) -> None:
+        fragment = (
+            '<img src="assets/app/add_device.png" alt="App add device" />'
+            '<div class="line-block">'
+            '<div class="line">Main POWER Button</div>'
+            '<div class="line">AC Power Button</div>'
+            '<div class="line">DC / USB Power Button</div>'
+            '</div>'
+        )
+        soup = BeautifulSoup(
+            transform_web_fragment(
+                fragment,
+                source_path=Path(
+                    "docs/_build/JE-2000F/EU/en/page/12_app_setup_placeholder.rst"
+                ),
+                model="JE-2000F",
+                region="EU",
+                language="en",
+            ),
+            "html.parser",
+        )
+
+        figure = soup.select_one("figure.hb-app-add-device-composition")
+        self.assertIsNotNone(figure)
+        self.assertIsNotNone(
+            figure.select_one(".hb-app-add-device-control-art") if figure else None
+        )
+        self.assertEqual(
+            "AC Power Button",
+            figure.select_one(
+                ".hb-app-add-device-live-label-ac-power"
+            ).get_text(" ", strip=True)
+            if figure
+            else "",
+        )
+        self.assertEqual(
+            "DC / USB Power Button",
+            figure.select_one(
+                ".hb-app-add-device-live-label-dc-usb"
+            ).get_text(" ", strip=True)
+            if figure
+            else "",
+        )
+        self.assertEqual([], soup.select(".line-block"))
 
     def test_app_connect_result_embeds_shared_step_captions(self) -> None:
         localized = (

@@ -1,0 +1,19 @@
+No.,Model,Region,Is_latest,Version,error_code,corrective_measures_en,corrective_measures_fr,corrective_measures_es,corrective_measures_pt-BR,corrective_measures_br,corrective_measures_de,corrective_measures_it,corrective_measures_ukr,corrective_measures_jp,corrective_measures_zh,corrective_measures_ko,render_preview_en
+1,JE-1000H,"EU, AU, KR",TRUE,V2.0,F0,Restart the product.,,,,,,,,,,,F0: Restart the product.
+2,JE-1000H,"EU, AU, KR",TRUE,V2.0,F1,Restart the product.,,,,,,,,,,,F1: Restart the product.
+3,JE-1000H,"EU, AU, KR",TRUE,V2.0,F2,Restart the product.,,,,,,,,,,,F2: Restart the product.
+4,JE-1000H,"EU, AU, KR",TRUE,V2.0,F3,Restart the product.,,,,,,,,,,,F3: Restart the product.
+5,JE-1000H,"EU, AU, KR",TRUE,V2.0,F4,Connect the product to loads to discharge its battery until the fault disappears.,,,,,,,,,,,F4: Connect the product to loads to discharge its battery until the fault disappears.
+6,JE-1000H,"EU, AU, KR",TRUE,V2.0,F5,Charge the product via solar panels or an AC wall outlet until the fault disappears.,,,,,,,,,,,F5: Charge the product via solar panels or an AC wall outlet until the fault disappears.
+7,JE-1000H,"EU, AU, KR",TRUE,V2.0,F6,"1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.
+3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
+4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
+5. Restart the product.",,,,,,,,,,,F6: 1. Wait for the grid to normalize before charging the product via an AC wall outlet.
+8,JE-1000H,"EU, AU, KR",TRUE,V2.0,F7,"1. Remove all DC inputs from the product.
+2. Check the open-circuit voltage (V\ :sub:`oc`) of the connected solar panels. The product allows a maximum DC input voltage of 60V.
+3. Restart the product and keep it idle. Wait until the fault disappears.",,,,,,,,,,,F7: 1. Remove all DC inputs from the product.
+9,JE-1000H,"EU, AU, KR",TRUE,V2.0,F8,Contact Jackery Customer Support.,,,,,,,,,,,F8: Contact Jackery Customer Support.
+10,JE-1000H,"EU, AU, KR",TRUE,V2.0,F9,Remove the load connected to the USB ports of the product. Wait until the fault disappears.,,,,,,,,,,,F9: Remove the load connected to the USB ports of the product. Wait until the fault disappears.
+11,JE-1000H,"EU, AU, KR",TRUE,V2.0,FC,"Restart the battery packs and Jackery Explorer 1000 Plus. If the fault persists, reconnect the battery packs.",,,,,,,,,,,"FC: Restart the battery packs and Jackery Explorer 1000 Plus. If the fault persists, reconnect the battery packs."
+12,JE-1000H,"EU, AU, KR",TRUE,V2.0,FE,Contact Jackery Customer Support.,,,,,,,,,,,FE: Contact Jackery Customer Support.

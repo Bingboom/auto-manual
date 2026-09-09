@@ -5,7 +5,7 @@
 
    This product can support up to 5 battery packs to meet the need for large power capacity. For details on how to use it, please refer to the *Jackery Battery Pack 2000 User Manual*.
 
-   .. image:: asset:in_the_box/main_unit1
+   .. image:: renderers/web/assets/je2000e_eu_en/extra_battery.png
       :alt: Battery pack connection diagram placeholder.
       :width: 360px
 
@@ -88,7 +88,11 @@ Connect the AC charging cable to the AC input port of the product and a wall out
      - Make sure the AC charging cable is fully and securely plugged into the AC input port. An incomplete connection may cause unstable current, overheating, poor contact, or device malfunction.
 
 
+.. hb-capability-begin: 应急快充模式
+
 **Emergency Charging Mode**
 
 | Under this mode, you can rapidly power up the portable power station using the AC charging method. This emergency charge function can be activated or deactivated through the Jackery App. When in emergency charging mode, the circular light indicating the state of charge (SOC) will blink at an increased pace.
 | \*To maximize battery lifespan, it is best to charge at normal speed. Use emergency charging mode only when necessary. It's not recommended for regular, long-term use.
+
+.. hb-capability-end:

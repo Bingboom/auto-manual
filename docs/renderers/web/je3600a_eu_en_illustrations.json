@@ -1,0 +1,33 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-3600A",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "bfbcc4377fb474952f5e0850818289449016c8df11b1df48aff192b646eedf6d",
+  "source_pdf_name": "Jackery Explorer 3600 Plus User Manual-EU-UK-2026-05-25.pdf",
+  "recipe": "data/asset_recipes/manual_je3600a_eu_web.json",
+  "illustrations": [
+    {"replaces": ["main_unit1.png"], "path": "assets/je3600a_eu_en/inbox_unit.png", "sha256": "8a16c28d2a7b054188481e51fb8c8ed177c8a750b53fd7b0a8e41951ad2239ac", "source_page": 7, "bbox_pt": [48, 327, 121, 407]},
+    {"replaces": ["ac_charging_cable.png"], "path": "assets/je3600a_eu_en/inbox_cable.png", "sha256": "2ee9c4e13b8089a03296a1e3f87ad70218fd1321f1c7b71c6915b3494c3b61b9", "source_page": 7, "bbox_pt": [174, 322, 217, 398]},
+    {"replaces": ["manual_icon1.png"], "path": "assets/je3600a_eu_en/inbox_manual.png", "sha256": "4efee5bcfcb4493aa60527526dc67652096718e5f6ba6578b31600584705e6a7", "source_page": 7, "bbox_pt": [265, 329, 321, 399]},
+    {"replaces": ["front_product.jpg"], "path": "assets/je3600a_eu_en/overview_front.png", "sha256": "498d3da61a34dd5b4b2be345d047913e2f14f2e1a432ffbe65950de127a08ce2", "source_page": 8, "bbox_pt": [27, 58, 342, 220]},
+    {"replaces": ["right_side_ports.png"], "path": "assets/je3600a_eu_en/overview_side.png", "sha256": "f28d219896d0e44c69baad45ed6fcd2721705388bfdd742268f70407e73006eb", "source_page": 8, "bbox_pt": [27, 235, 342, 497]},
+    {"replaces": ["lcd_map.png"], "path": "assets/je3600a_eu_en/lcd_map.png", "sha256": "6ff9f6fa6492423c218c04fb8994c580457b43a9771282f35b97edd6c682dd3f", "source_page": 9, "bbox_pt": [68, 57, 329, 194]},
+    {"replaces": ["op_main_power.png"], "path": "assets/je3600a_eu_en/operation_power.png", "sha256": "c01d6d07ed8bf7b8f75d2fd06e3b9e85ed7be9a5b8d9f747eea77a5b23e2a355", "source_page": 11, "bbox_pt": [28, 75, 342, 248]},
+    {"replaces": ["op_dc_usb_output.png"], "path": "assets/je3600a_eu_en/operation_usb.png", "sha256": "fc2529572486297a101f73784a9c31c0b4a817ba1521b664e330154e8107be7e", "source_page": 11, "bbox_pt": [28, 267, 342, 425]},
+    {"replaces": ["op_ac_output.png"], "path": "assets/je3600a_eu_en/operation_ac.png", "sha256": "d34e621c3b7b7b3a1acd57c293e5beee9227f9d8b9fb4161efa07a1d39cd2ef4", "source_page": 12, "bbox_pt": [28, 46, 342, 229]},
+    {"replaces": ["energy_saving.png"], "path": "assets/je3600a_eu_en/operation_energy.png", "sha256": "a9bbc752feac269fefbdcbc1cb333930642e9e6117272ca0c5cc77aab44d9be3", "source_page": 12, "bbox_pt": [28, 260, 342, 460]},
+    {"replaces": ["lcd_mode.png"], "path": "assets/je3600a_eu_en/lcd_mode_device.png", "sha256": "e6c56996348f010fbdda97a3eb656bc5bd859d93e6ae671e085bc238b5c9d49a", "source_page": 13, "bbox_pt": [38, 57, 150, 227]},
+    {"replaces": ["ups_mode.png"], "path": "assets/je3600a_eu_en/ups.png", "sha256": "08f100e3cf89a4b510e7f8ff7e74d74fbd69d5f4edc9bcb9a55e79e6d503a204", "source_page": 14, "bbox_pt": [25, 89, 342, 326], "covered_annotations": [
+      {"selector": ".line-block > .line", "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails."},
+      {"selector": ".line-block > .line", "text": "In the event of a sudden loss of grid power, Jackery Explorer 3600 Plus will automatically switch to stored power within 10 ms to keep your appliances running."}
+    ]},
+    {"replaces": ["ac_wall.png"], "path": "assets/je3600a_eu_en/charging_ac.png", "sha256": "f8d8a51eed0daad27a43d72fec023e0473555fa3f5129ffedcd7e7025ab57d6c", "source_page": 16, "bbox_pt": [30, 179, 344, 282]},
+    {"replaces": ["solar_direct.png", "solar_adapter.png"], "path": "assets/je3600a_eu_en/charging_solar.png", "sha256": "a435ab83d55e2ff2ba91d21cd436b6bfb334f56fe1c672e485191ca3caac2b0e", "source_page": 16, "bbox_pt": [30, 364, 344, 497]},
+    {"replaces": ["car_charge.png"], "path": "assets/je3600a_eu_en/charging_car.png", "sha256": "f8852a5e606e97f5bff54a5abc3280e07d7b8fe3f75d4e8f63e5e1b4e6527aae", "source_page": 17, "bbox_pt": [28, 196, 341, 322], "covered_annotations": [
+      {"selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line", "text": "Vehicle"},
+      {"selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line", "text": "*The car charging cable is sold separately."}
+    ]},
+    {"replaces": ["add_device.png"], "path": "assets/je3600a_eu_en/control_panel.png", "sha256": "2d802d195f949e5c13ffbfc0c65be91dd737b995d71b422bdf0709dc7cba526b", "source_page": 21, "bbox_pt": [28, 380, 342, 461]}
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000E",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+  "source_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
+  "recipe": "data/asset_recipes/manual_je2000e_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000e_eu_en/overview_front.png",
+      "sha256": "dcfefe88901b79b805f3820d1df868cd7c11cc67cca6abfbce75c939c9d71b25",
+      "source_page": 8,
+      "bbox_pt": [
+        28,
+        75,
+        342,
+        242
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#front-view > table",
+          "text": "Main POWER Button LCD DC 12 V Port 12 V⎓10 A max. LED Light Button DC / USB Power Button LED Light USB-C 30 W Output 30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A AC1 Power Button USB-C 140 W Output 140 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A AC2 Power Button USB-A 18 W Output 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A AC Output 230 V~ 50 Hz, 10 A max., 2400 W Rated"
+        },
+        {
+          "selector": "#front-view > table",
+          "text": "Total Output 2400 W Rated, 4800 W Surge Peak"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000e_eu_en/overview_side.png",
+      "sha256": "a46237cb305b1356cb98a78b6a60fbc4697e0fcd77eb52fb2723b7748d056521",
+      "source_page": 8,
+      "bbox_pt": [
+        28,
+        252,
+        342,
+        500
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#left-and-right-side-views > table",
+          "text": "Handle DC Expansion Port Connect to Battery Pack AC Input 220 V-240 V~ 50 Hz, 10 A max. DC Input (2×DC8020 Ports) PV: 16-60 V⎓12 A max., Double to 21 A / 800 W max. Car: 11-16 V⎓8 A max., Double to 8 A max."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000e_eu_en/lcd_map.png",
+      "sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825",
+      "source_page": 9,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_power.png",
+      "sha256": "a4bd1269fa8d78623cb782138c7acc10b0b2d7b6b030c795421c073b547750fa",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        74,
+        342,
+        248
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#power-on-off > .line-block",
+          "text": "On: Press once. Off: Press and hold for 3s."
+        },
+        {
+          "selector": "#power-on-off > .line-block",
+          "text": "Default standby time: 2 hours. The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or DC/USB power button is ON but the product is neither charging nor discharging."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_ac.png",
+      "sha256": "e7115c914e6aad50fec0c3aa035b7240f2b1e246efa05e603a02c62be9739938",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        272,
+        342,
+        497
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ac-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#ac-output-on-off > p",
+          "text": "AC1 and AC2 power buttons control separate AC outlet groups. Press either button once to turn its corresponding outlets on or off."
+        },
+        {
+          "selector": "#ac-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_dc.png",
+      "sha256": "1d3adccf80d09e6f36a0f0c148cb5f7c0cf5d5f4766ecf1e61bf9a59f475491b",
+      "source_page": 13,
+      "bbox_pt": [
+        27,
+        45,
+        342,
+        285
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#dc-12v-usb-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_energy.png",
+      "sha256": "0e1c8dced50622e7bdd6a03a90d08aa6d3904d0e94c754a4b722c858c7257ce5",
+      "source_page": 14,
+      "bbox_pt": [
+        27,
+        46,
+        342,
+        289
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#energy-saving-mode > p",
+          "text": "To prevent unnecessary battery consumption from forgetting to turn off the output, the product enables Energy Saving Mode by default. When the AC or DC/USB output is turned on, the Energy Saving Mode icon will be displayed on the LCD screen. In this mode, if no device is connected or the connected device's power consumption is below a certain threshold (25 W AC output or 2 W DC/USB output), the corresponding output will automatically turns off after the set time. The default setting is 12 hours. The Energy Saving Mode duration can be set in the Jackery App to 1 H, 2 H, 8 H, 12 H or 24 H. If it is set to Never Off, Energy Saving Mode will be disabled."
+        },
+        {
+          "selector": "#energy-saving-mode > p",
+          "text": "To disable the energy saving mode, press and hold both the AC1 power button and the POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output."
+        },
+        {
+          "selector": "#energy-saving-mode > p",
+          "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation."
+        },
+        {
+          "selector": "#energy-saving-mode > .line-block",
+          "text": "Press and hold both buttons for more than 3 seconds."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_led.png",
+      "sha256": "3bcdb66d9f3f98dc1c3cc351dc21d1b4821f3b7231655eed2cf89344c85c4368",
+      "source_page": 14,
+      "bbox_pt": [
+        27,
+        345,
+        342,
+        498
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#led-light-on-off > p",
+          "text": "The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light."
+        },
+        {
+          "selector": "#led-light-on-off > .line-block",
+          "text": "Press the LED Light button once to turn on the light. Press it again to switch to SOS Mode. Press it a third time to turn off the light."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000e_eu_en/operation_lcd.png",
+      "sha256": "f5de755e22e9db47eb56bc21e17a4070307430758d0b19b1bf6be0ee466aa2fc",
+      "source_page": 15,
+      "bbox_pt": [
+        37,
+        59,
+        149,
+        208
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000e_eu_en/ups.png",
+      "sha256": "a833f71b9d7595090af7aae127bf4b70faf4c24425882bc933c98feefbd6595b",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        210,
+        342,
+        411
+      ],
+      "covered_annotations": [
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails."
+        },
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "In the event of a sudden loss of grid power, Jackery Explorer 2000 Plus will automatically switch to stored power within 10 ms to keep your appliances running."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "extra_battery.png"
+      ],
+      "path": "assets/je2000e_eu_en/extra_battery.png",
+      "sha256": "912717e8dbc1034ab12ee149a1677b45daafebdd3ffc457159e35bf018b2247f",
+      "source_page": 17,
+      "bbox_pt": [
+        28,
+        98,
+        342,
+        310
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000e_eu_en/charging_ac.png",
+      "sha256": "a297c442e99dfdcbfbf43607d0f8fecd559406c1fa5f429b5e49461d46603149",
+      "source_page": 18,
+      "bbox_pt": [
+        29,
+        197,
+        342,
+        301
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#charging-via-ac-wall-outlet > p",
+          "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000e_eu_en/charging_solar.png",
+      "sha256": "fe0e666aca3be3cb7b71ea7a40b4c1669d5b43dfe816666e5a94bbcae3b788ca",
+      "source_page": 19,
+      "bbox_pt": [
+        28,
+        28,
+        342,
+        166
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000e_eu_en/charging_car.png",
+      "sha256": "9853dd9e21251626ce05c5b89c3946e5ce161396d625d081ad5076cb1d1cf8f4",
+      "source_page": 19,
+      "bbox_pt": [
+        27,
+        305,
+        342,
+        439
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#charging-via-a-car-charger-sold-separately > .line-block",
+          "text": "Vehicle *The car charging cable is sold separately."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000e_eu_en/control_panel.png",
+      "sha256": "2ebc90dfa9afa0b4510e034043404525607a7c4d876318723f6977054f15c5d3",
+      "source_page": 23,
+      "bbox_pt": [
+        28,
+        351,
+        342,
+        431
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Main POWER Button AC1 Power Button AC2 Power Button DC / USB Power Button"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je2000e_eu_en/connect_result.png",
+      "sha256": "9f579db0addc455d95d76dad1f2acad23fa551173fa2fff2bf275a9a6f7fc78e",
+      "source_page": 24,
+      "bbox_pt": [
+        36,
+        78,
+        334,
+        258
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block > .line",
+          "text": "The above screenshots are for reference only."
+        }
+      ]
+    }
+  ]
+}

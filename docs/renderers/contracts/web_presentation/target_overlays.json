@@ -2,6 +2,33 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
+      "overlay_id": "je100c-eu-en-v1",
+      "target": {
+        "model": "JE-100C",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "policy_id": "je100c-eu-en-finished-figures-v1",
+        "locales": ["en"],
+        "required_slots": [
+          "finished-panel.overview",
+          "finished-panel.operation_output",
+          "finished-panel.operation_energy",
+          "finished-panel.operation_lcd",
+          "finished-panel.charging_ac",
+          "finished-panel.charging_solar",
+          "finished-panel.charging_car"
+        ],
+        "allowed_statuses": ["finished-panel", "approved-composite"]
+      },
+      "contract_overrides": {}
+    },
+    {
       "overlay_id": "je1000f-us-v1",
       "target": {
         "model": "JE-1000F",
@@ -137,7 +164,15 @@
         "figures": false,
         "legacy_target_components": false
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "*11_warranty",
+            "warranty_en",
+            "eu_warranty"
+          ]
+        }
+      }
     },
     {
       "overlay_id": "jbp2000b-jp-v1",

@@ -275,23 +275,29 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 16),
-            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
-            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
+            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 18, ["JE-1000F", "JE-1000H", "JE-2000F", "JE-2000E", "JE-100C", "JE-3000C", "JE-3600A"]),
+            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15, ["JE-1000F"]),
+            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15, ["JE-1000F"]),
         )
 
-        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
+        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count, expected_models in cases:
             with self.subTest(config_name=config_name):
                 cfg = check_docs.load_config(ROOT / config_name)
                 self.assertEqual(expected_family, cfg.get("build", {}).get("family_id"))
                 self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
                 self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
-                self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
+                self.assertEqual(
+                    [{"model": model, "region": "EU"} for model in expected_models],
+                    cfg.get("build", {}).get("targets"),
+                )
                 self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
+                expected_identity_allowlist = ["占位符", "Jackery Battery Pack 2000"]
+                if expected_lang == "en":
+                    expected_identity_allowlist.append("Jackery Battery Pack 3600")
                 self.assertEqual(
-                    ["占位符", "Jackery Battery Pack 2000"],
+                    expected_identity_allowlist,
                     cfg.get("checks", {}).get("allowed_foreign_identity_literals"),
                 )
                 phase2 = cfg.get("sync", {}).get("phase2", {})
@@ -317,7 +323,10 @@ class TestPilotConfigs(unittest.TestCase):
                 generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
                 csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-                self.assertEqual({"03_product_overview", "05_operation_guide", "12_app_setup"}, {page.page for page in generated_pages})
+                expected_generated = {"03_product_overview", "05_operation_guide", "12_app_setup"}
+                if expected_lang == "en":
+                    expected_generated.add("07_extra_battery")
+                self.assertEqual(expected_generated, {page.page for page in generated_pages})
                 self.assertEqual({"lcd_icons", "symbols", "troubleshooting", "spec"}, {page.page for page in csv_pages})
                 self.assertEqual(expected_page_count, len(resolved.pages))
 

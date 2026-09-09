@@ -5,10 +5,28 @@ import unittest
 from pathlib import Path
 
 from tools.config_pages import GeneratedPage, RstIncludePage
-from tools.page_manifest import resolve_config_pages, resolve_config_pages_or_raise
+from tools.page_manifest import resolve_config_pages, resolve_config_pages_or_raise, resolve_page_manifest_path
 
 
 class TestPageManifest(unittest.TestCase):
+    def test_target_manifest_overrides_family_default(self) -> None:
+        cfg = {
+            "paths": {
+                "page_manifest": "docs/manifests/default.yaml",
+                "page_manifests": {"JE-100C_EU": "docs/manifests/je100c.yaml"},
+            }
+        }
+        root = Path("/repo")
+
+        self.assertEqual(
+            root / "docs/manifests/je100c.yaml",
+            resolve_page_manifest_path(cfg, root=root, model="JE-100C", region="EU"),
+        )
+        self.assertEqual(
+            root / "docs/manifests/default.yaml",
+            resolve_page_manifest_path(cfg, root=root, model="JE-2000F", region="EU"),
+        )
+
     def test_resolve_config_pages_should_load_external_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
@@ -71,4 +89,3 @@ class TestPageManifest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
