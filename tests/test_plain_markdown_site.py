@@ -612,14 +612,15 @@ class PlainMarkdownSiteTests(unittest.TestCase):
                 "# Doc\n\n"
                 "| **WARNING** | Do not open the enclosure. |\n| --- | --- |\n\n"
                 "| ### DANGER | Indoor use only. |\n| --- | --- |\n\n"
-                "| NOTE | Mode resumes after power on. |\n| --- | --- |\n",
+                "| NOTE | Mode resumes after power on. |\n| --- | --- |\n\n"
+                "| NOTES | Keep all instructions. |\n| --- | --- |\n",
                 encoding="utf-8",
             )
             upgraded = pms.upgrade_spec_tables(staged, log=lambda _m: None)
             text = (staged / "c.md").read_text(encoding="utf-8")
-        self.assertEqual(3, upgraded)
-        self.assertEqual(3, text.count("```{callout}"))
-        for label in ("WARNING", "DANGER", "NOTE"):
+        self.assertEqual(4, upgraded)
+        self.assertEqual(4, text.count("```{callout}"))
+        for label in ("WARNING", "DANGER", "NOTE", "NOTES"):
             self.assertIn(f"```{{callout}} {label}", text)
         self.assertIn("Do not open the enclosure.", text)
         self.assertNotIn("| ---", text)

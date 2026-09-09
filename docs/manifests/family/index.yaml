@@ -51,6 +51,10 @@ entries:
     base: docs/manifests/manual_bp-eu.yaml
     manifest: docs/manifests/manual_bp-eu-en-web.yaml
     diff: docs/manifests/family/diffs/manual_bp-eu__manual_bp-eu-en-web.json
+  - family_id: bp-intl-target
+    base: docs/manifests/manual_bp-eu.yaml
+    manifest: docs/manifests/manual_bp-eu-en.yaml
+    diff: docs/manifests/family/diffs/manual_bp-eu__manual_bp-eu-en.json
   - family_id: bp-jp
     base: docs/manifests/manual_bp-jp.yaml
     manifest: docs/manifests/manual_bp-jp-jbp2000b.yaml
