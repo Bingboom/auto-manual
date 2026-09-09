@@ -11,7 +11,7 @@
 - [x] Replay the approved asset recipe and inspect every crop at 12x.
 - [x] Verify the frozen source manifest, target build, cold IR replay and tamper rejection.
 - [x] Run strict Sphinx, image/link/secret checks, full required tests and responsive browser review.
-- [ ] Build the independent handoff package, merge latest `origin/main`, commit, push and open the PR.
+- [x] Build the independent handoff package, merge latest `origin/main`, commit, push and open PR #1092.
 
 ## Authority and target identity
 
@@ -53,5 +53,7 @@ Hello-Docs, merge the PR or publish a formal Web route.
 | Shared Web assembly | Target-only `auto-manual-web-publish/v1` release root assembled successfully; the assembled candidate also passed strict Sphinx and contains no print/source formats. |
 | Image and identity | Four of four image tags resolve to packaged hash-addressed assets; no JS-100I, Air, LCD, UPS, App, Inbox or missing-placeholder leakage. |
 | Browser review | Final full-page screenshots passed at 1440 px and 500 px widths; illustrations stay proportional, NOTE boxes remain semantic and readable, and specification tables retain the shared narrow-screen horizontal-scroll behavior. |
-| Repository gates | 27 focused tests and all 3,911 unit tests passed (22 skipped); Ruff, documentation links (178 files, 1,753 links, zero broken), `git diff --check`, registry asset check and gitleaks passed. |
+| Repository gates | 27 focused tests and all 3,911 unit tests passed (22 skipped); Ruff, maintainability guardrails, documentation links (178 files, 1,753 links, zero broken), `git diff --check`, registry asset check and gitleaks passed. |
 | Base freshness | `origin/main` was fetched immediately before closeout and matched the implementation base `d1eeb282ef871891f8aa65555a4ede29c4bbc1ea`. |
+| Clean checkout | Detached Git checkout at `97c6b5ed7e57b983cd1927af57822cb6e42b320f` passed all seven target tests and the target `build.py check`. |
+| Engineering PR | [#1092](https://github.com/Bingboom/auto-manual/pull/1092) opened from `codex/web-js100f-eu-en` into `main`; it remains unmerged and is not a publication claim. |
