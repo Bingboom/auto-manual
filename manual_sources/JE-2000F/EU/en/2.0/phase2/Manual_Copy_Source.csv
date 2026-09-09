@@ -1,0 +1,26 @@
+copy_key,page_id,copy_type,Market,Model,Source_lang,Is_Latest,Version,source_text,section_order,notes
+product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,,
+product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,,
+product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,,
+product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,,
+product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,,
+product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,,
+product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,,
+lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,,
+spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,,migrated from 03_内容源_多语言标题
+spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,4,migrated from 03_内容源_多语言标题
+spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,1,migrated from 03_内容源_多语言标题
+spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,2,migrated from 03_内容源_多语言标题
+spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,3,migrated from 03_内容源_多语言标题
+symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,,
+symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,,
+symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,,
+symbols.signal.caution.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,CAUTION,3,migrated from symbols_blocks signal_row
+symbols.signal.caution.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Hazardous practices that may result in personal injury and/or property damage.,4,migrated from symbols_blocks signal_row
+symbols.signal.danger.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,DANGER,9,migrated from symbols_blocks signal_row
+symbols.signal.note.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,NOTE,5,migrated from symbols_blocks signal_row
+symbols.signal.note.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",6,migrated from symbols_blocks signal_row
+symbols.signal.tips.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,TIP,7,migrated from symbols_blocks signal_row
+symbols.signal.tips.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Supplements the important information or operation tips in the text.,8,migrated from symbols_blocks signal_row
+symbols.signal.warning.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,WARNING,1,migrated from symbols_blocks signal_row
+symbols.signal.warning.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in severe injury, death, and/or property damage.",2,migrated from symbols_blocks signal_row

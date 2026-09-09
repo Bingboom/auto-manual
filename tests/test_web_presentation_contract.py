@@ -11,8 +11,8 @@ from tools.web_presentation import WebPresentationError, load_web_manual_contrac
 from tools.web_presentation_contract import merge_contract_layers
 
 
-LEGACY_CANONICAL_SHA256 = (
-    "6684e62c3637c60d728b7779b2b36062626899f8e19bc5c502901662f3c250d7"
+COMPATIBILITY_CANONICAL_SHA256 = (
+    "0a12ea52a9d7359964a709469d9bd98212b97bb6598e8c0e28b6a9bc2a8cd218"
 )
 
 
@@ -92,7 +92,7 @@ def _write_layered_contract(
 
 
 class WebPresentationContractTests(unittest.TestCase):
-    def test_compatibility_materialization_preserves_the_pre_split_contract(self) -> None:
+    def test_compatibility_materialization_matches_the_pinned_contract(self) -> None:
         contract = load_web_manual_contract()
         legacy_shape = dict(contract)
         legacy_shape.pop("presentation_layers")
@@ -110,7 +110,10 @@ class WebPresentationContractTests(unittest.TestCase):
         legacy_shape["figure_coverage"]["requirements"] = [legacy_requirement]
 
         self.assertEqual("web-manual-presentation/v2", contract["schema_version"])
-        self.assertEqual(LEGACY_CANONICAL_SHA256, _canonical_sha256(legacy_shape))
+        self.assertEqual(
+            COMPATIBILITY_CANONICAL_SHA256,
+            _canonical_sha256(legacy_shape),
+        )
 
     def test_us_and_eu_share_one_skeleton_but_keep_target_grants_isolated(self) -> None:
         us = load_web_manual_contract(model="JE-1000F", region="US")
@@ -211,7 +214,24 @@ class WebPresentationContractTests(unittest.TestCase):
             ["*03_product_overview_placeholder"],
             contract["product_overview"]["source_patterns"],
         )
-        self.assertEqual([], contract["operations"]["source_patterns"])
+        self.assertEqual(
+            ["*05_operation_guide_placeholder"],
+            contract["operations"]["source_patterns"],
+        )
+        self.assertEqual(4, contract["operations"]["auto_resume_table"]["body_rows"])
+        self.assertEqual(
+            "operation/lcd_mode",
+            contract["operations"]["lcd_mode_table"]["image_key"],
+        )
+        self.assertEqual(6, contract["operations"]["lcd_mode_table"]["body_rows"])
+        self.assertEqual(
+            ["*12_app_setup_placeholder"],
+            contract["reference_figures"]["source_patterns"],
+        )
+        self.assertEqual(
+            ["app-add-device"],
+            [figure["id"] for figure in contract["reference_figures"]["figures"]],
+        )
         self.assertEqual(["*11_warranty"], contract["warranty"]["source_patterns"])
         self.assertEqual(["box_contents_*"], contract["in_the_box"]["semantic_source_patterns"])
 

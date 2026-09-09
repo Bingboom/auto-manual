@@ -8,7 +8,7 @@ never change what an existing line builds.
 
 Page granularity is not always enough: one region's template set serves
 several models, and a feature can be present on one of them and absent on
-another (JE-1000F_EU has AC/DC output resume, JE-2000F_EU does not, and
+another (JE-1000F_EU and JE-2000F_EU have AC/DC output resume, while
 both build from ``page_eu-*``). Templates therefore also mark individual
 sections with a pair of sentinel comments::
 

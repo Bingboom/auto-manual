@@ -275,18 +275,21 @@ class TestPilotConfigs(unittest.TestCase):
 
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
-            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 16),
-            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15),
-            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15),
+            ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 17, ["JE-1000F", "JE-2000F"]),
+            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15, ["JE-1000F"]),
+            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15, ["JE-1000F"]),
         )
 
-        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count in cases:
+        for config_name, expected_lang, expected_family, expected_manifest, expected_page_count, expected_models in cases:
             with self.subTest(config_name=config_name):
                 cfg = check_docs.load_config(ROOT / config_name)
                 self.assertEqual(expected_family, cfg.get("build", {}).get("family_id"))
                 self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
                 self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
-                self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
+                self.assertEqual(
+                    [{"model": model, "region": "EU"} for model in expected_models],
+                    cfg.get("build", {}).get("targets"),
+                )
                 self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
