@@ -1,0 +1,24 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-100C",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "012465a75b3af63e66be5b16d553f3a0aa014256ac4cc0502a0f85dd3419bc1c",
+  "source_pdf_name": "Jackery Explorer 100D User Manual (JE-100C) EUUK V2.0-2026-08-03.pdf",
+  "recipe": "data/asset_recipes/manual_je100c_eu_web.json",
+  "illustrations": [
+    {"replaces":["inbox_unit.png"],"path":"assets/je100c_eu_en/inbox_unit.png","sha256":"9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed","source_page":6,"bbox_pt":[25,62,84,116]},
+    {"replaces":["inbox_cable.png"],"path":"assets/je100c_eu_en/inbox_cable.png","sha256":"440667657c702a6cb0c99f574430f9303253b3ada6a32aa8609cf562306d2a6e","source_page":6,"bbox_pt":[104,61,151,116]},
+    {"replaces":["inbox_manual.png"],"path":"assets/je100c_eu_en/inbox_manual.png","sha256":"4320efcbbc0506ca4cabe0cd0b4c268357fc87a224b3a76cf69cffd2f8771075","source_page":6,"bbox_pt":[178,61,222,116]},
+    {"replaces":["overview.png"],"path":"assets/je100c_eu_en/overview.png","sha256":"f1a11b8f9078d9e62f8e27cc3c252b0809addc4486b05ab04baa417fa3368311","source_page":6,"bbox_pt":[17,169,238,326]},
+    {"replaces":["lcd_interface_1.png"],"path":"assets/je100c_eu_en/lcd_interface_1.png","sha256":"523ab4c85b2e737b9d22510fa91ae6a3d7382e842bcc2171c11e563ee4c9fa85","source_page":7,"bbox_pt":[45,45,205,119]},
+    {"replaces":["lcd_interface_2.png"],"path":"assets/je100c_eu_en/lcd_interface_2.png","sha256":"fc613c38fa55870a9f3bbde3c09e3967755da14b86de1b22bfef42c0bfa761ef","source_page":8,"bbox_pt":[22,99,225,178]},
+    {"replaces":["lcd_interface_3.png"],"path":"assets/je100c_eu_en/lcd_interface_3.png","sha256":"7282f47a25d4216f3306267313b027a3a0a7133f62cf66d7b3dc516aa038b539","source_page":8,"bbox_pt":[45,265,174,326]},
+    {"replaces":["operation_output.png"],"path":"assets/je100c_eu_en/operation_output.png","sha256":"dc99870298b82c1a04fd29c4560af6e8d3dea92ea6c8aa5f44f06cb3e1d754f3","source_page":9,"bbox_pt":[17.5,124,235,216]},
+    {"replaces":["operation_energy.png"],"path":"assets/je100c_eu_en/operation_energy.png","sha256":"4c1df5c3334b08628ba40fca2dc13be19a75aa34312da0c0f87ba8621068dbcc","source_page":10,"bbox_pt":[18.5,26.3,236,146.3]},
+    {"replaces":["operation_lcd.png"],"path":"assets/je100c_eu_en/operation_lcd.png","sha256":"d33d3830b8f36e02a0a32f6ffa57d3d6dfbeab7980c1285e77316089590dd957","source_page":10,"bbox_pt":[18,191,100,345]},
+    {"replaces":["charging_ac.png"],"path":"assets/je100c_eu_en/charging_ac.png","sha256":"6b4866ef484b9ca9a5ff10dd4cf3fb1f9a18146e02bb38aa27a4c1697c7b5d22","source_page":11,"bbox_pt":[18.5,106,235.5,182]},
+    {"replaces":["charging_solar.png"],"path":"assets/je100c_eu_en/charging_solar.png","sha256":"96adfad1e72c557534fb1a3eaee933f045d01552429f2afbc95d43eac7bb8367","source_page":11,"bbox_pt":[18.5,254,235.5,335]},
+    {"replaces":["charging_car.png"],"path":"assets/je100c_eu_en/charging_car.png","sha256":"439af9be59566f839c65c898bd363142e7dc30eaffdc673bda7494d3f1d1ef3e","source_page":12,"bbox_pt":[18,99,235,206]}
+  ]
+}

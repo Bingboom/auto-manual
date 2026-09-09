@@ -1,0 +1,374 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-1000H",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+  "source_pdf_name": "Jackery Explorer 1000 Plus User Manual (JE-1000H) EUUK V2.0-2026-08-03.pdf",
+  "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je1000h_eu_en/inbox_unit.png",
+      "sha256": "3feaa38f0be1906ad7c304e8cbe259f533650f0d4a005827334156798fabd4b1",
+      "source_page": 7,
+      "bbox_pt": [
+        40,
+        310,
+        112,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je1000h_eu_en/inbox_cable.png",
+      "sha256": "12cb6f3e1b9cd8aefa23be1e914b5afad27b9067f4529baacf48a5b840f4138c",
+      "source_page": 7,
+      "bbox_pt": [
+        150,
+        315,
+        210,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je1000h_eu_en/inbox_documents.png",
+      "sha256": "fabb53c578d2fa84e895afe88b15c126815e8a530644931256e72122fe7c354d",
+      "source_page": 7,
+      "bbox_pt": [
+        260,
+        320,
+        315,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je1000h_eu_en/overview_front.png",
+      "sha256": "56719582b38d07315aeaadedb43420450ea0dd428f7b87a7346a2fecb7cf6b3b",
+      "source_page": 8,
+      "bbox_pt": [
+        28,
+        68,
+        342,
+        245
+      ],
+      "covered_annotations": [
+        {"selector": "#front-view > table", "text": "Power Button LCD DC 12 V Port 12V⎓10A Max LED Light Button DC / USB Power Button LED Light USB-C 30 W Output 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A AC1/AC2 Power Button USB-C 140W Output 140W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A, 28V⎓5A USB-A 18 W Output 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A AC Output 230V~50Hz, 7.83A, 1800W Rated"},
+        {"selector": "#front-view > table", "text": "Total Output 1800W Rated, 3600W Surge Peak"}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je1000h_eu_en/overview_side.png",
+      "sha256": "dbc969c18fdee845ceacc0e3d017e625ece67e9ec1bd2d76ed8d2abdc243b5d8",
+      "source_page": 8,
+      "bbox_pt": [
+        28,
+        269,
+        342,
+        493
+      ],
+      "whiteout_bbox_pt": [
+        28,
+        369,
+        111,
+        389
+      ],
+      "covered_annotations": [
+        {"selector": "#left-and-right-side-view > table", "text": "Handle AC Input 220V-240V~50Hz, 10A Max DC Input (2 × DC8020 Ports) PV: 16V-60V⎓12A, Double to 21A Max/400W Max Car: 11V-16V⎓8A Max, Double to 8A Max"}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je1000h_eu_en/lcd_map.png",
+      "sha256": "7db529f2da0d6e6669bc164b9d7b49b0f761ebbbcaf8682d2ffdf087cf189c29",
+      "source_page": 9,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_power.png",
+      "sha256": "b588b6586986f29615f6141292e41b9c7b5705e47cb58c6079202718c41c55df",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        71,
+        342,
+        233
+      ],
+      "covered_annotations": [
+        {"selector": "#power-on-off > .line-block", "text": "On: Press once. Off: Press and hold for 3s."},
+        {"selector": "#power-on-off > .line-block", "text": "Default standby time: 2 hours. The product will automatically shut down after 2 hours of inactivity, with no charging or discharging. *The standby time can be set in the Jackery App. When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC 1/AC 2 power button or DC/USB power button is ON, but the product is neither charging nor discharging."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_ac.png",
+      "sha256": "24e0dc38a1e34f6a2774f674608fefe0e8aef940acc93b411026747e7d5520a5",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        249,
+        342,
+        495
+      ],
+      "covered_annotations": [
+        {"selector": "#ac-output-on-off > p", "text": "Prerequisite : The product is powered on."},
+        {"selector": "#ac-output-on-off > .line-block", "text": "On Press once Off Press once"},
+        {"selector": "#ac-output-on-off > p", "text": "AC1 and AC2 power buttons control two separate pairs of AC outlets. Pressing each button turns its corresponding AC outlet pair on or off."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_dc.png",
+      "sha256": "e29bb5a9493a02437c6ecfac6654d63518236e00541d653f2f9c458740cd9379",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "covered_annotations": [
+        {"selector": "#dc-12v-usb-output-on-off > p", "text": "Prerequisite : The product is powered on."},
+        {"selector": "#dc-12v-usb-output-on-off > .line-block", "text": "On Press once Off Press once"}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_led.png",
+      "sha256": "2f5dab488e9cbe54ac6be58e0d0e13ada384f965bee0abe2a48f78ed65fd20c8",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        362,
+        342,
+        498
+      ],
+      "covered_annotations": [
+        {"selector": "#led-light-on-off > p", "text": "The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light."},
+        {"selector": "#led-light-on-off > .line-block", "text": "Press the LED Light button once to turn on the light. Press it again to switch to SOS Mode. Press it a third time to turn off the light."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_lcd.png",
+      "sha256": "6acfbae768cd11ba0b6b6bc4a34de79f05b42f0845caa479f842b071dd3019ef",
+      "source_page": 13,
+      "bbox_pt": [
+        28,
+        40,
+        180,
+        150
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je1000h_eu_en/operation_energy.png",
+      "sha256": "7df27385f9a5cb6fc9632fb10ff09e3a700ea6d666c007db2ee904c23b5012e4",
+      "source_page": 13,
+      "bbox_pt": [
+        27,
+        229,
+        342,
+        374
+      ],
+      "covered_annotations": [
+        {"selector": "#energy-saving-mode > p", "text": "To disable the energy saving mode, press and hold both the AC 1 power button and the POWER button for more than 3 seconds. The product will not automatically turn off the AC 1/AC 2 or DC/USB output."},
+        {"selector": "#energy-saving-mode > .line-block", "text": "Press and hold both buttons for more than 3 seconds."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je1000h_eu_en/ups.png",
+      "sha256": "638a8ee9e9b951e6325c01d36b9b380fb0c0c0da56fbe977b057e49142c3d114",
+      "source_page": 14,
+      "bbox_pt": [
+        28,
+        257,
+        342,
+        496
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "battery_pack.png"
+      ],
+      "path": "assets/je1000h_eu_en/battery_pack.png",
+      "sha256": "9caac72ff94d2f04310efee34e7897b2d490dfbefe56acb16847ca168b618056",
+      "source_page": 15,
+      "bbox_pt": [
+        28,
+        203,
+        342,
+        410
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je1000h_eu_en/charging_ac.png",
+      "sha256": "b19d42044757c96f1e684490e92abd7a057e8f58a5c71e40b2ab65cb189fa237",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        247,
+        342,
+        362
+      ],
+      "covered_annotations": [
+        {"selector": "#charging-via-ac-wall-outlet > p", "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je1000h_eu_en/charging_solar.png",
+      "sha256": "139c61822de1bc7bb3bd567e641698131ba326e41ac5b9000b0f398f3806557d",
+      "source_page": 17,
+      "bbox_pt": [
+        28,
+        31,
+        342,
+        175
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je1000h_eu_en/charging_solar_adapter.png",
+      "sha256": "5bf687729ceaabae2249719984667676a2c428735fe6bea5e37233e9c99015de",
+      "source_page": 17,
+      "bbox_pt": [
+        150,
+        31,
+        342,
+        175
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je1000h_eu_en/charging_car.png",
+      "sha256": "39ca23e7236727c81ef3065fd7f639dbcad39091d1e8d6c723709e9c0ba0dc2e",
+      "source_page": 17,
+      "bbox_pt": [
+        28,
+        358,
+        342,
+        494
+      ],
+      "covered_annotations": [
+        {"selector": "#charging-via-a-car-charger-sold-separately > .line-block", "text": "Vehicle *The car charging cable is sold separately."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "download.png"
+      ],
+      "path": "assets/je1000h_eu_en/app_download.png",
+      "sha256": "fcbd24d9755519e191fcfb716cefcb294821566540275b791a8aa451e6a5dcc7",
+      "source_page": 21,
+      "bbox_pt": [
+        45,
+        70,
+        340,
+        151
+      ],
+      "covered_annotations": [
+        {"selector": "#download-the-app-and-log-in > p", "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in. Alternatively, scan the QR code below to download and install the App."}
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je1000h_eu_en/app_control_panel.png",
+      "sha256": "8fe49742d4139dea0a90d60693f77e6b4d6985e9df96c9e76c655bc4561c61c5",
+      "source_page": 21,
+      "bbox_pt": [
+        40,
+        400,
+        340,
+        484
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device",
+      "covered_annotations": [
+        {"selector": "#add-device > .line-block", "text": "Power Button AC 2 power button DC/USB power button AC 1 power button"}
+      ]
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je1000h_eu_en/app_connect_result.png",
+      "sha256": "ce4b7f91c9cab96df5c7d41e4e4db9fa3f19fcdfbed734faa35a36a1cba32603",
+      "source_page": 22,
+      "bbox_pt": [
+        48,
+        141,
+        320,
+        293
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {"model": "JE-100C", "region": "EU", "lang": "en", "version": "2.0"},
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "published_revision": "V2.0-2026-08-03",
+    "published_pdf_name": "Jackery Explorer 100D User Manual (JE-100C) EUUK V2.0-2026-08-03.pdf",
+    "published_pdf_sha256": "012465a75b3af63e66be5b16d553f3a0aa014256ac4cc0502a0f85dd3419bc1c",
+    "published_pdf_dingtalk_node": "XPwkYGxZV3Rj0pEpF9mBdKrAWAgozOKL",
+    "demand_record_id": "0SLR873yRz",
+    "structured_source_document": "ZgpG2NdyVXrvPgqghPo1PyoA8MwvDqPk",
+    "audit_record": "code-as-doc/reviews/je100c_eu_en_web_intake_2026-09.md"
+  },
+  "data_root": "manual_sources/JE-100C/EU/en/2.0/phase2",
+  "asset_recipe": {"path": "data/asset_recipes/manual_je100c_eu_web.json", "sha256": "13a5f08dce025ac27427a91fe368b7873b240c17b5d39abfc5a583918e53d5f9"},
+  "web_illustration_manifest": {"path": "docs/renderers/web/je100c_eu_en_illustrations.json", "sha256": "0f038bb72c97cdcdc0f6dcb43a5e71b8f2fa127c7a82a0a3f4638ed593c70059"},
+  "files": [
+    {"path":"phase2/.gitattributes","size":18,"sha256":"956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"},
+    {"path":"phase2/Spec_Master.csv","size":655,"sha256":"0e0c04dcf85ba2834963ddfae0a1ec6685654b6f8596ec1b0c1de6d685116215"},
+    {"path":"phase2/Variable_Defaults.csv","size":95,"sha256":"3390f40991b8c3af8dbcb1e7deb899c2322f7118e4b7566f0f326cf617d3a3a2"},
+    {"path":"phase2/Variable_Lang_Overrides.csv","size":40,"sha256":"4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"}
+  ],
+  "live_bitable_dependency": false,
+  "checkout_contract": {"path":"phase2/.gitattributes","rule":"*.csv text eol=lf","purpose":"Preserve manifest-locked CSV bytes identically on every Git checkout"}
+}
