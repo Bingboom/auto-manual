@@ -59,3 +59,8 @@ house_style_versions:
       file: templates/page_charger/ja_ad600a/{lang}/installation.rst
     warranty:
       file: templates/page_charger/ja_ad600a/{lang}/warranty.rst
+  accessory-v1:
+    box_contents:
+      file: templates/page_charger/jaac_whe100/{lang}/box_contents.rst
+    using_product:
+      file: templates/page_charger/jaac_whe100/{lang}/using_product.rst

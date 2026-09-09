@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_jaac_whe100_eu_en_candidate",
+    "expected_sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.5,
+      "page_scale": {
+        "1": 0.5
+      }
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "imposed_english_leaf",
+      "role": "engineering_overview",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": []
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/inbox-main-frame",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [330, 1284, 405, 1364]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_main_frame.png", "scale": 6, "expected_sha256": "0515a399483a1e33f07f46ec32cd3b5905be3856e3269d4ddbd6a91d55e43cda"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the complete main-frame drawing and removes the source card number and label owned by native Web copy."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/inbox-universal-wheels",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [425, 1284, 508, 1364]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_universal_wheels.png", "scale": 6, "expected_sha256": "6296cf4cfe55a52e131e63a7358147c3f1317142d5e98fcb60981ad0c59a6fe5"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the complete universal-wheel drawing and leaves its label to native Web copy."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/inbox-hook-ropes",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [535, 1284, 614, 1364]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_hook_ropes.png", "scale": 6, "expected_sha256": "393d2807602d6b0b9600ac19538ca5d62a5ff25e499a85ed3cf00214fd7d284e"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the complete elastic-hook-rope drawing and leaves its label to native Web copy."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/inbox-mounting-screws",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [338, 1412, 393, 1490]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_mounting_screws.png", "scale": 6, "expected_sha256": "15c73bfca36b3604f9db601eaab3a032d08da80e0c4e51e44d28df1a952ac80d"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the complete mounting-screw drawing and leaves its label to native Web copy."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/inbox-user-manual",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [435, 1412, 495, 1468]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_user_manual.png", "scale": 6, "expected_sha256": "ce43e6fd657518deee8db32eb33a039fb32e80cdb4053adafb4a37d160fd01e7"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the source-owned manual cover art while excluding its stale tiny footer model literal."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/how-to-assemble",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [677, 1090, 998, 1260]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_assemble.png", "scale": 4, "expected_sha256": "4a4113738405d8eb2837d0a7a7763aab9168d35dd78f91867bc9685ad13c7f9c"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop retains all three complete source-owned illustrated instruction cards and their English copy."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/jaac-whe-100-eua1/eu/en/how-to-controls",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [677, 1264, 998, 1510]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_controls.png", "scale": 4, "expected_sha256": "06bd1f0f70fa058325219895a9d83df9f5d5f03d01e66cafb61b6709cb93fb02"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop retains the complete gray control panel, trolley outline art, leaders, numbered callouts, and English copy."]},
+      "risk_tags": ["region-locked-art"]
+    }
+  ]
+}

@@ -300,6 +300,19 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "jaac-whe-100-eua1-eu-v1",
+      "target": {
+        "model": "JAAC-WHE-100-EUA1",
+        "region": "EU"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
     }
   ]
 }

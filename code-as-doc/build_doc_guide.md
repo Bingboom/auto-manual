@@ -981,6 +981,15 @@ and RTD verification. Do not publish an unidentified fixture or write the
 mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
 
+`JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
+through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
+plan contains only Inbox, native specifications/notes, and two complete
+source-owned how-to panels. Product Overview and Warranty are optional at the
+skeleton level so this accessory does not invent them; the existing charger
+plans explicitly keep both pages. The PDF-compatible AI and 38-row scope
+snapshot are frozen in Git, including the `收纳小推车` same-manual association.
+See [`reviews/jaac_whe100_eu_en_web_intake_2026-09.md`](reviews/jaac_whe100_eu_en_web_intake_2026-09.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound

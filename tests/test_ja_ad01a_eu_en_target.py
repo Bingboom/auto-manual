@@ -150,6 +150,7 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
             [
                 {"model": "JA-AD01A", "region": "EU"},
                 {"model": "JA-AD600A", "region": "EU"},
+                {"model": "JAAC-WHE-100-EUA1", "region": "EU"},
             ],
             build["targets"],
         )

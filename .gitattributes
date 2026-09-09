@@ -33,6 +33,7 @@ data/asset_registry.csv text eol=lf
 *.jpeg binary
 *.gif binary
 *.pdf binary
+*.ai binary
 *.docx binary
 *.otf binary
 *.ttf binary

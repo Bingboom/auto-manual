@@ -1,0 +1,27 @@
+{
+  "base_manifest_id": "manual_charger_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_charger_eu_en_jaac_whe100"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/0/file",
+      "value": "templates/page_charger/jaac_whe100/en/box_contents.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/file",
+      "value": "templates/page_charger/jaac_whe100/en/using_product.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/2/slot_id",
+      "value": "using_product_en"
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_charger_eu_en_jaac_whe100"
+}
