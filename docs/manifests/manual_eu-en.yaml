@@ -28,6 +28,9 @@ pages:
       JE-300E:
         recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
         template: templates/page_eu-en/03_product_overview_je300e.rst
+      JE-2000E:
+        recipe: templates/recipes/eu-en/03_product_overview_je2000e.yaml
+        template: templates/targets/je2000e/03_product_overview_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -40,12 +43,20 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/05_operation_guide.yaml
     template: templates/page_eu-en/05_operation_guide_placeholder.rst
+    model_overrides:
+      JE-2000E:
+        recipe: templates/recipes/eu-en/05_operation_guide.yaml
+        template: templates/targets/je2000e/05_operation_guide_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: en
     file: templates/page_shared/en/06_ups_mode.rst
     capability: UPS功能
+  - type: rst_include
+    lang: en
+    file: templates/targets/je2000e/07_extra_battery.rst
+    capability: 加电包扩容
   - type: rst_include
     lang: en
     file: templates/page_shared/en/charging.rst
@@ -73,6 +84,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-shared-en/12_app_setup.yaml
     template: templates/page_shared/en/12_app_setup_placeholder.rst
+    model_overrides:
+      JE-2000E:
+        recipe: templates/recipes/eu-shared-en/12_app_setup_je2000e.yaml
+        template: templates/targets/je2000e/12_app_setup_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: rst_include
