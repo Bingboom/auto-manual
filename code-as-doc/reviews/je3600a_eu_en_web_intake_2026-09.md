@@ -84,3 +84,7 @@ URL.
 - The legacy RST-to-HTML lane's staged-extension import issue remains inherited
   from the dependency. The accepted Web lane is generated MyST plus strict
   Sphinx and is passing.
+
+## Main integration
+
+The EU family manifest selects the JE-3600A expansion chapter through the shared generated-page model override, preserving the JE-1000H and JE-2000E carriers. Fixture integration retains complete CSV records, including quoted multiline descriptions. The final merge gate uses the updated main and full regression checks.
