@@ -25,6 +25,9 @@ pages:
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-en/03_product_overview_placeholder.rst
     model_overrides:
+      JE-3600A:
+        recipe: templates/recipes/eu-en/03_product_overview_je3600a.yaml
+        template: templates/targets/je3600a/03_product_overview.rst
       JE-3000C:
         recipe: templates/recipes/eu-en/03_product_overview_je3000c.yaml
         template: templates/targets/je3000c/03_product_overview_placeholder.rst
@@ -50,6 +53,9 @@ pages:
     recipe: templates/recipes/eu-en/05_operation_guide.yaml
     template: templates/page_eu-en/05_operation_guide_placeholder.rst
     model_overrides:
+      JE-3600A:
+        recipe: templates/recipes/eu-en/05_operation_guide_je3600a.yaml
+        template: templates/targets/je3600a/05_operation_guide.rst
       JE-3000C:
         recipe: templates/recipes/eu-en/05_operation_guide_je3000c.yaml
         template: templates/targets/je3000c/05_operation_guide_placeholder.rst
@@ -71,6 +77,9 @@ pages:
     recipe: templates/recipes/eu-en/07_extra_battery.yaml
     template: templates/targets/je2000e/07_extra_battery.rst
     model_overrides:
+      JE-3600A:
+        recipe: templates/recipes/eu-en/07_extra_battery.yaml
+        template: templates/targets/je3600a/07_extra_battery.rst
       JE-1000H:
         recipe: templates/recipes/eu-en/07_extra_battery.yaml
         template: templates/targets/je1000h/07_extra_battery.rst
@@ -105,6 +114,9 @@ pages:
     recipe: templates/recipes/eu-shared-en/12_app_setup.yaml
     template: templates/page_shared/en/12_app_setup_placeholder.rst
     model_overrides:
+      JE-3600A:
+        recipe: templates/recipes/eu-shared-en/12_app_setup_je3600a.yaml
+        template: templates/targets/je3600a/12_app_setup.rst
       JE-1000H:
         recipe: templates/recipes/eu-shared-en/12_app_setup_je1000h.yaml
         template: templates/targets/je1000h/12_app_setup.rst

@@ -16,6 +16,8 @@ build:
       region: EU
     - model: JE-3000C
       region: EU
+    - model: JE-3600A
+      region: EU
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
@@ -31,3 +33,12 @@ paths:
     JE-2000E_EU: docs/renderers/web/je2000e_eu_en_illustrations.json
     JE-100C_EU: docs/renderers/web/je100c_eu_en_illustrations.json
     JE-3000C_EU: docs/renderers/web/je3000c_eu_en_illustrations.json
+    JE-3600A_EU: docs/renderers/web/je3600a_eu_en_illustrations.json
+
+checks:
+  # This list replaces the base list. Battery Pack 3600 is verified compatible
+  # accessory copy on the JE-3600A connection page, not the manual identity.
+  allowed_foreign_identity_literals:
+    - 占位符
+    - Jackery Battery Pack 2000
+    - Jackery Battery Pack 3600
