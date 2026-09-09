@@ -35,8 +35,8 @@ The figures retain all image-owned product markings, connector labels, grey cell
 - [x] Real Pandoc and strict Sphinx build pass.
 - [x] Desktop and 375 px browser checks pass with zero broken images or whole-page overflow.
 - [x] Full repository validation passes.
-- [ ] Standalone engineering package and local preview prepared.
-- [ ] Branch merged with latest `origin/main`, committed, pushed, and PR opened.
+- [x] Standalone engineering package and local preview prepared.
+- [x] Branch merged with latest `origin/main`, committed, pushed, and PR opened.
 - [ ] Central review and merge complete.
 - [ ] Hello-Docs publication snapshot and live RTD route verified.
 
