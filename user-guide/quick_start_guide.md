@@ -783,3 +783,6 @@ python -m sphinx -b html \
 这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
+
+JBP-2000B 欧规英文单语的可执行示例见
+[版本化结构源](../manual_sources/JBP-2000B/EU/en/2.0/README.md)。

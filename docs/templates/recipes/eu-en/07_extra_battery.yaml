@@ -1,0 +1,6 @@
+page_id: 07_extra_battery
+template: templates/targets/je2000e/07_extra_battery.rst
+field_map: {}
+required_row_keys: []
+snippet_slots: {}
+contracts: []

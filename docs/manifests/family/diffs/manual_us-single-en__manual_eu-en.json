@@ -51,6 +51,10 @@
               "recipe": "templates/recipes/eu-en/03_product_overview_je1000h.yaml",
               "template": "templates/targets/je1000h/03_product_overview.rst"
             },
+            "JE-2000E": {
+              "recipe": "templates/recipes/eu-en/03_product_overview_je2000e.yaml",
+              "template": "templates/targets/je2000e/03_product_overview_placeholder.rst"
+            },
             "JE-300E": {
               "recipe": "templates/recipes/eu-en/03_product_overview_je300e.yaml",
               "template": "templates/page_eu-en/03_product_overview_je300e.rst"
@@ -80,6 +84,10 @@
             "JE-1000H": {
               "recipe": "templates/recipes/eu-en/05_operation_guide_je1000h.yaml",
               "template": "templates/targets/je1000h/05_operation_guide.rst"
+            },
+            "JE-2000E": {
+              "recipe": "templates/recipes/eu-en/05_operation_guide.yaml",
+              "template": "templates/targets/je2000e/05_operation_guide_placeholder.rst"
             }
           },
           "page": "05_operation_guide",
@@ -95,9 +103,21 @@
         },
         {
           "capability": "加电包扩容",
-          "file": "templates/targets/je1000h/07_extra_battery.rst",
-          "lang": "en",
-          "type": "rst_include"
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "en"
+          ],
+          "model_overrides": {
+            "JE-1000H": {
+              "recipe": "templates/recipes/eu-en/07_extra_battery.yaml",
+              "template": "templates/targets/je1000h/07_extra_battery.rst"
+            }
+          },
+          "page": "07_extra_battery",
+          "recipe": "templates/recipes/eu-en/07_extra_battery.yaml",
+          "template": "templates/targets/je2000e/07_extra_battery.rst",
+          "type": "generated_page"
         },
         {
           "file": "templates/page_shared/en/charging.rst",
@@ -147,6 +167,10 @@
             "JE-1000H": {
               "recipe": "templates/recipes/eu-shared-en/12_app_setup_je1000h.yaml",
               "template": "templates/targets/je1000h/12_app_setup.rst"
+            },
+            "JE-2000E": {
+              "recipe": "templates/recipes/eu-shared-en/12_app_setup_je2000e.yaml",
+              "template": "templates/targets/je2000e/12_app_setup_placeholder.rst"
             }
           },
           "page": "12_app_setup",

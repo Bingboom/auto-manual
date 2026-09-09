@@ -1,0 +1,334 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0"
+  },
+  "source_role": "formal-published-source-audited-git-input",
+  "authority": {
+    "published_revision": "V2.0-2026-08-03",
+    "published_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
+    "published_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+    "source_artwork_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+    "dingtalk_requirement_record": "S4mhIE7S4v",
+    "dingtalk_requirement_id": "LANG-S4mhIE7S",
+    "dingtalk_document_node": "YndMj49yWjP03jNjCRnbG07jJ3pmz5aA",
+    "phase2_document_key": "JE-2000E_EU",
+    "phase2_record_id": "recvjouls6E5MT",
+    "audit_record": "code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md"
+  },
+  "engineering_baseline_commit": "d1b12bf8686941b5e79d9b507d7cc991da3427b9",
+  "data_root": "manual_sources/JE-2000E/EU/en/2.0/phase2",
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je2000e_eu_web.json",
+    "sha256": "aaf8dc347be9f2f429c38a1eb91434204dc2f0612a234ce825dcd9819302c72d"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je2000e_eu_en_illustrations.json",
+    "sha256": "35a4c7860bdbe7cce08aaa8ddc18881b17411de6972176253520ac90cb7a2425"
+  },
+  "live_bitable_dependency": false,
+  "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 37,
+      "sha256": "5456089004c13f4fce8ecea37ddafb9068f4b3182e1c25d548aad57555366872"
+    },
+    {
+      "path": "phase2/Localized_Copy.csv",
+      "size": 9990,
+      "sha256": "081a9093b98a206289bb9bcac648f4c8ea09da883c6bde4f26b7ee997f814e51"
+    },
+    {
+      "path": "phase2/Manual_Copy_Source.csv",
+      "size": 3410,
+      "sha256": "86993557bf43d8d026a40d6631a7f75231a9d52364e9612a174f01bb608c3805"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 1449,
+      "sha256": "ea866bc06d72a897c0d4eab9f302528ca12c9ebce85071d6083bd4201ad17cdf"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 23188,
+      "sha256": "287583f5c23225824925340032e5e8b449ba7c9a00c2a31a45412c5bb3523a11"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 780,
+      "sha256": "60d07f00179fcb28f58794c60b9327792eb95ced35c0372115cff3fcb337cf52"
+    },
+    {
+      "path": "phase2/Status_Words.csv",
+      "size": 309,
+      "sha256": "2b7137ba193ba282cd1d9a1824a2b23099b397730c4329861a47a123f79fd2c0"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 121,
+      "sha256": "706dc2f713f0125e5d4d3d82743245444b6511b2b3104c657bb49b24bf26da4b"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 499,
+      "sha256": "f907cad5828093bc1d255e80026aad2833d556c07a8fa7ca2f77e6060f6d6482"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/21_Connected_Batteries_ZeHlbv3HEoRcq2xIXacchUcTndg.png",
+      "size": 1581,
+      "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "phase2/_attachments/symbols/10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "size": 7367,
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7"
+    },
+    {
+      "path": "phase2/_attachments/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "size": 2150,
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989"
+    },
+    {
+      "path": "phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png",
+      "size": 3441,
+      "sha256": "236891c20611070753633c7c9286982284851c6df78137cfc5bc26922c6528b6"
+    },
+    {
+      "path": "phase2/_attachments/symbols/1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png",
+      "size": 10435,
+      "sha256": "315ee6fdbaa43592e8431739f5fccc806bc0117ee9846c58a48ad56206bd24d4"
+    },
+    {
+      "path": "phase2/_attachments/symbols/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "size": 4482,
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67"
+    },
+    {
+      "path": "phase2/_attachments/symbols/2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png",
+      "size": 9474,
+      "sha256": "f98670ebed4868f2fe52592e9ce620042f45cb85d7ce3ccb908acc318b994e91"
+    },
+    {
+      "path": "phase2/_attachments/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "size": 3794,
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a"
+    },
+    {
+      "path": "phase2/_attachments/symbols/3_electric_shock_XYAbbMCnNoNzYix7mKRcMHGhnic.png",
+      "size": 5341,
+      "sha256": "378ec250259d02fc8a0ab07fd34646c4dc1605209cc185b2455a0d1e9f58ae21"
+    },
+    {
+      "path": "phase2/_attachments/symbols/3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png",
+      "size": 6031,
+      "sha256": "eb4a792ae716d0f19241e705b70c4a19e37722971919cf2c4634578c138399d2"
+    },
+    {
+      "path": "phase2/_attachments/symbols/4_battery_charging_WIeDb0QIoo4eSbxUDoDcCV3fn8c.png",
+      "size": 6058,
+      "sha256": "dc89195f3ece3d0d821c3901a645a737360d68c4629d0f3a4a792511edba5425"
+    },
+    {
+      "path": "phase2/_attachments/symbols/4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png",
+      "size": 3539,
+      "sha256": "d47f06393b2a7aae593f6b3b7b35af14f658229576e22a501d51b2edd1f733cf"
+    },
+    {
+      "path": "phase2/_attachments/symbols/5_danger_UqwQbNsPioNOAKx8KITchlERnsf.png",
+      "size": 12014,
+      "sha256": "8531e76e6551a0c5b3286e50a911c718943cd5e6e77d20c31bc9c4713aa005dd"
+    },
+    {
+      "path": "phase2/_attachments/symbols/5_explosive_material_Zkz9b74mDoSXlZx8jJwcbLErnge.png",
+      "size": 8394,
+      "sha256": "cb30b49051857ba566fe6e8caa4190b39f584f7585bd595d97a99a04db3ebe2d"
+    },
+    {
+      "path": "phase2/_attachments/symbols/6_heavy_object_IGFubhmSFowSsoxFCIdcgW7lnUd.png",
+      "size": 4724,
+      "sha256": "6b991847e3f8cf40f77f04af996215acbd7ba9a37c481745d167c91cf1df9f7e"
+    },
+    {
+      "path": "phase2/_attachments/symbols/7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "size": 6737,
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b"
+    },
+    {
+      "path": "phase2/_attachments/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "size": 8901,
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a"
+    },
+    {
+      "path": "phase2/_attachments/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "size": 7645,
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7"
+    },
+    {
+      "path": "phase2/lcd_icons_blocks.csv",
+      "size": 64917,
+      "sha256": "c1749db79ac36622cdaccce57684a7ceb13bd596043eec35f2b1f8853e230a7a"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 524,
+      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+    },
+    {
+      "path": "phase2/row_key_mapping.csv",
+      "size": 4834,
+      "sha256": "22887a73acd9dc78444e4953f160231958db4fd76707d6e706b6fd883d55e99a"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 990,
+      "sha256": "54ec1e1d9988d56d04bf27e64b1fe1208039492779502f1991cbac52f367bc9d"
+    },
+    {
+      "path": "phase2/symbols_blocks.csv",
+      "size": 23955,
+      "sha256": "dd86acc5bce0c4a234a37fa0fdab7f065aa0b3d911ce03a25239c4d62665e1c4"
+    },
+    {
+      "path": "phase2/troubleshooting_blocks.csv",
+      "size": 13605,
+      "sha256": "73837f6d3928b7ab34426faeded292be028188982a377abfe266dde512e944ff"
+    }
+  ],
+  "notes": [
+    "The formal PDF cover/body uses Jackery Explorer 2000 Plus; the DingTalk file title uses HomePower 2000 Plus. The website follows the visible formal PDF copy while retaining JE-2000E as the target key.",
+    "No live Base write, asset-record upload, OSS archive or publication was performed."
+  ]
+}
