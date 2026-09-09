@@ -152,13 +152,23 @@ class JaAd600aEuEnTargetTests(unittest.TestCase):
     def test_approved_recipe_registry_and_manifest_hashes_match(self) -> None:
         recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
-        source_hash = "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9"
-        self.assertEqual(source_hash, recipe["source"]["expected_sha256"])
-        self.assertEqual(source_hash, manifest["source_pdf_sha256"])
+        source_pdf_hash = "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9"
+        artwork_hash = "d89f145176c0c8ca10fa8c81768718ee32d52cb7a41a17b318df559a38e4f385"
+        self.assertEqual(artwork_hash, recipe["source"]["expected_sha256"])
+        self.assertEqual(source_pdf_hash, manifest["source_pdf_sha256"])
+        self.assertEqual(artwork_hash, manifest["source_artwork_sha256"])
+        self.assertEqual(15, manifest["source_artwork_page_count"])
         self.assertEqual(16, len(recipe["assets"]))
         self.assertEqual(16, len(manifest["illustrations"]))
         self.assertTrue(all(asset["build_eligible"] for asset in recipe["assets"]))
         self.assertTrue(all(asset["gate"]["status"] == "approved" for asset in recipe["assets"]))
+        self.assertEqual(
+            4,
+            sum(
+                any(transform["op"] == "redact_text" for transform in asset["transforms"])
+                for asset in recipe["assets"]
+            ),
+        )
 
         registry = load_registry(ROOT / "data" / "asset_registry.csv")
         for asset in recipe["assets"]:
