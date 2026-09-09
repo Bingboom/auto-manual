@@ -1,0 +1,276 @@
+No.,Model,Is_latest,Version,icon_en,icon_zh,icon_jp,icon_fr,icon_es,icon_pt-BR,icon_br,icon_de,icon_it,icon_ukr,icon_ko,icon_desc_en,icon_desc_zh,icon_desc_jp,icon_desc_fr,icon_desc_es,icon_desc_pt-BR,icon_desc_br,icon_desc_de,icon_desc_it,icon_desc_ukr,icon_desc_ko,has_variables,variable_keys,figure,render_preview_en
+1,JE-3000C,TRUE,V1.0,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,Wi-Fi,,WLAN,Wi-Fi,Wi-Fi,Wi-Fi,"On: Wi-Fi connected.
+Blink: Ready to connect to Wi-Fi.
+Off: Wi-Fi disconnected.","点亮：Wi-Fi 已连接。 
+闪烁：准备连接 Wi-Fi。
+熄灭：Wi-Fi 未连接。","オン：Wi-Fiに接続されています。
+点滅：Wi-Fi接続の準備中です。
+オフ：Wi-Fiは切断されています。","Allumé : Wi-Fi connecté.
+Clignotant : Prêt à se connecter au Wi-Fi.
+Éteint : Wi-Fi déconnecté.","Encendido: Wi-Fi conectado.
+Parpadeo: listo para conectarse al Wi-Fi.
+Apagado: Wi-Fi desconectado.","Ligado: Wi-Fi conectado.
+Pisca: Pronto para conectar ao Wi-Fi.
+Desligado: Wi-Fi desconectado.",,"Ein: WLAN verbunden.
+Blinken: Bereit für die WLAN-Verbindung.
+Aus: WLAN getrennt.","Acceso: Wi-Fi connesso.
+Lampeggiante: pronto per la connessione Wi-Fi.
+Spento: Wi-Fi disconnesso.","Увімкнено: Wi-Fi підключено.
+Блимає: Готово до підключення до Wi-Fi.
+Вимкнено: Wi-Fi відключено.","켜짐: Wi-Fi에 연결되었습니다.
+깜박임: Wi-Fi에 연결할 준비가 되었습니다.
+꺼짐: Wi-Fi 연결이 해제되었습니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png,1 Wi-Fi: On: Wi-Fi connected.
+2,JE-3000C,TRUE,V1.0,Bluetooth,Bluetooth,Bluetooth,Bluetooth,Bluetooth,Bluetooth,,Bluetooth,Bluetooth,Bluetooth,블루투스,"On: Bluetooth connected.
+Blink: Ready to connect to Bluetooth.
+Off:  Bluetooth disconnected.","点亮：蓝牙已连接。 
+闪烁：准备连接蓝牙。
+熄灭：蓝牙未连接。","オン：Bluetoothに接続されています。
+点滅：Bluetooth接続の準備中です。
+オフ：Bluetoothは切断されています。","Allumé : Bluetooth connecté.
+Clignotant : Prêt à se connecter au Bluetooth.
+Éteint : Bluetooth déconnecté.","Encendido: Bluetooth conectado.
+Parpadeo: listo para conectarse al Bluetooth.
+Apagado: Bluetooth desconectado.","Ligado: Bluetooth conectado.
+Pisca: Pronto para conectar ao Bluetooth.
+Desligado: Bluetooth desconectado.",,"Ein: Bluetooth verbunden.
+Blinken: Bereit für die Bluetooth-Verbindung.
+Aus: Bluetooth getrennt.","Acceso: Bluetooth connesso.
+Lampeggiante: pronto per la connessione Bluetooth.
+Spento: Bluetooth disconnesso","Увімкнено: Bluetooth підключено.
+Блимає: Готово до підключення до Bluetooth.
+Вимкнено: Bluetooth відключено.","켜짐: 블루투스가 연결되었습니다.
+깜박임: 블루투스에 연결할 준비가 되었습니다.
+꺼짐: 블루투스 연결이 해제되었습니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png,2 Bluetooth: On: Bluetooth connected.
+3,JE-3000C,TRUE,V1.0,Quiet Charging Mode,静音充电模式,静音充電モード,Mode de Charge Silencieuse,Modo de Carga Silenciosa,Modo de carregamento silencioso,,Leiser Lademodus,Modalità di ricarica silenziosa,Тихий режим заряджання,조용한 충전 모드,"On: The noise during AC charging is significantly minimized, while the charging power is reduced, and the charging speed slows down.
+Off: Quiet Charging Mode is disabled.
+Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.","点亮：静音充电模式已开启。
+充电功率降低，充电速度变慢，同时显著降低充电时的噪音。
+熄灭：静音充电模式未开启/已关闭。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。","オン：充電中のノイズが大幅に低減され、充電電力が低下し、充電速度が低減します。
+オフ：静音充電モードが無効になっています。
+（Jackeryアプリで有効/無効にできます。電源オフ時も設定は保持されます。）","Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de la charge connectée est limitée par la puissance de dérivation.
+Éteint : Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.","Encendido: el ruido durante la carga se minimiza significativamente, mientras que la potencia de carga se reduce y la velocidad de carga disminuye.
+Apagado: El modo de carga silenciosa está desactivado.
+Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.","Ligado: O ruído durante o carregamento é significativamente reduzido, enquanto a potência de carregamento é reduzida e a velocidade de carregamento diminui.
+Desligado: O modo de carregamento silencioso está desativado.
+Ative/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",,"Ein: Das Rauschen beim Laden wird deutlich minimiert, während die Ladeleistung reduziert und die Ladegeschwindigkeit verlangsamt wird.
+Aus: Der leise Lademodus ist deaktiviert.
+Diese Funktion kann in der Jackery-App aktiviert oder deaktiviert werden.","Acceso: il rumore durante la ricarica è significativamente ridotto, mentre la potenza e la velocità di ricarica diminuiscono.
+Spento: la modalità di ricarica silenziosa è disattivata.
+Questa funzione può essere attivata o disattivata tramite l'app Jackery.","Увімкнено: Рівень шуму під час заряджання значно зменшується, водночас знижується потужність заряджання і сповільнюється швидкість заряджання.
+Вимкнено: Тихий режим заряджання вимкнено.
+Увімкніть/вимкніть цю функцію в Jackery App.
+Налаштування зберігається після вимкнення пристрою.","켜짐: 충전 중 소음이 크게 줄어들지만, 충전 전력이 낮아지고 충전 속도가 느려집니다.
+꺼짐: 조용한 충전 모드가 비활성화됩니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 이 설정은 장치 전원이 꺼져도 유지됩니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png,"3 Quiet Charging Mode: On: The noise during AC charging is significantly minimized, while the charging power is reduced, and the charging speed slows down."
+4,JE-3000C,TRUE,V1.0,Battery Saving Mode,节省电池模式,"バッテリー節約モード
+Jackeryアプリで有効/無効にできます",Mode d’Économie de Batterie,Modo de Ahorro de Batería,Modo de economia de bateria,,Batterieschonmodus,Modalità di risparmio della batteria,Режим енергозбереження акумулятора,배터리 절약 모드,"On: Limits the maximum usable battery capacity to extend battery life.
+Off: Battery Saving Mode is disabled.
+Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.
+Note: When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.","点亮：节省电池模式已开启，通过限制电池的最大可用容量来延长电池使用寿命。
+熄灭：节省电池模式未开启/已关闭。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。
+注：开启后偶尔会满充满放，用于校准SOC。","バッテリー節約モード設定時は、バッテリー残量が既定値に設定されるため、バッテリーの寿命を延ばすことが可能です。
+（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）
+この機能が有効な場合、本製品はSOCを較正するために、時折フル充放電サイクルを実行します。","Allumé : Le mode d’économie de batterie est activé. Des limites de charge et de décharge sont appliquées afin de prolonger la durée de vie de la batterie.
+Éteint : Le mode d'économie de batterie est désactivé.
+Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.
+Lorsque cette fonction est activée, le produit effectue occasionnellement un cycle de charge-décharge complet pour calibrer le SOC.","Encendido: el modo de ahorro de batería está activado. Se aplican límites de carga y descarga para ayudar a prolongar la vida útil de la batería.
+Apagado: el modo de ahorro de batería está desactivado.
+Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.
+Cuando esta función está habilitada, el producto ocasionalmente realiza un ciclo completo de carga-descarga para calibrar el SOC.","Ligado: O modo de economia de bateria está ativado. Limites de carga e descarga são aplicados para ajudar a prolongar a vida útil da bateria.
+Desligado: O modo de economia de bateria está desativado.
+Ative/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.
+Quando este recurso está ativado, o produto ocasionalmente executa um ciclo completo de carga e descarga para calibrar o SOC.",,"Ein: Der Batterieschonmodus ist aktiviert. Die maximal nutzbare Batteriekapazität wird begrenzt, um die Batterielebensdauer zu verlängern.
+Aus: Der Batterieschonmodus ist deaktiviert.
+Aktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.
+Wenn diese Funktion aktiviert ist, führt das Produkt gelegentlich einen vollständigen Lade- und Entladezyklus durch, um den SOC zu kalibrieren.","Acceso: Limita la capacità massima utilizzabile della batteria per prolungarne la durata.
+Spento: La Modalità di risparmio della batteria è disabilitata.
+Abilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.
+Quando questa funzione è abilitata, il prodotto esegue occasionalmente un ciclo completo di carica e scarica per calibrare il SOC.","Увімкнено: Режим енергозбереження акумулятора увімкнено. Обмеження заряджання та розряджання застосовуються, щоб подовжити термін служби акумулятора.
+Вимкнено: Режим енергозбереження акумулятора вимкнено. Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.
+Коли цю функцію увімкнено, продукт періодично виконує повний цикл заряджання та розряджання для калібрування SOC.","켜짐: 배터리 절약 모드가 활성화되어 있습니다. 배터리 수명 연장을 위해 충전 및 방전 제한이 적용됩니다.
+꺼짐: 배터리 절약 모드가 비활성화되어 있습니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 이 설정은 유지됩니다.
+이 기능이 활성화되면 제품은 SOC를 보정하기 위해 가끔 완전 충전 및 방전 주기를 수행합니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png,4 Battery Saving Mode: On: Limits the maximum usable battery capacity to extend battery life.
+5,JE-3000C,TRUE,V1.0,Charging Plan,充电计划,計画充電モード,Plan de Charge,Plan de Carga,Plano de carregamento,,Ladeplan,Piano di ricarica,План заряджання,충전 계획,"Customizes the charging time of the {{PRODUCT_NAME}}. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.
+Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.","自定义{{PRODUCT_NAME}}的充电计划，适用于电价有波动的情况，可根据电价峰谷时间段制定充电计划，减少用电成本。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。","{{PRODUCT_NAME}} の充電時間をカスタマイズすることで、電気料金のピーク時間とオフピーク時間に基づいた充電プランを選択。これにより月々の電気料金を削減することができます。
+（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）","Personnalisez le temps de charge du {{PRODUCT_NAME}}. Adapté aux situations avec des tarifs d’électricité variables, il permet d’établir des plans de charge en fonction des heures pleines et creuses, afin de réduire les coûts d’électricité. 
+Veuillez configurer cette fonction dans l’application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.","Personaliza el tiempo de carga del {{PRODUCT_NAME}}. Adecuado para situaciones con tarifas eléctricas variables, permite establecer planes de carga según las horas pico y valle, reduciendo así los costos de electricidad.
+Por favor, configure esta función en la aplicación Jackery. Cuando el dispositivo se apaga, se retiene la configuración.","Personaliza o tempo de carregamento do {{PRODUCT_NAME}}. Adequado para situações com tarifas de eletricidade variáveis, permite definir planos de carregamento com base nos horários de pico e fora de pico, reduzindo os custos de eletricidade.
+Ative/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",,"Ermöglicht die Anpassung der Ladezeiten des {{PRODUCT_NAME}}. Geeignet für Situationen mit schwankenden Strompreisen, ermöglicht Ladepläne auf der Grundlage von Spitzen- und Niedrigstromzeiten und reduziert so die Stromkosten.
+Aktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.","Personalizza il tempo di ricarica del {{PRODUCT_NAME}}. Adatto a situazioni con prezzi dell’elettricità variabili, consente di impostare piani di ricarica basati sulle fasce orarie di picco e di minor consumo, riducendo i costi dell’elettricità.
+Abilita/disabilita questa funzione nell’App Jackery. L’impostazione viene antenuta quando il dispositivo è spento.","Налаштовує час заряджання {{PRODUCT_NAME}}. Підходить для умов із коливаннями цін на електроенергію; дозволяє створювати плани заряджання на основі пікових і непікових періодів, зменшуючи витрати на електроенергію.
+Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.","{{PRODUCT_NAME}}의 충전 시간을 사용자 지정합니다. 전기 요금이 변동하는 상황에 적합하며, 피크 시간과 오프피크 시간에 따라 충전 계획을 세워 전기 요금을 절약할 수 있습니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 이 설정은 장치 전원이 꺼져도 유지됩니다.",TRUE,PRODUCT_NAME,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png,"5 Charging Plan: Customizes the charging time of the {{PRODUCT_NAME}}. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs."
+6,JE-3000C,TRUE,V1.0,Charging Power Limit,充电速度限制,充電速度制限,Limite de puissance de charge,Límite de potencia de carga,Limite de potência de carregamento,,Begrenzung der Ladeleistung,Limite di potenza di ricarica,Обмеження потужності заряджання,충전 전력 제한,"On: Charging Power limit is enabled in the Jackery App.
+Off: Charging Power limit is disabled in the Jackery App.
+The setting is retained when the device is powered off.","点亮：充电速度限制已开启
+关机重启后继续执行此充电功率
+熄灭：充电速度限制已关闭。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。","点灯時：アプリ側で充電速度制限が有効になっています。
+消灯時：アプリ側で充電速度制限が無効になっています。
+（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）","Allumé : La limite de puissance de charge est activée dans l'application Jackery.
+Éteint : La limite de puissance de charge est désactivée dans l'application Jackery.
+Le réglage est conservé lorsque l’appareil est mis hors tension.","Encendido: El límite de potencia de carga está activado en la aplicación Jackery.
+Apagado: El límite de potencia de carga está desactivado en la aplicación Jackery.
+Cuando el dispositivo se apaga, se retiene la configuración.","Ligado: O limite de potência de carregamento está ativado no aplicativo Jackery.
+Desligado: O limite de potência de carregamento está desativado no aplicativo Jackery.
+A configuração é mantida quando o dispositivo é desligado.",,"Ein: Die Begrenzung der Ladeleistung ist in der Jackery-App aktiviert.
+Aus: Die Begrenzung der Ladeleistung ist in der Jackery-App deaktiviert.
+Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.","Acceso: Il limite di potenza di ricarica è abilitato nell’App Jackery.
+Spento: Il limite di potenza di carica è disabilitato nell’App Jackery.
+L’impostazione viene mantenuta quando il dispositivo è spento.","Увімкнено: Обмеження потужності заряджання активовано в Jackery App.
+Вимкнено: Обмеження потужності заряджання вимкнено в Jackery App.
+Налаштування зберігається після вимкнення пристрою.","켜짐: Jackery App에서 충전 전력 제한이 활성화되어 있습니다.
+꺼짐: Jackery App에서 충전 전력 제한이 비활성화되어 있습니다.
+장치 전원이 꺼져도 이 설정은 유지됩니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png,6 Charging Power Limit: On: Charging Power limit is enabled in the Jackery App.
+7,JE-3000C,TRUE,V1.0,Self-powered Mode,自发自用模式,自家発電モード,Mode Autonome,Modo Autónomo,Modo de autoalimentação,,Selbstversorgungsmodus,Modalità autoalimentata,Автономний режим,자체 전원 모드,"Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.
+Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off.","点亮：自发自用模式已开启，最大化利用太阳能，减少电网电力消耗，减少用电成本。 
+熄灭：自发自用模式未开启/已关闭。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。","点灯時：自家発電モードがオンになっており、太陽光エネルギーの利用を最大化し、電力会社からの電力消費を削減して電気代を節約します。
+消灯時：自家発電モードがオフ、または未設定の状態です。
+（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）","Maximise l’utilisation de l’énergie solaire et réduit la dépendance à l’électricité du réseau en donnant la priorité à l’énergie solaire stockée, ce qui diminue les coûts d’électricité. La station d’énergie doit être connectée simultanément aux panneaux solaires et au réseau, la puissance de charge étant limitée par la puissance de dérivation.
+Veuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.","Maximiza el uso de la energía solar y reduce la dependencia de la electricidad de la red al priorizar la energía solar almacenada, reduciendo los costos eléctricos. La estación de energía debe estar conectada simultáneamente a los paneles solares y a la red, con la potencia de carga limitada por la potencia de derivación.
+Por favor, active/desactive esta función en la aplicación. Cuando el dispositivo se apaga, se retiene la configuración.","Maximiza o uso da energia solar e reduz a dependência da rede elétrica ao priorizar a energia solar armazenada, reduzindo os custos de eletricidade. A estação de energia deve estar conectada simultaneamente aos painéis solares e à rede elétrica, com a potência da carga limitada pela potência de bypass.
+Ative/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",,"Maximiert die Nutzung von Solarenergie und reduziert die Abhängigkeit vom Netzstrom, indem die Speicherung der Solarenergie priorisiert wird und so Stromkosten gesenkt werden. Die Powerstation muss gleichzeitig mit Solarmodulen und dem Stromnetz verbunden sein; die Lastleistung ist dabei durch die Bypass-Leistung begrenzt.
+Aktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.","Massimizza l’uso dell’energia solare e riduce la dipendenza dalla rete elettrica dando priorità all’energia solare immagazzinata, riducendo i costi dell’elettricità. La centrale elettrica deve essere collegata contemporaneamente sia ai pannelli solari che alla rete elettrica, con la potenza di carico limitata dalla potenza di bypass.
+Abilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.","Максимізує використання сонячної енергії та зменшує залежність від електромережі, віддаючи пріоритет накопиченій сонячній енергії, що знижує витрати на електроенергію. Електростанцію необхідно одночасно підключити до сонячних панелей і електромережі, при цьому потужність навантаження обмежується байпасною потужністю.
+Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.","저장된 태양광 에너지를 우선 사용하여 태양광 에너지 활용을 극대화하고 전력망 의존도를 낮춰 전기 요금을 절감합니다. 파워 스테이션은 태양광 패널과 전력망에 동시에 연결되어야 하며, 부하 전력은 바이패스 전력 한도로 제한됩니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 이 설정은 유지됩니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png,"7 Self-powered Mode: Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power."
+8,JE-3000C,TRUE,V1.0,TOU Mode,TOU模式,TOUモード,Mode TOU,Modo TOU,Modo TOU,,Tarifzeitmodus (TOU-Modus),Modalità TOU,Режим TOU,TOU 모드,"On: TOU (time of use) mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, the product prioritizes battery discharge to reduce peak electricity costs. During off-peak periods, the system charges the battery from the grid to achieve peak-shaving and valley-filling.
+Off: TOU mode is disabled. The device does not follow the TOU strategy and operates according to the default power supply and charging logic.
+Enable/disable this mode in the Jackery App. The setting is retained when the device is powered off.","点亮：TOU模式开启（默认60%备电电量）。高峰时段，当储能电量高于备电电量时，优先使用储能供电，减少高峰用电成本；谷价时段，利用市电对储能进行充电，实现 削峰填谷 的电价优化策略。
+熄灭：TOU模式关闭。设备不执行 TOU（分时电价）策略，按照默认供电与充电逻辑运行。
+（请在 APP 中开启/关闭该功能，关机可记忆保存）。","オン：TOUモードが有効です（デフォルトバックアップSOC：60%）。 ピーク時間帯に、蓄積エネルギーがバックアップSOCを上回ると、本製品はバッテリーの放電を優先し、ピーク時の電力コストを削減します。 オフピーク時間帯には、系統からバッテリーを充電し、ピークカットと谷埋めを実現します。
+オフ：TOUモードは無効になります。 本デバイスはTOU（時間帯別料金）戦略に従わず、デフォルトの電力供給および充電ロジックに基づいて動作します。
+（Jackeryアプリで設定してください。電源オフ時も設定は保持されます。）","Allumé : Le mode TOU est activé (SOC de secours par défaut : 60 %). Pendant les heures de pointe, le produit privilégie la décharge de la batterie afin de réduire les coûts liés à la consommation en période de pointe, lorsque l’énergie stockée dépasse le SOC de réserve. Pendant les heures creuses, le système recharge la batterie à partir du réseau afin de réaliser l’écrêtage des pics et le remplissage des creux.
+Éteint : Le mode TOU est désactivé. L’appareil ne suit pas la stratégie TOU (heures pleines / heures creuses) et fonctionne selon la logique d’alimentation et de charge par défaut.
+Veuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.","Encendido: el modo TOU está habilitado (SOC de respaldo predeterminado: 60 %). Durante las horas pico, el producto prioriza la descarga de la batería para reducir los costos de  la electricidad en momentos de alta demanda, cuando la energía almacenada supera el SOC de respaldo. Durante las horas valle, el sistema carga la batería desde la red para lograr recortar los picos y llenar los valles.
+Apagado: el modo TOU está deshabilitado. El dispositivo no sigue la estrategia TOU (tarifa por periodo de uso) y opera según la lógica predeterminada de suministro de energía y carga.
+Por favor, active/desactive esta función en la aplicación. Cuando el dispositivo se apaga, se retiene la configuración.","Ligado: O modo TOU está ativado (SOC de reserva padrão: 60%). Durante os períodos de pico, o produto prioriza a descarga da bateria para reduzir os custos de eletricidade nos horários de pico quando a energia armazenada excede o SOC de reserva. Durante os períodos fora de pico, o produto carrega a bateria a partir da rede para realizar o corte de pico e o preenchimento de vale.
+Desligado: O modo TOU está desativado. O produto não segue a estratégia TOU (time of use) e opera de acordo com a lógica padrão de alimentação e carregamento.
+Ative/desative este recurso no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado.",,"Ein: Der Tarifzeitmodus (TOU-Modus) ist aktiviert (Standard-Backup-SOC: 60 %). Während der Spitzenlastzeiten entlädt das Produkt die Batterie priorisiert, um die Stromkosten zu senken, sofern die gespeicherte Energie den Backup-SOC überschreitet. Während der Niedriglastzeiten lädt das Produkt die Batterie aus dem Netz, um Spitzenlasten zu reduzieren und Lasttäler auszugleichen.
+Aus: Der Tarifzeitmodus (TOU-Modus) ist deaktiviert. Das Produkt folgt keiner Tarifzeitmodus(TOU-Modus)-Strategie und arbeitet gemäß der standardmäßigen Stromversorgungs- und Ladelogik.
+Aktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt auch nach dem Ausschalten des Geräts erhalten.","Acceso: La modalità TOU è abilitata (SOC di backup predefinito: 60%). Durante i periodi di picco, il prodotto dà priorità alla scarica della batteria per ridurre i costi dell’elettricità quando l’energia immagazzinata supera lo stato di carica (SOC) di backup. Durante i periodi di minor consumo, il prodotto ricarica la batteria dalla rete elettrica per ridurre i picchi di consumo e compensare i cali di domanda.
+Spento: La modalità TOU è disabilitata. Il prodotto non segue la strategia TOU (time of use) e funziona secondo la logica predefinita di alimentazione e ricarica.
+Abilita/disabilita questa funzione nell’App Jackery. L’impostazione viene mantenuta quando il dispositivo è spento.","Увімкнено: Режим TOU увімкнено (стандартний резервний SOC: 60%). У пікові періоди продукт надає пріоритет розряджанню батареї для зменшення витрат на електроенергію, коли накопичена енергія перевищує резервний SOC. У непікові періоди продукт заряджає батарею від електромережі для зрізання піків і заповнення провалів.
+Вимкнено: Режим TOU вимкнено. Продукт не дотримується стратегії TOU (time of use) і працює за стандартною логікою живлення та заряджання.
+Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою.","켜짐: TOU 모드가 활성화되었습니다(기본 백업 SOC: 60%). 피크 시간대에는 저장된 에너지가 백업 SOC를 초과할 경우 배터리 방전을 우선하여 피크 전기 요금을 줄입니다. 비피크 시간대에는 전력망에서 배터리를 충전하여 피크 절감 및 부하 평준화를 달성합니다.
+끄기: TOU 모드가 비활성화되었습니다. 제품은 TOU(시간대별 요금제) 전략을 따르지 않으며, 기본 전원 공급 및 충전 로직에 따라 작동합니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼져도 설정은 유지됩니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png,"8 TOU Mode: On: TOU (time of use) mode is enabled (default backup SOC: 60%). During peak periods, when the stored energy exceeds the backup SOC, the product prioritizes battery discharge to reduce peak electricity costs. During off-peak periods, the system charges the battery from the grid to achieve peak-shaving and valley-filling."
+9,JE-3000C,TRUE,V1.0,UPS,UPS,UPS機能,UPS (ASI),UPS,UPS,,USV,UPS,UPS,UPS,"On: The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms.
+Off: The product is not in bypass mode.","点亮：设备处于同充同放状态，此时市电切换至储能电池供电的时间为 10 ms。 
+熄灭：设备未处于同充同放状态。","点灯時：製品が給電と充電を同時に行う「パススルー充電」状態にあります。停電時には家庭用電源からポータブル電源の切り替え時間が10ミリ秒で行われます。
+消灯時：製品がパススルー充電状態ではありません。","Allumé : Le produit fonctionne en mode bypass. Les charges connectées aux ports CA sont alimentées par le réseau électrique au lieu de la station d’énergie.
+En cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms.
+Éteint : Le produit n’est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d’énergie.","Encendido: El producto está funcionando en modo bypass. Las cargas conectadas a los puertos de CA consumen energía de la red eléctrica en lugar de la estación de energía.
+Si la red eléctrica falla repentinamente, el producto cambia automáticamente a la alimentación de la batería en 10 ms.
+Apagado: El producto no está en modo bypass. Las cargas conectadas a los puertos de CA son alimentadas por la batería interna de la estación de energía.","Ligado: O produto está operando no modo bypass. As cargas conectadas às portas CA consomem energia da rede elétrica em vez da estação de energia. Se a rede elétrica falhar repentinamente, o produto alterna automaticamente para a alimentação da bateria em até 10 ms.
+Desligado: O produto não está no modo bypass. As cargas conectadas às portas CA são alimentadas pela bateria interna da estação de energia.",,"Ein: Das Produkt arbeitet im Bypass-Modus. An die AC-Anschlüsse angeschlossene Lasten werden über das Stromnetz statt über die Powerstation versorgt. Bei einem plötzlichen Netzausfall schaltet das Produkt innerhalb von 10 ms automatisch auf Batteriebetrieb um.
+Aus: Das Produkt befindet sich nicht im Bypass-Modus. An die AC-Anschlüsse angeschlossene Lasten werden über die interne Batterie der Powerstation versorgt.","Acceso: Il prodotto è in funzione in modalità bypass. I carichi collegati alle porte CA vengono alimentati dalla rete elettrica anziché dalla power station. In caso di improvvisa interruzione della rete elettrica, il prodotto passa automaticamente all'alimentazione a batteria entro 10 ms.
+Spento: Il prodotto non è in modalità bypass. I carichi collegati alle porte CA vengono alimentati dalla batteria interna della power station.","Увімкнено: У режимі байпасу навантаження, підключені до портів змінного струму, живляться від електромережі, а не від електростанції. У разі раптового збою електромережі продукт автоматично перемикається на живлення від батареї протягом 10 мс.
+Вимкнено: Продукт не перебуває в режимі байпасу. Навантаження, підключені до портів змінного струму, живляться від внутрішньої батареї електростанції.","켜짐: 제품이 바이패스 모드로 작동 중입니다. AC 포트에 연결된 부하는 파워 스테이션이 아닌 전력망에서 전력을 소비합니다. 그리드 전력이 갑자기 중단되면 제품은 10 ms 이내에 자동으로 배터리 전력으로 전환됩니다.
+꺼짐: 제품은 바이패스 모드에서 작동하지 않습니다. AC 포트에 연결된 부하는 파워 스테이션의 내부 배터리에서 전원을 공급받습니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png,"9 UPS: On: The product is in bypass mode, and the switchover time from grid power to the internal battery is 10 ms."
+10,JE-3000C,TRUE,V1.0,AC Power Indicator,交流输出符号,"交流電源による出力マーク
+（正弦波)",Indicateur d'alimentation CA,Indicador de Energía de CA,Indicador de energia CA,,AC-Stromanzeige,"Indicatore di
+alimentazione CA",Індикатор живлення змінного струму,AC 전원 표시등,The AC output (pure sine wave) is on.,AC输出（纯正弦波）已开启。,AC出力（純正弦波）がオンになっています。,La sortie CA (onde sinusoïdale pure) est activée.,La salida CA (onda sinusoidal pura) está activada.,A saída CA (onda senoidal pura) está ligada.,,Der AC-Ausgang (reine Sinuswelle) ist eingeschaltet.,L’uscita CA (onda sinusoidale pura) è attiva.,Вихід змінного струму (чиста синусоїда) увімкнено.,AC 출력(순수 정현파)이 켜져 있습니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png,10 AC Power Indicator: The AC output (pure sine wave) is on.
+11,JE-3000C,TRUE,V1.0,Input Power,充电功率显示,入力電力表示,Puissance d’Entrée,Potencia de Entrada,Potência de entrada,,Eingangsleistung,Potenza in ingresso,Вхідна потужність,입력 전력,Displays the input power in watts.,显示当前充电功率。,入力電力をワットで表示します。,Affiche la puissance d'entrée en watts.,Muestra la potencia de entrada en vatios.,Exibe a potência de entrada em watts.,,Zeigt die Eingangsleistung in Watt an.,Visualizza la potenza di ingresso in watt.,Відображає вхідну потужність у ватах.,입력 전력을 와트(W) 단위로 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png,11 Input Power: Displays the input power in watts.
+12,JE-3000C,TRUE,V1.0,Remaining Charge Time,剩余充电时间,充電残り時間,Temps de Charge Restant,Tiempo de Carga Restante,Tempo de carregamento restante,,Verbleibende Aufladezeit,Tempo di carica rimanente,"Час, що залишився до повного
+заряджання",남은 충전 시간,Displays the remaining charging time.,显示剩余充电时间。,充電残り時間を表示します。,Affiche le temps de charge restant.,Muestra el tiempo de carga restante.,Exibe o tempo de carregamento restante.,,Anzeige der verbleibenden Ladezeit.,Visualizza il tempo residuo di carica.,Відображає залишковий час заряджання.,남은 충전 시간을 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png,12 Remaining Charge Time: Displays the remaining charging time.
+13,JE-3000C,TRUE,V1.0,AC Wall Charging Indicator,市电充电接入,AC入力電力表示,Indicateur de Charge sur Prise Murale CA,Indicador de Carga desde Toma de Corriente CA,Indicador de carregamento em tomada CA,,AC-Netzladeanzeige,"        
+Indicatore di ricarica CA a parete","Індикатор заряджання від мережі
+змінного струму",AC 벽면 충전 표시기,The product is charged via the AC Input using grid power.,产品通过市电进行充电。,製品は、系統電力を使用し、AC入力を介して充電されます。,Le produit est chargé via l'entrée CA en utilisant l'énergie du réseau.,El producto se carga a través de la entrada CA utilizando energía de la red eléctrica.,O produto é carregado pela Entrada CA usando energia da rede.,,Das Produkt wird über den AC-Eingang mit Netzstrom geladen.,Il prodotto viene caricato tramite l'ingresso CA utilizzando l'alimentazione della rete elettrica.,Пристрій заряджається через вхід змінного струму від електромережі.,제품은 그리드 전력을 사용하여 AC 입력 포트를 통해 충전됩니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png,13 AC Wall Charging Indicator: The product is charged via the AC Input using grid power.
+14,JE-3000C,TRUE,V1.0,Car Charging Indicator,车充充电接入,シガーソケット入力電力表示,Indicateur de Charge Voiture,Indicador de Carga desde Vehículo,Indicador de carregamento veicular,,Autoladeanzeige ,Indicatore di ricarica da auto,Індикатор заряджання від автомобіля,차량 충전 표시기,The product is charged via the DC Input (DC8020) using DC 12V (car charging).,产品通过 DC 输入端口（DC8020）连接 12V 车载充电线进行充电。,製品は、DC 12V（カーチャージ）を使用し、8020入力ポートを介して充電されます。,Le produit est chargé via l’entrée CC (DC8020) en utilisant du CC 12V (charge via voiture).,El producto se carga a través de la entrada CC (DC8020) utilizando CC 12V (carga desde el vehículo).,O produto é carregado pela Entrada CC (DC8020) usando CC 12V (carregamento veicular).,,Das Produkt wird über den DC-Eingang (DC8020) mit 12V Gleichstrom (Autoladung) geladen.,Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando 12V CC (ricarica da auto).,Пристрій заряджається через вхід постійного струму (DC8020) із використанням 12 В постійного струму (автомобільне заряджання).,제품은 DC 12V(차량 충전) 전원을 사용해 DC 입력(DC8020)으로 충전됩니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png,14 Car Charging Indicator: The product is charged via the DC Input (DC8020) using DC 12V (car charging).
+15,JE-3000C,TRUE,V1.0,Solar Charging Indicator,太阳能（绿色能源）充电接入,ソーラー(グリーンエネルギー)充電接続,Indicateur de Charge Solaire,Indicador de Carga Solar,Indicador de carregamento solar,,Solar-Ladeanzeige,Indicatore di ricarica solare,"Індикатор заряджання від сонячної
+панелі",태양광 충전 표시기,The product is charged via the DC Input (DC8020) using solar panel(s).,产品通过 DC 输入端口（DC8020）连接太阳能板进行充电。,製品は、ソーラーパネルを使用し、8020入力ポートを介して充電されています。,Le produit est chargé via l’entrée CC (DC8020) à l’aide de panneaux solaires.,El producto se carga a través de la entrada CC (DC8020) utilizando paneles solares.,O produto é carregado pela Entrada CC (DC8020) usando painel(is) solar(es).,,Das Produkt wird über den DC-Eingang (DC8020) mit Solarpanel(s) geladen.,Il prodotto viene ricaricato tramite l’ingresso DC (DC8020) utilizzando uno o più pannelli solari.,Пристрій заряджається через вхід постійного струму (DC8020) із використанням сонячної(-их) панелі(-ей).,제품은 태양광 패널을 사용해 DC 입력(DC8020)으로 충전됩니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png,15 Solar Charging Indicator: The product is charged via the DC Input (DC8020) using solar panel(s).
+16,JE-3000C,TRUE,V1.0,Battery Power Indicator,电池电量图标,バッテリーアイコン,Indicateur de Puissance de la Batterie,Indicador de Potencia de la Batería,Indicador de energia da bateria,,Batteriezustandsanzeige,Indicatore di carica della batteria,Індикатор заряду акумулятора,배터리 전력 표시등,"When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.","当本产品处于充电状态时，该图标顺时针转动；
+当产品处于放电状态时，该图标显示当前电量。",製品の充電中は、バッテリーのパーセンテージを囲むオレンジ色の円が順番に点灯します。他のデバイスの充電時には、オレンジ色の円は点灯したままになります。,"Lorsque le produit est en charge, le cercle orange autour du pourcentage de batterie s’allume en séquence. Lorsqu’il charge d’autres appareils, le cercle orange reste allumé.","Cuando el producto se está cargando, el círculo naranja alrededor del porcentaje de batería se ilumina secuencialmente. Cuando está cargando otros dispositivos, el círculo naranja permanece encendido.","Quando o produto estiver sendo carregado, o círculo laranja ao redor da porcentagem da bateria acenderá em sequência. Ao carregar outros dispositivos, o círculo laranja permanece aceso.",,"Wenn das Produkt geladen wird, leuchtet der orangefarbene Kreis um die Batterieanzeige nacheinander auf. Beim Laden anderer Geräte bleibt der orangefarbene Kreis dauerhaft eingeschaltet.","Quando il prodotto è in carica, il cerchio arancione attorno alla percentuale della batteria si accende in sequenza. Durante la ricarica di altri dispositivi, il cerchio arancione rimarrà acceso.","Коли пристрій заряджається, помаранчеве коло навколо відсотка заряду акумулятора почергово засвічуватиметься. Під час заряджання інших пристроїв помаранчеве коло світитиметься постійно.",제품이 충전 중일 때 배터리 백분율 주위의 주황색 원이 순차적으로 점등됩니다. 다른 기기를 충전할 때는 주황색 원이 계속 켜져 있습니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png,"16 Battery Power Indicator: When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+17,JE-3000C,TRUE,V1.0,Low Battery Indicator,低电量提醒,バッテリー残量警告灯,Indicateur de Batterie Faible,Indicador de Batería Baja,Indicador de bateria fraca,,Batterietiefstandsanzeige,Indicatore di batteria scarica,"Індикатор низького рівня заряду
+батареї",배터리 부족 표시기,"On: The battery level is below 20%.
+Blink: The battery level is below 5%.
+Off: The battery level is not below 20% or the product is charging.","点亮：当前电池电量低于 20%。
+闪烁：当前电池电量低于 5%。
+熄灭：设备正在充电中。","オン：バッテリー残量が20％未満です。
+点滅：バッテリー残量が5％未満です。
+オフ：製品は充電中です。","
+Allumé : Le niveau de la batterie est inférieur à 20 %.
+Clignotant : Le niveau de la batterie est inférieur à 5 %.
+Éteint : Le niveau de la batterie n'est pas inférieur à 20 % ou le produit est en charge.","Encendido: el nivel de la batería está por debajo del 20 %.
+Parpadeo: el nivel de la batería está por debajo del 5 %.
+Apagado: el nivel de la batería no está por debajo del 20 % o el producto se está cargando.","Ligado: O nível da bateria está abaixo de 20%.
+Pisca: O nível da bateria está abaixo de 5%.
+Desligado: O nível da bateria não está abaixo de 20% ou o produto está carregando.",,"Ein: Der Batteriestand liegt unter 20 %.
+Blinken: Der Batteriestand liegt unter 5 %.
+Aus: Der Batteriestand liegt nicht unter 20 % oder das Produkt wird aufgeladen.","Acceso: il livello della batteria è inferiore al 20%.
+Lampeggiante: il livello della batteria è inferiore al 5%.
+Spento: il livello della batteria non è inferiore al 20% oppure il prodotto è in carica.","Увімкнено: Рівень заряду батареї нижче 20%.
+Блимає: Рівень заряду батареї нижче 5%.
+Вимкнено: Рівень заряду батареї не нижче 20% або пристрій заряджається.","켜짐: 배터리 잔량이 20% 미만입니다.
+깜박임: 배터리 잔량이 5% 미만입니다.
+꺼짐: 배터리 잔량이 20% 이상이거나 제품이 충전 중입니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png,17 Low Battery Indicator: On: The battery level is below 20%.
+18,JE-3000C,TRUE,V1.0,Remaining Battery Percentage,电池电量百分比,バッテリーレベルパーセントタグ,Pourcentage de Batterie Restant,Porcentaje de Batería Restante,Porcentagem de bateria restante,,Verbleibender Batterieprozentsatz,Percentuale di batteria residua,"Залишковий відсоток заряду
+акумулятора",남은 배터리 백분율,Displays the remaining battery percentage.,"显示当前电池电量。0%代表电池完全放电,100%代表电池电量已充满。",バッテリー残量を表示します。,Affiche le pourcentage de batterie restant.,Muestra el porcentaje de batería restante.,Exibe a porcentagem de bateria restante.,,Zeigt den verbleibenden Batteriestand an.,Mostra la percentuale residua della batteria.,Відображає залишковий відсоток заряду акумулятора.,남은 배터리 백분율을 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png,18 Remaining Battery Percentage: Displays the remaining battery percentage.
+19,JE-3000C,TRUE,V1.0,Discharge Timer,放电倒计时,放電タイマー,Minuterie de décharge,Temporizador de descarga,Temporizador de descarga,,Entlade-Timer,Timer di scarica,Таймер розряджання,방전 타이머,"On: A discharge timer is set.
+Off: No discharge timer is set.
+Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.","通过App为输出端口设置关闭倒计时，时间结束后自动断电，节约能源并保护电池。
+仅对当前设置有效，设备重启后需重新设定。","オン：放電タイマーが設定されています。
+オフ：放電タイマーは設定されていません。
+Jackeryアプリで設定してください。本設定は、デバイスの電源を切ると保持されません。","Allumé : une minuterie de décharge est définie.
+Éteint : aucune minuterie de décharge n’est définie.
+Activez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.","Encendido: se ha configurado un temporizador de descarga.
+Apagado: no se ha configurado un temporizador de descarga.
+Activar/desactivar esta función en la App Jackery. Cuando el dispositivo esté apagado, este ajuste no se conservará.","Ligado: Um temporizador de descarga está definido.
+Desligado: Nenhum temporizador de descarga está definido.
+Ative/desative este recurso no aplicativo Jackery. A configuração não é mantida quando o dispositivo é desligado.",,"Ein: Ein Entlade-Timer ist eingerichtet.
+Aus: Es ist kein Entlade-Timer eingerichtet.
+Aktivieren oder deaktivieren Sie diese Funktion in der Jackery-App. Die Einstellung bleibt nach dem Ausschalten des Geräts nicht erhalten.
+","Acceso: È impostato un Timer di scarica.
+Spento: Non è impostato alcun timer di scarica.
+Abilita/disabilita questa funzione nell’App Jackery. L’impostazione non viene mantenuta allo spegnimento del dispositivo.","Увімкнено: Таймер розряджання встановлено.
+Вимкнено: Таймер розряджання не встановлено.
+Увімкніть/вимкніть цю функцію в Jackery App. Налаштування не зберігається після вимкнення пристрою.","켜짐: 방전 타이머가 설정되어 있습니다.
+꺼짐: 방전 타이머가 설정되어 있지 않습니다.
+이 기능은 Jackery App에서 설정/해제할 수 있습니다. 장치 전원이 꺼지면 이 설정은 유지되지 않습니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png,19 Discharge Timer: On: A discharge timer is set.
+20,JE-3000C,TRUE,V1.0,Energy Saving Mode,节能模式,省エネモード,Mode d’Économie d’Énergie,Modo de Ahorro de Energía,Modo de economia de energia,,Energiesparmodus,Modalità di risparmio energetico,РЕЖИМ ЕНЕРГОЗБЕРЕЖЕННЯ,에너지 절약 모드,"When the AC or DC output is turned on by pressing the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} power button:
+On: Energy Saving Mode is enabled.
+Off: Energy Saving Mode is disabled.","出厂默认开启，默认时间为 12H。AC 输出≤25W、DC 输出≤2W（不含应急灯）且持续达到设定时间后，将自动关闭对应输出。
+点亮：节能模式开启。
+熄灭：节能模式关闭。
+（可在 APP 中设置时间，关机可记忆保存）。","ACまたはDC出力を{{AC_POWER_BUTTON_LABEL}}または{{DC_USB_POWER_BUTTON_LABEL}}電源ボタンを押してオンにしたとき：
+アイコン表示：省エネモードがオンになっています。
+アイコン無表示：省エネモードがオフになっています。
+電源オフ時も設定は保持されます。","Lorsque la sortie CA ou CC est activée en appuyant sur le bouton CA ou le bouton CC / USB :
+Allumé : Mode d'économie d'énergie activé.
+Éteint : Mode d'économie d'énergie désactivé.
+Le réglage est conservé lorsque l’appareil est mis hors tension.","Cuando las salidas CA o CC se encienden presionando los botones de encendido CA o CC/USB:
+Encendido: Modo de ahorro de energía activado.
+Apagado: Modo de ahorro de energía desactivado.
+Cuando el dispositivo se apaga, se retiene la configuración.","Quando a saída CA ou CC é ligada pressionando o {{AC_POWER_BUTTON_LABEL}} ou o {{DC_USB_POWER_BUTTON_LABEL}}:
+Ligado: O modo de economia de energia está ativado.
+Desligado: O modo de economia de energia está desativado.
+A configuração é mantida quando o dispositivo é desligado.",,"Wenn der AC- oder DC-Ausgang durch Drücken der AC-Einschalttaste oder DC/USB-Einschalttaste eingeschaltet wird:
+Ein: Der Energiesparmodus ist aktiviert.
+Aus: Der Energiesparmodus ist deaktiviert.
+Die Einstellung bleibt erhalten, wenn das Gerät ausgeschaltet wird.","Quando l'uscita CA o CC viene attivata premendo il pulsante CA o DC/USB:
+Acceso: La Modalità di risparmio energetico è abilitata.
+Spento: La Modalità di risparmio energetico è disabilitata.
+L'impostazione viene mantenuta quando il dispositivo viene spento.","Коли вихід AC або DC/USB увімкнено натисканням відповідної кнопки AC або DC/USB:
+Увімкнено: режим енергозбереження увімкнено.
+Вимкнено: режим енергозбереження вимкнено.
+Налаштування зберігається після вимкнення пристрою.","{{AC_POWER_BUTTON_LABEL}} 또는 {{DC_USB_POWER_BUTTON_LABEL}} 전원 버튼을 눌러 AC 또는 DC 출력이 켜질 때:
+켜짐: 에너지 절약 모드가 활성화되어 있습니다.
+꺼짐: 에너지 절약 모드가 비활성화되어 있습니다.
+장치 전원이 꺼져도 이 설정은 유지됩니다.",TRUE,"AC_POWER_BUTTON_LABEL, DC_USB_POWER_BUTTON_LABEL",manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png,20 Energy Saving Mode: When the AC or DC output is turned on by pressing the {{AC_POWER_BUTTON_LABEL}} or {{DC_USB_POWER_BUTTON_LABEL}} power button:
+21,JE-3000C,TRUE,V1.0,High Temperature Indicator,高温警告,高温インジケーター,Indicateur de Température Élevée,Indicador de Alta Temperatura,Indicador de alta temperatura,,Warnung vor hoher Temperatur,Indicatore di temperatura elevata,Індикатор високої температури,고온 표시기,High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.,如果屏幕上出现【高温警告符号】，请勿担心，电池降温后可自行恢复。,高温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。,La protection contre les températures élevées est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.,Se activó la protección por alta temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.,A proteção contra alta temperatura foi acionada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação.,,"Der Hochtemperaturschutz wurde aktiviert. Das Produkt kann die Funktion einstellen, bis die Temperatur wieder im normalen Betriebsbereich liegt.",La protezione da alta temperatura è stata attivata. Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.,"Активовано захист від високої температури. Продукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону.",고온 보호가 작동됩니다. 온도가 정상 작동 범위로 돌아올 때까지 제품이 작동을 중지할 수 있습니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png,21 High Temperature Indicator: High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
+21,JE-3000C,TRUE,V1.0,Low Temperature Indicator,低温警告,低温インジケーター,Indicateur de Basse Température,Indicador de Baja Temperatura,Indicador de baixa temperatura,,Warnung bei niedriger Temperatur,Indicatore di bassa temperatura,Індикатор низької температури,저온 표시기,"Low temperature protection is triggered.
+The product may stop functioning until its temperature returns to the normal operating range.",如果屏幕上出现【低温警告符号】，请勿担心，环境温度恢复后自动恢复。,低温保護が作動しました。製品の温度が通常の動作範囲に戻るまで、製品の機能が停止する場合があります。,La protection contre les basses températures est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.,Se activó la protección por baja temperatura. El producto puede dejar de funcionar hasta que su temperatura vuelva al rango normal de operación.,A proteção contra baixa temperatura foi acionada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação.,,"Der Niedrigtemperaturschutz wurde aktiviert. 
+Das Produkt kann die Funktion einstellen, bis die Temperatur wieder im normalen Betriebsbereich liegt.","È stata attivata la protezione da bassa temperatura. 
+Il prodotto potrebbe smettere di funzionare finché la temperatura non rientra nel normale intervallo operativo.","Активовано захист від низької температури.
+Продукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону.","저온 보호가 작동됩니다.
+온도가 정상 작동 범위로 돌아올 때까지 제품의 작동이 중지될 수 있습니다.",FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png,21 Low Temperature Indicator: Low temperature protection is triggered.
+22,JE-3000C,TRUE,V1.0,Fault code,故障代码,エラーコード,Code d’erreur,Código de fallo,Código de falha,,Fehlermeldung,Codice di errore,Код помилки,오류 코드,A product error has occurred. Please refer to the Troubleshooting section for details.,产品发生故障，请参考故障代码模块内容了解详情。,製品エラーが発生しました。詳細については、トラブルシューティングのセクションを参照してください。,Une erreur produit s’est produite. Veuillez consulter la section « Dépannage » pour plus de détails.,"Se ha producido un error en el producto. Por favor, consulte la sección de solución de problemas para más detalles.",Ocorreu um erro no produto. Consulte a seção Solução de problemas para obter detalhes.,,Ein Produktfehler ist aufgetreten. Bitte lesen Sie den Abschnitt „Fehlerbehebung“ für weitere Informationen.,"Si è verificato un errore del prodotto. Per maggiori dettagli, consultare la sezione “Risoluzione dei problemi”.","Виникла помилка продукту. Будь ласка, зверніться до розділу «Усунення несправностей» для отримання детальної інформації.",제품에 오류가 발생했습니다. 자세한 내용은 문제 해결 섹션을 참조하십시오.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png,22 Fault code: A product error has occurred. Please refer to the Troubleshooting section for details.
+23,JE-3000C,TRUE,V1.0,Output Voltage and Frequency,输出电压和频率,出力電圧と周波数,Tension et fréquence de sortie,Voltaje y frecuencia de salida,Tensão e frequência de saída,,Ausgangsspannung und -frequenz,Tensione e frequenza di uscita,Вихідна напруга та частота,출력 전압 및 주파수,Displays the output voltage and frequency when the AC output is turned on.,显示AC输出口的输出电压和频率。,出力される電圧と周波数を表示します。,Affiche la tension et la fréquence de sortie lorsque la sortie CA est activée.,Muestra el voltaje y la frecuencia de salida cuando la salida de CA está encendida.,Exibe a tensão e a frequência de saída quando a saída CA está ligada.,,"Zeigt die Ausgangsspannung und -frequenz an, wenn der AC-Ausgang eingeschaltet ist.",Visualizza la tensione e la frequenza di uscita.,"Відображає вихідну напругу та частоту, коли вихід змінного струму увімкнено.",AC 출력이 켜져 있을 때 출력 전압과 주파수를 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png,23 Output Voltage and Frequency: Displays the output voltage and frequency when the AC output is turned on.
+24,JE-3000C,TRUE,V1.0,Output Power,放电功率显示,消費電力,Puissance de Sortie,Potencia de Salida,Potência de saída,,Ausgangsleistung,Potenza in uscita,Вихідна потужність,출력 전력,Displays the output power in watts.,显示当前放电功率。,出力電力をワットで表示します。,Affiche la puissance de sortie en watts.,Muestra la potencia de salida en vatios.,Exibe a potência de saída em watts.,,Zeigt die Ausgangsleistung in Watt an.,Visualizza la potenza di uscita in watt.,Відображає вихідну потужність у ватах.,출력 전력을 와트(W) 단위로 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png,24 Output Power: Displays the output power in watts.
+25,JE-3000C,TRUE,V1.0,Remaining Discharge Time,剩余放电时间,バッテリー使用可能時間,Temps de Décharge Restant,Tiempo de Descarga Restante,Tempo de descarga restante,,Verbleibende Entladezeit,Tempo di scarica rimanente,"Час, що залишився до розряджання",잔여 방전 시간,Displays the remaining discharging time.,显示剩余放电时间。,接続した機器の使用可能な時間を表示します。,Affiche le temps de décharge restant.,Muestra el tiempo de descarga restante.,Exibe o tempo de descarga restante.,,Anzeige der verbleibenden Entladezeit.,Visualizza il tempo residuo di scarica.,Відображає залишковий час розряджання.,남은 방전 시간을 표시합니다.,FALSE,,manual_sources/JE-3000C/EU/en/2.0/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png,25 Remaining Discharge Time: Displays the remaining discharging time.

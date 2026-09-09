@@ -25,12 +25,21 @@ pages:
     recipe: templates/recipes/eu-en/03_product_overview.yaml
     template: templates/page_eu-en/03_product_overview_placeholder.rst
     model_overrides:
-      JE-300E:
-        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
-        template: templates/page_eu-en/03_product_overview_je300e.rst
       JE-3600A:
         recipe: templates/recipes/eu-en/03_product_overview_je3600a.yaml
         template: templates/targets/je3600a/03_product_overview.rst
+      JE-3000C:
+        recipe: templates/recipes/eu-en/03_product_overview_je3000c.yaml
+        template: templates/targets/je3000c/03_product_overview_placeholder.rst
+      JE-1000H:
+        recipe: templates/recipes/eu-en/03_product_overview_je1000h.yaml
+        template: templates/targets/je1000h/03_product_overview.rst
+      JE-300E:
+        recipe: templates/recipes/eu-en/03_product_overview_je300e.yaml
+        template: templates/page_eu-en/03_product_overview_je300e.rst
+      JE-2000E:
+        recipe: templates/recipes/eu-en/03_product_overview_je2000e.yaml
+        template: templates/targets/je2000e/03_product_overview_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: csv_page
@@ -47,15 +56,35 @@ pages:
       JE-3600A:
         recipe: templates/recipes/eu-en/05_operation_guide_je3600a.yaml
         template: templates/targets/je3600a/05_operation_guide.rst
+      JE-3000C:
+        recipe: templates/recipes/eu-en/05_operation_guide_je3000c.yaml
+        template: templates/targets/je3000c/05_operation_guide_placeholder.rst
+      JE-1000H:
+        recipe: templates/recipes/eu-en/05_operation_guide_je1000h.yaml
+        template: templates/targets/je1000h/05_operation_guide.rst
+      JE-2000E:
+        recipe: templates/recipes/eu-en/05_operation_guide.yaml
+        template: templates/targets/je2000e/05_operation_guide_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: rst_include
     lang: en
     file: templates/page_shared/en/06_ups_mode.rst
     capability: UPS功能
-  - type: rst_include
-    lang: en
-    file: templates/targets/je3600a/07_extra_battery.rst
+  - type: generated_page
+    page: 07_extra_battery
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/07_extra_battery.yaml
+    template: templates/targets/je2000e/07_extra_battery.rst
+    model_overrides:
+      JE-3600A:
+        recipe: templates/recipes/eu-en/07_extra_battery.yaml
+        template: templates/targets/je3600a/07_extra_battery.rst
+      JE-1000H:
+        recipe: templates/recipes/eu-en/07_extra_battery.yaml
+        template: templates/targets/je1000h/07_extra_battery.rst
+    langs: [en]
+    include_dir: generated/{model}/draft
     capability: 加电包扩容
   - type: rst_include
     lang: en
@@ -88,6 +117,12 @@ pages:
       JE-3600A:
         recipe: templates/recipes/eu-shared-en/12_app_setup_je3600a.yaml
         template: templates/targets/je3600a/12_app_setup.rst
+      JE-1000H:
+        recipe: templates/recipes/eu-shared-en/12_app_setup_je1000h.yaml
+        template: templates/targets/je1000h/12_app_setup.rst
+      JE-2000E:
+        recipe: templates/recipes/eu-shared-en/12_app_setup_je2000e.yaml
+        template: templates/targets/je2000e/12_app_setup_placeholder.rst
     langs: [en]
     include_dir: generated/{model}/draft
   - type: rst_include
