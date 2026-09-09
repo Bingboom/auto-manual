@@ -35,8 +35,8 @@ The package-list User Guide crop excludes the source QR because its destination 
 - [x] Real `build.py md` produces `whole-document-components/v1` ManualIR.
 - [x] Target regression (30 tests), target `build.py check`, and strict Sphinx pass.
 - [x] Asset registry, links, secrets, lint, maintainability, and full repository regression (3,910 tests; 22 skipped) pass.
-- [ ] Clean-checkout replay passes from committed source inputs.
-- [ ] Latest `origin/main` merged normally after validation.
+- [x] Clean-checkout replay passes from committed source inputs (10 deterministic asset artifacts; 6 target tests).
+- [x] Latest `origin/main` (`d1eeb282`) integrated normally after validation (`Already up to date`; no rebase).
 - [ ] Branch pushed and PR opened to `main`; merge and formal publication remain pending.
 
 ## Publication boundary
