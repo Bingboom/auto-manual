@@ -1,0 +1,33 @@
+extends: config.bp-eu.yaml
+build:
+  family_id: bp-eu-en
+  language_family: eu-en
+  family_default: false
+  languages:
+  - en
+  include_lang_in_output_path: true
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: English
+    BP_CONNECTION_LOCKING_ASSET: asset:connections/jbp2000b/locking_en
+    BP_COMPATIBLE_HOST_MODELS: the Jackery Explorer 2000 Plus and the Jackery Explorer 1000 Plus
+    BP_OVERVIEW_FRONT_ASSET: asset:overview/jbp2000b/front_controls
+    BP_OVERVIEW_SIDE_ASSET: asset:overview/jbp2000b/left_side_ports
+    BP_OPERATION_POWER_ASSET: asset:operation/jbp2000b/power_control
+    BP_OPERATION_LCD_ASSET: asset:operation/jbp2000b/lcd_control
+    BP_INBOX_UNIT_FILE: jbp2000b_in_box_main_unit.png
+    BP_INBOX_CABLE_FILE: jbp2000b_expansion_cable.png
+    BP_INBOX_MANUAL_FILE: manual_icon1.png
+    BP_INBOX_UNIT_ASSET: asset:in_the_box/jbp2000b/main_unit
+    BP_INBOX_CABLE_ASSET: asset:in_the_box/jbp2000b/expansion_cable
+    BP_INBOX_MANUAL_ASSET: asset:in_the_box/manual_icon1
+    BP_HOST_PRODUCT_NAME: the portable power station
+    BP_HOST_PRODUCT_SHORT_NAME: portable power station
+paths:
+  idml_assembly_plan: null
+  page_manifest: docs/manifests/manual_bp-eu-en.yaml
+  web_illustration_manifest: docs/renderers/web/jbp2000b_eu_en_illustrations.json
+checks:
+  allowed_foreign_identity_literals:
+  - Jackery Battery Pack 2000
+  - Jackery Explorer 2000 Plus
+  - Jackery Explorer 1000 Plus

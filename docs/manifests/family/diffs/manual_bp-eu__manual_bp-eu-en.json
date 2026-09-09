@@ -1,0 +1,156 @@
+{
+  "schema_version": "family-manifest-diff/v1",
+  "base_manifest_id": "manual_bp_eu",
+  "target_manifest_id": "manual_bp_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_bp_eu_en"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "type": "cover_pdf",
+          "slot_id": "cover",
+          "file": "asset:page/cover"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "preface_important",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/eu_preface.rst",
+          "lang_blocks": true
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "toc",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/jbp3600a_00_toc.rst"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "safety_info_en",
+          "lang": "en",
+          "file": "templates/page_bp/en/01_safety.rst"
+        },
+        {
+          "type": "csv_page",
+          "slot_id": "symbol_meaning_en",
+          "source": "phase2",
+          "page": "symbols",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "box_contents_en",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/jbp3600a_02_whats_in_the_box.rst"
+        },
+        {
+          "type": "generated_page",
+          "slot_id": "product_overview_en",
+          "page": "03_product_overview",
+          "engine": "draft_v1",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "template": "templates/page_bp/en-web/jbp3600a_03_product_overview_placeholder.rst",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}/draft"
+        },
+        {
+          "type": "csv_page",
+          "slot_id": "lcd_display_en",
+          "source": "phase2",
+          "page": "lcd_icons",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}"
+        },
+        {
+          "type": "generated_page",
+          "slot_id": "operation_en",
+          "page": "05_operation_guide",
+          "engine": "draft_v1",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "template": "templates/page_bp/en-web/jbp3600a_05_operation_guide_placeholder.rst",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}/draft"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "ups_mode_en",
+          "lang": "en",
+          "file": "templates/page_shared/en/06_ups_mode.rst",
+          "capability": "UPS功能"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "extra_battery_en",
+          "lang": "en",
+          "file": "templates/page_shared/en/07_extra_battery.rst",
+          "capability": "加电包扩容"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "connections_en",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/eu_connections.rst"
+        },
+        {
+          "type": "csv_page",
+          "slot_id": "troubleshooting_en",
+          "source": "phase2",
+          "page": "troubleshooting",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "charging_en",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/eu_charging.rst"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "storage_en",
+          "lang": "en",
+          "file": "templates/page_bp/en/09_storage.rst"
+        },
+        {
+          "type": "csv_page",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "page": "spec",
+          "langs": [
+            "en"
+          ],
+          "include_dir": "generated/{model}"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "warranty_en",
+          "lang": "en",
+          "file": "templates/page_bp/en-web/eu_warranty.rst"
+        },
+        {
+          "type": "rst_include",
+          "slot_id": "regulatory_compliance",
+          "lang": "en",
+          "file": "templates/page_bp/intl/99_regulatory_compliance_eu.rst"
+        }
+      ]
+    }
+  ]
+}
