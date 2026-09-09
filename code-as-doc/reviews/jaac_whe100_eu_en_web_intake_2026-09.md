@@ -15,6 +15,9 @@
 - [x] The stale `JA-ST01A` literal in the tiny Inbox manual thumbnail footer is excluded from the promoted crop.
 - [x] No LCD, UPS, App, charger-only safety/FAQ/installation, or warranty content is invented.
 - [x] Asset recipe cold-replays from the Git-frozen AI and verifies all seven promoted hashes.
+- [x] The control-panel crop normalizes RGB to four bits per channel before
+  hashing: macOS and Linux differed at only 2 of 1,263,456 pixels under the
+  pinned PyMuPDF/MuPDF runtime, and the reviewed normalized bytes are identical.
 - [x] Target build/check, full regression, and exact 375 px narrow-screen browser review are complete.
 - [x] Latest `origin/main` (`d1eeb282`) was integrated without rebase, branch
   `codex/web-jaacwhe100-eu-en` was pushed, and PR #1097 was opened against `main`.

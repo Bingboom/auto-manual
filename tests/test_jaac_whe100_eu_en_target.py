@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import base64
 import csv
 import hashlib
 import json
@@ -9,7 +8,6 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import textwrap
 import unittest
 from pathlib import Path
 
@@ -17,8 +15,6 @@ from bs4 import BeautifulSoup
 import yaml
 
 from tools.asset_registry import load_registry, resolve_asset
-from tools.asset_pipeline import load_recipe
-from tools.asset_pipeline.extract import extract_artifacts
 from tools.manual_ir import read_manual_ir
 from tools.skeleton_resolve import (
     load_blueprint,
@@ -257,45 +253,15 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
-            diagnostic = ""
-            generated_controls = (
-                output_root
-                / "artifacts"
-                / "assets"
-                / "jaac_whe100_eu_en"
-                / "how_to_controls.png"
-            )
-            if result.returncode and not generated_controls.exists():
-                diagnostic_root = Path(td) / "diagnostic-artifacts"
-                diagnostic_root.mkdir()
-                try:
-                    extract_artifacts(SOURCE, load_recipe(RECIPE), diagnostic_root)
-                except RuntimeError:
-                    pass
-                generated_controls = (
-                    diagnostic_root
-                    / "assets"
-                    / "jaac_whe100_eu_en"
-                    / "how_to_controls.png"
-                )
-            if result.returncode and generated_controls.exists():
-                encoded_controls = base64.b64encode(
-                    generated_controls.read_bytes()
-                ).decode("ascii")
-                diagnostic = (
-                    "\nCONTROLS_PNG_BASE64_BEGIN\n"
-                    + "\n".join(textwrap.wrap(encoded_controls, width=120))
-                    + "\nCONTROLS_PNG_BASE64_END\n"
-                )
             self.assertEqual(
                 0,
                 result.returncode,
-                result.stdout + result.stderr + diagnostic,
+                result.stdout + result.stderr,
             )
             summary = json.loads(result.stdout.split("\n[build.py]", 1)[0])
             self.assertEqual(9, summary["artifact_count"])
             self.assertEqual(
-                "346bc782b5e949caf4a2eb708f302b792fa31159d09191a549b1b8ef60645071",
+                "ff16330d6e7e1dc0c68748c99157b4877a73835d2ad58e86e2159590a0f5642c",
                 summary["package_sha256"],
             )
 

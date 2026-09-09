@@ -139,7 +139,7 @@
       "text_policy": "localized-full-page",
       "visual_review_required": false,
       "transforms": [{"op": "crop", "bbox_pt": [677, 1264, 998, 1510]}],
-      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_controls.png", "scale": 4, "expected_sha256": "06bd1f0f70fa058325219895a9d83df9f5d5f03d01e66cafb61b6709cb93fb02"}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_controls.png", "scale": 4, "rgb_quantization_bits": 4, "expected_sha256": "0eec1592d03d47cb8a5032f7874f2da89e97d835c6e7c2c67b07bdbdf44cef5f"}],
       "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop retains the complete gray control panel, trolley outline art, leaders, numbered callouts, and English copy."]},
       "risk_tags": ["region-locked-art"]
     }

@@ -161,6 +161,7 @@ class OutputSpec:
     path: str
     scale: float | None
     expected_sha256: str | None
+    rgb_quantization_bits: int | None = None
 
     def as_manifest(self) -> dict[str, Any]:
         payload: dict[str, Any] = {"format": self.format, "path": self.path}
@@ -168,6 +169,8 @@ class OutputSpec:
             payload["scale"] = self.scale
         if self.expected_sha256 is not None:
             payload["expected_sha256"] = self.expected_sha256
+        if self.rgb_quantization_bits is not None:
+            payload["rgb_quantization_bits"] = self.rgb_quantization_bits
         return payload
 
 

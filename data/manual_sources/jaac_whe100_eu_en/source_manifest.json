@@ -57,15 +57,15 @@
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",
-    "recipe_sha256": "dcf8c20ed5696ab5213ea48714b884090e9c3f5cfed4d04297a9d78f21037322",
+    "recipe_sha256": "7149b4d97b876373a395cc35d495cb031fb1d22cea22c5ab3e7a34331c7afbe1",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JAAC-WHE-100-EUA1_illustrations.json",
-    "illustration_manifest_sha256": "4038feee4c9f93c28c8f7861d53e05c89bbf7989f86ae03b59418dabaef1fdd5",
+    "illustration_manifest_sha256": "f05ba74f554c933c978b191932a88f294194c21b4949bd53cd59d42cafe8185d",
     "semantic_asset_count": 7,
     "text_policy": "native-inbox-spec-notes-with-complete-source-owned-operation-panels",
     "cold_replay": {
       "artifact_count": 9,
-      "package_sha256": "346bc782b5e949caf4a2eb708f302b792fa31159d09191a549b1b8ef60645071",
-      "manifest_sha256": "70f441aec0087641e88c08de3d750acd0cb698a1b646c0196cc4ff43b941d910"
+      "package_sha256": "ff16330d6e7e1dc0c68748c99157b4877a73835d2ad58e86e2159590a0f5642c",
+      "manifest_sha256": "d6062f227ef358e36b9153eab2e6774d867e420d67d7738c817cc9face0d2dbc"
     }
   },
   "normalizations": [

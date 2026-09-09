@@ -19,6 +19,6 @@
     {"replaces":["inbox_mounting_screws.png"],"path":"assets/jaac_whe100_eu_en/inbox_mounting_screws.png","sha256":"15c73bfca36b3604f9db601eaab3a032d08da80e0c4e51e44d28df1a952ac80d","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[338,1412,393,1490],"transforms":[{"op":"crop","bbox_pt":[338,1412,393,1490]}]},
     {"replaces":["inbox_user_manual.png"],"path":"assets/jaac_whe100_eu_en/inbox_user_manual.png","sha256":"ce43e6fd657518deee8db32eb33a039fb32e80cdb4053adafb4a37d160fd01e7","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[435,1412,495,1468],"transforms":[{"op":"crop","bbox_pt":[435,1412,495,1468]}]},
     {"replaces":["how_to_assemble.png"],"path":"assets/jaac_whe100_eu_en/how_to_assemble.png","sha256":"4a4113738405d8eb2837d0a7a7763aab9168d35dd78f91867bc9685ad13c7f9c","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[677,1090,998,1260],"transforms":[{"op":"crop","bbox_pt":[677,1090,998,1260]}]},
-    {"replaces":["how_to_controls.png"],"path":"assets/jaac_whe100_eu_en/how_to_controls.png","sha256":"06bd1f0f70fa058325219895a9d83df9f5d5f03d01e66cafb61b6709cb93fb02","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[677,1264,998,1510],"transforms":[{"op":"crop","bbox_pt":[677,1264,998,1510]}]}
+    {"replaces":["how_to_controls.png"],"path":"assets/jaac_whe100_eu_en/how_to_controls.png","sha256":"0eec1592d03d47cb8a5032f7874f2da89e97d835c6e7c2c67b07bdbdf44cef5f","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[677,1264,998,1510],"transforms":[{"op":"crop","bbox_pt":[677,1264,998,1510]}]}
   ]
 }

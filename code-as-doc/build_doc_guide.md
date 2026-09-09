@@ -1181,6 +1181,12 @@ preference:
   transform after `crop`, zero-area line groups are overlap-checked safely,
   and unsupported path items or crop/index drift fail closed. Promote only
   after a 12x quarantine comparison and pin the resulting output SHA-256;
+- when identical pinned PyMuPDF/MuPDF versions still produce isolated
+  cross-platform antialiasing samples, a PNG output may declare
+  `rgb_quantization_bits` from 1 through 8. The pipeline rounds every RGB
+  channel into that fixed bit-depth before hashing; use the highest visually
+  reviewed setting that yields byte-identical replay, and do not use it to
+  conceal layout, font, source, or renderer-version drift;
 - missing, ambiguous, quarantined, stale, or hash-mismatched used assets stop
   assembly;
 - `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and
