@@ -21,6 +21,9 @@ slots:
   using_product:
     type: rst_include
     file: templates/page_charger/{lang}/using_product.rst
+  connection_guide:
+    type: rst_include
+    file: templates/page_charger/{lang}/connection_guide.rst
   warning:
     type: rst_include
     file: templates/page_charger/{lang}/safety_warning.rst
@@ -59,3 +62,6 @@ house_style_versions:
       file: templates/page_charger/ja_ad600a/{lang}/installation.rst
     warranty:
       file: templates/page_charger/ja_ad600a/{lang}/warranty.rst
+  connection-guide-v1:
+    connection_guide:
+      file: templates/page_charger/ja_ca05b/{lang}/connection_guide.rst

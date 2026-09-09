@@ -1,0 +1,6 @@
+# JA-CA05B / EU target-owned Product Manual Plan.
+schema_version: skeleton-product-plan/v1
+plan_id: ja_ca05b_eu
+house_style_version: connection-guide-v1
+enabled_optional_slots: [connection_guide]
+terminal_slots: []

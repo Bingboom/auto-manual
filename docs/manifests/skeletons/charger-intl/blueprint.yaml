@@ -9,10 +9,16 @@ default_order_profile: compact-v1
 order_profiles:
   compact-v1:
     [box_contents, product_overview, specifications, dimensions, using_product,
-     warning, disclaimer, important_safety, faq, installation, warranty, legal_tail]
+     connection_guide, warning, disclaimer, important_safety, faq, installation,
+     warranty, legal_tail]
   dc-dc-v1:
     [disclaimer, specifications, dimensions, box_contents, product_overview,
-     important_safety, faq, installation, using_product, warning, warranty, legal_tail]
+     important_safety, faq, installation, using_product, connection_guide, warning,
+     warranty, legal_tail]
+  connection-guide-v1:
+    [connection_guide, disclaimer, box_contents, product_overview, specifications,
+     dimensions, using_product, warning, important_safety, faq, installation,
+     warranty, legal_tail]
 slots:
   - slot_id: disclaimer
     block: body
@@ -21,17 +27,17 @@ slots:
     toc: true
   - slot_id: box_contents
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: product_overview
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: specifications
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: dimensions
@@ -40,6 +46,11 @@ slots:
     presentation: chapter
     toc: true
   - slot_id: using_product
+    block: body
+    requirement: optional
+    presentation: chapter
+    toc: true
+  - slot_id: connection_guide
     block: body
     requirement: optional
     presentation: chapter
@@ -66,7 +77,7 @@ slots:
     toc: true
   - slot_id: warranty
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: legal_tail
