@@ -1,0 +1,27 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JA-CA3SA",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "88f1fa0dd86fd8e7457b50942be52e2a558acecaf5f9bc70edc9f7dbecd311ab",
+  "source_pdf_name": "JA-CA3SA-eu-source.ai",
+  "source_base": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+  "source_table": "97v7518",
+  "source_record": "tQDWZr68hK",
+  "source_page_count": 8,
+  "source_english_pages": [4, 5, 6, 7],
+  "excluded_duplicate_pages": [8],
+  "recipe": "data/asset_recipes/manual_ja_ca3sa_eu_en_web.json",
+  "illustrations": [
+    {"replaces":["main_ports.png"],"path":"assets/ja_ca3sa_eu_en/main_ports.png","sha256":"d8786487be9c5b7810bfb1544f277b5cbde5dca3759f09b3500000f4ecc82b77","source_page":4,"source_page_domain":"artwork-ai","bbox_pt":[18,92,228,202],"transforms":[{"op":"crop","bbox_pt":[18,92,228,202]}]},
+    {"replaces":["connect_two_panels.png"],"path":"assets/ja_ca3sa_eu_en/connect_two_panels.png","sha256":"75e0f32684a510be25337dc3526b179b65b52674423251f71517634432dbe78f","source_page":5,"source_page_domain":"artwork-ai","bbox_pt":[18,74,226,133],"transforms":[{"op":"crop","bbox_pt":[18,74,226,133]}]},
+    {"replaces":["connect_three_panels.png"],"path":"assets/ja_ca3sa_eu_en/connect_three_panels.png","sha256":"73bbaac68a3f81750425943ee36128b6a84e3814d615f6198a1681fd41148741","source_page":5,"source_page_domain":"artwork-ai","bbox_pt":[18,147,226,208],"transforms":[{"op":"crop","bbox_pt":[18,147,226,208]}]},
+    {"replaces":["connection_example_1.png"],"path":"assets/ja_ca3sa_eu_en/connection_example_1.png","sha256":"1e63b69e5ed7d6ea0649c822184f62e79fa27b370bbf1ce3769561934230b597","source_page":5,"source_page_domain":"artwork-ai","bbox_pt":[18,242,226,323],"transforms":[{"op":"crop","bbox_pt":[18,242,226,323]}]},
+    {"replaces":["connection_example_2.png"],"path":"assets/ja_ca3sa_eu_en/connection_example_2.png","sha256":"425957b75eee5f37905ff1e40548889766f4b2b60e3d0b846cd410d075c293d0","source_page":6,"source_page_domain":"artwork-ai","bbox_pt":[18,35,226,136],"transforms":[{"op":"crop","bbox_pt":[18,35,226,136]}]},
+    {"replaces":["connection_example_3.png"],"path":"assets/ja_ca3sa_eu_en/connection_example_3.png","sha256":"f9104ce9c9ba6601af84daeb7f54fdce1d0c4c52cf40381c41207136fc0be2be","source_page":6,"source_page_domain":"artwork-ai","bbox_pt":[18,151,226,212],"transforms":[{"op":"crop","bbox_pt":[18,151,226,212]}]},
+    {"replaces":["connection_example_4.png"],"path":"assets/ja_ca3sa_eu_en/connection_example_4.png","sha256":"b4e82fc1e3a772ff800ef9cfea56d97a75d1b43fa6eb18897b298b725a670996","source_page":6,"source_page_domain":"artwork-ai","bbox_pt":[18,233,226,321],"transforms":[{"op":"crop","bbox_pt":[18,233,226,321]}]},
+    {"replaces":["prohibited_connection_1.png"],"path":"assets/ja_ca3sa_eu_en/prohibited_connection_1.png","sha256":"85d2f0df3e8640ff9bc645617a5d85a946ac75ed3229772e17199900b29a5666","source_page":7,"source_page_domain":"artwork-ai","bbox_pt":[20,94,224,156],"transforms":[{"op":"crop","bbox_pt":[20,94,224,156]}]},
+    {"replaces":["prohibited_connection_2.png"],"path":"assets/ja_ca3sa_eu_en/prohibited_connection_2.png","sha256":"6faf4b41c002fb3d8882d04d7c11cff539685bf1cf11637d68004dbfc984039c","source_page":7,"source_page_domain":"artwork-ai","bbox_pt":[20,158,224,237],"transforms":[{"op":"crop","bbox_pt":[20,158,224,237]}]},
+    {"replaces":["prohibited_connection_3.png"],"path":"assets/ja_ca3sa_eu_en/prohibited_connection_3.png","sha256":"62073f4c3db774914ad2185a79896605ed7d77ee40a992d083785a0171fd8061","source_page":7,"source_page_domain":"artwork-ai","bbox_pt":[20,238,224,317],"transforms":[{"op":"crop","bbox_pt":[20,238,224,317]}]}
+  ]
+}

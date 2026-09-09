@@ -31,7 +31,7 @@ class WebIllustrationManifestPathTests(unittest.TestCase):
             )
 
     def test_expands_model_and_region_in_family_manifest(self) -> None:
-        for model in ("JA-AD01A", "JA-AD600A"):
+        for model in ("JA-AD01A", "JA-AD600A", "JA-CA3SA"):
             with self.subTest(model=model):
                 resolved = resolve_web_illustration_manifest(
                     Path("config.yaml"), repo_root=Path("/repo"),

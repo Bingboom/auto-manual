@@ -13,6 +13,10 @@ order_profiles:
   dc-dc-v1:
     [disclaimer, specifications, dimensions, box_contents, product_overview,
      important_safety, faq, installation, using_product, warning, warranty, legal_tail]
+  solar-connector-v1:
+    [product_overview, using_product, warning, disclaimer, specifications,
+     dimensions, box_contents, important_safety, faq, installation, warranty,
+     legal_tail]
 slots:
   - slot_id: disclaimer
     block: body
@@ -21,7 +25,7 @@ slots:
     toc: true
   - slot_id: box_contents
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: product_overview
@@ -31,7 +35,7 @@ slots:
     toc: true
   - slot_id: specifications
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: dimensions
@@ -66,7 +70,7 @@ slots:
     toc: true
   - slot_id: warranty
     block: body
-    requirement: required
+    requirement: optional
     presentation: chapter
     toc: true
   - slot_id: legal_tail

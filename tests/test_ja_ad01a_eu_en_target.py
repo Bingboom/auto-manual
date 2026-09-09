@@ -150,10 +150,14 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
             [
                 {"model": "JA-AD01A", "region": "EU"},
                 {"model": "JA-AD600A", "region": "EU"},
+                {"model": "JA-CA3SA", "region": "EU"},
             ],
             build["targets"],
         )
-        self.assertEqual(["box_contents*", "disclaimer*"], build["web_entry_source_patterns"])
+        self.assertEqual(
+            ["box_contents*", "disclaimer*", "product_overview*"],
+            build["web_entry_source_patterns"],
+        )
         self.assertEqual(
             "docs/renderers/web/charger_eu_en_{model}_illustrations.json",
             config["paths"]["web_illustration_manifest"],

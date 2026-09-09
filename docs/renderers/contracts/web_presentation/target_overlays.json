@@ -300,6 +300,19 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "ja-ca3sa-eu-v1",
+      "target": {
+        "model": "JA-CA3SA",
+        "region": "EU"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
     }
   ]
 }
