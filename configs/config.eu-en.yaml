@@ -14,6 +14,8 @@ build:
       region: EU
     - model: JE-100C
       region: EU
+    - model: JE-300D
+      region: EU
     - model: JE-3000C
       region: EU
     - model: JE-3600A
@@ -27,11 +29,13 @@ paths:
   page_manifest: docs/manifests/manual_eu-en.yaml
   page_manifests:
     JE-100C_EU: docs/manifests/manual_je100c_eu-en.yaml
+    JE-300D_EU: docs/manifests/manual_je300d_eu-en.yaml
   web_illustration_manifests:
     JE-1000H_EU: docs/renderers/web/je1000h_eu_en_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_en_illustrations.json
     JE-2000E_EU: docs/renderers/web/je2000e_eu_en_illustrations.json
     JE-100C_EU: docs/renderers/web/je100c_eu_en_illustrations.json
+    JE-300D_EU: docs/renderers/web/je300d_eu_en_illustrations.json
     JE-3000C_EU: docs/renderers/web/je3000c_eu_en_illustrations.json
     JE-3600A_EU: docs/renderers/web/je3600a_eu_en_illustrations.json
 

@@ -1,0 +1,429 @@
+{
+  "checked_on": "2026-09-09",
+  "baseId": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+  "tableId": "97v7518",
+  "counts": {
+    "rows": 38,
+    "independent_with_ai": 21,
+    "completed_engineering": 16,
+    "remaining_independent": 5,
+    "no_manual_or_nonexistent": 14,
+    "duplicate": 1,
+    "composite": 2
+  },
+  "rows": [
+    {
+      "recordId": "03XAG4nlkW",
+      "name": "车充线（DC8020）+5M延长线",
+      "models": [],
+      "note": "这个基于前面单文件组合",
+      "ai": []
+    },
+    {
+      "recordId": "0SLR873yRz",
+      "name": "E100D",
+      "models": [
+        "JE-100C"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000274 HTE162100A-EUUK-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "6762117c-a39d-49cd-a8b2-a7f4b88e508c"
+        }
+      ]
+    },
+    {
+      "recordId": "1OUQt6g91M",
+      "name": "40Wair",
+      "models": [
+        "JS-40C"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "38-0001-000829 HTS003040C-EU-UK-TW-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "47d0c532-4085-4483-bfb3-14684c8b1158"
+        }
+      ]
+    },
+    {
+      "recordId": "371JNuMVqZ",
+      "name": "100Wair",
+      "models": [
+        "JS-100I"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000209 说明书 HTS006100C-EU-JAK RoHS REACH.ai",
+          "resourceId": "0bcf334f-0863-42b4-b064-7b109af8cca3"
+        }
+      ]
+    },
+    {
+      "recordId": "3Cdnmp5Yml",
+      "name": "E1000V2",
+      "models": [
+        "JE-1000F"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "1000v2 欧规翻译.ai",
+          "resourceId": "c8254031-ddad-47d3-ad76-e4c5203a8aff"
+        }
+      ]
+    },
+    {
+      "recordId": "7Lb68pSbo2",
+      "name": "S码收纳包",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "7lx6sZ9DkU",
+      "name": "可调节肩带",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "8BYfLFtIQI",
+      "name": "L码收纳包",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "BMCmNC8lfw",
+      "name": "车充线（DC8020）",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "CJ0kLucEXT",
+      "name": "BP2000",
+      "models": [
+        "JBP-2000B"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "翻译用 HTP0172000A-EU-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "9da21360-4dfb-46a7-abff-19182ac0e651"
+        }
+      ]
+    },
+    {
+      "recordId": "CjnLiGMQj2",
+      "name": "E1000Plusv2",
+      "models": [
+        "JE-1000H"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "说明书 HTE1591000A-EU UK-JAK  RoHS REACH-US.ai",
+          "resourceId": "efc8a617-6ebb-40de-a2ae-aadf9c95f484"
+        }
+      ]
+    },
+    {
+      "recordId": "DFV5KKDywi",
+      "name": "200W",
+      "models": [
+        "JS-200E"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "38-0001-000791-HTO666E-EU UK AU KR-JAK 说明书 20250811.ai",
+          "resourceId": "be3c491a-2a3b-4b1b-9810-2096ad6b03f0"
+        }
+      ]
+    },
+    {
+      "recordId": "DaoRddTSvp",
+      "name": "240D&300D收纳包",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "FBHsOuFTMQ",
+      "name": "E3000V2",
+      "models": [
+        "JE-3000C"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000382 说明书 HTE1563000A-EU UK-JAK RoHS REACH.ai",
+          "resourceId": "d5594336-93ce-483b-a784-1f905f27c9d9"
+        }
+      ]
+    },
+    {
+      "recordId": "FwZ6BzSEeC",
+      "name": "2&3度电防护罩",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "G9UJ5baqWN",
+      "name": "DC8020转USB-C转接头",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "KtCTsCwJDw",
+      "name": "行车快充",
+      "models": [
+        "JA-AD600A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000322 HTO814A-US JP EU-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "2e84b1c3-0a8f-4c8d-b2e8-3d06bc584c17"
+        }
+      ]
+    },
+    {
+      "recordId": "Li32wwM6MY",
+      "name": "L码低温防护包",
+      "models": [
+        "JA-CC30A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "38-0001-000673 HTO859A-US CA EU UK-JAK  说明书 RoHS REACH.ai",
+          "resourceId": "1c87d0ed-197f-43ff-9e1f-8b1de8465a77"
+        }
+      ]
+    },
+    {
+      "recordId": "QKRfBknCr9",
+      "name": "折叠小推车",
+      "models": [
+        "JAAC-WHE-100-EUA1"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "38-0001-000916 说明书 HTO838A-UK-JAK RoHS REACH.ai",
+          "resourceId": "64b6fec6-8bba-49d9-a3db-85fe5ddcda5e"
+        }
+      ]
+    },
+    {
+      "recordId": "QRo3FviEOb",
+      "name": "E3600Plus",
+      "models": [
+        "JE-3600A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "翻译用 HTE1393600A-EU-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "1ea89953-2ffa-423b-a6ff-c7e9e1efb9cd"
+        }
+      ]
+    },
+    {
+      "recordId": "QviOQihBNj",
+      "name": "E300D",
+      "models": [
+        "JE-300D"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "HTE150300A-EU UK-JAK 说明书 20251024.ai",
+          "resourceId": "b6dda5ad-12ef-4341-ab36-40a8dd7b82cb"
+        }
+      ]
+    },
+    {
+      "recordId": "S4mhIE7S4v",
+      "name": "E2000Plusv2",
+      "models": [
+        "JE-2000E"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "翻译用 HTE1522000A-EU-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "4ccb0895-a055-4f67-bdd2-860ffd0af385"
+        }
+      ]
+    },
+    {
+      "recordId": "T5ngKoXyt5",
+      "name": "户外便携线材套装",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "UH5XSMZwqi",
+      "name": "100W",
+      "models": [
+        "JS-100F"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000328 说明书 HTO587H-EU-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "6c7a4404-b3b8-4b8d-be28-acffb280a9f6"
+        }
+      ]
+    },
+    {
+      "recordId": "XOSrEuLTUQ",
+      "name": "DC8020转DC7909转接头",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "ZchXowtwOv",
+      "name": "DC7909转DC8020转接头",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "e6lR7qNTJd",
+      "name": "收纳小推车",
+      "models": [],
+      "note": "和折叠小推车 是一样的",
+      "ai": []
+    },
+    {
+      "recordId": "hgXiHot5Ow",
+      "name": "BP3600加电包",
+      "models": [
+        "JBP-3600A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000334 说明书 HTP0113600A-EU-JAK RoHS REACH.ai",
+          "resourceId": "b3da3bdf-40ec-4861-a71d-f3d37e21cc06"
+        }
+      ]
+    },
+    {
+      "recordId": "iEy7evci5i",
+      "name": "E300New",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "iQfwYCuoZ7",
+      "name": "5M延长线",
+      "models": [
+        "JA-CA05B"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "翻译用 38-0001-000942 太阳能板连接指南折页 通用 RoHS REACH.ai",
+          "resourceId": "6b401ffe-a400-4fce-96ab-2cdb0c42f659"
+        }
+      ]
+    },
+    {
+      "recordId": "obWHXHN7dI",
+      "name": "E2000V2",
+      "models": [
+        "JE-2000F"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "16-0102-000443 说明书 HTE1542000A-EU UK-JAK RoHS REACH.ai",
+          "resourceId": "8c99ab2f-3457-4035-a30d-e1690e663c56"
+        }
+      ]
+    },
+    {
+      "recordId": "tQDWZr68hK",
+      "name": "3串转接盒",
+      "models": [
+        "JA-CA3SA"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "翻译用 38-0001-000043 HTO732A-US EU AU JP KR CN-JAK 转接盒 说明书.ai",
+          "resourceId": "e067d570-3cf4-4a18-bdb4-778eb65f912d"
+        }
+      ]
+    },
+    {
+      "recordId": "v6cW5189lx",
+      "name": "40W",
+      "models": [],
+      "note": "没有这个",
+      "ai": []
+    },
+    {
+      "recordId": "w5lqvZoW2R",
+      "name": "M码收纳包",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    },
+    {
+      "recordId": "xF8IUxGEbx",
+      "name": "E500V2",
+      "models": [
+        "JE-500A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "38-0001-000921 HTE132500A-EU-UK-JAK 说明书 RoHS REACH.ai",
+          "resourceId": "fbb865b6-fec1-43af-817f-59c1dc4683a2"
+        }
+      ]
+    },
+    {
+      "recordId": "xG4bYnERxR",
+      "name": "102W充电器",
+      "models": [
+        "JA-AD01A"
+      ],
+      "note": "",
+      "ai": [
+        {
+          "filename": "(翻译用）38-0001-000880 HTO847-EU-JAK 102W充电器 说明书 RoSH REACH.ai",
+          "resourceId": "ea84efd5-f2a9-43fc-ba19-16788f488cf3"
+        }
+      ]
+    },
+    {
+      "recordId": "zOcE3nuXrc",
+      "name": "E300D+40Wair inbox",
+      "models": [],
+      "note": "这个基于前面单文件组合",
+      "ai": []
+    },
+    {
+      "recordId": "zS2miYhQMS",
+      "name": "12V补电线",
+      "models": [],
+      "note": "无说明书",
+      "ai": []
+    }
+  ]
+}

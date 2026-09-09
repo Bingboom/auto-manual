@@ -4,3 +4,4 @@ JA-AD01A_EU,CHARGER Git-only Web input has no power-station capability-gated slo
 JA-AD600A_EU,CHARGER Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are intentionally omitted without a live capability row.
 JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.
 JE-100C_EU,Published compact power-bank manual has no UPS LED or App capability-gated chapters; the target-local manifest intentionally omits them.
+JE-300D_EU,Operator-designated Git-frozen manual has no AC output UPS App or battery-expansion chapters; the target-local manifest intentionally omits them without a live capability row.
