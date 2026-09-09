@@ -1,0 +1,348 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000F",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+  "source_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
+  "recipe": "data/asset_recipes/manual_je2000f_eu_web.json",
+  "text_corrections": [
+    {
+      "selector": ".line-block > .line",
+      "expected": "When the AC or DC output is turned on by pressing the AC1/2 or DC/USB power button:",
+      "replacement": "When the AC or DC output is turned on by pressing the AC or DC/USB power button:",
+      "source_page": 10,
+      "reason": "The frozen placeholder default says AC1/2, but the approved JE-2000F PDF and product panel use one AC power button. Keep the LCD table semantic and correct only this exact target-local string."
+    }
+  ],
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000f_eu_en/overview_front.png",
+      "sha256": "0c21f8cfd3c86a1eaf0e42e0a199df4b71f832f24d0a24adbd11998d230e5243",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        83,
+        342,
+        315
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#front-view > table",
+          "text": "Main POWER Button LCD DC 12 V Port 12 V⎓10 A max. LED Light Button DC / USB Power Button LED Light USB-C 30 W Output 30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2.5 A, 15 V⎓2 A, 20 V⎓1.5 A AC Power Button USB-C 100 W Output 100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A USB-A 18 W Output 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A AC Output 230 V~ 50 Hz, 10 A max., 2200 W rated in total, 4400 W surge peak"
+        },
+        {
+          "selector": "#front-view > table",
+          "text": "Total Output 2200 W Rated, 4400 W Surge Peak"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000f_eu_en/overview_side.png",
+      "sha256": "44d3f01ebbc1b8af923ee1686722c53baeb2ad2a0fe7aa06bd845bf915654352",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        333,
+        350,
+        485
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#right-side-view > table",
+          "text": "Handle AC Input 220 V-240 V~ 50 Hz, 10 A max. DC Input (2×DC8020 Ports) PV: 16-60 V⎓12 A max., Double to 21 A max. / 400 W max. Car: 11-16 V⎓8 A max., Double to 8 A max."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000f_eu_en/lcd_map.png",
+      "sha256": "535d0174e0009616bd36cdc19c4ec2cec9fe44586b81c4e975dc9f33bf8c580e",
+      "source_page": 9,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/operation_power.png",
+      "sha256": "9ec66b0ad303d1ecad08a9d21551acd9949e85ae84cf0113b75ae5f0fa9770a6",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        71,
+        343,
+        233
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#power-on-off > .line-block",
+          "text": "On: Press once. Off: Press and hold for 3s."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "Default standby time: 2 hours."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "*The standby time can be set in the Jackery App."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or DC/USB power button is ON but the product is neither charging nor discharging."
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/operation_ac.png",
+      "sha256": "43adce7f2b59d63be414e60d5f4c9a3430e5b8b253f06bfbfd032f08f18f58ee",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        258,
+        342,
+        482
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ac-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#ac-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/operation_dc.png",
+      "sha256": "77287a704993ab877a89b1553b0aa73fd9d947c0d3f1cbeb0ecadb8375765cea",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#dc-12v-usb-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/operation_led.png",
+      "sha256": "c3f25c5fc03f1267f9688630d18eca6fd680fe2b02a6665e9bf873265ac0c867",
+      "source_page": 12,
+      "bbox_pt": [
+        28,
+        362,
+        344,
+        493
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#led-light-on-off > p",
+          "text": "The LED light has two modes: Light mode and SOS mode. In any mode, press and hold the LED light button to turn off the light."
+        },
+        {
+          "selector": "#led-light-on-off > .line-block",
+          "text": "Press the LED Light button once to turn on the light. Press it again to switch to SOS Mode. Press it a third time to turn off the light."
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000f_eu_en/operation_lcd.png",
+      "sha256": "b9883b6da99aceff1c1fdb073999528ce186750df6589993059f4c389f6d2a6f",
+      "source_page": 13,
+      "bbox_pt": [
+        35,
+        140,
+        176,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/operation_energy.png",
+      "sha256": "56d680e2920f64c77363b8170e2fe5b7c6c336b0393b3fd13c08725c27619a17",
+      "source_page": 13,
+      "bbox_pt": [
+        26,
+        320,
+        342,
+        474
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#energy-saving-mode > p",
+          "text": "To disable the energy saving mode, press and hold both the AC power button and the POWER button for more than 3 seconds. Once Energy Saving Mode is disabled, the icon will no longer appear on the LCD screen, and the product will not automatically turn off the AC or USB output."
+        },
+        {
+          "selector": "#energy-saving-mode > p",
+          "text": "When powering low-power devices (AC ≤ 25 W or DC/USB ≤ 2 W), disable Energy Saving Mode to prevent the output from shutting down automatically during operation."
+        },
+        {
+          "selector": "#energy-saving-mode > .line-block",
+          "text": "Press and hold both buttons for more than 3 seconds."
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/ups.png",
+      "sha256": "be361b1877ede23e485335f06bdb2029aaaa8be81ea151cc9e23bddece21bd8e",
+      "source_page": 14,
+      "bbox_pt": [
+        25,
+        234,
+        341,
+        388
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/charging_ac.png",
+      "sha256": "935a72e598f29a40afc08e11a05547e8df02d3a63ab28771b3b33713f6be35f7",
+      "source_page": 15,
+      "bbox_pt": [
+        27,
+        160,
+        342,
+        262
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#charging-via-ac-wall-outlet > p",
+          "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/charging_solar_direct.png",
+      "sha256": "9bd820ae0194f4d0466087cbd1fb66c7c255f78199cc1e2d5798cb8c33817918",
+      "source_page": 15,
+      "bbox_pt": [
+        27,
+        380,
+        342,
+        497
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/charging_solar_adapter.png",
+      "sha256": "6008a94a3019ffb701c6246af17623dc1de49b3a74c326a2bac3ee1a34d9c1b2",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        27,
+        342,
+        174
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/charging_car.png",
+      "sha256": "f747de34445e7c4773e9a4e261b69dac5eccae87ce741c4ff2e63f3d4985cf1d",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        351,
+        342,
+        487
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line",
+          "text": "Vehicle"
+        },
+        {
+          "selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line",
+          "text": "*The car charging cable is sold separately."
+        }
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_en_full_frames/app_control_panel.png",
+      "sha256": "19bdaee9345f6cb13e7880e4b06437abfa3b352d432955bc2266d7019b6998ac",
+      "source_page": 20,
+      "bbox_pt": [
+        35,
+        394,
+        337,
+        463
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Main POWER Button AC Power Button DC / USB Power Button"
+        }
+      ]
+    }
+  ],
+  "correction_recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+}
