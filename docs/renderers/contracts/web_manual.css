@@ -1086,18 +1086,9 @@ body {
   margin-inline: auto;
 }
 
-/*
- * The JE-3000C DC/USB source frame continues around editable CAUTION copy.
- * Its finished-panel crop keeps only the technical diagram, so Web owns the
- * complete diagram-only border instead of displaying clipped source edges.
- */
-#furo-main-content
-  #dc-12v-usb-output-on-off
-  > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"] {
-  box-sizing: border-box;
-  border: 2px solid var(--hb-line-soft);
-  border-radius: 0.82rem;
-  background: var(--hb-paper);
+#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"] {
+  box-sizing: border-box; border: 2px solid var(--hb-line-soft);
+  border-radius: 0.82rem; background: var(--hb-paper);
 }
 
 .hb-inline-add-device-icon {

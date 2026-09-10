@@ -200,7 +200,7 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         )
         css = WEB_CSS.read_text(encoding="utf-8")
         self.assertIn(
-            '#dc-12v-usb-output-on-off\n  > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',
+            '#dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',
             css,
         )
 
