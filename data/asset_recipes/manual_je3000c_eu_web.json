@@ -1504,7 +1504,7 @@
           "op": "crop",
           "bbox_pt": [
             27,
-            310,
+            323,
             342,
             426
           ]
@@ -1515,13 +1515,13 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je3000c_eu_en/overview_side.png",
           "scale": 12,
-          "expected_sha256": "da126743033833218ff727d14e2f3c02842828b1112b040e268164743db63748"
+          "expected_sha256": "a046f7aaa00d1bc492625ed793ad6a0854ad4bbcb4c82eac69d639bd730d7278"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "2026-09-08 deterministic 12x crop visually verified against the current formal PDF; source content was neither redrawn nor removed."
+          "2026-09-09 deterministic 12x crop visually verified against the current formal PDF; the duplicated RIGHT SIDE VIEW source heading is excluded while the diagram and annotations remain unchanged."
         ]
       },
       "risk_tags": [
