@@ -169,6 +169,19 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         )
         self.assertEqual(side["bbox_pt"], side_recipe["transforms"][0]["bbox_pt"])
 
+        power = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("operation_power.png")
+        )
+        self.assertEqual([27, 70, 343, 241], power["bbox_pt"])
+        power_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/operation_power"
+        )
+        self.assertEqual(power["bbox_pt"], power_recipe["transforms"][0]["bbox_pt"])
+
     def test_public_ir_cold_replay_and_tamper_detection(self) -> None:
         self.assertEqual(17, len(render_document_fragments(self.ir, package_root=self.package)))
         with tempfile.TemporaryDirectory() as td:

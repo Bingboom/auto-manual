@@ -112,13 +112,13 @@
         "op_main_power.png"
       ],
       "path": "assets/je3000c_eu_en/operation_power.png",
-      "sha256": "51556e588d3e2fa78e9330a9ac404572db8c2a79f94f024d7ed6e16bcfe712d0",
+      "sha256": "73c5de56ec7f4cab50339c7855a0bc81300d00c25f8730cf8634b83aef1448dd",
       "source_page": 11,
       "bbox_pt": [
         27,
         70,
         343,
-        234
+        241
       ],
       "covered_annotations": [
         {
