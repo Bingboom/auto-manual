@@ -207,6 +207,22 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             ["crop", "whiteout", "whiteout", "whiteout", "whiteout", "whiteout"],
             [transform["op"] for transform in dc_recipe["transforms"]],
         )
+
+        charging_ac = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("charging_ac.png")
+        )
+        self.assertEqual([27, 222, 342, 361], charging_ac["bbox_pt"])
+        charging_ac_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/charging_ac"
+        )
+        self.assertEqual(
+            charging_ac["bbox_pt"],
+            charging_ac_recipe["transforms"][0]["bbox_pt"],
+        )
         css = WEB_CSS.read_text(encoding="utf-8")
         self.assertIn(
             '#dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',

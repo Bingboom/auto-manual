@@ -19,11 +19,11 @@
   "data_root": "manual_sources/JE-3000C/EU/en/2.0/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web.json",
-    "sha256": "59e7955d10944202470d12f6cfe3160142e77485266090a7a624abf914561a67"
+    "sha256": "4be688765363b2043dec03bc3823a3d181db999c00dda08e5ffca5e77af2db44"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3000c_eu_en_illustrations.json",
-    "sha256": "bd8b17ed69b9d45e83c0c84f1f5db1c28dbd670c4890ed825ecc6d5767088957"
+    "sha256": "929bcc48b815f5c6c867ab61c6f46196baf2fe16ac80cf59d6cb8ad25f481664"
   },
   "files": [
     {

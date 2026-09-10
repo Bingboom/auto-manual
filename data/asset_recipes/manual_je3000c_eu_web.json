@@ -1935,7 +1935,7 @@
             27,
             222,
             342,
-            332
+            361
           ]
         }
       ],
@@ -1944,13 +1944,13 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je3000c_eu_en/charging_ac.png",
           "scale": 12,
-          "expected_sha256": "85421b1dccb898094f67410ac52e32ea642762af106cd0ed17db4280c23795f4"
+          "expected_sha256": "5af07782e9c16ccc57275e018e52f213881d81c822491422143023d0fb6996b5"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "2026-09-08 deterministic 12x crop visually verified against the current formal PDF; source content was neither redrawn nor removed."
+          "2026-09-09 deterministic 12x crop visually verified against the current formal PDF; the complete rounded illustration frame is retained and the separate CAUTION panel is excluded."
         ]
       },
       "risk_tags": [
