@@ -39,9 +39,9 @@
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_ja_cc30a_eu_en_web.json",
-    "recipe_sha256": "6139aa165e9791616b71f26ea6bbef73626bd3a2f27105acdd1c446a283e281e",
+    "recipe_sha256": "b31957dbc32cc69ea4f614c15e0625d6bf4be5b7126626d9468fccca16ce9267",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-CC30A_illustrations.json",
-    "illustration_manifest_sha256": "80094330d9ed5c46ce1a73f457d071427299498c8e5547c1b68a67655ff7eb88",
+    "illustration_manifest_sha256": "031612e83ea4bf61e91a010e636b56f095266ddbb27de38d48288f64dfd742f2",
     "semantic_asset_count": 8,
     "text_policy": "native-web-copy-with-complete-text-bearing-operation-panels"
   },
