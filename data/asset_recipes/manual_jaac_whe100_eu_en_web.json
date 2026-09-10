@@ -66,9 +66,9 @@
       "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
       "text_policy": "textless",
       "visual_review_required": false,
-      "transforms": [{"op": "crop", "bbox_pt": [330, 1284, 405, 1364]}],
-      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_main_frame.png", "scale": 6, "expected_sha256": "0515a399483a1e33f07f46ec32cd3b5905be3856e3269d4ddbd6a91d55e43cda"}],
-      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the complete main-frame drawing and removes the source card number and label owned by native Web copy."]},
+      "transforms": [{"op": "crop", "bbox_pt": [325, 1283.25, 410, 1368.5]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_main_frame.png", "scale": 6, "expected_sha256": "dbb130bcfeb7953871fcc7e492dfb52e830c237db87f434c3855177ea96847f6"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-10 visual verification against the Git-frozen PDF-compatible Illustrator source; expanded crop keeps the complete main-frame drawing with safe edge padding while excluding the source card number and label owned by native Web copy."]},
       "risk_tags": ["region-locked-art"]
     },
     {
@@ -114,9 +114,9 @@
       "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
       "text_policy": "fixed-product-markings",
       "visual_review_required": false,
-      "transforms": [{"op": "crop", "bbox_pt": [435, 1412, 495, 1468]}],
-      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_user_manual.png", "scale": 6, "expected_sha256": "ce43e6fd657518deee8db32eb33a039fb32e80cdb4053adafb4a37d160fd01e7"}],
-      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop keeps the source-owned manual cover art while excluding its stale tiny footer model literal."]},
+      "transforms": [{"op": "crop", "bbox_pt": [430, 1408, 500, 1480]}, {"op": "redact_text_region", "bbox_pt": [477.6, 1473.1, 485.7, 1475.2], "images": "preserve", "graphics": "preserve", "fill": null}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/inbox_user_manual.png", "scale": 6, "expected_sha256": "d6ce10bcbb60b0231e8234415d926d0b387d31a7754d96c42dc6216881206fcb"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-10 visual verification against the Git-frozen PDF-compatible Illustrator source; expanded crop keeps the complete source-owned manual cover and border, while the targeted text redaction removes only its stale tiny footer model literal."]},
       "risk_tags": ["region-locked-art"]
     },
     {

@@ -57,22 +57,22 @@
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",
-    "recipe_sha256": "7149b4d97b876373a395cc35d495cb031fb1d22cea22c5ab3e7a34331c7afbe1",
+    "recipe_sha256": "46442ca73dd23cc94495afc216e409a5b83fe9ea9929a4e758730e04f4a7ac80",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JAAC-WHE-100-EUA1_illustrations.json",
-    "illustration_manifest_sha256": "f05ba74f554c933c978b191932a88f294194c21b4949bd53cd59d42cafe8185d",
+    "illustration_manifest_sha256": "8827394a971818ff622a6bdc59b3cc3938dc109043b8330e2e9dd943604b8e49",
     "semantic_asset_count": 7,
     "text_policy": "native-inbox-spec-notes-with-complete-source-owned-operation-panels",
     "cold_replay": {
       "artifact_count": 9,
-      "package_sha256": "ff16330d6e7e1dc0c68748c99157b4877a73835d2ad58e86e2159590a0f5642c",
-      "manifest_sha256": "d6062f227ef358e36b9153eab2e6774d867e420d67d7738c817cc9face0d2dbc"
+      "package_sha256": "c1d13084d540d5e89be546c2dd4a0ba790b2958dc52b89ab62ce5250bc8fc9ed",
+      "manifest_sha256": "ec83e941e048bc3f5f72179c39a2d6d3946a02070bb24972c835716c91014249"
     }
   },
   "normalizations": [
     "The imposed Illustrator artboard was mapped as cover/back plus two English manual panels; cover, back, page numbers, and manufacturing contact content are not Web body chapters.",
     "Specifications, the three description notes, Inbox labels, quantities, and the damaged-or-lost note remain native Web copy.",
     "The assembly cards and gray control panel remain complete source-owned English figures; their instructions are not duplicated in surrounding Web prose.",
-    "The Inbox manual thumbnail crop excludes the stale tiny footer literal JA-ST01A while retaining the source-owned cover art.",
+    "The Inbox crops retain the complete source-owned main-frame and manual-cover artwork with safe edge padding; a targeted text redaction removes only the manual thumbnail's stale tiny footer literal JA-ST01A.",
     "LCD, UPS, App, power-station operation, charger-only chapters, and warranty are absent from the source and intentionally omitted."
   ],
   "online_dependencies": {
