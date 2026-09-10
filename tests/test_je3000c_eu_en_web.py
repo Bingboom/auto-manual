@@ -130,6 +130,15 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         resume = soup.select_one("figure.hb-auto-resume-composition")
         self.assertIsNotNone(resume)
         self.assertIsNotNone(resume.select_one("table.hb-auto-resume-table"))
+        keys = soup.select_one("figure.hb-key-combination-composition")
+        self.assertIsNotNone(keys)
+        key_table = keys.select_one("table.hb-key-combination-table")
+        self.assertIsNotNone(key_table)
+        self.assertEqual(
+            ["hb-key-col-buttons", "hb-key-col-operation", "hb-key-col-function"],
+            [column.get("class", [""])[0] for column in key_table.select("col")],
+        )
+        self.assertEqual(3, len(key_table.select("tbody > tr")))
         self.assertEqual([], soup.select("#front-view > table"))
         self.assertEqual([], soup.select("#right-side-view > table"))
         text = soup.get_text(" ", strip=True)

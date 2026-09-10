@@ -12,7 +12,7 @@ from tools.web_presentation_contract import merge_contract_layers
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
-    "0a12ea52a9d7359964a709469d9bd98212b97bb6598e8c0e28b6a9bc2a8cd218"
+    "94bd58aa689301f8090d8c7d40e89d99b8224cf2cafe61e2beb20fd3cb9de8db"
 )
 
 
@@ -243,6 +243,10 @@ class WebPresentationContractTests(unittest.TestCase):
             contract["operations"]["source_patterns"],
         )
         self.assertEqual(4, contract["operations"]["auto_resume_table"]["body_rows"])
+        self.assertEqual(
+            3,
+            contract["operations"]["key_combination_table"]["minimum_body_rows"],
+        )
         self.assertEqual(
             "operation/lcd_mode",
             contract["operations"]["lcd_mode_table"]["image_key"],
