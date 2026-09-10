@@ -150,9 +150,9 @@
       "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
       "text_policy": "localized-full-page",
       "visual_review_required": false,
-      "transforms": [{"op": "crop", "bbox_pt": [20, 94, 224, 156]}],
-      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/prohibited_connection_1.png", "scale": 4, "expected_sha256": "85d2f0df3e8640ff9bc645617a5d85a946ac75ed3229772e17199900b29a5666"}],
-      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 7; crop retains the complete first prohibited framed panel, cross mark, and labels."]},
+      "transforms": [{"op": "crop", "bbox_pt": [19, 94, 225, 158]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/prohibited_connection_1.png", "scale": 4, "expected_sha256": "ea24a9c8ec0693c7e48ddc9c6bccf338848a1a7886b0a1c5370d1d5259a9b4fb"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 7; corrected crop retains the complete first prohibited frame, cross mark, and labels with safe edge padding."]},
       "risk_tags": ["region-locked-art"]
     },
     {

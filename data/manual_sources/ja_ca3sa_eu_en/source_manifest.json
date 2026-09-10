@@ -49,11 +49,11 @@
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_ja_ca3sa_eu_en_web.json",
-    "recipe_sha256": "9ffc3439a6c99934f001ab41fddb3763d8d0462600b5fba5c87a6b209a0098a1",
+    "recipe_sha256": "658816bb232d7f5d52c5f6cef43d25840ccb911ed6b520dcbf5831c6b992b854",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-CA3SA_illustrations.json",
-    "illustration_manifest_sha256": "140f364297217f996765b6d69157f0ddef10a2297561e862a00278fa4e31187f",
+    "illustration_manifest_sha256": "65ca51bcf70b7fa59b92808b444b1389901b7f9d43f1fc7abafd980450a6819b",
     "asset_directory": "docs/renderers/web/assets/ja_ca3sa_eu_en",
-    "asset_snapshot_sha256": "e86d5ff0ff8b755ad24c220ebf262904eed66b42c9affdf1454e6cee07be0422",
+    "asset_snapshot_sha256": "057893ddfcb1ce446b01c5528137a2248970107b9199359c6e25b5f89294d223",
     "semantic_asset_count": 10,
     "text_policy": "localized complete diagram panels with native Web prose and callout components"
   },
