@@ -223,6 +223,22 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             charging_ac["bbox_pt"],
             charging_ac_recipe["transforms"][0]["bbox_pt"],
         )
+
+        connect_result = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("setup_connect_result.png")
+        )
+        self.assertEqual([40, 143, 332, 315], connect_result["bbox_pt"])
+        connect_result_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/setup_connect_result"
+        )
+        self.assertEqual(
+            connect_result["bbox_pt"],
+            connect_result_recipe["transforms"][0]["bbox_pt"],
+        )
         css = WEB_CSS.read_text(encoding="utf-8")
         self.assertIn(
             '#dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',
