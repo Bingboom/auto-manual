@@ -1700,6 +1700,51 @@
             343,
             213
           ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27,
+            39,
+            343,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27,
+            39,
+            35.4,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27,
+            48,
+            29.2,
+            213
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            333.9,
+            39,
+            343,
+            50
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            340.2,
+            48,
+            343,
+            213
+          ]
         }
       ],
       "outputs": [
@@ -1707,13 +1752,13 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je3000c_eu_en/operation_dc.png",
           "scale": 12,
-          "expected_sha256": "82e50e59670234933649081ef055eb4fa49ea981b01c16fb61069a5c896c7102"
+          "expected_sha256": "0bb80faf3111c29039d6584032a6c9020304d1873dfd85f5e561da8bfb3c8736"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
-          "2026-09-08 deterministic 12x crop visually verified against the current formal PDF; source content was neither redrawn nor removed."
+          "2026-09-09 deterministic 12x crop visually verified against the current formal PDF; whiteouts remove only the source border that continues around the native CAUTION content, allowing Web CSS to render a complete diagram-only frame without baking in editable warnings."
         ]
       },
       "risk_tags": [

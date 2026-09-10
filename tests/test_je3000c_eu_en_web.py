@@ -23,6 +23,7 @@ FORMAL_SOURCE = ROOT / "manual_sources/JE-3000C/EU/en/2.0"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = ROOT / "docs/renderers/web/je3000c_eu_en_illustrations.json"
+WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
 
 
 class Je3000cEuEnWebTests(unittest.TestCase):
@@ -181,6 +182,27 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             if asset["asset_key"] == "web/je3000c/eu/en/operation_power"
         )
         self.assertEqual(power["bbox_pt"], power_recipe["transforms"][0]["bbox_pt"])
+
+        dc = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("operation_dc.png")
+        )
+        dc_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/operation_dc"
+        )
+        self.assertEqual(dc["bbox_pt"], dc_recipe["transforms"][0]["bbox_pt"])
+        self.assertEqual(
+            ["crop", "whiteout", "whiteout", "whiteout", "whiteout", "whiteout"],
+            [transform["op"] for transform in dc_recipe["transforms"]],
+        )
+        css = WEB_CSS.read_text(encoding="utf-8")
+        self.assertIn(
+            '#dc-12v-usb-output-on-off\n  > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',
+            css,
+        )
 
     def test_public_ir_cold_replay_and_tamper_detection(self) -> None:
         self.assertEqual(17, len(render_document_fragments(self.ir, package_root=self.package)))
