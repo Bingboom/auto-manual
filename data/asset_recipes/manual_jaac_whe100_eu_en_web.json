@@ -126,9 +126,9 @@
       "scope": {"models": ["JAAC-WHE-100-EUA1"], "regions": ["EU"], "locales": ["en"]},
       "text_policy": "localized-full-page",
       "visual_review_required": false,
-      "transforms": [{"op": "crop", "bbox_pt": [677, 1090, 998, 1260]}],
-      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_assemble.png", "scale": 4, "expected_sha256": "4a4113738405d8eb2837d0a7a7763aab9168d35dd78f91867bc9685ad13c7f9c"}],
-      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against the Git-frozen PDF-compatible Illustrator source; crop retains all three complete source-owned illustrated instruction cards and their English copy."]},
+      "transforms": [{"op": "crop", "bbox_pt": [677, 1079, 998, 1258]}],
+      "outputs": [{"format": "png", "path": "assets/jaac_whe100_eu_en/how_to_assemble.png", "scale": 4, "expected_sha256": "1fd68f999e5019cc314de9e747b5d5ac470f118eacddde750310375d3892521d"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-11 visual verification against the Git-frozen PDF-compatible Illustrator source; expanded upper crop keeps the complete three-step panel, including all top borders and rounded corners, while excluding the native Web heading and the following panel."]},
       "risk_tags": ["region-locked-art"]
     },
     {

@@ -261,7 +261,7 @@ class JaacWhe100EuEnTargetTests(unittest.TestCase):
             summary = json.loads(result.stdout.split("\n[build.py]", 1)[0])
             self.assertEqual(9, summary["artifact_count"])
             self.assertEqual(
-                "c1d13084d540d5e89be546c2dd4a0ba790b2958dc52b89ab62ce5250bc8fc9ed",
+                "eab5e421b0cd76313b76824205fac5f614e91eacaf7d18bc803c8b0c15cec5d8",
                 summary["package_sha256"],
             )
 

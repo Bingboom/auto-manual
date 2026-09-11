@@ -57,21 +57,21 @@
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",
-    "recipe_sha256": "46442ca73dd23cc94495afc216e409a5b83fe9ea9929a4e758730e04f4a7ac80",
+    "recipe_sha256": "e1ba51d6a585d65834e78de3f87e957187405cad3781678e1c5e356c2b4fe1fa",
     "illustration_manifest": "docs/renderers/web/charger_eu_en_JAAC-WHE-100-EUA1_illustrations.json",
-    "illustration_manifest_sha256": "8827394a971818ff622a6bdc59b3cc3938dc109043b8330e2e9dd943604b8e49",
+    "illustration_manifest_sha256": "0132c207d61ca5c439718cff1f47939865546854f69fdedf4e09dc39e9632624",
     "semantic_asset_count": 7,
     "text_policy": "native-inbox-spec-notes-with-complete-source-owned-operation-panels",
     "cold_replay": {
       "artifact_count": 9,
-      "package_sha256": "c1d13084d540d5e89be546c2dd4a0ba790b2958dc52b89ab62ce5250bc8fc9ed",
-      "manifest_sha256": "ec83e941e048bc3f5f72179c39a2d6d3946a02070bb24972c835716c91014249"
+      "package_sha256": "eab5e421b0cd76313b76824205fac5f614e91eacaf7d18bc803c8b0c15cec5d8",
+      "manifest_sha256": "8a2d18f711544c99ea718624987bbb7776e70286060c298def72c507a8482f53"
     }
   },
   "normalizations": [
     "The imposed Illustrator artboard was mapped as cover/back plus two English manual panels; cover, back, page numbers, and manufacturing contact content are not Web body chapters.",
     "Specifications, the three description notes, Inbox labels, quantities, and the damaged-or-lost note remain native Web copy.",
-    "The assembly cards and gray control panel remain complete source-owned English figures; their instructions are not duplicated in surrounding Web prose.",
+    "The assembly cards, including their complete outer borders and rounded corners, and the gray control panel remain source-owned English figures; their instructions are not duplicated in surrounding Web prose.",
     "The Inbox crops retain the complete source-owned main-frame and manual-cover artwork with safe edge padding; a targeted text redaction removes only the manual thumbnail's stale tiny footer literal JA-ST01A.",
     "LCD, UPS, App, power-station operation, charger-only chapters, and warranty are absent from the source and intentionally omitted."
   ],
