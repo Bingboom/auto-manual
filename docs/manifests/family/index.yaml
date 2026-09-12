@@ -71,6 +71,10 @@ entries:
     base: docs/manifests/manual_eu-en.yaml
     manifest: docs/manifests/manual_je100c_eu-en.yaml
     diff: docs/manifests/family/diffs/manual_eu-en__manual_je100c_eu-en.json
+  - family_id: solar-eu-en-target
+    base: docs/manifests/manual_solar-eu-en.yaml
+    manifest: docs/manifests/manual_solar-eu-en-JS-100F.yaml
+    diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_solar-eu-en-JS-100F.json
   - family_id: eu-multilang
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_eu.yaml
@@ -107,6 +111,10 @@ entries:
     base: docs/manifests/manual_charger-eu-en.yaml
     manifest: docs/manifests/manual_charger-eu-en-JA-CA05B.yaml
     diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-CA05B.json
+  - family_id: solar-eu-en-target
+    base: docs/manifests/manual_solar-eu-en.yaml
+    manifest: docs/manifests/manual_solar-eu-en-JS-40C.yaml
+    diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_solar-eu-en-JS-40C.json
   - family_id: zh
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_zh.yaml
