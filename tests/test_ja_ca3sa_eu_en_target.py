@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 import hashlib
 import json
 import os
@@ -27,18 +28,33 @@ from tools.web_document_ir import render_document_fragments
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs" / "config.charger-eu-en.yaml"
-FIXTURE = ROOT / "data" / "manual_sources" / "ja_ca05b_eu_en"
-RECIPE = ROOT / "data" / "asset_recipes" / "manual_ja_ca05b_eu_en_web.json"
+FIXTURE = ROOT / "data" / "manual_sources" / "ja_ca3sa_eu_en"
+RECIPE = ROOT / "data" / "asset_recipes" / "manual_ja_ca3sa_eu_en_web.json"
 ILLUSTRATIONS = (
-    ROOT / "docs" / "renderers" / "web" / "charger_eu_en_JA-CA05B_illustrations.json"
+    ROOT / "docs" / "renderers" / "web" / "charger_eu_en_JA-CA3SA_illustrations.json"
 )
 SKELETON_DIR = ROOT / "docs" / "manifests" / "skeletons" / "charger-intl"
 REGION_PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "charger-eu-en.yaml"
-PRODUCT_PLAN = ROOT / "docs" / "manifests" / "product_plans" / "ja_ca05b_eu.yaml"
+PRODUCT_PLAN = ROOT / "docs" / "manifests" / "product_plans" / "ja_ca3sa_eu.yaml"
 SOURCE_MANIFEST = FIXTURE / "source_manifest.json"
+GIT_SOURCE = (
+    ROOT
+    / "manual_sources"
+    / "JA-CA3SA"
+    / "EU"
+    / "en"
+    / "git-20260909-88f1fa0d"
+    / "source"
+    / "JA-CA3SA-eu-source.ai"
+)
 
 
-class JaCa05bEuEnTargetTests(unittest.TestCase):
+def _snapshot_hash(paths: list[Path]) -> str:
+    lines = [f"{hashlib.sha256(path.read_bytes()).hexdigest()}  {path.name}\n" for path in paths]
+    return hashlib.sha256("".join(sorted(lines)).encode()).hexdigest()
+
+
+class JaCa3saEuEnTargetTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls._tmp = tempfile.TemporaryDirectory()
@@ -73,7 +89,7 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
                 "--config",
                 str(CONFIG),
                 "--model",
-                "JA-CA05B",
+                "JA-CA3SA",
                 "--region",
                 "EU",
                 "--lang",
@@ -91,9 +107,9 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
         )
         if result.returncode:
             raise AssertionError(
-                "JA-CA05B Web fixture build failed:\n" + result.stdout + result.stderr
+                "JA-CA3SA Web fixture build failed:\n" + result.stdout + result.stderr
             )
-        cls.package = cls.staging / "docs" / "_build" / "JA-CA05B" / "EU" / "en" / "md"
+        cls.package = cls.staging / "docs" / "_build" / "JA-CA3SA" / "EU" / "en" / "md"
         cls.ir = read_manual_ir(cls.package / "manual.ir.json")
         cls.html = (cls.package / "manual_bundle.html").read_text(encoding="utf-8")
 
@@ -101,7 +117,7 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
 
-    def test_product_plan_selects_only_the_connection_guide(self) -> None:
+    def test_product_plan_emits_only_source_supported_accessory_slots(self) -> None:
         blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
         slots, slot_profiles = load_slot_template_catalog(
             SKELETON_DIR / "slot_templates.yaml", blueprint
@@ -112,44 +128,55 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
             blueprint,
             slots,
             profile,
-            manifest_id="manual_charger_eu_en_ja_ca05b",
+            manifest_id="manual_charger_eu_en_ja_ca3sa",
             product_plan=product_plan,
             slot_template_profiles=slot_profiles,
         )
         self.assertEqual(
-            ["connection_guide_en"], [page["slot_id"] for page in plan["pages"]]
+            ["product_overview_en", "using_product_en", "warning_en"],
+            [page["slot_id"] for page in plan["pages"]],
         )
-        self.assertEqual("CHARGER", blueprint["skeleton_family"])
+        serialized = json.dumps(plan).casefold()
+        for forbidden in ("specifications", "box_contents", "warranty", "lcd", "ups", "app"):
+            self.assertNotIn(forbidden, serialized)
 
-    def test_config_keeps_all_charger_family_targets(self) -> None:
+    def test_config_registers_target_without_a_model_specific_config(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
-        self.assertEqual(
-            [
-                {"model": "JA-AD01A", "region": "EU"},
-                {"model": "JA-AD600A", "region": "EU"},
-                {"model": "JAAC-WHE-100-EUA1", "region": "EU"},
-                {"model": "JA-CA05B", "region": "EU"},
-                {"model": "JA-CA3SA", "region": "EU"},
-            ],
+        self.assertIn(
+            {"model": "JA-CA3SA", "region": "EU"},
             config["build"]["targets"],
         )
-        self.assertIn("connection_guide*", config["build"]["web_entry_source_patterns"])
+        self.assertEqual(["en"], config["build"]["languages"])
+        self.assertEqual(
+            "docs/manifests/manual_charger-eu-en-{model}.yaml",
+            config["paths"]["page_manifest"],
+        )
 
-    def test_recipe_registry_and_illustration_hashes_match(self) -> None:
+    def test_structured_source_contains_identity_only_and_no_invented_specs(self) -> None:
+        with (FIXTURE / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            rows = list(csv.DictReader(handle))
+        self.assertEqual(2, len(rows))
+        self.assertEqual({"JA-CA3SA_EU"}, {row["document_key"] for row in rows})
+        self.assertEqual({"identity"}, {row["Page"] for row in rows})
+        self.assertEqual(
+            {"Solar Generator Connector", "JA-CA3SA"},
+            {row["Value_source"] for row in rows},
+        )
+
+    def test_git_source_recipe_registry_and_manifest_hashes_match(self) -> None:
         recipe = json.loads(RECIPE.read_text(encoding="utf-8"))
-        illustrations = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
-        source_hash = "f5359ac0da04a79175531f0b0cbc8a05e5b65d90a6dd653d47f487a101b6dee6"
+        manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
+        source_hash = "88f1fa0dd86fd8e7457b50942be52e2a558acecaf5f9bc70edc9f7dbecd311ab"
+        self.assertEqual(source_hash, hashlib.sha256(GIT_SOURCE.read_bytes()).hexdigest())
         self.assertEqual(source_hash, recipe["source"]["expected_sha256"])
-        self.assertEqual(source_hash, illustrations["source_pdf_sha256"])
-        self.assertEqual(3, len(recipe["assets"]))
-        self.assertEqual(3, len(illustrations["illustrations"]))
+        self.assertEqual(source_hash, manifest["source_pdf_sha256"])
+        self.assertEqual([8], manifest["excluded_duplicate_pages"])
+        self.assertEqual({4, 5, 6, 7}, {item["source_page"] for item in manifest["illustrations"]})
+        self.assertEqual(10, len(recipe["assets"]))
         self.assertTrue(all(asset["build_eligible"] for asset in recipe["assets"]))
         self.assertTrue(all(asset["gate"]["status"] == "approved" for asset in recipe["assets"]))
 
         registry = load_registry(ROOT / "data" / "asset_registry.csv")
-        manifest_hashes = {
-            item["path"]: item["sha256"] for item in illustrations["illustrations"]
-        }
         for asset in recipe["assets"]:
             output = asset["outputs"][0]
             resolution = resolve_asset(
@@ -158,38 +185,45 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
                 asset_key=asset["asset_key"],
                 format_name="png",
                 language="en",
-                model="JA-CA05B",
+                model="JA-CA3SA",
                 region="EU",
             )
             path = ROOT / resolution.path
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
-            self.assertEqual(output["expected_sha256"], digest)
             self.assertEqual(output["expected_sha256"], resolution.declared_hash)
-            manifest_path = f"assets/ja_ca05b_eu_en/{path.name}"
-            self.assertEqual(output["expected_sha256"], manifest_hashes[manifest_path])
+            self.assertEqual(output["expected_sha256"], digest)
 
-    def test_source_snapshot_locks_exact_inputs(self) -> None:
+    def test_source_snapshot_locks_git_inputs_and_is_offline_replayable(self) -> None:
         payload = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
-        self.assertEqual("iQfwYCuoZ7", payload["authority"]["dingtalk_record"])
-        self.assertEqual("5M延长线", payload["target"]["delivery_short_name"])
-        lines = []
-        for entry in payload["files"]:
-            path = FIXTURE / entry["path"]
-            digest = hashlib.sha256(path.read_bytes()).hexdigest()
-            self.assertEqual(entry["sha256"], digest)
-            lines.append(f"{digest}  {path.name}\n")
-        self.assertEqual(
-            payload["build_input"]["snapshot_sha256"],
-            hashlib.sha256("".join(sorted(lines)).encode()).hexdigest(),
-        )
-        for key, path in (
-            ("config_sha256", CONFIG),
-            ("page_manifest_sha256", ROOT / payload["build_input"]["page_manifest"]),
-            ("product_plan_sha256", PRODUCT_PLAN),
+        self.assertEqual("auto-manual-git-source-snapshot/v1", payload["schema_version"])
+        self.assertEqual("tQDWZr68hK", payload["authority"]["source_record"])
+        self.assertEqual("4-7", payload["authority"]["source_pdf_english_physical_pages"])
+        self.assertFalse(payload["online_dependencies"]["dingtalk_read_required_for_reproduction"])
+        self.assertFalse(payload["online_dependencies"]["artwork_source_current_location_outside_git"])
+        self.assertEqual(payload["git_source"]["size_bytes"], GIT_SOURCE.stat().st_size)
+        for path_key, hash_key in (
+            ("config", "config_sha256"),
+            ("page_manifest", "page_manifest_sha256"),
+            ("product_plan", "product_plan_sha256"),
         ):
+            path = ROOT / payload["build_input"][path_key]
             self.assertEqual(
-                payload["build_input"][key], hashlib.sha256(path.read_bytes()).hexdigest()
+                payload["build_input"][hash_key],
+                hashlib.sha256(path.read_bytes()).hexdigest(),
             )
+
+        csv_paths = [FIXTURE / entry["path"] for entry in payload["files"]]
+        for entry, path in zip(payload["files"], csv_paths, strict=True):
+            self.assertEqual(entry["sha256"], hashlib.sha256(path.read_bytes()).hexdigest())
+        self.assertEqual(payload["build_input"]["snapshot_sha256"], _snapshot_hash(csv_paths))
+
+        templates = sorted((ROOT / payload["build_input"]["structured_copy"]).glob("*.rst"))
+        assets = sorted((ROOT / payload["assets"]["asset_directory"]).glob("*.png"))
+        self.assertEqual(
+            payload["build_input"]["structured_copy_snapshot_sha256"],
+            _snapshot_hash(templates),
+        )
+        self.assertEqual(payload["assets"]["asset_snapshot_sha256"], _snapshot_hash(assets))
         self.assertEqual(
             payload["assets"]["recipe_sha256"], hashlib.sha256(RECIPE.read_bytes()).hexdigest()
         )
@@ -198,18 +232,31 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
             hashlib.sha256(ILLUSTRATIONS.read_bytes()).hexdigest(),
         )
 
-    def test_runtime_is_one_semantic_page_with_three_finished_panels(self) -> None:
+    def test_runtime_is_native_three_page_web_manual_with_all_assets(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
-        self.assertEqual(1, len(self.ir.pages))
-        self.assertEqual("whole-document-components/v1", self.ir.metadata["projection"])
-        self.assertEqual(1, len(soup.select("table.manual-callout-table")))
-        self.assertEqual(3, len(soup.select("img.manual-finished-illustration")))
-        self.assertEqual(0, len(soup.select(".hb-spec-table-composition")))
+        self.assertEqual(3, len(self.ir.pages))
+        self.assertEqual(10, len(soup.find_all("img")))
+        self.assertEqual(1, len(soup.select(".manual-callout-table, .hb-callout-strip")))
+        self.assertEqual(0, len(soup.select(".hb-inbox-card")))
+        self.assertEqual("Solar Generator Connector User Manual", soup.title.get_text(strip=True))
         text = soup.get_text(" ", strip=True)
-        self.assertIn("Jackery Solar Generator Connection Guide", text)
-        self.assertIn("does not allow current to flow", text)
-        for forbidden in ("WHAT'S IN THE BOX", "WARRANTY", "LCD", "UPS", "APP"):
+        for expected in (
+            "FUNCTIONS OF MAIN PORTS",
+            "DC8020 male",
+            "keep the switch OFF",
+            "HOW TO USE",
+            "Connection Operation Instructions",
+            "SOLAR PANELS CONNECTION GUIDE",
+            "CAUTION",
+            "inconsistent voltages",
+        ):
+            self.assertIn(expected, text)
+        for forbidden in ("SPECIFICATIONS", "WHAT'S IN THE BOX", "WARRANTY", "LCD DISPLAY", "UPS MODE", "APP CONTROL"):
             self.assertNotIn(forbidden, text.upper())
+        manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
+        sources = [str(node.get("src", "")) for node in soup.find_all("img")]
+        for entry in manifest["illustrations"]:
+            self.assertTrue(any(entry["sha256"] in src for src in sources), entry["path"])
 
     def test_public_ir_cold_replay_reads_no_rst_csv_or_contract(self) -> None:
         script = r'''
@@ -228,7 +275,7 @@ with patch.object(Path, "open", guarded):
     result = render_document_fragments(
         read_manual_ir(package / "manual.ir.json"), package_root=package
     )
-    assert len(result) == 1
+    assert len(result) == 3
 '''
         subprocess.run(
             [sys.executable, "-c", script, str(self.package)],

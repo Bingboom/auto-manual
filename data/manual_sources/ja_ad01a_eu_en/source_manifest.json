@@ -31,8 +31,8 @@
   "files": [
     {
       "path": "configs/config.charger-eu-en.yaml",
-      "sha256": "c4c94e2406f1414c57a6262fc9c961973fe0d4de0c7efdc025a96b544277dec8",
-      "size_bytes": 976
+      "sha256": "378e168cf0f7f23b43fd6e82a287fb2b34778e10f09c3953342f9347675920b9",
+      "size_bytes": 1034
     },
     {
       "path": "data/asset_recipes/manual_ja_ad01a_eu_en_web.json",

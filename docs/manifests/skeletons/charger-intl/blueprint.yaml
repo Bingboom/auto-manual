@@ -60,6 +60,20 @@ order_profiles:
   - warranty
   - connection_guide
   - legal_tail
+  solar-connector-v1:
+  - product_overview
+  - using_product
+  - warning
+  - disclaimer
+  - specifications
+  - dimensions
+  - box_contents
+  - important_safety
+  - faq
+  - installation
+  - warranty
+  - connection_guide
+  - legal_tail
 slots:
 - slot_id: disclaimer
   block: body

@@ -69,3 +69,10 @@ house_style_versions:
       file: templates/page_charger/jaac_whe100/{lang}/box_contents.rst
     using_product:
       file: templates/page_charger/jaac_whe100/{lang}/using_product.rst
+  solar-connector-v1:
+    product_overview:
+      file: templates/page_charger/ja_ca3sa/{lang}/product_overview.rst
+    using_product:
+      file: templates/page_charger/ja_ca3sa/{lang}/using_product.rst
+    warning:
+      file: templates/page_charger/ja_ca3sa/{lang}/safety_warning.rst
