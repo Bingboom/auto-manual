@@ -5,10 +5,6 @@
 manifest_id: manual_charger_eu_en
 pages:
   - type: rst_include
-    slot_id: product_overview_en
-    lang: en
-    file: templates/page_charger/en/product_overview.rst
-  - type: rst_include
     slot_id: legal_tail
     lang: en
     file: templates/page_charger/en/legal_tail.rst

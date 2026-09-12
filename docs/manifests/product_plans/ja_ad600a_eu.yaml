@@ -2,5 +2,5 @@
 schema_version: skeleton-product-plan/v1
 plan_id: ja_ad600a_eu
 house_style_version: dc-dc-v1
-enabled_optional_slots: [disclaimer, specifications, dimensions, box_contents, important_safety, faq, installation, warranty]
+enabled_optional_slots: [disclaimer, specifications, dimensions, box_contents, product_overview, important_safety, faq, installation, warranty]
 terminal_slots: []

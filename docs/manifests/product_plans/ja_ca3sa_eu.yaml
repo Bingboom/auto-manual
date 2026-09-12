@@ -2,5 +2,5 @@
 schema_version: skeleton-product-plan/v1
 plan_id: ja_ca3sa_eu
 house_style_version: solar-connector-v1
-enabled_optional_slots: [using_product, warning]
+enabled_optional_slots: [product_overview, using_product, warning]
 terminal_slots: []

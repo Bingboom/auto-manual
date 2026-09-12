@@ -1,0 +1,22 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Row_label_source,Line_order,Value_source,Model,Source_lang
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,1,product_name,Product Name,1,Jackery SolarSaga 100,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,2,model_no,Model No.,1,JS-100F,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,3,waterproof_level,Waterproof Level,1,IP68,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,4,operating_temperature,Operating Temperature Range,1,-20°C to 65°C (-4°F to 149°F),JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,5,dimensions_unfolded,Dimensions (unfolded),1,1220 × 552 × 20 mm,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,6,dimensions_folded,Dimensions (folded),1,610 × 552 × 35 mm,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,BASIC INFORMATION,1,7,weight,Weight,1,3.6 kg ± 0.3 kg,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,1,peak_power,Peak Power (Pₘₐₓ),1,STC*: 100 W ± 5 W / BNPI*: 104 W ± 5 W,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,2,open_circuit_voltage,Open-Circuit Voltage (Vₒ꜀),1,STC*: 24.8 V ± 5% / BNPI*: 25 V ± 5%,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,3,short_circuit_current,Short-Circuit Current (Iₛ꜀),1,STC*: 5.4 A ± 5% / BNPI*: 5.8 A ± 5%,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,4,power_voltage,Power Voltage (Vₘₚ),1,STC*: 20.0 V ± 5% / BNPI*: 20.1 V ± 5%,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,5,power_current,Power Current (Iₘₚ),1,STC*: 5.0 A ± 5% / BNPI*: 5.2 A ± 5%,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,6,maximum_system_voltage,Maximum System Voltage,1,60 V,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,7,maximum_reverse_current,Maximum Reverse Current,1,15 A,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,8,protection_class,Protection Class Against Electric Shock,1,Class II,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,9,bifaciality_coefficient,Bifaciality Coefficient (back/front),1,"Pₘₐₓ > 30%, Vₒ꜀ > 95%, Iₛ꜀ > 32%",JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,10,voltage_temperature_coefficient,Voltage Temperature Coefficient,1,-0.268%/°C,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,11,power_temperature_coefficient,Power Temperature Coefficient,1,-0.29%/°C,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,ELECTRICAL DATA,2,12,photovoltaic_consumer_products,Photovoltaic Consumer Products,1,IEC TS 63163 Consumer Product Category 2,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,MULTIFUNCTIONAL ADAPTER,3,1,usb_a_output,USB-A Output,1,5 V⎓2.4 A,JS-100F,en
+JS-100F_EU,EU,TRUE,specifications,MULTIFUNCTIONAL ADAPTER,3,2,usb_c_output,USB-C Output,1,5 V⎓3 A,JS-100F,en

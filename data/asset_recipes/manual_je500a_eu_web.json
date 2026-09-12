@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {"garbage": 4, "clean": true, "deflate": true, "no_new_id": true},
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/manual_je500a_eu_uk_20260831",
+    "expected_sha256": "c85b8da316fd7b13e3e77e311df76c389234495f38f454019a88f61b6812d12f",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 1},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.15,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "source_artboard",
+      "role": "source_artboard",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": ["Single Illustrator artboard; English pages are isolated by crop coordinates"]},
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je500a/eu/en/inbox_unit", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [1587.84, 1765.81, 1669.84, 1833.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/inbox_unit.png", "scale": 4, "expected_sha256": "7b4b6ac8a1522e7d23216b966d330c14a746c51da591147915f65b2aa1480022"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual crop review against the English source panel"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/inbox_cable", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [1712.84, 1763.81, 1750.84, 1834.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/inbox_cable.png", "scale": 4, "expected_sha256": "6c419c9a79e96a131b615ecab2041de53655e127f928818217d9f02a2522175b"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual crop review against the English source panel"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/inbox_manual", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [1813.84, 1762.81, 1865.84, 1833.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/inbox_manual.png", "scale": 4, "expected_sha256": "4d4ae035ed1d7362bf6c5824e06f7ef7bfb7c32c087f76bbed0e8963ab151d8e"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual crop review against the English source panel"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/overview", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [1950.59, 1495.81, 2267.59, 1910.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/overview.png", "scale": 4, "expected_sha256": "1376f5885a8da6ea38c6d303b7a7a901ceef77b45aff1d4ea673b794e7e2d681"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual crop review; source-owned product labels and outlines retained"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/lcd_map", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2342.09, 1500.81, 2615.09, 1653.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/lcd_map.png", "scale": 4, "expected_sha256": "d1d49221243b8049cf987081884f4911fea912183779504bde6c4de72637d8a3"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 device-only LCD map review; semantic table remains native"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_power", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3059.10, 1507.81, 3372.10, 1657.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_power.png", "scale": 4, "expected_sha256": "917e33ac3fe6d39682e828150c4e177df65b06470973ad2a8b30ecf234f2b0b5"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 complete source-owned instruction panel review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_ac", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3059.10, 1749.81, 3372.10, 1935.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_ac.png", "scale": 4, "expected_sha256": "912720a91c40d3d78ffa10bbadf35fbad5634c2addef3ec4611257843dbd90f7"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 complete source-owned instruction panel review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_dc", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3427.60, 1478.81, 3740.60, 1682.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_dc.png", "scale": 4, "expected_sha256": "d0739d91fa9459a9b20daa920916ebd2eb9fd43223cd9ff899de516da07094fd"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 source-owned instruction panel review; native caution excluded"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_energy", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3427.60, 1779.81, 3740.60, 1930.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_energy.png", "scale": 4, "expected_sha256": "b5148f1429c9d695dd4583a7c6a76746d94e1d40f912bfca08af589cc1930867"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 complete source-owned instruction panel review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_led", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3796.11, 1477.81, 4109.11, 1690.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_led.png", "scale": 4, "expected_sha256": "66e09838c35f1cdcaab60cf558bb11b0a5c02633822a39e32dbf9ee39d2eeff7"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 complete source-owned instruction panel review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/operation_lcd_device", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3803.11, 1767.81, 3913.11, 1920.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/operation_lcd_device.png", "scale": 4, "expected_sha256": "465a2cdaea0b3fd712b43e7b54d7401f9960ecff6ba6b28330baa17761e8ddba"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 device-only crop review; source table remains semantic"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/ups", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [4164.61, 1525.81, 4477.61, 1690.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/ups.png", "scale": 4, "expected_sha256": "63ef25268470ef8f618f184145439c98e42b5d7cbc76a211cb69bb7c25406c00"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 diagram-only crop review; source caution remains semantic"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/charging_ac", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [4533.12, 1593.81, 4846.12, 1713.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/charging_ac.png", "scale": 4, "expected_sha256": "e0775440c5c86fd4649ae7d736546c72269b367d513a789e59ac1f19758e67d4"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 diagram-only crop review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/charging_solar_single", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [4533.12, 1814.81, 4846.12, 1932.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/charging_solar_single.png", "scale": 4, "expected_sha256": "b5ee7098b2ead6e003736617199e48fe491e50eb731307d620d03c5e4c8349a5"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 diagram-only crop review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/charging_solar_dual", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [4901.62, 1463.81, 5214.62, 1580.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/charging_solar_dual.png", "scale": 4, "expected_sha256": "f282bcc365a10885a5392a9bf54bbf4ad77e0c563594f3cc200c03aa414f19a9"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 diagram-only crop review"]}, "risk_tags": []
+    },
+    {
+      "asset_key": "web/je500a/eu/en/charging_car", "page": 1, "build_eligible": true,
+      "scope": {"models": ["JE-500A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page", "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [4901.62, 1725.81, 5214.62, 1845.81]}],
+      "outputs": [{"format": "png", "path": "assets/je500a_eu_en/charging_car.png", "scale": 4, "expected_sha256": "b30e15d8e60cc46f2133500607a4eebd3cd19ec7dee0336c969e56129ad71659"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 diagram-only crop review"]}, "risk_tags": []
+    }
+  ]
+}

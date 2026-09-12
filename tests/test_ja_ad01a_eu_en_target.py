@@ -150,12 +150,14 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
             [
                 {"model": "JA-AD01A", "region": "EU"},
                 {"model": "JA-AD600A", "region": "EU"},
+                {"model": "JAAC-WHE-100-EUA1", "region": "EU"},
+                {"model": "JA-CA05B", "region": "EU"},
                 {"model": "JA-CA3SA", "region": "EU"},
             ],
             build["targets"],
         )
         self.assertEqual(
-            ["box_contents*", "disclaimer*", "product_overview*"],
+            ["box_contents*", "disclaimer*", "connection_guide*", "product_overview*"],
             build["web_entry_source_patterns"],
         )
         self.assertEqual(

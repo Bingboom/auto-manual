@@ -30,6 +30,9 @@
   height: clamp(7rem, 12vw, 9rem) !important;
 }
 
+@media (min-width: 901px) {
+  #furo-main-content .hb-inbox-composition[data-card-count="5"] .hb-inbox-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
 .hb-inbox-card {
   position: relative;
   display: flex;
@@ -174,7 +177,4 @@
   }
 }
 
-@media (min-width: 521px) and (max-width: 900px) {
-  #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
+@media (min-width: 521px) and (max-width: 900px) { #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

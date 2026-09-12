@@ -28,11 +28,11 @@
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
-    "config_sha256": "c14a0d1987dfe210133162e4e4325a7f5a70fae54e696dd13b668b72116d799e",
+    "config_sha256": "378e168cf0f7f23b43fd6e82a287fb2b34778e10f09c3953342f9347675920b9",
     "page_manifest": "docs/manifests/manual_charger-eu-en-JA-CA3SA.yaml",
     "page_manifest_sha256": "1b1dbb50adce87df766c87a7f316348d9830ac9c4960e1485a529a509cfae725",
     "product_plan": "docs/manifests/product_plans/ja_ca3sa_eu.yaml",
-    "product_plan_sha256": "6d351de6c247c6a5b5f634dcfc8e8a01fc22ccf8da6c831ac1e9f52933d89692",
+    "product_plan_sha256": "04a2b349eac3a78f18037bb6a9fd8ab8559049478ef9ff0f486bc5b09a88b60f",
     "structured_copy": "docs/templates/page_charger/ja_ca3sa/en",
     "structured_copy_snapshot_sha256": "5a6f8654f9ec9ad6517fd236e9ef26c16ab27264267e37c17bad5850d661cf12",
     "data_root": "data/manual_sources/ja_ca3sa_eu_en",
@@ -40,12 +40,30 @@
     "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
   },
   "files": [
-    {"path": "Localized_Copy.csv", "sha256": "5c46999c0cf0449aa85b59c4a0fbdb0c2d255abacbd7143836cc827c59c75e92"},
-    {"path": "Spec_Footnotes.csv", "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"},
-    {"path": "Spec_Master.csv", "sha256": "18d5abfa0008d7a1226d817d3fb7249f835dd903e01073a92f1acfcd839aff8d"},
-    {"path": "Spec_Notes.csv", "sha256": "a87495461ed2e9ff8fe3a50ca4ada991df9325cf5dc8b6ed104a367293dc49ab"},
-    {"path": "page_registry.csv", "sha256": "7fbc5fe35eb8d9edfbb66413881acf0342d6cfddbb6c4a69df40e2443d50d874"},
-    {"path": "spec_titles.csv", "sha256": "2e96fd4e901ba6eaf4bf1fe5b6f36d577a29afbaa5d88457dba733f00846c7d0"}
+    {
+      "path": "Localized_Copy.csv",
+      "sha256": "5c46999c0cf0449aa85b59c4a0fbdb0c2d255abacbd7143836cc827c59c75e92"
+    },
+    {
+      "path": "Spec_Footnotes.csv",
+      "sha256": "0db3e8a329c3620aca295186d61ff06f36ff7b97400a986e11a080743bcaad7d"
+    },
+    {
+      "path": "Spec_Master.csv",
+      "sha256": "18d5abfa0008d7a1226d817d3fb7249f835dd903e01073a92f1acfcd839aff8d"
+    },
+    {
+      "path": "Spec_Notes.csv",
+      "sha256": "a87495461ed2e9ff8fe3a50ca4ada991df9325cf5dc8b6ed104a367293dc49ab"
+    },
+    {
+      "path": "page_registry.csv",
+      "sha256": "7fbc5fe35eb8d9edfbb66413881acf0342d6cfddbb6c4a69df40e2443d50d874"
+    },
+    {
+      "path": "spec_titles.csv",
+      "sha256": "2e96fd4e901ba6eaf4bf1fe5b6f36d577a29afbaa5d88457dba733f00846c7d0"
+    }
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_ja_ca3sa_eu_en_web.json",
