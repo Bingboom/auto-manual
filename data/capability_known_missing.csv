@@ -6,3 +6,4 @@ JA-AD600A_EU,CHARGER Git-only Web input has no power-station capability-gated sl
 JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.
 JE-100C_EU,Published compact power-bank manual has no UPS LED or App capability-gated chapters; the target-local manifest intentionally omits them.
 JS-40C_EU,Solar@INTL portable solar-panel target intentionally omits LCD UPS troubleshooting and App chapters; source contains none of them.
+JE-500A_EU,Frozen Git-only Web input uses a target-local semantic manifest; no live capability row is required for its source-defined UPS LCD LED and charging chapters.
