@@ -1,0 +1,29 @@
+# JS-100F target plan on the shared Solar@INTL EU English family.
+manifest_id: manual_solar_eu_en_js100f
+pages:
+  - type: csv_page
+    slot_id: specifications_en
+    source: phase2
+    page: spec
+    langs: [en]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: safety_tips_en
+    lang: en
+    file: templates/page_solar/js100f/en/safety_tips.rst
+  - type: rst_include
+    slot_id: how_to_use_en
+    lang: en
+    file: templates/page_solar/js100f/en/how_to_use.rst
+  - type: rst_include
+    slot_id: sun_angle_indicator_en
+    lang: en
+    file: templates/page_solar/js100f/en/sun_angle_indicator.rst
+  - type: rst_include
+    slot_id: power_your_device_en
+    lang: en
+    file: templates/page_solar/js100f/en/power_your_device.rst
+  - type: rst_include
+    slot_id: warranty_en
+    lang: en
+    file: templates/page_solar/js100f/en/warranty.rst

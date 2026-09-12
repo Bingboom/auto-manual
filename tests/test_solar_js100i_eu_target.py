@@ -15,8 +15,9 @@ import yaml
 from tools.manual_ir import read_manual_ir
 from tools.skeleton_resolve import (
     load_blueprint,
+    load_product_plan,
     load_region_profile,
-    load_slot_templates,
+    load_slot_template_catalog,
     resolve_plan,
 )
 from tools.web_document_ir import render_document_fragments
@@ -31,6 +32,7 @@ DATA_ROOT = SOURCE_ROOT / "phase2"
 SOURCE_MANIFEST = SOURCE_ROOT / "source_manifest.json"
 SKELETON = ROOT / "docs" / "manifests" / "skeletons" / "solar-intl"
 PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "solar-eu-en.yaml"
+PRODUCT_PLAN = ROOT / "docs" / "manifests" / "product_plans" / "js100i_eu.yaml"
 
 
 class SolarJs100iEuTargetTests(unittest.TestCase):
@@ -98,9 +100,19 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
 
     def test_category_skeleton_resolves_exact_web_body_order(self) -> None:
         blueprint = load_blueprint(SKELETON / "blueprint.yaml")
-        slots = load_slot_templates(SKELETON / "slot_templates.yaml", blueprint)
+        slots, slot_profiles = load_slot_template_catalog(
+            SKELETON / "slot_templates.yaml", blueprint
+        )
         profile = load_region_profile(PROFILE, blueprint)
-        plan = resolve_plan(blueprint, slots, profile, manifest_id="manual_solar_eu_en")
+        product_plan = load_product_plan(PRODUCT_PLAN, blueprint)
+        plan = resolve_plan(
+            blueprint,
+            slots,
+            profile,
+            manifest_id="manual_solar_eu_en",
+            product_plan=product_plan,
+            slot_template_profiles=slot_profiles,
+        )
 
         self.assertEqual("solar-intl", blueprint["skeleton_id"])
         self.assertEqual(
@@ -122,7 +134,14 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
 
     def test_config_declares_safety_as_web_entry_and_true_target(self) -> None:
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
-        self.assertEqual([{"model": "JS-100I", "region": "EU"}], config["build"]["targets"])
+        self.assertEqual(
+            [
+                {"model": "JS-100I", "region": "EU"},
+                {"model": "JS-40C", "region": "EU"},
+                {"model": "JS-100F", "region": "EU"},
+            ],
+            config["build"]["targets"],
+        )
         self.assertIn("safety_tips*", config["build"]["web_entry_source_patterns"])
         self.assertEqual(str(MANIFEST.relative_to(ROOT)), config["paths"]["page_manifest"])
 

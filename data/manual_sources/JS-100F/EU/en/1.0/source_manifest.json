@@ -1,0 +1,78 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JS-100F",
+    "region": "EU",
+    "lang": "en",
+    "version": "1.0",
+    "document_revision": "JAK-UM-V1.0"
+  },
+  "source_role": "user-selected-authoritative-design-source",
+  "authority": {
+    "policy": "user-selected-source-no-version-comparison",
+    "source_system": "DingTalk Base",
+    "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "table_id": "97v7518",
+    "record_id": "UH5XSMZwqi",
+    "source_master_name": "JS-100F-eu-source.ai",
+    "source_master_sha256": "2074ddc390cf0e218a94a6ad267721c6f85cb5a34a29c96e45093791602f8952",
+    "source_master_page_count": 1,
+    "source_artboard_pt": [5636.82, 3978.88],
+    "english_panel_bbox_pt": [1712, 600, 2861, 1120],
+    "english_body_page_count": 3
+  },
+  "build_input": {
+    "config": "configs/config.solar-eu-en.yaml",
+    "page_manifest": "docs/manifests/manual_solar-eu-en-JS-100F.yaml",
+    "structured_copy": "docs/templates/page_solar/js100f/en",
+    "data_root": "data/manual_sources/JS-100F/EU/en/1.0/phase2",
+    "snapshot_sha256": "d50317a6043a503b750003929703dc9cf0dc1fd3295ec10f2825dd2fb65fb301",
+    "snapshot_hash_algorithm": "sha256 of the LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the five CSV files"
+  },
+  "files": [
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
+    {
+      "path": "phase2/Spec_Footnotes.csv",
+      "size": 83,
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 2944,
+      "sha256": "290ae5414e5f6e95653ec2245d360e6e0eb9c37d082021decf334e730f27316a"
+    },
+    {
+      "path": "phase2/Spec_Notes.csv",
+      "size": 510,
+      "sha256": "6119ceee41b1a0fede095cf41a8cc4dfc390df9a6fa293ec205261058fef0f2f"
+    },
+    {
+      "path": "phase2/page_registry.csv",
+      "size": 139,
+      "sha256": "edbd73ddf6976c43764d88b8b0b6872056822069d1d7942a06db07c4987861d3"
+    },
+    {
+      "path": "phase2/spec_titles.csv",
+      "size": 213,
+      "sha256": "5ed3cd2a6240f618df36221a53396dddc88817bd6abd6da2445518c6176cf1be"
+    }
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_js100f_eu_en_web.json",
+    "recipe_sha256": "be191f1b4475d3c19c61eb2ed92a1e6a7315f69636275c06c70dadb845905685",
+    "illustration_manifest": "docs/renderers/web/js100f_eu_en_illustrations.json",
+    "illustration_manifest_sha256": "671495c695e3d7af715282043e855dc9fe1ef8aa28c6d63a342e144be698a33a",
+    "semantic_asset_count": 4,
+    "text_policy": "localized-diagram-crops-with-fixed-product-markings"
+  },
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "oss_upload_required": false
+  }
+}
