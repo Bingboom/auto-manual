@@ -16,6 +16,7 @@ order_profiles:
   - important_safety
   - faq
   - installation
+  - maintenance
   - warranty
   - legal_tail
   dc-dc-v1:
@@ -30,6 +31,7 @@ order_profiles:
   - using_product
   - connection_guide
   - warning
+  - maintenance
   - warranty
   - legal_tail
   connection-guide-v1:
@@ -44,6 +46,7 @@ order_profiles:
   - important_safety
   - faq
   - installation
+  - maintenance
   - warranty
   - legal_tail
   accessory-v1:
@@ -57,6 +60,7 @@ order_profiles:
   - important_safety
   - faq
   - installation
+  - maintenance
   - warranty
   - connection_guide
   - legal_tail
@@ -71,6 +75,22 @@ order_profiles:
   - important_safety
   - faq
   - installation
+  - maintenance
+  - warranty
+  - connection_guide
+  - legal_tail
+  powered-protection-accessory-v1:
+  - disclaimer
+  - product_overview
+  - warning
+  - specifications
+  - dimensions
+  - box_contents
+  - using_product
+  - important_safety
+  - faq
+  - installation
+  - maintenance
   - warranty
   - connection_guide
   - legal_tail
@@ -126,6 +146,11 @@ slots:
   presentation: chapter
   toc: true
 - slot_id: installation
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: maintenance
   block: body
   requirement: optional
   presentation: chapter

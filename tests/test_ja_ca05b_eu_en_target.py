@@ -130,6 +130,7 @@ class JaCa05bEuEnTargetTests(unittest.TestCase):
                 {"model": "JAAC-WHE-100-EUA1", "region": "EU"},
                 {"model": "JA-CA05B", "region": "EU"},
                 {"model": "JA-CA3SA", "region": "EU"},
+                {"model": "JA-CC30A", "region": "EU"},
             ],
             config["build"]["targets"],
         )

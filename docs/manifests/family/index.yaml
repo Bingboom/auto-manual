@@ -139,3 +139,7 @@ entries:
     base: docs/manifests/manual_charger-eu-en.yaml
     manifest: docs/manifests/manual_charger-eu-en-JA-CA3SA.yaml
     diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-CA3SA.json
+  - family_id: charger-eu-en-target
+    base: docs/manifests/manual_charger-eu-en.yaml
+    manifest: docs/manifests/manual_charger-eu-en-JA-CC30A.yaml
+    diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-CC30A.json
