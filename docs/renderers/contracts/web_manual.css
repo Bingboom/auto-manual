@@ -1406,6 +1406,10 @@ body {
 }
 
 @media (min-width: 82rem) {
+  .main {
+    min-width: 0;
+  }
+
   .content {
     width: 58em;
     padding-right: 2em;
