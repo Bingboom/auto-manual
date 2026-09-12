@@ -14,11 +14,48 @@
       },
       "contract_overrides": {
         "warranty": {
-          "source_patterns": ["warranty_en", "*11_warranty*"],
+          "source_patterns": [
+            "warranty_en",
+            "*11_warranty*"
+          ],
           "section_count": 3,
-          "period_years": ["3", "2"]
+          "period_years": [
+            "3",
+            "2"
+          ]
         }
       }
+    },
+    {
+      "overlay_id": "je500a-eu-en-v1",
+      "target": {
+        "model": "JE-500A",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "figure_coverage": {
+        "policy_id": "je500a-eu-en-finished-figures-v1",
+        "locales": ["en"],
+        "required_slots": [
+          "finished-panel.overview",
+          "finished-panel.operation_power",
+          "finished-panel.operation_ac",
+          "finished-panel.operation_dc",
+          "finished-panel.operation_energy",
+          "finished-panel.operation_led",
+          "finished-panel.operation_lcd_device",
+          "finished-panel.charging_ac",
+          "finished-panel.charging_solar_single",
+          "finished-panel.charging_solar_dual",
+          "finished-panel.charging_car"
+        ],
+        "allowed_statuses": ["finished-panel", "approved-composite"]
+      },
+      "contract_overrides": {}
     },
     {
       "overlay_id": "je100c-eu-en-v1",
@@ -317,6 +354,25 @@
               "web_replace_key": "operation.connection-diagram"
             }
           ]
+        }
+      }
+    },
+    {
+      "overlay_id": "js40c-eu-en-v1",
+      "target": {
+        "model": "JS-40C",
+        "region": "EU"
+      },
+      "skeleton_profile": "solar-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": ["warranty_en"],
+          "section_count": 3,
+          "period_years": ["1", "2"]
         }
       }
     }
