@@ -42,6 +42,9 @@ slots:
     type: rst_include
     file: templates/page_charger/{primary_lang}/legal_tail.rst
     lang: primary
+  maintenance:
+    type: rst_include
+    file: templates/page_charger/{lang}/maintenance.rst
 house_style_versions:
   compact-v1: {}
   dc-dc-v1:
@@ -76,3 +79,20 @@ house_style_versions:
       file: templates/page_charger/ja_ca3sa/{lang}/using_product.rst
     warning:
       file: templates/page_charger/ja_ca3sa/{lang}/safety_warning.rst
+  powered-protection-accessory-v1:
+    disclaimer:
+      file: templates/page_charger/powered_protection_accessory/{lang}/disclaimer.rst
+    box_contents:
+      file: templates/page_charger/powered_protection_accessory/{lang}/box_contents.rst
+    product_overview:
+      file: templates/page_charger/powered_protection_accessory/{lang}/product_overview.rst
+    using_product:
+      file: templates/page_charger/powered_protection_accessory/{lang}/using_product.rst
+    warning:
+      file: templates/page_charger/powered_protection_accessory/{lang}/precautions.rst
+    maintenance:
+      file: templates/page_charger/powered_protection_accessory/{lang}/maintenance.rst
+    warranty:
+      file: templates/page_charger/powered_protection_accessory/{lang}/warranty.rst
+    legal_tail:
+      file: templates/page_charger/powered_protection_accessory/{lang}/legal_tail.rst
