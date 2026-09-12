@@ -990,6 +990,16 @@ plans explicitly keep both pages. The PDF-compatible AI and 38-row scope
 snapshot are frozen in Git, including the `收纳小推车` same-manual association.
 See [`reviews/jaac_whe100_eu_en_web_intake_2026-09.md`](reviews/jaac_whe100_eu_en_web_intake_2026-09.md).
 
+`JS-40C / EU / en` reuses the same `Solar@INTL` skeleton through its own
+Product Manual Plan. It starts at Safety Tips, has a seven-item semantic Inbox,
+omits the JS-100I unfolding/folding slots, and adds Solar Panel Storage before
+Specifications. Its frozen Git source snapshot is
+`data/manual_sources/JS-40C/EU/en/2026-08-30/`; 18 approved figure crops remain
+hash-bound to the exact Illustrator master and target. Build it with the shared
+`configs/config.solar-eu-en.yaml` entrypoint plus `--model JS-40C --region EU
+--lang en`. See
+[`dev/js40c_eu_en_web_acceptance.md`](dev/js40c_eu_en_web_acceptance.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound

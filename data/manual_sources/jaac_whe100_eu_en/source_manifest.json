@@ -17,7 +17,12 @@
     "source_path": "manual_sources/JAAC-WHE-100-EUA1/EU/en/source.ai",
     "source_sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
     "source_page_count": 1,
-    "source_page_rect_pt": [0.0, 0.0, 2910.04, 2046.75],
+    "source_page_rect_pt": [
+      0.0,
+      0.0,
+      2910.04,
+      2046.75
+    ],
     "creator": "Adobe Illustrator 30.0 (Macintosh)",
     "published_pdf_link_present": false
   },
@@ -32,15 +37,15 @@
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
-    "config_sha256": "87bde7bd01a4cd456966f7e86dcaa621d9260a286d65555faca4f52007949062",
+    "config_sha256": "c4c94e2406f1414c57a6262fc9c961973fe0d4de0c7efdc025a96b544277dec8",
     "page_manifest": "docs/manifests/manual_charger-eu-en-JAAC-WHE-100-EUA1.yaml",
     "page_manifest_sha256": "82b32cd5491f8499949e8b84842aa5de3d72f93efbac888a41118b3cfc9fb502",
     "product_plan": "docs/manifests/product_plans/jaac_whe100_eu.yaml",
-    "product_plan_sha256": "984d26a4740207826735df638b180e9c40a34d0cfa21459fb25f49d8d126c73d",
+    "product_plan_sha256": "aeda917fe9962108f197652420a8c75b1734233723bdc114e8de303cac0586af",
     "skeleton_blueprint": "docs/manifests/skeletons/charger-intl/blueprint.yaml",
-    "skeleton_blueprint_sha256": "ba8456dd3130785d3bbe027b100d897c68d4466acba4bf18bcad7d3b550ea798",
+    "skeleton_blueprint_sha256": "31c13eb14f81517c39e348544c34ffc8d9d153ccaecad0b4c465a4565fb00d74",
     "slot_templates": "docs/manifests/skeletons/charger-intl/slot_templates.yaml",
-    "slot_templates_sha256": "233f31ad4808928af6655bf126daf05ec4f382d7cb7dcbe49288b92b9f556be2",
+    "slot_templates_sha256": "e23c474fdc3342add9fcc8c7e84404ba0ea94d429ca1ceae3121e178bc887497",
     "structured_copy": "docs/templates/page_charger/jaac_whe100/en",
     "structured_copy_snapshot_sha256": "a145b604d25664c3887696c2df51e1bcf950f61dc2062279822bf43f7efa609b",
     "data_root": "data/manual_sources/jaac_whe100_eu_en",
@@ -48,12 +53,30 @@
     "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
   },
   "files": [
-    {"path": "Localized_Copy.csv", "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"},
-    {"path": "Spec_Footnotes.csv", "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"},
-    {"path": "Spec_Master.csv", "sha256": "e5ae73441852cff804cc63dac7811bf01f6bd04e2bf1c65d3b76ae62221efb20"},
-    {"path": "Spec_Notes.csv", "sha256": "58535c881b5e5273b60344da0458850b2997981a5f4ee1f494ca544c068bd242"},
-    {"path": "page_registry.csv", "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"},
-    {"path": "spec_titles.csv", "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"}
+    {
+      "path": "Localized_Copy.csv",
+      "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"
+    },
+    {
+      "path": "Spec_Footnotes.csv",
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "Spec_Master.csv",
+      "sha256": "e5ae73441852cff804cc63dac7811bf01f6bd04e2bf1c65d3b76ae62221efb20"
+    },
+    {
+      "path": "Spec_Notes.csv",
+      "sha256": "58535c881b5e5273b60344da0458850b2997981a5f4ee1f494ca544c068bd242"
+    },
+    {
+      "path": "page_registry.csv",
+      "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"
+    },
+    {
+      "path": "spec_titles.csv",
+      "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"
+    }
   ],
   "assets": {
     "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",

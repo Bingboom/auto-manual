@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "skip_count": 9,
-  "reason": "The current fixture snapshot has no document_key rows for AU, JA-AD600A_EU, JAAC-WHE-100-EUA1_EU, JE-100C_EU, JE-1000F_KR, JE-2000E_KR, JE-3000C_KR, pt-BR, and JS-100I_EU targets. JA-AD600A_EU and JAAC-WHE-100-EUA1_EU use dedicated target snapshots; JE-100C_EU uses the formal manual_sources/JE-100C/EU/en/2.0/phase2 source binding; JS-100I_EU uses the dedicated tests/fixtures/js100i_eu_en_phase2 bootstrap snapshot; JBP-2000B_US was skipped until its rows landed in the shared fixtures and now runs and passes.",
+  "skip_count": 13,
+  "reason": "The current fixture snapshot has no document_key rows for AU, JA-AD600A_EU, JE-100C_EU, JE-1000F_KR, JE-2000E_KR, JE-3000C_KR, pt-BR, JS-100I_EU, and JS-100F_EU targets. JA-AD600A_EU uses its dedicated target snapshot; JE-100C_EU uses the formal manual_sources/JE-100C/EU/en/2.0/phase2 source binding; JS-100I_EU uses the dedicated tests/fixtures/js100i_eu_en_phase2 bootstrap snapshot; JS-100F_EU uses the formal manual_sources/JS-100F/EU/en/1.0/phase2 source binding; JBP-2000B_US was skipped until its rows landed in the shared fixtures and now runs and passes. JS-40C_EU uses its frozen manual_sources/JS-40C/EU/en/2026-08-30/phase2 source binding. JE-500A_EU uses its target-scoped frozen manual_sources/JE-500A/EU/en/2.0/phase2 binding. JA-CA05B_EU uses its dedicated frozen Git source. JAAC-WHE-100-EUA1_EU uses its dedicated frozen Git source.",
   "skipped_configs": [
     "configs/config.au-en.yaml",
     "configs/config.charger-eu-en.yaml",

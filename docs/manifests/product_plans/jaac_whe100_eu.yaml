@@ -2,5 +2,5 @@
 schema_version: skeleton-product-plan/v1
 plan_id: jaac_whe100_eu
 house_style_version: accessory-v1
-enabled_optional_slots: [using_product]
+enabled_optional_slots: [box_contents, specifications, using_product]
 terminal_slots: []

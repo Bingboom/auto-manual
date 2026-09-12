@@ -8,18 +8,31 @@
     },
     {
       "op": "replace",
-      "path": "/pages/0/file",
-      "value": "templates/page_charger/jaac_whe100/en/box_contents.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/2/file",
-      "value": "templates/page_charger/jaac_whe100/en/using_product.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/2/slot_id",
-      "value": "using_product_en"
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_charger/jaac_whe100/en/box_contents.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_charger/jaac_whe100/en/using_product.rst",
+          "lang": "en",
+          "slot_id": "using_product_en",
+          "type": "rst_include"
+        }
+      ]
     }
   ],
   "schema_version": "family-manifest-diff/v1",
