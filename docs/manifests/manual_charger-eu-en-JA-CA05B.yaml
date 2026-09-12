@@ -1,0 +1,7 @@
+# Resolved Manifest - charger-intl + charger-eu-en + ja_ca05b_eu.
+manifest_id: manual_charger_eu_en_ja_ca05b
+pages:
+  - type: rst_include
+    slot_id: connection_guide_en
+    lang: en
+    file: templates/page_charger/ja_ca05b/en/connection_guide.rst

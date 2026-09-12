@@ -111,6 +111,10 @@ entries:
     base: docs/manifests/manual_charger-eu-en.yaml
     manifest: docs/manifests/manual_charger-eu-en-JA-AD600A.yaml
     diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-AD600A.json
+  - family_id: charger-eu-en-target
+    base: docs/manifests/manual_charger-eu-en.yaml
+    manifest: docs/manifests/manual_charger-eu-en-JA-CA05B.yaml
+    diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-CA05B.json
   - family_id: solar-eu-en-target
     base: docs/manifests/manual_solar-eu-en.yaml
     manifest: docs/manifests/manual_solar-eu-en-JS-40C.yaml

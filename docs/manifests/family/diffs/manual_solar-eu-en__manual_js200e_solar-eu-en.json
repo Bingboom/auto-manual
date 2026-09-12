@@ -1,7 +1,5 @@
 {
-  "schema_version": "family-manifest-diff/v1",
   "base_manifest_id": "manual_solar_eu_en",
-  "target_manifest_id": "manual_js200e_solar_eu_en",
   "operations": [
     {
       "op": "replace",
@@ -12,14 +10,55 @@
       "op": "replace",
       "path": "/pages",
       "value": [
-        {"type": "rst_include", "slot_id": "safety_tips_en", "lang": "en", "file": "templates/page_solar/js200e/en/01_safety_tips.rst"},
-        {"type": "rst_include", "slot_id": "box_contents_en", "lang": "en", "file": "templates/page_solar/js200e/en/02_whats_in_the_box.rst"},
-        {"type": "rst_include", "slot_id": "basic_use_en", "lang": "en", "file": "templates/page_solar/js200e/en/03_how_to_use.rst"},
-        {"type": "rst_include", "slot_id": "connector_use_en", "lang": "en", "file": "templates/page_solar/js200e/en/04_connector_use.rst"},
-        {"type": "rst_include", "slot_id": "angle_and_device_en", "lang": "en", "file": "templates/page_solar/js200e/en/05_angle_and_device.rst"},
-        {"type": "csv_page", "slot_id": "specifications_en", "source": "phase2", "page": "spec", "langs": ["en"], "include_dir": "generated/{model}"},
-        {"type": "rst_include", "slot_id": "warranty_en", "lang": "en", "file": "templates/page_solar/js200e/en/11_warranty.rst"}
+        {
+          "file": "templates/page_solar/js200e/en/01_safety_tips.rst",
+          "lang": "en",
+          "slot_id": "safety_tips_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js200e/en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js200e/en/03_how_to_use.rst",
+          "lang": "en",
+          "slot_id": "basic_use_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js200e/en/04_connector_use.rst",
+          "lang": "en",
+          "slot_id": "connector_use_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js200e/en/05_angle_and_device.rst",
+          "lang": "en",
+          "slot_id": "angle_and_device_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/js200e/en/11_warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        }
       ]
     }
-  ]
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_js200e_solar_eu_en"
 }
