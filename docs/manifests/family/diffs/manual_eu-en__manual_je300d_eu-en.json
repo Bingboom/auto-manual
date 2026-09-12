@@ -1,0 +1,88 @@
+{
+  "base_manifest_id": "manual_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_je300d_eu_en"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_je300d_eu-en/00_preface.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/safety_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/01_user_maintenance_instructions.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/symbol_meaning_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/03_product_overview.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/lcd_display_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/operation_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/charging_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/storage_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/troubleshooting_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/spec_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_shared/en/11_warranty.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je300d_eu-en/99_regulatory_compliance.rst",
+          "lang": "en",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_je300d_eu_en"
+}

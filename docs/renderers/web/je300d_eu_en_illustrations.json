@@ -1,0 +1,109 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-300D",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc",
+  "source_pdf_name": "HTE150300A-EU UK-JAK 说明书 20251024.ai",
+  "recipe": "data/asset_recipes/manual_je300d_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": ["inbox_unit.png"],
+      "path": "assets/je300d_eu_en/inbox_unit.png",
+      "sha256": "b8b2eea4b34aa606a538492672ccaddb0603033c5a9c8ccc9002fc8ece942378",
+      "source_page": 1,
+      "bbox_pt": [2057.13, 1515.7, 2111.13, 1571.7]
+    },
+    {
+      "replaces": ["inbox_manual.png"],
+      "path": "assets/je300d_eu_en/inbox_manual.png",
+      "sha256": "765791290f2b210d500e997b17736cd6093b964518216b0c09eaff9c90b183c0",
+      "source_page": 1,
+      "bbox_pt": [2153.13, 1514.7, 2195.13, 1572.7]
+    },
+    {
+      "replaces": ["overview.png"],
+      "path": "assets/je300d_eu_en/overview.png",
+      "sha256": "478049d90e38375cad71c7b0bc07be267f9bc8118012e3ed72cc84c775dab25d",
+      "source_page": 1,
+      "bbox_pt": [2020.13, 1658.7, 2238.13, 1792.7]
+    },
+    {
+      "replaces": ["strap_panel.png"],
+      "path": "assets/je300d_eu_en/strap_panel.png",
+      "sha256": "54e26c1d7c2d5f4726928b2835ce1a3882c2ff7600dceb8eee1b677f815db1a5",
+      "source_page": 1,
+      "bbox_pt": [2277.25, 1455.7, 2493.25, 1596.7]
+    },
+    {
+      "replaces": ["lcd_map.png"],
+      "path": "assets/je300d_eu_en/lcd_map.png",
+      "sha256": "c42a8624462964f5723c87f1b4ec5f7bfab203a45cf56d8111c40502ff7dd362",
+      "source_page": 1,
+      "bbox_pt": [2285.25, 1635.7, 2477.25, 1724.7]
+    },
+    {
+      "replaces": ["operation_power.png"],
+      "path": "assets/je300d_eu_en/operation_power.png",
+      "sha256": "a7640fa6749321ef150af82a8f0287f9f143738022a7978aa2b1c81ce64333b6",
+      "source_page": 1,
+      "bbox_pt": [2532.37, 1686.7, 2748.37, 1792.7]
+    },
+    {
+      "replaces": ["operation_usb.png"],
+      "path": "assets/je300d_eu_en/operation_usb.png",
+      "sha256": "d13c5ec13b1edef292de5d5bf5c2d4cfd5aec80add9e0d1c3b215ed86287088a",
+      "source_page": 1,
+      "bbox_pt": [2787.49, 1481.7, 3003.49, 1576.7]
+    },
+    {
+      "replaces": ["operation_dc.png"],
+      "path": "assets/je300d_eu_en/operation_dc.png",
+      "sha256": "2b64a719fea3cab863ec3bc8d893c702c18bd8bd4c36e42889abf157190b9424",
+      "source_page": 1,
+      "bbox_pt": [2787.49, 1644.7, 3003.49, 1760.7]
+    },
+    {
+      "replaces": ["operation_energy.png"],
+      "path": "assets/je300d_eu_en/operation_energy.png",
+      "sha256": "4f0aa946c07e74d129019673b7fbdef3c368112cf6a28d17a3fd69af01e906ae",
+      "source_page": 1,
+      "bbox_pt": [3042.61, 1482.7, 3258.61, 1607.7]
+    },
+    {
+      "replaces": ["operation_led.png"],
+      "path": "assets/je300d_eu_en/operation_led.png",
+      "sha256": "2843b1e0f14ad0859423e7193d87c3b2755f635181e5acedff7ca70451b1d07d",
+      "source_page": 1,
+      "bbox_pt": [3042.61, 1661.7, 3258.61, 1778.7]
+    },
+    {
+      "replaces": ["operation_lcd.png"],
+      "path": "assets/je300d_eu_en/operation_lcd.png",
+      "sha256": "2c8fc1e46667c014b8c9c78ad6d0628581deb5ffefd9b02126ee5fe14b4cf2ab",
+      "source_page": 1,
+      "bbox_pt": [3303.73, 1495.7, 3376.73, 1612.7]
+    },
+    {
+      "replaces": ["charging_usb_c.png"],
+      "path": "assets/je300d_eu_en/charging_usb_c.png",
+      "sha256": "7b35cfeff5a8c021f47c9bd575be8b49cfb4ad99fd05ccd56fe474665c612806",
+      "source_page": 1,
+      "bbox_pt": [3552.85, 1477.7, 3768.85, 1589.7]
+    },
+    {
+      "replaces": ["charging_solar.png"],
+      "path": "assets/je300d_eu_en/charging_solar.png",
+      "sha256": "23a83f3953d284aec4b8d232dee7c4e0d9cbbe08c733403cf9f6572197c42b6d",
+      "source_page": 1,
+      "bbox_pt": [3552.85, 1657.7, 3768.85, 1766.7]
+    },
+    {
+      "replaces": ["charging_car.png"],
+      "path": "assets/je300d_eu_en/charging_car.png",
+      "sha256": "2966eb1a32157fc1e04aae20fbc8e0954957b44fb9abeb68bfd7094b52a1aba7",
+      "source_page": 1,
+      "bbox_pt": [3807.97, 1495.7, 4023.97, 1605.7]
+    }
+  ]
+}
