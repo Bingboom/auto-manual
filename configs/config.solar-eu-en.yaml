@@ -11,10 +11,12 @@ build:
   targets:
     - model: JS-100I
       region: EU
+    - model: JS-40C
+      region: EU
   include_lang_in_output_path: true
   build_word: false
   build_html: false
-  word_title: "Jackery SolarSaga 100 Air User Manual"
+  word_title: "|PRODUCT_NAME| User Manual"
   web_entry_source_patterns:
     - "01_safety_tips*"
     - "safety_tips*"
@@ -27,7 +29,11 @@ build:
 
 paths:
   page_manifest: docs/manifests/manual_solar-eu-en.yaml
-  web_illustration_manifest: docs/renderers/web/js100i_eu_en_illustrations.json
+  page_manifests:
+    JS-40C_EU: docs/manifests/manual_solar-eu-en-JS-40C.yaml
+  web_illustration_manifests:
+    JS-100I_EU: docs/renderers/web/js100i_eu_en_illustrations.json
+    JS-40C_EU: docs/renderers/web/js40c_eu_en_illustrations.json
 
 checks:
   allowed_foreign_identity_literals:

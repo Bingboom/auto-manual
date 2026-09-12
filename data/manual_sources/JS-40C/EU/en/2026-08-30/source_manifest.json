@@ -1,0 +1,56 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JS-40C",
+    "region": "EU",
+    "lang": "en",
+    "version": "2026-08-30",
+    "product_name": "Jackery SolarSaga 40 Air"
+  },
+  "authority": {
+    "policy": "operator-designated-dingtalk-ai-source",
+    "dingtalk_base": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "dingtalk_table": "97v7518",
+    "dingtalk_record": "1OUQt6g91M",
+    "source_master_name": "JS-40C-eu-source.ai",
+    "source_master_page_count": 10,
+    "source_master_sha256": "c5963d37311614f9fc5c9ae40c4da74a71cc53da8e36a92e60a7ff3f25854df9",
+    "source_master_creator": "Adobe Illustrator 30.0 (Macintosh)",
+    "source_master_modified_at": "2026-08-30T23:57:47-07:00",
+    "english_physical_pages": "3-9",
+    "publication_claim": "none; engineering source authority does not prove formal publication"
+  },
+  "build_input": {
+    "config": "configs/config.solar-eu-en.yaml",
+    "product_plan": "docs/manifests/product_plans/js40c_eu.yaml",
+    "resolved_manifest": "docs/manifests/manual_solar-eu-en-JS-40C.yaml",
+    "structured_copy": "docs/templates/page_solar/js40c/en",
+    "data_root": "data/manual_sources/JS-40C/EU/en/2026-08-30/phase2",
+    "snapshot_sha256": "5c2bed8ff99c349a67ba01b405ec08e70d82bdef777ab724fc34d4f35138f3cf",
+    "snapshot_hash_algorithm": "sha256 of the LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the five CSV files"
+  },
+  "files": [
+    {"path": "phase2/Spec_Footnotes.csv", "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"},
+    {"path": "phase2/Spec_Master.csv", "sha256": "c199eed7c52d0c662fe6f93d018ef70a0295bfc928773102e83ba92dd51cbe10"},
+    {"path": "phase2/Spec_Notes.csv", "sha256": "704c4e3b144510b3b97559cd91d196f0cde3f3229b6bce65b7da91f086ad3df4"},
+    {"path": "phase2/page_registry.csv", "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"},
+    {"path": "phase2/spec_titles.csv", "sha256": "27e919b45bb7e79ced64da10ad6e8355aa62ba5329a3a68f1568de00cf7edaa2"}
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_js40c_eu_en_web.json",
+    "recipe_sha256": "39d9cd1522d9a1bad2f7bb627f34842f5c5d862c086416d1a14b4bda730ecf8c",
+    "illustration_manifest": "docs/renderers/web/js40c_eu_en_illustrations.json",
+    "illustration_manifest_sha256": "0510fb9c3b4482caccdcfaedf03f753927faf62115f94d3818046905baec451a",
+    "semantic_asset_count": 18,
+    "ownership": {
+      "html_css": ["headings", "body copy", "seven-item inbox labels", "notes", "specification tables", "warranty year cards"],
+      "image": ["product drawings", "fixed product markings", "English-labelled connection and angle panels"]
+    }
+  },
+  "online_dependencies": {
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "oss_upload_required": false
+  }
+}
