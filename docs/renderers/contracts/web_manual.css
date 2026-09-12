@@ -1406,16 +1406,12 @@ body {
 }
 
 @media (min-width: 82rem) {
-  .main {
-    min-width: 0;
-  }
-
+  .main { min-width: 0; }
   .content {
     width: 58em;
     padding-right: 2em;
     padding-left: 2em;
   }
-
   .sidebar-drawer {
     width: 15em;
   }
