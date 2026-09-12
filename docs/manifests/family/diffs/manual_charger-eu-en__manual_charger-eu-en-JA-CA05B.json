@@ -8,15 +8,13 @@
     },
     {
       "op": "replace",
-      "path": "/pages",
-      "value": [
-        {
-          "file": "templates/page_charger/ja_ca05b/en/connection_guide.rst",
-          "lang": "en",
-          "slot_id": "connection_guide_en",
-          "type": "rst_include"
-        }
-      ]
+      "path": "/pages/0/file",
+      "value": "templates/page_charger/ja_ca05b/en/connection_guide.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/0/slot_id",
+      "value": "connection_guide_en"
     }
   ],
   "schema_version": "family-manifest-diff/v1",

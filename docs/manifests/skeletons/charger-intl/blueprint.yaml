@@ -1,6 +1,3 @@
-# Skeleton Blueprint - charger/accessory international manual.
-# Order profiles and optional slots cover both compact wall chargers and
-# vehicle-mounted DC-DC chargers without model branches in shared code.
 schema_version: skeleton-blueprint/v1
 skeleton_id: charger-intl
 skeleton_family: CHARGER
@@ -8,81 +5,125 @@ house_style: INTL-COMPACT
 default_order_profile: compact-v1
 order_profiles:
   compact-v1:
-    [box_contents, product_overview, specifications, dimensions, using_product,
-     connection_guide, warning, disclaimer, important_safety, faq, installation,
-     warranty, legal_tail]
+  - box_contents
+  - product_overview
+  - specifications
+  - dimensions
+  - using_product
+  - connection_guide
+  - warning
+  - disclaimer
+  - important_safety
+  - faq
+  - installation
+  - warranty
+  - legal_tail
   dc-dc-v1:
-    [disclaimer, specifications, dimensions, box_contents, product_overview,
-     important_safety, faq, installation, using_product, connection_guide, warning,
-     warranty, legal_tail]
+  - disclaimer
+  - specifications
+  - dimensions
+  - box_contents
+  - product_overview
+  - important_safety
+  - faq
+  - installation
+  - using_product
+  - connection_guide
+  - warning
+  - warranty
+  - legal_tail
   connection-guide-v1:
-    [connection_guide, disclaimer, box_contents, product_overview, specifications,
-     dimensions, using_product, warning, important_safety, faq, installation,
-     warranty, legal_tail]
+  - connection_guide
+  - disclaimer
+  - box_contents
+  - product_overview
+  - specifications
+  - dimensions
+  - using_product
+  - warning
+  - important_safety
+  - faq
+  - installation
+  - warranty
+  - legal_tail
+  accessory-v1:
+  - box_contents
+  - specifications
+  - using_product
+  - product_overview
+  - dimensions
+  - warning
+  - disclaimer
+  - important_safety
+  - faq
+  - installation
+  - warranty
+  - connection_guide
+  - legal_tail
 slots:
-  - slot_id: disclaimer
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: box_contents
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: product_overview
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: specifications
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: dimensions
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: using_product
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: connection_guide
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: warning
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: important_safety
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: faq
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: installation
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: warranty
-    block: body
-    requirement: optional
-    presentation: chapter
-    toc: true
-  - slot_id: legal_tail
-    block: back
-    requirement: optional
-    presentation: untitled_block
-    toc: false
+- slot_id: disclaimer
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: box_contents
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: product_overview
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: specifications
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: dimensions
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: using_product
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: connection_guide
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: warning
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: important_safety
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: faq
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: installation
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: warranty
+  block: body
+  requirement: optional
+  presentation: chapter
+  toc: true
+- slot_id: legal_tail
+  block: back
+  requirement: optional
+  presentation: untitled_block
+  toc: false
 co_page_groups: []

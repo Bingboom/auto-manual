@@ -1,4 +1,3 @@
-# Slot carriers for compact charger/accessory international manuals.
 schema_version: skeleton-slot-templates/v1
 skeleton_id: charger-intl
 slots:
@@ -65,3 +64,8 @@ house_style_versions:
   connection-guide-v1:
     connection_guide:
       file: templates/page_charger/ja_ca05b/{lang}/connection_guide.rst
+  accessory-v1:
+    box_contents:
+      file: templates/page_charger/jaac_whe100/{lang}/box_contents.rst
+    using_product:
+      file: templates/page_charger/jaac_whe100/{lang}/using_product.rst

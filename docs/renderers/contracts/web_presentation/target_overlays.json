@@ -39,7 +39,9 @@
       },
       "figure_coverage": {
         "policy_id": "je500a-eu-en-finished-figures-v1",
-        "locales": ["en"],
+        "locales": [
+          "en"
+        ],
         "required_slots": [
           "finished-panel.overview",
           "finished-panel.operation_power",
@@ -53,7 +55,10 @@
           "finished-panel.charging_solar_dual",
           "finished-panel.charging_car"
         ],
-        "allowed_statuses": ["finished-panel", "approved-composite"]
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
       },
       "contract_overrides": {}
     },
@@ -70,7 +75,9 @@
       },
       "figure_coverage": {
         "policy_id": "je100c-eu-en-finished-figures-v1",
-        "locales": ["en"],
+        "locales": [
+          "en"
+        ],
         "required_slots": [
           "finished-panel.overview",
           "finished-panel.operation_output",
@@ -80,7 +87,10 @@
           "finished-panel.charging_solar",
           "finished-panel.charging_car"
         ],
-        "allowed_statuses": ["finished-panel", "approved-composite"]
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
       },
       "contract_overrides": {}
     },
@@ -299,7 +309,9 @@
       },
       "figure_coverage": {
         "policy_id": "ja-ad600a-eu-en-finished-figures-v1",
-        "locales": ["en"],
+        "locales": [
+          "en"
+        ],
         "required_slots": [
           "operation.installation-diagram",
           "operation.wiring-steps",
@@ -307,50 +319,79 @@
           "operation.secure-modification-panel",
           "operation.connection-diagram"
         ],
-        "allowed_statuses": ["finished-panel", "approved-composite"]
+        "allowed_statuses": [
+          "finished-panel",
+          "approved-composite"
+        ]
       },
       "contract_overrides": {
         "warranty": {
-          "source_patterns": ["*warranty*"],
+          "source_patterns": [
+            "*warranty*"
+          ],
           "section_count": 6,
-          "period_years": ["2"]
+          "period_years": [
+            "2"
+          ]
         },
         "operations": {
-          "source_patterns": ["*installation*"],
+          "source_patterns": [
+            "*installation*"
+          ],
           "figures": [
             {
               "id": "installation-diagram",
               "image_key": "installation_diagram",
               "layout": "footer-panel",
-              "step_ids": ["overview"],
+              "step_ids": [
+                "overview"
+              ],
               "web_replace_key": "operation.installation-diagram"
             },
             {
               "id": "wiring-steps",
               "image_key": "wiring_steps",
               "layout": "footer-panel",
-              "step_ids": ["fuse", "battery", "acc"],
+              "step_ids": [
+                "fuse",
+                "battery",
+                "acc"
+              ],
               "web_replace_key": "operation.wiring-steps"
             },
             {
               "id": "secure-vehicle-body",
               "image_key": "secure_vehicle_body",
               "layout": "footer-panel",
-              "step_ids": ["clearance", "mark", "drill", "secure"],
+              "step_ids": [
+                "clearance",
+                "mark",
+                "drill",
+                "secure"
+              ],
               "web_replace_key": "operation.secure-vehicle-body"
             },
             {
               "id": "secure-modification-panel",
               "image_key": "secure_modification_panel",
               "layout": "footer-panel",
-              "step_ids": ["mark", "drill", "secure"],
+              "step_ids": [
+                "mark",
+                "drill",
+                "secure"
+              ],
               "web_replace_key": "operation.secure-modification-panel"
             },
             {
               "id": "connection-diagram",
               "image_key": "connection_diagram",
               "layout": "footer-panel",
-              "step_ids": ["input", "acc", "output", "power-station"],
+              "step_ids": [
+                "input",
+                "acc",
+                "output",
+                "power-station"
+              ],
               "web_replace_key": "operation.connection-diagram"
             }
           ]
@@ -370,11 +411,29 @@
       },
       "contract_overrides": {
         "warranty": {
-          "source_patterns": ["warranty_en"],
+          "source_patterns": [
+            "warranty_en"
+          ],
           "section_count": 3,
-          "period_years": ["1", "2"]
+          "period_years": [
+            "1",
+            "2"
+          ]
         }
       }
+    },
+    {
+      "overlay_id": "jaac-whe-100-eua1-eu-v1",
+      "target": {
+        "model": "JAAC-WHE-100-EUA1",
+        "region": "EU"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
     }
   ]
 }

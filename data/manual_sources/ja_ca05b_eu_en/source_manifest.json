@@ -24,7 +24,7 @@
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
-    "config_sha256": "b5238d319e8262184ef10625caab6f27165eff6e6424bc9d3fe427573d5f92f4",
+    "config_sha256": "c4c94e2406f1414c57a6262fc9c961973fe0d4de0c7efdc025a96b544277dec8",
     "page_manifest": "docs/manifests/manual_charger-eu-en-JA-CA05B.yaml",
     "page_manifest_sha256": "ffb16e5b5e8552715e3a3588fc70b25a8e6d749d125b921d2c3b233905c0ba98",
     "product_plan": "docs/manifests/product_plans/ja_ca05b_eu.yaml",

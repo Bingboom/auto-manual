@@ -1,0 +1,109 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JAAC-WHE-100-EUA1",
+    "region": "EU",
+    "lang": "en",
+    "version": "candidate",
+    "published_revision": null
+  },
+  "authority": {
+    "policy": "operator-designated-current-ai-source-without-version-calibration",
+    "status": "engineering-candidate-no-published-pdf-link",
+    "dingtalk_base": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "dingtalk_table": "97v7518",
+    "dingtalk_record": "QKRfBknCr9",
+    "source_name": "38-0001-000916 说明书 HTO838A-UK-JAK RoHS REACH.ai",
+    "source_path": "manual_sources/JAAC-WHE-100-EUA1/EU/en/source.ai",
+    "source_sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
+    "source_page_count": 1,
+    "source_page_rect_pt": [
+      0.0,
+      0.0,
+      2910.04,
+      2046.75
+    ],
+    "creator": "Adobe Illustrator 30.0 (Macintosh)",
+    "published_pdf_link_present": false
+  },
+  "scope_snapshot": {
+    "path": "data/manual_sources/jaac_whe100_eu_en/scope_snapshot.json",
+    "sha256": "1178fc64a281baf4c928efdffc95243c449086008dbf0fe534054ce8f9a5b2e3",
+    "target_record": "QKRfBknCr9",
+    "same_manual_record": "e6lR7qNTJd",
+    "same_manual_name": "收纳小推车",
+    "same_manual_note": "和折叠小推车 是一样的",
+    "handling": "one manual only; no second target created"
+  },
+  "build_input": {
+    "config": "configs/config.charger-eu-en.yaml",
+    "config_sha256": "c4c94e2406f1414c57a6262fc9c961973fe0d4de0c7efdc025a96b544277dec8",
+    "page_manifest": "docs/manifests/manual_charger-eu-en-JAAC-WHE-100-EUA1.yaml",
+    "page_manifest_sha256": "82b32cd5491f8499949e8b84842aa5de3d72f93efbac888a41118b3cfc9fb502",
+    "product_plan": "docs/manifests/product_plans/jaac_whe100_eu.yaml",
+    "product_plan_sha256": "aeda917fe9962108f197652420a8c75b1734233723bdc114e8de303cac0586af",
+    "skeleton_blueprint": "docs/manifests/skeletons/charger-intl/blueprint.yaml",
+    "skeleton_blueprint_sha256": "31c13eb14f81517c39e348544c34ffc8d9d153ccaecad0b4c465a4565fb00d74",
+    "slot_templates": "docs/manifests/skeletons/charger-intl/slot_templates.yaml",
+    "slot_templates_sha256": "e23c474fdc3342add9fcc8c7e84404ba0ea94d429ca1ceae3121e178bc887497",
+    "structured_copy": "docs/templates/page_charger/jaac_whe100/en",
+    "structured_copy_snapshot_sha256": "a145b604d25664c3887696c2df51e1bcf950f61dc2062279822bf43f7efa609b",
+    "data_root": "data/manual_sources/jaac_whe100_eu_en",
+    "snapshot_sha256": "2d486984141cc85b8076f54aa4250f737af693d74cab26c81012fcc59d558992",
+    "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
+  },
+  "files": [
+    {
+      "path": "Localized_Copy.csv",
+      "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"
+    },
+    {
+      "path": "Spec_Footnotes.csv",
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "Spec_Master.csv",
+      "sha256": "e5ae73441852cff804cc63dac7811bf01f6bd04e2bf1c65d3b76ae62221efb20"
+    },
+    {
+      "path": "Spec_Notes.csv",
+      "sha256": "58535c881b5e5273b60344da0458850b2997981a5f4ee1f494ca544c068bd242"
+    },
+    {
+      "path": "page_registry.csv",
+      "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"
+    },
+    {
+      "path": "spec_titles.csv",
+      "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"
+    }
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",
+    "recipe_sha256": "e1ba51d6a585d65834e78de3f87e957187405cad3781678e1c5e356c2b4fe1fa",
+    "illustration_manifest": "docs/renderers/web/charger_eu_en_JAAC-WHE-100-EUA1_illustrations.json",
+    "illustration_manifest_sha256": "0132c207d61ca5c439718cff1f47939865546854f69fdedf4e09dc39e9632624",
+    "semantic_asset_count": 7,
+    "text_policy": "native-inbox-spec-notes-with-complete-source-owned-operation-panels",
+    "cold_replay": {
+      "artifact_count": 9,
+      "package_sha256": "eab5e421b0cd76313b76824205fac5f614e91eacaf7d18bc803c8b0c15cec5d8",
+      "manifest_sha256": "8a2d18f711544c99ea718624987bbb7776e70286060c298def72c507a8482f53"
+    }
+  },
+  "normalizations": [
+    "The imposed Illustrator artboard was mapped as cover/back plus two English manual panels; cover, back, page numbers, and manufacturing contact content are not Web body chapters.",
+    "Specifications, the three description notes, Inbox labels, quantities, and the damaged-or-lost note remain native Web copy.",
+    "The assembly cards, including their complete outer borders and rounded corners, and the gray control panel remain source-owned English figures; their instructions are not duplicated in surrounding Web prose.",
+    "The Inbox crops retain the complete source-owned main-frame and manual-cover artwork with safe edge padding; a targeted text redaction removes only the manual thumbnail's stale tiny footer literal JA-ST01A.",
+    "LCD, UPS, App, power-station operation, charger-only chapters, and warranty are absent from the source and intentionally omitted."
+  ],
+  "online_dependencies": {
+    "dingtalk_read_required_for_reproduction": false,
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "artwork_source_file_required_for_reproduction": true,
+    "artwork_source_current_location_outside_git": false
+  }
+}
