@@ -1,0 +1,32 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {"model": "JE-500A", "region": "EU", "lang": "en", "version": "2.0"},
+  "source_role": "user-selected-authoritative-attachment-git-input",
+  "authority": {
+    "source_revision": "V2 / modified 2026-08-31",
+    "source_name": "JE-500A-eu-source.ai",
+    "source_sha256": "c85b8da316fd7b13e3e77e311df76c389234495f38f454019a88f61b6812d12f",
+    "source_system": "DingTalk Bitable attachment",
+    "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "table_id": "97v7518",
+    "record_id": "xF8IUxGEbx",
+    "artboard": {"page_count": 1, "width_pt": 7942.78, "height_pt": 5567.33},
+    "english_body_panels": {
+      "count": 14,
+      "y_range_pt": [1435.81, 1960.22],
+      "x_range_pt": [1181.37, 6347.75]
+    },
+    "audit_record": "code-as-doc/reviews/je500a_eu_en_web_intake_2026-09.md"
+  },
+  "data_root": "manual_sources/JE-500A/EU/en/2.0/phase2",
+  "asset_recipe": {"path": "data/asset_recipes/manual_je500a_eu_web.json", "sha256": "82c4b59eefa1d2f69953da1a262a65539f3d6ba50a50274bc0838dd52e03dfec"},
+  "web_illustration_manifest": {"path": "docs/renderers/web/je500a_eu_en_illustrations.json", "sha256": "436def40c96a07e881becb8d3f769961bbb81cac4aac7df0e2346caed17d81da"},
+  "files": [
+    {"path":"phase2/.gitattributes","size":18,"sha256":"956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"},
+    {"path":"phase2/Spec_Master.csv","size":654,"sha256":"7c018b2c087d9c3ce646fbffc00a401fc4c12d42f1f4eb4b3f61b180c553526a"},
+    {"path":"phase2/Variable_Defaults.csv","size":94,"sha256":"e6a42bd4a982208ac841b3a5475e7e831aec8da20d8e21ce394404d581fcf379"},
+    {"path":"phase2/Variable_Lang_Overrides.csv","size":40,"sha256":"4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"}
+  ],
+  "live_bitable_dependency": false,
+  "checkout_contract": {"path":"phase2/.gitattributes","rule":"*.csv text eol=lf","purpose":"Preserve manifest-locked CSV bytes identically on every Git checkout"}
+}

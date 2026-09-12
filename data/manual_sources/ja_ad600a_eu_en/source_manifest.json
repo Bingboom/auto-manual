@@ -17,11 +17,11 @@
   },
   "build_input": {
     "config": "configs/config.charger-eu-en.yaml",
-    "config_sha256": "68b6a7e55e09892336cad580ea4799f0aad6cac8d88ba83e3592dca47641d8aa",
+    "config_sha256": "0f643234873fe8de6e40de8a5dedda3ab92207fa285f0b6f1ea65b0a40d6fb0d",
     "page_manifest": "docs/manifests/manual_charger-eu-en-JA-AD600A.yaml",
     "page_manifest_sha256": "f3a838ed540dcd3de2c2758af9e2e81c4cbe0b641c506815e56635913a402ec3",
     "product_plan": "docs/manifests/product_plans/ja_ad600a_eu.yaml",
-    "product_plan_sha256": "766a5cc0b51914676bf0185cdeeb65fb8217cb146ec78efe1486cac7bf46d47f",
+    "product_plan_sha256": "cd986dc7aebcbb8034397a89a37c5f7057112b2ed05b39204e0f44081d194f30",
     "structured_copy": "docs/templates/page_charger/ja_ad600a/en",
     "structured_copy_snapshot_sha256": "ece5e1aa1b017097e0919ca2e00c43cac2def96b31edb4f77038054bf0e66e6e",
     "data_root": "data/manual_sources/ja_ad600a_eu_en",

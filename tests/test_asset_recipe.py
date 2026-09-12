@@ -155,6 +155,7 @@ class TestAssetRecipe(unittest.TestCase):
         self.assertEqual("preserve", recipe.assets[1].transforms[1].graphics)
         self.assertEqual(4.0, recipe.assets[0].outputs[1].scale)
         self.assertEqual("b" * 64, recipe.assets[0].outputs[1].expected_sha256)
+        self.assertIsNone(recipe.assets[0].outputs[1].rgb_quantization_bits)
         self.assertEqual("quarantine", recipe.assets[-1].gate.status)
         self.assertEqual("pdf-1-based", recipe.coordinate_contract.page_numbering)
         self.assertEqual(40_000_000, recipe.normalization.max_render_pixels)
@@ -264,6 +265,30 @@ class TestAssetRecipe(unittest.TestCase):
         payload["assets"][0]["outputs"][1]["expected_sha256"] = "deadbeef"  # type: ignore[index]
 
         with self.assertRaisesRegex(RecipeValidationError, "complete 64-character"):
+            self._load(payload)
+
+    def test_png_output_accepts_bounded_rgb_quantization(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["outputs"][1]["rgb_quantization_bits"] = 4  # type: ignore[index]
+
+        recipe = self._load(payload)
+
+        output = recipe.assets[0].outputs[1]
+        self.assertEqual(4, output.rgb_quantization_bits)
+        self.assertEqual(4, output.as_manifest()["rgb_quantization_bits"])
+
+    def test_rejects_rgb_quantization_on_pdf_output(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["outputs"][0]["rgb_quantization_bits"] = 4  # type: ignore[index]
+
+        with self.assertRaisesRegex(RecipeValidationError, "only valid for PNG"):
+            self._load(payload)
+
+    def test_rejects_out_of_range_rgb_quantization(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["outputs"][1]["rgb_quantization_bits"] = 9  # type: ignore[index]
+
+        with self.assertRaisesRegex(RecipeValidationError, "must be <= 8"):
             self._load(payload)
 
     def test_rejects_approved_output_without_expected_hash(self) -> None:

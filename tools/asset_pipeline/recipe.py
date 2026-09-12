@@ -547,7 +547,7 @@ def _output(value: Any, location: str) -> OutputSpec:
         data,
         location=location,
         required={"format", "path"},
-        optional={"scale", "expected_sha256"},
+        optional={"scale", "expected_sha256", "rgb_quantization_bits"},
     )
     format_name = _string(data["format"], f"{location}.format").lower()
     if format_name not in ALLOWED_OUTPUT_FORMATS:
@@ -565,11 +565,25 @@ def _output(value: Any, location: str) -> OutputSpec:
     expected_sha256 = None
     if "expected_sha256" in data:
         expected_sha256 = _sha256(data["expected_sha256"], f"{location}.expected_sha256")
+    rgb_quantization_bits = None
+    if "rgb_quantization_bits" in data:
+        if format_name != "png":
+            raise _fail(
+                f"{location}.rgb_quantization_bits",
+                "is only valid for PNG outputs",
+            )
+        rgb_quantization_bits = _integer(
+            data["rgb_quantization_bits"],
+            f"{location}.rgb_quantization_bits",
+        )
+        if rgb_quantization_bits > 8:
+            raise _fail(f"{location}.rgb_quantization_bits", "must be <= 8")
     return OutputSpec(
         format=format_name,
         path=_safe_path(data["path"], f"{location}.path", suffix=format_name),
         scale=scale,
         expected_sha256=expected_sha256,
+        rgb_quantization_bits=rgb_quantization_bits,
     )
 
 

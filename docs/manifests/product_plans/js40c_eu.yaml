@@ -1,0 +1,6 @@
+# JS-40C / EU target-owned Product Manual Plan.
+schema_version: skeleton-product-plan/v1
+plan_id: js40c_eu
+house_style_version: air-40-v1
+enabled_optional_slots: [storage]
+terminal_slots: []

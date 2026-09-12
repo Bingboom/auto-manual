@@ -2,5 +2,5 @@
 schema_version: skeleton-product-plan/v1
 plan_id: ja_cc30a_eu
 house_style_version: powered-protection-accessory-v1
-enabled_optional_slots: [disclaimer, warning, using_product, maintenance]
+enabled_optional_slots: [disclaimer, product_overview, warning, specifications, box_contents, using_product, maintenance, warranty]
 terminal_slots: [legal_tail]

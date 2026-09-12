@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_ja_ca3sa_eu_en_ai_38-0001-000043",
+    "expected_sha256": "88f1fa0dd86fd8e7457b50942be52e2a558acecaf5f9bc70edc9f7dbecd311ab",
+    "expected_page_count": 8
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 8
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "4": 3,
+        "5": 3,
+        "6": 3,
+        "7": 3,
+        "8": 1
+      }
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "blank_artboard", "role": "blank", "locale": "und", "build_eligible": false, "gate": {"status": "archive", "reasons": ["Blank production artboard; excluded from Web output."]}, "risk_tags": []},
+    {"page": 2, "page_key": "cover_front", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": ["Print cover; title is represented by the Web shell."]}, "risk_tags": []},
+    {"page": 3, "page_key": "contents", "role": "frontmatter", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": ["Print pagination only; Web navigation is generated."]}, "risk_tags": []},
+    {"page": 4, "page_key": "english_01", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "english_02", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "english_03", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "english_04", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "summary_artboard", "role": "production_summary", "locale": "mul", "build_eligible": false, "gate": {"status": "archive", "reasons": ["Production summary artboard duplicates pages 2-7 and is excluded from Web output."]}, "risk_tags": ["duplicate-artboard"]}
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/main-ports",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 92, 228, 202]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/main_ports.png", "scale": 4, "expected_sha256": "d8786487be9c5b7810bfb1544f277b5cbde5dca3759f09b3500000f4ecc82b77"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 4; crop retains the complete three-port diagram, callout labels, leader lines, and product markings."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connect-two-panels",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 74, 226, 133]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connect_two_panels.png", "scale": 4, "expected_sha256": "75e0f32684a510be25337dc3526b179b65b52674423251f71517634432dbe78f"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 5; crop retains the complete two-panel connection diagram and its labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connect-three-panels",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 147, 226, 208]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connect_three_panels.png", "scale": 4, "expected_sha256": "73bbaac68a3f81750425943ee36128b6a84e3814d615f6198a1681fd41148741"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 5; crop retains the complete three-panel connection diagram and its labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connection-example-1",
+      "page": 5,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 242, 226, 323]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connection_example_1.png", "scale": 4, "expected_sha256": "1e63b69e5ed7d6ea0649c822184f62e79fa27b370bbf1ce3769561934230b597"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 5; crop retains the complete Example 1 panel and labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connection-example-2",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 35, 226, 136]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connection_example_2.png", "scale": 4, "expected_sha256": "425957b75eee5f37905ff1e40548889766f4b2b60e3d0b846cd410d075c293d0"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 6; crop retains the complete Example 2 panel and labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connection-example-3",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 151, 226, 212]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connection_example_3.png", "scale": 4, "expected_sha256": "f9104ce9c9ba6601af84daeb7f54fdce1d0c4c52cf40381c41207136fc0be2be"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 6; crop retains the complete Example 3 panel and labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/connection-example-4",
+      "page": 6,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [18, 233, 226, 321]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/connection_example_4.png", "scale": 4, "expected_sha256": "b4e82fc1e3a772ff800ef9cfea56d97a75d1b43fa6eb18897b298b725a670996"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 6; crop retains the complete Example 4 panel and labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/prohibited-connection-1",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [19, 94, 225, 158]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/prohibited_connection_1.png", "scale": 4, "expected_sha256": "ea24a9c8ec0693c7e48ddc9c6bccf338848a1a7886b0a1c5370d1d5259a9b4fb"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 7; corrected crop retains the complete first prohibited frame, cross mark, and labels with safe edge padding."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/prohibited-connection-2",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [20, 158, 224, 237]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/prohibited_connection_2.png", "scale": 4, "expected_sha256": "6faf4b41c002fb3d8882d04d7c11cff539685bf1cf11637d68004dbfc984039c"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 7; crop retains the complete second prohibited framed panel, cross mark, and labels."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ca3sa/eu/en/prohibited-connection-3",
+      "page": 7,
+      "build_eligible": true,
+      "scope": {"models": ["JA-CA3SA"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [20, 238, 224, 317]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ca3sa_eu_en/prohibited_connection_3.png", "scale": 4, "expected_sha256": "62073f4c3db774914ad2185a79896605ed7d77ee40a992d083785a0171fd8061"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 visual verification against source page 7; crop retains the complete third prohibited framed panel, cross mark, and labels."]},
+      "risk_tags": ["region-locked-art"]
+    }
+  ]
+}
