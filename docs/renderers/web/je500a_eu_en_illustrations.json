@@ -1,0 +1,27 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-500A",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "c85b8da316fd7b13e3e77e311df76c389234495f38f454019a88f61b6812d12f",
+  "source_pdf_name": "JE-500A-eu-source.ai",
+  "recipe": "data/asset_recipes/manual_je500a_eu_web.json",
+  "illustrations": [
+    {"replaces":["inbox_unit.png"],"path":"assets/je500a_eu_en/inbox_unit.png","sha256":"7b4b6ac8a1522e7d23216b966d330c14a746c51da591147915f65b2aa1480022","source_page":1,"bbox_pt":[1587.84,1765.81,1669.84,1833.81]},
+    {"replaces":["inbox_cable.png"],"path":"assets/je500a_eu_en/inbox_cable.png","sha256":"6c419c9a79e96a131b615ecab2041de53655e127f928818217d9f02a2522175b","source_page":1,"bbox_pt":[1712.84,1763.81,1750.84,1834.81]},
+    {"replaces":["inbox_manual.png"],"path":"assets/je500a_eu_en/inbox_manual.png","sha256":"4d4ae035ed1d7362bf6c5824e06f7ef7bfb7c32c087f76bbed0e8963ab151d8e","source_page":1,"bbox_pt":[1813.84,1762.81,1865.84,1833.81]},
+    {"replaces":["overview.png"],"path":"assets/je500a_eu_en/overview.png","sha256":"1376f5885a8da6ea38c6d303b7a7a901ceef77b45aff1d4ea673b794e7e2d681","source_page":1,"bbox_pt":[1950.59,1495.81,2267.59,1910.81]},
+    {"replaces":["lcd_map.png"],"path":"assets/je500a_eu_en/lcd_map.png","sha256":"d1d49221243b8049cf987081884f4911fea912183779504bde6c4de72637d8a3","source_page":1,"bbox_pt":[2342.09,1500.81,2615.09,1653.81]},
+    {"replaces":["operation_power.png"],"path":"assets/je500a_eu_en/operation_power.png","sha256":"917e33ac3fe6d39682e828150c4e177df65b06470973ad2a8b30ecf234f2b0b5","source_page":1,"bbox_pt":[3059.10,1507.81,3372.10,1657.81]},
+    {"replaces":["operation_ac.png"],"path":"assets/je500a_eu_en/operation_ac.png","sha256":"912720a91c40d3d78ffa10bbadf35fbad5634c2addef3ec4611257843dbd90f7","source_page":1,"bbox_pt":[3059.10,1749.81,3372.10,1935.81]},
+    {"replaces":["operation_dc.png"],"path":"assets/je500a_eu_en/operation_dc.png","sha256":"d0739d91fa9459a9b20daa920916ebd2eb9fd43223cd9ff899de516da07094fd","source_page":1,"bbox_pt":[3427.60,1478.81,3740.60,1682.81]},
+    {"replaces":["operation_energy.png"],"path":"assets/je500a_eu_en/operation_energy.png","sha256":"b5148f1429c9d695dd4583a7c6a76746d94e1d40f912bfca08af589cc1930867","source_page":1,"bbox_pt":[3427.60,1779.81,3740.60,1930.81]},
+    {"replaces":["operation_led.png"],"path":"assets/je500a_eu_en/operation_led.png","sha256":"66e09838c35f1cdcaab60cf558bb11b0a5c02633822a39e32dbf9ee39d2eeff7","source_page":1,"bbox_pt":[3796.11,1477.81,4109.11,1690.81]},
+    {"replaces":["operation_lcd_device.png"],"path":"assets/je500a_eu_en/operation_lcd_device.png","sha256":"465a2cdaea0b3fd712b43e7b54d7401f9960ecff6ba6b28330baa17761e8ddba","source_page":1,"bbox_pt":[3803.11,1767.81,3913.11,1920.81]},
+    {"replaces":["ups.png"],"path":"assets/je500a_eu_en/ups.png","sha256":"63ef25268470ef8f618f184145439c98e42b5d7cbc76a211cb69bb7c25406c00","source_page":1,"bbox_pt":[4164.61,1525.81,4477.61,1690.81]},
+    {"replaces":["charging_ac.png"],"path":"assets/je500a_eu_en/charging_ac.png","sha256":"e0775440c5c86fd4649ae7d736546c72269b367d513a789e59ac1f19758e67d4","source_page":1,"bbox_pt":[4533.12,1593.81,4846.12,1713.81]},
+    {"replaces":["charging_solar_single.png"],"path":"assets/je500a_eu_en/charging_solar_single.png","sha256":"b5ee7098b2ead6e003736617199e48fe491e50eb731307d620d03c5e4c8349a5","source_page":1,"bbox_pt":[4533.12,1814.81,4846.12,1932.81]},
+    {"replaces":["charging_solar_dual.png"],"path":"assets/je500a_eu_en/charging_solar_dual.png","sha256":"f282bcc365a10885a5392a9bf54bbf4ad77e0c563594f3cc200c03aa414f19a9","source_page":1,"bbox_pt":[4901.62,1463.81,5214.62,1580.81]},
+    {"replaces":["charging_car.png"],"path":"assets/je500a_eu_en/charging_car.png","sha256":"b30e15d8e60cc46f2133500607a4eebd3cd19ec7dee0336c969e56129ad71659","source_page":1,"bbox_pt":[4901.62,1725.81,5214.62,1845.81]}
+  ]
+}
