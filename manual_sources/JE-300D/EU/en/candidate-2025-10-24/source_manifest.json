@@ -1,0 +1,84 @@
+{
+  "schema_version": "auto-manual-git-source/v1",
+  "target": {
+    "model": "JE-300D",
+    "region": "EU",
+    "lang": "en",
+    "version": "candidate-2025-10-24"
+  },
+  "source_role": "operator-designated-candidate-ai-source",
+  "authority": {
+    "published_revision": null,
+    "published_pdf": null,
+    "source_status": "candidate; demand record has no published PDF link and the operator waived version comparison",
+    "source_attachment_name": "HTE150300A-EU UK-JAK 说明书 20251024.ai",
+    "source_attachment_sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc",
+    "demand_base_id": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "demand_table_id": "97v7518",
+    "demand_record_id": "QviOQihBNj",
+    "audit_record": "code-as-doc/reviews/je300d_eu_en_web_intake_2026-09.md"
+  },
+  "data_root": "manual_sources/JE-300D/EU/en/candidate-2025-10-24/phase2",
+  "source_file": "manual_sources/JE-300D/EU/en/candidate-2025-10-24/JE-300D-eu-source.ai",
+  "scope_snapshot": "manual_sources/JE-300D/EU/en/candidate-2025-10-24/scope-snapshot.json",
+  "page_manifest": {
+    "path": "docs/manifests/manual_je300d_eu-en.yaml",
+    "sha256": "df656a08ee34d05aa94b4d62b899f9d4f802fed4e6be78146955631674262c50"
+  },
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je300d_eu_web.json",
+    "sha256": "24375bc3a04ca051b99c515b7d7eff9e201dec3e6d8fc2e384056c1a7b504196"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je300d_eu_en_illustrations.json",
+    "sha256": "064577c287394a46dfca7bb450f076c8237ac28bcaaaab351998df6d07dcdbbe"
+  },
+  "files": [
+    {
+      "path": ".gitattributes",
+      "size": 12,
+      "sha256": "bc673157e024a1bcf3790352de22f94252925b13ca8b14c42cb3559991c951fd"
+    },
+    {
+      "path": "JE-300D-eu-source.ai",
+      "size": 4713724,
+      "sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc"
+    },
+    {
+      "path": "scope-snapshot.json",
+      "size": 9684,
+      "sha256": "1178fc64a281baf4c928efdffc95243c449086008dbf0fe534054ce8f9a5b2e3"
+    },
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 655,
+      "sha256": "2407add15625ebeb360d0afc6e107562ee5271a00a915c7bf88380fe4799895a"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 95,
+      "sha256": "709c863957c532057a3e04b83595b297d40bba7897eef0daa8e501d5365b9c97"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 40,
+      "sha256": "4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"
+    }
+  ],
+  "live_bitable_dependency": false,
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  },
+  "binary_source_contract": {
+    "path": ".gitattributes",
+    "rule": "*.ai binary",
+    "purpose": "Keep the frozen Illustrator source byte-exact and out of text diff checks"
+  }
+}
