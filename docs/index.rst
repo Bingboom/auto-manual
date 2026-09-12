@@ -7,4 +7,3 @@ Available Manual Bundles
    _build/JE-1000F/JP/rst/index
    _build/JE-1000F/KR/ko/rst/index
    _build/JE-1000F/US/rst/index
-   _build/JE-500A/EU/en/rst/index

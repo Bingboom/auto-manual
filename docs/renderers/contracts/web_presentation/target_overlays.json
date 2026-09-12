@@ -331,6 +331,25 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "js40c-eu-en-v1",
+      "target": {
+        "model": "JS-40C",
+        "region": "EU"
+      },
+      "skeleton_profile": "solar-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": ["warranty_en"],
+          "section_count": 3,
+          "period_years": ["1", "2"]
+        }
+      }
     }
   ]
 }
