@@ -127,14 +127,6 @@ entries:
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_zh.yaml
     diff: docs/manifests/family/diffs/manual_us-single-en__manual_zh.json
-  - family_id: solar-eu-en-target
-    base: docs/manifests/manual_solar-eu-en.yaml
-    manifest: docs/manifests/manual_js200e_solar-eu-en.yaml
-    diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_js200e_solar-eu-en.json
-  - family_id: eu-en-target
-    base: docs/manifests/manual_eu-en.yaml
-    manifest: docs/manifests/manual_je300d_eu-en.yaml
-    diff: docs/manifests/family/diffs/manual_eu-en__manual_je300d_eu-en.json
   - family_id: charger-eu-en-target
     base: docs/manifests/manual_charger-eu-en.yaml
     manifest: docs/manifests/manual_charger-eu-en-JA-CA3SA.yaml
@@ -143,3 +135,11 @@ entries:
     base: docs/manifests/manual_charger-eu-en.yaml
     manifest: docs/manifests/manual_charger-eu-en-JA-CC30A.yaml
     diff: docs/manifests/family/diffs/manual_charger-eu-en__manual_charger-eu-en-JA-CC30A.json
+  - family_id: solar-eu-en-target
+    base: docs/manifests/manual_solar-eu-en.yaml
+    manifest: docs/manifests/manual_js200e_solar-eu-en.yaml
+    diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_js200e_solar-eu-en.json
+  - family_id: eu-en-target
+    base: docs/manifests/manual_eu-en.yaml
+    manifest: docs/manifests/manual_je300d_eu-en.yaml
+    diff: docs/manifests/family/diffs/manual_eu-en__manual_je300d_eu-en.json

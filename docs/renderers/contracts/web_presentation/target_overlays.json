@@ -2,19 +2,6 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
-      "overlay_id": "ja-ca3sa-eu-v1",
-      "target": {
-        "model": "JA-CA3SA",
-        "region": "EU"
-      },
-      "skeleton_profile": "charger-v1",
-      "capabilities": {
-        "figures": false,
-        "legacy_target_components": false
-      },
-      "contract_overrides": {}
-    },
-    {
       "overlay_id": "js200e-eu-en-v1",
       "target": {
         "model": "JS-200E",
@@ -38,6 +25,19 @@
           ]
         }
       }
+    },
+    {
+      "overlay_id": "ja-ca3sa-eu-v1",
+      "target": {
+        "model": "JA-CA3SA",
+        "region": "EU"
+      },
+      "skeleton_profile": "charger-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {}
     },
     {
       "overlay_id": "je500a-eu-en-v1",

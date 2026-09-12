@@ -890,8 +890,8 @@ body {
   margin-top: 0.12rem;
 }
 
-/* AC/DC auto-resume keeps the compact two-column grid from the approved template. */
-.hb-auto-resume-composition {
+/* Operation data tables keep the compact grids from the approved template. */
+.hb-auto-resume-composition, .hb-key-combination-composition {
   box-sizing: border-box;
   width: 100%;
   max-width: var(--hb-reading-width);
@@ -904,7 +904,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-#furo-main-content table.hb-auto-resume-table {
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) {
   width: 100% !important;
   min-width: 42rem;
   margin: 0 !important;
@@ -922,8 +922,7 @@ body {
   width: 50%;
 }
 
-#furo-main-content table.hb-auto-resume-table th,
-#furo-main-content table.hb-auto-resume-table td {
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) :is(th, td) {
   box-sizing: border-box;
   padding: 0.46rem 0.72rem !important;
   border: 0 !important;
@@ -942,20 +941,21 @@ body {
   background: var(--hb-paper) !important;
 }
 
-#furo-main-content table.hb-auto-resume-table th {
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) th {
   font-size: 0.98rem;
   font-weight: 700;
 }
-
-#furo-main-content table.hb-auto-resume-table tr > *:last-child {
+#furo-main-content table.hb-key-combination-table :is(th, .hb-key-buttons) { background: var(--hb-surface) !important; }
+#furo-main-content .hb-key-col-buttons { width: 40%; }
+#furo-main-content .hb-key-col-operation { width: 25%; }
+#furo-main-content .hb-key-col-function { width: 35%; }
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) tr > *:last-child {
   border-right: 0 !important;
 }
-
-#furo-main-content table.hb-auto-resume-table tbody tr:last-child > td {
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) tbody tr:last-child > td {
   border-bottom: 0 !important;
 }
-
-#furo-main-content table.hb-auto-resume-table p {
+#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) p {
   margin: 0;
 }
 
@@ -1084,6 +1084,11 @@ body {
   max-width: 100% !important;
   height: auto !important;
   margin-inline: auto;
+}
+
+#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"] {
+  box-sizing: border-box; border: 2px solid var(--hb-line-soft);
+  border-radius: 0.82rem; background: var(--hb-paper);
 }
 
 .hb-inline-add-device-icon {
@@ -1401,12 +1406,12 @@ body {
 }
 
 @media (min-width: 82rem) {
+  .main { min-width: 0; }
   .content {
     width: 58em;
     padding-right: 2em;
     padding-left: 2em;
   }
-
   .sidebar-drawer {
     width: 15em;
   }

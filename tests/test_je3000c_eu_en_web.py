@@ -23,6 +23,7 @@ FORMAL_SOURCE = ROOT / "manual_sources/JE-3000C/EU/en/2.0"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = ROOT / "docs/renderers/web/je3000c_eu_en_illustrations.json"
+WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
 
 
 class Je3000cEuEnWebTests(unittest.TestCase):
@@ -129,6 +130,15 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         resume = soup.select_one("figure.hb-auto-resume-composition")
         self.assertIsNotNone(resume)
         self.assertIsNotNone(resume.select_one("table.hb-auto-resume-table"))
+        keys = soup.select_one("figure.hb-key-combination-composition")
+        self.assertIsNotNone(keys)
+        key_table = keys.select_one("table.hb-key-combination-table")
+        self.assertIsNotNone(key_table)
+        self.assertEqual(
+            ["hb-key-col-buttons", "hb-key-col-operation", "hb-key-col-function"],
+            [column.get("class", [""])[0] for column in key_table.select("col")],
+        )
+        self.assertEqual(3, len(key_table.select("tbody > tr")))
         self.assertEqual([], soup.select("#front-view > table"))
         self.assertEqual([], soup.select("#right-side-view > table"))
         text = soup.get_text(" ", strip=True)
@@ -155,6 +165,85 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             self.assertEqual(illustration["sha256"], digest)
             self.assertEqual(outputs[path.relative_to(ROOT).as_posix()], digest)
+
+        side = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("overview_side.png")
+        )
+        self.assertEqual([27, 323, 342, 426], side["bbox_pt"])
+        side_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/overview_side"
+        )
+        self.assertEqual(side["bbox_pt"], side_recipe["transforms"][0]["bbox_pt"])
+
+        power = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("operation_power.png")
+        )
+        self.assertEqual([27, 70, 343, 241], power["bbox_pt"])
+        power_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/operation_power"
+        )
+        self.assertEqual(power["bbox_pt"], power_recipe["transforms"][0]["bbox_pt"])
+
+        dc = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("operation_dc.png")
+        )
+        dc_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/operation_dc"
+        )
+        self.assertEqual(dc["bbox_pt"], dc_recipe["transforms"][0]["bbox_pt"])
+        self.assertEqual(
+            ["crop", "whiteout", "whiteout", "whiteout", "whiteout", "whiteout"],
+            [transform["op"] for transform in dc_recipe["transforms"]],
+        )
+
+        charging_ac = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("charging_ac.png")
+        )
+        self.assertEqual([27, 222, 342, 361], charging_ac["bbox_pt"])
+        charging_ac_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/charging_ac"
+        )
+        self.assertEqual(
+            charging_ac["bbox_pt"],
+            charging_ac_recipe["transforms"][0]["bbox_pt"],
+        )
+
+        connect_result = next(
+            illustration
+            for illustration in manifest["illustrations"]
+            if illustration["path"].endswith("setup_connect_result.png")
+        )
+        self.assertEqual([40, 143, 332, 315], connect_result["bbox_pt"])
+        connect_result_recipe = next(
+            asset
+            for asset in recipe["assets"]
+            if asset["asset_key"] == "web/je3000c/eu/en/setup_connect_result"
+        )
+        self.assertEqual(
+            connect_result["bbox_pt"],
+            connect_result_recipe["transforms"][0]["bbox_pt"],
+        )
+        css = WEB_CSS.read_text(encoding="utf-8")
+        self.assertIn(
+            '#dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"]',
+            css,
+        )
 
     def test_public_ir_cold_replay_and_tamper_detection(self) -> None:
         self.assertEqual(17, len(render_document_fragments(self.ir, package_root=self.package)))

@@ -78,11 +78,11 @@
         "right_side_ports.png"
       ],
       "path": "assets/je3000c_eu_en/overview_side.png",
-      "sha256": "da126743033833218ff727d14e2f3c02842828b1112b040e268164743db63748",
+      "sha256": "a046f7aaa00d1bc492625ed793ad6a0854ad4bbcb4c82eac69d639bd730d7278",
       "source_page": 8,
       "bbox_pt": [
         27,
-        310,
+        323,
         342,
         426
       ],
@@ -112,13 +112,13 @@
         "op_main_power.png"
       ],
       "path": "assets/je3000c_eu_en/operation_power.png",
-      "sha256": "51556e588d3e2fa78e9330a9ac404572db8c2a79f94f024d7ed6e16bcfe712d0",
+      "sha256": "73c5de56ec7f4cab50339c7855a0bc81300d00c25f8730cf8634b83aef1448dd",
       "source_page": 11,
       "bbox_pt": [
         27,
         70,
         343,
-        234
+        241
       ],
       "covered_annotations": [
         {
@@ -172,7 +172,7 @@
         "op_dc_usb_output.png"
       ],
       "path": "assets/je3000c_eu_en/operation_dc.png",
-      "sha256": "82e50e59670234933649081ef055eb4fa49ea981b01c16fb61069a5c896c7102",
+      "sha256": "0bb80faf3111c29039d6584032a6c9020304d1873dfd85f5e561da8bfb3c8736",
       "source_page": 12,
       "bbox_pt": [
         27,
@@ -249,13 +249,13 @@
         "ac_wall.png"
       ],
       "path": "assets/je3000c_eu_en/charging_ac.png",
-      "sha256": "85421b1dccb898094f67410ac52e32ea642762af106cd0ed17db4280c23795f4",
+      "sha256": "5af07782e9c16ccc57275e018e52f213881d81c822491422143023d0fb6996b5",
       "source_page": 15,
       "bbox_pt": [
         27,
         222,
         342,
-        332
+        361
       ]
     },
     {
@@ -344,11 +344,11 @@
         "connect_result.png"
       ],
       "path": "assets/je3000c_eu_en/setup_connect_result.png",
-      "sha256": "1ca5b25f3b413a0612e281d0198da6c6e1a25b177a7420e6e869f28a5c89ec09",
+      "sha256": "b55e9bac29a97434b641569fe34f6774419575454ef2b01e223d518a12b5513a",
       "source_page": 21,
       "bbox_pt": [
         40,
-        115,
+        143,
         332,
         315
       ],

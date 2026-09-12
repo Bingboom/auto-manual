@@ -55,7 +55,7 @@ PRESENTATION_PROFILE_ENV = "AUTO_MANUAL_PRESENTATION_PROFILE"
 WEB_CONTRACT_NAME = "web_manual.json"
 _WEB_FIGURE_RE = re.compile(
     r'<figure\b(?=[^>]*\bclass=["\'][^"\']*\bhb-'
-    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
+    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|key-combination-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
     r"[^>]*>.*?</figure>",
     re.IGNORECASE | re.DOTALL,
 )
@@ -656,6 +656,84 @@ def _ensure_auto_resume_table(
     )
 
 
+def _transform_key_combination_table(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    minimum_body_rows: int,
+) -> None:
+    candidates: list[tuple[Tag, list[Tag], list[Tag]]] = []
+    for table in soup.find_all("table"):
+        if not isinstance(table, Tag):
+            continue
+        header_rows = table.select("thead > tr")
+        body_rows = table.select("tbody > tr")
+        if len(header_rows) != 1 or len(body_rows) < minimum_body_rows:
+            continue
+        headers = header_rows[0].find_all("th", recursive=False)
+        if len(headers) != 3 or any(
+            len(row.find_all("td", recursive=False)) != 3 for row in body_rows
+        ):
+            continue
+        if all(header.get_text(" ", strip=True) for header in headers):
+            candidates.append((table, headers, body_rows))
+    if not candidates:
+        return
+    if len(candidates) != 1:
+        raise WebPresentationError(
+            f"{source_path}: expected one governed key-combination table, "
+            f"found {len(candidates)}"
+        )
+
+    table, headers, body_rows = candidates[0]
+    roles = ("buttons", "operation", "function")
+    for colgroup in table.find_all("colgroup", recursive=False):
+        colgroup.decompose()
+    colgroup = soup.new_tag("colgroup")
+    for role in roles:
+        colgroup.append(soup.new_tag("col", attrs={"class": f"hb-key-col-{role}"}))
+    table.insert(0, colgroup)
+    table["class"] = [*table.get("class", []), "hb-key-combination-table"]
+    for role, header in zip(roles, headers, strict=True):
+        header["scope"] = "col"
+        header["class"] = [*header.get("class", []), f"hb-key-{role}"]
+    for row in body_rows:
+        for role, cell in zip(
+            roles, row.find_all("td", recursive=False), strict=True
+        ):
+            cell["class"] = [*cell.get("class", []), f"hb-key-{role}"]
+
+    composition = soup.new_tag(
+        "figure",
+        attrs={
+            "class": "hb-key-combination-composition",
+            "aria-label": " / ".join(
+                header.get_text(" ", strip=True) for header in headers
+            ),
+            "tabindex": "0",
+        },
+    )
+    table.replace_with(composition)
+    composition.append(table)
+
+
+def _ensure_key_combination_table(
+    soup: BeautifulSoup,
+    *,
+    source_path: Path,
+    minimum_body_rows: int,
+) -> None:
+    if soup.select_one(
+        "figure.hb-key-combination-composition > table.hb-key-combination-table"
+    ):
+        return
+    _transform_key_combination_table(
+        soup,
+        source_path=source_path,
+        minimum_body_rows=minimum_body_rows,
+    )
+
+
 def _transform_lcd_mode_table(
     soup: BeautifulSoup,
     *,
@@ -777,6 +855,13 @@ def _transform_operations(
         soup,
         source_path=source_path,
         expected_body_rows=int(operation_contract["auto_resume_table"]["body_rows"]),
+    )
+    _ensure_key_combination_table(
+        soup,
+        source_path=source_path,
+        minimum_body_rows=int(
+            operation_contract["key_combination_table"]["minimum_body_rows"]
+        ),
     )
     if "HB-TABLE-LCD-MODE" not in resolved_component_ids:
         _ensure_lcd_mode_table(
@@ -1258,6 +1343,14 @@ def normalize_web_source_fragment(
                 data["operations"]["auto_resume_table"]["body_rows"]
             ),
         )
+    if _matches_source(source_path, list(data["operations"]["source_patterns"])) and data["operations"].get("key_combination_table"):
+        _ensure_key_combination_table(
+            soup,
+            source_path=source_path,
+            minimum_body_rows=int(
+                data["operations"]["key_combination_table"]["minimum_body_rows"]
+            ),
+        )
     return str(soup)
 
 
@@ -1368,6 +1461,15 @@ def transform_web_fragment(
             soup,
             source_path=source_path,
             expected_body_rows=int(operations["auto_resume_table"]["body_rows"]),
+        )
+        semantic_fragment = str(soup)
+    if is_operations and operations.get("key_combination_table"):
+        _ensure_key_combination_table(
+            soup,
+            source_path=source_path,
+            minimum_body_rows=int(
+                operations["key_combination_table"]["minimum_body_rows"]
+            ),
         )
         semantic_fragment = str(soup)
     if (

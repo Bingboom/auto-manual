@@ -109,6 +109,9 @@
       "auto_resume_table": {
         "body_rows": 4
       },
+      "key_combination_table": {
+        "minimum_body_rows": 3
+      },
       "lcd_mode_table": {
         "image_key": "operation/lcd_mode",
         "body_rows": 6
