@@ -128,7 +128,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | MA-062 | 「先发再清」序列：auto-manual PR #1078（JBP-3600A LCD 错挂修复，含本登记行）先合，随后按 MA-061 已授范围依次合 #1074、#1075、#1076，最后合 Hello-Docs 的 `docs/publish/**`-only 发布 PR #69 并完成三目标 RTD 真实页面验收。每次合入前该 PR 最终 head 必须包含当时 latest main、全部检查成功（含非 required；pending/queued 不算成功）、无 changes-requested、无未解决评审讨论。**不含** 16 张带印刷版式残骸插图的裁切重切（明确留到上线之后的独立 PR），也不含任何线上多维表写入、Print Publish 触发或 IR 重构。 | 「A」2026-09-07（在「先发再清 / 先清再发」两案中选定 A：先合 #1078 → #1074/#1075/#1076 → #69 上线，重切后置） | #1078 合入、MA-061 批次全部合入且三目标 RTD 页面验收完成即失效 | 生效 |
 
-| MA-063 | PR #1082、#1081、#1085、#1086、#1087、#1088、#1089、#1090：本批八本欧规英文 Web 工程交付，含本登记行。先合 #1082，再把依赖分支转到最新 main，按最终 head 全部检查成功、无 changes-requested 和未解决讨论、包含最新 main 后依次 squash merge。允许为集成修复冲突和回归；不包括其他 PR、线上多维表写入、OSS 上传或正式发布。 | 「先合入 你再开4个」2026-09-09 | 八个 PR 全部合入即失效；随后新四本仅授权开发与开 PR，不自动授权合入 | 生效 |
+| MA-063 | PR #1082、#1081、#1085、#1086、#1087、#1088、#1089、#1090：本批八本欧规英文 Web 工程交付，含本登记行。先合 #1082，再把依赖分支转到最新 main，按最终 head 全部检查成功、无 changes-requested 和未解决讨论、包含最新 main 后依次 squash merge。允许为集成修复冲突和回归；不包括其他 PR、线上多维表写入、OSS 上传或正式发布。 | 「先合入 你再开4个」2026-09-09 | 八个 PR 全部合入即失效；随后新四本仅授权开发与开 PR，不自动授权合入 | 已失效（2026-09-09 八个 PR 全部合入） |
+| MA-064 | PR #1091–#1099 九本独立欧规英文手册及 #1100 JE-3000C 插图修正，含本登记行；允许为集成修复冲突与回归。逐个对齐最新 main，最终 head 全检查成功、无 changes-requested 和未解决评审讨论后 squash merge。随后仅通过既有 Git-only 发布路径更新本批独立手册 Read the Docs 预览；发布 PR 限 Hello-Docs 的 `docs/publish/**`，同样全绿并核验范围后合入。排除组合项目、线上多维表写入、OSS 上传、Print Publish 和无关 PR。 | 「下一步」2026-09-12（承接集中合入剩余九本和插图修正、集成验证、更新 RTD 预览的下一步） | 本批合入及 RTD 实页验证完成，或操作者撤销 | 生效 |
 
 Note: MA-003 superseded the earlier per-PR-review decision for #738–#742 —
 the operator re-decided after reviewing the batch's CI state.
