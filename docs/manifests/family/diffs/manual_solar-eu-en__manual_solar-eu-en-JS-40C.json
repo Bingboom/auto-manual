@@ -10,14 +10,58 @@
       "op": "replace",
       "path": "/pages",
       "value": [
-        {"file": "templates/page_solar/en/01_safety_tips.rst", "lang": "en", "slot_id": "safety_tips_en", "type": "rst_include"},
-        {"file": "templates/page_solar/js40c/en/02_whats_in_the_box.rst", "lang": "en", "slot_id": "box_contents_en", "type": "rst_include"},
-        {"file": "templates/page_solar/js40c/en/03_product_views.rst", "lang": "en", "slot_id": "product_views_en", "type": "rst_include"},
-        {"file": "templates/page_solar/js40c/en/06_charging_connections.rst", "lang": "en", "slot_id": "charging_connections_en", "type": "rst_include"},
-        {"file": "templates/page_solar/js40c/en/07_angle_and_device.rst", "lang": "en", "slot_id": "angle_and_device_en", "type": "rst_include"},
-        {"file": "templates/page_solar/js40c/en/08_storage.rst", "lang": "en", "slot_id": "storage_en", "type": "rst_include"},
-        {"include_dir": "generated/{model}", "langs": ["en"], "page": "spec", "slot_id": "specifications_en", "source": "phase2", "type": "csv_page"},
-        {"file": "templates/page_solar/js40c/en/09_warranty.rst", "lang": "en", "slot_id": "warranty_en", "type": "rst_include"}
+        {
+          "file": "templates/page_solar/en/01_safety_tips.rst",
+          "lang": "en",
+          "slot_id": "safety_tips_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/02_whats_in_the_box.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/03_product_views.rst",
+          "lang": "en",
+          "slot_id": "product_views_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/06_charging_connections.rst",
+          "lang": "en",
+          "slot_id": "charging_connections_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/07_angle_and_device.rst",
+          "lang": "en",
+          "slot_id": "angle_and_device_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/08_storage.rst",
+          "lang": "en",
+          "slot_id": "storage_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/js40c/en/09_warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        }
       ]
     }
   ],

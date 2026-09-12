@@ -1,0 +1,43 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JS-100F",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "2074ddc390cf0e218a94a6ad267721c6f85cb5a34a29c96e45093791602f8952",
+  "source_master_sha256": "2074ddc390cf0e218a94a6ad267721c6f85cb5a34a29c96e45093791602f8952",
+  "source_master_name": "JS-100F-eu-source.ai",
+  "source_master_page_count": 1,
+  "source_artboard_pt": [5636.82, 3978.88],
+  "english_panel_bbox_pt": [1712, 600, 2861, 1120],
+  "recipe": "data/asset_recipes/manual_js100f_eu_en_web.json",
+  "illustrations": [
+    {
+      "replaces": ["connection_adapters.png"],
+      "path": "assets/js100f_eu_en/connection_adapters.png",
+      "sha256": "9d58c401b669761603fa12209189ae6d70e9344d9a4c960bf2c11556ac2ad6e7",
+      "source_page": 1,
+      "bbox_pt": [2138, 744, 2450, 876]
+    },
+    {
+      "replaces": ["solar_panel_connector.png"],
+      "path": "assets/js100f_eu_en/solar_panel_connector.png",
+      "sha256": "5a9d559d420ebecc9314ec8e515f11e35e4d29a6453a5dec5d143ab311e0663e",
+      "source_page": 1,
+      "bbox_pt": [2138, 936, 2450, 1018]
+    },
+    {
+      "replaces": ["sun_angle_indicator.png"],
+      "path": "assets/js100f_eu_en/sun_angle_indicator.png",
+      "sha256": "5953e99ca5d65cbfffdfbee2291fc7f0bba21236135f3c2ea44a4284b1ca895a",
+      "source_page": 1,
+      "bbox_pt": [2530, 625, 2828, 765]
+    },
+    {
+      "replaces": ["power_device.png"],
+      "path": "assets/js100f_eu_en/power_device.png",
+      "sha256": "2b7dded6f6f74f47afa29de2df52c7278b0468dc276cd3e7c0d5e79eefe530f3",
+      "source_page": 1,
+      "bbox_pt": [2530, 792, 2828, 930]
+    }
+  ]
+}
