@@ -1,0 +1,25 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JS-200E",
+  "region": "EU",
+  "language": "en",
+  "source_artwork_sha256": "db150930c307590ad45daf236d1ed54ecbe05ca64e92b8b105abf5e058ff0f70",
+  "source_artwork_name": "JS-200E-eu-source.ai",
+  "source_artwork_page_count": 1,
+  "source_artwork_status": "user-designated DingTalk attachment; PDF-compatible Illustrator artboard",
+  "source_record": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA/97v7518/DFV5KKDywi",
+  "english_panel_bbox_pt": [4600.747, 1479.456, 6941.733, 2003.866],
+  "recipe": "data/asset_recipes/manual_js200e_eu_en_web.json",
+  "illustrations": [
+    {"replaces": ["inbox_panel.png"], "path": "assets/js200e_eu_en/inbox_panel.png", "sha256": "5f7d48fe9d333b6ddced3b275264255b0ea69e99c7a7864a8bb6409c260f7bc4", "source_page": 1, "bbox_pt": [5047.205, 1584.456, 5103.205, 1639.456]},
+    {"replaces": ["inbox_cable.png"], "path": "assets/js200e_eu_en/inbox_cable.png", "sha256": "bae06edb4dfdd0e5c5a1e920f183361289160991a109ecc49a1f81b38a80b969", "source_page": 1, "bbox_pt": [5140.205, 1584.456, 5227.205, 1644.456]},
+    {"replaces": ["inbox_manual.png"], "path": "assets/js200e_eu_en/inbox_manual.png", "sha256": "11247bf9bb352f6eed95ded80202ff5520fa8846e11437af7e1fa4f26be90d8e", "source_page": 1, "bbox_pt": [5261.205, 1574.456, 5310.205, 1644.456]},
+    {"replaces": ["dc8020_connection.png"], "path": "assets/js200e_eu_en/dc8020_connection.png", "sha256": "e665f6fa4a843c1e9544668a0bff6734f83f2db513a21a45f8b2c1728eafca3c", "source_page": 1, "bbox_pt": [5026.985, 1856.816, 5339.725, 1970.806]},
+    {"replaces": ["dc7909_connection.png"], "path": "assets/js200e_eu_en/dc7909_connection.png", "sha256": "470a7ccf868679553aa0ff9bbcc14059f4b6f6dc5f196100ebf7237bb2dd3bcd", "source_page": 1, "bbox_pt": [5419.093, 1542.306, 5731.823, 1662.186]},
+    {"replaces": ["solar_panel_connector.png"], "path": "assets/js200e_eu_en/solar_panel_connector.png", "sha256": "e3a5de366e53ed8dd6605a1b3f086ed8d45671c2493a334c100564d1d2f99d66", "source_page": 1, "bbox_pt": [5419.733, 1753.386, 5732.473, 1927.596]},
+    {"replaces": ["sun_angle_indicator.png"], "path": "assets/js200e_eu_en/sun_angle_indicator.png", "sha256": "4aa673aa5f1ea9e3613b9e61112850dfb8f704127642910fcbd2f4db423df356", "source_page": 1, "bbox_pt": [5811.964, 1550.096, 6124.694, 1669.636]},
+    {"replaces": ["shadow_guidance.png"], "path": "assets/js200e_eu_en/shadow_guidance.png", "sha256": "9e4752e62aa71df42b2ae8c344d39738a197ace851c8b797f14034b51b8b3b63", "source_page": 1, "bbox_pt": [5811.964, 1705.746, 6123.134, 1755.306]},
+    {"replaces": ["power_device.png"], "path": "assets/js200e_eu_en/power_device.png", "sha256": "4ef7d0e0b649bba4cdab9749f678c2c0621f2b28430972979308c9aa86a88dff", "source_page": 1, "bbox_pt": [5810.434, 1788.876, 6123.164, 1948.286]},
+    {"replaces": ["rubber_plug.png"], "path": "assets/js200e_eu_en/rubber_plug.png", "sha256": "f48eeddf7ca152780aef9b626c3ec39fcd83c74bf66ce168bbf6514a494ddeaa", "source_page": 1, "bbox_pt": [6203.037, 1507.426, 6514.267, 1620.546]}
+  ]
+}

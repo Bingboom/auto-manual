@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": ["AIPrivateData", "PieceInfo", "AIMetaData"],
+    "max_render_pixels": 100000000
+  },
+  "source": {
+    "source_key": "source/manual_js200e_eu_en_artboard",
+    "expected_sha256": "db150930c307590ad45daf236d1ed54ecbe05ca64e92b8b105abf5e058ff0f70",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {"first": 1, "last": 1},
+    "pdf": {"path_pattern": "archive/pages/page-{page:04d}.pdf"},
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.1,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "imposed_multilingual_artboard",
+      "role": "design_artboard",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {"status": "archive", "reasons": []},
+      "risk_tags": ["multilingual-artboard"]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/js200e/eu/en/inbox_panel",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5047.205, 1584.456, 5103.205, 1639.456]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/inbox_panel.png", "scale": 6, "expected_sha256": "5f7d48fe9d333b6ddced3b275264255b0ea69e99c7a7864a8bb6409c260f7bc4"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification against the user-supplied English artboard; crop contains only the source-matched product illustration."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/inbox_cable",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5140.205, 1584.456, 5227.205, 1644.456]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/inbox_cable.png", "scale": 6, "expected_sha256": "bae06edb4dfdd0e5c5a1e920f183361289160991a109ecc49a1f81b38a80b969"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification against the user-supplied English artboard; crop contains only the source-matched cable illustration."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/inbox_manual",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5261.205, 1574.456, 5310.205, 1644.456]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/inbox_manual.png", "scale": 6, "expected_sha256": "11247bf9bb352f6eed95ded80202ff5520fa8846e11437af7e1fa4f26be90d8e"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification against the user-supplied English artboard; crop preserves the source manual cover as package artwork."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/dc8020_connection",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5026.985, 1856.816, 5339.725, 1970.806]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/dc8020_connection.png", "scale": 4, "expected_sha256": "e665f6fa4a843c1e9544668a0bff6734f83f2db513a21a45f8b2c1728eafca3c"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey illustration panel and image-owned connector label are preserved without adjacent prose."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/dc7909_connection",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5419.093, 1542.306, 5731.823, 1662.186]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/dc7909_connection.png", "scale": 4, "expected_sha256": "470a7ccf868679553aa0ff9bbcc14059f4b6f6dc5f196100ebf7237bb2dd3bcd"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey illustration panel and image-owned adapter label are preserved without adjacent prose."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/solar_panel_connector",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5419.733, 1753.386, 5732.473, 1927.596]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/solar_panel_connector.png", "scale": 4, "expected_sha256": "e3a5de366e53ed8dd6605a1b3f086ed8d45671c2493a334c100564d1d2f99d66"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey illustration panel and source English connector labels are preserved without adjacent prose."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/sun_angle_indicator",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5811.964, 1550.096, 6124.694, 1669.636]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/sun_angle_indicator.png", "scale": 4, "expected_sha256": "4aa673aa5f1ea9e3613b9e61112850dfb8f704127642910fcbd2f4db423df356"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey illustration panel and source English indicator labels are preserved without adjacent prose."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/shadow_guidance",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5811.964, 1705.746, 6123.134, 1755.306]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/shadow_guidance.png", "scale": 4, "expected_sha256": "9e4752e62aa71df42b2ae8c344d39738a197ace851c8b797f14034b51b8b3b63"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; paired source guidance cards retain their English labels and complete grey frames."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/power_device",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [5810.434, 1788.876, 6123.164, 1948.286]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/power_device.png", "scale": 4, "expected_sha256": "4ef7d0e0b649bba4cdab9749f678c2c0621f2b28430972979308c9aa86a88dff"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey source panel retains image-owned product and interface markings without adjacent prose."]},
+      "risk_tags": ["localized-copy", "region-locked-art"]
+    },
+    {
+      "asset_key": "web/js200e/eu/en/rubber_plug",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JS-200E"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [6203.037, 1507.426, 6514.267, 1620.546]}],
+      "outputs": [{"format": "png", "path": "assets/js200e_eu_en/rubber_plug.png", "scale": 4, "expected_sha256": "f48eeddf7ca152780aef9b626c3ec39fcd83c74bf66ce168bbf6514a494ddeaa"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual verification; complete grey crop retains the image-owned Jackery and USB interface markings."]},
+      "risk_tags": ["fixed-product-markings", "region-locked-art"]
+    }
+  ]
+}

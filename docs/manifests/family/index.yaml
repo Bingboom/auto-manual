@@ -123,3 +123,7 @@ entries:
     base: docs/manifests/manual_us-single-en.yaml
     manifest: docs/manifests/manual_zh.yaml
     diff: docs/manifests/family/diffs/manual_us-single-en__manual_zh.json
+  - family_id: solar-eu-en-target
+    base: docs/manifests/manual_solar-eu-en.yaml
+    manifest: docs/manifests/manual_js200e_solar-eu-en.yaml
+    diff: docs/manifests/family/diffs/manual_solar-eu-en__manual_js200e_solar-eu-en.json
