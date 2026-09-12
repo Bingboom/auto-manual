@@ -2,6 +2,31 @@
   "schema_version": "web-manual-target-overlays/v1",
   "overlays": [
     {
+      "overlay_id": "js200e-eu-en-v1",
+      "target": {
+        "model": "JS-200E",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "warranty_en",
+            "*11_warranty*"
+          ],
+          "section_count": 3,
+          "period_years": [
+            "3",
+            "2"
+          ]
+        }
+      }
+    },
+    {
       "overlay_id": "ja-ca3sa-eu-v1",
       "target": {
         "model": "JA-CA3SA",

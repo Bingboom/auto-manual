@@ -34,8 +34,8 @@
   "files": [
     {
       "path": "configs/config.bp-eu-en.yaml",
-      "sha256": "d48500c72080fbd3d9e0da580135827a427a039c4a9dc6ec14e174d03b2d29ef",
-      "size_bytes": 1269
+      "sha256": "9fdd3eb7230a0898f3eeee04e79285884313555f586777aa3d952a19080ecde1",
+      "size_bytes": 1406
     },
     {
       "path": "docs/manifests/manual_bp-eu-en.yaml",
@@ -124,7 +124,7 @@
     },
     {
       "path": "docs/templates/page_bp/en-web/eu_warranty.rst",
-      "sha256": "6e058fea1e84c34988b70773dffba8b89034a1aba643a473635b0553a6aeabf4",
+      "sha256": "131051702fef183713327717f2be7f4bbe85d5f8eae3c017dee5ae40e7614c79",
       "size_bytes": 2925
     },
     {
@@ -264,8 +264,8 @@
     },
     {
       "path": "docs/renderers/contracts/web_presentation/target_overlays.json",
-      "sha256": "7dbf9f11383e0bb16f2bf51277e1973b3804a15b407d8e60b0d8c88980759ee5",
-      "size_bytes": 4995
+      "sha256": "c0ccb3543e5e5d91c71870386bdb17d787d4f82e9763b8f27c76cb988121c340",
+      "size_bytes": 11819
     }
   ],
   "superseded_source": {

@@ -139,6 +139,7 @@ class SolarJs100iEuTargetTests(unittest.TestCase):
                 {"model": "JS-100I", "region": "EU"},
                 {"model": "JS-40C", "region": "EU"},
                 {"model": "JS-100F", "region": "EU"},
+                {"model": "JS-200E", "region": "EU"},
             ],
             config["build"]["targets"],
         )

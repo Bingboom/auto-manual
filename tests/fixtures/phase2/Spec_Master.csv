@@ -723,3 +723,5 @@ JE-3600A_EU,EU,TRUE,ups_mode,OUTPUT PORTS,3,1,ups_bypass_output,text,UPS Bypass 
 JE-3600A_EU,EU,TRUE,ups_mode,OUTPUT PORTS,3,2,ups_transfer_time,value,UPS Transfer Time,,1,,,10 ms,,,,,,JE-3600A,,,,,,,,,,,,en,,,
 JE-3600A_EU,EU,TRUE,charging_methods,INPUT PORTS,2,1,pv_input_range,value,PV Input Range,,1,,,16 V-60 V,,,,,,JE-3600A,,,,,,,,,,,,en,,,
 JE-3600A_EU,EU,TRUE,charging_methods,INPUT PORTS,2,2,dc_input_connector,value,DC Input Connector,,1,,,DC8020,,,,,,JE-3600A,,,,,,,,,,,,en,,,
+JE-300D_EU,EU,TRUE,specifications,GENERAL INFO,1,1,product_name,,Product Name,,1,,,Jackery Explorer 300D,,,,,,JE-300D,,,,,,,,,,,,en,,,
+JE-300D_EU,EU,TRUE,specifications,GENERAL INFO,1,2,model_no,,Model No.,,1,,,JE-300D,,,,,,JE-300D,,,,,,,,,,,,en,,,
