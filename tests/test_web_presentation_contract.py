@@ -139,6 +139,15 @@ class WebPresentationContractTests(unittest.TestCase):
         self.assertIsNone(contract["operations"]["lcd_mode_table"])
         self.assertIsNone(contract["operations"]["auto_resume_table"])
 
+    def test_trolley_uses_charger_accessory_profile_without_power_features(self) -> None:
+        contract = load_web_manual_contract(model="JAAC-WHE-100-EUA1", region="EU")
+
+        self.assertEqual("charger-v1", contract["presentation_layers"]["skeleton_profile"])
+        self.assertEqual([], contract["figure_targets"])
+        self.assertEqual([], contract["preface"]["targets"])
+        self.assertIsNone(contract["operations"]["lcd_mode_table"])
+        self.assertIsNone(contract["operations"]["auto_resume_table"])
+
     def test_us_and_eu_share_one_skeleton_but_keep_target_grants_isolated(self) -> None:
         us = load_web_manual_contract(model="JE-1000F", region="US")
         eu = load_web_manual_contract(model="JE-1000F", region="EU")

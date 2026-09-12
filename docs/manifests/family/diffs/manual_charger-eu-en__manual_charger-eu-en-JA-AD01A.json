@@ -5,6 +5,58 @@
       "op": "replace",
       "path": "/manifest_id",
       "value": "manual_charger_eu_en_ja_ad01a"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_charger/en/box_contents.rst",
+          "lang": "en",
+          "slot_id": "box_contents_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/en/product_overview.rst",
+          "lang": "en",
+          "slot_id": "product_overview_en",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_charger/en/using_product.rst",
+          "lang": "en",
+          "slot_id": "using_product_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/en/safety_warning.rst",
+          "lang": "en",
+          "slot_id": "warning_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/en/warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/en/legal_tail.rst",
+          "lang": "en",
+          "slot_id": "legal_tail",
+          "type": "rst_include"
+        }
+      ]
     }
   ],
   "schema_version": "family-manifest-diff/v1",

@@ -1,0 +1,24 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JAAC-WHE-100-EUA1",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
+  "source_pdf_name": "38-0001-000916 说明书 HTO838A-UK-JAK RoHS REACH.ai",
+  "source_node": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA/97v7518/QKRfBknCr9",
+  "source_artwork_sha256": "58e84bd618d17b37e67a32a18f987c750756019bfd2e53a8a07b835dc7244694",
+  "source_artwork_path": "manual_sources/JAAC-WHE-100-EUA1/EU/en/source.ai",
+  "source_artwork_page_count": 1,
+  "source_artwork_creator": "Adobe Illustrator 30.0 (Macintosh)",
+  "source_artwork_status": "operator-designated current AI source; candidate only because the source record has no published PDF link",
+  "recipe": "data/asset_recipes/manual_jaac_whe100_eu_en_web.json",
+  "illustrations": [
+    {"replaces":["inbox_main_frame.png"],"path":"assets/jaac_whe100_eu_en/inbox_main_frame.png","sha256":"dbb130bcfeb7953871fcc7e492dfb52e830c237db87f434c3855177ea96847f6","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[325,1283.25,410,1368.5],"transforms":[{"op":"crop","bbox_pt":[325,1283.25,410,1368.5]}]},
+    {"replaces":["inbox_universal_wheels.png"],"path":"assets/jaac_whe100_eu_en/inbox_universal_wheels.png","sha256":"6296cf4cfe55a52e131e63a7358147c3f1317142d5e98fcb60981ad0c59a6fe5","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[425,1284,508,1364],"transforms":[{"op":"crop","bbox_pt":[425,1284,508,1364]}]},
+    {"replaces":["inbox_hook_ropes.png"],"path":"assets/jaac_whe100_eu_en/inbox_hook_ropes.png","sha256":"393d2807602d6b0b9600ac19538ca5d62a5ff25e499a85ed3cf00214fd7d284e","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[535,1284,614,1364],"transforms":[{"op":"crop","bbox_pt":[535,1284,614,1364]}]},
+    {"replaces":["inbox_mounting_screws.png"],"path":"assets/jaac_whe100_eu_en/inbox_mounting_screws.png","sha256":"15c73bfca36b3604f9db601eaab3a032d08da80e0c4e51e44d28df1a952ac80d","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[338,1412,393,1490],"transforms":[{"op":"crop","bbox_pt":[338,1412,393,1490]}]},
+    {"replaces":["inbox_user_manual.png"],"path":"assets/jaac_whe100_eu_en/inbox_user_manual.png","sha256":"d6ce10bcbb60b0231e8234415d926d0b387d31a7754d96c42dc6216881206fcb","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[430,1408,500,1480],"transforms":[{"op":"crop","bbox_pt":[430,1408,500,1480]},{"op":"redact_text_region","bbox_pt":[477.6,1473.1,485.7,1475.2],"images":"preserve","graphics":"preserve","fill":null}]},
+    {"replaces":["how_to_assemble.png"],"path":"assets/jaac_whe100_eu_en/how_to_assemble.png","sha256":"1fd68f999e5019cc314de9e747b5d5ac470f118eacddde750310375d3892521d","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[677,1079,998,1258],"transforms":[{"op":"crop","bbox_pt":[677,1079,998,1258]}]},
+    {"replaces":["how_to_controls.png"],"path":"assets/jaac_whe100_eu_en/how_to_controls.png","sha256":"0eec1592d03d47cb8a5032f7874f2da89e97d835c6e7c2c67b07bdbdf44cef5f","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[677,1264,998,1510],"transforms":[{"op":"crop","bbox_pt":[677,1264,998,1510]}]}
+  ]
+}

@@ -23,6 +23,9 @@ slots:
   angle_and_device:
     type: rst_include
     file: templates/page_solar/{lang}/07_angle_and_device.rst
+  storage:
+    type: rst_include
+    file: templates/page_solar/{lang}/08_storage.rst
   specifications:
     type: csv_page
     page: spec
@@ -30,3 +33,18 @@ slots:
   warranty:
     type: rst_include
     file: templates/page_solar/{lang}/09_warranty.rst
+house_style_versions:
+  air-100-v1: {}
+  air-40-v1:
+    box_contents:
+      file: templates/page_solar/js40c/{lang}/02_whats_in_the_box.rst
+    product_views:
+      file: templates/page_solar/js40c/{lang}/03_product_views.rst
+    charging_connections:
+      file: templates/page_solar/js40c/{lang}/06_charging_connections.rst
+    angle_and_device:
+      file: templates/page_solar/js40c/{lang}/07_angle_and_device.rst
+    storage:
+      file: templates/page_solar/js40c/{lang}/08_storage.rst
+    warranty:
+      file: templates/page_solar/js40c/{lang}/09_warranty.rst

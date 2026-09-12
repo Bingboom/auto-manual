@@ -1,0 +1,41 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JA-CA05B",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "f5359ac0da04a79175531f0b0cbc8a05e5b65d90a6dd653d47f487a101b6dee6",
+  "source_pdf_name": "翻译用 38-0001-000942 太阳能板连接指南折页 通用 RoHS REACH.ai",
+  "source_pdf_page_count": 1,
+  "source_pdf_creator": "Adobe Illustrator 30.0 (Macintosh)",
+  "source_status": "operator-designated DingTalk AI attachment; no current PDF link in the source record",
+  "recipe": "data/asset_recipes/manual_ja_ca05b_eu_en_web.json",
+  "illustrations": [
+    {
+      "replaces": ["connector_reference.png"],
+      "path": "assets/ja_ca05b_eu_en/connector_reference.png",
+      "sha256": "f343a96eb9aefba55b0bc890a0a6b0f16d361da2a7cb36a640e2e9f8cab48ded",
+      "source_page": 1,
+      "source_page_domain": "artwork-ai",
+      "bbox_pt": [391, 489, 694, 840],
+      "transforms": [{"op": "crop", "bbox_pt": [391, 489, 694, 840]}]
+    },
+    {
+      "replaces": ["dc8020_connection.png"],
+      "path": "assets/ja_ca05b_eu_en/dc8020_connection.png",
+      "sha256": "d014cea3e9f0bf75ae0f67feb858c9c197908ab7d9822b9a9e82d9ffd22191d3",
+      "source_page": 1,
+      "source_page_domain": "artwork-ai",
+      "bbox_pt": [694, 489, 1099, 665],
+      "transforms": [{"op": "crop", "bbox_pt": [694, 489, 1099, 665]}]
+    },
+    {
+      "replaces": ["dc7909_connection.png"],
+      "path": "assets/ja_ca05b_eu_en/dc7909_connection.png",
+      "sha256": "a4b245a4a29c199697f69f25c4c2b83e9240b629c5126dc3f3352c8b47f9c0cd",
+      "source_page": 1,
+      "source_page_domain": "artwork-ai",
+      "bbox_pt": [694, 664, 1099, 840],
+      "transforms": [{"op": "crop", "bbox_pt": [694, 664, 1099, 840]}]
+    }
+  ]
+}

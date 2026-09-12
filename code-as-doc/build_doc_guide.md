@@ -981,6 +981,25 @@ and RTD verification. Do not publish an unidentified fixture or write the
 mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
 
+`JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
+through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
+plan contains only Inbox, native specifications/notes, and two complete
+source-owned how-to panels. Product Overview and Warranty are optional at the
+skeleton level so this accessory does not invent them; the existing charger
+plans explicitly keep both pages. The PDF-compatible AI and 38-row scope
+snapshot are frozen in Git, including the `收纳小推车` same-manual association.
+See [`reviews/jaac_whe100_eu_en_web_intake_2026-09.md`](reviews/jaac_whe100_eu_en_web_intake_2026-09.md).
+
+`JS-40C / EU / en` reuses the same `Solar@INTL` skeleton through its own
+Product Manual Plan. It starts at Safety Tips, has a seven-item semantic Inbox,
+omits the JS-100I unfolding/folding slots, and adds Solar Panel Storage before
+Specifications. Its frozen Git source snapshot is
+`data/manual_sources/JS-40C/EU/en/2026-08-30/`; 18 approved figure crops remain
+hash-bound to the exact Illustrator master and target. Build it with the shared
+`configs/config.solar-eu-en.yaml` entrypoint plus `--model JS-40C --region EU
+--lang en`. See
+[`dev/js40c_eu_en_web_acceptance.md`](dev/js40c_eu_en_web_acceptance.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound
@@ -1172,6 +1191,12 @@ preference:
   transform after `crop`, zero-area line groups are overlap-checked safely,
   and unsupported path items or crop/index drift fail closed. Promote only
   after a 12x quarantine comparison and pin the resulting output SHA-256;
+- when identical pinned PyMuPDF/MuPDF versions still produce isolated
+  cross-platform antialiasing samples, a PNG output may declare
+  `rgb_quantization_bits` from 1 through 8. The pipeline rounds every RGB
+  channel into that fixed bit-depth before hashing; use the highest visually
+  reviewed setting that yields byte-identical replay, and do not use it to
+  conceal layout, font, source, or renderer-version drift;
 - missing, ambiguous, quarantined, stale, or hash-mismatched used assets stop
   assembly;
 - `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and

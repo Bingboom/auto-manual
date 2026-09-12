@@ -2,5 +2,5 @@
 schema_version: skeleton-product-plan/v1
 plan_id: ja_ad01a_eu
 house_style_version: compact-v1
-enabled_optional_slots: [using_product, warning]
+enabled_optional_slots: [box_contents, product_overview, specifications, using_product, warning, warranty]
 terminal_slots: [legal_tail]

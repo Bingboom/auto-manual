@@ -13,7 +13,13 @@ build:
       region: EU
     - model: JA-AD600A
       region: EU
-  web_entry_source_patterns: [box_contents*, disclaimer*]
+    - model: JAAC-WHE-100-EUA1
+      region: EU
+    - model: JA-CA05B
+      region: EU
+    - model: JA-CA3SA
+      region: EU
+  web_entry_source_patterns: [box_contents*, disclaimer*, connection_guide*, product_overview*]
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:

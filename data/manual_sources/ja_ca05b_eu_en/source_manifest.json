@@ -1,0 +1,86 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JA-CA05B",
+    "region": "EU",
+    "lang": "en",
+    "version": "git-20260909-f5359ac0",
+    "published_revision": null,
+    "delivery_short_name": "5M延长线"
+  },
+  "authority": {
+    "policy": "operator-designated-dingtalk-ai-attachment",
+    "source_status": "authorized Web input; formal published PDF linkage is absent",
+    "dingtalk_base": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+    "dingtalk_table": "97v7518",
+    "dingtalk_record": "iQfwYCuoZ7",
+    "source_file_name": "翻译用 38-0001-000942 太阳能板连接指南折页 通用 RoHS REACH.ai",
+    "source_file_sha256": "f5359ac0da04a79175531f0b0cbc8a05e5b65d90a6dd653d47f487a101b6dee6",
+    "source_file_size": 89943352,
+    "source_page_count": 1,
+    "source_creator": "Adobe Illustrator 30.0 (Macintosh)",
+    "source_title": "Jackery Solar Generator Connection Guide",
+    "current_pdf_link": null
+  },
+  "build_input": {
+    "config": "configs/config.charger-eu-en.yaml",
+    "config_sha256": "378e168cf0f7f23b43fd6e82a287fb2b34778e10f09c3953342f9347675920b9",
+    "page_manifest": "docs/manifests/manual_charger-eu-en-JA-CA05B.yaml",
+    "page_manifest_sha256": "ffb16e5b5e8552715e3a3588fc70b25a8e6d749d125b921d2c3b233905c0ba98",
+    "product_plan": "docs/manifests/product_plans/ja_ca05b_eu.yaml",
+    "product_plan_sha256": "4b1f732d14875eb46cf0c58aed2a6308706137e1e9fb2df39e1e2c7f82fe8c60",
+    "structured_copy": "docs/templates/page_charger/ja_ca05b/en",
+    "structured_copy_snapshot_sha256": "94a9fed1772fc1f7dc8823fb95a71d8aeca110de43dd9ad4ee49c6a6a16ee311",
+    "data_root": "data/manual_sources/ja_ca05b_eu_en",
+    "snapshot_sha256": "035164d66ac25c961c9f20bbfc2a180a0306288ca538f5815d57c177bd5b089c",
+    "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
+  },
+  "files": [
+    {
+      "path": "Localized_Copy.csv",
+      "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"
+    },
+    {
+      "path": "Spec_Footnotes.csv",
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "Spec_Master.csv",
+      "sha256": "009ffd7ff95403e8865be3d3580d7722fd804ccc6e2a3d0423c3dfb896a515b3"
+    },
+    {
+      "path": "Spec_Notes.csv",
+      "sha256": "9f3accbbb808050a84a0d5662ae49479b312185bd98ba67441157afa40e2778d"
+    },
+    {
+      "path": "page_registry.csv",
+      "sha256": "4a30595506edad629b79e080bface56233a4dfe5bd7e5460e62e0ca26e130da0"
+    },
+    {
+      "path": "spec_titles.csv",
+      "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"
+    }
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_ja_ca05b_eu_en_web.json",
+    "recipe_sha256": "435a70db6b5329231eb1ba8f9588cb8f9d2ed83310c81e4abcc8f331ec021d9b",
+    "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-CA05B_illustrations.json",
+    "illustration_manifest_sha256": "e90c958cb6ca0f9bbae44c3b9d51b7846ea2bafbdf220dea57c85961fdb672ae",
+    "semantic_asset_count": 3,
+    "text_policy": "native-web-title-and-guidance-with-complete-labelled-ai-source-figure-panels"
+  },
+  "normalizations": [
+    "The source title, website/customer-support sentence, connection guidance, and incompatibility sentence are native Web text.",
+    "The artwork grid is split into three responsive figure panels; embedded connector, port, cable, power-station, grey-cell, and leader-line content remains owned by the images and is not repeated as body copy.",
+    "The model mapping JA-CA05B and delivery short name 5M延长线 are recorded separately from the generic source title; no model-specific extension-cable-only manual is fabricated.",
+    "No Inbox, warranty, specifications table, LCD, UPS, App, or unrelated combination-project chapter is added because the source does not contain one."
+  ],
+  "online_dependencies": {
+    "dingtalk_read_required_for_git_build": false,
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "artwork_source_file_required_for_asset_replay": true,
+    "artwork_source_current_location_outside_git": true
+  }
+}

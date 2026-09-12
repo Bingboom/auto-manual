@@ -560,6 +560,7 @@ def _render_png(
     *,
     scale: float,
     max_render_pixels: int,
+    rgb_quantization_bits: int | None = None,
 ) -> None:
     with fitz.open(str(pdf_path)) as document:
         page = document[0]
@@ -576,7 +577,30 @@ def _render_png(
             alpha=False,
             annots=False,
         )
+        pixmap = _quantize_rgb_pixmap(fitz, pixmap, rgb_quantization_bits)
         pixmap.save(str(destination))
+
+
+def _quantize_rgb_pixmap(fitz: Any, pixmap: Any, bits: int | None) -> Any:
+    """Snap RGB samples to stable channel buckets after platform rendering."""
+    if bits is None or bits == 8:
+        return pixmap
+    if pixmap.alpha or pixmap.n != 3:
+        raise ArtifactValidationError("RGB quantization requires an opaque RGB pixmap")
+    step = 1 << (8 - bits)
+    samples = bytes(
+        min(255, ((value + step // 2) // step) * step)
+        for value in pixmap.samples
+    )
+    quantized = fitz.Pixmap(
+        pixmap.colorspace,
+        pixmap.width,
+        pixmap.height,
+        samples,
+        False,
+    )
+    quantized.set_dpi(pixmap.xres, pixmap.yres)
+    return quantized
 
 
 def _render_source_page_png(
@@ -587,6 +611,7 @@ def _render_source_page_png(
     clip: Any,
     scale: float,
     max_render_pixels: int,
+    rgb_quantization_bits: int | None = None,
 ) -> None:
     width = math.ceil(clip.x1 * scale) - math.floor(clip.x0 * scale)
     height = math.ceil(clip.y1 * scale) - math.floor(clip.y0 * scale)
@@ -601,6 +626,7 @@ def _render_source_page_png(
         clip=clip,
         alpha=False,
     )
+    pixmap = _quantize_rgb_pixmap(fitz, pixmap, rgb_quantization_bits)
     pixmap.save(str(destination))
 
 
@@ -707,6 +733,7 @@ def _asset_artifacts(
                                 destination,
                                 scale=output.scale,
                                 max_render_pixels=recipe.normalization.max_render_pixels,
+                                rgb_quantization_bits=output.rgb_quantization_bits,
                             )
                         else:
                             _render_source_page_png(
@@ -716,6 +743,7 @@ def _asset_artifacts(
                                 clip=clip,
                                 scale=output.scale,
                                 max_render_pixels=recipe.normalization.max_render_pixels,
+                                rgb_quantization_bits=output.rgb_quantization_bits,
                             )
                     else:
                         raise ArtifactValidationError(
