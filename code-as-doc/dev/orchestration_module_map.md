@@ -34,6 +34,10 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+[`tools/rtd_publication_catalog.py`](../../tools/rtd_publication_catalog.py) groups
+frozen publication metadata for the portal; it is a read model, not a source of
+content. [Language navigation](rtd_locale_navigation.md) stays in the Web adapter.
+
 [`tools/publish_locale_identity.py`](../../tools/publish_locale_identity.py)
 owns locale identity/stored-source migration; publish assembly owns candidate
 transactions and RTD redirects. See [contract](web_locale_publication_identity.md).
