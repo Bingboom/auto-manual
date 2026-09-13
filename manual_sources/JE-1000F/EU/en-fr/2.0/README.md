@@ -25,6 +25,11 @@ PDF-backed normalizations in this candidate:
 - Retain already approved 6.5 A AC output, 4000-cycle life, and 0 C minimum
   charging temperature. Historical row IDs/version columns remain source
   identifiers; the released-PDF version is 2.0, not the old row version 1.0.
+- The EN/FR PDF parity pass restores the safety accessory condition, LCD
+  mapping and charging description, 12 A maximum qualifier, troubleshooting
+  wording, App step 2.5, separate USB-C rating rows and PDF section order.
+  It removes the extra battery-disposal row and the unsupported Output Resume
+  default/App instruction. See [PDF parity notes](pdf_parity_notes.md).
 
 Build each locale with the existing family single-language configuration
 (both inherit the shared EU single-language base; no new config is added):

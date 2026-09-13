@@ -37,7 +37,7 @@ AFFICHAGE LCD
              :alt: Mode de Charge Silencieuse
              :width: 42px
         - Mode de Charge Silencieuse
-        - | **Allumé :** Le bruit pendant la charge est considérablement réduit, tandis que la puissance de la charge connectée est limitée par la puissance de dérivation.
+        - | **Allumé :** Le bruit pendant la charge est considérablement réduit, tandis que la puissance de charge est diminuée et la vitesse de charge ralentit.
           | **Éteint :** Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.
       * - 4
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/4_Charging_Plan_NUSmbaiaZovgwsx1BEAcU8b8nIg.png
@@ -63,9 +63,9 @@ AFFICHAGE LCD
           | Veuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.
       * - 7
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/7_UPS_IC0ub1FTRoWFvwxDFvgc28bcnje.png
-             :alt: UPS (ASI)
+             :alt: Alimentation sans interruption (ASI)
              :width: 42px
-        - UPS (ASI)
+        - Alimentation sans interruption (ASI)
         - | **Allumé :** Le produit fonctionne en mode bypass. Les charges connectées aux ports CA sont alimentées par le réseau électrique au lieu de la station d’énergie.
           | En cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms.
           | **Éteint :** Le produit n’est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d’énergie.
@@ -135,12 +135,6 @@ AFFICHAGE LCD
         - Indicateur de Puissance de la Batterie
         - Lorsque le produit est en charge, le cercle orange autour du pourcentage de batterie s’allume en séquence. Lorsqu’il charge d’autres appareils, le cercle orange reste allumé.
       * - 18
-        - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_HBmrbEEGAod6qdxG9cLcGQr8nYe.png
-             :alt: Pourcentage de Batterie Restant
-             :width: 42px
-        - Pourcentage de Batterie Restant
-        - Affiche le pourcentage de batterie restant.
-      * - 19
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_ByEjbqUNzoCaEZx4EoZcd42enhg.png
              :alt: Indicateur de Batterie Faible
              :width: 42px
@@ -148,15 +142,21 @@ AFFICHAGE LCD
         - | **Allumé :** Le niveau de la batterie est inférieur à 20 %.
           | **Clignotant :** Le niveau de la batterie est inférieur à 5 %.
           | **Éteint :** Le niveau de la batterie n'est pas inférieur à 20 % ou le produit est en charge.
+      * - 19
+        - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_HBmrbEEGAod6qdxG9cLcGQr8nYe.png
+             :alt: Pourcentage de Batterie Restant
+             :width: 42px
+        - Pourcentage de Batterie Restant
+        - Affiche le pourcentage de batterie restant.
       * - 20
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png
-             :alt: Minuterie de décharge
+             :alt: Indicateur de Batterie Faible
              :width: 42px
-        - Minuterie de décharge
+        - Indicateur de Batterie Faible
         - | **Allumé :** une minuterie de décharge est définie.
           | **Éteint :** aucune minuterie de décharge n’est définie.
           | Activez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.
-      * - 22
+      * - 21
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_DvnZbWDvro5q0IxfWhSc0woHnwf.png
              :alt: Mode d’Économie d’Énergie
              :width: 42px
@@ -165,31 +165,31 @@ AFFICHAGE LCD
           | **Allumé :** Mode d'économie d'énergie activé.
           | **Éteint :** Mode d'économie d'énergie désactivé.
           | Le réglage est conservé lorsque l’appareil est mis hors tension.
-      * - 23
+      * - 22
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_QNnDbs7HLofVCPxMnBkcHxQXn9e.png
              :alt: Indicateur de Température Élevée
              :width: 42px
         - Indicateur de Température Élevée
         - La protection contre les températures élevées est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.
-      * - 24
+      * - 22
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_UUSlbvsnooc36fxKc6ec0fs8nqc.png
              :alt: Indicateur de Basse Température
              :width: 42px
         - Indicateur de Basse Température
         - La protection contre les basses températures est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.
-      * - 25
+      * - 23
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/25_Fault_code_JJysbRHGjoMDr1xJT3ncOGDDnRa.png
              :alt: Code d’erreur
              :width: 42px
         - Code d’erreur
         - Une erreur produit s’est produite. Veuillez consulter la section « Dépannage » pour plus de détails.
-      * - 26
+      * - 24
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/26_Output_Power_G2lzbVqhRoVMkTxFGEacUK3Bnpe.png
              :alt: Puissance de Sortie
              :width: 42px
         - Puissance de Sortie
         - Affiche la puissance de sortie en watts.
-      * - 27
+      * - 25
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_B74LbigfDo0gfzxcLGccuTVHnhe.png
              :alt: Temps de Décharge Restant
              :width: 42px
@@ -203,11 +203,11 @@ AFFICHAGE LCD
       \begin{HBLcdIconTable}
       \HBLcdIconRow{1}{1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png}{Wi-Fi}{\textbf{Allumé :} Wi-Fi connecté. \newline \textbf{Clignotant :} Prêt à se connecter au Wi-Fi. \newline \textbf{Éteint :} Wi-Fi déconnecté.}
       \HBLcdIconRow{2}{2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png}{Bluetooth}{\textbf{Allumé :} Bluetooth connecté. \newline \textbf{Clignotant :} Prêt à se connecter au Bluetooth. \newline \textbf{Éteint :} Bluetooth déconnecté.}
-      \HBLcdIconRow{3}{3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png}{Mode de Charge Silencieuse}{\textbf{Allumé :} Le bruit pendant la charge est considérablement réduit, tandis que la puissance de la charge connectée est limitée par la puissance de dérivation. \newline \textbf{Éteint :} Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.}
+      \HBLcdIconRow{3}{3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png}{Mode de Charge Silencieuse}{\textbf{Allumé :} Le bruit pendant la charge est considérablement réduit, tandis que la puissance de charge est diminuée et la vitesse de charge ralentit. \newline \textbf{Éteint :} Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.}
       \HBLcdIconRow{4}{4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png}{Plan de Charge}{Personnalisez le temps de charge du Jackery Explorer 1000. Adapté aux situations avec des tarifs d’électricité variables, il permet d’établir des plans de charge en fonction des heures pleines et creuses, afin de réduire les coûts d’électricité. \newline Veuillez configurer cette fonction dans l’application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.}
       \HBLcdIconRow{5}{5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png}{Mode Autonome}{Maximise l’utilisation de l’énergie solaire et réduit la dépendance à l’électricité du réseau en donnant la priorité à l’énergie solaire stockée, ce qui diminue les coûts d’électricité. La station d’énergie doit être connectée simultanément aux panneaux solaires et au réseau, la puissance de charge étant limitée par la puissance de dérivation. \newline Veuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.}
       \HBLcdIconRow{6}{6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png}{Mode TOU}{\textbf{Allumé :} Le mode TOU est activé (SOC de secours par défaut : 60 \%). Pendant les heures de pointe, le produit privilégie la décharge de la batterie afin de réduire les coûts liés à la consommation en période de pointe, lorsque l’énergie stockée dépasse le SOC de réserve. Pendant les heures creuses, le système recharge la batterie à partir du réseau afin de réaliser l’écrêtage des pics et le remplissage des creux. \newline \textbf{Éteint :} Le mode TOU est désactivé. L’appareil ne suit pas la stratégie TOU (heures pleines / heures creuses) et fonctionne selon la logique d’alimentation et de charge par défaut. \newline Veuillez activer/désactiver cette fonction dans l’application. Le réglage est conservé lorsque l’appareil est mis hors tension.}
-      \HBLcdIconRow{7}{7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png}{UPS (ASI)}{\textbf{Allumé :} Le produit fonctionne en mode bypass. Les charges connectées aux ports CA sont alimentées par le réseau électrique au lieu de la station d’énergie. \newline En cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms. \newline \textbf{Éteint :} Le produit n’est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d’énergie.}
+      \HBLcdIconRow{7}{7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png}{Alimentation sans interruption (ASI)}{\textbf{Allumé :} Le produit fonctionne en mode bypass. Les charges connectées aux ports CA sont alimentées par le réseau électrique au lieu de la station d’énergie. \newline En cas de coupure soudaine du réseau, le produit bascule automatiquement sur son alimentation par batterie en 10 ms. \newline \textbf{Éteint :} Le produit n’est pas en mode bypass. Les charges connectées aux ports CA sont alimentées par la batterie interne de la station d’énergie.}
       \end{HBLcdIconTable}
       \clearpage
       \begin{HBLcdIconTable}
@@ -221,13 +221,13 @@ AFFICHAGE LCD
       \HBLcdIconRow{15}{15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png}{Mode d’Économie de Batterie}{\textbf{Allumé :} Le mode d’économie de batterie est activé. Des limites de charge et de décharge sont appliquées afin de prolonger la durée de vie de la batterie. \newline \textbf{Éteint :} Le mode d'économie de batterie est désactivé. \newline Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension. \newline Lorsque cette fonction est activée, le produit effectue occasionnellement un cycle de charge-décharge complet pour calibrer le SOC.}
       \HBLcdIconRow{16}{16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png}{Limite de puissance de charge}{\textbf{Allumé :} La limite de puissance de charge est activée dans l'application Jackery. \newline \textbf{Éteint :} La limite de puissance de charge est désactivée dans l'application Jackery. \newline Le réglage est conservé lorsque l’appareil est mis hors tension.}
       \HBLcdIconRow{17}{17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png}{Indicateur de Puissance de la Batterie}{Lorsque le produit est en charge, le cercle orange autour du pourcentage de batterie s’allume en séquence. Lorsqu’il charge d’autres appareils, le cercle orange reste allumé.}
-      \HBLcdIconRow{18}{18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png}{Pourcentage de Batterie Restant}{Affiche le pourcentage de batterie restant.}
-      \HBLcdIconRow{19}{19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png}{Indicateur de Batterie Faible}{\textbf{Allumé :} Le niveau de la batterie est inférieur à 20 \%. \newline \textbf{Clignotant :} Le niveau de la batterie est inférieur à 5 \%. \newline \textbf{Éteint :} Le niveau de la batterie n'est pas inférieur à 20 \% ou le produit est en charge.}
-      \HBLcdIconRow{20}{20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png}{Minuterie de décharge}{\textbf{Allumé :} une minuterie de décharge est définie. \newline \textbf{Éteint :} aucune minuterie de décharge n’est définie. \newline Activez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.}
-      \HBLcdIconRow{22}{22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png}{Mode d’Économie d’Énergie}{Lorsque la sortie CA ou CC est activée en appuyant sur le bouton CA ou le bouton CC / USB : \newline \textbf{Allumé :} Mode d'économie d'énergie activé. \newline \textbf{Éteint :} Mode d'économie d'énergie désactivé. \newline Le réglage est conservé lorsque l’appareil est mis hors tension.}
-      \HBLcdIconRow{23}{23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png}{Indicateur de Température Élevée}{La protection contre les températures élevées est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.}
-      \HBLcdIconRow{24}{24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png}{Indicateur de Basse Température}{La protection contre les basses températures est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.}
-      \HBLcdIconRow{25}{25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png}{Code d’erreur}{Une erreur produit s’est produite. Veuillez consulter la section « Dépannage » pour plus de détails.}
-      \HBLcdIconRow{26}{26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png}{Puissance de Sortie}{Affiche la puissance de sortie en watts.}
-      \HBLcdIconRow{27}{27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png}{Temps de Décharge Restant}{Affiche le temps de décharge restant.}
+      \HBLcdIconRow{18}{19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png}{Indicateur de Batterie Faible}{\textbf{Allumé :} Le niveau de la batterie est inférieur à 20 \%. \newline \textbf{Clignotant :} Le niveau de la batterie est inférieur à 5 \%. \newline \textbf{Éteint :} Le niveau de la batterie n'est pas inférieur à 20 \% ou le produit est en charge.}
+      \HBLcdIconRow{19}{18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png}{Pourcentage de Batterie Restant}{Affiche le pourcentage de batterie restant.}
+      \HBLcdIconRow{20}{20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png}{Indicateur de Batterie Faible}{\textbf{Allumé :} une minuterie de décharge est définie. \newline \textbf{Éteint :} aucune minuterie de décharge n’est définie. \newline Activez/désactivez cette fonction dans l'application Jackery. Le réglage n'est pas conservé lorsque l'appareil est mis hors tension.}
+      \HBLcdIconRow{21}{22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png}{Mode d’Économie d’Énergie}{Lorsque la sortie CA ou CC est activée en appuyant sur le bouton CA ou le bouton CC / USB : \newline \textbf{Allumé :} Mode d'économie d'énergie activé. \newline \textbf{Éteint :} Mode d'économie d'énergie désactivé. \newline Le réglage est conservé lorsque l’appareil est mis hors tension.}
+      \HBLcdIconRow{22}{23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png}{Indicateur de Température Élevée}{La protection contre les températures élevées est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.}
+      \HBLcdIconRow{22}{24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png}{Indicateur de Basse Température}{La protection contre les basses températures est déclenchée. Le produit peut cesser de fonctionner jusqu'à ce que sa température revienne dans la plage de fonctionnement normale.}
+      \HBLcdIconRow{23}{25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png}{Code d’erreur}{Une erreur produit s’est produite. Veuillez consulter la section « Dépannage » pour plus de détails.}
+      \HBLcdIconRow{24}{26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png}{Puissance de Sortie}{Affiche la puissance de sortie en watts.}
+      \HBLcdIconRow{25}{27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png}{Temps de Décharge Restant}{Affiche le temps de décharge restant.}
       \end{HBLcdIconTable}

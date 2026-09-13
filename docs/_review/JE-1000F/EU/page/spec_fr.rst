@@ -24,7 +24,7 @@
    \hline
    \HBTypeSpecLabel{Dimensions} & \HBTypeSpecValue{31,4 x 20,1 x 23,4 cm} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Durée de vie} & \HBTypeSpecValue{Capacité de 4000 cycles à 70 \% ou plus} \tabularnewline
+   \HBTypeSpecLabel{Durée de vie en cycles} & \HBTypeSpecValue{Capacité de 4000 cycles à 70 \% ou plus} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
@@ -33,7 +33,7 @@
    \begin{spectable}
    \HBTypeSpecLabel{1 × Entrée CA} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{Mode de charge: 220 V-240 V\textasciitilde{} 50 Hz, 10 A max.} \HBSpecTallRowBreak
    \hline
-   \HBTypeSpecLabel{2 × Ports DC8020} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11 V-16 V⎓8 A max., Double à 8 A max. \newline 16 V-60 V⎓12 A, Double à 21 A / 400 W max.} \tabularnewline
+   \HBTypeSpecLabel{2 × Ports DC8020} & \HBSpecMultilineRowStrut{}\HBTypeSpecValue{11 V-16 V⎓8 A max., Double à 8 A max. \newline 16 V-60 V⎓12 A max., Double à 21 A / 400 W max.} \tabularnewline
    \end{spectable}
 
 .. raw:: latex
@@ -55,7 +55,7 @@
 
 .. raw:: latex
 
-   \specsectiontitle{ENVIRONMENTAL OPERATING TEMPERATURE}
+   \specsectiontitle{TEMPÉRATURE DE FONCTIONNEMENT}
    \begin{spectable}
    \HBTypeSpecLabel{Température de charge} & \HBTypeSpecValue{0 °C à 45 °C} \tabularnewline
    \hline
@@ -123,7 +123,7 @@
             <td class="hb-spec-value">31,4 x 20,1 x 23,4 cm</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">Durée de vie</th>
+            <th scope="row" class="hb-spec-label">Durée de vie en cycles</th>
             <td class="hb-spec-value">Capacité de 4000 cycles à 70 % ou plus</td>
           </tr>
         </tbody>
@@ -140,7 +140,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">2 × Ports DC8020</th>
-            <td class="hb-spec-value">11 V-16 V⎓8 A max., Double à 8 A max.<br/>16 V-60 V⎓12 A, Double à 21 A / 400 W max.</td>
+            <td class="hb-spec-value">11 V-16 V⎓8 A max., Double à 8 A max.<br/>16 V-60 V⎓12 A max., Double à 21 A / 400 W max.</td>
           </tr>
         </tbody>
       </table>
@@ -159,8 +159,12 @@
             <td class="hb-spec-value">220 V-240 V~ 50 Hz, 1500 W</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">2 × Sortie USB-C</th>
-            <td class="hb-spec-value">30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A<br/>100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A</td>
+            <th scope="row" class="hb-spec-label">Sortie USB-C 30 W</th>
+            <td class="hb-spec-value">30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A</td>
+          </tr>
+          <tr>
+            <th scope="row" class="hb-spec-label">Sortie USB-C 100 W</th>
+            <td class="hb-spec-value">100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">1 × Sortie USB-A</th>
@@ -175,7 +179,7 @@
 
    .. raw:: html
 
-      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">ENVIRONMENTAL OPERATING TEMPERATURE</span></h2>
+      <h2 class="hb-spec-section"><span class="hb-spec-bullet" aria-hidden="true">&#9679;</span><span class="hb-spec-section-text">TEMPÉRATURE DE FONCTIONNEMENT</span></h2>
       <table class="hb-spec-table">
         <tbody>
           <tr>

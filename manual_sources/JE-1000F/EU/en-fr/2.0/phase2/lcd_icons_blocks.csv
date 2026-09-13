@@ -48,7 +48,7 @@ Enable/disable this feature in the Jackery App. The setting is retained when the
 熄灭：静音充电模式未开启/已关闭。
 （请在 APP 中开启/关闭该功能，关机可记忆保存）。","オン：充電中のノイズが大幅に低減され、充電電力が低下し、充電速度が低減します。
 オフ：静音充電モードが無効になっています。
-（Jackeryアプリで有効/無効にできます。電源オフ時も設定は保持されます。）","Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de la charge connectée est limitée par la puissance de dérivation.
+（Jackeryアプリで有効/無効にできます。電源オフ時も設定は保持されます。）","Allumé : Le bruit pendant la charge est considérablement réduit, tandis que la puissance de charge est diminuée et la vitesse de charge ralentit.
 Éteint : Le mode de charge silencieuse est désactivé. Activez/désactivez cette fonction dans l'application Jackery. Le réglage est conservé lorsque l’appareil est mis hors tension.","Encendido: el ruido durante la carga se minimiza significativamente, mientras que la potencia de carga se reduce y la velocidad de carga disminuye.
 Apagado: El modo de carga silenciosa está desactivado.
 Activar/desactivar esta función en la App Jackery. Cuando el dispositivo se apaga, se retiene la configuración.","Ligado: O ruído durante o carregamento é significativamente reduzido, enquanto a potência de carregamento é reduzida e a velocidade de carregamento diminui.

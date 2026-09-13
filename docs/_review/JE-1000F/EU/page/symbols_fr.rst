@@ -51,12 +51,11 @@ SIGNIFICATION DES SYMBOLES
       \HBSymbolIconRow{1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png}{Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.}
       \HBSymbolIconRow{2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png}{Lire le manuel de l'opérateur}
       \HBSymbolIconRow{7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png}{Ne démontez pas le produit.}
-      \HBSymbolIconRow{8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png}{Tenir le produit à l’écart du feu.}
+      \HBSymbolIconRow{8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png}{Ne pas fumer ni utiliser de flamme nue}
       }{%
       \HBSymbolIconRow{9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png}{Les enfants ne sont pas admis}
       \HBSymbolIconRow{10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png}{Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.}
       \HBSymbolIconRow{11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png}{Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. \newline Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.}
-      \HBSymbolIconRow{12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png}{Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. \newline En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. \newline Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.}
       }{%
       }{%
       }
@@ -100,10 +99,6 @@ SIGNIFICATION DES SYMBOLES
       * - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_MV1ebyVJ9oTmIpxA2NzcV8agnad.png
              :alt: no_open_flame
              :width: 40px
-        - Tenir le produit à l’écart du feu.
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png
-             :alt: weee2
-             :width: 40px
-        - Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.
-          En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.
-          Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.
+        - Ne pas fumer ni utiliser de flamme nue
+        -
+        -

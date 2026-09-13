@@ -29,7 +29,7 @@ If the fault persists, please contact Jackery Customer Support.
      - Charge the product via solar panels or an AC wall outlet until the fault disappears.
    * - F6
      - | 1. Wait for the grid to normalize before charging the product via an AC wall outlet.
-       | 2. Check whether the air intake and exhaust vents are blocked; ensure 20 cm clearance on both sides of the product.
+       | 2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.
        | 3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.
        | 4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.
        | 5. Restart the product.
@@ -40,6 +40,6 @@ If the fault persists, please contact Jackery Customer Support.
    * - F8
      - Contact Jackery Customer Support.
    * - F9
-     - Remove the load connected to the DC/USB ports of the product. Wait until the fault disappears.
+     - Remove the load connected to the USB ports of the product. Wait until the fault disappears.
    * - FE
      - Contact Jackery Customer Support.
