@@ -118,7 +118,7 @@ def page_context(app, pagename, templatename, context, doctree):
                 state = ' selected' if item["url"] == active["url"] else ''
                 if not url:
                     state += ' disabled'
-                label = item["label"] + (" — Not yet published" if not url else "")
+                label = item["label"] + (f' — {item["unavailable_reason"]}' if not url else "")
                 options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(label)}</option>')
             context["body"] = (
                 '<nav class="manual-locale-nav" aria-label="Manual language">'

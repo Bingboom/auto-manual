@@ -56,7 +56,7 @@ document.querySelectorAll('[data-manual]').forEach(link => {
     $('#dialog-model').textContent = `${link.dataset.model} · ${link.dataset.edition} edition`;
     $('#language').replaceChildren();
     JSON.parse(link.dataset.languages).forEach(item => {
-      const option = new Option(item.label + (item.url ? '' : ' — Not yet published'), item.url || '');
+      const option = new Option(item.label + (item.url ? '' : ` — ${item.unavailable_reason}`), item.url || '');
       option.disabled = !item.url;
       option.selected = Boolean(item.url) && new URL(item.url, document.baseURI).href === link.href;
       $('#language').add(option);

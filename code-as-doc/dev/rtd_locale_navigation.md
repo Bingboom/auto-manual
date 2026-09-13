@@ -12,6 +12,10 @@ enables a language option. Legacy/unknown scope retains **Current publication**;
 the historical `lang=en` slot is not proof of English-only text. Missing metadata
 for a locale route, conflicting defaults, duplicate languages and unsafe paths
 fail closed. Planned languages without a verified publication remain disabled.
+When a legacy publication exists, disabled options say **Separate language page
+not verified**, not **Not yet published**: the existing manual may already contain
+that language. The latter wording is reserved for an entirely verified single-
+language publication set. Current publication remains accessible in either case.
 
 The language picker preserves model and market edition and opens the selected
 manual from its beginning. No current chapter/query/fragment is carried across.
