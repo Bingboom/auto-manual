@@ -1,7 +1,32 @@
 # JBP-2000B EU/en Web intake
 
 Baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`.
-Target: JBP-2000B / EU / en, published V2.0-2026-09-08.
+Target: JBP-2000B / EU / en, current source V2.0-2026-09-11.
+
+## Current revision candidate (2026-09-13)
+
+The operator-designated list now links the released 2026-09-11 PDF. A fresh
+download has SHA-256
+`9da3626d3b4c7b1769c72c1f49f3f46973e04f6a8825c01a802eb7a26586e8ee`.
+Its English compatibility note names **Jackery E1000 Plus V2** and
+**Jackery E2000 Plus V2**, replacing the prior Explorer names. The existing
+family substitution carries this correction; no new template or renderer is
+introduced. The earlier entries below are historical acceptance, not proof
+that this revision has shipped.
+
+All eleven existing illustration crops were rendered from the new PDF using
+the recorded page/bounds, PyMuPDF 1.28.0, RGB, scale 4, no alpha. Every PNG
+SHA-256 is identical to the committed asset, so the finished text-bearing
+panels are reused without re-extraction or HTML label overlays. The source
+and illustration manifests now identify the current PDF and retain previous
+source provenance. Every listed source-file hash matches the candidate tree.
+
+The target check and real Web Markdown build pass. Comparing parsed candidate
+text with the frozen published Markdown shows only the compatibility-note
+change. This is output-change containment, not a substitute for a complete
+new-PDF content/visual audit. Full regression and production acceptance remain
+pending. No online table, queue or workflow was changed, and sealed published
+version 2.0 bytes were not overwritten.
 
 ## Scope and checklist
 
