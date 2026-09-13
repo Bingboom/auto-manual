@@ -275,7 +275,10 @@ Publication hold after #1115: the comprehensive released-PDF audit remains open.
 - [x] Released-PDF EN/FR audit corrections committed as `645668a1e233b46107fe40a75c561f500d2ae263` in [#1116](https://github.com/Bingboom/auto-manual/pull/1116). Safety condition, LCD numbering/copy, 12 A maximum, troubleshooting, native USB-C rows, operation order and App numbering corrected; source-side PDF inconsistencies recorded, no invented translations or live writes.
 - [x] Independent source/rendered-content review found no omissions. All 217 source hashes match; both locale check/md/strict Sphinx builds succeed. Both locales at 1440/390 px have 67 decoded images, zero broken images or viewport overflow; native wide tables remain horizontally scrollable.
 - [x] Fresh clean-source final-ref builds sealed and independently verified including actual Markdown and HTML: EN `3531bf2e9dbf7b58e2ffcf754323ab2191af9c23d8a528eec5bd4d534ba66692`; FR `3ef5673e115134e67bbfba687d58de34e748dbc62e3169790bd760e08f077e8e`. These supersede the earlier mismatched-content candidate receipts, not a production release.
-- [ ] #1116 all-checks/review gates and merge.
+- [x] #1116 merged as `d76abd40415dd38b5fd8d8d643c91263f743dac6` (2026-09-13T16:07:02Z), final head `645668a1`, 17/17 checks SUCCESS, current-main base, CLEAN and no changes-requested/unresolved threads; MA-066 applied.
 - [ ] Business release PR and actual RTD revision/EN-FR pages verified.
 
 The earlier audit-open statement above is historical: the content correction audit is now complete for this candidate. Publication remains pending PR gates and deployment verification; no operational exit is silently completed. #1103 stays Draft.
+
+
+Business assembly integration finding after #1116: real EN/FR release metadata verifies, but the assembler omits sealed Markdown sidecars `manual.ir.json` and `manual_bundle.html`; stored evidence verification correctly rejects the incomplete copy. Both locales reproduced. The atomic candidate failed before promotion, preserving the current business snapshot. Shared copy-contract correction and regression tests are the next separate implementation slice; do not remove sealed files or weaken evidence gates to publish. No RTD deployment occurred.
