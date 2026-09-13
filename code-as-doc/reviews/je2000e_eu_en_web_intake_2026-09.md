@@ -104,3 +104,40 @@ The Web copy follows the visible formal PDF and records the title mismatch as a
 source fact; it does not introduce the JE-2000F `Explorer 2000` product. This
 work proves only a local Git-replayable Web build. It does not prove a live Base
 write, asset archive upload, OSS upload, Hello-Docs publish, or public release.
+
+
+## Released-PDF specification correction (2026-09-13)
+
+Rechecked physical PDF page 21 / printed page 16 against the current frozen
+English table. The PDF SHA-256 remains
+`734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0`.
+
+- Output bypass is `230 V~ 50 Hz, 10 A max.`; input charge and bypass retain
+  their distinct `220 V-240 V~ 50 Hz, 10 A max.` values.
+- DC8020 input displays the PDF's PV line before Car, with both labels explicit.
+- Output ports follow the paper sequence: AC, bypass, USB-A, USB-C 30W,
+  USB-C 140W, DC12V and expansion. The USB-C ports have separate one-port
+  labels, using the existing shared specification renderer.
+- AC, USB-A and DC12V labels follow the visible PDF. All port ratings other
+  than the corrected output-bypass voltage are preserved.
+
+Changes are confined to this English frozen snapshot, its file lock and target
+regressions. Translated text columns and stable row identities are preserved;
+only this singleton English snapshot's row order changes. No online Base,
+shared renderer, schema or workflow is changed. This correction requires a
+separate Git-only business publication before it can be called live on RTD.
+
+
+Handoff verification: 13 target/shared specification tests passed; the full
+suite passed 4112 tests (22 skipped). Ruff, maintainability, documentation links
+(197 documents / 1798 links), target `build.py check`, real Web Markdown and
+strict Sphinx passed. All 55 local image references resolve. A cell comparison
+against `af3d6d12` limits the change to 13 English-content/order cells; translated
+text, other pages and row identities are unchanged. The initial RTD assembly
+command used an output outside its build root and was rejected; rerunning with
+`rtd-source` inside that root passed without code changes.
+
+The operator explicitly deferred repeated PDF/content and desktop/mobile visual
+acceptance to later manual review on 2026-09-13. It is pending, not claimed as
+passed and not a blocker for the authorized batch Web publication. Required
+automated build, artifact-integrity and URL checks remain release gates.
