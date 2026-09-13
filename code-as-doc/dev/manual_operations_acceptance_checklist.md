@@ -64,9 +64,12 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   明确负责人、检查频率与故障处理方式；不默认部署常驻服务或访客跟踪。
   - [x] OPS-05a 本地冻结产物检查：#1105 已全绿合入，部署/访客状态明确 no_data。
   - [ ] OPS-05b 真实线上健康、覆盖分母、故障负责人及处理验证。
+    - [ ] OPS-05b1 冻结目录的有界 HTTPS HEAD 检查；HTTP 成功不等于版本、正文或翻译验收。
 - [ ] OPS-06：反馈闭环。范围：可配置入口、上下文、处理记录和运行说明。
   入口携带型号/市场/语言/版本/页面；渠道与负责人由操作者指定。
   一条受控真实反馈完成接收→定位源→审核修复→再发布→回告，并保留证据。
+  - [ ] OPS-06a 默认关闭的反馈入口与最小上下文复制能力；不启用未指定的渠道。
+  - [ ] OPS-06b 操作者指定渠道/负责人后，完成受控真实反馈闭环。
 - [ ] OPS-07：真实试点与交接。仅从已批准 Web 清单/已发布产品选择试点，
   完成补一语、版本更新、回滚演练、反馈闭环和线上健康报告；记录耗时/人工步骤。
   不为验收编造翻译或修改安全参数。文档同步、成本记录齐全后才可关闭总计划。
@@ -118,6 +121,9 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-03a 部署 | #1107 → Hello-Docs `e551ee995e5e2e3a4c96747c8251ba065aeca43e` | mirror run `34746309950` success | RTD build `34532513` success；线上默认EU/20 EU产品/当前出版物可访问；发现legacy禁用语言的“未发布”措辞会误导，独立后续修正；双语真料仍未验收 | 部署有证据，不等于 OPS-03b 完成 |
 | OPS-04a | [#1108](https://github.com/Bingboom/auto-manual/pull/1108) / `f695f7b2f72f870163d8030ef633e5e4f60b9c5d` | 最终树4035测试 OK（22 skipped）；21定向/全Ruff/护栏/文档链接/fixture check通过；固定输入双Sphinx 260文件哈希相同（只排除doctrees） | CI17/17，CLEAN，无评审/未解决线程；未消费真实队列/写线上表；两次review build因附件缺失在渲染前失败，不作E2E证据 | 子切片完成，OPS-04b 未验收 |
 | OPS-03a 措辞跟进 | [#1109](https://github.com/Bingboom/auto-manual/pull/1109) / `4291d8f6c9fa91b989365839c2f538a33ca29b64` | 最终内容树4036测试 OK（24 skipped）；14定向/全Ruff/护栏/文档链接/fixture check通过；真实冻结语料65个正文HTML不变 | CI17/17，CLEAN，无评审/未解决线程；有legacy出版物时改为“Separate language page not verified”，不把元数据缺失说成内容未发布 | 修正已合入；不晋升任何语言身份 |
+| OPS-03a 措辞部署 | #1109 → Hello-Docs `da0c02f7ae76ab9582bd2b4aaf9f5480efaf618b` | mirror run `34747579572` success | RTD build `34532682` success，API commit 与镜像一致；HTTPS 首页正文实际包含修正措辞；浏览器控制超时，未把此次 HTTP 验证当作新的视觉验收 | 已部署，不晋升语言身份 |
+| OPS-06a | [#1110](https://github.com/Bingboom/auto-manual/pull/1110)，head `557f9b3a227d0449d23536136681b2d8b8f72fc1` | 4042全量测试 OK（22 skipped），Ruff/护栏/文档/fixture check通过；默认关闭时66个HTML逐字节不变 | 17/17检查成功且无评审线程后发起合并；main已出现同树squash `9a015afdbee91786feecaf44567a6ad4d7a0c86e`，但PR接口仍OPEN；不重复合并 | 等GitHub合并状态一致后勾选；真实渠道/负责人/反馈闭环仍未验收 |
+| OPS-05b1 | 分支 `codex/manual-ops-online-health`，head `9663835d49e6bb09a8e5df38f435a7f3f2c46816` | 最终4052测试 OK（24 skipped）；10定向/Ruff/护栏/文档/fixture check通过；API树与本地最终树一致 | 21个现有出版物HEAD成功；不证明正文/资产/版本/翻译；建PR遇GitHub GraphQL内部错误与REST502，待核实创建状态 | 未合入、不勾选；无线上表写入 |
 | OPS-01b 只读/隔离试点 | main `f695f7b2`，无实现 PR | 37个中立LCD/Symbol附件与已提交audited source manifest逐项size/SHA匹配，仅复用图标；未复制其他型号CSV；使用已提交fixture提供测试数据/composite合同；整本review-asis check/md/html均exit0 | 无线上发布；HTML有22条RST warning；显式lang=en失败于review fallback引用缺失cover-en.rst；不能声明独立单语发布已通 | 输入可构建；单语作用域接线待实施 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
