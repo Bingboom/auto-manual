@@ -8,6 +8,8 @@ Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，�
 
 Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
 检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
+需要探测已发布链接时使用[线上HTTP检查](../code-as-doc/dev/manual_operations_online_health.md)；
+它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
 
 Web 单语源投影现在有[内部复用 helper](../code-as-doc/dev/web_language_projection.md)；
 目前不改变操作入口、审稿源或正式发布流程，不表示计划中的语言已上线。

@@ -10,6 +10,8 @@ and candidate validation. Public build flags and workflow dispatch are unchanged
 
 Optional local release artifact preflight:
 [Manual operations health report](dev/manual_operations_health_report.md).
+For an explicit read-only network pass over the frozen catalog, see
+[HTTP health checks](dev/manual_operations_online_health.md). No queue or live-table write is performed.
 
 Internal Web locale producer: [frozen language projection](dev/web_language_projection.md).
 This helper does not add a public build command or change the current publish queue.
