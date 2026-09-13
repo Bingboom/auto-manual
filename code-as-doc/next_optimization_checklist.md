@@ -1,6 +1,6 @@
 # Next Optimization Checklist
 
-Updated: 2026-09-08
+Updated: 2026-09-12
 
 This file tracks the next optimization wave after the completed maintainability refactor campaign.
 Use it as the active execution checklist for the upcoming maintainability and stability work.
@@ -1554,27 +1554,27 @@ HTML_link alias semantics).
 ## 7. Deferred: Do Not Touch Yet
 
 - [ ] Deferred 8: whole-platform capability acceptance and operating evidence
-  - Status: `deferred` — registered 2026-09-08 for AR-D01–AR-D07; this does not reset separately started work.
+  - Status: `in_progress` only through the near-term Web category milestone; the remaining platform acceptance stays `deferred`.
   - Authoritative ledger: [manual platform architecture debt plan](dev/manual_platform_architecture_debt_plan_2026-09.md). Covers target readiness/current-state reconciliation, source completeness, translation lifecycle, real skeleton scale proof, sustained revision reflow, impact propagation and comparable benefit metrics.
-  - Ownership: reuse existing L/M/N/Q/R/S/U/V/W workstreams; IR-D01–IR-D07 and AS-D01–AS-D07 remain in their original ledgers. Completed backup/alerting/toolchain/second-host work is not reopened.
-  - Order: current release evidence → bounded asset closure → real Web/IDML same-package trial → target onboarding proof → reflow/impact closure → measured self-service. Daily TM/revision/metric work may proceed with authorized business rounds.
+  - Ownership: **AR-D02/AR-D04 execute only through Milestone M** as its data-readiness and skeleton-scale acceptance dimensions. Reuse existing L/M/N/Q/R/S/U/V/W workstreams; IR-D01–IR-D07 and AS-D01–AS-D07 remain in their original ledgers. Completed backup/alerting/toolchain/second-host work is not reopened.
+  - Order (operator 2026-09-12): rebaseline this ledger → reconcile #1084 against current Git/live asset state → onboard an uncovered category through extract/candidate/bind/Web build → repeat until stable → add a rebuildable online operations index. Full Web/IDML/PDF/Word same-package production is long-term and does not block this sequence.
   - Scope: one implementation slice at a time; actual artifacts and declared target coverage determine completion, not module counts or historical reconstruction percentages. Asset A0/A1 has separate [PR #1084](https://github.com/Bingboom/auto-manual/pull/1084) and retains its own progress.
   - Done when: each declared sub-scope has implementation ownership, real acceptance evidence and reproducible metrics; unresolved targets stay visible. No new automatic schema writes, deployment or parallel dispatch follows from this entry.
 
 - [ ] Deferred 7: editable design assets and cloud-to-build consumption (Workstream Z)
-  - Status: `deferred` — registered 2026-09-08; finish the current EU single-language Web release batch first.
+  - Status: `rebaseline_required` — #1084 records real pilot/online work but its 195-row Git baseline predates current main's 325-row registry.
   - Authoritative plan and debt ledger: [`dev/editable_asset_delivery_debt_plan_2026-09.md`](dev/editable_asset_delivery_debt_plan_2026-09.md), AS-D01–AS-D07.
   - First milestone: one manual's assets have editable AI/SVG masters, versioned export files and cloud retrieval verified against exact bytes; the real Web build uses a frozen asset selection.
   - Designer handoff: verify object/text editing, saved-file reopening, required dependencies, a real design revision and retrieval for subsequent editing. An SVG extension or upload success is insufficient.
   - Shared/model art (AS-D07): reuse one-level explicit overrides; confirm sharing scopes and mandatory dedicated art, distinguish master derivation from build replacement, reject ambiguous/invalid selections, and replay the frozen selection after registry changes. Complete editable variants remain the design deliverable; no SVG-layer merge engine.
-  - Execution: reuse the existing three tables, resolver and manifests; one main window with short review. This pilot can run before full IR migration but does not start automatically.
+  - Execution: first query the current three live tables read-only and reconcile by `asset_key`/export identity; never line-merge the two registry baselines. Reuse the existing resolver and manifests. This pilot can run before full IR migration.
   - Done when: the declared scope has native-editing, cloud-download, version-retention, actual-build and usage-traceability evidence; wider assets/renderers remain explicitly deferred.
 
 - [ ] Deferred 6: shared ManualIR whole-document production migration (Workstream Y)
-  - Status: `deferred` — registered 2026-09-08; implementation has not started.
-  - Why deferred: the operator is completing EU single-language Web releases and wants to conserve token usage; finish the current release batch and retain its actual acceptance evidence first.
+  - Status: `long_term` — Web whole-document production is closed/verified for its declared range; IDML, Word and LaTeX/PDF same-package production remains deferred.
+  - Why deferred: the operator selected multi-category Web extraction/binding/build as the near-term milestone. Do not make cross-renderer migration an admission gate for that work.
   - Authoritative phase plan and debt ledger: [`dev/manual_ir_production_migration_debt_plan_2026-09.md`](dev/manual_ir_production_migration_debt_plan_2026-09.md), IR-D01–IR-D07. Keep item-level state there rather than duplicating the ledger here.
-  - First milestone after the release gate and operator start: JBP-2000B/JP/ja Web and IDML consume one frozen package, with original RST/CSV reads forbidden and JE-1000F/US regression preserved.
+  - First long-term milestone after an explicit restart: JBP-2000B/JP/ja Web and IDML consume one frozen package, with original RST/CSV reads forbidden and JE-1000F/US regression preserved.
   - Execution: one main development window plus short phase-end review; no automatic parallel dispatch. Word, LaTeX/ordinary HTML, wider target rollout and legacy retirement follow only after bounded acceptance.
   - Done when: the plan's declared target/output scope has actual production artifacts, cold-replay and visual evidence, retired-path records and merged changes; adapter registration alone is insufficient.
 
@@ -1624,6 +1624,16 @@ HTML_link alias semantics).
   - Note: unrelated PRs against the review branch may merge past this known-red unit check until recalibration lands (verified pre-existing on the review branch base without the PR's changes)
 
 ## 6k. Milestone M: Skeleton Library Expansion (骨架库产线拓展)
+
+2026-09-12 operator priority: this milestone is the **single near-term execution
+entry** for AR-D02 (target data readiness) and AR-D04 (skeleton scale proof).
+Do not create a parallel architecture-debt implementation queue. The next
+slice selects an uncovered product category and must complete structured
+extraction → skeleton candidate → product binding → Web auto-build. Web,
+IDML, PDF and Word same-package production remains Workstream Y's long-term
+scope and is not a Milestone M entry gate. A later online operations index may
+consume the frozen IR/publish manifest only after this intake path repeats
+stably; it must not become another full-copy content authority.
 
 Registered 2026-08-21 from the Phase A corpus audit
 ([`architecture/manual_ia_audit_2026-08.md`](architecture/manual_ia_audit_2026-08.md)),
