@@ -1646,8 +1646,10 @@ Spanish, German, Italian, Portuguese, Dutch, Polish, Ukrainian, Greek, Hebrew
 and Arabic. The last seven are in translation and return incrementally. Track
 required language coverage separately from received, verified and published
 coverage; all locales reuse the same product skeleton. The
-[portal concept](dev/web_manual_portal_concept_2026-09.md) is a proposal under
-this milestone, not a parallel execution checklist. An English-only pass is not
+[portal concept](dev/web_manual_portal_concept_2026-09.md) has a US-default
+US / EU / UK entrance dropdown; EU and UK bind to the same catalog and manuals
+without duplicating releases. It is a proposal under this milestone, not a
+parallel execution checklist. An English-only pass is not
 a product-language closeout. Locale-matched full-text panels remain mandatory for
 finished Web figures, while editable tables and prose stay localized semantic
 content.

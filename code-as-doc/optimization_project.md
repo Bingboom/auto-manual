@@ -51,10 +51,12 @@ translation brief; the existing Brazilian Portuguese pack is not proof of an
 EU Portuguese pack.
 
 The [manual portal concept](dev/web_manual_portal_concept_2026-09.md) proposes
-one EUUK library with product selection and a twelve-language dropdown linking
-independent manual pages from their start on the existing Read the Docs publish
-surface. It is a design proposal within Milestone M; no portal or twelve-language
-runtime migration is claimed complete.
+a US-default region dropdown with US / EU / UK options. EU and UK share one
+EUUK product catalog and the same published manuals without duplicate releases;
+US retains its own catalog and editions. Product selection and a twelve-language
+dropdown link independent manual pages from their start on the existing Read
+the Docs publish surface. It is a design proposal within Milestone M; no portal
+or twelve-language runtime migration is claimed complete.
 
 The long-term destination remains Web, IDML, PDF, and Word consuming the same
 governed semantic source through independent adapters. That cross-renderer

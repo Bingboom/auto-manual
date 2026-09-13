@@ -1,9 +1,11 @@
-# EUUK manual portal and twelve-language rollout concept
+# Manual portal region selector and twelve-language rollout concept
 
 Status: design proposal. Operator-confirmed visual reference: the Jackery
 official site's styling for the manual-center home. Operator-confirmed
-interaction: one EUUK library, product selection, and a twelve-language dropdown linking independent manual
-pages. A language change preserves the product and applicable manual version
+interaction: a region dropdown with US selected by default and US / EU / UK
+options, product selection, and a twelve-language dropdown linking independent
+manual pages. EU and UK share the same product catalog and manuals today.
+A language change preserves the product and applicable manual version
 and opens the destination manual at its start. Execution ownership remains
 [Milestone M](../next_optimization_checklist.md).
 
@@ -14,15 +16,31 @@ French, Spanish, German, Italian, Portuguese, Dutch, Polish, Ukrainian, Greek,
 Hebrew and Arabic. The last seven are in translation and will return in batches.
 The Portuguese regional variant follows the translation brief when received.
 
-Use EUUK as the library's public grouping. The operator removed the
-country-by-country selector from this design. No Germany, France, UK or other
-country entry pages are required.
+The entrance region selector defaults to US and offers exactly US, EU and UK.
+Do not add country-by-country options such as Germany or France, or replace the
+US default through inferred geolocation. The selector filters product discovery;
+it is distinct from the reading page's language selector.
 
-EUUK is a presentation grouping: existing source targets and approved EU/UK
-hardware or legal applicability remain authoritative. A display-label change
-does not rename existing build regions or make different manuals interchangeable.
-If a product actually requires distinct editions, preserve its bound edition
-while switching languages.
+| Entrance selection | Catalog / manual binding |
+| --- | --- |
+| US (default) | US product catalog and approved US editions |
+| EU | Shared EUUK product catalog and approved EUUK editions |
+| UK | The same EUUK catalog, editions and published URLs as EU |
+
+EUUK is a shared catalog binding, not a fourth dropdown option. EU and UK are
+separate public choices but must not duplicate source content, assets, builds or
+releases. Existing source targets, including current EU build targets, keep
+their identifiers; selecting UK does not require creating a UK build target.
+Keep the selected EU/UK entrance label in navigation state while resolving both
+to the same canonical manual links. Switching EU to UK changes the entrance
+selection, not the product list or manual edition.
+
+Approved hardware and legal applicability remain authoritative. US must never
+silently fall back to an EUUK manual. If a future product requires distinct
+EU/UK editions, change its explicit binding rather than copy the whole catalog.
+Language switching always preserves the applicable bound edition. The confirmed
+twelve-language rollout above is for the EUUK product set; the US entrance does
+not itself declare a new twelve-language requirement for US manuals.
 
 The [current RTD home](https://ht-doc.readthedocs.io/) exposes a flat list of
 model/region/manual links. This design adds product discovery around those
@@ -31,7 +49,10 @@ existing publications.
 ## 2. Proposed screen
 
 ```text
-Jackery | Manuals                                     EUUK
+Jackery | Manuals                                  Region [US v]
+                                                          US (selected)
+                                                          EU
+                                                          UK
 
                   Find your product manual
        [ Search product name or model number                         ]
@@ -43,7 +64,7 @@ Jackery | Manuals                                     EUUK
  Model: JE-2000F                 Model: JS-100I               Model: JBP-2000B
  [View manual]                   [View manual]               [View manual]
 
- Product / reading header:
+ Product / reading header (after selecting EU or UK):
  < All products     Explorer 2000 · JE-2000F · EUUK     Language [English v]
 ```
 
@@ -75,7 +96,7 @@ The home visually references the [Jackery official site](https://www.jackery.com
 black/white/orange branding, a prominent search-oriented title, generous spacing,
 product imagery and clean cards. Use Jackery orange for primary actions and
 active category states, with a responsive product grid beneath search. The
-EUUK product-and-language information structure above remains the agreed flow.
+region/product/language information structure above remains the agreed flow.
 The reading pages keep the existing shared manual component styles.
 Download PDF appears only when a matching approved PDF URL
 exists; the current Web publication path does not store print artifacts.
@@ -134,7 +155,8 @@ release metadata:
 | Object | Minimum useful fields |
 | --- | --- |
 | Product | ID, model, display name, category, image, search aliases |
-| Library binding | EUUK group, product ID, applicable existing source/edition |
+| Region selection | US / EU / UK, default US, catalog binding US / EUUK |
+| Catalog binding | US or shared EUUK group, product ID, applicable existing source/edition |
 | Language | code, native label, direction, required status |
 | Release | product/edition/type/locale/revision, URL, optional approved PDF URL |
 
@@ -144,12 +166,15 @@ duplicating the manual corpus.
 
 ## 5. Proposed next work
 
-First make the EUUK home, product cards and dropdown states reviewable with
-existing published languages. Prepare the shared language registry, RTL and
+First make the home with its US-default region dropdown, shared EU/UK product
+binding, product cards and language dropdown states reviewable with existing
+published languages. Prepare the shared language registry, RTL and
 locale-specific publication storage while translated copy is returning.
 Then enable each verified language incrementally. These are proposed design
 steps; Milestone M remains the only execution checklist.
 
-Design acceptance includes model search, mobile dropdown operation, disabled
+Design acceptance includes the US default and exactly three region options,
+identical EU/UK product lists and canonical manual links without duplicate
+releases, US edition isolation, model search, mobile dropdown operation, disabled
 unpublished options, correct independent URLs, opening the selected language at
 its start, preserved product/edition, unchanged QR links, and an RTL example.
