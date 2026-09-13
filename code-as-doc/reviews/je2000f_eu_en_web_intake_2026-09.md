@@ -139,6 +139,22 @@ check still require the centralized Hello-Docs publication flow.
 - [ ] Live asset/source registry write-back: deliberately not performed; requires separate operator authorization and exact read-back.
 - [ ] Merge and formal Web publication: outside this task; PR review/CI and centralized Hello-Docs publication remain separate gates.
 
+## 2026-09-13 English specification reconciliation candidate
+
+Visual review of the released PDF physical page 18 / printed 13 found that
+the English `3 × AC` output row does not include `10 A max.`. Remove that
+extra text from `Value_source` only; retain 230 V / 50 Hz, 2200 W rated total
+and 4400 W surge peak. Input charge/bypass values retain their PDF-authored
+10 A maximum. Other language columns remain unchanged and are not newly
+audited or approved by this English correction.
+
+Refresh the changed file lock and canonical compact/sorted JSON inventory
+digest. The old aggregate digest already differed at initial intake commit
+`5a360e19`; this is not evidence of recent file drift. Regression now checks
+the aggregate as well as individual file hashes. Eight target tests pass,
+including native HTML AC output and unchanged input-current assertions.
+Full build/regression and independent release acceptance remain separate gates.
+
 ## Non-goals
 
 - No live Bitable write, queue-row mutation, review reseed, OSS upload, or

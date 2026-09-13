@@ -2,6 +2,14 @@
 
 ## Released-PDF correction in progress — 2026-09-13
 
+Operator handoff decision (2026-09-13): proceed with the existing corrections
+and low-cost Git-only publication; the operator will perform the later content
+and visual inspection. Remaining PDF/panel parity and desktop/mobile visual
+acceptance are **user-deferred**, not passed. Do not repeat the PDF audit or
+browser review as a prerequisite to this publication. Build, integrity, PR and
+deployed-revision gates remain required. The historical acceptance below does
+not certify the corrected candidate.
+
 The original AI-based acceptance below is historical and does not establish
 parity with the released PDF now designated authoritative by the operator.
 Released EU-UK V2.0-2026-06-09 PDF SHA-256:
@@ -28,8 +36,9 @@ Delivery records `1gQyPR2Qyi` / `uNmShId5KH` resolve to node
   illustrations retain truthful AI provenance. Preserve the semantic asset path
   `overview.png`; a different basename failed required-figure coverage, and that
   gate was not weakened. The original asset remains in Git history.
-- [ ] Finish panel parity and update locked asset/source provenance together;
-  no full PDF parity or production update is claimed yet.
+- [ ] User-deferred: remaining PDF/panel parity and visual acceptance will be
+  inspected by the operator after publication. Existing asset/source locks
+  remain required; no full PDF parity or production update is claimed yet.
 - [x] Replace the LCD device map: the old AI crop clips number 5 at the right
   edge. Reviewed PDF page 8 candidate `[48, 63, 332, 223]`, scale 4, retains
   numbers 1–13 without including the table. Candidate hash:

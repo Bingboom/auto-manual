@@ -60,3 +60,22 @@ deployment, or a live asset-register write.
 ## 2026-09-09 integration
 
 The shared EU battery-pack slot uses generated-page model overrides so JE-1000H receives its reviewed chapter while JE-2000E retains its existing charging-page chapter without duplicates or foreign assets. Both target Web regression suites are included in integration validation.
+
+## 2026-09-13 released-PDF specification reconciliation (candidate)
+
+Rechecked physical PDF page 19 (printed 14) against the frozen source. Restore
+the independent `AC Total Output` row (`1800W Rated, 3600W Surge peak`) and move
+footnote 2 from the preceding AC value to this row's label. Preserve the PDF's
+`2 × USB-C` parent label with explicit `USB-C 30W` and `USB-C 140W` parameter
+labels, in that order, using existing source fields and native tables.
+
+The source file lock and canonical compact/sorted JSON inventory hash are
+refreshed. The previous inventory-level digest did not match this canonical
+representation; a new regression now verifies it as well as each file digest.
+Target regression: seven tests pass, including native HTML labels, footnote
+placement, manifest locks and cold replay. This is not whole-book PDF parity,
+browser acceptance or a new RTD deployment. The shared parser correction in
+PR #1120 is merged at `fcfe46a6419a92eb751d4eed840c11e27e3538fc`; this
+candidate is rebased onto it. Its target-data regression now explicitly checks
+the source-authored parent/parameter representation and ordered power labels,
+while the generic distinct-label preservation regression remains unchanged.
