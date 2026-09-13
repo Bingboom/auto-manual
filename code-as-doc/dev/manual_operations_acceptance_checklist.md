@@ -43,8 +43,12 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   不把混合语全文标为单语。范围：语言 bundle/helper 与测试；不引入 Chrome/PDF 依赖。
   - [x] OPS-01a 内部 helper 复用与安全回归：#1104 已合入；不等于发布集成完成。
   - [ ] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
-    - [ ] OPS-01b1 Web 显式语言的 canonical RST 接线；check/md/html 共用投影，不改变队列。
+    - [x] OPS-01b1 Web 显式语言的 canonical RST 接线：#1111 已17/17全绿合入；check/md/html 共用投影，不改变队列。
     - [ ] OPS-01b2 封存投影证据并校验后，才允许发布元数据晋升 single；完成真实独立 URL 验收。
+      实施边界：check/md/html 三步比对同一 canonical manifest 摘要；封存完整 RST
+      引用闭包与 Markdown/HTML 摘要；metadata writer 和 assembly 各自验证后才接受
+      single，缺失/漂移/身份或路径不符须在晋升前失败。旧无证据输入保持
+      legacy_unspecified；不原地补写已封存版本，不改 workflow、不写线上表。
 - [ ] OPS-02：统一 locale-safe 发布身份、存储和发现。范围：publish assembly、
   release metadata、RTD source/alias 与测试。相同型号/市场的两语共存；身份/path
   不一致、重复 key 和 alias 冲突 fail closed；旧链接/二维码兼容；失败不损坏原快照。
@@ -66,7 +70,7 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   明确负责人、检查频率与故障处理方式；不默认部署常驻服务或访客跟踪。
   - [x] OPS-05a 本地冻结产物检查：#1105 已全绿合入，部署/访客状态明确 no_data。
   - [ ] OPS-05b 真实线上健康、覆盖分母、故障负责人及处理验证。
-    - [ ] OPS-05b1 冻结目录的有界 HTTPS HEAD 检查；HTTP 成功不等于版本、正文或翻译验收。
+    - [x] OPS-05b1 冻结目录的有界 HTTPS HEAD 检查：#1112 已17/17全绿合入；HTTP 成功不等于版本、正文或翻译验收。
 - [ ] OPS-06：反馈闭环。范围：可配置入口、上下文、处理记录和运行说明。
   入口携带型号/市场/语言/版本/页面；渠道与负责人由操作者指定。
   一条受控真实反馈完成接收→定位源→审核修复→再发布→回告，并保留证据。
@@ -125,8 +129,8 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-03a 措辞跟进 | [#1109](https://github.com/Bingboom/auto-manual/pull/1109) / `4291d8f6c9fa91b989365839c2f538a33ca29b64` | 最终内容树4036测试 OK（24 skipped）；14定向/全Ruff/护栏/文档链接/fixture check通过；真实冻结语料65个正文HTML不变 | CI17/17，CLEAN，无评审/未解决线程；有legacy出版物时改为“Separate language page not verified”，不把元数据缺失说成内容未发布 | 修正已合入；不晋升任何语言身份 |
 | OPS-03a 措辞部署 | #1109 → Hello-Docs `da0c02f7ae76ab9582bd2b4aaf9f5480efaf618b` | mirror run `34747579572` success | RTD build `34532682` success，API commit 与镜像一致；HTTPS 首页正文实际包含修正措辞；浏览器控制超时，未把此次 HTTP 验证当作新的视觉验收 | 已部署，不晋升语言身份 |
 | OPS-06a | [#1110](https://github.com/Bingboom/auto-manual/pull/1110)，head `557f9b3a227d0449d23536136681b2d8b8f72fc1` | 4042全量测试 OK（22 skipped），Ruff/护栏/文档/fixture check通过；默认关闭时66个HTML逐字节不变 | 17/17检查成功且无评审线程后发起合并；main已出现同树squash `9a015afdbee91786feecaf44567a6ad4d7a0c86e`，但PR接口仍OPEN；不重复合并 | 等GitHub合并状态一致后勾选；真实渠道/负责人/反馈闭环仍未验收 |
-| OPS-05b1 | [#1112](https://github.com/Bingboom/auto-manual/pull/1112)，head `9663835d49e6bb09a8e5df38f435a7f3f2c46816` | 最终4052测试 OK（24 skipped）；10定向/Ruff/护栏/文档/fixture check通过；API树与本地最终树一致 | 21个现有出版物HEAD成功；不证明正文/资产/版本/翻译；PR已创建，首次CI启动失败（见下方记录） | 未合入、不勾选；无线上表写入 |
-| OPS-01b1 | [#1111](https://github.com/Bingboom/auto-manual/pull/1111)，head `b8404559de0507fdb13f296e2efaf91169442fac` | 最终4055测试 OK（22 skipped）；80定向/Ruff/mypy/护栏/文档/fixture check通过；review+隔离fixture/37哈希核验中立附件的EN check/md/html成功且三次投影manifest哈希相同；整本Web md通过；非Web显式语言保持原有失败基线 | 未发布RTD、未晋升single、无线上写入；HTML仍有14new/1known警告（含保修RST结构），不构成内容验收；未放宽门 | PR已创建，待CI/合并；不勾选 |
+| OPS-05b1 | [#1112](https://github.com/Bingboom/auto-manual/pull/1112)，merge `51791920bf5d9326f13b54c26af03cf2c1caf7d5` | 对齐#1111后的最终4065测试 OK（19 skipped）；10定向/Ruff/mypy/护栏/文档/fixture check通过；预先组合树与实际main对齐树均为`50a347256ec46d7a8c514230facbe7d96543bcbb` | 最终head `afbfa4ab` 的CI17/17，CLEAN，无评审/未解决线程，GitHub确认MERGED；21个现有出版物HEAD成功，不证明正文/资产/版本/翻译；首次CI启动失败见下方记录 | 子切片已合入；覆盖分母/负责人/处理验收仍未完成；无线上表写入 |
+| OPS-01b1 | [#1111](https://github.com/Bingboom/auto-manual/pull/1111)，merge `d2c9c7542770cbe652d35a17b6b996764896b49d` | 最终4055测试 OK（22 skipped）；80定向/Ruff/mypy/护栏/文档/fixture check通过；review+隔离fixture/37哈希核验中立附件的EN check/md/html成功且三次投影manifest哈希相同；整本Web md通过；非Web显式语言保持原有失败基线 | CI17/17，CLEAN，无评审/未解决线程，GitHub确认MERGED；未发布RTD、未晋升single、无线上写入；HTML仍有14new/1known警告（含保修RST结构），不构成内容验收；未放宽门 | 子切片已合入；OPS-01b2及真实发布未验收 |
 | OPS-01b 只读/隔离试点 | main `f695f7b2`，无实现 PR | 37个中立LCD/Symbol附件与已提交audited source manifest逐项size/SHA匹配，仅复用图标；未复制其他型号CSV；使用已提交fixture提供测试数据/composite合同；整本review-asis check/md/html均exit0 | 无线上发布；HTML有22条RST warning；显式lang=en失败于review fallback引用缺失cover-en.rst；不能声明独立单语发布已通 | 输入可构建；单语作用域接线待实施 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
