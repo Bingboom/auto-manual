@@ -340,3 +340,25 @@ The umbrella remains Draft. OPS-04 workflow/writeback, full operations ownership
 Evidence: [audit comment](https://github.com/Bingboom/auto-manual/pull/1103#issuecomment-5654902472).
 No whole-book acceptance, source-table write, workflow change or new deployment
 is claimed. WEB-B02/B03/B06 and the umbrella remain incomplete.
+
+
+### WEB-B03/B04 JE-500A correction candidate — PR #1119
+
+- [x] [#1119](https://github.com/Bingboom/auto-manual/pull/1119) opened as Draft at
+  `917fb87f8c5f0587790611ea8042f6f42720802b`; source correction only, not a release.
+- [x] Restored native DC markers, released-PDF English preface, EU declaration/
+  manufacturer and solar diagram sentence. Existing shared assembly is reused;
+  no model-specific Python/CSS or new target config.
+- [x] Replaced Overview missing-glyph image and clipped LCD number 5 through
+  existing per-image recipe overrides. PDF crop hashes are locked and replayed;
+  other AI image provenance is retained, not relabelled as PDF-derived.
+- [x] Final local suite: 4,100 tests OK (22 skipped). Ruff, guardrails, documentation
+  links, manifest-family roundtrip, target check/md and strict Sphinx pass.
+  Actual final HTML: 16/16 image files and hashes verified, eight native tables.
+- [ ] Complete actual desktop/mobile visual acceptance; browser tool timed out.
+- [ ] All PR checks/reviews green and valid merge authorization verified, then merge.
+- [ ] Separate frozen Git-only business release and exact RTD revision/content verification.
+
+The earlier source-symbol defect is corrected in this candidate only. Do not
+mark the deployed manual corrected or parent WEB/OPS items complete yet.
+No workflow edit, live-table write, queue action or publication was performed.
