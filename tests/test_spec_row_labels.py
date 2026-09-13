@@ -68,7 +68,14 @@ class SpecRowLabelTests(unittest.TestCase):
                     rows = list(csv.DictReader(stream))
                 content = collect_spec_content(rows, "", "en", {"model": model, "region": "EU"})
                 ports = [row for section in content["sections"] for row in section["rows"]
-                         if row[0].startswith("USB-C")]
+                         if "USB-C" in row[0]]
+                if model == "JE-1000H":
+                    self.assertEqual([row[0] for row in ports], ["2 × USB-C"])
+                    lines = ports[0][1].splitlines()
+                    self.assertEqual(len(lines), 2)
+                    self.assertTrue(lines[0].startswith("USB-C 30W: 30W Max"))
+                    self.assertTrue(lines[1].startswith("USB-C 140W: 140W Max"))
+                    continue
                 self.assertEqual([row[0] for row in ports], ["USB-C 30W", f"USB-C {high_power}"])
                 self.assertNotIn("\n", ports[0][1])
                 self.assertNotIn("\n", ports[1][1])
