@@ -285,7 +285,6 @@ def stage_web_publish_assets_to_host_repo(
         region=region,
         version=version,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
-        copy_tree=_copy_tree_impl,
     )
 
 
@@ -358,6 +357,7 @@ def write_web_publish_metadata(
         md_output_path=md_output_path,
         html_dir=html_dir,
         queue_record_ids=queue_record_ids,
+        publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,
         repo_relative=repo_relative,
