@@ -53,6 +53,9 @@ see [online check scope](manual_operations_online_health.md).
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
+`build_docs_export` selects this path only for Web plus an explicit language;
+`build_docs_bundle.prepare_web_language_source_bundle` preserves complete source
+scope, then the projection helper replaces canonical RST for check/Markdown/HTML.
 See [scope and integration boundary](web_language_projection.md).
 
 Optional manual feedback affordances are kept in

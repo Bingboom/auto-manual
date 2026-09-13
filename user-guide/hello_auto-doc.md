@@ -11,8 +11,9 @@ Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operatio
 需要探测已发布链接时使用[线上HTTP检查](../code-as-doc/dev/manual_operations_online_health.md)；
 它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
 
-Web 单语源投影现在有[内部复用 helper](../code-as-doc/dev/web_language_projection.md)；
-目前不改变操作入口、审稿源或正式发布流程，不表示计划中的语言已上线。
+Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
+`check`、Markdown 和 HTML 使用同一份所选语言 RST。该能力不改变队列、审稿源或
+正式发布流程，也不表示计划中的语言已上线。
 
 Updated: 2026-09-05
 

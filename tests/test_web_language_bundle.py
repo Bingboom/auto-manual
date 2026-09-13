@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import json
 import tempfile
 import unittest
 from dataclasses import replace
 from pathlib import Path
+from unittest import mock
 
 from tools.gen_index_bundle import MaterializedBundle
-from tools.web_language_bundle import split_web_bundle
+from tools.web_language_bundle import materialize_web_language_projection, split_web_bundle
 
 
 class LanguageBundleTests(unittest.TestCase):
@@ -40,6 +42,157 @@ class LanguageBundleTests(unittest.TestCase):
             self.project()
         self.assertEqual((target / "keep").read_text(), "unchanged")
 
+    def test_canonical_projection_replaces_existing_bundle_and_rebases_paths(self):
+        canonical = self.root / "canonical" / "rst"
+        canonical.mkdir(parents=True)
+        (canonical / "stale.rst").write_text("stale")
+        self.bundle = replace(self.bundle, wrapper_index_path=self.root / "index.rst")
+        result = materialize_web_language_projection(
+            self.bundle,
+            language="fr",
+            destination=canonical,
+            write_wrapper_index=True,
+        )
+        self.assertEqual(canonical.resolve(), result.bundle_dir)
+        self.assertTrue(
+            all(path.is_relative_to(canonical.resolve()) for path in result.page_paths)
+        )
+        self.assertFalse((canonical / "stale.rst").exists())
+        self.assertIn(
+            ".. include:: canonical/rst/index",
+            self.bundle.wrapper_index_path.read_text(encoding="utf-8"),
+        )
+
+    def test_failed_projection_leaves_existing_canonical_bundle_untouched(self):
+        canonical = self.root / "canonical" / "rst"
+        canonical.mkdir(parents=True)
+        sentinel = canonical / "keep"
+        sentinel.write_text("unchanged")
+        self.bundle = replace(self.bundle, languages=("en",))
+        with self.assertRaisesRegex(ValueError, "outside the frozen bundle"):
+            materialize_web_language_projection(
+                self.bundle,
+                language="fr",
+                destination=canonical,
+                write_wrapper_index=False,
+            )
+        self.assertEqual("unchanged", sentinel.read_text())
+
+    def test_projection_rejects_symlink_destination_or_parent(self):
+        real = self.root / "real"
+        real.mkdir()
+        direct = self.root / "direct"
+        direct.symlink_to(real, target_is_directory=True)
+        linked_parent = self.root / "linked-parent"
+        linked_parent.symlink_to(real, target_is_directory=True)
+
+        for destination in (direct, linked_parent / "rst"):
+            with self.subTest(destination=destination):
+                with self.assertRaisesRegex(ValueError, "symbolic link"):
+                    materialize_web_language_projection(
+                        self.bundle,
+                        language="fr",
+                        destination=destination,
+                        write_wrapper_index=False,
+                    )
+
+    def test_failed_rollback_preserves_previous_bundle_backup(self):
+        canonical = self.root / "canonical" / "rst"
+        canonical.mkdir(parents=True)
+        (canonical / "keep").write_text("previous")
+        wrapper_directory = self.root / "wrapper-directory"
+        wrapper_directory.mkdir()
+        self.bundle = replace(self.bundle, wrapper_index_path=wrapper_directory)
+        original_rename = Path.rename
+
+        def fail_restore(path: Path, target: Path) -> Path:
+            if path.name == "previous":
+                raise OSError("restore blocked")
+            return original_rename(path, target)
+
+        with mock.patch.object(Path, "rename", new=fail_restore):
+            with self.assertRaisesRegex(RuntimeError, "previous bundle preserved at"):
+                materialize_web_language_projection(
+                    self.bundle,
+                    language="fr",
+                    destination=canonical,
+                    write_wrapper_index=True,
+                )
+
+        backups = list(canonical.parent.glob(".web-language-projection.*/previous/keep"))
+        self.assertEqual(1, len(backups))
+        self.assertEqual("previous", backups[0].read_text())
+
+    def test_failed_atomic_wrapper_replace_restores_bundle_and_wrapper(self):
+        canonical = self.root / "canonical" / "rst"
+        canonical.mkdir(parents=True)
+        sentinel = canonical / "keep"
+        sentinel.write_text("previous")
+        wrapper = self.root / "wrapper.rst"
+        wrapper.write_text("old wrapper")
+        self.bundle = replace(self.bundle, wrapper_index_path=wrapper)
+
+        with mock.patch("tools.web_language_bundle.os.replace", side_effect=OSError("blocked")):
+            with self.assertRaisesRegex(OSError, "blocked"):
+                materialize_web_language_projection(
+                    self.bundle,
+                    language="fr",
+                    destination=canonical,
+                    write_wrapper_index=True,
+                )
+
+        self.assertEqual("previous", sentinel.read_text())
+        self.assertEqual("old wrapper", wrapper.read_text())
+
+    def test_canonical_projection_rejects_symlink_destination_or_parent(self):
+        real = self.root / "real"
+        real.mkdir()
+        direct = self.root / "direct"
+        direct.symlink_to(real, target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, "symbolic link"):
+            materialize_web_language_projection(
+                self.bundle, language="fr", destination=direct, write_wrapper_index=False,
+            )
+
+        linked_parent = self.root / "linked-parent"
+        linked_parent.symlink_to(real, target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, "symbolic link"):
+            materialize_web_language_projection(
+                self.bundle,
+                language="fr",
+                destination=linked_parent / "rst",
+                write_wrapper_index=False,
+            )
+
+    def test_rollback_failure_preserves_previous_bundle_backup(self):
+        canonical = self.root / "canonical" / "rst"
+        canonical.mkdir(parents=True)
+        (canonical / "keep").write_text("previous")
+        wrapper_directory = self.root / "wrapper-directory"
+        wrapper_directory.mkdir()
+        self.bundle = replace(self.bundle, wrapper_index_path=wrapper_directory)
+        original_rename = Path.rename
+
+        def fail_restore(path: Path, target: Path) -> Path:
+            if path.name == "previous":
+                raise OSError("restore blocked")
+            return original_rename(path, target)
+
+        with (
+            mock.patch.object(Path, "rename", new=fail_restore),
+            self.assertRaisesRegex(RuntimeError, "previous bundle preserved at"),
+        ):
+            materialize_web_language_projection(
+                self.bundle,
+                language="fr",
+                destination=canonical,
+                write_wrapper_index=True,
+            )
+
+        backups = list(canonical.parent.glob(".web-language-projection.*/previous/keep"))
+        self.assertEqual(1, len(backups))
+        self.assertEqual("previous", backups[0].read_text())
+
     def test_nested_source_destination_rejected(self):
         with self.assertRaisesRegex(ValueError, "outside the source"):
             split_web_bundle(self.bundle, language="fr", destination=self.source / "derived")
@@ -68,6 +221,51 @@ class LanguageBundleTests(unittest.TestCase):
         result = self.project()
         self.assertTrue((result.page_dir / "neutral.rst").exists())
         self.assertEqual((result.bundle_dir / "asset.svg").read_bytes(), b"<svg/>")
+
+    def test_asset_usage_manifest_is_projected_to_retained_rst_closure(self):
+        manifest = self.source / "asset_usage_manifest.json"
+        manifest.write_text(
+            json.dumps(
+                {
+                    "assets": [
+                        {
+                            "asset_key": "shared",
+                            "references": ["page/chapter.rst", "page/p20_chapter.rst"],
+                        },
+                        {"asset_key": "english-only", "references": ["page/chapter.rst"]},
+                    ],
+                    "rewrites": [
+                        {"reference_path": "page/chapter.rst", "rendered_value": "en.png"},
+                        {"reference_path": "page/p20_chapter.rst", "rendered_value": "fr.png"},
+                    ],
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        result = self.project()
+        projected = json.loads(
+            (result.bundle_dir / "asset_usage_manifest.json").read_text(encoding="utf-8")
+        )
+
+        self.assertEqual(
+            [{"asset_key": "shared", "references": ["page/p20_chapter.rst"]}],
+            projected["assets"],
+        )
+        self.assertEqual(
+            [{"reference_path": "page/p20_chapter.rst", "rendered_value": "fr.png"}],
+            projected["rewrites"],
+        )
+
+    def test_malformed_asset_usage_manifest_fails_before_projection(self):
+        (self.source / "asset_usage_manifest.json").write_text(
+            json.dumps({"assets": [], "rewrites": [{"reference_path": 7}]}),
+            encoding="utf-8",
+        )
+
+        with self.assertRaisesRegex(ValueError, "invalid RST reference"):
+            self.project()
+        self.assertFalse((self.root / "fr").exists())
 
     def test_index_outside_bundle_rejected(self):
         external = self.root / "external_index.rst"

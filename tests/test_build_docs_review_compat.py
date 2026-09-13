@@ -11,6 +11,63 @@ from tools.gen_index_bundle import MaterializedBundle
 
 
 class TestBuildDocsReviewCompat(unittest.TestCase):
+    def test_web_language_source_uses_full_shared_review_with_target_identity(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "web" / "source" / "rst"
+            (bundle_dir / "page").mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text("source index\n", encoding="utf-8")
+            review_dir = docs_dir / "_review" / "JE-1000F" / "US"
+            (review_dir / "page").mkdir(parents=True)
+            (review_dir / "index.rst").write_text(
+                ".. include:: page/cover-en.rst\n\n.. include:: page/p20_chapter.rst\n",
+                encoding="utf-8",
+            )
+            bundle = MaterializedBundle(
+                bundle_dir=bundle_dir,
+                page_dir=bundle_dir / "page",
+                index_path=bundle_dir / "index.rst",
+                conf_path=bundle_dir / "conf.py",
+                conf_base_path=bundle_dir / "conf_base.py",
+                wrapper_index_path=docs_dir / "index.rst",
+                page_paths=(), title="Demo", reference_doc=None,
+                model="JE-1000F", region="US", lang="en",
+                languages=("en", "fr", "es"),
+            )
+
+            with (
+                mock.patch.object(
+                    build_docs_bundle,
+                    "get_paths",
+                    return_value=SimpleNamespace(docs_dir=docs_dir, root=Path(td)),
+                ),
+                mock.patch.object(
+                    build_docs_bundle,
+                    "materialize_web_language_source_bundle",
+                    return_value=bundle,
+                ) as materialize,
+                mock.patch.object(build_docs_bundle, "overlay_review_onto_bundle") as overlay_full,
+                mock.patch.object(
+                    build_docs_bundle, "overlay_review_content_onto_bundle"
+                ) as overlay_partial,
+                mock.patch.object(
+                    build_docs_bundle, "finalize_materialized_bundle", return_value=bundle
+                ),
+            ):
+                result = build_docs.prepare_web_language_source_bundle(
+                    {"doc_type": "manual_bundle"},
+                    model="JE-1000F", region="US", lang="en",
+                    source_mode="review-asis",
+                    output_root=bundle_dir.parent,
+                    write_wrapper_index=False,
+                )
+
+        self.assertIs(result, bundle)
+        self.assertEqual("en", materialize.call_args.kwargs["lang"])
+        self.assertTrue(materialize.call_args.kwargs["skeleton_only"])
+        overlay_full.assert_called_once()
+        overlay_partial.assert_not_called()
+
     def test_review_overlay_allowlist_rejects_escaping_skeleton_include(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle_dir = Path(td) / "rst"

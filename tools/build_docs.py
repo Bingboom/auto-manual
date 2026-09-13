@@ -22,6 +22,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.config_pages import CsvPage
 from tools import lang_registry
 from tools.build_docs_bundle import prepare_manual_bundle as _prepare_manual_bundle_impl
+from tools.build_docs_bundle import prepare_web_language_source_bundle
 from tools.language_block_trim import (
     trim_bundle_language_blocks,
     trim_bundle_language_pages,
@@ -123,6 +124,7 @@ from tools.gen_index_bundle import (
     cleanup_legacy_rst_artifacts,
     materialize_bundle,
 )
+from tools.web_language_bundle import materialize_web_language_projection
 from tools.page_manifest import resolve_config_pages_or_raise
 from tools.review_support import (
     overlay_review_content_onto_bundle,
@@ -811,6 +813,8 @@ def build_target(
         build_root_for_target=build_root_for_target,
         ensure_target_identity=ensure_target_identity,
         prepare_manual_bundle=prepare_manual_bundle,
+        prepare_web_language_source_bundle=prepare_web_language_source_bundle,
+        materialize_web_language_projection=materialize_web_language_projection,
         render_build_template=render_build_template,
         resolve_output_path=resolve_output_path,
         sphinx_build=sphinx_build,
