@@ -34,6 +34,10 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+[`tools/publish_locale_identity.py`](../../tools/publish_locale_identity.py)
+owns locale identity/stored-source migration; publish assembly owns candidate
+transactions and RTD redirects. See [contract](web_locale_publication_identity.md).
+
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.

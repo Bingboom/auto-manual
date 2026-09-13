@@ -1,5 +1,8 @@
 # Hello Auto Doc
 
+Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+旧记录的语言字段不等于正文单语；真实多语上线须等待门户分组与单语输入验收。
+
 Web 单语源投影现在有[内部复用 helper](../code-as-doc/dev/web_language_projection.md)；
 目前不改变操作入口、审稿源或正式发布流程，不表示计划中的语言已上线。
 

@@ -1,5 +1,8 @@
 # Windows Build Guide
 
+Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
+and candidate validation. Public build flags and workflow dispatch are unchanged.
+
 Internal Web locale producer: [frozen language projection](dev/web_language_projection.md).
 This helper does not add a public build command or change the current publish queue.
 
