@@ -43,4 +43,17 @@ Local build, localhost preview, and green checks are engineering evidence only. 
 
 ## Main integration
 
+### 2026-09-13 PV qualifier reconciliation candidate
+
+Released PDF physical page 18 / printed 13 places `Max` after the 12 A input
+rating and after 1000 W, not after the combined 24 A phrase. Restore that
+qualifier placement in the frozen English Value_source without changing any
+numeric limit or other language column. Native HTML regression verifies the
+complete PV wording. Seven target tests pass.
+
+Refresh the file lock and canonical compact/sorted JSON inventory hash. The
+previous aggregate mismatch existed at initial intake (`e045ad35`); it is not
+recent content drift. Add explicit aggregate-digest verification. No online
+data, artwork, workflow or publication changes; full-book acceptance is open.
+
 The target now integrates the merged EU Web baseline. Shared fixture CSVs retain complete logical records when combining target additions, including quoted multiline symbol descriptions; this preserves the existing JP and US consumers. The final integration is validated against the current main and the full test suite before merge.

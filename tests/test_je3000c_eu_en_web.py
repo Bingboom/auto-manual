@@ -114,6 +114,20 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             self.assertEqual(record["size"], len(data))
             self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
 
+    def test_pv_maximum_qualifier_matches_released_pdf(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        label = next(cell for cell in soup.select("th.hb-spec-label")
+                     if cell.get_text(strip=True) == "2 × DC8020 Ports")
+        value = label.parent.select_one("td").get_text(" ", strip=True)
+        self.assertIn("PV: 16 V-60 V⎓12 A max., Double to 24 A / 1000 W max.", value)
+        self.assertNotIn("24 A max.", value)
+
+    def test_inventory_digest_matches_canonical_file_records(self) -> None:
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        inventory = json.dumps(manifest["files"], ensure_ascii=False,
+                               sort_keys=True, separators=(",", ":")).encode()
+        self.assertEqual(manifest["files_inventory_sha256"], hashlib.sha256(inventory).hexdigest())
+
     def test_web_output_uses_semantic_tables_and_current_target_only(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(17, len(self.ir.pages))
