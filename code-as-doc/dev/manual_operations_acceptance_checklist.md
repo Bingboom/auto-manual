@@ -162,3 +162,13 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 - [ ] 不可变双语 release、Hello-Docs 发布 PR 与 RTD 实页验收；上述入库不代表已上线，OPS-01b/02b/03b 保持未勾选。
 
 登记陷阱：首次线上重同步拒绝缺少 format 的导出物；补齐现有 format=png 字段并逐条读回后重同步成功，未绕过门禁。阶段回执保存在操作机 `/tmp/manual-ops-live-pilot.V2B8Uy/registration-evidence/README.md` 与同目录逐记录 JSON；该本地路径不是公开线上发布证据。
+
+
+### OPS-01b3 Web queue locale boundary (2026-09-13)
+
+- [x] 单语 Web Publish 队列接入：[PR #1114](https://github.com/Bingboom/auto-manual/pull/1114) 已合入，merge `112d57aa4b74e78a7a0e744f78e9b432c169effb`，最终 head `9bc81fca4cb1a5b932c4e624a97f8e65caf5e868`。17/17 CI 成功，CLEAN，无 changes-requested/未解决讨论，包含当时最新 main `0a910a3e`，依据 MA-066 合入。
+- [x] 真实 eu-en/en、eu-fr/fr 配置解析及同型号/市场/版本/ref 的两个 singleton 分组测试通过；单语 Web 必须明确 Lang，并启用语言路径和记录级分组。拒绝 merged+Lang，保留历史 blank-Lang whole-book Web 及 Print 规则。
+- [x] 本地 4097 项 unittest 通过（22 skipped），51 项定向测试通过；Ruff、维护护栏、197 文档/1798 链接检查、US EN fixture build.py check、git diff --check 均通过；独立只读审查无 P1/P2。
+- [ ] 英法正式 Web 版本号及精确线上队列写入仍待操作者明确；未新增/武装队列记录，未触发正式发布。
+
+本片不修改 workflow、公开 CLI、schema 或线上数据。工作流提前 HTML_link 回填仍 deferred，镜像部署与 RTD 双语实页仍须独立验收；总计划保持 Draft。
