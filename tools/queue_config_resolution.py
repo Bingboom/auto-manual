@@ -102,7 +102,7 @@ def validate_family_config_request(
         )
 
     primary_lang = languages[0] if languages else ""
-    if normalized_action in {"publish", "web_publish"}:
+    if normalized_action == "publish":
         if normalized_lang:
             raise RuntimeError(
                 f"{normalized_action.replace('_', ' ').title()} queue rows must leave Lang blank"
@@ -111,6 +111,18 @@ def validate_family_config_request(
             raise RuntimeError(
                 f"{normalized_action.replace('_', ' ').title()} queue rows must use a whole-book "
                 "Build_family, not a single-language family"
+            )
+    if normalized_action == "web_publish":
+        if include_lang_in_output_path and not normalized_lang:
+            raise RuntimeError("Single-language Web Publish queue rows require explicit Lang")
+        if normalized_lang and (
+            len(languages) != 1
+            or queue_by_document_key(cfg)
+            or not include_lang_in_output_path
+        ):
+            raise RuntimeError(
+                "Web Publish rows with Lang must use a single-language Build_family "
+                "with language-scoped output paths and record-scoped grouping"
             )
     if normalized_action == "draft" and normalized_lang:
         if not queue_by_document_key(cfg) and (len(languages) != 1 or language_key(primary_lang) != language_key(normalized_lang)):
