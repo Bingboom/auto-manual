@@ -10,6 +10,7 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 手册中心按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
 
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
+封存源辅助文件的复制边界见[构建指南](code-as-doc/build_doc_guide.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
 冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
