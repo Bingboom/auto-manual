@@ -3,11 +3,13 @@ from __future__ import annotations
 
 import json
 import re
+from html import escape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, static_dir_of
+from tools.rtd_publication_catalog import group_publications, publication_identity
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
@@ -59,7 +61,7 @@ def product_image(source: Path, root: Path) -> str:
     return ""
 
 
-def catalog(root: Path, settings: dict) -> list[dict[str, str]]:
+def catalog(root: Path, settings: dict) -> list[dict]:
     """Project only explicit existing index links; never synthesize locales."""
     records = []
     index = root / "index.md"
@@ -84,8 +86,10 @@ def catalog(root: Path, settings: dict) -> list[dict[str, str]]:
             "edition": "EUUK" if region == "EU" else region,
             "url": source.relative_to(root.resolve()).with_suffix(".html").as_posix(),
             "image": product_image(source, root), "label": label,
+            **publication_identity(root, source, model=model, region=region),
         })
     order = list(settings["categories"])
+    records = group_publications(records, settings["language_labels"])
     return sorted(records, key=lambda p: (order.index(p["category"]), p["model"], p["region"]))
 
 
@@ -96,10 +100,38 @@ def configure(app, config) -> None:
 
 
 def page_context(app, pagename, templatename, context, doctree):
-    if pagename != app.config.root_doc:
-        return None
     settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
     products = catalog(Path(app.srcdir).resolve(), settings)
+    if pagename != app.config.root_doc:
+        for product in products:
+            active = next((p for p in product["publications"]
+                           if p["url"] == f"{pagename}.html" and p["language_scope"] == "single"), None)
+            if active is None:
+                continue
+            context["language"] = active["lang"]
+            direction = "rtl" if active["lang"] in settings.get("rtl_languages", []) else "ltr"
+            options = []
+            for item in product["language_options"]:
+                url = context["pathto"](item["url"][:-5]) if item["url"] else ""
+                if url == "#":
+                    url = Path(item["url"]).name
+                state = ' selected' if item["url"] == active["url"] else ''
+                if not url:
+                    state += ' disabled'
+                label = item["label"] + (" — Not yet published" if not url else "")
+                options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(label)}</option>')
+            context["body"] = (
+                '<nav class="manual-locale-nav" aria-label="Manual language">'
+                f'<span>{escape(product["model"])} · {escape(product["edition"])}</span> '
+                '<label for="manual-locale-select">Language </label>'
+                '<select id="manual-locale-select">' + ''.join(options) + '</select></nav>'
+                + f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">'
+                + context.get("body", "") + '</div>'
+            )
+            app.add_js_file("manual-locales.js")
+            app.add_css_file("manual-locales.css")
+            break
+        return None
     if not products:
         return None
     context["portal"] = settings

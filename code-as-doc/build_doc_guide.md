@@ -1,5 +1,8 @@
 # Windows Build Guide
 
+RTD [locale navigation](dev/rtd_locale_navigation.md) consumes only frozen publication
+metadata; it does not query live data during a Sphinx build.
+
 Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
 and candidate validation. Public build flags and workflow dispatch are unchanged.
 
