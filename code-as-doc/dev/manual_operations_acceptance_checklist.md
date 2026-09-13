@@ -56,6 +56,8 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 - [ ] OPS-05：可重复运行的覆盖/健康报告。范围：只读报告模块、测试、运行说明。
   输出型号/市场/语言/版本、断链/缺失资产/发布失败；未知写 no_data 而不是零。
   明确负责人、检查频率与故障处理方式；不默认部署常驻服务或访客跟踪。
+  - [x] OPS-05a 本地冻结产物检查：#1105 已全绿合入，部署/访客状态明确 no_data。
+  - [ ] OPS-05b 真实线上健康、覆盖分母、故障负责人及处理验证。
 - [ ] OPS-06：反馈闭环。范围：可配置入口、上下文、处理记录和运行说明。
   入口携带型号/市场/语言/版本/页面；渠道与负责人由操作者指定。
   一条受控真实反馈完成接收→定位源→审核修复→再发布→回告，并保留证据。
@@ -104,6 +106,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | 基线首页（既有） | #1102 / a55d666d | 前轮冻结产物 parity | build 34531930；[线上首页](https://ht-doc.readthedocs.io/) | 已交付，不代表运营闭环 |
 | OPS-00 | 本总计划 PR | discovery + 文档链接检查（见 PR） | 不改变线上 | discovery 完成 |
 | OPS-01a | [#1104](https://github.com/Bingboom/auto-manual/pull/1104) / `a2bda35a904b97ab36a603f508fd945335133860` | 12 定向测试；3987 全套 OK（24 skipped）；Ruff/护栏/文档链接/fixture check 通过；真实 prepared fixture 投影 17 页 | 内部 helper，无线上发布；CI 17/17，CLEAN，无评审/未解决线程 | 子切片完成，OPS-01b 未验收 |
+| OPS-05a | [#1105](https://github.com/Bingboom/auto-manual/pull/1105) / `b541689ac5b2a704c7b47041370101e979c3776f` | 最终树12定向测试/完整unittest退出0；全Ruff/护栏/文档链接通过；早于最终修改/中断的测试不作证据 | 本地只读报告；CI17/17，CLEAN，无评审/未解决线程；线上健康未验收 | 子切片完成，OPS-05b 未验收 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
