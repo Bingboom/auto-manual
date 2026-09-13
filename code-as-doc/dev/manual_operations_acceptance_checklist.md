@@ -41,6 +41,8 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 - [x] OPS-00：完成发布身份/回填顺序/门户基线 discovery，登记独立授权 MA-066。
 - [ ] OPS-01：复用现有单语投影，确认可用语言来自实际冻结内容，缺译失败或明确不可用；
   不把混合语全文标为单语。范围：语言 bundle/helper 与测试；不引入 Chrome/PDF 依赖。
+  - [x] OPS-01a 内部 helper 复用与安全回归：#1104 已合入；不等于发布集成完成。
+  - [ ] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
 - [ ] OPS-02：统一 locale-safe 发布身份、存储和发现。范围：publish assembly、
   release metadata、RTD source/alias 与测试。相同型号/市场的两语共存；身份/path
   不一致、重复 key 和 alias 冲突 fail closed；旧链接/二维码兼容；失败不损坏原快照。
@@ -101,6 +103,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | --- | --- | --- | --- | --- |
 | 基线首页（既有） | #1102 / a55d666d | 前轮冻结产物 parity | build 34531930；[线上首页](https://ht-doc.readthedocs.io/) | 已交付，不代表运营闭环 |
 | OPS-00 | 本总计划 PR | discovery + 文档链接检查（见 PR） | 不改变线上 | discovery 完成 |
+| OPS-01a | [#1104](https://github.com/Bingboom/auto-manual/pull/1104) / `a2bda35a904b97ab36a603f508fd945335133860` | 12 定向测试；3987 全套 OK（24 skipped）；Ruff/护栏/文档链接/fixture check 通过；真实 prepared fixture 投影 17 页 | 内部 helper，无线上发布；CI 17/17，CLEAN，无评审/未解决线程 | 子切片完成，OPS-01b 未验收 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
