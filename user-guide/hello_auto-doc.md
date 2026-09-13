@@ -1,6 +1,6 @@
 # Hello Auto Doc
 
-手册中心会将同型号/市场的多语发布分组为一张卡，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
+手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。

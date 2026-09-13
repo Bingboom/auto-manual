@@ -45,11 +45,21 @@ class PublicationCatalogTests(unittest.TestCase):
         available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
         self.assertEqual(available, ["en", "fr"])
         self.assertEqual(len(cards[0]["language_options"]), 12)
+        self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
 
     def test_legacy_scope_does_not_count_as_english_only(self):
         self.publication(scope="legacy_unspecified")
         card = catalog(self.root, self.settings)[0]
         self.assertEqual([o["code"] for o in card["language_options"] if o["url"]], ["current"])
+        self.assertEqual(card["language_options"][1]["unavailable_reason"], "Separate language page not verified")
+
+    def test_legacy_alongside_single_does_not_assert_language_absence(self):
+        self.publication(scope="legacy_unspecified")
+        self.publication("fr", default=False)
+        card = catalog(self.root, self.settings)[0]
+        self.assertEqual([o["code"] for o in card["language_options"] if o["url"]], ["current", "fr"])
+        self.assertTrue(all(o["unavailable_reason"] == "Separate language page not verified"
+                            for o in card["language_options"] if not o["url"]))
 
     def test_missing_metadata_for_locale_route_fails(self):
         meta = self.publication()

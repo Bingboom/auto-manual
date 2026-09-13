@@ -67,7 +67,12 @@ def group_publications(records: list[dict], language_labels: dict[str, str]) -> 
         options = []
         if current["language_scope"] != "single":
             options.append({"code": "current", "label": "Current publication", "url": current["url"]})
-        options.extend({"code": code, "label": label, "url": single.get(code)} for code, label in language_labels.items())
+        unavailable_reason = ("Separate language page not verified"
+                              if any(p["language_scope"] != "single" for p in publications)
+                              else "Not yet published")
+        options.extend({"code": code, "label": label, "url": single.get(code),
+                        "unavailable_reason": unavailable_reason}
+                       for code, label in language_labels.items())
         card = dict(current)
         card.update(publications=publications, language_options=options)
         result.append(card)

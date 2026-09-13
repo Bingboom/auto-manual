@@ -2,6 +2,8 @@
 
 RTD [locale navigation](dev/rtd_locale_navigation.md) consumes only frozen publication
 metadata; it does not query live data during a Sphinx build.
+Legacy metadata means separate-language identity is unverified, not that its
+language content is absent or unpublished; the current manual remains reachable.
 
 Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
 and candidate validation. Public build flags and workflow dispatch are unchanged.
