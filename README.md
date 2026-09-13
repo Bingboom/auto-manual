@@ -12,6 +12,7 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
+冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
 
 Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
 `check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。

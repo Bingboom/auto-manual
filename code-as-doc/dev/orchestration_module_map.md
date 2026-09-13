@@ -45,6 +45,10 @@ transactions and RTD redirects. See [contract](web_locale_publication_identity.m
 Read-only release artifact preflight lives in
 [`tools/manual_operations_health.py`](../../tools/manual_operations_health.py);
 it neither probes deployment nor collects visitor metrics.
+[`tools/manual_operations_online_health.py`](../../tools/manual_operations_online_health.py)
+reuses frozen portal discovery for bounded same-origin HTTPS HEAD checks.
+HTTP accessibility is separate from deployment identity and translation coverage;
+see [online check scope](manual_operations_online_health.md).
 
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
