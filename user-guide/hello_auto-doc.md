@@ -1,5 +1,8 @@
 # Hello Auto Doc
 
+Web 单语源投影现在有[内部复用 helper](../code-as-doc/dev/web_language_projection.md)；
+目前不改变操作入口、审稿源或正式发布流程，不表示计划中的语言已上线。
+
 Updated: 2026-09-05
 
 This file replaces `Template_maintenance_and_using_guide.md`.
