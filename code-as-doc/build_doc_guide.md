@@ -3,6 +3,9 @@
 Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
 and candidate validation. Public build flags and workflow dispatch are unchanged.
 
+Optional local release artifact preflight:
+[Manual operations health report](dev/manual_operations_health_report.md).
+
 Internal Web locale producer: [frozen language projection](dev/web_language_projection.md).
 This helper does not add a public build command or change the current publish queue.
 
