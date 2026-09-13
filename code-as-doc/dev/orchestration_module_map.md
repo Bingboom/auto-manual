@@ -34,6 +34,11 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+Internal frozen Web language projection lives in
+[`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
+explicit source language before rendering, not by slicing generated HTML.
+See [scope and integration boundary](web_language_projection.md).
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)

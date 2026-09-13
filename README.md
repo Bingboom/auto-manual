@@ -7,6 +7,8 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 
 ## 工作流路线图
 
+Web 单语源投影的内部接入边界见[说明](code-as-doc/dev/web_language_projection.md)；不代表已接通独立语言发布。
+
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)
 
 内容源 → 冻结输入 → 构建检查 → 评审回写 → 多格式输出 → 发布追踪。

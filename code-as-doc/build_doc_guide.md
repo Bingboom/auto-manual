@@ -1,5 +1,8 @@
 # Windows Build Guide
 
+Internal Web locale producer: [frozen language projection](dev/web_language_projection.md).
+This helper does not add a public build command or change the current publish queue.
+
 Updated: 2026-08-17
 
 This file is the maintainer-facing Windows and PowerShell build guide.
