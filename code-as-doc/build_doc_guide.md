@@ -37,6 +37,9 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
+Feedback is opt-in: configure fixed HTTPS `feedback_channels` in the portal
+settings. The page exposes only frozen publication context for local copying;
+it does not append context, tokens or user identity to channel URLs.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell

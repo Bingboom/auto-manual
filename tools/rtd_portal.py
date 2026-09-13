@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
+from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
@@ -102,6 +103,7 @@ def configure(app, config) -> None:
 def page_context(app, pagename, templatename, context, doctree):
     settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
     products = catalog(Path(app.srcdir).resolve(), settings)
+    feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     if pagename != app.config.root_doc:
         for product in products:
             active = next((p for p in product["publications"]
@@ -120,6 +122,11 @@ def page_context(app, pagename, templatename, context, doctree):
                     state += ' disabled'
                 label = item["label"] + (f' — {item["unavailable_reason"]}' if not url else "")
                 options.append(f'<option value="{escape(url, quote=True)}"{state}>{escape(label)}</option>')
+            feedback_context = context_text(
+                model=active["model"], region=active["region"],
+                lang=active["lang"], version=active.get("version") or "",
+                page=active["url"],
+            )
             context["body"] = (
                 '<nav class="manual-locale-nav" aria-label="Manual language">'
                 f'<span>{escape(product["model"])} · {escape(product["edition"])}</span> '
@@ -127,8 +134,11 @@ def page_context(app, pagename, templatename, context, doctree):
                 '<select id="manual-locale-select">' + ''.join(options) + '</select></nav>'
                 + f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">'
                 + context.get("body", "") + '</div>'
+                + manual_feedback_markup(channels=feedback_channels, context=feedback_context)
             )
             app.add_js_file("manual-locales.js")
+            if feedback_channels and feedback_context:
+                app.add_js_file("manual-feedback.js")
             app.add_css_file("manual-locales.css")
             break
         return None

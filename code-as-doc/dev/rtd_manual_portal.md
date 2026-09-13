@@ -51,6 +51,13 @@ content, QR aliases and nested manual URLs are unchanged.
   This is needed for old frozen configs as well as future publications.
 - The template renders real links before JavaScript; scripts only enhance
   filtering and the language dialog. Search/aliases/manual pages are unchanged.
+- Optional feedback is configured by `feedback_channels` in
+  `tools/rtd_portal_assets/settings.json` and defaults to `[]`. Channels are
+  fixed HTTPS URLs without query strings, fragments or credentials. When
+  enabled, a single-language page shows frozen model/region/language/version
+  and relative page context for the user to copy; it never sends context or
+  adds user identity to a link. The visible text block remains the no-JS
+  fallback.
 
 Current implementation is the entrance slice only. The language dialog keeps
 the existing publication available and does not enable invented locale URLs.
