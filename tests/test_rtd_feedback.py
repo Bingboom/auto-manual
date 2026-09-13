@@ -9,6 +9,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
+from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
 class RtdFeedbackTests(unittest.TestCase):
@@ -93,10 +94,27 @@ class RtdFeedbackTests(unittest.TestCase):
         metadata = root / "sources/web/JE-TEST/EU/fr/md"
         metadata.mkdir(parents=True)
         (metadata / "manual.md").write_bytes((single / "manual.md").read_bytes())
+        verification_html = root / "verification-html"
+        verification_html.mkdir()
+        (verification_html / "index.html").write_text("<html></html>\n", encoding="utf-8")
+        receipt, receipt_sha256 = seal_language_evidence_fixture(
+            markdown_dir=metadata,
+            markdown_name="manual.md",
+            html_dir=verification_html,
+            evidence_dir=metadata / "evidence",
+            model="JE-TEST",
+            region="EU",
+            language="fr",
+            version="1.2",
+            git_ref="review/JE-TEST-EU",
+        )
         (metadata / "publish_meta.json").write_text(json.dumps({
             "schema_version": "auto-manual-web-publish-target/v2", "model": "JE-TEST",
             "region": "EU", "lang": "fr", "version": "1.2", "route": "JE-TEST/EU/fr/md",
-            "manual": "manual.md", "legacy_default": True, "language_scope": "single",
+            "git_ref": "review/JE-TEST-EU", "manual": "manual.md", "legacy_default": True,
+            "language_scope": "single",
+            "language_projection_evidence_path": "evidence/" + receipt.name,
+            "language_projection_evidence_sha256": receipt_sha256,
         }), encoding="utf-8")
         assets = root / "portal-assets"
         shutil.copytree(Path(__file__).parents[1] / "tools/rtd_portal_assets", assets)

@@ -135,6 +135,12 @@ def _copy_markdown_source(target: WebPublishTarget, destination: Path) -> None:
             raise RuntimeError(f"Web Publish source is missing {filename}: {source_dir}")
         shutil.copy2(source, destination / filename)
     shutil.copy2(target.markdown_path, destination / target.markdown_path.name)
+    if target.language_projection_evidence_path is not None:
+        evidence_destination = destination / PathSegments.EVIDENCE
+        shutil.copytree(
+            target.language_projection_evidence_path.parent,
+            evidence_destination,
+        )
     index_text = (destination / "index.md").read_text(encoding="utf-8")
     if target.markdown_path.stem not in index_text:
         raise RuntimeError(

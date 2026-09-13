@@ -16,7 +16,10 @@ For an explicit read-only network pass over the frozen catalog, see
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete
 configured-language source bundle and gives `check`, Markdown, and HTML one canonical
-single-language RST input. Existing commands are reused; the publish queue is unchanged.
+single-language RST input. Existing commands are reused. Explicit-language Web
+queue builds now [seal and verify release evidence](dev/web_language_release_evidence.md)
+after `check -> md -> html`; workflow dispatch and online-table behavior are unchanged.
+Only a new evidence-bound version can claim `single`; do not retrofit sealed releases.
 
 Updated: 2026-08-17
 

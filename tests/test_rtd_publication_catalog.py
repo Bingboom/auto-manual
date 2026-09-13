@@ -8,6 +8,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 from tools.rtd_portal import ASSETS, catalog
+from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
 class PublicationCatalogTests(unittest.TestCase):
@@ -31,9 +32,30 @@ class PublicationCatalogTests(unittest.TestCase):
         metadata = self.base / "sources/web" / route / "publish_meta.json"
         metadata.parent.mkdir(parents=True)
         (metadata.parent / manual).write_bytes(page.read_bytes())
-        metadata.write_text(json.dumps({"schema_version": "auto-manual-web-publish-target/v2", "model": model,
-                                       "region": "EU", "lang": language, "route": route, "manual": manual,
-                                       "version": "1.0", "legacy_default": default, "language_scope": scope}))
+        payload = {"schema_version": "auto-manual-web-publish-target/v2", "model": model,
+                   "region": "EU", "lang": language, "route": route, "manual": manual,
+                   "version": "1.0", "git_ref": f"review/{model}-EU", "legacy_default": default,
+                   "language_scope": scope}
+        if scope == "single":
+            html = self.base / "verification-html" / model / language
+            html.mkdir(parents=True)
+            (html / "index.html").write_text("<html></html>\n", encoding="utf-8")
+            receipt, receipt_sha256 = seal_language_evidence_fixture(
+                markdown_dir=metadata.parent,
+                markdown_name=manual,
+                html_dir=html,
+                evidence_dir=metadata.parent / "evidence",
+                model=model,
+                region="EU",
+                language=language,
+                version="1.0",
+                git_ref=f"review/{model}-EU",
+            )
+            payload.update(
+                language_projection_evidence_path="evidence/" + receipt.name,
+                language_projection_evidence_sha256=receipt_sha256,
+            )
+        metadata.write_text(json.dumps(payload))
         return metadata
 
     def test_two_languages_one_product_and_only_published_options(self):
@@ -75,9 +97,12 @@ class PublicationCatalogTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "identity"):
             catalog(self.root, self.settings)
 
-    def test_unknown_language_fails_without_guessing_url(self):
-        self.publication("unknown")
-        with self.assertRaisesRegex(ValueError, "Unknown portal"):
+    def test_unknown_single_language_fails_evidence_before_guessing_url(self):
+        metadata = self.publication()
+        payload = json.loads(metadata.read_text(encoding="utf-8"))
+        payload["lang"] = "unknown"
+        metadata.write_text(json.dumps(payload), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "identity"):
             catalog(self.root, self.settings)
 
     def test_multiple_defaults_fail(self):

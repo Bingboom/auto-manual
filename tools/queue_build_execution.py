@@ -23,6 +23,11 @@ from tools.release_reproducibility import (
     git_commit_epoch,
 )
 from tools.utils.path_utils import PathSegments, review_dir_of
+from tools.web_language_release_evidence import (
+    RECEIPT_FILENAME,
+    ProjectionCapture,
+    capture_projection,
+)
 
 
 @dataclass(frozen=True)
@@ -33,6 +38,8 @@ class BuiltDocumentOutputs:
     pdf_output_path: Path | None = None
     html_output_dir: Path | None = None
     latex_output_dir: Path | None = None
+    language_projection_evidence_path: Path | None = None
+    target_lang: str | None = None
 
 
 def build_py_target_command(
@@ -325,6 +332,20 @@ def build_document_for_task(
             web_build_env = {
                 SOURCE_DATE_EPOCH_ENV: str(git_commit_epoch(source_revision_workspace)),
             }
+            projection_captures: list[ProjectionCapture] = []
+            projection_manifest_path: Path | None = None
+            if (lang or "").strip():
+                prospective_md_path = resolve_md_output_path_for_target(
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    lang=lang,
+                )
+                projection_manifest_path = (
+                    prospective_md_path.parent.parent
+                    / PathSegments.RST
+                    / "bundle_manifest.json"
+                )
             for action, no_clean in (("check", False), ("md", True), ("html", True)):
                 run_command(
                     build_py_target_command(
@@ -342,6 +363,16 @@ def build_document_for_task(
                     cwd=effective_repo_root,
                     env=web_build_env,
                 )
+                if projection_manifest_path is not None:
+                    projection_captures.append(
+                        capture_projection(
+                            projection_manifest_path,
+                            action=action,
+                            model=model,
+                            region=region,
+                            language=str(lang),
+                        )
+                    )
         else:
             run_command(
                 build_py_target_command(
@@ -394,10 +425,24 @@ def build_document_for_task(
                 model=model,
                 region=region,
                 version=version,
+                projection_captures=tuple(projection_captures),
+                git_ref=git_ref,
+                target_lang=(projection_captures[-1].language if projection_captures else None),
             )
+            evidence_path = None
+            target_lang = None
+            if projection_captures:
+                evidence_path = (
+                    staged_md_output_path.parent.parent
+                    / PathSegments.EVIDENCE
+                    / RECEIPT_FILENAME
+                )
+                target_lang = projection_captures[-1].language
             return BuiltDocumentOutputs(
                 md_output_path=staged_md_output_path,
                 html_output_dir=staged_html_output_dir,
+                language_projection_evidence_path=evidence_path,
+                target_lang=target_lang,
             )
 
         word_output_path = resolve_word_output_path_for_target(

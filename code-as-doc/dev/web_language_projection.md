@@ -40,9 +40,17 @@ then reduced to the retained RST closure so HTML asset copying cannot re-enter a
 foreign or removed source page. This is not automatic translation or semantic
 language detection of untagged text.
 
-This slice does **not** wire the publish queue, change public `build.py` flags,
-publish to RTD or demonstrate complete OPS-01 acceptance. Locale-safe release
-identity and real independent-language publication acceptance remain separate.
+OPS-01b2 adds [release evidence binding](web_language_release_evidence.md): an
+explicit-language Web queue build captures this canonical manifest and its
+include closure after each successful `check`, `md`, and `html` action. All
+three captures must agree before the new immutable version is staged. This
+does not change public `build.py` flags or demonstrate complete OPS-01 acceptance;
+real independent-language publication and content approval remain separate.
+
+Review pre-sync consumes the complete frozen runtime source when canonical RST
+is a projection, validating its index and page hashes against the projection
+manifest. It does not look for merged review page names in the single-language
+derivative, skip parameter sync, or copy the projected manual back into review.
 
 Targeted validation:
 

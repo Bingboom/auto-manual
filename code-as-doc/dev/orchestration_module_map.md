@@ -58,6 +58,12 @@ explicit source language before rendering, not by slicing generated HTML.
 scope, then the projection helper replaces canonical RST for check/Markdown/HTML.
 See [scope and integration boundary](web_language_projection.md).
 
+[`tools/web_language_release_evidence.py`](../../tools/web_language_release_evidence.py)
+owns capture, sealing and shared verification of language release evidence.
+Queue execution records the three successful actions; staging seals the
+immutable candidate, and metadata/assembly/stored replay verify at their own
+boundaries. See [receipt and acceptance limits](web_language_release_evidence.md).
+
 Optional manual feedback affordances are kept in
 [`tools/rtd_feedback.py`](../../tools/rtd_feedback.py). It validates fixed
 HTTPS channel configuration and renders only local copyable context from the
