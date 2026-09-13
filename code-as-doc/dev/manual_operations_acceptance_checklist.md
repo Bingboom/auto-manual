@@ -1,13 +1,17 @@
 # Manual Operations Acceptance Checklist
 
-Status: batch Web rollout first; structured operations deferred / umbrella PR stays **Draft**. Updated: 2026-09-13.
+Status: all OPS-00–07 items remain active; Git-only publication without online body extraction; umbrella PR stays **Draft** until verified closure. Updated: 2026-09-13.
 
 Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 
-## 0. 最新执行顺序：先批量网页化，后结构化运营
+## 0. 当前目标：完成全部运营 checklist，上线不以前置线上正文抽取为门槛
 
-操作者最新决策（2026-09-13）：「是的 以清单内说明书的批量网页化为主线」。
-本节覆盖旧计划的执行优先级，不抹去已完成工程证据，也不将 deferred 改成 completed。
+操作者接棒澄清（2026-09-13）：「我要做的是完成1103的各项checklist item
+只是在上线的过程中 不抽取结构化数据到线上」。
+总目标仍为 OPS-00～07 全部运营出口的完成和本 PR 验收合入；不得将批量网页
+发布完成当作总目标完成。后置的是逐本正文结构化迁移，不是版本、健康、反馈运营。
+用户另明确不重复核对既有清单/PDF，由其后续低成本目检；人工内容/视觉验收
+单列 user-deferred，不虚假勾选为通过，也不作为本次技术上线的前置门。
 
 - **近期主线**：只处理操作者指定的[钉钉清单](https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCDojvAQdJ3pmz5aA?iframeQuery=entrance%3Ddata%26sheetId%3D97v7518%26source%3Dnotable_portal%26viewId%3DxWo5UbG&sideCollapsed=true)。
   以操作者提供/确认的 PDF 发布版为准，先完成可复现的 Web 源、含字整图、
@@ -15,7 +19,7 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 - **发布路径**：复用既有 Git-only 路径（冻结来源/资产/版本 →
   Hello-Docs 的 docs/publish-only 发布 PR → main → RTD）。
   不要求先建云文档、不要求先抽齐或录齐线上结构化数据、
-  不要求先创建/武装 Web Publish 队列；不是绕过 PR、内容和资产验收。
+  不要求先创建/武装 Web Publish 队列；保留 PR、构建、资产完整性和真实部署门；人工内容/视觉验收由用户后续进行。
 - **后续治理**：逐本抽取结构化数据，映射共享骨架与产品绑定，
   再接入云文档审稿 + Publish，以及 Web Publish 的长期维护流程。
   骨架执行仍归 Milestone M，不复制第二套骨架任务。
@@ -25,17 +29,17 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 - EU/UK 共用手册，入口暂以 EU 默认；只启用真实已发布语言，
   12 语回稿陆续接入，不等待齐套才上线，不把混语标成单语。
 
-### 近期 checklist（不冒充长期运营验收）
+### 批量网页化 checklist（总目标内的发布工作，不能替代全部 OPS 出口）
 
-- [x] 操作者确认“清单批量网页化优先，结构化治理和正式队列后置”。
+- [x] 操作者确认清单 Web 上线不以前置线上正文抽取为门槛；全部 OPS 项继续推进。
 - [ ] WEB-B01：重新对账清单与当前 RTD 冻结目录；逐条标记已上线/待修正/
   待构建/缺输入，登记版本、实际语言和 URL。历史“20 条/21 出版物”不能替代本次对账。
-- [ ] WEB-B02：对清单内剩余或需更新项核对 PDF 发布版；已有线上成果复用，
+- [ ] WEB-B02：复用清单内已确认发布输入及既有核对证据；人工 PDF 内容复核后置。已有线上成果复用，
   不重复构建无变化手册。缺文件/适用市场/翻译时明确列缺口，不推断新事实。
 - [ ] WEB-B03：按批复用既有 Web 骨架与样式；Overview/操作/充电使用语言匹配的
   含字整图（含 On/Off/引线），表格保持原生 HTML，质保数字组件统一复用。
   完整抽取线上结构化数据及 #1101 合入均不是所有手册的前置门。
-- [ ] WEB-B04：每批验证内容/资产/链接及桌面、移动阅读；实现或内容变更独立 PR，
+- [ ] WEB-B04：每批验证构建/资产完整性/链接；内容及桌面、移动目检由用户后续验收。实现或内容变更独立 PR，
   按有效授权和全绿门禁合入，只通过限定的 Git-only 发布路径上线。
 - [ ] WEB-B05：读回 RTD 实页并更新清单覆盖证据；保留已有链接、其他型号和语言，
   记录 PDF 版本、发布 commit、URL 及剩余缺口，不以本地预览代替上线。
@@ -71,18 +75,18 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   输入参数及所有数值未改。4,109 项测试通过（22 skipped），目标 check、
   Web 构建、严格 Sphinx 和 54 个本地图片引用验证通过；17/17 CI 成功、
   无拒绝评审/未解决讨论，按 MA-066 合入。此勾选不代表 RTD 上线。
-- [ ] WEB-B03-C3000 工程纠错：JE-3000C 英文 PV 的 Max 位置已按发布稿
-  在独立本地分支修正，数值未改；目标 check、Web 构建与严格 Sphinx 已通过，
-  全量回归仍在运行，尚未提交 PR/合入/发布。
+- [x] WEB-B03-C3000 工程纠错：#1123 已合入 `af3d6d12c19a2b5e2de8febb65cdb53ec791501b`；17/17 CI 通过。真实业务发布仍待完成。
 
-### 暂缓而非取消
+### 独立边界，不再冻结整个运营目标
 
-OPS-04 工作流接线/线上链接回填、真实队列创建或武装、反馈闭环与后台运营
-不是 WEB-B01～06 的前置条件。本轮刚开始的 verified-web-release 隔离修改已暂停，
-未创建实现 PR、未合入、未创建或触发新发布记录。不得因旧“继续”指令自动恢复；
-只有操作者重新启动该治理阶段才继续，并保留各独立门禁。
-反馈渠道仍待确认，不启用新的收集服务。
+OPS-04 版本/回滚/撤回/发布确认、OPS-05 健康报告、OPS-06 反馈闭环及 OPS-07
+试点交接保持 active。优先用 Git-only 发布和只读 RTD 回执完成；不为此抽取正文
+到线上表，也不把旧队列创建/武装当必要步骤。
 
+此前未批准的 workflow 改动仍须遵守独立门禁；暂停工作树仅复用可独立验证的
+代码，不整包恢复。正式 HTML_link 是发布元数据，不等于正文结构化入库；若需
+实际线上写入，须先准备精确记录/字段/值并获得该动作授权、写后读回。
+反馈渠道已由用户确定为 GitHub Issues，负责人夏冰；不引入外部收集服务。
 
 唯一合并条件：**实现 manual 运营的打通**。建好首页、代码合入、CI 绿或生成
 本地样例均不等于闭环验收。每完成一个独立切片，开实现 PR；合入并完成该切片
@@ -113,38 +117,38 @@ OPS-04 工作流接线/线上链接回填、真实队列创建或武装、反馈
 [#1101](https://github.com/Bingboom/auto-manual/pull/1101) 是依赖/独立工作，
 不在此复制其执行清单或擅自合入。
 
-## 2. 后续运营实现切片与验收（未完成项 deferred，不阻塞近期批量网页化）
+## 2. 当前运营实现切片与验收（所有未完成项继续推进）
 
 - [x] OPS-00：完成发布身份/回填顺序/门户基线 discovery，登记独立授权 MA-066。
-- [ ] OPS-01：复用现有单语投影，确认可用语言来自实际冻结内容，缺译失败或明确不可用；
+- [x] OPS-01：复用现有单语投影，确认可用语言来自实际冻结内容，缺译失败或明确不可用；
   不把混合语全文标为单语。范围：语言 bundle/helper 与测试；不引入 Chrome/PDF 依赖。
   - [x] OPS-01a 内部 helper 复用与安全回归：#1104 已合入；不等于发布集成完成。
-  - [ ] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
+  - [x] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
     - [x] OPS-01b1 Web 显式语言的 canonical RST 接线：#1111 已17/17全绿合入；check/md/html 共用投影，不改变队列。
-    - [ ] OPS-01b2 封存投影证据并校验后，才允许发布元数据晋升 single；完成真实独立 URL 验收。
+    - [x] OPS-01b2 封存投影证据并校验后，才允许发布元数据晋升 single；完成真实独立 URL 验收。
       - [x] OPS-01b2a 语言证据绑定不可变 Markdown/HTML release：#1113 已合入 `0a910a3e`；真实双语线上 URL 仍待验收。
       - [x] OPS-01b2a 工程凭据绑定：#1113 已17/17全绿合入；check/md/html投影凭据与不可变版本、元数据、stored重放绑定，修复review pre-sync完整源解析。
-      - [ ] OPS-01b2b 使用正式批准的源/含字图完成真实独立语言URL验收；本地fixture通过不算上线。
+      - [x] OPS-01b2b 使用正式批准的源/含字图完成真实独立语言URL验收；本地fixture通过不算上线。
       实施边界：check/md/html 三步比对同一 canonical manifest 摘要；封存完整 RST
       引用闭包与 Markdown/HTML 摘要；metadata writer 和 assembly 各自验证后才接受
       single，缺失/漂移/身份或路径不符须在晋升前失败。旧无证据输入保持
       legacy_unspecified；不原地补写已封存版本，不改 workflow、不写线上表。
-- [ ] OPS-02：统一 locale-safe 发布身份、存储和发现。范围：publish assembly、
+- [x] OPS-02：统一 locale-safe 发布身份、存储和发现。范围：publish assembly、
   release metadata、RTD source/alias 与测试。相同型号/市场的两语共存；身份/path
   不一致、重复 key 和 alias 冲突 fail closed；旧链接/二维码兼容；失败不损坏原快照。
   - [x] OPS-02a locale 身份/原子装配/旧路由兼容核心：#1106 已全绿合入。
-  - [ ] OPS-02b 真实出版物迁移及线上旧链接/双语并存验收；历史 en 槽位不算英语单语。
-- [ ] OPS-03：从发布元数据重建目录并驱动门户。范围：catalog、portal、静态资源与测试。
+  - [x] OPS-02b 真实出版物迁移及线上旧链接/双语并存验收；历史 en 槽位不算英语单语。
+- [x] OPS-03：从发布元数据重建目录并驱动门户。范围：catalog、portal、静态资源与测试。
   US/EU/UK，默认 EU，EU/UK 共用出版物；12 语下拉只启用实际已发布语言。
   切换保留型号与市场版本，从目标语言开头进入，不追同章节。
   - [x] OPS-03a 冻结目录分组及语言入口：#1107 已全绿合入，复用 OPS-02 身份读取器。
-  - [ ] OPS-03b 真实语言出版物部署及 RTD 桌面/移动验收；本地样例不替代上线。
+  - [x] OPS-03b 真实语言出版物部署及 RTD 桌面/移动验收；本地样例不替代上线。
 - [ ] OPS-04：版本发布/回滚/撤回与确认回执。范围：release staging、publish
   receipt、链接回填与测试。同版本不同内容拒绝覆盖；候选不冒充已发布；
   明确 current 指针、旧版策略与撤回记录，不以源缺席当删除。
   工作流改动待专项批准；真实 Base 写回待指定记录批准并同记录读回。
   - [x] OPS-04a 本地 Web 版本封存：#1108 已全绿合入；同版本不同内容拒绝覆盖，metadata成功后才记队列成功。
-  - [ ] OPS-04b 真实版本更新/回滚/撤回与 RTD 确认回执；工作流和正式回填按操作者要求暂缓。
+  - [ ] OPS-04b 真实版本更新/回滚/撤回与 RTD 确认回执；优先走 Git-only；workflow/精确线上回填各自保持独立门禁，不冻结版本/回执实现。
 - [ ] OPS-05：可重复运行的覆盖/健康报告。范围：只读报告模块、测试、运行说明。
   输出型号/市场/语言/版本、断链/缺失资产/发布失败；未知写 no_data 而不是零。
   明确负责人、检查频率与故障处理方式；不默认部署常驻服务或访客跟踪。
@@ -160,13 +164,13 @@ OPS-04 工作流接线/线上链接回填、真实队列创建或武装、反馈
   完成补一语、版本更新、回滚演练、反馈闭环和线上健康报告；记录耗时/人工步骤。
   不为验收编造翻译或修改安全参数。文档同步、成本记录齐全后才可关闭总计划。
 
-## 3. 长期运营最终硬出口（全部满足才把总 PR 转 Ready）
+## 3. 当前目标最终硬出口（全部技术/运营出口满足才把总 PR 转 Ready）
 
 - [ ] 已批准代表手册能够复用骨架接入，且补语言不改型号专属 Python/CSS。
 - [ ] 至少同一型号/市场两语真实独立 URL 可访问；正文、含字图语言正确；
   EU/UK 不重复发布，不覆盖同型号另一语言。
 - [ ] 目录可从冻结发布快照与元数据重建；语言覆盖率有真实分母，未回稿不假报完成。
-- [ ] 旧 URL/QR、产品搜索和语言下拉经过真实 RTD 桌面/移动验收。
+- [ ] 旧 URL/QR、产品搜索和语言下拉具备真实 RTD 自动验证；既有 EN/FR 桌面/移动证据保留，后续逐本人工目检由用户承担。
 - [ ] 版本更新、回滚与撤回有可复现证据；不误伤别的目标；线上内容与确认回执一致。
 - [ ] 正式 HTML_link 仅在对应提交上线并验证后回填；获批记录同记录读回成功。
 - [ ] 反馈渠道/负责人已确认，至少一条受控反馈修复并回告；缺渠道不勾选。
@@ -346,7 +350,7 @@ RTD baseline is build `34536040`, successful for pre-release business commit `0e
 - [x] This provides real publication evidence for OPS-01b2b/OPS-02b/OPS-03b on the JE-1000F EU pilot and migration, but is not a claim of content approval for all previous manuals or all planned languages.
 - [ ] Remaining WEB-B01/B02/B03/B06: audit current released-PDF content/version of the other scoped manuals, record missing/returned translations, complete available-input corrections. The scoped model publication-entry coverage is now 20/20 against the previously verified view, not 20/20 full content acceptance.
 
-The umbrella remains Draft. OPS-04 workflow/writeback, full operations ownership and feedback exits are still deferred; no live Base writes or queue dispatch occurred. Do not merge #1103 solely because this batch reached RTD.
+The umbrella remains Draft. OPS-04 workflow/writeback retain independent gates; operations ownership and feedback exits remain active; no live Base writes or queue dispatch occurred. Do not merge #1103 solely because this batch reached RTD.
 
 
 ### WEB-B02 JE-500A released-PDF reconciliation — 2026-09-13
@@ -395,3 +399,19 @@ is claimed. WEB-B02/B03/B06 and the umbrella remain incomplete.
 The earlier source-symbol defect is corrected in this candidate only. Do not
 mark the deployed manual corrected or parent WEB/OPS items complete yet.
 No workflow edit, live-table write, queue action or publication was performed.
+
+
+## 8. 接棒状态修正（2026-09-13）
+
+- #1103 此前 closed / unmerged，现已按用户要求恢复 Open / Draft；未合入。
+- OPS-01/02/03 的 JE-1000F EU EN/FR 真实试点与迁移已由上文 WEB-B05 的
+  RTD build `34536139`、commit `a87ff6ec`、双语/旧链接和桌面移动证据满足，
+  本次同步勾选父项；不扩大成全部 20 型号或 12 语内容验收。
+- 原 #1118、#1119 已本地集成最新 main；#1124 是 JE-2000E 已识别规格纠错，
+  HEAD `42fa6e3504900f0dfe109ce1e7991ea53508a605`，4112 tests / 22 skipped、
+  目标构建及严格 Sphinx 通过。它们仍须最终 PR/发布门禁，未冒充线上完成。
+- OPS-04：独立部署回执、Git-only 更新/回滚/撤回证据继续实施。
+- OPS-05/06：GitHub Issues 渠道、夏冰负责；发布后健康检查与受控反馈闭环
+  继续实施，不要求把正文复制到线上表。实际通知/写入按精确动作授权。
+- OPS-07 和第 3 节其余硬出口保持未勾选，直到证据齐全；本轮发布不自动
+  关闭总目标。

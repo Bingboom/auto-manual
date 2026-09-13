@@ -935,3 +935,15 @@ Review this file again when:
 ## 11. One-Sentence Summary
 
 This file should stay a living repo roadmap: small, current, execution-focused, and easy to revise after each optimization wave.
+
+
+### Manual operations goal clarification — 2026-09-13
+
+The operator reaffirmed completion of all items in the
+[manual operations checklist](dev/manual_operations_acceptance_checklist.md)
+as the current goal. Git-only Web publication does not require extracting
+manual body data into online tables; it does not defer version/rollback,
+publication receipts, health reporting or the feedback loop. Repeated manual
+content/visual review is operator-deferred. #1103 remains Draft until its
+technical and operational acceptance evidence is complete. GitHub Issues is
+the confirmed feedback channel and 夏冰 is responsible for acceptance.
