@@ -219,3 +219,37 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 本片不修改 workflow、公开 CLI、schema 或线上数据。工作流提前 HTML_link 回填仍 deferred，镜像部署与 RTD 双语实页仍须独立验收；总计划保持 Draft。
 
 版本依据回读（2026-09-13）：业务资产来源记录 `recvv6pNQ9801w` 的 `document_revision=V2.0`，`source_file` 非空且名称对应上述 PDF；本地 PDF SHA256 与登记值相同：`0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe`。后续版本以操作者提供或确认的 PDF 发布版为准，不从草稿号、PR 号或构建次数推断。
+
+## 7. WEB-B01 清单与冻结目录对账（2026-09-13）
+
+- [x] WEB-B01a：MCP 读取指定视图配置与全表 40 条记录，无分页剩余；严格应用原视图两项筛选，得到 20 个型号。未写钉钉/飞书。
+- [x] WEB-B01a：对照 Hello-Docs/main `62175c7763e2cc22cc3ea43eaea5bafedf9b5915` 的 publish manifest（blob `4ad483943c916cea018973c4c89a8acb1bd2684f`），21 项出版物中 19 项匹配清单 EU 型号，JE-1000F/EU 缺失。另有 JE-1000F/US、JS-100F/EU，保持不动、不计入清单分母。
+- [x] WEB-B01a：19 个既有 EU URL 均经 curl HTTPS GET 成功，返回正文包含对应型号；初始 urllib 请求全部 403，curl 交叉检查成功，未误报为 19 本线上故障。
+- [ ] WEB-B01b：PDF 原文/版本与现有网页逐本复核、正文与含字图语言复核、资源和移动视觉验收仍待完成；下表不是内容已验收声明，WEB-B01 总项保持未勾选。
+
+所有既有 metadata 为历史 v1，lang=en 不证明正文单语，统一记 language_scope=legacy_unspecified。技术版本 git-*/candidate 不伪装成纸质版本；清单关联 PDF 链接为空不等于 PDF 不存在，后续查看已提交源 manifest 与原附件。
+
+| 型号（EU） | 冻结版本 | 当前状态 | URL |
+| --- | --- | --- | --- |
+| JE-100C | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-100C/EU/md/manual_je100c_eu_en.html) |
+| JS-40C | 2026-08-30 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-40C/EU/md/manual_js40c_eu_en.html) |
+| JS-100I | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-100I/EU/md/manual_js100i_eu_en.html) |
+| JE-1000F | — | 缺 EU 发布；优先补齐 | — |
+| JBP-2000B | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JBP-2000B/EU/md/manual_jbp2000b_eu.html) |
+| JE-1000H | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-1000H/EU/md/manual_je1000h_eu_en.html) |
+| JS-200E | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-200E/EU/md/manual_js200e_eu_en.html) |
+| JE-3000C | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-3000C/EU/md/manual_je3000c_eu_en.html) |
+| JA-AD600A | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-AD600A/EU/md/manual_jaad600a_eu_en.html) |
+| JA-CC30A | git-0eb2b7ba | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-CC30A/EU/md/manual_jacc30a_eu_en.html) |
+| JAAC-WHE-100-EUA1 | candidate | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JAAC-WHE-100-EUA1/EU/md/manual_jaacwhe100eua1_eu_en.html) |
+| JE-3600A | 2026-05-25 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-3600A/EU/md/manual_je3600a_eu_en.html) |
+| JE-300D | candidate-2025-10-24 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-300D/EU/md/manual_je300d_eu_en.html) |
+| JE-2000E | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-2000E/EU/md/manual_je2000e_eu_en.html) |
+| JBP-3600A | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JBP-3600A/EU/md/manual_jbp3600a_eu.html) |
+| JA-CA05B | git-20260909-f5359ac0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-CA05B/EU/md/manual_jaca05b_eu_en.html) |
+| JE-2000F | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-2000F/EU/md/manual_je2000f_eu_en.html) |
+| JA-CA3SA | git-20260909-88f1fa0d | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-CA3SA/EU/md/manual_jaca3sa_eu_en.html) |
+| JE-500A | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-500A/EU/md/manual_je500a_eu_en.html) |
+| JA-AD01A | git-20260906-0252cb5d | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-AD01A/EU/md/manual_jaad01a_eu_en.html) |
+
+后续顺序：先将已批准 JE-1000F/EU V2.0 PDF 的英法成果封存为可复现 Git-only 输入并发布，不创建队列；随后复核清单内既有成果和未回稿缺口。JS-100I 的葡/荷/波/乌状态本次读到“已回稿”，只是待取件/审稿线索，不标已审核或已发布。JBP-3600A 的关联纸质文档标题写 JBP-3000A，型号字段仍为 JBP-3600A；先核 PDF 身份，不按标题自动换绑。
