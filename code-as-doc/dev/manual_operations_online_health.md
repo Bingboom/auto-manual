@@ -37,10 +37,20 @@ inventory reports `no_data`, not zero failures. A failed HTTP check exits 1.
 HTTP success does **not** prove manual body correctness, asset availability,
 absence of a soft-404, the deployed commit/version, or complete translations.
 The report names these limits and leaves deployment identity, full translation
-coverage, ownership and visitor metrics `no_data`. Combine it with
+coverage, ownership and visitor metrics `no_data`: the probe does not read an
+operations assignment. The operator has assigned Xia Bing (`Bingboom`) to run
+this check after every publication, together with local artifact checks and
+the actual deployment revision/receipt verification. Record the responsible
+person and outcome in the release record or existing GitHub Issue; do not
+rewrite a probe result to imply it measured ownership. Response and resolution
+SLAs remain to be specified. Combine it with
 [local artifact checks](manual_operations_health_report.md), not a second copy
 of body content. No new service, scheduled job or online-table write is created.
+The required cadence is publication-triggered manual checking. Failures are
+followed by Xia Bing through the existing
+[GitHub Issues](https://github.com/Bingboom/auto-manual/issues) channel and the
+normal repair/republication gates.
 
 Live read-only evidence (2026-09-13 08:35 UTC): the existing 21-publication frozen
 index produced 21 successful HEAD checks against RTD, zero HTTP failures. This
-does not close OPS-05 ownership/cadence or OPS-07 end-to-end acceptance.
+does not close OPS-05 failure handling or OPS-07 end-to-end acceptance.
