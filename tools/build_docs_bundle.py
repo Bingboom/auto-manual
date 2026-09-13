@@ -4,7 +4,18 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.attachment_identity import stage_bundle_attachment_aliases
+from tools.build_docs_shared import VALID_SOURCE_MODES
+from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.data_snapshot import resolve_active_data_root
+from tools.gen_index_bundle import MaterializedBundle, materialize_web_language_source_bundle
+from tools.language_block_trim import trim_bundle_language_blocks, trim_bundle_language_pages
+from tools.review_support import (
+    overlay_review_content_onto_bundle,
+    overlay_review_onto_bundle,
+    review_bundle_exists,
+    review_content_exists,
+)
+from tools.utils.path_utils import get_paths
 
 
 def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
@@ -67,6 +78,7 @@ def prepare_manual_bundle(
     printer: Callable[[str], None] = print,
     trim_bundle_language_blocks: Callable[..., list[tuple[str, tuple[str, ...]]]] | None = None,
     trim_bundle_language_pages: Callable[..., list[tuple[str, str]]] | None = None,
+    preserve_shared_review_languages: bool = False,
 ) -> Any:
     doc_type = cfg.get("doc_type", "manual_bundle")
     if doc_type != "manual_bundle":
@@ -103,7 +115,7 @@ def prepare_manual_bundle(
         for review_lang in review_lang_candidates:
             lang_fallback = bool((lang or "").strip()) and review_lang is None
             if review_bundle_exists(docs_dir=docs_dir, model=model, region=region, lang=review_lang):
-                if lang_fallback:
+                if lang_fallback and not preserve_shared_review_languages:
                     overlay_result = overlay_review_content_onto_bundle(
                         bundle_dir=bundle.bundle_dir,
                         docs_dir=docs_dir,
@@ -135,9 +147,17 @@ def prepare_manual_bundle(
                     model=model,
                     region=region,
                     lang=review_lang,
-                    target_lang=lang if lang_fallback else None,
-                    allowed_relative_paths=_existing_review_overlay_paths(bundle.bundle_dir) if lang_fallback else None,
-                    allow_index=not lang_fallback,
+                    target_lang=(
+                        lang
+                        if lang_fallback and not preserve_shared_review_languages
+                        else None
+                    ),
+                    allowed_relative_paths=(
+                        _existing_review_overlay_paths(bundle.bundle_dir)
+                        if lang_fallback and not preserve_shared_review_languages
+                        else None
+                    ),
+                    allow_index=not lang_fallback or preserve_shared_review_languages,
                 )
                 if overlay_result is None:
                     continue
@@ -222,3 +242,44 @@ def prepare_manual_bundle(
     printer(f"[build] Prepared bundle: {bundle.bundle_dir}")
     printer("[build] Bundle source: review" if review_applied else "[build] Bundle source: runtime")
     return bundle
+
+
+def prepare_web_language_source_bundle(
+    cfg: dict,
+    *,
+    model: str | None,
+    region: str | None,
+    lang: str,
+    data_root: str | None = None,
+    source_mode: str = "auto",
+    page_selector: str | None = None,
+    output_root: Path | None = None,
+    write_wrapper_index: bool = False,
+    draft_placeholders: bool = False,
+) -> MaterializedBundle:
+    """Prepare a complete frozen source for a later Web language split."""
+    paths = get_paths()
+    return prepare_manual_bundle(
+        cfg,
+        model=model,
+        region=region,
+        lang=lang,
+        data_root=data_root,
+        source_mode=source_mode,
+        page_selector=page_selector,
+        output_root=output_root,
+        write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders,
+        valid_source_modes=VALID_SOURCE_MODES,
+        materialize_bundle=materialize_web_language_source_bundle,
+        review_bundle_exists=review_bundle_exists,
+        overlay_review_onto_bundle=overlay_review_onto_bundle,
+        review_content_exists=review_content_exists,
+        overlay_review_content_onto_bundle=overlay_review_content_onto_bundle,
+        finalize_materialized_bundle=finalize_materialized_bundle,
+        docs_dir=paths.docs_dir,
+        repo_root=paths.root,
+        trim_bundle_language_blocks=trim_bundle_language_blocks,
+        trim_bundle_language_pages=trim_bundle_language_pages,
+        preserve_shared_review_languages=True,
+    )

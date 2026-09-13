@@ -43,6 +43,7 @@ def resolve_bundle_materialization_context(
     page_selector: str | None,
     bundle_dir_override: Path | None,
     draft_placeholders: bool = False,
+    materialize_all_languages: bool = False,
     resolve_build_model: Callable[[dict, str | None], str | None],
     resolve_build_region: Callable[[dict, str | None], str | None],
     build_langs: Callable[[dict], list[str]],
@@ -92,8 +93,16 @@ def resolve_bundle_materialization_context(
                 f"Requested lang {lang!r} is not declared in build.languages: "
                 f"{list(configured_langs)}{shipped}"
             )
-    resolved_langs = (requested_lang,) if requested_lang else configured_langs
-    primary_lang = str(resolved_langs[0]) if resolved_langs else "en"
+    # A Web single-language artifact still needs a complete frozen source
+    # bundle before source-level projection.  Keep the requested language as
+    # the identity/substitution locale while materializing every declared page
+    # language into that private source bundle.
+    resolved_langs = (
+        configured_langs
+        if materialize_all_languages
+        else ((requested_lang,) if requested_lang else configured_langs)
+    )
+    primary_lang = requested_lang or (str(resolved_langs[0]) if resolved_langs else "en")
     output_lang = requested_lang or resolve_output_lang(cfg)
 
     resolved_page_source = resolve_config_pages_or_raise(

@@ -3,15 +3,82 @@ from __future__ import annotations
 import tempfile
 import unittest
 import json
+import os
 from pathlib import Path
+from types import SimpleNamespace
+from unittest import mock
 
 from tools.build_docs_export import (
     _copy_attachment_images_for_latex,
     _copy_raw_html_assets_for_html,
+    _prepare_artifact_bundle,
 )
 
 
 class TestBuildDocsExport(unittest.TestCase):
+    def test_web_lang_prepares_full_source_then_projects_to_canonical_rst(self) -> None:
+        plan = SimpleNamespace(build_root=Path("/tmp/build-target"))
+        source = SimpleNamespace(bundle_dir=plan.build_root / "web" / "source" / "rst")
+        projected = SimpleNamespace(bundle_dir=plan.build_root / "rst")
+        prepare_regular = mock.Mock()
+        prepare_web_source = mock.Mock(return_value=source)
+        project = mock.Mock(return_value=projected)
+
+        with mock.patch.dict(os.environ, {"AUTO_MANUAL_PRESENTATION_PROFILE": "web"}):
+            result = _prepare_artifact_bundle(
+                cfg={},
+                artifact_plan=plan,
+                target_model="JE-1000F",
+                target_region="US",
+                target_lang="en",
+                data_root=None,
+                source_mode="review-asis",
+                page_selector=None,
+                write_wrapper_index=True,
+                draft_placeholders=False,
+                prepare_manual_bundle=prepare_regular,
+                prepare_web_language_source_bundle=prepare_web_source,
+                materialize_web_language_projection=project,
+            )
+
+        self.assertIs(result, projected)
+        prepare_regular.assert_not_called()
+        self.assertEqual(
+            plan.build_root / "web" / "source",
+            prepare_web_source.call_args.kwargs["output_root"],
+        )
+        self.assertFalse(prepare_web_source.call_args.kwargs["write_wrapper_index"])
+        project.assert_called_once_with(
+            source,
+            language="en",
+            destination=plan.build_root / "rst",
+            write_wrapper_index=True,
+        )
+
+    def test_non_web_or_unspecified_lang_preserves_regular_bundle_path(self) -> None:
+        plan = SimpleNamespace(build_root=Path("/tmp/build-target"))
+        regular = SimpleNamespace(bundle_dir=plan.build_root / "rst")
+        prepare_regular = mock.Mock(return_value=regular)
+        prepare_web_source = mock.Mock()
+        project = mock.Mock()
+        common = dict(
+            cfg={}, artifact_plan=plan, target_model="JE-1000F", target_region="US",
+            data_root=None, source_mode="review-asis", page_selector=None,
+            write_wrapper_index=True, draft_placeholders=False,
+            prepare_manual_bundle=prepare_regular,
+            prepare_web_language_source_bundle=prepare_web_source,
+            materialize_web_language_projection=project,
+        )
+
+        with mock.patch.dict(os.environ, {"AUTO_MANUAL_PRESENTATION_PROFILE": "document"}):
+            self.assertIs(_prepare_artifact_bundle(target_lang="en", **common), regular)
+        with mock.patch.dict(os.environ, {"AUTO_MANUAL_PRESENTATION_PROFILE": "web"}):
+            self.assertIs(_prepare_artifact_bundle(target_lang=None, **common), regular)
+
+        self.assertEqual(2, prepare_regular.call_count)
+        prepare_web_source.assert_not_called()
+        project.assert_not_called()
+
     def test_raw_html_assets_are_copied_to_their_browser_path(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
