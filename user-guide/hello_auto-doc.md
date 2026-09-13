@@ -1,5 +1,8 @@
 # Hello Auto Doc
 
+Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+旧记录的语言字段不等于正文单语；真实多语上线须等待门户分组与单语输入验收。
+
 Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
 检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
 

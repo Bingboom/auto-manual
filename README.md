@@ -7,6 +7,8 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 
 ## 工作流路线图
 
+Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
+
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
 
 Web 单语源投影的内部接入边界见[说明](code-as-doc/dev/web_language_projection.md)；不代表已接通独立语言发布。

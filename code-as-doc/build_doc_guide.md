@@ -1,5 +1,8 @@
 # Windows Build Guide
 
+Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
+and candidate validation. Public build flags and workflow dispatch are unchanged.
+
 Optional local release artifact preflight:
 [Manual operations health report](dev/manual_operations_health_report.md).
 

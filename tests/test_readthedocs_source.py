@@ -291,6 +291,26 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                     title="Manual Library",
                 )
 
+    def test_assemble_rtd_source_should_reject_casefolded_alias_collision(self) -> None:
+        with TemporaryDirectory() as td:
+            build_root = Path(td) / "docs" / "_build"
+            for region, manual in (("US", "manual_shared"), ("JP", "MANUAL_SHARED")):
+                source_dir = build_root / "JE-1000F" / region / "md"
+                source_dir.mkdir(parents=True)
+                source_dir.joinpath("conf.py").write_text("project = 'nested'\n", encoding="utf-8")
+                source_dir.joinpath("index.md").write_text(
+                    f"# Manual\n\n```{{toctree}}\n\n{manual}\n```\n",
+                    encoding="utf-8",
+                )
+                source_dir.joinpath(f"{manual}.md").write_text("# Manual\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "duplicate RTD short alias"):
+                readthedocs_source.assemble_rtd_source(
+                    build_root=build_root,
+                    output_dir=build_root / "rtd",
+                    title="Manual Library",
+                )
+
 
 if __name__ == "__main__":
     unittest.main()
