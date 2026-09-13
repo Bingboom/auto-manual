@@ -20,6 +20,10 @@ single-language RST input. Existing commands are reused. Explicit-language Web
 queue builds now [seal and verify release evidence](dev/web_language_release_evidence.md)
 after `check -> md -> html`; workflow dispatch and online-table behavior are unchanged.
 Only a new evidence-bound version can claim `single`; do not retrofit sealed releases.
+Publication staging preserves optional generated `manual.ir.json` and
+`manual_bundle.html` sidecars byte-for-byte alongside Markdown, because the
+sealed inventory covers them. Unknown files are not silently copied or ignored
+by evidence verification; print artifacts and symlinks remain prohibited.
 
 Updated: 2026-08-17
 

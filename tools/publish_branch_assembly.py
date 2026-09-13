@@ -135,6 +135,13 @@ def _copy_markdown_source(target: WebPublishTarget, destination: Path) -> None:
             raise RuntimeError(f"Web Publish source is missing {filename}: {source_dir}")
         shutil.copy2(source, destination / filename)
     shutil.copy2(target.markdown_path, destination / target.markdown_path.name)
+    # Preserve generated Web sidecars included in sealed Markdown inventories.
+    # They are optional for legacy releases; unknown files still fail evidence
+    # verification instead of being silently added to the publication surface.
+    for filename in (PathSegments.MANUAL_IR_JSON, "manual_bundle.html"):
+        source = source_dir / filename
+        if source.is_file():
+            shutil.copy2(source, destination / filename)
     if target.language_projection_evidence_path is not None:
         evidence_destination = destination / PathSegments.EVIDENCE
         shutil.copytree(
