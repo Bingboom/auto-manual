@@ -293,3 +293,13 @@ Business assembly integration finding after #1116: real EN/FR release metadata v
 - [ ] Business docs/publish-only PR and real deployed RTD revision validation.
 
 Existing assembler migrates legacy source paths to locale-qualified storage while generating legacy manual redirects. The candidate has 2131 added/65 modified/1537 removed paths, mostly migration; 135 unique new blobs total about 9.1 MB. Existing manual contents are preserved as verified above. This is a local candidate, not a completed publication or operational closure.
+
+
+### WEB-B04 business release candidate — Hello-Docs #72
+
+- [x] Mirror workflow `34768577625` succeeded; business main `0ed02abccc2056cec5a670573c4b9a6e17d9b6c7` contains exact verified sidecar-copy code. [Hello-Docs #72](https://github.com/Bingboom/Hello-Docs/pull/72) opened at `37acf6fc1e6958c8458061cdf2fbcc05c4656b9b`, publish subtree `569ee03a8b9d93d3a0d051ddbdf804b751c8ba71`.
+- [x] Remote Git-tree comparison proves changes are restricted to `docs/publish/**`; 2198 published-source blobs. No business engineering code or workflow changed.
+- [ ] #72 full checks/reviews/current-main merge gate.
+- [ ] RTD actual merged revision, full EN/FR article content, language options and image-byte parity.
+
+RTD baseline is build `34536040`, successful for pre-release business commit `0ed02abccc2056cec5a670573c4b9a6e17d9b6c7`; this is not evidence that #72 is deployed. A read-only deployment verifier is prepared to check the actual merged commit and compare complete article text plus referenced image hashes after deployment. No production release is claimed yet.
