@@ -57,6 +57,8 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   receipt、链接回填与测试。同版本不同内容拒绝覆盖；候选不冒充已发布；
   明确 current 指针、旧版策略与撤回记录，不以源缺席当删除。
   工作流改动待专项批准；真实 Base 写回待指定记录批准并同记录读回。
+  - [x] OPS-04a 本地 Web 版本封存：#1108 已全绿合入；同版本不同内容拒绝覆盖，metadata成功后才记队列成功。
+  - [ ] OPS-04b 真实版本更新/回滚/撤回与 RTD 确认回执；工作流和正式回填按操作者要求暂缓。
 - [ ] OPS-05：可重复运行的覆盖/健康报告。范围：只读报告模块、测试、运行说明。
   输出型号/市场/语言/版本、断链/缺失资产/发布失败；未知写 no_data 而不是零。
   明确负责人、检查频率与故障处理方式；不默认部署常驻服务或访客跟踪。
@@ -113,6 +115,8 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-05a | [#1105](https://github.com/Bingboom/auto-manual/pull/1105) / `b541689ac5b2a704c7b47041370101e979c3776f` | 最终树12定向测试/完整unittest退出0；全Ruff/护栏/文档链接通过；早于最终修改/中断的测试不作证据 | 本地只读报告；CI17/17，CLEAN，无评审/未解决线程；线上健康未验收 | 子切片完成，OPS-05b 未验收 |
 | OPS-02a | [#1106](https://github.com/Bingboom/auto-manual/pull/1106) / `64bd9b90b733b5c0a9f4b28102d28fc4bed4c103` | 最终树4016测试 OK（19 skipped）；Ruff/护栏/文档链接/fixture check通过；真实Sphinx与原子失败注入 | CI17/17，CLEAN，无评审/未解决线程；旧迁移一律 legacy_unspecified，未执行线上语料迁移 | 子切片完成，OPS-02b 未验收 |
 | OPS-03a | [#1107](https://github.com/Bingboom/auto-manual/pull/1107) / `7ba6591cf189eecebd59a65e2f931239546d7b49` | 最终树4024测试 OK（22 skipped）；13定向测试/全Ruff/护栏/文档链接/fixture check通过；21本冻结语料66个HTML仅首页变化；本地390px及无hash语言跳转验收 | CI17/17，CLEAN，无评审/未解决线程；EN/FR是QA样例，不冒充真实出版物；未迁移语料 | 子切片完成，OPS-03b 未验收 |
+| OPS-03a 部署 | #1107 → Hello-Docs `e551ee995e5e2e3a4c96747c8251ba065aeca43e` | mirror run `34746309950` success | RTD build `34532513` success；线上默认EU/20 EU产品/当前出版物可访问；发现legacy禁用语言的“未发布”措辞会误导，独立后续修正；双语真料仍未验收 | 部署有证据，不等于 OPS-03b 完成 |
+| OPS-04a | [#1108](https://github.com/Bingboom/auto-manual/pull/1108) / `f695f7b2f72f870163d8030ef633e5e4f60b9c5d` | 最终树4035测试 OK（22 skipped）；21定向/全Ruff/护栏/文档链接/fixture check通过；固定输入双Sphinx 260文件哈希相同（只排除doctrees） | CI17/17，CLEAN，无评审/未解决线程；未消费真实队列/写线上表；两次review build因附件缺失在渲染前失败，不作E2E证据 | 子切片完成，OPS-04b 未验收 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
