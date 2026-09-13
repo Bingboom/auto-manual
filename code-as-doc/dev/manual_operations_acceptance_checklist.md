@@ -52,8 +52,11 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   构建和明确快照检查通过；此勾选只证明工程切片，不等于 RTD 上线。
 - [ ] WEB-B03-SPEC 发布验收：将已审核输入经独立业务发布 PR 上线后，
   读回正式 RTD 页面核对标签、参数、脚注及版本；当前尚未执行。
-- [ ] WEB-B03-H1000 PDF 数据纠错：#1121 已提交，candidate
-  `466327a9241b9ef4243f6ce67b664f0e74facc97`，尚未合入/发布。
+- [x] WEB-B03-H1000 工程数据纠错：#1121 已合入，merge commit
+  `690fa0e7c52dc6a108ca9cb59a6c0b25f57b4826`。candidate
+  `466327a9241b9ef4243f6ce67b664f0e74facc97` 经 17/17 检查成功、
+  无拒绝评审/未解决讨论、最新 main 对齐及 MA-066 授权检查后合入。
+  此勾选限工程源数据纠错；尚未业务发布或完成整本内容/视觉验收。
   补齐独立 AC Total Output 行（1800W Rated, 3600W Surge peak），
   将脚注 ② 移到该行标签，恢复 2 × USB-C 总标签及 30W/140W 参数说明。
   以发布版 PDF V2.0-2026-08-03（SHA256
