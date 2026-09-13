@@ -172,6 +172,24 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             self.assertEqual(record["size"], len(data))
             self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
 
+    def test_ac_output_has_only_released_pdf_parameters(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        label = next(cell for cell in soup.select("th.hb-spec-label")
+                     if cell.get_text(strip=True) == "3 × AC")
+        value = label.parent.select_one("td").get_text(" ", strip=True)
+        self.assertEqual("230 V~ 50 Hz, 2200 W rated in total, 4400 W surge peak", value)
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            inputs = [row for row in csv.DictReader(handle)
+                      if row["Page"] == "specifications" and row["Row_key"] == "ac_input"]
+        self.assertTrue(inputs)
+        self.assertTrue(all("10 A max." in row["Value_source"] for row in inputs))
+
+    def test_source_inventory_digest_matches_canonical_records(self) -> None:
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        inventory = json.dumps(manifest["files"], ensure_ascii=False,
+                               sort_keys=True, separators=(",", ":")).encode()
+        self.assertEqual(manifest["files_inventory_sha256"], hashlib.sha256(inventory).hexdigest())
+
     def test_web_output_has_complete_figure_coverage(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         inbox = soup.select_one('[data-component-id="HB-SPECIAL-INBOX"]')
