@@ -12,6 +12,9 @@ Optional local release artifact preflight:
 [Manual operations health report](dev/manual_operations_health_report.md).
 For an explicit read-only network pass over the frozen catalog, see
 [HTTP health checks](dev/manual_operations_online_health.md). No queue or live-table write is performed.
+Exact frozen-source/served-asset identity can be checked with the
+[Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
+existing frozen Sphinx portal build. This check performs no link writeback.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete

@@ -150,6 +150,10 @@ def page_context(app, pagename, templatename, context, doctree):
 
 
 def setup(app):
+    from tools.rtd_deployment_receipt import write_deployment_receipt
+
     app.connect("config-inited", configure)
     app.connect("html-page-context", page_context)
+    # Generated conf.py copies manual assets at the default priority (500).
+    app.connect("build-finished", write_deployment_receipt, priority=1000)
     return {"version": "1", "parallel_read_safe": True, "parallel_write_safe": True}

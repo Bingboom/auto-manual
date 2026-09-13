@@ -62,7 +62,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | --- | --- |
 | 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
 | 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
-| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md) |
+| Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执`](code-as-doc/dev/rtd_deployment_receipt.md) |
 | RTD 手册中心：首页、地区筛选与发布链接 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | RTD 手册反馈入口（默认关闭） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 当前工作流和编辑规则 | [`user-guide/hello_auto-doc.md`](user-guide/hello_auto-doc.md) |
