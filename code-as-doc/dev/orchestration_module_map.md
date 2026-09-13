@@ -34,6 +34,10 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+Read-only release artifact preflight lives in
+[`tools/manual_operations_health.py`](../../tools/manual_operations_health.py);
+it neither probes deployment nor collects visitor metrics.
+
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
