@@ -622,6 +622,7 @@ Carrier tag axes:
 
 `Spec_Master.csv` note:
 
+- Specification rendering preserves distinct localized row labels and label-footnote references even when records share `Row_key`. Equal labels/references retain multiline grouping; distinct subrows follow `Line_order` within their semantic group, not CSV storage order. Do not derive port labels from wattage or repair a missing source row with CSS.
 - in Feishu, maintain `Page=specifications` rows in `规格参数明细` and maintain non-spec page placeholders in `页面占位参数`; `sync-data --table spec_master` reads those two source tables and writes the local read-model CSV
 - `spec_row_key` is the first read-model key and `document_key` remains the target dimension field
 - the `Page` column may now hold a comma-separated page list

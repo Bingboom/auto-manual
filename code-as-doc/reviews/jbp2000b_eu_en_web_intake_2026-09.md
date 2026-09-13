@@ -24,9 +24,12 @@ source provenance. Every listed source-file hash matches the candidate tree.
 The target check and real Web Markdown build pass. Comparing parsed candidate
 text with the frozen published Markdown shows only the compatibility-note
 change. This is output-change containment, not a substitute for a complete
-new-PDF content/visual audit. Full regression and production acceptance remain
-pending. No online table, queue or workflow was changed, and sealed published
-version 2.0 bytes were not overwritten.
+new-PDF content/visual audit. The operator explicitly deferred repeated source
+content and visual comparison to their later manual acceptance on 2026-09-13;
+those comparisons are not a prerequisite for publishing this existing revision.
+Required engineering regression and publication checks still apply. No claim of
+completed operator visual acceptance is made. No online table, queue or workflow
+was changed, and sealed published version 2.0 bytes were not overwritten.
 
 ## Scope and checklist
 
