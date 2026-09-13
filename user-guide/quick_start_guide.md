@@ -192,7 +192,7 @@ App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_
 2. `04_资产导出物` 每个物理文件一行：`artifact_kind=web-composite`，在
    `export_file` 上传一张图片，选择 `web_locale`，填写 `content_sha256` 和
    `source_fragment_sha256`，审核通过后勾选 `build_eligible`。
-3. 在 `Document_link` 选择 `Workflow_action=Web Publish`，保留已审核的 `Git_ref`，并触发独立 Web worker。
+3. 在获批的 `Document_link` 行选择 `Workflow_action=Web Publish`，保留已审核的 `Git_ref`。独立语言页使用匹配的单语 `Build_family` 和显式 `Lang`（如 `eu-en/en`），每语单独一行；不要使用 merged family 携带 Lang。版本及队列操作确认后才触发独立 Web worker；[队列契约](../code-as-doc/dev/web_publish_locale_queue.md)列出了尚未释放的上线门禁。
 4. Web worker 使用 HT-Docs bot 强制执行 `sync-data`，再按
    `web_replace_key + model + region + locale` 自动替换整块 figure 与关联文字；章节
    标题不进入图片。没有合格导出时保留可编辑 HTML，重复匹配或哈希漂移直接失败。
