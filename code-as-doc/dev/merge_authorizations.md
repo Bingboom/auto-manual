@@ -46,7 +46,8 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-065 | 本次 `codex/rtd-manual-portal` 首页 PR：接入已确认的产品卡片/搜索/US-EU-UK 地区下拉，暂以 EU 为默认；EU/UK 共用冻结目录和手册链接。仅在最终 head 包含最新 main、所有检查成功、无 changes-requested 和未解决评审讨论后 squash merge；随后经既有镜像同步完成 RTD 上线验证。不含其他 PR、线上 Base 写入、正文/翻译/图内容修改、依赖、公开 CLI 或 `.github/workflows/**` 改动。 | 「授权本次首页 PR 全绿后合入并上线」2026-09-12 | 本次首页 PR 合入且 RTD 实页验证完成，或操作者撤销 | 生效 |
+| MA-065 | 本次 `codex/rtd-manual-portal` 首页 PR：接入已确认的产品卡片/搜索/US-EU-UK 地区下拉，暂以 EU 为默认；EU/UK 共用冻结目录和手册链接。仅在最终 head 包含最新 main、所有检查成功、无 changes-requested 和未解决评审讨论后 squash merge；随后经既有镜像同步完成 RTD 上线验证。不含其他 PR、线上 Base 写入、正文/翻译/图内容修改、依赖、公开 CLI 或 `.github/workflows/**` 改动。 | 「授权本次首页 PR 全绿后合入并上线」2026-09-12 | 本次首页 PR 合入且 RTD 实页验证完成，或操作者撤销 | 已失效（#1102 squash `a55d666d`；RTD build `34531930` 与实页验收完成） |
+| MA-066 | Manual 运营闭环：[验收 checklist](manual_operations_acceptance_checklist.md)，总计划分支 `codex/manual-operations-plan` 及实现分支 `codex/manual-ops-*`。每个切片独立 PR，最终 head 对齐最新 main、全部检查成功、无 changes-requested 或未解决讨论后可 squash merge。总计划 PR 必须保持 Draft，直到全部运营出口有实证才可合入。允许复用 #1079 的必要代码，但不直接覆盖或自合该独立 PR。业务发布 PR 仅限经审核的既有输入对应的 Hello-Docs `docs/publish/**`；不授权新增品类/翻译事实或未批准的源数据变更。不越过线上 Base 写入、workflow、公开 CLI、依赖、schema、参考资产重审批、外部收集服务等独立门禁。 | 「为实现manual运营 做一个计划 以checklist记录，单独一个pr，这个pr的合并条件就是‘实现manual运营的打通’。完成一个 开一个pr 并勾选相应的checklist记录，授权你自合并 你开多个窗口并行去做 注意控制成本 按实现难度去选模型。」2026-09-12 | checklist 全部运营出口验收且总计划 PR 合入，或操作者撤销 | 生效（推送后生效；独立审批未自动释放） |
 
 | ID | 范围 (branch pattern / PR list) | 授予出处 | 失效条件 | 状态 |
 | --- | --- | --- | --- | --- |

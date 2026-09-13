@@ -1,5 +1,9 @@
 # Optimization Project
 
+Manual Web operations: [独立验收 checklist](dev/manual_operations_acceptance_checklist.md)
+是运营闭环的唯一执行账本；总计划 PR 在真实运营出口全部验证前保持 Draft。
+骨架/数据接入仍归 Milestone M，跨端长期债不并入本期运营门。
+
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document
 Web packages a renderer-neutral `manual-ir/v2` flow/rich-text projection and
