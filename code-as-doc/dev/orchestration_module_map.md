@@ -447,6 +447,9 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/publish_branch_assembly.py`](../../tools/publish_branch_assembly.py)
   - validates versioned Web Publish metadata and copies only the frozen MyST source
   - preserves other published targets, rebuilds the aggregate Sphinx source, and writes the SHA-256 inventory
+- [`tools/publication_withdrawal.py`](../../tools/publication_withdrawal.py)
+  - explicit local withdrawal/restoration ledger, pinned-source digest and stale-manifest guard
+  - blocks ordinary reentry of withdrawn versions and reuses assembly/promotion for action candidates
 - [`tools/write_web_publish_html_link.py`](../../tools/write_web_publish_html_link.py)
   - derives deterministic Read the Docs routes from Web Publish metadata
   - writes `HTML_link` only for the queue record ids bound to each frozen target
