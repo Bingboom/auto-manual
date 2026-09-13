@@ -51,6 +51,8 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 - [ ] OPS-03：从发布元数据重建目录并驱动门户。范围：catalog、portal、静态资源与测试。
   US/EU/UK，默认 EU，EU/UK 共用出版物；12 语下拉只启用实际已发布语言。
   切换保留型号与市场版本，从目标语言开头进入，不追同章节。
+  - [x] OPS-03a 冻结目录分组及语言入口：#1107 已全绿合入，复用 OPS-02 身份读取器。
+  - [ ] OPS-03b 真实语言出版物部署及 RTD 桌面/移动验收；本地样例不替代上线。
 - [ ] OPS-04：版本发布/回滚/撤回与确认回执。范围：release staging、publish
   receipt、链接回填与测试。同版本不同内容拒绝覆盖；候选不冒充已发布；
   明确 current 指针、旧版策略与撤回记录，不以源缺席当删除。
@@ -110,6 +112,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-01a | [#1104](https://github.com/Bingboom/auto-manual/pull/1104) / `a2bda35a904b97ab36a603f508fd945335133860` | 12 定向测试；3987 全套 OK（24 skipped）；Ruff/护栏/文档链接/fixture check 通过；真实 prepared fixture 投影 17 页 | 内部 helper，无线上发布；CI 17/17，CLEAN，无评审/未解决线程 | 子切片完成，OPS-01b 未验收 |
 | OPS-05a | [#1105](https://github.com/Bingboom/auto-manual/pull/1105) / `b541689ac5b2a704c7b47041370101e979c3776f` | 最终树12定向测试/完整unittest退出0；全Ruff/护栏/文档链接通过；早于最终修改/中断的测试不作证据 | 本地只读报告；CI17/17，CLEAN，无评审/未解决线程；线上健康未验收 | 子切片完成，OPS-05b 未验收 |
 | OPS-02a | [#1106](https://github.com/Bingboom/auto-manual/pull/1106) / `64bd9b90b733b5c0a9f4b28102d28fc4bed4c103` | 最终树4016测试 OK（19 skipped）；Ruff/护栏/文档链接/fixture check通过；真实Sphinx与原子失败注入 | CI17/17，CLEAN，无评审/未解决线程；旧迁移一律 legacy_unspecified，未执行线上语料迁移 | 子切片完成，OPS-02b 未验收 |
+| OPS-03a | [#1107](https://github.com/Bingboom/auto-manual/pull/1107) / `7ba6591cf189eecebd59a65e2f931239546d7b49` | 最终树4024测试 OK（22 skipped）；13定向测试/全Ruff/护栏/文档链接/fixture check通过；21本冻结语料66个HTML仅首页变化；本地390px及无hash语言跳转验收 | CI17/17，CLEAN，无评审/未解决线程；EN/FR是QA样例，不冒充真实出版物；未迁移语料 | 子切片完成，OPS-03b 未验收 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
