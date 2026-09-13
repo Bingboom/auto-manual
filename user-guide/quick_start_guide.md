@@ -748,6 +748,27 @@ missing glyphs、bad links 均为 0，PDF/X-4 通过，并逐页对照冻结参�
 - `Spec_Master` 现在是本地读取快照；人工维护规格参数时先改 `规格参数明细` / `页面占位参数`，再用 `sync-data --table spec_master` 或 `spec-master-rebuild` 生成。
 
 
+### 合并配置的 Web 单语本地验收
+
+要从合并 US 配置只验收英语 Web 输入，可显式传入 `--lang en`。
+先准备含已核验附件和 Web composite 合同的本地快照，将下方示例路径替换为它；
+纯仓库 fixture 不包含所有审稿附件，不能单独作为这项审稿构建的完整输入：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python3 build.py check \
+  --config configs/config.us.yaml \
+  --model JE-1000F --region US --lang en \
+  --source review-asis \
+  --data-root /path/to/approved-local-snapshot \
+  --staging-root .tmp/web-en
+```
+
+完整 EN/FR/ES 源会冻结到
+`.tmp/web-en/docs/_build/JE-1000F/US/en/web/source/rst/`，英语规范投影位于
+`.tmp/web-en/docs/_build/JE-1000F/US/en/rst/`。用相同参数运行 `build.py md` 或
+`build.py html` 时，两者读取同一规范投影。该命令只做本地验收，不构成独立语言发布。
+命令退出码为 0 只表示现有构建与结构门通过，不等于内容已验收；本路径不放宽任何内容门。
+
 ### 加电包日语 Web 本地验收
 
 在工程仓库使用现有快照试构建（不写线上 Base、不发布）：

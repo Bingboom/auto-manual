@@ -449,7 +449,7 @@ def _materialize_planned_page(
     )
 
 
-def materialize_bundle(
+def _materialize_bundle(
     cfg: dict,
     model: str | None = None,
     region: str | None = None,
@@ -465,6 +465,7 @@ def materialize_bundle(
     draft_placeholders: bool = False,
     skeleton_only: bool = False,
     finalize_assets: bool = True,
+    materialize_all_languages: bool = False,
 ) -> MaterializedBundle:
     resolved_docs_dir = docs_dir or paths.docs_dir
     resolved_repo_root = repo_root or paths.root
@@ -479,6 +480,7 @@ def materialize_bundle(
         page_selector=page_selector,
         bundle_dir_override=bundle_dir_override,
         draft_placeholders=draft_placeholders,
+        materialize_all_languages=materialize_all_languages,
         resolve_build_model=resolve_build_model,
         resolve_build_region=resolve_build_region,
         build_langs=_build_langs,
@@ -573,6 +575,62 @@ def materialize_bundle(
         cfg=cfg,
         docs_dir=resolved_docs_dir,
         repo_root=resolved_repo_root,
+    )
+
+
+def materialize_bundle(
+    cfg: dict,
+    model: str | None = None,
+    region: str | None = None,
+    *,
+    lang: str | None = None,
+    data_root: str | None = None,
+    docs_dir: Path | None = None,
+    repo_root: Path | None = None,
+    ensure_csv_pages: bool = True,
+    page_selector: str | None = None,
+    bundle_dir_override: Path | None = None,
+    write_wrapper_index: bool = True,
+    draft_placeholders: bool = False,
+    skeleton_only: bool = False,
+    finalize_assets: bool = True,
+) -> MaterializedBundle:
+    """Materialize the existing artifact language scope unchanged."""
+    return _materialize_bundle(
+        cfg, model, region, lang=lang, data_root=data_root, docs_dir=docs_dir,
+        repo_root=repo_root, ensure_csv_pages=ensure_csv_pages,
+        page_selector=page_selector, bundle_dir_override=bundle_dir_override,
+        write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders, skeleton_only=skeleton_only,
+        finalize_assets=finalize_assets,
+    )
+
+
+def materialize_web_language_source_bundle(
+    cfg: dict,
+    model: str | None = None,
+    region: str | None = None,
+    *,
+    lang: str,
+    data_root: str | None = None,
+    docs_dir: Path | None = None,
+    repo_root: Path | None = None,
+    ensure_csv_pages: bool = True,
+    page_selector: str | None = None,
+    bundle_dir_override: Path | None = None,
+    write_wrapper_index: bool = False,
+    draft_placeholders: bool = False,
+    skeleton_only: bool = False,
+    finalize_assets: bool = True,
+) -> MaterializedBundle:
+    """Freeze all declared page languages while retaining target identity."""
+    return _materialize_bundle(
+        cfg, model, region, lang=lang, data_root=data_root, docs_dir=docs_dir,
+        repo_root=repo_root, ensure_csv_pages=ensure_csv_pages,
+        page_selector=page_selector, bundle_dir_override=bundle_dir_override,
+        write_wrapper_index=write_wrapper_index,
+        draft_placeholders=draft_placeholders, skeleton_only=skeleton_only,
+        finalize_assets=finalize_assets, materialize_all_languages=True,
     )
 
 
