@@ -264,10 +264,10 @@ def trim_bundle_language_pages(
     bundle_dir: Path,
     languages: list[str] | tuple[str, ...],
 ) -> list[tuple[str, str]]:
-    """Remove out-of-scope review page includes from the bundle index.
+    """Remove out-of-scope review pages from the generated bundle and index.
 
     A committed merged review derivative may predate a target-language scope
-    reduction. Keep the review files byte-identical and project only its
+    reduction. Keep the original review files byte-identical and project only its
     explicitly declared in-scope pages into the generated bundle index.
     Unknown and genuinely multi-language pages remain included; inline
     language blocks are handled separately by ``trim_bundle_language_blocks``.
@@ -299,7 +299,10 @@ def trim_bundle_language_pages(
             kept.append(line)
             continue
 
-        language = _declared_page_language(bundle_dir / relative)
+        page_path = bundle_dir / relative
+        if page_path.is_symlink() or not page_path.resolve().is_relative_to(bundle_dir.resolve()):
+            raise RuntimeError(f"Language trim page escapes the generated bundle: {relative}")
+        language = _declared_page_language(page_path)
         if language is None or language in scope:
             kept.append(line)
             continue
@@ -307,4 +310,9 @@ def trim_bundle_language_pages(
 
     if dropped:
         index_path.write_text("".join(kept), encoding="utf-8")
+        # Checkers and packaging also inspect physical page files. Removing
+        # only their includes leaves excluded language text in the output.
+        # These are generated overlay copies, never the review source files.
+        for file_name, _language in dict.fromkeys(dropped):
+            (bundle_dir / "page" / file_name).unlink()
     return dropped

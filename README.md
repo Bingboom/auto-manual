@@ -17,6 +17,7 @@ Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_
 Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
 `check`、Markdown 和 HTML 共用的规范 RST；边界见[说明](code-as-doc/dev/web_language_projection.md)。
 这项本地构建能力不代表已接通独立语言发布。
+审稿语言裁剪同时清理生成页副本和目录引用，原审稿文件保留；见[构建指南](code-as-doc/build_doc_guide.md)。
 Web 队列支持显式语言的单语配置，约束与未释放的发布门禁见[队列契约](code-as-doc/dev/web_publish_locale_queue.md)。
 
 ![Auto-Manual workflow roadmap](docs/readme-assets/auto-manual-roadmap.svg)

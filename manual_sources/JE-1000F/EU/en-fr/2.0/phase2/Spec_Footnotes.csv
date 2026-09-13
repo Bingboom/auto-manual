@@ -1,0 +1,2 @@
+Footnote_id,Region,Model,Source_lang,Is_Latest,Page,Footnote_order,Type,Text_en,Text_fr,Text_es,Text_pt-BR,pt-BR,Text_ja,Text_zh,Text_de,Text_it,Text_uk,Text_ko,Enabled
+ac_bypass,EU,JE-1000F,en,TRUE,specifications,1,Footnote,The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.,Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.,,,,,,,,,,TRUE
