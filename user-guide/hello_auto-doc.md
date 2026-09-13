@@ -1,5 +1,8 @@
 # Hello Auto Doc
 
+Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
+检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
+
 Web 单语源投影现在有[内部复用 helper](../code-as-doc/dev/web_language_projection.md)；
 目前不改变操作入口、审稿源或正式发布流程，不表示计划中的语言已上线。
 
