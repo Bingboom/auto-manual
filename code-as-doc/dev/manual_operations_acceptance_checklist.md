@@ -1,6 +1,6 @@
 # Manual Operations Acceptance Checklist
 
-Status: active / umbrella PR stays **Draft**. Updated: 2026-09-12.
+Status: active / umbrella PR stays **Draft**. Updated: 2026-09-13.
 
 Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 操作者决策（2026-09-12）：「先做其他部分，工作流暂不改」。因此 OPS-04
@@ -117,6 +117,8 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-03a | [#1107](https://github.com/Bingboom/auto-manual/pull/1107) / `7ba6591cf189eecebd59a65e2f931239546d7b49` | 最终树4024测试 OK（22 skipped）；13定向测试/全Ruff/护栏/文档链接/fixture check通过；21本冻结语料66个HTML仅首页变化；本地390px及无hash语言跳转验收 | CI17/17，CLEAN，无评审/未解决线程；EN/FR是QA样例，不冒充真实出版物；未迁移语料 | 子切片完成，OPS-03b 未验收 |
 | OPS-03a 部署 | #1107 → Hello-Docs `e551ee995e5e2e3a4c96747c8251ba065aeca43e` | mirror run `34746309950` success | RTD build `34532513` success；线上默认EU/20 EU产品/当前出版物可访问；发现legacy禁用语言的“未发布”措辞会误导，独立后续修正；双语真料仍未验收 | 部署有证据，不等于 OPS-03b 完成 |
 | OPS-04a | [#1108](https://github.com/Bingboom/auto-manual/pull/1108) / `f695f7b2f72f870163d8030ef633e5e4f60b9c5d` | 最终树4035测试 OK（22 skipped）；21定向/全Ruff/护栏/文档链接/fixture check通过；固定输入双Sphinx 260文件哈希相同（只排除doctrees） | CI17/17，CLEAN，无评审/未解决线程；未消费真实队列/写线上表；两次review build因附件缺失在渲染前失败，不作E2E证据 | 子切片完成，OPS-04b 未验收 |
+| OPS-03a 措辞跟进 | [#1109](https://github.com/Bingboom/auto-manual/pull/1109) / `4291d8f6c9fa91b989365839c2f538a33ca29b64` | 最终内容树4036测试 OK（24 skipped）；14定向/全Ruff/护栏/文档链接/fixture check通过；真实冻结语料65个正文HTML不变 | CI17/17，CLEAN，无评审/未解决线程；有legacy出版物时改为“Separate language page not verified”，不把元数据缺失说成内容未发布 | 修正已合入；不晋升任何语言身份 |
+| OPS-01b 只读/隔离试点 | main `f695f7b2`，无实现 PR | 37个中立LCD/Symbol附件与已提交audited source manifest逐项size/SHA匹配，仅复用图标；未复制其他型号CSV；使用已提交fixture提供测试数据/composite合同；整本review-asis check/md/html均exit0 | 无线上发布；HTML有22条RST warning；显式lang=en失败于review fallback引用缺失cover-en.rst；不能声明独立单语发布已通 | 输入可构建；单语作用域接线待实施 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
