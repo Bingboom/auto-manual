@@ -45,6 +45,7 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   - [ ] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
     - [x] OPS-01b1 Web 显式语言的 canonical RST 接线：#1111 已17/17全绿合入；check/md/html 共用投影，不改变队列。
     - [ ] OPS-01b2 封存投影证据并校验后，才允许发布元数据晋升 single；完成真实独立 URL 验收。
+      - [x] OPS-01b2a 语言证据绑定不可变 Markdown/HTML release：#1113 已合入 `0a910a3e`；真实双语线上 URL 仍待验收。
       - [x] OPS-01b2a 工程凭据绑定：#1113 已17/17全绿合入；check/md/html投影凭据与不可变版本、元数据、stored重放绑定，修复review pre-sync完整源解析。
       - [ ] OPS-01b2b 使用正式批准的源/含字图完成真实独立语言URL验收；本地fixture通过不算上线。
       实施边界：check/md/html 三步比对同一 canonical manifest 摘要；封存完整 RST
@@ -146,3 +147,18 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 “The job was not started because it repeatedly failed to be acquired (5 attempts).”
 官方事件已包含 Actions 性能下降。确认是未正常启动而非测试断言失败后，
 仅对上述四个 run 各重试一次；不修改 workflow，不把重试请求成功当作检查通过。
+
+
+## 6. JE-1000F/EU real PDF asset intake (2026-09-13)
+
+- [x] 操作者对具体的 1 个 PDF 来源、11 项既有定义、22 个英法整图导出物登记及法语主电源标签对应关系确认后，按 prod/bot 写业务 Base；不改正文标签、schema 或 workflow。
+- [x] 从操作者 EU-UK V2.0 PDF 直接提取 55 张含字整图（5 语各 11 张），已批准配方哈希全通过；本批仅登记 EN/FR 各 11 张。
+- [x] 来源 `recvv6pNQ9801w` 的 source_file 非空，回下载 SHA256 为 `0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe`。
+- [x] 11 项定义复用原记录，22 项导出物逐条回读 export_file token，回下载逐字节 SHA256 验证；format=png、gate_status=approved、build_eligible=true 均读回确认。
+- [x] EN overview 源绑定仅批准的 12.5→6.5 A 差异；FR 另有 Bouton POWER principal→Bouton POWER 标签差异，已确认对应关系。图片 content SHA 不变，严格源漂移门禁不变。
+- [x] 本地 PDF overlay 的 EN/FR check/md 与严格 RTD Sphinx 构建通过；每语 11 张整图文件哈希一致，浏览器可见 On/Off、Marche/Arrêt 与完整引线；表格仍为 HTML。
+- [x] 从线上重新 `build.py sync-data` 成功，fresh snapshot 含 38 个 Web composites（原 US 16 + EU 22）；EU 22 项均带真实 definition/export record_id 且下载哈希通过，不依赖本地 overlay。
+- [ ] fresh 线上快照 EN/FR 完整复建验收。
+- [ ] 不可变双语 release、Hello-Docs 发布 PR 与 RTD 实页验收；上述入库不代表已上线，OPS-01b/02b/03b 保持未勾选。
+
+登记陷阱：首次线上重同步拒绝缺少 format 的导出物；补齐现有 format=png 字段并逐条读回后重同步成功，未绕过门禁。阶段回执保存在操作机 `/tmp/manual-ops-live-pilot.V2B8Uy/registration-evidence/README.md` 与同目录逐记录 JSON；该本地路径不是公开线上发布证据。
