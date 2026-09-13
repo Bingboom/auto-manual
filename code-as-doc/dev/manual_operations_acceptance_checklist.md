@@ -158,7 +158,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 - [x] EN overview 源绑定仅批准的 12.5→6.5 A 差异；FR 另有 Bouton POWER principal→Bouton POWER 标签差异，已确认对应关系。图片 content SHA 不变，严格源漂移门禁不变。
 - [x] 本地 PDF overlay 的 EN/FR check/md 与严格 RTD Sphinx 构建通过；每语 11 张整图文件哈希一致，浏览器可见 On/Off、Marche/Arrêt 与完整引线；表格仍为 HTML。
 - [x] 从线上重新 `build.py sync-data` 成功，fresh snapshot 含 38 个 Web composites（原 US 16 + EU 22）；EU 22 项均带真实 definition/export record_id 且下载哈希通过，不依赖本地 overlay。
-- [ ] fresh 线上快照 EN/FR 完整复建验收。
+- [x] fresh 线上快照 EN/FR 的 check、Web md、RTD source、sphinx -W 全部通过；每语 11 个整图槽位的 source/content hash 均匹配 live manifest。与 PDF-derived Markdown 字节级一致：EN SHA256 `9e9dc4ab5c35cd72a2f3ebea10858b404deff2be08a4e258d90ec52792bbc3da`；FR SHA256 `cb8c9d71a21a665435bf208c83ab3f93b5e22c4ecda4832b06c919e656dab21d`。
 - [ ] 不可变双语 release、Hello-Docs 发布 PR 与 RTD 实页验收；上述入库不代表已上线，OPS-01b/02b/03b 保持未勾选。
 
 登记陷阱：首次线上重同步拒绝缺少 format 的导出物；补齐现有 format=png 字段并逐条读回后重同步成功，未绕过门禁。阶段回执保存在操作机 `/tmp/manual-ops-live-pilot.V2B8Uy/registration-evidence/README.md` 与同目录逐记录 JSON；该本地路径不是公开线上发布证据。
