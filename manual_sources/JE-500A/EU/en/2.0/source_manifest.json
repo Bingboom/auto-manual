@@ -1,6 +1,11 @@
 {
   "schema_version": "auto-manual-git-source/v1",
-  "target": {"model": "JE-500A", "region": "EU", "lang": "en", "version": "2.0"},
+  "target": {
+    "model": "JE-500A",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0"
+  },
   "source_role": "user-selected-authoritative-attachment-git-input",
   "authority": {
     "source_revision": "V2 / modified 2026-08-31",
@@ -10,23 +15,79 @@
     "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
     "table_id": "97v7518",
     "record_id": "xF8IUxGEbx",
-    "artboard": {"page_count": 1, "width_pt": 7942.78, "height_pt": 5567.33},
+    "artboard": {
+      "page_count": 1,
+      "width_pt": 7942.78,
+      "height_pt": 5567.33
+    },
     "english_body_panels": {
       "count": 14,
-      "y_range_pt": [1435.81, 1960.22],
-      "x_range_pt": [1181.37, 6347.75]
+      "y_range_pt": [
+        1435.81,
+        1960.22
+      ],
+      "x_range_pt": [
+        1181.37,
+        6347.75
+      ]
     },
     "audit_record": "code-as-doc/reviews/je500a_eu_en_web_intake_2026-09.md"
   },
   "data_root": "manual_sources/JE-500A/EU/en/2.0/phase2",
-  "asset_recipe": {"path": "data/asset_recipes/manual_je500a_eu_web.json", "sha256": "82c4b59eefa1d2f69953da1a262a65539f3d6ba50a50274bc0838dd52e03dfec"},
-  "web_illustration_manifest": {"path": "docs/renderers/web/je500a_eu_en_illustrations.json", "sha256": "436def40c96a07e881becb8d3f769961bbb81cac4aac7df0e2346caed17d81da"},
+  "asset_recipe": {
+    "path": "data/asset_recipes/manual_je500a_eu_web.json",
+    "sha256": "82c4b59eefa1d2f69953da1a262a65539f3d6ba50a50274bc0838dd52e03dfec"
+  },
+  "web_illustration_manifest": {
+    "path": "docs/renderers/web/je500a_eu_en_illustrations.json",
+    "sha256": "56c711516de9ee8374783042a91e65cc5b4387abd9d2ed2d08b46e6d9019d3be"
+  },
   "files": [
-    {"path":"phase2/.gitattributes","size":18,"sha256":"956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"},
-    {"path":"phase2/Spec_Master.csv","size":654,"sha256":"7c018b2c087d9c3ce646fbffc00a401fc4c12d42f1f4eb4b3f61b180c553526a"},
-    {"path":"phase2/Variable_Defaults.csv","size":94,"sha256":"e6a42bd4a982208ac841b3a5475e7e831aec8da20d8e21ce394404d581fcf379"},
-    {"path":"phase2/Variable_Lang_Overrides.csv","size":40,"sha256":"4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"}
+    {
+      "path": "phase2/.gitattributes",
+      "size": 18,
+      "sha256": "956fc0bf0503b72d42c3c48c1429959301ae9a18c528833b838d9baf19c6b414"
+    },
+    {
+      "path": "phase2/Spec_Master.csv",
+      "size": 654,
+      "sha256": "7c018b2c087d9c3ce646fbffc00a401fc4c12d42f1f4eb4b3f61b180c553526a"
+    },
+    {
+      "path": "phase2/Variable_Defaults.csv",
+      "size": 94,
+      "sha256": "e6a42bd4a982208ac841b3a5475e7e831aec8da20d8e21ce394404d581fcf379"
+    },
+    {
+      "path": "phase2/Variable_Lang_Overrides.csv",
+      "size": 40,
+      "sha256": "4aeedded4d1b0e3f5d2b8ddeec15b522b546713e0dcb8931dedb7dcfe86b87b6"
+    }
   ],
   "live_bitable_dependency": false,
-  "checkout_contract": {"path":"phase2/.gitattributes","rule":"*.csv text eol=lf","purpose":"Preserve manifest-locked CSV bytes identically on every Git checkout"}
+  "checkout_contract": {
+    "path": "phase2/.gitattributes",
+    "rule": "*.csv text eol=lf",
+    "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
+  },
+  "supplemental_asset_recipes": [
+    {
+      "path": "data/asset_recipes/manual_je500a_eu_pdf_panels.json",
+      "sha256": "5f670aa01872e6b0ad68f1abdf582ce4b0471523519acc3b0043205dbfe7fcd5"
+    }
+  ],
+  "released_pdf_reference": {
+    "source_revision": "V2.0-2026-06-09",
+    "source_sha256": "6f4b41ee74ca3282e655a2b2f6c6adf3b3448522b71b26f683b25785f6e5bee6",
+    "node_id": "XPwkYGxZV3Rj0pEpF3d9vL5yWAgozOKL",
+    "page_count": 89,
+    "reconciliation_status": "in-progress",
+    "verified_scope": [
+      "English preface",
+      "English specification DC symbols",
+      "EU declaration and manufacturer",
+      "Overview replacement",
+      "LCD map complete numbered callouts"
+    ]
+  }
 }

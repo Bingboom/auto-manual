@@ -11,6 +11,11 @@
       "path": "/pages",
       "value": [
         {
+          "file": "templates/page_shared/en/00_preface_legacy_single_language.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
           "file": "templates/page_je500a_eu-en/safety_en.rst",
           "lang": "en",
           "type": "rst_include"
@@ -73,6 +78,11 @@
         },
         {
           "file": "templates/page_je500a_eu-en/warranty_en.rst",
+          "lang": "en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_je500a_eu-en/99_regulatory_compliance.rst",
           "lang": "en",
           "type": "rst_include"
         }
