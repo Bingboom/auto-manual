@@ -45,6 +45,8 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   - [ ] OPS-01b 接入真实单语发布输入，验证正文/含字图语言及独立 URL。
     - [x] OPS-01b1 Web 显式语言的 canonical RST 接线：#1111 已17/17全绿合入；check/md/html 共用投影，不改变队列。
     - [ ] OPS-01b2 封存投影证据并校验后，才允许发布元数据晋升 single；完成真实独立 URL 验收。
+      - [x] OPS-01b2a 工程凭据绑定：#1113 已17/17全绿合入；check/md/html投影凭据与不可变版本、元数据、stored重放绑定，修复review pre-sync完整源解析。
+      - [ ] OPS-01b2b 使用正式批准的源/含字图完成真实独立语言URL验收；本地fixture通过不算上线。
       实施边界：check/md/html 三步比对同一 canonical manifest 摘要；封存完整 RST
       引用闭包与 Markdown/HTML 摘要；metadata writer 和 assembly 各自验证后才接受
       single，缺失/漂移/身份或路径不符须在晋升前失败。旧无证据输入保持
@@ -130,6 +132,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-03a 措辞部署 | #1109 → Hello-Docs `da0c02f7ae76ab9582bd2b4aaf9f5480efaf618b` | mirror run `34747579572` success | RTD build `34532682` success，API commit 与镜像一致；HTTPS 首页正文实际包含修正措辞；浏览器控制超时，未把此次 HTTP 验证当作新的视觉验收 | 已部署，不晋升语言身份 |
 | OPS-06a | [#1110](https://github.com/Bingboom/auto-manual/pull/1110)，head `557f9b3a227d0449d23536136681b2d8b8f72fc1` | 4042全量测试 OK（22 skipped），Ruff/护栏/文档/fixture check通过；默认关闭时66个HTML逐字节不变 | 17/17检查成功且无评审线程后发起合并；main已出现同树squash `9a015afdbee91786feecaf44567a6ad4d7a0c86e`，但PR接口仍OPEN；不重复合并 | 等GitHub合并状态一致后勾选；真实渠道/负责人/反馈闭环仍未验收 |
 | OPS-05b1 | [#1112](https://github.com/Bingboom/auto-manual/pull/1112)，merge `51791920bf5d9326f13b54c26af03cf2c1caf7d5` | 对齐#1111后的最终4065测试 OK（19 skipped）；10定向/Ruff/mypy/护栏/文档/fixture check通过；预先组合树与实际main对齐树均为`50a347256ec46d7a8c514230facbe7d96543bcbb` | 最终head `afbfa4ab` 的CI17/17，CLEAN，无评审/未解决线程，GitHub确认MERGED；21个现有出版物HEAD成功，不证明正文/资产/版本/翻译；首次CI启动失败见下方记录 | 子切片已合入；覆盖分母/负责人/处理验收仍未完成；无线上表写入 |
+| OPS-01b2a | [#1113](https://github.com/Bingboom/auto-manual/pull/1113)，merge `0a910a3e065f5e1c9dafbd145114efad26a85e1d` | 最终4088测试 OK（22 skipped）；Ruff/mypy/护栏/文档链接全绿；共享EN/FR配置的FR封存至stored回归通过；冻结21出版物Sphinx对比无差异；本地review-asis+隔离fixture真实check/md/html及凭据封存、组装、stored、门户构建通过 | 最终head `0f255284` CI17/17，CLEAN，无评审/未解决线程，GitHub确认MERGED；默认review模式check已修复，后续md被fixture源与批准Overview哈希不匹配正确拦住，未产生release；review-asis HTML仍14new/1known警告。未修改批准图/门禁，无线上表写入、workflow变更或RTD发布 | 工程子切片已合入；OPS-01b2/OPS-01b及真实URL、内容/翻译验收仍未完成；历史release不回填 |
 | OPS-01b1 | [#1111](https://github.com/Bingboom/auto-manual/pull/1111)，merge `d2c9c7542770cbe652d35a17b6b996764896b49d` | 最终4055测试 OK（22 skipped）；80定向/Ruff/mypy/护栏/文档/fixture check通过；review+隔离fixture/37哈希核验中立附件的EN check/md/html成功且三次投影manifest哈希相同；整本Web md通过；非Web显式语言保持原有失败基线 | CI17/17，CLEAN，无评审/未解决线程，GitHub确认MERGED；未发布RTD、未晋升single、无线上写入；HTML仍有14new/1known警告（含保修RST结构），不构成内容验收；未放宽门 | 子切片已合入；OPS-01b2及真实发布未验收 |
 | OPS-01b 只读/隔离试点 | main `f695f7b2`，无实现 PR | 37个中立LCD/Symbol附件与已提交audited source manifest逐项size/SHA匹配，仅复用图标；未复制其他型号CSV；使用已提交fixture提供测试数据/composite合同；整本review-asis check/md/html均exit0 | 无线上发布；HTML有22条RST warning；显式lang=en失败于review fallback引用缺失cover-en.rst；不能声明独立单语发布已通 | 输入可构建；单语作用域接线待实施 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
