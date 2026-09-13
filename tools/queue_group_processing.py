@@ -134,6 +134,8 @@ def process_queue_record_group(
     md_output_path: Path | None = None
     latex_output_dir: Path | None = None
     html_output_dir: Path | None = None
+    language_projection_evidence_path: Path | None = None
+    built_target_lang: str | None = None
     artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
@@ -315,6 +317,10 @@ def process_queue_record_group(
             md_output_path = built_outputs.md_output_path
             latex_output_dir = built_outputs.latex_output_dir
             html_output_dir = built_outputs.html_output_dir
+            language_projection_evidence_path = getattr(
+                built_outputs, "language_projection_evidence_path", None
+            )
+            built_target_lang = getattr(built_outputs, "target_lang", None)
             artifact_output_path = built_outputs.upload_output_path
         # Upload the built artifact to the knowledge base ONLY in publish: the IDML
         # file's link lands in the idml_file field. In review the deliverable is the
@@ -454,6 +460,8 @@ def process_queue_record_group(
                 md_output_path=md_output_path,
                 html_dir=html_output_dir,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
+                target_lang=built_target_lang,
+                language_projection_evidence_path=language_projection_evidence_path,
             )
         _write_terminal_queue_fields(
             source=source,

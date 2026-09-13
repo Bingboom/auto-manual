@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from tools.build_docs import load_config
+from tools.language_aliases import normalize_language
 from tools.utils.path_utils import (
     release_manifests_of,
     release_latest_of,
@@ -79,10 +80,20 @@ def release_root_for_target(
     region: str,
     cfg: dict[str, Any] | None = None,
     releases_root: Path | None = None,
+    lang: str | None = None,
 ) -> Path:
-    lang = release_lang_for_config(config_path, cfg)
+    loaded_cfg = cfg if cfg is not None else load_config(config_path)
+    languages = _build_languages(loaded_cfg)
+    selected_lang = normalize_language(lang, supported=languages) if (lang or "").strip() else ""
+    if selected_lang and selected_lang.casefold() not in {
+        item.casefold() for item in languages
+    }:
+        raise RuntimeError(
+            f"release language {selected_lang!r} is not configured in {config_path}"
+        )
+    release_lang = selected_lang or release_lang_for_config(config_path, loaded_cfg)
     base_root = releases_root or releases_of(repo_root)
-    return base_root / model / region / lang
+    return base_root / model / region / release_lang
 
 
 def release_latest_dir_for_target(
@@ -93,6 +104,7 @@ def release_latest_dir_for_target(
     region: str,
     cfg: dict[str, Any] | None = None,
     releases_root: Path | None = None,
+    lang: str | None = None,
 ) -> Path:
     release_root = release_root_for_target(
         repo_root=repo_root,
@@ -101,6 +113,7 @@ def release_latest_dir_for_target(
         region=region,
         cfg=cfg,
         releases_root=releases_root,
+        lang=lang,
     )
     return release_latest_of(release_root)
 
@@ -114,6 +127,7 @@ def release_version_dir_for_target(
     version: str,
     cfg: dict[str, Any] | None = None,
     releases_root: Path | None = None,
+    lang: str | None = None,
 ) -> Path:
     version_token = normalize_release_token(version) or "unversioned"
     release_root = release_root_for_target(
@@ -123,6 +137,7 @@ def release_version_dir_for_target(
         region=region,
         cfg=cfg,
         releases_root=releases_root,
+        lang=lang,
     )
     return release_versions_of(release_root) / version_token
 

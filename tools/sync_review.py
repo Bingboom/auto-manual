@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import sys
 from pathlib import Path
@@ -27,9 +29,13 @@ from tools.review_support import (  # noqa: E402
     review_dir_for_target,
     sync_review_paths,
 )
+from tools.safe_copy import assert_source_tree_no_symlinks  # noqa: E402
+from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
 
 PLACEHOLDER_RE = re.compile(r"\|([A-Z0-9][A-Z0-9_]+)\|")
+WEB_LANGUAGE_PROJECTION_SCHEMA = "web-language-bundle/v1"
+_SHA256_RE = re.compile(r"[0-9a-f]{64}")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -59,6 +65,113 @@ def _template_has_placeholders(source_path: Path) -> bool:
     if not source_path.exists() or not source_path.is_file():
         return False
     return bool(PLACEHOLDER_RE.search(source_path.read_text(encoding="utf-8")))
+
+
+def _sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _projection_source_rows(payload: dict[str, object], *, manifest_path: Path) -> tuple[tuple[Path, str], ...]:
+    raw_rows = payload.get("source_pages")
+    if not isinstance(raw_rows, list) or not raw_rows:
+        raise RuntimeError(
+            f"Web language projection has invalid source_pages: {manifest_path}"
+        )
+    rows: list[tuple[Path, str]] = []
+    seen: set[str] = set()
+    for raw_row in raw_rows:
+        if not isinstance(raw_row, dict):
+            raise RuntimeError(
+                f"Web language projection has invalid source_pages row: {manifest_path}"
+            )
+        raw_path = raw_row.get("path")
+        expected_sha256 = raw_row.get("sha256")
+        relative = Path(raw_path) if isinstance(raw_path, str) else Path()
+        if (
+            not isinstance(raw_path, str)
+            or not raw_path
+            or relative.is_absolute()
+            or ".." in relative.parts
+            or relative.as_posix() != raw_path
+            or raw_path in seen
+            or not isinstance(expected_sha256, str)
+            or not _SHA256_RE.fullmatch(expected_sha256)
+        ):
+            raise RuntimeError(
+                f"Web language projection has invalid source_pages row: {manifest_path}"
+            )
+        seen.add(raw_path)
+        rows.append((relative, expected_sha256))
+    return tuple(rows)
+
+
+def resolve_runtime_bundle_for_sync(runtime_bundle_dir: Path) -> Path:
+    """Return the full runtime bundle behind a canonical Web projection."""
+
+    projection_manifest = runtime_bundle_dir / "bundle_manifest.json"
+    if runtime_bundle_dir.is_symlink() or projection_manifest.is_symlink():
+        raise RuntimeError(
+            f"Web language projection sync path must not use a symbolic link: {runtime_bundle_dir}"
+        )
+    if not projection_manifest.exists():
+        return runtime_bundle_dir
+    try:
+        payload = json.loads(projection_manifest.read_text(encoding="utf-8-sig"))
+    except (OSError, UnicodeError, json.JSONDecodeError):
+        return runtime_bundle_dir
+    if not isinstance(payload, dict) or payload.get("schema_version") != WEB_LANGUAGE_PROJECTION_SCHEMA:
+        return runtime_bundle_dir
+
+    build_root = runtime_bundle_dir.parent
+    source_bundle = (
+        build_root
+        / PathSegments.WEB
+        / PathSegments.SOURCE
+        / PathSegments.RST
+    )
+    for directory in (
+        build_root,
+        build_root / PathSegments.WEB,
+        build_root / PathSegments.WEB / PathSegments.SOURCE,
+        source_bundle,
+    ):
+        if directory.is_symlink():
+            raise RuntimeError(
+                f"Web language projection source path must not use a symbolic link: {directory}"
+            )
+    if not source_bundle.is_dir():
+        raise RuntimeError(
+            f"Web language projection full source bundle is missing: {source_bundle}"
+        )
+    assert_source_tree_no_symlinks(
+        source_bundle, label="Web language projection full source bundle"
+    )
+
+    expected_index_sha256 = payload.get("source_index_sha256")
+    if not isinstance(expected_index_sha256, str) or not _SHA256_RE.fullmatch(
+        expected_index_sha256
+    ):
+        raise RuntimeError(
+            f"Web language projection has invalid source_index_sha256: {projection_manifest}"
+        )
+    source_index = source_bundle / "index.rst"
+    if not source_index.is_file() or _sha256(source_index) != expected_index_sha256:
+        raise RuntimeError(
+            f"Web language projection full source index hash mismatch: {source_index}"
+        )
+    for relative, expected_sha256 in _projection_source_rows(
+        payload, manifest_path=projection_manifest
+    ):
+        source_page = source_bundle / relative
+        if not source_page.is_file() or _sha256(source_page) != expected_sha256:
+            raise RuntimeError(
+                f"Web language projection full source page hash mismatch: {source_page}"
+            )
+    return source_bundle
 
 
 def resolve_sync_relative_paths(
@@ -262,6 +375,7 @@ def main(argv: list[str] | None = None) -> int:
                     target.lang,
                     docs_build_dir=docs_build_dir,
                 ) / "rst"
+            runtime_bundle_dir = resolve_runtime_bundle_for_sync(runtime_bundle_dir)
             review_dir = resolve_review_dir_for_sync(
                 docs_dir=docs_dir,
                 model=target.model,

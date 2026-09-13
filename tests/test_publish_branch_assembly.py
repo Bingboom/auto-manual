@@ -9,6 +9,7 @@ import unittest
 from unittest import mock
 
 from tools import publish_branch_assembly
+from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
 class PublishBranchAssemblyTests(unittest.TestCase):
@@ -80,6 +81,22 @@ class PublishBranchAssemblyTests(unittest.TestCase):
             payload["legacy_default"] = legacy_default
         if language_scope is not None:
             payload["language_scope"] = language_scope
+        if language_scope == "single":
+            receipt, receipt_sha256 = seal_language_evidence_fixture(
+                markdown_dir=md_root,
+                markdown_name=markdown_path.name,
+                html_dir=html_root,
+                evidence_dir=web_root / "evidence",
+                model=model,
+                region=region,
+                language=lang,
+                version=version,
+                git_ref=git_ref,
+            )
+            payload.update(
+                language_projection_evidence_path=relative(receipt),
+                language_projection_evidence_sha256=receipt_sha256,
+            )
         (metadata_root / "publish_meta.json").write_text(
             json.dumps(payload)
             + "\n",
@@ -692,6 +709,32 @@ class PublishBranchAssemblyTests(unittest.TestCase):
                     repo_root=root,
                     releases_root=root / "reports" / "releases",
                     output_dir=root / "publish-worktree" / "docs" / "publish",
+                    title="Manual Library",
+                )
+
+    def test_single_language_scope_without_receipt_should_be_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            lang_root = self._write_target(
+                root,
+                model="MODEL",
+                region="EU",
+                lang="fr",
+                version="2.0",
+                git_ref="review/MODEL-EU",
+                language_scope="single",
+            )
+            metadata = lang_root / "latest" / "web" / "publish_meta.json"
+            payload = json.loads(metadata.read_text(encoding="utf-8"))
+            payload.pop("language_projection_evidence_path")
+            payload.pop("language_projection_evidence_sha256")
+            metadata.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "language_projection_evidence_path"):
+                publish_branch_assembly.assemble_web_publish_branch(
+                    repo_root=root,
+                    releases_root=root / "reports" / "releases",
+                    output_dir=root / "publish" / "docs",
                     title="Manual Library",
                 )
 

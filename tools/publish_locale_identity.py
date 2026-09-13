@@ -12,6 +12,10 @@ from typing import Any
 
 from tools.release_contract import normalize_release_token
 from tools.utils.path_utils import PathSegments
+from tools.web_language_release_evidence import (
+    RECEIPT_FILENAME,
+    verify_release_evidence,
+)
 
 
 TARGET_SCHEMA_VERSION = "auto-manual-web-publish-target/v2"
@@ -40,6 +44,8 @@ class WebPublishTarget:
     html_dir: Path
     legacy_default: bool | None
     language_scope: str
+    language_projection_evidence_path: Path | None = None
+    language_projection_evidence_sha256: str | None = None
 
     @property
     def route(self) -> Path:
@@ -183,6 +189,51 @@ def load_web_publish_target(
     )
     if markdown_path.parent != expected_web_dir / "md" or html_dir != expected_web_dir / "html":
         raise RuntimeError(f"Web Publish artifact identity does not match metadata path: {metadata_path}")
+    language_scope = _language_scope(payload, source=metadata_path)
+    evidence_path: Path | None = None
+    evidence_sha256: str | None = None
+    evidence_fields_present = any(
+        field in payload
+        for field in (
+            "language_projection_evidence_path",
+            "language_projection_evidence_sha256",
+        )
+    )
+    if language_scope == LANGUAGE_SCOPE_SINGLE:
+        raw_evidence_path = required_text(
+            payload, "language_projection_evidence_path", source=metadata_path
+        )
+        evidence_sha256 = required_text(
+            payload, "language_projection_evidence_sha256", source=metadata_path
+        )
+        evidence_path = _path_from_metadata(
+            raw_evidence_path,
+            repo_root=repo_root,
+            releases_root=releases_root,
+            source=metadata_path,
+        )
+        expected_evidence_path = expected_web_dir / PathSegments.EVIDENCE / RECEIPT_FILENAME
+        if evidence_path != expected_evidence_path:
+            raise RuntimeError(
+                "Web language release evidence identity does not match versioned Web path: "
+                f"{evidence_path}"
+            )
+        verify_release_evidence(
+            evidence_path,
+            expected_sha256=evidence_sha256,
+            model=identity_values["model"],
+            region=identity_values["region"],
+            language=identity_values["lang"],
+            version=version,
+            git_ref=required_text(payload, "git_ref", source=metadata_path),
+            markdown_dir=markdown_path.parent,
+            markdown_name=markdown_path.name,
+            html_dir=html_dir,
+        )
+    elif evidence_fields_present:
+        raise RuntimeError(
+            f"legacy Web Publish metadata must not carry language projection evidence: {metadata_path}"
+        )
     return WebPublishTarget(
         metadata_path=metadata_path,
         model=identity_values["model"],
@@ -194,7 +245,9 @@ def load_web_publish_target(
         markdown_path=markdown_path,
         html_dir=html_dir,
         legacy_default=_optional_bool(payload, "legacy_default", source=metadata_path),
-        language_scope=_language_scope(payload, source=metadata_path),
+        language_scope=language_scope,
+        language_projection_evidence_path=evidence_path,
+        language_projection_evidence_sha256=evidence_sha256,
     )
 
 
@@ -280,6 +333,42 @@ def stored_payload(metadata_path: Path, *, output_dir: Path) -> dict[str, Any]:
         raise RuntimeError(f"stored Web manual does not exist: {metadata_path.parent / manual}")
     _optional_bool(payload, "legacy_default", source=metadata_path)
     payload["language_scope"] = _language_scope(payload, source=metadata_path)
+    evidence_fields_present = any(
+        field in payload
+        for field in (
+            "language_projection_evidence_path",
+            "language_projection_evidence_sha256",
+        )
+    )
+    if payload["language_scope"] == LANGUAGE_SCOPE_SINGLE:
+        evidence_relative = required_text(
+            payload, "language_projection_evidence_path", source=metadata_path
+        )
+        expected_relative = (PathSegments.EVIDENCE + "/" + RECEIPT_FILENAME)
+        if evidence_relative != expected_relative:
+            raise RuntimeError(
+                f"stored Web language evidence path must be {expected_relative}: {metadata_path}"
+            )
+        receipt_path = metadata_path.parent / evidence_relative
+        verify_release_evidence(
+            receipt_path,
+            expected_sha256=required_text(
+                payload, "language_projection_evidence_sha256", source=metadata_path
+            ),
+            model=values["model"],
+            region=values["region"],
+            language=values["lang"],
+            version=required_text(payload, "version", source=metadata_path),
+            git_ref=required_text(payload, "git_ref", source=metadata_path),
+            markdown_dir=metadata_path.parent,
+            markdown_name=manual,
+            html_dir=None,
+            stored=True,
+        )
+    elif evidence_fields_present:
+        raise RuntimeError(
+            f"stored legacy Web metadata must not carry language projection evidence: {metadata_path}"
+        )
     safe_aliases(payload, source=metadata_path)
     return payload
 
@@ -355,6 +444,22 @@ def stage_web_target(
         "manual": target.markdown_path.name,
         "language_scope": target.language_scope,
     }
+    if target.language_scope == LANGUAGE_SCOPE_SINGLE:
+        if (
+            target.language_projection_evidence_path is None
+            or target.language_projection_evidence_sha256 is None
+        ):
+            raise RuntimeError(
+                f"single-language Web target lacks verified evidence: {target.metadata_path}"
+            )
+        payload.update(
+            language_projection_evidence_path=(
+                PathSegments.EVIDENCE + "/" + RECEIPT_FILENAME
+            ),
+            language_projection_evidence_sha256=(
+                target.language_projection_evidence_sha256
+            ),
+        )
     if target.legacy_default is not None or inherited_default:
         payload["legacy_default"] = inherited_default or target.legacy_default is True
     if inherited_default and previous is not None:

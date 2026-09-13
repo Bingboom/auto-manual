@@ -4,7 +4,7 @@
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
-旧记录的语言字段不等于正文单语；真实多语上线须等待门户分组与单语输入验收。
+旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
 
 Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
 检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
@@ -12,8 +12,11 @@ Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operatio
 它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
 
 Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
-`check`、Markdown 和 HTML 使用同一份所选语言 RST。该能力不改变队列、审稿源或
-正式发布流程，也不表示计划中的语言已上线。
+`check`、Markdown 和 HTML 使用同一份所选语言 RST。显式语言的 Web 队列构建还会
+[核对并封存三步凭据](../code-as-doc/dev/web_language_release_evidence.md)，绑定型号、市场、
+语言、版本、Git_ref 及 Markdown/HTML 产物；凭据缺失或内容变化会阻止该版本被接受为单语发布。
+共享配置选法语时，版本目录也使用法语，不落到配置的第一个语言下。旧的不可变版本不补写凭据，
+需重新构建新版本。工作流、线上表、审稿源不变；凭据通过不等于翻译正确或已经在 RTD 上线。
 
 Updated: 2026-09-05
 

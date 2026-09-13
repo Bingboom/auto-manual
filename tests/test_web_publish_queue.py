@@ -139,6 +139,71 @@ class WebPublishQueueTests(unittest.TestCase):
         stage_web.assert_called_once()
         git_epoch.assert_called_once_with(review_workspace)
 
+    def test_explicit_language_build_should_capture_check_md_html_in_order(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            config_path = root / "configs" / "config.shared.yaml"
+            config_path.parent.mkdir(parents=True)
+            config_path.write_text("build:\n  languages: [en, fr]\n", encoding="utf-8")
+            md_path = root / "docs" / "_build" / "MODEL" / "EU" / "fr" / "md" / "manual.md"
+            md_path.parent.mkdir(parents=True)
+            md_path.write_text("# Manuel\n", encoding="utf-8")
+            html_dir = md_path.parent.parent / "html"
+            html_dir.mkdir()
+            (html_dir / "index.html").write_text("<html></html>\n", encoding="utf-8")
+            (md_path.parent.parent / "rst").mkdir()
+            (md_path.parent.parent / "rst" / "bundle_manifest.json").write_text(
+                "{}\n", encoding="utf-8"
+            )
+            main_workspace = root / "main-worktree"
+            review_workspace = root / "review-worktree"
+            main_workspace.mkdir()
+            (review_workspace / "docs" / "_review" / "MODEL" / "EU").mkdir(parents=True)
+            captures: list[object] = []
+
+            def captured(_path: Path, *, action: str, **_: object) -> object:
+                value = SimpleNamespace(action=action, language="fr")
+                captures.append(value)
+                return value
+
+            with mock.patch.object(process_build_queue, "ROOT", root), mock.patch.object(
+                process_build_queue, "_run_command"
+            ), mock.patch(
+                "tools.queue_build_execution.git_commit_epoch", return_value=1234567890
+            ), mock.patch(
+                "tools.queue_build_execution.capture_projection", side_effect=captured
+            ), mock.patch.object(
+                process_build_queue,
+                "_prepare_git_ref_worktree",
+                side_effect=[main_workspace, review_workspace],
+            ), mock.patch.object(
+                process_build_queue, "_remove_worktree"
+            ), mock.patch.object(
+                process_build_queue, "resolve_md_output_path_for_target", return_value=md_path
+            ), mock.patch.object(
+                process_build_queue, "resolve_html_output_dir_for_target", return_value=html_dir
+            ), mock.patch.object(
+                process_build_queue,
+                "_stage_web_publish_assets_to_host_repo",
+                return_value=(root / "staged.md", root / "staged-html"),
+            ) as stage_web:
+                outputs = process_build_queue.build_document_for_task(
+                    config_path=config_path,
+                    model="MODEL",
+                    region="EU",
+                    data_root="data/phase2",
+                    doc_phase="Web Publish",
+                    lang="fr",
+                    version="2.0",
+                    git_ref="review/MODEL-EU",
+                )
+
+            self.assertEqual(["check", "md", "html"], [item.action for item in captures])
+            self.assertEqual(tuple(captures), stage_web.call_args.kwargs["projection_captures"])
+            self.assertEqual("fr", stage_web.call_args.kwargs["target_lang"])
+            self.assertEqual("fr", outputs.target_lang)
+            self.assertIsNotNone(outputs.language_projection_evidence_path)
+
     def test_web_publish_staging_should_seal_version_assets_and_refuse_drift(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

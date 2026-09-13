@@ -47,6 +47,10 @@ class PathSegments:
     PUBLISH = "publish"
     WEB = "web"
     SOURCE = "source"
+    RST = "rst"
+    MD = "md"
+    HTML = "html"
+    EVIDENCE = "evidence"
 
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"
