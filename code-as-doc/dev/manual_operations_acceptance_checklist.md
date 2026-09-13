@@ -282,3 +282,14 @@ The earlier audit-open statement above is historical: the content correction aud
 
 
 Business assembly integration finding after #1116: real EN/FR release metadata verifies, but the assembler omits sealed Markdown sidecars `manual.ir.json` and `manual_bundle.html`; stored evidence verification correctly rejects the incomplete copy. Both locales reproduced. The atomic candidate failed before promotion, preserving the current business snapshot. Shared copy-contract correction and regression tests are the next separate implementation slice; do not remove sealed files or weaken evidence gates to publish. No RTD deployment occurred.
+
+
+### WEB-B04 sealed source assembly — PR #1117
+
+- [x] [#1117](https://github.com/Bingboom/auto-manual/pull/1117), exact head `97a82f8c6d097002db782187b118e06ff2fd4c3c`: fixed optional generated-sidecar copying without weakening evidence, symlink, print-artifact or unknown-file boundaries. Regression first failed before fix; 22 assembly tests pass, full suite 4098 tests OK (22 skipped), Ruff/guardrails/docs/US EN check passed, independent review no findings.
+- [x] Real EN/FR sealed releases now assemble successfully against verified business publish subtree `6eb37f74fe9cdf68afaa68181e525aaf4c0150ac`. Original 21 publication identities, 554 source-file bytes and legacy manual routes preserved; resulting catalog has 23 publications, not 23 list models. English is explicit default for the new EU target, French selectable; only mutable latest routing metadata carries that selection, versioned seal bytes unchanged.
+- [x] RTD-equivalent strict Sphinx with `-D extensions=myst_parser,tools.rtd_portal` builds 114 source pages. Actual local mobile selection navigates EN -> FR while retaining JE-1000F/EU, no section hash, zero broken images/viewport overflow. Ordinary Sphinx without the extension is not portal acceptance.
+- [ ] #1117 final all-check/review/main alignment and merge.
+- [ ] Business docs/publish-only PR and real deployed RTD revision validation.
+
+Existing assembler migrates legacy source paths to locale-qualified storage while generating legacy manual redirects. The candidate has 2131 added/65 modified/1537 removed paths, mostly migration; 135 unique new blobs total about 9.1 MB. Existing manual contents are preserved as verified above. This is a local candidate, not a completed publication or operational closure.
