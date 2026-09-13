@@ -51,6 +51,11 @@ Internal frozen Web language projection lives in
 explicit source language before rendering, not by slicing generated HTML.
 See [scope and integration boundary](web_language_projection.md).
 
+Optional manual feedback affordances are kept in
+[`tools/rtd_feedback.py`](../../tools/rtd_feedback.py). It validates fixed
+HTTPS channel configuration and renders only local copyable context from the
+frozen publication identity; an empty channel list produces no markup.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)
