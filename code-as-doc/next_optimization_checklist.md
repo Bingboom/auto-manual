@@ -1640,10 +1640,15 @@ IR `metadata.page_slots` intentionally changes from carrier names to semantic
 slot IDs. Evidence and non-goals are recorded in
 [`reviews/main_intl_je2000f_skeleton_discovery_2026-09.md`](reviews/main_intl_je2000f_skeleton_discovery_2026-09.md).
 This closes the first `MAIN@INTL` Web representative slice, not the milestone
-or the remaining MCP list rollout. Per operator clarification, every EU product
-then needs an authoritative model-level language set and the remaining declared
-languages must reuse the same skeleton; an English-only pass is not a
-product-language closeout. Locale-matched full-text panels remain mandatory for
+or the remaining MCP list rollout. The operator subsequently confirmed the
+same twelve-language destination for every in-scope EU model: English, French,
+Spanish, German, Italian, Portuguese, Dutch, Polish, Ukrainian, Greek, Hebrew
+and Arabic. The last seven are in translation and return incrementally. Track
+required language coverage separately from received, verified and published
+coverage; all locales reuse the same product skeleton. The
+[portal concept](dev/web_manual_portal_concept_2026-09.md) is a proposal under
+this milestone, not a parallel execution checklist. An English-only pass is not
+a product-language closeout. Locale-matched full-text panels remain mandatory for
 finished Web figures, while editable tables and prose stay localized semantic
 content.
 
@@ -2265,8 +2270,8 @@ the final S6 report and its own M-pre gate is satisfied.
 
 - [x] slice S1–S6 accepted, reconciliation report ruled on
 - [ ] rollout re-scoped from the report and executed
-- [ ] every in-scope EU product has an authoritative required-language set,
-      and every declared language Web target passes content, component, asset,
+- [ ] every in-scope EU product covers the operator-declared twelve-language
+      target, and every language Web target passes content, component, asset,
       replay and language-navigation gates through the same product skeleton
 - [ ] all five skeleton cells build at least one target end to end
 - [ ] corpus reconstruction 58/58 (3 outliers registered `legacy`)

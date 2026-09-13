@@ -35,9 +35,13 @@ Repository inventory separates Web availability from skeleton authority:
 Language completion is resolved per model, not inferred from `EU`. Existing
 operator-confirmed registry rows already demonstrate the difference:
 `JE-1000F_EU` declares `en/fr/es/de/it`, while `JE-2000F_EU` declares
-`en/fr/es/de/it/uk`. The English-only rows for newer products remain bootstrap
-scope until their authoritative required-language sets are confirmed; they
-must not be silently promoted to a blanket five- or six-language default.
+`en/fr/es/de/it/uk`. These are earlier registry declarations. The operator has
+since confirmed a twelve-language destination for every in-scope EU model:
+English, French, Spanish, German, Italian, Portuguese, Dutch, Polish, Ukrainian,
+Greek, Hebrew and Arabic. Portuguese, Dutch, Polish, Ukrainian, Greek, Hebrew
+and Arabic are in translation. Required coverage and received/verified/published
+coverage must be tracked separately; this English anchor does not assert that
+any outstanding translation or runtime language pack is ready.
 
 ## 2. First vertical slice
 
