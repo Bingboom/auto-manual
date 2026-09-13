@@ -1,5 +1,12 @@
 # Optimization Project
 
+Web-first delivery batch: use the existing JE-1000F line as the regression
+baseline and onboard JBP-3600A, JS-100I and JA-AD01A in EU English. The
+[investigation and execution checklist](dev/web_eu_en_first_three_checklist.md)
+defines source authority, concrete component gaps, per-target PRs and release
+acceptance. Current published content wins without an old/new comparison;
+remaining IR-wide retirement work is not a prerequisite for this batch.
+
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document
 Web packages a renderer-neutral `manual-ir/v2` flow/rich-text projection and
