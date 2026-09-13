@@ -15,6 +15,9 @@ Optional local release artifact preflight:
 [Manual operations health report](dev/manual_operations_health_report.md).
 For an explicit read-only network pass over the frozen catalog, see
 [HTTP health checks](dev/manual_operations_online_health.md). No queue or live-table write is performed.
+Exact frozen-source/served-asset identity can be checked with the
+[Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
+existing frozen Sphinx portal build. This check performs no link writeback.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete
@@ -51,9 +54,13 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
-Feedback is opt-in: configure fixed HTTPS `feedback_channels` in the portal
-settings. The page exposes only frozen publication context for local copying;
-it does not append context, tokens or user identity to channel URLs.
+The operator-selected feedback channel is GitHub Issues, configured through
+the existing fixed HTTPS `feedback_channels` portal setting. Verified
+single-language pages expose frozen publication context for local copying;
+they do not append context, tokens or user identity to channel URLs. Xia Bing
+(`Bingboom`) owns feedback and checks local artifacts, HTTP accessibility and
+the deployed revision after every publication. Response deadlines remain
+unassigned; this configuration creates no scheduled service.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell
