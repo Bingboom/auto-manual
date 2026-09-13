@@ -96,6 +96,8 @@ class Je500aEuEnWebTests(unittest.TestCase):
             data = (FORMAL_SOURCE / record["path"]).read_bytes()
             self.assertEqual(record["size"], len(data))
             self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
+        for binding in manifest.get("supplemental_asset_recipes", []):
+            self.assertEqual(binding["sha256"], hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest())
 
     def test_output_preserves_target_facts_and_excludes_foreign_identity(self) -> None:
         for expected in (
@@ -107,6 +109,13 @@ class Je500aEuEnWebTests(unittest.TestCase):
             "within 10 ms",
             "3 YEARS - Standard Warranty",
             "2 YEARS - Extended Warranty",
+            "Congratulations on your new Jackery Explorer 500",
+            "frequent reference",
+            "RED Declaration of Conformity",
+            "LVD Directive 2014/35/EU",
+            "EMC Directive 2014/30/EU",
+            "2015/863/EU",
+            "sales@hello-tech.com",
         ):
             self.assertIn(expected, self.html)
         for forbidden in (
@@ -115,9 +124,22 @@ class Je500aEuEnWebTests(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, self.html)
 
+    def test_released_pdf_dc_markers_survive_native_tables(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        table_text = " ".join(table.get_text(" ", strip=True) for table in soup.find_all("table"))
+        for value in (
+            "11V-16V⎓8A Max", "16V-60V⎓10.5A, 200W Max",
+            "100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A",
+            "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A",
+            "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A",
+            "12V⎓10A Max",
+        ):
+            with self.subTest(value=value):
+                self.assertIn(value, table_text)
+
     def test_semantic_components_and_lcd_ownership(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
-        self.assertEqual(13, len(self.ir.pages))
+        self.assertEqual(15, len(self.ir.pages))
         self.assertEqual(16, len(soup.select("img.manual-finished-illustration")))
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(11, coverage["summary"]["total"])
@@ -175,10 +197,28 @@ class Je500aEuEnWebTests(unittest.TestCase):
             path = ILLUSTRATIONS.parent / illustration["path"]
             actual = hashlib.sha256(path.read_bytes()).hexdigest()
             self.assertEqual(illustration["sha256"], actual)
-            self.assertEqual(actual, output_hashes[path.relative_to(ILLUSTRATIONS.parent).as_posix()])
+            active_hashes = output_hashes
+            if "recipe" in illustration:
+                override = json.loads((ROOT / illustration["recipe"]).read_text(encoding="utf-8"))
+                self.assertEqual(illustration["source_pdf_sha256"], override["source"]["expected_sha256"])
+                active_hashes = {
+                    output["path"]: output["expected_sha256"]
+                    for asset in override["assets"] for output in asset["outputs"]
+                }
+            self.assertEqual(actual, active_hashes[path.relative_to(ILLUSTRATIONS.parent).as_posix()])
+
+    def test_overview_uses_released_pdf_not_missing_glyph_ai(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        overview = soup.find("img", alt="Jackery Explorer 500 front and right-side views with source port labels")
+        self.assertIsNotNone(overview)
+        self.assertIn("749ca081dde5bfee3d3ac2dfc811f3e4078a11380c1cdc908bd832c7d9ae47bf", overview["src"])
+        self.assertTrue(overview["src"].endswith("overview.png"))
+        lcd = soup.find("img", alt="Jackery Explorer 500 numbered LCD display")
+        self.assertIsNotNone(lcd)
+        self.assertIn("122991a64cd306c82e70b0279024fa0bcad517e9fe0bfd8a30d6a81f0c46de99", lcd["src"])
 
     def test_public_ir_cold_replay_and_tamper_rejection(self) -> None:
-        self.assertEqual(13, len(render_document_fragments(self.ir, package_root=self.package)))
+        self.assertEqual(15, len(render_document_fragments(self.ir, package_root=self.package)))
         with tempfile.TemporaryDirectory() as td:
             copied = Path(td) / "package"
             shutil.copytree(self.package, copied)
