@@ -26,7 +26,7 @@ Connect the AC charging cable to the AC input port of the product and a wall out
 CHARGING VIA SOLAR PANELS
 -------------------------
 
-The Jackery Explorer 500 has one DC8020 input port, which supports direct connection of either one 100W or one 200W solar panel. If you need to connect two 100W solar panels simultaneously to a DC8020 input port, please use a solar panel connector (sold separately, not included).
+The Jackery Explorer 500 has one DC8020 input port, which supports direct connection of either one 100W or one 200W solar panel. If you need to connect two 100W solar panels simultaneously to a DC8020 input port, please use a solar panel connector (sold separately, not included). Please refer to the diagram below for connection details.
 
 .. image:: renderers/web/assets/je500a_eu_en/charging_solar_single.png
    :alt: Explorer 500 connected to one SolarSaga 200 panel

@@ -115,6 +115,34 @@ class Je2000eEuEnWebTests(unittest.TestCase):
             values[("dc_expansion_output", "", "1")],
         )
 
+    def test_specification_ports_match_released_pdf(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        rows = [
+            (cell.get_text(" ", strip=True),
+             cell.parent.select_one("td").get_text(" ", strip=True))
+            for cell in soup.select("th.hb-spec-label")
+        ]
+        output_start = next(i for i, (label, _) in enumerate(rows)
+                            if label == "3 × AC Output")
+        outputs = rows[output_start:output_start + 7]
+        self.assertEqual(
+            [label.rstrip("① ") for label, _ in outputs],
+            ["3 × AC Output", "AC Output in Bypass Mode", "1 × USB-A Output",
+             "1 × USB-C 30W Output", "1 × USB-C 140W Output",
+             "1 × DC 12V Port", "1 × DC Expansion Port"],
+        )
+        self.assertEqual("230 V~ 50 Hz, 10 A max.", outputs[1][1])
+        self.assertTrue(outputs[3][1].startswith("30 W max."))
+        self.assertTrue(outputs[4][1].startswith("140 W max."))
+        inputs = dict(rows[:output_start])
+        self.assertEqual(
+            "PV: 16 V-60 V⎓12 A, Double to 21 A / 800 W max. "
+            "Car: 11 V-16 V⎓8 A max., Double to 8 A max.",
+            inputs["2 × DC8020 Ports"],
+        )
+        self.assertEqual(2, inputs["1 × AC Input"].count(
+            "220 V-240 V~ 50 Hz, 10 A max."))
+
     def test_source_manifest_locks_every_frozen_input(self) -> None:
         manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
         self.assertFalse(manifest["live_bitable_dependency"])

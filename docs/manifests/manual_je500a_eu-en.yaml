@@ -1,5 +1,6 @@
 manifest_id: manual_je500a_eu_en
 pages:
+  - {type: rst_include, lang: en, file: templates/page_shared/en/00_preface_legacy_single_language.rst}
   - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/safety_en.rst}
   - {type: rst_include, lang: en, file: templates/page_shared/en/01_user_maintenance_instructions.rst}
   - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/symbol_meaning_en.rst}
@@ -13,3 +14,4 @@ pages:
   - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/troubleshooting_en.rst}
   - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/spec_en.rst}
   - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/warranty_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je500a_eu-en/99_regulatory_compliance.rst}
