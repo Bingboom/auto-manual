@@ -358,6 +358,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
   - exact review commit/path provenance injection for versioned print Publish
+  - review-input commit epoch injection for deterministic Web `check` / `md` / `html`
   - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
 - [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
   - top-level queue session flow
@@ -368,6 +369,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
   - drive/wiki delivery for print tasks and frozen Web metadata handoff for Web Publish
+  - Web terminal-success writeback only after version metadata and latest pointer succeed
   - delivery-outbox side channel on publish (env-gated, `delivery_outbox=*` row notes)
 - [`tools/delivery_outbox.py`](../../tools/delivery_outbox.py)
   - atomic outbox job assembly (`.partial` staging, verify, rename) for the DingTalk hand-off
@@ -407,8 +409,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
   - separate print-publish and Web-Publish asset staging
-  - immutable snapshot/manifest copy-out plus generic release/output path helpers
-  - separate print-publish and Web-Publish metadata assembly
+  - atomic immutable snapshot/manifest copy-out plus generic release/output path helpers
+  - exact-hash Web version seal, immutable version metadata, and atomic latest pointer
 - [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
   - repo-root-aware queue output adapters
   - bound output/release helpers that keep `process_build_queue.ROOT` patchable

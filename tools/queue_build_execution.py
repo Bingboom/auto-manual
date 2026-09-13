@@ -19,6 +19,8 @@ from tools.release_reproducibility import (
     REVIEW_OVERLAY_PATH_ENV,
     REVIEW_OVERLAY_REF_ENV,
     REVIEW_OVERLAY_SHA_ENV,
+    SOURCE_DATE_EPOCH_ENV,
+    git_commit_epoch,
 )
 from tools.utils.path_utils import PathSegments, review_dir_of
 
@@ -319,6 +321,10 @@ def build_document_for_task(
                 cwd=effective_repo_root,
             )
         elif normalized_doc_phase == "web_publish":
+            source_revision_workspace = review_workspace or effective_repo_root
+            web_build_env = {
+                SOURCE_DATE_EPOCH_ENV: str(git_commit_epoch(source_revision_workspace)),
+            }
             for action, no_clean in (("check", False), ("md", True), ("html", True)):
                 run_command(
                     build_py_target_command(
@@ -334,6 +340,7 @@ def build_document_for_task(
                         presentation_profile="web",
                     ),
                     cwd=effective_repo_root,
+                    env=web_build_env,
                 )
         else:
             run_command(
