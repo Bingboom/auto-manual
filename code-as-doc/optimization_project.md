@@ -1,8 +1,11 @@
 # Optimization Project
 
-Manual Web operations: [独立验收 checklist](dev/manual_operations_acceptance_checklist.md)
-是运营闭环的唯一执行账本；总计划 PR 在真实运营出口全部验证前保持 Draft。
-骨架/数据接入仍归 Milestone M，跨端长期债不并入本期运营门。
+当前主线（2026-09-13）：先按操作者清单、以确认的 PDF 发布版批量网页化，
+通过既有 Git-only 发布 PR → RTD 上线；不以前置录齐线上数据、云文档或 Web Publish
+队列为门槛。[统一 checklist §0](dev/manual_operations_acceptance_checklist.md) 记录近期
+WEB-B01～06；原 OPS 运营出口后置，已完成证据保留，总计划 #1103 仍为 Draft，
+不因近期上线而宣称运营闭环完成。后续逐本结构化治理与云文档/Publish/Web Publish
+接入再继续；骨架执行仍归 Milestone M，跨端 IR-D01～D06 保持长期目标。
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document

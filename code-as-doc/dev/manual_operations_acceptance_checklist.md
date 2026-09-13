@@ -1,17 +1,61 @@
 # Manual Operations Acceptance Checklist
 
-Status: active / umbrella PR stays **Draft**. Updated: 2026-09-13.
+Status: batch Web rollout first; structured operations deferred / umbrella PR stays **Draft**. Updated: 2026-09-13.
 
 Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
-操作者决策（2026-09-12）：「先做其他部分，工作流暂不改」。因此 OPS-04
-工作流接线和最终正式回填出口保持未完成；不以其他切片全绿替代该出口。
+
+## 0. 最新执行顺序：先批量网页化，后结构化运营
+
+操作者最新决策（2026-09-13）：「是的 以清单内说明书的批量网页化为主线」。
+本节覆盖旧计划的执行优先级，不抹去已完成工程证据，也不将 deferred 改成 completed。
+
+- **近期主线**：只处理操作者指定的[钉钉清单](https://alidocs.dingtalk.com/i/nodes/YndMj49yWjP03jNjCDojvAQdJ3pmz5aA?iframeQuery=entrance%3Ddata%26sheetId%3D97v7518%26source%3Dnotable_portal%26viewId%3DxWo5UbG&sideCollapsed=true)。
+  以操作者提供/确认的 PDF 发布版为准，先完成可复现的 Web 源、含字整图、
+  原生 HTML 表格、共享组件和 RTD 上线。不扩入 HTO2682 或其他清单外目标。
+- **发布路径**：复用既有 Git-only 路径（冻结来源/资产/版本 →
+  Hello-Docs 的 docs/publish-only 发布 PR → main → RTD）。
+  不要求先建云文档、不要求先抽齐或录齐线上结构化数据、
+  不要求先创建/武装 Web Publish 队列；不是绕过 PR、内容和资产验收。
+- **后续治理**：逐本抽取结构化数据，映射共享骨架与产品绑定，
+  再接入云文档审稿 + Publish，以及 Web Publish 的长期维护流程。
+  骨架执行仍归 Milestone M，不复制第二套骨架任务。
+- **保留追溯**：每本记录型号、市场、实际语言、PDF 发布版本/来源哈希、
+  可复现 Web 输入及正式 URL；后续数据驱动迁移保留原 URL 或显式兼容跳转。
+  这是最小发布身份，不是提前复制全部正文到线上表。
+- EU/UK 共用手册，入口暂以 EU 默认；只启用真实已发布语言，
+  12 语回稿陆续接入，不等待齐套才上线，不把混语标成单语。
+
+### 近期 checklist（不冒充长期运营验收）
+
+- [x] 操作者确认“清单批量网页化优先，结构化治理和正式队列后置”。
+- [ ] WEB-B01：重新对账清单与当前 RTD 冻结目录；逐条标记已上线/待修正/
+  待构建/缺输入，登记版本、实际语言和 URL。历史“20 条/21 出版物”不能替代本次对账。
+- [ ] WEB-B02：对清单内剩余或需更新项核对 PDF 发布版；已有线上成果复用，
+  不重复构建无变化手册。缺文件/适用市场/翻译时明确列缺口，不推断新事实。
+- [ ] WEB-B03：按批复用既有 Web 骨架与样式；Overview/操作/充电使用语言匹配的
+  含字整图（含 On/Off/引线），表格保持原生 HTML，质保数字组件统一复用。
+  完整抽取线上结构化数据及 #1101 合入均不是所有手册的前置门。
+- [ ] WEB-B04：每批验证内容/资产/链接及桌面、移动阅读；实现或内容变更独立 PR，
+  按有效授权和全绿门禁合入，只通过限定的 Git-only 发布路径上线。
+- [ ] WEB-B05：读回 RTD 实页并更新清单覆盖证据；保留已有链接、其他型号和语言，
+  记录 PDF 版本、发布 commit、URL 及剩余缺口，不以本地预览代替上线。
+- [ ] WEB-B06：近期目标范围内可用输入全部完成上线/纠错，未回稿和缺输入明确列账；
+  形成后续逐本结构化治理的优先队列。
+
+### 暂缓而非取消
+
+OPS-04 工作流接线/线上链接回填、真实队列创建或武装、反馈闭环与后台运营
+不是 WEB-B01～06 的前置条件。本轮刚开始的 verified-web-release 隔离修改已暂停，
+未创建实现 PR、未合入、未创建或触发新发布记录。不得因旧“继续”指令自动恢复；
+只有操作者重新启动该治理阶段才继续，并保留各独立门禁。
 反馈渠道仍待确认，不启用新的收集服务。
+
 
 唯一合并条件：**实现 manual 运营的打通**。建好首页、代码合入、CI 绿或生成
 本地样例均不等于闭环验收。每完成一个独立切片，开实现 PR；合入并完成该切片
 验收后，才在本文件勾选并登记 PR、commit、命令结果和部署证据。
 
-## 1. 边界与 discovery
+## 1. 原始运营 discovery（历史基线，当前结果见证据账本）
 
 - 基线：auto-manual/main `a55d666d6d22b713346d3a6bcd7884e7c0395dc8`。
   [#1102](https://github.com/Bingboom/auto-manual/pull/1102) 已交付首页；
@@ -36,7 +80,7 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
 [#1101](https://github.com/Bingboom/auto-manual/pull/1101) 是依赖/独立工作，
 不在此复制其执行清单或擅自合入。
 
-## 2. 实现切片与验收
+## 2. 后续运营实现切片与验收（未完成项 deferred，不阻塞近期批量网页化）
 
 - [x] OPS-00：完成发布身份/回填顺序/门户基线 discovery，登记独立授权 MA-066。
 - [ ] OPS-01：复用现有单语投影，确认可用语言来自实际冻结内容，缺译失败或明确不可用；
@@ -83,7 +127,7 @@ Umbrella: [#1103](https://github.com/Bingboom/auto-manual/pull/1103).
   完成补一语、版本更新、回滚演练、反馈闭环和线上健康报告；记录耗时/人工步骤。
   不为验收编造翻译或修改安全参数。文档同步、成本记录齐全后才可关闭总计划。
 
-## 3. 最终硬出口（全部满足才把总 PR 转 Ready）
+## 3. 长期运营最终硬出口（全部满足才把总 PR 转 Ready）
 
 - [ ] 已批准代表手册能够复用骨架接入，且补语言不改型号专属 Python/CSS。
 - [ ] 至少同一型号/市场两语真实独立 URL 可访问；正文、含字图语言正确；
