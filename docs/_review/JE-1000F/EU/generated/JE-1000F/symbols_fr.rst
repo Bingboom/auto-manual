@@ -1,0 +1,105 @@
+SIGNIFICATION DES SYMBOLES
+==========================
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBSymbolTable{Symbole}{Signification}{%
+      \HBSymbolSignalRow[warning]{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{AVERTISSEMENT}{Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.}
+      \HBSymbolSignalRow[caution]{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{ATTENTION}{Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.}
+      \HBSymbolSignalRow[note]{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{REMARQUE}{Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.}
+      \HBSymbolSignalRow[tips]{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEIL}{Complète les informations importantes ou les conseils d'utilisation dans le texte.}
+      }
+
+.. only:: not latex
+
+   .. list-table::
+      :class: longtable
+      :header-rows: 1
+      :widths: 22 78
+
+      * - Symbole
+        - Signification
+      * - .. raw:: html
+
+             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>AVERTISSEMENT</span></span>
+        - Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.
+      * - .. raw:: html
+
+             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>ATTENTION</span></span>
+        - Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.
+      * - .. raw:: html
+
+             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>REMARQUE</span></span>
+        - Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.
+      * - .. raw:: html
+
+             <span class="hb-warning-lockup" style="display:inline-block; width:140px; box-sizing:border-box; background:#4a4a4a; color:#ffffff; padding:5px 8px; font-weight:700; line-height:1; white-space:nowrap;"><span aria-hidden="true" style="font-size:13px; margin-right:7px;">&#9888;</span><span>CONSEIL</span></span>
+        - Complète les informations importantes ou les conseils d'utilisation dans le texte.
+
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \HBSymbolTwoColumnTablesSplit{Symbole}{Signification}{%
+      \HBSymbolIconRow{1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png}{Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.}
+      \HBSymbolIconRow{2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png}{Lire le manuel de l'opérateur}
+      \HBSymbolIconRow{7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png}{Ne démontez pas le produit.}
+      \HBSymbolIconRow{8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png}{Tenir le produit à l’écart du feu.}
+      }{%
+      \HBSymbolIconRow{9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png}{Les enfants ne sont pas admis}
+      \HBSymbolIconRow{10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png}{Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.}
+      \HBSymbolIconRow{11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png}{Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié. \newline Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.}
+      \HBSymbolIconRow{12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png}{Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères. \newline En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses. \newline Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.}
+      }{%
+      }{%
+      }
+
+.. only:: not latex
+
+   .. list-table::
+      :class: longtable
+      :header-rows: 0
+      :widths: 12 38 12 38
+
+      * - **Symbole**
+        - **Signification**
+        - **Symbole**
+        - **Signification**
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/1_warning_triangle_CppWbDvpZouM0OxPmyacMNt1nMh.png
+             :alt: warning_triangle
+             :width: 40px
+        - Symboles d’avertissement et de mise en garde. Signalent aux personnes des informations qui doivent être lues afin d’éviter les dangers ou risques potentiels.
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/9_keep_away_from_children_EkuMbUU1foXNPuxytfLcW9dinFS.png
+             :alt: keep_away_from_children
+             :width: 40px
+        - Les enfants ne sont pas admis
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/2_read_manual_GwHdbgaO4ognLjxnngBcttelnRa.png
+             :alt: read_manual
+             :width: 40px
+        - Lire le manuel de l'opérateur
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/10_li_ion_V699bWppsoqekPxvtrccpM9dnDg.png
+             :alt: li_ion
+             :width: 40px
+        - Ce symbole indique que le produit contient une batterie lithium-ion (Li-ion), qui doit être éliminée ou recyclée de manière appropriée.
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/7_do_not_dismantle_Tp4cbUNyQo0KytxtFaNcRyOQnEd.png
+             :alt: do_not_dismantle
+             :width: 40px
+        - Ne démontez pas le produit.
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/11_weee_Ph50b51y0obEXBxibqGczTSbngc.png
+             :alt: weee
+             :width: 40px
+        - Ce symbole indique que le produit ne doit pas être jeté avec les ordures ménagères. Il doit être apporté à un point de collecte désigné pour un recyclage approprié.
+          Une élimination et un recyclage corrects contribuent à la protection de l’environnement. Pour plus d’informations, veuillez contacter votre autorité locale, le service de gestion des déchets ou le revendeur du produit.
+      * - .. image:: _repo_assets/data/phase2/_attachments/symbols/8_no_open_flame_MV1ebyVJ9oTmIpxA2NzcV8agnad.png
+             :alt: no_open_flame
+             :width: 40px
+        - Tenir le produit à l’écart du feu.
+        - .. image:: _repo_assets/data/phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png
+             :alt: weee2
+             :width: 40px
+        - Les piles et accumulateurs ne doivent pas être jetés avec les ordures ménagères.
+          En tant que consommateur, vous êtes légalement tenu de déposer toutes les piles et accumulateurs dans des points de collecte désignés, qu'ils contiennent ou non des substances dangereuses.
+          Veuillez rapporter les piles et accumulateurs usagés à un point de collecte local, un centre de recyclage ou au détaillant où ils ont été achetés. Une élimination appropriée garantit un recyclage respectueux de l'environnement et prévient les dommages potentiels pour la santé humaine et l'environnement.
