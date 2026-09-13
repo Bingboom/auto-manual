@@ -268,3 +268,14 @@ No queue dispatch, online-table write, workflow edit or operational closure is i
 
 
 Publication hold after #1115: the comprehensive released-PDF audit remains open. LCD table numbering/order differs from the current candidate, and the PDF itself contains repeated numbering. Preserve source authority; do not interpret green builds as content approval. No RTD publication has occurred. Final-head EN/FR builds and sealed receipts were independently verified at dc13d28d; source corrections will require a new release evidence run. The pinned business snapshot (62175c77, publish subtree 6eb37f74) was read and verified: 1604 files, 481 unique blobs, 354 reused from local Git; no business checkout or online table was changed.
+
+
+### WEB-B02/B03 PDF content correction — PR #1116
+
+- [x] Released-PDF EN/FR audit corrections committed as `645668a1e233b46107fe40a75c561f500d2ae263` in [#1116](https://github.com/Bingboom/auto-manual/pull/1116). Safety condition, LCD numbering/copy, 12 A maximum, troubleshooting, native USB-C rows, operation order and App numbering corrected; source-side PDF inconsistencies recorded, no invented translations or live writes.
+- [x] Independent source/rendered-content review found no omissions. All 217 source hashes match; both locale check/md/strict Sphinx builds succeed. Both locales at 1440/390 px have 67 decoded images, zero broken images or viewport overflow; native wide tables remain horizontally scrollable.
+- [x] Fresh clean-source final-ref builds sealed and independently verified including actual Markdown and HTML: EN `3531bf2e9dbf7b58e2ffcf754323ab2191af9c23d8a528eec5bd4d534ba66692`; FR `3ef5673e115134e67bbfba687d58de34e748dbc62e3169790bd760e08f077e8e`. These supersede the earlier mismatched-content candidate receipts, not a production release.
+- [ ] #1116 all-checks/review gates and merge.
+- [ ] Business release PR and actual RTD revision/EN-FR pages verified.
+
+The earlier audit-open statement above is historical: the content correction audit is now complete for this candidate. Publication remains pending PR gates and deployment verification; no operational exit is silently completed. #1103 stays Draft.
