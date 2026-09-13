@@ -18,6 +18,16 @@ For current rules, see:
 
 ## 1. 2026-03-08: Initial P0 / P1 Refactor Wave
 
+### 2026-09-12: RTD entrance implementation slice
+
+Added a root-only Sphinx portal over frozen publication links: temporary EU
+default, shared EU/UK binding, product cards and search, with a no-JavaScript
+all-publications fallback. Manual renderers, aliases and sources are unchanged
+in real Sphinx regression fixtures. Local suite: 3,975 tests run, OK with 22
+skips. This closes the entrance implementation slice, not multilingual release
+storage or Milestone M; production rollout evidence belongs in the
+[portal record](dev/rtd_manual_portal.md).
+
 Main outcomes:
 
 - extracted shared target resolution helpers

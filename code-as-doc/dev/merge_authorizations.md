@@ -44,6 +44,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 ## Registry
 
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-065 | 本次 `codex/rtd-manual-portal` 首页 PR：接入已确认的产品卡片/搜索/US-EU-UK 地区下拉，暂以 EU 为默认；EU/UK 共用冻结目录和手册链接。仅在最终 head 包含最新 main、所有检查成功、无 changes-requested 和未解决评审讨论后 squash merge；随后经既有镜像同步完成 RTD 上线验证。不含其他 PR、线上 Base 写入、正文/翻译/图内容修改、依赖、公开 CLI 或 `.github/workflows/**` 改动。 | 「授权本次首页 PR 全绿后合入并上线」2026-09-12 | 本次首页 PR 合入且 RTD 实页验证完成，或操作者撤销 | 生效 |
+
 | ID | 范围 (branch pattern / PR list) | 授予出处 | 失效条件 | 状态 |
 | --- | --- | --- | --- | --- |
 | MA-001 | 闭环报告工程 ①–⑦ 的 PR（2026-07-02 当日各线） | 「授予你全绿就合入PR的权利 直到闭环报告工程①–⑦完成为止」2026-07-02 | 工程①–⑦完成（当日达成） | 已失效 |

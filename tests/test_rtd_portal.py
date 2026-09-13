@@ -1,0 +1,98 @@
+from __future__ import annotations
+
+import hashlib
+import json
+import subprocess
+import sys
+import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
+
+from tools import rtd_portal
+from tools.readthedocs_source import assemble_rtd_source
+
+
+class RtdPortalTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.settings = json.loads((rtd_portal.ASSETS / "settings.json").read_text())
+
+    def source(self, region="EU", model="JE-TEST"):
+        source = self.root / model / region / "md"
+        source.mkdir(parents=True, exist_ok=True)
+        (source / "conf.py").write_text("project='manual'\n")
+        (source / "index.md").write_text(f"# Jackery Test User Manual\n\n```{{toctree}}\n\nmanual_{region}\n```\n")
+        (source / "assets").mkdir(exist_ok=True)
+        (source / "assets" / "product.png").write_bytes(b"product")
+        (source / f"manual_{region}.md").write_text(
+            '# Test\n\n<img class="hb-inbox-art" src="assets/product.png" alt="Product"/>\n'
+        )
+
+    def assemble(self):
+        for region in ("EU", "US", "JP"):
+            self.source(region)
+        result = self.root / "rtd"
+        assemble_rtd_source(build_root=self.root, output_dir=result, title="Library")
+        return result
+
+    def test_default_and_shared_binding(self):
+        self.assertEqual(self.settings["default_region"], "EU")
+        self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK"])
+        self.assertEqual(self.settings["regions"]["EU"], self.settings["regions"]["UK"])
+        self.assertEqual(len(self.settings["languages"]), 12)
+
+    def test_catalog_uses_frozen_links_and_local_product_images(self):
+        root = self.assemble()
+        records = rtd_portal.catalog(root, self.settings)
+        self.assertEqual(len(records), 3)
+        eu = next(p for p in records if p["region"] == "EU")
+        self.assertEqual(eu["edition"], "EUUK")
+        self.assertEqual(eu["name"], "Test")
+        self.assertEqual(eu["url"], "JE-TEST/EU/md/manual_EU.html")
+        self.assertEqual(eu["image"], "_static/manual-assets/JE-TEST/EU/md/assets/product.png")
+        self.assertEqual({r["region"] for r in records}, {"US", "EU", "JP"})
+
+    def test_unsafe_or_missing_links_fail(self):
+        for link in ("../escape.md", "https://host/manual.md", "missing.md", "/manual.md"):
+            (self.root / "index.md").write_text(f"- [Bad]({link})\n")
+            with self.assertRaisesRegex(ValueError, "Missing or unsafe"):
+                rtd_portal.catalog(self.root, self.settings)
+
+    def test_missing_or_remote_image_is_not_replaced_with_another_model(self):
+        source = self.root / "manual.md"
+        for src in ("https://host/product.png", "../outside.png", "/outside.png", "missing.png"):
+            source.write_text(f'<img class="hb-inbox-art" src="{src}"/>')
+            self.assertEqual(rtd_portal.product_image(source, self.root), "")
+
+    def test_real_sphinx_changes_home_only_and_preserves_sources(self):
+        root = self.assemble()
+        before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
+                  for p in root.rglob("*") if p.is_file()}
+        for name, flags in (("before", []), ("after", ["-D", "extensions=myst_parser,tools.rtd_portal"])):
+            result = subprocess.run(
+                [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
+                cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        after = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
+                 for p in root.rglob("*") if p.is_file()}
+        self.assertEqual(before, after)
+        for region in ("EU", "US", "JP"):
+            for path in (f"JE-TEST/{region}/md/manual_{region}.html", f"manual_{region}.html"):
+                self.assertEqual((self.root / "before" / path).read_bytes(),
+                                 (self.root / "after" / path).read_bytes(), path)
+        page = (self.root / "after" / "index.html").read_text()
+        self.assertIn('data-default-region="EU"', page)
+        self.assertIn('value="EU" data-binding="EU" selected', page)
+        self.assertIn('value="UK" data-binding="EU"', page)
+        self.assertIn('id="ethical-ad-placement"', page)
+        self.assertIn("All published manuals", page)
+        self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
+        self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
+        self.assertNotIn("LOCAL DESIGN PREVIEW", page)
+
+
+if __name__ == "__main__":
+    unittest.main()

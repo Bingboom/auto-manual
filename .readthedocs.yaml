@@ -18,9 +18,9 @@ build:
         # path as a bootstrap fallback until the first publish snapshot exists.
         - |
           if [ -f docs/publish/web/conf.py ]; then
-            python -m sphinx -b html docs/publish/web "$READTHEDOCS_OUTPUT/html"
+            python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal docs/publish/web "$READTHEDOCS_OUTPUT/html"
           else
             AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md --config configs/config.us.yaml --model JE-1000F --region US --source review-asis --data-root tests/fixtures/phase2 --no-clean --skip-root-index
             python tools/readthedocs_source.py --build-root docs/_build --output-dir docs/_build/rtd --title "Auto Manual Library"
-            python -m sphinx -b html docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
+            python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal docs/_build/rtd "$READTHEDOCS_OUTPUT/html"
           fi
