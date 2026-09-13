@@ -1,0 +1,36 @@
+{
+  "base_manifest_id": "manual_charger_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_charger_eu_en_ja_ca3sa"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "templates/page_charger/ja_ca3sa/en/product_overview.rst",
+          "lang": "en",
+          "slot_id": "product_overview_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ca3sa/en/using_product.rst",
+          "lang": "en",
+          "slot_id": "using_product_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_charger/ja_ca3sa/en/safety_warning.rst",
+          "lang": "en",
+          "slot_id": "warning_en",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_charger_eu_en_ja_ca3sa"
+}

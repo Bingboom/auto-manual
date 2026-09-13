@@ -1,0 +1,15 @@
+{
+  "schema_version": "web-manual-skeleton-profile/v1",
+  "profile_id": "solar-v1",
+  "contract": {
+    "product_overview": {
+      "source_patterns": []
+    },
+    "operations": {
+      "source_patterns": [],
+      "figures": [],
+      "auto_resume_table": null,
+      "lcd_mode_table": null
+    }
+  }
+}

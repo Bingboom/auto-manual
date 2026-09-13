@@ -783,3 +783,21 @@ python -m sphinx -b html \
 这只是本地 Web 验收。正式发布仍由 `Workflow_action=Web Publish` 冻结审核通过的
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
+
+### SolarSaga 40 Air 欧规英语 Web 本地验收
+
+JS-40C 使用同一 Solar 配置入口，但由独立 Product Manual Plan 解析七项 Inbox、
+充电连接、角度/设备、收纳、规格和保修。只读本地构建命令如下：
+
+```bash
+AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off AUTO_MANUAL_PRESENTATION_PROFILE=web \
+python build.py html \
+  --config configs/config.solar-eu-en.yaml \
+  --model JS-40C --region EU --lang en \
+  --data-root data/manual_sources/JS-40C/EU/en/2026-08-30/phase2
+```
+
+该命令只生成本地验收页面，不写线上 Base、不上传 OSS，也不构成正式发布。
+
+JBP-2000B 欧规英文单语的可执行示例见
+[版本化结构源](../manual_sources/JBP-2000B/EU/en/2.0/README.md)。

@@ -1,0 +1,33 @@
+# Resolved Manifest — charger-intl + charger-eu-en + ja_ad01a_eu.
+manifest_id: manual_charger_eu_en_ja_ad01a
+pages:
+  - type: rst_include
+    slot_id: box_contents_en
+    lang: en
+    file: templates/page_charger/en/box_contents.rst
+  - type: rst_include
+    slot_id: product_overview_en
+    lang: en
+    file: templates/page_charger/en/product_overview.rst
+  - type: csv_page
+    slot_id: specifications_en
+    source: phase2
+    page: spec
+    langs: [en]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: using_product_en
+    lang: en
+    file: templates/page_charger/en/using_product.rst
+  - type: rst_include
+    slot_id: warning_en
+    lang: en
+    file: templates/page_charger/en/safety_warning.rst
+  - type: rst_include
+    slot_id: warranty_en
+    lang: en
+    file: templates/page_charger/en/warranty.rst
+  - type: rst_include
+    slot_id: legal_tail
+    lang: en
+    file: templates/page_charger/en/legal_tail.rst

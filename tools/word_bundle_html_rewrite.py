@@ -249,7 +249,7 @@ def _match_safety_sublist_rule(text: str) -> tuple[str, ...] | None:
 def _extract_alert_label(element: ET.Element, alert_labels: dict[str, SignalLabel]) -> str | None:
     tag = _html_tag_name(element)
     text = _normalize_alert_label_text("".join(element.itertext()))
-    if text not in alert_labels:
+    if text not in alert_labels and text != "NOTES":
         return None
 
     if tag in {"h1", "h2", "h3"}:
@@ -398,7 +398,7 @@ def _row_cells(row: ET.Element) -> list[ET.Element]:
 
 def _extract_alert_cell_label(cell: ET.Element, alert_labels: dict[str, SignalLabel]) -> str | None:
     text = _normalize_alert_label_text("".join(cell.itertext()))
-    if text not in alert_labels:
+    if text not in alert_labels and text != "NOTES":
         return None
 
     direct_text = _normalize_inline_text(cell.text or "")

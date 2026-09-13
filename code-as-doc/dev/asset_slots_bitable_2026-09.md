@@ -4,7 +4,42 @@
 - 上级计划：[可编辑插图资产与设计交付计划](editable_asset_delivery_debt_plan_2026-09.md)
 - 相关：[A0 试点范围与缺口清单](asset_pilot_a0_scope_2026-09.md)、
   [JE-1000F EU 母版实测](asset_pilot_a1_master_editability_2026-09.md)
-- 状态：**已执行完毕并回读验证**。这是一次线上写库，不是计划。
+- 状态：2026-09-08 槽位/附件/预览批次**已执行并回读验证**；2026-09-12
+  已按当前主干重定基线，新增线上补齐仍待单独审批。
+
+## 0. 2026-09-12 当前状态重定基线
+
+本记录原有 195/388 数字是 2026-09-08 批次结束时的快照。后续 Web 品类集成让
+`main@ff5e3556` 的注册表增长到 325 条，但没有同步写入三张线上资产表；与此同时，
+#1084 分支和线上仍保有 main 缺少的 13 条 JS-100I 资产。不能用任一边直接覆盖另一边。
+
+本次使用 `lark-cli 1.0.78 --profile prod --as bot` 分页只读三表，并按
+`asset_key` / `export_key` 对账：
+
+| 对账项 | 2026-09-12 实测 |
+| --- | --- |
+| `04_资产源文件` | 3 行，revision 36 |
+| `04_资产定义` | 195 行，revision 201，无重复 `asset_key` |
+| `04_资产导出物` | 388 行，revision 288，无重复 `export_key`；178 个 distinct `asset_key` |
+| 当前 main 与 live 共有 | 182 个 `asset_key` |
+| 当前 main 独有 | 143 个：3 个共享/连接资产 + 140 个后续 EU Web 资产 |
+| live/#1084 独有 | 13 个，均为 `web/js-100i/eu/en/*` |
+| 共有定义字段冲突 | 4 个，均为 live `override_for` 为空；该字段尚未进入 `sync_asset_registry.py` 的 `OWNED_COLUMNS` |
+| 定义有、导出物无 | 17 个，键清单保持在本记录 §5 及重基线证据中 |
+| 导出存储形态 | 246 个独立附件 + 142 个 ZIP 成员，0 个无存储位；`content_sha256` 空值 0，`expected_sha256` 已填时不一致 0 |
+
+Git 解决策略是键级并集：保留 main 的 325 条，再保留线上已经存在且本 PR 有完整
+本地文件/hash 证据的 13 条 JS-100I，最终为 **338 条**；两边共有行的单元格变化为 0。
+因此没有把旧 195 条 CSV 整表覆盖到新主干。完整的 143/13/4/17 键和记录定位见
+[`asset_registry_rebaseline_2026-09.json`](asset_registry_rebaseline_2026-09.json)。
+
+把 195 条 live 定义再次喂给仓库现有 `merge_registry_csv` 后得到
+`MergeStats(updated=(), appended=(), managed=195)`，合并前后均为 338 行，
+文本逐字节一致。这证明当前七个 Base-owned 字段可以冷同步而不改 Git；4 个
+`override_for` 差异仍单列，是因为该字段尚未进入同步器的 owned 列。
+
+本次线上写入为 **0**。后续若要补齐 143 个定义或修复 4 个覆盖关系，必须先展示
+精确字段值、取得操作者对该批次的确认，再逐记录写入并读回；这不由本次重基线授权。
 
 ## 1. 做了什么
 

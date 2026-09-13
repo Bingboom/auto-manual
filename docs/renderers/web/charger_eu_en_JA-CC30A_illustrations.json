@@ -1,0 +1,25 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JA-CC30A",
+  "region": "EU",
+  "language": "en",
+  "source_artwork_sha256": "0eb2b7ba99e9b5b941f147f3b3b60f89229b007af77fc80e7dc9451d7aaa50d3",
+  "source_artwork_name": "38-0001-000673 HTO859A-US CA EU UK-JAK 说明书 RoHS REACH.ai",
+  "source_artwork_page_count": 1,
+  "source_artwork_creator": "Adobe Illustrator 30.0 (Macintosh)",
+  "source_artwork_status": "operator-designated current PDF-compatible AI source",
+  "source_base": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+  "source_table": "97v7518",
+  "source_record": "Li32wwM6MY",
+  "recipe": "data/asset_recipes/manual_ja_cc30a_eu_en_web.json",
+  "illustrations": [
+    {"replaces":["product_overview.png"],"path":"assets/ja_cc30a_eu_en/product_overview.png","sha256":"6cec45bc23b5418046efa1cf3861bc393ec422d93ce7e2a66af07b92eac4d7ce","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[1388,596,1698,818],"transforms":[{"op":"crop","bbox_pt":[1388,596,1698,818]}]},
+    {"replaces":["inbox_bag.png"],"path":"assets/ja_cc30a_eu_en/inbox_bag.png","sha256":"5ec32ef467f46e92109c8238d668e6e64568ce814719c316e636475b518190ee","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[1750,690,1855,770],"transforms":[{"op":"crop","bbox_pt":[1750,690,1855,770]}]},
+    {"replaces":["inbox_heating_module.png"],"path":"assets/ja_cc30a_eu_en/inbox_heating_module.png","sha256":"b3e74db5441d5b172390ccd9001d59f9910c9695217f6e3e2e24ad3c8349d5f0","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[1858,690,1968,770],"transforms":[{"op":"crop","bbox_pt":[1858,690,1968,770]}]},
+    {"replaces":["inbox_user_guide.png"],"path":"assets/ja_cc30a_eu_en/inbox_user_guide.png","sha256":"e7e9020fc7977b50f8016a0f8841c6d19d68309166b230e1cb2be12962ec24cb","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[1972,700,2055,756],"transforms":[{"op":"crop","bbox_pt":[1972,700,2055,756]}]},
+    {"replaces":["how_to_use_steps_0_1.png"],"path":"assets/ja_cc30a_eu_en/how_to_use_steps_0_1.png","sha256":"0927e06426c76a5b5837befd94422f84a3de4eda7bd124efe97a4f4ace5e90d6","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[2110,425,2430,642],"transforms":[{"op":"crop","bbox_pt":[2110,425,2430,642]}]},
+    {"replaces":["how_to_use_step_2.png"],"path":"assets/ja_cc30a_eu_en/how_to_use_step_2.png","sha256":"b09138ef4684be1a9d7c1762b2721aa1e2a49d6625f2b0b5000bc1f083e1752d","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[2110,648,2430,875],"transforms":[{"op":"crop","bbox_pt":[2110,648,2430,875]}]},
+    {"replaces":["how_to_use_steps_3_4.png"],"path":"assets/ja_cc30a_eu_en/how_to_use_steps_3_4.png","sha256":"94d5192e26fe690d8279e6e2e998ef3669ee8d9f0785df08a43c0814e798f8d5","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[2480,405,2795,598],"transforms":[{"op":"crop","bbox_pt":[2480,405,2795,598]}]},
+    {"replaces":["support_bars.png"],"path":"assets/ja_cc30a_eu_en/support_bars.png","sha256":"0c250c3d0eb96b99fbd6b2a3ca3aa39995d9173c9d7a2faac615227ec64352a2","source_page":1,"source_page_domain":"artwork-ai","bbox_pt":[2495,675,2798,885],"transforms":[{"op":"crop","bbox_pt":[2495,675,2798,885]}]}
+  ]
+}

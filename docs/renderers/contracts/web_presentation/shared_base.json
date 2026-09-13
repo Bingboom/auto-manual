@@ -103,7 +103,19 @@
       ]
     },
     "operations": {
-      "source_patterns": []
+      "source_patterns": [
+        "*05_operation_guide_placeholder"
+      ],
+      "auto_resume_table": {
+        "body_rows": 4
+      },
+      "key_combination_table": {
+        "minimum_body_rows": 3
+      },
+      "lcd_mode_table": {
+        "image_key": "operation/lcd_mode",
+        "body_rows": 6
+      }
     },
     "app_download": {
       "source_patterns": []
@@ -112,8 +124,29 @@
       "source_patterns": []
     },
     "reference_figures": {
-      "source_patterns": [],
-      "figures": []
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "figures": [
+        {
+          "id": "app-add-device",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/add_device",
+          "capture_following_lines": 3,
+          "presentation": "shared-art-live-labels",
+          "captions_embedded": true,
+          "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+          "label_roles": [
+            "main-power",
+            "dc-usb",
+            "ac-power"
+          ],
+          "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+          "asset_scope": "shared"
+        }
+      ]
     }
   }
 }

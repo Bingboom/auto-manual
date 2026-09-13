@@ -1,0 +1,3 @@
+Variable_key,Model_key,Model,Value,is_default
+AC_POWER_BUTTON_LABEL,,,AC,TRUE
+DC_USB_POWER_BUTTON_LABEL,,,DC/USB,TRUE

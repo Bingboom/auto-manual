@@ -1,0 +1,264 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_ja_ad600a_eu_en_ai_16-0102-000322",
+    "expected_sha256": "d89f145176c0c8ca10fa8c81768718ee32d52cb7a41a17b318df559a38e4f385",
+    "expected_page_count": 15
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 15
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 1,
+      "page_scale": {
+        "3": 2,
+        "4": 2,
+        "8": 2,
+        "11": 2,
+        "12": 2,
+        "13": 2,
+        "14": 2
+      }
+    }
+  },
+  "page_catalog": [
+    {"page": 1, "page_key": "ai_page_1", "role": "cover_front", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 2, "page_key": "ai_page_2", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 3, "page_key": "ai_page_3", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 4, "page_key": "ai_page_4", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 5, "page_key": "ai_page_5", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 6, "page_key": "ai_page_6", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 7, "page_key": "ai_page_7", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 8, "page_key": "ai_page_8", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 9, "page_key": "ai_page_9", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 10, "page_key": "ai_page_10", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 11, "page_key": "ai_page_11", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 12, "page_key": "ai_page_12", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 13, "page_key": "ai_page_13", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 14, "page_key": "ai_page_14", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []},
+    {"page": 15, "page_key": "ai_page_15", "role": "manual_page", "locale": "en", "build_eligible": false, "gate": {"status": "archive", "reasons": []}, "risk_tags": []}
+  ],
+  "assets": [
+    {
+      "asset_key": "web/ja-ad600a/eu/en/dimensions",
+      "page": 3,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [25, 260, 345, 490]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/dimensions.png", "scale": 4, "expected_sha256": "c66743652b31b8642db123cb809912a6f610b7adc28e48ac3b751a49b25c435f"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-charger",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [24, 68, 112, 126]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_charger.png", "scale": 6, "expected_sha256": "97287dee4780335316be5e85624256bc4786ecb7bebe2a3aaaa84489331780e8"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-input-cable",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [31, 164, 106, 221]}, {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_input_cable.png", "scale": 6, "expected_sha256": "b237253debc460c0ed6213369715ea67e20d6e32a2def888253807b820fe65ee"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-fuse",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [122, 164, 158, 221]}, {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_fuse.png", "scale": 6, "expected_sha256": "69ed53354910bb15207fbcf5b4989c32b2831d1054e5673ed2aa2c13edd46c93"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-output-cable",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [183, 164, 257, 221]}, {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_output_cable.png", "scale": 6, "expected_sha256": "28488e52ce07c55da409f6ddf49be32eda4d5f2320c9a5f4b95c50c33dac15f6"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-acc-cable",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [279, 164, 345, 221]}, {"op": "redact_text", "images": "preserve", "graphics": "preserve", "fill": null}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_acc_cable.png", "scale": 6, "expected_sha256": "21cc25108335bcc939730216745e339d36d6ba2f531094b8b95b98b5d78e7fc6"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-st55-screws",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [51, 262, 87, 289]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_st55_screws.png", "scale": 6, "expected_sha256": "fab3f07d629ad6e06e7142b235b59b1f65c842a21b4cec93464386a34a3a2647"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-m6-bolts",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [120, 257, 160, 289]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_m6_bolts.png", "scale": 6, "expected_sha256": "adc406430c2f56a7939df30b91b83eeb168141d7351272d8c3520075400bcc95"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-m6-nuts",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "textless",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [203, 266, 227, 287]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_m6_nuts.png", "scale": 6, "expected_sha256": "8d5b841dc3efab625b871f37912e056575f713d1f386841ad471ee8824f4e1c7"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/inbox-user-guide",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [301, 258, 330, 291]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/inbox_user_guide.png", "scale": 6, "expected_sha256": "f1656a627f8c33622604acb6c913bb5fb79185afa64aa9b1e74d730baeaa22ac"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/product-overview",
+      "page": 4,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [22, 350, 348, 480]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/product_overview.png", "scale": 4, "expected_sha256": "ce5135d4e9e693ac9928d231162365c7039661cfd2bd01d801151f6a17dc0075"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/installation-diagram",
+      "page": 8,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [26, 72, 344, 487]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/installation_diagram.png", "scale": 4, "expected_sha256": "5f79da39f4f6c15fd98ca14ec268930dc9e97b2f8bb601bfe08fa272f9248144"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/wiring-steps",
+      "page": 11,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [195, 115, 347, 500]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/wiring_steps.png", "scale": 4, "expected_sha256": "6147435dc34d4787f2626d00af5766c5f72ff0e1751cc4606a3e9e278f04c78f"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/secure-vehicle-body",
+      "page": 12,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [190, 82, 347, 502]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/secure_vehicle_body.png", "scale": 4, "expected_sha256": "8076c0f9d4e7da4041d18e2d5773436786719dd31c0bd70eb1ff5543e27c0e55"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/secure-modification-panel",
+      "page": 13,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [190, 47, 347, 400]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/secure_modification_panel.png", "scale": 4, "expected_sha256": "dbf64e5af1da595556d1e5e617f67f5d1554162e7cd3c692c71d492b5a259833"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    },
+    {
+      "asset_key": "web/ja-ad600a/eu/en/connection-diagram",
+      "page": 14,
+      "build_eligible": true,
+      "scope": {"models": ["JA-AD600A"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [45, 10, 345, 190]}],
+      "outputs": [{"format": "png", "path": "assets/ja_ad600a_eu_en/connection_diagram.png", "scale": 4, "expected_sha256": "1e32d063f8daf9aaeccce8a7604b7895e24783190d5e5411ad18f77443b20340"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-08 visual verification against the user-supplied PDF-compatible Illustrator 30.7 source; crop retains the complete intended artwork without adjacent page content."]},
+      "risk_tags": ["region-locked-art"]
+    }
+  ]
+}

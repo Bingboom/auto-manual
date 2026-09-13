@@ -233,23 +233,55 @@ def discover_registered_components(
                 )
                 _claim_nodes(claim, claimed=claimed, source_path=source_path)
                 claims.append(claim)
-        lcd_config = operation_config["lcd_mode_table"]
-        lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
+        lcd_config = operation_config.get("lcd_mode_table")
+        if isinstance(lcd_config, Mapping):
+            lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
+                soup,
+                source_path=source_path,
+                image_key=str(lcd_config["image_key"]),
+                expected_body_rows=int(lcd_config["body_rows"]),
+                language=language,
+            )
+            lcd_claim = ComponentClaim(
+                spec=lcd_spec,
+                owned_nodes=(lcd_table,),
+                asset_tags=(("artwork", lcd_artwork),),
+            )
+            _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
+            claims.append(lcd_claim)
+
+    reference_config = contract["reference_figures"]
+    supports_figures = supports_figure_contract(source_path, dict(contract))
+    for raw_reference in reference_config.get("figures", []):
+        if (
+            not isinstance(raw_reference, Mapping)
+            or raw_reference.get("presentation") != "shared-art-live-labels"
+            or raw_reference.get("asset_scope") != "shared"
+            or not _matches_source(
+                source_path, raw_reference.get("source_patterns", [])
+            )
+        ):
+            continue
+        reference_id = str(raw_reference.get("id") or "")
+        if soup.select_one(
+            f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
+        ):
+            continue
+        spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
             soup,
             source_path=source_path,
-            image_key=str(lcd_config["image_key"]),
-            expected_body_rows=int(lcd_config["body_rows"]),
+            config=raw_reference,
             language=language,
         )
-        lcd_claim = ComponentClaim(
-            spec=lcd_spec,
-            owned_nodes=(lcd_table,),
-            asset_tags=(("artwork", lcd_artwork),),
+        claim = ComponentClaim(
+            spec=spec,
+            owned_nodes=owned,
+            asset_tags=asset_tags,
+            asset_paths=asset_paths,
         )
-        _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
-        claims.append(lcd_claim)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
 
-    supports_figures = supports_figure_contract(source_path, dict(contract))
     if supports_figures:
         app_download = contract["app_download"]
         if isinstance(app_download, Mapping) and _matches_source(
@@ -286,7 +318,6 @@ def discover_registered_components(
             _claim_nodes(claim, claimed=claimed, source_path=source_path)
             claims.append(claim)
 
-        reference_config = contract["reference_figures"]
         reference_context = WebCompositeContext(
             composite_manifest,
             model,
@@ -297,6 +328,11 @@ def discover_registered_components(
         for raw_reference in reference_config.get("figures", []):
             if not isinstance(raw_reference, Mapping) or not _matches_source(
                 source_path, raw_reference.get("source_patterns", [])
+            ):
+                continue
+            if (
+                raw_reference.get("presentation") == "shared-art-live-labels"
+                and raw_reference.get("asset_scope") == "shared"
             ):
                 continue
             image_key = str(raw_reference.get("image_key") or "")
@@ -415,13 +451,12 @@ def discover_registered_components(
     semantic_inbox = isinstance(inbox_config, Mapping) and _matches_source(
         source_path, inbox_config.get("semantic_source_patterns", [])
     )
-    legacy_inbox = (
-        isinstance(inbox_config, Mapping)
-        and _matches_source(source_path, inbox_config.get("source_patterns", []))
-        and (
-            supports_preface_contract(source_path, dict(contract))
-            or supports_figure_contract(source_path, dict(contract))
-        )
+    # Inbox is shared semantic presentation, just like specifications and
+    # callouts.  Its numbered-card layout does not depend on a target-specific
+    # figure or preface grant; every declared Inbox source pattern must embed
+    # the same component before the whole-document IR is frozen.
+    legacy_inbox = isinstance(inbox_config, Mapping) and _matches_source(
+        source_path, inbox_config.get("source_patterns", [])
     )
     if semantic_inbox or legacy_inbox:
         parsed = parse_inbox_html(

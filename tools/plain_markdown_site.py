@@ -400,7 +400,7 @@ def _spec_table_html(rows: list[list[str]], *, aria_label: str) -> str:
 
 
 SIGNAL_WORDS = frozenset(
-    {"WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION"}
+    {"WARNING", "CAUTION", "NOTE", "NOTES", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION"}
 )
 _MARKUP_STRIP_RE = re.compile(r"^[#*\s]+|[*\s]+$")
 _LEADING_NUMBER_RE = re.compile(r"^[①-⑳\d]{1,3}$")

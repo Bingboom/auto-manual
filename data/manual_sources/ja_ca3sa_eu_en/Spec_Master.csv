@@ -1,0 +1,3 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Model,Source_lang
+JA-CA3SA_EU,EU,TRUE,identity,GENERAL,1,1,product_name,,Product Name,,1,,,Solar Generator Connector,,JA-CA3SA,en
+JA-CA3SA_EU,EU,TRUE,identity,GENERAL,1,2,model_no,,Model,,1,,,JA-CA3SA,,JA-CA3SA,en

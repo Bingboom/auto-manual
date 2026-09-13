@@ -20,8 +20,9 @@ from tools.web_document_ir import render_document_fragments
 from tools.asset_registry import load_registry, resolve_asset
 from tools.skeleton_resolve import (
     load_blueprint,
+    load_product_plan,
     load_region_profile,
-    load_slot_templates,
+    load_slot_template_catalog,
     resolve_plan,
 )
 
@@ -33,8 +34,9 @@ CONFIG = ROOT / "configs" / "config.charger-eu-en.yaml"
 FIXTURE = ROOT / "data" / "manual_sources" / "ja_ad01a_eu_en"
 ASSET_RECIPE = ROOT / "data" / "asset_recipes" / "manual_ja_ad01a_eu_en_web.json"
 ILLUSTRATION_MANIFEST = (
-    ROOT / "docs" / "renderers" / "web" / "ja_ad01a_eu_en_illustrations.json"
+    ROOT / "docs" / "renderers" / "web" / "charger_eu_en_JA-AD01A_illustrations.json"
 )
+PRODUCT_PLAN = ROOT / "docs" / "manifests" / "product_plans" / "ja_ad01a_eu.yaml"
 
 
 class JaAd01aEuEnTargetTests(unittest.TestCase):
@@ -109,13 +111,18 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
 
     def test_charger_skeleton_is_compact_and_target_agnostic(self) -> None:
         blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
-        slots = load_slot_templates(SKELETON_DIR / "slot_templates.yaml", blueprint)
+        slots, slot_profiles = load_slot_template_catalog(
+            SKELETON_DIR / "slot_templates.yaml", blueprint
+        )
         profile = load_region_profile(PROFILE, blueprint)
+        product_plan = load_product_plan(PRODUCT_PLAN, blueprint)
         plan = resolve_plan(
             blueprint,
             slots,
             profile,
             manifest_id="manual_charger_eu_en",
+            product_plan=product_plan,
+            slot_template_profiles=slot_profiles,
         )
 
         slot_ids = [page["slot_id"] for page in plan["pages"]]
@@ -139,11 +146,28 @@ class JaAd01aEuEnTargetTests(unittest.TestCase):
         config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
         build = config["build"]
         self.assertEqual(["en"], build["languages"])
-        self.assertEqual([{"model": "JA-AD01A", "region": "EU"}], build["targets"])
-        self.assertEqual(["box_contents*"], build["web_entry_source_patterns"])
         self.assertEqual(
-            "docs/renderers/web/ja_ad01a_eu_en_illustrations.json",
+            [
+                {"model": "JA-AD01A", "region": "EU"},
+                {"model": "JA-AD600A", "region": "EU"},
+                {"model": "JAAC-WHE-100-EUA1", "region": "EU"},
+                {"model": "JA-CA05B", "region": "EU"},
+                {"model": "JA-CA3SA", "region": "EU"},
+                {"model": "JA-CC30A", "region": "EU"},
+            ],
+            build["targets"],
+        )
+        self.assertEqual(
+            ["box_contents*", "disclaimer*", "connection_guide*", "product_overview*"],
+            build["web_entry_source_patterns"],
+        )
+        self.assertEqual(
+            "docs/renderers/web/charger_eu_en_{model}_illustrations.json",
             config["paths"]["web_illustration_manifest"],
+        )
+        self.assertEqual(
+            "docs/manifests/manual_charger-eu-en-{model}.yaml",
+            config["paths"]["page_manifest"],
         )
 
     def test_spec_fixture_preserves_source_values_without_invented_totals(self) -> None:

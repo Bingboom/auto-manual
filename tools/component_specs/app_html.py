@@ -10,6 +10,7 @@ from tools.component_specs.app import (
     app_add_device_component_spec,
     app_download_component_spec,
     app_inline_control_component_spec,
+    resolve_app_control_label_roles,
 )
 from tools.manual_ir.web_app_download import load_web_download_source
 from tools.utils.path_utils import repo_root
@@ -165,13 +166,18 @@ def parse_app_add_device_html(
     roles = [str(value).strip() for value in config.get("label_roles", [])]
     if len(lines) != len(roles) or len(lines) != 3 or not all(roles):
         raise ValueError(f"{source_path}: App add-device label roles are incomplete")
+    resolved_roles = resolve_app_control_label_roles(
+        [line.get_text(" ", strip=True) for line in lines],
+        roles,
+        owner=f"{source_path}: App add-device",
+    )
     labels = tuple(
         {
             "role": role,
             "html": line.decode_contents().strip(),
             "text": line.get_text(" ", strip=True),
         }
-        for role, line in zip(roles, lines, strict=True)
+        for role, line in zip(resolved_roles, lines, strict=True)
     )
     spec = app_add_device_component_spec(
         accessibility_label=str(image.get("alt") or config.get("id") or "App add device"),

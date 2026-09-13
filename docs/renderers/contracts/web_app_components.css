@@ -1,5 +1,20 @@
 /* App components keep shared artwork separate from localized live copy. */
 
+/*
+ * App copy uses numbered headings rather than the dot-led manual section
+ * headings.  Key the rule off the shared Add Device composition so the
+ * treatment survives translated section titles and generated anchor ids.
+ */
+#furo-main-content > section:has(.hb-app-add-device-composition) h2::before,
+#furo-main-content > section:has(.hb-app-add-device-composition) h3::before {
+  display: none;
+}
+
+#furo-main-content > section:has(.hb-app-add-device-composition) h2,
+#furo-main-content > section:has(.hb-app-add-device-composition) h3 {
+  gap: 0;
+}
+
 .hb-app-add-device-composition {
   width: 100%;
   max-width: var(--hb-reading-width);

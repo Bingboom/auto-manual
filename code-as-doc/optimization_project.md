@@ -30,7 +30,7 @@ record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence i
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
-Updated: 2026-09-08
+Updated: 2026-09-12
 
 ## 1. Role
 
@@ -63,6 +63,10 @@ For the multi-year platform maturity view (phases, gates, KPIs), use:
 
 - [`code-as-doc/architecture/platform_evolution_roadmap.md`](architecture/platform_evolution_roadmap.md)
 
+For the dated structured-content/TM + skeleton → Web/IDML capability assessment,
+cross-workstream acceptance debt and benefit metrics, use the
+[manual platform architecture debt plan](dev/manual_platform_architecture_debt_plan_2026-09.md).
+
 ## 2. Maintenance Rules
 
 Update this file when one of these happens:
@@ -86,6 +90,8 @@ Suggested workstream statuses:
 - `active`
 - `next`
 - `deferred`
+- `long_term`
+- `rebaseline_required`
 - `done`
 
 ## 3. Current Baseline
@@ -235,8 +241,9 @@ Keep this section short and current.
 8. Enterprise ops gaps (2026-07-17 review): CI never installs from `requirements.lock` (loose ranges only), TeXLive is reinstalled unpinned on every queue run, there is no point-in-time backup/restore of the Feishu phase2 source tables, queue-processing failures notify no one (only the sentinel crons open Issues), there is no `CODEOWNERS` / secret scanning / dependabot, and the InDesign finalize leg runs on one Mac with no version lock. Tracked as Workstream T.
 9. Scale walls for the 10-dev / 50-line target (2026-07-17 review): frozen-copy review branches make every shared-template fix O(N) manual `sync-review` merges with clobber risk; the build queue is one serialized runner; `docs/_build` binary assets are raw in git (pack already ~148 MiB); the Feishu transport is duplicated across 5+ independent `lark-cli` runners with no retry/rate-limit in the sync path; adding a language requires code and golden-test edits. Tracked as Workstreams U and V.
 10. Web finished-figure debt is explicit and ratcheted. `JE-1000F/EU` is clean at 55/55 localized approved composites (including IT 11/11). The versioned baseline records nine US Charging `editable-fallback` rows (three per EN/FR/ES) and nine KR `missing` Overview/Operation/Charging rows. New or worsening debt fails; a repaired row must become a locale-matched `finished-panel` / `approved-composite` and delete its stale baseline entry in the same change. Textless art plus HTML/SVG text or leader lines never closes a row. LCD Mode's editable HTML table is intentionally outside this debt.
-11. Whole-document production inputs have not converged across renderers: Web consumes v2 IR, while IDML still builds its prepared-RST projection, the ordinary Word path reads RST pages, and Sphinx consumes the source bundle. Shared ComponentSpec bindings do not prove whole-document output migration. Workstream Y tracks this debt and is deferred until the current EU single-language Web release batch is accepted; see the [migration plan and debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md).
-12. Editable illustration delivery needs a bounded acceptance loop: design masters, actual SVG editability, cloud file retrieval, immutable export versions and document usage must be verified together. The existing three asset tables and SVG format option were read live on 2026-09-08; whole-library coverage was not audited. Workstream Z records the [editable asset delivery plan and debt](dev/editable_asset_delivery_debt_plan_2026-09.md), deferred until the current EU Web release batch is accepted.
+11. Web whole-document production has converged for its declared range: v2 IR, embedded ComponentSpecs, cold replay and the retired DOM projector are closed/verified. Whole-document production has **not** converged across renderers: IDML still builds its prepared-RST projection, the ordinary Word path reads RST pages, and Sphinx/PDF paths retain their own source inputs. Workstream Y therefore remains the long-term IR-D01–IR-D06 ledger; shared adapter bindings do not prove real IDML/Word/PDF output migration. See the [migration plan and debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md).
+12. Editable illustration delivery now requires a three-way rebaseline before more implementation. PR #1084 carries a 195-row Git registry baseline and real pilot clues, while current `main@ff5e3556` contains 325 registry rows; the current live Base state has not yet been reread. Workstream Z is `rebaseline_required`: reconcile current Git, #1084 and the three live asset tables by `asset_key` / export identity before resolving conflicts or extending the pilot. See the [editable asset delivery plan and debt](dev/editable_asset_delivery_debt_plan_2026-09.md).
+13. End-to-end platform maturity still needs target-level readiness evidence, translation lifecycle, real skeleton scale proof, sustained revision reflow, change-impact propagation and comparable operating metrics. For the current milestone, AR-D02 and AR-D04 execute **only through Milestone M** as its data-readiness and skeleton-scale acceptance dimensions; they do not create a second intake, composition or roadmap authority. The [overall architecture debt ledger](dev/manual_platform_architecture_debt_plan_2026-09.md) retains AR-D01–AR-D07 and maps every other item back to its existing workstream.
 
 ## 6. Active Workstreams
 
@@ -470,6 +477,14 @@ Exit criteria:
 ### Workstream M: Page Registry As Single Composition Authority
 
 Status: next
+
+2026-09-12 priority: Milestone M is the single near-term execution entry for
+AR-D02 and AR-D04. Select a representative manual from an uncovered product
+category and carry one slice through structured extraction, skeleton candidate,
+product binding and Web auto-build. The resulting Blueprint, product plan,
+resolved manifest and `page_registry` must have a documented single direction
+of derivation; do not add a parallel architecture-debt queue or composition
+authority. Repeat the path on a later real target before calling intake stable.
 
 Why now:
 
@@ -890,17 +905,19 @@ Exit criteria:
 
 ### Workstream Y: Shared ManualIR Production Inputs
 
-Status: deferred — registered 2026-09-08; complete and accept the current EU
-single-language Web release batch before starting migration.
+Status: long_term — Web whole-document production is closed/verified for its
+declared range; IDML, Word and LaTeX/PDF same-package production remains
+deferred until an explicit long-term restart.
 
 The [detailed plan and IR-D01–IR-D07 debt ledger](dev/manual_ir_production_migration_debt_plan_2026-09.md)
 owns phase scope, entry conditions, evidence and closeout. Registration is not
 implementation, parallel-task dispatch, publishing or merge authorization.
 
-First bounded milestone: one frozen package produces real JBP-2000B/JP/ja Web
-and IDML outputs with original RST/CSV reads forbidden, plus JE-1000F/US
-regression. Reuse existing assembly, ComponentSpec, PagePlan and renderer
-capabilities; preserve complete semantics before output-specific transforms.
+First bounded long-term milestone: one frozen package produces real
+JBP-2000B/JP/ja Web and IDML outputs with original RST/CSV reads forbidden,
+plus JE-1000F/US regression. Reuse existing assembly, ComponentSpec, PagePlan
+and renderer capabilities; preserve complete semantics before output-specific
+transforms. This milestone does not gate Milestone M's Web category onboarding.
 Keep physical geometry in output adapters and retain historical IR reads.
 
 Resource policy: one main development window, a short independent review at
@@ -911,8 +928,8 @@ paths only within the verified migration scope.
 
 ### Workstream Z: Editable Asset Delivery And Frozen Build Consumption
 
-Status: deferred — registered 2026-09-08; a planning record, not asset intake,
-table modification, designer notification or publishing authorization.
+Status: rebaseline_required — PR #1084 records real pilot and online-table work,
+but its 195-row registry baseline predates current `main`'s 325 rows.
 
 The [editable asset delivery plan and AS-D01–AS-D07 ledger](dev/editable_asset_delivery_debt_plan_2026-09.md)
 defines design-team handoff, AI/SVG master preservation, live-text editability,
@@ -924,9 +941,12 @@ or invalid selections, and freeze the resolved asset/version for release replay.
 AS-D07 covers this acceptance gap on top of the existing override implementation;
 SVG layer inheritance and automatic artwork merging remain outside the pilot.
 
-Start with one already accepted EU single-language manual and a few actual
-asset samples after the current release. Verify native editing, file download
-hashes, cold asset retrieval and the real Web output before wider rollout.
+First reread the three current live asset tables and reconcile them against the
+325-row Git registry and #1084 by `asset_key` / export identity. Do not line-merge
+the two CSV baselines or infer current online state from the PR description.
+After that gate, continue with one accepted EU manual and a few actual asset
+samples. Verify native editing, file download hashes, cold asset retrieval and
+the real Web output before wider rollout.
 Designer handoff includes both a real revision delivered into the system and
 an asset package retrieved for subsequent editing. File extension alone does
 not prove vector or text editability.
@@ -935,26 +955,65 @@ This asset pilot can be scheduled independently of Workstream Y's document-IR
 migration. Use one main window and short phase-end review; do not make all
 historical assets editable or migrate all renderers as an initial requirement.
 
+### Cross-Workstream Acceptance: Manual Content Platform
+
+Status: active only through the near-term Web category milestone (2026-09-12);
+remaining cross-renderer and operations debt stays deferred.
+The [overall plan and AR-D01–AR-D07 ledger](dev/manual_platform_architecture_debt_plan_2026-09.md)
+tracks current capability/readiness evidence, source completeness, translation
+lifecycle, skeleton onboarding, sustained revision reflow, change impact and
+measured operator cost. Existing L/M/N/Q/R/S/U/V/W/Y/Z own implementation in
+their scopes; this record adds no parallel engine or duplicate task ledger.
+
+For the near-term slice, Milestone M exclusively owns AR-D02/AR-D04 execution:
+uncovered category selection → structured extraction → skeleton candidate →
+product binding → Web auto-build. Acceptance requires complete declared slots,
+zero unclassified required sections, correct target/language assets, regression
+evidence and measured marginal effort. After this path repeats stably, an online
+operations index may be generated from frozen IR and publish manifests as a
+rebuildable read model; it must not copy all body content into a new authority.
+
+Use actual delivery evidence for each model/region/language/version and output
+format. Preserve completed K1/K4/K5/K7 mechanisms; overview reconciliation is
+documentation debt, not authorization to rebuild them. Asset A0/A1 discovery
+already has a separate [PR #1084](https://github.com/Bingboom/auto-manual/pull/1084);
+its evidence and stage state remain owned there and in Workstream Z.
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.
 
-Operator priority update (2026-09-08): finish the current EU single-language
-Web release batch and preserve its acceptance baseline first. Workstreams Y
-and Z remain deferred; only a delivery-blocking issue justifies a separately scoped
-minimal fix during that release. The historical workstreams below retain their
-own status and triggers; they do not authorize concurrent IR migration.
-After acceptance, the operator may start Z's bounded asset pilot independently
-of Y; neither plan automatically starts parallel implementation.
+Operator priority update (2026-09-12): multi-category Web intake is the current
+milestone; Web/IDML/PDF/Word same-package production is a long-term objective.
+The order below supersedes the 2026-09-08 release-first ordering for these
+workstreams while preserving completed work and existing safety gates.
 
-1. Keep the current `check` + smoke-CI baseline green.
-2. Run the Milestone K Tier 1 set immediately and in parallel with everything else: K4 (source-table backup), K5 (queue-failure alerting), K7 (second InDesign host), K1 (lock CI deps) — the 2026-07-17 operator triage. Everything else in K waits for its named trigger or a dedicated window; the task list should read as "4 in flight", not "15 pending".
-3. Execute Workstream X in its strict serial PR order. Do not parallelize style-contract, ComponentSpec, PagePlan, or target-geometry migrations; keep the approved Web asset manifest and reference layout frozen while each adapter proves parity.
-4. Lock Stage 2 traceability and safe reverse-sync: finish the QC tail (Workstream I), enforce the backport layer-routing rules (Workstream Q), and freeze release snapshots (Workstream J).
-5. Take the safe first cut into prose: extend short-copy coverage (Workstream L) and make `page_registry` the single composition authority (Workstream M).
-6. Let Workstream U items fire on their tier rules: K8 (transport) when its sync-pain trigger fires; K9/K10/K12 only with dedicated capacity or a protected window — not as filler.
-7. Re-launch long-form prose assembly (Workstream N) only after the design in [`architecture/Long_Form_Content_Block_Design.md`](architecture/Long_Form_Content_Block_Design.md) is approved and the Feishu source model is stable.
-8. Scale online-first to more models (Workstream O) and consolidate the control plane (Workstream P) as those dependencies clear — but approve the Workstream V design doc before any many-target scale-out, because O multiplies exactly the review-branch propagation cost V removes.
+1. Update #1083 and the owning roadmaps: mark the verified Web IR production
+   sub-scope closed, keep IR-D01–IR-D06 cross-renderer output work deferred, and
+   preserve unknown or unpublished target states as unknown.
+2. Make Milestone M the only implementation entry for AR-D02/AR-D04. Keep
+   Blueprint, product binding, resolved manifest and `page_registry` as one
+   governed composition chain; do not start a parallel architecture-debt queue.
+3. Rebaseline #1084 against current `main`'s 325 registry rows and the live
+   `04_资产定义` / `04_资产导出物` / `04_资产源文件` tables. Classify consistent,
+   conflicting, Git-only, live-only, missing-master and missing-export records
+   before changing code or online rows.
+4. Choose a representative manual from an uncovered category and complete
+   structured extraction → skeleton candidate → product binding → Web
+   auto-build. Require declared-slot completeness, zero required unclassified
+   sections, target/language asset correctness, old-target regression and a
+   recorded marginal-cost baseline.
+5. Repeat step 4 on at least one later real target. Only after intake is stable,
+   generate an idempotent online operations index from frozen IR/publish
+   manifests; never copy all body content into a second source of truth.
+6. Restart Workstream Y only by an explicit long-term phase decision. Migrate
+   real whole-document outputs in the order Web/IDML → Word → LaTeX/PDF, with
+   source-read prohibition and output-specific visual/editability acceptance.
+
+Keep the current `check` + smoke-CI baseline green throughout. Day-to-day TM,
+revision reconciliation and metric collection may accompany authorized business
+work; Workstreams K/Q/U/V retain their existing safety triggers and do not create
+another intake path.
 
 
 ## 9. Success Criteria

@@ -1,0 +1,15 @@
+# Resolved Manifest - charger-intl + charger-eu-en + ja_ca3sa_eu.
+manifest_id: manual_charger_eu_en_ja_ca3sa
+pages:
+  - type: rst_include
+    slot_id: product_overview_en
+    lang: en
+    file: templates/page_charger/ja_ca3sa/en/product_overview.rst
+  - type: rst_include
+    slot_id: using_product_en
+    lang: en
+    file: templates/page_charger/ja_ca3sa/en/using_product.rst
+  - type: rst_include
+    slot_id: warning_en
+    lang: en
+    file: templates/page_charger/ja_ca3sa/en/safety_warning.rst

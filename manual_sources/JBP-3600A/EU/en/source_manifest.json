@@ -18,7 +18,7 @@
   "data_root": "manual_sources/JBP-3600A/EU/en/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_jbp3600a_eu_web.json",
-    "sha256": "68fdf5c93fe9422e531234d264698709b2da81530690c6d8fbe6d972d34d63d1"
+    "sha256": "89db92842423a202701493b76ae954d3308d5be8572589fc649a9c32e975c591"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",

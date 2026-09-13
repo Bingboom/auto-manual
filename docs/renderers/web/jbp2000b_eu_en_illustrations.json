@@ -1,0 +1,189 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JBP-2000B",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "7cc9bd61fc993752ed4711e876ad946a48ff73c50250c77dce0e06118d636eb1",
+  "source_pdf_name": "Jackery\u00a0Battery\u00a0Pack\u00a02000 User Manual (JBP-2000B) EUUK V2.0-2026-09-08.pdf",
+  "illustrations": [
+    {
+      "replaces": [
+        "jbp2000b_front_controls.png",
+        "jbp2000b_left_side_ports.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/overview.png",
+      "sha256": "0fa91d8a07e2b1d1df783526554aefb589aa1cbfd930605973ee105b005b8228",
+      "source_page": 7,
+      "bbox_pt": [
+        27,
+        214,
+        342,
+        345
+      ],
+      "covered_annotations": [
+        {
+          "selector": "table",
+          "text": "POWER button LCD"
+        },
+        {
+          "selector": "table",
+          "text": "Handle DC Expansion Port A (Connect to Expansion Cable Terminal A) DC Expansion Port B (Connect to Expansion Cable Terminal B)"
+        },
+        {
+          "selector": "h1,h2,h3,h4",
+          "text": "FRONT VIEW"
+        },
+        {
+          "selector": "h1,h2,h3,h4",
+          "text": "LEFT SIDE VIEW"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_lcd_screen.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/lcd.png",
+      "sha256": "6f61db7caf815d28f215a36484b265b246a58ec07a1393da2e39f1e336d801af",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        54,
+        342,
+        112
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_power_control.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/power.png",
+      "sha256": "3243b5e04fe279d9ea9fad1f42096ac4d535eb26edf6043488c332d63cd88349",
+      "source_page": 8,
+      "bbox_pt": [
+        35,
+        229,
+        334,
+        304
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "On Press once Off Press and hold for 3 seconds"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_lcd_control.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/lcd_control.png",
+      "sha256": "1fc1729ce1b8c9fffc09c092cbad3c185f8f77d1713b7fff9c188300df33c207",
+      "source_page": 8,
+      "bbox_pt": [
+        35,
+        390,
+        334,
+        464
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_eu_stack_clearance.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/clearance.png",
+      "sha256": "f00c0537c6d2d5b0e17f988f26b4233db5e132cb44655976a81edf669bed6239",
+      "source_page": 9,
+      "bbox_pt": [
+        27,
+        122,
+        342,
+        362
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_eu_connection_locking_en.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/locking.png",
+      "sha256": "979f98e8cd5c8668442656db231bffd8aff53321496da30585aaf5da213ee669",
+      "source_page": 10,
+      "bbox_pt": [
+        27,
+        22,
+        342,
+        300
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_eu_ac_charging.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/ac_charging.png",
+      "sha256": "0b4ea051dcd300831613ac1da9ee58a848256999ea462bb30a1a582be10caf3d",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        109,
+        342,
+        275
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_eu_solar_charging.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/solar_charging.png",
+      "sha256": "7d3a1d2b3a59fce8643f73dd1d297e1bfcf9bd14ef0afeb46a5d838be974e7e1",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        320,
+        342,
+        498
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_in_box_main_unit.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/inbox_unit.png",
+      "sha256": "c0e6712d6df6ae0ae40bf5e070d847bfe20bd6acd1d9d0520ca58104e9d77d41",
+      "source_page": 7,
+      "bbox_pt": [
+        40,
+        84,
+        115,
+        144
+      ]
+    },
+    {
+      "replaces": [
+        "jbp2000b_expansion_cable.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/inbox_cable.png",
+      "sha256": "08d0efe964a47742a5bc5b03a533dd5953319b3d49a54042c1f5fba969228524",
+      "source_page": 7,
+      "bbox_pt": [
+        151,
+        84,
+        218,
+        144
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/jbp2000b_eu_en/inbox_manual.png",
+      "sha256": "9cce7fb0673bed9b73efed48531ee1d71ecf15c99bd3995f8e76a55bb7252b48",
+      "source_page": 7,
+      "bbox_pt": [
+        263,
+        84,
+        322,
+        144
+      ]
+    }
+  ]
+}
