@@ -19,6 +19,12 @@ For onboarding new external Markdown manuals into the template library, use:
 
 ## 1. Recommended Entrypoint
 
+RTD renders the frozen Web snapshot with the root-only portal extension:
+`python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
+The default region is temporarily EU; EU/UK resolve to the same frozen EU
+publications. Nested manuals and QR aliases retain their existing rendering.
+See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
+
 ```powershell
 python build.py validate
 python build.py sync-data --config configs/config.us.yaml --data-root data/phase2

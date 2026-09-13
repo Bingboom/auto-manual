@@ -1,0 +1,7 @@
+{
+  "default_region": "EU",
+  "regions": {"US": "US", "EU": "EU", "UK": "EU"},
+  "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],
+  "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
+  "languages": ["English", "Français", "Español", "Deutsch", "Italiano", "Português", "Nederlands", "Polski", "Українська", "Ελληνικά", "עברית", "العربية"]
+}
