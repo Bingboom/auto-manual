@@ -67,5 +67,10 @@ Independent locale storage and real locale links remain a separate milestone.
   --data-root tests/fixtures/phase2` passed. The initial command without an
   explicit data root stopped on the intentionally absent local phase2 snapshot;
   no live-data sync was performed.
-- Production corpus comparison and RTD rollout remain pending until their
-  evidence is recorded; the above is not an online acceptance claim.
+- Production corpus comparison passed on Hello-Docs snapshot
+  `70bb408a059b8bd5f0c666b9d153354fb856f66a`: 1,028 files fetched and checked
+  against their Git blob hashes; all source files remain unchanged after both
+  Sphinx builds. Of 66 HTML pages, only `index.html` changes; the other 65 are
+  byte-identical. The catalog has 21 publications (US 1, shared EU/UK 20).
+- Actual RTD rollout is tracked in the implementing PR; local parity is not an
+  online acceptance claim.
