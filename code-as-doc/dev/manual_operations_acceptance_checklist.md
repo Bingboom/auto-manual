@@ -253,3 +253,15 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | JA-AD01A | git-20260906-0252cb5d | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JA-AD01A/EU/md/manual_jaad01a_eu_en.html) |
 
 后续顺序：先将已批准 JE-1000F/EU V2.0 PDF 的英法成果封存为可复现 Git-only 输入并发布，不创建队列；随后复核清单内既有成果和未回稿缺口。JS-100I 的葡/荷/波/乌状态本次读到“已回稿”，只是待取件/审稿线索，不标已审核或已发布。JBP-3600A 的关联纸质文档标题写 JBP-3000A，型号字段仍为 JBP-3600A；先核 PDF 身份，不按标题自动换绑。
+
+
+### WEB-B02/B03 candidate evidence — PR #1115
+
+- [x] Frozen JE-1000F/EU EN/FR Git input candidate opened as [#1115](https://github.com/Bingboom/auto-manual/pull/1115), exact source head `539312e83c458a280ff11f992abd17c30accb30f`. Includes released-PDF identity, 81 scoped source files and 136 reviewed files with verified Git-byte hashes; does not claim other locales approved.
+- [x] At that exact commit, both single-language configs with `review-asis` passed check, Markdown and strict Sphinx; successful check/md/html captures sealed and fresh md/html independently verified. EN receipt `42732feb3609a611ed10e19444f3c825b79cf5386124c4836c5aff78a2a466aa`; FR receipt `b17b80442eb50a35c3d7d7681d7e936834d76f55f9a92e99f79b87e5b4bdb6da`.
+- [x] Full local unittest completed with exit 0; maintainability and doc links passed. Four locale/viewport checks (EN/FR, 1440/390 px) decoded 68 images each with no broken images/page overflow; sample full-text operation panels visually inspected. This is not exhaustive PDF visual parity.
+- [ ] #1115 merged after every check/review gate passes (PR just opened).
+- [ ] Separate Hello-Docs `docs/publish/**` release PR assembled against current business main, preserving existing targets and links.
+- [ ] Actual RTD EN/FR publication, language dropdown, PDF-content acceptance and deployed revision verified.
+
+No queue dispatch, online-table write, workflow edit or operational closure is implied. #1103 remains Draft and deferred operational exits stay unchecked.
