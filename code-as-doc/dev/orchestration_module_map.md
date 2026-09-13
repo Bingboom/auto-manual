@@ -50,6 +50,12 @@ reuses frozen portal discovery for bounded same-origin HTTPS HEAD checks.
 HTTP accessibility is separate from deployment identity and translation coverage;
 see [online check scope](manual_operations_online_health.md).
 
+[`tools/rtd_deployment_receipt.py`](../../tools/rtd_deployment_receipt.py) owns
+the frozen-source fingerprint, Sphinx build-finished output receipt and bounded
+read-only served HTML/resource hash verification. `rtd_portal.setup` registers
+its callback; queue, publication assembly and link writers are not callers.
+See the [Git-only receipt contract](rtd_deployment_receipt.md).
+
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.

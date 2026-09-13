@@ -16,6 +16,15 @@ For current rules, see:
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 
+## 2026-09-13: Git-only RTD deployment receipt slice
+
+Reused the paused verified-publication receipt module as a separate read-only
+engineering slice: the existing frozen Sphinx portal build emits source/output
+hash evidence, and callers verify served HTML and its local resource closure.
+No workflow, queue, formal link writer or online source table changed. The
+[receipt contract](dev/rtd_deployment_receipt.md) records the API and evidence
+boundaries; live deployment and complete OPS-04 operations remain separate.
+
 ## 1. 2026-03-08: Initial P0 / P1 Refactor Wave
 
 ### 2026-09-12: RTD entrance implementation slice
