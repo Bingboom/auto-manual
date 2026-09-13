@@ -25,7 +25,14 @@ GETs the explicitly selected HTML and recursively referenced same-origin
 HTML/CSS resources. It validates their hashes, HTTPS origin and publication
 prefix before reporting `status=verified`. Query/fragment suffixes on resource
 references do not change the frozen path. Cross-origin CDN resources are
-excluded from the verification claim. Source drift, missing receipt/resources,
+excluded from the verification claim. RTD also injects an addons script and four
+platform metadata tags immediately before `</head>`. Only that exact observed
+block, with the selected resolver path and HTTP status 200, can be excluded
+when comparing served HTML against the frozen output hash. The result lists
+these pages in `rtd_proxy_injections_removed`. Manual bytes, other scripts,
+unknown injection shapes and all frozen assets remain strictly hashed. A
+platform injection change therefore fails verification rather than widening
+normalization automatically. Source drift, missing receipt/resources,
 changed bytes, unsafe paths, symlinks and request/byte limits fail closed.
 
 Limits: 10,000 files, 32 MiB per file, 512 MiB per source/output inventory and

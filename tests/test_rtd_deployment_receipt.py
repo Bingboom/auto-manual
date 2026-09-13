@@ -43,6 +43,41 @@ class DeploymentReceiptTests(unittest.TestCase):
         self.assertEqual(self.verify()["verified_files"], 4)
         self.assertNotIn("private", (self.output / receipt.RECEIPT).read_text())
 
+    def test_rtd_proxy_injection_does_not_hide_manual_changes(self):
+        original = b'<html><head></head><body><img src="image.png"></body></html>'
+        (self.output / "manual.html").write_bytes(original)
+        receipt.write_deployment_receipt(self.app, None)
+        block = (
+            b'<script async type="text/javascript" '
+            b'src="/_/static/javascript/readthedocs-addons.js"></script>'
+            b'<meta name="readthedocs-project-slug" content="ht-doc" />'
+            b'<meta name="readthedocs-version-slug" content="latest" />'
+            b'<meta name="readthedocs-resolver-filename" content="/manual.html" />'
+            b'<meta name="readthedocs-http-status" content="200" />'
+        )
+        for injected, accepted in (
+            (block, True),
+            (block.replace(b'/manual.html', b'/wrong.html'), False),
+            (block.replace(b'content="200"', b'content="404"'), False),
+            (block + b'<script src="untracked.js"></script>', False),
+        ):
+            with self.subTest(injected=injected):
+                served = original.replace(b'</head>', injected + b'</head>')
+                def fetch(url):
+                    return served if url.endswith('/manual.html') else self.fetch(url)
+                with patch.object(receipt, "_fetch", side_effect=fetch):
+                    if accepted:
+                        result = receipt.verify_deployment(self.web, "https://example.org", ["manual.html"])
+                        self.assertEqual(result["rtd_proxy_injections_removed"], ["manual.html"])
+                    else:
+                        with self.assertRaisesRegex(ValueError, "bytes differ"):
+                            receipt.verify_deployment(self.web, "https://example.org", ["manual.html"])
+        served = original.replace(b'</head>', block + b'</head>').replace(b'image.png', b'wrong.png')
+        with patch.object(receipt, "_fetch", side_effect=lambda url:
+                          served if url.endswith('/manual.html') else self.fetch(url)):
+            with self.assertRaisesRegex(ValueError, "bytes differ"):
+                receipt.verify_deployment(self.web, "https://example.org", ["manual.html"])
+
     def test_stale_source_rejected(self):
         (self.web / "index.md").write_text("different version")
         with self.assertRaisesRegex(ValueError, "frozen source"):

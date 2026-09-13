@@ -153,6 +153,26 @@ def _dependencies(path: str, data: bytes, base_url: str) -> set[str]:
     return result
 
 
+def _without_rtd_proxy_injection(path: str, data: bytes) -> bytes:
+    """Remove only the observed RTD-owned block immediately before head closure."""
+    if not path.endswith(".html"):
+        return data
+    head, boundary, body = data.partition(b"</head>")
+    if not boundary:
+        return data
+    pattern = (
+        rb'<script async type="text/javascript" '
+        rb'src="/_/static/javascript/readthedocs-addons\.js"></script>'
+        rb'<meta name="readthedocs-project-slug" content="[A-Za-z0-9_.-]+" />'
+        rb'<meta name="readthedocs-version-slug" content="[A-Za-z0-9_.-]+" />'
+        rb'<meta name="readthedocs-resolver-filename" content="/'
+        + re.escape(path.encode("utf-8")) + rb'" />'
+        rb'<meta name="readthedocs-http-status" content="200" />$'
+    )
+    # Anything extra, moved into the body, or naming another route remains hashed.
+    return re.sub(pattern, b"", head) + boundary + body
+
+
 def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
     """Fail closed before callers write links; never treat HTTP 200 as identity."""
     _https_url(base_url)
@@ -177,6 +197,7 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
         raise ValueError("Deployment receipt lacks selected routes")
     selected = set(routes)
     checked = set()
+    proxy_injections = []
     total = 0
     while selected - checked:
         path = min(selected - checked)
@@ -187,10 +208,15 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
         if total > MAX_TOTAL_BYTES:
             raise ValueError("Deployment verification exceeds total byte limit")
         if hashlib.sha256(data).hexdigest() != files[path]:
-            raise ValueError(f"Live deployment bytes differ: {path}")
+            normalized = _without_rtd_proxy_injection(path, data)
+            if normalized == data or hashlib.sha256(normalized).hexdigest() != files[path]:
+                raise ValueError(f"Live deployment bytes differ: {path}")
+            data = normalized
+            proxy_injections.append(path)
         checked.add(path)
         selected.update(_dependencies(path, data, base_url))
         if len(selected) > MAX_FILES:
             raise ValueError("Deployment dependency count exceeds safety limit")
     return {"schema": SCHEMA, "status": "verified", "source_sha256": fingerprint,
-            "routes": routes, "verified_files": len(selected), "verified_bytes": total}
+            "routes": routes, "verified_files": len(selected), "verified_bytes": total,
+            "rtd_proxy_injections_removed": proxy_injections}
