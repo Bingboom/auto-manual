@@ -125,10 +125,17 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | OPS-03a 措辞跟进 | [#1109](https://github.com/Bingboom/auto-manual/pull/1109) / `4291d8f6c9fa91b989365839c2f538a33ca29b64` | 最终内容树4036测试 OK（24 skipped）；14定向/全Ruff/护栏/文档链接/fixture check通过；真实冻结语料65个正文HTML不变 | CI17/17，CLEAN，无评审/未解决线程；有legacy出版物时改为“Separate language page not verified”，不把元数据缺失说成内容未发布 | 修正已合入；不晋升任何语言身份 |
 | OPS-03a 措辞部署 | #1109 → Hello-Docs `da0c02f7ae76ab9582bd2b4aaf9f5480efaf618b` | mirror run `34747579572` success | RTD build `34532682` success，API commit 与镜像一致；HTTPS 首页正文实际包含修正措辞；浏览器控制超时，未把此次 HTTP 验证当作新的视觉验收 | 已部署，不晋升语言身份 |
 | OPS-06a | [#1110](https://github.com/Bingboom/auto-manual/pull/1110)，head `557f9b3a227d0449d23536136681b2d8b8f72fc1` | 4042全量测试 OK（22 skipped），Ruff/护栏/文档/fixture check通过；默认关闭时66个HTML逐字节不变 | 17/17检查成功且无评审线程后发起合并；main已出现同树squash `9a015afdbee91786feecaf44567a6ad4d7a0c86e`，但PR接口仍OPEN；不重复合并 | 等GitHub合并状态一致后勾选；真实渠道/负责人/反馈闭环仍未验收 |
-| OPS-05b1 | 分支 `codex/manual-ops-online-health`，head `9663835d49e6bb09a8e5df38f435a7f3f2c46816` | 最终4052测试 OK（24 skipped）；10定向/Ruff/护栏/文档/fixture check通过；API树与本地最终树一致 | 21个现有出版物HEAD成功；不证明正文/资产/版本/翻译；建PR遇GitHub GraphQL内部错误与REST502，待核实创建状态 | 未合入、不勾选；无线上表写入 |
-| OPS-01b1 | 分支 `codex/manual-ops-single-language-source`，head `b8404559de0507fdb13f296e2efaf91169442fac` | 最终4055测试 OK（22 skipped）；80定向/Ruff/mypy/护栏/文档/fixture check通过；review+隔离fixture/37哈希核验中立附件的EN check/md/html成功且三次投影manifest哈希相同；整本Web md通过；非Web显式语言保持原有失败基线 | 未发布RTD、未晋升single、无线上写入；HTML仍有14new/1known警告（含保修RST结构），不构成内容验收；未放宽门 | 实现已推送，待PR/CI/合并；不勾选 |
+| OPS-05b1 | [#1112](https://github.com/Bingboom/auto-manual/pull/1112)，head `9663835d49e6bb09a8e5df38f435a7f3f2c46816` | 最终4052测试 OK（24 skipped）；10定向/Ruff/护栏/文档/fixture check通过；API树与本地最终树一致 | 21个现有出版物HEAD成功；不证明正文/资产/版本/翻译；PR已创建，首次CI启动失败（见下方记录） | 未合入、不勾选；无线上表写入 |
+| OPS-01b1 | [#1111](https://github.com/Bingboom/auto-manual/pull/1111)，head `b8404559de0507fdb13f296e2efaf91169442fac` | 最终4055测试 OK（22 skipped）；80定向/Ruff/mypy/护栏/文档/fixture check通过；review+隔离fixture/37哈希核验中立附件的EN check/md/html成功且三次投影manifest哈希相同；整本Web md通过；非Web显式语言保持原有失败基线 | 未发布RTD、未晋升single、无线上写入；HTML仍有14new/1known警告（含保修RST结构），不构成内容验收；未放宽门 | PR已创建，待CI/合并；不勾选 |
 | OPS-01b 只读/隔离试点 | main `f695f7b2`，无实现 PR | 37个中立LCD/Symbol附件与已提交audited source manifest逐项size/SHA匹配，仅复用图标；未复制其他型号CSV；使用已提交fixture提供测试数据/composite合同；整本review-asis check/md/html均exit0 | 无线上发布；HTML有22条RST warning；显式lang=en失败于review fallback引用缺失cover-en.rst；不能声明独立单语发布已通 | 输入可构建；单语作用域接线待实施 |
 | OPS-01～07 | 待实施 | 未运行 | 未验收 | 不勾选 |
 
 每个实现 PR 回填：最终 head、merge SHA、运行命令/结果、上线 commit/build ID、
 代表 URL、兼容/故障场景、耗时、人工操作、未释放审批。证据来自真实运行，不用计划代替结果。
+
+2026-09-13 GitHub 故障记录：#1111 的 `34749353847` / `34749353850`
+及 #1112 的 `34749354583` 为 `startup_failure`；#1112 预览 run
+`34749354456` 的 job `103702901446` 执行步骤为空，错误注释为
+“The job was not started because it repeatedly failed to be acquired (5 attempts).”
+官方事件已包含 Actions 性能下降。确认是未正常启动而非测试断言失败后，
+仅对上述四个 run 各重试一次；不修改 workflow，不把重试请求成功当作检查通过。
