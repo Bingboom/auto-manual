@@ -51,8 +51,10 @@ def base_file_name_for_plan(
 
 
 def materialized_file_name(page: Any, base_name: str, seen: set[str], ordinal: int) -> str:
-    """Slot-bearing entries are named by their stable slot_id; everything else
-    keeps the legacy position-derived path byte-for-byte.
+    """Name slot entries by stable identity or an explicit legacy basename.
+
+    Everything without a slot keeps the legacy position-derived path
+    byte-for-byte.
 
     The legacy ensure_unique_name gives the FIRST occurrence of a base name the
     bare name and only later duplicates a pNN_ prefix, so a dropped page can
@@ -63,7 +65,7 @@ def materialized_file_name(page: Any, base_name: str, seen: set[str], ordinal: i
 
     slot_id = getattr(page, "slot_id", None)
     if slot_id:
-        name = f"{slot_id}.rst"
+        name = getattr(page, "materialized_name", None) or f"{slot_id}.rst"
         if name in seen:
             raise RuntimeError(
                 f"materialized name collision for slot_id '{slot_id}': {name}"

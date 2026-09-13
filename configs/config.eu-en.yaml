@@ -33,6 +33,7 @@ paths:
     JE-100C_EU: docs/manifests/manual_je100c_eu-en.yaml
     JE-300D_EU: docs/manifests/manual_je300d_eu-en.yaml
     JE-500A_EU: docs/manifests/manual_je500a_eu-en.yaml
+    JE-2000F_EU: docs/manifests/manual_main-eu-en.yaml
   web_illustration_manifests:
     JE-1000H_EU: docs/renderers/web/je1000h_eu_en_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_en_illustrations.json

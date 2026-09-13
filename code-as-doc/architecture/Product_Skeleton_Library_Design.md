@@ -150,6 +150,20 @@ Axis ownership, corrected against the HTE152 and HTE153 factorials:
   skeletons" §4.2 already rejected. The mechanism is §6.3's existing
   `fragment + (region, host_page, repeat_per_language)`, generalized from
   compliance-only to region-keyed module variants.
+- **`Product Manual Plan` + language-scope registry** own the model-region
+  binding and its required language subset. The region profile supplies the
+  permitted language universe and stable ordering; it does not imply that
+  every EU product ships the same set. The current repository carrier is
+  [`../../data/model_languages.csv`](../../data/model_languages.csv), and each
+  declared language expands to a distinct `Manual_Target` while retaining the
+  same Blueprint slots and product capabilities.
+- **English-first is a bootstrap state, not a terminal state.** An English Web
+  build may validate a new skeleton cell and unlock subsequent language
+  onboarding. The product-region is complete only when all declared language
+  targets resolve the same semantic slot set, with localized governed content
+  and locale-matched text-bearing artwork where required. A missing language
+  is never repaired by cloning the Blueprint or adding model/language-specific
+  Python or CSS.
 - **`house_style_version` ∈ {v1, v2}** is an *attribute* of `house_style`, not
   a fourth key. It selects a blueprint-declared order profile plus compatible
   family carrier variants (for example the JP safety and warranty forms).

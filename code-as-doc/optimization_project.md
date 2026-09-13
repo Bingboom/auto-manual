@@ -30,7 +30,39 @@ record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence i
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
-Updated: 2026-09-05
+Updated: 2026-09-12
+
+Current near-term milestone: expand Web coverage through reusable skeletons,
+Product Manual Plans, explicit per-model language scope, and locale-governed
+assets. The operator-designated DingTalk list supplies the EU product set and
+its English bootstrap rows; it is not evidence that those products are
+English-only. An English build proves skeleton compatibility but does not close
+the product-region until its required language set is declared and every
+declared Web target passes content, component, asset, replay, and navigation
+gates. The operator has now declared the same future twelve-language target
+for every model in this EU rollout: English, French, Spanish, German, Italian,
+Portuguese, Dutch, Polish, Ukrainian, Greek, Hebrew and Arabic. Portuguese,
+Dutch, Polish, Ukrainian, Greek, Hebrew and Arabic translations are returning
+incrementally. Existing five/six-language registry rows describe earlier scope;
+they do not cap this future target. Track required, received, verified and
+published languages separately, and keep runtime declarations restricted to
+prepared build inputs. The Portuguese locale variant follows the returned
+translation brief; the existing Brazilian Portuguese pack is not proof of an
+EU Portuguese pack.
+
+The [manual portal concept](dev/web_manual_portal_concept_2026-09.md) proposes
+a US-default region dropdown with US / EU / UK options. EU and UK share one
+EUUK product catalog and the same published manuals without duplicate releases;
+US retains its own catalog and editions. Product selection and a twelve-language
+dropdown link independent manual pages from their start on the existing Read
+the Docs publish surface. It is a design proposal within Milestone M; no portal
+or twelve-language runtime migration is claimed complete.
+
+The long-term destination remains Web, IDML, PDF, and Word consuming the same
+governed semantic source through independent adapters. That cross-renderer
+closure follows stable Web category and multilingual onboarding; it does not
+block the current Web milestone and must not be simulated by copying English
+templates, skeletons, CSS, or visible-text artwork into each locale.
 
 ## 1. Role
 

@@ -2167,3 +2167,23 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   pages. Figure coverage remained 55 `approved-composite` panels plus five
   native HTML LCD Mode compositions; Italian remained 11/11 localized full
   panels across Overview, Operation, and Charging.
+
+
+## 2026-09-12: First MAIN@INTL English Web skeleton binding
+
+- Used the operator-designated DingTalk AI Table view as the read-only rollout
+  authority: 20 English single-language Web candidates were returned;
+  `HTO2682` was absent and excluded. `JE-2000F / EU / en` became the first
+  uncovered `MAIN@INTL` representative.
+- Added the target-neutral `main-intl` Blueprint and slot catalog, the
+  `main-eu-en` region profile, the `je2000f_eu` Product Manual Plan and one
+  resolved anchor. `config.eu-en.yaml` binds only the exact target; there is no
+  per-model config, model-specific Python or copied CSS.
+- Added optional `materialized_name` compatibility for slot-bearing carriers.
+  It preserves existing review-safe `.rst` basenames while `slot_id` becomes
+  the composition identity; cross-platform path syntax, positional `pNN_`
+  names and collisions fail closed, and all legacy manifests remain unchanged.
+- Base/head builds through `build.py md` at one staging root produced
+  byte-identical final HTML, the same 17 effective pages and ComponentSpecs,
+  and the same 54 hash-bound asset refs. The only intentional IR metadata
+  difference is semantic `page_slots` identity.

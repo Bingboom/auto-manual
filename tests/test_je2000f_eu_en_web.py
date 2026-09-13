@@ -12,8 +12,19 @@ import tempfile
 import unittest
 
 from bs4 import BeautifulSoup
+import yaml
 
+from tools.config_loader import load_config_mapping
+from tools.gen_index_bundle import plan_materialized_pages
 from tools.manual_ir import read_manual_ir
+from tools.skeleton_resolve import (
+    emit_manifest_yaml,
+    load_blueprint,
+    load_product_plan,
+    load_region_profile,
+    load_slot_template_catalog,
+    resolve_plan,
+)
 from tools.web_document_ir import render_document_fragments
 
 
@@ -25,6 +36,10 @@ SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = (
     ROOT / "docs" / "renderers" / "web" / "je2000f_eu_en_illustrations.json"
 )
+SKELETON_DIR = ROOT / "docs" / "manifests" / "skeletons" / "main-intl"
+REGION_PROFILE = ROOT / "docs" / "manifests" / "region_profiles" / "main-eu-en.yaml"
+PRODUCT_PLAN = ROOT / "docs" / "manifests" / "product_plans" / "je2000f_eu.yaml"
+RESOLVED_MANIFEST = ROOT / "docs" / "manifests" / "manual_main-eu-en.yaml"
 
 
 class Je2000fEuEnWebTests(unittest.TestCase):
@@ -93,6 +108,100 @@ class Je2000fEuEnWebTests(unittest.TestCase):
     @classmethod
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
+
+    def test_main_intl_three_layer_plan_is_the_target_manifest_authority(self) -> None:
+        blueprint = load_blueprint(SKELETON_DIR / "blueprint.yaml")
+        slots, slot_profiles = load_slot_template_catalog(
+            SKELETON_DIR / "slot_templates.yaml",
+            blueprint,
+        )
+        profile = load_region_profile(REGION_PROFILE, blueprint)
+        product_plan = load_product_plan(PRODUCT_PLAN, blueprint)
+        plan = resolve_plan(
+            blueprint,
+            slots,
+            profile,
+            manifest_id="manual_main_eu_en",
+            product_plan=product_plan,
+            slot_template_profiles=slot_profiles,
+        )
+        expected = emit_manifest_yaml(
+            plan,
+            header=["Resolved Manifest — main-intl + main-eu-en + je2000f_eu."],
+        )
+
+        self.assertEqual("main-intl", blueprint["skeleton_id"])
+        self.assertEqual("MAIN", blueprint["skeleton_family"])
+        self.assertEqual("INTL", blueprint["house_style"])
+        self.assertNotIn("JE-2000F", (SKELETON_DIR / "blueprint.yaml").read_text())
+        self.assertEqual(expected, RESOLVED_MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual(
+            [
+                "preface_important",
+                "safety_info_en",
+                "user_maintenance_instructions_en",
+                "symbol_meaning_en",
+                "box_contents_en",
+                "product_overview_en",
+                "lcd_display_en",
+                "operation_en",
+                "ups_mode_en",
+                "extra_battery_en",
+                "charging_intro_en",
+                "charging_methods_en",
+                "storage_en",
+                "troubleshooting_en",
+                "specifications_en",
+                "warranty_en",
+                "app_setup_en",
+                "regulatory_compliance",
+            ],
+            [page["slot_id"] for page in plan["pages"]],
+        )
+        self.assertNotIn(
+            "model_overrides",
+            yaml.safe_load(RESOLVED_MANIFEST.read_text(encoding="utf-8")),
+        )
+
+    def test_shared_config_binds_only_this_target_and_preserves_page_names(self) -> None:
+        config = load_config_mapping(CONFIG)
+        self.assertEqual(
+            "docs/manifests/manual_main-eu-en.yaml",
+            config["paths"]["page_manifests"]["JE-2000F_EU"],
+        )
+        planned = plan_materialized_pages(
+            config,
+            model="JE-2000F",
+            region="EU",
+            langs=["en"],
+            root=ROOT,
+        )
+        self.assertEqual(
+            [
+                "00_preface.rst",
+                "safety_en.rst",
+                "01_user_maintenance_instructions.rst",
+                "symbols_en.rst",
+                "02_whats_in_the_box.rst",
+                "03_product_overview_placeholder.rst",
+                "lcd_icons_en.rst",
+                "05_operation_guide_placeholder.rst",
+                "06_ups_mode.rst",
+                "charging.rst",
+                "08_charging_methods.rst",
+                "09_storage_and_maintenance.rst",
+                "troubleshooting_en.rst",
+                "spec_en.rst",
+                "11_warranty.rst",
+                "12_app_setup_placeholder.rst",
+                "99_regulatory_compliance.rst",
+            ],
+            [page.file_name for page in planned],
+        )
+        self.assertEqual(
+            [page.file_name for page in planned],
+            [page.page_id for page in self.ir.pages],
+        )
 
     def test_frozen_source_matches_published_target_facts(self) -> None:
         with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(

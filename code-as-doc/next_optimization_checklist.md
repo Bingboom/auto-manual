@@ -1623,6 +1623,37 @@ Milestone entry gate: operator approves the **vertical slice plan** (the wave
 plan's v2). S1 may start on that approval alone; every later slice item has
 its own gate.
 
+**Post-S6 Web category rollout (2026-09-12):** the operator-designated
+DingTalk AI Table view `交付工作管理 / 电子说明书新增语言 / 表格` is the only
+business product scope for the current English bootstrap wave. A read-only MCP
+query returned 20 rows; `HTO2682` is absent and therefore out of scope. These
+English rows select the first buildable representative for each skeleton; they
+do not declare the final EU language set. The first uncovered structural cell
+is `MAIN@INTL`, and its first representative target is
+`JE-2000F / EU / en`. The implementation adds a
+target-neutral Blueprint, region profile, Product Manual Plan, resolved
+manifest and exact target binding while preserving all 17 legacy page
+basenames through semantic `slot_id` plus optional `materialized_name`.
+Baseline/head builds at one staging root produce byte-identical final HTML,
+identical page content and ComponentSpecs, and identical 54 asset refs; only
+IR `metadata.page_slots` intentionally changes from carrier names to semantic
+slot IDs. Evidence and non-goals are recorded in
+[`reviews/main_intl_je2000f_skeleton_discovery_2026-09.md`](reviews/main_intl_je2000f_skeleton_discovery_2026-09.md).
+This closes the first `MAIN@INTL` Web representative slice, not the milestone
+or the remaining MCP list rollout. The operator subsequently confirmed the
+same twelve-language destination for every in-scope EU model: English, French,
+Spanish, German, Italian, Portuguese, Dutch, Polish, Ukrainian, Greek, Hebrew
+and Arabic. The last seven are in translation and return incrementally. Track
+required language coverage separately from received, verified and published
+coverage; all locales reuse the same product skeleton. The
+[portal concept](dev/web_manual_portal_concept_2026-09.md) has a US-default
+US / EU / UK entrance dropdown; EU and UK bind to the same catalog and manuals
+without duplicating releases. It is a proposal under this milestone, not a
+parallel execution checklist. An English-only pass is not
+a product-language closeout. Locale-matched full-text panels remain mandatory for
+finished Web figures, while editable tables and prose stay localized semantic
+content.
+
 > **This section was rewritten 2026-08-21 after an executability audit.** The
 > first draft was written from the design documents without checking the live
 > repo and carried 19 substantive defects — including one that would have
@@ -2241,6 +2272,9 @@ the final S6 report and its own M-pre gate is satisfied.
 
 - [x] slice S1–S6 accepted, reconciliation report ruled on
 - [ ] rollout re-scoped from the report and executed
+- [ ] every in-scope EU product covers the operator-declared twelve-language
+      target, and every language Web target passes content, component, asset,
+      replay and language-navigation gates through the same product skeleton
 - [ ] all five skeleton cells build at least one target end to end
 - [ ] corpus reconstruction 58/58 (3 outliers registered `legacy`)
 - [ ] **HTE153 regression-baseline reconciliation** (AU/KR/pt-BR pipeline
