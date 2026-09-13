@@ -57,8 +57,9 @@ _SLOT_KEYS = {"slot_id", "block", "requirement", "presentation", "toc"}
 _CARRIER_KEYS = {
     "type", "file", "lang", "lang_blocks", "ordinal_neutral",
     "page", "source", "engine", "recipe", "template", "include_dir",
+    "materialized_name",
 }
-_OVERRIDE_KEYS = {"file", "recipe", "template"}
+_OVERRIDE_KEYS = {"file", "recipe", "template", "materialized_name"}
 _COMPLIANCE_KEYS = {
     "fragment", "carrier", "file", "mount_after", "repeat_per_language", "presentation",
 }
@@ -570,6 +571,17 @@ def _entry_for(
         raise SkeletonResolveError(
             f"slot {slot['slot_id']}: unsupported carrier type: {page_type!r}"
         )
+    materialized_name = carrier.get("materialized_name")
+    if materialized_name is not None:
+        if not isinstance(materialized_name, str) or not materialized_name.strip():
+            raise SkeletonResolveError(
+                f"slot {slot['slot_id']}: materialized_name must be a non-empty string"
+            )
+        entry["materialized_name"] = _substitute(
+            materialized_name,
+            lang=lang,
+            primary_lang=primary_lang,
+        )
     if capability:
         entry["capability"] = capability
     return entry
@@ -678,7 +690,7 @@ def resolve_plan(
 
 
 _FIELD_ORDER = (
-    "type", "slot_id", "lang", "source", "page", "engine", "recipe",
+    "type", "slot_id", "materialized_name", "lang", "source", "page", "engine", "recipe",
     "template", "file", "langs", "include_dir", "capability",
     "lang_blocks", "ordinal_neutral",
 )

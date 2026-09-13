@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, TypeAlias
 
 SUPPORTED_PAGE_TYPES = {"cover_pdf", "csv_page", "generated_page", "pdf_insert", "rst_include"}
@@ -23,9 +24,12 @@ class CoverPdfPage:
     file: str
     # 能力条件页:装配期按 model_capabilities.csv 选配(None=无条件)
     capability: str | None = None
-    # 骨架槽位 id(骨架库产线):非空时物化文件名 = f"{slot_id}.rst",
-    # 与列表位置解耦;None=沿用 legacy 命名路径(既有 17 份 manifest 不变)
+    # 骨架槽位 id(骨架库产线):非空时物化文件名默认 = f"{slot_id}.rst",
+    # 可由 materialized_name 保留既有安全 basename；None=沿用 legacy 命名路径。
     slot_id: str | None = None
+    # 既有目标骨架化时保留已发布的安全 .rst 文件名。仅允许与 slot_id 同时出现；
+    # 未设置时继续使用 <slot_id>.rst。
+    materialized_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -39,6 +43,7 @@ class CsvPage:
     capability: str | None = None
     # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
     slot_id: str | None = None
+    materialized_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -54,6 +59,7 @@ class GeneratedPage:
     capability: str | None = None
     # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
     slot_id: str | None = None
+    materialized_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -65,6 +71,7 @@ class PdfInsertPage:
     capability: str | None = None
     # 骨架槽位 id(见 CoverPdfPage.slot_id);多语页型携带 slot_id 时 langs 必须单元素
     slot_id: str | None = None
+    materialized_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -83,6 +90,7 @@ class RstIncludePage:
     ordinal_neutral: bool = False
     # 骨架槽位 id(见 CoverPdfPage.slot_id)
     slot_id: str | None = None
+    materialized_name: str | None = None
 
 
 ConfigPage: TypeAlias = CoverPdfPage | CsvPage | GeneratedPage | PdfInsertPage | RstIncludePage
@@ -104,6 +112,55 @@ def _slot_id_single_lang_issue(
 
 def _is_list_of_str(value: Any) -> bool:
     return isinstance(value, list) and all(isinstance(i, str) for i in value)
+
+
+def _parse_materialized_name(
+    raw: dict[str, Any],
+    *,
+    idx: int,
+    slot_id: str | None,
+    issues: list[PageParseIssue],
+) -> str | None:
+    value = raw.get("materialized_name")
+    if value is None:
+        return None
+    if slot_id is None:
+        issues.append(PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].materialized_name requires slot_id",
+        ))
+        return None
+    if not isinstance(value, str) or not value.strip():
+        issues.append(PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].materialized_name must be a non-empty string",
+        ))
+        return None
+    name = value.strip()
+    # Treat both POSIX and Windows separators as unsafe even when the current
+    # host only recognizes one of them.  Manifests are shared across local
+    # macOS/Windows builds, so a basename that is harmless on one host must not
+    # become traversal or a drive-relative path on another.
+    if (
+        Path(name).name != name
+        or "/" in name
+        or "\\" in name
+        or ":" in name
+        or "\x00" in name
+        or not name.lower().endswith(".rst")
+    ):
+        issues.append(PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].materialized_name must be a safe .rst basename: {name}",
+        ))
+        return None
+    if re.match(r"p\d+_", name, flags=re.IGNORECASE):
+        issues.append(PageParseIssue(
+            "ERROR",
+            f"pages[{idx}].materialized_name must not look like a pNN_ prefix: {name}",
+        ))
+        return None
+    return name
 
 
 def parse_config_pages(
@@ -164,6 +221,15 @@ def parse_config_pages(
                 continue
             seen_slot_ids.add(slot_id)
 
+        materialized_name = _parse_materialized_name(
+            raw,
+            idx=idx,
+            slot_id=slot_id,
+            issues=issues,
+        )
+        if raw.get("materialized_name") is not None and materialized_name is None:
+            continue
+
         lang_blocks_raw = raw.get("lang_blocks")
         if lang_blocks_raw is not None and not isinstance(lang_blocks_raw, bool):
             issues.append(PageParseIssue(
@@ -198,7 +264,13 @@ def parse_config_pages(
             if not isinstance(file_name, str) or not file_name.strip():
                 issues.append(PageParseIssue("ERROR", f"pages[{idx}] cover_pdf requires file"))
                 continue
-            parsed.append(CoverPdfPage(page_type=page_type, file=file_name.strip(), capability=capability, slot_id=slot_id))
+            parsed.append(CoverPdfPage(
+                page_type=page_type,
+                file=file_name.strip(),
+                capability=capability,
+                slot_id=slot_id,
+                materialized_name=materialized_name,
+            ))
             continue
 
         if page_type == "csv_page":
@@ -240,6 +312,7 @@ def parse_config_pages(
                     include_dir=include_dir_text,
                     capability=capability,
                     slot_id=slot_id,
+                    materialized_name=materialized_name,
                 )
             )
             continue
@@ -368,6 +441,7 @@ def parse_config_pages(
                     include_dir=include_dir_text,
                     capability=capability,
                     slot_id=slot_id,
+                    materialized_name=materialized_name,
                 )
             )
             continue
@@ -411,6 +485,7 @@ def parse_config_pages(
                     langs=tuple(page_langs_raw),
                     capability=capability,
                     slot_id=slot_id,
+                    materialized_name=materialized_name,
                 )
             )
             continue
@@ -436,6 +511,7 @@ def parse_config_pages(
                     lang_blocks=bool(lang_blocks_raw),
                     ordinal_neutral=bool(ordinal_neutral_raw),
                     slot_id=slot_id,
+                    materialized_name=materialized_name,
                 )
             )
             continue

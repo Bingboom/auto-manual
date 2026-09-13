@@ -53,6 +53,42 @@ class TestConfigPages(unittest.TestCase):
         self.assertEqual(("en", "fr"), pages[0].langs)
         self.assertEqual(("en", "fr"), pages[1].langs)
 
+    def test_slot_can_preserve_a_safe_legacy_materialized_name(self) -> None:
+        pages, issues = parse_config_pages(
+            [{
+                "type": "rst_include",
+                "file": "templates/page_shared/en/00_preface.rst",
+                "lang": "en",
+                "slot_id": "preface_important_en",
+                "materialized_name": "00_preface.rst",
+            }],
+            default_languages=["en"],
+        )
+
+        self.assertEqual([], issues)
+        self.assertEqual("00_preface.rst", pages[0].materialized_name)
+
+    def test_materialized_name_requires_slot_and_safe_non_positional_rst_name(self) -> None:
+        for value, slot_id, expected in (
+            ("legacy.rst", None, "requires slot_id"),
+            ("../legacy.rst", "legacy", "safe .rst basename"),
+            (r"..\legacy.rst", "legacy", "safe .rst basename"),
+            (r"C:\legacy.rst", "legacy", "safe .rst basename"),
+            ("legacy.pdf", "legacy", "safe .rst basename"),
+            ("p03_legacy.rst", "legacy", "must not look like a pNN_ prefix"),
+        ):
+            with self.subTest(value=value, slot_id=slot_id):
+                raw = {
+                    "type": "rst_include",
+                    "file": "templates/legacy.rst",
+                    "lang": "en",
+                    "materialized_name": value,
+                }
+                if slot_id is not None:
+                    raw["slot_id"] = slot_id
+                _pages, issues = parse_config_pages([raw], default_languages=["en"])
+                self.assertTrue(any(expected in issue.msg for issue in issues), issues)
+
     def test_generated_page_should_apply_model_recipe_and_template_override(self) -> None:
         pages, issues = parse_config_pages(
             [

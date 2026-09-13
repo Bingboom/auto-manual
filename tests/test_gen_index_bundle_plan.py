@@ -69,6 +69,7 @@ class MaterializedFileNameTests(unittest.TestCase):
         @dataclass(frozen=True)
         class _SlotPage:
             slot_id: str | None
+            materialized_name: str | None = None
 
         seen: set[str] = set()
         # Slot-bearing entries take their slot-derived name regardless of the
@@ -81,14 +82,30 @@ class MaterializedFileNameTests(unittest.TestCase):
         # pNN_ fallback.
         with self.assertRaises(RuntimeError):
             materialized_file_name(_SlotPage("safety_info_en"), "other.rst", seen, 8)
+        self.assertEqual(
+            "00_preface.rst",
+            materialized_file_name(
+                _SlotPage("preface_important_en", "00_preface.rst"),
+                "ignored.rst",
+                seen,
+                9,
+            ),
+        )
+        with self.assertRaisesRegex(RuntimeError, "materialized name collision"):
+            materialized_file_name(
+                _SlotPage("another_slot_en", "00_preface.rst"),
+                "ignored.rst",
+                seen,
+                10,
+            )
         # Entries without slot_id keep the legacy first-wins path byte-for-byte.
         self.assertEqual(
             "legacy.rst",
-            materialized_file_name(_SlotPage(None), "legacy.rst", seen, 9),
+            materialized_file_name(_SlotPage(None), "legacy.rst", seen, 11),
         )
         self.assertEqual(
-            "p10_legacy.rst",
-            materialized_file_name(_SlotPage(None), "legacy.rst", seen, 10),
+            "p12_legacy.rst",
+            materialized_file_name(_SlotPage(None), "legacy.rst", seen, 12),
         )
 
 

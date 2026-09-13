@@ -1,0 +1,120 @@
+# Resolved Manifest — main-intl + main-eu-en + je2000f_eu.
+manifest_id: manual_main_eu_en
+pages:
+  - type: rst_include
+    slot_id: preface_important
+    materialized_name: 00_preface.rst
+    lang: en
+    file: templates/page_shared/en/00_preface.rst
+    lang_blocks: true
+  - type: rst_include
+    slot_id: safety_info_en
+    materialized_name: safety_en.rst
+    lang: en
+    file: templates/page_eu-en/safety_en.rst
+  - type: rst_include
+    slot_id: user_maintenance_instructions_en
+    materialized_name: 01_user_maintenance_instructions.rst
+    lang: en
+    file: templates/page_shared/en/01_user_maintenance_instructions.rst
+  - type: csv_page
+    slot_id: symbol_meaning_en
+    materialized_name: symbols_en.rst
+    source: phase2
+    page: symbols
+    langs: [en]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: box_contents_en
+    materialized_name: 02_whats_in_the_box.rst
+    lang: en
+    file: templates/page_shared/en/02_whats_in_the_box.rst
+  - type: generated_page
+    slot_id: product_overview_en
+    materialized_name: 03_product_overview_placeholder.rst
+    page: 03_product_overview
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/03_product_overview.yaml
+    template: templates/page_eu-en/03_product_overview_placeholder.rst
+    langs: [en]
+    include_dir: generated/{model}/draft
+  - type: csv_page
+    slot_id: lcd_display_en
+    materialized_name: lcd_icons_en.rst
+    source: phase2
+    page: lcd_icons
+    langs: [en]
+    include_dir: generated/{model}
+  - type: generated_page
+    slot_id: operation_en
+    materialized_name: 05_operation_guide_placeholder.rst
+    page: 05_operation_guide
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/05_operation_guide.yaml
+    template: templates/page_eu-en/05_operation_guide_placeholder.rst
+    langs: [en]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    slot_id: ups_mode_en
+    materialized_name: 06_ups_mode.rst
+    lang: en
+    file: templates/page_shared/en/06_ups_mode.rst
+    capability: UPS功能
+  - type: generated_page
+    slot_id: extra_battery_en
+    materialized_name: 07_extra_battery.rst
+    page: 07_extra_battery
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/07_extra_battery.yaml
+    template: templates/targets/je2000e/07_extra_battery.rst
+    langs: [en]
+    include_dir: generated/{model}/draft
+    capability: 加电包扩容
+  - type: rst_include
+    slot_id: charging_intro_en
+    materialized_name: charging.rst
+    lang: en
+    file: templates/page_shared/en/charging.rst
+  - type: rst_include
+    slot_id: charging_methods_en
+    materialized_name: 08_charging_methods.rst
+    lang: en
+    file: templates/page_shared/en/08_charging_methods.rst
+  - type: rst_include
+    slot_id: storage_en
+    materialized_name: 09_storage_and_maintenance.rst
+    lang: en
+    file: templates/page_shared/en/09_storage_and_maintenance.rst
+  - type: csv_page
+    slot_id: troubleshooting_en
+    materialized_name: troubleshooting_en.rst
+    source: phase2
+    page: troubleshooting
+    langs: [en]
+    include_dir: generated/{model}
+  - type: csv_page
+    slot_id: specifications_en
+    materialized_name: spec_en.rst
+    source: phase2
+    page: spec
+    langs: [en]
+    include_dir: generated/{model}
+  - type: rst_include
+    slot_id: warranty_en
+    materialized_name: 11_warranty.rst
+    lang: en
+    file: templates/page_shared/en/11_warranty.rst
+  - type: generated_page
+    slot_id: app_setup_en
+    materialized_name: 12_app_setup_placeholder.rst
+    page: 12_app_setup
+    engine: draft_v1
+    recipe: templates/recipes/eu-shared-en/12_app_setup.yaml
+    template: templates/page_shared/en/12_app_setup_placeholder.rst
+    langs: [en]
+    include_dir: generated/{model}/draft
+  - type: rst_include
+    slot_id: regulatory_compliance
+    materialized_name: 99_regulatory_compliance.rst
+    lang: en
+    file: templates/page_eu-en/99_regulatory_compliance.rst

@@ -30,7 +30,23 @@ record](dev/manual_ir_app_reference_plan.md). The 5B source/crop/hash evidence i
 recorded in the [EU finished-panel closeout](dev/je1000f_eu_finished_panels_discovery_2026-09.md).
 
 
-Updated: 2026-09-05
+Updated: 2026-09-12
+
+Current near-term milestone: expand Web coverage through reusable skeletons,
+Product Manual Plans, explicit per-model language scope, and locale-governed
+assets. The operator-designated DingTalk list supplies the EU product set and
+its English bootstrap rows; it is not evidence that those products are
+English-only. An English build proves skeleton compatibility but does not close
+the product-region until its required language set is declared and every
+declared Web target passes content, component, asset, replay, and navigation
+gates. Language scope remains model-specific (for example JE-1000F/EU has five
+declared languages while JE-2000F/EU has six), not one blanket EU default.
+
+The long-term destination remains Web, IDML, PDF, and Word consuming the same
+governed semantic source through independent adapters. That cross-renderer
+closure follows stable Web category and multilingual onboarding; it does not
+block the current Web milestone and must not be simulated by copying English
+templates, skeletons, CSS, or visible-text artwork into each locale.
 
 ## 1. Role
 

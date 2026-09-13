@@ -25,17 +25,17 @@ MANIFESTS = ROOT / "docs" / "manifests"
 
 
 class ManifestFamilyTests(unittest.TestCase):
-    def test_family_index_folds_all_37_manifest_goldens(self) -> None:
-        # 37 manifests / 6 anchors / 31 folded: BP@INTL, BP@JP, solar and charger
-        # accessory family each own a repository anchor; regional/target
+    def test_family_index_folds_all_38_manifest_goldens(self) -> None:
+        # 38 manifests / 7 anchors / 31 folded: BP@INTL, BP@JP, solar, charger
+        # accessory and MAIN@INTL each own a repository anchor; regional/target
         # manifests fold from those anchors.
         report = fold_repository(
             ROOT,
             MANIFESTS / "family" / "index.yaml",
         )
         self.assertTrue(report["passed"], report["errors"])
-        self.assertEqual(37, report["manifest_count"])
-        self.assertEqual(6, report["anchor_count"])
+        self.assertEqual(38, report["manifest_count"])
+        self.assertEqual(7, report["anchor_count"])
         self.assertEqual(31, report["folded_count"])
         self.assertTrue(all(item["byte_identical"] for item in report["checks"]))
 

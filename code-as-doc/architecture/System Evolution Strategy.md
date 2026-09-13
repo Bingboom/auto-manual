@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-06-18
+Updated: 2026-09-12
 
 ## 1. Role
 
@@ -66,9 +66,9 @@ In practical terms:
 ```text
 CMS / Multidimensional Tables
         -> exported snapshot
-        -> page assembly
-        -> RST bundle
-        -> HTML / Word / PDF
+        -> skeleton + product binding + explicit Manual Targets
+        -> page assembly + renderer-neutral semantic Manual IR
+        -> Web / Word / PDF / IDML adapters
         -> review, diff, publish, release records
 ```
 
@@ -87,6 +87,8 @@ Examples:
 Responsibility:
 
 - manage multilingual content
+- declare the required language set for each product-region target
+- track localization completeness separately from skeleton/build readiness
 - manage product applicability
 - manage workflow state
 - enforce structured content governance
@@ -110,6 +112,9 @@ Examples:
 
 - `page_registry`
 - `content_blocks`
+- skeleton Blueprints
+- Product Manual Plans
+- language-specific Manual Targets
 - template mapping
 - contracts
 
@@ -118,14 +123,18 @@ Responsibility:
 - convert structured data into page-ready content
 - declare content requirements
 - keep target selection explicit
+- expand one language-neutral skeleton through the product-region's declared
+  language set instead of cloning a skeleton per language
 
 ### 4.4 Build And Render Layer
 
 Examples:
 
 - RST generation
+- semantic Manual IR
+- renderer adapters
 - Sphinx
-- HTML / Word / PDF export
+- Web / Word / PDF / IDML export
 
 Responsibility:
 
@@ -172,6 +181,9 @@ In this stage:
 - the CMS manages structured content and workflow state
 - the repository still owns templates, assembly, validation, rendering, and release tooling
 - builds consume exported snapshots rather than live content
+- an English Web target may prove a new skeleton and product binding, but that
+  proof is recorded separately from the product-region's multilingual
+  completion state
 
 ### Stage 3: CMS-Driven Content Infrastructure
 
@@ -180,6 +192,12 @@ In the target end state:
 - the CMS becomes the content source of truth for governed content classes
 - the repository becomes a deterministic build, validation, and publishing engine
 - every release is traceable to a frozen snapshot and a build record
+- every declared language target reuses the same product skeleton and semantic
+  component contracts, while locale-specific copy and text-bearing artwork
+  remain explicit governed variants
+- Web, Word, PDF, and IDML consume the same governed semantic source through
+  renderer-specific adapters; responsive and fixed-page presentation remain
+  renderer-owned
 
 Stage 3 is a deliberate hybrid, not total structuralization. "Source of truth"
 applies to the content classes that benefit from governance — spec values,
@@ -203,6 +221,14 @@ These principles should remain true even as repo implementation changes.
 4. Review and release must remain traceable.
 5. Layer responsibilities should become clearer over time, not more blended.
 6. Structure is selective: not all content should be governed by the CMS. Layout, stable long-form and compliance prose, and environment differences are deliberately repository- or config-owned, allocated by an explicit content-truth rule rather than drifting case by case. The enemy is template forks, not templates.
+7. Language scope is product-specific: a region profile may define the allowed
+   language universe and order, but each product-region must declare its
+   required subset explicitly. English-only skeleton acceptance is not
+   multilingual product completion.
+8. A new language reuses the same semantic slots and components. It adds
+   localized content and governed locale assets, including locale-matched
+   finished panels where visible words are part of the artwork; it does not
+   create a copied skeleton, renderer, or stylesheet.
 
 ## 7. Strategic Invariants
 
@@ -211,6 +237,8 @@ These are the boundaries that should not be casually broken.
 - Content governance is not the same thing as build execution.
 - Snapshot data is not the same thing as live editable content.
 - Page assembly is not the same thing as rendering.
+- Skeleton readiness is not the same thing as language completeness.
+- Shared semantic source is not pixel or pagination identity across renderers.
 - Review and release are not side effects; they are first-class system concerns.
 - Current repo workflows may evolve, but the system should not collapse back into a single undifferentiated script layer.
 

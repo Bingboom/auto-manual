@@ -1,0 +1,105 @@
+# Slot -> carrier mapping for the first MAIN@INTL production anchor.
+# `materialized_name` preserves JE-2000F's existing review-safe page basenames
+# while slot_id provides the semantic composition identity.
+schema_version: skeleton-slot-templates/v1
+skeleton_id: main-intl
+slots:
+  preface_important:
+    type: rst_include
+    file: templates/page_shared/{primary_lang}/00_preface.rst
+    lang: primary
+    lang_blocks: true
+    materialized_name: 00_preface.rst
+  safety_info:
+    type: rst_include
+    file: templates/page_eu-en/safety_{lang}.rst
+    materialized_name: safety_{lang}.rst
+  user_maintenance_instructions:
+    type: rst_include
+    file: templates/page_shared/{lang}/01_user_maintenance_instructions.rst
+    materialized_name: 01_user_maintenance_instructions.rst
+  symbol_meaning:
+    type: csv_page
+    source: phase2
+    page: symbols
+    include_dir: generated/{model}
+    materialized_name: symbols_{lang}.rst
+  box_contents:
+    type: rst_include
+    file: templates/page_shared/{lang}/02_whats_in_the_box.rst
+    materialized_name: 02_whats_in_the_box.rst
+  product_overview:
+    type: generated_page
+    page: 03_product_overview
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/03_product_overview.yaml
+    template: templates/page_eu-en/03_product_overview_placeholder.rst
+    include_dir: generated/{model}/draft
+    materialized_name: 03_product_overview_placeholder.rst
+  lcd_display:
+    type: csv_page
+    source: phase2
+    page: lcd_icons
+    include_dir: generated/{model}
+    materialized_name: lcd_icons_{lang}.rst
+  operation:
+    type: generated_page
+    page: 05_operation_guide
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/05_operation_guide.yaml
+    template: templates/page_eu-en/05_operation_guide_placeholder.rst
+    include_dir: generated/{model}/draft
+    materialized_name: 05_operation_guide_placeholder.rst
+  ups_mode:
+    type: rst_include
+    file: templates/page_shared/{lang}/06_ups_mode.rst
+    materialized_name: 06_ups_mode.rst
+  extra_battery:
+    type: generated_page
+    page: 07_extra_battery
+    engine: draft_v1
+    recipe: templates/recipes/eu-en/07_extra_battery.yaml
+    template: templates/targets/je2000e/07_extra_battery.rst
+    include_dir: generated/{model}/draft
+    materialized_name: 07_extra_battery.rst
+  charging_intro:
+    type: rst_include
+    file: templates/page_shared/{lang}/charging.rst
+    materialized_name: charging.rst
+  charging_methods:
+    type: rst_include
+    file: templates/page_shared/{lang}/08_charging_methods.rst
+    materialized_name: 08_charging_methods.rst
+  storage:
+    type: rst_include
+    file: templates/page_shared/{lang}/09_storage_and_maintenance.rst
+    materialized_name: 09_storage_and_maintenance.rst
+  troubleshooting:
+    type: csv_page
+    source: phase2
+    page: troubleshooting
+    include_dir: generated/{model}
+    materialized_name: troubleshooting_{lang}.rst
+  specifications:
+    type: csv_page
+    source: phase2
+    page: spec
+    include_dir: generated/{model}
+    materialized_name: spec_{lang}.rst
+  warranty:
+    type: rst_include
+    file: templates/page_shared/{lang}/11_warranty.rst
+    materialized_name: 11_warranty.rst
+  app_setup:
+    type: generated_page
+    page: 12_app_setup
+    engine: draft_v1
+    recipe: templates/recipes/eu-shared-en/12_app_setup.yaml
+    template: templates/page_shared/{lang}/12_app_setup_placeholder.rst
+    include_dir: generated/{model}/draft
+    materialized_name: 12_app_setup_placeholder.rst
+  regulatory_compliance:
+    type: rst_include
+    file: templates/page_eu-en/99_regulatory_compliance.rst
+    lang: primary
+    materialized_name: 99_regulatory_compliance.rst

@@ -129,6 +129,81 @@ class SkeletonResolveTests(unittest.TestCase):
 
 
 class ResolverGuardTests(unittest.TestCase):
+    def test_materialized_name_is_language_substituted_without_replacing_slot_id(self) -> None:
+        blueprint = {
+            "slots": [{
+                "slot_id": "safety",
+                "block": "body",
+                "requirement": "required",
+                "presentation": "chapter",
+                "toc": True,
+            }],
+        }
+        slot_templates = {
+            "safety": {
+                "type": "rst_include",
+                "file": "templates/safety_{lang}.rst",
+                "materialized_name": "legacy_safety_{lang}.rst",
+            },
+        }
+        profile = {
+            "language_set": ["en", "fr"],
+            "primary_lang": "en",
+            "slot_overrides": {},
+        }
+
+        plan = resolve_plan(
+            blueprint,
+            slot_templates,
+            profile,
+            manifest_id="synthetic_materialized_names",
+        )
+
+        self.assertEqual(
+            [
+                ("safety_en", "legacy_safety_en.rst"),
+                ("safety_fr", "legacy_safety_fr.rst"),
+            ],
+            [
+                (entry["slot_id"], entry["materialized_name"])
+                for entry in plan["pages"]
+            ],
+        )
+
+    def test_empty_materialized_name_fails_during_resolution(self) -> None:
+        blueprint = {
+            "slots": [{
+                "slot_id": "safety",
+                "block": "body",
+                "requirement": "required",
+                "presentation": "chapter",
+                "toc": True,
+            }],
+        }
+        slot_templates = {
+            "safety": {
+                "type": "rst_include",
+                "file": "templates/safety_{lang}.rst",
+                "materialized_name": " ",
+            },
+        }
+        profile = {
+            "language_set": ["en"],
+            "primary_lang": "en",
+            "slot_overrides": {},
+        }
+
+        with self.assertRaisesRegex(
+            SkeletonResolveError,
+            "materialized_name must be a non-empty string",
+        ):
+            resolve_plan(
+                blueprint,
+                slot_templates,
+                profile,
+                manifest_id="synthetic_bad_materialized_name",
+            )
+
     def test_boolean_like_language_survives_emit_round_trip(self) -> None:
         import yaml
 
