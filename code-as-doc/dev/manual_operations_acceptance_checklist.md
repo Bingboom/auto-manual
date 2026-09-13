@@ -314,3 +314,29 @@ RTD baseline is build `34536040`, successful for pre-release business commit `0e
 - [ ] Remaining WEB-B01/B02/B03/B06: audit current released-PDF content/version of the other scoped manuals, record missing/returned translations, complete available-input corrections. The scoped model publication-entry coverage is now 20/20 against the previously verified view, not 20/20 full content acceptance.
 
 The umbrella remains Draft. OPS-04 workflow/writeback, full operations ownership and feedback exits are still deferred; no live Base writes or queue dispatch occurred. Do not merge #1103 solely because this batch reached RTD.
+
+
+### WEB-B02 JE-500A released-PDF reconciliation — 2026-09-13
+
+- [x] Located released EU-UK V2.0-2026-06-09 PDF via delivery records
+  `1gQyPR2Qyi` / `uNmShId5KH`, node `XPwkYGxZV3Rj0pEpF3d9vL5yWAgozOKL`.
+  SHA-256: `6f4b41ee74ca3282e655a2b2f6c6adf3b3448522b71b26f683b25785f6e5bee6`.
+  Empty demand-row lookup did not mean the released PDF was absent.
+- [x] Confirmed PDF cover JE-500A / Explorer 500 / V2 and 89 physical pages.
+  English body occupies pages 5–18; Portuguese body pages 75–88.
+  Portuguese PDF availability is not Portuguese Web approval or publication.
+- [x] Read English operation, charging, storage, troubleshooting, specification
+  and warranty text; visually checked physical page 17 (printed 13).
+  Its checked numeric specification values agree with the frozen Web candidate.
+- [ ] Correct source-level DC-symbol loss: the PDF has `⎓`, but
+  `docs/templates/page_je500a_eu-en/spec_en.rst` already omits it in DC8020,
+  USB-C1/C2, USB-A and cigarette-lighter values; frozen Markdown and HTML
+  reproduce that omission. This is a source-intake defect, not evidence of a
+  renderer filter. Preserve native tables; do not replace them with screenshots.
+- [ ] Complete remaining PDF-to-source text and text-bearing-panel comparison,
+  reconcile the existing AI-authoritative manifest with released-PDF provenance,
+  then publish verified corrections through a separate implementation/release PR.
+
+Evidence: [audit comment](https://github.com/Bingboom/auto-manual/pull/1103#issuecomment-5654902472).
+No whole-book acceptance, source-table write, workflow change or new deployment
+is claimed. WEB-B02/B03/B06 and the umbrella remain incomplete.
