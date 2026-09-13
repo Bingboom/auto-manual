@@ -132,3 +132,51 @@ An independent fixture used the existing assembler for versions
 It proves same-content version selection in the existing mechanism, not a
 real approved-release rollback. No production withdrawal, rollback, online
 data write, workflow dispatch or final deployed receipt is claimed.
+
+
+### Real approved-content rollback drill
+
+The fixture was followed by an actual JE-2000E/EU/en rollback drill from
+engineering commit `505c484a838740a12823fa4ba78af1fb4c04d81c`. The content
+revision remains **2.0**; the technical versions were
+`2.0-20260913 -> 2.0-20260913-drill -> 2.0-20260913`. The original
+correct seal came from the already prepared four-target release set. The
+second technical version ran fresh `build.py check`, `build.py md`, RTD
+source assembly and strict Sphinx in a detached source checkout. The existing
+projection capture and sealing APIs bound all three check/md/html captures;
+no seal or built artifact was manually rewritten.
+
+The frozen business snapshot remained
+`a87ff6ec97c2a4f1a071936dce5dd38b976550e2`. An independent local Git repository
+first staged the correct approved seal as `db812b2738b125d83f6e12b9a8e84cb673827ccb`,
+then staged the same-content technical update as
+`37a01b5575685c5654489ebc8ef276707f083742`, then rolled back through the existing
+latest-pointer and publication assembler APIs as
+`09fa5c9b8fca3f5f958272001f55ab0d62c1a3f6`. All three full publication candidates
+passed strict Sphinx with the portal extension.
+
+The Markdown body SHA-256 stayed
+`9f1e99038ece81cabf06fff856ec8371bee3e2c8ce6f3d7df58e02701d8f85ff`; all assets were byte-identical. Two
+sealed technical sidecars (`manual.ir.json`, `manual_bundle.html`) differ
+between fresh builds because they embed the isolated staging directory;
+exact staging-prefix normalization and exclusion of derived IR
+`content_sha256` fields proved their semantic equivalence. This normalization
+was a comparison only: the sealed files were not changed.
+
+All other stored target sources stayed byte-identical through all three
+steps. After rollback, the **entire** `docs/publish` tree, including metadata,
+evidence, catalog and aliases, matched the approved baseline byte-for-byte.
+The original release set and business cold snapshot also remained unchanged.
+Copied immutable Web trees and receipts were verified byte-for-byte; the
+existing metadata writer created path-only relocated wrappers and switched
+only the isolated latest pointer.
+
+Original receipt SHA-256:
+`25f302cf04b4135ab75cb6ea4ba083eeee256958bc4aeb6cce01edb9785f7d49`.
+Drill receipt SHA-256:
+`845bcab821a8447af1eaad1945abfce73d73853528cd6e8814e0aafeb1fc6852`.
+The separate `manual-local-approved-rollback-drill/v1` receipt records the
+actual commands, capture receipts, local commits and manifest hashes. These
+commits are local evidence only: no online publication, production rollback,
+withdrawal, table write or workflow dispatch occurred, and deployed commit
+remains null. Content/PDF and visual acceptance stay user-deferred.
