@@ -169,6 +169,9 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 - [x] 单语 Web Publish 队列接入：[PR #1114](https://github.com/Bingboom/auto-manual/pull/1114) 已合入，merge `112d57aa4b74e78a7a0e744f78e9b432c169effb`，最终 head `9bc81fca4cb1a5b932c4e624a97f8e65caf5e868`。17/17 CI 成功，CLEAN，无 changes-requested/未解决讨论，包含当时最新 main `0a910a3e`，依据 MA-066 合入。
 - [x] 真实 eu-en/en、eu-fr/fr 配置解析及同型号/市场/版本/ref 的两个 singleton 分组测试通过；单语 Web 必须明确 Lang，并启用语言路径和记录级分组。拒绝 merged+Lang，保留历史 blank-Lang whole-book Web 及 Print 规则。
 - [x] 本地 4097 项 unittest 通过（22 skipped），51 项定向测试通过；Ruff、维护护栏、197 文档/1798 链接检查、US EN fixture build.py check、git diff --check 均通过；独立只读审查无 P1/P2。
-- [ ] 英法正式 Web 版本号及精确线上队列写入仍待操作者明确；未新增/武装队列记录，未触发正式发布。
+- [x] 英法正式 Web 版本以操作者指定 PDF 发布版为准：JE-1000F EU-UK V2.0（文件日期 2026-06-18）；显示版本 V2.0，发布 Version 使用 2.0，不沿用草稿 1.0。操作者原话：「最新版本呀 就以pdf发布版为准」。
+- [ ] 精确线上队列新增/武装与正式发布尚未执行；版本选择不自动释放 workflow 或线上写入门禁。
 
 本片不修改 workflow、公开 CLI、schema 或线上数据。工作流提前 HTML_link 回填仍 deferred，镜像部署与 RTD 双语实页仍须独立验收；总计划保持 Draft。
+
+版本依据回读（2026-09-13）：业务资产来源记录 `recvv6pNQ9801w` 的 `document_revision=V2.0`，`source_file` 非空且名称对应上述 PDF；本地 PDF SHA256 与登记值相同：`0b4424aff74b3feee08208b1fc0e1d3dde0d2400315ccb72475f6cb2b4d11cfe`。后续版本以操作者提供或确认的 PDF 发布版为准，不从草稿号、PR 号或构建次数推断。
