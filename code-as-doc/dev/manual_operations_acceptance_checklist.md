@@ -234,7 +234,7 @@ workflow、公开 CLI、依赖、Base schema/写入、外部反馈/统计服务�
 | JE-100C | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-100C/EU/md/manual_je100c_eu_en.html) |
 | JS-40C | 2026-08-30 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-40C/EU/md/manual_js40c_eu_en.html) |
 | JS-100I | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-100I/EU/md/manual_js100i_eu_en.html) |
-| JE-1000F | — | 缺 EU 发布；优先补齐 | — |
+| JE-1000F | 2.0 | EU 英法独立页面已上线并验收 | [英语](https://ht-doc.readthedocs.io/JE-1000F/EU/en/md/manual_je1000f_eu_en.html) / [法语](https://ht-doc.readthedocs.io/JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html) |
 | JBP-2000B | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JBP-2000B/EU/md/manual_jbp2000b_eu.html) |
 | JE-1000H | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JE-1000H/EU/md/manual_je1000h_eu_en.html) |
 | JS-200E | 2.0 | 可访问；内容/版本待复核 | [网页](https://ht-doc.readthedocs.io/JS-200E/EU/md/manual_js200e_eu_en.html) |
@@ -299,7 +299,18 @@ Existing assembler migrates legacy source paths to locale-qualified storage whil
 
 - [x] Mirror workflow `34768577625` succeeded; business main `0ed02abccc2056cec5a670573c4b9a6e17d9b6c7` contains exact verified sidecar-copy code. [Hello-Docs #72](https://github.com/Bingboom/Hello-Docs/pull/72) opened at `37acf6fc1e6958c8458061cdf2fbcc05c4656b9b`, publish subtree `569ee03a8b9d93d3a0d051ddbdf804b751c8ba71`.
 - [x] Remote Git-tree comparison proves changes are restricted to `docs/publish/**`; 2198 published-source blobs. No business engineering code or workflow changed.
-- [ ] #72 full checks/reviews/current-main merge gate.
-- [ ] RTD actual merged revision, full EN/FR article content, language options and image-byte parity.
+- [x] #72 merged as `a87ff6ec97c2a4f1a071936dce5dd38b976550e2` at 2026-09-13T16:37:15Z; 16/16 SUCCESS, CLEAN, current base and no blocking reviews/threads, live MA-066 verified.
+- [x] RTD build `34536139` successfully deployed the exact merged revision `a87ff6ec`; both full articles and all 134 referenced unique image URLs match verified local bytes/content.
 
 RTD baseline is build `34536040`, successful for pre-release business commit `0ed02abccc2056cec5a670573c4b9a6e17d9b6c7`; this is not evidence that #72 is deployed. A read-only deployment verifier is prepared to check the actual merged commit and compare complete article text plus referenced image hashes after deployment. No production release is claimed yet.
+
+
+### WEB-B05 / real-language publication acceptance (2026-09-13)
+
+- [x] JE-1000F/EU V2.0 EN/FR real URLs verified after RTD build `34536139`, commit `a87ff6ec97c2a4f1a071936dce5dd38b976550e2`. Both complete article texts equal the PDF-audited local candidate; 134 unique article image URLs match SHA-256. Native tables and text-bearing panels retained.
+- [x] Actual production desktop 1440px and mobile 390px EN -> FR dropdown navigation retains model/EU edition, enters without a chapter hash and has no viewport overflow. One initial mobile wait-for-full-load timed out; bounded DOM-ready retry passed without changing production code. Asset loading is separately covered by full remote-byte verification.
+- [x] All 21 previous manual routes return their expected compatibility redirects. Live home remains EU default, EUUK JE-1000F card exposes EN/FR URLs and leaves ten unpublished languages unavailable.
+- [x] This provides real publication evidence for OPS-01b2b/OPS-02b/OPS-03b on the JE-1000F EU pilot and migration, but is not a claim of content approval for all previous manuals or all planned languages.
+- [ ] Remaining WEB-B01/B02/B03/B06: audit current released-PDF content/version of the other scoped manuals, record missing/returned translations, complete available-input corrections. The scoped model publication-entry coverage is now 20/20 against the previously verified view, not 20/20 full content acceptance.
+
+The umbrella remains Draft. OPS-04 workflow/writeback, full operations ownership and feedback exits are still deferred; no live Base writes or queue dispatch occurred. Do not merge #1103 solely because this batch reached RTD.
