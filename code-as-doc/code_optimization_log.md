@@ -16,6 +16,14 @@ For current rules, see:
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 
+## 2026-09-13: Strict receipt transport through the production CDN
+
+Kept frozen byte hashes authoritative while adding internal unique cache probes,
+complete bounded response reads and limited transient retries. The change fixes
+an observed Cloudflare Polish image transformation and interrupted HTTP bodies;
+it does not accept approximate images or broaden the RTD HTML exception.
+No workflow, dependency, CLI, publishing input or online table changed.
+
 ## 2026-09-13: Git-only RTD deployment receipt slice
 
 Reused the paused verified-publication receipt module as a separate read-only

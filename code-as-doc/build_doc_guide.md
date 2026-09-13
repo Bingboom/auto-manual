@@ -17,7 +17,9 @@ For an explicit read-only network pass over the frozen catalog, see
 [HTTP health checks](dev/manual_operations_online_health.md). No queue or live-table write is performed.
 Exact frozen-source/served-asset identity can be checked with the
 [Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
-existing frozen Sphinx portal build. This check performs no link writeback.
+existing frozen Sphinx portal build. Reads use an internal unique cache probe and
+bounded retries for incomplete transport; served source and asset hashes remain
+exact. This check performs no link writeback.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete

@@ -36,7 +36,24 @@ normalization automatically. Source drift, missing receipt/resources,
 changed bytes, unsafe paths, symlinks and request/byte limits fail closed.
 
 Limits: 10,000 files, 32 MiB per file, 512 MiB per source/output inventory and
-per verification traversal; each network request has a 15-second timeout.
+per verification traversal. Each network request has an I/O timeout of at most
+15 seconds. A file read has at most three attempts and a 45-second elapsed budget,
+checked before requests and before/after each bounded read; an already blocking
+socket operation can take its remaining I/O timeout before that budget is checked.
+All chunks are read to EOF within the byte limit, and a supplied Content-Length
+must match exactly. Invalid lengths, oversized data, unexpected content encoding,
+unsafe URLs and permanent HTTP errors fail immediately. Disconnects, incomplete
+bodies, timeouts and selected transient HTTP errors (408/429/500/502/503/504)
+can restart the read; no partial response is reused.
+
+Each attempt and same-origin redirect uses an internally generated unique
+`receipt_probe` query, plus identity encoding and no-cache/no-transform request
+headers. The caller still supplies a canonical HTTPS URL without query or
+fragment. Redirect and final-response validation allow only the exact internal
+nonce query shape before checking the original HTTPS origin. This prevents a
+stale cached receipt or CDN image optimization from being mistaken for the frozen
+bytes. If the CDN still returns altered content, exact hash verification fails;
+there is no image similarity or recompression tolerance.
 This verifies source/output identity through the trusted HTTPS deployment,
 not a cryptographically signed release, complete translation, visual acceptance,
 uptime or withdrawal. Only selected routes and their resource closure are
@@ -92,3 +109,22 @@ limits and excluded build types. Fixture transport is not live RTD evidence.
 See also the [local seal](ops_04a_web_version_seal.md),
 [locale identity](web_locale_publication_identity.md) and
 [HTTP health check](manual_operations_online_health.md) boundaries.
+
+
+### Production transport reproduction — 2026-09-13
+
+An observed Cloudflare Polish response for the frozen
+`app_add_device_steps_9b7e0cf44d0f.png` advertised `cf-polished: ok` and
+`orig_size=398750`, but the bare URL returned a 340687-byte optimized PNG.
+The approved 398750-byte artifact SHA-256 is
+`9b7e0cf44d0f37dc89cc04bb57bba1ebb9c3bbc5db3f0190575dd03e96ab0d0f`.
+A unique-query cache miss returned those exact original bytes. The production
+reader also encountered incomplete bodies and remote disconnects.
+
+The initial transport regressions failed on missing cache nonces, short reads,
+absent length validation and unhandled transient failures. After the bounded
+reader fix, two separate real HTTPS reads through the updated `_fetch` each
+returned the original 398750-byte PNG and exact approved hash. This proves the
+reported asset transport case; it is not a full deployment or content acceptance.
+The regression suite retains strict changed-image, unsafe-origin, source-drift
+and unknown-HTML-injection rejection.
