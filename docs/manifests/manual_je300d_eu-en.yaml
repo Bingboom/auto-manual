@@ -1,0 +1,16 @@
+manifest_id: manual_je300d_eu_en
+pages:
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/00_preface.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/safety_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_shared/en/01_user_maintenance_instructions.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/symbol_meaning_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/02_whats_in_the_box.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/03_product_overview.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/lcd_display_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/operation_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/charging_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/storage_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/troubleshooting_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/spec_en.rst}
+  - {type: rst_include, lang: en, file: templates/page_shared/en/11_warranty.rst}
+  - {type: rst_include, lang: en, file: templates/page_je300d_eu-en/99_regulatory_compliance.rst}

@@ -1,0 +1,3 @@
+document_key,Region,Is_Latest,Page,Section,Section_order,Row_order,Row_key,Slot_key,Row_label_source,Row_label_footnote_refs,Line_order,Param_source,Param_footnote_refs,Value_source,Value_footnote_refs,Row_label_fr,Param_fr,Value_fr,Row_label_es,Model,Param_es,Value_es,Row_label_de,Param_de,Value_de,Row_label_it,Param_it,Value_it,Row_label_uk,Param_uk,Value_uk,Source_lang,Row_label_ko,Param_ko,Value_ko
+JE-300D_EU,EU,TRUE,specifications,GENERAL INFO,1,1,product_name,,Product Name,,1,,,Jackery Explorer 300D,,,,,,JE-300D,,,,,,,,,,,,en,,,
+JE-300D_EU,EU,TRUE,specifications,GENERAL INFO,1,2,model_no,,Model No.,,1,,,JE-300D,,,,,,JE-300D,,,,,,,,,,,,en,,,

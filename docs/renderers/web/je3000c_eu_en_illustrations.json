@@ -1,0 +1,363 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-3000C",
+  "region": "EU",
+  "language": "en",
+  "source_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
+  "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
+  "recipe": "data/asset_recipes/manual_je3000c_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3000c_eu_en/inbox_unit.png",
+      "sha256": "17555c602ab83833236333ae28aac28dfdfed0064f389504a0aee30c93a7a1f6",
+      "source_page": 7,
+      "bbox_pt": [
+        45,
+        315,
+        125,
+        380
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3000c_eu_en/inbox_cable.png",
+      "sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f",
+      "source_page": 7,
+      "bbox_pt": [
+        165,
+        310,
+        220,
+        385
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3000c_eu_en/inbox_manual.png",
+      "sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6",
+      "source_page": 7,
+      "bbox_pt": [
+        270,
+        315,
+        315,
+        380
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3000c_eu_en/overview_front.png",
+      "sha256": "07ae6b698ad298205132df029c0b408008bbdc13001bea29958cee375ad606a0",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        70,
+        342,
+        286
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#front-view > table",
+          "text": "POWER Button LCD DC 12 V Port 12 V⎓10 A max. DC / USB Power Button USB-C 100 W Output 100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A AC Power Button USB-A 18 W Output 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1.5 A AC Output 230 V~ 50 Hz, 15.6 A, 3600 W rated"
+        },
+        {
+          "selector": "#front-view > table",
+          "text": "Total AC Output 3600 W Rated, 7200 W Surge Peak"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3000c_eu_en/overview_side.png",
+      "sha256": "a046f7aaa00d1bc492625ed793ad6a0854ad4bbcb4c82eac69d639bd730d7278",
+      "source_page": 8,
+      "bbox_pt": [
+        27,
+        323,
+        342,
+        426
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#right-side-view > table",
+          "text": "Handle AC Input 220 V-240 V~ 50 Hz, 10 A max. DC Input (2×DC8020 Ports) PV: 16-60 V⎓12 A max., Double to 24 A max. / 1000 W max. Car: 12-16 V⎓8 A max., Double to 8 A max."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3000c_eu_en/lcd_map.png",
+      "sha256": "951a135e02a5dc0633fdbfba70e3df1f2fc145350b6119effc45f5fee9be5a75",
+      "source_page": 9,
+      "bbox_pt": [
+        34,
+        54,
+        326,
+        200
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3000c_eu_en/operation_power.png",
+      "sha256": "73c5de56ec7f4cab50339c7855a0bc81300d00c25f8730cf8634b83aef1448dd",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        70,
+        343,
+        241
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#power-on-off > .line-block",
+          "text": "On: Press once. Off: Press and hold for 3s."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "Default standby time: 2 hours."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "The product will automatically shut down after 2 hours of inactivity, with no charging or discharging."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "*The standby time can be set in the Jackery App."
+        },
+        {
+          "selector": "#power-on-off > .line-block > .line",
+          "text": "When Energy Saving Mode is enabled, the product will automatically shut down after 12 hours if the AC or DC/USB power button is ON but the product is neither charging nor discharging."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3000c_eu_en/operation_ac.png",
+      "sha256": "e75d1c525bdc81401da25125725ded7caa2d697d2267f7c1d550eb29f089dc4e",
+      "source_page": 11,
+      "bbox_pt": [
+        27,
+        258,
+        343,
+        495
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ac-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#ac-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3000c_eu_en/operation_dc.png",
+      "sha256": "0bb80faf3111c29039d6584032a6c9020304d1873dfd85f5e561da8bfb3c8736",
+      "source_page": 12,
+      "bbox_pt": [
+        27,
+        39,
+        343,
+        213
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-output-on-off > p",
+          "text": "Prerequisite : The product is powered on."
+        },
+        {
+          "selector": "#dc-12v-usb-output-on-off > .line-block",
+          "text": "On Press once Off Press once"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3000c_eu_en/operation_energy.png",
+      "sha256": "44f4aaf70604a44ea0b75659978a12d2463f3bb53b2ce15cf8d1198162c77b4b",
+      "source_page": 13,
+      "bbox_pt": [
+        27,
+        28,
+        342,
+        166
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#energy-saving-mode > .line-block",
+          "text": "Press and hold both buttons for more than 3 seconds."
+        },
+        {
+          "selector": "#energy-saving-mode > table",
+          "text": "NOTE Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3000c_eu_en/operation_lcd.png",
+      "sha256": "660ea170334d4eda4058bd7cbadd9d919ae2b9f49f7ffebc1de40e4c051f01f3",
+      "source_page": 13,
+      "bbox_pt": [
+        35,
+        196,
+        305,
+        286
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3000c_eu_en/ups.png",
+      "sha256": "c9915b21215a57d5072ee9bfcd2ae3067dfffd78adb00a1dcc15ed6449b8a133",
+      "source_page": 14,
+      "bbox_pt": [
+        27,
+        294,
+        342,
+        420
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3000c_eu_en/charging_ac.png",
+      "sha256": "5af07782e9c16ccc57275e018e52f213881d81c822491422143023d0fb6996b5",
+      "source_page": 15,
+      "bbox_pt": [
+        27,
+        222,
+        342,
+        361
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3000c_eu_en/charging_solar.png",
+      "sha256": "034ac8662eb295d552761be90113cc434164c8816f58384751618e997d792afe",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        28,
+        342,
+        166
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3000c_eu_en/charging_car.png",
+      "sha256": "d948737cf4dd8acf7f8fa2a72ec45ea045e7df70b772d954c40f4dfe12890953",
+      "source_page": 16,
+      "bbox_pt": [
+        27,
+        305,
+        342,
+        438
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line",
+          "text": "Vehicle"
+        },
+        {
+          "selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line",
+          "text": "*The car charging cable is sold separately."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "download.png"
+      ],
+      "path": "assets/je3000c_eu_en/setup_download.png",
+      "sha256": "8f8f6f7e26ff6e83eddbe6baea764d70a26a23123c6b19feddbf6b88b7437468",
+      "source_page": 20,
+      "bbox_pt": [
+        45,
+        68,
+        310,
+        150
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#download-the-app-and-log-in > p",
+          "text": "Search for \"Jackery\" in Google Play or App Store to install the App. After that, you can register and log in. Alternatively, scan the QR code below to download and install the App."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_en/setup_add_device.png",
+      "sha256": "81c192f63a11d9047296090f54fcd4ba8e8f6acb86b0a5bb8e43f3e2caa242a4",
+      "source_page": 20,
+      "bbox_pt": [
+        28,
+        212,
+        342,
+        474
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "POWER Button AC Power Button DC / USB Power Button"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je3000c_eu_en/setup_connect_result.png",
+      "sha256": "b55e9bac29a97434b641569fe34f6774419575454ef2b01e223d518a12b5513a",
+      "source_page": 21,
+      "bbox_pt": [
+        40,
+        143,
+        332,
+        315
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#add-device > .line-block",
+          "text": "The above screenshots are for reference only."
+        }
+      ]
+    }
+  ]
+}

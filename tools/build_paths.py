@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.config_loader import load_config_mapping
+from tools.utils.targets import format_tokenized
 from tools.utils.path_utils import (
     Paths,
     PathSegments,
@@ -90,6 +91,89 @@ def resolve_layout_params_csv(
         if isinstance(raw, str) and raw.strip():
             return resolve_path_from_root(repo_root, raw.strip())
     return Paths(root=repo_root).layout_params_csv
+
+
+def resolve_web_illustration_manifest(
+    config_path: Path,
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+    config_loader: Callable[[Path], dict[str, Any]] = load_config,
+) -> Path | None:
+    """Resolve a global or Document_Key-selected Web illustration manifest."""
+
+    cfg = config_loader(config_path)
+    return resolve_web_illustration_manifest_from_config(
+        cfg,
+        repo_root=repo_root,
+        model=model,
+        region=region,
+    )
+
+
+def resolve_web_illustration_manifest_from_config(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> Path | None:
+    """Resolve a Web illustration manifest from an already-loaded config."""
+
+    paths_cfg = cfg.get("paths", {})
+    if not isinstance(paths_cfg, dict):
+        return None
+    raw = paths_cfg.get("web_illustration_manifest")
+    raw_by_target = paths_cfg.get("web_illustration_manifests")
+    if raw is not None and raw_by_target is not None:
+        raise ValueError(
+            "paths.web_illustration_manifest and paths.web_illustration_manifests "
+            "are mutually exclusive"
+        )
+    if raw is not None:
+        if not isinstance(raw, str) or not raw.strip():
+            raise ValueError(
+                "paths.web_illustration_manifest must be a non-empty path"
+            )
+        return resolve_path_from_root(
+            repo_root, format_tokenized(raw.strip(), None, model, region)
+        )
+    if raw_by_target is None:
+        return None
+    if not isinstance(raw_by_target, dict) or any(
+        not isinstance(key, str)
+        or not key.strip()
+        or not isinstance(value, str)
+        or not value.strip()
+        for key, value in raw_by_target.items()
+    ):
+        raise ValueError(
+            "paths.web_illustration_manifests must map Document_Key to "
+            "non-empty paths"
+        )
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        build_cfg = {}
+    resolved_model = str(model or build_cfg.get("default_model") or "").strip()
+    resolved_region = str(region or build_cfg.get("default_region") or "").strip()
+    if not resolved_model or not resolved_region:
+        return None
+    document_key = f"{resolved_model}_{resolved_region}".casefold()
+    matches = [
+        value
+        for key, value in raw_by_target.items()
+        if key.strip().casefold() == document_key
+    ]
+    if len(matches) > 1:
+        raise ValueError(
+            "paths.web_illustration_manifests contains duplicate "
+            "case-insensitive Document_Key entries for "
+            f"{resolved_model}_{resolved_region}"
+        )
+    if not matches:
+        return None
+    return resolve_path_from_root(repo_root, matches[0].strip())
 
 
 def resolve_idml_layout_param_overlays(

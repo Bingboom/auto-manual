@@ -1,4 +1,15 @@
 Document_key,reason
 JS-100I_EU,Solar@INTL has no portable-power capability-gated slots; the first Web target intentionally omits LCD UPS troubleshooting and App chapters.
+JS-100F_EU,Solar@INTL compact panel source has no portable-power capability-gated slots; LCD UPS troubleshooting Inbox and App chapters are intentionally absent.
 JA-AD01A_EU,CHARGER Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are intentionally omitted without a live capability row.
+JA-AD600A_EU,CHARGER Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are intentionally omitted without a live capability row.
+JA-CA05B_EU,CHARGER connection-guide Web input has no power-station capability-gated slots; the target plan intentionally omits LCD UPS troubleshooting and App chapters.
 JE-2000E_CN,Capability inventory row is not yet mirrored for the existing CN line; keep the build fail-open until source ownership is confirmed.
+JE-100C_EU,Published compact power-bank manual has no UPS LED or App capability-gated chapters; the target-local manifest intentionally omits them.
+JS-40C_EU,Solar@INTL portable solar-panel target intentionally omits LCD UPS troubleshooting and App chapters; source contains none of them.
+JE-500A_EU,Frozen Git-only Web input uses a target-local semantic manifest; no live capability row is required for its source-defined UPS LCD LED and charging chapters.
+JAAC-WHE-100-EUA1_EU,CHARGER accessory Git-only Web input has no power-station capability-gated slots; LCD UPS App warranty and unrelated charger chapters are intentionally omitted without a live capability row.
+JA-CA3SA_EU,CHARGER accessory Git-only Web input contains only port functions and solar-panel connection guidance; specifications warranty LCD UPS and App chapters are intentionally omitted without a live capability row.
+JA-CC30A_EU,CHARGER accessory Git-only Web input has no power-station capability-gated slots; LCD UPS and App chapters are not applicable.
+JS-200E_EU,Solar@INTL has no portable-power capability-gated slots; this Web target intentionally omits LCD UPS troubleshooting and App chapters.
+JE-300D_EU,Operator-designated Git-frozen manual has no AC output UPS App or battery-expansion chapters; the target-local manifest intentionally omits them without a live capability row.

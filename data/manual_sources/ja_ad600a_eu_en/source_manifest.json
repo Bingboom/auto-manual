@@ -1,0 +1,86 @@
+{
+  "schema_version": "auto-manual-git-source-snapshot/v1",
+  "target": {
+    "model": "JA-AD600A",
+    "region": "EU",
+    "lang": "en",
+    "version": "2.0",
+    "published_revision": "V2.0-2026-05-29"
+  },
+  "authority": {
+    "policy": "operator-designated-current-source",
+    "dingtalk_node": "Gl6Pm2Db8D39waXaU9LzewOeJxLq0Ee4",
+    "source_pdf_name": "Jackery_DC-DC_Charger_User_Manual_JA-AD600A_EUUK_V2.0_2026-05-29.pdf",
+    "source_pdf_page_count": 88,
+    "source_pdf_english_physical_pages": "4-17",
+    "source_pdf_sha256": "72da87b9a88f3029a144f11f44fd1270e6e991977cf5ca3deb6be53656e544d9"
+  },
+  "build_input": {
+    "config": "configs/config.charger-eu-en.yaml",
+    "config_sha256": "0f643234873fe8de6e40de8a5dedda3ab92207fa285f0b6f1ea65b0a40d6fb0d",
+    "page_manifest": "docs/manifests/manual_charger-eu-en-JA-AD600A.yaml",
+    "page_manifest_sha256": "f3a838ed540dcd3de2c2758af9e2e81c4cbe0b641c506815e56635913a402ec3",
+    "product_plan": "docs/manifests/product_plans/ja_ad600a_eu.yaml",
+    "product_plan_sha256": "cd986dc7aebcbb8034397a89a37c5f7057112b2ed05b39204e0f44081d194f30",
+    "structured_copy": "docs/templates/page_charger/ja_ad600a/en",
+    "structured_copy_snapshot_sha256": "ece5e1aa1b017097e0919ca2e00c43cac2def96b31edb4f77038054bf0e66e6e",
+    "data_root": "data/manual_sources/ja_ad600a_eu_en",
+    "snapshot_sha256": "155fbfe7e3a476d8fb0f6c7a756f338fff23fc9b122b2cc20eab1b1d11ec85d4",
+    "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
+  },
+  "files": [
+    {
+      "path": "Localized_Copy.csv",
+      "sha256": "31b52a9e748ba1f44f155b5b0fed77d793cd5da53bb05816c21dda635af2cb1a"
+    },
+    {
+      "path": "Spec_Footnotes.csv",
+      "sha256": "6d2ad3248e53ea599e576b6cfde1ca138ef335346abfc1622d69168db23c9d18"
+    },
+    {
+      "path": "Spec_Master.csv",
+      "sha256": "42c3849abcb0970800617a07501a63ebc3e2d496a3e1b2ee3f36585a8afdc915"
+    },
+    {
+      "path": "Spec_Notes.csv",
+      "sha256": "9f3accbbb808050a84a0d5662ae49479b312185bd98ba67441157afa40e2778d"
+    },
+    {
+      "path": "page_registry.csv",
+      "sha256": "163644be88c4f83c9c7d9322534ed0851eb71d147b026415620560cfe04039c5"
+    },
+    {
+      "path": "spec_titles.csv",
+      "sha256": "72418714ace161320c79c784413965be8f11be16c6b800e7b975bde0e6cf94c5"
+    }
+  ],
+  "assets": {
+    "recipe": "data/asset_recipes/manual_ja_ad600a_eu_en_web.json",
+    "recipe_sha256": "29a4e1d946650d992afe61c83382a69fe181ca3899d7a8ac3c4a888c22cdfbf1",
+    "illustration_manifest": "docs/renderers/web/charger_eu_en_JA-AD600A_illustrations.json",
+    "illustration_manifest_sha256": "4cb2244022ea035adbcf09b8c2d508360e0ab8a38306641f50af56b8aa9c800c",
+    "semantic_asset_count": 16,
+    "text_policy": "native-web-copy-with-ai-source-figure-exports",
+    "artwork_source": {
+      "name": "16-0102-000322 HTO814A-US JP EU-JAK 说明书 RoHS REACH.ai",
+      "sha256": "d89f145176c0c8ca10fa8c81768718ee32d52cb7a41a17b318df559a38e4f385",
+      "page_count": 15,
+      "creator": "Adobe Illustrator 30.7 (Windows)",
+      "status": "user-supplied editable design source"
+    }
+  },
+  "normalizations": [
+    "Source line wraps and soft hyphenation were normalized for native Web prose.",
+    "Obvious source spelling 'Phillios screwdriver' was corrected to 'Phillips screwdriver'; the FAQ Q4 phrase 'If the voltage of is higher' remains source-faithful pending source-owner correction.",
+    "Paper cover, blank page, contents, printed page numbers, and non-English physical pages 18-88 are excluded from the English Web target.",
+    "Figures are exported from the user-supplied PDF-compatible Illustrator source. Inbox item crops exclude letter tags, connector labels, and layout grid marks; body copy remains native Web text and no full page is rasterized."
+  ],
+  "online_dependencies": {
+    "dingtalk_read_required_for_reproduction": true,
+    "bitable_read_required": false,
+    "bitable_write_required": false,
+    "queue_dispatch_required": false,
+    "artwork_source_file_required_for_reproduction": true,
+    "artwork_source_current_location_outside_git": true
+  }
+}

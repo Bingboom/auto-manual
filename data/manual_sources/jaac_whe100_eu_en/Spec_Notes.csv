@@ -1,0 +1,4 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_en,Enabled
+maximum_load,EU,JAAC-WHE-100-EUA1,en,TRUE,specifications,1,The maximum load capacity of this foldable carry cart is 80 kg.,TRUE
+full_assembly,EU,JAAC-WHE-100-EUA1,en,TRUE,specifications,2,Use the product only after full assembly.,TRUE
+storage_duration,EU,JAAC-WHE-100-EUA1,en,TRUE,specifications,3,"To avoid affecting the product lifespan of the foldable carry cart, do not leave the portable power station on it for more than 72 hours.",TRUE

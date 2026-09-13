@@ -1,0 +1,58 @@
+{
+  "base_manifest_id": "manual_solar_eu_en",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_solar_eu_en_js100f"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "en"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_en",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_solar/js100f/en/safety_tips.rst",
+          "lang": "en",
+          "slot_id": "safety_tips_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js100f/en/how_to_use.rst",
+          "lang": "en",
+          "slot_id": "how_to_use_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js100f/en/sun_angle_indicator.rst",
+          "lang": "en",
+          "slot_id": "sun_angle_indicator_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js100f/en/power_your_device.rst",
+          "lang": "en",
+          "slot_id": "power_your_device_en",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_solar/js100f/en/warranty.rst",
+          "lang": "en",
+          "slot_id": "warranty_en",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_solar_eu_en_js100f"
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "source/manual_je300d_eu_uk_20251024_candidate",
+    "expected_sha256": "53209e53bb5ca5bcfa08c8eeeedd9c7ee6cc2c0cd226e6c7c776bb68421f78bc",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "je300d_eu_uk_layout_board",
+      "role": "layout_board",
+      "locale": "en",
+      "build_eligible": false,
+      "gate": {
+        "status": "archive",
+        "reasons": [
+          "Operator-designated AI original is a single 6915.82 x 4873.62 pt layout board containing the complete 14-page English body and cover panels."
+        ]
+      },
+      "risk_tags": [
+        "candidate-source",
+        "oversized-artboard"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "web/je300d/eu/en/inbox_unit",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2057.13, 1515.7, 2111.13, 1571.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/inbox_unit.png", "scale": 8, "expected_sha256": "b8b2eea4b34aa606a538492672ccaddb0603033c5a9c8ccc9002fc8ece942378"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/inbox_manual",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2153.13, 1514.7, 2195.13, 1572.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/inbox_manual.png", "scale": 8, "expected_sha256": "765791290f2b210d500e997b17736cd6093b964518216b0c09eaff9c90b183c0"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/overview",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2020.13, 1658.7, 2238.13, 1792.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/overview.png", "scale": 8, "expected_sha256": "478049d90e38375cad71c7b0bc07be267f9bc8118012e3ed72cc84c775dab25d"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/strap_panel",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2277.25, 1455.7, 2493.25, 1596.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/strap_panel.png", "scale": 8, "expected_sha256": "54e26c1d7c2d5f4726928b2835ce1a3882c2ff7600dceb8eee1b677f815db1a5"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/lcd_map",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "numeric-only",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2285.25, 1635.7, 2477.25, 1724.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/lcd_map.png", "scale": 8, "expected_sha256": "c42a8624462964f5723c87f1b4ec5f7bfab203a45cf56d8111c40502ff7dd362"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_power",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2532.37, 1686.7, 2748.37, 1792.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_power.png", "scale": 8, "expected_sha256": "a7640fa6749321ef150af82a8f0287f9f143738022a7978aa2b1c81ce64333b6"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_usb",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2787.49, 1481.7, 3003.49, 1576.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_usb.png", "scale": 8, "expected_sha256": "d13c5ec13b1edef292de5d5bf5c2d4cfd5aec80add9e0d1c3b215ed86287088a"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_dc",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [2787.49, 1644.7, 3003.49, 1760.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_dc.png", "scale": 8, "expected_sha256": "2b64a719fea3cab863ec3bc8d893c702c18bd8bd4c36e42889abf157190b9424"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_energy",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3042.61, 1482.7, 3258.61, 1607.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_energy.png", "scale": 8, "expected_sha256": "4f0aa946c07e74d129019673b7fbdef3c368112cf6a28d17a3fd69af01e906ae"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_led",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3042.61, 1661.7, 3258.61, 1778.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_led.png", "scale": 8, "expected_sha256": "2843b1e0f14ad0859423e7193d87c3b2755f635181e5acedff7ca70451b1d07d"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/operation_lcd",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3303.73, 1495.7, 3376.73, 1612.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/operation_lcd.png", "scale": 8, "expected_sha256": "2c8fc1e46667c014b8c9c78ad6d0628581deb5ffefd9b02126ee5fe14b4cf2ab"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the crop contains device/button art only and the LCD timing table remains semantic HTML."]},
+      "risk_tags": ["model-specific"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/charging_usb_c",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3552.85, 1477.7, 3768.85, 1589.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/charging_usb_c.png", "scale": 8, "expected_sha256": "7b35cfeff5a8c021f47c9bd575be8b49cfb4ad99fd05ccd56fe474665c612806"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/charging_solar",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3552.85, 1657.7, 3768.85, 1766.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/charging_solar.png", "scale": 8, "expected_sha256": "23a83f3953d284aec4b8d232dee7c4e0d9cbbe08c733403cf9f6572197c42b6d"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    },
+    {
+      "asset_key": "web/je300d/eu/en/charging_car",
+      "page": 1,
+      "build_eligible": true,
+      "scope": {"models": ["JE-300D"], "regions": ["EU"], "locales": ["en"]},
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [{"op": "crop", "bbox_pt": [3807.97, 1495.7, 4023.97, 1605.7]}],
+      "outputs": [{"format": "png", "path": "docs/renderers/web/assets/je300d_eu_en/charging_car.png", "scale": 8, "expected_sha256": "2966eb1a32157fc1e04aae20fbc8e0954957b44fb9abeb68bfd7094b52a1aba7"}],
+      "gate": {"status": "approved", "reasons": ["2026-09-09 12x visual review passed against the frozen AI board; the complete intended panel is retained without neighbouring headings or folios."]},
+      "risk_tags": ["model-specific", "localized-copy"]
+    }
+  ]
+}

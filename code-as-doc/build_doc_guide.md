@@ -203,6 +203,11 @@ Meaning:
 - `queue-query`: OpenClaw Phase 2 queue resolution helper; it reads the Feishu-bound review/build rows and returns the concrete `record_id`, optional `Task_id`, workflow intent, `Git_ref`, status fields, and explicit `delivery_kind / delivery_url / delivery_ready` contract that a natural-language control layer needs before dispatch or status reporting
 - `queue-resolve-action`: structured OpenClaw dry-run resolver; it turns one natural-language ask into the bounded action contract from the control-layer plan, including `action_name`, `resolution_status`, required confirmation, missing required fields, and the matched queue row
 - `manual-index-query`: read-only OpenClaw helper for the `发布文档管理` Base view. It answers product/manual-link inventory and overview asks such as `查 JE-2000F 的说明书链接`, `查询各产品的说明书`, or `获取说明书总览信息`; it respects `FEISHU_MANUAL_INDEX_*` overrides and does not dispatch builds.
+- Formal-source Web targets such as `JE-2000E / EU / en` keep their audited,
+  target-only phase2 snapshot under `manual_sources/<MODEL>/<REGION>/<lang>/<version>/`.
+  Build them with that `--data-root` and `AUTO_MANUAL_OSS_ARCHIVE_CONFIG=off`;
+  the frozen source manifest and Web illustration manifest make the local build
+  replayable without treating it as a live Base update or publication.
 - for this repo, treat **BlockClaw** as the OpenClaw-backed document-build operator rather than a generic assistant: its primary job is to work with content blocks, run review/build/publish work, inspect queue state, explain build failures, and only secondarily help with translation or copy work that supports the manuals
 - `translation-memory`: query the repo-owned `data/phase2` multilingual snapshot and return compact translation memory context for OpenClaw or human translation tasks; combine it with `sync-data` when freshness matters
 - `validate`: catches missing phase2 table base-token/table-id bindings and page-manifest languages that are not declared in `build.languages`, before `sync-data` or a build reaches runtime
@@ -750,8 +755,12 @@ Web Publish / Read the Docs note:
   [Operation/Warranty/LCD record](dev/manual_ir_operation_warranty_lcd_plan.md),
   [LCD/Troubleshooting/Symbols record](dev/manual_ir_lcd_troubleshooting_symbols_plan.md),
   and [App/Reference Figure record](dev/manual_ir_app_reference_plan.md).
-- `paths.web_illustration_manifest` optionally binds a target/language to finished
-  PDF crops. The manifest freezes source PDF hash, page, bounding box, output
+- `paths.web_illustration_manifest` optionally binds one config target/language
+  to finished PDF crops. A shared family config can instead use
+  `paths.web_illustration_manifests`, mapping exact `Document_Key` values to
+  manifest paths; an unlisted target receives no manifest, and the scalar and
+  mapping forms are mutually exclusive. Each selected manifest freezes source
+  PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several
   split images; surrounding structured copy is retained. Wrong target, missing
   images, changed bytes, repeated or unused bindings fail the build. These Web
@@ -972,6 +981,25 @@ and RTD verification. Do not publish an unidentified fixture or write the
 mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
 
+`JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
+through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
+plan contains only Inbox, native specifications/notes, and two complete
+source-owned how-to panels. Product Overview and Warranty are optional at the
+skeleton level so this accessory does not invent them; the existing charger
+plans explicitly keep both pages. The PDF-compatible AI and 38-row scope
+snapshot are frozen in Git, including the `收纳小推车` same-manual association.
+See [`reviews/jaac_whe100_eu_en_web_intake_2026-09.md`](reviews/jaac_whe100_eu_en_web_intake_2026-09.md).
+
+`JS-40C / EU / en` reuses the same `Solar@INTL` skeleton through its own
+Product Manual Plan. It starts at Safety Tips, has a seven-item semantic Inbox,
+omits the JS-100I unfolding/folding slots, and adds Solar Panel Storage before
+Specifications. Its frozen Git source snapshot is
+`data/manual_sources/JS-40C/EU/en/2026-08-30/`; 18 approved figure crops remain
+hash-bound to the exact Illustrator master and target. Build it with the shared
+`configs/config.solar-eu-en.yaml` entrypoint plus `--model JS-40C --region EU
+--lang en`. See
+[`dev/js40c_eu_en_web_acceptance.md`](dev/js40c_eu_en_web_acceptance.md).
+
 IDML-localized symbol copy and table-of-contents language headers are language
 packs derived from [`tools/lang_registry.py`](../tools/lang_registry.py),
 not tables maintained by the individual IDML modules. For reference-bound
@@ -1163,6 +1191,12 @@ preference:
   transform after `crop`, zero-area line groups are overlap-checked safely,
   and unsupported path items or crop/index drift fail closed. Promote only
   after a 12x quarantine comparison and pin the resulting output SHA-256;
+- when identical pinned PyMuPDF/MuPDF versions still produce isolated
+  cross-platform antialiasing samples, a PNG output may declare
+  `rgb_quantization_bits` from 1 through 8. The pipeline rounds every RGB
+  channel into that fixed bit-depth before hashing; use the highest visually
+  reviewed setting that yields byte-identical replay, and do not use it to
+  conceal layout, font, source, or renderer-version drift;
 - missing, ambiguous, quarantined, stale, or hash-mismatched used assets stop
   assembly;
 - `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and
@@ -2051,3 +2085,13 @@ missing/multiple/empty labels or artwork inside the consumed label fail before
 caller mutation. The old direct function exits `web_presentation`. Existing
 EN/FR/ES output, source/target gate and Pandoc inline protection stay unchanged;
 retained HTML, source matching and the raw inline handoff remain adapter debt.
+
+JBP-2000B EU English Web intake uses `configs/config.bp-eu-en.yaml` and the
+[versioned Git source](../manual_sources/JBP-2000B/EU/en/2.0/README.md); the
+existing six-language BP configuration remains available.
+
+Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图标的编号和空图标列。已包含在整图中的开关文字，通过插图覆盖声明移除重复显示。
+
+### Web illustration family paths
+
+`paths.web_illustration_manifest` accepts `{model}` and `{region}` through the shared build-path resolver. It remains mutually exclusive with the Document_Key mapping `paths.web_illustration_manifests`. A skeleton without LCD or auto-resume tables explicitly sets those inherited operation contracts to `null`; shared Web rendering then omits those inapplicable components.

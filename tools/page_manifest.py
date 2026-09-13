@@ -43,6 +43,12 @@ def resolve_page_manifest_path(
     paths_cfg_raw = cfg.get("paths", {})
     paths_cfg = paths_cfg_raw if isinstance(paths_cfg_raw, dict) else {}
     raw = paths_cfg.get("page_manifest")
+    target_manifests = paths_cfg.get("page_manifests")
+    if isinstance(target_manifests, dict):
+        target_key = "_".join(part for part in ((model or "").strip(), (region or "").strip()) if part)
+        target_raw = target_manifests.get(target_key)
+        if isinstance(target_raw, str) and target_raw.strip():
+            raw = target_raw
     if not isinstance(raw, str) or not raw.strip():
         return None
 

@@ -83,10 +83,10 @@ class CapabilityPageFilterTests(unittest.TestCase):
             self.assertEqual(len(parsed_pages) - len(kept), len(ups_pages))
             self.assertEqual(len(notes), len(ups_pages))
 
-        # 24 host UPS pages + 3 BP@INTL US language blocks + 6 BP@INTL EU
-        # language blocks.  Each resolved target must carry the capability
-        # annotation rather than relying on a renderer-side region branch.
-        self.assertEqual(len(annotated_pages), 34)
+        # All 36 resolved UPS pages, including the host and BP@INTL language
+        # blocks, must carry the capability annotation rather than relying on
+        # a renderer-side region branch.
+        self.assertEqual(len(annotated_pages), 36)
 
     def test_false_capability_drops_the_page(self) -> None:
         kept, notes = filter_pages_by_capability(

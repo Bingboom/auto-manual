@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_en,Enabled
+stc_conditions,EU,JS-40C,en,TRUE,specifications,1,"* STC (Standard Test Conditions): 1000 W/m², 25°C, AM 1.5.",TRUE
+bnpi_conditions,EU,JS-40C,en,TRUE,specifications,2,"* BNPI (Bifacial Nameplate Irradiance): Front 1000 W/m², Rear 135 W/m², 25°C, AM 1.5.",TRUE

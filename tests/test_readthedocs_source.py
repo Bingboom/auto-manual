@@ -93,6 +93,10 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                 r"(?s)#furo-main-content \.hb-inbox-grid\s*\{[^}]*padding:\s*0;",
             )
             self.assertIn(".hb-inbox-card::before", css_text)
+            self.assertIn(
+                '.hb-inbox-composition[data-card-count="5"] .hb-inbox-grid',
+                css_text,
+            )
             self.assertIn(".hb-reference-figure", css_text)
             self.assertIn(".hb-reference-semantic", css_text)
             self.assertIn(".hb-app-download-composition", css_text)

@@ -446,7 +446,10 @@ def build_web_figure_coverage(
         for figure in soup.select("figure[data-web-replace-key]"):
             if not isinstance(figure, Tag):
                 continue
-            consumed_images.update(id(image) for image in figure.find_all("img"))
+            figure_images = [
+                image for image in figure.find_all("img") if isinstance(image, Tag)
+            ]
+            consumed_images.update(id(image) for image in figure_images)
             replace_key = str(figure.get("data-web-replace-key") or "").strip()
             slot: dict[str, Any] = {
                 "page_id": page.page_id,
@@ -458,6 +461,17 @@ def build_web_figure_coverage(
             if "hb-has-composite-art" in _classes(figure):
                 slot["status"] = "approved-composite"
                 slot["asset"] = _composite_asset(figure, composites)
+            else:
+                finished_images = [
+                    image
+                    for image in figure_images
+                    if "manual-finished-illustration" in _classes(image)
+                ]
+                if len(finished_images) == 1 and len(figure_images) == 1:
+                    asset, replaces = _finished_asset(finished_images[0], provenance)
+                    slot["status"] = "finished-panel"
+                    slot["asset"] = asset
+                    slot["replaces"] = replaces
             slots.append(slot)
 
         for figure in soup.find_all("figure"):

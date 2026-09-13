@@ -47,7 +47,7 @@ from tools.web_spec_component import transform_specification_tables
 from tools.web_troubleshooting_component import transform_troubleshooting_tables
 from tools.web_lcd_component import transform_lcd_icon_tables
 
-SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
+SIGNAL_WORDS = ("WARNING", "CAUTION", "NOTE", "NOTES", "TIP", "DANGER", "IMPORTANT", "NOTICE", "ATTENTION")
 _SUP_RE = re.compile(r"\^([^\^\s][^\^]{0,24})\^")
 _SUB_RE = re.compile(r"~([^~\s][^~]{0,24})~")
 _IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)\)")

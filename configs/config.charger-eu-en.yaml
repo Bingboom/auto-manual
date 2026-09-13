@@ -1,5 +1,5 @@
-# Compact EU English charger/accessory family. The first registered target is
-# the JA-AD01A 102W GaN charger; future models reuse the same page skeleton.
+# EU English charger/accessory family. Model-specific source carriers are
+# selected by target-resolved manifests and Product Manual Plans.
 extends: config-bases/eu-single-language-base.yaml
 
 build:
@@ -11,7 +11,17 @@ build:
   targets:
     - model: JA-AD01A
       region: EU
-  web_entry_source_patterns: [box_contents*]
+    - model: JA-AD600A
+      region: EU
+    - model: JAAC-WHE-100-EUA1
+      region: EU
+    - model: JA-CA05B
+      region: EU
+    - model: JA-CA3SA
+      region: EU
+    - model: JA-CC30A
+      region: EU
+  web_entry_source_patterns: [box_contents*, disclaimer*, connection_guide*, product_overview*]
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
@@ -20,5 +30,5 @@ build:
     LEGAL_COMPANY_NAME: Jackery
 
 paths:
-  page_manifest: docs/manifests/manual_charger-eu-en.yaml
-  web_illustration_manifest: docs/renderers/web/ja_ad01a_eu_en_illustrations.json
+  page_manifest: docs/manifests/manual_charger-eu-en-{model}.yaml
+  web_illustration_manifest: docs/renderers/web/charger_eu_en_{model}_illustrations.json

@@ -1,0 +1,32 @@
+CONNECTIONS
+===========
+
+Up to five battery packs can be used with |BP_HOST_PRODUCT_NAME| to provide additional capacity.
+
+.. image:: asset:connections/jbp2000b/stack_clearance
+   :alt: Battery Pack connection, stacking, and clearance diagram.
+   :width: 500px
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **CAUTION**
+     -
+       - Ensure all products are powered off before connecting the |BP_HOST_PRODUCT_SHORT_NAME| to the Jackery Battery Pack 2000.
+       - To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 200 mm of space between the vents and any objects to allow for proper heat dissipation.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **NOTES**
+     -
+       - The display of the connection icon on the LCD screen (|BP_HOST_PRODUCT_NAME|) signifies a successful connection between the battery pack and |BP_HOST_PRODUCT_NAME|.
+       - Please do not stack the product on the top of |BP_HOST_PRODUCT_NAME|.
+       - Place the battery packs on a flat, stable surface with sufficient load-bearing capacity. The default maximum number of stacked battery packs is 3.
+       - If 4 or more battery packs are required, they must be placed in a stable area against a wall, away from external impact, and the necessary anti-tip securing measures must be taken.
+
+.. image:: |BP_CONNECTION_LOCKING_ASSET|
+   :alt: Correct connection order and expansion-cable locking and unlocking steps.
+   :width: 100%

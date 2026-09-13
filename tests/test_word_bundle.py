@@ -961,6 +961,13 @@ Congratulations on your new manual.
         self.assertIn("Use a compliant cable.", out)
         self.assertNotIn("<colgroup>", out)
 
+    def test_registered_plural_notes_uses_callout_without_signal_snapshot(self) -> None:
+        fragment = '<table><tbody><tr><td><strong>NOTES</strong></td><td><ul><li>Keep all four instructions.</li></ul></td></tr></tbody></table>'
+        out = _rewrite_word_friendly_fragment(fragment)
+        self.assertIn('manual-callout-table', out)
+        self.assertIn('<strong>NOTES</strong>', out)
+        self.assertIn('Keep all four instructions.', out)
+
     def test_rewrite_word_friendly_fragment_should_convert_localized_alert_tables(self) -> None:
         fragment = (
             "<table><tbody><tr>"
