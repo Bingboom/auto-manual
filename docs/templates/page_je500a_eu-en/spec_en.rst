@@ -33,9 +33,9 @@ INPUT PORTS
    * - Charge Mode AC Input
      - 220-240V~ 50Hz, 10A Max
    * - 1 × DC8020 Port
-     - 11V-16V 8A Max
+     - 11V-16V⎓8A Max
 
-       16V-60V 10.5A, 200W Max
+       16V-60V⎓10.5A, 200W Max
 
 OUTPUT PORTS
 ------------
@@ -51,13 +51,13 @@ OUTPUT PORTS
    * - AC Output in Bypass Mode (1)
      - 230V~ 50Hz, 500W
    * - 1 × USB-C1 Output
-     - 100W Max, 5V 3A, 9V 3A, 12V 3A, 15V 3A, 20V 5A
+     - 100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A
    * - 1 × USB-C2 Output
-     - 30W Max, 5V 3A, 9V 3A, 12V 2.5A, 15V 2A, 20V 1.5A
+     - 30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A
    * - 1 × USB-A Output
-     - 18W Max, 5-6V 3A, 6-9V 2A, 9-12V 1.5A
+     - 18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A
    * - Cigarette Lighter Port
-     - 12V 10A Max
+     - 12V⎓10A Max
 
 ENVIRONMENTAL OPERATING TEMPERATURE
 -----------------------------------
