@@ -42,6 +42,7 @@ from tools.publish_locale_identity import (  # noqa: E402
     stored_targets,
 )
 from tools.safe_copy import assert_source_tree_no_symlinks  # noqa: E402
+from tools.publication_withdrawal import reject_withdrawn_version, write_withdrawal_notices  # noqa: E402
 from tools.utils.path_utils import PathSegments, Paths  # noqa: E402
 
 
@@ -181,6 +182,7 @@ def rebuild_web_source(*, output_dir: Path, title: str) -> None:
         web_dir = output_dir / PathSegments.WEB
         _replace_dir(web_dir)
         shutil.copytree(assembled, web_dir, dirs_exist_ok=True)
+        write_withdrawal_notices(output_dir)
 
 
 def _write_legacy_compatibility_routes(
@@ -395,6 +397,10 @@ def assemble_web_publish_branch(
             for _path, payload in stored_targets(candidate)
         }
         for target in targets:
+            reject_withdrawn_version(
+                candidate, model=target.model, region=target.region,
+                lang=target.lang, version=target.version,
+            )
             stage_web_target(
                 target=target,
                 output_dir=candidate,

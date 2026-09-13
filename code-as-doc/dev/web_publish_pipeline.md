@@ -19,6 +19,10 @@ release can instead use reviewed, committed sources and assets without creating
 queue rows or reading or writing online tables. It does not change either
 workflow. Both input paths converge on the same assembler, the same
 `docs/publish/**`-only release PR, and the same Read the Docs production build.
+Explicit Git-only [withdrawal/restoration](web_publication_withdrawal.md) uses
+the same assembly and atomic promotion helpers with a durable action ledger.
+Publication omission still means preservation; withdrawn versions cannot be
+reintroduced by an ordinary retry.
 
 ## 1.1 Semantic tables and frozen figures
 

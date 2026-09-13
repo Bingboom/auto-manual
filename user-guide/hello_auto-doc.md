@@ -4,6 +4,8 @@
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
+缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
 旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
 
 Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
