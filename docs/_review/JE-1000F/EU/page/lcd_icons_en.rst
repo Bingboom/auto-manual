@@ -135,19 +135,19 @@ LCD DISPLAY
         - Battery Power Indicator
         - When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.
       * - 18
-        - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_HBmrbEEGAod6qdxG9cLcGQr8nYe.png
-             :alt: Remaining Battery Percentage
-             :width: 42px
-        - Remaining Battery Percentage
-        - Displays the remaining battery percentage.
-      * - 19
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_ByEjbqUNzoCaEZx4EoZcd42enhg.png
              :alt: Low Battery Indicator
              :width: 42px
         - Low Battery Indicator
         - | **On:** The battery level is below 20%.
           | **Blink:** The battery level is below 5%.
-          | **Off:** The battery level is not below 20% or the product is charging.
+          | **Off:** The battery level is above 20% or the product is charging.
+      * - 19
+        - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_HBmrbEEGAod6qdxG9cLcGQr8nYe.png
+             :alt: Remaining Battery Percentage
+             :width: 42px
+        - Remaining Battery Percentage
+        - Displays the remaining battery percentage.
       * - 20
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png
              :alt: Discharge Timer
@@ -156,7 +156,7 @@ LCD DISPLAY
         - | **On:** A discharge timer is set.
           | **Off:** No discharge timer is set.
           | Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.
-      * - 22
+      * - 21
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_DvnZbWDvro5q0IxfWhSc0woHnwf.png
              :alt: Energy Saving Mode
              :width: 42px
@@ -165,32 +165,32 @@ LCD DISPLAY
           | **On:** Energy Saving Mode is enabled.
           | **Off:** Energy Saving Mode is disabled.
           | The setting is retained when the device is powered off.
-      * - 23
+      * - 22
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_QNnDbs7HLofVCPxMnBkcHxQXn9e.png
              :alt: High Temperature Indicator
              :width: 42px
         - High Temperature Indicator
         - High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.
-      * - 24
+      * - 22
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_UUSlbvsnooc36fxKc6ec0fs8nqc.png
              :alt: Low Temperature Indicator
              :width: 42px
         - Low Temperature Indicator
         - | Low temperature protection is triggered.
           | The product may stop functioning until its temperature returns to the normal operating range.
-      * - 25
+      * - 23
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/25_Fault_code_JJysbRHGjoMDr1xJT3ncOGDDnRa.png
              :alt: Fault code
              :width: 42px
         - Fault code
         - A product error has occurred. Please refer to the Troubleshooting section for details.
-      * - 26
+      * - 24
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/26_Output_Power_G2lzbVqhRoVMkTxFGEacUK3Bnpe.png
              :alt: Output Power
              :width: 42px
         - Output Power
         - Displays the output power in watts.
-      * - 27
+      * - 25
         - .. image:: _repo_assets/data/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_B74LbigfDo0gfzxcLGccuTVHnhe.png
              :alt: Remaining Discharge Time
              :width: 42px
@@ -222,13 +222,13 @@ LCD DISPLAY
       \HBLcdIconRow{15}{15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png}{Battery Saving Mode}{\textbf{On:} Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan. \newline \textbf{Off:} Battery Saving Mode is disabled. \newline Enable/disable this feature in the Jackery App. The setting is retained when the device is powered off. \newline When this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC.}
       \HBLcdIconRow{16}{16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png}{Charging Power Limit}{\textbf{On:} Charging Power limit is enabled in the Jackery App. \newline \textbf{Off:} Charging Power limit is disabled in the Jackery App. \newline The setting is retained when the device is powered off.}
       \HBLcdIconRow{17}{17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png}{Battery Power Indicator}{When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on.}
-      \HBLcdIconRow{18}{18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png}{Remaining Battery Percentage}{Displays the remaining battery percentage.}
-      \HBLcdIconRow{19}{19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png}{Low Battery Indicator}{\textbf{On:} The battery level is below 20\%. \newline \textbf{Blink:} The battery level is below 5\%. \newline \textbf{Off:} The battery level is not below 20\% or the product is charging.}
+      \HBLcdIconRow{18}{19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png}{Low Battery Indicator}{\textbf{On:} The battery level is below 20\%. \newline \textbf{Blink:} The battery level is below 5\%. \newline \textbf{Off:} The battery level is above 20\% or the product is charging.}
+      \HBLcdIconRow{19}{18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png}{Remaining Battery Percentage}{Displays the remaining battery percentage.}
       \HBLcdIconRow{20}{20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png}{Discharge Timer}{\textbf{On:} A discharge timer is set. \newline \textbf{Off:} No discharge timer is set. \newline Enable/disable this feature in the Jackery App. The setting is not retained when the device is powered off.}
-      \HBLcdIconRow{22}{22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png}{Energy Saving Mode}{When the AC or DC output is turned on by pressing the AC or DC/USB power button: \newline \textbf{On:} Energy Saving Mode is enabled. \newline \textbf{Off:} Energy Saving Mode is disabled. \newline The setting is retained when the device is powered off.}
-      \HBLcdIconRow{23}{23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png}{High Temperature Indicator}{High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.}
-      \HBLcdIconRow{24}{24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png}{Low Temperature Indicator}{Low temperature protection is triggered. \newline The product may stop functioning until its temperature returns to the normal operating range.}
-      \HBLcdIconRow{25}{25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png}{Fault code}{A product error has occurred. Please refer to the Troubleshooting section for details.}
-      \HBLcdIconRow{26}{26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png}{Output Power}{Displays the output power in watts.}
-      \HBLcdIconRow{27}{27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png}{Remaining Discharge Time}{Displays the remaining discharging time.}
+      \HBLcdIconRow{21}{22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png}{Energy Saving Mode}{When the AC or DC output is turned on by pressing the AC or DC/USB power button: \newline \textbf{On:} Energy Saving Mode is enabled. \newline \textbf{Off:} Energy Saving Mode is disabled. \newline The setting is retained when the device is powered off.}
+      \HBLcdIconRow{22}{23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png}{High Temperature Indicator}{High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range.}
+      \HBLcdIconRow{22}{24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png}{Low Temperature Indicator}{Low temperature protection is triggered. \newline The product may stop functioning until its temperature returns to the normal operating range.}
+      \HBLcdIconRow{23}{25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png}{Fault code}{A product error has occurred. Please refer to the Troubleshooting section for details.}
+      \HBLcdIconRow{24}{26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png}{Output Power}{Displays the output power in watts.}
+      \HBLcdIconRow{25}{27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png}{Remaining Discharge Time}{Displays the remaining discharging time.}
       \end{HBLcdIconTable}

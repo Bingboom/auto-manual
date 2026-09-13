@@ -114,23 +114,6 @@ The LED light has two modes: Light mode and SOS mode. In any mode, press and hol
 | Press it again to switch to SOS Mode.
 | Press it a third time to turn off the light.
 
-AC and DC Output Resume Function
---------------------------------
-
-The AC/DC Output Resume Function is disabled by default. Enable this function in the App to allow the device to memorize the AC/DC output status and automatically resume AC and DC outputs under defined conditions.
-
-+---------------------------------------------------------------+-----------------------------------------------+
-| Auto Resume Conditions                                        | Not Auto Resume Conditions                    |
-+===============================================================+===============================================+
-| Power-on/Restart after shutdown or restart                    | Manual output off (button/App)                |
-+---------------------------------------------------------------+-----------------------------------------------+
-| Battery SOC ≥ discharge limit +10% after reaching limit       | Energy Saving mode output off                 |
-|                                                               +-----------------------------------------------+
-|                                                               | Protection-triggered output off               |
-+---------------------------------------------------------------+-----------------------------------------------+
-| OTA upgrade completed                                         | Discharge timer-triggered output off          |
-+---------------------------------------------------------------+-----------------------------------------------+
-
 LCD SCREEN
 ----------
 
@@ -180,6 +163,23 @@ LCD SCREEN
       \end{HBLcdModeTable}
 
 You can also set the screen display mode in the Jackery App.
+
+AC and DC Output Resume Function
+--------------------------------
+
+This function memorizes the output status and automatically resumes AC and DC outputs under defined conditions.
+
++---------------------------------------------------------------+-----------------------------------------------+
+| Auto Resume Conditions                                        | Not Auto Resume Conditions                    |
++===============================================================+===============================================+
+| Power-on/Restart after shutdown or restart                    | Manual output off (button/App)                |
++---------------------------------------------------------------+-----------------------------------------------+
+| Battery SOC ≥ discharge limit +10% after reaching limit       | Energy Saving mode output off                 |
+|                                                               +-----------------------------------------------+
+|                                                               | Protection-triggered output off               |
++---------------------------------------------------------------+-----------------------------------------------+
+| OTA upgrade completed                                         | Discharge timer-triggered output off          |
++---------------------------------------------------------------+-----------------------------------------------+
 
 KEY COMBINATION
 ---------------

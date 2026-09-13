@@ -55,7 +55,7 @@ Vous pouvez également scanner le code QR ci-dessous pour télécharger et insta
      -
        - Veuillez choisir un réseau Wi-Fi 2,4 GHz. L'appareil ne prend pas en charge le réseau Wi-Fi 5 GHz.
 
-| Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
+| 2.5. Une fois l'appareil ajouté à la page d'accueil, l'icône Wi-Fi de l'appareil restera allumée.
 
 .. image:: _assets/templates/word_template/common_assets/app/connect_result.png
    :alt: Emplacement réservé à l'écran de résultat de connexion dans l'application.

@@ -38,6 +38,30 @@
     {
       "scope": "imported RST and snapshot serialization",
       "change": "Trim trailing RST whitespace/blank EOF lines and lengthen STORAGE heading underline to avoid a Git conflict-marker false positive; preserve LF CSV checkout using existing frozen-source gitattributes convention."
+    },
+    {
+      "scope": "EN/FR released-PDF content parity",
+      "pdf_physical_pages": [
+        6,
+        7,
+        9,
+        10,
+        14,
+        18,
+        19,
+        20,
+        22,
+        23,
+        24,
+        26,
+        27,
+        31,
+        35,
+        36,
+        39
+      ],
+      "change": "Restore safety condition, LCD mapping/copy, electrical maximum, native USB-C rows, troubleshooting, section order and App numbering; remove PDF-absent copy. Preserve documented authority-side inconsistencies.",
+      "notes": "pdf_parity_notes.md"
     }
   ],
   "files": [
@@ -63,8 +87,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 22370,
-      "sha256": "80095f3ce12a4b65c8abdedece0e9b5220e169b1dd29be667d8263c53363c7e1"
+      "size": 22380,
+      "sha256": "c29f793839c01c4d441e92abd7dbb8176b50d6f0dec528bdbfa02ff82f50063f"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -413,8 +437,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 63804,
-      "sha256": "8cc248754e543d236f6ca53e5e20360834dd5450c483bb9109c3c9e53604b9aa"
+      "size": 63792,
+      "sha256": "87f40011047bd8e78d11c7b839a1148b84c8d8334fa00ccc1636d580987d73b9"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -438,8 +462,8 @@
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
-      "size": 13605,
-      "sha256": "73837f6d3928b7ab34426faeded292be028188982a377abfe266dde512e944ff"
+      "size": 13621,
+      "sha256": "19f2bfce72808e81590f2bca4afebe1bd571dc6bcb083243e415ac0995311a49"
     },
     {
       "path": "phase2/web_composite_manifest.json",
@@ -695,8 +719,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/05_operation_guide_placeholder.rst",
-      "size": 9533,
-      "sha256": "ccb0afe28c87d6b3409b0429fdd07332388272b8e0f30c16caff7d9ccf4adf2a"
+      "size": 9431,
+      "sha256": "40a90b2b96a4fa6920b1a634cc265eb0f227f00447685fa13c80cfb972e0d229"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/06_ups_mode.rst",
@@ -715,13 +739,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/11_warranty.rst",
-      "size": 3157,
-      "sha256": "ec5d1f3f170395ccd69facaf6b47ba62702f776f15972d4506214270a75f65c2"
+      "size": 3144,
+      "sha256": "95afecc4f4252ade055af1eb8b4116ee7bc7ae2bc4d8f478eee0577a465b3126"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/12_app_setup_placeholder.rst",
-      "size": 3335,
-      "sha256": "2b26c4d7ad90fbbe4adde399060ac4d974a40b5d2b155f7178c327be63e9831a"
+      "size": 3339,
+      "sha256": "869188e40464448f4ff7b9d782297b60306adec7752cd5b6a45f65156b7b4cd2"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/charging.rst",
@@ -735,8 +759,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_en.rst",
-      "size": 18381,
-      "sha256": "f73452513253e90858ed8e03dc1600b4918e115eb1db580d87f573ee82cd1282"
+      "size": 18373,
+      "sha256": "ccd96fb5fb6c5414e331af7601fa0e97cd5ca9b9fc827987beb59d789c7dd347"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_es.rst",
@@ -745,8 +769,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_fr.rst",
-      "size": 21209,
-      "sha256": "46da02875fb326754c336bc5ac7e50158d27169d03cbdb3d2f605caf99e430cb"
+      "size": 21287,
+      "sha256": "233f3dea6cda2b1fbbd04c480e338f8dde3f5d18fb1c8e919fbbff21dbbb3825"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_it.rst",
@@ -775,8 +799,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p23_05_operation_guide_placeholder.rst",
-      "size": 11470,
-      "sha256": "26ff2fde5d286020c7c1f7bf7d32c0fc58775f7da3aed700f07b10f3c959d2a8"
+      "size": 11349,
+      "sha256": "78b10a9d845351ace2c4548a3d783d5affd450822abd9afbefda0c32872495b0"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst",
@@ -805,8 +829,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p31_12_app_setup_placeholder.rst",
-      "size": 4297,
-      "sha256": "1e0ab40184468a67f62180d9f0d30a328eb7e3ddd226e17da74bb866128bf6e8"
+      "size": 4302,
+      "sha256": "22135d4f8f0ee7fd9f48449c76b8fe2e858d61132f836a9f0ba282d14c16ed20"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p33_01_user_maintenance_instructions.rst",
@@ -1015,8 +1039,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_en.rst",
-      "size": 3432,
-      "sha256": "ae42680eeb317c23a0b2194f9576ff7b3e52e4cc975a7789cac9ea418e2a2596"
+      "size": 3460,
+      "sha256": "52c4c31c9710b3dc4f1d11df1098176a6a5e8ddc453ab73bfacd93aeba6e61e5"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_es.rst",
@@ -1025,8 +1049,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_fr.rst",
-      "size": 4282,
-      "sha256": "2240ae527ae8955cfb310563a32979c935b3e313905750b577e7ae634ce7b31e"
+      "size": 4304,
+      "sha256": "6bee01871de3f7cc67a2c5c051b947dc31aab5c3129113da3f7a704fdf6f34cd"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_it.rst",
@@ -1045,8 +1069,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_en.rst",
-      "size": 7524,
-      "sha256": "a20de39d89ec1daa183929eec71f038a1c21651e1332c4ea9e705a475ea1d981"
+      "size": 7681,
+      "sha256": "07c0aa99f6d981f1c99efcacabe51598ffe07b32e274d60822e1a125cf029eec"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_es.rst",
@@ -1055,8 +1079,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_fr.rst",
-      "size": 7775,
-      "sha256": "36ad3079805336459ed9fdd328836a7e1c46bad7bbf53a73fcf43f602ca2177c"
+      "size": 7939,
+      "sha256": "1c2911ca02ab1a4f06e211c79392249e763a04b11474658cc2be72f94554b3af"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_it.rst",
@@ -1075,8 +1099,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_en.rst",
-      "size": 7627,
-      "sha256": "737712e8a0b1729f35b87fc3670f77d8ae88c702a164f3166003f3111506f5b2"
+      "size": 6346,
+      "sha256": "55b5139f1031747c69f351b8ac63040c1b22c1ae2da82028d1d19cdf9a6b0164"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_es.rst",
@@ -1085,8 +1109,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_fr.rst",
-      "size": 8322,
-      "sha256": "9c1d0156f384df718576065defcc6b2df78f36bd9910a786eac6e66341284586"
+      "size": 6879,
+      "sha256": "131c27f39c39c9b0dda0fe7682caf74d7467295032d011dd519fccdf06ca0bda"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_it.rst",
@@ -1105,8 +1129,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/troubleshooting_en.rst",
-      "size": 1703,
-      "sha256": "11b35bafbc4b12f3c709d35ab332ecacdecc1575b696f4aded51a4d2512bd55d"
+      "size": 1710,
+      "sha256": "58af824f235ea38b20718a6546488a8990d3b39f7153d17773d952ccefcbb74c"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/troubleshooting_es.rst",
@@ -1115,8 +1139,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/troubleshooting_fr.rst",
-      "size": 1855,
-      "sha256": "90afebd5c760f3d891d7062f6c8b5f39a09d8748fb5c306e20ffe5ca318b3534"
+      "size": 1864,
+      "sha256": "63d8652e1219f8d50ff8fb62f855f21949a68c4986da74571518e8ede738a4a0"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/troubleshooting_it.rst",

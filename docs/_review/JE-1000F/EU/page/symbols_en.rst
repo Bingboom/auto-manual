@@ -56,7 +56,6 @@ MEANING OF SYMBOLS
       \HBSymbolIconRow{9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png}{Keep away from children.}
       \HBSymbolIconRow{10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png}{This symbol indicates that a lithium-ion (Li-ion) battery is inside the product and should be disposed of or recycled properly.}
       \HBSymbolIconRow{11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png}{This symbol indicates that the product shall not be disposed of as household waste, and should be delivered to a designated collection facility for recycling. Proper disposal and recycling can help protect the environment. For more information about the disposal and recycling of this product, contact your local community, disposal service, or dealer.}
-      \HBSymbolIconRow{12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png}{Batteries and accumulators must not be disposed of with household waste. \newline As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances. \newline Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.}
       }
 
 .. only:: not latex
@@ -98,9 +97,5 @@ MEANING OF SYMBOLS
              :alt: no_open_flame
              :width: 40px
         - Keep the product away from fire.
-        - .. image:: _repo_assets/data/phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png
-             :alt: weee2
-             :width: 40px
-        - Batteries and accumulators must not be disposed of with household waste.
-          As a consumer, you are legally required to dispose of all batteries and accumulators at designated collection points, regardless of whether they contain hazardous substances.
-          Please return used batteries and accumulators to a local collection point, recycling center, or to the retailer where they were purchased. Proper disposal ensures environmentally responsible recycling and prevents potential harm to human health and the environment.
+        -
+        -

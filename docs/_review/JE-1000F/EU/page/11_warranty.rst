@@ -70,4 +70,4 @@ Jackery's warranty does not apply to:
 Interpretation Rights
 ---------------------
 
-Jackery reserves the right to the final interpretation of the above customer after-sales policy.
+Jackery reserves the right to final interpretation of the above after-sales policy.
