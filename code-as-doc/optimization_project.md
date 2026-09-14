@@ -1,11 +1,6 @@
 # Optimization Project
 
-当前主线（2026-09-13）：先按操作者清单、以确认的 PDF 发布版批量网页化，
-通过既有 Git-only 发布 PR → RTD 上线；不以前置录齐线上数据、云文档或 Web Publish
-队列为门槛。[统一 checklist §0](dev/manual_operations_acceptance_checklist.md) 记录近期
-WEB-B01～06；原 OPS 运营出口后置，已完成证据保留，总计划 #1103 仍为 Draft，
-不因近期上线而宣称运营闭环完成。后续逐本结构化治理与云文档/Publish/Web Publish
-接入再继续；骨架执行仍归 Milestone M，跨端 IR-D01～D06 保持长期目标。
+当前主线（2026-09-13）：完成 [#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)，不是只做网页发布。六本批准纠错已由 Hello-Docs #73 发布，版本/回滚/撤回、试点部署回执、健康、两条元数据读回和真实反馈闭环已交付。最终批量线上验证在608/709资源后被当前客户端的Cloudflare挑战阻断；总PR保持Draft。见[实际状态与证据](dev/manual_operations_closeout_20260913.md)。不以前置线上正文抽取为门槛；人工内容/视觉验收和响应SLA由用户后置。后续逐本结构化治理与翻译验收继续归Milestone M，IR-D01–D06保持长期目标。
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document

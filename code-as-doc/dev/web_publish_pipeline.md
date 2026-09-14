@@ -19,6 +19,10 @@ release can instead use reviewed, committed sources and assets without creating
 queue rows or reading or writing online tables. It does not change either
 workflow. Both input paths converge on the same assembler, the same
 `docs/publish/**`-only release PR, and the same Read the Docs production build.
+Explicit Git-only [withdrawal/restoration](web_publication_withdrawal.md) uses
+the same assembly and atomic promotion helpers with a durable action ledger.
+Publication omission still means preservation; withdrawn versions cannot be
+reintroduced by an ordinary retry.
 
 ## 1.1 Semantic tables and frozen figures
 
@@ -161,12 +165,22 @@ change JP D1–D4 or promote production eligibility.
    Web composites fail closed.
 3. The web presentation profile runs `check -> md -> html`. The HTML render is
    a verification output; the MyST directory is the durable publishing input.
+   With an explicit target language, each successful action captures the
+   canonical projection and complete include closure. The captures must agree;
+   the [receipt](web_language_release_evidence.md) is sealed with md/html in the
+   same new immutable version. A shared-language config uses the selected
+   language for release paths, not its first configured language.
 4. `latest/web/publish_meta.json` records the target, version, review ref,
-   queue rows, MyST source and verified HTML directory.
+   queue rows, MyST source and verified HTML directory. Explicit-language
+   metadata also requires the verified receipt path and SHA-256 before it can
+   claim `language_scope=single`; language and evidence must be supplied together.
 5. `publish_branch_assembly.py` copies that source into
-   `docs/publish/sources/web/<model>/<region>/md/`, preserves other targets,
+   `docs/publish/sources/web/<model>/<region>/<lang>/md/`, preserves other targets,
    rebuilds `docs/publish/web/`, and writes a SHA-256 inventory in
-   `docs/publish/publish_manifest.json`.
+   `docs/publish/publish_manifest.json`. Assembly rechecks fresh md/html against
+   evidence and retains the receipt plus projection manifest with stored MyST.
+   Stored replay rechecks the retained MyST/assets; the HTML digest is historical
+   evidence, not a new HTML render check. Legacy links retain their redirects.
 6. The workflow reconciles the generated `Hello-Docs/publish` candidate with
    current `main`, then refuses to push if the PR diff contains any path outside
    `docs/publish/**`. Review branches are build inputs only; they are never

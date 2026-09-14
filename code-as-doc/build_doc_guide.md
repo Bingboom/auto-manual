@@ -1,5 +1,38 @@
 # Windows Build Guide
 
+RTD [locale navigation](dev/rtd_locale_navigation.md) consumes only frozen publication
+metadata; it does not query live data during a Sphinx build.
+Legacy metadata means separate-language identity is unverified, not that its
+language content is absent or unpublished; the current manual remains reachable.
+
+Web publication staging now uses [locale-safe identity](dev/web_locale_publication_identity.md)
+and candidate validation. Public build flags and workflow dispatch are unchanged.
+Git-only [withdrawal and restoration](dev/web_publication_withdrawal.md) operate
+on an explicit copied publication target; missing input never removes a target.
+Withdrawn versions require explicit verified restoration before ordinary retry.
+
+Optional local release artifact preflight:
+[Manual operations health report](dev/manual_operations_health_report.md).
+For an explicit read-only network pass over the frozen catalog, see
+[HTTP health checks](dev/manual_operations_online_health.md). No queue or live-table write is performed.
+Exact frozen-source/served-asset identity can be checked with the
+[Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
+existing frozen Sphinx portal build. Reads use an internal unique cache probe and
+bounded retries for incomplete transport; served source and asset hashes remain
+exact. This check performs no link writeback.
+
+Web profile plus an explicit `--lang` uses the
+[frozen language projection](dev/web_language_projection.md): it keeps the complete
+configured-language source bundle and gives `check`, Markdown, and HTML one canonical
+single-language RST input. Existing commands are reused. Explicit-language Web
+queue builds now [seal and verify release evidence](dev/web_language_release_evidence.md)
+after `check -> md -> html`; workflow dispatch and online-table behavior are unchanged.
+Only a new evidence-bound version can claim `single`; do not retrofit sealed releases.
+Publication staging preserves optional generated `manual.ir.json` and
+`manual_bundle.html` sidecars byte-for-byte alongside Markdown, because the
+sealed inventory covers them. Unknown files are not silently copied or ignored
+by evidence verification; print artifacts and symlinks remain prohibited.
+
 Updated: 2026-08-17
 
 This file is the maintainer-facing Windows and PowerShell build guide.
@@ -23,6 +56,13 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
+The operator-selected feedback channel is GitHub Issues, configured through
+the existing fixed HTTPS `feedback_channels` portal setting. Verified
+single-language pages expose frozen publication context for local copying;
+they do not append context, tokens or user identity to channel URLs. Xia Bing
+(`Bingboom`) owns feedback and checks local artifacts, HTTP accessibility and
+the deployed revision after every publication. Response deadlines remain
+unassigned; this configuration creates no scheduled service.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell
@@ -164,7 +204,8 @@ Meaning:
 - [`../tools/dingtalk/auth.py`](../tools/dingtalk/auth.py) now exposes the verified App-Only token helper behind `DINGTALK_CLIENT_ID`, `DINGTALK_CLIENT_SECRET`, and `DINGTALK_CORP_ID`, and [`../tools/dingtalk/workspace.py`](../tools/dingtalk/workspace.py) can parse a target node ID from a normal DingTalk docs URL such as `https://alidocs.dingtalk.com/i/nodes/<node_id>`.
 - `rst`: materialize [`docs/_build/<model>/<region>/rst/`](../docs/_build)
 - `review`: seed [`docs/_review/<model>/<region>/`](../docs/_review) from runtime draft
-- `--source review-asis`: render the committed `docs/_review/<model>/<region>/` page bytes without re-deriving them from the build data-root — only the conf/asset skeleton is materialized and the review overlay supplies content. The prepared bundle still enforces the current target language scope: an older merged review index may contain standalone pages for a language the model no longer ships, so only index includes whose explicit `\HBApplyLang{...}` declaration remains in scope are projected; the review files themselves stay untouched, and multi-language pages continue through the inline language-block trimmer, including a fully recognized `English / French / ...` scope catalogue. Unlike `--source review` this mode neither pre-syncs review params from data nor runs the Spec_Master identity guard, so it renders a review target whose model is absent from the active data-root (e.g. the CI `Review Preview Package` fixtures under `tests/fixtures/phase2`). The `Review Preview Package` workflow uses this mode, which is why a newly onboarded model (not yet in the fixtures) previews instead of failing the whole package
+- `--source review-asis`: render the committed `docs/_review/<model>/<region>/` page bytes without re-deriving them from the build data-root — only the conf/asset skeleton is materialized and the review overlay supplies content. The prepared bundle still enforces the current target language scope: an older merged review index may contain standalone pages for a language the model no longer ships, so out-of-scope pages identified by explicit `\HBApplyLang{...}` declarations are removed from both the generated index and its generated page copies; symlink/escaping page paths are rejected and the original review files stay untouched, and multi-language pages continue through the inline language-block trimmer, including a fully recognized `English / French / ...` scope catalogue. Unlike `--source review` this mode neither pre-syncs review params from data nor runs the Spec_Master identity guard, so it renders a review target whose model is absent from the active data-root (e.g. the CI `Review Preview Package` fixtures under `tests/fixtures/phase2`). The `Review Preview Package` workflow uses this mode, which is why a newly onboarded model (not yet in the fixtures) previews instead of failing the whole package
+- With `AUTO_MANUAL_PRESENTATION_PROFILE=web` and an explicit `--lang`, bundle preparation first freezes the complete configured-language RST source under `docs/_build/<model>/<region>/<lang>/web/source/rst/`, including the full shared review overlay, then projects the requested language into canonical `docs/_build/<model>/<region>/<lang>/rst/`. `check`, `md`, and `html` all consume that canonical projection. Web builds without `--lang` and every non-Web build retain their previous source and output paths. This projection is a build input boundary, not evidence that an independent-language publication has been released.
 - `check`: run validation + prepare bundle + content checks, including stale identity scan, contract validation, and duplicate RST/raw HTML text consistency checks
 - `asset-check`: validate the image-asset registry and resolve approved exports for renderer imports. `--allow-temporary` is only a diagnostic/operator inspection option for this command; bundle assembly never enables it. `--publish` applies the stricter registry-wide status gate. `--refresh` recomputes hashes from materialized export bytes in a dry run; pair it with explicit `--write` only after reviewing the machine-generated CSV diff. Missing or malformed exports fail closed and never produce a partial write. Editable `.ai` masters belong in the dedicated Feishu asset-source table, while `data/asset_sources.csv` records their hash/scope and `data/asset_generation_candidates.csv` controls which candidates may be sent to image generation.
 - `asset-intake`: deterministically package a PDF-compatible Illustrator master through a strict recipe. All four `--asset-source-key`, `--asset-source-file`, `--asset-recipe`, and `--asset-output-root` flags are required; the output root must not exist. The command snapshots and verifies the source, emits archive pages/previews plus approved/quarantined recipe exports, scans raw and decoded PDF objects for Illustrator private markers, verifies declared full hashes, and writes a deterministic ZIP with its manifest/index. It never edits the source, worktree, registry, or Base and exposes no promotion flag through `build.py`.
@@ -252,6 +293,7 @@ Meaning:
 - when review-init reuses the shared `Document_link` binding, each worker consumes only its own action: Start Review, Build Draft Package, Publish, or Web Publish
 - merged US/EU rows for Start Review, Draft, and Publish should use `Build_family = us-merged` / `eu-merged` and may leave `Lang` blank; single-language rows should use the matching language family such as `us-en` / `eu-en` / `us-fr` / `us-es` / `pt-br`. For example, JBP and ordinary host US rows both use `us-merged`; exact target resolution selects the BP or MAIN skeleton config.
 - config policy for `build.queue_by_document_key`: turn it on for merged whole-book families that intentionally build one shared manual across languages, such as today's `us-merged`, `eu-merged`, and future `cn-merged`; leave it off for single-language families such as `us-en`, `eu-en`, `us-fr`, `us-es`, `pt-br`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to be isolated by `record_id`
+- Web Publish with explicit `Lang` requires a matching single-language family, language-scoped output paths and record-scoped grouping (for example `eu-en/en` and `eu-fr/fr`). Single-language Web rows cannot omit Lang; legacy blank-Lang whole-book Web rows remain supported. Print Publish still requires blank Lang and whole-book paths. This does not authorize queue writes or resolve early workflow link backfill; see [locale queue contract](dev/web_publish_locale_queue.md).
 - when the queue row carries `Version`, Build Draft Package DOCX/Markdown names stay version-suffixed such as `manual_je1000f_us_en_0.2.docx|md`, while Publish queue release artifact names become `manual_je1000f_us_en_publish_0.2.docx|pdf|md`; Draft imports the DOCX into `飞书云文档` plus `基线文档`, while Publish uploads the designer handoff ZIP to `idml_file`
 - `Workflow_action = Build Draft Package` rows must carry `Git_ref`; queue builds now seed a temporary worktree from the latest `origin/main`, then overlay only `docs/_review` from that review branch, so the queue keeps the current `main` toolchain while still rendering the selected review content instead of silently falling back to `main`
 - Print Publish keeps two source modes deliberately separate. A target registered in the approved reference-layout registry renders `check`, DOCX, PDF, Markdown, and IDML from the exact `review-asis` overlay; refreshing phase2 data may update the archived release snapshot and asset resolution, but it must not rewrite reviewed page bytes during Publish. Unregistered targets retain the historical `review` parameter-sync behavior. If current Base copy must replace an approved target's frozen review copy, sync/re-seed it before approval, review the resulting layout, and explicitly reapprove the reference content contract before Publish.
@@ -260,7 +302,7 @@ Meaning:
 - direct `build.py` actions still write Build Draft Package outputs to the current repo [`../docs/_build/`](../docs/_build) tree by default
 - for local verification, use [`../scripts/local_build.py`](../scripts/local_build.py), [`../scripts/local_build.ps1`](../scripts/local_build.ps1), or [`../scripts/local_build.sh`](../scripts/local_build.sh); they default `check`, `diff-report`, `release-manifest`, `publish`, and other staging-safe local actions to `.tmp/staging`
 - explicit `--staging-root <dir>` or `AUTO_MANUAL_STAGING_ROOT=<dir>` still redirect generated `docs/_build`, `reports/version_tracking`, and `reports/releases` under another isolated root when needed
-- Print Publish stages IDML/LaTeX/DOCX/PDF/ZIP/Markdown under the Git-ignored runtime tree [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads formal deliverables to Feishu or short-lived GitHub Actions artifacts, and freezes the exact manifest-backed phase2 root under `versions/<version>/snapshot/`; it does not commit those binaries or build/deploy HTML. Web Publish is a separate action: it always refreshes approved Web assets, stages MyST and verification HTML under `versions/<version>/web/`, writes `latest/web/publish_meta.json`, incrementally assembles the `Hello-Docs/publish:docs/publish/` candidate, opens or updates a `docs/publish/**`-only PR into `Hello-Docs/main`, and writes the deterministic RTD URL to `HTML_link`.
+- Print Publish stages IDML/LaTeX/DOCX/PDF/ZIP/Markdown under the Git-ignored runtime tree [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), uploads formal deliverables to Feishu or short-lived GitHub Actions artifacts, and freezes the exact manifest-backed phase2 root under `versions/<version>/snapshot/`; it does not commit those binaries or build/deploy HTML. Web Publish is a separate action: it always refreshes approved Web assets, seals MyST and verification HTML by exact file hash under `versions/<version>/web/`, preserves immutable `versions/<version>/web_publish_meta.json`, then atomically advances `latest/web/publish_meta.json`. An exact same-version retry is a no-op; content or provenance drift fails without changing the sealed version or old latest pointer. It then incrementally assembles the `Hello-Docs/publish:docs/publish/` candidate, opens or updates a `docs/publish/**`-only PR into `Hello-Docs/main`, and writes the deterministic RTD URL to `HTML_link`. See [`dev/ops_04a_web_version_seal.md`](dev/ops_04a_web_version_seal.md).
 - A versioned Publish must start from a clean tracked worktree. The queue's one
   bounded exception is the active `docs/_review/<model>/<region>` overlay: its
   bytes must exactly match the row's resolved review-branch commit, every
@@ -592,6 +634,7 @@ Carrier tag axes:
 
 `Spec_Master.csv` note:
 
+- Specification rendering preserves distinct localized row labels and label-footnote references even when records share `Row_key`. Equal labels/references retain multiline grouping; distinct subrows follow `Line_order` within their semantic group, not CSV storage order. Do not derive port labels from wattage or repair a missing source row with CSS.
 - in Feishu, maintain `Page=specifications` rows in `规格参数明细` and maintain non-spec page placeholders in `页面占位参数`; `sync-data --table spec_master` reads those two source tables and writes the local read-model CSV
 - `spec_row_key` is the first read-model key and `document_key` remains the target dimension field
 - the `Page` column may now hold a comma-separated page list

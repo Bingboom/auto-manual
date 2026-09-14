@@ -16,6 +16,23 @@ For current rules, see:
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 
+## 2026-09-13: Strict receipt transport through the production CDN
+
+Kept frozen byte hashes authoritative while adding internal unique cache probes,
+complete bounded response reads and limited transient retries. The change fixes
+an observed Cloudflare Polish image transformation and interrupted HTTP bodies;
+it does not accept approximate images or broaden the RTD HTML exception.
+No workflow, dependency, CLI, publishing input or online table changed.
+
+## 2026-09-13: Git-only RTD deployment receipt slice
+
+Reused the paused verified-publication receipt module as a separate read-only
+engineering slice: the existing frozen Sphinx portal build emits source/output
+hash evidence, and callers verify served HTML and its local resource closure.
+No workflow, queue, formal link writer or online source table changed. The
+[receipt contract](dev/rtd_deployment_receipt.md) records the API and evidence
+boundaries; live deployment and complete OPS-04 operations remain separate.
+
 ## 1. 2026-03-08: Initial P0 / P1 Refactor Wave
 
 ### 2026-09-12: RTD entrance implementation slice
@@ -2177,3 +2194,15 @@ neutral rich text or all-renderer migration. See [the execution record](dev/ir_d
   pages. Figure coverage remained 55 `approved-composite` panels plus five
   native HTML LCD Mode compositions; Italian remained 11/11 localized full
   panels across Overview, Operation, and Charging.
+
+
+## 2026-09-13: Manual operations pilot and six-release implementation delivery
+
+All approved engineering slices through #1129 and scoped Hello-Docs #73 passed
+merge gates. Pilot receipt, two exact metadata records and real feedback
+Issue1126 completed verification/readback; real-artifact lifecycle/fault drills
+are documented. Final batch online verification remains608/709 because the
+current client receives a Cloudflare challenge. This is a completed delivery
+phase, **not** #1103 umbrella closure. See the [checkpoint](dev/manual_operations_closeout_20260913.md)
+and [current checklist](dev/manual_operations_acceptance_checklist.md). Human
+content/visual acceptance and response SLA remain user-deferred.

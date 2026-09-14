@@ -1,0 +1,157 @@
+{
+  "schema_version": "manual-local-approved-rollback-drill/v1",
+  "source_engineering_commit": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+  "business_cold_commit": "a87ff6ec97c2a4f1a071936dce5dd38b976550e2",
+  "source_content_version": "2.0",
+  "model": "JE-2000E",
+  "region": "EU",
+  "language": "en",
+  "local_git_root": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/business-cold-drill",
+  "initial_cold_local_commit": "c09d387869e464787da4efd4d0cd1c9a54a8fce7",
+  "steps": [
+    {
+      "label": "approved",
+      "version": "2.0-20260913",
+      "local_commit": "db812b2738b125d83f6e12b9a8e84cb673827ccb",
+      "publish_manifest_sha256": "db7bc5780be7c54a7add24e7d804692970d643819cd136e62ead40d24d47d872",
+      "manual_sha256": "9f1e99038ece81cabf06fff856ec8371bee3e2c8ce6f3d7df58e02701d8f85ff",
+      "strict_sphinx": {
+        "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/rollback-approved-sphinx.log",
+        "sha256": "6a036147891facd3f59128fb0cac39b3e47b1acbc31191bf223635aeba7b2204",
+        "exit_code": 0
+      }
+    },
+    {
+      "label": "same-content-update",
+      "version": "2.0-20260913-drill",
+      "local_commit": "37a01b5575685c5654489ebc8ef276707f083742",
+      "publish_manifest_sha256": "5a9ca128585ba330bcede6a17d89b5e4f049e4ce67a6249b9e862e3d24027ae2",
+      "manual_sha256": "9f1e99038ece81cabf06fff856ec8371bee3e2c8ce6f3d7df58e02701d8f85ff",
+      "strict_sphinx": {
+        "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/rollback-same-content-update-sphinx.log",
+        "sha256": "444145b405a5738f1a8ad53bf3dacd891e48f97dbbe048d7dcba644a9fcb68b0",
+        "exit_code": 0
+      }
+    },
+    {
+      "label": "rollback",
+      "version": "2.0-20260913",
+      "local_commit": "09fa5c9b8fca3f5f958272001f55ab0d62c1a3f6",
+      "publish_manifest_sha256": "db7bc5780be7c54a7add24e7d804692970d643819cd136e62ead40d24d47d872",
+      "manual_sha256": "9f1e99038ece81cabf06fff856ec8371bee3e2c8ce6f3d7df58e02701d8f85ff",
+      "strict_sphinx": {
+        "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/rollback-rollback-sphinx.log",
+        "sha256": "15a761587fba3ed66c9ea1e5c12fe66c5b8fbed6897a3b124b455a1ce1239da2",
+        "exit_code": 0
+      }
+    }
+  ],
+  "same_content_markdown_and_assets": true,
+  "fresh_build_capture": [
+    {
+      "model": "JE-2000E",
+      "lang": "en",
+      "source_content_version": "2.0",
+      "technical_release_version": "2.0-20260913-drill",
+      "git_ref": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+      "metadata": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/reports/releases/JE-2000E/EU/en/latest/web/publish_meta.json",
+      "metadata_sha256": "44eaad38d60398c5ffa69131e34bbba3a196d43a636eb010633b6b6787b84f00",
+      "receipt": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/reports/releases/JE-2000E/EU/en/versions/2.0-20260913-drill/web/evidence/language_projection_receipt.json",
+      "receipt_sha256": "845bcab821a8447af1eaad1945abfce73d73853528cd6e8814e0aafeb1fc6852",
+      "provenance": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/reports/releases/JE-2000E/EU/en/versions/2.0-20260913-drill/provenance/release_provenance.json",
+      "projection_sha256": "0067e78586337a50c583a7a863f6cd77e3b9ae4b000b761be61d6593d20bf84d",
+      "commands": [
+        {
+          "action": "check",
+          "argv": [
+            "/Users/pika/Documents/auto-manual2/.venv/bin/python",
+            "build.py",
+            "check",
+            "--config",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/repo/configs/config.eu-en.yaml",
+            "--model",
+            "JE-2000E",
+            "--region",
+            "EU",
+            "--lang",
+            "en",
+            "--source",
+            "runtime",
+            "--data-root",
+            "manual_sources/JE-2000E/EU/en/2.0/phase2",
+            "--staging-root",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E"
+          ],
+          "exit_code": 0,
+          "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/JE-2000E-check.log",
+          "sha256": "8ba6075c6d7385856e06141b9266007731eda06ed2acc69706e6d5b4beccb3d8"
+        },
+        {
+          "action": "md",
+          "argv": [
+            "/Users/pika/Documents/auto-manual2/.venv/bin/python",
+            "build.py",
+            "md",
+            "--config",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/repo/configs/config.eu-en.yaml",
+            "--model",
+            "JE-2000E",
+            "--region",
+            "EU",
+            "--lang",
+            "en",
+            "--source",
+            "runtime",
+            "--data-root",
+            "manual_sources/JE-2000E/EU/en/2.0/phase2",
+            "--staging-root",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E"
+          ],
+          "exit_code": 0,
+          "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/JE-2000E-md.log",
+          "sha256": "c38ce388b6f385ba9ba54d864b4eec2c93930932257fe78f26933b2f9bf91720"
+        },
+        {
+          "action": "rtd-source",
+          "argv": [
+            "/Users/pika/Documents/auto-manual2/.venv/bin/python",
+            "tools/readthedocs_source.py",
+            "--build-root",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E/docs/_build",
+            "--output-dir",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E/docs/_build/rtd"
+          ],
+          "exit_code": 0,
+          "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/JE-2000E-rtd-source.log",
+          "sha256": "2502613953941618c01592d64a55dd6c35e9b117a8158e7c0841e14b847807dc"
+        },
+        {
+          "action": "strict-sphinx",
+          "argv": [
+            "/Users/pika/Documents/auto-manual2/.venv/bin/python",
+            "-m",
+            "sphinx",
+            "-W",
+            "-b",
+            "html",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E/docs/_build/rtd",
+            "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/staging/JE-2000E/html"
+          ],
+          "exit_code": 0,
+          "log": "/private/var/folders/c6/dfm9jslj4p97zc6y7821w0kc0000gn/T/manual-real-rollback-e7j_4hi_/logs/JE-2000E-strict-sphinx.log",
+          "sha256": "1940863360826cc88064b31917b1e22da501a2092618353503296a23489e9f19"
+        }
+      ]
+    }
+  ],
+  "original_receipt_sha256": "25f302cf04b4135ab75cb6ea4ba083eeee256958bc4aeb6cce01edb9785f7d49",
+  "drill_receipt_sha256": "845bcab821a8447af1eaad1945abfce73d73853528cd6e8814e0aafeb1fc6852",
+  "technical_sidecar_difference": "Only manual.ir.json and manual_bundle.html differ in md inventories due to isolated staging paths and derived content hashes; exact staging-prefix normalization and exclusion of derived content_sha256 fields prove equivalent IR. Markdown and all assets byte-identical; no artifact rewritten.",
+  "metadata_relocation": "Immutable web trees and receipts copied byte-identically; metadata writer created new path-only relocated wrappers and changed isolated latest pointer. Original releases never written.",
+  "all_other_stored_sources_unchanged": true,
+  "entire_publish_tree_restored_byte_identical": true,
+  "original_releases_and_cold_snapshot_unchanged": true,
+  "production_changed": false,
+  "deployed_commit": null,
+  "operator_visual_acceptance": "user-deferred"
+}

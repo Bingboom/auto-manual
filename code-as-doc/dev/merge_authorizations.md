@@ -156,3 +156,14 @@ above.
 目检由用户后续执行。总计划仍须完整技术/运营证据后才能合入。用户选择
 GitHub Issues 反馈、夏冰负责。上表对 #1118 的分支别名登记只明确既有
 清单内修订切片，不扩大到新产品、翻译、线上数据写入或 workflow。
+
+
+### MA-066 operational checkpoint — 2026-09-13
+
+The [checkpoint](manual_operations_closeout_20260913.md) records all-green
+implementation/business merges, approved metadata readback and Issue closure.
+#1103 is still Draft and unmerged: final online verification is blocked by
+a current-client Cloudflare challenge. MA-066 does not allow bypassing that
+challenge or treating partial resources as full acceptance. Its final
+all-checks/reviews/ancestry protocol remains unchanged; it expires only on
+actual umbrella completion/merge or operator revocation.

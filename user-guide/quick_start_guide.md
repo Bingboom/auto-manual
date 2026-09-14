@@ -192,7 +192,7 @@ App/QR 等敏感候选即使已拆图也继续保持隔离。只有 `data/asset_
 2. `04_资产导出物` 每个物理文件一行：`artifact_kind=web-composite`，在
    `export_file` 上传一张图片，选择 `web_locale`，填写 `content_sha256` 和
    `source_fragment_sha256`，审核通过后勾选 `build_eligible`。
-3. 在 `Document_link` 选择 `Workflow_action=Web Publish`，保留已审核的 `Git_ref`，并触发独立 Web worker。
+3. 在获批的 `Document_link` 行选择 `Workflow_action=Web Publish`，保留已审核的 `Git_ref`。独立语言页使用匹配的单语 `Build_family` 和显式 `Lang`（如 `eu-en/en`），每语单独一行；不要使用 merged family 携带 Lang。版本及队列操作确认后才触发独立 Web worker；[队列契约](../code-as-doc/dev/web_publish_locale_queue.md)列出了尚未释放的上线门禁。
 4. Web worker 使用 HT-Docs bot 强制执行 `sync-data`，再按
    `web_replace_key + model + region + locale` 自动替换整块 figure 与关联文字；章节
    标题不进入图片。没有合格导出时保留可编辑 HTML，重复匹配或哈希漂移直接失败。
@@ -747,6 +747,27 @@ missing glyphs、bad links 均为 0，PDF/X-4 通过，并逐页对照冻结参�
 - `Spec_Master` 里由 `Source_lang` 定义 source language；`*_source` 内容必须有，其他语言列在 CSV 驱动内容里可以为空，系统会自动回退到 source language 文本。
 - `Spec_Master` 现在是本地读取快照；人工维护规格参数时先改 `规格参数明细` / `页面占位参数`，再用 `sync-data --table spec_master` 或 `spec-master-rebuild` 生成。
 
+
+### 合并配置的 Web 单语本地验收
+
+要从合并 US 配置只验收英语 Web 输入，可显式传入 `--lang en`。
+先准备含已核验附件和 Web composite 合同的本地快照，将下方示例路径替换为它；
+纯仓库 fixture 不包含所有审稿附件，不能单独作为这项审稿构建的完整输入：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python3 build.py check \
+  --config configs/config.us.yaml \
+  --model JE-1000F --region US --lang en \
+  --source review-asis \
+  --data-root /path/to/approved-local-snapshot \
+  --staging-root .tmp/web-en
+```
+
+完整 EN/FR/ES 源会冻结到
+`.tmp/web-en/docs/_build/JE-1000F/US/en/web/source/rst/`，英语规范投影位于
+`.tmp/web-en/docs/_build/JE-1000F/US/en/rst/`。用相同参数运行 `build.py md` 或
+`build.py html` 时，两者读取同一规范投影。该命令只做本地验收，不构成独立语言发布。
+命令退出码为 0 只表示现有构建与结构门通过，不等于内容已验收；本路径不放宽任何内容门。
 
 ### 加电包日语 Web 本地验收
 

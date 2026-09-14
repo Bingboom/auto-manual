@@ -1,0 +1,736 @@
+{
+  "engineering": [
+    {
+      "pr": 1118,
+      "head": "0555cb6b779132779e7caae358b70b578f2989ab",
+      "main": "cef66e68ddffc0c3cb0b93e09b763d023f9bcb87",
+      "checked_at": "2026-09-13T23:11:29.805959+00:00",
+      "checks": [
+        [
+          "manifest-regenerate-diff",
+          "SUCCESS"
+        ],
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T23:11:33Z"
+    },
+    {
+      "pr": 1119,
+      "head": "fc2cfdb774938d57be05e8989ad736ce7fcecfb2",
+      "main": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+      "checked_at": "2026-09-13T23:02:25.330365+00:00",
+      "checks": [
+        [
+          "manifest-regenerate-diff",
+          "SUCCESS"
+        ],
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "cef66e68ddffc0c3cb0b93e09b763d023f9bcb87",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T23:02:28Z"
+    },
+    {
+      "pr": 1124,
+      "head": "42fa6e3504900f0dfe109ce1e7991ea53508a605",
+      "main": "af3d6d12c19a2b5e2de8febb65cdb53ec791501b",
+      "checked_at": "2026-09-13T22:48:01.789839+00:00",
+      "checks": [
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T22:48:05Z"
+    },
+    {
+      "pr": 1125,
+      "head": "b1dda601a89dc867c876ee514c74e8d150105dfb",
+      "main": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+      "checked_at": "2026-09-13T23:21:23.756457+00:00",
+      "checks": [
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "815ccc4c1bd2588292966803b13db8f1119308dc",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T23:21:27Z"
+    },
+    {
+      "pr": 1127,
+      "head": "04a4c6d6bf981dc70fc58ff8bb47fec48fe8f9bf",
+      "main": "815ccc4c1bd2588292966803b13db8f1119308dc",
+      "checked_at": "2026-09-13T23:33:00.700075+00:00",
+      "checks": [
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "93144814f5762edf9349f1c0269bb1dcc2e826b6",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T23:33:04Z"
+    },
+    {
+      "pr": 1128,
+      "head": "a738cab0272449d651d5608013b348676b67db5f",
+      "main": "93144814f5762edf9349f1c0269bb1dcc2e826b6",
+      "checked_at": "2026-09-13T23:44:58.155373+00:00",
+      "checks": [
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "d34b7146148109f9f7382b13e03161c80e62ece2",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-13T23:45:01Z"
+    },
+    {
+      "pr": 1129,
+      "head": "99a6ef7ef4963152113c58bc6d4f54821e9c1640",
+      "main": "d34b7146148109f9f7382b13e03161c80e62ece2",
+      "checked_at": "2026-09-14T00:11:58.281724+00:00",
+      "checks": [
+        [
+          "lint",
+          "SUCCESS"
+        ],
+        [
+          "package-review-preview",
+          "SUCCESS"
+        ],
+        [
+          "secret-scan",
+          "SUCCESS"
+        ],
+        [
+          "maintainability-guardrails",
+          "SUCCESS"
+        ],
+        [
+          "doc-link-integrity",
+          "SUCCESS"
+        ],
+        [
+          "reference-layout-pins",
+          "SUCCESS"
+        ],
+        [
+          "asset-registry",
+          "SUCCESS"
+        ],
+        [
+          "type-check",
+          "SUCCESS"
+        ],
+        [
+          "openclaw-plugin",
+          "SUCCESS"
+        ],
+        [
+          "feishu-adapter",
+          "SUCCESS"
+        ],
+        [
+          "unit",
+          "SUCCESS"
+        ],
+        [
+          "queue-contract",
+          "SUCCESS"
+        ],
+        [
+          "doctor-en",
+          "SUCCESS"
+        ],
+        [
+          "check-en",
+          "SUCCESS"
+        ],
+        [
+          "check-jp",
+          "SUCCESS"
+        ],
+        [
+          "check-all",
+          "SUCCESS"
+        ],
+        [
+          "workflow-smoke",
+          "SUCCESS"
+        ]
+      ],
+      "reviews": [],
+      "threads": {
+        "pageInfo": {
+          "hasNextPage": false
+        },
+        "nodes": []
+      },
+      "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+      "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+      "merge": {
+        "sha": "7a6a7ebbf9c2da523e1e5391b133a13a5a3f2197",
+        "merged": true,
+        "message": "Pull Request successfully merged"
+      },
+      "merged_at": "2026-09-14T00:12:01Z"
+    }
+  ],
+  "business": {
+    "pr": 73,
+    "head": "f196cb4d2cc9a8156985d9c1061a3a20634eccae",
+    "main": "5f98b0eaf6bbaaf610e265f61335d09481809c6a",
+    "checked_at": "2026-09-13T23:58:35.288412+00:00",
+    "checks": [
+      [
+        "lint",
+        "SUCCESS"
+      ],
+      [
+        "secret-scan",
+        "SUCCESS"
+      ],
+      [
+        "maintainability-guardrails",
+        "SUCCESS"
+      ],
+      [
+        "doc-link-integrity",
+        "SUCCESS"
+      ],
+      [
+        "reference-layout-pins",
+        "SUCCESS"
+      ],
+      [
+        "asset-registry",
+        "SUCCESS"
+      ],
+      [
+        "type-check",
+        "SUCCESS"
+      ],
+      [
+        "openclaw-plugin",
+        "SUCCESS"
+      ],
+      [
+        "feishu-adapter",
+        "SUCCESS"
+      ],
+      [
+        "unit",
+        "SUCCESS"
+      ],
+      [
+        "queue-contract",
+        "SUCCESS"
+      ],
+      [
+        "doctor-en",
+        "SUCCESS"
+      ],
+      [
+        "check-en",
+        "SUCCESS"
+      ],
+      [
+        "check-jp",
+        "SUCCESS"
+      ],
+      [
+        "check-all",
+        "SUCCESS"
+      ],
+      [
+        "workflow-smoke",
+        "SUCCESS"
+      ]
+    ],
+    "reviews": [],
+    "threads": {
+      "pageInfo": {
+        "hasNextPage": false
+      },
+      "nodes": []
+    },
+    "authorization_head": "ef74eaad55fc279c78606ff84960f7202559ae5c",
+    "authorization_blob": "bc17f4fd896f4335675493490f5063af2aaf8df5",
+    "merge": {
+      "sha": "d7ef906f139b6aa1479280ee04228f5cf5feb230",
+      "merged": true,
+      "message": "Pull Request successfully merged"
+    },
+    "merged_at": "2026-09-13T23:58:38Z"
+  }
+}

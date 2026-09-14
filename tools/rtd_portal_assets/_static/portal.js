@@ -54,10 +54,19 @@ document.querySelectorAll('[data-manual]').forEach(link => {
     event.preventDefault();
     $('#dialog-title').textContent = link.dataset.name;
     $('#dialog-model').textContent = `${link.dataset.model} · ${link.dataset.edition} edition`;
-    $('#language').selectedIndex = 0;
+    $('#language').replaceChildren();
+    JSON.parse(link.dataset.languages).forEach(item => {
+      const option = new Option(item.label + (item.url ? '' : ` — ${item.unavailable_reason}`), item.url || '');
+      option.disabled = !item.url;
+      option.selected = Boolean(item.url) && new URL(item.url, document.baseURI).href === link.href;
+      $('#language').add(option);
+    });
     $('#open-manual').href = link.href;
     $('#manual-dialog').showModal();
   });
+});
+$('#language').addEventListener('change', () => {
+  if ($('#language').value) $('#open-manual').href = $('#language').value;
 });
 $('.close').addEventListener('click', () => $('#manual-dialog').close());
 render();

@@ -46,6 +46,11 @@ class PathSegments:
     WEB_COMPOSITES = "web_composites"
     PUBLISH = "publish"
     WEB = "web"
+    SOURCE = "source"
+    RST = "rst"
+    MD = "md"
+    HTML = "html"
+    EVIDENCE = "evidence"
 
     VERSION_TRACKING = "version_tracking"
     RELEASES = "releases"

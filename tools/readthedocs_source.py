@@ -254,6 +254,33 @@ def _write_index_md(*, output_dir: Path, title: str, manuals: list[RtdManual]) -
     output_dir.joinpath("index.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_redirect_page(*, path: Path, label: str, target_ref: str) -> None:
+    """Write one portable MyST redirect without copying manual body content."""
+
+    target_html = f"{target_ref}.html"
+    target_md = f"{target_ref}.md"
+    escaped_target = html.escape(target_html, quote=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        "\n".join(
+            (
+                "---",
+                "orphan: true",
+                "---",
+                "",
+                f"# {label}",
+                "",
+                f'<meta http-equiv="refresh" content="0; url={escaped_target}">',
+                f"<script>window.location.replace({json.dumps(target_html)});</script>",
+                "",
+                f"[Continue to the manual]({target_md})",
+                "",
+            )
+        ),
+        encoding="utf-8",
+    )
+
+
 def _write_short_aliases(*, output_dir: Path, manuals: list[RtdManual]) -> None:
     """Create stable root-level entry points for published manuals.
 
@@ -266,35 +293,20 @@ def _write_short_aliases(*, output_dir: Path, manuals: list[RtdManual]) -> None:
 
     aliases: dict[str, RtdManual] = {}
     for manual in manuals:
-        existing = aliases.get(manual.short_alias)
+        alias_key = manual.short_alias.casefold()
+        existing = aliases.get(alias_key)
         if existing is not None:
             raise RuntimeError(
                 "duplicate RTD short alias "
                 f"{manual.short_alias}: {existing.source_dir} and {manual.source_dir}"
             )
-        aliases[manual.short_alias] = manual
+        aliases[alias_key] = manual
 
-    for alias, manual in aliases.items():
-        target_html = f"{manual.toctree_ref}.html"
-        target_md = f"{manual.toctree_ref}.md"
-        escaped_target = html.escape(target_html, quote=True)
-        output_dir.joinpath(f"{alias}.md").write_text(
-            "\n".join(
-                (
-                    "---",
-                    "orphan: true",
-                    "---",
-                    "",
-                    f"# {manual.label}",
-                    "",
-                    f'<meta http-equiv="refresh" content="0; url={escaped_target}">',
-                    f"<script>window.location.replace({json.dumps(target_html)});</script>",
-                    "",
-                    f"[Continue to the manual]({target_md})",
-                    "",
-                )
-            ),
-            encoding="utf-8",
+    for manual in aliases.values():
+        write_redirect_page(
+            path=output_dir / f"{manual.short_alias}.md",
+            label=manual.label,
+            target_ref=manual.toctree_ref,
         )
 
 

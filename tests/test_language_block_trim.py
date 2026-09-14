@@ -221,6 +221,24 @@ class BundlePageTrimTests(unittest.TestCase):
             self.assertIn("page/00_preface.rst", index)
             self.assertIn("page/p66_03_product_overview_placeholder.rst", index)
             self.assertNotIn("page/p81_03_product_overview_placeholder.rst", index)
+            self.assertFalse((page_dir / "p81_03_product_overview_placeholder.rst").exists())
+            self.assertTrue((page_dir / "p66_03_product_overview_placeholder.rst").is_file())
+
+    def test_language_trim_rejects_symlink_without_touching_external_source(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "bundle"
+            (bundle / "page").mkdir(parents=True)
+            original = "\\HBApplyLang{uk}\nreview source\n"
+            source = root / "source.rst"
+            source.write_text(original, encoding="utf-8")
+            (bundle / "page" / "other.rst").symlink_to(source)
+            index = ".. include:: page/other.rst\n"
+            (bundle / "index.rst").write_text(index, encoding="utf-8")
+            with self.assertRaisesRegex(RuntimeError, "escapes the generated bundle"):
+                trim_bundle_language_pages(bundle_dir=bundle, languages=["en"])
+            self.assertEqual(original, source.read_text(encoding="utf-8"))
+            self.assertEqual(index, (bundle / "index.rst").read_text(encoding="utf-8"))
 
     def test_all_in_scope_review_pages_keep_the_index_byte_identical(self):
         with tempfile.TemporaryDirectory() as td:

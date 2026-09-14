@@ -156,7 +156,7 @@ def repo_relative(path: Path) -> str:
     return _repo_relative_impl(path, repo_root=_repo_root())
 
 
-def publish_release_root_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def publish_release_root_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _publish_release_root_for_target_impl(
         repo_root=_repo_root(),
         config_path=config_path,
@@ -164,10 +164,11 @@ def publish_release_root_for_target(*, config_path: Path, model: str, region: st
         region=region,
         config_loader=load_config,
         release_root_for_target=release_root_for_target,
+        lang=lang,
     )
 
 
-def publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str) -> Path:
+def publish_release_version_dir_for_target(*, config_path: Path, model: str, region: str, version: str, lang: str | None = None) -> Path:
     return _publish_release_version_dir_for_target_impl(
         repo_root=_repo_root(),
         config_path=config_path,
@@ -176,10 +177,11 @@ def publish_release_version_dir_for_target(*, config_path: Path, model: str, reg
         version=version,
         config_loader=load_config,
         release_version_dir_for_target=release_version_dir_for_target,
+        lang=lang,
     )
 
 
-def publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str) -> Path:
+def publish_release_latest_dir_for_target(*, config_path: Path, model: str, region: str, lang: str | None = None) -> Path:
     return _publish_release_latest_dir_for_target_impl(
         repo_root=_repo_root(),
         config_path=config_path,
@@ -187,6 +189,7 @@ def publish_release_latest_dir_for_target(*, config_path: Path, model: str, regi
         region=region,
         config_loader=load_config,
         release_latest_dir_for_target=release_latest_dir_for_target,
+        lang=lang,
     )
 
 
@@ -276,6 +279,9 @@ def stage_web_publish_assets_to_host_repo(
     model: str,
     region: str,
     version: str,
+    projection_captures: tuple[Any, ...] = (),
+    git_ref: str = "",
+    target_lang: str | None = None,
 ) -> tuple[Path, Path]:
     return _stage_web_publish_assets_to_host_repo_impl(
         built_md_output_path=built_md_output_path,
@@ -284,8 +290,10 @@ def stage_web_publish_assets_to_host_repo(
         model=model,
         region=region,
         version=version,
+        projection_captures=projection_captures,
+        git_ref=git_ref,
+        target_lang=target_lang,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
-        copy_tree=_copy_tree_impl,
     )
 
 
@@ -347,6 +355,8 @@ def write_web_publish_metadata(
     md_output_path: Path,
     html_dir: Path,
     queue_record_ids: tuple[str, ...] = (),
+    target_lang: str | None = None,
+    language_projection_evidence_path: Path | None = None,
 ) -> Path:
     return _write_web_publish_metadata_impl(
         config_path=config_path,
@@ -358,6 +368,9 @@ def write_web_publish_metadata(
         md_output_path=md_output_path,
         html_dir=html_dir,
         queue_record_ids=queue_record_ids,
+        target_lang=target_lang,
+        language_projection_evidence_path=language_projection_evidence_path,
+        publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,
         repo_relative=repo_relative,

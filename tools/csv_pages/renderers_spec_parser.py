@@ -489,6 +489,7 @@ def _parse_spec_master_sections(
         )
 
     section_dict: dict[str, dict[str, object]] = {}
+    group_source_orders: dict[tuple[str, str], int] = {}
     for row in sorted(rows, key=lambda x: (x["section_order"], x["source_order"])):
         section_key = str(row["section_key"])
         section = section_dict.setdefault(
@@ -502,7 +503,12 @@ def _parse_spec_master_sections(
         )
         rows_map = section["rows"]
         assert isinstance(rows_map, dict)
-        row_key = str(row["row_key"])
+        group_source_order = group_source_orders.setdefault(
+            (section_key, str(row["row_key"])), int(row["source_order"])
+        )
+        # A shared semantic key may contain separately labelled ports. Do not
+        # discard their localized labels or attach one port's notes to another.
+        row_key = (str(row["row_key"]), str(row["row_label"]), tuple(row["row_label_refs"]))
         item = rows_map.setdefault(
             row_key,
             {
@@ -510,11 +516,14 @@ def _parse_spec_master_sections(
                 "label_refs": row["row_label_refs"],
                 "order": row["row_order"],
                 "source_order": row["source_order"],
+                "group_source_order": group_source_order,
+                "line_order": row["line_order"],
                 "lines": [],
             },
         )
         lines = item["lines"]
         assert isinstance(lines, list)
+        item["line_order"] = min(float(item["line_order"]), float(row["line_order"]))
         lines.append(
             (
                 float(row["line_order"]),
@@ -538,7 +547,8 @@ def _parse_spec_master_sections(
         out_rows: list[tuple[str, str]] = []
         for row in sorted(
             rows_map.values(),
-            key=lambda x: (float(x["order"]), int(x["source_order"])),
+            key=lambda x: (float(x["order"]), int(x["group_source_order"]),
+                           float(x["line_order"]), int(x["source_order"])),
         ):
             lines = row["lines"]
             assert isinstance(lines, list)

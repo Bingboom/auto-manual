@@ -1,0 +1,58 @@
+{
+  "status": "verified",
+  "preceding_deployment_build": 34539600,
+  "records": [
+    {
+      "record_id": "recvv9cTEvtUF4",
+      "document_id": "JE-1000F_EU_en_2.0",
+      "fields": {
+        "Document_Key": [
+          {
+            "id": "recvhoZFKGg7l0"
+          }
+        ],
+        "Market_Group": [
+          {
+            "id": "recvg5S7r6OdTt"
+          }
+        ],
+        "Version": "2.0",
+        "Lang": "en",
+        "HTML_link": "https://ht-doc.readthedocs.io/JE-1000F/EU/en/md/manual_je1000f_eu_en.html",
+        "Git_ref": "a87ff6ec97c2a4f1a071936dce5dd38b976550e2",
+        "Remarks": "Git-only Web publication receipt; source content V2.0; Hello-Docs #72; no build dispatch. Owner: 夏冰. Human content/visual acceptance user-deferred.",
+        "Workflow_action": null,
+        "是否触发文档构建": null,
+        "是否立即构建": false,
+        "是否进入Review": false,
+        "是否回写": false
+      }
+    },
+    {
+      "record_id": "recvv9cTEvtX8l",
+      "document_id": "JE-1000F_EU_fr_2.0",
+      "fields": {
+        "Document_Key": [
+          {
+            "id": "recvhoZFKGg7l0"
+          }
+        ],
+        "Market_Group": [
+          {
+            "id": "recvg5S7r6OdTt"
+          }
+        ],
+        "Version": "2.0",
+        "Lang": "fr",
+        "HTML_link": "https://ht-doc.readthedocs.io/JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html",
+        "Git_ref": "a87ff6ec97c2a4f1a071936dce5dd38b976550e2",
+        "Remarks": "Git-only Web publication receipt; source content V2.0; Hello-Docs #72; no build dispatch. Owner: 夏冰. Human content/visual acceptance user-deferred.",
+        "Workflow_action": null,
+        "是否触发文档构建": null,
+        "是否立即构建": false,
+        "是否进入Review": false,
+        "是否回写": false
+      }
+    }
+  ]
+}

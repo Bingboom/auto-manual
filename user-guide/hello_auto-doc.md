@@ -1,5 +1,33 @@
 # Hello Auto Doc
 
+手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
+未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
+
+Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
+缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
+旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
+
+Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
+检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
+需要探测已发布链接时使用[线上HTTP检查](../code-as-doc/dev/manual_operations_online_health.md)；
+它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
+
+夏冰（GitHub `Bingboom`）负责发布健康与手册反馈，每次发布后检查本地资源、
+线上可访问性和实际部署版本。已验证单语页面提供 [GitHub Issues](https://github.com/Bingboom/auto-manual/issues)
+入口和可复制的型号/市场/语言/版本/页面上下文；读者自行提交问题，页面不会自动发送。
+处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。响应/修复时限尚待确定，
+不创建定时任务或常驻服务。
+
+Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
+`check`、Markdown 和 HTML 使用同一份所选语言 RST。显式语言的 Web 队列构建还会
+[核对并封存三步凭据](../code-as-doc/dev/web_language_release_evidence.md)，绑定型号、市场、
+语言、版本、Git_ref 及 Markdown/HTML 产物；凭据缺失或内容变化会阻止该版本被接受为单语发布。
+共享配置选法语时，版本目录也使用法语，不落到配置的第一个语言下。旧的不可变版本不补写凭据，
+需重新构建新版本。工作流、线上表、审稿源不变；凭据通过不等于翻译正确或已经在 RTD 上线。
+发布组装会原样保留已生成的 `manual.ir.json` 和 `manual_bundle.html`，不再遗漏凭据中
+记录的辅助文件；旧版本没有这些文件时仍可组装。未知文件不会被静默加入或从校验中排除。
+
 Updated: 2026-09-05
 
 This file replaces `Template_maintenance_and_using_guide.md`.
@@ -465,8 +493,9 @@ runtime.
 `review-asis` preserves the committed review page bytes, but the prepared
 bundle always applies the target's current language registry. If a historical
 merged review index still includes a language that this model no longer ships,
-the build removes only those out-of-scope page includes by their explicit
-`\HBApplyLang{...}` declarations and trims the matching block from shared
+the build removes those out-of-scope page includes and their generated page
+copies by their explicit `\HBApplyLang{...}` declarations, rejecting paths
+that escape the generated bundle, and trims the matching block from shared
 multi-language pages. A fully recognized `English / French / ...` language
 catalogue on that shared page is trimmed to the same scope. It does not edit
 `docs/_review`, infer language from filenames or translated headings, or relabel
@@ -669,7 +698,8 @@ The manual system now has four layers, but they are used at different stages.
 - `Build_family` only expresses the queue row's language range: `us-merged`, `eu-merged`, `us-en`, `eu-en`, `us-es`, `us-fr`, `pt-br`, `jp-ja`, or `cn-zh`. Product/skeleton identity comes from `Document_Key`; target-specific configs declare the accepted row language family through `build.language_family`. `Lang` remains optional compatibility/narrowing data.
 - merged US/EU Start Review, Draft, and Publish rows should use `Build_family = us-merged` / `eu-merged` and may leave `Lang` blank; single-language rows should use the matching language family such as `us-en` / `eu-en` / `us-fr` / `us-es` / `pt-br`. JBP does not use a special Base value: `JBP-2000B_US + us-merged` resolves the BP skeleton by exact target.
 - config policy for `build.queue_by_document_key`: enable it for merged whole-book families that intentionally produce one shared manual across multiple languages, such as today's `us-merged`, `eu-merged`, and future `cn-merged`; keep it disabled for single-language families such as `us-en`, `eu-en`, `us-fr`, `us-es`, `pt-br`, `jp-ja`, `cn-zh`, or future `eu-de` / `eu-fr`, which should continue to run one queue row per `record_id`
-   - print Publish stages IDML/LaTeX/DOCX/PDF/ZIP/Markdown under the Git-ignored runtime tree [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), delivers formal files through Feishu or short-lived GitHub Actions artifacts, and does not deploy HTML or commit those generated files. Web Publish always refreshes approved Web assets, writes MyST plus verification HTML under `versions/<version>/web/`, freezes only Web source/assets in the `Hello-Docs/publish:docs/publish/` candidate, opens or updates a `docs/publish/**`-only PR into `Hello-Docs/main`, and writes the deterministic RTD route to `HTML_link`.
+   - print Publish stages IDML/LaTeX/DOCX/PDF/ZIP/Markdown under the Git-ignored runtime tree [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), delivers formal files through Feishu or short-lived GitHub Actions artifacts, and does not deploy HTML or commit those generated files. Web Publish always refreshes approved Web assets, seals MyST plus verification HTML under `versions/<version>/web/` and immutable metadata at `versions/<version>/web_publish_meta.json`, then atomically updates `latest/web/publish_meta.json`. Exact retries leave the seal untouched; drift fails before queue success. It then freezes only Web source/assets in the `Hello-Docs/publish:docs/publish/` candidate, opens or updates a `docs/publish/**`-only PR into `Hello-Docs/main`, and writes the deterministic RTD route to `HTML_link`; see the [`OPS-04a local seal contract`](../code-as-doc/dev/ops_04a_web_version_seal.md).
+   - After a Git-only publication reaches RTD, the [deployment receipt check](../code-as-doc/dev/rtd_deployment_receipt.md) compares the exact frozen source and served HTML/assets. The portal Sphinx build emits the receipt automatically; checking it needs no queue or online-table write. Its internal cache probes avoid stale or optimized CDN responses, and incomplete transfers are retried within fixed limits; original asset hashes must still match. Formal publication-link writeback remains a separate action.
    - [`../scripts/process_build_queue.ps1`](../scripts/process_build_queue.ps1) is the Windows automation wrapper for that queue bridge; it restores the local Node/npm path plus the saved `FEISHU_PHASE2_*` user env vars, then writes logs into [`../.tmp/process-build-queue/`](../.tmp/process-build-queue) and forwards extra queue args such as `--dry-run` or `--record-id`
    - [`../scripts/process_build_queue_feishu.ps1`](../scripts/process_build_queue_feishu.ps1) is the one-click Feishu-only queue entry on Windows; it fixes the primary upload target to Feishu/wiki
    - the DingTalk AliDocs mirror-upload chain was retired on 2026-07-02 (its one-click queue entry, session-upload CLI, and setup guide were removed); Feishu/wiki is the only artifact upload target
@@ -710,6 +740,7 @@ The manual system now has four layers, but they are used at different stages.
    - when one spec page renders both bottom notes and bottom footnotes, the final output order follows [`docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
    - `Spec_Master.csv` uses `Row_label_source`, `Param_source`, and `Value_source` as the shared source-language columns; `Source_lang` stores that source-language code explicitly, for example `en`, `ja`, and `zh`, and code no longer infers it from `Region`
    - `Spec_Master.csv` now starts with `spec_row_key`; `document_key` is still the target dimension, but not the unique row key
+   - Specification rows sharing `Row_key` retain their distinct localized labels and label footnotes. Equal labels remain multiline groups; differing labels are separate rows ordered by `Line_order` within that group. Keep the released manual's port names in the source instead of relying on inferred wattage labels.
    - `document_key` is a derived helper column and may use either `[Model]_[Region]` or `[Model]_[Region]_[Source_lang]`
    - `Line_order` is required for spec rebuilds: use `1` for one-line rows and `1`, `2`, `3`, ... for multi-line values
    - the solar-panel input range in the eight shared-language charging-method pages comes from `页面占位参数`: use `Page=charging_methods`, `Row_key=pv_input_range`, `Slot_key=value`, and preserve the approved language-specific dash/spacing exactly; the template token is `|PV_INPUT_RANGE|`. The current JE-1000F US/EU/AU/KR and JE-1500D pt-BR rows were F6-approved, seeded, and read back on 2026-07-31; a future target still needs its own exact-value approval plus post-sync `diff-report`
@@ -868,6 +899,7 @@ Important:
 - `python build.py check`, `word`, `html`, and `pdf` use `source=auto` by default, so they build from `_review` once review exists.
 - `python build.py publish` uses review content only, then runs `check -> diff-report -> word -> pdf -> md -> release-manifest` as one formal release command.
 - for both `Publish` and `Web Publish`, keep `Document_link.Git_ref` pointed at the active review branch. Print artifacts and responsive Web output are separate builds but must resolve the same approved content revision.
+- 单语 `Web Publish` 行明确填写 `Lang` 和匹配的单语 `Build_family`（例如 `en/eu-en`、`fr/eu-fr`），每语独立记录；不要把带 Lang 的 Web 行放入 merged family。Print Publish 仍保持整本、Lang 留空。版本号和线上队列写入仍需确认；当前工作流回填的 HTML_link 不等于已上线证明。见[队列契约](../code-as-doc/dev/web_publish_locale_queue.md)。
 - `python build.py handoff` now generates a minimal handoff package under [`docs/_handoff/`](../docs): it resolves explicit baseline/current inputs, loads supported `rst/html` inputs, generates rule-based add/delete/replace records, copies referenced draft images into `draft/assets/`, and writes `draft/manual.md`, `draft/manual.docx`, optional `draft/manual.html`, `changes/change_log.csv`, `changes/change_log.xlsx`, `changes/change_summary.md`, `handoff/design_handoff.md`, and `manifest.json`. It does not yet provide final page mapping or advanced semantic change classification.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --formats html,word,pdf` is the one-command wrapper for the fixed four-language export pack.
 - `.\scripts\build_us_jp_manuals.ps1 --model <MODEL> --build-action validate --languages en,fr` runs one explicit `build.py` action across the selected matrix targets instead of deriving actions from `--formats`.
@@ -1299,7 +1331,7 @@ finished artwork.
 - Scientific subscripts and specification superscripts are protected across the same Pandoc step, so source notation such as ``V\ :sub:`oc``` renders as semantic `V<sub>oc</sub>` and governed `①` references render as `<sup>①</sup>` in every language rather than showing literal inline Markdown notation.
 - Web Publish first materializes target-scoped `md` directories, then assembles `docs/publish/web/` as the homepage catalog without rewriting the repo-root [`docs/index.rst`](../docs/index.rst). The assembler also writes one collision-checked root alias named from each manual stem; it forwards to the nested model/region page with a relative target and is the URL persisted in `HTML_link`. A pre-push three-dot diff guard permits only `docs/publish/**` in the production PR.
 - RTD is the responsive Web presentation surface; it is not the release authority for IDML, LaTeX, PDF, DOCX or formal print Markdown
-- The [RTD manual center](../code-as-doc/dev/rtd_manual_portal.md) adds product cards, model/name search and US/EU/UK filtering at build time over the frozen index. EU is temporarily the default; EU and UK reuse the same EU publications and links, with no duplicate source or release. All published manuals remain available through ordinary links, including without JavaScript. The portal does not create missing translations or independent language URLs; the current publication retains all its existing bundled languages. Other pages keep their current Furo/manual styles.
+- The [RTD manual center](../code-as-doc/dev/rtd_manual_portal.md) adds product cards, model/name search and US/EU/UK filtering at build time over the frozen index. EU is temporarily the default; EU and UK reuse the same EU publications and links, with no duplicate source or release. All published manuals remain available through ordinary links, including without JavaScript. The portal does not create missing translations or independent language URLs; the current publication retains all its existing bundled languages. Verified single-language pages expose the operator-selected GitHub Issues channel with locally copied frozen page context; legacy pages retain their current behavior. Other pages keep their current Furo/manual styles.
 
 `fast` behavior:
 

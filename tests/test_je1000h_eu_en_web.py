@@ -126,6 +126,29 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             data = (FORMAL_SOURCE / record["path"]).read_bytes()
             self.assertEqual(record["size"], len(data))
             self.assertEqual(record["sha256"], hashlib.sha256(data).hexdigest())
+        inventory = json.dumps(manifest["files"], ensure_ascii=False,
+                               sort_keys=True, separators=(",", ":")).encode()
+        self.assertEqual(manifest["files_inventory_sha256"], hashlib.sha256(inventory).hexdigest())
+
+    def test_ac_total_output_and_footnote_match_released_pdf(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        labels = {cell.get_text("", strip=True): cell.parent
+                  for cell in soup.select("th.hb-spec-label")}
+        self.assertIn("AC Total Output②", labels)
+        total = labels["AC Total Output②"]
+        self.assertEqual("1800W Rated, 3600W Surge peak", total.select_one("td").get_text(strip=True))
+        self.assertEqual([], labels["3 × AC"].select("sup"))
+
+    def test_usb_parent_and_power_labels_match_released_pdf(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        labels = [cell for cell in soup.select("th.hb-spec-label")
+                  if cell.get_text(strip=True) == "2 × USB-C"]
+        self.assertEqual(1, len(labels))
+        value = labels[0].parent.select_one("td")
+        text = value.get_text("\n", strip=True)
+        self.assertIn("USB-C 30W: 30W Max", text)
+        self.assertIn("USB-C 140W: 140W Max", text)
+        self.assertLess(text.index("USB-C 30W:"), text.index("USB-C 140W:"))
 
     def test_web_output_is_complete_semantic_and_target_local(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")

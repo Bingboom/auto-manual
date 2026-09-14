@@ -34,8 +34,15 @@ class Jbp2000bEuEnWebLayoutTests(unittest.TestCase):
     def test_compatible_host_models_are_allowed_identity_literals(self) -> None:
         config = CONFIG.read_text(encoding="utf-8")
 
-        self.assertIn("- Jackery Explorer 2000 Plus", config)
-        self.assertIn("- Jackery Explorer 1000 Plus", config)
+        self.assertIn("- Jackery E1000 Plus V2", config)
+        self.assertIn("- Jackery E2000 Plus V2", config)
+        self.assertIn(
+            "BP_COMPATIBLE_HOST_MODELS: the Jackery E1000 Plus V2 "
+            "and the Jackery E2000 Plus V2",
+            config,
+        )
+        self.assertNotIn("Jackery Explorer 2000 Plus", config)
+        self.assertNotIn("Jackery Explorer 1000 Plus", config)
 
 
 if __name__ == "__main__":

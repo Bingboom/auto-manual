@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-09-13T23:19:34.425042+00:00",
+  "status": "passed-local-integrity",
+  "baseline": "/tmp/manual-batch-je1000f.cJBwew/handoff-20260913/business-base-live/docs/publish",
+  "candidate": "/tmp/manual-batch-je1000f.cJBwew/handoff-20260913/business-six-candidate/docs/publish",
+  "baseline_manifest_sha256": "153cf82d4e8d0395b4b79dd0c054543930a2d50324d56679082a1f2603b1c8be",
+  "candidate_manifest_sha256": "f1eb0e4fd945589928b7bee5064285ecb52679c109a98653150025a57134e26e",
+  "baseline_files": 2198,
+  "candidate_files": 2246,
+  "publication_count": 23,
+  "changed_target_count": 6,
+  "unchanged_target_count": 17,
+  "single": 8,
+  "legacy_unspecified": 15,
+  "canonical_routes_preserved": 23,
+  "legacy_alias_carriers_preserved": 44,
+  "root_alias_carriers_preserved": 23,
+  "alias_targets_unchanged": 67,
+  "alias_bytes_unchanged": 67,
+  "changes": {
+    "changed": 19,
+    "added": 54,
+    "removed": 6
+  },
+  "prior_build_actions_verified": 24,
+  "audit_elapsed_seconds": 3.046,
+  "build_total_elapsed_seconds": null,
+  "human_total_elapsed_seconds": null,
+  "limits": [
+    "No PDF/content comparison or visual audit",
+    "No HTTP or deployment claim",
+    "Publication single scope is validated by existing sealed-evidence contracts",
+    "Existing build logs lack complete wall-clock timings; total build/labor time not inferred"
+  ]
+}

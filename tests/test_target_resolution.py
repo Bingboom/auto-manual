@@ -10,6 +10,7 @@ from tools import build_docs
 from tools import build_docs_artifacts
 from tools import gen_index_bundle
 from tools.gen_index_bundle_assets import rewrite_rst_asset_paths
+from tools.gen_index_bundle_runtime import resolve_bundle_materialization_context
 from tests.test_helpers import temp_test_root, write_text
 
 
@@ -23,6 +24,48 @@ class TestTargetResolution(unittest.TestCase):
             "导出物路径,语言变体,内容哈希,备注\n",
             encoding="utf-8",
         )
+
+    def test_web_source_scope_keeps_target_locale_while_materializing_all_languages(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            docs_dir = root / "docs"
+            docs_dir.mkdir()
+            primary_languages: list[str] = []
+
+            context = resolve_bundle_materialization_context(
+                {"build": {"languages": ["en", "fr"]}},
+                model="M1", region="US", lang="fr", data_root=None,
+                docs_dir=docs_dir, repo_root=root, page_selector=None,
+                bundle_dir_override=docs_dir / "source" / "rst",
+                materialize_all_languages=True,
+                resolve_build_model=lambda _cfg, model: model,
+                resolve_build_region=lambda _cfg, region: region,
+                build_langs=lambda _cfg: ["en", "fr"],
+                resolve_output_lang=lambda _cfg: None,
+                resolve_config_pages_or_raise=lambda *_args, **_kwargs: mock.Mock(
+                    manifest_path=None
+                ),
+                select_planned_pages=lambda pages, _selector: pages,
+                plan_materialized_pages=lambda *_args, **_kwargs: [],
+                preflight_contract_assets=lambda **_kwargs: None,
+                resolve_spec_master_csv_path=lambda *_args, **_kwargs: root / "spec.csv",
+                resolve_localized_copy_csv_path=lambda *_args, **_kwargs: root / "copy.csv",
+                pick_vars_map=lambda *_args: {},
+                fill_product_name_from_spec_master=lambda values, **kwargs: (
+                    primary_languages.append(kwargs["lang"]) or values
+                ),
+                load_rst_substitutions=lambda _path: {},
+                load_config_rst_substitutions=lambda _cfg: {},
+                resolve_spec_master_substitutions=lambda **_kwargs: {},
+                resolve_reference_doc=lambda *_args, **_kwargs: None,
+                derive_word_title=lambda *_args: "Demo",
+                bundle_dir_for_target=lambda **_kwargs: docs_dir / "unused",
+            )
+
+        self.assertEqual(("en", "fr"), context.build_langs)
+        self.assertEqual("fr", context.primary_lang)
+        self.assertEqual("fr", context.output_lang)
+        self.assertEqual(["fr"], primary_languages)
 
     def test_rewrite_rst_asset_paths_should_handle_substitution_image_directives(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -134,6 +134,8 @@ def process_queue_record_group(
     md_output_path: Path | None = None
     latex_output_dir: Path | None = None
     html_output_dir: Path | None = None
+    language_projection_evidence_path: Path | None = None
+    built_target_lang: str | None = None
     artifact_output_path: Path | None = None
     latest_link_url: str | None = None
     latest_document_link_dd_url: str | None = None
@@ -315,6 +317,10 @@ def process_queue_record_group(
             md_output_path = built_outputs.md_output_path
             latex_output_dir = built_outputs.latex_output_dir
             html_output_dir = built_outputs.html_output_dir
+            language_projection_evidence_path = getattr(
+                built_outputs, "language_projection_evidence_path", None
+            )
+            built_target_lang = getattr(built_outputs, "target_lang", None)
             artifact_output_path = built_outputs.upload_output_path
         # Upload the built artifact to the knowledge base ONLY in publish: the IDML
         # file's link lands in the idml_file field. In review the deliverable is the
@@ -439,6 +445,24 @@ def process_queue_record_group(
         # is a plain dict). Backport reads 基线文档 from the row to diff against.
         if can_write_feishu_cloud_doc and baseline_doc_url:
             success_fields[BASELINE_DOC_FIELD] = baseline_doc_url
+        if effective_doc_phase == "web_publish":
+            if md_output_path is None or html_output_dir is None:
+                raise RuntimeError("Web Publish output is missing Markdown source or HTML verification output")
+            if write_web_publish_metadata is None:
+                raise RuntimeError("Web Publish metadata writer is not configured")
+            write_web_publish_metadata(
+                config_path=resolved_config_path,
+                model=model,
+                region=region,
+                version=record.version,
+                git_ref=record.git_ref,
+                built_at=built_at,
+                md_output_path=md_output_path,
+                html_dir=html_output_dir,
+                queue_record_ids=tuple(group_record.record_id for group_record in group),
+                target_lang=built_target_lang,
+                language_projection_evidence_path=language_projection_evidence_path,
+            )
         _write_terminal_queue_fields(
             source=source,
             base_token=binding.base_token,
@@ -463,22 +487,6 @@ def process_queue_record_group(
                 latex_dir=latex_output_dir,
                 html_dir=None,
                 document_link_url=document_link_url,
-                queue_record_ids=tuple(group_record.record_id for group_record in group),
-            )
-        elif effective_doc_phase == "web_publish":
-            if md_output_path is None or html_output_dir is None:
-                raise RuntimeError("Web Publish output is missing Markdown source or HTML verification output")
-            if write_web_publish_metadata is None:
-                raise RuntimeError("Web Publish metadata writer is not configured")
-            write_web_publish_metadata(
-                config_path=resolved_config_path,
-                model=model,
-                region=region,
-                version=record.version,
-                git_ref=record.git_ref,
-                built_at=built_at,
-                md_output_path=md_output_path,
-                html_dir=html_output_dir,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
             )
         print(

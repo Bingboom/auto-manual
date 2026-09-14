@@ -1,0 +1,691 @@
+[
+  {
+    "identity": [
+      "JE-1000H",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+    "source_manifest_path": "manual_sources/JE-1000H/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "02b1a3db19d02fe6510361d3fb7e67ea239fb86b80a3d1022962d182f262c148",
+    "source_authority": {
+      "published_revision": "V2.0-2026-08-03",
+      "published_pdf_name": "Jackery Explorer 1000 Plus User Manual (JE-1000H) EUUK V2.0-2026-08-03.pdf",
+      "published_pdf_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+      "source_artwork_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+      "audit_record": "code-as-doc/reviews/je1000h_eu_en_web_intake_2026-09.md"
+    },
+    "metadata_path": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases/JE-1000H/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "e8dedfbe38dc32754e4ea3b4024f5d70d79f01a796b44f2bbd95b3150992fd49",
+    "version_metadata_sha256": "e8dedfbe38dc32754e4ea3b4024f5d70d79f01a796b44f2bbd95b3150992fd49",
+    "candidate_metadata_sha256": "bdeb9493f400ed12d6cdd74ba0bf86441e23bf26b458b1a9f15a517ba6817014",
+    "language_receipt_sha256": "b78b4702b2e14d0fc99e6dc6f642c1da37a483d78fc5779acfc0cf15ecee0144",
+    "provenance_sha256": "6f4084c60f92672b31a7755c69b3d78cb7042ee8f22e500c41ca603036179bfb",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-1000H",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-1000H/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-1000H-check.log",
+        "sha256": "1cbd550fba7f89457abba21ad09cdd10d3ed907a9937e2213fa6816a0282f349"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-1000H",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-1000H/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-1000H-md.log",
+        "sha256": "bb84ed74d5b6669e3d45f9ecd29249f69e32c99da07e52eb3a6ad9316b790a3a"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-1000H-rtd-source.log",
+        "sha256": "d04925f79e51f442f11d55975c90ab68f4e60431c4e8703612cc095e32535e48"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H/docs/_build/rtd",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-1000H/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-1000H-strict-sphinx.log",
+        "sha256": "66a0483b7b10d7e6fd9d0c4476190a183a2ceb940bef26763e022625b62d651f"
+      }
+    ]
+  },
+  {
+    "identity": [
+      "JE-2000F",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+    "source_manifest_path": "manual_sources/JE-2000F/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "6972ffebeba0ac55a860192822b91f49ec507ae2bd8b96ae805e98fef1e0f608",
+    "source_authority": {
+      "published_revision": "V2.0-2026-08-04",
+      "published_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
+      "published_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+      "source_artwork_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+      "review_branch": "origin/review/JE-2000F-EU",
+      "review_commit": "6333df933820c5ed9058d7ad6e4140517e9111de",
+      "audit_record": "code-as-doc/reviews/je2000f_eu_en_web_intake_2026-09.md"
+    },
+    "metadata_path": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases/JE-2000F/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "ce5c5d14ac8f70058da07b00d2c7408677cadee2f24514d84dde415097ef3b1a",
+    "version_metadata_sha256": "ce5c5d14ac8f70058da07b00d2c7408677cadee2f24514d84dde415097ef3b1a",
+    "candidate_metadata_sha256": "c0f9027485be71b8518f3738116f9ce38351e24277699843074e739d4d452868",
+    "language_receipt_sha256": "f7d3d002d140d8458df6ac76307762d24b9813da00db2b8bec2802f36eb00776",
+    "provenance_sha256": "00bb1af1dd1cc7093faa60dcb666768e5a1898eaeea5f7ae9248003d644b6d00",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-2000F",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-2000F/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000F-check.log",
+        "sha256": "d1b072e09faadee4b4b2bea84383e5585f0746d4a04d209533d4193594b9ec28"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-2000F",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-2000F/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000F-md.log",
+        "sha256": "6b54265c4652e7b61a530255719bb95b19e215bf4008eb7ba886bc8a51863e2f"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000F-rtd-source.log",
+        "sha256": "16578e23184e3713d04920b1a107c08656b3be1f8fb54e71b18b9b47835391b7"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F/docs/_build/rtd",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000F/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000F-strict-sphinx.log",
+        "sha256": "0b625a002e52b4678b4187743a3f600f23d72799657f667cf50382512592bca6"
+      }
+    ]
+  },
+  {
+    "identity": [
+      "JE-3000C",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+    "source_manifest_path": "manual_sources/JE-3000C/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "0fb50e94defd346cd59723c816380176e469fe20a9bbfa0a3496f3d2a7d88eba",
+    "source_authority": {
+      "published_revision": "V2.0-2026-07-31",
+      "published_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
+      "published_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
+      "source_node": "https://alidocs.dingtalk.com/i/nodes/a9E05BDRVQ6mQG3GhyyglLX9J63zgkYA",
+      "requirement_record": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA/97v7518/FBHsOuFTMQ",
+      "audit_record": "code-as-doc/reviews/je3000c_eu_en_web_intake_2026-09.md"
+    },
+    "metadata_path": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases/JE-3000C/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "d9dd5852f74749ed07ed885b77f5af12916f1f79d2d3037d197c294320bfab1c",
+    "version_metadata_sha256": "d9dd5852f74749ed07ed885b77f5af12916f1f79d2d3037d197c294320bfab1c",
+    "candidate_metadata_sha256": "c549889fd045a1fb965232e593676cd5e68d20cce672f7cf27be9d7fbfe4d5bc",
+    "language_receipt_sha256": "8baf4a8b3de4c15607208af15068489b91aaf7be098b85b44fa524ce3de0a131",
+    "provenance_sha256": "5d71f324fdd09267abe917269609eea8917f37ec416e49e4ce9f40fc065f11ea",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-3000C",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-3000C/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-3000C-check.log",
+        "sha256": "cedb1613b6a8490c0b282e6fbf79f0ab719a77fc05ec4804cabb9b848d7d4925"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-3000C",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-3000C/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-3000C-md.log",
+        "sha256": "61d9ba839f87cfeeeb4d9ebb322ee7644875bd807224dd8589423d06b5c2d2e6"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-3000C-rtd-source.log",
+        "sha256": "106b5dd0569cf6cf500fbe7feabf6a7b23740087e1f1005d5debf51a7308420d"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C/docs/_build/rtd",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-3000C/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-3000C-strict-sphinx.log",
+        "sha256": "646f780507540ab732c59e146f960fde6744893aa274bf899dc587250982ef8a"
+      }
+    ]
+  },
+  {
+    "identity": [
+      "JE-2000E",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+    "source_manifest_path": "manual_sources/JE-2000E/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "a1dc05730bce103b29bccc96acdcf3ac8aba37f740136094bd5e9141b399138b",
+    "source_authority": {
+      "published_revision": "V2.0-2026-08-03",
+      "published_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
+      "published_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+      "source_artwork_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+      "dingtalk_requirement_record": "S4mhIE7S4v",
+      "dingtalk_requirement_id": "LANG-S4mhIE7S",
+      "dingtalk_document_node": "YndMj49yWjP03jNjCRnbG07jJ3pmz5aA",
+      "phase2_document_key": "JE-2000E_EU",
+      "phase2_record_id": "recvjouls6E5MT",
+      "audit_record": "code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md"
+    },
+    "metadata_path": "/private/tmp/manual-four-releases-6fho4kvj/reports/releases/JE-2000E/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "5f9c158504a5f6c9f1e63449f112effa43d579dcd86f34468468fe578471daf3",
+    "version_metadata_sha256": "5f9c158504a5f6c9f1e63449f112effa43d579dcd86f34468468fe578471daf3",
+    "candidate_metadata_sha256": "1da5b6b10e4204aeef6c19c6fae197d44c1cdab27071dc687962966d7099800a",
+    "language_receipt_sha256": "25f302cf04b4135ab75cb6ea4ba083eeee256958bc4aeb6cce01edb9785f7d49",
+    "provenance_sha256": "0272c1635060917763ea086849f227add6c0db69545d6dcf2f471a92e0291c2a",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-2000E",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-2000E/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000E-check.log",
+        "sha256": "cf93a7601709ab653ada5dfdf3ad40bd2b40a3d6382284473dd0cf3d90b2bb0b"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-four-releases-6fho4kvj/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-2000E",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-2000E/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000E-md.log",
+        "sha256": "41f7917624bed656fe4ca1cd78eea54050c0a357c6e3446b6bdac06a367db084"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000E-rtd-source.log",
+        "sha256": "121a5a515c6e7658ee3c5d896daae61052933363908a669dec5d27112ac37996"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E/docs/_build/rtd",
+          "/private/tmp/manual-four-releases-6fho4kvj/staging/JE-2000E/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-four-releases-6fho4kvj/logs/JE-2000E-strict-sphinx.log",
+        "sha256": "159fc0285ae9277e65275ee2c6b6b62a02dbf61c4eb9c3ddb2ebe11721d8b00e"
+      }
+    ]
+  },
+  {
+    "identity": [
+      "JBP-2000B",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-final-two-releases-6xewh76z/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+    "source_manifest_path": "manual_sources/JBP-2000B/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "95ef10b7e3798412e93b5d73d44e7e4f28b780a2399792f0c9e9520a814c163a",
+    "source_authority": {
+      "source_authority": "Operator-designated list current published EUUK V2.0-2026-09-11",
+      "source_name": "Jackery Battery Pack 2000 User Manual (JBP-2000B) EUUK V2.0-2026-09-11.pdf",
+      "source_sha256": "9da3626d3b4c7b1769c72c1f49f3f46973e04f6a8825c01a802eb7a26586e8ee"
+    },
+    "metadata_path": "/private/tmp/manual-final-two-releases-6xewh76z/reports/releases/JBP-2000B/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "aaabd904e5661aaefa0fa290d87ea6062006e39127f9801631bc2a88c56766bf",
+    "version_metadata_sha256": "aaabd904e5661aaefa0fa290d87ea6062006e39127f9801631bc2a88c56766bf",
+    "candidate_metadata_sha256": "9f2d5a038fee9698dd52207eef1c85a3939ead51e3dc380873b390f8fae81fce",
+    "language_receipt_sha256": "5ef09ac47845234790adf9146e621015567c6933605bdece3d134d9c8a422b78",
+    "provenance_sha256": "dfe2b66414e015a6b2eb6ef9d5daaa4e63d79a989eead68d4bcb8e3f19fab974",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-final-two-releases-6xewh76z/repo/configs/config.bp-eu-en.yaml",
+          "--model",
+          "JBP-2000B",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JBP-2000B/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JBP-2000B-check.log",
+        "sha256": "7aa016b882275148dd2d60e3517161672f243958f289f7f49a898db48fa5358f"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-final-two-releases-6xewh76z/repo/configs/config.bp-eu-en.yaml",
+          "--model",
+          "JBP-2000B",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JBP-2000B/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JBP-2000B-md.log",
+        "sha256": "80a13989c31be9434ed3f785fb94330f0d8c358f72c92113ff2db9c8554897f7"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JBP-2000B-rtd-source.log",
+        "sha256": "256f438f136a79a0874ad8e6e6bdf51b00f8a838fee4f71e12ef0ad17c9f73ea"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B/docs/_build/rtd",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JBP-2000B/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JBP-2000B-strict-sphinx.log",
+        "sha256": "ee122944dfec556527193d7726bd372806e7fc013fa6597fdebf0093c9935d5f"
+      }
+    ]
+  },
+  {
+    "identity": [
+      "JE-500A",
+      "EU",
+      "en"
+    ],
+    "release_root": "/private/tmp/manual-final-two-releases-6xewh76z/reports/releases",
+    "source_content_version": "2.0",
+    "technical_release_version": "2.0-20260913",
+    "actual_engineering_source_sha": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+    "source_manifest_path": "manual_sources/JE-500A/EU/en/2.0/source_manifest.json",
+    "source_manifest_sha256": "3ce1f6e9deeae45798cde7053b119ec196500ef9a57377be5366832cedd7bb37",
+    "source_authority": {
+      "authority": {
+        "source_revision": "V2 / modified 2026-08-31",
+        "source_name": "JE-500A-eu-source.ai",
+        "source_sha256": "c85b8da316fd7b13e3e77e311df76c389234495f38f454019a88f61b6812d12f",
+        "source_system": "DingTalk Bitable attachment",
+        "base_token": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA",
+        "table_id": "97v7518",
+        "record_id": "xF8IUxGEbx",
+        "artboard": {
+          "page_count": 1,
+          "width_pt": 7942.78,
+          "height_pt": 5567.33
+        },
+        "english_body_panels": {
+          "count": 14,
+          "y_range_pt": [
+            1435.81,
+            1960.22
+          ],
+          "x_range_pt": [
+            1181.37,
+            6347.75
+          ]
+        },
+        "audit_record": "code-as-doc/reviews/je500a_eu_en_web_intake_2026-09.md"
+      },
+      "released_pdf_reference": {
+        "source_revision": "V2.0-2026-06-09",
+        "source_sha256": "6f4b41ee74ca3282e655a2b2f6c6adf3b3448522b71b26f683b25785f6e5bee6",
+        "node_id": "XPwkYGxZV3Rj0pEpF3d9vL5yWAgozOKL",
+        "page_count": 89,
+        "reconciliation_status": "in-progress",
+        "verified_scope": [
+          "English preface",
+          "English specification DC symbols",
+          "EU declaration and manufacturer",
+          "Overview replacement",
+          "LCD map complete numbered callouts"
+        ]
+      }
+    },
+    "metadata_path": "/private/tmp/manual-final-two-releases-6xewh76z/reports/releases/JE-500A/EU/en/latest/web/publish_meta.json",
+    "metadata_sha256": "ba1707ee7917a630ca7ee1d796028d27181548deb274569ef40b9f23efeb1eb3",
+    "version_metadata_sha256": "ba1707ee7917a630ca7ee1d796028d27181548deb274569ef40b9f23efeb1eb3",
+    "candidate_metadata_sha256": "416d3363fb9477311daed19c37ab4f84525b17acd60cb9c3ef2e9852b51dc65d",
+    "language_receipt_sha256": "78bb2638ef11d09ace81a916421ca229d7f6e7b3e2b51b1303af9ae159d71560",
+    "provenance_sha256": "538789dffd55a4188308d656a97deb6a56547c68ec93e55088a60946e0b7fdbf",
+    "command_evidence": [
+      {
+        "action": "check",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "check",
+          "--config",
+          "/private/tmp/manual-final-two-releases-6xewh76z/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-500A",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-500A/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JE-500A-check.log",
+        "sha256": "e1f9974b0139273170f1f7aeb7f7421a96c91578c74f5d7c80c545d5bf446773"
+      },
+      {
+        "action": "md",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "build.py",
+          "md",
+          "--config",
+          "/private/tmp/manual-final-two-releases-6xewh76z/repo/configs/config.eu-en.yaml",
+          "--model",
+          "JE-500A",
+          "--region",
+          "EU",
+          "--lang",
+          "en",
+          "--source",
+          "runtime",
+          "--data-root",
+          "manual_sources/JE-500A/EU/en/2.0/phase2",
+          "--staging-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JE-500A-md.log",
+        "sha256": "79848e62604236082eb7f8a7d409bd3af7ff304f1ecca55802b13f16fa7b20b6"
+      },
+      {
+        "action": "rtd-source",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "tools/readthedocs_source.py",
+          "--build-root",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A/docs/_build",
+          "--output-dir",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A/docs/_build/rtd"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JE-500A-rtd-source.log",
+        "sha256": "a77754f7daced2fe5e8d9c1502495a01515fa3471422645f4e4c980b838080ab"
+      },
+      {
+        "action": "strict-sphinx",
+        "argv": [
+          "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+          "-m",
+          "sphinx",
+          "-W",
+          "-b",
+          "html",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A/docs/_build/rtd",
+          "/private/tmp/manual-final-two-releases-6xewh76z/staging/JE-500A/html"
+        ],
+        "exit_code": 0,
+        "log": "/private/tmp/manual-final-two-releases-6xewh76z/logs/JE-500A-strict-sphinx.log",
+        "sha256": "90a10ca8f537fd8573898cafa659fcd2946ad4ce9e1c6eaaf930734118532566"
+      }
+    ]
+  }
+]

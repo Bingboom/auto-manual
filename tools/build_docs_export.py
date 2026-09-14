@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Any, Callable
 
@@ -17,6 +18,61 @@ from tools.gen_index_bundle_assets import raw_html_asset_values
 from tools.page_contracts import resolve_category
 from tools.safe_copy import copy_regular_file_no_symlinks
 from tools.utils.path_utils import PathSegments, latex_renderer_of
+from tools.web_presentation import (
+    PRESENTATION_PROFILE_ENV,
+    WEB_PRESENTATION_PROFILE,
+    normalize_presentation_profile,
+)
+
+
+def _prepare_artifact_bundle(
+    *,
+    cfg: dict,
+    artifact_plan: Any,
+    target_model: str | None,
+    target_region: str | None,
+    target_lang: str | None,
+    data_root: str | None,
+    source_mode: str,
+    page_selector: str | None,
+    write_wrapper_index: bool,
+    draft_placeholders: bool,
+    prepare_manual_bundle: Callable[..., Any],
+    prepare_web_language_source_bundle: Callable[..., Any],
+    materialize_web_language_projection: Callable[..., Any],
+) -> Any:
+    common = {
+        "model": target_model,
+        "region": target_region,
+        "lang": target_lang,
+        "data_root": data_root,
+        "source_mode": source_mode,
+        "page_selector": page_selector,
+        "write_wrapper_index": write_wrapper_index,
+        "draft_placeholders": draft_placeholders,
+    }
+    presentation_profile = normalize_presentation_profile(
+        os.environ.get(PRESENTATION_PROFILE_ENV)
+    )
+    if presentation_profile != WEB_PRESENTATION_PROFILE or not (target_lang or "").strip():
+        return prepare_manual_bundle(
+            cfg,
+            output_root=artifact_plan.build_root,
+            **common,
+        )
+
+    source_output_root = artifact_plan.build_root / PathSegments.WEB / PathSegments.SOURCE
+    source_bundle = prepare_web_language_source_bundle(
+        cfg,
+        output_root=source_output_root,
+        **{**common, "lang": target_lang, "write_wrapper_index": False},
+    )
+    return materialize_web_language_projection(
+        source_bundle,
+        language=target_lang,
+        destination=artifact_plan.build_root / source_bundle.bundle_dir.name,
+        write_wrapper_index=write_wrapper_index,
+    )
 
 
 def _copy_attachment_images_for_latex(
@@ -206,6 +262,8 @@ def build_target(
     build_root_for_target: Callable[..., Path],
     ensure_target_identity: Callable[..., None],
     prepare_manual_bundle: Callable[..., Any],
+    prepare_web_language_source_bundle: Callable[..., Any],
+    materialize_web_language_projection: Callable[..., Any],
     render_build_template: Callable[..., str],
     resolve_output_path: Callable[[Path, str], Path],
     sphinx_build: Callable[..., None],
@@ -249,17 +307,20 @@ def build_target(
             data_root=data_root,
         )
 
-    bundle = prepare_manual_bundle(
-        cfg,
-        model=target_model,
-        region=target_region,
-        lang=target_lang,
+    bundle = _prepare_artifact_bundle(
+        cfg=cfg,
+        artifact_plan=artifact_plan,
+        target_model=target_model,
+        target_region=target_region,
+        target_lang=target_lang,
         data_root=data_root,
         source_mode=source_mode,
         page_selector=page_selector,
-        output_root=artifact_plan.build_root,
         write_wrapper_index=write_wrapper_index,
         draft_placeholders=draft_placeholders,
+        prepare_manual_bundle=prepare_manual_bundle,
+        prepare_web_language_source_bundle=prepare_web_language_source_bundle,
+        materialize_web_language_projection=materialize_web_language_projection,
     )
 
     # The product line, so a carrier can branch on it the way it already

@@ -34,6 +34,47 @@ Do not move new low-level implementation back into these files unless the behavi
 
 ## 2. Build Entrypoint Modules
 
+[`tools/rtd_publication_catalog.py`](../../tools/rtd_publication_catalog.py) groups
+frozen publication metadata for the portal; it is a read model, not a source of
+content. [Language navigation](rtd_locale_navigation.md) stays in the Web adapter.
+
+[`tools/publish_locale_identity.py`](../../tools/publish_locale_identity.py)
+owns locale identity/stored-source migration; publish assembly owns candidate
+transactions and RTD redirects. See [contract](web_locale_publication_identity.md).
+
+Read-only release artifact preflight lives in
+[`tools/manual_operations_health.py`](../../tools/manual_operations_health.py);
+it neither probes deployment nor collects visitor metrics.
+[`tools/manual_operations_online_health.py`](../../tools/manual_operations_online_health.py)
+reuses frozen portal discovery for bounded same-origin HTTPS HEAD checks.
+HTTP accessibility is separate from deployment identity and translation coverage;
+see [online check scope](manual_operations_online_health.md).
+
+[`tools/rtd_deployment_receipt.py`](../../tools/rtd_deployment_receipt.py) owns
+the frozen-source fingerprint, Sphinx build-finished output receipt and bounded
+read-only served HTML/resource hash verification. `rtd_portal.setup` registers
+its callback; queue, publication assembly and link writers are not callers.
+See the [Git-only receipt contract](rtd_deployment_receipt.md).
+
+Internal frozen Web language projection lives in
+[`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
+explicit source language before rendering, not by slicing generated HTML.
+`build_docs_export` selects this path only for Web plus an explicit language;
+`build_docs_bundle.prepare_web_language_source_bundle` preserves complete source
+scope, then the projection helper replaces canonical RST for check/Markdown/HTML.
+See [scope and integration boundary](web_language_projection.md).
+
+[`tools/web_language_release_evidence.py`](../../tools/web_language_release_evidence.py)
+owns capture, sealing and shared verification of language release evidence.
+Queue execution records the three successful actions; staging seals the
+immutable candidate, and metadata/assembly/stored replay verify at their own
+boundaries. See [receipt and acceptance limits](web_language_release_evidence.md).
+
+Optional manual feedback affordances are kept in
+[`tools/rtd_feedback.py`](../../tools/rtd_feedback.py). It validates fixed
+HTTPS channel configuration and renders only local copyable context from the
+frozen publication identity; an empty channel list produces no markup.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)
@@ -341,6 +382,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - phase2 sync-before-build execution
   - worktree-scoped draft/print-publish/Web-Publish build orchestration
   - exact review commit/path provenance injection for versioned print Publish
+  - review-input commit epoch injection for deterministic Web `check` / `md` / `html`
   - IDML source parity with the earlier print render (`review-asis` for approved-reference targets)
 - [`tools/queue_orchestration.py`](../../tools/queue_orchestration.py)
   - top-level queue session flow
@@ -351,6 +393,7 @@ Quality and release logic should follow concern-specific modules instead of drif
   - verified-claim acquisition before build/upload side effects
   - started/success/failure writeback orchestration
   - drive/wiki delivery for print tasks and frozen Web metadata handoff for Web Publish
+  - Web terminal-success writeback only after version metadata and latest pointer succeed
   - delivery-outbox side channel on publish (env-gated, `delivery_outbox=*` row notes)
 - [`tools/delivery_outbox.py`](../../tools/delivery_outbox.py)
   - atomic outbox job assembly (`.partial` staging, verify, rename) for the DingTalk hand-off
@@ -390,8 +433,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - bound CLI upload/node lookup helpers that still allow entrypoint-level patching
 - [`tools/queue_outputs.py`](../../tools/queue_outputs.py)
   - separate print-publish and Web-Publish asset staging
-  - immutable snapshot/manifest copy-out plus generic release/output path helpers
-  - separate print-publish and Web-Publish metadata assembly
+  - atomic immutable snapshot/manifest copy-out plus generic release/output path helpers
+  - exact-hash Web version seal, immutable version metadata, and atomic latest pointer
 - [`tools/queue_bound_outputs.py`](../../tools/queue_bound_outputs.py)
   - repo-root-aware queue output adapters
   - bound output/release helpers that keep `process_build_queue.ROOT` patchable
@@ -410,6 +453,9 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/publish_branch_assembly.py`](../../tools/publish_branch_assembly.py)
   - validates versioned Web Publish metadata and copies only the frozen MyST source
   - preserves other published targets, rebuilds the aggregate Sphinx source, and writes the SHA-256 inventory
+- [`tools/publication_withdrawal.py`](../../tools/publication_withdrawal.py)
+  - explicit local withdrawal/restoration ledger, pinned-source digest and stale-manifest guard
+  - blocks ordinary reentry of withdrawn versions and reuses assembly/promotion for action candidates
 - [`tools/write_web_publish_html_link.py`](../../tools/write_web_publish_html_link.py)
   - derives deterministic Read the Docs routes from Web Publish metadata
   - writes `HTML_link` only for the queue record ids bound to each frozen target
