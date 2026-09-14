@@ -112,3 +112,18 @@ closure evidence. Ruff, maintainability and documentation link checks pass.
   byte-identical. The catalog has 21 publications (US 1, shared EU/UK 20).
 - Actual RTD rollout is tracked in the implementing PR; local parity is not an
   online acceptance claim.
+
+## Directory and keyword search (2026-09-13)
+
+The local redesign uses compact product rows and a shared keyword box for product
+identity and manual body content. `tools/rtd_portal_search.py` indexes canonical
+rendered publications after HTML generation, before deployment receipts are sealed.
+The index is a same-site static JavaScript asset, so it needs no remote search
+service. Matches require every query token and prioritize model and heading matches.
+Section results carry the existing rendered anchors, publication language identity
+and version; region, category and language filters apply to both result types.
+Legacy language scopes remain explicitly unverified. Illustration-only text is
+excluded; the index does not claim OCR coverage. Results initially show twelve
+sections and can be expanded. The operator accepted the local preview for deployment on 2026-09-13.
+Deployment uses the existing engineering mirror and RTD build; manual source
+publication, online tables and OSS uploads are outside this change.
