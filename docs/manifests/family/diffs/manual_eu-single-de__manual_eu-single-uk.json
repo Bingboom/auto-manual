@@ -42,13 +42,18 @@
       "value": "uk"
     },
     {
-      "op": "remove",
-      "path": "/pages/4/model_overrides"
-    },
-    {
       "op": "replace",
       "path": "/pages/4/langs/0",
       "value": "uk"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/4/model_overrides/JE-300E"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/4/model_overrides/JE-2000E/template",
+      "value": "templates/page_eu-uk/03_product_overview_je2000e.rst"
     },
     {
       "op": "replace",
@@ -67,6 +72,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/6/model_overrides/JE-2000E/template",
+      "value": "templates/page_eu-uk/05_operation_guide_je2000e.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/6/template",
       "value": "templates/page_eu-uk/05_operation_guide_placeholder.rst"
     },
@@ -82,18 +92,13 @@
     },
     {
       "op": "replace",
-      "path": "/pages/8/file",
-      "value": "templates/page_shared/uk/charging.rst"
-    },
-    {
-      "op": "replace",
-      "path": "/pages/8/lang",
+      "path": "/pages/8/langs/0",
       "value": "uk"
     },
     {
       "op": "replace",
       "path": "/pages/9/file",
-      "value": "templates/page_shared/uk/08_charging_methods.rst"
+      "value": "templates/page_shared/uk/charging.rst"
     },
     {
       "op": "replace",
@@ -103,7 +108,7 @@
     {
       "op": "replace",
       "path": "/pages/10/file",
-      "value": "templates/page_shared/uk/09_storage_and_maintenance.rst"
+      "value": "templates/page_shared/uk/08_charging_methods.rst"
     },
     {
       "op": "replace",
@@ -112,7 +117,12 @@
     },
     {
       "op": "replace",
-      "path": "/pages/11/langs/0",
+      "path": "/pages/11/file",
+      "value": "templates/page_shared/uk/09_storage_and_maintenance.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/11/lang",
       "value": "uk"
     },
     {
@@ -122,22 +132,37 @@
     },
     {
       "op": "replace",
-      "path": "/pages/13/file",
+      "path": "/pages/13/langs/0",
+      "value": "uk"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/14/file",
       "value": "templates/page_shared/uk/11_warranty.rst"
     },
     {
       "op": "replace",
-      "path": "/pages/13/lang",
+      "path": "/pages/14/lang",
       "value": "uk"
     },
     {
       "op": "replace",
-      "path": "/pages/14/langs/0",
+      "path": "/pages/15/langs/0",
       "value": "uk"
     },
     {
       "op": "replace",
-      "path": "/pages/14/template",
+      "path": "/pages/15/model_overrides/JE-2000E/recipe",
+      "value": "templates/recipes/eu-en/12_app_setup_je2000e_uk.yaml"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/model_overrides/JE-2000E/template",
+      "value": "templates/page_shared/uk/12_app_setup_je2000e.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/15/template",
       "value": "templates/page_shared/uk/12_app_setup_placeholder.rst"
     }
   ],
