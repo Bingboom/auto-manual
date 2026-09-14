@@ -808,7 +808,12 @@ Web Publish / Read the Docs note:
   to finished PDF crops. A shared family config can instead use
   `paths.web_illustration_manifests`, mapping exact `Document_Key` values to
   manifest paths; an unlisted target receives no manifest, and the scalar and
-  mapping forms are mutually exclusive. Each selected manifest freezes source
+  mapping forms are mutually exclusive. A `Document_Key` may instead map to a
+  `language -> manifest path` mapping, which is what a merged multi-language
+  book needs: the same source image basename repeats once per language block,
+  so finished panels are bound per `(language, basename)` rather than by
+  basename alone. A manifest whose declared `language` is absent from the
+  document, or differs from the key it is filed under, fails closed. Each selected manifest freezes source
   PDF hash, page, bounding box, output
   hash and exact input image basenames. One illustrated panel can replace several
   split images; surrounding structured copy is retained. Wrong target, missing

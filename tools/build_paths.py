@@ -141,17 +141,7 @@ def resolve_web_illustration_manifest_from_config(
         )
     if raw_by_target is None:
         return None
-    if not isinstance(raw_by_target, dict) or any(
-        not isinstance(key, str)
-        or not key.strip()
-        or not isinstance(value, str)
-        or not value.strip()
-        for key, value in raw_by_target.items()
-    ):
-        raise ValueError(
-            "paths.web_illustration_manifests must map Document_Key to "
-            "non-empty paths"
-        )
+    _validate_manifests_by_target(raw_by_target)
     build_cfg = cfg.get("build", {})
     if not isinstance(build_cfg, dict):
         build_cfg = {}
@@ -173,7 +163,99 @@ def resolve_web_illustration_manifest_from_config(
         )
     if not matches:
         return None
-    return resolve_path_from_root(repo_root, matches[0].strip())
+    matched = matches[0]
+    if not isinstance(matched, str):
+        # Per-language binding; resolve_web_illustration_manifests_from_config
+        # owns that shape because a merged document has no single manifest.
+        return None
+    return resolve_path_from_root(repo_root, matched.strip())
+
+
+def _validate_manifests_by_target(raw_by_target: Any) -> None:
+    """Each Document_Key maps to one path, or to a language -> path mapping."""
+
+    shape = (
+        "paths.web_illustration_manifests must map Document_Key to "
+        "non-empty paths or to language -> path mappings"
+    )
+    if not isinstance(raw_by_target, dict):
+        raise ValueError(shape)
+    for key, value in raw_by_target.items():
+        if not isinstance(key, str) or not key.strip():
+            raise ValueError(shape)
+        if isinstance(value, str):
+            if not value.strip():
+                raise ValueError(shape)
+            continue
+        if not isinstance(value, dict) or not value or any(
+            not isinstance(lang, str)
+            or not lang.strip()
+            or not isinstance(path_value, str)
+            or not path_value.strip()
+            for lang, path_value in value.items()
+        ):
+            raise ValueError(
+                "paths.web_illustration_manifests language mapping for "
+                f"{key!r} must be a non-empty language -> path mapping"
+            )
+        seen: set[str] = set()
+        for lang in value:
+            folded = lang.strip().casefold()
+            if folded in seen:
+                raise ValueError(
+                    "paths.web_illustration_manifests contains duplicate "
+                    f"case-insensitive language entries for {key!r}"
+                )
+            seen.add(folded)
+
+
+def resolve_web_illustration_manifests_from_config(
+    cfg: dict[str, Any],
+    *,
+    repo_root: Path,
+    model: str | None = None,
+    region: str | None = None,
+) -> dict[str, Path]:
+    """Resolve per-language Web illustration manifests for one target.
+
+    Empty unless the selected Document_Key binds a language -> path mapping.
+    A merged multi-language document needs one manifest per language; a
+    single-language document keeps the scalar form resolved by
+    resolve_web_illustration_manifest_from_config.
+    """
+
+    paths_cfg = cfg.get("paths", {})
+    if not isinstance(paths_cfg, dict):
+        return {}
+    raw_by_target = paths_cfg.get("web_illustration_manifests")
+    if raw_by_target is None:
+        return {}
+    _validate_manifests_by_target(raw_by_target)
+    build_cfg = cfg.get("build", {})
+    if not isinstance(build_cfg, dict):
+        build_cfg = {}
+    resolved_model = str(model or build_cfg.get("default_model") or "").strip()
+    resolved_region = str(region or build_cfg.get("default_region") or "").strip()
+    if not resolved_model or not resolved_region:
+        return {}
+    document_key = f"{resolved_model}_{resolved_region}".casefold()
+    matches = [
+        value
+        for key, value in raw_by_target.items()
+        if key.strip().casefold() == document_key
+    ]
+    if len(matches) > 1:
+        raise ValueError(
+            "paths.web_illustration_manifests contains duplicate "
+            "case-insensitive Document_Key entries for "
+            f"{resolved_model}_{resolved_region}"
+        )
+    if not matches or isinstance(matches[0], str):
+        return {}
+    return {
+        lang.strip(): resolve_path_from_root(repo_root, path_value.strip())
+        for lang, path_value in matches[0].items()
+    }
 
 
 def resolve_idml_layout_param_overlays(
