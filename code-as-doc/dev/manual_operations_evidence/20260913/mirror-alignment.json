@@ -1,0 +1,13 @@
+{
+  "business_commit": "0aee1bce717ef4b674dcd7c14e36443492dc2fd4",
+  "engineering_commit": "7a6a7ebbf9c2da523e1e5391b133a13a5a3f2197",
+  "publish_tree": "070bf2fd5fc7a2fe64c5f8f35ec26f9217c25a9f",
+  "critical_blobs": {
+    "tools/rtd_deployment_receipt.py": "0fc1c57f05f23099e575999e7eb802abef4b07e5",
+    "tools/rtd_portal.py": "e3cb751863a95d58495a3307004a890b04dba2ee",
+    "tools/publication_withdrawal.py": "95a4ba066bf1029c3eca69e0bb0198a9b62f2945",
+    "tools/publish_branch_assembly.py": "98e6eedc11907d7829693758e63ab29c14cf44bd",
+    "tools/rtd_portal_assets/settings.json": "7d48872510b66c64420dd1ebd3ebdf21621462a9",
+    ".readthedocs.yaml": "9be26eadb35e5865027fc8f1769579f925fe17f4"
+  }
+}

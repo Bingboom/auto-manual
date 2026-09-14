@@ -1,0 +1,548 @@
+{
+  "schema": "manual-ops-approved-list-coverage/v1",
+  "intake_snapshot_sha256": "4a0be02d6959e828c01b0f0117d3cf023661dce53f8ca6bbba4e5672e220cdde",
+  "intake_snapshot_date": "2026-09-13",
+  "publication_manifest_sha256": "f1eb0e4fd945589928b7bee5064285ecb52679c109a98653150025a57134e26e",
+  "summary": {
+    "approved_models": 20,
+    "indexed_approved_models": 20,
+    "indexed_publications_all_scopes": 23,
+    "verified_single_language_publications": 8,
+    "legacy_language_unspecified_publications": 15
+  },
+  "limitations": [
+    "Model coverage does not equal full translation coverage.",
+    "Translation statuses reflect the existing recorded source list, not new approval or new publication.",
+    "Online receipt, normal HTTP health and human review are separate evidence."
+  ],
+  "rows": [
+    {
+      "model": "JE-100C",
+      "intake_record_id": "0SLR873yRz",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2.0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JE-100C/EU/en/md/manual_je100c_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "葡语": "翻译中",
+        "波兰语": "翻译中",
+        "希腊语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "希伯来语": "翻译中",
+        "乌克兰语": "翻译中",
+        "荷兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JS-40C",
+      "intake_record_id": "1OUQt6g91M",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2026-08-30",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JS-40C/EU/en/md/manual_js40c_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JS-100I",
+      "intake_record_id": "371JNuMVqZ",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2.0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JS-100I/EU/en/md/manual_js100i_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "希伯来语": "翻译中",
+        "葡语": "已回稿",
+        "荷兰语": "已回稿",
+        "波兰语": "已回稿",
+        "希腊语": "翻译中",
+        "乌克兰语": "已回稿",
+        "阿拉伯语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-1000F",
+      "intake_record_id": "3Cdnmp5Yml",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0",
+          "git_ref": "645668a1e233b46107fe40a75c561f500d2ae263",
+          "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/en/md/manual_je1000f_eu_en.html"
+        },
+        {
+          "language": "fr",
+          "stored_language_slot": "fr",
+          "language_scope": "single",
+          "version": "2.0",
+          "git_ref": "645668a1e233b46107fe40a75c561f500d2ae263",
+          "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JBP-2000B",
+      "intake_record_id": "CJ0kLucEXT",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+          "url": "https://ht-doc.readthedocs.io/JBP-2000B/EU/en/md/manual_jbp2000b_eu.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "希腊语": "翻译中",
+        "希伯来语": "翻译中",
+        "荷兰语": "翻译中",
+        "葡语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "乌克兰语": "纸质已有"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-1000H",
+      "intake_record_id": "CjnLiGMQj2",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+          "url": "https://ht-doc.readthedocs.io/JE-1000H/EU/en/md/manual_je1000h_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "波兰语": "翻译中",
+        "希伯来语": "翻译中",
+        "乌克兰语": "纸质已有",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "希腊语": "翻译中",
+        "葡语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JS-200E",
+      "intake_record_id": "DFV5KKDywi",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2.0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JS-200E/EU/en/md/manual_js200e_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "已有",
+        "希腊语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-3000C",
+      "intake_record_id": "FBHsOuFTMQ",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+          "url": "https://ht-doc.readthedocs.io/JE-3000C/EU/en/md/manual_je3000c_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "葡语": "翻译中",
+        "希腊语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "乌克兰语": "纸质已有",
+        "希伯来语": "翻译中",
+        "波兰语": "翻译中",
+        "荷兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JA-AD600A",
+      "intake_record_id": "KtCTsCwJDw",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2.0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JA-AD600A/EU/en/md/manual_jaad600a_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "葡语": "纸质已有",
+        "希伯来语": "不翻译",
+        "荷兰语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希腊语": "不翻译",
+        "阿拉伯语": "不翻译",
+        "波兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JA-CC30A",
+      "intake_record_id": "Li32wwM6MY",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "git-0eb2b7ba",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JA-CC30A/EU/en/md/manual_jacc30a_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "阿拉伯语": "不翻译",
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "不翻译",
+        "乌克兰语": "翻译中",
+        "希伯来语": "不翻译"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JAAC-WHE-100-EUA1",
+      "intake_record_id": "QKRfBknCr9",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "candidate",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JAAC-WHE-100-EUA1/EU/en/md/manual_jaacwhe100eua1_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "不翻译",
+        "乌克兰语": "翻译中",
+        "希伯来语": "不翻译",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "不翻译"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-3600A",
+      "intake_record_id": "QRo3FviEOb",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2026-05-25",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JE-3600A/EU/en/md/manual_je3600a_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "波兰语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希腊语": "翻译中",
+        "希伯来语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "葡语": "翻译中",
+        "荷兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-300D",
+      "intake_record_id": "QviOQihBNj",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "candidate-2025-10-24",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JE-300D/EU/en/md/manual_je300d_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-2000E",
+      "intake_record_id": "S4mhIE7S4v",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+          "url": "https://ht-doc.readthedocs.io/JE-2000E/EU/en/md/manual_je2000e_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "葡语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "希腊语": "翻译中",
+        "希伯来语": "翻译中",
+        "乌克兰语": "纸质已有"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JBP-3600A",
+      "intake_record_id": "hgXiHot5Ow",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "2.0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JBP-3600A/EU/en/md/manual_jbp3600a_eu.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中",
+        "葡语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "希腊语": "翻译中",
+        "荷兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JA-CA05B",
+      "intake_record_id": "iQfwYCuoZ7",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "git-20260909-f5359ac0",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JA-CA05B/EU/en/md/manual_jaca05b_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "不翻译",
+        "乌克兰语": "翻译中",
+        "希伯来语": "不翻译",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "不翻译"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-2000F",
+      "intake_record_id": "obWHXHN7dI",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "505c484a838740a12823fa4ba78af1fb4c04d81c",
+          "url": "https://ht-doc.readthedocs.io/JE-2000F/EU/en/md/manual_je2000f_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "希伯来语": "翻译中",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "翻译中",
+        "乌克兰语": "纸质已有",
+        "希腊语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JA-CA3SA",
+      "intake_record_id": "tQDWZr68hK",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "git-20260909-88f1fa0d",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JA-CA3SA/EU/en/md/manual_jaca3sa_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "葡语": "翻译中",
+        "希腊语": "不翻译",
+        "乌克兰语": "翻译中",
+        "希伯来语": "不翻译",
+        "荷兰语": "翻译中",
+        "阿拉伯语": "不翻译",
+        "波兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JE-500A",
+      "intake_record_id": "xF8IUxGEbx",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": "en",
+          "stored_language_slot": "en",
+          "language_scope": "single",
+          "version": "2.0-20260913",
+          "git_ref": "108e1c9f0fe0eeab2d042fd6f1b526b3dac6559f",
+          "url": "https://ht-doc.readthedocs.io/JE-500A/EU/en/md/manual_je500a_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "阿拉伯语": "翻译中",
+        "波兰语": "翻译中",
+        "葡语": "已有",
+        "希腊语": "翻译中",
+        "乌克兰语": "翻译中",
+        "希伯来语": "翻译中",
+        "荷兰语": "翻译中"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    },
+    {
+      "model": "JA-AD01A",
+      "intake_record_id": "xG4bYnERxR",
+      "status": "RTD build succeeded; final full served-byte verification blocked by Cloudflare challenge",
+      "publications": [
+        {
+          "language": null,
+          "stored_language_slot": "en",
+          "language_scope": "legacy_unspecified",
+          "version": "git-20260906-0252cb5d",
+          "git_ref": "ff5e355676334d386d4c28b61cad861b16f088e7",
+          "url": "https://ht-doc.readthedocs.io/JA-AD01A/EU/en/md/manual_jaad01a_eu_en.html"
+        }
+      ],
+      "manual_review": "user-deferred",
+      "additional_translation_status_from_existing_intake_snapshot": {
+        "荷兰语": "翻译中",
+        "阿拉伯语": "不翻译",
+        "波兰语": "翻译中",
+        "葡语": "翻译中",
+        "希腊语": "不翻译",
+        "乌克兰语": "翻译中",
+        "希伯来语": "不翻译"
+      },
+      "input_provenance": "Existing operator-approved intake snapshot; no repeated PDF audit"
+    }
+  ]
+}

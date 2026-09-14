@@ -1,0 +1,53 @@
+{
+  "engineering_main": "d34b7146148109f9f7382b13e03161c80e62ece2",
+  "engineering_main_ownership": "returned to root after merge",
+  "prs": [
+    {
+      "number": 1127,
+      "head": "04a4c6d6bf981dc70fc58ff8bb47fec48fe8f9bf",
+      "merge": "93144814f5762edf9349f1c0269bb1dcc2e826b6",
+      "ci_checks_success": 17,
+      "ci_unit_tests": 4130,
+      "ci_unit_skipped": 24,
+      "ci_unit_seconds": 302.112,
+      "local_final_tests": {
+        "receipt_portal_targets": 37,
+        "feedback": 6
+      },
+      "local_docs": {
+        "documents": 198,
+        "links": 1813,
+        "broken": 0
+      },
+      "merge_evidence": "/tmp/manual-batch-je1000f.cJBwew/handoff-20260913/pr-1127-merge-evidence.json",
+      "remote_head_deleted": true
+    },
+    {
+      "number": 1128,
+      "head": "a738cab0272449d651d5608013b348676b67db5f",
+      "merge": "d34b7146148109f9f7382b13e03161c80e62ece2",
+      "ci_checks_success": 17,
+      "ci_unit_tests": 4139,
+      "ci_unit_skipped": 24,
+      "ci_unit_seconds": 344.373,
+      "local_final_tests": 58,
+      "local_docs": {
+        "documents": 199,
+        "links": 1817,
+        "broken": 0
+      },
+      "merge_evidence": "/tmp/manual-batch-je1000f.cJBwew/handoff-20260913/pr-1128-merge-evidence.json",
+      "remote_head_deleted": true
+    }
+  ],
+  "local_receipt_integration": {
+    "evidence": "/tmp/manual-batch-je1000f.cJBwew/withdrawal-integrated-receipt-verification.json",
+    "withdrawal_routes": 24,
+    "withdrawal_verified_files": 573,
+    "restoration_routes": 23,
+    "restoration_verified_files": 639,
+    "live_deployment": false
+  },
+  "real_rollback_receipt": "/tmp/manual-batch-je1000f.cJBwew/real-approved-rollback-receipt.json",
+  "business_publication_or_metadata_touched": false
+}

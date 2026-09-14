@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-09-13T23:09:48.018282+00:00",
+  "normal_real_frozen_targets": {
+    "targets": 4,
+    "failure_count": 0,
+    "missing_assets": 0
+  },
+  "injected_asset_path": "JE-2000E/EU/en/versions/2.0-20260913/web/html/_static/manual-assets/JE-2000E/EU/en/md/assets/ir/6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+  "asset_failure_detected": {
+    "targets": 4,
+    "failure_count": 1,
+    "missing_assets": 1
+  },
+  "restored": {
+    "targets": 4,
+    "failure_count": 0,
+    "missing_assets": 0
+  },
+  "http_fixture_failure_detected": {
+    "indexed_publications": 23,
+    "http_failures": 1
+  },
+  "production_mutated": false,
+  "live_HTTP_claim": false,
+  "owner": "夏冰",
+  "cadence": "after each publication",
+  "response_sla": "operator-deferred",
+  "procedure": "Failed artifact/HTTP checks stop acceptance; locate source, repair in reviewed PR, republish, rerun deployment receipt and health checks before marking complete."
+}

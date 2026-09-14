@@ -1,5 +1,7 @@
 # Optimization Project
 
+当前主线（2026-09-13）：完成 [#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)，不是只做网页发布。六本批准纠错已由 Hello-Docs #73 发布，版本/回滚/撤回、试点部署回执、健康、两条元数据读回和真实反馈闭环已交付。23个正式页面及608/709资源已实证通过；用户明确批准“后置剩余复验，收口合入 #1103”，其余101资源线上复验记录为user-deferred而非通过。总PR进入最终全绿合入门禁。见[实际状态与证据](dev/manual_operations_closeout_20260913.md)。不以前置线上正文抽取为门槛；人工内容/视觉验收和响应SLA由用户后置。后续逐本结构化治理与翻译验收继续归Milestone M，IR-D01–D06保持长期目标。
+
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document
 Web packages a renderer-neutral `manual-ir/v2` flow/rich-text projection and
@@ -928,3 +930,16 @@ Review this file again when:
 ## 11. One-Sentence Summary
 
 This file should stay a living repo roadmap: small, current, execution-focused, and easy to revise after each optimization wave.
+
+
+### Manual operations goal clarification — 2026-09-13
+
+The operator reaffirmed completion of all items in the
+[manual operations checklist](dev/manual_operations_acceptance_checklist.md)
+as the current goal. Git-only Web publication does not require extracting
+manual body data into online tables; it does not defer version/rollback,
+publication receipts, health reporting or the feedback loop. Repeated manual
+content/visual review is operator-deferred. The operator also explicitly
+accepted deferral of remaining resource re-verification and authorized #1103
+closure after its final all-green merge gates. GitHub Issues is
+the confirmed feedback channel and 夏冰 is responsible for acceptance.

@@ -1,0 +1,28 @@
+{
+  "issue": "https://github.com/Bingboom/auto-manual/issues/1126",
+  "state": "closed",
+  "closed_at": "2026-09-13T23:54:29Z",
+  "reply": "https://github.com/Bingboom/auto-manual/issues/1126#issuecomment-5657169522",
+  "live_entry": {
+    "status": "verified",
+    "rtd_build_id": 34539600,
+    "entries": [
+      {
+        "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/en/md/manual_je1000f_eu_en.html",
+        "feedback_url": "https://github.com/Bingboom/auto-manual/issues",
+        "context": "Manual feedback context\nModel: JE-1000F\nRegion: EU\nLanguage: en\nVersion: 2.0\nPage: JE-1000F/EU/en/md/manual_je1000f_eu_en.html",
+        "served_html_sha256": "d9ce5bfc53b92629f3c73f18d0766be14a992e765e3aa836f3974a224ccd7c84"
+      },
+      {
+        "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html",
+        "feedback_url": "https://github.com/Bingboom/auto-manual/issues",
+        "context": "Manual feedback context\nModel: JE-1000F\nRegion: EU\nLanguage: fr\nVersion: 2.0\nPage: JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html",
+        "served_html_sha256": "25a2f2d346ade9e933659702903fd76c43a629fdbeca53bad47c65a2c1560752"
+      }
+    ]
+  },
+  "owner": "夏冰",
+  "cadence": "after each publication",
+  "response_sla": "user-deferred",
+  "manual_review": "user-deferred"
+}

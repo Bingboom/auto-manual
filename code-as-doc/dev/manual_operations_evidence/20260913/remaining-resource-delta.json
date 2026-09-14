@@ -1,0 +1,10 @@
+{
+  "remaining": 101,
+  "unchanged_same_path_bytes": 98,
+  "changed_or_new": [
+    "_static/manual-assets/JE-500A/EU/en/md/assets/ir/122991a64cd306c82e70b0279024fa0bcad517e9fe0bfd8a30d6a81f0c46de99/lcd_map.png",
+    "_static/manual-assets/JE-500A/EU/en/md/assets/ir/749ca081dde5bfee3d3ac2dfc811f3e4078a11380c1cdc908bd832c7d9ae47bf/overview.png",
+    "index.html"
+  ],
+  "limits": "Offline hash comparison only. Does not turn missing live responses into successful HTTP reads."
+}
