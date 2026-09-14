@@ -1,0 +1,260 @@
+{
+  "schema": "manual-publication-http-observations/v1",
+  "status": "23_canonical_pages_verified_at_fetch",
+  "source": "actual SHA256-matching cached HTTPS200 HTML responses",
+  "canonical_page_observations": {
+    "status": "verified",
+    "canonical_pages": 23,
+    "rtd_build_at_fetch": 34539682,
+    "business_commit_at_fetch": "d7ef906f139b6aa1479280ee04228f5cf5feb230",
+    "publication_tree_preserved_in_latest_mirror": true,
+    "entries": [
+      {
+        "model": "JA-AD01A",
+        "region": "EU",
+        "lang": "en",
+        "version": "git-20260906-0252cb5d",
+        "url": "https://ht-doc.readthedocs.io/JA-AD01A/EU/en/md/manual_jaad01a_eu_en.html",
+        "raw_response_sha256": "65d357dd593b523ea4fae421809572f8af6cd7ec60bdb30a5437b78dba28f368",
+        "normalized_sha256": "66296b3dede47fba1acef914bb832e38b389ce761fa8946c1fe9398b1b6fde2a",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JA-AD600A",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JA-AD600A/EU/en/md/manual_jaad600a_eu_en.html",
+        "raw_response_sha256": "ab8180e1fef3a3b6b8bf8207b54751c5b4249954891bd9df32282bdce566ee9f",
+        "normalized_sha256": "4d40538809c293eb120ece43c1a826f3879d71bf0e5dd9fbc2c7671a10f3fb5a",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JA-CA05B",
+        "region": "EU",
+        "lang": "en",
+        "version": "git-20260909-f5359ac0",
+        "url": "https://ht-doc.readthedocs.io/JA-CA05B/EU/en/md/manual_jaca05b_eu_en.html",
+        "raw_response_sha256": "da034a0df9b09953d8baa6d68099d179a2dc5a5d2752447ed0d6300b05b9e045",
+        "normalized_sha256": "064ea3721dcb0db4138cd371389ab858d0f3349e2747b0c73f69e7acf5cd9a17",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JA-CA3SA",
+        "region": "EU",
+        "lang": "en",
+        "version": "git-20260909-88f1fa0d",
+        "url": "https://ht-doc.readthedocs.io/JA-CA3SA/EU/en/md/manual_jaca3sa_eu_en.html",
+        "raw_response_sha256": "9b37f5353fcf9bac047a34a71a7884808c10de59098d719db0d5f50be802e97b",
+        "normalized_sha256": "196e56b818c8e10865111bbbb851109ade96e9db754bb87c445cdf6299352533",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JA-CC30A",
+        "region": "EU",
+        "lang": "en",
+        "version": "git-0eb2b7ba",
+        "url": "https://ht-doc.readthedocs.io/JA-CC30A/EU/en/md/manual_jacc30a_eu_en.html",
+        "raw_response_sha256": "6179b4fc9a04cd8ee0fa12c4790a60de1a2f31a6aa7728ed78d853b9da79135b",
+        "normalized_sha256": "9239767356cd82a2c8397beb5f833e7aa94c1c1c0337710073dd7bd49aa6ac5e",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JAAC-WHE-100-EUA1",
+        "region": "EU",
+        "lang": "en",
+        "version": "candidate",
+        "url": "https://ht-doc.readthedocs.io/JAAC-WHE-100-EUA1/EU/en/md/manual_jaacwhe100eua1_eu_en.html",
+        "raw_response_sha256": "bae8539108505f5124f87f792abaa2d3eee2d45b24ffbca772fc82b27c61cba5",
+        "normalized_sha256": "27bc6984206016acbc3ae4b862d6b05a32bc1e5db1f5e2d6a02ea23f75f97e34",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JBP-2000B",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JBP-2000B/EU/en/md/manual_jbp2000b_eu.html",
+        "raw_response_sha256": "f6273c10ce480a738e4d9d867c0b8146e38c1d8cef40192f492f178624718841",
+        "normalized_sha256": "be6b76c18cc9c9e8d1b2ba42c0c615825bc5171604465810d5d176510f727eb1",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JBP-3600A",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JBP-3600A/EU/en/md/manual_jbp3600a_eu.html",
+        "raw_response_sha256": "e1b674af409079915f5c62a649d1ec485bacd027fb939317bacfbcf63ae937cb",
+        "normalized_sha256": "073ad4b904947b2fdf14c4c41101d6238ae4475b74fed3229d6bab159acfe51b",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-1000F",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/en/md/manual_je1000f_eu_en.html",
+        "raw_response_sha256": "d9ce5bfc53b92629f3c73f18d0766be14a992e765e3aa836f3974a224ccd7c84",
+        "normalized_sha256": "63fe6e618232b0865163a379cd8445903268b63fadcdeb9997d35960e5604990",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-1000F",
+        "region": "EU",
+        "lang": "fr",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JE-1000F/EU/fr/md/manual_je1000f_eu_fr.html",
+        "raw_response_sha256": "25a2f2d346ade9e933659702903fd76c43a629fdbeca53bad47c65a2c1560752",
+        "normalized_sha256": "e817a1a867414d6470ffdbdc65760ab6130fb8bcf9027920ff2edcc560b23fcd",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-1000F",
+        "region": "US",
+        "lang": "en",
+        "version": "2.3",
+        "url": "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html",
+        "raw_response_sha256": "79bb33dfbdd9b1c5b497cf82f84ff5a1a2d2d6ac29f03e79a12728238ec77c63",
+        "normalized_sha256": "ec2f7fc29da5a1a22deef71f96a62634caeeaf2305154fcbd245a95290c5986f",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-1000H",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JE-1000H/EU/en/md/manual_je1000h_eu_en.html",
+        "raw_response_sha256": "53aa0c118f746bad3d2a8109d87c610c52252f00de082b767dde2bb06c7f8931",
+        "normalized_sha256": "d76ca909eb9b22646d19fda730f7696fad87758d06f05d2bb632692595b2ac10",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-100C",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JE-100C/EU/en/md/manual_je100c_eu_en.html",
+        "raw_response_sha256": "4ce3258280eb9606798ebac88c60335923a4f9137de8bc6183a85588fd15781a",
+        "normalized_sha256": "8ab62b73b950e7d48e6e625200553c4e0ff763908ee49d582bcd75844a284dbc",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-2000E",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JE-2000E/EU/en/md/manual_je2000e_eu_en.html",
+        "raw_response_sha256": "5f8c64edc5f95a18fd10c1ecbe36cfb51797ca80e584f35cb511a5942815b0f0",
+        "normalized_sha256": "a41ce5b0929b05404094e03c89973a4ab90c7f056bd4fbea11960e2407b2f008",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-2000F",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JE-2000F/EU/en/md/manual_je2000f_eu_en.html",
+        "raw_response_sha256": "6637a9bc9a89f5c0dcf124784a8ab05349af767f3ef62dc0189d9c646c31db53",
+        "normalized_sha256": "5050b071150a920cece0046761e5e61c5900ca216f94525d284369e161d2c64d",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-3000C",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JE-3000C/EU/en/md/manual_je3000c_eu_en.html",
+        "raw_response_sha256": "98b278da0096f851b7e22097c4ebda57defca8e6a583daa6bfff3dacf50774d6",
+        "normalized_sha256": "016a695d951293f2379cc319e32ba8385506b919a1a00e2fa9f796a37eb3c451",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-300D",
+        "region": "EU",
+        "lang": "en",
+        "version": "candidate-2025-10-24",
+        "url": "https://ht-doc.readthedocs.io/JE-300D/EU/en/md/manual_je300d_eu_en.html",
+        "raw_response_sha256": "b3693388ebb89d364e74a000a483a603100845bf532d4e413f96517671670e15",
+        "normalized_sha256": "cbea7d680dd13f6ecae1c5daf531eb5e633ff5d0935be55045ae67a2dab2bc02",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-3600A",
+        "region": "EU",
+        "lang": "en",
+        "version": "2026-05-25",
+        "url": "https://ht-doc.readthedocs.io/JE-3600A/EU/en/md/manual_je3600a_eu_en.html",
+        "raw_response_sha256": "993194787fe371e165703ca24ec26ea70c1162a44534e4726863723cf021403a",
+        "normalized_sha256": "58782e50dd38c670cbca271116f21011e17f30be0af16ff8817791d31a74f6d2",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JE-500A",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0-20260913",
+        "url": "https://ht-doc.readthedocs.io/JE-500A/EU/en/md/manual_je500a_eu_en.html",
+        "raw_response_sha256": "5c60cad09063d89157d9a2260a3821fdd12a4462c99b1dc35c93e7f90f76f85e",
+        "normalized_sha256": "829a2ec86ad5d7e1713503ae526924032a6b8ef1ab9282fe990482530059b5ff",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JS-100F",
+        "region": "EU",
+        "lang": "en",
+        "version": "1.0",
+        "url": "https://ht-doc.readthedocs.io/JS-100F/EU/en/md/manual_js100f_eu_en.html",
+        "raw_response_sha256": "ef3439c58bfb578e1ac4d572c44657ee79bbc14e0b67ee66d5789bf22458bfff",
+        "normalized_sha256": "7473bcca5a6202768541cdde07836295d5e03fa39eeec898bf776a8fda6d49e0",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JS-100I",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JS-100I/EU/en/md/manual_js100i_eu_en.html",
+        "raw_response_sha256": "fa95ba7c2dbf59114caf8a147bf6ff0c7ce5dd784121f50289880afd61736736",
+        "normalized_sha256": "8dbc3eebde82be4300fb4aaaf15e4aa39f032ee2b691377d98291811aaebd9bc",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JS-200E",
+        "region": "EU",
+        "lang": "en",
+        "version": "2.0",
+        "url": "https://ht-doc.readthedocs.io/JS-200E/EU/en/md/manual_js200e_eu_en.html",
+        "raw_response_sha256": "dc3e4c19f8bcc13497303ccae567a39da6c89d1b38c54b78854dbc93404cf7b9",
+        "normalized_sha256": "c2c28265797061943939a4abbda8eedf3f0d8bf4625011a86635779c1b9beacc",
+        "status": "verified_actual_cached_HTTP_response"
+      },
+      {
+        "model": "JS-40C",
+        "region": "EU",
+        "lang": "en",
+        "version": "2026-08-30",
+        "url": "https://ht-doc.readthedocs.io/JS-40C/EU/en/md/manual_js40c_eu_en.html",
+        "raw_response_sha256": "ff4f0ec3b049935c79cc9055376743215e7ee4126c5d9ca205653cea4d452086",
+        "normalized_sha256": "9e7d97cc147fe1ae2359f73b1eddbefd7155c6f02da72bda819830e449922833",
+        "status": "verified_actual_cached_HTTP_response"
+      }
+    ],
+    "limits": "Actual previously fetched HTTP200 page responses; this does not claim all recursive assets or current-client challenge recovery."
+  },
+  "later_automated_client_probe": {
+    "status": 429,
+    "cf_mitigated": "challenge",
+    "requests_stopped": true
+  },
+  "operator_browser_observation": {
+    "source": "user chat",
+    "statement": "打开了 然后呢 没弹出验证呀",
+    "claim_limit": "Operator reports browser opens without a challenge; not a per-resource hash check"
+  },
+  "supplemental_final_HEAD": "not_run; canonical realGET observations retained without inventing a new HEAD run",
+  "owner": "夏冰",
+  "cadence": "after each publication",
+  "response_sla": "user-deferred",
+  "remaining_resource_reverification": "operator-approved-deferral"
+}

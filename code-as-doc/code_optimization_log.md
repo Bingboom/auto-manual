@@ -2206,3 +2206,16 @@ current client receives a Cloudflare challenge. This is a completed delivery
 phase, **not** #1103 umbrella closure. See the [checkpoint](dev/manual_operations_closeout_20260913.md)
 and [current checklist](dev/manual_operations_acceptance_checklist.md). Human
 content/visual acceptance and response SLA remain user-deferred.
+
+
+## 2026-09-14 UTC: Manual operations scope accepted for #1103 closure
+
+The operator explicitly accepted the remaining 101 online resource reads as
+user-deferred and authorized #1103 closure. All 23 actual canonical pages and
+608 resources have strict served-byte evidence;98 remaining files are unchanged,
+with only the homepage and two JE-500A images changed. The accepted checklist
+also includes deployed versioning, real-artifact lifecycle/fault drills,
+metadata readback, genuine feedback closure, owner/cadence and cost records.
+See the [accepted closeout](dev/manual_operations_closeout_20260913.md).
+This records accepted workstream completion with disclosed deferrals; final
+CI/review/ancestry gates still control the PR's actual merge.

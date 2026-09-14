@@ -167,3 +167,20 @@ a current-client Cloudflare challenge. MA-066 does not allow bypassing that
 challenge or treating partial resources as full acceptance. Its final
 all-checks/reviews/ancestry protocol remains unchanged; it expires only on
 actual umbrella completion/merge or operator revocation.
+
+
+### MA-066 explicit final acceptance adjustment — 2026-09-14 UTC
+
+Operator answer: **“后置剩余复验，收口合入 #1103”**.
+The preceding question disclosed 23 canonical pages/608 resources verified and
+101 remaining reads, of which98 files are unchanged and the changed items are
+the homepage plus two JE-500A images. The operator accepts those remaining
+online reads as **user-deferred**, to be carried by later visual acceptance;
+they must never be represented as passed. See the
+[exact decision](manual_operations_evidence/20260913/final-acceptance-deferral.json)
+and [accepted closeout](manual_operations_closeout_20260913.md).
+This supersedes the preceding checkpoint's requirement to wait for automatic
+client access recovery before closing the umbrella. Every final-head CI check,
+latest-main ancestry, no changes-requested review and no unresolved thread
+still applies. No challenge bypass or further Cloudflare request is authorized.
+MA-066 expires automatically after the actual #1103 merge.

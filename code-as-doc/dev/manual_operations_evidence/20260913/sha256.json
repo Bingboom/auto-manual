@@ -1,13 +1,16 @@
 {
   "latest-rtd-build.json": "5df0090bfd1cfdd0140a02b8ce555230770c5b5340fd9025bbaaafea5f3aaa45",
+  "publication-http-observations.json": "1571e7fcc38bc764b2350cde6a2b809c15510466789b2b2e8d72d94b5bf4909d",
   "pilot-deployment.json": "a258005bd8bfe8136f6dc70ad79f87e3a6f6c26caca60b356cf02d5b9eaa4afa",
   "six-source-lineage.json": "60f41623e19593fc09457ef6ae7214709c1f6b1b0549fa295576482b863c8b62",
+  "remaining-resource-delta.json": "e8f18215812ad6616df493506c3d7f695dbedc93a7b516f529a95fe394ca7edb",
   "partial-six-deployment.json": "e27dc66ba4605a013831297e66f797de0484f12eea56fd7d3152c04aea91f39c",
   "publication-metadata.json": "2f451434e6ec6899b1e18f9fd9c54f5d0e8d791b69fe027fc5c410fb9ae47500",
   "operations-integration.json": "c26d99397b1864bc61c96b5ee3d8338acbeb57a8967a76fa9f7b7740d7961bcb",
   "withdrawal-restoration.json": "e0f6234a149d7914df74aa11a28bfae897f5a9465c914f790f750b75a050c1c5",
   "version-rollback.json": "0b3eaf923924bbbb4d8f85c81cb72d357d2c7d0791cab04c8941df7e6be7e271",
   "six-integrity.json": "3ce99329b3f1a1767ee68955848f1f9fae71502f6f23c3b6fb35066c19b248b1",
+  "canonical-pages-live-verification.json": "ff73e0ce34892511db2252539d6fbd7fcb7d2581fe73703b5dc9dde74902dbc4",
   "merge-gates.json": "da74a8c5e736fa047a8f30ff75f405083796839daef7ac90c0bf2c6d110e8f17",
   "coverage.json": "86525469bb7ef893c6a1c802d9b535c0bb307d21cc6104db02deb382c6a22eda",
   "pilot-health-first-attempt.json": "0428ddb6e632ff6c3eaabce3a06fb9291a29ca47b9f56ea009fadfb9028ef7a8",
@@ -15,6 +18,7 @@
   "health-drill.json": "cebb8812843a90ecf6f74a59d9e5dae0179fd98cc2d2a18c65078bf8efaa202f",
   "feedback.json": "76edc51d09e3435a5c234757fa345732630562e4e841f8716bd6971b206db8ea",
   "mirror-alignment.json": "bccf004b8b8f19b5c016d4c3ea6dae17533d9103a40697b8a42c71834a02d2cc",
+  "final-acceptance-deferral.json": "5c235cc6d0d15d906ec42045dbfbb6b59975dd67afbd9fad93dc48b0e99882c8",
   "http-challenge-probe.json": "2fd1bbb3d62735c46c5e9fd588db517ab052d1c91d480f925561eb75ca93c4fc",
   "pilot-health-success.json": "2748b69b43e109869b9b2d43346865ae7dd72e4d8b56eeec59d68752ef3d5162"
 }

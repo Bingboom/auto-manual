@@ -1,0 +1,22 @@
+{
+  "status": "operator-approved-deferral",
+  "recorded_at": "2026-09-14T00:38:45.993993+00:00",
+  "operator": "夏冰",
+  "user_answer": "后置剩余复验，收口合入 #1103",
+  "approved_scope": "Defer remaining online resource re-verification to later human visual acceptance and complete/merge umbrella1103 after all final code/PR gates. Do not claim the deferred verification passed.",
+  "verified_facts": {
+    "canonical_pages": 23,
+    "resources": 608,
+    "expected_resources": 709,
+    "remaining": 101,
+    "unchanged_remaining": 98,
+    "changed_remaining": [
+      "JE-500A lcd_map.png",
+      "JE-500A overview.png",
+      "index.html"
+    ]
+  },
+  "no_further_cloudflare_requests": true,
+  "manual_content_review": "user-deferred",
+  "response_sla": "user-deferred"
+}
