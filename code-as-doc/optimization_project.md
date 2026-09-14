@@ -1,6 +1,11 @@
 # Optimization Project
 
-当前主线（2026-09-13）：完成 [#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)，不是只做网页发布。六本批准纠错已由 Hello-Docs #73 发布，版本/回滚/撤回、试点部署回执、健康、两条元数据读回和真实反馈闭环已交付。23个正式页面及608/709资源已实证通过；用户明确批准“后置剩余复验，收口合入 #1103”，其余101资源线上复验记录为user-deferred而非通过。总PR进入最终全绿合入门禁。见[实际状态与证据](dev/manual_operations_closeout_20260913.md)。不以前置线上正文抽取为门槛；人工内容/视觉验收和响应SLA由用户后置。后续逐本结构化治理与翻译验收继续归Milestone M，IR-D01–D06保持长期目标。
+当前主线（2026-09-14）：[#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)
+已按操作者确认的边界合入；见[验收证据](dev/manual_operations_closeout_20260913.md)。
+剩余 101 项线上资源复验、人工内容/视觉验收、响应 SLA、逐本结构化治理及
+#1110 陈旧 PR 状态已集中登记在[跨机器接棒债务](dev/manual_operations_followup_debt.md)。
+这些项目保持 deferred/open，不反向改写 #1103 的已验收事实。逐本结构化治理与
+翻译验收继续归 Milestone M，IR-D01～D06 保持长期目标。
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document
