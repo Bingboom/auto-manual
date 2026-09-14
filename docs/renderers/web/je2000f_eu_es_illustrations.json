@@ -1,0 +1,307 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000F",
+  "region": "EU",
+  "source_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+  "source_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
+  "recipe": "data/asset_recipes/manual_je2000f_eu_web.json",
+  "language": "es",
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000f_eu_es/overview_front.png",
+      "sha256": "9aecedd18db92c72039e9958d60484a1eb77dd663c4443be7ca120f824845dd5",
+      "source_page": 40,
+      "bbox_pt": [
+        27,
+        83,
+        342,
+        315
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Botón POWER principal LCD Puerto CC 12 V 12 V⎓10 A máx. Botón de luz LED Botón CC/USB Luz LED Salida USB-C de 30 W 30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A Botón CA Salida USB-C de 100 W 100 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A Salida USB-A 18 W 18 W máx., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A Salida de CA 230 V~ 50 Hz, 10 A máx., 2200 W Nominal en Total, 4400 W Pico de sobrecarga"
+        },
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Salida Total 2200 W de potencia nominal, 4400 W de pico de sobrecarga"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000f_eu_es/overview_side.png",
+      "sha256": "4c2d46116e3e08ca52d3e82628dd2bf76b2849dcb8613eef38ee09e96c4da385",
+      "source_page": 40,
+      "bbox_pt": [
+        27,
+        333,
+        350,
+        485
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-lateral-derecha > table",
+          "text": "Asa Entrada de CA 220 V-240 V~ 50 Hz, 10 A máx. Entrada de CC (2×Puertos DC8020) PV: 16-60 V⎓12 A máx., Doble hasta 21 A máx. / 400 W máx. Vehículo: 11-16 V⎓8 A máx., Doble hasta 8 A máx."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000f_eu_es/lcd_map.png",
+      "sha256": "4c2c9d12d22385dd15747f27e177f995a83b3dce2a7a322eb2a85a2e0d10c207",
+      "source_page": 41,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_power.png",
+      "sha256": "3c044f895512c349dd96c5d069219ef6cd4999cac577060c9a240d42a44e3f45",
+      "source_page": 43,
+      "bbox_pt": [
+        27,
+        71,
+        343,
+        233
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#encendido-apagado > .line-block",
+          "text": "Encendido Presione una vez Apagado Mantenga presionado durante más de 3 segundos"
+        },
+        {
+          "selector": "#encendido-apagado > .line-block > .line",
+          "text": "Tiempo de espera predeterminado: 2 horas."
+        },
+        {
+          "selector": "#encendido-apagado > .line-block > .line",
+          "text": "El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_ac.png",
+      "sha256": "e5c5f7c31a694c905712f318b591b0af070c2a4c741440a31cd315e6d90c1675",
+      "source_page": 43,
+      "bbox_pt": [
+        27,
+        258,
+        342,
+        482
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-ca > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-ca > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_dc.png",
+      "sha256": "db8fa6b1323da2b66951f87b179d0f3c8d5c1b2e3cc3be8a7ebab292b7761c7f",
+      "source_page": 44,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_led.png",
+      "sha256": "6e0d66143dfcbb3e9675eb3d41f0773dfaad4306e8352fcf384aea067120d3d3",
+      "source_page": 44,
+      "bbox_pt": [
+        28,
+        362,
+        344,
+        493
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-luz-led > p",
+          "text": "La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla."
+        },
+        {
+          "selector": "#encender-apagar-luz-led > .line-block",
+          "text": "Presione una vez el botón de la luz LED para encenderla. Presiónelo nuevamente para cambiar al modo SOS. Presiónelo una tercera vez para apagar la luz."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_lcd.png",
+      "sha256": "e0d361acc2cc1f1390e164f68c778573c392659481bcdb7fb2f0b9746820d5a4",
+      "source_page": 45,
+      "bbox_pt": [
+        35,
+        140,
+        176,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000f_eu_es/operation_energy.png",
+      "sha256": "753297ad234ca4255d7fcbb45dc5e785f44978110ee39969a3092f43eeb60ba2",
+      "source_page": 45,
+      "bbox_pt": [
+        26,
+        320,
+        342,
+        474
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el botón CA y el botón POWER principal durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Cuando alimente dispositivos de baja potencia (CA ≤ 25 W o CC/USB ≤ 2 W), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > .line-block",
+          "text": "Mantenga pulsados ambos botones durante 3 segundos."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000f_eu_es/ups.png",
+      "sha256": "0e248a0f69ba6e25fcbd36b77d23ab9982d512f29abe0f3a00628e186636a3d3",
+      "source_page": 46,
+      "bbox_pt": [
+        25,
+        234,
+        341,
+        388
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000f_eu_es/charging_ac.png",
+      "sha256": "17f4ce7f515e4de41ca81d89b6fa96523f18a54f559f369ea001286eeb64d0be",
+      "source_page": 47,
+      "bbox_pt": [
+        27,
+        160,
+        342,
+        262
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#carga-mediante-una-toma-de-corriente-de-pared-alterna > p",
+          "text": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je2000f_eu_es/charging_solar_direct.png",
+      "sha256": "55c8fe8b038402a39f7040043eacfae7bd89b46fde1e6636e03f0e31f25fe251",
+      "source_page": 47,
+      "bbox_pt": [
+        27,
+        380,
+        342,
+        497
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000f_eu_es/charging_solar_adapter.png",
+      "sha256": "14cd214873e30654fa7d8898aedf1ec68e251ef13f9973a555d3db2902428a29",
+      "source_page": 48,
+      "bbox_pt": [
+        27,
+        27,
+        342,
+        174
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000f_eu_es/charging_car.png",
+      "sha256": "7715470a2bd015814131bd6836e18771577c08c84fbed06b6e8df909c787df46",
+      "source_page": 48,
+      "bbox_pt": [
+        27,
+        351,
+        342,
+        487
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block > .line",
+          "text": "Vehículo"
+        },
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block > .line",
+          "text": "※El cable de carga para vehículo se vende por separado."
+        }
+      ]
+    }
+  ]
+}
