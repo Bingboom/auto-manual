@@ -1800,3 +1800,11 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图标的编号和空图标列。已包含在整图中的开关文字，通过插图覆盖声明移除重复显示。
 
 For the EU charger family, the Web illustration path resolves from the selected model and region. Charger pages retain their installation components without inheriting power-station LCD or auto-resume tables.
+
+### Manual Center 内容检索
+
+首页以紧凑产品列表呈现已发布手册；同一关键词框同时检索型号、章节及
+正文（含文字表格），结果可直接进入对应章节。地区、类别及语言筛选适用
+于产品和正文结果；语言未核验的历史发布不冒充单语版本。图片内没有对应
+正文的文字暂不纳入检索。静态索引随 RTD 构建生成，无需配置搜索服务。
+实现与边界见 [Manual Center](../code-as-doc/dev/rtd_manual_portal.md)。

@@ -184,3 +184,9 @@ client access recovery before closing the umbrella. Every final-head CI check,
 latest-main ancestry, no changes-requested review and no unresolved thread
 still applies. No challenge bypass or further Cloudflare request is authorized.
 MA-066 expires automatically after the actual #1103 merge.
+
+### MA-067 — Manual Center directory and keyword search
+
+| ID | 范围 | 操作者原话与日期 | 失效条件 | 状态 |
+| --- | --- | --- | --- | --- |
+| MA-067 | `codex/manual-center-search-preview` 的首页紧凑列表、静态跨手册正文检索及配套测试文档，含本登记。完成本地校验、最终 head 全部检查成功、无 changes-requested/未解决讨论、包含最新 main 后 squash merge；允许既有工程镜像同步和 RTD 构建上线及限定首页/搜索资源验收。不含源说明书改写、线上表写入、OSS、workflow 或依赖变更。 | 「上线」2026-09-13（审阅本地 18824 预览后） | 本 PR 合入及部署验收完成，或撤销 | 生效 |
