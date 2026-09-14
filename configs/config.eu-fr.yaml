@@ -3,7 +3,16 @@ extends: config-bases/eu-single-language-base.yaml
 build:
   family_id: eu-fr
   languages: [fr]
+  # The base declares only JE-1000F; config_loader assigns lists wholesale,
+  # so the inherited target has to be repeated here.
+  targets:
+    - model: JE-1000F
+      region: EU
+    - model: JE-2000F
+      region: EU
   word_title: "|PRODUCT_NAME| Manuel d'utilisation"
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-fr.yaml
+  web_illustration_manifests:
+    JE-2000F_EU: docs/renderers/web/je2000f_eu_fr_illustrations.json
