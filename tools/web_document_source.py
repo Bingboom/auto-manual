@@ -60,6 +60,7 @@ def _consume_covered_annotations(soup, entry, image):
 
 def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
                       output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
+                      illustration_manifests: dict[str, Path] | None = None,
                       page_slots: dict[str, str] | None = None):
     from tools.word_bundle_html import (
         _extract_raw_html_blocks, _publish_rst_fragment_to_html,
@@ -86,30 +87,57 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         and overview_contract.get("source_patterns")
         else None
     )
+    # Replacements are keyed by (language, filename). A merged document repeats
+    # the same source filename once per language, so the filename alone cannot
+    # say which finished panel belongs to which language block.
     replacements = {}
     illustration_entries = {}
     text_corrections = []
     provenance = None
+    manifest_by_language: dict[str, Path] = {}
+    if illustration_manifest is not None and illustration_manifests:
+        raise ValueError(
+            "Web illustration manifest and per-language manifests are mutually exclusive"
+        )
     if illustration_manifest is not None:
-        provenance = json.loads(illustration_manifest.read_text(encoding="utf-8"))
-        if provenance.get("schema_version") != "web-illustrations/v1":
+        manifest_by_language[target_language] = illustration_manifest
+    elif illustration_manifests:
+        manifest_by_language.update(illustration_manifests)
+    for manifest_language, manifest_path in manifest_by_language.items():
+        loaded = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if loaded.get("schema_version") != "web-illustrations/v1":
             raise ValueError("unsupported Web illustration manifest")
-        if (provenance["model"], provenance["region"], provenance["language"]) != (
-            materialized.model, materialized.region, target_language
-        ):
+        declared = loaded["language"]
+        allowed = {target_language} if illustration_manifest is not None else set(languages)
+        if (loaded["model"], loaded["region"]) != (materialized.model, materialized.region) \
+                or declared != manifest_language or declared not in allowed:
             raise ValueError("Web illustration manifest does not match document target")
-        for entry in provenance["illustrations"]:
-            file = (illustration_manifest.parent / entry["path"]).resolve()
-            if not file.is_relative_to(illustration_manifest.parent.resolve()) or file_sha256(file) != entry["sha256"]:
+        if provenance is None:
+            # One manifest keeps the manifest verbatim. Several manifests merge
+            # into one provenance record so that coverage can resolve a finished
+            # panel from any language by its (path, sha256).
+            provenance = loaded if len(manifest_by_language) == 1 else {
+                "schema_version": loaded["schema_version"],
+                "model": loaded["model"],
+                "region": loaded["region"],
+                "languages": sorted(manifest_by_language),
+                "illustrations": [],
+            }
+        if len(manifest_by_language) > 1:
+            provenance["illustrations"].extend(loaded["illustrations"])
+        for entry in loaded["illustrations"]:
+            file = (manifest_path.parent / entry["path"]).resolve()
+            if not file.is_relative_to(manifest_path.parent.resolve()) or file_sha256(file) != entry["sha256"]:
                 raise ValueError(f"Web illustration changed: {entry['path']}")
             for index, name in enumerate(entry["replaces"]):
-                if name in replacements:
+                if (declared, name) in replacements:
                     raise ValueError("ambiguous Web illustration replacement")
-                replacements[name] = file if index == 0 else None
+                replacements[(declared, name)] = file if index == 0 else None
                 if index == 0:
-                    illustration_entries[name] = entry
-        text_corrections = list(provenance.get("text_corrections", []))
-        for correction in text_corrections:
+                    illustration_entries[(declared, name)] = entry
+        for correction in loaded.get("text_corrections", []):
+            text_corrections.append((declared, correction))
+        for _declared, correction in text_corrections:
             if not all(
                 isinstance(correction.get(field), str)
                 and correction[field].strip()
@@ -143,15 +171,15 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     used_replacements = set()
     used_text_corrections = set()
 
-    def apply_illustration_replacement(soup, image, name):
-        if name in used_replacements:
-            raise ValueError(f"repeated Web illustration source: {name}")
-        used_replacements.add(name)
-        replacement = replacements[name]
+    def apply_illustration_replacement(soup, image, name, lang):
+        if (lang, name) in used_replacements:
+            raise ValueError(f"repeated Web illustration source: {lang}/{name}")
+        used_replacements.add((lang, name))
+        replacement = replacements[(lang, name)]
         if replacement is None:
             image.decompose()
             return
-        entry = illustration_entries[name]
+        entry = illustration_entries[(lang, name)]
         image["src"] = replacement.as_uri()
         image["class"] = [*image.get("class", []), "manual-finished-illustration"]
         image["data-web-finished-panel-path"] = entry["path"]
@@ -174,10 +202,10 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         for image in early_soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if (
-                name in illustration_entries
-                and illustration_entries[name].get("consume_before_presentation")
+                (lang, name) in illustration_entries
+                and illustration_entries[(lang, name)].get("consume_before_presentation")
             ):
-                apply_illustration_replacement(early_soup, image, name)
+                apply_illustration_replacement(early_soup, image, name, lang)
         markup = str(early_soup)
         markup = normalize_web_source_fragment(
             markup,
@@ -187,8 +215,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             region=materialized.region,
         )
         soup = BeautifulSoup(markup, "html.parser")
-        for index, correction in enumerate(text_corrections):
-            if index in used_text_corrections:
+        for index, (correction_language, correction) in enumerate(text_corrections):
+            if index in used_text_corrections or correction_language != lang:
                 continue
             expected = " ".join(correction["expected"].split())
             matches = [
@@ -225,8 +253,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
-            if name in replacements:
-                apply_illustration_replacement(soup, image, name)
+            if (lang, name) in replacements:
+                apply_illustration_replacement(soup, image, name, lang)
         def package_image(image) -> str:
             src = str(image.get("src", ""))
             if src.startswith("assets/ir/"):
@@ -264,8 +292,8 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         raise ValueError(f"unused Web illustration bindings: {sorted(set(replacements) - used_replacements)}")
     if len(used_text_corrections) != len(text_corrections):
         unused = [
-            correction["expected"]
-            for index, correction in enumerate(text_corrections)
+            f'{correction_language}/{correction["expected"]}'
+            for index, (correction_language, correction) in enumerate(text_corrections)
             if index not in used_text_corrections
         ]
         raise ValueError(f"unused Web illustration text corrections: {unused}")
