@@ -1,0 +1,31 @@
+schema_version: skeleton-region-profile/v1
+region: EU
+language_set:
+- fr
+primary_lang: fr
+terminal_slots:
+- regulatory_compliance
+slot_overrides:
+  preface_important:
+    file: templates/page_bp/fr-web/eu_preface.rst
+  toc:
+    file: templates/page_bp/fr-web/00_toc.rst
+  safety_info:
+    file: templates/page_bp/fr/01_safety.rst
+  box_contents:
+    file: templates/page_bp/fr/02_whats_in_the_box.rst
+  product_overview:
+    recipe: templates/recipes/bp-us/03_product_overview.yaml
+    template: templates/page_bp/fr/03_product_overview_placeholder.rst
+  operation:
+    recipe: templates/recipes/bp-us/05_operation_guide.yaml
+    template: templates/page_bp/fr-web/05_operation_guide_placeholder.rst
+  connections:
+    file: templates/page_bp/fr-web/eu_connections.rst
+  charging:
+    file: templates/page_bp/fr-web/eu_charging.rst
+  warranty:
+    file: templates/page_bp/fr/11_warranty_eu.rst
+  regulatory_compliance:
+    file: templates/page_bp/intl/99_regulatory_compliance_eu.rst
+compliance: []

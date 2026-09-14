@@ -1,0 +1,22 @@
+# JBP-2000B / EU single-language Web route (it).
+# Mirrors config.bp-eu-en.yaml. The host product is named inline in the
+# it-web templates (declined per case, lifted from the published EU manual
+# V2.0-2026-09-11), so BP_HOST_PRODUCT_NAME is not substituted on this line.
+extends: config.bp-eu.yaml
+build:
+  family_id: bp-eu-it
+  language_family: eu-it
+  family_default: false
+  languages:
+  - it
+  include_lang_in_output_path: true
+  rst_substitutions:
+    MANUAL_LANGUAGE_SCOPE: Italian
+paths:
+  idml_assembly_plan: null
+  page_manifest: docs/manifests/manual_bp-eu-it.yaml
+checks:
+  allowed_foreign_identity_literals:
+  - Jackery Battery Pack 2000
+  - Jackery E1000 Plus V2
+  - Jackery E2000 Plus V2
