@@ -1,0 +1,315 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000F",
+  "region": "EU",
+  "source_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+  "source_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
+  "recipe": "data/asset_recipes/manual_je2000f_eu_web.json",
+  "language": "uk",
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000f_eu_uk/overview_front.png",
+      "sha256": "268bc734e6be18bf553ee747a79476b513689592cea6d218e4000177f2d2f597",
+      "source_page": 88,
+      "bbox_pt": [
+        27,
+        83,
+        342,
+        315
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > table",
+          "text": "Головна кнопка POWER LCD Порт DC 12 В 12 В⎓10 А макс. Кнопка LED-світла Кнопка DC / USB LED-світло Вихід USB-C 30 Вт 30 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓2,5 А, 15 В⎓2 А, 20 В⎓1,5 А Кнопка AC Вихід USB-C 100 Вт 100 Вт макс., 5 В⎓3 А, 9 В⎓3 А, 12 В⎓3 А, 15 В⎓3 А, 20 В⎓5 А Вихід USB-A 18 Вт 18 Вт макс., 5-6 В⎓3 А, 6-9 В⎓2 А, 9-12 В⎓1,5 А Вихід змінного струму 230 В~ 50 Гц, 10 А макс., номінальна потужність 2200 Вт загалом, пікова потужність 4400 Вт"
+        },
+        {
+          "selector": "#section-2 > table",
+          "text": "Загальна вихідна потужність Номінальна потужність 2200 Вт, пікова потужність 4400 Вт"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000f_eu_uk/overview_side.png",
+      "sha256": "c58c30a949286602baccd41d3b3f50d8ea3cf1971c86bc3e5f1f9810778aa0f9",
+      "source_page": 88,
+      "bbox_pt": [
+        27,
+        333,
+        350,
+        485
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > table",
+          "text": "Ручка Вхід змінного струму 220 В-240 В~ 50 Гц, 10 А макс. Вхід постійного струму (2 порти DC8020) PV: 16-60 В⎓12 А, подв. до 21 А макс. / 400 Вт макс. Автомобіль: 11-16 В⎓8 А макс., подв. до 8 А макс."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000f_eu_uk/lcd_map.png",
+      "sha256": "24ab0fbffc328b626d85555d8d2287f06b45a3c6031f00f940e8744efa3587b5",
+      "source_page": 89,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_power.png",
+      "sha256": "ab514fb9a7ff6970cb2f024db0df62b8f8bb6179023b4180e8dbbffc1aa2e4af",
+      "source_page": 91,
+      "bbox_pt": [
+        27,
+        71,
+        343,
+        233
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Увімкнення: натисніть один раз. Вимкнення: натисніть і утримуйте 3 с."
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "Стандартний час очікування: 2 години."
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "Пристрій автоматично вимкнеться після 2 годин бездіяльності, якщо не відбувається заряджання чи розряджання."
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "* Час очікування можна налаштувати в Додатку Jackery."
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "Коли режим енергозбереження ввімкнено, пристрій автоматично вимкнеться після 12 годин, якщо вихід AC або DC / USB увімкнено, але пристрій не заряджається і не розряджається."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_ac.png",
+      "sha256": "57f0a429cd669803d4b58cb7fc127d421ca4193400fb76a38e007851d63badd3",
+      "source_page": 91,
+      "bbox_pt": [
+        27,
+        258,
+        342,
+        482
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#ac > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_dc.png",
+      "sha256": "25b47cc2b2b3d33e87577a62d49d0bf89e6e69ff03061b2f8602d0af8a0e1def",
+      "source_page": 92,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#dc-12-usb > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#dc-12-usb > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_led.png",
+      "sha256": "fa7439b76ce6ba16ebf93453ab6f567aec264aa794cd4bf98c5a17630d249985",
+      "source_page": 92,
+      "bbox_pt": [
+        28,
+        362,
+        344,
+        493
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#led > p",
+          "text": "LED-світло має два режими: режим освітлення та режим SOS. У будь-якому режимі натисніть і утримуйте кнопку LED-світла, щоб вимкнути світло."
+        },
+        {
+          "selector": "#led > .line-block",
+          "text": "Натисніть кнопку LED Light один раз, щоб увімкнути світло. Натисніть її ще раз, щоб перейти в режим SOS. Натисніть її втретє, щоб вимкнути світло."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_lcd.png",
+      "sha256": "f7fc5f8ce60ea8f9594095ed53b024619cffe1448913503e84083c4ce5a0cbc1",
+      "source_page": 93,
+      "bbox_pt": [
+        35,
+        140,
+        176,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000f_eu_uk/operation_energy.png",
+      "sha256": "a59adad126fa0a9ae59a66532b34fb485f17697aca490c5277183418dde41af3",
+      "source_page": 93,
+      "bbox_pt": [
+        26,
+        320,
+        342,
+        474
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > p",
+          "text": "Щоб вимкнути режим енергозбереження, натисніть і утримуйте кнопку AC та основну кнопку POWER одночасно понад 3 секунди. Після вимкнення режиму енергозбереження значок більше не з'являтиметься на екрані LCD, і пристрій не вимикатиме автоматично вихід AC або DC / USB."
+        },
+        {
+          "selector": "#section-3 > p",
+          "text": "Під час живлення малопотужних пристроїв (AC <= 25 Вт або DC / USB <= 2 Вт) вимкніть режим енергозбереження, щоб запобігти автоматичному вимкненню виходу під час роботи."
+        },
+        {
+          "selector": "#section-3 > .line-block",
+          "text": "Натисніть і утримуйте обидві кнопки понад 3 секунди."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000f_eu_uk/ups.png",
+      "sha256": "e459cdf531841e8c53dbf6640daa60303ff9349a8971987ddf89bcb42c8002a1",
+      "source_page": 94,
+      "bbox_pt": [
+        25,
+        234,
+        341,
+        388
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000f_eu_uk/charging_ac.png",
+      "sha256": "b0ece70ac1fcb1cdd0e3e55086f3d02be9f8e719c559f4234cd897a9d4424266",
+      "source_page": 95,
+      "bbox_pt": [
+        27,
+        160,
+        342,
+        262
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac > p",
+          "text": "Підключіть кабель для заряджання AC до входу AC пристрою та до настінної розетки."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je2000f_eu_uk/charging_solar_direct.png",
+      "sha256": "fbdb3a45d1aec930d3a8a06bf51b37000dfb383b56fc2c5c29728431a3d62def",
+      "source_page": 95,
+      "bbox_pt": [
+        27,
+        380,
+        342,
+        497
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000f_eu_uk/charging_solar_adapter.png",
+      "sha256": "b0b43f01a4265bc39a6ae20f817aa11007bbfc1e3ff13a5e7d3dd7c695ee0e6b",
+      "source_page": 96,
+      "bbox_pt": [
+        27,
+        27,
+        342,
+        174
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000f_eu_uk/charging_car.png",
+      "sha256": "0b390e24e9bc891e9b8be3919943e8b6e66f5e0402961d24a06f809d0ac3e7ce",
+      "source_page": 96,
+      "bbox_pt": [
+        27,
+        351,
+        342,
+        487
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "Автомобіль"
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "* Кабель для заряджання від автомобіля продається окремо."
+        }
+      ]
+    }
+  ]
+}
