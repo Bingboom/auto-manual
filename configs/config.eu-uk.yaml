@@ -3,7 +3,14 @@ extends: config-bases/eu-single-language-base.yaml
 build:
   family_id: eu-uk
   languages: [uk]
+  targets:
+    - model: JE-1000F
+      region: EU
+    - model: JE-2000F
+      region: EU
   word_title: "|PRODUCT_NAME| Посібник користувача"
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-uk.yaml
+  web_illustration_manifests:
+    JE-2000F_EU: docs/renderers/web/je2000f_eu_uk_illustrations.json
