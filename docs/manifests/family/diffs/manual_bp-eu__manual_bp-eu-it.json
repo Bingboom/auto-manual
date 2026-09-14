@@ -1,0 +1,156 @@
+{
+  "base_manifest_id": "manual_bp_eu",
+  "operations": [
+    {
+      "op": "replace",
+      "path": "/manifest_id",
+      "value": "manual_bp_eu_it"
+    },
+    {
+      "op": "replace",
+      "path": "/pages",
+      "value": [
+        {
+          "file": "asset:page/cover",
+          "slot_id": "cover",
+          "type": "cover_pdf"
+        },
+        {
+          "file": "templates/page_bp/it-web/eu_preface.rst",
+          "lang": "it",
+          "lang_blocks": true,
+          "slot_id": "preface_important",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it-web/00_toc.rst",
+          "lang": "it",
+          "slot_id": "toc",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it/01_safety.rst",
+          "lang": "it",
+          "slot_id": "safety_info_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "symbols",
+          "slot_id": "symbol_meaning_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it/02_whats_in_the_box.rst",
+          "lang": "it",
+          "slot_id": "box_contents_it",
+          "type": "rst_include"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "it"
+          ],
+          "page": "03_product_overview",
+          "recipe": "templates/recipes/bp-us/03_product_overview.yaml",
+          "slot_id": "product_overview_it",
+          "template": "templates/page_bp/it/03_product_overview_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "lcd_icons",
+          "slot_id": "lcd_display_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "engine": "draft_v1",
+          "include_dir": "generated/{model}/draft",
+          "langs": [
+            "it"
+          ],
+          "page": "05_operation_guide",
+          "recipe": "templates/recipes/bp-us/05_operation_guide.yaml",
+          "slot_id": "operation_it",
+          "template": "templates/page_bp/it-web/05_operation_guide_placeholder.rst",
+          "type": "generated_page"
+        },
+        {
+          "capability": "UPS功能",
+          "file": "templates/page_shared/it/06_ups_mode.rst",
+          "lang": "it",
+          "slot_id": "ups_mode_it",
+          "type": "rst_include"
+        },
+        {
+          "capability": "加电包扩容",
+          "file": "templates/page_shared/it/07_extra_battery.rst",
+          "lang": "it",
+          "slot_id": "extra_battery_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it-web/eu_connections.rst",
+          "lang": "it",
+          "slot_id": "connections_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "troubleshooting",
+          "slot_id": "troubleshooting_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it-web/eu_charging.rst",
+          "lang": "it",
+          "slot_id": "charging_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/it/09_storage.rst",
+          "lang": "it",
+          "slot_id": "storage_it",
+          "type": "rst_include"
+        },
+        {
+          "include_dir": "generated/{model}",
+          "langs": [
+            "it"
+          ],
+          "page": "spec",
+          "slot_id": "specifications_it",
+          "source": "phase2",
+          "type": "csv_page"
+        },
+        {
+          "file": "templates/page_bp/it/11_warranty.rst",
+          "lang": "it",
+          "slot_id": "warranty_it",
+          "type": "rst_include"
+        },
+        {
+          "file": "templates/page_bp/intl/99_regulatory_compliance_eu.rst",
+          "lang": "it",
+          "slot_id": "regulatory_compliance",
+          "type": "rst_include"
+        }
+      ]
+    }
+  ],
+  "schema_version": "family-manifest-diff/v1",
+  "target_manifest_id": "manual_bp_eu_it"
+}

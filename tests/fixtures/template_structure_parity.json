@@ -12,6 +12,12 @@
   ],
   "00_toc.rst": [
    [
+    "de-web",
+    "es-web",
+    "fr-web",
+    "it-web"
+   ],
+   [
     "en"
    ],
    [
@@ -82,10 +88,14 @@
   "05_operation_guide_placeholder.rst": [
    [
     "de",
+    "de-web",
     "en",
     "es",
+    "es-web",
     "fr",
+    "fr-web",
     "it",
+    "it-web",
     "uk"
    ],
    [
@@ -156,17 +166,33 @@
   ],
   "eu_charging.rst": [
    [
-    "en-web"
+    "de-web",
+    "en-web",
+    "es-web",
+    "fr-web",
+    "it-web"
    ]
   ],
   "eu_connections.rst": [
    [
-    "en-web"
+    "de-web",
+    "en-web",
+    "es-web",
+    "fr-web"
+   ],
+   [
+    "it-web"
    ]
   ],
   "eu_preface.rst": [
    [
-    "en-web"
+    "de-web",
+    "en-web",
+    "fr-web",
+    "it-web"
+   ],
+   [
+    "es-web"
    ]
   ],
   "eu_warranty.rst": [

@@ -50,7 +50,10 @@ class TestAssetRegistry(unittest.TestCase):
         pattern = re.compile(r"asset:([A-Za-z0-9._/-]+)")
         referenced: dict[str, set[str]] = {}
         for path in sorted(family.rglob("*.rst")):
-            language = path.relative_to(family).parts[0]
+            # page_bp's top directory is the language, except for the
+            # ``<lang>-web`` carrier variants: those are the same language
+            # rendered for the Web profile, not a language of their own.
+            language = path.relative_to(family).parts[0].split('-')[0]
             for asset_key in pattern.findall(path.read_text(encoding="utf-8")):
                 referenced.setdefault(asset_key, set()).add(language)
 
