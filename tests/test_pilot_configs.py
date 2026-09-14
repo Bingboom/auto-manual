@@ -414,7 +414,10 @@ class TestPilotConfigs(unittest.TestCase):
         self.assertEqual("eu-merged", cfg.get("build", {}).get("family_id"))
         self.assertEqual("JE-1000F", cfg.get("build", {}).get("default_model"))
         self.assertEqual("EU", cfg.get("build", {}).get("default_region"))
-        self.assertEqual([{"model": "JE-1000F", "region": "EU"}], cfg.get("build", {}).get("targets"))
+        self.assertEqual(
+            [{"model": "JE-1000F", "region": "EU"}, {"model": "JE-2000F", "region": "EU"}],
+            cfg.get("build", {}).get("targets"),
+        )
         self.assertEqual(["en", "fr", "es", "de", "it", "uk"], cfg.get("build", {}).get("languages"))
         self.assertFalse(cfg.get("build", {}).get("include_lang_in_output_path"))
         self.assertTrue(cfg.get("build", {}).get("queue_by_document_key"))

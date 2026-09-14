@@ -1,0 +1,315 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000F",
+  "region": "EU",
+  "source_pdf_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+  "source_pdf_name": "Jackery Explorer 2000 User Manual (JE-2000F) EUUK V2.0-2026-08-04.pdf",
+  "recipe": "data/asset_recipes/manual_je2000f_eu_web.json",
+  "language": "de",
+  "illustrations": [
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000f_eu_de/overview_front.png",
+      "sha256": "34f5e545a61ab61f40caec19408f65ddaa6eb8a7485a69fbd14b0ef278167377",
+      "source_page": 56,
+      "bbox_pt": [
+        27,
+        83,
+        342,
+        315
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Haupt-POWER-Taste LCD 12-V-DC-Anschluss 12 V⎓10 A max. LED-Lichttaste DC/USB-Einschalttaste LED-Licht USB-C 30 W-Ausgang 30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A AC-Einschalttaste USB-C 100 W-Ausgang 100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A USB-A 18 W-Ausgang 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A AC-Ausgang 230 V~ 50 Hz, 10 A max., 2200 W Nennleistung insgesamt, 4400 W Spitzenleistung"
+        },
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Gesamtausgang 2200 W Nennleistung, 4400 W Spitzenleistung (Surge)"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000f_eu_de/overview_side.png",
+      "sha256": "ba7ce9eb54ae16bb1ecc1807bdaf52a0579b9685f2872dce1f9efe14449b7be6",
+      "source_page": 56,
+      "bbox_pt": [
+        27,
+        333,
+        350,
+        485
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ansicht-der-rechten-seite > table",
+          "text": "Griff AC-Eingang 220-240 V~ 50 Hz, 10 A max. DC-Eingang (2×DC8020-Anschlüsse) PV: 16–60 V⎓12 A max., bei Verwendung beider Eingänge bis zu 21 A max. / 400 W max. Auto: 11–16 V⎓8 A max., bei Verwendung beider Eingänge bis zu 8 A max."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000f_eu_de/lcd_map.png",
+      "sha256": "32d48658ad06043b8bfd0d73f0fcad94bb9ff4eb4ae145f9456c8563a118155b",
+      "source_page": 57,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        231
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_power.png",
+      "sha256": "5272f673d00ff133260066f4fabf0ce13aa20a2c92ed7e8029759bbe4e399f33",
+      "source_page": 59,
+      "bbox_pt": [
+        27,
+        71,
+        343,
+        233
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block",
+          "text": "Ein: Einmal drücken. Aus: 3 s lang gedrückt halten."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block > .line",
+          "text": "Standard-Standby-Zeit: 2 Stunden."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block > .line",
+          "text": "Das Produkt schaltet sich nach 2 Stunden Inaktivität automatisch aus, wenn weder geladen noch entladen wird."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block > .line",
+          "text": "*Die Standby-Zeit kann in der Jackery-App eingestellt werden."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block > .line",
+          "text": "Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach 12 Stunden aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_ac.png",
+      "sha256": "5a111d71cf2665c3acedaa0923146c6a7c11953b85c71396b9d50b58797b66d9",
+      "source_page": 59,
+      "bbox_pt": [
+        27,
+        258,
+        342,
+        482
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#ac-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_dc.png",
+      "sha256": "5eea37f6e8da2cc2e00e594f9517378b603fda3bc9e33a284b2e2a6f8afdba54",
+      "source_page": 60,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_led.png",
+      "sha256": "2f3ff9f3b5e5ddce23ee92b59b3cb0c17fd5bc2fa68ee7f1903ec6e636a2024d",
+      "source_page": 60,
+      "bbox_pt": [
+        28,
+        362,
+        344,
+        493
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#led-licht-ein-aus > p",
+          "text": "Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten."
+        },
+        {
+          "selector": "#led-licht-ein-aus > .line-block",
+          "text": "Drücken Sie die LED-Lichttaste einmal, um das Licht einzuschalten. Drücken Sie sie erneut, um in den SOS-Modus zu wechseln. Drücken Sie sie ein drittes Mal, um das Licht auszuschalten."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_lcd.png",
+      "sha256": "d670fe5398d496c3acd79a32a97f96f3c4ae94e2666e6e4e4960d806f0fa26a1",
+      "source_page": 61,
+      "bbox_pt": [
+        35,
+        140,
+        176,
+        240
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000f_eu_de/operation_energy.png",
+      "sha256": "e5392aa0734fc958a0a624eaea77efade8e620314c1599fed9a41e17ee39e573",
+      "source_page": 61,
+      "bbox_pt": [
+        26,
+        320,
+        342,
+        474
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus."
+        },
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= 25 W oder DC/USB <= 2 W), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird."
+        },
+        {
+          "selector": "#energiesparmodus > .line-block",
+          "text": "Halten Sie beide Tasten länger als 3 Sekunden gedrückt."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000f_eu_de/ups.png",
+      "sha256": "0c64da83ffb591ad8c4d9c372eb0ff99a1b120cf58206c603c78050c66fe91d8",
+      "source_page": 62,
+      "bbox_pt": [
+        25,
+        234,
+        341,
+        388
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000f_eu_de/charging_ac.png",
+      "sha256": "d23fa8f082363dfd54998bf4d8ee0d40cc8fc6b89eaaa534c3ab4554c60bb074",
+      "source_page": 63,
+      "bbox_pt": [
+        27,
+        160,
+        342,
+        262
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-eine-ac-steckdose > p",
+          "text": "Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an eine Steckdose an."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je2000f_eu_de/charging_solar_direct.png",
+      "sha256": "8a9b8005fd296f7c32760adea80e0a5e4a4c6549bd43b1050e0ab2371ba19e53",
+      "source_page": 63,
+      "bbox_pt": [
+        27,
+        380,
+        342,
+        497
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000f_eu_de/charging_solar_adapter.png",
+      "sha256": "5e344ad0df88ab0f2473f56d1340ecaa802eaa2a7644904f800ca1b879881eef",
+      "source_page": 64,
+      "bbox_pt": [
+        27,
+        27,
+        342,
+        174
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000f_eu_de/charging_car.png",
+      "sha256": "9dc82467af7a96cd62676435b69ad88d9cdc9eea422f28f851d3460b6a9be9b7",
+      "source_page": 64,
+      "bbox_pt": [
+        27,
+        351,
+        342,
+        487
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-das-autoladegerat-separat-erhaltlich > .line-block > .line",
+          "text": "Fahrzeug"
+        },
+        {
+          "selector": "#aufladen-uber-das-autoladegerat-separat-erhaltlich > .line-block > .line",
+          "text": "*Das Autoladekabel ist separat erhältlich."
+        }
+      ]
+    }
+  ]
+}
