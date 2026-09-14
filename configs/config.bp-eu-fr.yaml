@@ -10,6 +10,12 @@ build:
   languages:
   - fr
   include_lang_in_output_path: true
+  # Name the artefacts per language. config.bp-eu.yaml names the merged
+  # book manual_{model_slug}_{region_slug}, which every single-language
+  # line would then reuse verbatim — publish_branch_assembly rejects that
+  # as a duplicate RTD short alias against the existing English route.
+  output_pdf: manual_{model_slug}_{region_slug}_{lang_slug}.pdf
+  word_output: manual_{model_slug}_{region_slug}_{lang_slug}.docx
   rst_substitutions:
     MANUAL_LANGUAGE_SCOPE: French
 paths:
