@@ -12,6 +12,8 @@ build:
   targets:
     - model: JE-1000F
       region: EU
+    - model: JE-2000F
+      region: EU
   main_tex: manual_demo.tex
   output_pdf: manual_{model_slug}_{region_slug}.pdf
   xelatex_runs: 3
@@ -40,6 +42,15 @@ paths:
   spec_notes_csv: data/phase2/Spec_Notes.csv
   spec_titles_csv: data/phase2/spec_titles.csv
   page_manifest: docs/manifests/manual_eu.yaml
+  # Ukrainian has no manifest yet: Cyrillic headings collapse to repeated
+  # `section-N` ids, so a covered-annotation selector cannot be unique.
+  web_illustration_manifests:
+    JE-2000F_EU:
+      en: docs/renderers/web/je2000f_eu_en_illustrations.json
+      fr: docs/renderers/web/je2000f_eu_fr_illustrations.json
+      es: docs/renderers/web/je2000f_eu_es_illustrations.json
+      de: docs/renderers/web/je2000f_eu_de_illustrations.json
+      it: docs/renderers/web/je2000f_eu_it_illustrations.json
 
 tools:
   patch_fonts: tools/patch_latex_fonts.py
