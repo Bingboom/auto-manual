@@ -2,12 +2,17 @@
 from __future__ import annotations
 
 import hashlib
+from http.client import IncompleteRead, RemoteDisconnected
 from html.parser import HTMLParser
 import json
 from pathlib import Path, PurePosixPath
 import re
+from ssl import SSLEOFError
+from time import monotonic
+from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
+from uuid import uuid4
 
 from tools.manual_operations_online_health import _https_url, _origin, publication_url
 from tools.utils.path_utils import PathSegments
@@ -17,6 +22,8 @@ SCHEMA = "manual-rtd-deployment/v1"
 MAX_FILES = 10000
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_TOTAL_BYTES = 512 * 1024 * 1024
+MAX_FETCH_ATTEMPTS = 3
+FETCH_BUDGET_SECONDS = 45
 _CACHE = {".doctrees", "__pycache__", ".git"}
 
 
@@ -74,23 +81,79 @@ def write_deployment_receipt(app, exception) -> None:
         json.dumps(payload, sort_keys=True, indent=2) + "\n", encoding="utf-8")
 
 
+def _canonical_probe_url(url: str) -> str:
+    """Accept only our internal cache nonce while retaining strict URL checks."""
+    parsed = urlsplit(url)
+    if parsed.query and re.fullmatch(r"receipt_probe=[0-9a-f]{32}", parsed.query) is None:
+        raise ValueError("Unexpected deployment probe query")
+    return _https_url(parsed._replace(query="").geturl())
+
+
+def _probe_url(url: str) -> str:
+    return _https_url(url) + "?receipt_probe=" + uuid4().hex
+
+
 class _Redirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
-        if _origin(req.full_url) != _origin(newurl):
+        target = _canonical_probe_url(newurl)
+        if _origin(_canonical_probe_url(req.full_url)) != _origin(target):
             raise ValueError("Cross-origin deployment redirect refused")
-        return super().redirect_request(req, fp, code, msg, headers, newurl)
+        return super().redirect_request(req, fp, code, msg, headers, _probe_url(target))
+
+
+def _read_complete(response, deadline: float) -> bytes:
+    length = response.headers.get("Content-Length")
+    if length is not None:
+        if re.fullmatch(r"[0-9]+", length) is None or int(length) > MAX_FILE_BYTES:
+            raise ValueError("Invalid deployment Content-Length or size limit")
+        length = int(length)
+    if response.headers.get("Content-Encoding", "identity").lower() != "identity":
+        raise ValueError("Deployment response changed requested identity encoding")
+    data = bytearray()
+    while True:
+        if monotonic() >= deadline:
+            raise TimeoutError("Deployment read exceeded its time budget")
+        chunk = response.read(min(65536, MAX_FILE_BYTES + 1 - len(data)))
+        if monotonic() >= deadline:
+            raise TimeoutError("Deployment read exceeded its time budget")
+        if not chunk:
+            break
+        data.extend(chunk)
+        if len(data) > MAX_FILE_BYTES:
+            raise ValueError("Deployment response exceeds size limit")
+    if length is not None and len(data) != length:
+        raise IncompleteRead(bytes(data), max(0, length - len(data)))
+    return bytes(data)
 
 
 def _fetch(url: str) -> bytes:
     _https_url(url)
-    request = Request(url, headers={"User-Agent": "auto-manual-deployment/1"})
-    with build_opener(_Redirect()).open(request, timeout=15) as response:
-        if response.status != 200 or _origin(response.geturl()) != _origin(url):
-            raise ValueError("Deployment response is not same-origin HTTP 200")
-        data = response.read(MAX_FILE_BYTES + 1)
-        if len(data) > MAX_FILE_BYTES:
-            raise ValueError("Deployment response exceeds size limit")
-        return data
+    deadline = monotonic() + FETCH_BUDGET_SECONDS
+    transient = (IncompleteRead, RemoteDisconnected, ConnectionError, TimeoutError, SSLEOFError)
+    for attempt in range(MAX_FETCH_ATTEMPTS):
+        if monotonic() >= deadline:
+            raise TimeoutError("Deployment read exceeded its time budget")
+        request = Request(_probe_url(url), headers={
+            "User-Agent": "auto-manual-deployment/1", "Accept-Encoding": "identity",
+            "Cache-Control": "no-cache, no-transform", "Pragma": "no-cache",
+        })
+        try:
+            with build_opener(_Redirect()).open(request, timeout=min(15, deadline - monotonic())) as response:
+                final_url = _canonical_probe_url(response.geturl())
+                if response.status != 200 or _origin(final_url) != _origin(url):
+                    raise ValueError("Deployment response is not same-origin HTTP 200")
+                return _read_complete(response, deadline)
+        except HTTPError as exc:
+            exc.close()
+            if exc.code not in {408, 429, 500, 502, 503, 504} or attempt + 1 == MAX_FETCH_ATTEMPTS:
+                raise
+        except URLError as exc:
+            if not isinstance(exc.reason, transient) or attempt + 1 == MAX_FETCH_ATTEMPTS:
+                raise
+        except transient:
+            if attempt + 1 == MAX_FETCH_ATTEMPTS:
+                raise
+    raise RuntimeError("Deployment fetch attempts exhausted")  # pragma: no cover
 
 
 class _Resources(HTMLParser):
