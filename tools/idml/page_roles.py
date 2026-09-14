@@ -143,6 +143,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
         PageRole.OPERATION_GUIDE,
         semantic_stems=("05_operation_guide", "05_operation_guide_placeholder"),
         stable_aliases=_localized_aliases("operation"),
+        pattern=re.compile(r"(?:p\d+_)?05_operation_guide(?:_.+)?"),
     ),
     PageRoleRule(PageRole.UPS_MODE, semantic_stems=("06_ups_mode",)),
     PageRoleRule(PageRole.EXTRA_BATTERY, semantic_stems=("07_extra_battery",)),
@@ -172,6 +173,7 @@ PAGE_ROLE_RULES: tuple[PageRoleRule, ...] = (
     PageRoleRule(
         PageRole.APP_SETUP,
         semantic_stems=("12_app_setup", "12_app_setup_placeholder"),
+        pattern=re.compile(r"(?:p\d+_)?12_app_setup(?:_.+)?"),
     ),
     PageRoleRule(
         PageRole.REGULATORY_COMPLIANCE,

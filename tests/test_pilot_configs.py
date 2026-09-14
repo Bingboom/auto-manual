@@ -276,8 +276,8 @@ class TestPilotConfigs(unittest.TestCase):
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
             ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 18, ["JE-1000F", "JE-1000H", "JE-2000F", "JE-2000E", "JE-100C", "JE-300D", "JE-500A", "JE-3000C", "JE-3600A"]),
-            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 15, ["JE-1000F", "JE-2000F"]),
-            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 15, ["JE-1000F", "JE-2000F"]),
+            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E"]),
+            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E"]),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count, expected_models in cases:
@@ -323,9 +323,15 @@ class TestPilotConfigs(unittest.TestCase):
                 generated_pages = [page for page in resolved.pages if isinstance(page, GeneratedPage)]
                 csv_pages = [page for page in resolved.pages if isinstance(page, CsvPage)]
 
-                expected_generated = {"03_product_overview", "05_operation_guide", "12_app_setup"}
-                if expected_lang == "en":
-                    expected_generated.add("07_extra_battery")
+                # 07_extra_battery is capability-gated (加电包扩容) and now carried by
+                # every EU manifest, not just the English line: the single-language
+                # routes need it too or JE-2000E fails CAPABILITY_CONTENT_MISSING.
+                expected_generated = {
+                    "03_product_overview",
+                    "05_operation_guide",
+                    "07_extra_battery",
+                    "12_app_setup",
+                }
                 self.assertEqual(expected_generated, {page.page for page in generated_pages})
                 self.assertEqual({"lcd_icons", "symbols", "troubleshooting", "spec"}, {page.page for page in csv_pages})
                 self.assertEqual(expected_page_count, len(resolved.pages))
