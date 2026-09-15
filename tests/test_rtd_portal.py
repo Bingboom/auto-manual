@@ -79,10 +79,19 @@ class RtdPortalTests(unittest.TestCase):
         after = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                  for p in root.rglob("*") if p.is_file()}
         self.assertEqual(before, after)
+        def without_beacon(data: bytes) -> bytes:
+            return b"".join(line for line in data.splitlines(keepends=True)
+                            if b"cloudflareinsights" not in line)
+
+        beacon_token = self.settings.get("analytics_beacon_token", "")
         for region in ("EU", "US", "JP"):
             for path in (f"JE-TEST/{region}/md/manual_{region}.html", f"manual_{region}.html"):
-                self.assertEqual((self.root / "before" / path).read_bytes(),
-                                 (self.root / "after" / path).read_bytes(), path)
+                before_bytes = (self.root / "before" / path).read_bytes()
+                after_bytes = (self.root / "after" / path).read_bytes()
+                if beacon_token:
+                    self.assertIn(b"cloudflareinsights", after_bytes, path)
+                self.assertNotIn(b"cloudflareinsights", before_bytes, path)
+                self.assertEqual(without_beacon(before_bytes), without_beacon(after_bytes), path)
         page = (self.root / "after" / "index.html").read_text()
         self.assertIn('data-default-region="EU"', page)
         self.assertIn('value="EU" data-binding="EU" selected', page)

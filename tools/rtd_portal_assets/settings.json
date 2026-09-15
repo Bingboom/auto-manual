@@ -1,6 +1,6 @@
 {
   "default_region": "EU",
-  "analytics_beacon_token": "",
+  "analytics_beacon_token": "a15729a9f8e14bfea2bac9ca6a9338de",
   "rtl_languages": ["he", "ar"],
   "regions": {"US": "US", "EU": "EU", "UK": "EU"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],

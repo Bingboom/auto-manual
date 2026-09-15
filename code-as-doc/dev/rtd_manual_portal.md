@@ -71,7 +71,14 @@ content, QR aliases and nested manual URLs are unchanged.
   payload, and the beacon collects no cookies or user identity under the
   operator's Cloudflare account. Growth-plan decision D1 selected this
   channel; activation is a separate settings change once the operator
-  creates the Web Analytics site and provides its token.
+  creates the Web Analytics site and provides its token. Activated
+  2026-09-15 for the `ht-doc.readthedocs.io` Web Analytics site (custom
+  domain deferred): the committed token is that site's public identifier,
+  embedded verbatim in every rendered page by design — not a Cloudflare
+  API credential. Token self-service: Cloudflare → Analytics → Web
+  Analytics → Manage site → Install JS Snippet. Collection starts after
+  the next RTD publish; verify by viewing page source for the beacon and
+  the Web Analytics dashboard for visits.
 
 ## Feedback and publication checks
 

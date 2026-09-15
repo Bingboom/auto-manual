@@ -18,8 +18,9 @@ Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operatio
 入口（出货手册已印的官方地址）和可复制的型号/市场/语言/版本/页面上下文；
 读者自行提交问题，页面不会自动发送。GitHub Issues 转为内部/经销商分诊渠道。
 处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。首次响应 3 个工作日内，
-不创建定时任务或常驻服务。访问统计默认关闭（`analytics_beacon_token` 为空即无任何采集，
-页面字节等同）；配置令牌后启用无 cookie 的 Cloudflare Web Analytics，不采集访客身份。
+不创建定时任务或常驻服务。访问统计经无 cookie 的 Cloudflare Web Analytics 采集（2026-09-15 起启用，
+站点 `ht-doc.readthedocs.io`；令牌是公开站点标识非密钥），不采集访客身份；
+清空 `analytics_beacon_token` 即完全关闭、页面回到字节等同。
 
 Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
 `check`、Markdown 和 HTML 使用同一份所选语言 RST。显式语言的 Web 队列构建还会
