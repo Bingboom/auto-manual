@@ -41,6 +41,23 @@ class RtdFeedbackTests(unittest.TestCase):
             with self.subTest(url=url), self.assertRaises(ValueError):
                 normalize_channels([{"label": "Support", "url": url}])
 
+    def test_mailto_channels_accept_only_a_single_plain_address(self) -> None:
+        valid = normalize_channels([{"label": "Email support", "url": "mailto:hello@jackery.com"}])
+        self.assertEqual("mailto:hello@jackery.com", valid[0]["url"])
+        for url in (
+            "mailto:",
+            "mailto:hello@jackery.com?subject=Manual",
+            "mailto:hello@jackery.com#fragment",
+            "mailto:hello@jackery.com,second@jackery.com",
+            "mailto:hello%0A@jackery.com",
+            "mailto:hello @jackery.com",
+            "mailto://hello@jackery.com",
+            "mailto:hello@jackery",
+            "mailto:@jackery.com",
+        ):
+            with self.subTest(url=url), self.assertRaises(ValueError):
+                normalize_channels([{"label": "Email support", "url": url}])
+
     def test_sphinx_default_and_explicit_empty_feedback_are_byte_identical(self) -> None:
         with TemporaryDirectory() as td:
             root = Path(td)
@@ -74,6 +91,18 @@ class RtdFeedbackTests(unittest.TestCase):
             self.assertNotIn("?model=", page)
             legacy = (output / "JE-TEST/EU/md/manual_legacy.html").read_text(encoding="utf-8")
             self.assertNotIn("manual-feedback", legacy)
+
+    def test_sphinx_mailto_channel_renders_plain_email_link(self) -> None:
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            source, _ = self._fixture(
+                root,
+                channels=[{"label": "Email support (hello@jackery.com)", "url": "mailto:hello@jackery.com"}],
+            )
+            output = self._build(source, root / "email")
+            page = (output / "JE-TEST/EU/fr/md/manual.html").read_text(encoding="utf-8")
+            self.assertIn('href="mailto:hello@jackery.com"', page)
+            self.assertNotIn("mailto:hello@jackery.com?", page)
 
     @staticmethod
     def _fixture(root: Path, *, channels: list[dict[str, str]] | None, include_legacy: bool = False) -> tuple[Path, Path]:

@@ -52,10 +52,13 @@ content, QR aliases and nested manual URLs are unchanged.
 - The template renders real links before JavaScript; scripts only enhance
   filtering and the language dialog. Search/aliases/manual pages are unchanged.
 - Feedback is configured by `feedback_channels` in
-  `tools/rtd_portal_assets/settings.json`. The operator-selected channel is
-  [GitHub Issues](https://github.com/Bingboom/auto-manual/issues); setting the
-  list to `[]` disables it. Channels are
-  fixed HTTPS URLs without query strings, fragments or credentials. When
+  `tools/rtd_portal_assets/settings.json`. The consumer-facing channel is the
+  after-sales mailbox `hello@jackery.com` already printed in shipped manuals
+  (growth-plan decision D2); [GitHub Issues](https://github.com/Bingboom/auto-manual/issues)
+  remains the internal/dealer triage board and is no longer linked on manual
+  pages. Setting the list to `[]` disables the block. Channels are
+  fixed HTTPS URLs without query strings, fragments or credentials, or a
+  single plain `mailto:` address without headers or extra recipients. When
   enabled, a single-language page shows frozen model/region/language/version
   and relative page context for the user to copy; it never sends context or
   adds user identity to a link. The visible text block remains the no-JS
@@ -75,7 +78,8 @@ content, QR aliases and nested manual URLs are unchanged.
 The operator has assigned Xia Bing (GitHub `Bingboom`, verified with
 `gh api user`) to handle manual feedback and check publication health after
 each release. The event triggers a manual check, not a new scheduled service.
-Response and resolution SLAs remain unassigned.
+First response within 3 business days (growth-plan decision D4, 2026-09-15);
+a resolution SLA remains unassigned.
 
 On a verified single-language page with a version, the reader copies the
 visible model, market, language, version and relative page context, then opens

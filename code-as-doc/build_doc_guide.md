@@ -56,13 +56,15 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
-The operator-selected feedback channel is GitHub Issues, configured through
-the existing fixed HTTPS `feedback_channels` portal setting. Verified
-single-language pages expose frozen publication context for local copying;
-they do not append context, tokens or user identity to channel URLs. Xia Bing
-(`Bingboom`) owns feedback and checks local artifacts, HTTP accessibility and
-the deployed revision after every publication. Response deadlines remain
-unassigned; this configuration creates no scheduled service.
+The consumer-facing feedback channel is the after-sales mailbox
+`hello@jackery.com` (a plain `mailto:` entry in the `feedback_channels`
+portal setting); GitHub Issues stays the internal/dealer triage board.
+Verified single-language pages expose frozen publication context for local
+copying; they do not append context, tokens or user identity to channel URLs.
+Xia Bing (`Bingboom`) owns feedback and checks local artifacts, HTTP
+accessibility and the deployed revision after every publication. First
+response within 3 business days; this configuration creates no scheduled
+service.
 Visit analytics is opt-in through the `analytics_beacon_token` portal setting
 (default `""` = off, byte-identical pages); a configured token enables the
 cookieless Cloudflare Web Analytics beacon without collecting user identity.
