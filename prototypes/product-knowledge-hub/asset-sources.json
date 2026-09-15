@@ -1,0 +1,86 @@
+{
+  "source_catalog": "https://ht-doc.readthedocs.io/index.html",
+  "snapshot_date": "2026-09-14",
+  "assets": [
+    {
+      "path": "assets/JE-1000F-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-1000F/EU/en/md/assets/ir/6c7f1deea2f6211ba3ed3273900aa7595234d3b8fe5a67830defa4cf13ee6fe6/main_unit1.png",
+      "sha256": "e16d3e84d669b6cde2201076c66945745d09440d59e256548af6eeee9041694e"
+    },
+    {
+      "path": "assets/JE-1000F-US.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-1000F/US/en/md/assets/main_unit1_6c7f1deea2f6.png",
+      "sha256": "6c7f1deea2f6211ba3ed3273900aa7595234d3b8fe5a67830defa4cf13ee6fe6"
+    },
+    {
+      "path": "assets/JE-1000H-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-1000H/EU/en/md/assets/ir/3feaa38f0be1906ad7c304e8cbe259f533650f0d4a005827334156798fabd4b1/inbox_unit.png",
+      "sha256": "8ebcc5e4cf3ed247dfb0373d6c6c320199f3fb6ebff266f94357f970bdc48b3d"
+    },
+    {
+      "path": "assets/JE-100C-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-100C/EU/en/md/assets/ir/9e8cfb5917ef0d87bda25b46850c3d566b22b48d52fc7d01f875a220f7b37bed/inbox_unit.png",
+      "sha256": "ec8db5fe0b9adfb65a938c0694302ba04a4f788394e98cc8605de0d4326f3ceb"
+    },
+    {
+      "path": "assets/JE-2000E-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-2000E/EU/en/md/assets/ir/6c7f1deea2f6211ba3ed3273900aa7595234d3b8fe5a67830defa4cf13ee6fe6/main_unit1.png",
+      "sha256": "e16d3e84d669b6cde2201076c66945745d09440d59e256548af6eeee9041694e"
+    },
+    {
+      "path": "assets/JE-2000F-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-2000F/EU/en/md/assets/ir/6c7f1deea2f6211ba3ed3273900aa7595234d3b8fe5a67830defa4cf13ee6fe6/main_unit1.png",
+      "sha256": "e16d3e84d669b6cde2201076c66945745d09440d59e256548af6eeee9041694e"
+    },
+    {
+      "path": "assets/JE-3000C-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-3000C/EU/en/md/assets/ir/17555c602ab83833236333ae28aac28dfdfed0064f389504a0aee30c93a7a1f6/inbox_unit.png",
+      "sha256": "08196af0a8c12eb7c920f7323965bf88f459e2e576428d758ff8277c4627f404"
+    },
+    {
+      "path": "assets/JE-300D-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-300D/EU/en/md/assets/ir/b8b2eea4b34aa606a538492672ccaddb0603033c5a9c8ccc9002fc8ece942378/inbox_unit.png",
+      "sha256": "b98345db85fda0db061bf11fdade3f121f101d36a581f695e3780879b8e5e5f2"
+    },
+    {
+      "path": "assets/JE-3600A-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-3600A/EU/en/md/assets/ir/8a16c28d2a7b054188481e51fb8c8ed177c8a750b53fd7b0a8e41951ad2239ac/inbox_unit.png",
+      "sha256": "0155cab94c22091e6cc090b29c22be53d8be6a73860ec513f86d483bbfcf62a1"
+    },
+    {
+      "path": "assets/JE-500A-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JE-500A/EU/en/md/assets/ir/7b4b6ac8a1522e7d23216b966d330c14a746c51da591147915f65b2aa1480022/inbox_unit.png",
+      "sha256": "e8494927e5ca14cee70c6d24ff8d0d3c5b44c8bdfe6b5dcb6f4228e0427a5d2c"
+    },
+    {
+      "path": "assets/JBP-3600A-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JBP-3600A/EU/en/md/assets/ir/8872b0b8392c52b4bd9c655be1883cb0fbbeea226a7642b0ea7e456aee5ede26/jbp3600a_inbox_unit.png",
+      "sha256": "f0f615c4e8839b01aa29534293256cb5b61ca063b52c5250b4021e4310bc9798"
+    },
+    {
+      "path": "assets/JS-100I-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JS-100I/EU/en/md/assets/ir/bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a/inbox_panel.png",
+      "sha256": "44c21ebc2dd19935ef6f1cc9b76c7ec294451b56e4742d983aa2edb10e9db704"
+    },
+    {
+      "path": "assets/JS-200E-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JS-200E/EU/en/md/assets/ir/5f7d48fe9d333b6ddced3b275264255b0ea69e99c7a7864a8bb6409c260f7bc4/inbox_panel.png",
+      "sha256": "ebbea0cb2f05772db1e945b9b275c01418cd0f926efc1066204a1c0d7823872a"
+    },
+    {
+      "path": "assets/JA-AD600A-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JA-AD600A/EU/en/md/assets/ir/97287dee4780335316be5e85624256bc4786ecb7bebe2a3aaaa84489331780e8/inbox_charger.png",
+      "sha256": "67b0e010a9686eccafa6ab634e16bfe55d27597ab61e3d159a42589f0c0a6926"
+    },
+    {
+      "path": "assets/JA-CC30A-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JA-CC30A/EU/en/md/assets/ir/5ec32ef467f46e92109c8238d668e6e64568ce814719c316e636475b518190ee/inbox_bag.png",
+      "sha256": "580eaa1db30309589c176ed1c383749a0d7d15168d3e70f80fc61143e25518c9"
+    },
+    {
+      "path": "assets/JAAC-WHE-100-EUA1-EU.png",
+      "source_url": "https://ht-doc.readthedocs.io/_static/manual-assets/JAAC-WHE-100-EUA1/EU/en/md/assets/ir/dbb130bcfeb7953871fcc7e492dfb52e830c237db87f434c3855177ea96847f6/inbox_main_frame.png",
+      "sha256": "e09156141e3b57c2cf5e25dd3b05c8b7ca8a1d0f692d10e916a68c6b9dde0857"
+    }
+  ]
+}
