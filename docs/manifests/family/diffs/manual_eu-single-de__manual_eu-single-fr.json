@@ -58,6 +58,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/4/model_overrides/JE-3600A/template",
+      "value": "templates/targets/je3600a/03_product_overview_fr.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/4/template",
       "value": "templates/page_eu-fr/03_product_overview_placeholder.rst"
     },
@@ -83,6 +88,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/6/model_overrides/JE-3600A/template",
+      "value": "templates/targets/je3600a/05_operation_guide_fr.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/6/recipe",
       "value": "templates/recipes/eu-fr/05_operation_guide.yaml"
     },
@@ -105,6 +115,11 @@
       "op": "replace",
       "path": "/pages/8/langs/0",
       "value": "fr"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/8/model_overrides/JE-3600A/template",
+      "value": "templates/targets/je3600a/07_extra_battery_fr.rst"
     },
     {
       "op": "replace",
