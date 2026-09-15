@@ -63,6 +63,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | --- | --- |
 | 第一次接手项目 | [`ONBOARDING.md`](ONBOARDING.md) |
 | 完整命令和运维流程 | [`code-as-doc/build_doc_guide.md`](code-as-doc/build_doc_guide.md) |
+| 手册中心首页与目录缩略图 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
 | Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
 | RTD 手册中心：首页、地区筛选与发布链接 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |

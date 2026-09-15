@@ -1,5 +1,7 @@
 # Windows Build Guide
 
+RTD catalog cards without packing-list artwork may use an explicit model/market static illustration fallback; see [catalog artwork](dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15).
+
 RTD [locale navigation](dev/rtd_locale_navigation.md) consumes only frozen publication
 metadata; it does not query live data during a Sphinx build.
 Legacy metadata means separate-language identity is unverified, not that its
