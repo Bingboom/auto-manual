@@ -175,3 +175,26 @@ needed. These are diagram thumbnails, with the source labels intact. The
 Sphinx portal static path copies both images on a normal RTD rebuild; no
 frozen manual snapshot needs to be rewritten. Remove the relevant mapping
 to return a card to its previous model-only presentation.
+
+### Explicit product artwork
+
+`product_image_overrides` selects exact model/market artwork ahead of a native
+packing-list image. Each entry has `src`; optional `view_box`, `width`, and
+`height` display a bounded SVG viewport of the unchanged source image.
+Removing an override restores native-image / configured-fallback precedence.
+
+- JBP-3600A/EU: the operator-provided *Jackery Battery Pack 3600 User Manual
+  (JBP-3000A) EUUK V2.0-2026-08-04.pdf*, page 1. Despite the filename, the cover
+  identifies JBP-3600A. PDF SHA-256:
+  `084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe`.
+  Render the original vector artwork at 4x using the top-left PDF-point box
+  `(78, 176, 291, 317)`; output `jbp-3600a.png` SHA-256:
+  `fb4c99e52945b2753fb405c4ae254804433169861b710fc089df86404fa2c49f`.
+- JS-100F/EU: byte-identical copy of
+  `docs/renderers/web/assets/js100f_eu_en/solar_panel_connector.png` (SHA-256
+  `5a9d559d420ebecc9314ec8e515f11e35e4d29a6453a5dec5d143ab311e0663e`).
+  The viewport `24 27 320 145` shows the upper panel only, excluding the second
+  panel, connector, and power station. The source dimensions are 1248 x 328.
+
+These overrides affect homepage presentation only, not manual content or
+frozen publication snapshots.

@@ -1,6 +1,6 @@
 # Windows Build Guide
 
-RTD catalog cards without packing-list artwork may use an explicit model/market static illustration fallback; see [catalog artwork](dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15).
+RTD catalog cards may use explicit model/market artwork overrides or a static illustration fallback when packing-list artwork is missing; see [catalog artwork](dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15).
 
 RTD [locale navigation](dev/rtd_locale_navigation.md) consumes only frozen publication
 metadata; it does not query live data during a Sphinx build.
