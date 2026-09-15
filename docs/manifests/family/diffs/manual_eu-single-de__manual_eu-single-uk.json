@@ -61,6 +61,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/4/model_overrides/JE-3000C/template",
+      "value": "templates/targets/je3000c/03_product_overview_uk.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/4/template",
       "value": "templates/page_eu-uk/03_product_overview_placeholder.rst"
     },
@@ -82,6 +87,11 @@
       "op": "replace",
       "path": "/pages/6/model_overrides/JE-2000E/template",
       "value": "templates/page_eu-uk/05_operation_guide_je2000e.rst"
+    },
+    {
+      "op": "replace",
+      "path": "/pages/6/model_overrides/JE-3000C/template",
+      "value": "templates/targets/je3000c/05_operation_guide_uk.rst"
     },
     {
       "op": "replace",
