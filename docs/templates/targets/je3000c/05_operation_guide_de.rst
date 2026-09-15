@@ -1,0 +1,186 @@
+GRUNDLEGENDE OPERATIONEN
+========================
+
+HAUPTSTROMVERSORGUNG EIN/AUS
+----------------------------
+
+.. image:: asset:operation/main_power
+   :alt: Platzhalter für Ein-/Ausschalten.
+   :width: 360px
+
+| Ein: Einmal drücken.
+| Aus: 3 s lang gedrückt halten.
+|
+| **Standard-Standby-Zeit:** |DEFAULT_STANDBY_DURATION|.
+| Das Produkt schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus, wenn weder geladen noch entladen wird.
+| \*Die Standby-Zeit kann in der Jackery-App eingestellt werden.
+| Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach |ENERGY_SAVING_AUTO_OFF_DURATION| aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt.
+
+AC-AUSGANG EIN/AUS
+------------------
+
+**Voraussetzung**: Das Produkt ist eingeschaltet.
+
+.. image:: asset:operation/ac_output
+   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :width: 360px
+
+| 
+| **Ein**
+| Einmal drücken
+| **Aus**
+| Einmal drücken
+| 
+
+DC 12V/USB-AUSGANG EIN/AUS
+-------------------------
+
+**Voraussetzung**: Das Produkt ist eingeschaltet.
+
+.. image:: asset:operation/dc_usb_output
+   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :width: 360px
+
+| 
+| **Ein**
+| Einmal drücken
+| **Aus**
+| Einmal drücken
+|
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **VORSICHT**
+     -
+       - **Der USB-C-100-W-Anschluss ist ein Hochleistungs-Ausgangsanschluss des USB-PD-Typs Power Source 3 (PS3).** Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Stellen Sie vor der Verwendung dieses Anschlusses sicher, dass das angeschlossene Gerät oder Zubehör über Brandschutz verfügt.
+       - Schließen Sie |PRODUCT_NAME| nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.
+       - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).
+
+| Das Produkt kann Ihre Fahrzeugbatterie mit dem Jackery 12-V-Autobatterie-Ladekabel aufladen, das separat erhältlich und auf unserer Website verfügbar ist.
+ 
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **VORSICHT**
+     -
+       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
+       - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
+       - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
+
+ENERGIESPARMODUS
+----------------
+
+Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
+
+Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
+
+.. image:: asset:operation/energy_saving
+   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :width: 320px
+
+
+| Halten Sie beide Tasten länger als 3 Sekunden gedrückt.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **HINWEIS**
+     - Der Energiesparmodus kehrt nach dem Einschalten in seinen vorherigen Zustand zurück. Für einen Moduswechsel ist ein manuelles Umschalten erforderlich.
+
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Wiederaufnahmefunktion für AC- und DC-Ausgänge
+----------------------------------------------
+
+Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiviert. Aktivieren Sie diese Funktion in der Jackery-App, damit das Gerät den Status der AC- und DC-Ausgänge speichert und die AC- und DC-Ausgänge unter festgelegten Bedingungen automatisch wiederherstellt.
+
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
++===================================================================+=============================================================+
+| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
+|                                                                   +-------------------------------------------------------------+
+|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
+
+
+LCD-ANZEIGE
+-----------
+
+.. only:: html
+
+   .. raw:: html
+
+      <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
+        <tr>
+          <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
+            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+          </td>
+          <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
+          <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
+          <td style="width:46%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Aus</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Autom. aus</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Dauerhaft an (beim Laden oder Entladen)</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Aus</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Drücken Sie die Haupt-POWER-Taste.</td>
+        </tr>
+        <tr>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Autom. aus</td>
+          <td style="border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.</td>
+        </tr>
+      </table>
+
+.. only:: latex
+
+   .. raw:: latex
+
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
+      \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
+      \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach |DEFAULT_STANDBY_DURATION| Inaktivität automatisch aus.}
+      \end{HBLcdModeTable}
+
+Sie können den Bildschirm-Anzeigemodus auch in der Jackery-App einstellen.
+
+TASTENKOMBINATION
+-----------------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 25 35
+
+   * - Tasten
+     - Bedienung
+     - Funktion
+   * - Haupt-POWER-Taste + AC-Einschalttaste
+     - Beide 3 s lang gedrückt halten
+     - Energiesparmodus ein-/ausschalten
+   * - Haupt-POWER-Taste + DC/USB-Einschalttaste
+     - Beide 3 s lang gedrückt halten
+     - WLAN und Bluetooth zurücksetzen
+   * - DC/USB-Einschalttaste + AC-Einschalttaste
+     - Beide 1 s lang gedrückt halten
+     - WLAN und Bluetooth ein-/ausschalten
