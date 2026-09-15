@@ -51,6 +51,10 @@
       "path": "/pages/4/model_overrides/JE-300E"
     },
     {
+      "op": "remove",
+      "path": "/pages/4/model_overrides/JE-3600A"
+    },
+    {
       "op": "replace",
       "path": "/pages/4/model_overrides/JE-2000E/template",
       "value": "templates/page_eu-uk/03_product_overview_je2000e.rst"
@@ -71,6 +75,10 @@
       "value": "uk"
     },
     {
+      "op": "remove",
+      "path": "/pages/6/model_overrides/JE-3600A"
+    },
+    {
       "op": "replace",
       "path": "/pages/6/model_overrides/JE-2000E/template",
       "value": "templates/page_eu-uk/05_operation_guide_je2000e.rst"
@@ -89,6 +97,10 @@
       "op": "replace",
       "path": "/pages/7/lang",
       "value": "uk"
+    },
+    {
+      "op": "remove",
+      "path": "/pages/8/model_overrides"
     },
     {
       "op": "replace",

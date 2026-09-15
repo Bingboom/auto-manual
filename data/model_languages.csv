@@ -6,3 +6,4 @@ JE-1000F_EU,HTE153,en;fr;es;de;it,2026-08-03 操作者确认:JE-1000F 不含乌�
 JE-1000F_US,HTE153,en;fr;es,2026-08-03 与 dingtalk_delivery_map.csv 的 US 行三语声明一致;等于家族并集(无裁剪)
 JE-2000E_EU,HTE152,en;fr;es;de;it;uk,2026-08-03 操作者确认:其他型号的欧规含乌克兰语;等于家族并集(无裁剪)
 JE-2000F_EU,HTE154,en;fr;es;de;it;uk,2026-08-03 操作者确认:其他型号的欧规含乌克兰语;等于家族并集(无裁剪)
+JE-3600A_EU,HTE139,en;fr;es;de;it,2026-09-14 按已发布欧英规手册 Jackery Explorer 3600 Plus-EU-UK.pdf 核实：全书 91 页 5 语，西里尔字符总数为 0，目录语言标记仅 EN/FR/ES/DE/IT——JE-3600A 欧规不含乌克兰语
