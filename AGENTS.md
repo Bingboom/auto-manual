@@ -187,3 +187,7 @@ If any check fails, do not open the PR. Report which check failed and the last c
 - Out-of-scope bugs noticed mid-task → call them out in the PR body under a "Follow-up" or "Future work" section; do not fix them in the same branch.
 - The task turns out 3× larger than expected → stop, report the new scope, let the operator decide between splitting and continuing.
 - The following always require explicit confirmation **before** acting, even if the task seems to imply them: deleting large blocks of code, changing public CLI flags or function signatures exported by `build.py`, editing `data/phase2/**` schema, bumping dependency versions in `requirements.txt` or `pyproject.toml`, deleting / renaming committed files under `docs/_review/**`, touching `.github/workflows/**`.
+
+## 9. Delegation (Fable)
+
+When the active model is Fable, do not do the work yourself. Never read the documentation, write the code, or run the tests in person — decompose the task and deploy every piece to others through Sub-agents and Dynamic Workflows, and keep your own turn to routing, briefing, and accepting their results. When staffing that work: (1) never assign Fable to it — Opus is the highest model an assignee may use; (2) the single exception is a high-stakes architecture review, which may be given to Fable.

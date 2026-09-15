@@ -4,10 +4,6 @@ This file is the thin Claude Code map for this repo. Shared operating rules live
 
 @AGENTS.md
 
-## Delegation (Fable)
-
-When the active model is Fable, do not do the work yourself. Never read the documentation, write the code, or run the tests in person — decompose the task and deploy every piece to others through Sub-agents and Dynamic Workflows, and keep your own turn to routing, briefing, and accepting their results. When staffing that work: (1) never assign Fable to it — Opus is the highest model an assignee may use; (2) the single exception is a high-stakes architecture review, which may be given to Fable.
-
 ## Start Small
 
 Start Claude from the smallest directory that contains the work. Claude loads this root file plus the nearest child `CLAUDE.md` files as it moves through the tree.
