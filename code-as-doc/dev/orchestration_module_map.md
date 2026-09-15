@@ -75,6 +75,12 @@ Optional manual feedback affordances are kept in
 HTTPS channel configuration and renders only local copyable context from the
 frozen publication identity; an empty channel list produces no markup.
 
+Optional visit analytics lives in
+[`tools/rtd_analytics.py`](../../tools/rtd_analytics.py). It validates the
+fixed-shape Cloudflare Web Analytics beacon token and renders the beacon
+script tag; an empty token keeps every page byte-identical to the
+analytics-free output.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)

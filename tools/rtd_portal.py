@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlsplit
 
 from tools.utils.path_utils import PathSegments, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
+from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
@@ -104,6 +105,9 @@ def page_context(app, pagename, templatename, context, doctree):
     settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
     products = catalog(Path(app.srcdir).resolve(), settings)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
+    beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
+    if beacon_token:
+        app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename != app.config.root_doc:
         for product in products:
             active = next((p for p in product["publications"]
@@ -146,6 +150,7 @@ def page_context(app, pagename, templatename, context, doctree):
         return None
     context["portal"] = settings
     context["products"] = products
+    context["analytics_beacon"] = beacon_markup(beacon_token)
     return "manual_portal.html"
 
 

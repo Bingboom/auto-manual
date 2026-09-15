@@ -60,6 +60,15 @@ content, QR aliases and nested manual URLs are unchanged.
   and relative page context for the user to copy; it never sends context or
   adds user identity to a link. The visible text block remains the no-JS
   fallback.
+- Optional visit analytics is configured by `analytics_beacon_token` in
+  `tools/rtd_portal_assets/settings.json` and defaults to `""` (off,
+  byte-identical output). A configured token must be 32 lowercase hex
+  characters and enables the cookieless Cloudflare Web Analytics beacon on
+  the portal root and single-language manual pages; the token is the only
+  payload, and the beacon collects no cookies or user identity under the
+  operator's Cloudflare account. Growth-plan decision D1 selected this
+  channel; activation is a separate settings change once the operator
+  creates the Web Analytics site and provides its token.
 
 ## Feedback and publication checks
 
