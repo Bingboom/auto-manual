@@ -81,6 +81,12 @@ fixed-shape Cloudflare Web Analytics beacon token and renders the beacon
 script tag; an empty token keeps every page byte-identical to the
 analytics-free output.
 
+Derived page head metadata lives in
+[`tools/rtd_page_metadata.py`](../../tools/rtd_page_metadata.py). It builds
+title/description/canonical/hreflang/OG strictly from the frozen publication
+identity plus the validated `site_base_url` origin; an empty origin omits
+every absolute URL.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)

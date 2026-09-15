@@ -42,7 +42,9 @@
 ### L2 触达层（经营入口）
 
 - QR 码：区分来源（包装扫码 vs 搜索进入）。静态站避免 query 采集，复用既有 alias 机制做来源别名路径。
-- SEO：sitemap、hreflang（多语言站直接影响搜索命中对的语言）、页面 title 规范化。均可构建期生成，不需要新服务。
+- SEO：sitemap（RTD 自动生成，已有）；hreflang、页面 title、description、canonical、OG
+  已于 2026-09-15 交付——全部从 L1 发布身份构建期派生，`site_base_url` 为域名切换的
+  唯一开关。剩余：QR 来源区分、链接归一。
 - 链接归一：官网 / App / 客服签名统一指向手册中心，不散链。
 
 ### L3 反馈层（渠道换成用户会用的）

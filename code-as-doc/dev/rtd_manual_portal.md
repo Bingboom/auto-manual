@@ -80,6 +80,17 @@ content, QR aliases and nested manual URLs are unchanged.
   Analytics → Manage site → Install JS Snippet. Collection starts after
   the next RTD publish; verify by viewing page source for the beacon and
   the Web Analytics dashboard for visits.
+- Page head metadata is derived, never hand-written: on verified
+  single-language pages the extension sets a search-legible `<title>`
+  (product name, model, market, language), meta description, Open Graph
+  tags, canonical and a self-inclusive `hreflang` group — all computed from
+  the frozen publication identity and the catalog's `language_options`.
+  Absolute URLs come from `site_base_url` in the portal settings (a bare
+  HTTPS origin; empty omits canonical/hreflang/og:url) — this is the single
+  switch to flip when the custom domain lands. The portal home gets
+  canonical/OG through its own template; legacy pages and the title of any
+  page without a verified identity stay byte-identical via the shadow
+  `page.html`'s fallback to the theme block.
 
 ## Feedback and publication checks
 
