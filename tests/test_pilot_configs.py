@@ -276,8 +276,8 @@ class TestPilotConfigs(unittest.TestCase):
     def test_eu_single_language_configs_should_resolve_manifest_backed_pages_without_issues(self) -> None:
         cases = (
             ("configs/config.eu-en.yaml", "en", "eu-en", "docs/manifests/manual_eu-en.yaml", 18, ["JE-1000F", "JE-1000H", "JE-2000F", "JE-2000E", "JE-100C", "JE-300D", "JE-500A", "JE-3000C", "JE-3600A"]),
-            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E"]),
-            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E"]),
+            ("configs/config.eu-fr.yaml", "fr", "eu-fr", "docs/manifests/manual_eu-single-fr.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E", "JE-3600A"]),
+            ("configs/config.eu-es.yaml", "es", "eu-es", "docs/manifests/manual_eu-single-es.yaml", 16, ["JE-1000F", "JE-2000F", "JE-2000E", "JE-3600A"]),
         )
 
         for config_name, expected_lang, expected_family, expected_manifest, expected_page_count, expected_models in cases:
@@ -293,9 +293,13 @@ class TestPilotConfigs(unittest.TestCase):
                 self.assertEqual([expected_lang], cfg.get("build", {}).get("languages"))
                 self.assertTrue(cfg.get("build", {}).get("include_lang_in_output_path"))
                 self.assertEqual(expected_manifest, cfg.get("paths", {}).get("page_manifest"))
-                expected_identity_allowlist = ["占位符", "Jackery Battery Pack 2000"]
-                if expected_lang == "en":
-                    expected_identity_allowlist.append("Jackery Battery Pack 3600")
+                # Battery Pack 3600 is named by JE-3600A's capability-gated page,
+                # which the fr/es lines now carry as well as the English one.
+                expected_identity_allowlist = [
+                    "占位符",
+                    "Jackery Battery Pack 2000",
+                    "Jackery Battery Pack 3600",
+                ]
                 self.assertEqual(
                     expected_identity_allowlist,
                     cfg.get("checks", {}).get("allowed_foreign_identity_literals"),

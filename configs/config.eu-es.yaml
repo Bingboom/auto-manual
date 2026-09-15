@@ -10,9 +10,17 @@ build:
       region: EU
     - model: JE-2000E
       region: EU
+    - model: JE-3600A
+      region: EU
   word_title: "|PRODUCT_NAME| Manual de usuario"
 
 paths:
   page_manifest: docs/manifests/manual_eu-single-es.yaml
   web_illustration_manifests:
     JE-2000F_EU: docs/renderers/web/je2000f_eu_es_illustrations.json
+checks:
+  # JE-3600A 的加电包扩容页按设计引用配套电池包型号名；与 config.eu-en.yaml 同列。
+  allowed_foreign_identity_literals:
+    - 占位符
+    - Jackery Battery Pack 2000
+    - Jackery Battery Pack 3600
