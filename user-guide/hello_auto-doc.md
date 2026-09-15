@@ -1810,8 +1810,3 @@ For the EU charger family, the Web illustration path resolves from the selected 
 于产品和正文结果；语言未核验的历史发布不冒充单语版本。图片内没有对应
 正文的文字暂不纳入检索。静态索引随 RTD 构建生成，无需配置搜索服务。
 实现与边界见 [Manual Center](../code-as-doc/dev/rtd_manual_portal.md)。
-
-产品中心首页现由工程侧门户模板生成，产品资料继续只读 `docs/publish`。
-AI / Vibe Coding 实践只维护钉钉链接的标题、简介和标签，正文留在钉钉。
-配置位置为 `tools/rtd_portal_assets/practice-links.json`；只有明确
-`visibility: public` 的条目可进入公开站。没有链接时显示待收录。

@@ -2153,7 +2153,3 @@ Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图�
 Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引，先于部署
 回执封存执行；无需单独启动后端。维护入口及检索范围见
 [RTD Manual Center](dev/rtd_manual_portal.md)。
-
-产品中心门户沿既有 RTD 扩展构建，不新增发布队列或修改发布目录。
-首页布局与钉钉链接元数据属于工程文件，按工程 PR → 镜像 → RTD 构建更新；
-产品资料仍按既有 Web Publish 流程发布。
