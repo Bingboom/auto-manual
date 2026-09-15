@@ -31,7 +31,8 @@ IR/print changes, online Base writes, product facts, and advertising removal.
 Existing bundled languages remain accessible through their original manual.
 Only verified independent locale links may be enabled; do not construct URLs
 by replacing a language suffix. Product illustrations come from each frozen
-manual's packing-list product asset; missing images use model-only cards.
+manual's packing-list product asset; missing packing-list images may use an explicit model/market artwork fallback;
+unconfigured cards remain model-only.
 
 The root template keeps an EthicalAds placement for RTD. No CSS hides platform
 advertisements. Other markets remain accessible in an all-publications fallback
@@ -155,3 +156,22 @@ keyword search. #1144 is reverted; the complete product hub remains on remote
 branch `codex/product-hub-preserved-20260915` at `9306967b`. This rollback
 preserves all other product/localization changes and does not modify frozen
 publish inputs. Restoring the hub later requires a separate explicit release.
+
+## Accessory catalog artwork (2026-09-15)
+
+JA-CA05B/EU and JA-CA3SA/EU have no packing-list image for the portal to
+select. Their existing manual illustrations are bundled byte-for-byte as
+portal-only static assets, selected by `product_image_fallbacks` in
+`tools/rtd_portal_assets/settings.json`. A native packing-list image takes
+precedence; unconfigured models and other markets keep the existing fallback.
+
+| Catalog target | Source illustration | SHA-256 |
+| --- | --- | --- |
+| JA-CA05B/EU | `docs/renderers/web/assets/ja_ca05b_eu_en/connector_reference.png` | `f343a96eb9aefba55b0bc890a0a6b0f16d361da2a7cb36a640e2e9f8cab48ded` |
+| JA-CA3SA/EU | `docs/renderers/web/assets/ja_ca3sa_eu_en/main_ports.png` | `d8786487be9c5b7810bfb1544f277b5cbde5dca3759f09b3500000f4ecc82b77` |
+
+No image generation, cropping, manual-body edits or source-table writes are
+needed. These are diagram thumbnails, with the source labels intact. The
+Sphinx portal static path copies both images on a normal RTD rebuild; no
+frozen manual snapshot needs to be rewritten. Remove the relevant mapping
+to return a card to its previous model-only presentation.

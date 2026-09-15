@@ -1,5 +1,9 @@
 {
   "default_region": "EU",
+  "product_image_fallbacks": {
+    "JA-CA05B/EU": "_static/portal-products/ja-ca05b.png",
+    "JA-CA3SA/EU": "_static/portal-products/ja-ca3sa.png"
+  },
   "analytics_beacon_token": "a15729a9f8e14bfea2bac9ca6a9338de",
   "rtl_languages": ["he", "ar"],
   "regions": {"US": "US", "EU": "EU", "UK": "EU"},
