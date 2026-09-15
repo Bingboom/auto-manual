@@ -13,28 +13,10 @@ from urllib.parse import urljoin, urlsplit
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from tools.rtd_portal import ASSETS, catalog  # noqa: E402
+from tools.rtd_hub_links import read_practices  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 
 CATEGORIES = {"Power stations": "便携储能", "Battery packs": "加电包", "Solar panels": "太阳能板", "Accessories": "配件"}
-
-
-def read_practices(path: Path, audience: str) -> list[dict]:
-    entries = json.loads(path.read_text(encoding="utf-8"))["practices"]
-    result = []
-    for item in entries:
-        if audience == "public" and item.get("visibility") != "public":
-            continue
-        url = urlsplit(item["url"])
-        if url.scheme != "https" or url.hostname != "alidocs.dingtalk.com" or url.username or url.password or url.port not in (None, 443):
-            raise ValueError("Practice links must use https://alidocs.dingtalk.com")
-        if not item.get("title", "").strip() or not isinstance(item.get("tags", []), list):
-            raise ValueError("Practice title and tag list are required")
-        date = item.get("updated_at", "")
-        if date:
-            datetime.fromisoformat(date)
-        result.append({"title": item["title"], "summary": item.get("summary", ""),
-                       "tags": item.get("tags", []), "url": item["url"], "updated_at": date})
-    return result
 
 
 def build(publish: Path, output: Path, base_url: str, links: Path, audience: str) -> dict:
@@ -108,7 +90,7 @@ if __name__ == "__main__":
     parser.add_argument("--publish-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--manual-base-url", required=True)
-    parser.add_argument("--links", type=Path, default=Path(__file__).with_name("practice-links.json"))
+    parser.add_argument("--links", type=Path, default=ASSETS / "practice-links.json")
     parser.add_argument("--audience", choices=("internal", "public"), default="internal")
     args = parser.parse_args()
     print(json.dumps(build(args.publish_root, args.output, args.manual_base_url, args.links, args.audience)))

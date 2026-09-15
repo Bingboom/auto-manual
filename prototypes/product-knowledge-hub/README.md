@@ -1,7 +1,7 @@
 # 产品中心门户
 
 门户只聚合入口，产品资料来自 Hello-Docs 的 `docs/publish/`；实践正文留在钉钉。
-当前仍是独立本地页面，不接入 RTD、不写线上多维表，不触发发布队列。
+此目录保留独立预览构建器；正式 RTD 首页使用工程侧 knowledge_hub 模板和同一链接配置。不写线上多维表，不触发发布队列。
 
 ## 构建与预览
 
@@ -22,7 +22,7 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory /tmp/product-hub-previe
 
 ## 实践链接
 
-在 [`practice-links.json`](practice-links.json) 的 `practices` 数组中录入：
+在共享配置 [`practice-links.json`](../../tools/rtd_portal_assets/practice-links.json) 的 `practices` 数组中录入：
 
 - `title`：卡片标题。
 - `summary`：简短介绍。
@@ -56,5 +56,5 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory /tmp/product-hub-previe
 产品更新与明确公开的实践更新可以保留。公开页面目前不显示 AI 栏。
 不要将内部构建用于公开站点。源码中的示例正文已移除。
 
-本次没有替换现有 RTD 首页及其跨手册正文检索。公开站正式接入时应继续复用
-已有检索索引；本地门户当前只按产品名称/型号及实践元数据筛选。
+正式 RTD 首页已经接入此版面，并复用原有章节全文索引；独立预览构建器
+仍只按产品名称/型号及实践元数据筛选。

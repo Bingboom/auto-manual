@@ -33,3 +33,16 @@ class HubBoundaryTests(unittest.TestCase):
                     hub.read_practices(links, 'internal')
             with self.assertRaises(ValueError):
                 hub.build(root, root / 'portal', 'https://example.com/', links, 'internal')
+
+    def test_rtd_context_excludes_private_practice_metadata(self):
+        from tools.rtd_hub import hub_context
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'practice-links.json').write_text(json.dumps({'practices': [
+                {'title': 'Private only title', 'summary': 'Private summary', 'url': 'https://alidocs.dingtalk.com/i/nodes/private'},
+                {'title': 'Public link', 'visibility': 'public', 'url': 'https://alidocs.dingtalk.com/i/nodes/public', 'tags': ['Vibe Coding'], 'updated_at': '2026-09-14'},
+            ]}))
+            context = hub_context(root / 'web', [], root)
+            self.assertEqual(len(context['practices']), 1)
+            self.assertEqual(context['updates'][0]['title'], 'Public link')
+            self.assertNotIn('Private', json.dumps(context))

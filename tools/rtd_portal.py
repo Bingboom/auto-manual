@@ -146,7 +146,10 @@ def page_context(app, pagename, templatename, context, doctree):
         return None
     context["portal"] = settings
     context["products"] = products
-    return "manual_portal.html"
+    from tools.rtd_hub import hub_context
+
+    context["hub"] = hub_context(Path(app.srcdir).resolve(), products, ASSETS)
+    return "knowledge_hub.html"
 
 
 def setup(app):
