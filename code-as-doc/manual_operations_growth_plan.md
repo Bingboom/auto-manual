@@ -80,7 +80,7 @@
   - 选项 A（推荐）：Cloudflare Web Analytics——免费、无 cookie、无个人数据，站点已在 Cloudflare 后面。
   - 选项 B：RTD 商业版 traffic analytics。
   - 选项 C：不开，维持现状（则 L1/L4 及北极星指标全部不成立）。
-  - 决策：**选 A（Cloudflare Web Analytics）**　日期：2026-09-15。机制切片 #1151（默认关）；token 激活为后续 settings 变更，建议在 D3 绑定域名后建站取 token。
+  - 决策：**选 A（Cloudflare Web Analytics）**　日期：2026-09-15。机制切片 #1151（默认关）。因 D3 暂缓，同日改按 RTD 默认域名 `ht-doc.readthedocs.io` 建站并**已配置令牌激活**（换域名后站点重建的代价已接受）；下次 publish 起开始采集。
 - [x] **D2 消费者反馈渠道终点**：访客复制上下文后贴到哪里？
   - 选项 A：售后邮箱（最低成本，客服团队现有流程可接）。
   - 选项 B：官网客服表单（体验最好，需官网侧配合）。

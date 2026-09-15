@@ -41,6 +41,11 @@ regexes = [
   '''(?i)^\s*token\s*=\s*"[A-Za-z0-9]{27,28}"''',
   # Feishu table identifiers are resource IDs, not credentials.
   '''(?i)DOCUMENT_KEY_TABLE_ID\s*[=:]''',
+  # Cloudflare Web Analytics beacon token: a PUBLIC site identifier that is
+  # embedded in every published page by design (it appears verbatim in the
+  # rendered HTML). It is not a Cloudflare API credential; holding it grants
+  # nothing. Narrow shape: exact key name + exact 32-hex value.
+  '''"analytics_beacon_token"\s*:\s*"[0-9a-f]{32}"''',
 ]
 paths = [
   # generated diff-report artifacts: links carry resource tokens by design

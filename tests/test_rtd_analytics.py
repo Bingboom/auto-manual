@@ -46,7 +46,8 @@ class RtdAnalyticsTests(unittest.TestCase):
     def test_sphinx_default_and_explicit_empty_token_are_byte_identical(self) -> None:
         with TemporaryDirectory() as td:
             root = Path(td)
-            source, _ = RtdFeedbackTests._fixture(root / "default", channels=None)
+            source, assets = RtdFeedbackTests._fixture(root / "default", channels=None)
+            self._set_token(assets, None)
             first = self._build_page(source, root / "first")
             source, assets = RtdFeedbackTests._fixture(root / "explicit", channels=None)
             self._set_token(assets, "")
@@ -67,10 +68,13 @@ class RtdAnalyticsTests(unittest.TestCase):
             self.assertIn(BEACON_SRC, index.read_text(encoding="utf-8"))
 
     @staticmethod
-    def _set_token(assets: Path, token: str) -> None:
+    def _set_token(assets: Path, token: str | None) -> None:
         settings_path = assets / "settings.json"
         settings = json.loads(settings_path.read_text(encoding="utf-8"))
-        settings["analytics_beacon_token"] = token
+        if token is None:
+            settings.pop("analytics_beacon_token", None)
+        else:
+            settings["analytics_beacon_token"] = token
         settings_path.write_text(json.dumps(settings), encoding="utf-8")
 
     @staticmethod
