@@ -1,13 +1,13 @@
 # RTD 自有域名绑定 runbook
 
-状态：**待执行**。依据：运营规划第 0 步决策 D3（绑定，2026-09-15），见
+状态：**域名已定（`manuals.jackery.com`，2026-09-15），待操作者执行绑定**。依据：运营规划第 0 步决策 D3（绑定，2026-09-15），见
 `code-as-doc/manual_operations_growth_plan.md`（#1150 分支，合入后为正式坐标）。
 Owner：夏冰。绑定动作全部发生在 RTD 后台与 DNS 面板，不改仓库代码；本 runbook
 只固化步骤、不变量与验收。
 
 ## 0. 待补输入（操作者提供后再执行）
 
-- [ ] 最终域名：＿＿＿＿（例如 `manuals.<品牌域>.com`；建议子域，不建议裸 apex）
+- [x] 最终域名：**`manuals.jackery.com`**（操作者拍板，2026-09-15；子域，符合建议）
 - [ ] DNS 面板权限归属（谁能加 CNAME 记录）：＿＿＿＿
 
 ## 1. 不变量（执行前后都必须成立）
@@ -22,25 +22,26 @@ Owner：夏冰。绑定动作全部发生在 RTD 后台与 DNS 面板，不改�
 
 ## 2. 执行步骤（RTD 后台 + DNS）
 
-1. RTD 项目 → Admin → Domains → 添加自有域名，勾选 canonical。
-2. 按 RTD 给出的目标值在 DNS 面板加 CNAME 记录（子域 → `readthedocs.io` 指向值）。
+1. RTD 项目 → Admin → Domains → 添加 `manuals.jackery.com`，勾选 canonical。
+2. 在 `jackery.com` 的 DNS 面板给 `manuals` 子域加 CNAME 记录（→ RTD 给出的
+   `readthedocs.io` 指向值）。
    若 DNS 托管在 Cloudflare：**先用 DNS-only（灰云）**等 RTD 完成域名验证与
    Let's Encrypt 证书签发；确需开代理（橙云）时 SSL 模式设 Full，并复验证书续期。
 3. 等待 RTD 显示证书就绪（通常分钟级到小时级，取决于 DNS 生效）。
 
 ## 3. 验收清单
 
-- [ ] `curl -I https://<新域名>/` 返回 200，证书为新域名有效证书。
+- [ ] `curl -I https://manuals.jackery.com/` 返回 200，证书为该域名有效证书。
 - [ ] `curl -I https://<旧 readthedocs.io 域名>/<任一手册路径>` 返回 301/302，
-  Location 指向新域名同路径。
-- [ ] 抽查一个印刷 QR 别名路径：扫码/直开旧链接最终落在新域名的正确页面。
-- [ ] 按线上 HTTP 健康 runbook（`manual_operations_online_health.md`）以新域名
-  为基准重跑一轮，全路由通过。
+  Location 指向 `manuals.jackery.com` 同路径。
+- [ ] 抽查一个印刷 QR 别名路径：扫码/直开旧链接最终落在 `manuals.jackery.com` 的正确页面。
+- [ ] 按线上 HTTP 健康 runbook（`manual_operations_online_health.md`）以
+  `manuals.jackery.com` 为基准重跑一轮，全路由通过。
 - [ ] 抽查一个多语切换页与站内搜索页，确认相对链接在新域名下正常。
 
 ## 4. 与其他决策的联动
 
-- **D1 访问统计**：Cloudflare Web Analytics 站点按最终域名创建；域名绑定完成后
+- **D1 访问统计**：Cloudflare Web Analytics 站点按 `manuals.jackery.com` 创建；域名绑定完成后
   再建站点、取 token，然后走 settings 激活切片（`analytics_beacon_token`）。
   先绑域名、后开统计，避免统计站点换域名重建。
 - **D2 反馈邮箱**：与域名无关，不受本 runbook 影响。
@@ -55,3 +56,4 @@ RTD 后台删除自有域名（或取消 canonical），DNS 删除 CNAME。旧
 | 日期 | 变更 | 经手 |
 | --- | --- | --- |
 | 2026-09-15 | 初版：D3 决策后的绑定步骤、不变量与验收清单 | Claude（操作者：夏冰） |
+| 2026-09-15 | 补入操作者拍板的最终域名 `manuals.jackery.com`，步骤/验收具体化 | Claude（操作者：夏冰） |
