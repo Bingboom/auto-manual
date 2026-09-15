@@ -1,72 +1,60 @@
-# 产品中心知识库 · 本地版面原型
+# 产品中心门户
 
-这份原型用于讨论现有说明书站如何逐步扩展为产品中心内部信息库，
-并加入 AI 实践分享。它保存了本次本地预览的页面和交互，供另一台电脑继续修改。
+门户只聚合入口，产品资料来自 Hello-Docs 的 `docs/publish/`；实践正文留在钉钉。
+当前仍是独立本地页面，不接入 RTD、不写线上多维表，不触发发布队列。
 
-## 启动预览
+## 构建与预览
 
-在仓库根目录执行：
+从工程仓库根目录运行，指定一个已检出的 Hello-Docs 发布快照和空输出目录：
 
 ```bash
-python3 -m http.server 8765 --bind 127.0.0.1 --directory prototypes/product-knowledge-hub
+python3 prototypes/product-knowledge-hub/build_portal.py \
+  --publish-root /path/to/Hello-Docs/docs/publish \
+  --manual-base-url https://ht-doc.readthedocs.io/ \
+  --output /tmp/product-hub-preview \
+  --audience internal
+python3 -m http.server 8765 --bind 127.0.0.1 --directory /tmp/product-hub-preview
 ```
 
-打开 <http://127.0.0.1:8765/#home>。如果端口已被其他进程占用，可改用 `8766`。
-需要通过 HTTP 打开，直接双击 HTML 无法正常加载产品目录。无需安装前端依赖。
+打开 <http://127.0.0.1:8765/#home>。产品目录通过共享 RTD catalog 读取发布索引、
+语言身份与图片，自动生成 `products.json`，不手工维护第二份产品目录。
+输出目录必须为空，且不得与发布目录或原型源码目录重叠；构建只读取发布输入。
 
-## 已包含的版面和交互
+## 实践链接
 
-- 概览：搜索后直接显示产品卡片，右侧展示 AI 实践与示例文章。
-- 产品资料：按市场、分类、型号筛选；打开产品详情后选择说明书语言。
-- AI 实践：示例文章、推荐案例与分享模板。
-- 最近更新：演示产品文档和 AI 实践的混合列表。
-- 内部版 / 对外版：切换版面、文案和 AI 区域显示。
-- 支持窄屏导航、详情弹窗、Esc 关闭及 Cmd/Ctrl+K 聚焦搜索。
+在 [`practice-links.json`](practice-links.json) 的 `practices` 数组中录入：
 
-已根据本次反馈合并“找产品资料”和“读说明书”：只保留“产品资料”入口，
-说明书归入产品详情，删除首页重复快捷入口。旧 `#manuals` 地址会转到 `#products`。
+- `title`：卡片标题。
+- `summary`：简短介绍。
+- `tags`：例如 `["Vibe Coding"]`。
+- `url`：实际的 HTTPS 钉钉云文档链接，域名 `alidocs.dingtalk.com`。
+- `updated_at`：可选，真实文档更新日期（ISO 格式）；不填则不列入最近更新。
+- `visibility`：只有明确标为 `public` 的条目才进入对外构建，默认仅内部。
 
-## 内容来源和边界
+当前链接数组为空，页面展示“实践文档待收录”。没有虚构 URL、演示正文或
+无法点击的假卡片。点击卡片直接在新标签页打开钉钉，权限由钉钉控制。
+搜索匹配标题、简介、标签；没有读取云文档正文，也不宣称全文检索云文档。
 
-[`products.json`](products.json) 来自 2026-09-14 本次会话读取的
-[现有说明书站首页](https://ht-doc.readthedocs.io/index.html)，共 22 条产品/市场目录项
-（EU 21 条、US 1 条），保留现有语言链接和原页面版本说明。
-这是版面用目录快照，不代表新一轮内容验收或当前线上状态查询。
+## 输出与职责
 
-本地附带 16 张从该站点取得的产品图片，URL 和 SHA-256 记录在
-[`asset-sources.json`](asset-sources.json)。其余 6 条用型号文字显示，无替代产品图。
-页面、目录和现有图片可本地阅读；点击说明书语言链接会访问原线上页面。
-
-AI 文章、分享模板与“最近更新”列表是明确标注的示例。
-文章尚未连接投稿、真实团队作者、响应时限或发布记录。
-没有抽取或写入说明书正文、飞书源表，也没有连接任何业务队列。
-
-**内外版切换仅供比较版面，并非权限控制。** 两种视图来自同一份客户端代码，
-不能承载保密内容。正式内部版需访问控制，对外版需独立构建并只包含明确准许公开的内容。
-
-这份原型位于 `prototypes/`，没有接入 RTD 的冻结发布快照或部署工作流。
-它不表示正式站点升级已完成，也不改变 [#1130 后续债务](https://github.com/Bingboom/auto-manual/pull/1130)
-中保留的验收事项。
-
-## 续接位置
-
-| 文件 | 用途 |
+| 内容 | 来源与维护位置 |
 | --- | --- |
-| [`index.html`](index.html) | 首页结构、导航、AI 示例入口 |
-| [`styles.css`](styles.css) | 颜色、字号、桌面与窄屏布局 |
-| [`app.js`](app.js) | 产品筛选、内外版切换、详情和文章弹窗 |
-| [`products.json`](products.json) | 版面使用的静态产品目录 |
-| [`asset-sources.json`](asset-sources.json) | 本地产品图片来源与哈希 |
+| 已发布手册、配套图片、语言与版本 | Hello-Docs `docs/publish/` |
+| AI / Vibe Coding 实践正文 | 钉钉云文档 |
+| 门户布局、链接元数据 | 本目录，位于 `publish` 外 |
+| 产品更新 | 发布清单 `built_at`，明确显示“发布包构建于”，不是文档修订日期 |
+| 门户 JSON、样式、图片及来源指纹 | 独立输出目录，可重新生成 |
 
-下一步先继续确认版面与内容分类；涉及正式内外版时，再确定访问控制、
-内容来源、投稿维护方式和各自的发布流程。
+`portal-source.json` 记录输入发布清单哈希、条目数和展示范围。
+原型先前保存的 `products.json`、`asset-sources.json` 和 `assets/` 仅保留为
+旧版面快照；新构建不读取它们，不代表当前目录。下一次清理可单独移除。
 
-## 本次验证
+## 内外版与部署边界
 
-- `node --check prototypes/product-knowledge-hub/app.js`
-- 静态页面入口、资源引用、22 条目录与 16 张图片哈希校验。
-- 从该目录启动本地 HTTP 服务，检查 HTML、CSS、JS、JSON 和图片均返回 200。
-- `python3 tools/check_doc_link_integrity.py`
-- `python3 tools/check_maintainability_guardrails.py`
+内部构建保留内外版视觉切换，按钮不是权限控制。真实内部部署需要访问控制。
+`--audience public` 会在生成数据时排除内部链接元数据，同时去掉运行时切换按钮；
+产品更新与明确公开的实践更新可以保留。公开页面目前不显示 AI 栏。
+不要将内部构建用于公开站点。源码中的示例正文已移除。
 
-本次未运行浏览器自动交互测试；版面已有用户本地预览及去重反馈。
+本次没有替换现有 RTD 首页及其跨手册正文检索。公开站正式接入时应继续复用
+已有检索索引；本地门户当前只按产品名称/型号及实践元数据筛选。

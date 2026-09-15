@@ -18,6 +18,7 @@ const icon=name=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function icons(){document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=icon(el.dataset.icon));}
 icons();
+let practices=[],updates=[];
 let products=[],category='all',view='home',edition='internal';
 const preferred=['JE-1000F','JE-2000E','JS-100I','JBP-2000B','JE-500A','JA-AD600A'];
 const grid=document.getElementById('product-grid');
@@ -26,6 +27,7 @@ const region=document.getElementById('region');
 const dialog=document.getElementById('detail-dialog');
 const titles={home:['产品中心知识库','产品资料、使用说明与团队经验，在这里连接。','概览'],products:['产品资料','按产品和市场，找到说明书与使用资料。','产品资料'],ai:['AI 实践','一次尝试，一个方法。让团队经验持续积累。','AI 实践'],updates:['最近更新','产品内容与知识沉淀的最新动态。','最近更新']};
 function render(){
+ renderResources();
  let matches=products.filter(p=>(region.value==='all'||p.region===region.value)&&(category==='all'||p.category===category));
  const q=search.value.trim().toLocaleLowerCase();
  matches=matches.filter(p=>`${p.model} ${p.name} ${p.category} ${p.edition}`.toLocaleLowerCase().includes(q));
@@ -58,27 +60,24 @@ function showProduct(model,market){
  const p=products.find(x=>x.model===model&&x.region===(market||region.value))||products.find(x=>x.model===model);
  if(!p)return;
  document.getElementById('detail-label').textContent='产品资料 / '+p.category;
- document.getElementById('detail-body').innerHTML=`<div class="dialog-product">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:''}<div><span class="article-example">${esc(p.edition)}</span><h2>${esc(p.name)}</h2><p>${esc(p.model)} · ${esc(p.category)}</p></div></div><h3 class="dialog-subheading">说明书与使用指引</h3><div class="language-links">${(p.languages.length?p.languages:[{url:p.url,label:'打开现有说明书'}]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div><p class="source-note">链接来自现有说明书站。点击语言后打开对应页面。<br>此处展示产品聚合页的布局，产品参数与内部资料可后续逐步补充。</p>`;
+ document.getElementById('detail-body').innerHTML=`<div class="dialog-product">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}">`:''}<div><span class="article-example">${esc(p.edition)}</span><h2>${esc(p.name)}</h2><p>${esc(p.model)} · ${esc(p.category)}</p></div></div><h3 class="dialog-subheading">说明书与使用指引</h3><div class="language-links">${(p.languages.length?p.languages:[{url:p.url,label:'打开现有说明书'}]).map(l=>`<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div><p class="source-note">点击语言打开对应说明书。</p>`;
  dialog.showModal();
 }
-const articles=[
- {title:'AI 辅助说明书核对，如何保留人工判断？',tag:'文档与翻译',body:'<h3>要解决的问题</h3><p>多语言说明书存在重复核对工作。先让 AI 汇总可能的差异，再由负责人结合原文作出判断。</p><h3>一个可以尝试的流程</h3><ol><li>准备已确认版本的原文与译文，说明核对范围。</li><li>要求 AI 输出位置、原文、译文、差异及判断依据。</li><li>人工逐条检查，记录接受、驳回或待确认。</li><li>修订后再次核对本次涉及的位置，保留处理记录。</li></ol><h3>分享时带上什么</h3><p>一组脱敏示例、你用过的指令、最后保留的判断，以及 AI 容易误判的地方。</p>'},
- {title:'让 AI 先整理差异，再做产品判断',tag:'产品研究',body:'<h3>要解决的问题</h3><p>产品资料分散，比较口径容易不一致。先整理同口径信息，保留每条结论的来源。</p><h3>一个可以尝试的流程</h3><ol><li>限定需要比较的型号、地区和资料日期。</li><li>按容量、接口、适用场景等选定维度整理。</li><li>为每个值保留来源链接与原文；没有依据的留空。</li><li>人工核对关键差异，再写选择建议。</li></ol><h3>可以复用的要求</h3><p>“请区分原始事实与推测。信息缺失时标记未找到，不要补全参数。”</p>'},
- {title:'一份周报，从零散记录到清晰结论',tag:'日常效率',body:'<h3>要解决的问题</h3><p>把一周的工作记录整理成同事能够快速理解的进展、待办与需要协助的事项。</p><h3>一个可以尝试的流程</h3><ol><li>整理本周已完成事项、产物链接与未解决问题。</li><li>让 AI 按项目合并重复内容，保留结果和依据。</li><li>人工检查完成状态、负责人和时间。</li><li>删去空泛表达，只保留对协作有帮助的信息。</li></ol><h3>可复用结构</h3><p>本周结果 → 当前问题 → 下周行动 → 需要的协助。</p>'},
- {title:'分享一次 AI 实践',tag:'分享模板',body:'<p>用一个具体案例，让同事能够理解并尝试你的方法。</p><h3>01 · 我遇到了什么问题</h3><p>说明场景、重复工作，以及希望得到的结果。</p><h3>02 · 我怎么做</h3><p>写出工具、操作步骤和可复用的指令，配上脱敏输入示例。</p><h3>03 · 实际结果如何</h3><p>展示产物与原来的差异。有测量就写测量结果，没有就描述观察。</p><h3>04 · 哪些地方仍需人工判断</h3><p>记录错误、限制、适用范围，以及下次会怎么改。</p><h3>05 · 谁可以继续补充</h3><p>留下作者、日期和可复用材料的位置。</p>'}
-];
-function showArticle(index){const a=articles[index];if(!a)return;document.getElementById('detail-label').textContent='AI 实践 / '+a.tag;document.getElementById('detail-body').innerHTML=`<article class="article-body"><span class="article-example">示例内容 · 用于版面体验</span><h2>${a.title}</h2>${a.body}</article>`;dialog.showModal();}
+function renderResources(){
+ const q=search.value.trim().toLocaleLowerCase();
+ const matches=practices.filter(a=>`${a.title} ${a.summary} ${a.tags.join(' ')}`.toLocaleLowerCase().includes(q));
+ document.getElementById('practice-links').innerHTML=matches.map((a,i)=>`<a class="story-item" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><span class="story-number">${String(i+1).padStart(2,'0')}</span><span><small>${esc(a.tags.join(' · '))}</small><strong>${esc(a.title)}</strong><em>${esc(a.summary)}</em></span>${icon('external')}</a>`).join('');
+ document.getElementById('practice-empty').hidden=!!matches.length;
+ document.querySelector('#practice-empty b').textContent=practices.length?'没有匹配的实践文档':'实践文档待收录';
+ const visible=updates.filter(a=>(a.kind!=='practice'||edition==='internal')&&(a.kind==='practice'||region.value==='all'||a.region===region.value)&&`${a.title} ${a.model||''} ${a.summary||''}`.toLocaleLowerCase().includes(q));
+ document.getElementById('updates-list').innerHTML=visible.slice(0,view==='updates'?50:5).map(a=>`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer"><span class="update-icon">${icon(a.kind==='practice'?'external':'book')}</span><span><strong>${esc(a.title)}</strong><small>${esc(a.summary)} · ${esc(a.dateLabel)} ${esc(a.date.slice(0,10))}</small></span><span class="update-type">${a.kind==='practice'?'钉钉文档':'产品文档'}</span>${icon('external')}</a>`).join('')||'<p class="loading">暂无匹配的更新记录。</p>';
+}
 document.addEventListener('click',e=>{
  const p=e.target.closest('[data-product]');if(p)showProduct(p.dataset.product,p.dataset.region);
- const a=e.target.closest('[data-article]');if(a)showArticle(Number(a.dataset.article));
  const f=e.target.closest('[data-category]');if(f){category=f.dataset.category;render();}
  const switcher=e.target.closest('[data-edition]');if(switcher){edition=switcher.dataset.edition;document.body.classList.toggle('public-edition',edition==='public');document.querySelectorAll('.edition-switch button').forEach(b=>{b.classList.toggle('selected',b===switcher);b.setAttribute('aria-pressed',String(b===switcher));});search.placeholder=edition==='public'?'搜索产品名称、型号…':'搜索产品名称、型号、AI 实践…';if(edition==='public'&&view==='ai'){location.hash='home';}setView(view);}
 });
-search.addEventListener('input',()=>{
- render();
- const q=search.value.trim().toLocaleLowerCase();
- document.querySelectorAll('[data-article]').forEach(el=>{const a=articles[Number(el.dataset.article)];el.hidden=!!q&&!`${a.title} ${a.tag} ai`.toLocaleLowerCase().includes(q);});
-});
+search.addEventListener('input',render);
 region.addEventListener('change',render);
 document.getElementById('all-products').addEventListener('click',()=>location.hash='products');
 document.getElementById('reset-search').addEventListener('click',()=>{search.value='';category='all';search.dispatchEvent(new Event('input'));});
@@ -87,4 +86,13 @@ dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoun
 document.querySelector('.mobile-menu').addEventListener('click',()=>document.body.classList.toggle('menu-open'));
 document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();search.focus();}if(e.key==='Escape')document.body.classList.remove('menu-open');});
 window.addEventListener('hashchange',()=>setView(location.hash.slice(1)));
-fetch('products.json').then(r=>{if(!r.ok)throw new Error('catalog');return r.json();}).then(data=>{products=data;setView(location.hash.slice(1)||'home');}).catch(()=>{grid.innerHTML='<p class="loading">产品目录暂时无法加载，请刷新页面重试。</p>';});
+Promise.all([fetch('products.json'),fetch('resources.json')]).then(async responses=>{
+ if(responses.some(r=>!r.ok))throw new Error('catalog');
+ const [catalog,resources]=await Promise.all(responses.map(r=>r.json()));
+ products=catalog;practices=resources.practices;updates=resources.updates;
+ if(resources.audience==='public'){
+  edition='public';document.body.classList.add('public-edition');
+  document.querySelector('.edition-switch').remove();
+ }
+ setView(location.hash.slice(1)||'home');
+}).catch(()=>{grid.innerHTML='<p class="loading">目录暂时无法加载，请刷新页面重试。</p>';});
