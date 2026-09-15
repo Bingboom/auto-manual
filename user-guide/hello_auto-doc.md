@@ -14,9 +14,10 @@ Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operatio
 它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
 
 夏冰（GitHub `Bingboom`）负责发布健康与手册反馈，每次发布后检查本地资源、
-线上可访问性和实际部署版本。已验证单语页面提供 [GitHub Issues](https://github.com/Bingboom/auto-manual/issues)
-入口和可复制的型号/市场/语言/版本/页面上下文；读者自行提交问题，页面不会自动发送。
-处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。响应/修复时限尚待确定，
+线上可访问性和实际部署版本。已验证单语页面提供售后邮箱 `hello@jackery.com`
+入口（出货手册已印的官方地址）和可复制的型号/市场/语言/版本/页面上下文；
+读者自行提交问题，页面不会自动发送。GitHub Issues 转为内部/经销商分诊渠道。
+处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。首次响应 3 个工作日内，
 不创建定时任务或常驻服务。访问统计默认关闭（`analytics_beacon_token` 为空即无任何采集，
 页面字节等同）；配置令牌后启用无 cookie 的 Cloudflare Web Analytics，不采集访客身份。
 

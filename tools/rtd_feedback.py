@@ -1,12 +1,15 @@
 """Optional, local-only feedback affordances for frozen Web publications."""
 from __future__ import annotations
 
+import re
 from html import escape
 from urllib.parse import urlsplit
 
+_MAILTO_ADDRESS = re.compile(r"^[A-Za-z0-9._+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$")
+
 
 def normalize_channels(raw: object) -> list[dict[str, str]]:
-    """Return fixed HTTPS destinations; never attach publication data to URLs."""
+    """Return fixed HTTPS or plain-mailto destinations; never attach publication data."""
     if not isinstance(raw, list):
         raise ValueError("feedback_channels must be a list")
     channels: list[dict[str, str]] = []
@@ -22,6 +25,16 @@ def normalize_channels(raw: object) -> list[dict[str, str]]:
         url = raw_url.strip()
         if not label or not url:
             raise ValueError("feedback channel needs label and url")
+        if url.lower().startswith("mailto:"):
+            # A single plain address; the shape excludes ?, #, %, commas and
+            # spaces, so no headers or extra recipients can be smuggled in.
+            if not _MAILTO_ADDRESS.fullmatch(url[len("mailto:"):]):
+                raise ValueError("feedback mailto channel must be a single plain address")
+            if url in seen:
+                raise ValueError("duplicate feedback channel URL")
+            seen.add(url)
+            channels.append({"label": label, "url": url})
+            continue
         try:
             parsed = urlsplit(url)
             hostname = parsed.hostname
