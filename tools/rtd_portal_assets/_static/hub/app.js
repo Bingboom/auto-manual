@@ -45,7 +45,7 @@ function render(){
 function setView(next){
  if(next==='manuals'){next='products';history.replaceState(null,'','#products');}
  if(!titles[next])next='home';
- 
+
  view=next;
  document.body.classList.remove('view-home','view-products','view-ai','view-updates','menu-open');
  document.body.classList.add('view-'+view);
@@ -131,7 +131,7 @@ function renderContent() {
     article.append(meta,link,excerpt); $('#content-list').append(article);
   });
   $('#more-results').hidden = hits.length <= resultLimit;
-  
+
 }
 
 $('#more-results').addEventListener('click',()=>{resultLimit+=12;renderContent();});

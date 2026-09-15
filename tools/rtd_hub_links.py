@@ -24,4 +24,3 @@ def read_practices(path: Path, audience: str) -> list[dict]:
         result.append({"title": item["title"], "summary": item.get("summary", ""),
                        "tags": item.get("tags", []), "url": item["url"], "updated_at": date})
     return result
-
