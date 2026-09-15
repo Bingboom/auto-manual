@@ -128,22 +128,10 @@ sections and can be expanded. The operator accepted the local preview for deploy
 Deployment uses the existing engineering mirror and RTD build; manual source
 publication, online tables and OSS uploads are outside this change.
 
-## Product hub homepage (2026-09-14)
+## Product hub rollback — 2026-09-15
 
-The root template is `knowledge_hub.html`, with production assets in
-`tools/rtd_portal_assets/_static/hub/`. `tools/rtd_hub.py` projects the same
-canonical catalog and frozen manifest into product cards and dated updates.
-It does not write to publish. Existing nested manuals, aliases, no-JS links,
-EthicalAds placement and `portal-search-index.js` remain available.
-
-`tools/rtd_portal_assets/practice-links.json` owns practice link metadata.
-Only explicit `visibility: public` entries are embedded in the public root;
-internal titles, summaries and URLs are excluded during rendering. Clicking a
-practice opens its DingTalk document. No document body is fetched or copied.
-Missing links produce an empty state. The production portal has no simulated
-internal/public switch. Package `built_at` timestamps are labeled as package
-build dates, not claimed as manual revision dates.
-
-The standalone prototype builder uses the same link validator and canonical
-practice-link configuration. Its older empty configuration file is retained
-as a historical prototype artifact and is no longer the default input.
+The operator requested that main return to the manual-only directory and
+keyword search. #1144 is reverted; the complete product hub remains on remote
+branch `codex/product-hub-preserved-20260915` at `9306967b`. This rollback
+preserves all other product/localization changes and does not modify frozen
+publish inputs. Restoring the hub later requires a separate explicit release.
