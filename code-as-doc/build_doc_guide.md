@@ -63,6 +63,9 @@ they do not append context, tokens or user identity to channel URLs. Xia Bing
 (`Bingboom`) owns feedback and checks local artifacts, HTTP accessibility and
 the deployed revision after every publication. Response deadlines remain
 unassigned; this configuration creates no scheduled service.
+Visit analytics is opt-in through the `analytics_beacon_token` portal setting
+(default `""` = off, byte-identical pages); a configured token enables the
+cookieless Cloudflare Web Analytics beacon without collecting user identity.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell
