@@ -12,8 +12,6 @@ build:
       region: EU
     - model: JE-3000C
       region: EU
-    - model: JE-3600A
-      region: EU
   word_title: "|PRODUCT_NAME| Benutzerhandbuch"
 
 paths:
