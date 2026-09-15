@@ -10,6 +10,8 @@ build:
       region: EU
     - model: JE-2000E
       region: EU
+    - model: JE-3600A
+      region: EU
   word_title: "|PRODUCT_NAME| Manual de usuario"
 
 paths:
