@@ -3,10 +3,6 @@ CONNECTIONS
 
 Up to 5 sets of these products can be used along with |BP_HOST_PRODUCT_NAME| to meet increased capacity needs.
 
-.. image:: |BP_CONNECTION_CLEARANCE_ASSET|
-   :alt: Battery pack connection and clearance diagram.
-   :width: 500px
-
 .. list-table::
    :header-rows: 0
    :widths: 12 88
@@ -15,6 +11,14 @@ Up to 5 sets of these products can be used along with |BP_HOST_PRODUCT_NAME| to 
      - Ensure all products are powered off before connecting |BP_HOST_PRODUCT_SHORT_NAME| to |PRODUCT_NAME|.
 
        To ensure proper operation of the product, make sure the air intake and exhaust vents on both sides are unobstructed. Leave at least 0.66 ft (200 mm) of space between the vents and any objects to allow for proper heat dissipation.
+
+.. image:: |BP_CONNECTION_CLEARANCE_ASSET|
+   :alt: Battery pack connection and clearance diagram.
+   :width: 500px
+
+.. image:: |BP_CONNECTION_STACKING_WEB_ASSET|
+   :alt: Correct and incorrect battery pack stacking.
+   :width: 100%
 
 .. list-table::
    :header-rows: 0

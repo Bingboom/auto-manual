@@ -1,5 +1,7 @@
 # Windows Build Guide
 
+JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](reviews/jbp3600a-overview-lcd-20260916.md)。
+
 Verified single-language pages omit a duplicate plain leading language label at render time; the locale switcher and frozen source remain intact.
 
 JBP-3600A EU/en 装箱清单使用纯插图，边框与编号由 Web 组件生成；见[修复与发布边界](reviews/jbp3600a-inbox-artwork-20260915.md)。

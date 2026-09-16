@@ -1,5 +1,7 @@
 # Hello Auto Doc
 
+JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
+
 单语网页顶部通过语言切换栏显示当前语言，正文开头重复的独立语言名称不再显示；冻结源文件不变。
 
 JBP-3600A EU/en 装箱清单重复边框修复需重建冻结网页再发布；见[验证记录](../code-as-doc/reviews/jbp3600a-inbox-artwork-20260915.md)。
