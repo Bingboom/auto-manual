@@ -19,6 +19,7 @@ class TestBuildDispatch(unittest.TestCase):
             "asset-intake",
             "new-line",
             "web-release",
+            "web-sideload",
             "web-assemble",
             "web-receipt",
             "review",
@@ -95,6 +96,12 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual(
             [("ensure", "web-release"), ("web-release-command", "web-release")],
             self._dispatch("web-release"),
+        )
+
+    def test_dispatch_web_sideload_should_use_its_own_facade(self) -> None:
+        self.assertEqual(
+            [("ensure", "web-sideload"), ("web-sideload-command", "web-sideload")],
+            self._dispatch("web-sideload"),
         )
 
     def test_dispatch_web_assemble_should_use_its_own_facade(self) -> None:
@@ -582,6 +589,7 @@ class TestBuildDispatch(unittest.TestCase):
                 run_asset_command=record_arg("asset-command"),
                 run_new_line=record_arg("new-line"),
                 run_web_release=record_arg("web-release-command"),
+                run_web_sideload=record_arg("web-sideload-command"),
                 run_web_assemble=record_arg("web-assemble-command"),
                 run_web_receipt=record_arg("web-receipt-command"),
             )

@@ -45,6 +45,7 @@ class DispatchContext:
     run_asset_command: Callable[[argparse.Namespace], None] | None = None
     run_new_line: Callable[[argparse.Namespace], None] | None = None
     run_web_release: Callable[[argparse.Namespace], None] | None = None
+    run_web_sideload: Callable[[argparse.Namespace], None] | None = None
     run_web_assemble: Callable[[argparse.Namespace], None] | None = None
     run_web_receipt: Callable[[argparse.Namespace], None] | None = None
 
@@ -184,6 +185,12 @@ def _dispatch_web_release_action(args: argparse.Namespace, context: DispatchCont
     if context.run_web_release is None:
         raise RuntimeError("web-release is not wired into this build entrypoint")
     context.run_web_release(args)
+
+
+def _dispatch_web_sideload_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_web_sideload is None:
+        raise RuntimeError("web-sideload is not wired into this build entrypoint")
+    context.run_web_sideload(args)
 
 
 def _dispatch_web_assemble_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -375,6 +382,7 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "asset-intake": _dispatch_asset_action,
     "new-line": _dispatch_new_line_action,
     "web-release": _dispatch_web_release_action,
+    "web-sideload": _dispatch_web_sideload_action,
     "web-assemble": _dispatch_web_assemble_action,
     "web-receipt": _dispatch_web_receipt_action,
     "review": _dispatch_review_action,
@@ -437,6 +445,7 @@ def dispatch_action(
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
     run_web_release: Callable[[argparse.Namespace], None] | None = None,
+    run_web_sideload: Callable[[argparse.Namespace], None] | None = None,
     run_web_assemble: Callable[[argparse.Namespace], None] | None = None,
     run_web_receipt: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
@@ -471,6 +480,7 @@ def dispatch_action(
         run_asset_command=run_asset_command,
         run_new_line=run_new_line,
         run_web_release=run_web_release,
+        run_web_sideload=run_web_sideload,
         run_web_assemble=run_web_assemble,
         run_web_receipt=run_web_receipt,
     )

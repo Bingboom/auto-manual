@@ -25,6 +25,7 @@ class PublishBranchAssemblyTests(unittest.TestCase):
         manual_stem: str | None = None,
         legacy_default: bool | None = None,
         language_scope: str | None = None,
+        source_kind: str | None = None,
     ) -> Path:
         lang_root = root / "reports" / "releases" / model / region / lang
         web_root = lang_root / "versions" / version / "web"
@@ -81,7 +82,13 @@ class PublishBranchAssemblyTests(unittest.TestCase):
             payload["legacy_default"] = legacy_default
         if language_scope is not None:
             payload["language_scope"] = language_scope
-        if language_scope == "single":
+        if source_kind is not None:
+            payload["source_kind"] = source_kind
+        # A pdf_sideload target never ran the RST -> Web-profile pipeline, so
+        # it never seals language-projection evidence even when it declares
+        # language_scope=single -- that is the whole point of the exemption
+        # under test below.
+        if language_scope == "single" and source_kind != "pdf_sideload":
             (md_root / "manual.ir.json").write_text('{"schema": "manual-ir/v2"}\n', encoding="utf-8")
             (md_root / "manual_bundle.html").write_text("<article>Manual</article>\n", encoding="utf-8")
             receipt, receipt_sha256 = seal_language_evidence_fixture(
@@ -757,6 +764,87 @@ class PublishBranchAssemblyTests(unittest.TestCase):
                     output_dir=root / "publish" / "docs",
                     title="Manual Library",
                 )
+
+    def test_pipeline_single_language_scope_without_receipt_should_still_be_rejected(self) -> None:
+        # Negative control for the pdf_sideload evidence exemption below: an
+        # ordinary pipeline target (no source_kind, or source_kind=pipeline)
+        # that declares language_scope=single but strips its evidence fields
+        # must stay exactly as fail-closed as it was before source_kind
+        # existed. This is the same shape as
+        # test_single_language_scope_without_receipt_should_be_rejected above,
+        # restated with an explicit source_kind so a future change to the
+        # exemption cannot silently widen past pdf_sideload without this
+        # test catching it.
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            lang_root = self._write_target(
+                root,
+                model="MODEL",
+                region="EU",
+                lang="fr",
+                version="2.0",
+                git_ref="review/MODEL-EU",
+                language_scope="single",
+                source_kind="pipeline",
+            )
+            metadata = lang_root / "latest" / "web" / "publish_meta.json"
+            payload = json.loads(metadata.read_text(encoding="utf-8"))
+            payload.pop("language_projection_evidence_path")
+            payload.pop("language_projection_evidence_sha256")
+            metadata.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "language_projection_evidence_path"):
+                publish_branch_assembly.assemble_web_publish_branch(
+                    repo_root=root,
+                    releases_root=root / "reports" / "releases",
+                    output_dir=root / "publish" / "docs",
+                    title="Manual Library",
+                )
+
+    def test_pdf_sideload_target_is_exempt_from_the_evidence_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            self._write_target(
+                root,
+                model="MODEL",
+                region="EU",
+                lang="fr",
+                version="2.0",
+                git_ref="review/MODEL-EU",
+                language_scope="single",
+                source_kind="pdf_sideload",
+            )
+            output_dir = root / "publish-worktree" / "docs" / "publish"
+
+            manifest_path = publish_branch_assembly.assemble_web_publish_branch(
+                repo_root=root,
+                releases_root=root / "reports" / "releases",
+                output_dir=output_dir,
+                title="Manual Library",
+            )
+
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(1, len(manifest["targets"]))
+            self.assertEqual("pdf_sideload", manifest["targets"][0]["source_kind"])
+            self.assertNotIn("language_projection_evidence_path", manifest["targets"][0])
+            stored = json.loads(
+                (
+                    output_dir
+                    / "sources"
+                    / "web"
+                    / "MODEL"
+                    / "EU"
+                    / "fr"
+                    / "md"
+                    / "publish_meta.json"
+                ).read_text(encoding="utf-8")
+            )
+            self.assertEqual("pdf_sideload", stored["source_kind"])
+            self.assertEqual("single", stored["language_scope"])
+            # No evidence/ directory was ever sealed for this target.
+            self.assertFalse(
+                (root / "reports" / "releases" / "MODEL" / "EU" / "fr" / "versions" / "2.0" / "web" / "evidence").exists()
+            )
 
     def test_assembly_should_reject_print_artifacts_inside_web_assets(self) -> None:
         with tempfile.TemporaryDirectory() as td:

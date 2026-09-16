@@ -45,6 +45,7 @@ from tools.build_entry_commands import (
 from tools.asset_commands import run_asset_command as _run_asset_command_impl
 from tools.new_line_scaffold import run_new_line as _run_new_line_impl
 from tools.web_publish import run_web_release as _run_web_release_impl
+from tools.web_sideload import run_web_sideload as _run_web_sideload_impl
 from tools.web_assemble import run_web_assemble as _run_web_assemble_impl
 from tools.web_receipt import run_web_receipt as _run_web_receipt_impl
 from tools.build_doctor import (
@@ -758,6 +759,7 @@ def main(argv: list[str] | None = None) -> int:
         run_asset_command=partial(_run_asset_command_impl, repo_root=ROOT),
         run_new_line=partial(_run_new_line_impl, repo_root=ROOT),
         run_web_release=partial(_run_web_release_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
+        run_web_sideload=partial(_run_web_sideload_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
         run_web_assemble=partial(_run_web_assemble_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
         run_web_receipt=partial(_run_web_receipt_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
     )
