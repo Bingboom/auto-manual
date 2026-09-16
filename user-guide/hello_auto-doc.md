@@ -1190,6 +1190,8 @@ python build.py check --config configs/config.kr.yaml --model JE-2000E --region 
 python build.py rst --config configs/config.us.yaml
 python build.py word --config configs/config.us-en.yaml --model JE-1000F --region US
 python build.py pdf --config configs/config.ja.yaml --model JE-2000F --region JP
+python build.py web-release --config configs/config.us-en.yaml --model JE-1000F --region US --lang en --version 2.0
+python build.py web-release --config configs/config.us.yaml --targets-file targets.txt --version 2.0
 ```
 
 Source mode examples:
@@ -1221,6 +1223,7 @@ PR preview note:
 - queue-driven `Workflow_action=Publish` stages the formal DOCX, PDF, Markdown, IDML outputs, and designer handoff ZIP under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), then writes the uploaded handoff ZIP URL to `idml_file`; it does not build a Draft cloud doc or HTML
 - queue-driven `Workflow_action=Web Publish` forces live asset sync, renders web-profile MyST/HTML, advances the `Hello-Docs/publish:docs/publish/` candidate, opens or updates its `docs/publish/**`-only PR into `main`, and writes the short root-level RTD alias (for example `https://ht-doc.readthedocs.io/manual_je1000f_us.html`) to `HTML_link`; it does not upload or overwrite IDML/PDF/DOCX outputs
 - an authorized Git-only Web release takes reviewed, committed sources and `source_manifest.json` through exact-ref checks, Web MyST, strict Sphinx, release metadata, and the same publish assembler. It reads or writes no online tables and creates no queue row. Its durable proof is the source and Hello-Docs commits, hashes, manifests, RTD build commit, canonical routes and aliases; see the [Git-only transaction](../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)
+- `python build.py web-release` runs that Git-only local build/verify/seal/stage step (steps 2-3 of the Git-only transaction) as one command against the current checkout: warm-up check, then check/md/html under the Web profile, per-language projection capture and seal, a local strict `sphinx -W` gate (skip with `--skip-verify`), staging under `reports/releases/<model>/<region>/<lang>/versions/<version>/web/`, and `latest/web/publish_meta.json`. It requires `--model`/`--region`/`--lang`/`--version`, or `--targets-file <path>` for a batch of `MODEL,REGION,LANG[,VERSION]` rows (one release per row; a single failed book does not stop the rest, and each failure is recorded as an automatic debt entry). `--dry-run` only runs the batch collision precheck and prints the resolved target list. `--debt "category:location:payoff action"` (repeatable) records a manual debt entry for every target in the run. Every debt entry lands in the target's own `.../versions/<version>/web/debt_ledger.json` and in the repo-wide append-only `reports/web_debt_ledger.jsonl`. It does not author `source_manifest.json` or assemble/push into `docs/publish/**` (steps 1 and 4-6 of the Git-only transaction stay manual for now). It defaults to `--source auto` (a book with no review branch yet publishes straight from the frozen template/data bundle); pass `--source review` to render an in-flight review branch's content instead.
 
 `preview` behavior:
 

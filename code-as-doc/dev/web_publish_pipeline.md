@@ -204,6 +204,26 @@ Use this path only when the operator has designated reviewed Git content as the
 release authority and explicitly excluded online-table writes. It does not
 create synthetic queue rows or write `HTML_link`.
 
+`python build.py web-release --config <config> --model <M> --region <R> --lang
+<L> --version <V>` is the formal entry point for steps 2 and 3 below: it runs
+the warm-up + check/md/html web-profile build, captures and seals the
+per-language projection receipt, runs the local strict `sphinx -W`
+verification, stages the sealed bundle under
+`<model>/<region>/<lang>/versions/<version>/web/`, and writes
+`latest/web/publish_meta.json` — the same library functions the queue-driven
+Web Publish worker uses (`tools.queue_build_execution`,
+`tools.queue_bound_outputs`, `tools.web_language_release_evidence`), run
+directly against the current checkout instead of a queue row. `--dry-run`
+prints the resolved target list and exits without building. `--targets-file`
+runs a batch of `MODEL,REGION,LANG[,VERSION]` rows and keeps going past a
+single failed book, so a multi-language family (for example three rows for
+one model/region) does not abort the rest. It does not perform step 1
+(authoring `source_manifest.json`) or steps 4–6 (assembling into
+`docs/publish/**` and opening the release PR) below; those remain manual until
+a later conveyor-belt command covers them. See
+[`tools/web_publish.py`](../../tools/web_publish.py) for the implementation
+and `tests/test_web_publish.py` for its contract.
+
 1. Commit the complete target structure, sources and assets with a
    `source_manifest.json`. Record the target identity, source authority,
    original filename and SHA-256, included pages, deliberate normalizations,

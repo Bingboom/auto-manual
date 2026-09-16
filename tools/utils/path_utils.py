@@ -67,6 +67,8 @@ class PathSegments:
     TM_HIT_RATE = "tm_hit_rate"
     PDF_ANNOTATE = "pdf_annotate"
     FLOW_DASHBOARD = "flow_dashboard"
+    WEB_DEBT_LEDGER_JSONL = "web_debt_ledger.jsonl"
+    DEBT_LEDGER_JSON = "debt_ledger.json"
 
     PARAMS_TEX = "params.tex"
     FONTS_TEX = "fonts.tex"
@@ -233,6 +235,10 @@ def flow_dashboard_reports_of(base_root: Path) -> Path:
     return base_root / PathSegments.REPORTS / PathSegments.FLOW_DASHBOARD
 
 
+def web_debt_ledger_of(base_root: Path) -> Path:
+    return base_root / PathSegments.REPORTS / PathSegments.WEB_DEBT_LEDGER_JSONL
+
+
 @dataclass(frozen=True)
 class Paths:
     root: Path
@@ -388,6 +394,10 @@ class Paths:
     @property
     def flow_dashboard_reports_dir(self) -> Path:
         return flow_dashboard_reports_of(self.root)
+
+    @property
+    def web_debt_ledger_path(self) -> Path:
+        return web_debt_ledger_of(self.root)
 
     def safety_rst(self, lang: str) -> Path:
         return self.docs_dir / f"safety_{lang}.rst"
