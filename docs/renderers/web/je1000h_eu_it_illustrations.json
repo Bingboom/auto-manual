@@ -12,7 +12,7 @@
         "main_unit1.png"
       ],
       "path": "assets/je1000h_eu_it/inbox_unit.png",
-      "sha256": "e17b7c551c92cb9e246b3116d860dbe6ac294f1321ebbb106366200cf15b4139",
+      "sha256": "dca486053fb7c7aaa3a7d01dcdb06e1d356a9caa7667e1fed4a54a94103b4c8f",
       "source_page": 75,
       "bbox_pt": [
         40,
@@ -27,7 +27,7 @@
         "ac_charging_cable.png"
       ],
       "path": "assets/je1000h_eu_it/inbox_cable.png",
-      "sha256": "eb2e2eeddde31d2aacdc012722bdc1c822956ae96764d2f49c8a92b8073f7022",
+      "sha256": "4f766b3a8d990a8f307a81e807e58cff96e82353dd7f7bbbeaf5799518fc05a1",
       "source_page": 75,
       "bbox_pt": [
         150,
@@ -42,7 +42,7 @@
         "manual_icon1.png"
       ],
       "path": "assets/je1000h_eu_it/inbox_documents.png",
-      "sha256": "4e89b0f4bd186e26b64904ed12a6756dc52f9a674b5801843196cf4e328a1ebd",
+      "sha256": "261112e3c5dc6c6633501e81ba79b3a720b72de3c2ea9e3f8afe90b353aad8be",
       "source_page": 75,
       "bbox_pt": [
         260,
@@ -57,7 +57,7 @@
         "front_product.jpg"
       ],
       "path": "assets/je1000h_eu_it/overview_front.png",
-      "sha256": "7af9a28e53c63aedbe586a3aed76a94c1cf99503ea1822dd9181e5cb090bda10",
+      "sha256": "d7e80b773b7ea6200f57f5e709d9eb40d4aa7fce640b9aac0f1132a11ee834fe",
       "source_page": 76,
       "bbox_pt": [
         28,
@@ -82,7 +82,7 @@
         "right_side_ports.png"
       ],
       "path": "assets/je1000h_eu_it/overview_side.png",
-      "sha256": "d560d0dc0229a046f981a0eeb31d185c26adeeeb51ea98552d0ec6daed8b655e",
+      "sha256": "14da1419f1b77949098681bd58c509f485c002d18a7b5c0ac4b5deae1f728f17",
       "source_page": 76,
       "bbox_pt": [
         28,
@@ -109,7 +109,7 @@
         "lcd_map.png"
       ],
       "path": "assets/je1000h_eu_it/lcd_map.png",
-      "sha256": "8c4e35c22df0de79d2db769573addeba00f3139e2b4fc6d7e79ccc1cad916555",
+      "sha256": "d98590bedd6194d97b4004aa3c8b55d288a0b01585a1ab2f512448779fca9089",
       "source_page": 77,
       "bbox_pt": [
         34,
@@ -124,7 +124,7 @@
         "op_main_power.png"
       ],
       "path": "assets/je1000h_eu_it/operation_power.png",
-      "sha256": "3cbb2dfbc4eb08002a2e3188615f50b959710ff92faf8c10498b05487f6e7a10",
+      "sha256": "c2bb4f3236518efb9dafbefa50c3b61620dafe741d525fe150ee357aff50d263",
       "source_page": 79,
       "bbox_pt": [
         27,
@@ -149,7 +149,7 @@
         "op_ac_output.png"
       ],
       "path": "assets/je1000h_eu_it/operation_ac.png",
-      "sha256": "da95b23058b088f54664eb464f90bf49b551f57cc99f378a528fd538993b9b30",
+      "sha256": "6932beb5b7628415f8c9f548efc5ebc9ae709fd4e5f88633f0c7caf33197b7a2",
       "source_page": 79,
       "bbox_pt": [
         27,
@@ -174,7 +174,7 @@
         "op_dc_usb_output.png"
       ],
       "path": "assets/je1000h_eu_it/operation_dc.png",
-      "sha256": "8d41eee94819bc24a293916959d41fe274f6e39ad1ca813b89f6293fc9853658",
+      "sha256": "ac065f6a17cc2379301fc304baa58008ccfc5db606e78267929894423866907d",
       "source_page": 80,
       "bbox_pt": [
         27,
@@ -199,7 +199,7 @@
         "led_light.png"
       ],
       "path": "assets/je1000h_eu_it/operation_led.png",
-      "sha256": "a7993cb403bdb407e6e9f7c93e687cfe31f2ef8cb65993189be05343dd63499e",
+      "sha256": "e2b1729c1de1822dd31bbf79f916390b9ffeffefdeec9026c14aaa5446fade15",
       "source_page": 80,
       "bbox_pt": [
         27,
@@ -224,7 +224,7 @@
         "lcd_mode.png"
       ],
       "path": "assets/je1000h_eu_it/operation_lcd.png",
-      "sha256": "273d2a4735aa079b9ba963d2fcdd95bc4ebadf9ebd34f5753e26c6ec073afeea",
+      "sha256": "c6bacc45e0f3657fc45c7d662feef112b7b99421b3b59c5d0e360d64d3d1b081",
       "source_page": 81,
       "bbox_pt": [
         28,
@@ -239,7 +239,7 @@
         "energy_saving.png"
       ],
       "path": "assets/je1000h_eu_it/operation_energy.png",
-      "sha256": "fc1f4597e97fbed6f9aad124d74a510740a6017ed925abca7b515bb2f9819bf4",
+      "sha256": "f876aac2bd3e85c4cb73640a50c535a12b774a8af9fa4ee2dd2e7a64729e0d2e",
       "source_page": 81,
       "bbox_pt": [
         27,
@@ -264,7 +264,7 @@
         "ups_mode.png"
       ],
       "path": "assets/je1000h_eu_it/ups.png",
-      "sha256": "fdcd0afc88fdc3db3e81401c30b6092ece3df76d1d7195f2a00788d4a2e5eb20",
+      "sha256": "e92b356619e90c8b4097793a18bf7bda2c8156b643fc55c12812f93c4d6cb481",
       "source_page": 82,
       "bbox_pt": [
         28,
@@ -279,7 +279,7 @@
         "ac_wall.png"
       ],
       "path": "assets/je1000h_eu_it/charging_ac.png",
-      "sha256": "1d2ed57f7db4c579af5b3539db51d4c0c013b1507134e6f616b2bb0c6cc89222",
+      "sha256": "579b9e6652bf4b9ed8e8c04bd29d25ed556454a83efefc247af38bb60bd5af9c",
       "source_page": 84,
       "bbox_pt": [
         27,
@@ -300,7 +300,7 @@
         "solar_direct.png"
       ],
       "path": "assets/je1000h_eu_it/charging_solar.png",
-      "sha256": "954202b705cf64ca1ad5ebfe8324bac4b8d0291e2d9cead5423e81e5eec6abd4",
+      "sha256": "1311bdc3de265e0a9cbf7ac3998635f04c778acee07d1b0eacb24f8b805285ca",
       "source_page": 85,
       "bbox_pt": [
         28,
@@ -315,7 +315,7 @@
         "solar_adapter.png"
       ],
       "path": "assets/je1000h_eu_it/charging_solar_adapter.png",
-      "sha256": "667caee8597277b463f83bf8e3193d947261c09db6b73e7e5cfa718dc1b35bfc",
+      "sha256": "d6cc13d97ede0e20be3c1dbc8a1ad4ac61bcb81d4d90d2e46bec43a997a905d2",
       "source_page": 85,
       "bbox_pt": [
         150,
@@ -330,7 +330,7 @@
         "car_charge.png"
       ],
       "path": "assets/je1000h_eu_it/charging_car.png",
-      "sha256": "7676b37201841f22f20951ba9c0ad01ca04480b74cd447b0aae9d6ac35686cf1",
+      "sha256": "0735708ba35a130589a77b256309c735860921e5bf606b6fef1c6d3fa79d22bc",
       "source_page": 85,
       "bbox_pt": [
         28,
@@ -351,7 +351,7 @@
         "download.png"
       ],
       "path": "assets/je1000h_eu_it/app_download.png",
-      "sha256": "51565c725ea246c6dbdde8c37415e3a876d3b7476dce0d6cd03d73c3ee966aa8",
+      "sha256": "a55b6941002823c780f4df49b17c95aa8388afad1e47fe09489ba89a2514a441",
       "source_page": 89,
       "bbox_pt": [
         45,
@@ -372,7 +372,7 @@
         "add_device.png"
       ],
       "path": "assets/je1000h_eu_it/app_control_panel.png",
-      "sha256": "6ff43a7b04d8f0388f4ea41628f492b0396d072e88968882117d2add021dad3d",
+      "sha256": "47e11ee0f361e46f24e6cd79cebc87df47b562709a880d20951f5e1c0be048e2",
       "source_page": 89,
       "bbox_pt": [
         40,
@@ -395,7 +395,7 @@
         "connect_result.png"
       ],
       "path": "assets/je1000h_eu_it/app_connect_result.png",
-      "sha256": "9b100045b3adefb3104f06334c2cab4e0a400490f914acfd13d690b85c340f90",
+      "sha256": "642006095e26e29149e7eab3f6e8949be12aa88f57a0d5d32c668cf360fd8d30",
       "source_page": 90,
       "bbox_pt": [
         48,
@@ -410,7 +410,7 @@
         "battery_pack.png"
       ],
       "path": "assets/je1000h_eu_it/battery_pack.png",
-      "sha256": "9e63651b2cea6089ca8e4085bb99446e0a7863212383bf77a39383892366f3bf",
+      "sha256": "851d01a053128e536d1a8570234d7ba3c485b859fb8b7f4f6a1be7fc9d558f29",
       "source_page": 83,
       "bbox_pt": [
         28,
