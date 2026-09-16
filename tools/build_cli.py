@@ -22,6 +22,7 @@ def parse_args(
             "asset-check",
             "asset-intake",
             "new-line",
+            "web-release",
             *build_actions,
             "idml",
             "review",
@@ -453,6 +454,29 @@ def parse_args(
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, spec-master-rebuild, process-build-queue, or process-review-start-queue: validate/report without writing files",
+        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, or web-release: validate/report without writing files",
+    )
+    ap.add_argument(
+        "--targets-file",
+        default=None,
+        help=(
+            "For web-release: path to a batch targets file, one MODEL,REGION,LANG[,VERSION] "
+            "per line (# starts a comment); runs every row as its own release and keeps going "
+            "past a single failed book"
+        ),
+    )
+    ap.add_argument(
+        "--debt",
+        action="append",
+        default=[],
+        help=(
+            "For web-release: record one manual debt-ledger entry as 'category:location:description'; "
+            "repeat for multiple entries"
+        ),
+    )
+    ap.add_argument(
+        "--skip-verify",
+        action="store_true",
+        help="For web-release: skip the local strict `sphinx -W` verification pass",
     )
     return ap.parse_args(argv)
