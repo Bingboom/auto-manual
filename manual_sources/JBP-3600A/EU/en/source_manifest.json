@@ -22,7 +22,7 @@
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/jbp3600a_eu_en_illustrations.json",
-    "sha256": "b4e72a782d9acb6d88a133e53ef445695c375c346371fe0b2ae24e6ce0da47d4"
+    "sha256": "d2f9a40ff0c5c9b7d42ce1f9a3c5d537bacc06d7de7ea90f71907fb480ec6621"
   },
   "files": [
     {
@@ -112,8 +112,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 936,
-      "sha256": "e77739a8a9690eda7f9a1263e41cb0f44c667653e679ac5eeba4d0aa5c40c92e"
+      "size": 873,
+      "sha256": "8659a7585cb1db8350d34160e8e8b9a7340d4593b5f31cc60596d4634641ae2f"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -146,7 +146,7 @@
       "sha256": "a3e11e3381f5b4dfe2ce8ca89258abd4b82f9dfe69a85c673f07a3b1bd94c75b"
     }
   ],
-  "files_inventory_sha256": "b3f0f0021a85e5fa6a0b8bd0bce0a68bf49d8806105af74bac72d5c70a5ecc56",
+  "files_inventory_sha256": "fd61048c423973efb0a5b697196fd429441e0fc8b9df30e6de64e3de80b1817d",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

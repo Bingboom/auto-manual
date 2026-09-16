@@ -9,6 +9,7 @@ from tools.utils.path_utils import PathSegments, get_paths
 WEB_STYLESHEET_NAME = "web_manual.css"
 WEB_STYLESHEET_PARTS = (
     WEB_STYLESHEET_NAME,
+    "web_battery_pack_components.css",
     "web_language_navigation.css",
     "web_fcc_components.css",
     "web_inbox_components.css",
