@@ -41,3 +41,11 @@ does not close real RTD/manual-language acceptance in umbrella
 The existing 21-publication frozen corpus was rebuilt separately: 66 HTML pages,
 only index.html changed versus the prior deployed-portal baseline, and all 65
 other HTML pages were byte-identical. No live corpus migration was performed.
+
+## Leading language label
+
+On verified single-language pages, the locale switcher already identifies the active
+language. The portal omits a plain leading paragraph only when its full text equals
+the active language label (for example, `English` or `Français`). Other introductory
+paragraphs, later occurrences and legacy mixed-language pages are preserved. This
+is a render-time presentation change; frozen publication sources remain unchanged.

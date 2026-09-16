@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import re
-from html import escape
+from html import escape, unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -99,6 +99,14 @@ def catalog(root: Path, settings: dict) -> list[dict]:
     return sorted(records, key=lambda p: (order.index(p["category"]), p["model"], p["region"]))
 
 
+def without_leading_language_label(body: str, label: str) -> str:
+    """Omit only a plain leading locale paragraph duplicated by the switcher."""
+    match = re.match(r"\s*<p>([^<>]*)</p>\s*", body)
+    if match and unescape(match.group(1)).strip() == label:
+        return body[match.end():]
+    return body
+
+
 def configure(app, config) -> None:
     # Absolute engineering assets are independent of the frozen source config.
     config.templates_path = [str(ASSETS), *config.templates_path]
@@ -171,7 +179,7 @@ def page_context(app, pagename, templatename, context, doctree):
                 '<label for="manual-locale-select">Language </label>'
                 '<select id="manual-locale-select">' + ''.join(options) + '</select></nav>'
                 + f'<div lang="{escape(active["lang"], quote=True)}" dir="{direction}">'
-                + context.get("body", "") + '</div>'
+                + without_leading_language_label(context.get("body", ""), lang_label) + '</div>'
                 + manual_feedback_markup(channels=feedback_channels, context=feedback_context)
             )
             app.add_js_file("manual-locales.js")
