@@ -587,5 +587,149 @@ class RunWebAssembleOrchestrationTests(unittest.TestCase):
         self.assertEqual("My Library", assemble.call_args.args[2] if len(assemble.call_args.args) > 2 else assemble.call_args.kwargs.get("title"))
 
 
+def _write_minimal_web_publish_target(
+    repo_root: Path,
+    *,
+    model: str,
+    region: str,
+    lang: str,
+    version: str,
+    git_ref: str,
+) -> None:
+    """Stage the smallest legal ``latest/web`` + ``versions/<v>/web`` pair.
+
+    Mirrors ``PublishBranchAssemblyTests._write_target`` in
+    ``tests/test_publish_branch_assembly.py`` at its simplest (legacy,
+    no-evidence) shape -- the one already proven to round-trip through
+    ``assemble_web_publish_branch`` when ``repo_root`` and the releases tree
+    share one root. Deliberately trimmed to just that path: this fixture
+    exists to prove the *repo_root wiring*, not to re-cover
+    ``load_web_publish_target``'s validation, which already has its own
+    dedicated tests.
+    """
+
+    lang_root = repo_root / "reports" / "releases" / model / region / lang
+    web_root = lang_root / "versions" / version / "web"
+    md_root = web_root / "md"
+    html_root = web_root / "html"
+    metadata_root = lang_root / "latest" / "web"
+    for directory in (md_root, html_root, metadata_root):
+        directory.mkdir(parents=True, exist_ok=True)
+
+    manual_stem = f"manual_{model.lower().replace('-', '')}_{region.lower()}_{lang}_web_publish_{version}"
+    markdown_path = md_root / f"{manual_stem}.md"
+    markdown_path.write_text("# Manual\n\nHello world.\n", encoding="utf-8")
+    (md_root / "conf.py").write_text('extensions = ["myst_parser"]\n', encoding="utf-8")
+    (md_root / "index.md").write_text(
+        "\n".join(
+            (
+                f"# {model} {region}",
+                "",
+                "```{toctree}",
+                ":maxdepth: 2",
+                "",
+                manual_stem,
+                "```",
+                "",
+            )
+        ),
+        encoding="utf-8",
+    )
+    (html_root / "index.html").write_text("<html>verified</html>\n", encoding="utf-8")
+
+    relative = lambda path: path.relative_to(repo_root).as_posix()
+    payload = {
+        "schema_version": "auto-manual-web-publish/v1",
+        "model": model,
+        "region": region,
+        "lang": lang,
+        "version": version,
+        "git_ref": git_ref,
+        "workflow_action": "Web Publish",
+        "built_at": "2026-09-16T12:00:00+00:00",
+        "md_output_path": relative(markdown_path),
+        "html_dir": relative(html_root),
+        "html_index": relative(html_root / "index.html"),
+        "queue_record_ids": ["rec_web"],
+    }
+    (metadata_root / "publish_meta.json").write_text(
+        json.dumps(payload) + "\n", encoding="utf-8"
+    )
+
+
+class RunWebAssembleRealAssemblyTests(unittest.TestCase):
+    """Exercise the real ``assemble_web_publish_branch`` call inside ``run_web_assemble``.
+
+    Every ``RunWebAssembleOrchestrationTests`` case above mocks
+    ``_assemble_candidate`` itself, so none of them can catch a bug inside
+    it (the same blind spot #1178 found for the RTD verify step). This test
+    only fakes the injected ``run`` (git/gh/sphinx) callable and lets the
+    real assembler run against a minimal staged fixture -- which is exactly
+    the layer that regressed: ``_assemble_candidate`` passed the throwaway
+    Hello-Docs clone directory as ``repo_root``, but every staged target's
+    ``publish_meta.json`` stores ``md_output_path``/``html_dir`` relative to
+    the *real* auto-manual repo root, so resolving them against the clone
+    directory always failed ``_path_from_metadata``'s releases-root
+    containment check on every real invocation -- reproducing the reported
+    ``build.py web-assemble`` failure: "Web Publish metadata path escapes
+    releases root".
+    """
+
+    def _fake_run(self, cmd: list[str], cwd: Path) -> subprocess.CompletedProcess:
+        if "clone" in cmd:
+            return _proc(returncode=0)
+        if "ls-remote" in cmd:
+            return _proc(returncode=2)  # no publish branch yet
+        if cmd[:2] == ["git", "add"]:
+            return _proc(returncode=0)
+        if cmd[:2] == ["git", "diff"] and "--cached" in cmd:
+            return _proc(returncode=1)  # something to commit
+        if cmd[:2] == ["git", "diff"]:
+            return _proc(returncode=0, stdout="docs/publish/publish_manifest.json\0")
+        if cmd[:2] == ["git", "commit"]:
+            return _proc(returncode=0)
+        if cmd[:2] == ["git", "rev-parse"]:
+            return _proc(returncode=0, stdout="a" * 40 + "\n")
+        if cmd[:2] == ["git", "merge-base"]:
+            return _proc(returncode=0)
+        if "sphinx" in cmd:
+            return _proc(returncode=0)
+        raise AssertionError(f"unexpected command: {cmd}")
+
+    def test_real_assembly_resolves_staged_metadata_against_the_real_repo_root(self) -> None:
+        with TemporaryDirectory() as repo_tmp:
+            repo_root = Path(repo_tmp)
+            _write_minimal_web_publish_target(
+                repo_root,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                version="2.0",
+                git_ref="review/JE-1000F-US",
+            )
+            args = argparse.Namespace(
+                releases_root=None, title=None, hello_docs_repo=None, push=False, dry_run=False
+            )
+
+            # Must not raise. Before the fix this always raised RuntimeError
+            # ("Web Publish metadata path escapes releases root: ...")
+            # because _assemble_candidate resolved the staged target's
+            # repo-relative md_output_path/html_dir against the ephemeral
+            # Hello-Docs clone directory instead of repo_root.
+            report = run_web_assemble(
+                args,
+                repo_root=repo_root,
+                resolve_path_from_root=lambda raw: repo_root / raw,
+                run=self._fake_run,
+            )
+
+        self.assertTrue(report.committed)
+        self.assertEqual(1, len(report.included_targets))
+        included = report.included_targets[0]
+        self.assertEqual("JE-1000F", included["model"])
+        self.assertEqual("US", included["region"])
+        self.assertEqual("en", included["lang"])
+
+
 if __name__ == "__main__":
     unittest.main()
