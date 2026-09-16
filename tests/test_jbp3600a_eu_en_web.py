@@ -167,6 +167,10 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(3, len(soup.select(".hb-inbox-card")))
         self.assertIsNone(soup.select_one(".hb-inbox-tip"))
+        self.assertEqual(
+            {"inbox_unit_clean.png", "inbox_cable_clean.png", "inbox_manual_clean.png"},
+            {Path(image["src"]).name for image in soup.select(".hb-inbox-art")},
+        )
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-LCD-ICON"]'))
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
         self.assertEqual(4, len(soup.select(".hb-spec-table-composition")))
@@ -226,7 +230,7 @@ with patch.object(Path, "open", guarded):
         self.assertEqual(("JBP-3600A", "EU", "en"), (
             manifest["model"], manifest["region"], manifest["language"]
         ))
-        self.assertEqual(8, len(manifest["illustrations"]))
+        self.assertEqual(11, len(manifest["illustrations"]))
         for illustration in manifest["illustrations"]:
             path = ILLUSTRATIONS.parent / illustration["path"]
             self.assertEqual(

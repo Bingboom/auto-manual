@@ -62,6 +62,57 @@
       "sha256": "e4eb11ad06f6b91f8ec03b9a000370bd3ba67076036fea89dee9b37a80d15768",
       "source_page": 8,
       "bbox_pt": [27, 318, 342, 498]
+    },
+    {
+      "replaces": [
+        "jbp3600a_inbox_unit.png"
+      ],
+      "path": "assets/jbp3600a_eu_en/inbox_unit_clean.png",
+      "sha256": "4f5d7e1edd8b9a0845cc2071a57aafaccdd245811594d3f9b2b9bb8df20b3b44",
+      "source_page": 6,
+      "bbox_pt": [
+        38,
+        106,
+        122,
+        166
+      ],
+      "source_pdf_name": "Jackery Battery Pack 3600 User Manual (JBP-3000A) EUUK V2.0-2026-08-04.pdf",
+      "source_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+      "render_scale": 4
+    },
+    {
+      "replaces": [
+        "jbp3600a_expansion_cable.png"
+      ],
+      "path": "assets/jbp3600a_eu_en/inbox_cable_clean.png",
+      "sha256": "0a2f4e72a751a9b8371ea98a0aa330faffab47b36c76a41694e898af9b5d4de7",
+      "source_page": 6,
+      "bbox_pt": [
+        145,
+        106,
+        229,
+        166
+      ],
+      "source_pdf_name": "Jackery Battery Pack 3600 User Manual (JBP-3000A) EUUK V2.0-2026-08-04.pdf",
+      "source_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+      "render_scale": 4
+    },
+    {
+      "replaces": [
+        "jbp3600a_user_manual.png"
+      ],
+      "path": "assets/jbp3600a_eu_en/inbox_manual_clean.png",
+      "sha256": "8e9ae2dfc7de714cac9eb0ac26ab4ee00f43daecd8a13abe9ed438897bdba040",
+      "source_page": 6,
+      "bbox_pt": [
+        251,
+        106,
+        335,
+        166
+      ],
+      "source_pdf_name": "Jackery Battery Pack 3600 User Manual (JBP-3000A) EUUK V2.0-2026-08-04.pdf",
+      "source_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+      "render_scale": 4
     }
   ]
 }

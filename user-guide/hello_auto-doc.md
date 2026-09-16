@@ -1,5 +1,7 @@
 # Hello Auto Doc
 
+JBP-3600A EU/en 装箱清单重复边框修复需重建冻结网页再发布；见[验证记录](../code-as-doc/reviews/jbp3600a-inbox-artwork-20260915.md)。
+
 手册中心卡片可按型号/市场指定说明书原图，补齐缺图或替换带编号边框的装箱图；参见[目录缩略图](../code-as-doc/dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15)。
 
 手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
