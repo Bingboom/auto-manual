@@ -1,0 +1,334 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-1000H",
+  "region": "EU",
+  "language": "es",
+  "source_pdf_sha256": "07e9ac4b9faabd0852f61702df06f2837caa952c2fa28151b599ad930b1c0bcc",
+  "source_pdf_name": "Jackery Explorer 1000 Plus User Manual (JE-1000H) EUUK V2.0-2026-08-03.pdf",
+  "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je1000h_eu_es/inbox_unit.png",
+      "sha256": "606ab6be54a8edbbdd8fb31af997e5d0b639647e9729bcaff6dda1e8aca56c2c",
+      "source_page": 41,
+      "bbox_pt": [
+        40,
+        310,
+        112,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je1000h_eu_es/inbox_cable.png",
+      "sha256": "2533b412ad3df6313c4a24aeaa32073ec4c0765c3bce281083b32da7ea934f23",
+      "source_page": 41,
+      "bbox_pt": [
+        150,
+        315,
+        210,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je1000h_eu_es/inbox_documents.png",
+      "sha256": "f46024ffcb756590fae6696bfb3a97e96a8871abbe0df83667006663d5e06d16",
+      "source_page": 41,
+      "bbox_pt": [
+        260,
+        320,
+        315,
+        394
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je1000h_eu_es/overview_front.png",
+      "sha256": "88de509b042bec7313a23d6df510fcb4a69dbad74b5811a2da54059cee3f4684",
+      "source_page": 42,
+      "bbox_pt": [
+        25.9,
+        68,
+        342,
+        245
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je1000h_eu_es/overview_side.png",
+      "sha256": "765fe31a919b0b3643584d491f5bcb0bae4d684554e391cf19439fb28471dc9b",
+      "source_page": 42,
+      "bbox_pt": [
+        25.6,
+        269,
+        342,
+        493
+      ],
+      "whiteout_bbox_pt": [
+        28,
+        369,
+        139.3,
+        389
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je1000h_eu_es/lcd_map.png",
+      "sha256": "20dbaaa911fb10f156bdac37528b283fa9107a611daca08c5578bd9f8b579f49",
+      "source_page": 43,
+      "bbox_pt": [
+        34,
+        55,
+        325,
+        218.6
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_power.png",
+      "sha256": "722025642f5700cb5a78ab174bf9cac336c82a081eaddf16e01853caf6247767",
+      "source_page": 45,
+      "bbox_pt": [
+        23.5,
+        71,
+        342,
+        233
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_ac.png",
+      "sha256": "3aacd2e3bac7e96be6457a881c5ea3fda84e8228cc2c52db40cc53214eb80f01",
+      "source_page": 45,
+      "bbox_pt": [
+        27,
+        249,
+        342,
+        495
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_dc.png",
+      "sha256": "036bc1c5e64ff9173dc2b9cf54ef6208fc89bdcda993e06a3d052656e7e0237b",
+      "source_page": 46,
+      "bbox_pt": [
+        27,
+        41,
+        342,
+        212
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_led.png",
+      "sha256": "6abc0869d29823e3ca1e24c4f83fb5abcd5d4bbbcf8d583c76e75b567e6ff032",
+      "source_page": 46,
+      "bbox_pt": [
+        27,
+        369.4,
+        342,
+        498
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_lcd.png",
+      "sha256": "f76bb54b4cc6f3667d1da42849b7cec0e6a8594f251775b1d8fd6d9d19e73631",
+      "source_page": 47,
+      "bbox_pt": [
+        28,
+        40,
+        180,
+        150
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je1000h_eu_es/operation_energy.png",
+      "sha256": "f60757dc5a9677ed4c0c61eb459020821281f10532fd69b9d40fb4a2902d4cb6",
+      "source_page": 47,
+      "bbox_pt": [
+        27,
+        229,
+        342,
+        374
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je1000h_eu_es/ups.png",
+      "sha256": "625794de6e269d471b96a994599e4ef3e6f2396e3a782b0fe088ec3d0cfb3277",
+      "source_page": 48,
+      "bbox_pt": [
+        28,
+        257,
+        342,
+        496
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "battery_pack.png"
+      ],
+      "path": "assets/je1000h_eu_es/battery_pack.png",
+      "sha256": "a5d6b804d17c2beec03a92e2c4bcc83de9e78816b341cad5bb394697c30bac31",
+      "source_page": 49,
+      "bbox_pt": [
+        28,
+        203,
+        342,
+        410
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je1000h_eu_es/charging_ac.png",
+      "sha256": "db7b68f1d47cf8b8288cf94047bca9d58ae3171295ab2de06fa5b912b22dffca",
+      "source_page": 50,
+      "bbox_pt": [
+        27,
+        251.8,
+        342,
+        362
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "solar_direct.png"
+      ],
+      "path": "assets/je1000h_eu_es/charging_solar.png",
+      "sha256": "2b5c1c5e0ee41ba5d8604c59b609581b207c7e91a75e25edaad6e72496110106",
+      "source_page": 51,
+      "bbox_pt": [
+        28,
+        31,
+        342,
+        175
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "solar_adapter.png"
+      ],
+      "path": "assets/je1000h_eu_es/charging_solar_adapter.png",
+      "sha256": "2e4838b3d8e7c9bd55cb595906dc8dfbf8e15dc42f8cc025100320f604d3db5b",
+      "source_page": 51,
+      "bbox_pt": [
+        150,
+        31,
+        342,
+        175
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je1000h_eu_es/charging_car.png",
+      "sha256": "456f8c5f58ac802e7f2ba35768153d598f285170ac822e3a0e7b90002b0eb8f8",
+      "source_page": 51,
+      "bbox_pt": [
+        28,
+        358,
+        342,
+        494
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "download.png"
+      ],
+      "path": "assets/je1000h_eu_es/app_download.png",
+      "sha256": "9d3dd042bdcc398cad8763f94077b5136b79ce8fdd384a708596fd26f61eea08",
+      "source_page": 55,
+      "bbox_pt": [
+        40.3,
+        70,
+        340,
+        154.6
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je1000h_eu_es/app_control_panel.png",
+      "sha256": "f13239ac7a57ef9d68d572a8fd655e658700920727555bac041eb8eb298ee9fa",
+      "source_page": 55,
+      "bbox_pt": [
+        40,
+        400,
+        340,
+        484
+      ],
+      "reference_id": "app-add-device",
+      "consume_before_presentation": true,
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je1000h_eu_es/app_connect_result.png",
+      "sha256": "87fbdec306d1818c8fdbc5f57db74f7e4ba6b2b30c34ec015b79543ebb504870",
+      "source_page": 56,
+      "bbox_pt": [
+        48,
+        156.6,
+        320,
+        293
+      ],
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    }
+  ]
+}

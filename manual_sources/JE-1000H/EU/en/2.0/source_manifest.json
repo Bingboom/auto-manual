@@ -18,7 +18,7 @@
   "data_root": "manual_sources/JE-1000H/EU/en/2.0/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je1000h_eu_web.json",
-    "sha256": "fc0362d1428832e33fae15a242bc0cf21ff86de320c5e6249b3604af5c9f364e"
+    "sha256": "468d3c1fe12675f05a4b272fc4bbc6f958986900709f9bf5c847c73d71af3c90"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je1000h_eu_en_illustrations.json",
