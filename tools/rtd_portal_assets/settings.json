@@ -5,6 +5,7 @@
     "JA-CA3SA/EU": "_static/portal-products/ja-ca3sa.png"
   },
   "analytics_beacon_token": "a15729a9f8e14bfea2bac9ca6a9338de",
+  "site_base_url": "https://ht-doc.readthedocs.io",
   "rtl_languages": ["he", "ar"],
   "regions": {"US": "US", "EU": "EU", "UK": "EU"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],

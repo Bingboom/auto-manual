@@ -12,6 +12,9 @@ from tools.utils.path_utils import PathSegments, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
 from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd_page_metadata import (
+    head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
+)
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
@@ -106,6 +109,7 @@ def page_context(app, pagename, templatename, context, doctree):
     products = catalog(Path(app.srcdir).resolve(), settings)
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
+    site_base_url = normalize_site_base_url(settings.get("site_base_url", ""))
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename != app.config.root_doc:
@@ -131,6 +135,24 @@ def page_context(app, pagename, templatename, context, doctree):
                 lang=active["lang"], version=active.get("version") or "",
                 page=active["url"],
             )
+            lang_label = settings.get("language_labels", {}).get(active["lang"], active["lang"])
+            derived_title = page_title(
+                name=product.get("name") or "", model=active["model"],
+                region=active["region"], lang_label=lang_label,
+            )
+            context["manual_page_title"] = derived_title
+            context["metatags"] = context.get("metatags", "") + head_markup(
+                title=derived_title,
+                description=page_description(
+                    name=product.get("name") or "", model=active["model"],
+                    region=active["region"], lang_label=lang_label,
+                    version=active.get("version") or "",
+                ),
+                page_url=active["url"],
+                alternates=[(item["code"], item["url"]) for item in product["language_options"]
+                            if item.get("url") and item["code"] != "current"],
+                site_base_url=site_base_url,
+            )
             context["body"] = (
                 '<nav class="manual-locale-nav" aria-label="Manual language">'
                 f'<span>{escape(product["model"])} · {escape(product["edition"])}</span> '
@@ -151,6 +173,7 @@ def page_context(app, pagename, templatename, context, doctree):
     context["portal"] = settings
     context["products"] = products
     context["analytics_beacon"] = beacon_markup(beacon_token)
+    context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
     return "manual_portal.html"
 
 
