@@ -70,4 +70,4 @@ the existing JBP-3600A EU/en configuration.
 
 AC charging is recropped from the supplied PDF page 10, bbox `[26, 115, 343, 272]`, at 4x, excluding the preceding warning frame. The exact-target warranty source pattern now includes `warranty_en`, enabling existing shared native warranty lead, section and year components. Copy remains unchanged.
 
-The Web year-card renderer omits a leading inline em/en dash separator from the displayed label after splitting the duration into its own badge/unit. IR/source wording remains intact.
+The exact JBP-3600A Web warranty carrier separates duration and label into two strong nodes, omitting only the inline dash separator. Other targets and the shared renderer remain unchanged; the region profile and generated manifest/family diff bind this PDF-matched carrier.

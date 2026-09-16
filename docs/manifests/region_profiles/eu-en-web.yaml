@@ -26,7 +26,7 @@ slot_overrides:
   charging:
     file: templates/page_bp/en-web/jbp3600a_08_charging_methods.rst
   warranty:
-    file: templates/page_bp/en/11_warranty.rst
+    file: templates/page_bp/en-web/jbp3600a_11_warranty.rst
   regulatory_compliance:
     file: templates/page_bp/intl/99_regulatory_compliance_eu_configurable.rst
 compliance: []

@@ -89,7 +89,7 @@ pages:
   - type: rst_include
     slot_id: warranty_en
     lang: en
-    file: templates/page_bp/en/11_warranty.rst
+    file: templates/page_bp/en-web/jbp3600a_11_warranty.rst
   - type: rst_include
     slot_id: regulatory_compliance
     lang: en
