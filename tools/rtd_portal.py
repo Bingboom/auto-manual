@@ -11,6 +11,7 @@ from urllib.parse import unquote, urlsplit
 from tools.utils.path_utils import PathSegments, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
 from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
+from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd_page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
@@ -113,6 +114,17 @@ def page_context(app, pagename, templatename, context, doctree):
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename != app.config.root_doc:
+        if "/" not in pagename:
+            alias_target = alias_targets(products).get(pagename)
+            if alias_target:
+                context["metatags"] = context.get("metatags", "") + alias_head_markup(
+                    target_url=alias_target, site_base_url=site_base_url,
+                )
+                if beacon_token:
+                    context["body"] = delayed_forward_body(
+                        context.get("body", ""), target_url=alias_target,
+                    )
+                return None
         for product in products:
             active = next((p for p in product["publications"]
                            if p["url"] == f"{pagename}.html" and p["language_scope"] == "single"), None)

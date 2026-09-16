@@ -27,6 +27,9 @@ Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operatio
 清空 `analytics_beacon_token` 即完全关闭、页面回到字节等同。
 已验证单语页面的 `<title>`、描述、canonical、hreflang、OG 元数据全部由冻结发布身份
 构建期派生（不许手填）；换域名时只改 portal 设置里的 `site_base_url` 一处。
+根别名是可计数的印刷/QR 入口层：构建期自动加 noindex 与指向嵌套规范页的 canonical，
+统计开启时转发前留出 beacon 发送窗口（约 0.2–2.5 秒）。对外链接规范：印刷/QR 与
+`HTML_link` 用根别名，站内导航用嵌套规范页，市场/客服签名用门户首页，不发第三种链接。
 
 Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
 `check`、Markdown 和 HTML 使用同一份所选语言 RST。显式语言的 Web 队列构建还会

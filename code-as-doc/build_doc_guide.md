@@ -75,6 +75,8 @@ cookieless Cloudflare Web Analytics beacon without collecting user identity.
 Verified single-language pages also get derived head metadata (title,
 description, canonical, hreflang, OG) computed from frozen publication
 identity; `site_base_url` in the portal settings is the one origin switch.
+Root aliases carry noindex/canonical and, when analytics is on, a short
+forward delay so printed/QR entries are countable as alias-path pageviews.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell
