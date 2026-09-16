@@ -205,9 +205,27 @@ def _reconcile_candidate(run: CommandRunner, clone_dir: Path, preserved_dir: Pat
         shutil.copytree(preserved_dir, docs_publish_dir, dirs_exist_ok=True)
 
 
-def _assemble_candidate(clone_dir: Path, releases_root: Path, title: str) -> Path:
+def _assemble_candidate(
+    clone_dir: Path, releases_root: Path, title: str, *, repo_root: Path
+) -> Path:
+    """Assemble the staged Web releases into ``clone_dir``'s ``docs/publish``.
+
+    ``repo_root`` must be the real auto-manual checkout (the one
+    ``releases_root`` lives under), never ``clone_dir`` -- the throwaway
+    Hello-Docs clone is only where the assembled *output* lands.
+    ``assemble_web_publish_branch`` uses ``repo_root`` for two things, both of
+    which require the real checkout: ``_validate_publish_boundaries`` guards
+    against ``output_dir`` swallowing the repo root it is passed, and
+    ``discover_web_publish_targets`` -> ``load_web_publish_target`` resolves
+    each staged target's repo-relative ``md_output_path``/``html_dir``/
+    ``language_projection_evidence_path`` against it before checking they
+    stay under ``releases_root``. Passing ``clone_dir`` there always failed
+    that containment check, because every real ``publish_meta.json`` stores
+    those paths relative to the real repo, not to an unrelated clone.
+    """
+
     return assemble_web_publish_branch(
-        repo_root=clone_dir,
+        repo_root=repo_root,
         releases_root=releases_root,
         output_dir=Paths(root=clone_dir).docs_publish_dir,
         title=title,
@@ -449,7 +467,7 @@ def run_web_assemble(
             network=True,
         )
         _reconcile_candidate(run, clone_dir, preserved_dir)
-        manifest_path = _assemble_candidate(clone_dir, releases_root, title)
+        manifest_path = _assemble_candidate(clone_dir, releases_root, title, repo_root=repo_root)
         _run_aggregate_strict_verification(run, clone_dir)
         commit_sha = _commit_candidate(run, clone_dir)
         changed_count, changed_paths = _validate_scope(run, clone_dir)
