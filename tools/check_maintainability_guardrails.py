@@ -34,7 +34,10 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # +2: the `web-assemble` command (PR-2 of the same conveyor belt) needs
     # the identical one import + one `partial(...)` wiring line; its
     # orchestration lives in tools/web_assemble.py.
-    "build.py": 765,
+    # +2: same shape again for the `web-receipt` command (one import plus one
+    # `partial(...)` wiring line); the orchestration lives in
+    # tools/web_receipt.py and tools/manual_catalog_writeback.py.
+    "build.py": 767,
     "tools/build_docs.py": 860,
     "tools/process_build_queue.py": 650,
     "tools/validate_spec_master_runtime.py": 880,

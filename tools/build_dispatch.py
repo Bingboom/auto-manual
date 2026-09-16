@@ -46,6 +46,7 @@ class DispatchContext:
     run_new_line: Callable[[argparse.Namespace], None] | None = None
     run_web_release: Callable[[argparse.Namespace], None] | None = None
     run_web_assemble: Callable[[argparse.Namespace], None] | None = None
+    run_web_receipt: Callable[[argparse.Namespace], None] | None = None
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
@@ -189,6 +190,10 @@ def _dispatch_web_assemble_action(args: argparse.Namespace, context: DispatchCon
     if context.run_web_assemble is None:
         raise RuntimeError("web-assemble is not wired into this build entrypoint")
     context.run_web_assemble(args)
+def _dispatch_web_receipt_action(args: argparse.Namespace, context: DispatchContext) -> None:
+    if context.run_web_receipt is None:
+        raise RuntimeError("web-receipt is not wired into this build entrypoint")
+    context.run_web_receipt(args)
 
 
 def _dispatch_sync_review_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -371,6 +376,7 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "new-line": _dispatch_new_line_action,
     "web-release": _dispatch_web_release_action,
     "web-assemble": _dispatch_web_assemble_action,
+    "web-receipt": _dispatch_web_receipt_action,
     "review": _dispatch_review_action,
     "check": _dispatch_check_action,
     "sync-review": _dispatch_sync_review_action,
@@ -432,6 +438,7 @@ def dispatch_action(
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
     run_web_release: Callable[[argparse.Namespace], None] | None = None,
     run_web_assemble: Callable[[argparse.Namespace], None] | None = None,
+    run_web_receipt: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
     context = DispatchContext(
         config_path=config_path,
@@ -465,6 +472,7 @@ def dispatch_action(
         run_new_line=run_new_line,
         run_web_release=run_web_release,
         run_web_assemble=run_web_assemble,
+        run_web_receipt=run_web_receipt,
     )
     context.ensure_supported_staging_action(args)
     ACTION_HANDLERS.get(args.action, _dispatch_build_action)(args, context)
