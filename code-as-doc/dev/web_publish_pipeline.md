@@ -326,6 +326,67 @@ are written only by the explicit step 7 receipt above, after that evidence is
 already in hand; no earlier step in this section writes online staging,
 source, asset, build, or link records.
 
+### 2.3 PDF sideload bypass
+
+Steps 2-3 above assume the target's structured intake (spec extraction,
+templating) is already done, so `build.py check`/render can actually run.
+Some books must go live before that is true — the printed PDF exists but
+`spec-sheet-structured-intake` has not landed real phase2 data for the
+target yet. `python build.py web-sideload --config <config> --model <M>
+--region <R> --lang <L> --version <V> --md-dir <bundle>
+[--debt "category:location:payoff action"]... [--dry-run]` is the bypass for
+exactly that gap: it stages an **externally converted** MyST Markdown
+source — never rendered by this repo's RST -> Web-profile pipeline — using
+the same `tools.queue_bound_outputs.stage_web_publish_assets_to_host_repo`
+and `write_web_publish_metadata` that `web-release` uses, so `web-assemble`
+collects it with equal standing to a pipeline-built book.
+
+`--md-dir` must already be shaped like a staged `md/` bundle: a
+`manual_<stem>.md` whose filename matches what the config's output-naming
+template would produce for that exact model/region/lang (the same
+derivation `resolve_md_output_path_for_target` uses for `web-release`'s
+collision precheck), an `index.md` toctree naming that stem, `conf.py`, and
+an optional `assets/`. A wrong filename fails with the exact expected name
+rather than silently staging under the wrong route. Before staging,
+`web-sideload` runs its own local strict `sphinx -W -b html` build of that
+bundle — the same rigor `web-release` applies to a pipeline build, just
+against externally supplied source — and that HTML output is staged
+directly (there is no separate pipeline HTML build to reuse here).
+
+Because there is no RST -> Web-profile pipeline run, there is no per-language
+projection evidence to seal. The staged `publish_meta.json` instead carries
+an explicit `"source_kind": "pdf_sideload"` marker (a pipeline-built
+target either omits `source_kind` or carries `"source_kind": "pipeline"`,
+unchanged from before this marker existed). That marker is the **only**
+thing `tools.publish_locale_identity` / `tools.publish_branch_assembly`
+accept as exempting a target from the otherwise-mandatory
+`language_projection_evidence_*` gate described in §1 and §2.2 above; every
+pipeline target — with or without an explicit `source_kind` — stays exactly
+as fail-closed on that evidence as it was before sideload existed. The
+marker is carried through unconditionally into the stored
+`docs/publish/sources/web/**/publish_meta.json` and from there into
+`publish_manifest.json`'s per-target entry, so which targets bypassed the
+pipeline is always auditable from the assembled release, not just from a
+local `reports/releases/` snapshot.
+
+Every `web-sideload` run also records one **unconditional** debt-ledger
+entry (category `整本未结构化`, payoff action "run
+`spec-sheet-structured-intake`, then re-run `web-release`"), through the
+same `tools.web_publish.record_debt_entries` ledger `web-release` uses —
+regardless of any `--debt` entries also passed. Payoff is mechanical, not a
+separate withdrawal step: once real phase2 data exists for the target, an
+ordinary `build.py web-release` run for the same model/region/lang writes
+the same `latest/web/publish_meta.json` identity, overwriting the sideloaded
+metadata with a real pipeline build (and its evidence) in place. From there,
+`web-assemble` and `web-receipt` proceed exactly as documented in §2.2.
+
+See [`tools/web_sideload.py`](../../tools/web_sideload.py) for the
+implementation, `tests/test_web_sideload.py` for its contract, and
+`tests/test_publish_branch_assembly.py`'s `pdf_sideload`/`pipeline`
+control-pair tests for the evidence-gate exemption boundary. The full
+operator workflow, including PDF extraction guidance, lives in
+[`.agents/skills/pdf-web-sideload/SKILL.md`](../../.agents/skills/pdf-web-sideload/SKILL.md).
+
 ## 3. Repository and hosting boundaries
 
 - Code changes land only in `Bingboom/auto-manual`, then
