@@ -248,8 +248,7 @@ def _run_strict_web_verification(*, built_md_output_path: Path, title: str) -> N
     ``build.py html`` does not pass ``-W``, so this is a strictly stronger
     local gate on top of it. Runs entirely in a scratch temp directory outside
     the repo (never under ``docs/_build`` or the release tree) so it never
-    leaves scratch files behind or fights ``assemble_rtd_source``'s
-    output-inside-build-root containment check against an immutable tree.
+    leaves scratch files behind.
     """
 
     source_md_dir = built_md_output_path.parent
@@ -257,7 +256,12 @@ def _run_strict_web_verification(*, built_md_output_path: Path, title: str) -> N
         temp_dir = Path(raw_temp_dir)
         build_root = temp_dir / "source"
         shutil.copytree(source_md_dir, build_root / PathSegments.MD)
-        assembled_dir = temp_dir / "rtd"
+        # Nested under build_root: assemble_rtd_source requires its output_dir
+        # to stay inside build_root (see _is_relative_to there); a sibling
+        # directory trips that containment check on every real run. Nesting
+        # is safe -- discover_manual_sources excludes anything under
+        # output_dir from its own source search.
+        assembled_dir = build_root / "rtd"
         assemble_rtd_source(build_root=build_root, output_dir=assembled_dir, title=title)
         html_out = temp_dir / "html"
         proc = subprocess.run(
