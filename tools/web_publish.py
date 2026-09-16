@@ -349,16 +349,18 @@ def _release_one_target(
     config_path: Path,
     target: WebReleaseTarget,
     data_root: str | None,
+    source: str,
     git_ref: str,
     skip_verify: bool,
     manual_debt: Sequence[tuple[str, str, str]],
 ) -> WebReleaseResult:
     model, region, lang, version = target.model, target.region, target.lang, target.version
 
-    # b. Warm up once so the review-derived generated bundle hash converges;
-    # otherwise the *first* build after a fresh review sync can still be
-    # settling content between runs, and the captured check/md/html
-    # fingerprints below would disagree (require_consistent_captures fails).
+    # b. Warm up once so the generated bundle hash converges; otherwise the
+    # *first* build after a fresh review sync (or a fresh review-less book,
+    # under --source auto) can still be settling content between runs, and
+    # the captured check/md/html fingerprints below would disagree
+    # (require_consistent_captures fails).
     run_command(
         build_py_target_command(
             action="check",
@@ -367,7 +369,7 @@ def _release_one_target(
             region=region,
             lang=lang,
             data_root=data_root,
-            source="review",
+            source=source,
             no_clean=False,
             presentation_profile="web",
             repo_root=repo_root,
@@ -376,6 +378,9 @@ def _release_one_target(
     )
 
     # c. The real check/md/html Web-profile build, capturing per-step evidence.
+    # --source auto (the default) falls back to the frozen template/data
+    # bundle when the target has no review branch yet, which is the common
+    # case for a brand-new book publishing straight from main.
     projection_captures = run_web_language_build_steps(
         repo_root=repo_root,
         config_path=config_path,
@@ -387,6 +392,7 @@ def _release_one_target(
         run_command=run_command,
         build_py_target_command=build_py_target_command,
         resolve_md_output_path_for_target=resolve_md_output_path_for_target,
+        source=source,
     )
 
     # d. Fail fast on a cross-step drift before any staging/verification cost.
@@ -513,6 +519,11 @@ def run_web_release(
     skip_verify = bool(getattr(args, "skip_verify", False))
     dry_run = bool(getattr(args, "dry_run", False))
     data_root = getattr(args, "data_root", None)
+    # --source auto (the shared build.py default) lets a book with no review
+    # branch yet fall back to the frozen template/data bundle, so a brand-new
+    # book can publish straight from main. Pass --source review for a
+    # reviewed target whose review branch content must win.
+    source = str(getattr(args, "source", None) or "").strip() or "auto"
 
     raw_targets = _resolve_targets(args, resolve_path_from_root=resolve_path_from_root)
     targets = [target.with_default_version(default_version) for target in raw_targets]
@@ -546,6 +557,7 @@ def run_web_release(
                 config_path=config_path,
                 target=target,
                 data_root=data_root,
+                source=source,
                 git_ref=git_ref,
                 skip_verify=skip_verify,
                 manual_debt=manual_debt,

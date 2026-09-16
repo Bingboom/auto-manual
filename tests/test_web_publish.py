@@ -261,6 +261,7 @@ class RunWebReleaseOrchestrationTests(unittest.TestCase):
             "lang": "en",
             "version": "2.0",
             "data_root": "data/phase2",
+            "source": None,
             "targets_file": None,
             "debt": [],
             "skip_verify": True,
@@ -351,6 +352,54 @@ class RunWebReleaseOrchestrationTests(unittest.TestCase):
         # No --debt flags were supplied, so no manual ledger write for a
         # successful target.
         record_debt.assert_not_called()
+
+    def _assert_source_propagates(self, *, override_source, expected: str) -> None:
+        args = self._args(skip_verify=True, source=override_source)
+        version_dir = Path("/repo/reports/releases/JE-1000F/US/en/versions/2.0")
+
+        with mock.patch.object(
+            web_publish, "check_batch_for_collisions"
+        ), mock.patch.object(
+            web_publish, "_current_git_head_sha", return_value="a" * 40
+        ), mock.patch.object(
+            web_publish, "run_command"
+        ) as run_command, mock.patch.object(
+            web_publish, "run_web_language_build_steps", return_value=[]
+        ) as build_steps, mock.patch.object(
+            web_publish, "require_consistent_captures", return_value=()
+        ), mock.patch.object(
+            web_publish, "resolve_md_output_path_for_target", return_value=Path("/repo/md/manual.md")
+        ), mock.patch.object(
+            web_publish, "resolve_html_output_dir_for_target", return_value=Path("/repo/html")
+        ), mock.patch.object(
+            web_publish, "_run_strict_web_verification"
+        ), mock.patch.object(
+            web_publish,
+            "stage_web_publish_assets_to_host_repo",
+            return_value=(Path("/repo/staged.md"), Path("/repo/staged-html")),
+        ), mock.patch.object(
+            web_publish, "publish_release_version_dir_for_target", return_value=version_dir
+        ), mock.patch.object(
+            web_publish, "write_web_publish_metadata"
+        ):
+            run_web_release(
+                args, repo_root=Path("/repo"), resolve_path_from_root=lambda raw: Path("/repo") / raw
+            )
+
+        # The warm-up check (real build_py_target_command, only run_command is
+        # mocked) must carry the same --source as the captured build.
+        warmup_cmd = run_command.call_args_list[0].args[0]
+        source_index = warmup_cmd.index("--source")
+        self.assertEqual(expected, warmup_cmd[source_index + 1])
+        self.assertEqual(expected, build_steps.call_args.kwargs["source"])
+
+    def test_default_source_falls_back_to_auto_for_a_book_with_no_review_branch(self) -> None:
+        # --source is unset here the way a hand-built Namespace can leave it;
+        # build_cli's real parser already defaults --source to "auto".
+        self._assert_source_propagates(override_source=None, expected="auto")
+
+    def test_explicit_source_review_is_passed_through(self) -> None:
+        self._assert_source_propagates(override_source="review", expected="review")
 
     def test_skip_verify_flag_bypasses_the_strict_verification_pass(self) -> None:
         args = self._args(skip_verify=True)

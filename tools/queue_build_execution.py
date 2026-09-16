@@ -179,6 +179,7 @@ def run_web_language_build_steps(
     run_command: Callable[..., None],
     build_py_target_command: Callable[..., list[str]],
     resolve_md_output_path_for_target: Callable[..., Path],
+    source: str = "review",
 ) -> list[ProjectionCapture]:
     """Run check/md/html under the Web presentation profile and capture evidence.
 
@@ -190,6 +191,13 @@ def run_web_language_build_steps(
     ``require_consistent_captures``/``seal_release_evidence`` verification;
     without an explicit language (multi-language family builds), the three
     build steps still run but no per-step evidence is captured.
+
+    ``source`` defaults to ``"review"`` to preserve the queue worker's
+    existing behavior (it always renders the review branch it just checked
+    out). The local ``web-release`` command passes its own ``--source``
+    through here instead, since a new book with no review branch yet needs
+    ``"auto"`` (falls back to the frozen template/data bundle) to publish at
+    all.
     """
     web_build_env = {
         SOURCE_DATE_EPOCH_ENV: str(git_commit_epoch(source_revision_workspace)),
@@ -218,7 +226,7 @@ def run_web_language_build_steps(
                 region=region,
                 lang=lang,
                 data_root=data_root,
-                source="review",
+                source=source,
                 no_clean=no_clean,
                 presentation_profile="web",
             ),
