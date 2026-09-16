@@ -3,6 +3,7 @@ JBP-2000B_JP,HTP017,ja,2026-08-31 操作者确认:JBP-2000B 日规单语;配套�
 JBP-2000B_EU,HTP017,en;fr;es;de;it;uk,2026-08-30 操作者确认:EU 六语且不宣称 UK 市场;uk 表示乌克兰语
 JE-300E_EU,HTE147,en;fr;es;de;it,2026-08-04 操作者确认:JE-300E EU 为英语/法语/西班牙语/德语/意大利语五语;不含乌克兰语
 JE-1000F_EU,HTE153,en;fr;es;de;it,2026-08-03 操作者确认:JE-1000F 不含乌克兰语;与 dingtalk_delivery_map.csv 的 EU 行五语声明一致
+JE-1000H_EU,HTE159,en;fr;es;de;it;uk,2026-09-16 按已发布欧英规手册 HTE159 EUUK V2.0-2026-08-03 核实：108 页六语，西里尔字符 24028，语言块 en p6-22 / fr p23-39 / es p40-56 / de p57-73 / it p74-90 / uk p91-107；等于家族并集(无裁剪)，显式登记以免依赖 fail-open
 JE-1000F_US,HTE153,en;fr;es,2026-08-03 与 dingtalk_delivery_map.csv 的 US 行三语声明一致;等于家族并集(无裁剪)
 JE-2000E_EU,HTE152,en;fr;es;de;it;uk,2026-08-03 操作者确认:其他型号的欧规含乌克兰语;等于家族并集(无裁剪)
 JE-2000F_EU,HTE154,en;fr;es;de;it;uk,2026-08-03 操作者确认:其他型号的欧规含乌克兰语;等于家族并集(无裁剪)
