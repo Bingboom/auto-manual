@@ -489,6 +489,18 @@ Quality and release logic should follow concern-specific modules instead of drif
   - every `git`/`gh`/`sphinx` call goes through one injectable `run(argv, cwd)` seam;
     defaults to assemble + strict verify + scope guard only, `--push` gates the
     non-force `publish` branch push and the `publish -> main` PR open/update
+- [`tools/web_receipt.py`](../../tools/web_receipt.py)
+  - local `build.py web-receipt` orchestration: the Web Publish Git-only transaction's
+    receipt step (§2.2 of `web_publish_pipeline.md`)
+  - Document_link `HTML_link` locate priority chain (explicit record id ->
+    `publish_meta.json` `queue_record_ids` -> live search by model/region/lang) plus
+    the per-target write/GET-readback loop and batch summary
+- [`tools/manual_catalog_writeback.py`](../../tools/manual_catalog_writeback.py)
+  - the first writer for the published-manual catalog (发布文档管理); every other
+    module touching this table (`tools/manual_index_query.py`) is read-only
+  - create-or-update by (model, region, lang, doc_type) with ambiguity rejection,
+    plus the generic record GET-readback helper `web_receipt.py` reuses for
+    `Document_link.HTML_link` too
 
 ## 6. Cloud-Doc Backport Modules
 

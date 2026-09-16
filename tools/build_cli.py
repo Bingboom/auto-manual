@@ -24,6 +24,7 @@ def parse_args(
             "new-line",
             "web-release",
             "web-assemble",
+            "web-receipt",
             *build_actions,
             "idml",
             "review",
@@ -314,7 +315,11 @@ def parse_args(
     ap.add_argument(
         "--write",
         action="store_true",
-        help="For new-line: materialize the named scaffold; for asset-check --refresh: write recomputed hashes",
+        help=(
+            "For new-line: materialize the named scaffold; for asset-check --refresh: write "
+            "recomputed hashes; for web-receipt: perform the live HTML_link and catalog writes "
+            "(default is dry-run: print the plan, touch no live table)"
+        ),
     )
     ap.add_argument(
         "--output-config",
@@ -483,7 +488,10 @@ def parse_args(
     ap.add_argument(
         "--releases-root",
         default=None,
-        help="For web-assemble: releases root to scan for staged latest/web/publish_meta.json bundles (default: reports/releases)",
+        help=(
+            "For web-assemble/web-receipt: releases root holding staged "
+            "latest/web/publish_meta.json bundles (default: reports/releases)"
+        ),
     )
     ap.add_argument(
         "--title",
@@ -506,6 +514,21 @@ def parse_args(
             "For web-assemble: advance the shared publish branch with an ordinary "
             "(non-force) push and open or update the publish -> main PR; default is "
             "assemble + strict verify + scope guard only, with no network write"
+        ),
+    )
+    ap.add_argument(
+        "--base-url",
+        default=None,
+        help="For web-receipt: Read the Docs base URL used to derive the HTML_link route",
+    )
+    ap.add_argument(
+        "--receipt-record-id",
+        action="append",
+        default=[],
+        help=(
+            "For web-receipt: explicit Document_link record_id to receipt into, overriding "
+            "publish_meta.json's queue_record_ids and the model/region/lang search fallback; "
+            "repeat for multiple rows"
         ),
     )
     return ap.parse_args(argv)
