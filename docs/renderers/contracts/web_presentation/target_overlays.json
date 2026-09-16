@@ -283,9 +283,10 @@
           "en"
         ],
         "required_slots": [
-          "finished-panel.overview",
-          "finished-panel.power",
-          "finished-panel.lcd_control",
+          "finished-panel.overview_front",
+          "finished-panel.overview_left",
+          "finished-panel.power_annotated",
+          "finished-panel.lcd_control_clean",
           "finished-panel.ac_charging",
           "finished-panel.solar_charging"
         ],
@@ -294,7 +295,14 @@
           "approved-composite"
         ]
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "*11_warranty",
+            "warranty_en"
+          ]
+        }
+      }
     },
     {
       "overlay_id": "ja-ad01a-eu-v1",

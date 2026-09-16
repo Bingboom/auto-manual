@@ -5,7 +5,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CSS = ROOT / "docs" / "renderers" / "contracts" / "web_manual.css"
+CSS = ROOT / "docs" / "renderers" / "contracts" / "web_battery_pack_components.css"
 CONFIG = ROOT / "configs" / "config.bp-eu-en.yaml"
 WARRANTY = ROOT / "docs" / "templates" / "page_bp" / "en-web" / "eu_warranty.rst"
 
