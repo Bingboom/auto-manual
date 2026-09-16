@@ -23,6 +23,7 @@ def parse_args(
             "asset-intake",
             "new-line",
             "web-release",
+            "web-assemble",
             *build_actions,
             "idml",
             "review",
@@ -454,7 +455,7 @@ def parse_args(
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, or web-release: validate/report without writing files",
+        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, web-release, or web-assemble: validate/report without writing files",
     )
     ap.add_argument(
         "--targets-file",
@@ -478,5 +479,33 @@ def parse_args(
         "--skip-verify",
         action="store_true",
         help="For web-release: skip the local strict `sphinx -W` verification pass",
+    )
+    ap.add_argument(
+        "--releases-root",
+        default=None,
+        help="For web-assemble: releases root to scan for staged latest/web/publish_meta.json bundles (default: reports/releases)",
+    )
+    ap.add_argument(
+        "--title",
+        default=None,
+        help="For web-assemble: aggregate Sphinx title passed to the assembler (default: Auto Manual Library, matching the queue workflow)",
+    )
+    ap.add_argument(
+        "--hello-docs-repo",
+        default=None,
+        help=(
+            "For web-assemble: Hello-Docs remote as an OWNER/REPO slug, a full git URL, "
+            "or a local path (tests only, never the operator's real Hello-Docs checkout); "
+            "default Bingboom/Hello-Docs"
+        ),
+    )
+    ap.add_argument(
+        "--push",
+        action="store_true",
+        help=(
+            "For web-assemble: advance the shared publish branch with an ordinary "
+            "(non-force) push and open or update the publish -> main PR; default is "
+            "assemble + strict verify + scope guard only, with no network write"
+        ),
     )
     return ap.parse_args(argv)

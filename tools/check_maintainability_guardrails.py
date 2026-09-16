@@ -31,7 +31,10 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # wiring line in main(), matching the existing asset-check/new-line
     # optional-facade pattern; the orchestration itself lives in
     # tools/web_publish.py.
-    "build.py": 763,
+    # +2: the `web-assemble` command (PR-2 of the same conveyor belt) needs
+    # the identical one import + one `partial(...)` wiring line; its
+    # orchestration lives in tools/web_assemble.py.
+    "build.py": 765,
     "tools/build_docs.py": 860,
     "tools/process_build_queue.py": 650,
     "tools/validate_spec_master_runtime.py": 880,
