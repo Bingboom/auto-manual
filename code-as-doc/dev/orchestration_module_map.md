@@ -484,7 +484,7 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/web_assemble.py`](../../tools/web_assemble.py)
   - local `build.py web-assemble` orchestration: the second conveyor-belt command,
     a Python mirror of the `feishu-web-publish-queue.yml` worktree-prepare / assemble /
-    commit / scope-guard / push / PR steps, run against an isolated shallow clone of
+    commit / scope-guard / push / PR steps, run against an isolated blobless clone of
     Hello-Docs instead of a worktree of the current repo
   - every `git`/`gh`/`sphinx` call goes through one injectable `run(argv, cwd)` seam;
     defaults to assemble + strict verify + scope guard only, `--push` gates the

@@ -391,6 +391,32 @@ class RunWebAssembleOrchestrationTests(unittest.TestCase):
         self.assertTrue(report.dry_run)
         self.assertEqual("https://github.com/Bingboom/Hello-Docs.git", report.hello_docs_remote)
 
+    def test_clone_uses_a_blobless_filter_not_a_shallow_depth(self) -> None:
+        # _reconcile_candidate's merge-base --is-ancestor check and
+        # _validate_scope's three-dot diff are the whole safety net for this
+        # command; both need the real commit graph, so the clone must stay
+        # full-history (--filter=blob:none lazily fetches file contents
+        # instead) and must never truncate history with --depth.
+        args = self._args()
+        clone_calls: list[list[str]] = []
+
+        def fake_run(cmd, cwd):
+            if "clone" in cmd:
+                clone_calls.append(list(cmd))
+                return _proc(returncode=0)
+            raise AssertionError(f"unexpected raw command: {cmd}")
+
+        with mock.patch.object(web_assemble, "_reconcile_candidate", side_effect=RuntimeError("stop")):
+            with self.assertRaises(RuntimeError):
+                run_web_assemble(
+                    args, repo_root=Path("/repo"), resolve_path_from_root=lambda raw: Path("/repo") / raw,
+                    run=fake_run,
+                )
+
+        self.assertEqual(1, len(clone_calls))
+        self.assertIn("--filter=blob:none", clone_calls[0])
+        self.assertNotIn("--depth", clone_calls[0])
+
     def _patched(self, **overrides):
         defaults = dict(
             manifest_path=Path("/tmp/clone/docs/publish/publish_manifest.json"),

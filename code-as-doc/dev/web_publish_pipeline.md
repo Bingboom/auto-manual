@@ -226,12 +226,15 @@ and `tests/test_web_publish.py` for its contract.
 
 `python build.py web-assemble [--releases-root <path>] [--title <title>]
 [--hello-docs-repo <owner/repo>] [--push]` is the formal entry point for steps
-4 and 5 below: it makes an isolated shallow clone of Hello-Docs under a
-scratch temporary directory (never the operator's own local Hello-Docs
-checkout), reconciles it against the existing `publish` branch tip when one
-exists (preserving any targets already staged there), assembles every book
-staged under `--releases-root` (default `reports/releases`) with the same
-`tools/publish_branch_assembly.py` this section already documents, and runs
+4 and 5 below: it makes an isolated blobless clone of Hello-Docs
+(`--filter=blob:none`: the full commit graph up front, file contents fetched
+lazily on checkout — never `--depth`, since the ancestry check below needs
+real history) under a scratch temporary directory (never the operator's own
+local Hello-Docs checkout), reconciles it against the existing `publish`
+branch tip when one exists (preserving any targets already staged there),
+assembles every book staged under `--releases-root` (default
+`reports/releases`) with the same `tools/publish_branch_assembly.py` this
+section already documents, and runs
 the same aggregate `sphinx -W -b html` verification. It then checks the
 candidate's three-dot diff against `main` and refuses to continue if any path
 outside `docs/publish/**` changed — the same scope guard the queue workflow's

@@ -26,10 +26,16 @@ command runs against a *separate* remote repository (``Bingboom/Hello-Docs``)
 instead of a worktree of the current one:
 
 * the workflow adds a ``git worktree`` inside the already-checked-out
-  Hello-Docs repository; this command instead makes a fresh, isolated shallow
-  clone of Hello-Docs under a scratch temporary directory (never the
-  operator's own local Hello-Docs checkout) and tears it down when the run
-  ends.
+  Hello-Docs repository; this command instead makes a fresh, isolated
+  blobless clone of Hello-Docs (``--filter=blob:none``: the full commit graph
+  up front, file contents fetched lazily on checkout) under a scratch
+  temporary directory (never the operator's own local Hello-Docs checkout)
+  and tears it down when the run ends. The clone is never truncated
+  (``--depth``): ``_reconcile_candidate``'s ``merge-base --is-ancestor`` and
+  ``_validate_scope``'s three-dot diff are this command's entire safety net,
+  and both need the real commit graph to answer correctly -- a shallow
+  history can put the boundary commit exactly where ancestry needs to be
+  decided.
 * the workflow always runs as the ``github-actions[bot]`` identity; this
   command relies on the operator's own ``git config user.*`` and ``gh auth``
   session (consistent with ``AGENTS.md`` section 8.3: identity comes from
@@ -438,7 +444,7 @@ def run_web_assemble(
         preserved_dir = tmp_root / "preserved-docs-publish"
 
         _git(
-            run, tmp_root, "clone", "--depth", "1", "--no-tags",
+            run, tmp_root, "clone", "--filter=blob:none", "--no-tags",
             "--branch", BASE_BRANCH, "--single-branch", remote, str(clone_dir),
             network=True,
         )
