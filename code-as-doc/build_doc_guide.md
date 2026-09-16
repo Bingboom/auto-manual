@@ -72,6 +72,9 @@ service.
 Visit analytics is opt-in through the `analytics_beacon_token` portal setting
 (default `""` = off, byte-identical pages); a configured token enables the
 cookieless Cloudflare Web Analytics beacon without collecting user identity.
+Verified single-language pages also get derived head metadata (title,
+description, canonical, hreflang, OG) computed from frozen publication
+identity; `site_base_url` in the portal settings is the one origin switch.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
 ```powershell
