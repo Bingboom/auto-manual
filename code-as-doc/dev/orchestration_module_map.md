@@ -481,6 +481,14 @@ Quality and release logic should follow concern-specific modules instead of drif
   - local `build.py web-release` orchestration: batch collision precheck, warm-up plus
     the shared check/md/html web build loop, evidence sealing, staging, strict verify
   - owns the web debt ledger (per-book `debt_ledger.json` + repo-wide `reports/web_debt_ledger.jsonl`)
+- [`tools/web_assemble.py`](../../tools/web_assemble.py)
+  - local `build.py web-assemble` orchestration: the second conveyor-belt command,
+    a Python mirror of the `feishu-web-publish-queue.yml` worktree-prepare / assemble /
+    commit / scope-guard / push / PR steps, run against an isolated shallow clone of
+    Hello-Docs instead of a worktree of the current repo
+  - every `git`/`gh`/`sphinx` call goes through one injectable `run(argv, cwd)` seam;
+    defaults to assemble + strict verify + scope guard only, `--push` gates the
+    non-force `publish` branch push and the `publish -> main` PR open/update
 
 ## 6. Cloud-Doc Backport Modules
 
