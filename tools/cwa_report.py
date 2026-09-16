@@ -7,8 +7,9 @@ routes vs the portal home). Credentials come from the environment only:
   CLOUDFLARE_API_TOKEN   an "Account Analytics: Read" API token
   CLOUDFLARE_ACCOUNT_ID  the Cloudflare account id
 
-The site tag defaults to the committed public beacon token in the portal
-settings, so the report needs no extra configuration per run.
+The site tag is the Web Analytics site's own identifier (visible as the
+``siteTag`` parameter in the dashboard URL — it is NOT the page beacon token);
+pass it with ``--site-tag`` or ``CLOUDFLARE_SITE_TAG``.
 """
 from __future__ import annotations
 
@@ -18,7 +19,6 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
 
 _API = "https://api.cloudflare.com/client/v4/graphql"
 _QUERY = """
@@ -95,13 +95,6 @@ def markdown_report(rows: list[dict], *, since: str, until: str, top: int) -> st
     return "\n".join(lines)
 
 
-def default_site_tag() -> str:
-    settings = json.loads(
-        Path(__file__).with_name("rtd_portal_assets").joinpath("settings.json").read_text(encoding="utf-8")
-    )
-    return str(settings.get("analytics_beacon_token") or "")
-
-
 def fetch_payload(*, token: str, variables: dict) -> dict:
     request = urllib.request.Request(
         _API,
@@ -117,15 +110,15 @@ def main(argv: list[str] | None = None, *, fetch=fetch_payload) -> int:
     parser = argparse.ArgumentParser(description="Manual-traffic tables from Cloudflare Web Analytics")
     parser.add_argument("--days", type=int, default=7, help="report window ending now (default 7)")
     parser.add_argument("--top", type=int, default=20, help="rows in the per-page table (default 20)")
-    parser.add_argument("--site-tag", default="", help="override the site tag (default: portal settings beacon token)")
+    parser.add_argument("--site-tag", default="", help="Web Analytics site tag (or CLOUDFLARE_SITE_TAG)")
     parser.add_argument("--json", action="store_true", help="print raw rows as JSON instead of Markdown")
     args = parser.parse_args(argv)
 
     token = os.environ.get("CLOUDFLARE_API_TOKEN", "")
     account = os.environ.get("CLOUDFLARE_ACCOUNT_ID", "")
-    site = args.site_tag or default_site_tag()
+    site = args.site_tag or os.environ.get("CLOUDFLARE_SITE_TAG", "")
     missing = [name for name, value in (
-        ("CLOUDFLARE_API_TOKEN", token), ("CLOUDFLARE_ACCOUNT_ID", account), ("site tag", site),
+        ("CLOUDFLARE_API_TOKEN", token), ("CLOUDFLARE_ACCOUNT_ID", account), ("CLOUDFLARE_SITE_TAG", site),
     ) if not value]
     if missing:
         print(f"missing: {', '.join(missing)} (token needs Account Analytics: Read)", file=sys.stderr)
