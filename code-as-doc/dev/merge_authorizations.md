@@ -221,3 +221,4 @@ MA-066 expires automatically after the actual #1103 merge.
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
 | MA-085 | PR #1164（含本登记）：手册页共享标题改为 Manual Center，去掉单语正文开头重复的语言标记。最终 head 包含最新 main，全部检查成功、无 changes-requested 或未解决讨论后 squash merge，沿既有镜像与 RTD 链路上线并验证。不含线上表、OSS、workflow 或依赖修改。 | 「推上去」2026-09-16 | #1164 合入并完成上线验证，或撤销 | 生效 |
+| MA-086 | PR #1163（`feat/tools-cwa-report`，**含本登记行**）——Web Analytics 流量表格化工具 `tools/cwa_report.py`：只读 GraphQL 查询按 requestPath 分组，输出按入口分类（扫码/印刷入口=根别名、站内手册页、门户首页、站内功能页）汇总表 + Top 页面表；凭据仅环境变量（token 存本机 `~/.config/auto-manual/cwa.env`，不进仓库）；纯 stdlib 零新依赖。已用真 token 实跑且操作者真机扫码后「扫码/印刷入口」行出现（QR 归因端到端实证）。全部检查成功（含非必需，pending ≠ 绿）、无 changes-requested/未解决讨论、head 包含最新 main 后 squash merge。**不含**：定时任务/工作流、线上表写入、`.github/workflows/**`、公开 CLI 行为、依赖版本、Base schema 等独立 gate | 「合了 顺便把月度报表做成定时任务」2026-09-16 | #1163 合入即失效 | 生效 |
