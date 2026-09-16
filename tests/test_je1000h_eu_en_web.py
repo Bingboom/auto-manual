@@ -23,6 +23,8 @@ FORMAL_SOURCE = ROOT / "manual_sources/JE-1000H/EU/en/2.0"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = ROOT / "docs/renderers/web/je1000h_eu_en_illustrations.json"
+# 同一源 PDF 的六个语言块各出一套成品整图；非英语套系尚未接入 config 目标。
+MANUAL_LOCALES = ("en", "fr", "es", "de", "it", "uk")
 
 
 class Je1000hEuEnWebTests(unittest.TestCase):
@@ -187,7 +189,7 @@ class Je1000hEuEnWebTests(unittest.TestCase):
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         recipe = json.loads((ROOT / manifest["recipe"]).read_text(encoding="utf-8"))
         self.assertEqual(21, len(manifest["illustrations"]))
-        self.assertEqual(21, len(recipe["assets"]))
+        self.assertEqual(21 * len(MANUAL_LOCALES), len(recipe["assets"]))
         output_hashes = {
             output["path"]: output["expected_sha256"]
             for asset in recipe["assets"] for output in asset["outputs"]
@@ -201,6 +203,46 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             actual = hashlib.sha256(path.read_bytes()).hexdigest()
             self.assertEqual(illustration["sha256"], actual)
             self.assertEqual(actual, output_hashes[path.relative_to(ROOT).as_posix()])
+
+    def test_every_locale_binds_its_own_finished_panels(self) -> None:
+        """每种语言都有整套成品整图，且互不共用文件。"""
+        recipe_assets = json.loads(
+            (ROOT / json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["recipe"])
+            .read_text(encoding="utf-8")
+        )["assets"]
+        by_locale: dict[str, dict[str, str]] = {}
+        for asset in recipe_assets:
+            locale, = asset["scope"]["locales"]
+            self.assertEqual(["JE-1000H"], asset["scope"]["models"])
+            self.assertEqual(["EU"], asset["scope"]["regions"])
+            output, = asset["outputs"]
+            by_locale.setdefault(locale, {})[Path(output["path"]).name] = \
+                output["expected_sha256"]
+        self.assertEqual(set(MANUAL_LOCALES), set(by_locale))
+        english = by_locale["en"]
+        for locale in MANUAL_LOCALES:
+            self.assertEqual(set(english), set(by_locale[locale]), locale)
+            illustrations = ROOT / f"docs/renderers/web/je1000h_eu_{locale}_illustrations.json"
+            manifest = json.loads(illustrations.read_text(encoding="utf-8"))
+            self.assertEqual(locale, manifest["language"])
+            self.assertEqual(21, len(manifest["illustrations"]))
+            for entry in manifest["illustrations"]:
+                self.assertEqual(
+                    by_locale[locale][Path(entry["path"]).name], entry["sha256"]
+                )
+                self.assertEqual(
+                    entry["sha256"],
+                    hashlib.sha256(
+                        (illustrations.parent / entry["path"]).read_bytes()
+                    ).hexdigest(),
+                )
+            if locale != "en":
+                # 各语块版式不同（英规插座 vs 欧规插座、本地化标注），成品图必须各自独立
+                shared = {
+                    name for name, digest in by_locale[locale].items()
+                    if english[name] == digest
+                }
+                self.assertEqual(set(), shared, f"{locale} reuses English artwork")
 
     def test_public_ir_replay_and_tamper_detection(self) -> None:
         self.assertEqual(18, len(render_document_fragments(self.ir, package_root=self.package)))
