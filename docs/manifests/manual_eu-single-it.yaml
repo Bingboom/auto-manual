@@ -66,6 +66,9 @@ pages:
     recipe: templates/recipes/eu-en/07_extra_battery.yaml
     template: templates/targets/je2000e/07_extra_battery.rst
     model_overrides:
+      JE-1000H:
+        recipe: templates/recipes/eu-en/07_extra_battery.yaml
+        template: templates/targets/je1000h/07_extra_battery_it.rst
       JE-3600A:
         recipe: templates/recipes/eu-en/07_extra_battery.yaml
         template: templates/targets/je3600a/07_extra_battery_it.rst

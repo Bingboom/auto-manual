@@ -69,11 +69,11 @@
       "covered_annotations": [
         {
           "selector": "#section-2 > table",
-          "text": "Power Button LCD DC 12 V Port 12 В 10 Кнопка LED-світла DC / USB Power Button LED-світло USB-C 30 W Output 30 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 2,5 A, 15 В 2 A, 20 В 1,5 A AC1/AC2 Power Button USB-C 140W Output 140 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 3 A, 15 В 3 A, 20 В 5 A, 28 В 5 A USB-A 18 W Output 18 Вт макс., 5-6 В 3 A, 6-9 В 2 A, 9-12 В 1,5 A AC Output 230 В~ 50 Гц, 7,83 A, 1800"
+          "text": "Кнопка живлення LCD Порт постійного струму 12 В 12 В 10 Кнопка LED-світла Кнопка живлення DC/USB LED-світло Вихід USB-C 30W 30 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 2,5 A, 15 В 2 A, 20 В 1,5 A Кнопка живлення AC 1/2 Вихід USB-C 140W 140 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 3 A, 15 В 3 A, 20 В 5 A, 28 В 5 A Вихід USB-A 18W 18 Вт макс., 5-6 В 3 A, 6-9 В 2 A, 9-12 В 1,5 A Вихід змінного струму 230 В~ 50 Гц, 7,83 A, 1800"
         },
         {
           "selector": "#section-2 > table",
-          "text": "Total Output 1800W Rated, 3600W Surge Peak"
+          "text": "Загальна вихідна потужність Номінальна потужність 1800 Вт, пікова потужність 3600 Вт"
         }
       ]
     },
@@ -100,7 +100,7 @@
       "covered_annotations": [
         {
           "selector": "#section-3 > table",
-          "text": "Ручка AC Input 220 В-240 В~50 Гц, 10 A DC Input (2 × DC8020 Ports) 16 В-60 В 12 A, подв. до 21 A макс./400 11 В-16 В 8 A макс., подв. до 8 A"
+          "text": "Ручка Вхід змінного струму 220 В-240 В~50 Гц, 10 A Вхід постійного струму (2 порти DC8020) 16 В-60 В 12 A, подв. до 21 A макс./400 11 В-16 В 8 A макс., подв. до 8 A"
         }
       ]
     },
@@ -386,7 +386,7 @@
       "covered_annotations": [
         {
           "selector": "#section-3 > .line-block",
-          "text": "Power Button AC1/AC2 Power Button DC / USB Power Button"
+          "text": "Кнопка живлення Кнопка живлення AC 1/2 Кнопка живлення DC/USB"
         }
       ]
     },
@@ -404,7 +404,20 @@
         293
       ],
       "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "battery_pack.png"
+      ],
+      "path": "assets/je1000h_eu_uk/battery_pack.png",
+      "sha256": "88f0d3a1691b541e88e4d146ac852c417ce7b16488e8ddb4ba13420dc12a16e9",
+      "source_page": 100,
+      "bbox_pt": [
+        28,
+        208.1,
+        342,
+        410
+      ]
     }
-  ],
-  "notes": "非英语路线的 07_extra_battery 目前是 page_shared/<lang> 的内容团队骨架(标注 TODO(内容团队)),页面内没有图位,故本清单不绑定 battery_pack;该语言的成品整图已在 data/asset_recipes/manual_je1000h_eu_web.json 与data/asset_registry.csv 中登记,待该页正式成稿后接入。"
+  ]
 }

@@ -230,13 +230,12 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             manifest = json.loads(illustrations.read_text(encoding="utf-8"))
             self.assertEqual(locale, manifest["language"])
             bound = {Path(entry["path"]).stem for entry in manifest["illustrations"]}
-            # 非英语的 07_extra_battery 还是 page_shared 骨架，页内没有图位，
-            # 所以 battery_pack 抽到了却不绑定；这是当前唯一的缺口，缺口一变这里就会红。
+            # 每种语言都绑满 21 张：JE-1000H 现在有按语言的 07_extra_battery 模板，
+            # battery_pack 不再缺宿主。任何语言掉一张这里就会红。
             self.assertEqual(
-                set() if locale == "en" else {"battery_pack"},
-                {Path(e["path"]).stem for e in english_entries} - bound,
-                locale,
+                {Path(e["path"]).stem for e in english_entries}, bound, locale
             )
+            self.assertEqual(21, len(manifest["illustrations"]), locale)
             for entry in manifest["illustrations"]:
                 self.assertEqual(
                     by_locale[locale][Path(entry["path"]).name], entry["sha256"]
