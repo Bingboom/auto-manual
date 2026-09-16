@@ -18,6 +18,8 @@ from tools.utils.path_utils import (
 )
 from tools.web_language_release_evidence import (
     RECEIPT_FILENAME,
+    SOURCE_KIND_PDF_SIDELOAD,
+    SOURCE_KIND_PIPELINE,
     ProjectionCapture,
     require_consistent_captures,
     seal_release_evidence,
@@ -609,8 +611,16 @@ def stage_web_publish_assets_to_host_repo(
     projection_captures: tuple[ProjectionCapture, ...] = (),
     git_ref: str = "",
     target_lang: str | None = None,
+    source_kind: str = SOURCE_KIND_PIPELINE,
 ) -> tuple[Path, Path]:
-    if bool((target_lang or "").strip()) != bool(projection_captures):
+    is_sideload = source_kind == SOURCE_KIND_PDF_SIDELOAD
+    has_target_lang = bool((target_lang or "").strip())
+    if is_sideload:
+        if not has_target_lang:
+            raise RuntimeError("pdf_sideload Web Publish staging requires an explicit target_lang")
+        if projection_captures:
+            raise RuntimeError("pdf_sideload Web Publish staging must not carry projection captures")
+    elif has_target_lang != bool(projection_captures):
         raise RuntimeError(
             "Web Publish explicit target_lang and projection captures must be provided together"
         )
@@ -815,14 +825,23 @@ def write_web_publish_metadata(
     queue_record_ids: tuple[str, ...] = (),
     target_lang: str | None = None,
     language_projection_evidence_path: Path | None = None,
+    source_kind: str = SOURCE_KIND_PIPELINE,
     publish_release_version_dir_for_target: Callable[..., Path],
     publish_release_latest_dir_for_target: Callable[..., Path],
     release_lang_for_config: Callable[[Path], str | None],
     repo_relative: Callable[[Path], str],
 ) -> Path:
+    is_sideload = source_kind == SOURCE_KIND_PDF_SIDELOAD
     has_target_lang = bool((target_lang or "").strip())
     has_evidence = language_projection_evidence_path is not None
-    if has_target_lang != has_evidence:
+    if is_sideload:
+        if not has_target_lang:
+            raise RuntimeError("pdf_sideload Web Publish metadata requires an explicit target_lang")
+        if has_evidence:
+            raise RuntimeError(
+                "pdf_sideload Web Publish metadata must not carry language projection evidence"
+            )
+    elif has_target_lang != has_evidence:
         raise RuntimeError(
             "Web Publish explicit target_lang and language projection evidence must be provided together"
         )
@@ -861,6 +880,12 @@ def write_web_publish_metadata(
         "html_index": repo_relative(html_dir / "index.html"),
         "queue_record_ids": [record_id.strip() for record_id in queue_record_ids if record_id.strip()],
     }
+    if is_sideload:
+        # Carried through unconditionally: it is the audit marker that lets
+        # publish_branch_assembly's fail-closed evidence gate (unchanged for
+        # every pipeline target) recognize this one target as exempt.
+        payload["source_kind"] = SOURCE_KIND_PDF_SIDELOAD
+        payload["language_scope"] = "single"
     if language_projection_evidence_path is not None:
         expected_md_dir = version_dir / PathSegments.WEB / PathSegments.MD
         expected_html_dir = version_dir / PathSegments.WEB / PathSegments.HTML

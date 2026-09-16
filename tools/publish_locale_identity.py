@@ -14,6 +14,9 @@ from tools.release_contract import normalize_release_token
 from tools.utils.path_utils import PathSegments
 from tools.web_language_release_evidence import (
     RECEIPT_FILENAME,
+    SOURCE_KIND_PDF_SIDELOAD,
+    SOURCE_KIND_PIPELINE,
+    read_source_kind,
     verify_release_evidence,
 )
 
@@ -46,6 +49,7 @@ class WebPublishTarget:
     language_scope: str
     language_projection_evidence_path: Path | None = None
     language_projection_evidence_sha256: str | None = None
+    source_kind: str = SOURCE_KIND_PIPELINE
 
     @property
     def route(self) -> Path:
@@ -190,6 +194,8 @@ def load_web_publish_target(
     if markdown_path.parent != expected_web_dir / "md" or html_dir != expected_web_dir / "html":
         raise RuntimeError(f"Web Publish artifact identity does not match metadata path: {metadata_path}")
     language_scope = _language_scope(payload, source=metadata_path)
+    source_kind = read_source_kind(payload, source=metadata_path)
+    is_sideload = source_kind == SOURCE_KIND_PDF_SIDELOAD
     evidence_path: Path | None = None
     evidence_sha256: str | None = None
     evidence_fields_present = any(
@@ -199,7 +205,20 @@ def load_web_publish_target(
             "language_projection_evidence_sha256",
         )
     )
-    if language_scope == LANGUAGE_SCOPE_SINGLE:
+    if is_sideload:
+        # A sideload target never ran the RST -> Web-profile pipeline this
+        # evidence proves, so it can never legitimately carry it. Every
+        # *pipeline* target's evidence requirement below is untouched by this
+        # branch: only the explicit pdf_sideload marker reaches here.
+        if evidence_fields_present:
+            raise RuntimeError(
+                f"pdf_sideload Web Publish metadata must not carry language projection evidence: {metadata_path}"
+            )
+        if language_scope != LANGUAGE_SCOPE_SINGLE:
+            raise RuntimeError(
+                f"pdf_sideload Web Publish metadata must declare language_scope=single: {metadata_path}"
+            )
+    elif language_scope == LANGUAGE_SCOPE_SINGLE:
         raw_evidence_path = required_text(
             payload, "language_projection_evidence_path", source=metadata_path
         )
@@ -248,6 +267,7 @@ def load_web_publish_target(
         language_scope=language_scope,
         language_projection_evidence_path=evidence_path,
         language_projection_evidence_sha256=evidence_sha256,
+        source_kind=source_kind,
     )
 
 
@@ -333,6 +353,8 @@ def stored_payload(metadata_path: Path, *, output_dir: Path) -> dict[str, Any]:
         raise RuntimeError(f"stored Web manual does not exist: {metadata_path.parent / manual}")
     _optional_bool(payload, "legacy_default", source=metadata_path)
     payload["language_scope"] = _language_scope(payload, source=metadata_path)
+    source_kind = read_source_kind(payload, source=metadata_path)
+    is_sideload = source_kind == SOURCE_KIND_PDF_SIDELOAD
     evidence_fields_present = any(
         field in payload
         for field in (
@@ -340,7 +362,16 @@ def stored_payload(metadata_path: Path, *, output_dir: Path) -> dict[str, Any]:
             "language_projection_evidence_sha256",
         )
     )
-    if payload["language_scope"] == LANGUAGE_SCOPE_SINGLE:
+    if is_sideload:
+        if evidence_fields_present:
+            raise RuntimeError(
+                f"stored pdf_sideload Web metadata must not carry language projection evidence: {metadata_path}"
+            )
+        if payload["language_scope"] != LANGUAGE_SCOPE_SINGLE:
+            raise RuntimeError(
+                f"stored pdf_sideload Web metadata must declare language_scope=single: {metadata_path}"
+            )
+    elif payload["language_scope"] == LANGUAGE_SCOPE_SINGLE:
         evidence_relative = required_text(
             payload, "language_projection_evidence_path", source=metadata_path
         )
@@ -444,7 +475,12 @@ def stage_web_target(
         "manual": target.markdown_path.name,
         "language_scope": target.language_scope,
     }
-    if target.language_scope == LANGUAGE_SCOPE_SINGLE:
+    if target.source_kind == SOURCE_KIND_PDF_SIDELOAD:
+        # Carried through unconditionally so the audit trail (stored
+        # publish_meta.json, then publish_manifest.json's target entries)
+        # always shows which targets skipped pipeline evidence and why.
+        payload["source_kind"] = SOURCE_KIND_PDF_SIDELOAD
+    if target.language_scope == LANGUAGE_SCOPE_SINGLE and target.source_kind != SOURCE_KIND_PDF_SIDELOAD:
         if (
             target.language_projection_evidence_path is None
             or target.language_projection_evidence_sha256 is None
