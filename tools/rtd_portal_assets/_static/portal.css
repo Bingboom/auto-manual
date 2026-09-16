@@ -192,7 +192,8 @@ header {
   align-items:center;
   justify-content:center;
   position:relative}
-.art img {
+.art img,
+.art .product-artwork {
   width:100%;
   height:100%;
   object-fit:contain;
