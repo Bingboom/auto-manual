@@ -71,7 +71,9 @@ class RtdPortalTests(unittest.TestCase):
         root = self.assemble()
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
-        for name, flags in (("before", []), ("after", ["-D", "extensions=myst_parser,tools.rtd_portal"])):
+        # Compare manual content with the same site branding on both builds.
+        for name, flags in (("before", ["-D", "html_title=Manual Center"]),
+                            ("after", ["-D", "extensions=myst_parser,tools.rtd_portal"])):
             result = subprocess.run(
                 [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
                 cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
@@ -94,6 +96,7 @@ class RtdPortalTests(unittest.TestCase):
                     self.assertIn(b"cloudflareinsights", after_bytes, path)
                 self.assertNotIn(b"cloudflareinsights", before_bytes, path)
                 after_text = without_beacon(after_bytes).decode("utf-8")
+                self.assertIn("Manual Center", after_text, path)
                 if "/" not in path:
                     # Root aliases may additionally differ by exactly the declared
                     # entry transform: noindex/canonical head and, with a beacon
