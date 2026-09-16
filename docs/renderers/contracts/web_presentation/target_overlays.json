@@ -295,7 +295,14 @@
           "approved-composite"
         ]
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "warranty": {
+          "source_patterns": [
+            "*11_warranty",
+            "warranty_en"
+          ]
+        }
+      }
     },
     {
       "overlay_id": "ja-ad01a-eu-v1",

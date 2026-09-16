@@ -80,7 +80,8 @@ def _render_years(spec: ComponentSpec, projection: dict) -> str:
         unit = soup.new_tag("strong", attrs={"class": "hb-warranty-years-unit"})
         unit.string = period["unit"]
         label = soup.new_tag("strong", attrs={"class": "hb-warranty-period-label"})
-        label.string = period["label"]
+        # Inline duration separators are redundant below the separate year unit.
+        label.string = period["label"].removeprefix("— ").removeprefix("– ")
         title.extend((unit, label))
         heading.extend((badge, title))
         copy = soup.new_tag("div", attrs={"class": "hb-warranty-period-copy"})

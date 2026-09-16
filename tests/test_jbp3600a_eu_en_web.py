@@ -224,6 +224,18 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             for block in soup.select(".line-block")
         ))
 
+    def test_warranty_uses_shared_native_components(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        self.assertEqual(1, len(soup.select(".hb-warranty-intro-panel")))
+        self.assertEqual(5, len(soup.select(".hb-warranty-card")))
+        self.assertEqual(["3", "2"], [
+            badge.get_text(strip=True) for badge in soup.select(".hb-warranty-year-badge")
+        ])
+        self.assertEqual(["Standard Warranty", "Extended Warranty"], [
+            label.get_text(strip=True) for label in soup.select(".hb-warranty-period-label")
+        ])
+        self.assertIn("Jackery will repair or replace", soup.get_text())
+
     def test_public_ir_cold_replay_reads_no_rst_or_csv(self) -> None:
         script = r'''
 from pathlib import Path

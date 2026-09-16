@@ -166,14 +166,17 @@
         "jbp3600a_ac_wall.png"
       ],
       "path": "assets/jbp3600a_eu_en/ac_charging.png",
-      "sha256": "d20b1c0b5c927514f698b41d41e37d4e675bbb78ac0846994b636f6b031748d8",
-      "source_page": 8,
+      "sha256": "c365ed7b71ff11a9422746a1d96788c14cf11f681a6ff1ab95d763b042b5c7cc",
+      "source_page": 10,
       "bbox_pt": [
-        27,
-        105,
-        342,
-        274
-      ]
+        26,
+        115,
+        343,
+        272
+      ],
+      "source_pdf_name": "Jackery Battery Pack 3600 User Manual (JBP-3000A) EUUK V2.0-2026-08-04.pdf",
+      "source_pdf_sha256": "084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe",
+      "render_scale": 4
     },
     {
       "replaces": [

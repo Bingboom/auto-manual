@@ -65,3 +65,9 @@ Web-only template renders stacking artwork, native NOTES, then locking artwork.
 The NOTES copy is never embedded in a raster image; its existing wording stays
 searchable and selectable. The additional Web artwork binding is confined to
 the existing JBP-3600A EU/en configuration.
+
+## Charging and warranty follow-up
+
+AC charging is recropped from the supplied PDF page 10, bbox `[26, 115, 343, 272]`, at 4x, excluding the preceding warning frame. The exact-target warranty source pattern now includes `warranty_en`, enabling existing shared native warranty lead, section and year components. Copy remains unchanged.
+
+The Web year-card renderer omits a leading inline em/en dash separator from the displayed label after splitting the duration into its own badge/unit. IR/source wording remains intact.
