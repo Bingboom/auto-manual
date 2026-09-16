@@ -91,6 +91,20 @@ content, QR aliases and nested manual URLs are unchanged.
   canonical/OG through its own template; legacy pages and the title of any
   page without a verified identity stay byte-identical via the shadow
   `page.html`'s fallback to the theme block.
+- Root aliases are the countable print/QR entry layer (growth-plan L2).
+  At build time every alias page gets `noindex` plus a canonical link to its
+  nested route; when the analytics beacon is configured, the generated
+  instant forward becomes a short beacon send window (JS navigates ~200ms
+  after load, hard cap 2.5s, no-JS meta refresh at 4s, visible link
+  unchanged) so the alias pageview is recorded. Reading attribution in Web
+  Analytics: root-level `manual_*` paths ≈ printed/QR entries, nested
+  `MODEL/REGION/...` paths ≈ web navigation and search. With analytics off
+  the alias keeps its instant forward; an unrecognized alias body shape is
+  left unchanged.
+- Outbound link policy (链接归一): print/QR and the persisted `HTML_link`
+  records use the root alias; in-site navigation and search engines use the
+  nested canonical route; marketing and support signatures point at the
+  portal home. Do not hand out a third link shape.
 
 ## Feedback and publication checks
 

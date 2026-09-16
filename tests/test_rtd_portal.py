@@ -9,6 +9,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from tools import rtd_portal
+from tools.rtd_alias_entry import alias_head_markup, forward_markers
 from tools.readthedocs_source import assemble_rtd_source
 
 
@@ -84,6 +85,7 @@ class RtdPortalTests(unittest.TestCase):
                             if b"cloudflareinsights" not in line)
 
         beacon_token = self.settings.get("analytics_beacon_token", "")
+        site_base_url = self.settings.get("site_base_url", "")
         for region in ("EU", "US", "JP"):
             for path in (f"JE-TEST/{region}/md/manual_{region}.html", f"manual_{region}.html"):
                 before_bytes = (self.root / "before" / path).read_bytes()
@@ -91,7 +93,23 @@ class RtdPortalTests(unittest.TestCase):
                 if beacon_token:
                     self.assertIn(b"cloudflareinsights", after_bytes, path)
                 self.assertNotIn(b"cloudflareinsights", before_bytes, path)
-                self.assertEqual(without_beacon(before_bytes), without_beacon(after_bytes), path)
+                after_text = without_beacon(after_bytes).decode("utf-8")
+                if "/" not in path:
+                    # Root aliases may additionally differ by exactly the declared
+                    # entry transform: noindex/canonical head and, with a beacon
+                    # configured, the forward send window. Reverting those exact
+                    # strings must restore the pre-extension page.
+                    target = f"JE-TEST/{region}/md/manual_{region}.html"
+                    head = alias_head_markup(target_url=target, site_base_url=site_base_url)
+                    self.assertIn(head, after_text, path)
+                    after_text = after_text.replace(head, "", 1)
+                    if beacon_token:
+                        instant = forward_markers(target, delayed=False)
+                        delayed = forward_markers(target, delayed=True)
+                        for wanted, original in zip(delayed, instant):
+                            self.assertIn(wanted, after_text, path)
+                            after_text = after_text.replace(wanted, original, 1)
+                self.assertEqual(without_beacon(before_bytes).decode("utf-8"), after_text, path)
         page = (self.root / "after" / "index.html").read_text()
         self.assertIn('data-default-region="EU"', page)
         self.assertIn('value="EU" data-binding="EU" selected', page)

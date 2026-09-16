@@ -87,6 +87,12 @@ title/description/canonical/hreflang/OG strictly from the frozen publication
 identity plus the validated `site_base_url` origin; an empty origin omits
 every absolute URL.
 
+Root-alias entry behavior lives in
+[`tools/rtd_alias_entry.py`](../../tools/rtd_alias_entry.py). It maps alias
+page names to nested canonical routes, emits their noindex/canonical head,
+and swaps the generated instant forward for a beacon send window only when
+analytics is configured; unknown alias shapes pass through unchanged.
+
 [`build.py`](../../build.py) should stay thin and delegate to these helper modules:
 
 - [`tools/build_main.py`](../../tools/build_main.py)
