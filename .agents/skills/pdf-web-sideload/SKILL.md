@@ -52,9 +52,9 @@ debt.
 Use PyMuPDF (`fitz`) to pull text and layout from the shipped PDF, page by
 page. **Do not use `pdftotext`** on a double-column manual page: it reads
 across columns instead of down each one and silently interleaves lines from
-the left and right column into one garbled sentence order — a repo-recorded
-trap (see `verify-before-asserting-absence` memory notes on this exact
-failure). Re-flow each page into ordered prose/table blocks before moving to
+the left and right column into one garbled sentence order — a trap this repo has been burned by
+on real double-column spec pages. Re-flow each page into ordered
+prose/table blocks before moving to
 step 2; do not hand a raw column-interleaved dump to the next step.
 
 ### 2. Arrange one MyST `md/` bundle
