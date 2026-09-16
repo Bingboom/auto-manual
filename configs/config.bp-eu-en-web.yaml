@@ -43,6 +43,7 @@ build:
     BP_OPERATION_POWER_ASSET: asset:operation/jbp3600a/power_control
     BP_OPERATION_LCD_ASSET: asset:operation/jbp3600a/lcd_control
     BP_CONNECTION_CLEARANCE_ASSET: asset:connections/jbp3600a/clearance
+    BP_CONNECTION_STACKING_WEB_ASSET: docs/renderers/web/assets/jbp3600a_eu_en/stacking_clean.png
     BP_CONNECTION_LOCKING_ASSET: asset:connections/jbp3600a/stacking_locking
     BP_CHARGING_AC_ASSET: asset:charging/jbp3600a/ac_wall
     BP_CHARGING_SOLAR_ASSET: asset:charging/jbp3600a/solar
