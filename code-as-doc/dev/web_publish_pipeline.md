@@ -201,8 +201,13 @@ change JP D1–D4 or promote production eligibility.
 ### 2.2 Git-only transaction
 
 Use this path only when the operator has designated reviewed Git content as the
-release authority and explicitly excluded online-table writes. It does not
-create synthetic queue rows or write `HTML_link`.
+release authority and explicitly excluded online-table writes. It never
+creates synthetic queue rows, and assembly/build/verification never write any
+online table. Writing `Document_link.HTML_link` and the published-manual
+catalog row is a distinct, explicit, human-gated step
+(`build.py web-receipt --write`, step 7 below) run only after the release PR
+has merged and production has been verified — never automatically as part of
+build, staging, or the release PR.
 
 `python build.py web-release --config <config> --model <M> --region <R> --lang
 <L> --version <V>` is the formal entry point for steps 2 and 3 below: it runs
@@ -247,6 +252,28 @@ merging stays a human step in every path. It does not author
 6); those remain manual. See [`tools/web_assemble.py`](../../tools/web_assemble.py)
 for the implementation and `tests/test_web_assemble.py` for its contract.
 
+`python build.py web-receipt --config <config> [--model <M> --region <R>
+--lang <L>] [--write]` is the formal entry point for step 7 below: for every
+`latest/web/publish_meta.json` target under `--releases-root` (default
+`reports/releases`, narrowed by `--model`/`--region`/`--lang` when given), it
+resolves the `Document_link` row through a priority chain (explicit
+`--receipt-record-id` overrides > `publish_meta.json`'s `queue_record_ids` >
+a live search by model/region/lang, needed because a Git-only book never had
+a queue row and so `queue_record_ids` is always empty for it), writes
+`HTML_link`, then creates or updates the matching published-manual catalog
+(发布文档管理) row by (model, region, lang, `doc_type=web`), and GETs each
+written record back to confirm the persisted value before reporting success.
+Zero matching `Document_link` rows is reported, not auto-repaired — this
+command never creates a queue row. More than one candidate row (for either
+table) is rejected with every candidate listed; resolving that is an
+operator decision. Defaults to dry-run: without `--write` it only reads local
+`publish_meta.json` files and prints the resolved plan, touching no live
+table; `--write` performs the live writes. See
+[`tools/web_receipt.py`](../../tools/web_receipt.py) and
+[`tools/manual_catalog_writeback.py`](../../tools/manual_catalog_writeback.py)
+for the implementation and `tests/test_web_receipt.py` /
+`tests/test_manual_catalog_writeback.py` for their contract.
+
 1. Commit the complete target structure, sources and assets with a
    `source_manifest.json`. Record the target identity, source authority,
    original filename and SHA-256, included pages, deliberate normalizations,
@@ -286,12 +313,18 @@ for the implementation and `tests/test_web_assemble.py` for its contract.
 6. After the approved PR merges, verify the Read the Docs build commit, each
    canonical target route, each short root alias, all referenced assets, and
    desktop/mobile rendering.
+7. Only once that verification is in hand, run `build.py web-receipt --write`
+   for the released target(s) to write `Document_link.HTML_link` and the
+   published-manual catalog row, and confirm the reported per-target GET
+   readback for both records.
 
 The durable evidence is the source Git commit, source-manifest and input hashes,
 release metadata, publish-manifest hash, Hello-Docs snapshot commit, Read the
-Docs build commit, and the verified production URLs. `Document_link.HTML_link`
-readback belongs only to the queue-driven transaction. A Git-only transaction
-does not write online staging, source, asset, build, or link records.
+Docs build commit, and the verified production URLs. For a Git-only
+transaction, `Document_link.HTML_link` and the published-manual catalog row
+are written only by the explicit step 7 receipt above, after that evidence is
+already in hand; no earlier step in this section writes online staging,
+source, asset, build, or link records.
 
 ## 3. Repository and hosting boundaries
 
