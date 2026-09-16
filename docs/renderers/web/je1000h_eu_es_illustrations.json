@@ -65,7 +65,17 @@
         342,
         245
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Botón de encendido principal LCD Puerto DC 12V 12 V 10 A Máx Botón de luz LED Botón de energía CC/USB Luz LED Salida USB-C 30W 30 W Máx, 5 V 3 A, 9 V 3 A, 12 V 2,5 A, 15 V 2 A, 20 V 1,5 A Botón de energía CA 1/2 Salida USB-C 140W 140 W Máx, 5 V 3 A, 9 V 3 A, 12 V 3 A, 15 V 3 A, 20 V 5 A, 28 V 5 A Salida USB-A 18W 18W Máx, 5-6 V 3 A, 6-9 V 2 A, 9-12 V 1,5 A Salidas de CA 230 V~50 Hz, 7,83 A Máx, 1800 W nomi"
+        },
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Salida Total 1800 W de potencia nominal, 3600 W de pico de sobrecarga"
+        }
+      ]
     },
     {
       "replaces": [
@@ -86,7 +96,13 @@
         139.3,
         389
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#vista-lateral-derecha > table",
+          "text": "Asa Entrada de CA 220 V-240 V~50 Hz, 10 A Máx Entrada de CC (2 x Puertos DC8020) 16 V-60 V 12 A, Doble a 21 A Máx/400 W Máx 11 V-16 V 8 A Máx, Doble a 8 A Máx"
+        }
+      ]
     },
     {
       "replaces": [
@@ -116,7 +132,17 @@
         342,
         233
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#encendido-apagado > .line-block",
+          "text": "Encendido Presione una vez Apagado Mantenga presionado durante más de 3 segundos"
+        },
+        {
+          "selector": "#encendido-apagado > .line-block",
+          "text": "Tiempo de espera predeterminado: 2 horas. El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga. *El tiempo de espera puede configurarse en la aplicación Jackery. Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si la salida de CA o la salida CC/USB está activada, pero el producto no está cargando ni descargando."
+        }
+      ]
     },
     {
       "replaces": [
@@ -131,7 +157,17 @@
         342,
         495
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-ca > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-ca > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
     },
     {
       "replaces": [
@@ -146,7 +182,17 @@
         342,
         212
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
     },
     {
       "replaces": [
@@ -161,7 +207,17 @@
         342,
         498
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-luz-led > p",
+          "text": "La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla."
+        },
+        {
+          "selector": "#encender-apagar-luz-led > .line-block",
+          "text": "Presione una vez el botón de la luz LED para encenderla. Presiónelo nuevamente para cambiar al modo SOS. Presiónelo una tercera vez para apagar la luz."
+        }
+      ]
     },
     {
       "replaces": [
@@ -191,7 +247,17 @@
         342,
         374
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el botón de energía CA 1/2 y el botón de encendido principal durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > .line-block",
+          "text": "Mantenga pulsados ambos botones durante 3 segundos."
+        }
+      ]
     },
     {
       "replaces": [
@@ -210,21 +276,6 @@
     },
     {
       "replaces": [
-        "battery_pack.png"
-      ],
-      "path": "assets/je1000h_eu_es/battery_pack.png",
-      "sha256": "a5d6b804d17c2beec03a92e2c4bcc83de9e78816b341cad5bb394697c30bac31",
-      "source_page": 49,
-      "bbox_pt": [
-        28,
-        203,
-        342,
-        410
-      ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
-    },
-    {
-      "replaces": [
         "ac_wall.png"
       ],
       "path": "assets/je1000h_eu_es/charging_ac.png",
@@ -236,7 +287,13 @@
         342,
         362
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#carga-mediante-una-toma-de-corriente-de-pared-alterna > p",
+          "text": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente."
+        }
+      ]
     },
     {
       "replaces": [
@@ -281,7 +338,13 @@
         342,
         494
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block",
+          "text": "Vehículo ※El cable de carga para vehículo se vende por separado."
+        }
+      ]
     },
     {
       "replaces": [
@@ -296,7 +359,13 @@
         340,
         154.6
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#descargar-la-aplicacion-e-iniciar-sesion > p",
+          "text": "Buscar \"Jackery\" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarse e iniciar sesión. Alternativamente, escanee el código QR a continuación para descargar e instalar la app."
+        }
+      ]
     },
     {
       "replaces": [
@@ -313,7 +382,13 @@
       ],
       "reference_id": "app-add-device",
       "consume_before_presentation": true,
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#anadir-un-dispositivo > .line-block",
+          "text": "Botón de encendido principal Botón de energía CC/USB Botón de energía CA 1/2"
+        }
+      ]
     },
     {
       "replaces": [
@@ -329,6 +404,20 @@
         293
       ],
       "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "battery_pack.png"
+      ],
+      "path": "assets/je1000h_eu_es/battery_pack.png",
+      "sha256": "a5d6b804d17c2beec03a92e2c4bcc83de9e78816b341cad5bb394697c30bac31",
+      "source_page": 49,
+      "bbox_pt": [
+        28,
+        203,
+        342,
+        410
+      ]
     }
   ]
 }

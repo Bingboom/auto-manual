@@ -56,6 +56,10 @@ pages:
     engine: draft_v1
     recipe: templates/recipes/eu-en/07_extra_battery.yaml
     template: templates/targets/je2000e/07_extra_battery.rst
+    model_overrides:
+      JE-1000H:
+        recipe: templates/recipes/eu-en/07_extra_battery.yaml
+        template: templates/targets/je1000h/07_extra_battery_uk.rst
     langs: [uk]
     include_dir: generated/{model}/draft
     capability: 加电包扩容

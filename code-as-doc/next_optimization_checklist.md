@@ -1071,6 +1071,53 @@ language-neutral (the LCD-hero precedent).
   3. de=it=uk 的字节相同是**巧合而非规则**（恰好这几张无文字），不得据此把三者合并成
      一套；一旦某张图后续加了文字就会分叉。
 
+- [ ] **JE-1000H EU 印刷版的六处源内容缺陷**(2026-09-15 登记,随非英语译文入库发现)。把
+  PDF 六个语言块的译文抽进冻结源时逐条比对出来,均属**已印制成品**的问题,需设计/内容侧
+  回退,不是本仓可自行改正的:
+
+  1. **德语块的安全符号与文字对错了**(最严重)。`symbols_blocks` 表中,🚫扳手(禁拆解)图标
+     配的文字是「Vermeiden Sie Hitze.」(避免受热),🚫火焰(禁明火)图标配的是
+     「Demontieren Sie das Produkt nicht.」(请勿拆解)。其余五种语言均正确。入库时已按
+     行键语义(`do_not_dismantle` / `no_open_flame`)对正,**未沿用印刷错配**。
+  2. **德语与意大利语的 LCD「充电计划」整段描述印的是法语**(`lcd_icons_blocks` 第 4 行)。
+     入库时留空该两格,改走 `icon_desc_en` 回落(渲染器有 `fallback_columns`),避免德/意手册
+     里出现整段法语。德语该行名称印作「Ladeplan Plan」(德法混排),按原样入库。
+  3. **`ENVIRONMENTAL OPERATING TEMPERATURE` 在德语和意大利语块未翻译**,印的是英文原文。
+     按原样入库到 `spec_titles.title_de` / `title_it`。
+  4. **意大利语与乌克兰语的商标注记里混着德语 "und"**:「USB Type-C® **und** USB-C® sono
+     marchi registrati…」/「… **und** … є зареєстрованими…」。按原样入库。
+  5. **乌克兰语的 WARNING 标签印成意大利语 `AVVERTENZA`**(`symbols_blocks` signal 行)。
+     按原样入库。
+  6. **法语概览页的额定值文字本身被截断**为「1800 W nomina」(应为 nominal)。属成品图内容,
+     已随 `web/je1000h/eu/fr/overview_front` 原样入库并在配方/登记表备注。
+  7. **德语加电包扩容页的警示词印成法语 `ATTENTION`**(同一页上方 UPS 段落却是正确的
+     `Vorsicht`)。新建的 `targets/je1000h/07_extra_battery_de.rst` 用 `symbols_blocks` 的
+     德语审定词 `VORSICHT`,**未沿用印刷错词**。
+
+  另:乌克兰语「自发自用模式」印作「Режим самозабезпечення」,而本产线其余型号统一用
+  「Автономний режим」,属同产线术语分叉。已按各自印刷原文入库,并在
+  `data/capability_page_rules.csv` 给能力门补了该同义词(放宽,非收紧)。待术语侧统一。
+
+- [x] **JE-1000H 非英语路线的页面模板骨架**(2026-09-15 登记,同日闭合)。当时六语 Web 投影
+  已绿但底层有两类缺口,现均已处理:
+
+  - `03_product_overview` / `05_operation_guide` / `12_app_setup` 的 `_placeholder` 模板里,
+    标注并非硬编码而是 `|MAIN_POWER_BUTTON_LABEL|` 这类取数 token——英文残留的真因是
+    `Spec_Master.csv` 尚有 15 行未填、回落成了英文。补齐后该表 53/53(乌语因一行纯数值单位
+    也补齐),**五语 md 的英文标注残留全部归零(含图片 `alt` 无障碍层)**。标签取值:印在概览页
+    上的 10 个用 PDF 原文(按字体权重区分标注与规格值,左栏 8 项/右栏 7 项六语完全对齐);
+    `total_output` 两行未印在该页,用 JE-2000E 已审定译法与式样代入 JE-1000H 数字;
+    德/意的 `dc_input` 标签在 PDF 里拆两行印,改用 JE-2000E/JE-2000F 一致的合并形态。
+    全表数字序列自校验 0 处不一致。
+  - `07_extra_battery` 原先回退到 `targets/je2000e/07_extra_battery.rst`(仅注释的空载体),
+    页内没有图位。现按 `targets/je3600a/07_extra_battery_<lang>.rst` 先例新建了五个按语言
+    模板,内容从 PDF 该小节抽取(标题/导语/4 条注意事项/3 个物品标签,抽取器先在英语上验证
+    10 项逐字命中模板),五个清单加 `JE-1000H` model_override,并重新绑定 `battery_pack`——
+    非英语成品整图由 19 张增至 20 张。
+
+  遗留一小项:新模板的 `:alt:` 是**沿用 JE-3600A 已审定式样改写**的(印刷版没有 alt 文本),
+  乌语那条按同结构用乌语手册自身词汇撰写,建议随下一轮语言审校一并过目。
+
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 
 Milestone status: `pending`

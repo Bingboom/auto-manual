@@ -65,7 +65,17 @@
         342,
         245
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Hauptnetzschalter LCD DC-12V-Ausgangstaste 12 V 10 A max LED-Lichttaste DC/USB-Stromtaste LED-Licht USB-C-30-W-Ausgang 30 W max, 5 V 3 A, 9 V 3 A, 12 V 2,5 A, 15 V 2 A, 20 V 1,5A AC-1-Ausgangstaste/AC-2-Ausgangstaste USB-C-140-W-Ausgang 140 W max, 5 V 3 A, 9 V 3 A, 12 V 3 A, 15 V 3 A, 20 V 5 A, 28 V 5 A USB-A-18-W-Ausgang 18 W max, 5-6 V 3 A, 6-9 V 2 A, 9-12 V 1,5 A AC-Ausgang 230V~ 50 Hz, 7,83 A, 1800 W"
+        },
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Gesamtausgang 1800 W Nennleistung, 3600 W Spitzenleistung (Surge)"
+        }
+      ]
     },
     {
       "replaces": [
@@ -86,7 +96,13 @@
         136.8,
         389
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#ansicht-der-rechten-seite > table",
+          "text": "Griff AC-Eingang 220 V-240 V~50 Hz, 10 A max DC-Eingang (2×DC8020-Anschlüsse) 16 V-60 V 12 A, Doppelanschluss 21 A / 400W Max 11 V-16 V 8 A max, Doppelanschluss 8 A"
+        }
+      ]
     },
     {
       "replaces": [
@@ -116,7 +132,17 @@
         342,
         233
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block",
+          "text": "Ein: Einmal drücken. Aus: 3 s lang gedrückt halten."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block",
+          "text": "Standard-Standby-Zeit: 2 Stunden. Das Produkt schaltet sich nach 2 Stunden Inaktivität automatisch aus, wenn weder geladen noch entladen wird. *Die Standby-Zeit kann in der Jackery-App eingestellt werden. Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach 12 Stunden aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt."
+        }
+      ]
     },
     {
       "replaces": [
@@ -131,7 +157,17 @@
         342,
         495
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#ac-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
     },
     {
       "replaces": [
@@ -146,7 +182,17 @@
         342,
         198.4
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
     },
     {
       "replaces": [
@@ -161,7 +207,17 @@
         342,
         498
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#led-licht-ein-aus > p",
+          "text": "Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten."
+        },
+        {
+          "selector": "#led-licht-ein-aus > .line-block",
+          "text": "Drücken Sie die LED-Lichttaste einmal, um das Licht einzuschalten. Drücken Sie sie erneut, um in den SOS-Modus zu wechseln. Drücken Sie sie ein drittes Mal, um das Licht auszuschalten."
+        }
+      ]
     },
     {
       "replaces": [
@@ -191,7 +247,17 @@
         342,
         374
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus."
+        },
+        {
+          "selector": "#energiesparmodus > .line-block",
+          "text": "Halten Sie beide Tasten länger als 3 Sekunden gedrückt."
+        }
+      ]
     },
     {
       "replaces": [
@@ -210,21 +276,6 @@
     },
     {
       "replaces": [
-        "battery_pack.png"
-      ],
-      "path": "assets/je1000h_eu_de/battery_pack.png",
-      "sha256": "48b84a3090b8c5aef448c86064c326ec7a334347536128bd52430c5410e1b4c9",
-      "source_page": 66,
-      "bbox_pt": [
-        28,
-        203,
-        342,
-        410
-      ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
-    },
-    {
-      "replaces": [
         "ac_wall.png"
       ],
       "path": "assets/je1000h_eu_de/charging_ac.png",
@@ -236,7 +287,13 @@
         342,
         362
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-eine-ac-steckdose > p",
+          "text": "Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an eine Steckdose an."
+        }
+      ]
     },
     {
       "replaces": [
@@ -281,7 +338,13 @@
         342,
         494
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-das-autoladegerat-separat-erhaltlich > .line-block",
+          "text": "Fahrzeug *Das Autoladekabel ist separat erhältlich."
+        }
+      ]
     },
     {
       "replaces": [
@@ -296,7 +359,13 @@
         340,
         155.7
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#laden-sie-die-app-herunter-und-melden-sie-sich-an > p",
+          "text": "Suchen Sie im Google Play Store oder im App Store nach \"Jackery\", um die App zu installieren. Danach können Sie sich registrieren und anmelden. Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen und zu installieren."
+        }
+      ]
     },
     {
       "replaces": [
@@ -313,7 +382,13 @@
       ],
       "reference_id": "app-add-device",
       "consume_before_presentation": true,
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#gerat-hinzufugen > .line-block",
+          "text": "Hauptnetzschalter AC-1-Ausgangstaste/AC-2-Ausgangstaste DC/USB-Stromtaste"
+        }
+      ]
     },
     {
       "replaces": [
@@ -329,6 +404,20 @@
         293
       ],
       "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+    },
+    {
+      "replaces": [
+        "battery_pack.png"
+      ],
+      "path": "assets/je1000h_eu_de/battery_pack.png",
+      "sha256": "48b84a3090b8c5aef448c86064c326ec7a334347536128bd52430c5410e1b4c9",
+      "source_page": 66,
+      "bbox_pt": [
+        28,
+        203,
+        342,
+        410
+      ]
     }
   ]
 }

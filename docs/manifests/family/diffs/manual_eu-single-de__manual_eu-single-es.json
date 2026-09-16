@@ -128,6 +128,11 @@
     },
     {
       "op": "replace",
+      "path": "/pages/8/model_overrides/JE-1000H/template",
+      "value": "templates/targets/je1000h/07_extra_battery_es.rst"
+    },
+    {
+      "op": "replace",
       "path": "/pages/8/model_overrides/JE-3600A/template",
       "value": "templates/targets/je3600a/07_extra_battery_es.rst"
     },

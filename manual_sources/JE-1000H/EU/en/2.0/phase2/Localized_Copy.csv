@@ -1,26 +1,26 @@
 copy_key,page_id,copy_type,Region,Model,Source_lang,Is_Latest,Version,text_en,text_zh,text_ja,text_fr,text_es,text_pt-BR,text_de,text_it,text_uk,text_ko,notes
-product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,,,,,,,,,,
-product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,,,,,,,,,,
+product_overview.front_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,FRONT VIEW,,,VUE DE FACE,VISTA FRONTAL,,PRODUKTDARSTELLUNG,ASPETTO DEL PRODOTTO,ВИГЛЯД СПЕРЕДУ,,
+product_overview.page_title,03_product_overview,page_title,ALL,ALL,en,TRUE,V1.0,PRODUCT OVERVIEW,,,APERÇU DU PRODUIT,DESCRIPCIÓN GENERAL DEL PRODUCTO,,PRODUKTÜBERSICHT,PANORAMICA DEL PRODOTTO,ОГЛЯД ПРОДУКТУ,,
 product_overview.part.handle,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,Handle,,,,,,,,,,
-product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,,,,,,,,,,
-product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,,,,,,,,,,
-product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,,,,,,,,,,
-product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,,,,,,,,,,
-lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,,,,,,,,,,
-spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,,,,,,,,,,migrated from 03_内容源_多语言标题
-spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,,,,,,,,,,migrated from 03_内容源_多语言标题
-spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,,,,,,,,,,migrated from 03_内容源_多语言标题
-spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,,,,,,,,,,migrated from 03_内容源_多语言标题
-spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,,,,,,,,,,migrated from 03_内容源_多语言标题
-symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,,,,,,,,,,
-symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,,,,,,,,,,
-symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,,,,,,,,,,
-symbols.signal.caution.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,CAUTION,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.caution.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Hazardous practices that may result in personal injury and/or property damage.,,,,,,,,,,migrated from symbols_blocks signal_row
+product_overview.part.lcd,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LCD,,,LCD,LCD,,LCD,LCD,ЖК-дисплей,,
+product_overview.part.led_light,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light,,,Lumière LED,Luz LED,,LED-Beleuchtung,LUCE LED,LED LIGHT,,
+product_overview.part.led_light_button,03_product_overview,part_name,ALL,ALL,en,TRUE,V1.0,LED Light Button,,,Bouton lumière LED,Botón de luz LED,,LED-Licht-Taste,Pulsante luce LED,Кнопка LED-ліхтаря,,
+product_overview.right_side_view,03_product_overview,panel_title,ALL,ALL,en,TRUE,V1.0,RIGHT SIDE VIEW,,,VUE LATÉRALE DROITE,VISTA LATERAL DERECHA,,RECHTE SEITENANSICHT,VISTA LATERALE DESTRA,ВИГЛЯД СПРАВА,,
+lcd_icons.page_title,lcd_icons,page_title,ALL,ALL,en,TRUE,V1.0,LCD DISPLAY,,,AFFICHAGE LCD,PANTALLA LCD,,LCD-ANZEIGE,DISPLAY LCD,ЖК-ДИСПЛЕЙ,,
+spec.page_title,specifications,page_title,ALL,ALL,en,TRUE,V1.0,SPECIFICATIONS,,,SPÉCIFICATIONS,ESPECIFICACIONES,,TECHNISCHE DATEN,SPECIFICHE TECNICHE,ТЕХНІЧНІ ХАРАКТЕРИСТИКИ,,migrated from 03_内容源_多语言标题
+spec.section.environmental_operating_temperature,specifications,section_title,ALL,ALL,en,TRUE,V1.0,ENVIRONMENTAL OPERATING TEMPERATURE,,,TEMPÉRATURE DE FONCTIONNEMENT,TEMPERATURA DE FUNCIONAMIENTO,,ENVIRONMENTAL OPERATING TEMPERATURE,ENVIRONMENTAL OPERATING TEMPERATURE,РОБОЧА ТЕМПЕРАТУРА НАВКОЛИШНЬОГО СЕРЕДОВИЩА,,migrated from 03_内容源_多语言标题
+spec.section.general_info,specifications,section_title,ALL,ALL,en,TRUE,V1.0,GENERAL INFO,,,INFORMATIONS GÉNÉRALES,INFORMACIÓN GENERAL,,ALLGEMEINE INFORMATIONEN,INFORMAZIONI GENERALI,ЗАГАЛЬНА ІНФОРМАЦІЯ,,migrated from 03_内容源_多语言标题
+spec.section.input_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,INPUT PORTS,,,PORTS D’ENTRÉE,PUERTOS DE ENTRADA,,EINGANGSANSCHLÜSSE,PORTE IN INGRESSO,ВХІДНІ ПОРТИ,,migrated from 03_内容源_多语言标题
+spec.section.output_ports,specifications,section_title,ALL,ALL,en,TRUE,V1.0,OUTPUT PORTS,,,PORTS DE SORTIE,PUERTOS DE SALIDA,,AUSGANGSANSCHLÜSSE,PORTE IN USCITA,ВИХІДНІ ПОРТИ,,migrated from 03_内容源_多语言标题
+symbols.header_meaning,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Meaning,,,Signification,Significados,,Bedeutung,Significato,Значення,,
+symbols.header_symbol,symbols,table_header,ALL,ALL,en,TRUE,V1.0,Symbol,,,Symbole,Símbolo,,Symbol,Simbolo,Символ,,
+symbols.page_title,symbols,page_title,ALL,ALL,en,TRUE,V1.0,MEANING OF SYMBOLS,,,SIGNIFICATION DES SYMBOLES,SIGNIFICADO DE LOS SÍMBOLOS,,BEDEUTUNG DER SYMBOLE,SIGNIFICATO DEI SIMBOLI,ЗНАЧЕННЯ СИМВОЛІВ,,
+symbols.signal.caution.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,CAUTION,,,ATTENTION,PRECAUCIÓN,,VORSICHT,ATTENZIONE,УВАГА,,migrated from symbols_blocks signal_row
+symbols.signal.caution.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Hazardous practices that may result in personal injury and/or property damage.,,,Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.,Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.,,"Gefährliche Handlungen, die zu Personenschäden und/oder Sachschäden führen können.",Pratiche pericolose che possono causare lesioni personali e/o danni materiali.,"Небезпечні дії, які можуть призвести до травмування та/або пошкодження майна.",,migrated from symbols_blocks signal_row
 symbols.signal.danger.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,DANGER,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.note.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,NOTE,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.note.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.tips.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,TIP,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.tips.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Supplements the important information or operation tips in the text.,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.warning.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,WARNING,,,,,,,,,,migrated from symbols_blocks signal_row
-symbols.signal.warning.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in severe injury, death, and/or property damage.",,,,,,,,,,migrated from symbols_blocks signal_row
+symbols.signal.note.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,NOTE,,,REMARQUE,NOTA,,HINWEIS,NOTA,ПРИМІТКА,,migrated from symbols_blocks signal_row
+symbols.signal.note.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.",,,"Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.","Prácticas peligrosas que pueden resultar en daño al equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.",,"Gefährliche Handlungen, die zu Geräteschäden, Datenverlust, Leistungsverschlechterung oder unvorhergesehenen Ergebnissen führen können.","Pratiche pericolose che possono causare danni all'apparecchiatura, perdita di dati, deterioramento delle prestazioni o risultati imprevisti.","Небезпечні дії, які можуть призвести до пошкодження обладнання, втрати даних, погіршення продуктивності або непередбачуваних результатів.",,migrated from symbols_blocks signal_row
+symbols.signal.tips.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,TIP,,,CONSEILS,CONSEJOS,,TIPP,SUGGERIMENTO,ПОРАДА,,migrated from symbols_blocks signal_row
+symbols.signal.tips.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,Supplements the important information or operation tips in the text.,,,Complémente les informations importantes ou les conseils d'utilisation dans le texte.,Complementa la información importante o consejos de operación en el texto.,,Ergänzt wichtige Informationen oder Bedienungshinweise im Text.,Integra le informazioni importanti o i consigli operativi presenti nel testo.,Доповнює важливу інформацію або поради щодо експлуатації в тексті.,,migrated from symbols_blocks signal_row
+symbols.signal.warning.label,symbols,signal_label,ALL,ALL,en,TRUE,V1.0,WARNING,,,AVERTISSEMENT,ADVERTENCIA,,WARNUNG,AVVERTENZA,AVVERTENZA,,migrated from symbols_blocks signal_row
+symbols.signal.warning.meaning,symbols,signal_meaning,ALL,ALL,en,TRUE,V1.0,"Hazardous practices that may result in severe injury, death, and/or property damage.",,,"Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.","Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.",,"Gefährliche Handlungen, die zu schweren Verletzungen, Todesfällen und/oder Sachschäden führen können.","Pratiche pericolose che possono causare gravi lesioni, morte e/o danni materiali.","Небезпечні дії, які можуть призвести до серйозних травм, смерті та/або пошкодження майна",,migrated from symbols_blocks signal_row

@@ -8,6 +8,8 @@ build:
   targets:
     - model: JE-1000F
       region: EU
+    - model: JE-1000H
+      region: EU
     - model: JE-2000F
       region: EU
     - model: JE-2000E
@@ -21,6 +23,7 @@ build:
 paths:
   page_manifest: docs/manifests/manual_eu-single-fr.yaml
   web_illustration_manifests:
+    JE-1000H_EU: docs/renderers/web/je1000h_eu_fr_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_fr_illustrations.json
 checks:
   # JE-3600A 的加电包扩容页按设计引用配套电池包型号名；与 config.eu-en.yaml 同列。
