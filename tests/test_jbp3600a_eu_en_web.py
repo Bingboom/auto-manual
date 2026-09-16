@@ -171,7 +171,7 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
             {"inbox_unit_clean.png", "inbox_cable_clean.png", "inbox_manual_clean.png"},
             {Path(image["src"]).name for image in soup.select(".hb-inbox-art")},
         )
-        self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-LCD-ICON"]'))
+        self.assertIsNotNone(soup.select_one("table.lcd-text-only"))
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
         self.assertEqual(4, len(soup.select(".hb-spec-table-composition")))
         self.assertGreaterEqual(len(soup.select(".manual-finished-illustration")), 7)
@@ -182,11 +182,59 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         for entry in provenance["illustrations"]:
             self.assertTrue(any(entry["sha256"] in src for src in image_sources), entry["path"])
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertEqual(5, len(coverage["slots"]))
+        self.assertEqual(6, len(coverage["slots"]))
         self.assertTrue(all(slot["status"] == "finished-panel" for slot in coverage["slots"]))
         self.assertIn("Jackery Explorer 3600 Plus", self.html)
         self.assertIn("F6-F9, FA, FC, FE", self.html)
         self.assertNotIn("Jackery Battery Pack 2000", self.html)
+
+    def test_overview_headings_and_lcd_legend_stay_native(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        headings = [h.get_text(" ", strip=True) for h in soup.select("h1,h2,h3,h4")]
+        self.assertEqual(1, headings.count("FRONT VIEW"))
+        self.assertEqual(1, headings.count("LEFT SIDE VIEW"))
+        for stem in ("overview_front", "overview_left", "lcd_annotated", "power_annotated", "lcd_control_clean", "clearance_clean", "stacking_clean", "locking_clean"):
+            images = soup.select(f'img[data-web-finished-panel-path$="/{stem}.png"]')
+            self.assertEqual(1, len(images), stem)
+        self.assertFalse(any(
+            t.get_text(" ", strip=True) == "POWER button LCD" for t in soup.select("table")
+        ))
+        self.assertFalse(any(
+            t.get_text(" ", strip=True).startswith("Handle DC Expansion Port A")
+            for t in soup.select("table")
+        ))
+        lcd = soup.select_one("table.lcd-text-only")
+        self.assertIsNotNone(lcd)
+        self.assertEqual(2, len(lcd.select("tbody tr")))
+        self.assertFalse(lcd.select("img"))
+        self.assertIn("Power Percentage/Fault Code", lcd.get_text())
+        self.assertIn("Charging Indicator", lcd.get_text())
+        self.assertIn("FF code", lcd.get_text())
+        self.assertEqual(1, headings.count("POWER ON/OFF"))
+        self.assertEqual(1, headings.count("LCD DISPLAY ON/OFF"))
+        text = soup.get_text(" ", strip=True)
+        self.assertEqual(1, text.count("When you press the main POWER button"))
+        self.assertEqual(1, text.count("The product will automatically shut down"))
+        connection_tables = soup.select("body > table.manual-callout-table")
+        connection_text = " ".join(t.get_text(" ", strip=True) for t in connection_tables)
+        self.assertEqual(1, connection_text.count("Ensure all products are powered off before connecting"))
+        self.assertEqual(1, text.count("Please do not stack the product on the top"))
+        self.assertFalse(any(
+            block.get_text(" ", strip=True) == "On Press once Off Press and hold for 3 seconds"
+            for block in soup.select(".line-block")
+        ))
+
+    def test_warranty_uses_shared_native_components(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        self.assertEqual(1, len(soup.select(".hb-warranty-intro-panel")))
+        self.assertEqual(5, len(soup.select(".hb-warranty-card")))
+        self.assertEqual(["3", "2"], [
+            badge.get_text(strip=True) for badge in soup.select(".hb-warranty-year-badge")
+        ])
+        self.assertEqual(["Standard Warranty", "Extended Warranty"], [
+            label.get_text(strip=True) for label in soup.select(".hb-warranty-period-label")
+        ])
+        self.assertIn("Jackery will repair or replace", soup.get_text())
 
     def test_public_ir_cold_replay_reads_no_rst_or_csv(self) -> None:
         script = r'''
@@ -230,7 +278,7 @@ with patch.object(Path, "open", guarded):
         self.assertEqual(("JBP-3600A", "EU", "en"), (
             manifest["model"], manifest["region"], manifest["language"]
         ))
-        self.assertEqual(11, len(manifest["illustrations"]))
+        self.assertEqual(13, len(manifest["illustrations"]))
         for illustration in manifest["illustrations"]:
             path = ILLUSTRATIONS.parent / illustration["path"]
             self.assertEqual(
