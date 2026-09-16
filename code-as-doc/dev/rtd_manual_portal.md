@@ -101,6 +101,12 @@ content, QR aliases and nested manual URLs are unchanged.
   `MODEL/REGION/...` paths ≈ web navigation and search. With analytics off
   the alias keeps its instant forward; an unrecognized alias body shape is
   left unchanged.
+- Tabular traffic reads: `python tools/cwa_report.py --days 7` prints the
+  taxonomy totals (print/QR alias entries, in-site manual routes, portal
+  home) and a top-pages table from the Web Analytics GraphQL API. It needs
+  `CLOUDFLARE_API_TOKEN` (Account Analytics: Read) and
+  `CLOUDFLARE_ACCOUNT_ID` in the environment; the site tag defaults to the
+  committed beacon token. Read-only; the dashboard itself stays untouched.
 - Outbound link policy (链接归一): print/QR and the persisted `HTML_link`
   records use the root alias; in-site navigation and search engines use the
   nested canonical route; marketing and support signatures point at the
