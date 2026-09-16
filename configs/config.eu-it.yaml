@@ -6,6 +6,8 @@ build:
   targets:
     - model: JE-1000F
       region: EU
+    - model: JE-1000H
+      region: EU
     - model: JE-2000F
       region: EU
     - model: JE-2000E
@@ -17,6 +19,7 @@ build:
 paths:
   page_manifest: docs/manifests/manual_eu-single-it.yaml
   web_illustration_manifests:
+    JE-1000H_EU: docs/renderers/web/je1000h_eu_it_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_it_illustrations.json
 checks:
   allowed_foreign_identity_literals:

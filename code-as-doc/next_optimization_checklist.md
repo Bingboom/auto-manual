@@ -1071,6 +1071,42 @@ language-neutral (the LCD-hero precedent).
   3. de=it=uk 的字节相同是**巧合而非规则**（恰好这几张无文字），不得据此把三者合并成
      一套；一旦某张图后续加了文字就会分叉。
 
+- [ ] **JE-1000H EU 印刷版的六处源内容缺陷**(2026-09-15 登记,随非英语译文入库发现)。把
+  PDF 六个语言块的译文抽进冻结源时逐条比对出来,均属**已印制成品**的问题,需设计/内容侧
+  回退,不是本仓可自行改正的:
+
+  1. **德语块的安全符号与文字对错了**(最严重)。`symbols_blocks` 表中,🚫扳手(禁拆解)图标
+     配的文字是「Vermeiden Sie Hitze.」(避免受热),🚫火焰(禁明火)图标配的是
+     「Demontieren Sie das Produkt nicht.」(请勿拆解)。其余五种语言均正确。入库时已按
+     行键语义(`do_not_dismantle` / `no_open_flame`)对正,**未沿用印刷错配**。
+  2. **德语与意大利语的 LCD「充电计划」整段描述印的是法语**(`lcd_icons_blocks` 第 4 行)。
+     入库时留空该两格,改走 `icon_desc_en` 回落(渲染器有 `fallback_columns`),避免德/意手册
+     里出现整段法语。德语该行名称印作「Ladeplan Plan」(德法混排),按原样入库。
+  3. **`ENVIRONMENTAL OPERATING TEMPERATURE` 在德语和意大利语块未翻译**,印的是英文原文。
+     按原样入库到 `spec_titles.title_de` / `title_it`。
+  4. **意大利语与乌克兰语的商标注记里混着德语 "und"**:「USB Type-C® **und** USB-C® sono
+     marchi registrati…」/「… **und** … є зареєстрованими…」。按原样入库。
+  5. **乌克兰语的 WARNING 标签印成意大利语 `AVVERTENZA`**(`symbols_blocks` signal 行)。
+     按原样入库。
+  6. **法语概览页的额定值文字本身被截断**为「1800 W nomina」(应为 nominal)。属成品图内容,
+     已随 `web/je1000h/eu/fr/overview_front` 原样入库并在配方/登记表备注。
+
+  另:乌克兰语「自发自用模式」印作「Режим самозабезпечення」,而本产线其余型号统一用
+  「Автономний режим」,属同产线术语分叉。已按各自印刷原文入库,并在
+  `data/capability_page_rules.csv` 给能力门补了该同义词(放宽,非收紧)。待术语侧统一。
+
+- [ ] **JE-1000H 非英语路线的页面模板仍是骨架,不是译文**(2026-09-15 登记)。六语 Web 投影
+  已全绿并各自绑定成品整图,但底层模板有两类缺口:
+
+  - `03_product_overview` / `05_operation_guide` / `12_app_setup` 走 `_placeholder` 变体,
+    标题已本地化而**标注仍是英文**(「Power Button」「Total Output」「AC Input」等)。Web 路线
+    上这层被成品整图连同 `covered_annotations` 一起吃掉,页面可见部分是全本地化的;但被吃掉的
+    文本会转成图片的 `alt`,**无障碍层因此是半英文的**,且 Word/PDF 路线没有这层遮蔽。
+  - `07_extra_battery` 走 `page_shared/<lang>/` 的 `TODO(内容团队)` 骨架,页内没有图位,
+    故五个非英语插图清单**不绑定** `battery_pack`(该语言的成品整图已在配方与登记表中就位)。
+    补齐方式可参照 `docs/templates/targets/je3600a/07_extra_battery_<lang>.rst` 的按语言
+    模板先例。
+
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 
 Milestone status: `pending`

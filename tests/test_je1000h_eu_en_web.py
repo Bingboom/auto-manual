@@ -220,12 +220,23 @@ class Je1000hEuEnWebTests(unittest.TestCase):
                 output["expected_sha256"]
         self.assertEqual(set(MANUAL_LOCALES), set(by_locale))
         english = by_locale["en"]
+        english_entries = json.loads(
+            (ROOT / "docs/renderers/web/je1000h_eu_en_illustrations.json")
+            .read_text(encoding="utf-8")
+        )["illustrations"]
         for locale in MANUAL_LOCALES:
             self.assertEqual(set(english), set(by_locale[locale]), locale)
             illustrations = ROOT / f"docs/renderers/web/je1000h_eu_{locale}_illustrations.json"
             manifest = json.loads(illustrations.read_text(encoding="utf-8"))
             self.assertEqual(locale, manifest["language"])
-            self.assertEqual(21, len(manifest["illustrations"]))
+            bound = {Path(entry["path"]).stem for entry in manifest["illustrations"]}
+            # 非英语的 07_extra_battery 还是 page_shared 骨架，页内没有图位，
+            # 所以 battery_pack 抽到了却不绑定；这是当前唯一的缺口，缺口一变这里就会红。
+            self.assertEqual(
+                set() if locale == "en" else {"battery_pack"},
+                {Path(e["path"]).stem for e in english_entries} - bound,
+                locale,
+            )
             for entry in manifest["illustrations"]:
                 self.assertEqual(
                     by_locale[locale][Path(entry["path"]).name], entry["sha256"]

@@ -32,8 +32,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 3436,
-      "sha256": "d86eeef37194581f1834d36615f72a2ec13db29087a02317f433f1f1129469d0"
+      "size": 7364,
+      "sha256": "095d6e8bc6de8d6cce2c76ab7d10a2bc9edaa7b106f62b55acdaddfb5dbaa048"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -42,8 +42,8 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 674,
-      "sha256": "e21004213b7c04a45082b0d0d16329699a12651828a21039a4ba74764f37f4b6"
+      "size": 1819,
+      "sha256": "5034282e5328ddc5f367ba0b4d8b7a82593a97dfb03043bf9c940efae636ffc0"
     },
     {
       "path": "phase2/Spec_Master.csv",
@@ -52,8 +52,8 @@
     },
     {
       "path": "phase2/Spec_Notes.csv",
-      "size": 305,
-      "sha256": "d3df2a71ea5f0a1ef1d51bffe67f5997fdf9dcf96f919bda2cee492d14188636"
+      "size": 750,
+      "sha256": "39415bb96dd4dc07b2cd00ddaff828aa510ff1eaa0270ff0ea06f380ad398de9"
     },
     {
       "path": "phase2/Status_Words.csv",
@@ -72,8 +72,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 6848,
-      "sha256": "f1836456d26b189e923453a528ea6e5b460a46e2240d25ddba14ab33a71c1228"
+      "size": 37520,
+      "sha256": "3035e1d76285e49b0759e1b3edefbc65ae13d134f6ac0049730ec0743d184b5e"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -87,18 +87,18 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 233,
-      "sha256": "ead5c0f541d919aae2dfc251d8229630ee7ab8889e69a60b58af8efaf29f0703"
+      "size": 867,
+      "sha256": "c851dab206e7316bf427104d32f0e0004f7fae01077d8455438a5faa93badd1e"
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 2949,
-      "sha256": "861faa245ee086dc90ac83d2e1237bfdddba4f583a627859dc4e2b4acac848a2"
+      "size": 10665,
+      "sha256": "f57329dd0c1b8676adb03e4be582c638ef5d9278022227ede50359c9e88304df"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
-      "size": 2799,
-      "sha256": "9fecb7535fb9e3a297ee437505b6e3c4584bece003af93c331fc417ebf3f3639"
+      "size": 11641,
+      "sha256": "606b5046a9180300f39b8051b6794d52e156622d3c50a3651cfafed53703d822"
     },
     {
       "path": "phase2/web_composite_manifest.json",
@@ -106,7 +106,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "7a4b191cfc2ff29b0ae6b84e259f7b5ec5eea19b45eaf5b76f981a820d2ce22a",
+  "files_inventory_sha256": "5ff2aec0757ab5c0dbb1a37c2d096afef3dd60d07cce579957e3a3827a875ba3",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

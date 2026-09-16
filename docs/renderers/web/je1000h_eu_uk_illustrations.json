@@ -65,7 +65,17 @@
         342,
         245
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > table",
+          "text": "Power Button LCD DC 12 V Port 12 В 10 Кнопка LED-світла DC / USB Power Button LED-світло USB-C 30 W Output 30 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 2,5 A, 15 В 2 A, 20 В 1,5 A AC1/AC2 Power Button USB-C 140W Output 140 Вт макс., 5 В 3 A, 9 В 3 A, 12 В 3 A, 15 В 3 A, 20 В 5 A, 28 В 5 A USB-A 18 W Output 18 Вт макс., 5-6 В 3 A, 6-9 В 2 A, 9-12 В 1,5 A AC Output 230 В~ 50 Гц, 7,83 A, 1800"
+        },
+        {
+          "selector": "#section-2 > table",
+          "text": "Total Output 1800W Rated, 3600W Surge Peak"
+        }
+      ]
     },
     {
       "replaces": [
@@ -86,7 +96,13 @@
         111.3,
         389
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > table",
+          "text": "Ручка AC Input 220 В-240 В~50 Гц, 10 A DC Input (2 × DC8020 Ports) 16 В-60 В 12 A, подв. до 21 A макс./400 11 В-16 В 8 A макс., подв. до 8 A"
+        }
+      ]
     },
     {
       "replaces": [
@@ -116,7 +132,17 @@
         342,
         233
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Увімкнення: натисніть один раз. Вимкнення: натисніть і утримуйте 3 с."
+        },
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Стандартний час очікування: 2 години. Пристрій автоматично вимкнеться після 2 годин бездіяльності, якщо не відбувається заряджання чи розряджання. * Час очікування можна налаштувати в Додатку Jackery. Коли режим енергозбереження ввімкнено, пристрій автоматично вимкнеться після 12 годин, якщо вихід AC або DC / USB увімкнено, але пристрій не заряджається і не розряджається."
+        }
+      ]
     },
     {
       "replaces": [
@@ -131,7 +157,17 @@
         342,
         495
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#ac > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ]
     },
     {
       "replaces": [
@@ -146,7 +182,17 @@
         342,
         198.4
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#dc-12-usb > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#dc-12-usb > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ]
     },
     {
       "replaces": [
@@ -161,7 +207,17 @@
         342,
         498
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#led > p",
+          "text": "LED-світло має два режими: режим освітлення та режим SOS. У будь-якому режимі натисніть і утримуйте кнопку LED-світла, щоб вимкнути світло."
+        },
+        {
+          "selector": "#led > .line-block",
+          "text": "Натисніть кнопку LED Light один раз, щоб увімкнути світло. Натисніть її ще раз, щоб перейти в режим SOS. Натисніть її втретє, щоб вимкнути світло."
+        }
+      ]
     },
     {
       "replaces": [
@@ -191,7 +247,17 @@
         342,
         374
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > p",
+          "text": "Щоб вимкнути режим енергозбереження, натисніть і утримуйте кнопку AC та основну кнопку POWER одночасно понад 3 секунди. Після вимкнення режиму енергозбереження значок більше не з'являтиметься на екрані LCD, і пристрій не вимикатиме автоматично вихід AC або DC / USB."
+        },
+        {
+          "selector": "#section-3 > .line-block",
+          "text": "Натисніть і утримуйте обидві кнопки понад 3 секунди."
+        }
+      ]
     },
     {
       "replaces": [
@@ -210,21 +276,6 @@
     },
     {
       "replaces": [
-        "battery_pack.png"
-      ],
-      "path": "assets/je1000h_eu_uk/battery_pack.png",
-      "sha256": "88f0d3a1691b541e88e4d146ac852c417ce7b16488e8ddb4ba13420dc12a16e9",
-      "source_page": 100,
-      "bbox_pt": [
-        28,
-        208.1,
-        342,
-        410
-      ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
-    },
-    {
-      "replaces": [
         "ac_wall.png"
       ],
       "path": "assets/je1000h_eu_uk/charging_ac.png",
@@ -236,7 +287,13 @@
         342,
         362
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#ac > p",
+          "text": "Підключіть кабель для заряджання AC до входу AC пристрою та до настінної розетки."
+        }
+      ]
     },
     {
       "replaces": [
@@ -281,7 +338,13 @@
         342,
         494
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Автомобіль * Кабель для заряджання від автомобіля продається окремо."
+        }
+      ]
     },
     {
       "replaces": [
@@ -296,7 +359,13 @@
         340,
         155.7
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > p",
+          "text": "Знайдіть \"Jackery\" у Google Play або App Store, щоб установити додаток. Після цього ви можете зареєструватися та увійти. Або відскануйте QR-код нижче, щоб завантажити та встановити додаток."
+        }
+      ]
     },
     {
       "replaces": [
@@ -313,7 +382,13 @@
       ],
       "reference_id": "app-add-device",
       "consume_before_presentation": true,
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > .line-block",
+          "text": "Power Button AC1/AC2 Power Button DC / USB Power Button"
+        }
+      ]
     },
     {
       "replaces": [
@@ -330,5 +405,6 @@
       ],
       "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
     }
-  ]
+  ],
+  "notes": "非英语路线的 07_extra_battery 目前是 page_shared/<lang> 的内容团队骨架(标注 TODO(内容团队)),页面内没有图位,故本清单不绑定 battery_pack;该语言的成品整图已在 data/asset_recipes/manual_je1000h_eu_web.json 与data/asset_registry.csv 中登记,待该页正式成稿后接入。"
 }

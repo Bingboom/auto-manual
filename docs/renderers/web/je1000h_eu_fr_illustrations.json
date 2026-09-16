@@ -65,7 +65,17 @@
         342,
         245
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#vue-de-face > table",
+          "text": "Power Button LCD DC 12 V Port 12 V 10 A max. Bouton lumière LED DC / USB Power Button Lumière LED USB-C 30 W Output 30 W max., 5 V 3 A, 9 V 3 A, 12 V 2,5 A, 15 V 2 A, 20 V 1,5A AC1/AC2 Power Button USB-C 140W Output 140 W max., 5 V 3 A, 9 V 3 A, 12 V 3 A, 15 V 3 A, 20 V 5 A, 28 V 5 A USB-A 18 W Output 18 W max., 5-6 V 3 A, 6-9 V 2 A, 9-12 V 1,5 A AC Output 230 V~50 Hz, 7,83 A max., 1800 W nomi"
+        },
+        {
+          "selector": "#vue-de-face > table",
+          "text": "Total Output 1800W Rated, 3600W Surge Peak"
+        }
+      ]
     },
     {
       "replaces": [
@@ -86,7 +96,13 @@
         130.4,
         389
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#vue-laterale-droite > table",
+          "text": "Poignée AC Input 220 V-240 V~50 Hz, 10 A max. DC Input (2 × DC8020 Ports) 16 V-60 V 12 A, double à 21 A max./400 W max. 11 V-16 V 8 A max., double à 8 A max."
+        }
+      ]
     },
     {
       "replaces": [
@@ -116,7 +132,13 @@
         342,
         233
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#marche-arret > .line-block",
+          "text": "Marche : appuyez une fois. Arrêt : appuyez et maintenez pendant 3 secondes. Temps de veille par défaut : 2 heures. Le produit s'éteindra automatiquement après 2 heures d'inactivité, sans charge ni décharge. *Le temps de veille peut être réglé dans l'application Jackery. Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le AC1/AC2 power button ou le DC / USB power button est activé mais que le produit ne charge ni ne décharge."
+        }
+      ]
     },
     {
       "replaces": [
@@ -131,7 +153,17 @@
         342,
         495
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#sortie-ca-marche-arret > p",
+          "text": "Prérequis : Le produit est allumé."
+        },
+        {
+          "selector": "#sortie-ca-marche-arret > .line-block",
+          "text": "Marche appuyez une fois Arrêt appuyez une fois"
+        }
+      ]
     },
     {
       "replaces": [
@@ -146,7 +178,17 @@
         342,
         212
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#sortie-cc-12v-usb-marche-arret > p",
+          "text": "Prérequis : Le produit est allumé."
+        },
+        {
+          "selector": "#sortie-cc-12v-usb-marche-arret > .line-block",
+          "text": "Marche appuyez une fois Arrêt appuyez une fois"
+        }
+      ]
     },
     {
       "replaces": [
@@ -161,7 +203,17 @@
         342,
         498
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#lampe-led-marche-arret > p",
+          "text": "La lampe LED dispose de deux modes : mode éclairage et mode SOS. Dans n'importe quel mode, appuyez et maintenez sur le bouton pour éteindre la lumière."
+        },
+        {
+          "selector": "#lampe-led-marche-arret > .line-block",
+          "text": "Appuyez une fois sur le bouton de la lampe LED pour l'allumer. Appuyez de nouveau pour passer en mode SOS. Appuyez une troisième fois pour éteindre la lampe."
+        }
+      ]
     },
     {
       "replaces": [
@@ -191,7 +243,17 @@
         342,
         374
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#mode-d-economie-d-energie > p",
+          "text": "Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le AC1/AC2 power button et sur le power button pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB."
+        },
+        {
+          "selector": "#mode-d-economie-d-energie > .line-block",
+          "text": "Maintenez les deux boutons enfoncés pendant plus de 3 secondes."
+        }
+      ]
     },
     {
       "replaces": [
@@ -210,21 +272,6 @@
     },
     {
       "replaces": [
-        "battery_pack.png"
-      ],
-      "path": "assets/je1000h_eu_fr/battery_pack.png",
-      "sha256": "922092c1a07916d098597660eacdbfb1d1897f145e0fef327a0fff77bc851c3f",
-      "source_page": 32,
-      "bbox_pt": [
-        28,
-        208.1,
-        342,
-        410
-      ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
-    },
-    {
-      "replaces": [
         "ac_wall.png"
       ],
       "path": "assets/je1000h_eu_fr/charging_ac.png",
@@ -236,7 +283,13 @@
         342,
         362
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#chargement-par-prise-murale-ca > p",
+          "text": "Connectez le câble de charge CA au port d'entrée CA de l'appareil et à une prise murale."
+        }
+      ]
     },
     {
       "replaces": [
@@ -281,7 +334,13 @@
         342,
         494
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#chargement-par-prise-de-voiture-vendu-separement > .line-block",
+          "text": "Véhicule ※Le câble de chargement de voiture est vendu séparément."
+        }
+      ]
     },
     {
       "replaces": [
@@ -296,7 +355,13 @@
         340,
         155.7
       ],
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#telecharger-l-application-et-se-connecter > p",
+          "text": "Recherchez \"Jackery\" dans Google Play ou dans l'App Store pour installer l'application. Une fois que c'est fait, vous pouvez vous inscrire et vous connecter."
+        }
+      ]
     },
     {
       "replaces": [
@@ -313,7 +378,13 @@
       ],
       "reference_id": "app-add-device",
       "consume_before_presentation": true,
-      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
+      "recipe": "data/asset_recipes/manual_je1000h_eu_web.json",
+      "covered_annotations": [
+        {
+          "selector": "#ajouter-un-appareil > .line-block",
+          "text": "Power Button DC / USB Power Button AC1/AC2 Power Button"
+        }
+      ]
     },
     {
       "replaces": [
@@ -330,5 +401,6 @@
       ],
       "recipe": "data/asset_recipes/manual_je1000h_eu_web.json"
     }
-  ]
+  ],
+  "notes": "非英语路线的 07_extra_battery 目前是 page_shared/<lang> 的内容团队骨架(标注 TODO(内容团队)),页面内没有图位,故本清单不绑定 battery_pack;该语言的成品整图已在 data/asset_recipes/manual_je1000h_eu_web.json 与data/asset_registry.csv 中登记,待该页正式成稿后接入。"
 }
