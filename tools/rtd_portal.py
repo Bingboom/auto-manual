@@ -108,6 +108,7 @@ def without_leading_language_label(body: str, label: str) -> str:
 
 
 def configure(app, config) -> None:
+    config.html_title = "Manual Center"
     # Absolute engineering assets are independent of the frozen source config.
     config.templates_path = [str(ASSETS), *config.templates_path]
     config.html_static_path = [*config.html_static_path, str(ASSETS / PathSegments.STATIC)]

@@ -49,3 +49,7 @@ language. The portal omits a plain leading paragraph only when its full text equ
 the active language label (for example, `English` or `Français`). Other introductory
 paragraphs, later occurrences and legacy mixed-language pages are preserved. This
 is a render-time presentation change; frozen publication sources remain unchanged.
+
+The portal sets the shared Sphinx site title to `Manual Center`, including the
+mobile header and desktop sidebar. Individual manual browser titles retain
+their product, market and language metadata.
