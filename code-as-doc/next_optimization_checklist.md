@@ -1045,6 +1045,32 @@ language-neutral (the LCD-hero precedent).
   `04_资产定义` 镜像而言是 unmanaged（与 `page/jbp2000b_us/cover` 同状态，sync 不
   删除、原样放行），应在下一轮资产入库时补登。
 
+- [ ] **多语言手册的插图是按区域分版的，不是同图换字**（2026-09-15 登记）。JE-1000H
+  EU 一本 PDF 承载六个语言块，逐张像素比对后确认：**英语块画的是英标三扁脚插座
+  (BS 1363)，fr/es/de/it/uk 画的是欧标圆孔 (Schuko)**；进一步地 de/it/uk 三者字节
+  相同（`inbox_unit`/`inbox_cable`/`inbox_documents`/`ups` 四张），it/uk 另有三张
+  相同（`charging_solar`/`charging_solar_adapter`/`lcd_map`），而 en/fr/es 三者两两
+  互不相同。126 条配方条目只落成 115 张唯一图。
+
+  风险在于这类错误**文本层完全看不出来**：若用英语底图配本地化标注，标注文字全对，
+  印出来却是错的插座制式。现有的 `content_lint`、术语校验、语言纯度门都不覆盖图像
+  内容。
+
+  已有护栏：`tests/test_je1000h_eu_en_web.py::test_every_locale_binds_its_own_finished_panels`
+  断言 JE-1000H 六语各自独立、非英语不得与英语同哈希。全库扫描（按
+  `docs/renderers/web/assets/<model>_<region>_<lang>/` 比对）当前**无任何产线复用英语
+  美术稿**。
+
+  未收敛的部分：
+  1. 该护栏是按产线写死的，只管 JE-1000H。目前有多语言成品整图的只有 `je1000h_eu`
+     与 `je2000f_eu` 两条线；其余欧规多语产线（JE-2000E / JE-3000C / JE-3600A /
+     JBP-2000B）的非英语路线走的是组合图而非成品整图，其底图是否带区域制式、是否
+     与英语共用，尚未逐条核实。
+  2. 资产登记表没有"该图画的是哪种插座制式"这一维度，`语言变体` 只记语言。没有数据
+     层可供闸门判断，只能靠逐产线的哈希互斥测试。
+  3. de=it=uk 的字节相同是**巧合而非规则**（恰好这几张无文字），不得据此把三者合并成
+     一套；一旦某张图后续加了文字就会分叉。
+
 ## 6i. Milestone K: Enterprise Ops Hardening + Platform Consolidation
 
 Milestone status: `pending`
