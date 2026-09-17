@@ -18,7 +18,7 @@
   "analytics_beacon_token": "a15729a9f8e14bfea2bac9ca6a9338de",
   "site_base_url": "https://ht-doc.readthedocs.io",
   "rtl_languages": ["he", "ar"],
-  "regions": {"US": "US", "EU": "EU", "UK": "EU", "JP": "JP"},
+  "regions": {"US": "US", "EU": "EU", "UK": "EU"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],
   "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
   "languages": ["English", "Français", "Español", "Deutsch", "Italiano", "Português", "Nederlands", "Polski", "Українська", "Ελληνικά", "עברית", "العربية", "日本語"],
