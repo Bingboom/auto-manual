@@ -44,7 +44,6 @@ def run_main(
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
     run_web_release: Callable[[argparse.Namespace], None] | None = None,
-    run_web_sideload: Callable[[argparse.Namespace], None] | None = None,
     run_web_assemble: Callable[[argparse.Namespace], None] | None = None,
     run_web_receipt: Callable[[argparse.Namespace], None] | None = None,
 ) -> int:
@@ -90,7 +89,6 @@ def run_main(
             run_asset_command=run_asset_command,
             run_new_line=run_new_line,
             run_web_release=run_web_release,
-            run_web_sideload=run_web_sideload,
             run_web_assemble=run_web_assemble,
             run_web_receipt=run_web_receipt,
         )

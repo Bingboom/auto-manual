@@ -40,7 +40,6 @@ from tools.release_contract import (  # noqa: E402
 )
 from tools.sync_data import load_config  # noqa: E402
 from tools.utils.targets import resolve_output_lang  # noqa: E402
-from tools.web_language_release_evidence import SOURCE_KIND_PIPELINE as _SOURCE_KIND_PIPELINE  # noqa: E402
 
 
 def set_repo_root_provider(provider: Any) -> None:
@@ -283,7 +282,6 @@ def stage_web_publish_assets_to_host_repo(
     projection_captures: tuple[Any, ...] = (),
     git_ref: str = "",
     target_lang: str | None = None,
-    source_kind: str = _SOURCE_KIND_PIPELINE,
 ) -> tuple[Path, Path]:
     return _stage_web_publish_assets_to_host_repo_impl(
         built_md_output_path=built_md_output_path,
@@ -295,7 +293,6 @@ def stage_web_publish_assets_to_host_repo(
         projection_captures=projection_captures,
         git_ref=git_ref,
         target_lang=target_lang,
-        source_kind=source_kind,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
     )
 
@@ -360,7 +357,6 @@ def write_web_publish_metadata(
     queue_record_ids: tuple[str, ...] = (),
     target_lang: str | None = None,
     language_projection_evidence_path: Path | None = None,
-    source_kind: str = _SOURCE_KIND_PIPELINE,
 ) -> Path:
     return _write_web_publish_metadata_impl(
         config_path=config_path,
@@ -374,7 +370,6 @@ def write_web_publish_metadata(
         queue_record_ids=queue_record_ids,
         target_lang=target_lang,
         language_projection_evidence_path=language_projection_evidence_path,
-        source_kind=source_kind,
         publish_release_version_dir_for_target=publish_release_version_dir_for_target,
         publish_release_latest_dir_for_target=publish_release_latest_dir_for_target,
         release_lang_for_config=release_lang_for_config,

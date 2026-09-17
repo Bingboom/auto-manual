@@ -23,7 +23,6 @@ def parse_args(
             "asset-intake",
             "new-line",
             "web-release",
-            "web-sideload",
             "web-assemble",
             "web-receipt",
             *build_actions,
@@ -461,7 +460,7 @@ def parse_args(
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, web-release, web-sideload, or web-assemble: validate/report without writing files",
+        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, web-release, or web-assemble: validate/report without writing files",
     )
     ap.add_argument(
         "--targets-file",
@@ -477,24 +476,14 @@ def parse_args(
         action="append",
         default=[],
         help=(
-            "For web-release or web-sideload: record one manual debt-ledger entry as "
-            "'category:location:description'; repeat for multiple entries. web-sideload also "
-            "always records one automatic '整本未结构化' entry regardless of this flag"
+            "For web-release: record one manual debt-ledger entry as 'category:location:description'; "
+            "repeat for multiple entries"
         ),
     )
     ap.add_argument(
         "--skip-verify",
         action="store_true",
         help="For web-release: skip the local strict `sphinx -W` verification pass",
-    )
-    ap.add_argument(
-        "--md-dir",
-        default=None,
-        help=(
-            "For web-sideload: local directory holding the externally converted MyST Markdown "
-            "source, shaped like a staged md/ bundle (manual_<stem>.md matching the target's "
-            "config-derived output filename, index.md, conf.py, and an optional assets/)"
-        ),
     )
     ap.add_argument(
         "--releases-root",
