@@ -1,37 +1,45 @@
 # Hello Auto Doc
 
-JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
+This file replaces `Template_maintenance_and_using_guide.md`.
+It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
+It is the current workflow and editing-surface guide.
+It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
+
+Updated: 2026-09-17
+
+### Where to look next
+
+For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
+For the complete IR → Web build/replay acceptance target, including JBP-2000B
+Japanese PDF illustrations, see [`ir_document_closeout.md`](../code-as-doc/dev/ir_document_closeout.md).
+For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
+For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
+For Codex-assisted TM-first manual rewrite or translation that must preserve Markdown structure, use [`../.agents/skills/manual-rewrite-with-tm/SKILL.md`](../.agents/skills/manual-rewrite-with-tm/SKILL.md).
+
+---
+
+## Web 发布现行契约
+
+本节收拢历次发布改动累积下来的现行约定。单个型号的一次性修复记录不进本节，放文末的型号专项或 [`code-as-doc/reviews/`](../code-as-doc/reviews)。
+
+### 单语身份、语言切换与手册中心
 
 单语网页顶部通过语言切换栏显示当前语言，正文开头重复的独立语言名称不再显示；冻结源文件不变。
 
-手册中心卡片可按型号/市场指定说明书原图，补齐缺图或替换带编号边框的装箱图；参见[目录缩略图](../code-as-doc/dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15)。
-
 手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
-
-Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
-Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
-缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
 旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
 
-Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
-检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
-需要探测已发布链接时使用[线上HTTP检查](../code-as-doc/dev/manual_operations_online_health.md)；
-它只读冻结目录并发起有上限的HEAD请求，不把200响应当作版本发布确认。
+手册中心卡片可按型号/市场指定说明书原图，补齐缺图或替换带编号边框的装箱图；参见[目录缩略图](../code-as-doc/dev/rtd_manual_portal.md#accessory-catalog-artwork-2026-09-15)。
 
-夏冰（GitHub `Bingboom`）负责发布健康与手册反馈，每次发布后检查本地资源、
-线上可访问性和实际部署版本。已验证单语页面提供售后邮箱 `hello@jackery.com`
-入口（出货手册已印的官方地址）和可复制的型号/市场/语言/版本/页面上下文；
-读者自行提交问题，页面不会自动发送。GitHub Issues 转为内部/经销商分诊渠道。
-处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。首次响应 3 个工作日内，
-不创建定时任务或常驻服务。访问统计经无 cookie 的 Cloudflare Web Analytics 采集（2026-09-15 起启用，
-站点 `ht-doc.readthedocs.io`；令牌是公开站点标识非密钥），不采集访客身份；
-清空 `analytics_beacon_token` 即完全关闭、页面回到字节等同。
-已验证单语页面的 `<title>`、描述、canonical、hreflang、OG 元数据全部由冻结发布身份
-构建期派生（不许手填）；换域名时只改 portal 设置里的 `site_base_url` 一处。
-根别名是可计数的印刷/QR 入口层：构建期自动加 noindex 与指向嵌套规范页的 canonical，
-统计开启时转发前留出 beacon 发送窗口（约 0.2–2.5 秒）。对外链接规范：印刷/QR 与
-`HTML_link` 用根别名，站内导航用嵌套规范页，市场/客服签名用门户首页，不发第三种链接。
+### 发布候选、撤回与恢复
+
+Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+
+Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
+缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
+
+### 语言投影与发布凭据
 
 Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成规范单语投影](../code-as-doc/dev/web_language_projection.md)：
 `check`、Markdown 和 HTML 使用同一份所选语言 RST。显式语言的 Web 队列构建还会
@@ -39,18 +47,39 @@ Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成
 语言、版本、Git_ref 及 Markdown/HTML 产物；凭据缺失或内容变化会阻止该版本被接受为单语发布。
 共享配置选法语时，版本目录也使用法语，不落到配置的第一个语言下。旧的不可变版本不补写凭据，
 需重新构建新版本。工作流、线上表、审稿源不变；凭据通过不等于翻译正确或已经在 RTD 上线。
+
 发布组装会原样保留已生成的 `manual.ir.json` 和 `manual_bundle.html`，不再遗漏凭据中
 记录的辅助文件；旧版本没有这些文件时仍可组装。未知文件不会被静默加入或从校验中排除。
 
-Updated: 2026-09-05
+### 发布健康、反馈与统计
 
-This file replaces `Template_maintenance_and_using_guide.md`.
-It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
-It is the current workflow and editing-surface guide.
-It is not the full maintainer command reference; use [`../code-as-doc/build_doc_guide.md`](../code-as-doc/build_doc_guide.md) for command semantics.
-For the current JP / US family difference boundary, use [`../code-as-doc/manual_family_guide.md`](../code-as-doc/manual_family_guide.md).
-For the complete IR → Web build/replay acceptance target, including JBP-2000B
-Japanese PDF illustrations, see [`ir_document_closeout.md`](../code-as-doc/dev/ir_document_closeout.md).
+Web 冻结产物可使用[只读健康报告](../code-as-doc/dev/manual_operations_health_report.md)
+检查本地页面/资源。该报告不会访问线上表、确认部署或收集访客数据。
+需要探测已发布链接时使用[线上HTTP检查](../code-as-doc/dev/manual_operations_online_health.md)；
+它只读冻结目录并发起有上限的HEAD请求，不把 200 响应当作版本发布确认。
+
+夏冰（GitHub `Bingboom`）负责发布健康与手册反馈，每次发布后检查本地资源、
+线上可访问性和实际部署版本。已验证单语页面提供售后邮箱 `hello@jackery.com`
+入口（出货手册已印的官方地址）和可复制的型号/市场/语言/版本/页面上下文；
+读者自行提交问题，页面不会自动发送。GitHub Issues 转为内部/经销商分诊渠道。
+处理流程见[手册中心说明](../code-as-doc/dev/rtd_manual_portal.md)。首次响应 3 个工作日内，
+不创建定时任务或常驻服务。
+
+访问统计经无 cookie 的 Cloudflare Web Analytics 采集（2026-09-15 起启用，
+站点 `ht-doc.readthedocs.io`；令牌是公开站点标识非密钥），不采集访客身份；
+清空 `analytics_beacon_token` 即完全关闭、页面回到字节等同。
+
+### 页面元数据与对外链接
+
+已验证单语页面的 `<title>`、描述、canonical、hreflang、OG 元数据全部由冻结发布身份
+构建期派生（不许手填）；换域名时只改 portal 设置里的 `site_base_url` 一处。
+
+根别名是可计数的印刷/QR 入口层：构建期自动加 noindex 与指向嵌套规范页的 canonical，
+统计开启时转发前留出 beacon 发送窗口（约 0.2–2.5 秒）。对外链接规范：印刷/QR 与
+`HTML_link` 用根别名，站内导航用嵌套规范页，市场/客服签名用门户首页，不发第三种链接。
+
+### 插图、成品图与 IR 包
+
 Web inserts finished illustrations with their embedded text; IDML's textless
 variants remain separate. Packaging lists retain the shared `HB-SPECIAL-INBOX`
 component, including live numbers, labels and notes. Only explicitly matched
@@ -61,6 +90,7 @@ Overview, Operation and Charging coverage under
 editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
+
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
 historical `manual-ir/v1` packages remain replayable. Sixteen ComponentSpec types
 are embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
@@ -71,6 +101,7 @@ old DOM projector. Representative-package tests project every embedded instance
 through the registered Web, LaTeX, IDML and Word adapters. This is shared semantic
 and adapter-entry proof; responsive Web and fixed-page outputs still own different
 geometry and are not expected to be pixel- or pagination-identical.
+
 For JE-1000F, Overview, Operation and Charging use localized crops with their
 visible labels and leader lines intact—including Operation `On` / `Off`,
 prerequisites and action copy. Do not feed those slots textless exports. In every
@@ -80,10 +111,6 @@ or `approved-composite` artwork can close it. EU Italian is currently 11/11
 approved full panels. The LCD screen-mode block is the exception: keep only the
 market-correct product/display artwork as an image and render its six-row
 explanation table in HTML.
-
-For onboarding new external Markdown manuals into templates, use [`../code-as-doc/dev/manual_template_intake_checklist.md`](../code-as-doc/dev/manual_template_intake_checklist.md).
-For Codex-assisted Markdown-to-template intake, use [`../.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md).
-For Codex-assisted TM-first manual rewrite or translation that must preserve Markdown structure, use [`../.agents/skills/manual-rewrite-with-tm/SKILL.md`](../.agents/skills/manual-rewrite-with-tm/SKILL.md).
 
 ---
 
@@ -1815,6 +1842,10 @@ LCD 图标表和故障排除表也已接入同一条公共 IR 消费路径，主
 处理，内部链接、图片、列表和强调保留；自定义标签的 `:variant:` 与配置语言会
 一起进入校验。提示框内嵌表格或其他提示框暂不受共享契约支持，会带来源位置报错，
 不会截断后继续输出。命令和编辑位置不变。
+
+### JBP-3600A 欧规英文概览与 LCD
+
+JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](../code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md)。
 
 ### JBP-2000B 欧规英文网页
 
