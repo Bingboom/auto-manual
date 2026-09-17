@@ -3,7 +3,7 @@
 Some books need to go live before their structured intake (spec extraction,
 templating) is done. Sideload is the bypass intake for exactly that case: an
 externally converted MyST Markdown source (typically transcribed from a
-shipped PDF) is staged directly into ``reports/releases/<model>/<region>/<lang>/``
+shipped PDF) is compiled and staged into ``reports/releases/<model>/<region>/<lang>/``
 using the *same* staging and metadata functions ``build.py web-release`` uses
 (``tools.queue_bound_outputs.stage_web_publish_assets_to_host_repo`` and
 ``write_web_publish_metadata``), so ``build.py web-assemble`` collects it with
@@ -11,6 +11,19 @@ equal standing to a pipeline-built book. It never runs the RST -> Web-profile
 pipeline and therefore never produces the per-language projection evidence
 that path seals; instead every sideloaded target is written with an explicit
 ``source_kind: "pdf_sideload"`` marker in its ``publish_meta.json``.
+
+Sideloading has two planes, and only the first is written by a human:
+
+* **Author plane** (``--md-dir``) -- prose plus the semantic component
+  directives of ``tools.manual_md_directives`` (``{callout}``,
+  ``{spec-table}``, ...). Hand-written component markup is refused here.
+* **Staged plane** -- the same document with every directive compiled into
+  component markup by ``tools.web_sideload_expand``. This is what gets
+  staged, because Read the Docs rebuilds the published source with
+  ``-D extensions=myst_parser,tools.rtd_portal`` (``.readthedocs.yaml``),
+  which overrides ``conf.py`` and can never load the directive layer.
+
+The operator's ``--md-dir`` is never modified; compilation runs on a copy.
 
 That marker is the *only* thing that exempts a target from the mandatory
 language-projection-evidence gate in ``tools.publish_locale_identity`` /
@@ -35,6 +48,7 @@ See ``code-as-doc/dev/web_publish_pipeline.md`` and
 from __future__ import annotations
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -53,6 +67,10 @@ from tools.queue_bound_outputs import (
 from tools.readthedocs_source import assemble_rtd_source
 from tools.utils.path_utils import PathSegments
 from tools.web_language_release_evidence import SOURCE_KIND_PDF_SIDELOAD
+from tools.web_sideload_expand import (
+    expand_sideload_bundle,
+    verify_expanded_products,
+)
 from tools.web_publish import (
     DebtEntry,
     WebReleaseTarget,
@@ -114,22 +132,52 @@ def _validate_md_dir_shape(*, md_dir: Path, expected_manual_name: str) -> Path:
     )
 
 
-def _run_sideload_strict_verification(*, md_dir: Path, title: str) -> Path:
-    """Build a strict ``sphinx -W -b html`` straight off the sideloaded source.
+#: What Read the Docs actually builds the published source with -- see
+#: ``.readthedocs.yaml``, which passes this as ``-D extensions=...`` and
+#: therefore overrides whatever ``conf.py`` declares.
+RTD_EXTENSIONS = "myst_parser,tools.rtd_portal"
+
+
+def _run_sideload_two_stage_verification(
+    *, md_dir: Path, title: str, repo_root: Path
+) -> tuple[Path, Path]:
+    """Verify the author plane, compile it, then verify the staged plane.
 
     Unlike ``web_publish._run_strict_web_verification`` -- a throwaway gate
     re-checking a build output ``build.py html`` already produced separately
     -- a sideloaded book has no separate pipeline HTML build to gate against.
-    This *is* the staging HTML input, so (unlike that sibling helper) the
-    returned directory is not cleaned up by this function; the caller stages
-    it and is responsible for removing ``returned_path.parent`` once staging
-    has copied what it needs.
+    This *is* the staging input, so the returned directories are not cleaned
+    up here; the caller stages from them and removes their shared parent
+    (``returned_html.parent``) once staging has copied what it needs.
+
+    Stage 1 builds the operator's bundle with ``tools.manual_md_directives``
+    loaded, so every semantic directive must parse, and compiles each one into
+    its component markup. Stage 2 then rebuilds the *compiled* bundle under
+    exactly the extension set Read the Docs uses, which is what proves the
+    staged artifact will render there -- the old single-stage gate loaded
+    neither the directive layer nor ``tools.rtd_portal``, so it could accept a
+    document that RTD cannot build.
+
+    The operator's ``--md-dir`` is never modified: expansion runs against a
+    private copy.
     """
 
     temp_dir = Path(tempfile.mkdtemp(prefix="auto-manual-web-sideload-verify-"))
     try:
         build_root = temp_dir / "source"
-        shutil.copytree(md_dir, build_root / PathSegments.MD)
+        expanded_md_dir = build_root / PathSegments.MD
+        shutil.copytree(md_dir, expanded_md_dir)
+
+        # Stage 1: author plane -- lint, strict directive-aware build, compile.
+        counts = expand_sideload_bundle(md_dir=expanded_md_dir, repo_root=repo_root)
+        verify_expanded_products(md_dir=expanded_md_dir, counts=counts)
+        summary = ", ".join(f"{name}x{used}" for name, used in sorted(counts.items()))
+        print(
+            "[web-sideload]   authored components expanded: "
+            + (summary or "(none declared)")
+        )
+
+        # Stage 2: staged plane, under the published extension set.
         # Nested under build_root: assemble_rtd_source requires its output_dir
         # to stay inside build_root (see _is_relative_to there); a sibling
         # directory trips that containment check on every real run. Nesting
@@ -138,22 +186,32 @@ def _run_sideload_strict_verification(*, md_dir: Path, title: str) -> Path:
         assembled_dir = build_root / "rtd"
         assemble_rtd_source(build_root=build_root, output_dir=assembled_dir, title=title)
         html_out = temp_dir / "html"
+        env = dict(os.environ)
+        env["PYTHONPATH"] = os.pathsep.join(
+            [str(repo_root), *([env["PYTHONPATH"]] if env.get("PYTHONPATH") else [])]
+        )
         proc = subprocess.run(
-            [sys.executable, "-m", "sphinx", "-W", "-b", "html", str(assembled_dir), str(html_out)],
+            [
+                sys.executable, "-m", "sphinx", "-W", "-b", "html",
+                "-D", f"extensions={RTD_EXTENSIONS}",
+                str(assembled_dir), str(html_out),
+            ],
             capture_output=True,
             text=True,
             encoding="utf-8",
+            env=env,
             check=False,
         )
         if proc.returncode != 0:
             detail = (proc.stderr or proc.stdout or "").strip()
             raise RuntimeError(
-                f"strict Web sideload verification failed (sphinx -W -b html): {detail[-4000:]}"
+                "strict Web sideload verification failed (sphinx -W -b html, "
+                f"extensions={RTD_EXTENSIONS}): {detail[-4000:]}"
             )
     except Exception:
         shutil.rmtree(temp_dir, ignore_errors=True)
         raise
-    return html_out
+    return expanded_md_dir, html_out
 
 
 def run_web_sideload(
@@ -220,18 +278,21 @@ def run_web_sideload(
     _set_queue_output_repo_root_provider(lambda: repo_root)
     git_ref = _current_git_head_sha(repo_root)
 
-    # c. Local strict verification straight off the operator-provided source;
-    # its HTML output is not thrown away -- it is the staging HTML input,
-    # since there is no separate pipeline build.py html step here.
-    html_dir = _run_sideload_strict_verification(
-        md_dir=md_dir, title=f"{model} {region} {lang}"
+    # c. Two-stage local verification straight off the operator-provided
+    # source. Neither output is thrown away: the compiled Markdown is what
+    # gets staged (the author's directives cannot survive to Read the Docs),
+    # and the HTML is the staging HTML input, since there is no separate
+    # pipeline build.py html step here.
+    expanded_md_dir, html_dir = _run_sideload_two_stage_verification(
+        md_dir=md_dir, title=f"{model} {region} {lang}", repo_root=repo_root
     )
+    expanded_manual_path = expanded_md_dir / manual_path.name
     try:
         # d. Stage + write metadata with no projection evidence, marked
         # pdf_sideload so the assembler's otherwise-mandatory evidence gate
         # (unchanged for every pipeline target) recognizes the exemption.
         staged_md_output_path, staged_html_dir = stage_web_publish_assets_to_host_repo(
-            built_md_output_path=manual_path,
+            built_md_output_path=expanded_manual_path,
             built_html_dir=html_dir,
             host_config_path=config_path,
             model=model,
