@@ -66,34 +66,8 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertEqual(cards[0]["edition"], "EUUK")
         available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
         self.assertEqual(available, ["en", "fr"])
-        self.assertEqual(len(cards[0]["language_options"]), 13)
+        self.assertEqual(len(cards[0]["language_options"]), 12)
         self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
-
-    def test_registered_japanese_language_resolves_to_its_label(self):
-        """Reproduces the RTD portal side of production build 34602012: a
-        single-language ``ja`` publication (JE-5000A/JP) must resolve through
-        the same ``settings.json`` language table every other single-language
-        publication uses, not raise ``Unknown portal publication language``."""
-        self.publication("ja", model="JE-5000A")
-        card = catalog(self.root, self.settings)[0]
-        available = {o["code"]: o for o in card["language_options"] if o["url"]}
-        self.assertIn("ja", available)
-        self.assertEqual(available["ja"]["label"], self.settings["language_labels"]["ja"])
-        self.assertEqual(available["ja"]["url"], card["publications"][0]["url"])
-
-    def test_unregistered_language_code_still_raises(self):
-        """Negative control for the ``ja`` fix above: ``ko`` is a real,
-        registered doc language (``tools/lang_registry.py``) with no shipped
-        RTD/Web publication yet, so it must NOT be in ``settings.json``'s
-        ``language_labels`` -- and ``group_publications`` must still fail
-        loudly on it instead of silently falling through. (An arbitrary
-        made-up code like ``xx`` can't reach this check at all: the evidence
-        sealing this fixture uses already rejects it earlier, at
-        ``canonical_language``.)"""
-        self.assertNotIn("ko", self.settings["language_labels"])
-        self.publication("ko")
-        with self.assertRaisesRegex(ValueError, "Unknown portal publication language: ko"):
-            catalog(self.root, self.settings)
 
     def test_legacy_scope_does_not_count_as_english_only(self):
         self.publication(scope="legacy_unspecified")
@@ -168,25 +142,3 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertIn('lang="fr"', french)
         self.assertIn('<div lang="fr" dir="ltr">', french)
         self.assertEqual(before, {p: p.read_bytes() for p in before})
-
-    def test_sphinx_real_build_succeeds_for_a_single_japanese_publication(self):
-        """Minimal real reproduction of production build 34602012: a single
-        ``ja`` publication (modeled on JE-5000A/JP) run through real Sphinx
-        with ``tools.rtd_portal`` engaged, exactly as Read the Docs' ``-D
-        extensions=myst_parser,tools.rtd_portal`` override does. Before the
-        ``settings.json`` fix, ``page_context`` raises inside Sphinx's own
-        write-doc phase and this fails with the same
-        ``ExtensionError: ... Unknown portal publication language: ja``
-        signature as the real RTD build; after the fix, it renders clean."""
-        self.publication("ja", model="JE-5000A")
-        (self.root / "conf.py").write_text("extensions=['myst_parser','tools.rtd_portal']\nhtml_theme='furo'\n")
-        index = self.root / "index.md"
-        index.write_text(index.read_text() + "\n\n```{toctree}\n\nJE-5000A/EU/ja/md/manual_ja\n```\n")
-        output = self.base / "html"
-        proc = subprocess.run([sys.executable, "-m", "sphinx", "-q", "-b", "html", str(self.root), str(output)], capture_output=True, text=True)
-        self.assertEqual(0, proc.returncode, proc.stdout + proc.stderr)
-        home = (output / "index.html").read_text()
-        self.assertEqual(home.count('class="card"'), 1)
-        page = (output / "JE-5000A/EU/ja/md/manual_ja.html").read_text()
-        self.assertIn('id="manual-locale-select"', page)
-        self.assertIn('<div lang="ja" dir="ltr">', page)

@@ -213,13 +213,7 @@ build, staging, or the release PR.
 <L> --version <V>` is the formal entry point for steps 2 and 3 below: it runs
 the warm-up + check/md/html web-profile build, captures and seals the
 per-language projection receipt, runs the local strict `sphinx -W`
-verification (deliberately *without* the `-D extensions=...,tools.rtd_portal`
-override step 4 below adds: the portal's catalog/language-switcher logic is a
-whole-site concern over the assembled `docs/publish/**` tree — including the
-`sources/web/**/publish_meta.json` sibling metadata `tools/publish_branch_assembly.py`
-writes there — that a lone, not-yet-assembled book never has; adding the
-override here would fail on that missing structure instead of verifying
-anything about this book's own content), stages the sealed bundle under
+verification, stages the sealed bundle under
 `<model>/<region>/<lang>/versions/<version>/web/`, and writes
 `latest/web/publish_meta.json` — the same library functions the queue-driven
 Web Publish worker uses (`tools.queue_build_execution`,
@@ -246,11 +240,7 @@ branch tip when one exists (preserving any targets already staged there),
 assembles every book staged under `--releases-root` (default
 `reports/releases`) with the same `tools/publish_branch_assembly.py` this
 section already documents, and runs
-the same aggregate `sphinx -W -b html -D extensions=myst_parser,tools.rtd_portal`
-verification — the same `-D` portal-extension override `.readthedocs.yaml`
-passes (see §3), so the RTD portal machinery (multi-book catalog, per-page
-language switcher, the `settings.json` language table) is exercised locally
-too, not just plain MyST. It then checks the
+the same aggregate `sphinx -W -b html` verification. It then checks the
 candidate's three-dot diff against `main` and refuses to continue if any path
 outside `docs/publish/**` changed — the same scope guard the queue workflow's
 "Validate publish PR scope" step enforces. By default it stops there
@@ -308,16 +298,9 @@ for the implementation and `tests/test_web_receipt.py` /
 
    ```bash
    python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
-   cd <hello-docs-candidate> && python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd_portal docs/publish/web <isolated-verification-html>
+   python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 
-   The `cd` matters, not just the `-D` flag: `tools.rtd_portal` must import as
-   a package, so this has to run with `<hello-docs-candidate>` (which carries
-   its own synced `tools/`) as the working directory, the same way Read the
-   Docs builds from the checked-out repository root — not from an arbitrary
-   directory with `docs/publish/web` passed as an absolute path. Omitting
-   either the `-D` override or this working directory silently verifies plain
-   MyST instead of the portal-enabled build RTD actually runs (see §3).
    The assembler replaces matching target routes, retains the other stored
    targets, rebuilds the aggregate Sphinx tree, and rewrites
    `publish_manifest.json`. `python build.py web-assemble` (without `--push`)
@@ -367,10 +350,8 @@ an optional `assets/`. A wrong filename fails with the exact expected name
 rather than silently staging under the wrong route. Before staging,
 `web-sideload` runs its own local strict `sphinx -W -b html` build of that
 bundle — the same rigor `web-release` applies to a pipeline build, just
-against externally supplied source, and (for the same reason given for
-`web-release` above) without the aggregate step's `tools.rtd_portal`
-override either — and that HTML output is staged directly (there is no
-separate pipeline HTML build to reuse here).
+against externally supplied source — and that HTML output is staged
+directly (there is no separate pipeline HTML build to reuse here).
 
 Because there is no RST -> Web-profile pipeline run, there is no per-language
 projection evidence to seal. The staged `publish_meta.json` instead carries
@@ -425,17 +406,7 @@ operator workflow, including PDF extraction guidance, lives in
   archive files before the candidate branch can be pushed. Print artifacts
   remain under release storage and short-lived GitHub Actions artifacts.
 - The Read the Docs project uses `main` as its default build branch and builds
-  `docs/publish/web/` through `.readthedocs.yaml`, whose `build.jobs.build.html`
-  step runs `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal
-  docs/publish/web "$READTHEDOCS_OUTPUT/html"`. The assembled `conf.py` only
-  ever declares `extensions = ["myst_parser"]`
-  (`tools/readthedocs_source.py::_write_conf_py`); Read the Docs bolts
-  `tools.rtd_portal` on with this `-D` flag alone. Any local aggregate
-  verification of `docs/publish/web` must pass the same `-D extensions=...`
-  override, or it silently exercises plain MyST instead of the portal-enabled
-  build production actually runs — the gap that let production build 34602012
-  crash (`Unknown portal publication language: ja`) while the local
-  `web-assemble` verification step below stayed green.
+  `docs/publish/web/` through `.readthedocs.yaml`.
 - RTD never receives Feishu credentials and never reads mutable attachments.
   It renders only the frozen, hash-inventoried Git snapshot.
 

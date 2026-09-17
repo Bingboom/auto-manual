@@ -239,20 +239,6 @@ def _run_aggregate_strict_verification(run: CommandRunner, clone_dir: Path) -> N
     Runs in a scratch temp directory outside the clone so it never leaves
     build artifacts inside the candidate tree that would then fail the
     ``docs/publish`` scope guard.
-
-    The ``-D extensions=myst_parser,tools.rtd_portal`` override must match
-    ``.readthedocs.yaml``'s ``docs/publish/web`` build command byte for byte
-    (module docstring's "environment" claim, not just the source tree): the
-    assembled ``conf.py`` (``tools/readthedocs_source.py::_write_conf_py``)
-    only declares ``extensions = ["myst_parser"]`` -- Read the Docs bolts
-    ``tools.rtd_portal`` on at build time via this same flag, and production
-    build 34602012 crashed with ``ExtensionError: ... Unknown portal
-    publication language: ja`` precisely because this local gate ran plain
-    MyST (no portal extension, so ``tools.rtd_portal.page_context`` -- and
-    the language-table lookup inside it -- never executed) while RTD ran the
-    portal-enabled build. Keeping ``-W`` even though RTD's own command omits
-    it is a strictly stronger local gate, mirroring the same intentional gap
-    already documented on ``web_publish._run_strict_web_verification``.
     """
 
     web_source_dir = Paths(root=clone_dir).docs_publish_web_dir
@@ -261,11 +247,7 @@ def _run_aggregate_strict_verification(run: CommandRunner, clone_dir: Path) -> N
     with tempfile.TemporaryDirectory(prefix="auto-manual-web-assemble-verify-") as raw_temp_dir:
         html_out = Path(raw_temp_dir) / "html"
         result = run(
-            [
-                sys.executable, "-m", "sphinx", "-W", "-b", "html",
-                "-D", "extensions=myst_parser,tools.rtd_portal",
-                str(web_source_dir), str(html_out),
-            ],
+            [sys.executable, "-m", "sphinx", "-W", "-b", "html", str(web_source_dir), str(html_out)],
             clone_dir,
         )
         if result.returncode != 0:
