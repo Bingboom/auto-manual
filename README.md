@@ -1,7 +1,5 @@
 # Auto-Manual
 
-装箱图重复边框修复记录：[JBP-3600A](code-as-doc/reviews/jbp3600a-inbox-artwork-20260915.md)。
-
 *One source of truth — every market's manual, in every format.*
 
 Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产，转换为可评审、
