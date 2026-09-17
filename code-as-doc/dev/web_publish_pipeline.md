@@ -364,13 +364,36 @@ template would produce for that exact model/region/lang (the same
 derivation `resolve_md_output_path_for_target` uses for `web-release`'s
 collision precheck), an `index.md` toctree naming that stem, `conf.py`, and
 an optional `assets/`. A wrong filename fails with the exact expected name
-rather than silently staging under the wrong route. Before staging,
-`web-sideload` runs its own local strict `sphinx -W -b html` build of that
-bundle — the same rigor `web-release` applies to a pipeline build, just
-against externally supplied source, and (for the same reason given for
-`web-release` above) without the aggregate step's `tools.rtd_portal`
-override either — and that HTML output is staged directly (there is no
-separate pipeline HTML build to reuse here).
+rather than silently staging under the wrong route.
+
+The bundle has two planes. The **author plane** is what a human writes:
+prose plus the semantic component directives of
+[`tools/manual_md_directives.py`](../../tools/manual_md_directives.py)
+(`{callout}`, `{spec-table}`, `{troubleshooting}`, …). Hand-written
+component markup — any `manual-callout-*`/`hb-*` class, or an inline
+`style=` — is refused there, because only the directive layer emits the
+structure the shared stylesheet keys off (`colgroup` sizing, `scope="row"`
+label columns, `rowspan` merging, per-cell classes); a transcription loses
+all of it and renders an unstyled shell. The **staged plane** is that same
+document with every directive compiled into component markup by
+[`tools/web_sideload_expand.py`](../../tools/web_sideload_expand.py), and it
+is what actually gets staged.
+
+Compilation is mandatory, not a `conf.py` option: RTD builds the published
+source with `-D extensions=myst_parser,tools.rtd_portal` (see
+`.readthedocs.yaml`), which **overrides** `conf.py`, and
+`assemble_rtd_source` strips the bundle's `conf.py` outright — so the
+directive layer can never be loaded on the published build, and a directive
+left unexpanded would render live as an unknown-directive error.
+
+Before staging, `web-sideload` therefore verifies in two stages: first the
+author plane (component-markup lint, then a strict `sphinx -W -b html` with
+the directive extension loaded, so every directive must parse), then the
+compiled plane under `extensions=myst_parser,tools.rtd_portal` — RTD's own
+set, which is what proves the staged artifact will render there. The second
+stage's HTML output is staged directly (there is no separate pipeline HTML
+build to reuse here). The operator's `--md-dir` is never modified;
+compilation runs on a private copy.
 
 Because there is no RST -> Web-profile pipeline run, there is no per-language
 projection evidence to seal. The staged `publish_meta.json` instead carries
@@ -400,7 +423,10 @@ metadata with a real pipeline build (and its evidence) in place. From there,
 `web-assemble` and `web-receipt` proceed exactly as documented in §2.2.
 
 See [`tools/web_sideload.py`](../../tools/web_sideload.py) for the
-implementation, `tests/test_web_sideload.py` for its contract, and
+implementation, [`tools/web_sideload_expand.py`](../../tools/web_sideload_expand.py)
+for the author/staged plane compiler, `tests/test_web_sideload.py` and
+`tests/test_web_sideload_expand.py` for their contracts (the latter carries
+the negative control: hand-written component markup is refused), and
 `tests/test_publish_branch_assembly.py`'s `pdf_sideload`/`pipeline`
 control-pair tests for the evidence-gate exemption boundary. The full
 operator workflow, including PDF extraction guidance, lives in
