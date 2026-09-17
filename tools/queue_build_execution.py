@@ -167,85 +167,6 @@ def _worktree_data_root(
     return repo_root / data_root_path, build_workspace / data_root_path
 
 
-def run_web_language_build_steps(
-    *,
-    repo_root: Path,
-    config_path: Path,
-    model: str,
-    region: str,
-    lang: str | None,
-    data_root: str | None,
-    source_revision_workspace: Path,
-    run_command: Callable[..., None],
-    build_py_target_command: Callable[..., list[str]],
-    resolve_md_output_path_for_target: Callable[..., Path],
-    source: str = "review",
-) -> list[ProjectionCapture]:
-    """Run check/md/html under the Web presentation profile and capture evidence.
-
-    Shared by the queue's Web Publish worker (``tools.process_build_queue``)
-    and the local ``build.py web-release`` command (``tools.web_publish``) so
-    both build and capture per-step projection evidence identically instead of
-    each re-implementing the loop. When ``lang`` is given, each step's
-    generated projection bundle is captured for later
-    ``require_consistent_captures``/``seal_release_evidence`` verification;
-    without an explicit language (multi-language family builds), the three
-    build steps still run but no per-step evidence is captured.
-
-    ``source`` defaults to ``"review"`` to preserve the queue worker's
-    existing behavior (it always renders the review branch it just checked
-    out). The local ``web-release`` command passes its own ``--source``
-    through here instead, since a new book with no review branch yet needs
-    ``"auto"`` (falls back to the frozen template/data bundle) to publish at
-    all.
-    """
-    web_build_env = {
-        SOURCE_DATE_EPOCH_ENV: str(git_commit_epoch(source_revision_workspace)),
-    }
-    projection_captures: list[ProjectionCapture] = []
-    projection_manifest_path: Path | None = None
-    if (lang or "").strip():
-        prospective_md_path = resolve_md_output_path_for_target(
-            config_path=config_path,
-            model=model,
-            region=region,
-            lang=lang,
-        )
-        projection_manifest_path = (
-            prospective_md_path.parent.parent
-            / PathSegments.RST
-            / "bundle_manifest.json"
-        )
-    for action, no_clean in (("check", False), ("md", True), ("html", True)):
-        run_command(
-            build_py_target_command(
-                repo_root=repo_root,
-                action=action,
-                config_path=config_path,
-                model=model,
-                region=region,
-                lang=lang,
-                data_root=data_root,
-                source=source,
-                no_clean=no_clean,
-                presentation_profile="web",
-            ),
-            cwd=repo_root,
-            env=web_build_env,
-        )
-        if projection_manifest_path is not None:
-            projection_captures.append(
-                capture_projection(
-                    projection_manifest_path,
-                    action=action,
-                    model=model,
-                    region=region,
-                    language=str(lang),
-                )
-            )
-    return projection_captures
-
-
 def build_document_for_task(
     *,
     repo_root: Path,
@@ -407,18 +328,51 @@ def build_document_for_task(
                 cwd=effective_repo_root,
             )
         elif normalized_doc_phase == "web_publish":
-            projection_captures = run_web_language_build_steps(
-                repo_root=effective_repo_root,
-                config_path=effective_config_path,
-                model=model,
-                region=region,
-                lang=lang,
-                data_root=effective_data_root,
-                source_revision_workspace=review_workspace or effective_repo_root,
-                run_command=run_command,
-                build_py_target_command=build_py_target_command,
-                resolve_md_output_path_for_target=resolve_md_output_path_for_target,
-            )
+            source_revision_workspace = review_workspace or effective_repo_root
+            web_build_env = {
+                SOURCE_DATE_EPOCH_ENV: str(git_commit_epoch(source_revision_workspace)),
+            }
+            projection_captures: list[ProjectionCapture] = []
+            projection_manifest_path: Path | None = None
+            if (lang or "").strip():
+                prospective_md_path = resolve_md_output_path_for_target(
+                    config_path=effective_config_path,
+                    model=model,
+                    region=region,
+                    lang=lang,
+                )
+                projection_manifest_path = (
+                    prospective_md_path.parent.parent
+                    / PathSegments.RST
+                    / "bundle_manifest.json"
+                )
+            for action, no_clean in (("check", False), ("md", True), ("html", True)):
+                run_command(
+                    build_py_target_command(
+                        repo_root=effective_repo_root,
+                        action=action,
+                        config_path=effective_config_path,
+                        model=model,
+                        region=region,
+                        lang=lang,
+                        data_root=effective_data_root,
+                        source="review",
+                        no_clean=no_clean,
+                        presentation_profile="web",
+                    ),
+                    cwd=effective_repo_root,
+                    env=web_build_env,
+                )
+                if projection_manifest_path is not None:
+                    projection_captures.append(
+                        capture_projection(
+                            projection_manifest_path,
+                            action=action,
+                            model=model,
+                            region=region,
+                            language=str(lang),
+                        )
+                    )
         else:
             run_command(
                 build_py_target_command(

@@ -18,8 +18,6 @@ function render() {
   $('#market-title').textContent = query ? `Search results · ${selected.value}` : `${selected.value} manuals`;
   $('#market-note').textContent = selected.value === 'US'
     ? 'Manuals for the US edition.'
-    : selected.value === 'JP'
-    ? 'Manuals for the JP edition.'
     : 'EU and UK share the same products and manuals. Edition: EUUK.';
   $('#count').textContent = `${count} ${count === 1 ? 'product' : 'products'}`;
   $('#products').classList.toggle('single', count === 1);

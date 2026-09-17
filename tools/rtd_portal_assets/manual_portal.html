@@ -11,7 +11,7 @@
 <details class="all-manuals"><summary>All published manuals</summary><ul>{% for product in products %}{% for publication in product.publications %}<li><a href="{{ pathto(publication.url, 1) }}">{{ publication.label|e }}</a></li>{% endfor %}{% endfor %}</ul></details>
 <noscript><p>Use All published manuals above to browse every region without JavaScript.</p></noscript>
 </section></main>
-<footer><div class="footer-brand">Jackery</div><div>Manual Center <span>US · EU · UK · JP</span></div><a href="{{ pathto('search') }}">Search all manuals ↗</a></footer>
+<footer><div class="footer-brand">Jackery</div><div>Manual Center <span>US · EU · UK</span></div><a href="{{ pathto('search') }}">Search all manuals ↗</a></footer>
 <div class="platform"><div id="ethical-ad-placement"></div><p>Hosted by <a href="https://readthedocs.org/">Read the Docs</a></p></div>
 <dialog id="manual-dialog" aria-labelledby="dialog-title"><button class="close" aria-label="Close language selection">×</button><div class="eyebrow">YOUR PRODUCT MANUAL</div><h2 id="dialog-title"></h2><p id="dialog-model"></p><label class="language-label" for="language">Manual language</label><select id="language"><option value="current">Current publication</option>{% for language in portal.languages %}<option disabled>{{ language|e }} — Separate page coming later</option>{% endfor %}</select><p class="dialog-note">Only published language pages are available. Current publication may contain several languages. Changing language keeps this product and edition.</p><a id="open-manual" class="primary">Read manual <span>→</span></a></dialog>
 </body></html>

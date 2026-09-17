@@ -43,10 +43,6 @@ def run_main(
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
-    run_web_release: Callable[[argparse.Namespace], None] | None = None,
-    run_web_sideload: Callable[[argparse.Namespace], None] | None = None,
-    run_web_assemble: Callable[[argparse.Namespace], None] | None = None,
-    run_web_receipt: Callable[[argparse.Namespace], None] | None = None,
 ) -> int:
     # Make phase2/Feishu secrets from ~/.auto-manual-phase2.env available to this
     # process (and the child processes it spawns, e.g. tools/sync_data.py) without
@@ -89,10 +85,6 @@ def run_main(
             maybe_sync_review_before_build=maybe_sync_review_before_build,
             run_asset_command=run_asset_command,
             run_new_line=run_new_line,
-            run_web_release=run_web_release,
-            run_web_sideload=run_web_sideload,
-            run_web_assemble=run_web_assemble,
-            run_web_receipt=run_web_receipt,
         )
     except subprocess.CalledProcessError as exc:
         return exc.returncode or 1

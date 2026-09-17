@@ -25,36 +25,6 @@ _INCLUDE_RE = re.compile(
     r"^[ \t]*\.\.[ \t]+include::[ \t]+(.+?)[ \t]*$", re.MULTILINE
 )
 
-# ``source_kind`` marks the small minority of Web Publish targets that never
-# ran the RST -> Web-profile pipeline this evidence module verifies (an
-# externally converted PDF sideload, ``build.py web-sideload``). Pipeline
-# targets stay fail-closed on the mandatory language-projection evidence
-# below exactly as before; only a target explicitly marked
-# ``SOURCE_KIND_PDF_SIDELOAD`` is exempt, and that exemption is itself
-# audited: the marker is carried into the stored ``publish_meta.json`` and
-# from there into ``publish_manifest.json``'s target entries.
-SOURCE_KIND_PIPELINE = "pipeline"
-SOURCE_KIND_PDF_SIDELOAD = "pdf_sideload"
-_SOURCE_KINDS = frozenset({SOURCE_KIND_PIPELINE, SOURCE_KIND_PDF_SIDELOAD})
-
-
-def read_source_kind(payload: dict[str, Any], *, source: Path) -> str:
-    """Read the optional ``source_kind`` discriminator, defaulting to pipeline.
-
-    Absence is the historical default and keeps every existing pipeline
-    target's behavior byte-for-byte unchanged; only an explicit
-    ``pdf_sideload`` value exempts a target from the language-projection
-    evidence gate that callers of this module enforce.
-    """
-
-    if "source_kind" not in payload:
-        return SOURCE_KIND_PIPELINE
-    value = payload["source_kind"]
-    if not isinstance(value, str) or value not in _SOURCE_KINDS:
-        allowed = ", ".join(sorted(_SOURCE_KINDS))
-        raise RuntimeError(f"Web Publish metadata source_kind must be one of {allowed}: {source}")
-    return value
-
 
 @dataclass(frozen=True)
 class ProjectionCapture:

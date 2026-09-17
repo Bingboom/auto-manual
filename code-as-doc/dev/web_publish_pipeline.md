@@ -201,88 +201,8 @@ change JP D1–D4 or promote production eligibility.
 ### 2.2 Git-only transaction
 
 Use this path only when the operator has designated reviewed Git content as the
-release authority and explicitly excluded online-table writes. It never
-creates synthetic queue rows, and assembly/build/verification never write any
-online table. Writing `Document_link.HTML_link` and the published-manual
-catalog row is a distinct, explicit, human-gated step
-(`build.py web-receipt --write`, step 7 below) run only after the release PR
-has merged and production has been verified — never automatically as part of
-build, staging, or the release PR.
-
-`python build.py web-release --config <config> --model <M> --region <R> --lang
-<L> --version <V>` is the formal entry point for steps 2 and 3 below: it runs
-the warm-up + check/md/html web-profile build, captures and seals the
-per-language projection receipt, runs the local strict `sphinx -W`
-verification (deliberately *without* the `-D extensions=...,tools.rtd_portal`
-override step 4 below adds: the portal's catalog/language-switcher logic is a
-whole-site concern over the assembled `docs/publish/**` tree — including the
-`sources/web/**/publish_meta.json` sibling metadata `tools/publish_branch_assembly.py`
-writes there — that a lone, not-yet-assembled book never has; adding the
-override here would fail on that missing structure instead of verifying
-anything about this book's own content), stages the sealed bundle under
-`<model>/<region>/<lang>/versions/<version>/web/`, and writes
-`latest/web/publish_meta.json` — the same library functions the queue-driven
-Web Publish worker uses (`tools.queue_build_execution`,
-`tools.queue_bound_outputs`, `tools.web_language_release_evidence`), run
-directly against the current checkout instead of a queue row. `--dry-run`
-prints the resolved target list and exits without building. `--targets-file`
-runs a batch of `MODEL,REGION,LANG[,VERSION]` rows and keeps going past a
-single failed book, so a multi-language family (for example three rows for
-one model/region) does not abort the rest. It does not perform step 1
-(authoring `source_manifest.json`) or steps 4–6 (assembling into
-`docs/publish/**` and opening the release PR) below; those remain manual until
-a later conveyor-belt command covers them. See
-[`tools/web_publish.py`](../../tools/web_publish.py) for the implementation
-and `tests/test_web_publish.py` for its contract.
-
-`python build.py web-assemble [--releases-root <path>] [--title <title>]
-[--hello-docs-repo <owner/repo>] [--push]` is the formal entry point for steps
-4 and 5 below: it makes an isolated blobless clone of Hello-Docs
-(`--filter=blob:none`: the full commit graph up front, file contents fetched
-lazily on checkout — never `--depth`, since the ancestry check below needs
-real history) under a scratch temporary directory (never the operator's own
-local Hello-Docs checkout), reconciles it against the existing `publish`
-branch tip when one exists (preserving any targets already staged there),
-assembles every book staged under `--releases-root` (default
-`reports/releases`) with the same `tools/publish_branch_assembly.py` this
-section already documents, and runs
-the same aggregate `sphinx -W -b html -D extensions=myst_parser,tools.rtd_portal`
-verification — the same `-D` portal-extension override `.readthedocs.yaml`
-passes (see §3), so the RTD portal machinery (multi-book catalog, per-page
-language switcher, the `settings.json` language table) is exercised locally
-too, not just plain MyST. It then checks the
-candidate's three-dot diff against `main` and refuses to continue if any path
-outside `docs/publish/**` changed — the same scope guard the queue workflow's
-"Validate publish PR scope" step enforces. By default it stops there
-(assemble + verify + scope guard only, no network write); only `--push`
-advances the shared `publish` branch with an ordinary, never-forced push and
-opens or updates the single `publish -> main` PR. It never merges that PR —
-merging stays a human step in every path. It does not author
-`source_manifest.json` (step 1) or perform the post-merge verification (step
-6); those remain manual. See [`tools/web_assemble.py`](../../tools/web_assemble.py)
-for the implementation and `tests/test_web_assemble.py` for its contract.
-
-`python build.py web-receipt --config <config> [--model <M> --region <R>
---lang <L>] [--write]` is the formal entry point for step 7 below: for every
-`latest/web/publish_meta.json` target under `--releases-root` (default
-`reports/releases`, narrowed by `--model`/`--region`/`--lang` when given), it
-resolves the `Document_link` row through a priority chain (explicit
-`--receipt-record-id` overrides > `publish_meta.json`'s `queue_record_ids` >
-a live search by model/region/lang, needed because a Git-only book never had
-a queue row and so `queue_record_ids` is always empty for it), writes
-`HTML_link`, then creates or updates the matching published-manual catalog
-(发布文档管理) row by (model, region, lang, `doc_type=web`), and GETs each
-written record back to confirm the persisted value before reporting success.
-Zero matching `Document_link` rows is reported, not auto-repaired — this
-command never creates a queue row. More than one candidate row (for either
-table) is rejected with every candidate listed; resolving that is an
-operator decision. Defaults to dry-run: without `--write` it only reads local
-`publish_meta.json` files and prints the resolved plan, touching no live
-table; `--write` performs the live writes. See
-[`tools/web_receipt.py`](../../tools/web_receipt.py) and
-[`tools/manual_catalog_writeback.py`](../../tools/manual_catalog_writeback.py)
-for the implementation and `tests/test_web_receipt.py` /
-`tests/test_manual_catalog_writeback.py` for their contract.
+release authority and explicitly excluded online-table writes. It does not
+create synthetic queue rows or write `HTML_link`.
 
 1. Commit the complete target structure, sources and assets with a
    `source_manifest.json`. Record the target identity, source authority,
@@ -308,129 +228,24 @@ for the implementation and `tests/test_web_receipt.py` /
 
    ```bash
    python tools/publish_branch_assembly.py --releases-root <isolated-release-root> --output-dir <hello-docs-candidate>/docs/publish
-   cd <hello-docs-candidate> && python -m sphinx -W -b html -D extensions=myst_parser,tools.rtd_portal docs/publish/web <isolated-verification-html>
+   python -m sphinx -W -b html <hello-docs-candidate>/docs/publish/web <isolated-verification-html>
    ```
 
-   The `cd` matters, not just the `-D` flag: `tools.rtd_portal` must import as
-   a package, so this has to run with `<hello-docs-candidate>` (which carries
-   its own synced `tools/`) as the working directory, the same way Read the
-   Docs builds from the checked-out repository root — not from an arbitrary
-   directory with `docs/publish/web` passed as an absolute path. Omitting
-   either the `-D` override or this working directory silently verifies plain
-   MyST instead of the portal-enabled build RTD actually runs (see §3).
    The assembler replaces matching target routes, retains the other stored
    targets, rebuilds the aggregate Sphinx tree, and rewrites
-   `publish_manifest.json`. `python build.py web-assemble` (without `--push`)
-   runs exactly this step against a fresh isolated clone.
+   `publish_manifest.json`.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
-   branches, print artifacts, or unrelated targets. `python build.py
-   web-assemble --push` runs this step too: a non-force `publish` push plus
-   opening or updating the single `publish -> main` PR.
+   branches, print artifacts, or unrelated targets.
 6. After the approved PR merges, verify the Read the Docs build commit, each
    canonical target route, each short root alias, all referenced assets, and
    desktop/mobile rendering.
-7. Only once that verification is in hand, run `build.py web-receipt --write`
-   for the released target(s) to write `Document_link.HTML_link` and the
-   published-manual catalog row, and confirm the reported per-target GET
-   readback for both records.
 
 The durable evidence is the source Git commit, source-manifest and input hashes,
 release metadata, publish-manifest hash, Hello-Docs snapshot commit, Read the
-Docs build commit, and the verified production URLs. For a Git-only
-transaction, `Document_link.HTML_link` and the published-manual catalog row
-are written only by the explicit step 7 receipt above, after that evidence is
-already in hand; no earlier step in this section writes online staging,
-source, asset, build, or link records.
-
-### 2.3 PDF sideload bypass
-
-Steps 2-3 above assume the target's structured intake (spec extraction,
-templating) is already done, so `build.py check`/render can actually run.
-Some books must go live before that is true — the printed PDF exists but
-`spec-sheet-structured-intake` has not landed real phase2 data for the
-target yet. `python build.py web-sideload --config <config> --model <M>
---region <R> --lang <L> --version <V> --md-dir <bundle>
-[--debt "category:location:payoff action"]... [--dry-run]` is the bypass for
-exactly that gap: it stages an **externally converted** MyST Markdown
-source — never rendered by this repo's RST -> Web-profile pipeline — using
-the same `tools.queue_bound_outputs.stage_web_publish_assets_to_host_repo`
-and `write_web_publish_metadata` that `web-release` uses, so `web-assemble`
-collects it with equal standing to a pipeline-built book.
-
-`--md-dir` must already be shaped like a staged `md/` bundle: a
-`manual_<stem>.md` whose filename matches what the config's output-naming
-template would produce for that exact model/region/lang (the same
-derivation `resolve_md_output_path_for_target` uses for `web-release`'s
-collision precheck), an `index.md` toctree naming that stem, `conf.py`, and
-an optional `assets/`. A wrong filename fails with the exact expected name
-rather than silently staging under the wrong route.
-
-The bundle has two planes. The **author plane** is what a human writes:
-prose plus the semantic component directives of
-[`tools/manual_md_directives.py`](../../tools/manual_md_directives.py)
-(`{callout}`, `{spec-table}`, `{troubleshooting}`, …). Hand-written
-component markup — any `manual-callout-*`/`hb-*` class, or an inline
-`style=` — is refused there, because only the directive layer emits the
-structure the shared stylesheet keys off (`colgroup` sizing, `scope="row"`
-label columns, `rowspan` merging, per-cell classes); a transcription loses
-all of it and renders an unstyled shell. The **staged plane** is that same
-document with every directive compiled into component markup by
-[`tools/web_sideload_expand.py`](../../tools/web_sideload_expand.py), and it
-is what actually gets staged.
-
-Compilation is mandatory, not a `conf.py` option: RTD builds the published
-source with `-D extensions=myst_parser,tools.rtd_portal` (see
-`.readthedocs.yaml`), which **overrides** `conf.py`, and
-`assemble_rtd_source` strips the bundle's `conf.py` outright — so the
-directive layer can never be loaded on the published build, and a directive
-left unexpanded would render live as an unknown-directive error.
-
-Before staging, `web-sideload` therefore verifies in two stages: first the
-author plane (component-markup lint, then a strict `sphinx -W -b html` with
-the directive extension loaded, so every directive must parse), then the
-compiled plane under `extensions=myst_parser,tools.rtd_portal` — RTD's own
-set, which is what proves the staged artifact will render there. The second
-stage's HTML output is staged directly (there is no separate pipeline HTML
-build to reuse here). The operator's `--md-dir` is never modified;
-compilation runs on a private copy.
-
-Because there is no RST -> Web-profile pipeline run, there is no per-language
-projection evidence to seal. The staged `publish_meta.json` instead carries
-an explicit `"source_kind": "pdf_sideload"` marker (a pipeline-built
-target either omits `source_kind` or carries `"source_kind": "pipeline"`,
-unchanged from before this marker existed). That marker is the **only**
-thing `tools.publish_locale_identity` / `tools.publish_branch_assembly`
-accept as exempting a target from the otherwise-mandatory
-`language_projection_evidence_*` gate described in §1 and §2.2 above; every
-pipeline target — with or without an explicit `source_kind` — stays exactly
-as fail-closed on that evidence as it was before sideload existed. The
-marker is carried through unconditionally into the stored
-`docs/publish/sources/web/**/publish_meta.json` and from there into
-`publish_manifest.json`'s per-target entry, so which targets bypassed the
-pipeline is always auditable from the assembled release, not just from a
-local `reports/releases/` snapshot.
-
-Every `web-sideload` run also records one **unconditional** debt-ledger
-entry (category `整本未结构化`, payoff action "run
-`spec-sheet-structured-intake`, then re-run `web-release`"), through the
-same `tools.web_publish.record_debt_entries` ledger `web-release` uses —
-regardless of any `--debt` entries also passed. Payoff is mechanical, not a
-separate withdrawal step: once real phase2 data exists for the target, an
-ordinary `build.py web-release` run for the same model/region/lang writes
-the same `latest/web/publish_meta.json` identity, overwriting the sideloaded
-metadata with a real pipeline build (and its evidence) in place. From there,
-`web-assemble` and `web-receipt` proceed exactly as documented in §2.2.
-
-See [`tools/web_sideload.py`](../../tools/web_sideload.py) for the
-implementation, [`tools/web_sideload_expand.py`](../../tools/web_sideload_expand.py)
-for the author/staged plane compiler, `tests/test_web_sideload.py` and
-`tests/test_web_sideload_expand.py` for their contracts (the latter carries
-the negative control: hand-written component markup is refused), and
-`tests/test_publish_branch_assembly.py`'s `pdf_sideload`/`pipeline`
-control-pair tests for the evidence-gate exemption boundary. The full
-operator workflow, including PDF extraction guidance, lives in
-[`.agents/skills/pdf-web-sideload/SKILL.md`](../../.agents/skills/pdf-web-sideload/SKILL.md).
+Docs build commit, and the verified production URLs. `Document_link.HTML_link`
+readback belongs only to the queue-driven transaction. A Git-only transaction
+does not write online staging, source, asset, build, or link records.
 
 ## 3. Repository and hosting boundaries
 
@@ -451,17 +266,7 @@ operator workflow, including PDF extraction guidance, lives in
   archive files before the candidate branch can be pushed. Print artifacts
   remain under release storage and short-lived GitHub Actions artifacts.
 - The Read the Docs project uses `main` as its default build branch and builds
-  `docs/publish/web/` through `.readthedocs.yaml`, whose `build.jobs.build.html`
-  step runs `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal
-  docs/publish/web "$READTHEDOCS_OUTPUT/html"`. The assembled `conf.py` only
-  ever declares `extensions = ["myst_parser"]`
-  (`tools/readthedocs_source.py::_write_conf_py`); Read the Docs bolts
-  `tools.rtd_portal` on with this `-D` flag alone. Any local aggregate
-  verification of `docs/publish/web` must pass the same `-D extensions=...`
-  override, or it silently exercises plain MyST instead of the portal-enabled
-  build production actually runs — the gap that let production build 34602012
-  crash (`Unknown portal publication language: ja`) while the local
-  `web-assemble` verification step below stayed green.
+  `docs/publish/web/` through `.readthedocs.yaml`.
 - RTD never receives Feishu credentials and never reads mutable attachments.
   It renders only the frozen, hash-inventoried Git snapshot.
 

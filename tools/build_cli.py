@@ -22,10 +22,6 @@ def parse_args(
             "asset-check",
             "asset-intake",
             "new-line",
-            "web-release",
-            "web-sideload",
-            "web-assemble",
-            "web-receipt",
             *build_actions,
             "idml",
             "review",
@@ -316,11 +312,7 @@ def parse_args(
     ap.add_argument(
         "--write",
         action="store_true",
-        help=(
-            "For new-line: materialize the named scaffold; for asset-check --refresh: write "
-            "recomputed hashes; for web-receipt: perform the live HTML_link and catalog writes "
-            "(default is dry-run: print the plan, touch no live table)"
-        ),
+        help="For new-line: materialize the named scaffold; for asset-check --refresh: write recomputed hashes",
     )
     ap.add_argument(
         "--output-config",
@@ -461,85 +453,6 @@ def parse_args(
     ap.add_argument(
         "--dry-run",
         action="store_true",
-        help="For sync-data, spec-master-rebuild, process-build-queue, process-review-start-queue, web-release, web-sideload, or web-assemble: validate/report without writing files",
-    )
-    ap.add_argument(
-        "--targets-file",
-        default=None,
-        help=(
-            "For web-release: path to a batch targets file, one MODEL,REGION,LANG[,VERSION] "
-            "per line (# starts a comment); runs every row as its own release and keeps going "
-            "past a single failed book"
-        ),
-    )
-    ap.add_argument(
-        "--debt",
-        action="append",
-        default=[],
-        help=(
-            "For web-release or web-sideload: record one manual debt-ledger entry as "
-            "'category:location:description'; repeat for multiple entries. web-sideload also "
-            "always records one automatic '整本未结构化' entry regardless of this flag"
-        ),
-    )
-    ap.add_argument(
-        "--skip-verify",
-        action="store_true",
-        help="For web-release: skip the local strict `sphinx -W` verification pass",
-    )
-    ap.add_argument(
-        "--md-dir",
-        default=None,
-        help=(
-            "For web-sideload: local directory holding the externally converted MyST Markdown "
-            "source, shaped like a staged md/ bundle (manual_<stem>.md matching the target's "
-            "config-derived output filename, index.md, conf.py, and an optional assets/)"
-        ),
-    )
-    ap.add_argument(
-        "--releases-root",
-        default=None,
-        help=(
-            "For web-assemble/web-receipt: releases root holding staged "
-            "latest/web/publish_meta.json bundles (default: reports/releases)"
-        ),
-    )
-    ap.add_argument(
-        "--title",
-        default=None,
-        help="For web-assemble: aggregate Sphinx title passed to the assembler (default: Auto Manual Library, matching the queue workflow)",
-    )
-    ap.add_argument(
-        "--hello-docs-repo",
-        default=None,
-        help=(
-            "For web-assemble: Hello-Docs remote as an OWNER/REPO slug, a full git URL, "
-            "or a local path (tests only, never the operator's real Hello-Docs checkout); "
-            "default Bingboom/Hello-Docs"
-        ),
-    )
-    ap.add_argument(
-        "--push",
-        action="store_true",
-        help=(
-            "For web-assemble: advance the shared publish branch with an ordinary "
-            "(non-force) push and open or update the publish -> main PR; default is "
-            "assemble + strict verify + scope guard only, with no network write"
-        ),
-    )
-    ap.add_argument(
-        "--base-url",
-        default=None,
-        help="For web-receipt: Read the Docs base URL used to derive the HTML_link route",
-    )
-    ap.add_argument(
-        "--receipt-record-id",
-        action="append",
-        default=[],
-        help=(
-            "For web-receipt: explicit Document_link record_id to receipt into, overriding "
-            "publish_meta.json's queue_record_ids and the model/region/lang search fallback; "
-            "repeat for multiple rows"
-        ),
+        help="For sync-data, spec-master-rebuild, process-build-queue, or process-review-start-queue: validate/report without writing files",
     )
     return ap.parse_args(argv)
