@@ -224,29 +224,6 @@ a later conveyor-belt command covers them. See
 [`tools/web_publish.py`](../../tools/web_publish.py) for the implementation
 and `tests/test_web_publish.py` for its contract.
 
-`python build.py web-assemble [--releases-root <path>] [--title <title>]
-[--hello-docs-repo <owner/repo>] [--push]` is the formal entry point for steps
-4 and 5 below: it makes an isolated blobless clone of Hello-Docs
-(`--filter=blob:none`: the full commit graph up front, file contents fetched
-lazily on checkout — never `--depth`, since the ancestry check below needs
-real history) under a scratch temporary directory (never the operator's own
-local Hello-Docs checkout), reconciles it against the existing `publish`
-branch tip when one exists (preserving any targets already staged there),
-assembles every book staged under `--releases-root` (default
-`reports/releases`) with the same `tools/publish_branch_assembly.py` this
-section already documents, and runs
-the same aggregate `sphinx -W -b html` verification. It then checks the
-candidate's three-dot diff against `main` and refuses to continue if any path
-outside `docs/publish/**` changed — the same scope guard the queue workflow's
-"Validate publish PR scope" step enforces. By default it stops there
-(assemble + verify + scope guard only, no network write); only `--push`
-advances the shared `publish` branch with an ordinary, never-forced push and
-opens or updates the single `publish -> main` PR. It never merges that PR —
-merging stays a human step in every path. It does not author
-`source_manifest.json` (step 1) or perform the post-merge verification (step
-6); those remain manual. See [`tools/web_assemble.py`](../../tools/web_assemble.py)
-for the implementation and `tests/test_web_assemble.py` for its contract.
-
 1. Commit the complete target structure, sources and assets with a
    `source_manifest.json`. Record the target identity, source authority,
    original filename and SHA-256, included pages, deliberate normalizations,
@@ -276,13 +253,10 @@ for the implementation and `tests/test_web_assemble.py` for its contract.
 
    The assembler replaces matching target routes, retains the other stored
    targets, rebuilds the aggregate Sphinx tree, and rewrites
-   `publish_manifest.json`. `python build.py web-assemble` (without `--push`)
-   runs exactly this step against a fresh isolated clone.
+   `publish_manifest.json`.
 5. Commit that candidate on the normal Hello-Docs release branch and open the
    usual `docs/publish/**`-only PR. Do not include engineering code, review
-   branches, print artifacts, or unrelated targets. `python build.py
-   web-assemble --push` runs this step too: a non-force `publish` push plus
-   opening or updating the single `publish -> main` PR.
+   branches, print artifacts, or unrelated targets.
 6. After the approved PR merges, verify the Read the Docs build commit, each
    canonical target route, each short root alias, all referenced assets, and
    desktop/mobile rendering.
