@@ -18,7 +18,6 @@ class TestBuildDispatch(unittest.TestCase):
             "asset-check",
             "asset-intake",
             "new-line",
-            "web-release",
             "review",
             "check",
             "sync-review",
@@ -88,12 +87,6 @@ class TestBuildDispatch(unittest.TestCase):
                     [("ensure", action), ("asset-command", action)],
                     self._dispatch(action),
                 )
-
-    def test_dispatch_web_release_should_use_its_own_facade(self) -> None:
-        self.assertEqual(
-            [("ensure", "web-release"), ("web-release-command", "web-release")],
-            self._dispatch("web-release"),
-        )
 
     def test_dispatch_action_should_fallback_to_build_action(self) -> None:
         calls = self._dispatch("word")
@@ -567,7 +560,6 @@ class TestBuildDispatch(unittest.TestCase):
                 maybe_sync_review_before_build=record_maybe_sync,
                 run_asset_command=record_arg("asset-command"),
                 run_new_line=record_arg("new-line"),
-                run_web_release=record_arg("web-release-command"),
             )
         return calls
 

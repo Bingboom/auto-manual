@@ -477,10 +477,6 @@ Quality and release logic should follow concern-specific modules instead of drif
 - [`tools/write_web_publish_html_link.py`](../../tools/write_web_publish_html_link.py)
   - derives deterministic Read the Docs routes from Web Publish metadata
   - writes `HTML_link` only for the queue record ids bound to each frozen target
-- [`tools/web_publish.py`](../../tools/web_publish.py)
-  - local `build.py web-release` orchestration: batch collision precheck, warm-up plus
-    the shared check/md/html web build loop, evidence sealing, staging, strict verify
-  - owns the web debt ledger (per-book `debt_ledger.json` + repo-wide `reports/web_debt_ledger.jsonl`)
 
 ## 6. Cloud-Doc Backport Modules
 

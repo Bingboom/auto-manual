@@ -27,11 +27,7 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # +11: the publish asset gate needs one injected entrypoint wrapper
     # (import + 7-line resolver + call site). Bundle-path resolution lives in
     # tools/release_asset_lineage.py, so this is the irreducible minimum.
-    # +2: the `web-release` command needs one import plus one `partial(...)`
-    # wiring line in main(), matching the existing asset-check/new-line
-    # optional-facade pattern; the orchestration itself lives in
-    # tools/web_publish.py.
-    "build.py": 763,
+    "build.py": 761,
     "tools/build_docs.py": 860,
     "tools/process_build_queue.py": 650,
     "tools/validate_spec_master_runtime.py": 880,

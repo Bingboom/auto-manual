@@ -44,7 +44,6 @@ class DispatchContext:
     maybe_sync_review_before_build: Callable[..., None]
     run_asset_command: Callable[[argparse.Namespace], None] | None = None
     run_new_line: Callable[[argparse.Namespace], None] | None = None
-    run_web_release: Callable[[argparse.Namespace], None] | None = None
 
 
 ActionHandler = Callable[[argparse.Namespace, DispatchContext], None]
@@ -176,12 +175,6 @@ def _dispatch_new_line_action(args: argparse.Namespace, context: DispatchContext
     if context.run_new_line is None:
         raise RuntimeError("new-line is not wired into this build entrypoint")
     context.run_new_line(args)
-
-
-def _dispatch_web_release_action(args: argparse.Namespace, context: DispatchContext) -> None:
-    if context.run_web_release is None:
-        raise RuntimeError("web-release is not wired into this build entrypoint")
-    context.run_web_release(args)
 
 
 def _dispatch_sync_review_action(args: argparse.Namespace, context: DispatchContext) -> None:
@@ -362,7 +355,6 @@ ACTION_HANDLERS: dict[str, ActionHandler] = {
     "asset-check": _dispatch_asset_action,
     "asset-intake": _dispatch_asset_action,
     "new-line": _dispatch_new_line_action,
-    "web-release": _dispatch_web_release_action,
     "review": _dispatch_review_action,
     "check": _dispatch_check_action,
     "sync-review": _dispatch_sync_review_action,
@@ -422,7 +414,6 @@ def dispatch_action(
     maybe_sync_review_before_build: Callable[[argparse.Namespace], None],
     run_asset_command: Callable[[argparse.Namespace], None] | None = None,
     run_new_line: Callable[[argparse.Namespace], None] | None = None,
-    run_web_release: Callable[[argparse.Namespace], None] | None = None,
 ) -> None:
     context = DispatchContext(
         config_path=config_path,
@@ -454,7 +445,6 @@ def dispatch_action(
         maybe_sync_review_before_build=maybe_sync_review_before_build,
         run_asset_command=run_asset_command,
         run_new_line=run_new_line,
-        run_web_release=run_web_release,
     )
     context.ensure_supported_staging_action(args)
     ACTION_HANDLERS.get(args.action, _dispatch_build_action)(args, context)
