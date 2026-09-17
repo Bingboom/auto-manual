@@ -99,6 +99,65 @@ class ValidateScopeTests(unittest.TestCase):
             web_assemble._validate_scope(fake_run, Path("/clone"))
 
 
+class AggregateStrictVerificationTests(unittest.TestCase):
+    """``.readthedocs.yaml``'s ``docs/publish/web`` build runs
+
+        python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal docs/publish/web ...
+
+    Before this fix, this local gate ran plain ``sphinx -W -b html`` with no
+    ``-D`` override, so ``tools.rtd_portal`` -- and the language-table lookup
+    inside its ``page_context`` handler -- never executed here even though
+    Read the Docs always bolts that extension on at build time (the
+    assembled ``conf.py`` only ever declares ``extensions = ["myst_parser"]``;
+    see ``tools/readthedocs_source.py::_write_conf_py``). Production build
+    34602012 crashed with ``Unknown portal publication language: ja`` while
+    this same-looking local check stayed green.
+    """
+
+    def test_sphinx_invocation_matches_the_rtd_build_command(self) -> None:
+        with TemporaryDirectory() as clone_tmp:
+            clone_dir = Path(clone_tmp)
+            (clone_dir / "docs" / "publish" / "web").mkdir(parents=True)
+            calls: list[list[str]] = []
+
+            def fake_run(cmd, cwd):
+                self.assertEqual(clone_dir, cwd)
+                calls.append(list(cmd))
+                return _proc(returncode=0)
+
+            web_assemble._run_aggregate_strict_verification(fake_run, clone_dir)
+
+        self.assertEqual(1, len(calls))
+        cmd = calls[0]
+        self.assertIn("-W", cmd)
+        self.assertIn("-b", cmd)
+        self.assertIn("html", cmd)
+        self.assertIn("-D", cmd)
+        d_index = cmd.index("-D")
+        self.assertEqual("extensions=myst_parser,tools.rtd_portal", cmd[d_index + 1])
+
+    def test_missing_web_source_raises_before_running_sphinx(self) -> None:
+        with TemporaryDirectory() as clone_tmp:
+            clone_dir = Path(clone_tmp)  # no docs/publish/web assembled
+
+            def fake_run(cmd, cwd):
+                raise AssertionError("sphinx must not run without an assembled Web source")
+
+            with self.assertRaisesRegex(RuntimeError, "no Web source to verify"):
+                web_assemble._run_aggregate_strict_verification(fake_run, clone_dir)
+
+    def test_sphinx_failure_surfaces_as_a_runtime_error(self) -> None:
+        with TemporaryDirectory() as clone_tmp:
+            clone_dir = Path(clone_tmp)
+            (clone_dir / "docs" / "publish" / "web").mkdir(parents=True)
+
+            def fake_run(cmd, cwd):
+                return _proc(returncode=1, stderr="Unknown portal publication language: ja")
+
+            with self.assertRaisesRegex(RuntimeError, "Unknown portal publication language: ja"):
+                web_assemble._run_aggregate_strict_verification(fake_run, clone_dir)
+
+
 class CommitCandidateTests(unittest.TestCase):
     def test_returns_none_when_nothing_is_staged(self) -> None:
         calls: list[list[str]] = []

@@ -42,7 +42,7 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(self.settings["default_region"], "EU")
         self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK"])
         self.assertEqual(self.settings["regions"]["EU"], self.settings["regions"]["UK"])
-        self.assertEqual(len(self.settings["languages"]), 12)
+        self.assertEqual(len(self.settings["languages"]), 13)
 
     def test_catalog_uses_frozen_links_and_local_product_images(self):
         root = self.assemble()
