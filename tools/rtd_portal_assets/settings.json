@@ -21,8 +21,8 @@
   "regions": {"US": "US", "EU": "EU", "UK": "EU"},
   "categories": ["Power stations", "Battery packs", "Solar panels", "Accessories"],
   "category_prefixes": {"JE-": "Power stations", "JBP-": "Battery packs", "JS-": "Solar panels"},
-  "languages": ["English", "Français", "Español", "Deutsch", "Italiano", "Português", "Nederlands", "Polski", "Українська", "Ελληνικά", "עברית", "العربية"],
-  "language_labels": {"en": "English", "fr": "Français", "es": "Español", "de": "Deutsch", "it": "Italiano", "pt": "Português", "nl": "Nederlands", "pl": "Polski", "uk": "Українська", "el": "Ελληνικά", "he": "עברית", "ar": "العربية"},
+  "languages": ["English", "Français", "Español", "Deutsch", "Italiano", "Português", "Nederlands", "Polski", "Українська", "Ελληνικά", "עברית", "العربية", "日本語"],
+  "language_labels": {"en": "English", "fr": "Français", "es": "Español", "de": "Deutsch", "it": "Italiano", "pt": "Português", "nl": "Nederlands", "pl": "Polski", "uk": "Українська", "el": "Ελληνικά", "he": "עברית", "ar": "العربية", "ja": "日本語"},
   "feedback_channels": [
     {"label": "Email support (hello@jackery.com)", "url": "mailto:hello@jackery.com"}
   ]
