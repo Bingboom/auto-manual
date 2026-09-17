@@ -20,7 +20,6 @@ class TestBuildDispatch(unittest.TestCase):
             "new-line",
             "web-release",
             "web-assemble",
-            "web-receipt",
             "review",
             "check",
             "sync-review",
@@ -101,12 +100,6 @@ class TestBuildDispatch(unittest.TestCase):
         self.assertEqual(
             [("ensure", "web-assemble"), ("web-assemble-command", "web-assemble")],
             self._dispatch("web-assemble"),
-        )
-
-    def test_dispatch_web_receipt_should_use_its_own_facade(self) -> None:
-        self.assertEqual(
-            [("ensure", "web-receipt"), ("web-receipt-command", "web-receipt")],
-            self._dispatch("web-receipt"),
         )
 
     def test_dispatch_action_should_fallback_to_build_action(self) -> None:
@@ -583,7 +576,6 @@ class TestBuildDispatch(unittest.TestCase):
                 run_new_line=record_arg("new-line"),
                 run_web_release=record_arg("web-release-command"),
                 run_web_assemble=record_arg("web-assemble-command"),
-                run_web_receipt=record_arg("web-receipt-command"),
             )
         return calls
 

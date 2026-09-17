@@ -46,7 +46,6 @@ from tools.asset_commands import run_asset_command as _run_asset_command_impl
 from tools.new_line_scaffold import run_new_line as _run_new_line_impl
 from tools.web_publish import run_web_release as _run_web_release_impl
 from tools.web_assemble import run_web_assemble as _run_web_assemble_impl
-from tools.web_receipt import run_web_receipt as _run_web_receipt_impl
 from tools.build_doctor import (
     check_word_com_available as _check_word_com_available_impl,
     collect_doctor_findings as _collect_doctor_findings_impl,
@@ -759,7 +758,6 @@ def main(argv: list[str] | None = None) -> int:
         run_new_line=partial(_run_new_line_impl, repo_root=ROOT),
         run_web_release=partial(_run_web_release_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
         run_web_assemble=partial(_run_web_assemble_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
-        run_web_receipt=partial(_run_web_receipt_impl, repo_root=ROOT, resolve_path_from_root=resolve_path_from_root),
     )
 
 
