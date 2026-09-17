@@ -1,6 +1,6 @@
 ---
 name: pdf-web-sideload
-description: Bypass intake for a book whose structured intake (spec extraction, templating) is not done yet but that must go live now. Convert the shipped PDF to MyST Markdown, land it with `build.py web-sideload` (stages it under reports/releases/ with a mandatory pdf_sideload marker and an automatic 整本未结构化 debt entry, no pipeline evidence), then collect it exactly like a pipeline book with `build.py web-assemble`. Use when the trigger is "this book needs to ship before it's structurally sourced" — not for a book that already has a review branch or phase2 data (use web-release), and not for standing up a brand-new model/region/lang target (use new-region-line first).
+description: Bypass intake for a book whose structured intake (spec extraction, templating) is not done yet but that must go live now. Convert the shipped PDF to MyST Markdown declaring every component with its semantic directive (never hand-written component HTML), land it with `build.py web-sideload` (stages it under reports/releases/ with a mandatory pdf_sideload marker and an automatic 整本未结构化 debt entry, no pipeline evidence), then collect it exactly like a pipeline book with `build.py web-assemble`. Use when the trigger is "this book needs to ship before it's structurally sourced" — not for a book that already has a review branch or phase2 data (use web-release), and not for standing up a brand-new model/region/lang target (use new-region-line first).
 ---
 
 # PDF Web Sideload
@@ -59,6 +59,103 @@ step 2; do not hand a raw column-interleaved dump to the next step.
 
 ### 2. Arrange one MyST `md/` bundle
 
+#### Declare components — never hand-write their HTML
+
+**This is the contract that matters.** Every manual component (callout box,
+spec table, troubleshooting table, icon legend, symbol panel, …) is declared
+with a semantic directive from
+[`tools/manual_md_directives.py`](../../../tools/manual_md_directives.py).
+The bundle you write is the **author plane**; `web-sideload` compiles it into
+the **staged plane** by running the real directive layer.
+
+**Never hand-write component HTML** — not `<table class="manual-callout-table">`,
+not `<figure class="hb-spec-table-composition">`, not any `hb-*` class, and
+not an inline `style=` attribute. `web-sideload` refuses a bundle containing
+any of them, and names the directive you should have used.
+
+That refusal is not pedantry. Hand-written markup produces an unstyled shell,
+because the stylesheet keys off structure a human transcription always loses:
+`<colgroup>` sizing, `scope="row"` on the label column, `rowspan` merging, and
+per-cell `hb-*` classes. The directive emits all of it; a hand-written table
+emits none of it and renders as bare text. Component markup has exactly one
+source, and it is the directive layer.
+
+Inline styles are refused for the same reason: on the web plane a component
+binds **classes only** (`web_callout_classes` in
+[`tools/component_specs/adapters.py`](../../../tools/component_specs/adapters.py)
+— contrast `word_callout_markup`, which is the *print* plane and is where
+inline styles legitimately live). The shared
+[`web_manual.css`](../../../docs/renderers/contracts/web_manual.css) owns the
+look. Never add styling of your own; the stylesheet and the emitters are
+shared surfaces and are out of bounds for a sideload.
+
+The vocabulary — the label argument becomes the composition's `aria-label`:
+
+````markdown
+```{callout} WARNING
+Do not open the enclosure.
+
+- the body is full Markdown, so bullets and links work
+```
+
+```{spec-table} INPUT PORTS
+1 × AC Input | Charge Mode: 100-120 V~ 60 Hz, 15 A max.
+             | Bypass Mode^①^: 12 A max.
+2 × DC8020 Ports | 11 V-16 V⎓8 A max.
+```
+
+```{troubleshooting} Fault codes
+:headers: Error Code | Corrective Measures
+
+E01 | Cool the unit / Restart
+```
+
+```{lcd-icons} LCD legend
+① | ![battery](assets/batt.png) | Battery | Shows charge / Blinks when low
+```
+
+```{symbols} Safety symbols
+![weee](assets/weee.png) | Dispose separately
+```
+
+```{lcd-mode} ![screen](assets/screen.png)
+Standby | Press POWER | Wakes the display
+        | Hold POWER | Powers off
+```
+
+```{comparison} Resumes | Does not resume
+AC output | USB output
+```
+
+```{manual-table} Key combinations
+:headers: Keys | Action
+
+Hold POWER | Power on
+```
+````
+
+Three conventions run across the whole vocabulary:
+
+- **A blank cell merges with the cell above.** This is how the source
+  expresses one label spanning several values — a state covering three
+  actions, an input covering two modes. It becomes a real `rowspan`. A pipe
+  table cannot express it and renders an empty box instead, which is why
+  `{manual-table}` exists as the escape hatch for any shape without a
+  dedicated component. In `{spec-table}` a blank *label* continues the
+  previous label.
+- **Circled footnote references** are written `^①^` (and subscripts `~x~`),
+  which the emitter turns into `<sup>`/`<sub>`. Cell content otherwise takes
+  a deliberately small inline subset (`**bold**`, images) so column and
+  row-span semantics stay deterministic.
+- **` / ` splits a multi-step cell** into the manual's line block, in
+  `{troubleshooting}` measures and `{lcd-icons}` descriptions.
+
+A `{callout}` body is parsed as full Markdown, so it may contain its own code
+fence — use a **longer** outer fence (` ````{callout} `) when it does, exactly
+as MyST requires.
+
+#### Bundle shape
+
 Build a directory shaped exactly like a staged `md/` output — the same shape
 `tools.queue_bound_outputs.stage_web_publish_assets_to_host_repo` validates:
 
@@ -73,7 +170,10 @@ Build a directory shaped exactly like a staged `md/` output — the same shape
   stem (mirrors what `build.py md` itself generates).
 - `conf.py` — a minimal Sphinx conf (`extensions = ["myst_parser"]` is
   enough; copy one from an existing staged `reports/releases/**/web/md/`
-  bundle if unsure).
+  bundle if unsure). Do **not** add the directive extension yourself —
+  `web-sideload` loads it for you on a private copy during compilation. Do
+  set `language` to the bundle's language code: the callout, troubleshooting
+  and LCD emitters read it.
 - `assets/` — optional, any images the converted manual references with
   relative paths.
 
@@ -99,10 +199,25 @@ python build.py web-sideload \
 - `--dry-run` (default off) runs the collision precheck and the `--md-dir`
   shape/filename check only — no staging, no debt write. Always run it once
   before the real thing.
-- The real run also does a strict local `sphinx -W -b html` build of the
-  sideloaded source before staging (same rigor as `web-release`'s
-  verification, just against your bundle instead of a pipeline build); a
-  Sphinx/MyST error in the bundle fails here, before anything is staged.
+- The real run verifies in **two stages** before staging anything, and what
+  gets staged is the compiled output, not what you wrote:
+  1. **Author plane** — the component-markup lint above, then a strict
+     `sphinx -W -b html` build with `tools.manual_md_directives` loaded, so
+     every directive must parse. Each directive is then compiled into its
+     component markup. Your `--md-dir` is never modified; compilation runs on
+     a copy.
+  2. **Staged plane** — a second strict `sphinx -W -b html` over the compiled
+     bundle under `extensions=myst_parser,tools.rtd_portal`, which is exactly
+     what Read the Docs builds the published source with. Passing this stage
+     is what proves the staged artifact will actually render live.
+
+  Compilation is not optional and cannot be replaced by a `conf.py` setting:
+  [`.readthedocs.yaml`](../../../.readthedocs.yaml) passes
+  `-D extensions=myst_parser,tools.rtd_portal`, which **overrides** `conf.py`,
+  and `readthedocs_source.assemble_rtd_source` strips the bundle's `conf.py`
+  outright. A directive left unexpanded in a staged file would render on RTD
+  as an unknown-directive error. This is why authoring and staging are two
+  different planes.
 - One `整本未结构化` debt entry is recorded **unconditionally**, every run,
   regardless of `--debt` — its payoff action is literally "run
   `spec-sheet-structured-intake` then re-run `web-release` for this target".
@@ -132,10 +247,17 @@ conversion.
 - Never hand-edit anything under `docs/publish/**` to land a sideloaded book
   — that tree is assembler-generated only; go through `web-sideload` +
   `web-assemble`.
-- Never fork a template or CSS to make a sideloaded manual "look right" —
-  the MyST source is opaque prose/tables to the assembler; template changes
-  belong to the pipeline, not to a bypass for content that has not entered
-  the pipeline yet.
+- Never hand-write component HTML or an inline `style=` in the author
+  bundle. Declare the component and let the directive layer emit it — that
+  layer is the single source of component markup, and hand-written markup
+  ships an unstyled shell. `web-sideload` refuses it outright.
+- Never fork, edit or extend a template, the shared stylesheet
+  (`docs/renderers/contracts/web_manual.css`), an emitter, or
+  `tools/manual_md_directives.py` to make a sideloaded manual "look right".
+  Those are shared surfaces serving every book; template and component
+  changes belong to the pipeline, not to a bypass for content that has not
+  entered the pipeline yet. If a shape genuinely has no component, use
+  `{manual-table}` and record it as debt.
 - Never suppress or skip the automatic `整本未结构化` debt entry — it is the
   only durable record that this book still needs structured intake. If you
   find yourself wanting to avoid recording it, the actual fix is running
