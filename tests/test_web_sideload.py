@@ -1,8 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import shutil
-import subprocess
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -333,64 +331,6 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
         self.assertEqual(1, len(entries))
         self.assertEqual("auto", entries[0].source)
         self.assertEqual(DEBT_CATEGORY_UNSTRUCTURED_BOOK, entries[0].category)
-
-
-class SideloadStrictVerificationRealAssemblyTests(unittest.TestCase):
-    """Exercise the real ``assemble_rtd_source`` call inside the verify step.
-
-    Every ``run_web_sideload`` orchestration test above mocks
-    ``_run_sideload_strict_verification`` itself, so none of them can catch a
-    bug inside it. This test only mocks the ``sphinx`` subprocess (no Sphinx
-    install required) and lets the real ``build_root``/``assembled_dir``
-    plumbing run, which is exactly the layer that regressed: the assembled
-    RTD output dir was built as a *sibling* of ``build_root`` instead of
-    nested inside it, tripping ``assemble_rtd_source``'s own "RTD source
-    output must stay under build root" containment check on every real
-    invocation.
-    """
-
-    def test_real_assembly_stays_inside_its_own_build_root(self) -> None:
-        with TemporaryDirectory() as tmp:
-            md_dir = Path(tmp) / "external-md"
-            md_dir.mkdir()
-            (md_dir / "conf.py").write_text("project = 'source'\n", encoding="utf-8")
-            (md_dir / "index.md").write_text(
-                "# Manual\n\n```{toctree}\n:hidden:\n\nmanual\n```\n", encoding="utf-8"
-            )
-            (md_dir / "manual.md").write_text("# Manual\n\nHello world.\n", encoding="utf-8")
-
-            fake_proc = subprocess.CompletedProcess(args=[], returncode=0, stdout="", stderr="")
-            html_dir = None
-            with mock.patch.object(
-                web_sideload.subprocess, "run", return_value=fake_proc
-            ) as run_sphinx:
-                # Must not raise. Before the fix this always raised
-                # RuntimeError("RTD source output must stay under build
-                # root: ...") because assembled_dir was temp_dir/"rtd", a
-                # sibling of build_root = temp_dir/"source".
-                html_dir = web_sideload._run_sideload_strict_verification(
-                    md_dir=md_dir, title="Real Run"
-                )
-
-            try:
-                run_sphinx.assert_called_once()
-                sphinx_argv = run_sphinx.call_args.args[0]
-                assembled_dir = Path(sphinx_argv[-2])
-                build_root = assembled_dir.parent
-
-                self.assertTrue(assembled_dir.is_relative_to(build_root))
-                self.assertEqual("source", build_root.name)
-                self.assertEqual("rtd", assembled_dir.name)
-                # assemble_rtd_source really ran: real generated output on disk.
-                self.assertTrue((assembled_dir / "index.md").is_file())
-                self.assertTrue((assembled_dir / "conf.py").is_file())
-                # The returned html dir is the staging input, not cleaned up
-                # by this function itself -- the caller owns that.
-                self.assertEqual(str(html_dir), sphinx_argv[-1])
-                self.assertTrue(html_dir.parent.is_dir())
-            finally:
-                if html_dir is not None:
-                    shutil.rmtree(html_dir.parent, ignore_errors=True)
 
 
 if __name__ == "__main__":

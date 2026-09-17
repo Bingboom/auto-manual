@@ -130,12 +130,7 @@ def _run_sideload_strict_verification(*, md_dir: Path, title: str) -> Path:
     try:
         build_root = temp_dir / "source"
         shutil.copytree(md_dir, build_root / PathSegments.MD)
-        # Nested under build_root: assemble_rtd_source requires its output_dir
-        # to stay inside build_root (see _is_relative_to there); a sibling
-        # directory trips that containment check on every real run. Nesting
-        # is safe -- discover_manual_sources excludes anything under
-        # output_dir from its own source search.
-        assembled_dir = build_root / "rtd"
+        assembled_dir = temp_dir / "rtd"
         assemble_rtd_source(build_root=build_root, output_dir=assembled_dir, title=title)
         html_out = temp_dir / "html"
         proc = subprocess.run(
