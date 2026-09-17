@@ -135,7 +135,7 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
             ), mock.patch.object(
                 web_sideload, "_current_git_head_sha"
             ) as head_sha, mock.patch.object(
-                web_sideload, "_run_sideload_two_stage_verification"
+                web_sideload, "_run_sideload_strict_verification"
             ) as strict_verify, mock.patch.object(
                 web_sideload, "stage_web_publish_assets_to_host_repo"
             ) as stage, mock.patch.object(
@@ -159,7 +159,7 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
     def test_missing_flags_are_rejected_before_any_build(self) -> None:
         args = self._args(md_dir="", model="")
 
-        with mock.patch.object(web_sideload, "_run_sideload_two_stage_verification") as strict_verify:
+        with mock.patch.object(web_sideload, "_run_sideload_strict_verification") as strict_verify:
             with self.assertRaisesRegex(RuntimeError, "--model"):
                 run_web_sideload(
                     args,
@@ -182,7 +182,7 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
             ), mock.patch.object(
                 web_sideload, "resolve_md_output_path_for_target", return_value=expected
             ), mock.patch.object(
-                web_sideload, "_run_sideload_two_stage_verification"
+                web_sideload, "_run_sideload_strict_verification"
             ) as strict_verify, mock.patch.object(
                 web_sideload, "stage_web_publish_assets_to_host_repo"
             ) as stage, mock.patch.object(
@@ -235,8 +235,8 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
                 web_sideload, "_current_git_head_sha", return_value="a" * 40
             ) as head_sha, mock.patch.object(
                 web_sideload,
-                "_run_sideload_two_stage_verification",
-                side_effect=lambda **_: (calls.append("verify"), (md_dir, html_dir))[1],
+                "_run_sideload_strict_verification",
+                side_effect=lambda **_: (calls.append("verify"), html_dir)[1],
             ) as strict_verify, mock.patch.object(
                 web_sideload,
                 "stage_web_publish_assets_to_host_repo",
@@ -265,9 +265,7 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
             ["collision", "verify", "stage", "write-metadata", "debt"], calls
         )
 
-        strict_verify.assert_called_once_with(
-            md_dir=md_dir, title="JE-1000F US en", repo_root=Path("/repo")
-        )
+        strict_verify.assert_called_once_with(md_dir=md_dir, title="JE-1000F US en")
         stage.assert_called_once()
         self.assertEqual(manual, stage.call_args.kwargs["built_md_output_path"])
         self.assertEqual(html_dir, stage.call_args.kwargs["built_html_dir"])
@@ -313,8 +311,8 @@ class RunWebSideloadOrchestrationTests(unittest.TestCase):
                 web_sideload, "_current_git_head_sha", return_value="a" * 40
             ), mock.patch.object(
                 web_sideload,
-                "_run_sideload_two_stage_verification",
-                return_value=(manual.parent, html_dir),
+                "_run_sideload_strict_verification",
+                return_value=html_dir,
             ), mock.patch.object(
                 web_sideload,
                 "stage_web_publish_assets_to_host_repo",
@@ -341,7 +339,7 @@ class SideloadStrictVerificationRealAssemblyTests(unittest.TestCase):
     """Exercise the real ``assemble_rtd_source`` call inside the verify step.
 
     Every ``run_web_sideload`` orchestration test above mocks
-    ``_run_sideload_two_stage_verification`` itself, so none of them can catch a
+    ``_run_sideload_strict_verification`` itself, so none of them can catch a
     bug inside it. This test only mocks the ``sphinx`` subprocess (no Sphinx
     install required) and lets the real ``build_root``/``assembled_dir``
     plumbing run, which is exactly the layer that regressed: the assembled
@@ -370,10 +368,8 @@ class SideloadStrictVerificationRealAssemblyTests(unittest.TestCase):
                 # RuntimeError("RTD source output must stay under build
                 # root: ...") because assembled_dir was temp_dir/"rtd", a
                 # sibling of build_root = temp_dir/"source".
-                _expanded_md_dir, html_dir = (
-                    web_sideload._run_sideload_two_stage_verification(
-                        md_dir=md_dir, title="Real Run", repo_root=Path(tmp)
-                    )
+                html_dir = web_sideload._run_sideload_strict_verification(
+                    md_dir=md_dir, title="Real Run"
                 )
 
             try:
