@@ -48,12 +48,12 @@ from tools.listen_build_queue_lark import fetch_field_id_map
 from tools.manual_catalog_writeback import (
     CATALOG_WEB_DOC_TYPE,
     CatalogWritebackResult,
-    catalog_writeback_settings_from_env,
     resolve_catalog_lang_label,
     resolve_catalog_region_label,
     verify_record_fields,
     write_catalog_record,
 )
+from tools.manual_index_query import manual_index_settings_from_env
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding
 from tools.queue_bound_lark_ops import run_lark_cli_json
@@ -395,7 +395,7 @@ def run_web_receipt(
     if not html_field_name:
         raise RuntimeError("Document_link does not expose a writable HTML_link field")
 
-    catalog_settings = catalog_writeback_settings_from_env(cfg)
+    catalog_settings = manual_index_settings_from_env(cfg)
     catalog_source = LarkCliSource(cli_bin=resolved_cli_bin, identity=catalog_settings.identity)
 
     outcomes: list[TargetReceiptOutcome] = []
@@ -411,11 +411,7 @@ def run_web_receipt(
             )
         except (RuntimeError, OSError) as exc:
             html_result = ReceiptWriteResult(status="failed", record_ids=(), detail=str(exc))
-        # A Git-only book was never a queue row, so "no Document_link row found" is the expected
-        # terminal state for it, not a failure -- see the module docstring and
-        # TargetReceiptOutcome.status, which does not count "skipped" against the target.
-        skip_note = " (git-only: expected skip, not a failure)" if html_result.status == "skipped" else ""
-        print(f"[web-receipt] {target.label()} HTML_link: {html_result.status} - {html_result.detail}{skip_note}")
+        print(f"[web-receipt] {target.label()} HTML_link: {html_result.status} - {html_result.detail}")
 
         version = str(target.payload.get("version") or "").strip()
         link_for_catalog = html_result.url or target_rtd_url(base_url=base_url, payload=target.payload)

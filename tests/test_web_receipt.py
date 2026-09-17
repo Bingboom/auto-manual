@@ -1,9 +1,7 @@
 from __future__ import annotations
 
-import io
 import json
 import unittest
-from contextlib import redirect_stdout
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from types import SimpleNamespace
@@ -378,7 +376,7 @@ class RunWebReceiptTests(unittest.TestCase):
                 "fetch_field_id_map",
                 return_value={"HTML_link": "fld_html"},
             ), mock.patch.object(
-                web_receipt, "catalog_writeback_settings_from_env", return_value=catalog_settings
+                web_receipt, "manual_index_settings_from_env", return_value=catalog_settings
             ), mock.patch.object(
                 web_receipt, "LarkCliSource", side_effect=[mock.Mock(), mock.Mock()]
             ), mock.patch.object(
@@ -393,74 +391,6 @@ class RunWebReceiptTests(unittest.TestCase):
 
             self.assertEqual(2, html_mock.call_count)
             self.assertEqual(2, catalog_mock.call_count)
-
-    def test_write_should_annotate_a_skipped_git_only_html_link_as_not_a_failure(self) -> None:
-        """A Git-only book was never a queue row, so "no Document_link row found" (status
-        "skipped") is the expected terminal state for HTML_link, not a failure -- it must not
-        raise, and the printed line should say so plainly for a human reading the log."""
-
-        with TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            releases_root = root / "reports" / "releases"
-            _write_publish_meta(
-                releases_root / "JE-1000F" / "US" / "en" / "latest" / "web" / "publish_meta.json",
-                _base_payload(model="JE-1000F", region="US", lang="en"),
-            )
-            (root / "config.us.yaml").write_text("build: {}\n", encoding="utf-8")
-
-            args = SimpleNamespace(
-                config="config.us.yaml",
-                releases_root=str(releases_root),
-                base_url=None,
-                receipt_record_id=[],
-                model=None,
-                region=None,
-                lang=None,
-                write=True,
-            )
-
-            binding = SimpleNamespace(base_token="base_doc", table_id="tbl_doc", view_id=None)
-            catalog_settings = SimpleNamespace(base_token="base_cat", table_id="tbl_cat", view_id=None, identity="user")
-
-            def fake_write_html_receipt(*, target, **_kwargs):
-                return ReceiptWriteResult(
-                    status="skipped",
-                    record_ids=(),
-                    detail="no Document_link row found via search Document_link by model/region/lang",
-                )
-
-            def fake_write_catalog_record(*, model, **_kwargs):
-                return CatalogWritebackResult(status="created", record_id=f"rec_catalog_{model}", detail="ok")
-
-            with mock.patch.object(web_receipt, "load_config", return_value={}), mock.patch.object(
-                web_receipt, "collect_queue_preflight_errors", return_value=[]
-            ), mock.patch.object(
-                web_receipt, "resolve_document_link_binding", return_value=binding
-            ), mock.patch.object(
-                web_receipt, "cli_bin", return_value="lark-cli"
-            ), mock.patch.object(
-                web_receipt, "phase2_identity", return_value="bot"
-            ), mock.patch.object(
-                web_receipt,
-                "fetch_field_id_map",
-                return_value={"HTML_link": "fld_html"},
-            ), mock.patch.object(
-                web_receipt, "catalog_writeback_settings_from_env", return_value=catalog_settings
-            ), mock.patch.object(
-                web_receipt, "LarkCliSource", side_effect=[mock.Mock(), mock.Mock()]
-            ), mock.patch.object(
-                web_receipt, "write_html_receipt", side_effect=fake_write_html_receipt
-            ), mock.patch.object(
-                web_receipt, "write_catalog_record", side_effect=fake_write_catalog_record
-            ):
-                buffer = io.StringIO()
-                with redirect_stdout(buffer):
-                    run_web_receipt(args, repo_root=root, resolve_path_from_root=self._resolve_path_from_root(root))
-
-        output = buffer.getvalue()
-        self.assertIn("HTML_link: skipped", output)
-        self.assertIn("(git-only: expected skip, not a failure)", output)
-        self.assertIn("1/1 target(s) receipted", output)
 
 
 if __name__ == "__main__":
