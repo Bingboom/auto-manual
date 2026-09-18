@@ -231,14 +231,19 @@ PR 合入证明发布候选被接受；RTD 构建成功证明部署流程完成�
 
 ### 0–30 天：统一发布入口并建立可信基线
 
+**首批交付：完成 HT-Manuals → HT-Doc 的入口整合。**
+目标路径为 **Web Publish / Git-only → 共享发布候选 → Hello-Docs/main → HT-Doc**。
+REV-01/02 核对目标及旧链接，REV-08 补齐目标站点检查，REV-03 在兼容验证后完成迁移并停止旧站独立更新。
+必须交付实际迁移、链接兼容及防止再次分流的证据；仅完成调查表不能关闭这批任务。
+
 - [REV-01](dev/manual_revitalization_execution.md#rev-01) 对齐 HT-Manuals / HT-Doc 的文档身份、版本与旧新 URL，复核截图中的托管关系。
 - [REV-02](dev/manual_revitalization_execution.md#rev-02) 核查 HTML_link、印刷二维码及历史交付链接；区分最新版入口与历史版本链接。
-- [REV-03](dev/manual_revitalization_execution.md#rev-03) 验证兼容跳转或兼容页、正文、资源和语言入口，再按批准范围停止旧站独立更新；保留候选 publish 分支及恢复记录。
+- [REV-03](dev/manual_revitalization_execution.md#rev-03) 按批准范围配置旧入口到新入口的跳转或兼容页，验证正文、资源和语言入口后停止旧站独立更新；保留历史版本语义、旧入口兼容服务、候选 publish 分支及恢复记录。
 - [REV-04](dev/manual_revitalization_execution.md#rev-04) 生成同一时点的产品、区域及语言覆盖清单；核实原方案数字和型号阻塞。
 - [REV-05](dev/manual_revitalization_execution.md#rev-05) 调查现有 Web Publish、月报调度、归档和目录同步能力，明确已完成与真实缺口。
 - [REV-06](dev/manual_revitalization_execution.md#rev-06) 执行 M0，建立已知历史差异清单；保留真实发布路径。
 - [REV-07](dev/manual_revitalization_execution.md#rev-07) 基线确认后，同期复用或补齐 M1/M2 的最小闭环：发布证据登记、幂等同步、失败重试及差异核对。
-- [REV-08](dev/manual_revitalization_execution.md#rev-08) 明确发布批准、部署成功和线上验证状态，打通实际版本核验。
+- [REV-08](dev/manual_revitalization_execution.md#rev-08) 为 Web Publish / Git-only 两条路径明确目标 RTD 项目、main 分支和发布 URL 的一致性检查；目标不符时阻止发布验收及线上可用登记，记录正确/错误站点验证证据。同时区分发布批准、部署成功和线上版本核验；已有检查复用，缺口单独实现。
 - [REV-09](dev/manual_revitalization_execution.md#rev-09) 选择一本已上线说明书，复核已有修订、发布和回退证据；仅对真实缺口或变化部分安排新演练，区分隔离环境与生产操作。
 - [REV-10](dev/manual_revitalization_execution.md#rev-10) 落实 M4/M5：稳定入口映射、统计口径及快照保存。
 - [REV-11](dev/manual_revitalization_execution.md#rev-11) 核实译文候选清单，完成首批审核，记录批准、拒绝和待定结果。
