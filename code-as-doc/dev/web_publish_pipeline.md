@@ -278,6 +278,43 @@ fails instead of overwriting another publisher. The three-dot PR diff is checked
 before the push so branch-history drift cannot smuggle code or review files into
 the release PR.
 
+### 3.1 Hosting convergence and legacy entry review
+
+The shared outlet above is the code/release contract; it does not establish that
+every historical RTD project follows that contract. The operator-supplied
+2026-09-17 investigation reports HT-Manuals on `Hello-Docs/publish` and HT-Doc on
+`Hello-Docs/main`, with overlapping targets at different versions. This docs-only
+change has not rechecked the RTD dashboard or moved either site. The
+[revitalization plan](../manual_production_revitalization_plan.md) registers that
+reconciliation as WP1.
+
+Before an authorized hosting migration:
+
+1. Capture each project's actual branch, build commit, publication identities,
+   versions and URLs at the same time. Map every old URL to its intended content
+   and version; distinguish latest-entry aliases from version-bound history.
+2. Read existing `HTML_link`, printed QR and delivery references. Preserve the
+   original values and record missing/ambiguous mappings. Git-only publication
+   itself still makes no online writes; any catalog/link migration is a separate
+   scoped operation with same-record readback.
+3. Verify the proposed redirects or compatibility pages using supported hosting
+   facilities, including body, images, language routes, downloads where present,
+   and desktop/mobile access. Preserve historical version meaning; a blanket
+   redirect to the newest manual is not sufficient.
+4. After compatibility acceptance and approval for the concrete hosting change,
+   stop the old project's independent updates while preserving its usable entry
+   behavior. Keep `Hello-Docs/publish`: retiring an RTD build trigger does not
+   retire the release-candidate branch.
+5. For both input paths, record the agreed site, actual deployed commit/release
+   and URL verification separately from PR merge. Until a machine gate exists,
+   retain this as a manual release acceptance check; do not claim it is automated.
+   On migration failure restore the captured mappings/configuration and approved
+   snapshot, and leave unresolved entries visible with an owner and next action.
+
+The current HT-Doc consolidation target is separate from the already-selected
+custom domain's [DNS handoff](rtd_custom_domain_runbook.md). A documentation PR
+neither changes hosting configuration nor approves online writes.
+
 ## 4. Operator contract
 
 The requirements below apply to the queue-driven path only.

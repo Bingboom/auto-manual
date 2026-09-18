@@ -44,6 +44,11 @@ Web profile 配合显式 `--lang` 现在会[冻结完整配置语言源并生成
 发布组装会原样保留已生成的 `manual.ir.json` 和 `manual_bundle.html`，不再遗漏凭据中
 记录的辅助文件；旧版本没有这些文件时仍可组装。未知文件不会被静默加入或从校验中排除。
 
+后续发布入口整合及中长期工作见[产线盘活与演进方案](../code-as-doc/manual_production_revitalization_plan.md)。
+本轮先复核新旧站点和历史链接，具体检查见[入口整合要求](../code-as-doc/dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)。
+保留已有 D1–D4 决策；方案登记不表示已迁移、已开通月报或已获在线写入授权。
+停止旧站独立更新与保留 `publish` 候选分支可以同时成立；历史版本链接不静默改指最新版。
+
 Updated: 2026-09-05
 
 This file replaces `Template_maintenance_and_using_guide.md`.
