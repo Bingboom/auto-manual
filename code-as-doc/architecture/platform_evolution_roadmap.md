@@ -116,8 +116,10 @@ Within phases, execution order follows the **Milestone K tier triage** (2026-07-
 The [revitalization plan](../manual_production_revitalization_plan.md) applies the
 existing phases to current manual delivery. These windows start when the plan
 is accepted; they do not replace the capacity/organizational gates above or
-claim that a phase has passed. WP status lives only in the
-[execution roadmap](../optimization_project.md).
+claim that a phase has passed. Execution priority lives in the
+[execution roadmap](../optimization_project.md); per-item state, dependencies,
+acceptance evidence and continuation live only in the
+[execution ledger](../dev/manual_revitalization_execution.md).
 
 | Window | Outcome and existing phase relationship | Start / exit evidence |
 |---|---|---|
