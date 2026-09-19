@@ -20,7 +20,7 @@ runs at priority 1000, after the generated config copies manual assets at the
 default priority 500, so those shipped files are included in the receipt.
 
 `tools.rtd_deployment_receipt.verify_deployment(web_root, base_url, routes,
-expected_project_slug=None)`
+expected_project_slug=None, session=None, include_dependency=None)`
 compares the served receipt with the caller's trusted frozen checkout, then
 GETs the explicitly selected HTML and recursively referenced same-origin
 HTML/CSS resources. It validates their hashes, HTTPS origin and publication
@@ -48,6 +48,66 @@ host shape; other hosts derive `None`), and the production base URL itself has
 a single source of truth in `tools.rtd_deployment_receipt.DEFAULT_RTD_BASE_URL`,
 which `tools/write_web_publish_html_link.py` reuses as its `--base-url` default.
 
+### Narrowing what gets re-downloaded
+
+`include_dependency` filters which *discovered* resources are re-fetched and
+hashed. The default (`None`) fetches everything — the original contract. The
+published catalog holds ~2,200 per-model illustration files against ~220 markup
+files, so a daily catalog-wide sweep at full scope is ~2,300 requests; the
+supplied `markup_dependency` filter (`.html`/`.css`/`.js`) brings one sweep to
+roughly 65.
+
+What a filtered run still proves, unchanged:
+
+- the served receipt matches the frozen source fingerprint byte-exactly;
+- every selected route and every fetched markup resource matches its recorded
+  hash, and a difference fails;
+- **every** discovered reference — filtered or not — exists in the served
+  receipt, so a removed, renamed or re-pointed asset still fails closed.
+
+What it does not re-prove: that the CDN hands back those exact *binary* bytes
+today. The result reports `unfetched_dependencies` so a narrowed run is never
+mistaken for a full one, and `verify_web_deployment_targets.py --asset-scope
+full` runs the complete check on demand.
+
+### Rate limiting is a third verdict
+
+Verification is read-heavy, and a catalog-wide caller re-walks the same
+dependency closure once per target, so the transport must be paced or the host
+will rate-limit the run. `FetchSession` is that pacing layer, and `session=`
+shares one across calls:
+
+- **One global pace.** `min_interval` (default 0.5 s, i.e. 2 req/s) applies to
+  every request the session makes, sequentially. Passing no session still paces
+  the single call.
+- **One response cache.** A body already fetched and hashed in this run is
+  replayed rather than re-requested. This is what keeps a failing 52-target
+  catalog at ~62 requests instead of ~570: the per-target attribution pass
+  replays the batch's bytes. Identical bytes yield an identical verdict, so
+  caching can never turn a mismatch into a pass. Bounded by `MAX_CACHED_BYTES`
+  (64 MiB); larger bodies are fetched but not retained.
+- **One memoized source fingerprint** per frozen tree, instead of re-hashing a
+  ~0.5 GiB publish tree per target.
+
+HTTP 429 and 503 (`RATE_LIMIT_STATUS`) raise `DeploymentThrottled` on the first
+attempt — never an immediate in-place retry, which is what turns one rate limit
+into a storm. The session then backs off exponentially (`THROTTLE_BACKOFF_BASE`
+2 s, doubling, at most `MAX_THROTTLE_ATTEMPTS` 5 attempts) against a shared
+`retry_budget` (default 300 s). `Retry-After` is honoured in both the
+delta-seconds and HTTP-date forms, capped at `MAX_RETRY_AFTER_SECONDS` (120 s);
+it only ever *extends* the wait — the run never retries sooner than either its
+own backoff or the server's request. When the shared budget is spent, the
+remaining work is abandoned rather than piled onto a host that is already
+refusing load.
+
+`DeploymentThrottled` propagates uncaught. A throttled target is **undecided**:
+neither verified nor mismatched. Callers must keep the two apart — rate limiting
+is evidence about the *client's* request rate, never about the deployment — and
+must not swallow it as a pass. `tools/verify_web_deployment_targets.py` reports
+it as `throttled` and exits 75 (sysexits `EX_TEMPFAIL`), reserving exit 1 for
+real mismatches; a mismatch anywhere in the catalog outranks throttling in the
+overall verdict.
+
 Limits: 10,000 files, 32 MiB per file, 512 MiB per source/output inventory and
 per verification traversal. Each network request has an I/O timeout of at most
 15 seconds. A file read has at most three attempts and a 45-second elapsed budget,
@@ -56,8 +116,9 @@ socket operation can take its remaining I/O timeout before that budget is checke
 All chunks are read to EOF within the byte limit, and a supplied Content-Length
 must match exactly. Invalid lengths, oversized data, unexpected content encoding,
 unsafe URLs and permanent HTTP errors fail immediately. Disconnects, incomplete
-bodies, timeouts and selected transient HTTP errors (408/429/500/502/503/504)
-can restart the read; no partial response is reused.
+bodies, timeouts and selected transient HTTP errors (408/500/502/504) can restart
+the read immediately; no partial response is reused. Rate-limit statuses
+(429/503) are excluded from that set and handled by the paced backoff above.
 
 Each attempt and same-origin redirect uses an internally generated unique
 `receipt_probe` query, plus identity encoding and no-cache/no-transform request

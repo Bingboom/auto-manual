@@ -11,6 +11,19 @@ from unittest.mock import patch
 
 from tools import rtd_deployment_receipt as receipt
 
+_no_pacing = patch.object(receipt, "sleep")
+
+
+def setUpModule() -> None:
+    # verify_deployment paces its requests by default. These tests assert
+    # verification verdicts, not politeness; pacing has its own module
+    # (test_rtd_deployment_throttle.py) and would add ~20s of real sleeping.
+    _no_pacing.start()
+
+
+def tearDownModule() -> None:
+    _no_pacing.stop()
+
 
 class DeploymentReceiptTests(unittest.TestCase):
     def setUp(self):
