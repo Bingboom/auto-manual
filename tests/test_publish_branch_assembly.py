@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -136,7 +137,12 @@ class PublishBranchAssemblyTests(unittest.TestCase):
             web_markdown = output_dir.joinpath(
                 "web", "JE-1000F", "US", "en", "md", "manual_je1000f_us_en_web_publish_2.0.md"
             ).read_text(encoding="utf-8")
-            self.assertIn("../../../../_static/manual-assets/JE-1000F/US/en/md/assets/demo.png", web_markdown)
+            pooled = re.search(r'src="([^"]+)"', web_markdown).group(1)
+            self.assertIn("_static/manual-assets/_pool/", pooled)
+            self.assertEqual(
+                b"png",
+                (output_dir / "web" / "JE-1000F" / "US" / "en" / "md" / pooled).resolve().read_bytes(),
+            )
             short_alias = output_dir.joinpath(
                 "web", "manual_je1000f_us_en_web_publish_2.0.md"
             ).read_text(encoding="utf-8")
