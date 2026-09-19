@@ -2,10 +2,11 @@ name: Verify Web Deployment
 
 # REV-08(b): scheduled cross-check that every target published from
 # Hello-Docs main:docs/publish is actually served by the intended Read the
-# Docs project at its canonical nested route. The queue writes HTML_link as a
-# deterministic URL BEFORE the publish PR merges and before RTD deploys, so a
-# wrong-site deployment or later link drift is invisible to the pipeline
-# itself — this daily run is the independent detector.
+# Docs project at its canonical nested route. The receipt lane
+# (web-publish-receipt.yml, REV-07) verifies a deployment once, at
+# registration time; later link drift or a later wrong-site deployment is
+# invisible to the pipeline itself — this daily run is the independent
+# detector.
 #
 # BUSINESS PLANE ONLY (same reasoning as phase2-content-backup): the frozen
 # publish tree this check fingerprints lives only on Hello-Docs main;

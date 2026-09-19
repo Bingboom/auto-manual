@@ -20,8 +20,10 @@ untranslated languages or override missing/drifted figure gates.
 
 No workflow, source-table/schema, CLI or dependency changes are included. The
 operator must still choose release versions and approve exact live queue writes.
-The existing workflow's early HTML_link writeback remains deferred; do not use
-that link alone as proof of a merged and RTD-verified release.
+The former build-time HTML_link writeback is retired (REV-07): the queue lane
+records a pending registration only, and `web-publish-receipt.yml` writes
+`HTML_link` after the publish PR merges and the deployment verifies — see
+[web_publish_pipeline.md](web_publish_pipeline.md#41-receipt-timing-three-timestamps-kept-separate).
 
 Validation: `tests.test_web_publish_locale_routing` exercises real EU configs,
 action aliases, language/region conflicts, unsafe shared paths and grouping,

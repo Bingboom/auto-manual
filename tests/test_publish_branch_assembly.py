@@ -159,6 +159,38 @@ class PublishBranchAssemblyTests(unittest.TestCase):
             self.assertTrue(manifest["targets"][0]["legacy_default"])
             self.assertEqual("legacy_unspecified", manifest["targets"][0]["language_scope"])
             self.assertNotIn("publish_manifest.json", {entry["path"] for entry in manifest["files"]})
+            # REV-07: the queue-row ids thread through assembly into the stored
+            # metadata and manifest so the post-merge receipt lane can locate
+            # the Document_link rows after the queue run's releases tree is gone.
+            self.assertEqual(["rec_web"], manifest["targets"][0]["queue_record_ids"])
+            stored_meta = json.loads(
+                stored_source.joinpath("publish_meta.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(["rec_web"], stored_meta["queue_record_ids"])
+
+    def test_unsafe_queue_record_id_should_fail_assembly(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            lang_root = self._write_target(
+                root,
+                model="JE-1000F",
+                region="US",
+                lang="en",
+                version="2.0",
+                git_ref="review/JE-1000F-US",
+            )
+            metadata_path = lang_root / "latest" / "web" / "publish_meta.json"
+            payload = json.loads(metadata_path.read_text(encoding="utf-8"))
+            payload["queue_record_ids"] = ["rec_ok", "../escape"]
+            metadata_path.write_text(json.dumps(payload) + "\n", encoding="utf-8")
+
+            with self.assertRaisesRegex(RuntimeError, "unsafe queue record id"):
+                publish_branch_assembly.assemble_web_publish_branch(
+                    repo_root=root,
+                    releases_root=root / "reports" / "releases",
+                    output_dir=root / "publish-worktree" / "docs" / "publish",
+                    title="Manual Library",
+                )
 
     def test_incremental_assembly_should_preserve_existing_web_targets(self) -> None:
         with tempfile.TemporaryDirectory() as td:

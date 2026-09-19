@@ -430,7 +430,7 @@ Phase 2 控制层使用阶段化交付契约：
 3. Web worker 强制拉取最新 phase2 和图文资产，按 web profile 执行 `check -> md -> html`
 4. workflow 把冻结 MyST 增量提交到 `Hello-Docs/publish:docs/publish/` 候选目录，范围门禁确认没有其它路径后自动创建或更新 `publish -> main` PR
 5. 审核并合入这个仅含 `docs/publish/**` 的 PR；不要合入 `review/*` 分支。`main` 的 push 才触发 Read the Docs 构建
-6. `HTML_link` 回写为嵌套 canonical 页面（例如 `https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html`）；根级短地址（例如 `/manual_je1000f_us.html`）仍由发布源自动生成并转向 canonical 页面，留作印刷/QR 入口层，不需要为每个型号手工创建 RTD Redirect。成功验收还要确认 `main` 的 manifest、RTD 构建 commit 和 `HTML_link` 线上页面
+6. PR 合入后，[`web-publish-receipt.yml`](../.github/workflows/web-publish-receipt.yml) 等待并核验 RTD 部署（冻结源指纹 + 逐字节 + 项目 slug），核验通过才把嵌套 canonical 页面（例如 `https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html`）幂等写回 `HTML_link`（写后同记录回读）；根级短地址（例如 `/manual_je1000f_us.html`）仍由发布源自动生成并转向 canonical 页面，留作印刷/QR 入口层，不需要为每个型号手工创建 RTD Redirect。成功验收还要确认 `main` 的 manifest、RTD 构建 commit、`Web Publish Receipt` run 绿和 `HTML_link` 线上页面；登记失败重跑该 workflow，不要重发整本
 
 ### 远端 GitHub worker 想支持 DingTalk 还要配什么
 
@@ -586,7 +586,7 @@ Git SHA 和归档 snapshot 重建 DOCX、Markdown、PDF。三者必须逐字节 
    - `是否触发文档构建 = Y`
    - `是否立即构建 = 勾选`
 4. 运行 `Feishu Web Publish Queue`；它会强制同步资产，所以不依赖 `是否强制刷新数据`
-5. 验收生成的 `publish -> main` PR 只含 `docs/publish/**`，审核合入后再确认 `Hello-Docs/main:docs/publish/publish_manifest.json`、RTD 页面和回写的 `HTML_link`
+5. 验收生成的 `publish -> main` PR 只含 `docs/publish/**`，审核合入后再确认 `Hello-Docs/main:docs/publish/publish_manifest.json`、RTD 页面、`Web Publish Receipt` run 绿和它回写的 `HTML_link`（合入并核验部署之后才写）
 
 ### 如果你要按方案 2 复刻获批 PDF 为原生 InDesign
 
