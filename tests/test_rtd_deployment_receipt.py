@@ -207,6 +207,76 @@ class DeploymentReceiptTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Cross-origin"):
             receipt._Redirect().redirect_request(req, None, 302, "", {}, "https://other.org/file")
 
+    def _served_with_injected_slug(self, slug: str) -> None:
+        original = b'<html><head></head><body><img src="image.png"></body></html>'
+        (self.output / "manual.html").write_bytes(original)
+        receipt.write_deployment_receipt(self.app, None)
+        block = (
+            b'<script async type="text/javascript" '
+            b'src="/_/static/javascript/readthedocs-addons.js"></script>'
+            b'<meta name="readthedocs-project-slug" content="' + slug.encode() + b'" />'
+            b'<meta name="readthedocs-version-slug" content="latest" />'
+            b'<meta name="readthedocs-resolver-filename" content="/manual.html" />'
+            b'<meta name="readthedocs-http-status" content="200" />'
+        )
+        self.served = original.replace(b'</head>', block + b'</head>')
+
+    def _fetch_injected(self, url):
+        return self.served if url.endswith('/manual.html') else self.fetch(url)
+
+    def test_expected_project_slug_accepts_matching_deployment(self):
+        self._served_with_injected_slug("ht-doc")
+        with patch.object(receipt, "_fetch", side_effect=self._fetch_injected):
+            result = receipt.verify_deployment(self.web, "https://example.org", ["manual.html"],
+                                               expected_project_slug="ht-doc")
+        self.assertEqual(result["status"], "verified")
+        self.assertEqual(result["expected_project_slug"], "ht-doc")
+        self.assertEqual(result["rtd_proxy_injections_removed"], ["manual.html"])
+
+    def test_wrong_project_slug_fails_and_reports_actual(self):
+        self._served_with_injected_slug("other-project")
+        with patch.object(receipt, "_fetch", side_effect=self._fetch_injected):
+            with self.assertRaisesRegex(
+                    ValueError, "declares RTD project other-project instead of ht-doc"):
+                receipt.verify_deployment(self.web, "https://example.org", ["manual.html"],
+                                          expected_project_slug="ht-doc")
+
+    def test_expected_project_slug_requires_live_declaration(self):
+        with patch.object(receipt, "_fetch", side_effect=self.fetch):
+            with self.assertRaisesRegex(ValueError, "never declared the expected RTD project"):
+                receipt.verify_deployment(self.web, "https://example.org", ["manual.html"],
+                                          expected_project_slug="ht-doc")
+
+    def test_invalid_expected_project_slug_rejected_before_network(self):
+        with patch.object(receipt, "_fetch") as fetch:
+            for bad in ("", "bad slug", "slash/slug", 7):
+                with self.subTest(bad=bad):
+                    with self.assertRaisesRegex(ValueError, "Invalid expected RTD project slug"):
+                        receipt.verify_deployment(self.web, "https://example.org", ["manual.html"],
+                                                  expected_project_slug=bad)
+            fetch.assert_not_called()
+
+    def test_default_call_keeps_prior_contract_without_slug_key(self):
+        self.assertNotIn("expected_project_slug", self.verify())
+
+
+class RtdProjectSlugDerivationTests(unittest.TestCase):
+    def test_derives_slug_from_rtd_io_base_urls(self):
+        for base in ("https://ht-doc.readthedocs.io",
+                     "https://ht-doc.readthedocs.io/",
+                     "https://HT-DOC.readthedocs.io/en/latest/",
+                     receipt.DEFAULT_RTD_BASE_URL):
+            with self.subTest(base=base):
+                self.assertEqual(receipt.rtd_project_slug_from_base_url(base), "ht-doc")
+
+    def test_underivable_hosts_return_none(self):
+        for base in ("https://example.org", "https://readthedocs.io",
+                     "https://a.b.readthedocs.io", "https://evil-readthedocs.io",
+                     "https://ht-doc.readthedocs.io.evil.org",
+                     "https://-bad.readthedocs.io", "not a url", "https://[", None):
+            with self.subTest(base=base):
+                self.assertIsNone(receipt.rtd_project_slug_from_base_url(base))
+
 
 if __name__ == "__main__":
     unittest.main()

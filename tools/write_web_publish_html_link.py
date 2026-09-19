@@ -19,6 +19,7 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
+from tools.rtd_deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
 from tools.queue_bound_lark_ops import run_lark_cli_json  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
@@ -28,9 +29,6 @@ from tools.write_publish_html_link import (  # noqa: E402
     target_record_ids_from_publish_meta,
     write_html_link_records,
 )
-
-
-DEFAULT_RTD_BASE_URL = "https://ht-doc.readthedocs.io"
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:

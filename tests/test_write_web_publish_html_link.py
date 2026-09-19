@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
+from tools import rtd_deployment_receipt, write_web_publish_html_link
 from tools.write_web_publish_html_link import (
     latest_web_publish_metadata,
     persist_rtd_url,
@@ -13,6 +14,18 @@ from tools.write_web_publish_html_link import (
 
 
 class WriteWebPublishHtmlLinkTests(unittest.TestCase):
+    def test_default_base_url_has_a_single_source_of_truth(self) -> None:
+        self.assertIs(
+            write_web_publish_html_link.DEFAULT_RTD_BASE_URL,
+            rtd_deployment_receipt.DEFAULT_RTD_BASE_URL,
+        )
+        self.assertEqual(
+            "ht-doc",
+            rtd_deployment_receipt.rtd_project_slug_from_base_url(
+                write_web_publish_html_link.DEFAULT_RTD_BASE_URL
+            ),
+        )
+
     def test_target_url_should_match_readthedocs_short_alias(self) -> None:
         url = target_rtd_url(
             base_url="https://ht-doc.readthedocs.io/",

@@ -19,7 +19,8 @@ content. Existing HTML/assets and frozen inputs are not rewritten by the hook. T
 runs at priority 1000, after the generated config copies manual assets at the
 default priority 500, so those shipped files are included in the receipt.
 
-`tools.rtd_deployment_receipt.verify_deployment(web_root, base_url, routes)`
+`tools.rtd_deployment_receipt.verify_deployment(web_root, base_url, routes,
+expected_project_slug=None)`
 compares the served receipt with the caller's trusted frozen checkout, then
 GETs the explicitly selected HTML and recursively referenced same-origin
 HTML/CSS resources. It validates their hashes, HTTPS origin and publication
@@ -34,6 +35,18 @@ unknown injection shapes and all frozen assets remain strictly hashed. A
 platform injection change therefore fails verification rather than widening
 normalization automatically. Source drift, missing receipt/resources,
 changed bytes, unsafe paths, symlinks and request/byte limits fail closed.
+
+Byte identity alone does not prove the bytes were served by the intended RTD
+project, so the optional `expected_project_slug` adds that dimension: when
+given, every fetched HTML page's RTD-injected `readthedocs-project-slug` meta
+must name exactly that project, at least one page must declare it, and a
+mismatch fails reporting the actually served slug. When omitted, behavior is
+unchanged and no slug key appears in the result. The expectation for the
+production site is derivable with
+`rtd_project_slug_from_base_url(base_url)` (the `https://<slug>.readthedocs.io`
+host shape; other hosts derive `None`), and the production base URL itself has
+a single source of truth in `tools.rtd_deployment_receipt.DEFAULT_RTD_BASE_URL`,
+which `tools/write_web_publish_html_link.py` reuses as its `--base-url` default.
 
 Limits: 10,000 files, 32 MiB per file, 512 MiB per source/output inventory and
 per verification traversal. Each network request has an I/O timeout of at most
