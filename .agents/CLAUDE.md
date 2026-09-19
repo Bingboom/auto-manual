@@ -20,4 +20,5 @@
 
 - Run any script-level smoke tests documented in the skill.
 - For Word highlighting changes: exercise `.agents/skills/docx-highlight-changes/scripts/highlight_changes.py` on a fixture.
+- For Illustrator text round-trip changes: run `python3 .agents/skills/illustrator-text-roundtrip/scripts/verify_importer.py` (needs `node`; also wrapped by `tests/test_illustrator_text_roundtrip.py`).
 - For manual backport changes: run the extraction/residual scripts named by `.agents/skills/manual-revision-backport/SKILL.md`.
