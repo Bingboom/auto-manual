@@ -71,9 +71,10 @@ RTD renders the frozen Web snapshot with the root-only portal extension:
 `python -m sphinx -b html -D extensions=myst_parser,tools.rtd_portal <frozen-web-source> <html-output>`.
 The default region is temporarily EU; EU/UK resolve to the same frozen EU
 publications. Nested manuals and QR aliases retain their existing rendering.
-The consumer-facing feedback channel is the after-sales mailbox
-`hello@jackery.com` (a plain `mailto:` entry in the `feedback_channels`
-portal setting); GitHub Issues stays the internal/dealer triage board.
+The on-page feedback block is currently disabled (`feedback_channels: []`,
+operator decision 2026-09-16); the designated consumer channel remains the
+after-sales mailbox `hello@jackery.com`, and GitHub Issues stays the
+internal/dealer triage board.
 Verified single-language pages expose frozen publication context for local
 copying; they do not append context, tokens or user identity to channel URLs.
 Xia Bing (`Bingboom`) owns feedback and checks local artifacts, HTTP

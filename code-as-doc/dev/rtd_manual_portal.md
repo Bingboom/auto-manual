@@ -52,9 +52,12 @@ content, QR aliases and nested manual URLs are unchanged.
   This is needed for old frozen configs as well as future publications.
 - The template renders real links before JavaScript; scripts only enhance
   filtering and the language dialog. Search/aliases/manual pages are unchanged.
-- Feedback is configured by `feedback_channels` in
-  `tools/rtd_portal_assets/settings.json`. The consumer-facing channel is the
-  after-sales mailbox `hello@jackery.com` already printed in shipped manuals
+- Feedback presentation is currently OFF (operator decision 2026-09-16:
+  the on-page block is not wanted yet); `feedback_channels` is `[]` and
+  pages render with no feedback markup. The mechanism, mailto validation
+  and the runbook below stay in place — re-enable by restoring the
+  channel entry. The designated consumer channel remains the
+  after-sales mailbox `hello@jackery.com` printed in shipped manuals
   (growth-plan decision D2); [GitHub Issues](https://github.com/Bingboom/auto-manual/issues)
   remains the internal/dealer triage board and is no longer linked on manual
   pages. Setting the list to `[]` disables the block. Channels are
