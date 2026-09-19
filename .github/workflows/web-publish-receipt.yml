@@ -1,0 +1,135 @@
+name: Web Publish Receipt
+
+# REV-07 (M2, 方案一): the HTML_link registration moved from queue build time
+# to AFTER the publish PR merges and the Read the Docs deployment verifies.
+# This lane runs on the Hello-Docs business plane when a main push touches
+# docs/publish/**, waits for the RTD deployment of exactly that tree
+# (rtd_deployment_receipt.verify_deployment: frozen-source fingerprint, byte
+# identity, expected project slug), and only then writes the canonical nested
+# URL back to Document_link.HTML_link — idempotently (same value -> no write)
+# and with a same-record readback after every write.
+#
+# A failed or timed-out verification leaves the run red and registers nothing:
+# a deployment that cannot be proven live must not be registered as online
+# (plan §5.3 M2). Retry = re-run this workflow (workflow_dispatch), which
+# re-verifies and re-registers only what is still missing — it never
+# re-publishes the manual.
+#
+# BUSINESS PLANE ONLY: docs/publish lives only on Hello-Docs main, and the
+# Document_link table is the business-plane queue ledger. The file lives in
+# auto-manual and reaches the mirror via sync-hello-docs.yml, same as
+# verify-web-deployment.yml.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/publish/**"
+  workflow_dispatch:
+    inputs:
+      record_ids:
+        description: Optional comma-separated Document_link record_ids for a scoped retry
+        required: false
+        type: string
+      deploy-timeout-seconds:
+        description: Seconds to wait for the RTD deployment to verify (default 1800)
+        required: false
+        type: string
+      rps:
+        description: Global verification request rate ceiling in requests/second (default 2)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+# Receipt runs are serialized: each run verifies the tree its own checkout
+# froze, and a newer merge gets its own run for its own targets.
+concurrency:
+  group: web-publish-receipt
+  cancel-in-progress: false
+
+jobs:
+  receipt:
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+      FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+      FEISHU_PHASE2_IDENTITY: bot
+      FEISHU_PHASE2_BASE_TOKEN: ${{ secrets.FEISHU_PHASE2_BASE_TOKEN }}
+      FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
+      FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
+      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io' }}
+      AUTO_MANUAL_RTD_VERIFY_RPS: ${{ inputs.rps || vars.AUTO_MANUAL_RTD_VERIFY_RPS || '2' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate execution plane
+        shell: bash
+        run: |
+          if [ "${GITHUB_REPOSITORY}" != "Bingboom/Hello-Docs" ]; then
+            echo "::error::Web Publish Receipt runs only on the Hello-Docs business-plane mirror."
+            exit 1
+          fi
+
+      - name: Validate required secrets
+        shell: bash
+        run: |
+          bash scripts/validate_required_env.sh web-publish-receipt
+
+      - uses: ./.github/actions/feishu-common-setup
+
+      - name: Verify deployment and register HTML_link
+        shell: bash
+        run: |
+          cmd=(python tools/write_web_publish_receipt_links.py
+            --config configs/config.us.yaml
+            --publish-root docs/publish
+            --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
+            --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"
+            --report-json web_publish_receipt_report.json)
+          if [ -n "${{ inputs['deploy-timeout-seconds'] || '' }}" ]; then
+            cmd+=(--deploy-timeout-seconds "${{ inputs['deploy-timeout-seconds'] }}")
+          fi
+          if [ -n "${{ inputs.record_ids || '' }}" ]; then
+            IFS=',' read -ra record_ids <<< "${{ inputs.record_ids }}"
+            for record_id in "${record_ids[@]}"; do
+              trimmed="$(echo "${record_id}" | xargs)"
+              if [ -n "${trimmed}" ]; then
+                cmd+=(--record-id "${trimmed}")
+              fi
+            done
+          fi
+          "${cmd[@]}"
+
+      - name: Upload receipt report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-publish-receipt-report
+          path: web_publish_receipt_report.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Receipt failure sentinel
+        if: always()
+        uses: ./.github/actions/queue-sentinel-issue
+        with:
+          job-status: ${{ job.status }}
+          label: queue-failure-web-receipt
+          title: "Web Publish Receipt failing: HTML_link registration"
+          details: |
+            workflow: Web Publish Receipt (post-deploy HTML_link registration)
+            trigger: ${{ github.event_name }} @ ${{ github.sha }}
+            record_ids: ${{ inputs.record_ids || '(all registrable targets)' }}
+            base_url: ${{ env.AUTO_MANUAL_RTD_BASE_URL }}
+
+            The merged docs/publish tree either did not verify against the live
+            RTD deployment within the deploy timeout, or a Document_link write
+            failed its same-record readback. Nothing unverified was registered.
+            Exit 75 means the RTD host rate-limited the run (undecided) — re-run
+            the workflow. Retry = re-run this workflow; do not re-publish the
+            manual to fix registration.

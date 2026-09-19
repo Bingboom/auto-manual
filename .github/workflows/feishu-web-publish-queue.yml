@@ -263,13 +263,19 @@ jobs:
           - Merge this PR after review. The resulting `main` push is the only production trigger for Read the Docs.
           EOF
 
-      - name: Write RTD HTML_link back to Document_link
+      # REV-07 (M2, 方案一): build time proves the candidate exists, not that
+      # readers can open it. This step only records the deterministic URL in
+      # the release metadata (run evidence); the Document_link.HTML_link write
+      # happens in web-publish-receipt.yml AFTER the publish PR merges and the
+      # RTD deployment verifies. A failed deployment is never registered.
+      - name: Record pending HTML_link registration
         shell: bash
         run: |
           cmd=(
             python tools/write_web_publish_html_link.py
             --config configs/config.us.yaml
             --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
+            --pending
           )
           if [ -n "${{ inputs.queue_record_id || '' }}" ]; then
             cmd+=(--record-id "${{ inputs.queue_record_id }}")

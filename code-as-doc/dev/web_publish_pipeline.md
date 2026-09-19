@@ -8,7 +8,7 @@ Read the Docs. Web delivery is intentionally separate from print delivery.
 | `Workflow_action` | Worker | Output authority |
 | --- | --- | --- |
 | `Publish` | `feishu-build-queue.yml` | IDML, LaTeX, PDF, DOCX, formal Markdown and release manifests |
-| `Web Publish` | `feishu-web-publish-queue.yml` | frozen MyST candidate under `Hello-Docs/publish:docs/publish/`, a scope-guarded PR into `main`, and `HTML_link` |
+| `Web Publish` | `feishu-web-publish-queue.yml` + `web-publish-receipt.yml` | frozen MyST candidate under `Hello-Docs/publish:docs/publish/`, a scope-guarded PR into `main`, and — after that PR merges and the deployment verifies — `HTML_link` |
 
 `Publish` never deploys HTML. `Web Publish` never uploads or rewrites print
 artifacts. Both actions render reviewed content selected by
@@ -179,8 +179,12 @@ change JP D1–D4 or promote production eligibility.
    rebuilds `docs/publish/web/`, and writes a SHA-256 inventory in
    `docs/publish/publish_manifest.json`. Assembly rechecks fresh md/html against
    evidence and retains the receipt plus projection manifest with stored MyST.
-   Stored replay rechecks the retained MyST/assets; the HTML digest is historical
-   evidence, not a new HTML render check. Legacy links retain their redirects.
+   The stored target metadata (and therefore the manifest target entry) carries
+   the validated `queue_record_ids` forward, so the post-merge receipt lane can
+   still locate its queue rows after the release metadata of the queue run is
+   gone. Stored replay rechecks the retained MyST/assets; the HTML digest is
+   historical evidence, not a new HTML render check. Legacy links retain their
+   redirects.
 6. The workflow reconciles the generated `Hello-Docs/publish` candidate with
    current `main`, then refuses to push if the PR diff contains any path outside
    `docs/publish/**`. Review branches are build inputs only; they are never
@@ -189,17 +193,34 @@ change JP D1–D4 or promote production eligibility.
    or updates the single `publish -> main` PR. A human merges that PR after
    review; only the resulting `main` push is a production RTD trigger. One
    global concurrency group serializes the complete build, branch update, PR,
-   and writeback transaction.
+   and pending-registration transaction. At build time the queue records the
+   deterministic URL in the release metadata only (`--pending`); it makes no
+   `HTML_link` write, because at that point the PR is unmerged and RTD has not
+   deployed.
 8. The assembler creates a collision-checked root alias named from the manual
    stem (for example `/manual_je1000f_us.html`) that forwards to the canonical
    nested Sphinx route. The root alias is the countable printed/QR entry layer
-   only. The deterministic URL written to `Document_link.HTML_link` is the
-   canonical nested page itself (for example
+   only. The deterministic URL that the receipt lane later writes to
+   `Document_link.HTML_link` is the canonical nested page itself (for example
    `/JE-1000F/US/en/md/manual_je1000f_us.html`), matching the stored target
    `route` in `publish_manifest.json`. Relative forwarding keeps the generated
    alias valid in both RTD single-version and `/en/latest` deployments. A
    seven-day workflow artifact retains the Web release evidence; the Git
    branch remains the durable snapshot.
+9. After the human merges `publish -> main`,
+   [`web-publish-receipt.yml`](../../.github/workflows/web-publish-receipt.yml)
+   runs on the Hello-Docs `main` push (paths `docs/publish/**`):
+   [`tools/write_web_publish_receipt_links.py`](../../tools/write_web_publish_receipt_links.py)
+   reads the merged manifest, selects the targets that recorded
+   `queue_record_ids`, polls `verify_deployment` (frozen-source fingerprint,
+   byte identity, expected RTD project slug; fresh `FetchSession` per attempt)
+   until the deployment verifies or the deploy timeout expires, and only then
+   writes the canonical URL to each queue row — idempotently (an equal stored
+   value is skipped, so reruns never re-register) and with a same-record
+   readback after every write. Verification failure or timeout registers
+   nothing and opens the `queue-failure-web-receipt` sentinel; the retry is a
+   `workflow_dispatch` re-run (optionally scoped by `record_ids`), never a
+   re-publish of the manual.
 
 ### 2.2 Git-only transaction
 
@@ -395,14 +416,33 @@ Success requires all three pieces of evidence:
 - the GitHub run is green;
 - `Hello-Docs/publish` contains the expected target and manifest hashes, and the
   open `publish -> main` PR contains no path outside `docs/publish/**`;
-- after that PR is merged, `Hello-Docs/main` contains the same manifest and the
-  RTD page opens at the `HTML_link` route.
+- after that PR is merged, `Hello-Docs/main` contains the same manifest, the
+  `Web Publish Receipt` run is green, and the RTD page opens at the registered
+  `HTML_link` route.
+
+### 4.1 Receipt timing: three timestamps, kept separate
+
+Following the revitalization plan §5.1, the release records three distinct
+facts and never lets one stand in for another:
+
+| Fact | Proven by | Recorded where |
+| --- | --- | --- |
+| Approval | the human merge of `publish -> main` | PR merge commit on Hello-Docs `main` |
+| Deployment | the RTD build of that `main` push | RTD build history; receipt-lane verify attempts |
+| Online verification | `verify_deployment` passing against the live site | `web-publish-receipt.yml` run + `HTML_link` write with same-record readback |
+
+`HTML_link` is written only after the third fact: a merged PR proves the
+candidate was accepted, an RTD build proves the deploy pipeline ran, and only
+the live-content verification proves readers actually reach the target version.
+A deployment that fails verification is never registered as online; a failed
+registration goes to an independent retry (re-run the receipt workflow),
+never to a re-publish of the manual.
 
 For the Git-only path, use the evidence contract in section 2.2. Do not create
 placeholder online records or write `HTML_link` to imitate queue completion.
 
-Both paths write `HTML_link` (or record URLs) before Read the Docs deploys, so
-neither transaction can prove by itself that the registered link stays correct.
+The receipt lane proves the link was correct at registration time; it does not
+watch for later drift.
 [`verify-web-deployment.yml`](../../.github/workflows/verify-web-deployment.yml)
 is the independent detector: a daily scheduled run on the Hello-Docs business
 plane feeds every target of `Hello-Docs/main:docs/publish/publish_manifest.json`

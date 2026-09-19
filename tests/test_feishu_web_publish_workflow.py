@@ -56,14 +56,17 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("publish PR may change only docs/publish/**", scope)
         self.assertIn("diff --name-only --no-renames -z", scope)
 
-    def test_publish_pr_targets_main_and_precedes_link_writeback(self) -> None:
+    def test_publish_pr_targets_main_and_precedes_pending_registration(self) -> None:
+        # REV-07: the queue records a PENDING registration only. The actual
+        # Document_link.HTML_link write happens in web-publish-receipt.yml
+        # after the publish PR merges and the RTD deployment verifies.
         names = [str(step.get("name") or "") for step in self.steps]
         push_index = names.index("Push publish candidate branch")
         pr_index = names.index("Open or update publish PR")
-        writeback_index = names.index("Write RTD HTML_link back to Document_link")
-        self.assertLess(push_index, writeback_index)
+        pending_index = names.index("Record pending HTML_link registration")
+        self.assertLess(push_index, pending_index)
         self.assertLess(push_index, pr_index)
-        self.assertLess(pr_index, writeback_index)
+        self.assertLess(pr_index, pending_index)
 
         pr_step = self.steps[pr_index]
         self.assertEqual("${{ steps.publish-scope.outputs.has_changes == 'true' }}", pr_step["if"])
@@ -72,12 +75,23 @@ class FeishuWebPublishWorkflowTests(unittest.TestCase):
         self.assertIn("--head publish", pr_command)
         self.assertIn("review/*", pr_command)
 
-        writeback = str(self.steps[writeback_index]["run"])
-        self.assertIn("tools/write_web_publish_html_link.py", writeback)
-        self.assertIn("AUTO_MANUAL_RTD_BASE_URL", writeback)
+        pending = str(self.steps[pending_index]["run"])
+        self.assertIn("tools/write_web_publish_html_link.py", pending)
+        self.assertIn("--pending", pending)
+        self.assertIn("AUTO_MANUAL_RTD_BASE_URL", pending)
         rtd_base_url = str(self.job["env"]["AUTO_MANUAL_RTD_BASE_URL"])
         self.assertIn("https://ht-doc.readthedocs.io", rtd_base_url)
         self.assertNotIn("/en/latest", rtd_base_url)
+
+    def test_build_time_lane_never_writes_html_link_directly(self) -> None:
+        # The queue lane must not carry a direct writeback step any more; the
+        # only tool invocation is the --pending recorder.
+        text = WORKFLOW_PATH.read_text(encoding="utf-8")
+        self.assertNotIn("Write RTD HTML_link back to Document_link", text)
+        for step in self.steps:
+            run = str(step.get("run") or "")
+            if "tools/write_web_publish_html_link.py" in run:
+                self.assertIn("--pending", run)
 
     def test_failure_sentinel_is_the_last_step(self) -> None:
         sentinel = self.steps[-1]

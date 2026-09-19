@@ -40,6 +40,15 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--base-url", default=DEFAULT_RTD_BASE_URL)
     parser.add_argument("--releases-root", default="reports/releases")
     parser.add_argument("--record-id", action="append", default=[])
+    parser.add_argument(
+        "--pending",
+        action="store_true",
+        help=(
+            "Record the deterministic URL in the release metadata only and defer the "
+            "Document_link.HTML_link write to the post-deploy receipt lane "
+            "(web-publish-receipt.yml). No Bitable interaction happens in this mode."
+        ),
+    )
     return parser.parse_args(argv)
 
 
@@ -100,6 +109,7 @@ def write_web_publish_html_links(
     base_url: str,
     releases_root: Path,
     explicit_record_ids: tuple[str, ...] = (),
+    pending: bool = False,
 ) -> int:
     metadata_paths = latest_web_publish_metadata(releases_root)
     if not metadata_paths:
@@ -123,6 +133,27 @@ def write_web_publish_html_links(
             "No Web Publish metadata matched the requested queue record ids: "
             + ", ".join(sorted(explicit))
         )
+
+    if pending:
+        # REV-07: build time proves the candidate exists, not that it is live.
+        # The deterministic URL is preserved as run evidence above; the actual
+        # Document_link.HTML_link registration belongs to the post-deploy
+        # receipt lane, which writes only after the publish PR merges and
+        # verify_deployment passes against the live RTD site.
+        deferred = 0
+        for record_ids, url in targets:
+            for record_id in record_ids:
+                print(
+                    f"[web-publish-link] PENDING {record_id}: HTML_link registration "
+                    f"deferred to the post-deploy receipt lane ({url})"
+                )
+                deferred += 1
+        if not deferred:
+            print(
+                "[web-publish-link] No queue record ids were recorded; the receipt "
+                "lane will have nothing to register for this run."
+            )
+        return deferred
 
     cfg = load_config(config_path)
     errors = collect_queue_preflight_errors(cfg)
@@ -162,11 +193,15 @@ def main(argv: list[str] | None = None) -> int:
             base_url=str(args.base_url),
             releases_root=resolve_repo_path(args.releases_root),
             explicit_record_ids=tuple(str(item).strip() for item in args.record_id if str(item).strip()),
+            pending=bool(args.pending),
         )
     except Exception as exc:
         print(f"[web-publish-link] ERROR: {exc}", file=sys.stderr)
         return 1
-    print(f"[web-publish-link] Completed HTML_link writeback for {written} record(s).")
+    if args.pending:
+        print(f"[web-publish-link] Recorded {written} pending HTML_link registration(s).")
+    else:
+        print(f"[web-publish-link] Completed HTML_link writeback for {written} record(s).")
     return 0
 
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Scheduled cross-check that published Web targets are served by the intended RTD project.
 
-REV-08(b): the queue writes ``Document_link.HTML_link`` deterministically
-before the publish PR merges and before Read the Docs deploys, so a wrong-site
-deployment or later link drift is otherwise invisible. This checker reads the
+REV-08(b): the receipt lane (``web-publish-receipt.yml``, REV-07) verifies a
+deployment once, at ``HTML_link`` registration time, so a later wrong-site
+deployment or link drift is otherwise invisible. This checker reads the
 published target catalog (``docs/publish/publish_manifest.json`` on Hello-Docs
 ``main``) and verifies every target's canonical nested page against the live
 site:
