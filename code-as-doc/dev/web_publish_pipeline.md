@@ -250,6 +250,51 @@ Docs build commit, and the verified production URLs. `Document_link.HTML_link`
 readback belongs only to the queue-driven transaction. A Git-only transaction
 does not write online staging, source, asset, build, or link records.
 
+### 2.3 Catalog mirror and continuous reconciliation (M1/M2)
+
+The operations catalog sheet 「说明书目录」 (spreadsheet
+`K13JsXoUjhd75sth7eec1sKpnKd`, sheet `15c75c`) is a **derived view** of the
+publication record, never a second authority. The single frozen-record
+authority for Web targets is `docs/publish/publish_manifest.json` on
+Hello-Docs `main` (REV-06/M0-10: `reports/releases` is deliberately not in
+Git). Rows align on the `(model, region, lang)` triple; version strings are
+display-only vocabulary and are not machine-reconciled across faces (M0-11).
+
+[`tools/ops_catalog_sync.py`](../../tools/ops_catalog_sync.py) owns both
+directions:
+
+- **`sync` (M2, catalog registration as a post-publication transaction).**
+  Reads the manifest at a pinned Hello-Docs commit (the recorded source SHA)
+  and upserts only the machine columns A..K (文档ID/型号/市场/语言/当前版本/
+  正文链接/根别名链接/语言范围声明/目标构建时间UTC/内容提交/收录状态). The
+  human-owned columns L..O (负责人/运营状态/下次复盘日期/运营备注) are never
+  written on existing rows; a new row seeds 运营状态=待评估 only. New targets
+  append at the bottom; an existing row is rewritten only when a machine
+  column actually differs; a row whose key has left the manifest is reported
+  as an orphan and never modified or deleted. Default is dry-run; `--write`
+  is an operator-authorized run that applies row by row, reads each row back
+  (verifying the human columns survived byte-for-byte), and records a failed
+  row for a later idempotent retry without blocking the other rows. This
+  registration is a separately approved transaction after publication: it
+  does not change the Git-only contract above (no queue rows, no source-table
+  writes), and a failed deployment must never be registered as online.
+- **`reconcile` (M1, continuous three-face cross-check).** Read-only
+  comparison of manifest ↔ ops sheet ↔ `Document_link.HTML_link` queue
+  receipts. Receipts register the canonical nested page (M4 semantics, as
+  `write_web_publish_html_link.py` writes it); a flat root-alias receipt is
+  flagged as `receipt_flat_form_link`. Every difference is classified against
+  the committed whitelist
+  [`data/ops_catalog_reconcile_whitelist.json`](../../data/ops_catalog_reconcile_whitelist.json)
+  (seeded from the REV-06 M0 diff table: the 49-target Git-only
+  no-receipt baseline, M0-05). A whitelisted difference is listed and exits 0
+  so known history never re-alarms; any new difference exits 1. Growing the
+  whitelist is an operator decision recorded in the entry's `reason`; targets
+  never enter it automatically.
+
+Neither mode fabricates queue history for alignment (the acceptance goal is
+"no unexplained difference", not "no difference"), and both refuse to act on a
+sheet whose header row no longer matches the 15-column contract.
+
 ## 3. Repository and hosting boundaries
 
 - Code changes land only in `Bingboom/auto-manual`, then

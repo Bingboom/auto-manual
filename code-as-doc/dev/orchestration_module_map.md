@@ -484,6 +484,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - one shared paced/caching `FetchSession` for the catalog (`--rps`), so per-target attribution replays bytes instead of re-fetching each closure
   - `--asset-scope markup` (default) bounds a sweep to ~65 requests; referenced binaries must still exist in the receipt, `full` re-downloads them all
   - separates rate-limited (`throttled`, exit 75, undecided) from mismatched (exit 1); never silently passes a 429
+- [`tools/ops_catalog_sync.py`](../../tools/ops_catalog_sync.py)
+  - `sync` (M2): idempotent machine-column upsert of the ops catalog sheet 「说明书目录」 from `publish_manifest.json` keyed by (model, region, lang); human columns are never written on existing rows; dry-run by default, `--write` applies per row with same-row readback and per-row failure isolation
+  - `reconcile` (M1): read-only manifest ↔ ops sheet ↔ `Document_link.HTML_link` three-face cross-check; differences classified against the committed whitelist `data/ops_catalog_reconcile_whitelist.json` (new diff → exit 1, known diff → listed, exit 0)
+  - contract in [`web_publish_pipeline.md`](web_publish_pipeline.md) §2.3
 
 ## 6. Cloud-Doc Backport Modules
 
