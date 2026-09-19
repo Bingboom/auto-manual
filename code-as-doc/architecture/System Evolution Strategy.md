@@ -1,6 +1,6 @@
 # System Evolution Strategy
 
-Updated: 2026-06-18
+Updated: 2026-09-17
 
 ## 1. Role
 
@@ -148,6 +148,34 @@ Responsibility:
 - expose change history
 - create release records
 - preserve build accountability
+
+### 4.6 Cross-Layer Operations Feedback and Shared Intake
+
+The five production layers remain stable. Operations is a feedback loop across
+those layers, not a sixth build engine or another source of publication truth.
+The [manual revitalization plan](../manual_production_revitalization_plan.md)
+applies these boundaries to stock-manual delivery:
+
+- Governed table/template inputs and approved AI/PDF intake both freeze their
+  content, structure, assets, configuration and source authority before assembly.
+  Stock intake does not require copying every paragraph into live tables first;
+  each target declares its current authoritative source and version.
+- Shared IR owns document semantics, component instances and asset references.
+  Web and fixed-page renderers own their layout; adapter conformance is distinct
+  from native-format pagination, font and delivery acceptance.
+- Queue and authorized Git-only inputs converge on the reviewed frozen release
+  outlet. Input provenance remains distinct; Git-only delivery does not imply
+  queue completion or permission to write online source/catalog records.
+- Review approval, release-PR merge, deployment, online verification, archive and
+  directory synchronization retain distinct evidence. An operations table is a
+  derived view with protected human fields, not the build source or release ledger.
+- A stable latest-version entry may change its target through a recorded mapping;
+  version-bound historical links retain their version meaning. Feedback returns
+  through the applicable review/template/source editing surface before release.
+
+Current repository/Base ownership stays in the
+[two-plane map](../../user-guide/two_plane_map.md); hosting choices and task dates
+belong in the operating contract and roadmap, not in these stable invariants.
 
 ## 5. Evolution Stages
 

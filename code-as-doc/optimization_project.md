@@ -1,6 +1,25 @@
 # Optimization Project
 
-当前主线（2026-09-13）：完成 [#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)，不是只做网页发布。六本批准纠错已由 Hello-Docs #73 发布，版本/回滚/撤回、试点部署回执、健康、两条元数据读回和真实反馈闭环已交付。23个正式页面及608/709资源已实证通过；用户明确批准“后置剩余复验，收口合入 #1103”，其余101资源线上复验记录为user-deferred而非通过。总PR进入最终全绿合入门禁。见[实际状态与证据](dev/manual_operations_closeout_20260913.md)。不以前置线上正文抽取为门槛；人工内容/视觉验收和响应SLA由用户后置。后续逐本结构化治理与翻译验收继续归Milestone M，IR-D01–D06保持长期目标。
+## 说明书产线盘活：下一批工作（2026-09-17）
+
+[盘活与演进方案 v3.1](manual_production_revitalization_plan.md)登记本轮增量规划。
+已有 OPS-00–07、公共 IR 与 Milestone M 的验收事实和操作者后置决定继续有效；
+下面的任务不把已有回滚、健康、部署回执、反馈渠道重新立项，也不恢复 #1186 已撤回的 sideload 产线。
+
+| 工作包 | 优先级 | 下一步及依赖 |
+|---|---|---|
+| WP1 发布现状、入口整合与对账基线 | 首批 | 完成 HT-Manuals → HT-Doc 整合：REV-01/02 对账与旧链接核查，REV-08 目标站点检查，REV-03 获批迁移及停止旧站独立更新；只做调查不算完成 |
+| WP2 发布登记与恢复闭环 | 基线后 | WP1 确认差异后，复用已有生命周期/回执，只补登记幂等、失败重试及对账缺口；在线写入独立确认 |
+| WP3 运营与译文首轮维护 | 条件满足后 | 数据访问及审核责任明确后可与 WP1 并行；复用 D1–D4 决策，验证统计口径和实际 TM 复用 |
+
+本表只维护优先级；**逐项状态唯一维护在[执行台账](dev/manual_revitalization_execution.md)**。
+方案 34 项已逐项对应 REV-01–34，前置依赖、阶段门、证据和续接点均在台账中。
+下一候选 REV-01；每次“继续”先核对主线与在审 PR，再按依赖续接。交付、验收、失败处理和责任分工由方案第十章定义。
+0–90 天为规划窗口，3–6 / 6–12 个月触发条件在[平台路线](architecture/platform_evolution_roadmap.md)维护。
+第八节的既有工程排序保留其历史上下文；本批先核实增量缺口，未来实施切片仍遵守相应 workstream 门槛。
+方案文档提交不是实施完成，不登记工作包完成记录。
+
+既有主线记录（2026-09-13 历史时点）：完成 [#1103 全部运营 checklist](dev/manual_operations_acceptance_checklist.md)，不是只做网页发布。六本批准纠错已由 Hello-Docs #73 发布，版本/回滚/撤回、试点部署回执、健康、两条元数据读回和真实反馈闭环已交付。23个正式页面及608/709资源已实证通过；用户明确批准“后置剩余复验，收口合入 #1103”，其余101资源线上复验记录为user-deferred而非通过。总PR进入最终全绿合入门禁。见[实际状态与证据](dev/manual_operations_closeout_20260913.md)。不以前置线上正文抽取为门槛；人工内容/视觉验收和响应SLA由用户后置。后续逐本结构化治理与翻译验收继续归Milestone M，IR-D01–D06保持长期目标。
 
 Public IR workstream checkpoint: [whole-document Web closure and JBP-2000B JP
 acceptance](dev/ir_document_closeout.md). Cuts 1–5 now give new whole-document

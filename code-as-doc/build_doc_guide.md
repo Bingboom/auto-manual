@@ -58,6 +58,13 @@ For onboarding new external Markdown manuals into the template library, use:
 - [`.agents/skills/markdown-rst-template-intake/SKILL.md`](../.agents/skills/markdown-rst-template-intake/SKILL.md) for the repo-local Codex workflow that maps Markdown manuals into the current RST template and recipe layout
 - [`.agents/skills/manual-rewrite-with-tm/SKILL.md`](../.agents/skills/manual-rewrite-with-tm/SKILL.md) for TM-first structured Markdown/manual rewrite that preserves layout and highlights unmatched source text
 
+For planned publication-outlet consolidation and medium/long-term ownership, see
+the [manual revitalization plan](manual_production_revitalization_plan.md).
+Use the [hosting convergence review](dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)
+for old/new URL and version mapping, release-site evidence and recovery checks.
+These are planning/manual acceptance requirements; no new command, automated
+gate, hosting change or online write is introduced by the documentation update.
+
 ## 1. Recommended Entrypoint
 
 RTD renders the frozen Web snapshot with the root-only portal extension:

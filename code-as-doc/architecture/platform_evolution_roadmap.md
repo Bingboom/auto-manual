@@ -111,6 +111,29 @@ Within phases, execution order follows the **Milestone K tier triage** (2026-07-
 - **Technical scope:** batch intake campaigns on the existing skills; Workstream O online-first proofs (zero hand-committed snapshots); Workstream N long-form assembly only where its design gate and ROI clear; Q&A as its own workstream; service extraction (e.g., a real queue service replacing Actions) only if measured throughput demands it — the first phase where that conversation is legitimate.
 - **Exit criteria:** none — this is steady state. Health is judged by the KPIs: marginal cost per line flat or falling as line count grows, operator interventions per publish falling, every Phase 0–3 mechanism holding at 10× volume.
 
+### 4.1 Manual Delivery Application — Planning Windows (2026-09-17)
+
+The [revitalization plan](../manual_production_revitalization_plan.md) applies the
+existing phases to current manual delivery. These windows start when the plan
+is accepted; they do not replace the capacity/organizational gates above or
+claim that a phase has passed. Execution priority lives in the
+[execution roadmap](../optimization_project.md); per-item state, dependencies,
+acceptance evidence and continuation live only in the
+[execution ledger](../dev/manual_revitalization_execution.md).
+
+| Window | Outcome and existing phase relationship | Start / exit evidence |
+|---|---|---|
+| 0–90 days | Reconcile hosting and old entries, then reuse lifecycle/receipts and close measured registration gaps; applies the recovery and operator-load objectives of Phases 0–1 | Same-time publication/URL/version baseline first; scoped approval before hosting/table changes. Exit: both input paths reach the agreed outlet, legacy version semantics survive, no unexplained differences, and retries preserve manual fields |
+| 3–6 months | Extend proven family-level multilingual/IDML reuse and change-impact handling; applies Phase 2 propagation and Phase 3 handoff where their triggers permit | Representative format acceptance, approved propagation design/gates for fleet changes, measured operator effort and an identified handoff participant. Exit: repeatable format-specific acceptance and observed transfer of routine work; no native IDML acceptance inferred from IR tests |
+| 6–12 months and later | Versioned, applicable, source-cited exports/interfaces for website, support or retrieval consumers; relates to Phases 3–4 | Named consumer and answer/content quality owner, maintainable input lineage, organizational ownership and Phase 2 gate for scale-out. Exit: a consumer exercises the interface and a real correction remains traceable through release |
+
+Do not introduce a parallel CMS, rewrite the renderers or split services merely
+to fill a time window. Service extraction needs measured throughput, permission
+or maintenance constraints. IDML pilot work runs alongside existing Web delivery;
+its native acceptance does not block a separately accepted Web release. Existing
+[operations decisions](../manual_operations_growth_plan.md) remain in effect,
+including deferred DNS execution; this plan does not reset them.
+
 ## 5. Business Work Is the Discovery Engine
 
 This platform's defenses were not designed in the abstract — they were built from production events: probe workstreams fired real signals on day one, backport rules hardened after live mis-writes, the intake completeness gate exists because a real QC round exposed the gap. The roadmap makes that the *method*, not an accident:

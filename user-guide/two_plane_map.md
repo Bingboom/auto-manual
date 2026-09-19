@@ -89,6 +89,15 @@ Updated: 2026-08-02
 | **表结构 + 引用数据** | 旧 base → 新 base | `python tools/bitable_schema.py promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
 
+### 2.1 发布契约与实际托管配置的区别（2026-09-17）
+
+上表的 `publish → PR → main` 是受支持的发布契约，不代表历史 RTD 项目均已迁到该配置。
+操作者提供的调查截图报告 HT-Manuals 仍关联 `publish`，HT-Doc 关联 `main`；
+本次文档更新未在线复核后台，也未执行迁移。以
+[发布入口整合检查](../code-as-doc/dev/web_publish_pipeline.md#31-hosting-convergence-and-legacy-entry-review)
+逐项核实、批准变更并验收后，再回填实际托管状态。
+停止旧 RTD 项目独立更新不删除 `Hello-Docs/publish` 候选分支，也不合并工程/业务两个仓库。
+
 ## 3. 谁在哪跑
 
 | 东西 | 跑在哪 | 对着哪组 base |
