@@ -18,6 +18,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
 from tools.listen_build_queue_lark import fetch_field_id_map  # noqa: E402
+from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import LarkCliSource, cli_bin, load_config, phase2_identity  # noqa: E402
 from tools.rtd_deployment_receipt import DEFAULT_RTD_BASE_URL  # noqa: E402
 from tools.queue_bound_binding import collect_queue_preflight_errors, resolve_document_link_binding  # noqa: E402
@@ -65,12 +66,23 @@ def _read_metadata(path: Path) -> dict[str, Any]:
 
 
 def target_rtd_url(*, base_url: str, payload: dict[str, Any]) -> str:
+    """Return the canonical nested page for the target (M4 link semantics).
+
+    ``Document_link.HTML_link`` registers the canonical
+    ``<model>/<region>/<lang>/md/<manual>.html`` route, matching the stored
+    target's ``route`` in ``publish_manifest.json``. The flat root alias
+    (``/<manual>.html``) remains the countable printed/QR entry layer and is
+    no longer the registered value. ``publication_url`` enforces HTTPS and
+    rejects unsafe route segments before anything reaches the Bitable.
+    """
     model = str(payload.get("model") or "").strip()
     region = str(payload.get("region") or "").strip()
+    lang = str(payload.get("lang") or "").strip()
     markdown_path = Path(str(payload.get("md_output_path") or "").strip())
-    if not model or not region or not markdown_path.stem:
-        raise RuntimeError("Web Publish metadata is missing model, region, or md_output_path")
-    return f"{base_url.rstrip('/')}/{markdown_path.stem}.html"
+    if not model or not region or not lang or not markdown_path.stem:
+        raise RuntimeError("Web Publish metadata is missing model, region, lang, or md_output_path")
+    route = "/".join((model, region, lang, PathSegments.MD, f"{markdown_path.stem}.html"))
+    return publication_url(base_url, route)
 
 
 def persist_rtd_url(*, metadata_path: Path, payload: dict[str, Any], url: str) -> None:

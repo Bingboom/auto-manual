@@ -475,8 +475,12 @@ Quality and release logic should follow concern-specific modules instead of drif
   - explicit local withdrawal/restoration ledger, pinned-source digest and stale-manifest guard
   - blocks ordinary reentry of withdrawn versions and reuses assembly/promotion for action candidates
 - [`tools/write_web_publish_html_link.py`](../../tools/write_web_publish_html_link.py)
-  - derives deterministic Read the Docs routes from Web Publish metadata
+  - derives the deterministic canonical nested Read the Docs page from Web Publish metadata
   - writes `HTML_link` only for the queue record ids bound to each frozen target
+- [`tools/verify_web_deployment_targets.py`](../../tools/verify_web_deployment_targets.py)
+  - read-only scheduled cross-check of every `publish_manifest.json` target against the live RTD site
+  - full frozen-source `verify_deployment` per target with `--publish-root`, or remote manifest + served project-slug checks without one
+  - fails closed on unreachable pages, drifted bytes, and wrong-site (foreign project slug) deployments
 
 ## 6. Cloud-Doc Backport Modules
 

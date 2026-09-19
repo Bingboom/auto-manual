@@ -26,19 +26,45 @@ class WriteWebPublishHtmlLinkTests(unittest.TestCase):
             ),
         )
 
-    def test_target_url_should_match_readthedocs_short_alias(self) -> None:
+    def test_target_url_is_the_canonical_nested_route(self) -> None:
+        # M4 link semantics: HTML_link registers the canonical nested page;
+        # the flat root alias stays the printed/QR entry layer.
         url = target_rtd_url(
             base_url="https://ht-doc.readthedocs.io/",
             payload={
                 "model": "JE-1000F",
                 "region": "US",
+                "lang": "en",
                 "md_output_path": "reports/releases/JE-1000F/US/en/versions/2.0/web/md/manual_je1000f_us.md",
             },
         )
         self.assertEqual(
-            "https://ht-doc.readthedocs.io/manual_je1000f_us.html",
+            "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html",
             url,
         )
+
+    def test_target_url_requires_language(self) -> None:
+        with self.assertRaisesRegex(RuntimeError, "lang"):
+            target_rtd_url(
+                base_url="https://ht-doc.readthedocs.io",
+                payload={
+                    "model": "JE-1000F",
+                    "region": "US",
+                    "md_output_path": "reports/releases/JE-1000F/US/en/versions/2.0/web/md/manual_je1000f_us.md",
+                },
+            )
+
+    def test_target_url_rejects_unsafe_route_segments(self) -> None:
+        with self.assertRaises(ValueError):
+            target_rtd_url(
+                base_url="https://ht-doc.readthedocs.io",
+                payload={
+                    "model": "..",
+                    "region": "US",
+                    "lang": "en",
+                    "md_output_path": "reports/releases/JE-1000F/US/en/versions/2.0/web/md/manual_je1000f_us.md",
+                },
+            )
 
     def test_latest_metadata_and_persist_should_use_web_subtree(self) -> None:
         with tempfile.TemporaryDirectory() as td:

@@ -192,11 +192,14 @@ change JP D1–D4 or promote production eligibility.
    and writeback transaction.
 8. The assembler creates a collision-checked root alias named from the manual
    stem (for example `/manual_je1000f_us.html`) that forwards to the canonical
-   nested Sphinx route. That concise deterministic URL is written to
-   `Document_link.HTML_link`. Relative forwarding keeps the generated alias
-   valid in both RTD single-version and `/en/latest` deployments. A seven-day
-   workflow artifact retains the Web release evidence; the Git branch remains
-   the durable snapshot.
+   nested Sphinx route. The root alias is the countable printed/QR entry layer
+   only. The deterministic URL written to `Document_link.HTML_link` is the
+   canonical nested page itself (for example
+   `/JE-1000F/US/en/md/manual_je1000f_us.html`), matching the stored target
+   `route` in `publish_manifest.json`. Relative forwarding keeps the generated
+   alias valid in both RTD single-version and `/en/latest` deployments. A
+   seven-day workflow artifact retains the Web release evidence; the Git
+   branch remains the durable snapshot.
 
 ### 2.2 Git-only transaction
 
@@ -352,6 +355,19 @@ Success requires all three pieces of evidence:
 
 For the Git-only path, use the evidence contract in section 2.2. Do not create
 placeholder online records or write `HTML_link` to imitate queue completion.
+
+Both paths write `HTML_link` (or record URLs) before Read the Docs deploys, so
+neither transaction can prove by itself that the registered link stays correct.
+[`verify-web-deployment.yml`](../../.github/workflows/verify-web-deployment.yml)
+is the independent detector: a daily scheduled run on the Hello-Docs business
+plane feeds every target of `Hello-Docs/main:docs/publish/publish_manifest.json`
+through [`tools/verify_web_deployment_targets.py`](../../tools/verify_web_deployment_targets.py),
+which runs the full `tools.rtd_deployment_receipt.verify_deployment` check per
+canonical nested page — frozen-source byte identity plus the expected RTD
+project slug derived from the base URL — and fails the run on any unreachable
+page, drifted bytes, or wrong-site deployment. Failures open the
+`web-deployment-verify` sentinel issue through the shared
+`queue-sentinel-issue` action; the next fully green run closes it.
 
 ## 5. Rollback
 
