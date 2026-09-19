@@ -43,15 +43,15 @@ PR/报告保存证据；不在多份文件分别勾选同一任务。既有 OPS 
 |---|---|---|---|---|---|
 | <a id="rev-01"></a>REV-01 | WP1 | — | 两站配置、部署提交、版本、旧新 URL 同时点清单；不以截图代替查询 | verifying | 执行=Claude（Fable）调查 2026-09-19；证据=[revitalization/rev01_inventory.md](revitalization/rev01_inventory.md)、[revitalization/rev01_url_map.csv](revitalization/rev01_url_map.csv)——两站构建号/分支绑定全部核实，旧站 HT-Manuals 事实冻结（仅建项构建、无 webhook、仅 JE-1000F US 1.7 一本），新站 52 目标全 200；RTD 后台仅登录可见项标待操作者确认。验收待操作者 |
 | <a id="rev-02"></a>REV-02 | WP1 | REV-01 | HTML_link、印刷二维码、交付链接原值及最新/历史语义对应表 | verifying | 执行=Claude（Fable）调查 2026-09-19；证据=[revitalization/rev02_link_audit.csv](revitalization/rev02_link_audit.csv)、[revitalization/rev02_conclusions.md](revitalization/rev02_conclusions.md)——构建表 33 行 HTML_link 零旧域名（3 非空全 ht-doc）、发布文档管理 45 链接全 alidocs、印刷 QR 全物料号非 URL：旧站下线暴露面为 0；发现 HTML_link 登记形态不一致（平铺别名 vs 嵌套正式，待 M2/M4 统一拍板）。验收待操作者 |
-| <a id="rev-03"></a>REV-03 | WP1 | REV-02, REV-06, REV-08 | 获批迁移范围、旧入口到 HT-Doc 的实际跳转/兼容配置与验证、旧站停止独立更新证据、映射恢复记录；保留历史版本语义及 publish 分支 | planned | 待指派 / — |
+| <a id="rev-03"></a>REV-03 | WP1 | REV-02, REV-06, REV-08 | 获批迁移范围、旧入口到 HT-Doc 的实际跳转/兼容配置与验证、旧站停止独立更新证据、映射恢复记录；保留历史版本语义及 publish 分支 | verifying | 执行=操作者删除旧站 + Claude（Fable）核验 2026-09-19；证据=[revitalization/rev03_closing.md](revitalization/rev03_closing.md)——四条死亡探针 404、新站回归全绿、旧链接由新站兼容页承接、publish 分支在位（未删）。验收待操作者 |
 | <a id="rev-04"></a>REV-04 | WP1 | REV-01 | 带时间/来源/维度的型号×区域×语言覆盖清单；解释 24/47/52 差异 | verifying | 执行=Claude（Fable）调查 2026-09-19；证据=[revitalization/rev04_coverage.csv](revitalization/rev04_coverage.csv)、[revitalization/rev04_explain.md](revitalization/rev04_explain.md)——24/47/52 全部闭环（47=运营表快照与 manifest@HD#82 集合级相等；52=撤两本 sideload 后现状=22 本；24=撤前峰值本数），运营表漂移 5 行（JE-1000H EU 非英语）；JE-1000H EU 已解、JE-3000C KR 部分解。验收待操作者 |
 | <a id="rev-05"></a>REV-05 | WP1 | — | 命令/调度/归档/同步能力矩阵，逐项标已有、缺口、待核实；不恢复撤回命令 | verifying | 执行=Claude（Fable）调查 2026-09-19；证据=[revitalization/rev05_capability_matrix.md](revitalization/rev05_capability_matrix.md)——34 动作/14 workflow 全录，撤回四命令双面证实不在 main；月报调度已核实=操作者本机 Claude 定时任务 monthly-manual-traffic-report（cron 0 9 1 * *，enabled，2026-10-01 首跑）；REV-08 缺口坐实（回执不校验目标项目、校验器无调用者、HTML_link 部署前回写）。验收待操作者 |
 | <a id="rev-06"></a>REV-06 | WP1 | REV-02, REV-04, REV-05 | M0 差异表；每个差异有解释、责任人和处理决定，不补造队列历史 | verifying | 执行=Claude（Fable）调查 2026-09-19；证据=[revitalization/rev06_m0_diff.md](revitalization/rev06_m0_diff.md)——12 条差异（8 已解释历史差异 / 2 必要+1 可选待授权写 / 3 待决策）；新发现：JE-2000F_EU 队列行为 FAILED 属正确行为但 49/52 目标无回执、JE-1000F_US_2.2 行仍武装有误重跑风险、reports/releases 在 git 为空集（by design）→ M1 唯一冻结记录=Hello-Docs manifest；撤下两书五面零残留。验收待操作者 |
 | <a id="rev-07"></a>REV-07 | WP2 | REV-06, REV-08 | M1/M2 缺口切片；幂等、登记失败独立重试、人工字段保护及授权回读证据 | planned | 待指派 / — |
-| <a id="rev-08"></a>REV-08 | WP2 | REV-05 | 两条路径的 RTD 项目/main 分支/发布 URL 一致性检查，正确站点通过及错误站点拒绝验收/登记的证据；区分批准、合入、部署、线上版本回执。已有能力复用，缺口实现另开切片 | verifying | 执行=Claude（Fable）实现 2026-09-19；产物=PR [#1190](https://github.com/Bingboom/auto-manual/pull/1190)（verify_deployment 可选 expected_project_slug 校验 + base_url 单源，4210 测试全绿，未合并）；缺口(b) workflow 接线按 §8.7 未做，两个接线方案在 PR 正文待操作者选择。验收=操作者审合 #1190 |
+| <a id="rev-08"></a>REV-08 | WP2 | REV-05 | 两条路径的 RTD 项目/main 分支/发布 URL 一致性检查，正确站点通过及错误站点拒绝验收/登记的证据；区分批准、合入、部署、线上版本回执。已有能力复用，缺口实现另开切片 | verifying | 执行=Claude（Fable）实现 2026-09-19；产物=PR [#1190](https://github.com/Bingboom/auto-manual/pull/1190)（verify_deployment 可选 expected_project_slug 校验 + base_url 单源，4210 测试全绿，未合并）；缺口(b) workflow 接线按 §8.7 未做，两个接线方案在 PR 正文待操作者选择。后续=#1190/#1192 已合（每日校验 cron 上线），首跑抓出 429 限流缺陷、修复 [#1193](https://github.com/Bingboom/auto-manual/pull/1193) 待合。验收=合 #1193 并观察次日 cron 绿 |
 | <a id="rev-09"></a>REV-09 | WP2 | REV-07, REV-08 | 代表目标修订/发布/恢复证据；已有演练复用，新演练区分隔离环境和生产 | planned | 待指派 / — |
 | <a id="rev-10"></a>REV-10 | WP2/WP3 | REV-02, REV-04, REV-05 | M4/M5 入口映射历史、统计窗口/过滤版本及目录快照；不覆盖旧统计 | verifying | 执行=Claude（Fable）草拟 2026-09-19；证据=[revitalization/rev10_entry_map.md](revitalization/rev10_entry_map.md)（M4 映射表 v1：52 根别名+22 兼容页+门户，历史变更栏立表）、[revitalization/rev10_metrics_snapshot.md](revitalization/rev10_metrics_snapshot.md)（M5 口径快照第一期：窗口/来源/过滤/归类/目录指针/命名 v1；未含 CWA 实测——凭据边界）。快照落盘路径约定待 M5 实施定。验收待操作者 |
-| <a id="rev-11"></a>REV-11 | WP3 | — | 真实候选清单及语言责任人审核；批准、拒绝、待定分开，授权入库须回读 | active | 执行=Claude（Fable）调查半完成 2026-09-19；证据=[revitalization/rev11_candidates.md](revitalization/rev11_candidates.md)——正式候选=0（#538 口径），真实待裁决面 702 行（ledger 197 全 pending + TM Draft 431 一个月零消化 + 74 无状态），10 条抽样建议已备；118/151 溯源 lang_asset_sweep.py，重跑现值 110/144。下一步=语言责任人裁决首批（解锁责任人=夏冰）；入库写操作待授权 |
+| <a id="rev-11"></a>REV-11 | WP3 | — | 真实候选清单及语言责任人审核；批准、拒绝、待定分开，授权入库须回读 | verifying | 执行=Claude（Fable）2026-09-19 完成首批全链；证据=[revitalization/tm_writes_20260919.md](revitalization/tm_writes_20260919.md)——74 行补 Draft、59 行转 Approved（7 行带改值）、81 条 ledger 盖章、tm-candidates 43→回灌写 2+幂等 2、AC/AC1 冲突经操作者裁决（按 2000E）落库并压制反向候选。剩余：116 需复核、372 留人工、37 未解析候选（建行需新授权）归月度批次。验收待操作者 |
 | <a id="rev-12"></a>REV-12 | WP1 | REV-04, REV-06 | 大陆访问实测范围、IT 待办及具体下一批目标；域名阻塞有负责人和恢复条件 | verifying | 执行=Claude（Fable）综合 2026-09-19；证据=[revitalization/rev12_reachability_and_next.md](revitalization/rev12_reachability_and_next.md)——大陆实测范围六项清单（待大陆侧执行）、IT 待办登记（DNS 阻塞责任人=IT，恢复条件=交接窗口）、下一批目标=中规 JE-2000F CN ≈ 日规 JE-1000F JP（韩规先修构建声明）。验收待操作者 |
 | <a id="rev-13"></a>REV-13 | WP2 | G1 | 不同结构代表目标的发布证据及人工操作记录；不能只测同一本 | planned | 待指派 / — |
 | <a id="rev-14"></a>REV-14 | WP2 | G1, REV-08 | M3 业务选择/冻结输入/能力声明映射与正反例；不机械要求异义字段相等 | planned | 待指派 / — |
@@ -107,11 +107,11 @@ REV-34 是条件性专项，不是所有路线结束前必须完成的任务。
 
 ## 4. 当前续接点
 
-- 本轮（2026-09-19）：0–30 天批次的调查/实现面已交付 9 项产物（REV-01/02/04/05/06/10/12 verifying、REV-08 待合 #1190、REV-11 active 待裁决），证据入库于 `code-as-doc/dev/revitalization/`；全部为只读调查与代码切片，无站点迁移、无线上表写入、无生产发布。
-- 下一候选：**REV-07**（依赖 REV-06 验收 + REV-08 合入）；**REV-03** 已具备新事实（旧站事实冻结、三登记面暴露面为 0，见 rev02_conclusions.md）但等操作者拍板旧站处置（保留冻结 / RTD 重定向 / 下线）后才可进入。
-- 等操作者的决定：① 旧站 ht-manuals 处置；② 运营表补 JE-1000H EU 5 行 + 是否做成 manifest 自动镜像（M2 范围）；③ 翻译裁决入口（Draft 431 批量规则 / ledger 197 盖章人 / 74 行补 Status）；④ HTML_link 写回时机与登记形态统一（平铺别名 vs 嵌套正式）；⑤ #1190 审合与缺口(b) 接线方案二选一；⑥ M0-03（JE-1000F_US_2.2 行去武装）等 2+1 项活表写操作授权。
-- 尚未授权的动作：站点迁移、线上表写入、定时任务、生产发布——一项都没做，保持原状。
-- 验收提示：verifying 各行的证据文件即验收材料；操作者验收通过后在本表翻 done 并记验收人/日期。
+- 本轮（2026-09-19 收口）：0–30 天批次全部任务有产物——REV-01/02/03/04/05/06/10/11/12 verifying、REV-08 差 #1193 合入。六项操作者决定全部执行完毕（旧站已删、运营表补行、翻译三刀落库、HTML_link 嵌套+每日校验 cron、M0 三项写、AC 按 2000E）。验收单=[revitalization/rev_acceptance_20260919.md](revitalization/rev_acceptance_20260919.md)，逐行验收后翻 done。
+- 批次外完成：JE-2000E-KR re-seed 回退轮全闭环（HD#90 恢复、rediff=0、基线 20260919、错误码根因=#955 覆盖语义×ALL 行形态、F6 11 格修复+渲染证明）。
+- 开口（不阻塞验收）：① #1193 待合；② KR 未路由评审编辑 5 组待路由拍板；③ F6 본 제품 通扫 ~4 组归下一 F6 批；④ 37 条 TM 未解析候选的建行授权归十月批次；⑤ 反向候选 1ef29f0b8796 已压制不得再 approve。
+- 下一候选：**REV-07**（M1/M2 闭环——每日校验 cron 已算 M1 首件，剩目录幂等同步与 HTML_link 写回后移方案一）与 **REV-09**（依赖 REV-07/08 验收）；REV-13 起等 G1 阶段门（=REV-01–12 验收）。
+- 建议排队的新条目：错误码"专属码数<通用码数"check 告警（防 #955 语义再踩）；JE-1000F US 补 fr/es（REV-21 便宜候选，含 led-light 缺口修复）。
 
 ## 5. 实施 PR 与检查节奏
 
