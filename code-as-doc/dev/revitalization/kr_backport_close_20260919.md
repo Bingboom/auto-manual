@@ -24,12 +24,12 @@ r1 的 93 delta 与 PR#67 轮（2026-09-05）报告的 93 逐批同源 = 冻结�
 
 | 项 | 值 |
 | --- | --- |
-| 旧指针（写前读） | `[https://xcn57j1urbe6.feishu.cn/wiki/IvoSweoyfiuGEtkQNtLcK0Rwnlg](…)`，节点 title `manual_je2000e_kr_ko_0.2_基线20260819`（保留在 wiki 供追溯，未删除） |
+| 旧指针（写前读） | ``https://xcn57j1urbe6.feishu.cn/wiki/IvoSweoyfiuGEtkQNtLcK0Rwnlg``，节点 title `manual_je2000e_kr_ko_0.2_基线20260819`（保留在 wiki 供追溯，未删除） |
 | node-copy | `wiki +node-copy --as bot` 源 `Jwp8wWi5LirRUskXP7gcUQd4nNg` → 过程文档管理 `AvBhwdpNxivgXfkPm1VcCG01nPh`（space 7649591386208717774） |
 | 新冻结副本 | 节点 `I5sNwpFvFiRF1bkIBfccWjMenFd`，obj `L0R1dmweYovQMRxmFb6c4a0ZnIc`，title `manual_je2000e_kr_ko_0.2_基线20260919` |
 | 副本内容校验 | fetch 副本 vs 当前云文档，normalize 后 **完全相等**（原始字节差异仅为飞书按文档重生成的图片 token/alt 噪音） |
-| 行指针写入 | `+record-upsert --record-id recvsI5B5GSKvu`，字段 `基线文档` = 新副本 URL（保持 ``url`（目标=url）` 形制） |
-| 写后回读 | sleep 6s 后 `+record-get`：`基线文档` = `[https://xcn57j1urbe6.feishu.cn/wiki/I5sNwpFvFiRF1bkIBfccWjMenFd](…)` ✅（record_id `recvsI5B5GSKvu`，Git_ref/飞书云文档/Review_status 未变） |
+| 行指针写入 | `+record-upsert --record-id recvsI5B5GSKvu`，字段 `基线文档` = 新副本 URL（保持 url-style 字段形制） |
+| 写后回读 | sleep 6s 后 `+record-get`：`基线文档` = `https://xcn57j1urbe6.feishu.cn/wiki/I5sNwpFvFiRF1bkIBfccWjMenFd`（url-style 渲染形） ✅（record_id `recvsI5B5GSKvu`，Git_ref/飞书云文档/Review_status 未变） |
 | 生效证明 | §1 的 r2 rediff = 0（fetch 优先走行上基线①） |
 
 **分支 seed 基线②**：合并 tip 上不存在 `docs/_review/JE-2000E/KR/**/.backport/*.baseline.md`（`git ls-tree -r d53ccf33` 全量列举 + KR 目录只含 `ko/`，两个正交面核验）。基线①存在时②不参与 diff（工具取用优先级①>②），且创建②需向 review 分支直接落 commit——本轮判定**不新建**，属显式决策而非遗漏。若后续操作者要同步②，走 `run-review-branch --seed --reseed --push`（工具会在 worktree 提交 seed 文件）。
