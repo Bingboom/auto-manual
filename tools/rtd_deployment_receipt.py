@@ -19,6 +19,12 @@ from tools.utils.path_utils import PathSegments
 
 RECEIPT = "manual-deployment.json"
 SCHEMA = "manual-rtd-deployment/v1"
+# Single source of truth for the production RTD base URL; CLI defaults and
+# expected-project derivation reference this constant instead of restating it.
+DEFAULT_RTD_BASE_URL = "https://ht-doc.readthedocs.io"
+_PROJECT_SLUG = r"[A-Za-z0-9_.-]+"
+_PROJECT_SLUG_META = re.compile(
+    rb'<meta name="readthedocs-project-slug" content="(' + _PROJECT_SLUG.encode("ascii") + rb')" />')
 MAX_FILES = 10000
 MAX_FILE_BYTES = 32 * 1024 * 1024
 MAX_TOTAL_BYTES = 512 * 1024 * 1024
@@ -236,9 +242,43 @@ def _without_rtd_proxy_injection(path: str, data: bytes) -> bytes:
     return re.sub(pattern, b"", head) + boundary + body
 
 
-def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
-    """Fail closed before callers write links; never treat HTTP 200 as identity."""
+def rtd_project_slug_from_base_url(base_url: str) -> str | None:
+    """Derive the expected project slug from a https://<slug>.readthedocs.io base URL.
+
+    Returns None for any other host shape (custom domains, extra subdomains,
+    lookalike registrable domains); callers then have no derivable expectation.
+    """
+    if not isinstance(base_url, str):
+        return None
+    try:
+        host = urlsplit(base_url).hostname or ""
+    except ValueError:
+        return None
+    match = re.fullmatch(r"([a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\.readthedocs\.io", host.lower())
+    return match.group(1) if match else None
+
+
+def _served_project_slugs(path: str, data: bytes) -> set[str]:
+    """Project slugs the served page declares via RTD-injected meta tags."""
+    if not path.endswith(".html"):
+        return set()
+    return {match.group(1).decode("ascii") for match in _PROJECT_SLUG_META.finditer(data)}
+
+
+def verify_deployment(web_root: Path, base_url: str, routes: list[str],
+                      expected_project_slug: str | None = None) -> dict:
+    """Fail closed before callers write links; never treat HTTP 200 as identity.
+
+    With expected_project_slug given, every fetched HTML page's RTD-injected
+    readthedocs-project-slug meta must name exactly that project, and at least
+    one page must declare it — byte identity alone cannot prove the bytes were
+    served by the intended RTD project. Without it, behavior is unchanged.
+    """
     _https_url(base_url)
+    if expected_project_slug is not None and (
+            not isinstance(expected_project_slug, str)
+            or re.fullmatch(_PROJECT_SLUG, expected_project_slug) is None):
+        raise ValueError("Invalid expected RTD project slug")
     if not routes or len(routes) > MAX_FILES or len(set(routes)) != len(routes):
         raise ValueError("Select nonempty unique deployment routes")
     for route in routes:
@@ -261,6 +301,7 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
     selected = set(routes)
     checked = set()
     proxy_injections = []
+    observed_slugs: set[str] = set()
     total = 0
     while selected - checked:
         path = min(selected - checked)
@@ -270,6 +311,14 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
         total += len(data)
         if total > MAX_TOTAL_BYTES:
             raise ValueError("Deployment verification exceeds total byte limit")
+        if expected_project_slug is not None:
+            served = _served_project_slugs(path, data)
+            observed_slugs.update(served)
+            foreign = sorted(served - {expected_project_slug})
+            if foreign:
+                raise ValueError(
+                    "Live deployment declares RTD project "
+                    f"{', '.join(foreign)} instead of {expected_project_slug}: {path}")
         if hashlib.sha256(data).hexdigest() != files[path]:
             normalized = _without_rtd_proxy_injection(path, data)
             if normalized == data or hashlib.sha256(normalized).hexdigest() != files[path]:
@@ -280,6 +329,13 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str]) -> dict:
         selected.update(_dependencies(path, data, base_url))
         if len(selected) > MAX_FILES:
             raise ValueError("Deployment dependency count exceeds safety limit")
-    return {"schema": SCHEMA, "status": "verified", "source_sha256": fingerprint,
-            "routes": routes, "verified_files": len(selected), "verified_bytes": total,
-            "rtd_proxy_injections_removed": proxy_injections}
+    result = {"schema": SCHEMA, "status": "verified", "source_sha256": fingerprint,
+              "routes": routes, "verified_files": len(selected), "verified_bytes": total,
+              "rtd_proxy_injections_removed": proxy_injections}
+    if expected_project_slug is not None:
+        if not observed_slugs:
+            raise ValueError(
+                "Live deployment never declared the expected RTD project slug "
+                f"{expected_project_slug}: no readthedocs-project-slug meta observed")
+        result["expected_project_slug"] = expected_project_slug
+    return result
