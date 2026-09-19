@@ -84,6 +84,7 @@ class PathSegments:
     TARGET_ASSEMBLY_PLAN_JSON = "target_assembly_plan.json"
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
     PUBLISH_META_JSON = "publish_meta.json"
+    OPS_CATALOG_RECONCILE_WHITELIST_JSON = "ops_catalog_reconcile_whitelist.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
     DEFAULT_CONFIG_JA = "config.ja.yaml"
@@ -203,6 +204,14 @@ def release_snapshot_identity_of(snapshot_dir: Path) -> Path:
 
 def release_rebuild_verification_of(version_dir: Path) -> Path:
     return version_dir / PathSegments.RELEASE_REBUILD_VERIFICATION_JSON
+
+
+def ops_catalog_reconcile_whitelist_of(base_root: Path) -> Path:
+    return (
+        base_root
+        / PathSegments.DATA
+        / PathSegments.OPS_CATALOG_RECONCILE_WHITELIST_JSON
+    )
 
 
 def content_qc_reports_of(base_root: Path) -> Path:
@@ -360,6 +369,10 @@ class Paths:
     @property
     def docs_publish_web_dir(self) -> Path:
         return docs_publish_web_of(self.docs_dir)
+
+    @property
+    def ops_catalog_reconcile_whitelist(self) -> Path:
+        return ops_catalog_reconcile_whitelist_of(self.root)
 
     @property
     def content_qc_reports_dir(self) -> Path:

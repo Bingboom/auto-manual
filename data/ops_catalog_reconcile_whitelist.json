@@ -1,0 +1,251 @@
+{
+  "schema_version": "auto-manual-ops-catalog-reconcile-whitelist/v1",
+  "description": "REV-07/M1 reconcile whitelist: known, explained differences between the Hello-Docs publish_manifest, the ops catalog sheet, and Document_link HTML_link receipts. Seeded 2026-09-19 from code-as-doc/dev/revitalization/rev06_m0_diff.md (M0-05/M0-10/M0-11); manifest source SHA 6b0d565e9a6d12da58a488b70a0101b72f7d8063. Alignment key is the (model, region, lang) triple; version vocabularies are display-only (M0-11) and receipts register the nested canonical page (M4). Entries are matched by (kind, key); adding an entry is an operator decision recorded in the reason field.",
+  "entries": [
+    {
+      "kind": "target_unregistered",
+      "key": "JA-AD01A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JA-AD600A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JA-CA05B/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JA-CA3SA/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JA-CC30A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JAAC-WHE-100-EUA1/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-2000B/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-2000B/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-2000B/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-2000B/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-2000B/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JBP-3600A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000F/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000F/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000F/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-1000H/EU/uk",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-100C/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000E/EU/uk",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-2000F/EU/uk",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/de",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/it",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3000C/EU/uk",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-300D/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3600A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3600A/EU/es",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-3600A/EU/fr",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JE-500A/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JS-100F/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JS-100I/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JS-200E/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    },
+    {
+      "kind": "target_unregistered",
+      "key": "JS-40C/EU/en",
+      "reason": "M0-05 已解释历史差异（rev06_m0_diff.md）：Web 上线走 Git-only 路线，按契约不写 Document_link 队列回执；2026-09-19 基线共 49 个存量 target 无 HTML_link 登记。是否补录归操作者的 M2 决策，新增 target 不自动进入本名单。"
+    }
+  ]
+}
