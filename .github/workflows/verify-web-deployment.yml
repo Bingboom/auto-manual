@@ -1,0 +1,96 @@
+name: Verify Web Deployment
+
+# REV-08(b): scheduled cross-check that every target published from
+# Hello-Docs main:docs/publish is actually served by the intended Read the
+# Docs project at its canonical nested route. The queue writes HTML_link as a
+# deterministic URL BEFORE the publish PR merges and before RTD deploys, so a
+# wrong-site deployment or later link drift is invisible to the pipeline
+# itself — this daily run is the independent detector.
+#
+# BUSINESS PLANE ONLY (same reasoning as phase2-content-backup): the frozen
+# publish tree this check fingerprints lives only on Hello-Docs main;
+# auto-manual must not own docs/publish (sync-hello-docs.yml enforces that).
+# The failure sentinel therefore opens in Hello-Docs, with the same
+# open/close-on-recovery lifecycle as the queue sentinels.
+
+on:
+  schedule:
+    - cron: "15 3 * * *" # daily 03:15 UTC, offset from the six existing daily crons
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Optional cap on the number of targets to verify (smoke run)
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: verify-web-deployment
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    if: ${{ github.repository == 'Bingboom/Hello-Docs' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirements.lock"
+
+      # The verifier's import chain (rtd_deployment_receipt -> rtd_portal ->
+      # build_docs) reaches the shared build stack, so install the same pinned
+      # snapshot CI and the queue workers install.
+      - name: Install Python dependencies
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.lock
+
+      # `shell: bash` is the explicit `bash -eo pipefail` form, so the
+      # verifier's exit status survives the `tee` pipe (phase2-content-backup
+      # first-nightly lesson).
+      - name: Verify deployment targets
+        shell: bash
+        run: |
+          cmd=(python tools/verify_web_deployment_targets.py
+            --publish-root docs/publish
+            --base-url "${AUTO_MANUAL_RTD_BASE_URL}")
+          if [ -n "${{ inputs.limit || '' }}" ]; then
+            cmd+=(--limit "${{ inputs.limit }}")
+          fi
+          "${cmd[@]}" | tee verify_web_deployment_out.txt
+          {
+            echo "### Web deployment target verification"
+            echo
+            echo '```'
+            cat verify_web_deployment_out.txt
+            echo '```'
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      # A --limit smoke run verifies a subset only; it must neither open nor
+      # close the full-catalog sentinel.
+      - name: Verification failure sentinel
+        if: ${{ always() && (inputs.limit || '') == '' }}
+        uses: ./.github/actions/queue-sentinel-issue
+        with:
+          job-status: ${{ job.status }}
+          label: web-deployment-verify
+          title: "Web deployment target verification failing: catalog"
+          details: |
+            workflow: Verify Web Deployment
+            base_url: ${{ env.AUTO_MANUAL_RTD_BASE_URL }}
+            catalog: docs/publish/publish_manifest.json@main
+            A failing target means the live page is unreachable, its bytes do
+            not match the frozen publish source, or it is served by a foreign
+            RTD project (wrong-site deployment). See the run summary for the
+            per-target verdict lines.
