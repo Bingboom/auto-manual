@@ -481,6 +481,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - read-only scheduled cross-check of every `publish_manifest.json` target against the live RTD site
   - full frozen-source `verify_deployment` per target with `--publish-root`, or remote manifest + served project-slug checks without one
   - fails closed on unreachable pages, drifted bytes, and wrong-site (foreign project slug) deployments
+  - one shared paced/caching `FetchSession` for the catalog (`--rps`), so per-target attribution replays bytes instead of re-fetching each closure
+  - `--asset-scope markup` (default) bounds a sweep to ~65 requests; referenced binaries must still exist in the receipt, `full` re-downloads them all
+  - separates rate-limited (`throttled`, exit 75, undecided) from mismatched (exit 1); never silently passes a 429
 
 ## 6. Cloud-Doc Backport Modules
 

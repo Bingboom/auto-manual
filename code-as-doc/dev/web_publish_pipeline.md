@@ -369,6 +369,18 @@ page, drifted bytes, or wrong-site deployment. Failures open the
 `web-deployment-verify` sentinel issue through the shared
 `queue-sentinel-issue` action; the next fully green run closes it.
 
+The whole catalog shares one paced, caching transport session (`--rps`, default
+2 req/s, overridable per dispatch or via the `AUTO_MANUAL_RTD_VERIFY_RPS` repo
+variable), and the nightly run uses `--asset-scope markup`: each page and its
+HTML/CSS/JS are byte-checked and every other referenced resource must exist in
+the served receipt, which keeps one sweep near 65 requests instead of ~2,300.
+Dispatch with `asset-scope: full` for an on-demand deep run that re-downloads
+every binary asset. Rate-limited targets are reported **throttled** and exit 75, kept
+separate from mismatches at exit 1: a 429 leaves a target undecided, so a
+throttled-only run is a re-run signal, not a content incident. Both still fail
+the job and open the sentinel — fail-closed is preserved — but the issue body
+states which of the two happened, with per-class counts.
+
 ## 5. Rollback
 
 Do not force-push `publish`. For the queue-driven path, re-run Web Publish from

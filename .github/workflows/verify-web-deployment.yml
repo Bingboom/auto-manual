@@ -22,6 +22,21 @@ on:
         description: Optional cap on the number of targets to verify (smoke run)
         required: false
         type: string
+      rps:
+        description: >-
+          Global request rate ceiling in requests/second (default 2). Lower it
+          if the run keeps coming back throttled.
+        required: false
+        type: string
+      asset-scope:
+        description: >-
+          markup (default) byte-checks each page plus HTML/CSS/JS and requires
+          every other referenced resource to exist in the served receipt; full
+          also re-downloads ~2,200 binary assets (slow, heavy on RTD).
+        required: false
+        type: choice
+        options: [markup, full]
+        default: markup
 
 permissions:
   contents: read
@@ -38,6 +53,14 @@ jobs:
     timeout-minutes: 30
     env:
       AUTO_MANUAL_RTD_BASE_URL: ${{ vars.AUTO_MANUAL_RTD_BASE_URL || 'https://ht-doc.readthedocs.io' }}
+      # One global pace for the whole catalog. The first nightly run fired the
+      # full closure per target with no pacing and readthedocs.io answered 429
+      # for every one of them; 2 req/s clears 52 targets in well under a minute.
+      AUTO_MANUAL_RTD_VERIFY_RPS: ${{ inputs.rps || vars.AUTO_MANUAL_RTD_VERIFY_RPS || '2' }}
+      # markup scope keeps the nightly sweep at ~65 requests instead of ~2,300:
+      # every page's HTML/CSS/JS is still byte-checked and every other
+      # referenced resource must still exist in the served receipt.
+      AUTO_MANUAL_RTD_VERIFY_SCOPE: ${{ inputs.asset-scope || 'markup' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -58,17 +81,61 @@ jobs:
 
       # `shell: bash` is the explicit `bash -eo pipefail` form, so the
       # verifier's exit status survives the `tee` pipe (phase2-content-backup
-      # first-nightly lesson).
+      # first-nightly lesson). Exit 75 (sysexits EX_TEMPFAIL) means the host
+      # rate-limited us and no target was decided — still a red job (fail
+      # closed), but a different incident from a byte/site mismatch.
       - name: Verify deployment targets
+        id: verify
         shell: bash
         run: |
           cmd=(python tools/verify_web_deployment_targets.py
             --publish-root docs/publish
-            --base-url "${AUTO_MANUAL_RTD_BASE_URL}")
+            --base-url "${AUTO_MANUAL_RTD_BASE_URL}"
+            --rps "${AUTO_MANUAL_RTD_VERIFY_RPS}"
+            --asset-scope "${AUTO_MANUAL_RTD_VERIFY_SCOPE}"
+            --report-json verify_web_deployment_report.json)
           if [ -n "${{ inputs.limit || '' }}" ]; then
             cmd+=(--limit "${{ inputs.limit }}")
           fi
+          set +e
           "${cmd[@]}" | tee verify_web_deployment_out.txt
+          verify_status=${PIPESTATUS[0]}
+          set -e
+
+          python - "${verify_status}" >> "${GITHUB_OUTPUT}" <<'PY'
+          import json, pathlib, sys
+
+          code = int(sys.argv[1])
+          path = pathlib.Path("verify_web_deployment_report.json")
+          report = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
+          checked = report.get("targets_checked", 0)
+          failed = report.get("targets_failed", 0)
+          throttled = report.get("targets_throttled", 0)
+          status = report.get("status") or ("verified" if code == 0 else "error")
+          verified = max(checked - failed - throttled, 0)
+          headline = {
+              "verified": "all targets verified",
+              "throttled": (
+                  "UNDECIDED — the RTD host rate-limited the run. No target was "
+                  "disproved; nothing is known to be wrong. Re-run the workflow "
+                  "(lower the rps input if it repeats)."
+              ),
+              "failed": (
+                  "TARGET MISMATCH — at least one live page is unreachable, its "
+                  "bytes differ from the frozen publish source, or it is served "
+                  "by a foreign RTD project. Investigate the failing targets."
+              ),
+          }.get(status, "the verifier could not produce a report; see the run log.")
+          for line in (
+              f"verify_status={code}",
+              f"report_status={status}",
+              f"classification={headline}",
+              f"counts={verified} verified / {failed} mismatched / "
+              f"{throttled} throttled (undecided) of {checked} target(s)",
+          ):
+              print(line)
+          PY
+
           {
             echo "### Web deployment target verification"
             echo
@@ -76,6 +143,7 @@ jobs:
             cat verify_web_deployment_out.txt
             echo '```'
           } >> "${GITHUB_STEP_SUMMARY}"
+          exit "${verify_status}"
 
       # A --limit smoke run verifies a subset only; it must neither open nor
       # close the full-catalog sentinel.
@@ -90,7 +158,17 @@ jobs:
             workflow: Verify Web Deployment
             base_url: ${{ env.AUTO_MANUAL_RTD_BASE_URL }}
             catalog: docs/publish/publish_manifest.json@main
-            A failing target means the live page is unreachable, its bytes do
-            not match the frozen publish source, or it is served by a foreign
-            RTD project (wrong-site deployment). See the run summary for the
-            per-target verdict lines.
+            request rate: ${{ env.AUTO_MANUAL_RTD_VERIFY_RPS }} req/s
+            asset scope: ${{ env.AUTO_MANUAL_RTD_VERIFY_SCOPE }}
+            verdict: ${{ steps.verify.outputs.report_status || 'error' }} (exit ${{ steps.verify.outputs.verify_status || 'unknown' }})
+            tally: ${{ steps.verify.outputs.counts || 'no report produced' }}
+
+            ${{ steps.verify.outputs.classification || 'The verifier did not complete; see the run log.' }}
+
+            "throttled" and "mismatched" are different incidents. Throttled
+            targets are UNDECIDED — rate limiting says nothing about the
+            deployment, so a throttled-only run is a retry signal, not a
+            content emergency. Mismatched targets are real findings: the live
+            page is unreachable, its bytes do not match the frozen publish
+            source, or it is served by a foreign RTD project (wrong-site
+            deployment). See the run summary for the per-target verdict lines.

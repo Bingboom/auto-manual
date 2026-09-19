@@ -1,6 +1,9 @@
 """Bind a successful frozen Sphinx deployment to source and served bytes."""
 from __future__ import annotations
 
+from collections.abc import Callable
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 import hashlib
 from http.client import IncompleteRead, RemoteDisconnected
 from html.parser import HTMLParser
@@ -8,7 +11,7 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 from ssl import SSLEOFError
-from time import monotonic
+from time import monotonic, sleep
 from urllib.error import HTTPError, URLError
 from urllib.parse import unquote, urljoin, urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
@@ -31,6 +34,135 @@ MAX_TOTAL_BYTES = 512 * 1024 * 1024
 MAX_FETCH_ATTEMPTS = 3
 FETCH_BUDGET_SECONDS = 45
 _CACHE = {".doctrees", "__pycache__", ".git"}
+# Rate limiting is a distinct verdict from a bad gateway: it says nothing about
+# the deployment, so it must never be retried in a tight loop (the catalog-wide
+# 429 storm) nor reported as a mismatch.
+RATE_LIMIT_STATUS = {429, 503}
+TRANSIENT_STATUS = {408, 500, 502, 504}
+MAX_RETRY_AFTER_SECONDS = 120
+DEFAULT_MIN_REQUEST_INTERVAL = 0.5
+DEFAULT_RETRY_BUDGET_SECONDS = 300
+MAX_THROTTLE_ATTEMPTS = 5
+THROTTLE_BACKOFF_BASE = 2.0
+MAX_CACHED_BYTES = 64 * 1024 * 1024
+
+
+class DeploymentThrottled(Exception):
+    """The host rate-limited us, so this target's verdict is undecided.
+
+    Distinct from every other verification failure: a throttled target is
+    neither verified nor mismatched, and callers must classify it apart so a
+    429 storm can never read as "the deployment is wrong" (or as a pass).
+    """
+
+    def __init__(self, message: str, retry_after: float | None = None) -> None:
+        super().__init__(message)
+        self.retry_after = retry_after
+
+
+def retry_after_seconds(headers) -> float | None:
+    """Parse a Retry-After header (delta-seconds or HTTP-date), capped."""
+    value = getattr(headers, "get", lambda _name: None)("Retry-After")
+    if not isinstance(value, str) or not value.strip():
+        return None
+    value = value.strip()
+    if re.fullmatch(r"[0-9]+", value):
+        return min(float(value), MAX_RETRY_AFTER_SECONDS)
+    try:
+        when = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    if when is None:
+        return None
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    delta = (when - datetime.now(timezone.utc)).total_seconds()
+    return min(max(delta, 0.0), MAX_RETRY_AFTER_SECONDS)
+
+
+class FetchSession:
+    """Run-scoped polite fetcher: one global pace, one response cache.
+
+    Verification re-walks the same dependency closure once per target to
+    attribute failures, and every target's closure shares the theme assets and
+    the receipt. Without a run-scoped cache a 52-target catalog turns ~62
+    distinct resources into ~570 requests; without a pace it fires them
+    back-to-back. Both together are what tripped readthedocs.io's rate limit.
+
+    A cached response is one that was already fetched and hashed in this run,
+    so reusing it keeps attribution deterministic — it never converts a
+    mismatch into a pass, because the same bytes yield the same verdict.
+    """
+
+    def __init__(self, *, min_interval: float = DEFAULT_MIN_REQUEST_INTERVAL,
+                 retry_budget: float = DEFAULT_RETRY_BUDGET_SECONDS, cache: bool = True) -> None:
+        self.min_interval = max(0.0, float(min_interval))
+        self.retry_budget = max(0.0, float(retry_budget))
+        self.budget_exhausted = False
+        self.requests = 0
+        self.cache_hits = 0
+        self.throttle_waits = 0
+        self.throttle_seconds = 0.0
+        self._cache: dict[str, bytes] | None = {} if cache else None
+        self._cached_bytes = 0
+        self._fingerprints: dict[Path, str] = {}
+        self._next_allowed = 0.0
+
+    def _pace(self) -> None:
+        if self.min_interval <= 0:
+            return
+        wait = self._next_allowed - monotonic()
+        if wait > 0:
+            sleep(wait)
+        self._next_allowed = monotonic() + self.min_interval
+
+    def _spend(self, delay: float) -> bool:
+        """Sleep `delay` against the shared retry budget; False once spent."""
+        delay = max(0.0, min(float(delay), MAX_RETRY_AFTER_SECONDS))
+        if delay > self.retry_budget:
+            self.budget_exhausted = True
+            return False
+        self.retry_budget -= delay
+        self.throttle_waits += 1
+        self.throttle_seconds += delay
+        sleep(delay)
+        return True
+
+    def fetch(self, url: str) -> bytes:
+        if self._cache is not None and url in self._cache:
+            self.cache_hits += 1
+            return self._cache[url]
+        for attempt in range(MAX_THROTTLE_ATTEMPTS):
+            self._pace()
+            self.requests += 1
+            try:
+                data = _fetch(url)
+            except DeploymentThrottled as exc:
+                # Never sooner than our own backoff, never sooner than the
+                # server asked: Retry-After only ever extends the wait.
+                delay = max(THROTTLE_BACKOFF_BASE * (2 ** attempt), exc.retry_after or 0.0)
+                if attempt + 1 == MAX_THROTTLE_ATTEMPTS or not self._spend(delay):
+                    raise DeploymentThrottled(
+                        f"{exc} (gave up after {attempt + 1} attempt(s); verdict undecided)",
+                        retry_after=exc.retry_after) from exc
+                continue
+            if self._cache is not None and self._cached_bytes + len(data) <= MAX_CACHED_BYTES:
+                self._cache[url] = data
+                self._cached_bytes += len(data)
+            return data
+        raise RuntimeError("Throttled fetch attempts exhausted")  # pragma: no cover
+
+    def source_fingerprint(self, web_root: Path) -> str:
+        """Memoized: the frozen tree is ~0.5GB and does not move mid-run."""
+        key = Path(web_root).resolve()
+        if key not in self._fingerprints:
+            self._fingerprints[key] = source_fingerprint(web_root)
+        return self._fingerprints[key]
+
+    def stats(self) -> dict[str, float | int]:
+        return {"requests": self.requests, "cache_hits": self.cache_hits,
+                "throttle_waits": self.throttle_waits,
+                "throttle_seconds": round(self.throttle_seconds, 3)}
 
 
 def _route(value: str) -> str:
@@ -150,8 +282,17 @@ def _fetch(url: str) -> bytes:
                     raise ValueError("Deployment response is not same-origin HTTP 200")
                 return _read_complete(response, deadline)
         except HTTPError as exc:
+            # A rate limit is not a transient glitch to re-fire at once: the
+            # immediate retry here is what turned one 429 into a storm. Hand it
+            # to the caller's paced backoff instead.
+            if exc.code in RATE_LIMIT_STATUS:
+                delay = retry_after_seconds(exc.headers)
+                exc.close()
+                raise DeploymentThrottled(
+                    f"Deployment host rate-limited the request (HTTP {exc.code}): {url}",
+                    retry_after=delay) from exc
             exc.close()
-            if exc.code not in {408, 429, 500, 502, 503, 504} or attempt + 1 == MAX_FETCH_ATTEMPTS:
+            if exc.code not in TRANSIENT_STATUS or attempt + 1 == MAX_FETCH_ATTEMPTS:
                 raise
         except URLError as exc:
             if not isinstance(exc.reason, transient) or attempt + 1 == MAX_FETCH_ATTEMPTS:
@@ -258,6 +399,22 @@ def rtd_project_slug_from_base_url(base_url: str) -> str | None:
     return match.group(1) if match else None
 
 
+MARKUP_SUFFIXES = (".html", ".css", ".js")
+
+
+def markup_dependency(path: str) -> bool:
+    """Dependency filter: fetch markup/style/script, not binary media.
+
+    A catalog-wide sweep cannot re-download every per-model illustration daily
+    (~2,200 of them across the published catalog). Filtered dependencies are
+    still required to be present in the served receipt, and the receipt itself
+    is byte-bound to the frozen source — so a removed, renamed or re-pointed
+    asset still fails. What a filtered run does not re-prove is that the CDN
+    hands back those exact image bytes today.
+    """
+    return path.endswith(MARKUP_SUFFIXES)
+
+
 def _served_project_slugs(path: str, data: bytes) -> set[str]:
     """Project slugs the served page declares via RTD-injected meta tags."""
     if not path.endswith(".html"):
@@ -266,14 +423,27 @@ def _served_project_slugs(path: str, data: bytes) -> set[str]:
 
 
 def verify_deployment(web_root: Path, base_url: str, routes: list[str],
-                      expected_project_slug: str | None = None) -> dict:
+                      expected_project_slug: str | None = None,
+                      session: FetchSession | None = None,
+                      include_dependency: Callable[[str], bool] | None = None) -> dict:
     """Fail closed before callers write links; never treat HTTP 200 as identity.
 
     With expected_project_slug given, every fetched HTML page's RTD-injected
     readthedocs-project-slug meta must name exactly that project, and at least
     one page must declare it — byte identity alone cannot prove the bytes were
     served by the intended RTD project. Without it, behavior is unchanged.
+
+    Pass a shared FetchSession to pace and cache across repeated calls (the
+    per-target attribution loop); omitting one still paces this single call.
+    DeploymentThrottled propagates uncaught: a rate-limited run is undecided,
+    never a mismatch.
+
+    include_dependency narrows which discovered resources are fetched and
+    hashed (default: all of them, unchanged). Excluded resources must still
+    appear in the served receipt, and the count is reported as
+    unfetched_dependencies so a narrowed run never reads as a full one.
     """
+    session = session or FetchSession()
     _https_url(base_url)
     if expected_project_slug is not None and (
             not isinstance(expected_project_slug, str)
@@ -284,8 +454,8 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str],
     for route in routes:
         if not _route(route).endswith(".html"):
             raise ValueError("Deployment route must be HTML")
-    fingerprint = source_fingerprint(web_root)
-    payload = json.loads(_fetch(publication_url(base_url, RECEIPT)))
+    fingerprint = session.source_fingerprint(web_root)
+    payload = json.loads(session.fetch(publication_url(base_url, RECEIPT)))
     if (not isinstance(payload, dict) or payload.get("schema") != SCHEMA
             or payload.get("source_sha256") != fingerprint):
         raise ValueError("Live deployment does not match frozen source")
@@ -300,6 +470,7 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str],
         raise ValueError("Deployment receipt lacks selected routes")
     selected = set(routes)
     checked = set()
+    unfetched: set[str] = set()
     proxy_injections = []
     observed_slugs: set[str] = set()
     total = 0
@@ -307,7 +478,7 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str],
         path = min(selected - checked)
         if path not in files:
             raise ValueError(f"Deployment receipt lacks a referenced resource: {path}")
-        data = _fetch(publication_url(base_url, path))
+        data = session.fetch(publication_url(base_url, path))
         total += len(data)
         if total > MAX_TOTAL_BYTES:
             raise ValueError("Deployment verification exceeds total byte limit")
@@ -326,11 +497,20 @@ def verify_deployment(web_root: Path, base_url: str, routes: list[str],
             data = normalized
             proxy_injections.append(path)
         checked.add(path)
-        selected.update(_dependencies(path, data, base_url))
-        if len(selected) > MAX_FILES:
+        for dependency in _dependencies(path, data, base_url):
+            # Link integrity is asserted for every discovered resource, fetched
+            # or not: a reference the deployment cannot serve still fails here.
+            if dependency not in files:
+                raise ValueError(f"Deployment receipt lacks a referenced resource: {dependency}")
+            if include_dependency is None or include_dependency(dependency):
+                selected.add(dependency)
+            else:
+                unfetched.add(dependency)
+        if len(selected) + len(unfetched) > MAX_FILES:
             raise ValueError("Deployment dependency count exceeds safety limit")
     result = {"schema": SCHEMA, "status": "verified", "source_sha256": fingerprint,
               "routes": routes, "verified_files": len(selected), "verified_bytes": total,
+              "unfetched_dependencies": len(unfetched),
               "rtd_proxy_injections_removed": proxy_injections}
     if expected_project_slug is not None:
         if not observed_slugs:

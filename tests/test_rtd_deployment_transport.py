@@ -78,8 +78,10 @@ class DeploymentTransportTests(unittest.TestCase):
         self.assertEqual(len(calls), 3)
 
     def test_timeout_and_transient_http_retry_but_other_url_errors_fail(self):
+        # 429/503 are deliberately absent here: rate limiting is handled by the
+        # paced FetchSession, never by an immediate in-place retry.
         for error in (URLError(TimeoutError("timed out")),
-                      HTTPError(self.url, 503, "temporary", {}, None)):
+                      HTTPError(self.url, 500, "temporary", {}, None)):
             requests = []
             def open_response(request, timeout):
                 requests.append(request)
