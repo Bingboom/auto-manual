@@ -55,8 +55,9 @@
   `34611273`（9 月 17 日，含 JE-1000F US 2.3）；这是操作者提供的调查记录，
   本次未重跑查询，不能据此宣称所有旧文档已迁移。
 - 主线 [#1186](https://github.com/Bingboom/auto-manual/pull/1186) 已撤回 sideload conveyor lane。
-  本方案复用现存 Git-only/队列契约，不恢复已撤回的 `web-sideload`、`web-assemble`、
-  `web-publish`、`web-receipt` 命令，也不把已撤回的自动目录写回工具当作现有能力。
+  本方案复用现存 Git-only/队列契约，不恢复已撤回的 `web-release`、`web-sideload`、
+  `web-assemble`、`web-receipt` 命令，也不把已撤回的自动目录写回工具当作现有能力。
+  队列通道现存的 `web-publish` 模式不在撤回范围内，仍是受支持的输入路径。
 
 未经本次查询的运营表、调度和翻译数字均沿用输入材料的证据等级，不能标作已核实。
 

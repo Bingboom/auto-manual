@@ -311,6 +311,16 @@ Before an authorized hosting migration:
    On migration failure restore the captured mappings/configuration and approved
    snapshot, and leave unresolved entries visible with an owner and next action.
 
+First-time onboarding of a new portal region or publication language also has a
+three-place registration in this repository, verified by the JP trial and its
+revert: the `regions` and `language_labels` maps in
+`tools/rtd_portal_assets/settings.json`, the region list in the portal template
+`manual_portal.html`, and the market hint strings in `portal.js`. A missing
+`language_labels` entry fails the aggregated portal build outright; a missing
+region entry or hint string leaves the new market invisible in the portal UI. A
+regional pilot (REV-19) that introduces a new region or language updates all
+three together.
+
 The current HT-Doc consolidation target is separate from the already-selected
 custom domain's [DNS handoff](rtd_custom_domain_runbook.md). A documentation PR
 neither changes hosting configuration nor approves online writes.
