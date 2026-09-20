@@ -1844,3 +1844,7 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 入口。AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
 `docs/knowledge/ai-share/`，不放进 auto-manual。随同一次 RTD 构建发布到
 `/ai-share/`。两个界面共用 RTD 项目的可见性设置。
+
+RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生成一页都重复扫描
+所有说明书；下次构建仍重新校验，说明书内容与发布检查保持不变。见
+[目录构建校验](../code-as-doc/dev/rtd_manual_portal.md#catalog-validation-during-a-build)。

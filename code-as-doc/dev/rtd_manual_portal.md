@@ -38,6 +38,22 @@ The root template keeps an EthicalAds placement for RTD. No CSS hides platform
 advertisements. Other markets remain accessible in an all-publications fallback
 even though the primary dropdown is limited to US/EU/UK.
 
+## Catalog validation during a build
+
+The frozen publication catalog is validated once per Sphinx build and reused
+by page rendering and the search-index writer. This avoids re-reading all
+publication evidence for every generated page. Validation still fails closed;
+no content or evidence checks are skipped. The cache belongs to the Sphinx
+application, is prepared before parallel writers start, and is cleared on both
+successful and failed builds so later builds revalidate their inputs.
+
+Local verification on the Hello-Docs `2818de85` frozen snapshot (2026-09-20):
+207 source documents took about 214 seconds before the change and 6.7 seconds
+afterwards. All 219 output HTML files were byte-identical. Of 1,103 output files
+excluding doctrees, only `.buildinfo` and its hash in `manual-deployment.json`
+differed because the isolated test used an explicit knowledge-directory override.
+These are local measurements, not a Read the Docs runtime guarantee.
+
 ## Personal workspace entry
 
 The manual-center root remains independent. The portal extension also builds

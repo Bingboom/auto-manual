@@ -8,6 +8,8 @@ import sys
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from types import SimpleNamespace
+from unittest.mock import patch
 
 from tools import rtd_portal
 from tools.rtd_alias_entry import alias_head_markup, forward_markers
@@ -64,6 +66,29 @@ class RtdPortalTests(unittest.TestCase):
             (self.root / "index.md").write_text(f"- [Bad]({link})\n")
             with self.assertRaisesRegex(ValueError, "Missing or unsafe"):
                 rtd_portal.catalog(self.root, self.settings)
+
+    def test_catalog_is_reused_only_within_one_build(self):
+        root = self.assemble()
+        app = SimpleNamespace(srcdir=root)
+        with patch.object(rtd_portal, "catalog", wraps=rtd_portal.catalog) as collect:
+            rtd_portal.prepare_catalog(app)
+            for _ in range(10):
+                self.assertEqual(len(rtd_portal.portal_data(app)[1]), 3)
+            self.assertEqual(collect.call_count, 1)
+            # Another Sphinx application must not inherit the first one's cache.
+            rtd_portal.portal_data(SimpleNamespace(srcdir=root))
+            self.assertEqual(collect.call_count, 2)
+            # Success and failure both clear state, preserving fail-closed validation
+            # if the same application builds changed sources next time.
+            for exception in (None, RuntimeError("build interrupted")):
+                rtd_portal.clear_catalog_cache(app, exception)
+                index = root / "index.md"
+                original = index.read_text()
+                index.write_text("- [Bad](missing.md)\n")
+                with self.assertRaisesRegex(ValueError, "Missing or unsafe"):
+                    rtd_portal.portal_data(app)
+                index.write_text(original)
+                self.assertEqual(len(rtd_portal.portal_data(app)[1]), 3)
 
     def test_missing_or_remote_image_is_not_replaced_with_another_model(self):
         source = self.root / "manual.md"

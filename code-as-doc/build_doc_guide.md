@@ -2210,3 +2210,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 `/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
 导航。两个界面共用 RTD 项目的可见性设置，详见
 [Personal workspace entry](dev/rtd_manual_portal.md#personal-workspace-entry)。
+
+RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
+构建结束或失败后清除缓存，下次构建仍重新校验。见
+[目录构建校验](dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
