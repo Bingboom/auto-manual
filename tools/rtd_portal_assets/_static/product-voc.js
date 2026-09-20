@@ -1,5 +1,23 @@
 "use strict";
 document.querySelectorAll("form[data-product-voc]").forEach((form) => {
+  const root = form.closest(".product-voc");
+  const dialog = root.querySelector("dialog");
+  const launch = root.querySelector(".product-voc-launch");
+  if (typeof dialog.showModal === "function") {
+    launch.hidden = false;
+    launch.addEventListener("click", () => {
+      dialog.showModal();
+      const first = form.querySelector('input[name="model"]');
+      first.focus();
+    });
+    root.querySelector(".product-voc-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      const rect = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right ||
+          event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
+    });
+    dialog.addEventListener("close", () => launch.focus());
+  }
   const status = form.querySelector(".product-voc-status");
   const fields = form.querySelector("fieldset");
   const button = form.querySelector('button[type="submit"]');

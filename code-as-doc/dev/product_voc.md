@@ -192,3 +192,7 @@ submission `b43d8988-b9d8-4157-ac0f-1bfae5423c97`, stored once as
 run completed through local OpenClaw `main` in its scoped VOC session and
 recognized the record as TEST data. Analysis is operator-triggered, not an
 automatic background worker. No visitor message was sent.
+
+The suggestion form opens in a native modal dialog from a compact floating button.
+Close, Escape, and backdrop dismissal preserve typed input and submission state.
+Opening the dialog does not transmit data; only Send suggestion submits.

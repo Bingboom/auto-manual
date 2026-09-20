@@ -1829,6 +1829,7 @@ For the EU charger family, the Web illustration path resolves from the selected 
 
 ### Manual Center 内容检索
 
+产品优化建议通过右下角按钮打开弹窗，关闭后保留已填内容。
 产品优化建议入口与内容检索、售后反馈、访问统计分别配置。访客在网页填写，
 由独立接收接口交给机器人写入专用飞书多维表，不要求访客登录飞书。
 本机 OpenClaw `main`（HT-Docs）已被指定为 Mac agent。接收服务负责入库，
