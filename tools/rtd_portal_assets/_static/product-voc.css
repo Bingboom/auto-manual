@@ -1,0 +1,13 @@
+.product-voc { margin: 2rem auto; padding: 1.25rem; border: 1px solid #9996; border-radius: .6rem; max-width: 48rem; text-align: start; }
+.product-voc summary { cursor: pointer; font-weight: 700; }
+.product-voc form { margin-top: 1rem; }
+.product-voc fieldset { border: 0; padding: 0; min-width: 0; }
+.product-voc legend { font-weight: 600; margin-bottom: .75rem; }
+.product-voc label { display: block; margin: .8rem 0; }
+.product-voc input:not([type="hidden"]), .product-voc textarea { display: block; width: 100%; box-sizing: border-box; padding: .7rem; font: inherit; color: inherit; background: transparent; border: 1px solid #888; border-radius: .25rem; }
+.product-voc textarea { resize: vertical; }
+.product-voc button { min-height: 44px; padding: .65rem 1rem; cursor: pointer; background: #f57519; color: #111; border: 1px solid #a34100; border-radius: .3rem; font: inherit; }
+.product-voc button:disabled { opacity: .6; cursor: default; }
+.product-voc :focus-visible { outline: 3px solid #d85d00; outline-offset: 3px; }
+.product-voc pre, .product-voc-status { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .9rem; }
+.product-voc .product-voc-trap { display: none; }

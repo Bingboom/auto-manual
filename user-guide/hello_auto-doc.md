@@ -1828,6 +1828,12 @@ For the EU charger family, the Web illustration path resolves from the selected 
 
 ### Manual Center 内容检索
 
+产品优化建议入口与内容检索、售后反馈、访问统计分别配置。访客在网页填写，
+由独立接收接口交给机器人写入专用飞书多维表，不要求访客登录飞书。
+本机 OpenClaw `main`（HT-Docs）已被指定为 Mac agent。接收服务负责入库，
+OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证公网接收地址前不启用线上入口。
+配置、数据边界和联调步骤见 [产品 VOC](../code-as-doc/dev/product_voc.md)。
+
 首页以紧凑产品列表呈现已发布手册；同一关键词框同时检索型号、章节及
 正文（含文字表格），结果可直接进入对应章节。地区、类别及语言筛选适用
 于产品和正文结果；语言未核验的历史发布不冒充单语版本。图片内没有对应

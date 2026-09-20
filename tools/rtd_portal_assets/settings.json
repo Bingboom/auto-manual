@@ -25,5 +25,6 @@
   "language_labels": {"en": "English", "fr": "Français", "es": "Español", "de": "Deutsch", "it": "Italiano", "pt": "Português", "nl": "Nederlands", "pl": "Polski", "uk": "Українська", "el": "Ελληνικά", "he": "עברית", "ar": "العربية"},
   "feedback_channels": [
     {"label": "Email support (hello@jackery.com)", "url": "mailto:hello@jackery.com"}
-  ]
+  ],
+  "product_voc_endpoint": "https://talking-corporate-packages-applies.trycloudflare.com/api/voc"
 }
