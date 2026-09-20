@@ -38,8 +38,8 @@ class ProductVocTests(unittest.TestCase):
         self.assertIn("&lt;script&gt;", html)
         self.assertIn("&lt;private&gt;", html)
         self.assertIn("<fieldset disabled>", html)
-        self.assertIn("No Feishu account", html)
-        self.assertIn("stored in Feishu", html)
+        self.assertNotIn("Feishu", html)
+        self.assertIn("will be used for product research", html)
         self.assertNotIn("appSecret", html)
 
     def test_legacy_context_does_not_invent_language(self):
