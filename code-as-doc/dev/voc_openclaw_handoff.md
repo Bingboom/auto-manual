@@ -43,7 +43,7 @@ run. The explicit `--invoke` flag authorizes one local model call.
 ```bash
 python -m integrations.product_voc.openclaw_handoff \
   --invoke \
-  --state /absolute/private/runtime/voc.sqlite \
+  --state "$HOME/Library/Application Support/auto-manual/product-voc/receipts.sqlite" \
   --runtime-dir /absolute/private/runtime/voc-openclaw \
   --submission-id 00000000-0000-4000-8000-000000000000 \
   --record-id recEXACT \

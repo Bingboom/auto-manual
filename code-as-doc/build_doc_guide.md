@@ -93,6 +93,8 @@ See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 Product improvement collection is a separate opt-in form and append-only bot
 receiver, not an RTD-hosted backend or the support mailbox. Keep it off until
 the Mac receiver and HTTPS path are verified; see [product VOC](dev/product_voc.md).
+The designated local OpenClaw `main` agent handles a separate post-intake
+analysis step; model availability does not determine whether a submission was stored.
 
 ```powershell
 python build.py validate

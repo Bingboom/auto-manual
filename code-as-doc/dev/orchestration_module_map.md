@@ -79,7 +79,11 @@ Product suggestion HTML and endpoint validation live in
 [`tools/rtd_product_voc.py`](../../tools/rtd_product_voc.py). The append-only
 receiver and fixed bot adapter are isolated under
 [`integrations/product_voc/`](../../integrations/product_voc/); neither the build
-nor frozen publication assembly performs a live write. See [VOC](product_voc.md).
+nor frozen publication assembly performs a live write.
+The manual Mac lifecycle wrapper is `scripts/voc_mac_receiver.py`; optional
+post-intake analysis lives in `integrations/product_voc/openclaw_handoff.py`.
+It uses the designated local `main` agent in a separate VOC session and produces
+local review candidates. See [VOC](product_voc.md).
 
 Optional visit analytics lives in
 [`tools/rtd_analytics.py`](../../tools/rtd_analytics.py). It validates the

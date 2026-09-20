@@ -7,11 +7,20 @@ Feishu Bitable; implement the website and submission behavior first, connect
 the Mac agent last. Research ownership, dashboards and contact collection are
 deferred. This is independent of documentation issue feedback and visit analytics.
 
-Final operator handoff: open the feature PR; **do not connect this Mac agent**.
-The operator will use another host for agent integration. No persistent service,
-public tunnel, live test suggestion or website activation is part of this PR's
-verified delivery. The bot adapter is implemented and unit-tested but its live
-record-create/readback shape still needs that integration test.
+Current operator continuation (2026-09-19): this Mac's existing OpenClaw
+`main` agent and Feishu **HT-Docs** identity are the designated Mac agent.
+The original PR's other-host handoff is superseded by this designation.
+The local HT-Docs CLI profile is `cli_aaa0db0d4b39dcca`; `prod` is not
+configured on this host. Bot authentication and read access to the fixed VOC
+schema were verified. The receiver was started locally on `127.0.0.1:9198`
+and its health endpoint returned HTTP 200. This does not prove create permission, live submission,
+public HTTPS reachability, or production activation.
+
+Local receiver lifecycle: [Mac receiver](voc_mac_receiver.md).
+Post-intake analysis: [OpenClaw handoff](voc_openclaw_handoff.md).
+The two stages are independent: a model failure must not cause a visitor's
+verified submission to be inserted again. Analysis remains a reviewable local
+result; it does not authorize edits to manuals, source tables, or visitor replies.
 
 Read the Docs hosts the static form and its JavaScript, not a long-running
 agent or an API server. The narrow receiver runs outside RTD. It accepts only
