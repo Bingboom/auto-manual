@@ -291,6 +291,37 @@ class TestAssetRecipe(unittest.TestCase):
         with self.assertRaisesRegex(RecipeValidationError, "must be <= 8"):
             self._load(payload)
 
+    def test_png_output_accepts_a_palette_size(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["outputs"][1]["palette_colors"] = 256  # type: ignore[index]
+
+        recipe = self._load(payload)
+
+        output = recipe.assets[0].outputs[1]
+        self.assertEqual(256, output.palette_colors)
+        self.assertEqual(256, output.as_manifest()["palette_colors"])
+
+    def test_png_output_defaults_to_no_palette(self) -> None:
+        recipe = self._load(sample_recipe_payload())
+
+        self.assertIsNone(recipe.assets[0].outputs[1].palette_colors)
+        self.assertNotIn("palette_colors", recipe.assets[0].outputs[1].as_manifest())
+
+    def test_rejects_palette_colors_on_pdf_output(self) -> None:
+        payload = sample_recipe_payload()
+        payload["assets"][0]["outputs"][0]["palette_colors"] = 256  # type: ignore[index]
+
+        with self.assertRaisesRegex(RecipeValidationError, "only valid for PNG"):
+            self._load(payload)
+
+    def test_rejects_out_of_range_palette_colors(self) -> None:
+        for value in (1, 257):
+            payload = sample_recipe_payload()
+            payload["assets"][0]["outputs"][1]["palette_colors"] = value  # type: ignore[index]
+
+            with self.assertRaisesRegex(RecipeValidationError, "between 2 and 256"):
+                self._load(payload)
+
     def test_rejects_approved_output_without_expected_hash(self) -> None:
         payload = sample_recipe_payload()
         del payload["assets"][0]["outputs"][0]["expected_sha256"]  # type: ignore[index]
