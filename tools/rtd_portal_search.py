@@ -59,11 +59,11 @@ class ManualSections(HTMLParser):
 def write_search_index(app, exception):
     if exception is not None or app.builder.format != "html":
         return
-    from tools.rtd_portal import ASSETS, catalog
+    from tools.rtd_portal import portal_data
 
-    settings = json.loads((ASSETS / "settings.json").read_text(encoding="utf-8"))
+    settings, products = portal_data(app)
     rows = []
-    for product in catalog(Path(app.srcdir).resolve(), settings):
+    for product in products:
         for publication in product["publications"]:
             rendered = Path(app.outdir) / publication["url"]
             parser = ManualSections()
