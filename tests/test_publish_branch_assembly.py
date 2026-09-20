@@ -447,6 +447,123 @@ class PublishBranchAssemblyTests(unittest.TestCase):
                     title="Manual Library",
                 )
 
+    def _publish_us_pilot_locales(self, root: Path, *, english_stem: str) -> Path:
+        """Replay the JE-1000F/US pilot: a live English book, then three locale rows.
+
+        ``write_web_publish_metadata`` never emits ``legacy_default``, so the
+        release payloads staged here deliberately carry none.  The single
+        default has to survive on the stored English tree alone.
+        """
+
+        releases_root = root / "reports" / "releases"
+        output_dir = root / "publish-worktree" / "docs" / "publish"
+        live_release = self._write_target(
+            root,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+            version="2.3",
+            git_ref="review/JE-1000F-US",
+            manual_stem="manual_je1000f_us",
+        )
+        publish_branch_assembly.assemble_web_publish_branch(
+            repo_root=root,
+            releases_root=releases_root,
+            output_dir=output_dir,
+            title="Manual Library",
+        )
+        stored_en = self._stored_payload(output_dir, lang="en")
+        self.assertEqual("legacy_unspecified", stored_en["language_scope"])
+        self.assertTrue(stored_en["legacy_default"])
+
+        shutil.rmtree(live_release)
+        for lang, stem in (
+            ("en", english_stem),
+            ("fr", "manual_je1000f_us_fr"),
+            ("es", "manual_je1000f_us_es"),
+        ):
+            self._write_target(
+                root,
+                model="JE-1000F",
+                region="US",
+                lang=lang,
+                version="2.4",
+                git_ref="review/JE-1000F-US",
+                manual_stem=stem,
+                language_scope="single",
+            )
+        self.manifest_path = publish_branch_assembly.assemble_web_publish_branch(
+            repo_root=root,
+            releases_root=releases_root,
+            output_dir=output_dir,
+            title="Manual Library",
+        )
+        return output_dir
+
+    def _stored_payload(self, output_dir: Path, *, lang: str) -> dict:
+        metadata = (
+            output_dir / "sources" / "web" / "JE-1000F" / "US" / lang / "md" / "publish_meta.json"
+        )
+        return json.loads(metadata.read_text(encoding="utf-8"))
+
+    def test_us_pilot_locales_should_inherit_exactly_one_default(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            output_dir = self._publish_us_pilot_locales(
+                Path(td), english_stem="manual_je1000f_us"
+            )
+
+            defaults = {}
+            for lang in ("en", "fr", "es"):
+                payload = self._stored_payload(output_dir, lang=lang)
+                defaults[lang] = payload["legacy_default"]
+                self.assertEqual("single", payload["language_scope"])
+            self.assertEqual({"en": True, "fr": False, "es": False}, defaults)
+
+            manifest = json.loads(self.manifest_path.read_text(encoding="utf-8"))
+            self.assertEqual(
+                1, sum(1 for item in manifest["targets"] if item["legacy_default"] is True)
+            )
+            english = self._stored_payload(output_dir, lang="en")
+            self.assertEqual("JE-1000F/US/md", english["legacy_route"])
+            self.assertEqual(["manual_je1000f_us"], english["legacy_aliases"])
+
+    def test_us_pilot_should_keep_the_published_english_url_reachable(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            output_dir = self._publish_us_pilot_locales(
+                Path(td), english_stem="manual_je1000f_us"
+            )
+
+            web = output_dir / "web"
+            canonical = web / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us.md"
+            self.assertTrue(canonical.is_file())
+            for lang, stem in (("fr", "manual_je1000f_us_fr"), ("es", "manual_je1000f_us_es")):
+                self.assertTrue((web / "JE-1000F" / "US" / lang / "md" / f"{stem}.md").is_file())
+            self.assertIn(
+                "JE-1000F/US/en/md/manual_je1000f_us.html",
+                (web / "manual_je1000f_us.md").read_text(encoding="utf-8"),
+            )
+            self.assertIn(
+                "../en/md/manual_je1000f_us.html",
+                (web / "JE-1000F" / "US" / "md" / "index.md").read_text(encoding="utf-8"),
+            )
+
+    def test_renaming_the_default_stem_should_orphan_the_published_locale_url(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            output_dir = self._publish_us_pilot_locales(
+                Path(td), english_stem="manual_je1000f_us_en"
+            )
+
+            web = output_dir / "web"
+            # Only the site root and the legacy JE-1000F/US/md route get an alias;
+            # nothing redirects inside the locale route, so the published
+            # JE-1000F/US/en/md/manual_je1000f_us.html URL simply disappears.
+            self.assertFalse((web / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us.md").exists())
+            self.assertTrue((web / "JE-1000F" / "US" / "en" / "md" / "manual_je1000f_us_en.md").is_file())
+            self.assertIn(
+                "JE-1000F/US/en/md/manual_je1000f_us_en.html",
+                (web / "manual_je1000f_us.md").read_text(encoding="utf-8"),
+            )
+
     def test_normalized_release_version_path_should_match_existing_producer(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
