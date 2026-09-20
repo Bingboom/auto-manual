@@ -254,3 +254,5 @@ MA-066 expires automatically after the actual #1103 merge.
 | MA-107 | Hello-Docs PR #95（`publish` → `main`）——发布 JE-1000F/US 2.4 的 en/fr/es 三个单语 Web 目标：en 保持旧 stem `manual_je1000f_us`，fr/es 分别为 `manual_je1000f_us_fr` / `manual_je1000f_us_es`；三者前言只保留对应语言且 `language_scope=single`。只允许 `docs/publish/**` 变化，其余 51 个 target 逐 blob 不变。最终 head 全部检查成功（含非必需项，pending 不算绿）、无 changes-requested、无未解决评审线程后 squash merge；随后盯 RTD 部署及 receipt 回读至 settled。**不含**：其他目标内容、review 分支、线上源表、workflow、依赖或 Base schema 修改。 | 「合入」2026-09-20 | #95 合入并完成部署/回执验收，或撤销 | 生效 |
 
 | MA-108 | `codex/voc-customer-copy`：仅移除 VOC 弹窗中的 Feishu 账号及存储平台表述，保留反馈用途与个人信息、售后提示；含测试和本登记。最终 head 全部检查成功、无 changes-requested/未解决讨论并包含最新 main 后 squash merge，经既有镜像及 RTD 上线验证。 | 「ok 推上去」2026-09-20 | 本次上线验收完成或撤销 | 生效 |
+
+| MA-109 | auto-manual PR #1204（含本登记）与 Hello-Docs PR #96，按 #1204 → 镜像同步 → #96 顺序合入：知识库/工作资料页面、docs/knowledge 构建复制与镜像保留规则，以及 Hello-Docs 的 AI 分享内容。每个最终 head 全部检查成功（含非必需项）、无 changes-requested 和未解决评审线程后 squash merge；随后通过既有 RTD 链路核验页面。只涵盖本次两项 PR，保留 docs/publish 全部说明书，不含线上源表写入或其他工程范围。 | 「合入」2026-09-20 | 两个 PR 合入并完成上线核验，或操作者撤销 | 生效 |
