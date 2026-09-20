@@ -148,6 +148,7 @@ class RtdFeedbackTests(unittest.TestCase):
         assets = root / "portal-assets"
         shutil.copytree(Path(__file__).parents[1] / "tools/rtd_portal_assets", assets)
         settings = json.loads((assets / "settings.json").read_text(encoding="utf-8"))
+        settings["product_voc_endpoint"] = ""  # Feedback fixture is independent of live VOC rollout.
         if channels is None:
             settings.pop("feedback_channels", None)
         else:

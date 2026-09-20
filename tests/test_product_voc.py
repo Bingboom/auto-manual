@@ -163,7 +163,7 @@ class IntakeTests(unittest.TestCase):
         writer = BotWriter(base="BaseTEST", table="tblTEST")
         _, fields = validate(payload())
         responses = [
-            {"record": {"id": "recTEST"}},
+            {"created": True, "record": {"record_id_list": ["recTEST"]}},
             {"record_id_list": ["recTEST"], "fields": list(fields), "data": [list(fields.values())]},
         ]
         with patch("integrations.product_voc.intake.subprocess.run") as run:
@@ -173,6 +173,14 @@ class IntakeTests(unittest.TestCase):
             self.assertFalse(run.call_args.kwargs.get("shell", False))
             self.assertIn("--as", run.call_args.args[0])
             self.assertIn("tblTEST", run.call_args.args[0])
+
+
+    def test_create_rejects_ambiguous_record_ids(self):
+        writer = BotWriter(base="BaseTEST", table="tblTEST")
+        for ids in ([], ["recONE", "recTWO"], "recTEST"):
+            with self.subTest(ids=ids), patch.object(writer, "call", return_value={"record": {"record_id_list": ids}}):
+                with self.assertRaises(RuntimeError):
+                    writer.create({})
 
 
 class HttpTests(unittest.TestCase):

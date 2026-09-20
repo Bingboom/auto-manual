@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import unittest
@@ -72,6 +73,13 @@ class RtdPortalTests(unittest.TestCase):
 
     def test_real_sphinx_changes_home_only_and_preserves_sources(self):
         root = self.assemble()
+        # This test isolates portal/alias transforms; VOC has its own opt-in tests.
+        assets = self.root / "portal-assets"
+        shutil.copytree(rtd_portal.ASSETS, assets)
+        settings = dict(self.settings, product_voc_endpoint="")
+        (assets / "settings.json").write_text(json.dumps(settings))
+        with (root / "conf.py").open("a") as conf:
+            conf.write(f"\nfrom pathlib import Path\nfrom tools import rtd_portal as portal\nportal.ASSETS = Path({str(assets)!r})\n")
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
         # Compare manual content with the same site branding on both builds.

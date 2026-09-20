@@ -169,3 +169,26 @@ python -m unittest
 python tools/check_maintainability_guardrails.py
 python tools/check_doc_link_integrity.py
 ```
+
+## Deployment-stage trial (2026-09-19)
+
+The operator explicitly requested an online trial during site deployment. For
+this trial only, the portal endpoint uses a temporary Cloudflare quick tunnel.
+It lasts while this Mac receiver and tunnel remain running; restarting the
+tunnel can change the hostname. This is not a permanent production address.
+If unavailable, clear `product_voc_endpoint` and rebuild, or replace it with a
+verified new endpoint. The receiver retains the RTD origin allowlist, rate
+limits, explicit submission, and durable duplicate protection.
+
+Live testing found that the CLI's create response is
+`data.record.record_id_list`, not `data.record.id`; the adapter now accepts the
+single-record list and rejects ambiguous lists. The first uncertain submission
+was matched by UUID and exact fields, read back, and reconciled locally without
+creating it again. TEST rows remain visibly labeled in the dedicated VOC table.
+
+Trial evidence: public HTTPS POST and same-UUID retry both returned 200 for
+submission `b43d8988-b9d8-4157-ac0f-1bfae5423c97`, stored once as
+`recvvJP3TajTEM`. Exact fields were read back by the bot. An explicit analysis
+run completed through local OpenClaw `main` in its scoped VOC session and
+recognized the record as TEST data. Analysis is operator-triggered, not an
+automatic background worker. No visitor message was sent.

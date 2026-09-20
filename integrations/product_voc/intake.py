@@ -71,7 +71,13 @@ class BotWriter:
     def create(self, fields: dict[str, str]) -> str:
         data = self.call("+record-upsert", "--json", json.dumps(fields, ensure_ascii=False))
         record = data.get("record", {})
-        record_id = record.get("record_id") or record.get("id")
+        record_ids = record.get("record_id_list")
+        if record_ids is not None:
+            if not isinstance(record_ids, list) or len(record_ids) != 1:
+                raise RuntimeError("Expected one created record ID")
+            record_id = record_ids[0]
+        else:
+            record_id = record.get("record_id") or record.get("id")
         if not isinstance(record_id, str) or not re.fullmatch(r"rec[A-Za-z0-9]+", record_id):
             raise RuntimeError("Missing created record ID")
         return record_id
