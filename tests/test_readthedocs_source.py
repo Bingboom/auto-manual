@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -60,27 +61,33 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn('window.location.replace("JE-1000F/US/md/manual_us.html")', us_alias)
             self.assertTrue(output_dir.joinpath("manual_jp.md").is_file())
             self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").exists())
-            self.assertTrue(output_dir.joinpath("JE-1000F", "US", "md", "assets", "demo.png").exists())
-            self.assertTrue(
-                output_dir.joinpath(
-                    "_static",
-                    "manual-assets",
-                    "JE-1000F",
-                    "US",
-                    "md",
-                    "assets",
-                    "demo.png",
-                ).exists()
+            # Assets are pooled by content: the Markdown-adjacent copy and the
+            # per-manual static copy both collapse into one shared file.
+            self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "assets").exists())
+            self.assertFalse(output_dir.joinpath("_static", "manual-assets", "JE-1000F").exists())
+            pooled = sorted(
+                path
+                for path in output_dir.joinpath("_static", "manual-assets", "_pool").rglob("*")
+                if path.is_file()
             )
+            self.assertEqual(1, len(pooled))
+            self.assertEqual(b"png", pooled[0].read_bytes())
             self.assertFalse(output_dir.joinpath("JE-1000F", "US", "md", "conf.py").exists())
             us_manual = output_dir.joinpath("JE-1000F", "US", "md", "manual_us.md").read_text(encoding="utf-8")
-            self.assertIn('src="../../../_static/manual-assets/JE-1000F/US/md/assets/demo.png"', us_manual)
+            us_src = re.search(r'src="([^"]+)"', us_manual).group(1)
+            self.assertIn("_static/manual-assets/_pool/", us_src)
+            self.assertEqual(
+                b"png", (output_dir / "JE-1000F" / "US" / "md" / us_src).resolve().read_bytes()
+            )
             self.assertNotIn("file://", us_manual)
             conf_text = output_dir.joinpath("conf.py").read_text(encoding="utf-8")
             self.assertIn("myst_parser", conf_text)
             self.assertIn('html_static_path = ["_static"]', conf_text)
             self.assertIn('html_css_files = ["web_manual.css"]', conf_text)
-            self.assertIn("build-finished", conf_text)
+            # Assets reach the output through the pooled _static tree, so the
+            # generated conf.py no longer carries a copy hook of its own.
+            self.assertNotIn("build-finished", conf_text)
+            self.assertNotIn("shutil", conf_text)
             self.assertIn("toc.not_included", conf_text)
             web_css = output_dir.joinpath("_static", "web_manual.css")
             self.assertTrue(web_css.exists())

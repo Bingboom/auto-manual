@@ -334,6 +334,31 @@ sheet whose header row no longer matches the 15-column contract.
   The assembler rejects IDML, InDesign, LaTeX, PDF, DOCX, source-artwork, and
   archive files before the candidate branch can be pushed. Print artifacts
   remain under release storage and short-lived GitHub Actions artifacts.
+- The assembled Sphinx source keeps one physical copy of each asset. A manual
+  used to carry its artwork beside the Markdown, again under
+  `_static/manual-assets/<model>/<region>/<lang>/`, and again for every sibling
+  language that shares the same picture, so the frozen tree grew to several
+  times the content it holds. `tools/publish_asset_pool.py` stores one copy per
+  unique content hash under
+  `docs/publish/web/_static/manual-assets/_pool/<aa>/<sha256><ext>` and repoints
+  every HTML `<img src>` and Markdown image at it. Only `src` is rewritten:
+  `data-web-finished-panel-path` is the logical identity the published
+  stylesheet selects on, so it stays exactly as authored. Copies that no manual
+  references are dropped rather than pooled. `docs/publish/sources` is never
+  touched and remains the self-contained replayable bundle; `docs/publish/web`
+  is a render tree.
+- Pooling is self-verifying and fail-closed. It records, per manual, the content
+  hash every reference resolves to, repeats the measurement after rewriting, and
+  refuses to finish if any manual would point at different bytes — so a rewrite
+  that lost or swapped a picture fails assembly instead of shipping. References
+  that were already broken stay broken and are not turned into a new assembly
+  failure. Pooling an already-pooled tree is rejected outright.
+- Deployment size is shared infrastructure, not a per-target budget. The
+  [deployment receipt](rtd_deployment_receipt.md) inventories the built output
+  *and* the whole `docs/publish/` source tree against a fixed ceiling, and a
+  build that exceeds it fails RTD for every later publisher until someone
+  reverts. Check the remaining headroom before adding a target or raising an
+  asset resolution, and prefer reducing duplication over reducing quality.
 - The Read the Docs project uses `main` as its default build branch and builds
   `docs/publish/web/` through `.readthedocs.yaml`.
 - RTD never receives Feishu credentials and never reads mutable attachments.
