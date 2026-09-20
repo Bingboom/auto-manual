@@ -8,7 +8,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-from tools.utils.path_utils import PathSegments, static_dir_of
+from tools.utils.path_utils import PathSegments, repo_root, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
 from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
@@ -17,6 +17,7 @@ from tools.rtd_product_voc import normalize_endpoint, page_markup
 from tools.rtd_page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
+from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
 _LINK = re.compile(r"^- \[([^\n]+)\]\(([^\s]+\.md)\)\s*$", re.MULTILINE)
@@ -209,13 +210,48 @@ def page_context(app, pagename, templatename, context, doctree):
     return "manual_portal.html"
 
 
+def workspace_content(app) -> Path:
+    """Read business-owned content from Hello-Docs, outside mirrored tools."""
+    configured = app.config.rtd_knowledge_dir
+    return Path(configured) if configured else repo_root() / PathSegments.DOCS / "knowledge"
+
+
+def collect_workspace_pages(app):
+    """Add a personal content entry without changing the manual-center root."""
+    share_entry = workspace_content(app) / "ai-share" / "00_打开分享.html"
+    if not share_entry.is_file():
+        return
+    yield "workspace/index", {
+        "share_entry": "../ai-share/00_打开分享.html",
+    }, "workspace_portal.html"
+
+
+def copy_workspace_content(app, exception) -> None:
+    """Copy the reviewed personal reading package into the built static site."""
+    if exception is not None:
+        return
+    source = workspace_content(app) / "ai-share"
+    if not source.is_dir():
+        return
+    output_root = Path(app.outdir)
+    copytree_replace_no_symlinks(
+        source,
+        output_root / "ai-share",
+        destination_root=output_root,
+        label="personal AI sharing package",
+    )
+
+
 def setup(app):
     from tools.rtd_deployment_receipt import write_deployment_receipt
     from tools.rtd_portal_search import write_search_index
 
+    app.add_config_value("rtd_knowledge_dir", "", "html")
     app.connect("config-inited", configure)
     app.connect("html-page-context", page_context)
+    app.connect("html-collect-pages", collect_workspace_pages)
     # Generated conf.py copies manual assets at the default priority (500).
+    app.connect("build-finished", copy_workspace_content, priority=800)
     app.connect("build-finished", write_search_index, priority=900)
     app.connect("build-finished", write_deployment_receipt, priority=1000)
     return {"version": "1", "parallel_read_safe": True, "parallel_write_safe": True}

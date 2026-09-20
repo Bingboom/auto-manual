@@ -90,7 +90,7 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
-| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` | 每次合入 main 自动，秒级 |
+| **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` 和 `docs/knowledge/**` | 每次合入 main 自动，秒级 |
 | **Web 发布快照** | Hello-Docs/main → Hello-Docs/publish → PR → Hello-Docs/main | `feishu-web-publish-queue.yml` 组装候选 `docs/publish/`、范围门禁后普通增量 push，并自动创建/更新只含该目录的 PR | 每次审核后的 Web Publish |
 | **表结构 + 引用数据** | 旧 base → 新 base | `python tools/bitable_schema.py promote`（只增不删、dry-run 默认）；每日 01:00 parity 哨兵盯滞后并开 `[schema-drift]` issue | 人工，有告警兜底 |
 | **翻译语料** | 不同步——**只有一份** | TM-B 是唯一写库（G4 收敛）；TM-A 只读归档，工具层已拆除对它的静默回退 | — |
@@ -127,7 +127,9 @@ Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
 ## 5. 纪律（违反必出事故）
 
 1. **代码只改 auto-manual**。Hello-Docs 的工程树是镜像，直接改代码会被下一次同步覆盖或产生分叉。
-   `Hello-Docs/main:docs/publish/**` 是唯一由业务面发布 PR 维护的保留子树；
+   `Hello-Docs/main:docs/publish/**` 保存已发布说明书；
+   `Hello-Docs/main:docs/knowledge/**` 保存分享稿、配图和示例。两个业务内容目录
+   都由 Hello-Docs 内容 PR 维护，工程同步保留它们；
    `Hello-Docs/publish` 由 Web Publish workflow 自动写入候选快照，人不在该分支改代码。
    只能把该分支中 `docs/publish/**` 的差异通过 PR 合入 `main`，不能把 `review/*` 整分支合入。
 2. **表结构只在旧 base 迭代，成熟后 promote**。直接改新 base 结构 = 绕过沙盒，
