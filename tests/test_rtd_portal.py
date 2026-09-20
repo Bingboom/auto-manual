@@ -52,7 +52,10 @@ class RtdPortalTests(unittest.TestCase):
         self.assertEqual(eu["edition"], "EUUK")
         self.assertEqual(eu["name"], "Test")
         self.assertEqual(eu["url"], "JE-TEST/EU/md/manual_EU.html")
-        self.assertEqual(eu["image"], "_static/manual-assets/JE-TEST/EU/md/assets/product.png")
+        # Pooled by content, so the card points into the shared store rather than
+        # a per-model path; what matters is that it stays inside the frozen tree.
+        self.assertTrue(eu["image"].startswith("_static/manual-assets/"))
+        self.assertTrue((root / eu["image"]).is_file())
         self.assertEqual({r["region"] for r in records}, {"US", "EU", "JP"})
 
     def test_unsafe_or_missing_links_fail(self):
