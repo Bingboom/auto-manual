@@ -3,6 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 import unittest
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -44,6 +46,30 @@ class PrefaceTemplateTests(unittest.TestCase):
         self.assertIn("**IMPORTANT**", text)
         self.assertIn("FR IMPORTANT", text)
         self.assertIn("ES IMPORTANTE", text)
+
+    def test_us_single_document_manifests_keep_trilingual_preface_for_idml(self) -> None:
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                manifest_path = (
+                    ROOT / "docs" / "manifests" / f"manual_us-single-{language}.yaml"
+                )
+                manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8"))
+                preface = manifest["pages"][0]
+                self.assertEqual(
+                    "templates/page_shared/en/00_preface.rst",
+                    preface["file"],
+                )
+                self.assertNotIn("lang_blocks", preface)
+
+                config = yaml.safe_load(
+                    (ROOT / "configs" / f"config.us-{language}.yaml").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                self.assertEqual(
+                    {"00_preface.rst": "en"},
+                    config["build"]["web_language_block_pages"],
+                )
 
     def test_au_preface_should_use_english_only_component(self) -> None:
         template = (

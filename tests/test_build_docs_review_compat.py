@@ -51,22 +51,52 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
                     build_docs_bundle, "overlay_review_content_onto_bundle"
                 ) as overlay_partial,
                 mock.patch.object(
-                    build_docs_bundle, "finalize_materialized_bundle", return_value=bundle
+                    build_docs_bundle,
+                    "finalize_materialized_bundle",
+                    side_effect=lambda value, **_kwargs: value,
                 ),
             ):
                 result = build_docs.prepare_web_language_source_bundle(
-                    {"doc_type": "manual_bundle"},
+                    {
+                        "doc_type": "manual_bundle",
+                        "build": {
+                            "web_language_block_pages": {"00_preface.rst": "en"}
+                        },
+                    },
                     model="JE-1000F", region="US", lang="en",
                     source_mode="review-asis",
                     output_root=bundle_dir.parent,
                     write_wrapper_index=False,
                 )
 
-        self.assertIs(result, bundle)
+        self.assertIsNot(result, bundle)
+        self.assertEqual((('00_preface.rst', 'en'),), result.lang_block_pages)
         self.assertEqual("en", materialize.call_args.kwargs["lang"])
         self.assertTrue(materialize.call_args.kwargs["skeleton_only"])
         overlay_full.assert_called_once()
         overlay_partial.assert_not_called()
+
+    def test_web_language_block_pages_reject_unsafe_config(self) -> None:
+        bundle = MaterializedBundle(
+            bundle_dir=Path("bundle"),
+            page_dir=Path("bundle/page"),
+            index_path=Path("bundle/index.rst"),
+            conf_path=Path("bundle/conf.py"),
+            conf_base_path=Path("bundle/conf_base.py"),
+            wrapper_index_path=Path("docs/index.rst"),
+            page_paths=(),
+            title="Demo",
+            reference_doc=None,
+            model="JE-1000F",
+            region="US",
+            lang="en",
+        )
+        for mapping in ({"../escape.rst": "en"}, {"00_preface.rst": "unknown"}):
+            with self.subTest(mapping=mapping), self.assertRaises(RuntimeError):
+                build_docs_bundle._with_web_language_block_pages(
+                    bundle,
+                    cfg={"build": {"web_language_block_pages": mapping}},
+                )
 
     def test_review_overlay_allowlist_rejects_escaping_skeleton_include(self) -> None:
         with tempfile.TemporaryDirectory() as td:
@@ -336,6 +366,78 @@ class TestBuildDocsReviewCompat(unittest.TestCase):
             index = (bundle_dir / "index.rst").read_text(encoding="utf-8")
             self.assertIn("p66_03_product_overview_placeholder.rst", index)
             self.assertNotIn("p81_03_product_overview_placeholder.rst", index)
+
+    def test_review_overlay_keeps_declared_preface_for_block_projection(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            docs_dir = Path(td) / "docs"
+            bundle_dir = docs_dir / "_build" / "JE-1000F" / "US" / "fr" / "rst"
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir(parents=True)
+            (bundle_dir / "index.rst").write_text(
+                ".. include:: page/00_preface.rst\n",
+                encoding="utf-8",
+            )
+            (page_dir / "00_preface.rst").write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBApplyLang{en}\n"
+                "   \\HBLangTagLine{EN}{IMPORTANT}\n\n"
+                "English copy.\n\n"
+                ".. raw:: latex\n\n"
+                "   \\HBLangTagLine{FR}{IMPORTANT}\n\n"
+                "French copy.\n",
+                encoding="utf-8",
+            )
+            bundle = MaterializedBundle(
+                bundle_dir=bundle_dir,
+                page_dir=page_dir,
+                index_path=bundle_dir / "index.rst",
+                conf_path=bundle_dir / "conf.py",
+                conf_base_path=bundle_dir / "conf_base.py",
+                wrapper_index_path=docs_dir / "index.rst",
+                page_paths=(),
+                title="Demo",
+                reference_doc=None,
+                model="JE-1000F",
+                region="US",
+                lang="fr",
+                languages=("fr",),
+                lang_block_pages=(("00_preface.rst", "en"),),
+            )
+
+            with (
+                mock.patch.object(build_docs, "paths", SimpleNamespace(docs_dir=docs_dir)),
+                mock.patch.object(build_docs, "materialize_bundle", return_value=bundle),
+                mock.patch.object(
+                    build_docs,
+                    "review_bundle_exists",
+                    side_effect=lambda **kwargs: kwargs["lang"] is None,
+                ),
+                mock.patch.object(
+                    build_docs,
+                    "overlay_review_content_onto_bundle",
+                    return_value=bundle_dir,
+                ),
+                mock.patch.object(
+                    build_docs,
+                    "finalize_materialized_bundle",
+                    return_value=bundle,
+                ),
+            ):
+                build_docs.prepare_manual_bundle(
+                    {"doc_type": "manual_bundle"},
+                    model="JE-1000F",
+                    region="US",
+                    lang="fr",
+                    source_mode="review-asis",
+                )
+
+            self.assertIn(
+                "page/00_preface.rst",
+                (bundle_dir / "index.rst").read_text(encoding="utf-8"),
+            )
+            projected = (page_dir / "00_preface.rst").read_text(encoding="utf-8")
+            self.assertNotIn("English copy.", projected)
+            self.assertIn("French copy.", projected)
 
 
 class TestSharedReviewPagePathPairs(unittest.TestCase):

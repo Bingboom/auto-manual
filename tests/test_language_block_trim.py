@@ -15,6 +15,7 @@ from tools.gen_index_bundle_assets import (  # noqa: E402
 )
 from tools.language_block_trim import (  # noqa: E402
     marker_languages,
+    trim_bundle_language_blocks,
     trim_bundle_language_pages,
     trim_language_blocks,
 )
@@ -265,6 +266,50 @@ class BundlePageTrimTests(unittest.TestCase):
                 original,
                 (bundle_dir / "index.rst").read_text(encoding="utf-8"),
             )
+
+    def test_lang_block_page_is_not_dropped_by_its_outer_language_marker(self):
+        with tempfile.TemporaryDirectory() as td:
+            bundle_dir = Path(td)
+            page_dir = bundle_dir / "page"
+            page_dir.mkdir()
+            preface = page_dir / "00_preface.rst"
+            preface.write_text(
+                ".. raw:: latex\n\n"
+                "   \\HBApplyLang{en}\n"
+                "   \\HBLangTagLine{EN}{IMPORTANT}\n\n"
+                "English copy.\n\n"
+                ".. raw:: latex\n\n"
+                "   \\HBLangTagLine{FR}{IMPORTANT}\n\n"
+                "French copy.\n",
+                encoding="utf-8",
+            )
+            original_index = ".. include:: page/00_preface.rst\n"
+            (bundle_dir / "index.rst").write_text(
+                original_index,
+                encoding="utf-8",
+            )
+
+            dropped_pages = trim_bundle_language_pages(
+                bundle_dir=bundle_dir,
+                languages=["fr"],
+                lang_block_pages=[("00_preface.rst", "en")],
+            )
+            changed_blocks = trim_bundle_language_blocks(
+                bundle_dir=bundle_dir,
+                lang_block_pages=[("00_preface.rst", "en")],
+                languages=["fr"],
+            )
+
+            self.assertEqual([], dropped_pages)
+            self.assertEqual([("00_preface.rst", ("en",))], changed_blocks)
+            self.assertEqual(
+                original_index,
+                (bundle_dir / "index.rst").read_text(encoding="utf-8"),
+            )
+            self.assertTrue(preface.is_file())
+            projected = preface.read_text(encoding="utf-8")
+            self.assertNotIn("English copy.", projected)
+            self.assertIn("French copy.", projected)
 
     def test_unknown_and_multi_language_pages_stay_in_the_index(self):
         with tempfile.TemporaryDirectory() as td:
