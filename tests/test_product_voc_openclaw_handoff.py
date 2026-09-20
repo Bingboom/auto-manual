@@ -14,9 +14,13 @@ from integrations.product_voc.openclaw_handoff import HandoffError, run_handoff
 
 
 class FakeRunner:
-    def __init__(self, fields: dict[str, str], *, agent_exit: int = 0):
+    def __init__(self, fields: dict[str, str], *, agent_exit: int = 0, agent_payload=None):
         self.fields = fields
         self.agent_exit = agent_exit
+        self.agent_payload = agent_payload or {
+            "status": "ok",
+            "result": {"payloads": [{"text": "reviewable analysis"}]},
+        }
         self.calls: list[list[str]] = []
 
     def __call__(self, argv, **_kwargs):
@@ -32,8 +36,9 @@ class FakeRunner:
                 },
             }
             return subprocess.CompletedProcess(argv, 0, json.dumps(payload), "")
-        payload = {"result": {"text": "reviewable analysis"}, "session": "isolated"}
-        return subprocess.CompletedProcess(argv, self.agent_exit, json.dumps(payload), "secret stderr")
+        return subprocess.CompletedProcess(
+            argv, self.agent_exit, json.dumps(self.agent_payload), "secret stderr"
+        )
 
 
 class OpenClawHandoffTests(unittest.TestCase):
@@ -165,6 +170,29 @@ class OpenClawHandoffTests(unittest.TestCase):
         self.assertFalse((self.runtime / "analysis" / f"{self.submission_id}.json").exists())
         with self.assertRaisesRegex(HandoffError, "reconcile before retrying"):
             self.handoff(FakeRunner(self.fields))
+
+    def test_json_error_or_empty_payload_is_not_completed_analysis(self):
+        runner = FakeRunner(self.fields, agent_payload={"status": "error", "summary": "no"})
+        with self.assertRaisesRegex(HandoffError, "successful analysis envelope"):
+            self.handoff(runner)
+        receipt_path = self.runtime / "receipts" / f"{self.submission_id}.json"
+        self.assertEqual("failed", json.loads(receipt_path.read_text())["status"])
+
+        other = str(uuid.uuid4())
+        database = sqlite3.connect(self.state)
+        database.execute(
+            "INSERT INTO submissions VALUES (?, ?, ?, 1)", (other, self.digest, self.record_id)
+        )
+        database.commit()
+        database.close()
+        with self.assertRaisesRegex(HandoffError, "reviewable analysis text"):
+            self.handoff(
+                FakeRunner(
+                    self.fields,
+                    agent_payload={"status": "ok", "result": {"payloads": []}},
+                ),
+                submission_id=other,
+            )
 
 
 if __name__ == "__main__":

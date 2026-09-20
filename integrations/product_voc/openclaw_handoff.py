@@ -169,6 +169,20 @@ def _prompt(submission_id: str, record_id: str, fields: dict[str, str]) -> str:
     )
 
 
+def _validate_openclaw_analysis(payload: dict[str, Any]) -> None:
+    result = payload.get("result")
+    payloads = result.get("payloads") if isinstance(result, dict) else None
+    if payload.get("status") != "ok" or not isinstance(payloads, list):
+        raise HandoffError("OpenClaw did not return a successful analysis envelope")
+    if not any(
+        isinstance(item, dict)
+        and isinstance(item.get("text"), str)
+        and item["text"].strip()
+        for item in payloads
+    ):
+        raise HandoffError("OpenClaw returned no reviewable analysis text")
+
+
 def _existing_completed(
     receipt_path: Path,
     analysis_path: Path,
@@ -302,6 +316,7 @@ def run_handoff(
     ]
     try:
         analysis = _call_json(command, timeout=195, runner=runner)
+        _validate_openclaw_analysis(analysis)
         analysis_bytes = (
             json.dumps(analysis, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
         ).encode()
