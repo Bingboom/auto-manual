@@ -126,6 +126,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", required=True)
     parser.add_argument("--table", required=True)
+    parser.add_argument("--profile", default="prod", help="lark-cli profile containing the bot identity")
     parser.add_argument("--state", type=Path, required=True)
     parser.add_argument("--port", type=int, default=9198)
     parser.add_argument("--origin", action="append", required=True)
@@ -138,7 +139,7 @@ def main():
         if (not url.hostname or url.username or url.password or url.path or url.query or url.fragment
                 or not (url.scheme == "https" or loopback)):
             parser.error("Origins must be bare HTTPS origins (HTTP loopback allowed for tests)")
-    writer = BotWriter(base=args.base, table=args.table)
+    writer = BotWriter(base=args.base, table=args.table, profile=args.profile)
     writer.preflight()
     intake = Intake(args.state, writer)
     server = LimitedServer(("127.0.0.1", args.port), make_handler(
