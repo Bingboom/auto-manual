@@ -1277,6 +1277,17 @@ preference:
   channel into that fixed bit-depth before hashing; use the highest visually
   reviewed setting that yields byte-identical replay, and do not use it to
   conceal layout, font, source, or renderer-version drift;
+- a PNG output may declare `palette_colors` from 2 through 256 to be written as
+  an indexed-colour PNG instead of truecolour. These panels are line art — flat
+  fills plus anti-aliased strokes — so a 256-entry palette stores them at about
+  half the size, which buys back render scale rather than spending it. It is
+  still lossy, so the pipeline measures the result: at most 0.1% of pixels may
+  move further than 8/255 on any channel, and an encoding that exceeds it fails
+  the intake with the measured share instead of shipping a degraded figure. The
+  bound is deliberately about how *much* of the image moves, because the failure
+  that would matter on this artwork is banding across a gradient, not a
+  reassigned pixel on a stroke. Photographic or heavily graded artwork should
+  stay truecolour;
 - missing, ambiguous, quarantined, stale, or hash-mismatched used assets stop
   assembly;
 - `asset_usage_manifest.json`, `asset_registry_snapshot.csv`, and

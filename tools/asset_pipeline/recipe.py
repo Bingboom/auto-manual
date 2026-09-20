@@ -547,7 +547,7 @@ def _output(value: Any, location: str) -> OutputSpec:
         data,
         location=location,
         required={"format", "path"},
-        optional={"scale", "expected_sha256", "rgb_quantization_bits"},
+        optional={"scale", "expected_sha256", "rgb_quantization_bits", "palette_colors"},
     )
     format_name = _string(data["format"], f"{location}.format").lower()
     if format_name not in ALLOWED_OUTPUT_FORMATS:
@@ -578,12 +578,20 @@ def _output(value: Any, location: str) -> OutputSpec:
         )
         if rgb_quantization_bits > 8:
             raise _fail(f"{location}.rgb_quantization_bits", "must be <= 8")
+    palette_colors = None
+    if "palette_colors" in data:
+        if format_name != "png":
+            raise _fail(f"{location}.palette_colors", "is only valid for PNG outputs")
+        palette_colors = _integer(data["palette_colors"], f"{location}.palette_colors")
+        if not 2 <= palette_colors <= 256:
+            raise _fail(f"{location}.palette_colors", "must be between 2 and 256")
     return OutputSpec(
         format=format_name,
         path=_safe_path(data["path"], f"{location}.path", suffix=format_name),
         scale=scale,
         expected_sha256=expected_sha256,
         rgb_quantization_bits=rgb_quantization_bits,
+        palette_colors=palette_colors,
     )
 
 

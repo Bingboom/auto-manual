@@ -561,6 +561,7 @@ def _render_png(
     scale: float,
     max_render_pixels: int,
     rgb_quantization_bits: int | None = None,
+    palette_colors: int | None = None,
 ) -> None:
     with fitz.open(str(pdf_path)) as document:
         page = document[0]
@@ -578,7 +579,51 @@ def _render_png(
             annots=False,
         )
         pixmap = _quantize_rgb_pixmap(fitz, pixmap, rgb_quantization_bits)
+        _write_png(pixmap, destination, palette_colors=palette_colors)
+
+
+PALETTE_ERROR_CHANNEL = 8
+PALETTE_ERROR_PIXEL_SHARE = 0.001
+
+
+def _write_png(pixmap: Any, destination: Path, *, palette_colors: int | None) -> None:
+    """Write the rendered page, optionally as an indexed-colour PNG.
+
+    These panels are line art — a few flat fills plus anti-aliased strokes — so
+    a 256-entry palette stores them at roughly half the size. It is still a
+    lossy encoding, and the failure that would matter is banding across a
+    gradient, not a reassigned pixel on a stroke. The gate therefore bounds how
+    much of the image may move by a visible amount instead of bounding the
+    single worst pixel, and refuses the encoding rather than quietly shipping a
+    degraded figure.
+    """
+    if palette_colors is None:
         pixmap.save(str(destination))
+        return
+    if pixmap.alpha or pixmap.n != 3:
+        raise ArtifactValidationError("palette_colors requires an opaque RGB pixmap")
+
+    import numpy
+    from PIL import Image
+
+    image = Image.frombytes("RGB", (pixmap.width, pixmap.height), bytes(pixmap.samples))
+    indexed = image.quantize(
+        colors=palette_colors,
+        method=Image.Quantize.MEDIANCUT,
+        dither=Image.Dither.NONE,
+    )
+    error = numpy.abs(
+        numpy.asarray(image, dtype=numpy.int16)
+        - numpy.asarray(indexed.convert("RGB"), dtype=numpy.int16)
+    ).max(axis=2)
+    share = float((error > PALETTE_ERROR_CHANNEL).sum()) / float(error.size)
+    if share > PALETTE_ERROR_PIXEL_SHARE:
+        raise ArtifactValidationError(
+            f"palette_colors={palette_colors} moves {share:.4%} of pixels further than "
+            f"{PALETTE_ERROR_CHANNEL}/255, above the {PALETTE_ERROR_PIXEL_SHARE:.2%} limit "
+            f"(worst channel error {int(error.max())})"
+        )
+    indexed.save(str(destination), format="PNG", optimize=True, dpi=(pixmap.xres, pixmap.yres))
 
 
 def _quantize_rgb_pixmap(fitz: Any, pixmap: Any, bits: int | None) -> Any:
@@ -612,6 +657,7 @@ def _render_source_page_png(
     scale: float,
     max_render_pixels: int,
     rgb_quantization_bits: int | None = None,
+    palette_colors: int | None = None,
 ) -> None:
     width = math.ceil(clip.x1 * scale) - math.floor(clip.x0 * scale)
     height = math.ceil(clip.y1 * scale) - math.floor(clip.y0 * scale)
@@ -627,7 +673,7 @@ def _render_source_page_png(
         alpha=False,
     )
     pixmap = _quantize_rgb_pixmap(fitz, pixmap, rgb_quantization_bits)
-    pixmap.save(str(destination))
+    _write_png(pixmap, destination, palette_colors=palette_colors)
 
 
 def _archive_artifacts(
@@ -734,6 +780,7 @@ def _asset_artifacts(
                                 scale=output.scale,
                                 max_render_pixels=recipe.normalization.max_render_pixels,
                                 rgb_quantization_bits=output.rgb_quantization_bits,
+                                palette_colors=output.palette_colors,
                             )
                         else:
                             _render_source_page_png(
@@ -744,6 +791,7 @@ def _asset_artifacts(
                                 scale=output.scale,
                                 max_render_pixels=recipe.normalization.max_render_pixels,
                                 rgb_quantization_bits=output.rgb_quantization_bits,
+                                palette_colors=output.palette_colors,
                             )
                     else:
                         raise ArtifactValidationError(
