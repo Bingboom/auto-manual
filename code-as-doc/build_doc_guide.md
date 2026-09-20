@@ -484,8 +484,8 @@ Page-stack note:
 - shared config families may resolve their page stack through `paths.page_manifest`
 - keep manifest-driven page order changes under [`docs/manifests/`](../docs/manifests)
 - for a genuine model-only generated-page layout exception, keep the family manifest and declare `model_overrides.<MODEL>.recipe` / `template` on that `generated_page`; the default recipe/template remains the path for every other model
-- keep merged-language and single-language preface components separate: `manual_au-en.yaml` uses the English-only `page_shared/en/00_preface_single_language.rst`; the merged US preface remains the trilingual `page_shared/en/00_preface.rst`
-- do not point a single-language manifest at a preface containing language-tagged blocks outside `build.languages`; the language-parity gate rejects that bundle
+- keep merged-language and single-language preface components separate: `manual_au-en.yaml` uses the English-only `page_shared/en/00_preface_single_language.rst`; the US en/fr/es document manifests intentionally keep the trilingual `page_shared/en/00_preface.rst` for IDML/Word/PDF
+- Web-only single-language projection is declared under `build.web_language_block_pages`; do not add `lang_blocks` to the US en/fr/es manifests, because that would also trim the document outputs
 
 Pass target differences through:
 
@@ -1857,6 +1857,13 @@ preserving page-structure macros such as `\HBPrefacePageBegin` /
 `\HBPrefacePageEnd`. The annotation is opt-in, never sniffed, because `**IT ...**`
 is legitimate bold prose elsewhere. When nothing is out of scope the page text
 is returned unchanged, so an untrimmed family keeps byte-identical output.
+The US en/fr/es document manifests are a deliberate exception: IDML/Word/PDF
+must retain all three preface languages. Their configs instead declare
+`build.web_language_block_pages: {00_preface.rst: en}`. Only the Web source
+materializer converts that setting into language-block metadata. During its
+shared review overlay, the declared page is exempt from the ordinary whole-page
+language filter even if its outer `\HBApplyLang` marker names English; the Web
+projection then keeps only the requested en, fr, or es block.
 Trimming the shared trilingual preface to `en` reproduces the hand-forked
 `00_preface_single_language.rst` byte-for-byte after the bundle's own
 empty-line-block normalisation — enforced by

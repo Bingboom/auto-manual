@@ -26,6 +26,13 @@ foreign transitive includes and colliding projected paths fail closed. Shared
 assets are copied byte-for-byte; input pages and the frozen bundle are not edited.
 An implicit foreign preface block cannot be relabeled as a translated page.
 
+Some document formats deliberately retain a mixed-language page. JE-1000F US
+is the live case: the en/fr/es document manifests keep the trilingual preface
+for IDML/Word/PDF, while each config declares
+`build.web_language_block_pages: {00_preface.rst: en}`. The Web source
+materializer adds that declaration only to its frozen bundle metadata, so the
+single-language route can project the page without changing document output.
+
 The low-level split destination must be new and outside the source. The
 canonical integration validates in a fresh sibling directory, rejects symbolic
 link destinations, and swaps only after validation succeeds. Wrapper-index
