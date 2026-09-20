@@ -21,11 +21,11 @@ def suggestion_markup(*, endpoint: str, model: str = "", context: str = "") -> s
     return (
         '<div class="product-voc" id="product-suggestions" lang="en" dir="ltr">'
         '<button type="button" class="product-voc-launch" aria-haspopup="dialog" '
-        'aria-controls="product-voc-dialog" hidden>Suggest an improvement</button>'
+        'aria-controls="product-voc-dialog" hidden>Share feedback</button>'
         '<dialog id="product-voc-dialog" aria-labelledby="product-voc-title">'
         '<button type="button" class="product-voc-close" aria-label="Close suggestion form">×</button>'
         '<p class="product-voc-eyebrow">YOUR FEEDBACK</p>'
-        '<h2 id="product-voc-title">Make your next experience better.</h2>'
+        '<h2 id="product-voc-title">How can we improve?</h2>'
         '<form data-product-voc method="post" data-endpoint="'
         + escape(endpoint, quote=True) + '">'
         '<p>What would make your Jackery product better? No Feishu account is needed.</p>'
@@ -45,7 +45,7 @@ def suggestion_markup(*, endpoint: str, model: str = "", context: str = "") -> s
         '<div class="product-voc-trap" aria-hidden="true"><label>Leave blank '
         '<input name="website" tabindex="-1" autocomplete="off"></label></div>'
         '<details class="product-voc-context"><summary>Included manual context</summary><pre>' + escape(context or "Manual Center home")
-        + '</pre></details><button type="submit">Send suggestion</button></fieldset>'
+        + '</pre></details><button type="submit">Send feedback</button></fieldset>'
         '<p class="product-voc-status" role="status" aria-live="polite"></p>'
         '<noscript>Enable JavaScript to send a suggestion. Nothing has been submitted.</noscript>'
         '</form></dialog><noscript>Enable JavaScript to open the suggestion form.</noscript></div>'
