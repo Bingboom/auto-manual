@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
+from dataclasses import replace
+from pathlib import Path, PurePosixPath
 from typing import Any, Callable
 
 from tools.attachment_identity import stage_bundle_attachment_aliases
@@ -8,6 +9,7 @@ from tools.build_docs_shared import VALID_SOURCE_MODES
 from tools.bundle_asset_finalize import finalize_materialized_bundle
 from tools.data_snapshot import resolve_active_data_root
 from tools.gen_index_bundle import MaterializedBundle, materialize_web_language_source_bundle
+from tools.lang_registry import canonical_language
 from tools.language_block_trim import trim_bundle_language_blocks, trim_bundle_language_pages
 from tools.review_support import (
     overlay_review_content_onto_bundle,
@@ -16,6 +18,58 @@ from tools.review_support import (
     review_content_exists,
 )
 from tools.utils.path_utils import get_paths
+
+
+def _web_language_block_pages(cfg: dict) -> tuple[tuple[str, str], ...]:
+    """Read explicit Web-only mixed-page declarations from the target config."""
+
+    build = cfg.get("build", {})
+    if not isinstance(build, dict):
+        raise RuntimeError("build must be a mapping")
+    raw = build.get("web_language_block_pages", {})
+    if raw is None:
+        return ()
+    if not isinstance(raw, dict):
+        raise RuntimeError("build.web_language_block_pages must be a mapping")
+
+    pages: list[tuple[str, str]] = []
+    for raw_name, raw_owner in raw.items():
+        if not isinstance(raw_name, str) or not raw_name.strip():
+            raise RuntimeError(
+                "build.web_language_block_pages keys must be non-empty RST paths"
+            )
+        path = PurePosixPath(raw_name.strip())
+        if path.is_absolute() or ".." in path.parts or path.suffix.casefold() != ".rst":
+            raise RuntimeError(
+                "build.web_language_block_pages contains an unsafe RST path: "
+                f"{raw_name!r}"
+            )
+        owner = canonical_language(raw_owner) if isinstance(raw_owner, str) else None
+        if owner is None:
+            raise RuntimeError(
+                "build.web_language_block_pages values must be supported language codes: "
+                f"{raw_owner!r}"
+            )
+        pages.append((path.as_posix(), owner))
+    return tuple(pages)
+
+
+def _with_web_language_block_pages(
+    bundle: MaterializedBundle,
+    *,
+    cfg: dict,
+) -> MaterializedBundle:
+    """Attach Web-only projection metadata without changing document manifests."""
+
+    merged = dict(bundle.lang_block_pages)
+    for file_name, owner in _web_language_block_pages(cfg):
+        if file_name in merged and canonical_language(merged[file_name]) != owner:
+            raise RuntimeError(
+                f"Conflicting language-block owner for Web page {file_name!r}: "
+                f"{merged[file_name]!r} != {owner!r}"
+            )
+        merged[file_name] = owner
+    return replace(bundle, lang_block_pages=tuple(merged.items()))
 
 
 def _existing_review_overlay_paths(bundle_dir: Path) -> tuple[Path, ...]:
@@ -179,6 +233,7 @@ def prepare_manual_bundle(
         for file_name, dropped_language in trim_bundle_language_pages(
             bundle_dir=bundle.bundle_dir,
             languages=bundle.languages,
+            lang_block_pages=bundle.lang_block_pages,
         ):
             printer(
                 f"[build] Review overlay {file_name}: dropped out-of-scope "
@@ -259,6 +314,11 @@ def prepare_web_language_source_bundle(
 ) -> MaterializedBundle:
     """Prepare a complete frozen source for a later Web language split."""
     paths = get_paths()
+
+    def materialize_web_source(*args: Any, **kwargs: Any) -> MaterializedBundle:
+        bundle = materialize_web_language_source_bundle(*args, **kwargs)
+        return _with_web_language_block_pages(bundle, cfg=cfg)
+
     return prepare_manual_bundle(
         cfg,
         model=model,
@@ -271,7 +331,7 @@ def prepare_web_language_source_bundle(
         write_wrapper_index=write_wrapper_index,
         draft_placeholders=draft_placeholders,
         valid_source_modes=VALID_SOURCE_MODES,
-        materialize_bundle=materialize_web_language_source_bundle,
+        materialize_bundle=materialize_web_source,
         review_bundle_exists=review_bundle_exists,
         overlay_review_onto_bundle=overlay_review_onto_bundle,
         review_content_exists=review_content_exists,

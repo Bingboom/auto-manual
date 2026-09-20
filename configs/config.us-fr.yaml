@@ -3,6 +3,10 @@ extends: config-bases/us-single-language-base.yaml
 build:
   family_id: us-fr
   languages: [fr]
+  # Web-only projection. The manifest intentionally remains trilingual for
+  # IDML/Word/PDF output.
+  web_language_block_pages:
+    00_preface.rst: en
   include_lang_in_output_path: true
   word_reference_doc: docs/templates/word_template/template.docx
   word_title: "|PRODUCT_NAME| Manuel d'utilisation"

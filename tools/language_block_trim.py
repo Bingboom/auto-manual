@@ -263,14 +263,19 @@ def trim_bundle_language_pages(
     *,
     bundle_dir: Path,
     languages: list[str] | tuple[str, ...],
+    lang_block_pages: (
+        tuple[tuple[str, str | None], ...] | list[tuple[str, str | None]]
+    ) = (),
 ) -> list[tuple[str, str]]:
     """Remove out-of-scope review pages from the generated bundle and index.
 
     A committed merged review derivative may predate a target-language scope
     reduction. Keep the original review files byte-identical and project only its
     explicitly declared in-scope pages into the generated bundle index.
-    Unknown and genuinely multi-language pages remain included; inline
-    language blocks are handled separately by ``trim_bundle_language_blocks``.
+    Unknown and genuinely multi-language pages remain included. Pages declared
+    through ``lang_block_pages`` also remain included even when their outer
+    ``HBApplyLang`` marker names a different language: their inline blocks are
+    projected separately by ``trim_bundle_language_blocks``.
     """
     scope = {
         code for code in (canonical_language(lang) for lang in languages) if code
@@ -280,6 +285,7 @@ def trim_bundle_language_pages(
         return []
 
     lines = index_path.read_text(encoding="utf-8").splitlines(keepends=True)
+    block_page_names = {file_name for file_name, _page_lang in lang_block_pages}
     kept: list[str] = []
     dropped: list[tuple[str, str]] = []
     for line in lines:
@@ -302,11 +308,15 @@ def trim_bundle_language_pages(
         page_path = bundle_dir / relative
         if page_path.is_symlink() or not page_path.resolve().is_relative_to(bundle_dir.resolve()):
             raise RuntimeError(f"Language trim page escapes the generated bundle: {relative}")
+        file_name = relative.relative_to("page").as_posix()
+        if file_name in block_page_names:
+            kept.append(line)
+            continue
         language = _declared_page_language(page_path)
         if language is None or language in scope:
             kept.append(line)
             continue
-        dropped.append((relative.relative_to("page").as_posix(), language))
+        dropped.append((file_name, language))
 
     if dropped:
         index_path.write_text("".join(kept), encoding="utf-8")

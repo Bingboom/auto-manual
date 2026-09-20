@@ -3,6 +3,10 @@ extends: config-bases/us-single-language-base.yaml
 build:
   family_id: us-en
   languages: [en]
+  # Web routes are language projections; IDML/Word/PDF keep the trilingual
+  # preface required by the US source-manual contract.
+  web_language_block_pages:
+    00_preface.rst: en
   include_lang_in_output_path: true
   # Keep the Web stem the readers already have. JE-1000F/US has been published
   # since v2.3 at JE-1000F/US/en/md/manual_je1000f_us.html, and the Markdown
