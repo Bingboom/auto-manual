@@ -87,5 +87,62 @@ class TestWebPublishLocaleRouting(unittest.TestCase):
                     self.validate(family, lang, 'Publish')
 
 
+class TestUsSingleLanguageWebNaming(unittest.TestCase):
+    """JE-1000F/US pilot: three real configs, one already-published English URL."""
+
+    CONFIGS = Path(__file__).resolve().parents[1] / 'configs'
+
+    def md_output(self, lang, family=None):
+        return process_build_queue.resolve_md_output_path_for_target(
+            config_path=self.CONFIGS / f'config.{family or f"us-{lang}"}.yaml',
+            model='JE-1000F', region='US', lang=lang,
+        )
+
+    def test_explicit_us_locale_resolves_real_single_language_family(self):
+        for lang in ('en', 'fr', 'es'):
+            with self.subTest(lang=lang):
+                path = process_build_queue.resolve_config_path_for_task(
+                    model='JE-1000F', region='US', lang=lang,
+                    build_family=f'us-{lang}', workflow_action='Web Publish',
+                )
+                self.assertEqual(f'config.us-{lang}.yaml', path.name)
+
+    def test_us_single_language_configs_satisfy_the_web_locale_contract(self):
+        for lang in ('en', 'fr', 'es'):
+            path = self.CONFIGS / f'config.us-{lang}.yaml'
+            cfg = process_build_queue.load_config(path)
+            with self.subTest(lang=lang):
+                validate_family_config_request(config_path=path, cfg=cfg,
+                    build_family=f'us-{lang}', region='US', lang=lang,
+                    workflow_action='Web Publish')
+
+    def test_english_web_route_keeps_the_published_markdown_stem(self):
+        path = self.md_output('en')
+        self.assertEqual('manual_je1000f_us.md', path.name)
+        self.assertEqual(('JE-1000F', 'US', 'en', 'md'), path.parts[-5:-1])
+
+    def test_sibling_locales_carry_distinct_markdown_stems(self):
+        stems = {lang: self.md_output(lang).stem for lang in ('en', 'fr', 'es')}
+        self.assertEqual({'en': 'manual_je1000f_us', 'fr': 'manual_je1000f_us_fr',
+                          'es': 'manual_je1000f_us_es'}, stems)
+        # Two manuals sharing one stem are rejected as a duplicate RTD short alias.
+        self.assertEqual(3, len(set(stems.values())))
+
+    def test_print_artefacts_keep_their_language_suffix(self):
+        for lang in ('en', 'fr', 'es'):
+            with self.subTest(lang=lang):
+                word = process_build_queue.resolve_word_output_path_for_target(
+                    config_path=self.CONFIGS / f'config.us-{lang}.yaml',
+                    model='JE-1000F', region='US', lang=lang,
+                )
+                self.assertEqual(f'manual_je1000f_us_{lang}.docx', word.name)
+
+    def test_merged_us_book_keeps_its_own_build_root(self):
+        merged = self.md_output(None, family='us')
+        self.assertEqual('manual_je1000f_us.md', merged.name)
+        self.assertEqual(('JE-1000F', 'US', 'md'), merged.parts[-4:-1])
+        self.assertNotEqual(merged, self.md_output('en'))
+
+
 if __name__ == '__main__':
     unittest.main()

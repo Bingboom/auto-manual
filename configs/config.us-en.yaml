@@ -4,6 +4,21 @@ build:
   family_id: us-en
   languages: [en]
   include_lang_in_output_path: true
+  # Keep the Web stem the readers already have. JE-1000F/US has been published
+  # since v2.3 at JE-1000F/US/en/md/manual_je1000f_us.html, and the Markdown
+  # stem is what puts it there. config-bases/us-single-language-base.yaml names
+  # every artefact manual_{model_slug}_{region_slug}_{lang_slug}; inheriting
+  # that for Markdown would move the canonical page and 404 the old one, because
+  # publish_branch_assembly only writes alias redirects for the legacy
+  # JE-1000F/US/md route and the site root, never inside a locale route.
+  # This overrides the Markdown name alone — the Word/PDF artefacts keep the
+  # _en suffix that distinguishes them from their fr/es siblings on disk.
+  # JBP-2000B EU is the live precedent for the shape: its English route
+  # publishes manual_jbp2000b_eu.md while French carries
+  # manual_jbp2000b_eu_fr.md. The sibling suffix is load-bearing — two manuals
+  # sharing one stem are rejected as a duplicate RTD short alias — so
+  # config.us-fr.yaml / config.us-es.yaml keep the inherited _fr / _es names.
+  md_output: manual_{model_slug}_{region_slug}.md
   word_reference_doc: docs/templates/word_template/reference_en.docx
   word_title: "|PRODUCT_NAME| User Manual"
   rst_substitutions:
