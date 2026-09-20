@@ -10,10 +10,15 @@ function fixture(fetchResponse) {
   const status = { textContent: "" };
   const fields = { disabled: true };
   const button = { disabled: false };
+  const dialogEvents = {}, launchEvents = {}, closeEvents = {};
+  const launch = { hidden: true, focus() { this.focused = true; }, addEventListener(n, fn) { launchEvents[n] = fn; } };
+  const dialog = { open: false, showModal() { this.open = true; }, close() { this.open = false; dialogEvents.close(); }, addEventListener(n, fn) { dialogEvents[n] = fn; }, getBoundingClientRect: () => ({left: 10, right: 100, top: 10, bottom: 100}) };
+  const root = { querySelector: (s) => s === "dialog" ? dialog : s === ".product-voc-launch" ? launch : { addEventListener(n, fn) { closeEvents[n] = fn; } } };
   const values = { model: "TEST", suggestion: "TEST product suggestion", use_case: "", context: "TEST page", website: "" };
   const form = {
+    closest: () => root,
     dataset: { endpoint: "https://example.test/api/voc" },
-    querySelector: (selector) => selector === "fieldset" ? fields : selector.includes("button") ? button : status,
+    querySelector: (selector) => selector.includes("input[") ? { focus() {} } : selector === "fieldset" ? fields : selector.includes("button") ? button : status,
     addEventListener: (name, fn) => { listeners[name] = fn; },
     reportValidity: () => true,
   };
@@ -27,7 +32,7 @@ function fixture(fetchResponse) {
     FormData: class { constructor() { return Object.entries(values); } },
     setTimeout: () => 1, clearTimeout: () => {},
   });
-  return { values, status, fields, button, calls, listeners,
+  return { values, status, fields, button, calls, listeners, dialog, launch, launchEvents, closeEvents, dialogEvents,
     submit: () => listeners.submit({ preventDefault() {} }) };
 }
 
@@ -83,4 +88,19 @@ test("error responses do not claim success; preview is explicitly not a Feishu w
   const f = fixture(async () => ({ ok: true, json: async () => ({ ok: true, preview: true }) }));
   await f.submit();
   assert.match(f.status.textContent, /nothing was sent to Feishu/);
+});
+
+test("modal opens without sending and close restores focus while retaining input", () => {
+  const f = fixture(async () => ({ok:true}));
+  assert.equal(f.launch.hidden, false);
+  f.launchEvents.click();
+  assert.equal(f.dialog.open, true);
+  assert.equal(f.calls.length, 0);
+  f.closeEvents.click();
+  assert.equal(f.dialog.open, false);
+  assert.equal(f.launch.focused, true);
+  assert.equal(f.values.suggestion, "TEST product suggestion");
+  f.launchEvents.click();
+  f.dialogEvents.click({target:f.dialog,clientX:0,clientY:0});
+  assert.equal(f.dialog.open, false);
 });

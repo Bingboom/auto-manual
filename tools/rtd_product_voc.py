@@ -19,8 +19,13 @@ def suggestion_markup(*, endpoint: str, model: str = "", context: str = "") -> s
     if not endpoint:
         return ""
     return (
-        '<details class="product-voc" id="product-suggestions" lang="en" dir="ltr">'
-        '<summary>Suggest a product improvement</summary>'
+        '<div class="product-voc" id="product-suggestions" lang="en" dir="ltr">'
+        '<button type="button" class="product-voc-launch" aria-haspopup="dialog" '
+        'aria-controls="product-voc-dialog" hidden>Suggest an improvement</button>'
+        '<dialog id="product-voc-dialog" aria-labelledby="product-voc-title">'
+        '<button type="button" class="product-voc-close" aria-label="Close suggestion form">×</button>'
+        '<p class="product-voc-eyebrow">YOUR FEEDBACK</p>'
+        '<h2 id="product-voc-title">Make your next experience better.</h2>'
         '<form data-product-voc method="post" data-endpoint="'
         + escape(endpoint, quote=True) + '">'
         '<p>What would make your Jackery product better? No Feishu account is needed.</p>'
@@ -28,7 +33,7 @@ def suggestion_markup(*, endpoint: str, model: str = "", context: str = "") -> s
         'for product research. Do not include names, contact details, order numbers '
         'or other personal information. For service requests, use the support '
         'contact in your manual.</p>'
-        '<fieldset disabled><legend>Product improvement suggestion</legend>'
+        '<fieldset disabled><legend class="product-voc-sr">Product improvement suggestion</legend>'
         '<label>Product model <input name="model" required maxlength="100" value="'
         + escape(model, quote=True) + '" autocomplete="off"></label>'
         '<label>Your suggestion <textarea name="suggestion" required minlength="5" '
@@ -39,11 +44,11 @@ def suggestion_markup(*, endpoint: str, model: str = "", context: str = "") -> s
         '<input type="hidden" name="context" value="' + escape(context, quote=True) + '">'
         '<div class="product-voc-trap" aria-hidden="true"><label>Leave blank '
         '<input name="website" tabindex="-1" autocomplete="off"></label></div>'
-        '<p>Included manual context:</p><pre>' + escape(context or "Manual Center home")
-        + '</pre><button type="submit">Send suggestion</button></fieldset>'
+        '<details class="product-voc-context"><summary>Included manual context</summary><pre>' + escape(context or "Manual Center home")
+        + '</pre></details><button type="submit">Send suggestion</button></fieldset>'
         '<p class="product-voc-status" role="status" aria-live="polite"></p>'
         '<noscript>Enable JavaScript to send a suggestion. Nothing has been submitted.</noscript>'
-        '</form></details>'
+        '</form></dialog><noscript>Enable JavaScript to open the suggestion form.</noscript></div>'
     )
 
 
