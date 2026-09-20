@@ -259,3 +259,5 @@ MA-066 expires automatically after the actual #1103 merge.
 | MA-110 | auto-manual PR #1204（含本登记）与 Hello-Docs PR #96，按 #1204 → 镜像同步 → #96 顺序合入：知识库/工作资料页面、docs/knowledge 构建复制与镜像保留规则，以及 Hello-Docs 的 AI 分享内容。每个最终 head 全部检查成功（含非必需项）、无 changes-requested 和未解决评审线程后 squash merge；随后通过既有 RTD 链路核验页面。只涵盖本次两项 PR，保留 docs/publish 全部说明书，不含线上源表写入或其他工程范围。 | 「合入」2026-09-20 | 两个 PR 合入并完成上线核验，或操作者撤销 | 生效 |
 
 | MA-111 | PR #1207（`codex/rtd-catalog-build-cache`，含本登记）：RTD 每轮构建只校验一次冻结发布目录，页面与搜索索引复用结果，构建结束清除缓存。最终 head 全部检查成功（含非必需项）、无 changes-requested 和未解决评审线程后 squash merge；经既有 Hello-Docs 镜像同步和 RTD 链路重建，核验耗时与线上页面。保留说明书、分享资料及原有校验，不含其他代码、workflow、依赖或线上源表改动。 | 「可以」2026-09-20（回应 #1207 全绿后合入并重新构建） | #1207 合入且部署核验完成，或操作者撤销 | 生效 |
+
+| MA-112 | 本次分享稿与首页文案两项 PR：auto-manual #1208（`codex/knowledge-copy-local`，含本登记）与 Hello-Docs #98（`codex/share-intro-local`）。范围为知识库首页中文文案、AI 分享稿六章结构与 CLI/MCP 说明、阅读样式及已确认的 Q 版配图。各最终 head 的全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 和未解决评审线程后 squash merge；通过既有镜像和 RTD 构建核验上线。保留 `docs/publish/**` 说明书，不含其他工程、workflow、依赖或线上数据变更。 | 「推完先合入」2026-09-20 | 两项 PR 合入且线上核验完成，或操作者撤销 | 生效 |
