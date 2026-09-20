@@ -75,6 +75,12 @@ Optional manual feedback affordances are kept in
 HTTPS channel configuration and renders only local copyable context from the
 frozen publication identity; an empty channel list produces no markup.
 
+Product suggestion HTML and endpoint validation live in
+[`tools/rtd_product_voc.py`](../../tools/rtd_product_voc.py). The append-only
+receiver and fixed bot adapter are isolated under
+[`integrations/product_voc/`](../../integrations/product_voc/); neither the build
+nor frozen publication assembly performs a live write. See [VOC](product_voc.md).
+
 Optional visit analytics lives in
 [`tools/rtd_analytics.py`](../../tools/rtd_analytics.py). It validates the
 fixed-shape Cloudflare Web Analytics beacon token and renders the beacon

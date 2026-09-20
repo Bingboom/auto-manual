@@ -82,6 +82,12 @@ Updated: 2026-08-02
 
 ## 2. 三条同步通道
 
+产品研究另有独立 VOC Base「产品优化建议 VOC（手册入口）」
+`Id29bqWMiaFdNjsuyrAcfrkLnZb`，表 `tblmN7OHIB0HsC23`。它只接收访客主动提交的
+产品改进建议，不是 phase2 构建源或 TM；通过业务面 HT-Docs/prod bot 写入。
+Read the Docs 仅显示表单，Mac 接收器是另一个运行边界，详见
+[产品 VOC](../code-as-doc/dev/product_voc.md)。公网与常驻接入须单独验收。
+
 | 通道 | 方向 | 机制 | 频率 |
 | --- | --- | --- | --- |
 | **代码** | auto-manual/main → Hello-Docs/main | [`sync-hello-docs.yml`](../.github/workflows/sync-hello-docs.yml) 同步工程树，同时保留业务面已合入的 `docs/publish/**` | 每次合入 main 自动，秒级 |

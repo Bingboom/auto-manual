@@ -13,6 +13,7 @@ from tools.rtd_publication_catalog import group_publications, publication_identi
 from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
+from tools.rtd_product_voc import normalize_endpoint, page_markup
 from tools.rtd_page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
@@ -120,6 +121,15 @@ def page_context(app, pagename, templatename, context, doctree):
     feedback_channels = normalize_channels(settings.get("feedback_channels", []))
     beacon_token = normalize_beacon_token(settings.get("analytics_beacon_token", ""))
     site_base_url = normalize_site_base_url(settings.get("site_base_url", ""))
+    voc_markup = page_markup(
+        endpoint=normalize_endpoint(settings.get("product_voc_endpoint", "")),
+        publications=[item for product in products for item in product["publications"]],
+        pagename=pagename, root=app.config.root_doc,
+    )
+    if voc_markup and pagename != app.config.root_doc:
+        context["body"] = context.get("body", "") + voc_markup
+        app.add_js_file("product-voc.js")
+        app.add_css_file("product-voc.css")
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
     if pagename != app.config.root_doc:
@@ -195,6 +205,7 @@ def page_context(app, pagename, templatename, context, doctree):
     context["products"] = products
     context["analytics_beacon"] = beacon_markup(beacon_token)
     context["portal_head_meta"] = portal_head_markup(site_base_url=site_base_url)
+    context["product_voc"] = voc_markup
     return "manual_portal.html"
 
 

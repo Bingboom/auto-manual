@@ -43,6 +43,11 @@ content, QR aliases and nested manual URLs are unchanged.
 
 ## Maintenance surface
 
+Product improvement suggestions use an independent opt-in `product_voc_endpoint`
+and narrow bot receiver; see [product VOC](product_voc.md). This is not the
+documentation issue channel below. RTD only builds the form; it never reads
+Feishu credentials or runs the receiver.
+
 - `tools/rtd_portal.py` reads explicit frozen index links and only existing
   local packing-list product assets. It does not scrape the live website.
 - `tools/rtd_portal_assets/settings.json` owns the temporary default, entrance

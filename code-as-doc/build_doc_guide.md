@@ -90,6 +90,10 @@ Root aliases carry noindex/canonical and, when analytics is on, a short
 forward delay so printed/QR entries are countable as alias-path pageviews.
 See [RTD manual center](dev/rtd_manual_portal.md) for scope and rollback.
 
+Product improvement collection is a separate opt-in form and append-only bot
+receiver, not an RTD-hosted backend or the support mailbox. Keep it off until
+the Mac receiver and HTTPS path are verified; see [product VOC](dev/product_voc.md).
+
 ```powershell
 python build.py validate
 python build.py sync-data --config configs/config.us.yaml --data-root data/phase2
