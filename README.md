@@ -67,6 +67,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 手册中心首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
 | Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`code-as-doc/dev/web_publish_pipeline.md`](code-as-doc/dev/web_publish_pipeline.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
 | RTD 手册中心：首页、地区筛选与发布链接 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
+| RTD 知识库与工作资料入口（内容存于 Hello-Docs） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#personal-workspace-entry) |
 | RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
 | RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |

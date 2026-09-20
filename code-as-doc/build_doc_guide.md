@@ -2204,3 +2204,9 @@ Web 提示框支持 `NOTES` 标签；纯文字 LCD 说明表隐藏无对应图�
 Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引，先于部署
 回执封存执行；无需单独启动后端。维护入口及检索范围见
 [RTD Manual Center](dev/rtd_manual_portal.md)。
+
+同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
+`docs/knowledge/ai-share/` 读取分享包，复制到
+`/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
+导航。两个界面共用 RTD 项目的可见性设置，详见
+[Personal workspace entry](dev/rtd_manual_portal.md#personal-workspace-entry)。

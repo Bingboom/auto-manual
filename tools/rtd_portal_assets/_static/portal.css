@@ -39,28 +39,44 @@ header {
   margin:auto;
   display:flex;
   align-items:center;
-  gap:30px;
-  padding:25px 5%;
+  gap:22px;
+  padding:18px 5%;
   border-bottom:1px solid #ececec}
 .brand {
   text-decoration:none;
-  font-size:2.35rem;
-  font-weight:900;
-  letter-spacing:-.07em;
-  font-style:italic;
+  font-size:1.42rem;
+  font-weight:750;
+  letter-spacing:-.035em;
   line-height:1}
 .brand span {
-  font-size:.65rem;
-  vertical-align:top;
+  color:var(--orange);
+  font-size:1.25rem;
   letter-spacing:0;
-  margin:2px}
+  margin-left:2px}
 .header-title {
   border-left:1px solid #ccc;
   padding-left:28px;
   font-size:1rem;
   font-weight:600}
-.region {
+.page-switch {
+  display:flex;
   margin-left:auto;
+  padding:3px;
+  border-radius:6px;
+  background:#f4f5f7}
+.page-switch a {
+  padding:7px 14px;
+  border-radius:4px;
+  color:#6f747d;
+  font-size:.8rem;
+  text-decoration:none;
+  white-space:nowrap}
+.page-switch a.selected {
+  background:#fff;
+  color:#25282e;
+  box-shadow:0 1px 3px #17191f12}
+.region {
+  margin-left:0;
   display:flex;
   align-items:center;
   gap:14px;
@@ -75,7 +91,7 @@ header {
   padding:10px 12px;
   font-weight:600}
 .intro {
-  padding:45px 5% 37px;
+  padding:32px 5% 28px;
   background:#f6f6f6;
   position:relative}
 .intro>* {
@@ -88,11 +104,11 @@ header {
   font-weight:700;
   color:#777}
 .intro h1 {
-  font-size:clamp(2.5rem,4.2vw,4rem);
+  font-size:clamp(2rem,3vw,2.8rem);
   letter-spacing:-.045em;
   line-height:1.05;
-  margin-top:17px;
-  margin-bottom:17px}
+  margin-top:12px;
+  margin-bottom:12px}
 .intro h1 br {
   display:none}
 .intro h1 span {
@@ -390,6 +406,11 @@ dialog h2 {
   font-size:1.9rem}
 .header-title {
   display:none}
+.page-switch {
+  margin-left:auto}
+.page-switch a {
+  padding:7px 9px;
+  font-size:.72rem}
 .region {
   gap:8px}
 .intro {

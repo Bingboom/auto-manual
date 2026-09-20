@@ -78,8 +78,14 @@ class RtdPortalTests(unittest.TestCase):
         shutil.copytree(rtd_portal.ASSETS, assets)
         settings = dict(self.settings, product_voc_endpoint="")
         (assets / "settings.json").write_text(json.dumps(settings))
+        knowledge = self.root / "knowledge"
+        share = knowledge / "ai-share"
+        (share / "配图").mkdir(parents=True)
+        (share / "00_打开分享.html").write_text("<!doctype html><p>业务资料</p>")
+        (share / "配图" / "00-概览.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
         with (root / "conf.py").open("a") as conf:
             conf.write(f"\nfrom pathlib import Path\nfrom tools import rtd_portal as portal\nportal.ASSETS = Path({str(assets)!r})\n")
+            conf.write(f"rtd_knowledge_dir = {str(knowledge)!r}\n")
         before = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()
                   for p in root.rglob("*") if p.is_file()}
         # Compare manual content with the same site branding on both builds.
@@ -129,10 +135,37 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('value="EU" data-binding="EU" selected', page)
         self.assertIn('value="UK" data-binding="EU"', page)
         self.assertIn('id="ethical-ad-placement"', page)
-        self.assertIn("All published manuals", page)
+        self.assertIn("按目录查看全部说明书", page)
+        self.assertIn("说明书资料库", page)
+        self.assertNotIn('class="brand" href="#" aria-label="Jackery', page)
+        self.assertIn('href="workspace/index.html">知识库</a>', page)
+        self.assertIn('class="selected" href="#">工作资料</a>', page)
         self.assertIn('JE-TEST/JP/md/manual_JP.html', page)
         self.assertTrue((self.root / "after" / "_static" / "portal.css").is_file())
         self.assertNotIn("LOCAL DESIGN PREVIEW", page)
+        self.assertNotIn("AI 分享与说明书", page)
+
+        workspace = (self.root / "after" / "workspace" / "index.html").read_text()
+        self.assertIn("知识库", workspace)
+        self.assertNotIn("我的知识库", workspace)
+        self.assertIn("分享资料", workspace)
+        self.assertIn(">知识库</a>", workspace)
+        self.assertIn(">工作资料</a>", workspace)
+        self.assertNotIn("内部版", workspace)
+        self.assertNotIn("对外版", workspace)
+        self.assertNotIn("Jackery", workspace)
+        self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
+        self.assertIn('href="../index.html"', workspace)
+        self.assertTrue(
+            (self.root / "after" / "ai-share" / "00_打开分享.html").is_file()
+        )
+        self.assertTrue(
+            (self.root / "after" / "ai-share" / "配图" / "00-概览.svg").is_file()
+        )
+        self.assertEqual(
+            (self.root / "after" / "ai-share" / "00_打开分享.html").read_bytes(),
+            (share / "00_打开分享.html").read_bytes(),
+        )
 
 
 if __name__ == "__main__":

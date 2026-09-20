@@ -15,11 +15,11 @@ function render() {
       || ($('#search-language').value !== 'all' && !JSON.parse(card.querySelector('[data-manual]').dataset.languages).some(item => item.url && (item.code === $('#search-language').value || (item.code === 'current' && $('#search-language').value === 'legacy'))));
     if (!card.hidden) count += 1;
   });
-  $('#market-title').textContent = query ? `Search results · ${selected.value}` : `${selected.value} manuals`;
+  $('#market-title').textContent = query ? `搜索结果 · ${selected.value}` : `${selected.value} 区域`;
   $('#market-note').textContent = selected.value === 'US'
-    ? 'Manuals for the US edition.'
-    : 'EU and UK share the same products and manuals. Edition: EUUK.';
-  $('#count').textContent = `${count} ${count === 1 ? 'product' : 'products'}`;
+    ? '美规说明书资料。'
+    : '欧规和英规共用 EUUK 版本。';
+  $('#count').textContent = `${count} 份说明书`;
   $('#products').classList.toggle('single', count === 1);
   $('#empty').hidden = count !== 0;
   $('#clear').hidden = !$('#search').value;
@@ -58,7 +58,7 @@ document.querySelectorAll('[data-manual]').forEach(link => {
         || typeof $('#manual-dialog').showModal !== 'function') return;
     event.preventDefault();
     $('#dialog-title').textContent = link.dataset.name;
-    $('#dialog-model').textContent = `${link.dataset.model} · ${link.dataset.edition} edition`;
+    $('#dialog-model').textContent = `${link.dataset.model} · ${link.dataset.edition} 版本`;
     $('#language').replaceChildren();
     JSON.parse(link.dataset.languages).forEach(item => {
       const option = new Option(item.label + (item.url ? '' : ` — ${item.unavailable_reason}`), item.url || '');
@@ -97,10 +97,10 @@ function renderContent(query, region) {
     .map(item => ({...item, score: tokens.reduce((score, t) => score + (item.model.toLowerCase().includes(t) ? 100 : 0) + (item.title.toLowerCase().includes(t) ? 20 : 0), 0)}))
     .sort((a,b) => b.score - a.score || a.model.localeCompare(b.model));
   const productCount = cards.filter(card => !card.hidden).length;
-  $('#count').textContent = `${productCount} products · ${hits.length} sections`;
+  $('#count').textContent = `${productCount} 份说明书 · ${hits.length} 个章节`;
   $('#content-status').textContent = window.manualSearchIndex
-    ? `${hits.length} matching sections · ${Math.min(resultLimit, hits.length)} shown`
-    : 'Content search index is unavailable. You can still browse product manuals below.';
+    ? `找到 ${hits.length} 个相关章节 · 当前显示 ${Math.min(resultLimit, hits.length)} 个`
+    : '说明书内容索引暂不可用，仍可继续浏览下方资料。';
   hits.slice(0,resultLimit).forEach(item => {
     const article = document.createElement('article'); article.className = 'search-hit';
     const meta = document.createElement('div'); meta.className = 'meta';

@@ -1839,3 +1839,8 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 于产品和正文结果；语言未核验的历史发布不冒充单语版本。图片内没有对应
 正文的文字暂不纳入检索。静态索引随 RTD 构建生成，无需配置搜索服务。
 实现与边界见 [Manual Center](../code-as-doc/dev/rtd_manual_portal.md)。
+
+说明书中心和 AI 分享作为两个独立界面维护；`/workspace/` 是两者的个人内容
+入口。AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
+`docs/knowledge/ai-share/`，不放进 auto-manual。随同一次 RTD 构建发布到
+`/ai-share/`。两个界面共用 RTD 项目的可见性设置。

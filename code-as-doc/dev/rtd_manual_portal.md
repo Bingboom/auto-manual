@@ -38,6 +38,31 @@ The root template keeps an EthicalAds placement for RTD. No CSS hides platform
 advertisements. Other markets remain accessible in an all-publications fallback
 even though the primary dropdown is limited to US/EU/UK.
 
+## Personal workspace entry
+
+The manual-center root remains independent. The portal extension also builds
+`/workspace/` as a neutral Chinese entry page for two separately maintained
+personal interfaces:
+
+- **AI 分享** opens the bundled beginner-facing AI sharing package at
+  `/ai-share/00_打开分享.html`.
+- **工作资料** opens the manual library for product, region, language
+  and manual-content search.
+
+The sharing package is owned by **Hello-Docs** under
+`docs/knowledge/ai-share/`; it must not be committed to auto-manual.
+The extension reads that directory and copies it into the RTD HTML output.
+For isolated local previews, set the Sphinx config `rtd_knowledge_dir` to the
+Hello-Docs knowledge directory. HTML pages retain their `noindex,nofollow` metadata.
+The engineering sync preserves both `docs/publish/` and `docs/knowledge/`.
+Deploy that sync protection before merging content into Hello-Docs main.
+Maintain sharing content through a Hello-Docs content PR; keep templates and
+build code in auto-manual.
+Relative links between the main share, demonstrations, reference pages and SVG
+figures therefore keep working without another host. The two interfaces share
+the RTD project's visibility settings; the workspace path is navigation, not a
+separate access-control boundary.
+
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
 
