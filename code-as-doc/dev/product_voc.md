@@ -38,7 +38,7 @@ visitor submission boundary.
 
 ## Data and privacy boundary
 
-The dedicated [VOC Base](https://xcn57j1urbe6.feishu.cn/base/Id29bqWMiaFdNjsuyrAcfrkLnZb)
+The dedicated [VOC Base](https://xcn57j1urbe6.feishu.cn/wiki/P2IDw5FWHin0XKkvc9TcaITcnMe)
 contains table `tblmN7OHIB0HsC23` (`产品优化建议`). It is separate from build source
 tables and Translation Memory. The operator has access; website visitors must
 not be granted access to read the Base.
