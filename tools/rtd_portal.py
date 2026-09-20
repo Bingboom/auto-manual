@@ -133,6 +133,9 @@ def page_context(app, pagename, templatename, context, doctree):
         app.add_css_file("product-voc.css")
     if beacon_token:
         app.add_js_file(BEACON_SRC, loading_method="defer", **beacon_attributes(beacon_token))
+    if pagename == "search":
+        app.add_css_file("manual-search.css")
+        return None
     if pagename != app.config.root_doc:
         if "/" not in pagename:
             alias_target = alias_targets(products).get(pagename)
