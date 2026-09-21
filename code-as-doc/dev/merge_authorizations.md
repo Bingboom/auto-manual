@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-115 | 本授权登记分支 `codex/astra-sharing-merge-authorization` 与 Hello-Docs `codex/github-example-chinese` 内容 PR；内容范围仅 `docs/knowledge/**`，包含中文 GitHub 学习示例、GPT-6 Astra 与鹈鹕 HTML 动画、分享主线及延伸场景、分级目录、两个上手附录和引用稿同步。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；经既有镜像及 RTD 链路发布。保留产品说明书及其他内容，不含 workflow、依赖、线上数据或权限变更。 | 「好 提交 然后推上去」「然后你合并」2026-09-20 | 两项 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-116 | 本授权登记分支 `codex/share-wording-merge-authorization` 与 Hello-Docs `codex/share-rule-wording` 内容 PR；仅修正 `docs/knowledge/ai-share/04_参考资料/02_代码怎样工作.md` 及对应 HTML 中混淆中文概念名和代码语法的说明，改为教学筛选条件的自然语言解释。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge，并通过既有 RTD 链路发布。不含其他内容、工程代码、workflow、依赖、线上数据或权限变更。 | 「可 提交 然后推送 合并」2026-09-20 | 两项 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-115 | 本授权登记分支 `codex/astra-sharing-merge-authorization` 与 Hello-Docs `codex/github-example-chinese` 内容 PR；内容范围仅 `docs/knowledge/**`，包含中文 GitHub 学习示例、GPT-6 Astra 与鹈鹕 HTML 动画、分享主线及延伸场景、分级目录、两个上手附录和引用稿同步。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；经既有镜像及 RTD 链路发布。保留产品说明书及其他内容，不含 workflow、依赖、线上数据或权限变更。 | 「好 提交 然后推上去」「然后你合并」2026-09-20 | 两项 PR 合入即失效，或操作者撤销 | 已失效（auto-manual #1211 squash `f2966259`、Hello-Docs #101 squash `933a514d` 均已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
