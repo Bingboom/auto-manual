@@ -46,6 +46,7 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-117 | 本授权登记分支 `codex/share-review-merge-authorization` 与 Hello-Docs `codex/share-review-fixes` 内容 PR。范围为本轮已确认的分享稿审核修正、可运行产品介绍练习及来源说明、HTML/CSS 新手海报练习、完整提示词和配图入口、GPT-6 Astra（High）与 Agent 章节文案、Hello-Docs 链接、Fork/Clone 和上传状态一致性。内容仅限 `docs/knowledge/**`；各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge，经既有镜像及 RTD 链路核验发布。不含说明书、其他工程代码、workflow、依赖、线上数据或权限变更。 | 「提交推上去 再合入」2026-09-20 | 两项 PR 合入且上线核验完成，或操作者撤销 | 生效（推送后生效） |
 | MA-116 | 本授权登记分支 `codex/share-wording-merge-authorization` 与 Hello-Docs `codex/share-rule-wording` 内容 PR；仅修正 `docs/knowledge/ai-share/04_参考资料/02_代码怎样工作.md` 及对应 HTML 中混淆中文概念名和代码语法的说明，改为教学筛选条件的自然语言解释。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge，并通过既有 RTD 链路发布。不含其他内容、工程代码、workflow、依赖、线上数据或权限变更。 | 「可 提交 然后推送 合并」2026-09-20 | 两项 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
