@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-114 | 本授权登记分支 `codex/camping-merge-authorization` 与 Hello-Docs `codex/camping-poster-demo` 内容 PR；分享内容仅限 `docs/knowledge/**`，包含主稿、引用稿、HTML、配图及露营海报教学 demo。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge。保留其他内容，不含 workflow、依赖、线上数据或权限变更。 | 「合入」2026-09-20（承接已推送的分享稿提交 a466e294） | 两项 PR 合入即失效 | 生效（推送后生效） |
+| MA-115 | 本授权登记分支 `codex/astra-sharing-merge-authorization` 与 Hello-Docs `codex/github-example-chinese` 内容 PR；内容范围仅 `docs/knowledge/**`，包含中文 GitHub 学习示例、GPT-6 Astra 与鹈鹕 HTML 动画、分享主线及延伸场景、分级目录、两个上手附录和引用稿同步。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；经既有镜像及 RTD 链路发布。保留产品说明书及其他内容，不含 workflow、依赖、线上数据或权限变更。 | 「好 提交 然后推上去」「然后你合并」2026-09-20 | 两项 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-114 | 本授权登记分支 `codex/camping-merge-authorization` 与 Hello-Docs `codex/camping-poster-demo` 内容 PR；分享内容仅限 `docs/knowledge/**`，包含主稿、引用稿、HTML、配图及露营海报教学 demo。各最终 head 全部检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge。保留其他内容，不含 workflow、依赖、线上数据或权限变更。 | 「合入」2026-09-20（承接已推送的分享稿提交 a466e294） | 两项 PR 合入即失效 | 已失效（auto-manual #1210 squash `7a68a6e6`、Hello-Docs #100 squash `923bafda` 均已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
