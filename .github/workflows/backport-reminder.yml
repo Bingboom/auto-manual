@@ -36,7 +36,7 @@ jobs:
       FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID }}
       FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID: ${{ secrets.FEISHU_PHASE2_DOCUMENT_LINK_VIEW_ID }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check configuration
         id: cfg
@@ -86,7 +86,7 @@ jobs:
 
       - name: Open / update reminder issue
         if: ${{ steps.cfg.outputs.configured == 'true' && steps.remind.outputs.pending == 'true' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
@@ -123,7 +123,7 @@ jobs:
 
       - name: Resolve reminder issue (all synced)
         if: ${{ steps.cfg.outputs.configured == 'true' && steps.remind.outputs.pending == 'false' }}
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const marker = "[backport-reminder] review docs have un-backported edits";
