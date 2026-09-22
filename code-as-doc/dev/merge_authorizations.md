@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-125 | 本登记分支 `codex/share-analytics-authorization`（含本行）及 Hello-Docs PR #112（`codex/share-reading-analytics`）。内容仅限 `docs/knowledge/ai-share/**`：接入用户提供的 Umami Cloud 网站 ID，采集浏览、来源、正文滚动档位、引用稿和下载点击；包含统一注入、隐私限制、测试和维护说明。两项 PR 最终 head 包含最新 main、所有检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；随后核验 RTD 发布。不含录屏、身份采集、表单、钉钉写入、工程功能或 workflow 变更。 | 「授权你合入」2026-09-21 | 两项 PR 合入及发布核验完成，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-124 | 本登记分支 `codex/share-first-success-authorization`（含本行）与 Hello-Docs `codex/share-first-success` 内容 PR。仅包含已审核的 `docs/knowledge/ai-share/**` 主稿、引用稿、首次练习、工作台说明及 ZIP README 一致性、HTML 渲染校验、引用链接样式和原狗头去白边修正。各最终 head 须包含最新 main、所有检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；经既有 RTD 链路核验。排除其他工程代码、workflow、依赖、线上数据和权限变更。 | 「提交吧 推上去 合入」2026-09-21 | 两项 PR 合入及发布核验完成，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
