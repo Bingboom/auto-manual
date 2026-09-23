@@ -27,6 +27,53 @@ from ..source_copy import source_text
 from .base import RenderContext, figure_paragraph
 
 
+def _operation_id(spec: dict) -> str:
+    from tools.operation_artwork_mode import operation_id_from_ref
+
+    explicit = str(spec.get("operation_id") or "").strip()
+    if explicit:
+        return explicit
+    return operation_id_from_ref(
+        str(spec.get("image") or ""),
+        layout=str(spec.get("layout") or ""),
+    )
+
+
+def _uses_base_art_live_copy(spec: dict, ctx: RenderContext) -> bool:
+    """Return whether this panel composes the approved text-free base art.
+
+    Only an active component target (``ctx.registered_components``) composes
+    base art in IDML; a Web contract mode alone never changes the IDML panel.
+    A frozen mode must match the target contract, which needs a target.
+    """
+    explicit = str(spec.get("presentation_mode") or "").strip()
+    if not explicit and not ctx.registered_components:
+        return False
+    from tools.operation_artwork_mode import (
+        BASE_ART_LIVE_COPY,
+        operation_artwork_mode,
+    )
+
+    contract_mode = (
+        operation_artwork_mode(
+            model=ctx.model,
+            region=ctx.region,
+            operation_id=_operation_id(spec),
+            root=ctx.root,
+        )
+        if ctx.model and ctx.region
+        else None
+    )
+    if explicit and explicit != contract_mode:
+        raise ValueError(
+            f"frozen operation artwork mode {explicit!r} does not match "
+            f"target contract {contract_mode!r}"
+        )
+    if contract_mode not in {None, BASE_ART_LIVE_COPY}:
+        raise ValueError(f"unsupported operation artwork mode {contract_mode!r}")
+    return ctx.registered_components and contract_mode == BASE_ART_LIVE_COPY
+
+
 def _inline_anchor(*, pin: bool = True) -> str:
     """Return the anchor contract shared by operation overlay objects."""
     return (
@@ -436,12 +483,17 @@ def _main_power_clock_overlay(
     rows: list[tuple[str, str]],
     image_w: float,
     image_h: float,
+    base_art: bool = False,
 ) -> str:
-    """Replace the baked POWER clock and restore its editable duration."""
+    """Replace the baked POWER clock and restore its editable duration.
+
+    Approved base art keeps its single drawn clock: no mask, no movable clock,
+    and only the editable duration is added.
+    """
     if "main_power" not in Path(ref).stem.lower():
         return ""
-    clock = ctx.resolve_bundle_image("icon_clock_3s.png")
-    if clock is None or not clock.exists():
+    clock = None if base_art else ctx.resolve_bundle_image("icon_clock_3s.png")
+    if not base_art and (clock is None or not clock.exists()):
         return ""
 
     size = component_param_pt(
@@ -503,7 +555,7 @@ def _main_power_clock_overlay(
     )
     clock_left = image_w * 0.714 + x_offset
     clock_bottom = -image_h * 0.46 + y_offset
-    mask = _shape(
+    mask = "" if base_art else _shape(
         shape_id=f"oppanel_main_power_clock_mask_{tid}",
         left=image_w * 0.762,
         top=-image_h * 0.58,
@@ -511,7 +563,7 @@ def _main_power_clock_overlay(
         bottom=-image_h * 0.45,
         fill="Color/Paper",
     )
-    clock_xml = _positioned_image(
+    clock_xml = "" if clock is None else _positioned_image(
         f"oppanel_main_power_clock_{tid}",
         clock,
         size,
@@ -522,7 +574,11 @@ def _main_power_clock_overlay(
     )
     if not duration:
         return mask + clock_xml
-    duration_left = clock_left + size + duration_gap + duration_x_offset
+    # The drawn base-art clock sits farther right than the movable
+    # replacement; start the editable duration after its measured edge so
+    # the token never overlaps the icon.
+    clock_right = image_w * 0.804 if base_art else clock_left + size
+    duration_left = clock_right + duration_gap + duration_x_offset
     duration_top = clock_bottom - size + duration_y_offset
     duration_xml = _editable_text_frame(
         ctx,
@@ -865,6 +921,7 @@ def _render_image_notice_panel(
         + tail_underlay
         + _main_power_clock_overlay(
             ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+            base_art=_uses_base_art_live_copy(spec, ctx),
         )
         + prereq_text
         + tail_text
@@ -1034,6 +1091,7 @@ def _render_image_guidance_stack(
         + tail_underlay
         + _main_power_clock_overlay(
             ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+            base_art=_uses_base_art_live_copy(spec, ctx),
         )
         + prereq_text
         + tail_text
@@ -1538,6 +1596,7 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         )
         main_power_clock = _main_power_clock_overlay(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
+            base_art=_uses_base_art_live_copy(spec, ctx),
         )
         row_text = _row_text_layers(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,

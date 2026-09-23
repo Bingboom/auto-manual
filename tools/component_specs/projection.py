@@ -12,7 +12,36 @@ from tools.component_specs.model import ComponentSpecError
 from tools.component_specs.overview import overview_spec_from_blocks
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.spec_table import spec_table_component_spec
-from tools.manual_ir import ManualIR
+from tools.manual_ir import ManualIR, ManualPage
+
+
+def _target_overview_instance(ir: ManualIR) -> dict | None:
+    try:
+        return resolve_overview_instance(model=ir.model, region=ir.region)
+    except ComponentSpecError:
+        return None
+
+
+def _is_overview_source(page: ManualPage, overview_instance: dict) -> bool:
+    return any(
+        fnmatch.fnmatch(
+            page.source_path.rsplit("/", 1)[-1].rsplit(".", 1)[0].casefold(),
+            str(pattern).casefold(),
+        )
+        for pattern in overview_instance["source_patterns"]
+    )
+
+
+def governed_overview_source_refs(ir: ManualIR) -> frozenset[str]:
+    """Return the source refs this target's Overview instance owns."""
+    overview_instance = _target_overview_instance(ir)
+    if overview_instance is None:
+        return frozenset()
+    return frozenset(
+        page.source_ref
+        for page in ir.pages
+        if _is_overview_source(page, overview_instance)
+    )
 
 
 def project_manual_ir_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
@@ -35,17 +64,10 @@ def project_manual_ir_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
         )
 
     projected: list[ComponentSpec] = []
-    try:
-        overview_instance = resolve_overview_instance(model=ir.model, region=ir.region)
-    except ComponentSpecError:
-        overview_instance = None
+    overview_instance = _target_overview_instance(ir)
     for page in ir.pages:
-        if overview_instance is not None and any(
-            fnmatch.fnmatch(
-                page.source_path.rsplit("/", 1)[-1].rsplit(".", 1)[0].casefold(),
-                str(pattern).casefold(),
-            )
-            for pattern in overview_instance["source_patterns"]
+        if overview_instance is not None and _is_overview_source(
+            page, overview_instance,
         ):
             projected.append(
                 overview_spec_from_blocks(

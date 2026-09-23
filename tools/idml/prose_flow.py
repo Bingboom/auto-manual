@@ -821,6 +821,11 @@ def _component_kind(payload: str) -> str:
     return str(spec.get("kind") or "") if isinstance(spec, dict) else ""
 
 
+def component_kind(payload: str) -> str:
+    """Return a component's structured kind for cross-module routing."""
+    return _component_kind(payload)
+
+
 def _referencefigure_block(layout: str, image: str, **values: object) -> Block:
     spec = {
         "kind": "referencefigure",
@@ -903,10 +908,19 @@ def promote_reference_figures(
     approved_reference = (
         (page_plan or {}).get("plan_source") == "approved-reference"
     )
+    registered_charging = (
+        (page_plan or {}).get("plan_source") == "registered-component"
+        and any(
+            entry.get("composition_type") == "charging_methods"
+            and Path(str(entry.get("source_ref") or "")).stem == stem
+            for entry in (page_plan or {}).get("pages", [])
+            if isinstance(entry, dict)
+        )
+    )
     is_charging = re.fullmatch(
         r"(?:p\d+_)?08_charging_methods",
         stem.casefold(),
-    ) is not None and approved_reference
+    ) is not None and (approved_reference or registered_charging)
     app_options = _app_composition_options(page_plan, stem)
     is_app = app_options is not None
     if not is_charging and not is_app:
@@ -1390,12 +1404,27 @@ def _move_car_notice_to_storage(
     from .latex_page_plan import planned_span
     if planned_span(page_plan, [method_stem], 1) < 2:
         return items
+    storage_stem, storage_blocks, storage_columns = items[storage_index]
+    moved = move_car_notice_to_storage_blocks(method_blocks, storage_blocks)
+    if moved is None:
+        return items
+    method_blocks, storage_blocks = moved
+    items[methods_index] = (method_stem, method_blocks, method_columns)
+    items[storage_index] = (storage_stem, storage_blocks, storage_columns)
+    return items
+
+
+def move_car_notice_to_storage_blocks(
+    method_blocks: list[Block],
+    storage_blocks: list[Block],
+) -> tuple[list[Block], list[Block]] | None:
+    """Move the final structurally identified car notice to Storage."""
     h2_indices = [
         index for index, (kind, _payload) in enumerate(method_blocks)
         if kind == "h2"
     ]
     if len(h2_indices) < 2:
-        return items
+        return None
     last_h2 = h2_indices[-1]
     notice_indices = [
         index for index in range(last_h2 + 1, len(method_blocks))
@@ -1403,7 +1432,7 @@ def _move_car_notice_to_storage(
         and _component_kind(method_blocks[index][1]) == "notice"
     ]
     if not notice_indices:
-        return items
+        return None
     notice_index = notice_indices[-1]
     if not any(
         kind == "image"
@@ -1413,20 +1442,12 @@ def _move_car_notice_to_storage(
         )
         for kind, payload in method_blocks[last_h2:notice_index]
     ):
-        return items
+        return None
     notice = method_blocks[notice_index]
-    items[methods_index] = (
-        method_stem,
+    return (
         method_blocks[:notice_index] + method_blocks[notice_index + 1:],
-        method_columns,
-    )
-    storage_stem, storage_blocks, storage_columns = items[storage_index]
-    items[storage_index] = (
-        storage_stem,
         [notice] + storage_blocks,
-        storage_columns,
     )
-    return items
 
 
 def warranty_starts_new_flow(page_plan: dict | None) -> bool:

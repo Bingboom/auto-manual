@@ -1041,6 +1041,19 @@ page, or density should reuse an existing visual component, follow
 [`dev/style_component_usage_guide.md`](dev/style_component_usage_guide.md) before
 adding page-level geometry or finalizer behavior.
 
+The same registry entry declares `JE-1000F / US / en` as a pilot **component
+target** (`component_targets`): its single-language build composes the approved
+contract's registered pages (LCD profile, native Overview, Charging,
+Storage+Troubleshooting, Warranty, main-power base art) without the contract's
+physical page plan, and `build.py idml` skips the measured LaTeX plan for it.
+This happens only while every source page of the build matches its pin in the
+approved contract (today: business review content, `--source review`, as the
+publish queue uses). Any drift keeps the ordinary layout and prints
+`COMPONENT TARGET INERT` with each pinned/built digest; refresh the pins through
+the rebind route below, never by hand. Other languages, the trilingual replica
+and every other target are unchanged. Details:
+[`dev/idml_component_targets.md`](dev/idml_component_targets.md).
+
 `JBP-2000B / EU / en+fr+es+de+it+uk` is the second target resolved from the
 same `BP@INTL` skeleton. Build it with `configs/config.bp-eu.yaml`; `uk` is
 Ukrainian and this target makes no UK-market claim. Its paired host is named

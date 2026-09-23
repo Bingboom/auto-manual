@@ -1249,6 +1249,47 @@ class ExportIdmlTests(unittest.TestCase):
             story,
         )
 
+    def test_operation_rhythm_spaces_plain_body_before_h2_by_default(self) -> None:
+        """Pin the shared rhythm every target without registered components prints."""
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_en_idml_operation_inter_section_space_after": ("48.2", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_with_charging_tail",
+            "05_operation_guide_placeholder + charging",
+            [
+                ("body", "Emergency charging detail."),
+                ("h2", "CHARGING VIA SOLAR PANELS"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_with_charging_tail"]
+        self.assertIn('SpaceAfter="48.2"', story)
+
+    def test_registered_rhythm_keeps_ordinary_spacing_after_operation(self) -> None:
+        """A component target's no-plan story keeps copy after Operation plain."""
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter(
+            {"lang_en_idml_operation_inter_section_space_after": ("48.2", "pt")},
+            registered_components=True,
+        )
+        writer.add_prose_story(
+            "st_operation_with_charging_tail",
+            "05_operation_guide_placeholder + charging",
+            [
+                ("body", "Emergency charging detail."),
+                ("h2", "CHARGING VIA SOLAR PANELS"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_with_charging_tail"]
+        self.assertNotIn('SpaceAfter="48.2"', story)
+
     def test_operation_first_page_rhythm_preserves_second_panel_position(self) -> None:
         from tools.idml.story_rhythm import operation_story_rhythm_for_next_block
 

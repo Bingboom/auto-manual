@@ -58,6 +58,9 @@ class RenderContext:
     # Candidate target assemblies use native vector structural glyphs so the
     # raw IDML remains readable before any host-specific finalizer runs.
     native_structure_markers: bool = False
+    # An active component target (tools/idml/component_targets.py) composes
+    # its registered components; every other build keeps the shared renderers.
+    registered_components: bool = False
     # writer._add_story_parts, for components that render rounded objects
     # as anchored frames (one sub-story per frame). None in pure/table-only
     # contexts; renderers must keep a table fallback for that case.

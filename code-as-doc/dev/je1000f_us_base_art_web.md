@@ -1,6 +1,7 @@
 # JE-1000F US base art on the Web
 
-Status: implemented for Web; IDML follows in a separate change.
+Status: implemented for Web. The IDML counterpart is described in
+[`idml_component_targets.md`](idml_component_targets.md).
 
 ## 1. Scope
 
@@ -16,9 +17,9 @@ EN, FR and ES:
 The frozen, registry-approved art is the figure's only image. Visible copy stays
 owned by the source templates and renders as live, searchable HTML. DC/USB and
 LED keep their approved composites; every other target is unchanged. The IDML
-counterpart (the same art in the production IDML) and the single-language IDML
-component routing were split out of #1220 and are not part of this change; the
-IDML output for JE-1000F/US is byte-identical with and without it.
+counterpart (the same main-power art in the production IDML) belongs to the
+single-language component target, which applies it only while its sources match
+the approved contract; see [`idml_component_targets.md`](idml_component_targets.md).
 
 The AC figure keeps the approved art with its drawn, empty prerequisite pill.
 The textless AC candidate is not registered; approving it changes the art hash

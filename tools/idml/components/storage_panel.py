@@ -53,6 +53,7 @@ class StoragePanelContract:
 class StoragePanelRender:
     story_id: str
     contract: StoragePanelContract
+    estimated_height: float = 0.0
     frames: tuple[str, ...] = ()
     frame_rects: tuple[FrameRect, ...] = ()
 
@@ -95,7 +96,7 @@ class StoragePanel:
         available_height: float | None = None,
     ) -> StoragePanelRender:
         if self.layout_variant == "shared_prose":
-            self.writer.add_prose_story(
+            _, estimated_height = self.writer.add_prose_story(
                 self.sid,
                 self.data.title,
                 [("h1", self.data.title), *self.data.body_blocks],
@@ -109,6 +110,7 @@ class StoragePanel:
                     language=self.language,
                     renderer=self.layout_variant,
                 ),
+                estimated_height=estimated_height,
             )
 
         if None in {x, y, width, available_height}:

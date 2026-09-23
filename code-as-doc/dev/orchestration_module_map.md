@@ -215,6 +215,7 @@ empty-cell policies are recorded in
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
 - [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
   - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure
+  - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
 - [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
   - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors; never measures the artwork
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
