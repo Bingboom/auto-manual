@@ -242,6 +242,43 @@ class SymbolsPanelTests(unittest.TestCase):
                         for element in visible
                     ))
 
+    def test_alert_triangle_scope_follows_the_product_line(self) -> None:
+        # Host-line books print the alert triangle on every signal word; the
+        # battery-pack books only on the hazard words, through their overlay.
+        host = load_layout_params(ROOT / "data" / "layout_params.csv")
+        battery_pack = load_layout_params(
+            ROOT / "data" / "layout_params.csv",
+            (ROOT / "data" / "layout_params.idml-compact.csv",),
+        )
+
+        def draws_triangle(params: dict[str, tuple[str, str]], signal_key: str) -> bool:
+            xml = IdmlWriter(params)._symbol_signal_bar(
+                "sig", "NOTE", ROOT, "en", signal_key=signal_key,
+            )
+            return "warning_triangle_white.svg" in xml
+
+        for signal_key in ("warning", "caution", "note", "tips", ""):
+            with self.subTest(line="host", signal_key=signal_key):
+                self.assertTrue(draws_triangle(host, signal_key))
+        for signal_key, expected in (
+            ("warning", True),
+            ("danger", True),
+            ("caution", True),
+            ("note", False),
+            ("tips", False),
+            # A row without a semantic key cannot be told apart.
+            ("", True),
+        ):
+            with self.subTest(line="battery-pack", signal_key=signal_key):
+                self.assertEqual(expected, draws_triangle(battery_pack, signal_key))
+
+        misspelled = {
+            **host,
+            symbols_page.SIGNAL_ALERT_ICON_TOKEN: ("hazards", "none"),
+        }
+        with self.assertRaisesRegex(ValueError, symbols_page.SIGNAL_ALERT_ICON_TOKEN):
+            draws_triangle(misspelled, "note")
+
     def test_two_long_right_rows_share_compact_column_slack(self) -> None:
         heights = distribute_compact_row_slack(
             [{"text": "Long disposal copy " * 8}, {"text": "Long battery copy " * 14}],

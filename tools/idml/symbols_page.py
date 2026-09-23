@@ -12,7 +12,13 @@ from .character_metrics import (
 )
 from .layout_est import est_table_height
 from .inline_text import character_ranges
-from .params import IDPKG, component_param_pt, localized_component_param_pt, param_pt
+from .params import (
+    IDPKG,
+    component_param_pt,
+    localized_component_param_pt,
+    param_pt,
+    param_text,
+)
 from .style_names import paragraph_style_ref
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -23,6 +29,25 @@ SYMBOL_ICON_ART_SCALE = 0.9
 # reference layout is approved with symbols overrides - not when it merely
 # becomes governed.
 SYMBOLS_STYLE_CONTRACT_LANGUAGES = frozenset({"en", "fr", "es"})
+# Which signal badges carry the alert triangle. The host-line books print it on
+# every signal word, as the PDF and Web draw it; the battery-pack books print it
+# only on the hazard words, so their line overlay narrows the scope to
+# ``hazard`` (evidence in the overlay row and the layout-params guide).
+SIGNAL_ALERT_ICON_TOKEN = "idml_symbols_signal_alert_icon"
+_SIGNAL_ALERT_ICON_SCOPES = frozenset({"all", "hazard"})
+_HAZARD_SIGNAL_KEYS = frozenset({"warning", "danger", "caution"})
+
+
+def _shows_alert_icon(params: dict[str, tuple[str, str]], signal_key: str) -> bool:
+    scope = param_text(params, SIGNAL_ALERT_ICON_TOKEN, "all").casefold()
+    if scope not in _SIGNAL_ALERT_ICON_SCOPES:
+        raise ValueError(
+            f"{SIGNAL_ALERT_ICON_TOKEN} must be one of "
+            f"{sorted(_SIGNAL_ALERT_ICON_SCOPES)}; got {scope!r}"
+        )
+    normalized_key = signal_key.strip().casefold()
+    # A row without a semantic key cannot be told apart, so it keeps the icon.
+    return scope == "all" or not normalized_key or normalized_key in _HAZARD_SIGNAL_KEYS
 
 
 def _symbol_icon_asset(figure: str | None) -> Path | None:
@@ -198,10 +223,7 @@ def _localized_signal_label_bar(
         ROOT / "docs" / "templates" / "word_template" / "common_assets"
         / "symbols" / "warning_triangle_white.svg"
     )
-    normalized_key = signal_key.strip().casefold()
-    show_icon = not normalized_key or normalized_key in {
-        "warning", "danger", "caution",
-    }
+    show_icon = _shows_alert_icon(writer.params, signal_key)
     icon_w = component_param_pt(
         writer.params,
         "idml_symbols_signal_icon_width",
