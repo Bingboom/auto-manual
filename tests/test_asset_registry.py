@@ -32,9 +32,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(430, report.records)
+        self.assertEqual(431, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(422, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(423, report.status_counts[APPROVED_STATUS])
         self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
@@ -136,7 +136,7 @@ class TestAssetRegistry(unittest.TestCase):
             source=ROOT / "data" / "asset_registry.csv",
         )
 
-        self.assertEqual(430, report.records)
+        self.assertEqual(431, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual((), report.updated)
         self.assertGreater(len(report.unchanged), 0)
@@ -173,6 +173,7 @@ class TestAssetRegistry(unittest.TestCase):
             "app/add_device",
             "app/connect_result",
             "operation/energy_saving",
+            "operation/led_light",
             "operation/lcd_mode",
             "operation/ups_mode",
             "charging/solar_adapter",
@@ -185,6 +186,7 @@ class TestAssetRegistry(unittest.TestCase):
             ("app/je1000f_us/add_device", "app/add_device"),
             ("app/je1000f_us/connect_result", "app/connect_result"),
             ("operation/je1000f_us/energy_saving", "operation/energy_saving"),
+            ("operation/je1000f_us/led_light", "operation/led_light"),
             ("operation/je1000f_us/lcd_mode", "operation/lcd_mode"),
             ("operation/je1000f_us/ups_mode", "operation/ups_mode"),
             ("charging/je1000f_us/solar_adapter", "charging/solar_adapter"),
@@ -226,6 +228,31 @@ class TestAssetRegistry(unittest.TestCase):
             "docs/templates/word_template/common_assets/operation/energy_saving.png",
             jp_resolution.path,
         )
+
+        # The shared LED extraction lost the magnifier and hand; JE-1000F/US
+        # resolves its own, and every other target keeps the shared row.
+        for model, region, language, asset_key, path in (
+            (
+                "JE-1000F", "US", "en", "operation/je1000f_us/led_light",
+                "docs/renderers/latex/assets/op_led_light_je1000f_us.png",
+            ),
+            (
+                "JE-1000F", "JP", "ja", "operation/led_light",
+                "docs/templates/word_template/common_assets/operation/led_light.png",
+            ),
+        ):
+            with self.subTest(region=region):
+                led = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key="operation/led_light",
+                    format_name="png",
+                    language=language,
+                    model=model,
+                    region=region,
+                )
+                self.assertEqual(asset_key, led.asset_key)
+                self.assertEqual(path, led.path)
 
         us_overview = resolve_asset(
             self.records,
@@ -685,7 +712,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(430, len(records))
+        self.assertEqual(431, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

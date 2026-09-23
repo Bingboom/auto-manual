@@ -5,8 +5,8 @@ Status: implemented for Web. The IDML counterpart is described in
 
 ## 1. Scope
 
-Four of the five JE-1000F/US Operation figures render as `base-art-live-copy` on
-the Web in EN, FR and ES:
+All five JE-1000F/US Operation figures render as `base-art-live-copy` on the Web
+in EN, FR and ES:
 
 | Figure | Logical art | Frozen art SHA-256 |
 | --- | --- | --- |
@@ -14,17 +14,26 @@ the Web in EN, FR and ES:
 | `operation.ac-output` | `operation/ac_output` | `43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75` |
 | `operation.dc-usb-output` | `operation/dc_usb_output` | `c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3` |
 | `operation.energy-saving` | `operation/je1000f_us/energy_saving` | `9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07` |
+| `operation.led-light` | `operation/je1000f_us/led_light` | `483c0dcfcfd6c0f8c460a32d9e320f07c3b7571cc1af80b1ac9d5b8f235430cc` |
 
 The frozen, registry-approved art is the figure's only image. Visible copy stays
 owned by the source templates and renders as live, searchable HTML.
 
-LED light keeps its approved composite. Its registered art (`operation/led_light`,
-`bf4fce34…`) lost the magnifier and the hand when the extraction's text
-redaction removed every graphic touching the magnifier's LIGHT label, so a card
-built on it would drop the hand the composite shows. The footer-panel card LED
-needs is implemented and tested (section 4); the figure switches to it once a
-fixed JE-1000F/US LED base art serves every output (section 6). Every other
-target is unchanged. The IDML
+LED uses the target's own base art. The shared `operation/led_light`
+(`bf4fce34…`) lost the magnifier and the hand when its extraction's text
+redaction removed every graphic touching the magnifier's LIGHT label. The
+JE-1000F/US art comes from the V2.0 print PDF (`source/manual_je1000f_us_20260728`,
+physical page 12) through
+`data/asset_recipes/manual_je1000f_us_20260728_led_light.json`: it keeps the
+product, the whole magnifier and hand and the LIGHT product marking, and removes
+only the step-number circles, as objects (an edge-only redaction touches their
+outlines and nothing else). Registered as the target's override
+(`operation/je1000f_us/led_light`), it serves every JE-1000F/US output: Web,
+Word/PDF and the IDML flow. Every other target keeps the shared row and is
+unchanged. The override changes the manual content that the approved
+reference-layout plan `je1000f_us_v2_20260605.json` pins for the three operation
+pages, so the plan is rebound with a recorded content-change approval; its
+composition map is unchanged. The IDML
 counterpart (the same main-power art in the production IDML) belongs to the
 single-language component target, which applies it only while its sources match
 the approved contract; see [`idml_component_targets.md`](idml_component_targets.md).
@@ -57,6 +66,7 @@ declares, per figure:
 | AC output | (84.0, 26.51), (84.0, 36.98); width 15.5 | pill `[1.14, 1.98, 42.83, 6.05]` tone `#f8f8f8`, narrow max width 55 |
 | DC/USB output | (86.0, 20.28), (86.0, 31.69); width 13.5 | pill `[1.63, 2.68, 43.49, 7.32]` tone `#e8e8e8`, narrow max width 55 |
 | Energy saving | — | footer text starts at x 72 under the drawn bracket line (x 76.27) |
+| LED light | — | art column 56.8 % of the card (the IDML card's art width); markers `bulb-lit`, `sos`, `bulb-off` |
 
 The anchors were measured once from the frozen PNGs (bracket arms, clock and
 pill bounding boxes, pill tone); the same measurement reproduces the declared
@@ -90,9 +100,9 @@ exists. Main power adds the duration beside its drawn clock, taken from the step
 copy (`3s`, `3 secondes`, `3 segundos`). Energy saving renders a footer under the
 art with the duration, the source `mode_label` and the action.
 
-A footer-panel card (built for LED; declared once its base art is fixed) puts the
-lead in its own soft panel above the art and bolds its phrase through the first
-colon (the IDML card's rule); the art shares the row below with numbered steps.
+LED renders as a footer-panel card: the lead sits in its own soft panel above the
+art and bolds its phrase through the first colon (the IDML card's rule); the art
+shares the row below with three numbered steps.
 The art carries no numbers or step glyphs, so the Web draws them (lit bulb, SOS
 badge, unlit bulb) the way the IDML card draws them natively. A one-word step
 label never splits mid-word; it may overhang its step box by a few pixels and
@@ -136,6 +146,17 @@ which stay on the drawn pill and fill it with its measured tone.
   their arms (within 0.02 px) on one line (the Spanish "Encendido" had wrapped
   mid-word before labels stopped breaking), no copy leaves the art, and the
   narrow-screen DC/USB pill fills with `#e8e8e8`.
+- LED on the JE-1000F/US override (same inputs), against the previous head: the
+  EN/FR/ES pages differ only in the LED figure (composite to the base-art card on
+  `483c0dcf…`); the stylesheet is unchanged. The prepared pages Word and PDF
+  render reference the override in all three languages. With the plan rebound,
+  production IDML for every JE-1000F/US target is member-identical (the LED card
+  keeps its substitute art), and each flow IDML changes only the LED image (its
+  link, and its height at the full measure: 178.8 to 152.3 pt).
+- Browser check of the LED card at the 686 px card width and at 375 px in EN, FR
+  and ES: the art column ends 8 px before the step column, the three steps start
+  on one edge, the SOS badge stays on one line, no copy leaves the card, and the
+  page never scrolls sideways.
 
 ## 6. Open items
 
@@ -144,16 +165,17 @@ which stay on the drawn pill and fill it with its measured tone.
 - The FR/ES Off instruction wraps to two lines above a clock placed for one EN
   line, so instruction type is set smaller than in the approved composites; the
   ES source copy is also longer than the copy baked into the approved ES composite.
-- LED base art. `operation/led_light` (`bf4fce34…`) lost the magnifier and the
-  hand; the IDML LED card meanwhile substitutes an unregistered
-  `led_light_complete.png` whose right edge crops the magnifier rim and the
-  wrist. A JE-1000F/US replacement extracted from the V2.0 print PDF
-  (2026-07-28, page 12; PNG `483c0dcf…`) keeps the product, the whole magnifier
-  and hand, and the LIGHT product marking. Registered as the target's override
-  it serves every output, so it lands in its own change: the Word/PDF image
-  changes, and because the formal IDML entry measures pagination from the LaTeX
-  PDF, IDML page 05 changes and the approved reference-layout plan needs a
-  content-change rebind. The LED card then declares that art.
+- The production IDML LED card still substitutes an unregistered
+  `led_light_complete.png`, whose right edge crops the magnifier rim and the
+  wrist, instead of the registered LED art. Switching it changes the designer's
+  IDML and waits for the operator.
+- The IDML recognises governed operation art by file name (`_LED_LIGHT_ART`,
+  `_ENERGY_SAVING_ART`, the flow's full-measure list), and LaTeX flattens
+  `renderers/latex/assets`, so a target override needs a unique basename that the
+  renderer then names: `op_led_light_je1000f_us` is listed there and in the
+  reviewed `ALLOWED_MODEL_LITERALS` of `tests/test_idml_page_boundaries.py`. An
+  unlisted override silently demotes the LED card to prose and a 120 pt image.
+  Recognising governed art by asset key would retire both lists.
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
   the art has none; if a future art version draws them, drop the markers instead
   of drawing them twice.

@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "夏冰",
-    "approved_at": "2026-08-29T14:11:49Z",
-    "method": "operator directive 2026-08-29: restore final assembly 3/3; exact Hello-Docs review e06def5e; editable IDML semantic projection; 52-source/58-page composition unchanged"
+    "approved_at": "2026-09-23T10:09:07Z",
+    "method": "对话确认（Claude Code 会话）：JE-1000F/US LED 底图改用目标覆盖 operation/je1000f_us/led_light，05 操作页 EN/FR/ES 内容变更；排版图不变"
   },
   "render_contract": {
     "dpi": 300,
@@ -485,7 +485,7 @@
     },
     {
       "source_ref": "page/05_operation_guide_placeholder.rst",
-      "source_sha256": "a5da816934e5325b8a238502a69e30c503f9ff273ec27caf862f638bb29bacfc",
+      "source_sha256": "eb5545a6a4b37bd654202b8b86ccc16ddcf59e7dba71c537d934b3eeacca1da5",
       "language": "en",
       "composition_id": "en_operation",
       "start_page": 10,
@@ -618,7 +618,7 @@
     },
     {
       "source_ref": "page/p26_05_operation_guide_placeholder.rst",
-      "source_sha256": "16f62755bd4876a043534031d54a15dcee8cb2ac973214cd71903f043ab4f1c2",
+      "source_sha256": "fc3b66bdd3bd5eac7537314ce5cbf7dabe424fa60ed52abd320546e01ebc7c62",
       "language": "fr",
       "composition_id": "fr_operation",
       "start_page": 28,
@@ -751,7 +751,7 @@
     },
     {
       "source_ref": "page/p42_05_operation_guide_placeholder.rst",
-      "source_sha256": "6e3ee5839ea0df11dfc979fac03be37e33d5e5b761cb8fde9ff1ce190f8f6564",
+      "source_sha256": "8c3194aba5aefbbd3b3fadbd15fd7548da46504ec85013fac4e035b8ca7513cf",
       "language": "es",
       "composition_id": "es_operation",
       "start_page": 46,
@@ -838,7 +838,7 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a"
+      "manual_content_sha256": "f8fb192c7a270f96011ff5f9acb663cf8d980b88e6f231efebab6dfea46a863b"
     },
     "assembly": {
       "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"
@@ -848,7 +848,7 @@
       "layout_params_sha256": "2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82"
     },
     "provenance": {
-      "snapshot_sha256": "84f40ec342616456d8756fad1df551d791ba1925420edee07f1553684ff91c28"
+      "snapshot_sha256": "4c7b267672c8be081977c5644b444a6eb0059cacbd81de0a995ac6f58a859a2e"
     }
   }
 }

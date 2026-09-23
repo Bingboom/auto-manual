@@ -864,17 +864,16 @@ Web Publish / Read the Docs note:
   While a reference figure waits for its finished panel, its source art fills
   the figure width (the source's inline `:width:` no longer shrinks it).
   A target overlay may instead grant one Operation slot the bounded
-  `base-art-live-copy` state (today JE-1000F/US main power, AC output, DC/USB
-  output and energy saving, EN/FR/ES; LED keeps its approved composite until its
-  registered art is fixed): the frozen text-free artwork is the only image and
-  the source copy stays live HTML on anchors the overlay's `base_art_layout`
-  declares for that exact art (`art_sha256`, bracket-arm `step_anchors`,
-  optional `duration_anchor`, `prerequisite_rect` with its measured
-  `prerequisite_fill` tone, `footer_x`, or a footer-panel card's `art_width` and
-  `step_markers`). Coverage binds
-  each such slot to its packaged asset path/hash and rejects a layout measured
-  on different art, so a new art version must be re-measured before it ships;
-  a mode without its exact `slot_status_overrides` grant, an unknown mode, or
+  `base-art-live-copy` state (today all five JE-1000F/US Operation figures,
+  EN/FR/ES; LED on the target's own `operation/je1000f_us/led_light` art): the
+  frozen text-free artwork is the only image and the source copy stays live HTML
+  on anchors the overlay's `base_art_layout` declares for that exact art
+  (`art_sha256`, bracket-arm `step_anchors`, optional `duration_anchor`,
+  `prerequisite_rect` with its measured `prerequisite_fill` tone, `footer_x`, or
+  a footer-panel card's `art_width` and `step_markers`). Coverage binds each
+  such slot to its packaged asset path/hash and rejects a layout measured on
+  different art, so a new art version must be re-measured before it ships; a
+  mode without its exact `slot_status_overrides` grant, an unknown mode, or
   incomplete anchors stops contract loading. Details and the measured anchors:
   [`je1000f_us_base_art_web.md`](dev/je1000f_us_base_art_web.md).
   Its 55 crop/page/content/source-fragment pins are recorded by
@@ -1152,7 +1151,10 @@ The committed engineering-plane review copy is synchronized to
 `Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`.
 The 2026-08-29 content reapproval covers the current editable IDML semantic
 projection; its rebind changed zero page bindings and left the 58-page
-composition map unchanged.
+composition map unchanged. The 2026-09-23 content reapproval moved the three
+operation pages (EN/FR/ES) to the JE-1000F/US LED override art
+(`operation/je1000f_us/led_light`); that rebind changed exactly those three page
+bindings and also left the composition map unchanged.
 
 | Contract item | Approved value |
 | --- | --- |
@@ -1161,11 +1163,11 @@ composition map unchanged.
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Content identity (enforced) | `b46905f6953e4c4684623f204890a55ad5826e0fbbc610119738a4c53929590a` |
+| Content identity (enforced) | `f8fb192c7a270f96011ff5f9acb663cf8d980b88e6f231efebab6dfea46a863b` |
 | Assembly identity (enforced) | `c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57` |
-| Style-contract identity (enforced) | `6db62e7780288ac073bc7502379112ddf10aae8d6c00de29875e9ea1a80d0003` |
+| Style-contract identity (enforced) | `cdf3b81f7b002bca4596565418c52c0a852666454b7fb77206ae71d1ab9ae420` |
 | Layout-params identity (enforced) | `2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82` |
-| Snapshot provenance (not an activation gate) | `aa4bfb324cd12ff07be2507a51a634e61e2d6043e2dd4fb199bb873afd43f821` |
+| Snapshot provenance (not an activation gate) | `4c7b267672c8be081977c5644b444a6eb0059cacbd81de0a995ac6f58a859a2e` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
 physical structure:

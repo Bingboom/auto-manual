@@ -747,6 +747,29 @@ class ExportIdmlTests(unittest.TestCase):
             w._render_context(bundle), rect_id="r3", terminal=False)
         self.assertIn('AnchorSpaceAbove="0"', result_xml)
 
+    def test_led_override_art_keeps_the_shared_art_full_measure(self) -> None:
+        """Flow sizes named art by path; a target's LED override must match the
+        shared LED art instead of falling back to the 120pt default."""
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        ctx = w._render_context(ROOT / "tests" / "fixtures" / "idml_bundle")
+        widths = []
+        for image in (
+            ROOT / "docs" / "templates" / "word_template" / "common_assets"
+            / "operation" / "led_light.png",
+            ROOT / "docs" / "renderers" / "latex" / "assets"
+            / "op_led_light_je1000f_us.png",
+        ):
+            xml, _ = render_image_block(
+                image.as_posix(), ctx, rect_id="led", terminal=False)
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            widths.append(max(float(x) for x, _y in corners))
+        self.assertEqual(2, len(widths))
+        for width in widths:
+            self.assertAlmostEqual(ctx.text_measure, width, places=3)
+
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
         # InDesign pink-highlight the text (designer-reported)

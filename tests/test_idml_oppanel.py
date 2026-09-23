@@ -583,20 +583,26 @@ class TransformTest(unittest.TestCase):
             ("body", "Press and hold both buttons for 3 seconds."),
             ("h2", "LED LIGHT ON/OFF"),
             ("body", "The LED light has two modes: Light mode and SOS mode."),
-            ("image", "_assets/operation/op_led_light.png"),
-            ("body", "\n".join(steps)),
         ]
 
-        out = transform(blocks)
+        # The shared art and the JE-1000F/US override are both governed LED art.
+        for led_art in (
+            "_assets/operation/op_led_light.png",
+            "renderers/latex/assets/op_led_light_je1000f_us.png",
+        ):
+            with self.subTest(led_art=led_art):
+                out = transform(
+                    [*blocks, ("image", led_art), ("body", "\n".join(steps))]
+                )
 
-        kinds = [kind for kind, _payload in out]
-        self.assertNotIn("image", kinds)
-        layouts = [
-            json.loads(payload)["layout"]
-            for kind, payload in out
-            if kind == "component"
-        ]
-        self.assertEqual(["energy_saving", "led_light"], layouts)
+                kinds = [kind for kind, _payload in out]
+                self.assertNotIn("image", kinds)
+                layouts = [
+                    json.loads(payload)["layout"]
+                    for kind, payload in out
+                    if kind == "component"
+                ]
+                self.assertEqual(["energy_saving", "led_light"], layouts)
 
     def test_incomplete_special_operation_sections_are_untouched(self) -> None:
         cases = (

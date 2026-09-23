@@ -51,7 +51,7 @@ _WARRANTY_COMBINED_CELL = re.compile(
 )
 
 _ENERGY_SAVING_ART = {"op_energy_saving"}
-_LED_LIGHT_ART = {"led_light", "op_led_light"}
+_LED_LIGHT_ART = {"led_light", "op_led_light", "op_led_light_je1000f_us"}
 
 
 def operation_story_rhythm(

@@ -24,6 +24,7 @@ _FULL_MEASURE_SUFFIXES = (
     "/charging/solar_adapter.png",
     "/charging/car_charge.png",
     "/assets/op_energy_saving.png",
+    "/assets/op_led_light_je1000f_us.png",
     "/assets/op_ups_mode.png",
     "/assets/solar_adapter.png",
     "/assets/car_charge.png",
