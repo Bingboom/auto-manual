@@ -9,6 +9,7 @@ from pathlib import Path
 
 from tools.web_presentation import WebPresentationError, load_web_manual_contract
 from tools.web_presentation_contract import merge_contract_layers
+from tools.operation_artwork_mode import operation_artwork_mode
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
@@ -167,7 +168,32 @@ class WebPresentationContractTests(unittest.TestCase):
         )
         self.assertEqual("JE-1000F", eu["figure_coverage"]["requirements"][0]["target"]["model"])
         self.assertEqual("EU", eu["figure_coverage"]["requirements"][0]["target"]["region"])
-        self.assertEqual(us["operations"], eu["operations"])
+        us_modes = {
+            figure["id"]: figure.get("presentation_mode")
+            for figure in us["operations"]["figures"]
+        }
+        eu_modes = {
+            figure["id"]: figure.get("presentation_mode")
+            for figure in eu["operations"]["figures"]
+        }
+        self.assertEqual(
+            {
+                "main-power": "base-art-live-copy",
+                "ac-output": "base-art-live-copy",
+                "energy-saving": "base-art-live-copy",
+            },
+            {key: value for key, value in us_modes.items() if value},
+        )
+        for operation_id, presentation_mode in us_modes.items():
+            self.assertEqual(
+                presentation_mode,
+                operation_artwork_mode(
+                    model="JE-1000F",
+                    region="US",
+                    operation_id=operation_id,
+                ),
+            )
+        self.assertFalse(any(eu_modes.values()))
         self.assertNotIn("instance_id", us["product_overview"])
 
     def test_us_and_kr_debt_is_explicit_without_weakening_final_statuses(self) -> None:
@@ -180,6 +206,14 @@ class WebPresentationContractTests(unittest.TestCase):
         self.assertEqual(
             ["finished-panel", "approved-composite"],
             us_requirement["allowed_statuses"],
+        )
+        self.assertEqual(
+            {
+                "operation.main-power": ["base-art-live-copy"],
+                "operation.ac-output": ["base-art-live-copy"],
+                "operation.energy-saving": ["base-art-live-copy"],
+            },
+            us_requirement["slot_status_overrides"],
         )
         self.assertEqual(9, len(us_requirement["known_debt"]))
         self.assertEqual(
@@ -428,6 +462,116 @@ class WebPresentationContractTests(unittest.TestCase):
             entry = _write_layered_contract(Path(td), overlays=[incomplete])
             with self.assertRaisesRegex(WebPresentationError, "required_slots are incomplete"):
                 load_web_manual_contract(entry, model="JE-1000F", region="US")
+
+    def test_base_art_mode_requires_an_exact_coverage_grant(self) -> None:
+        layout: dict[str, object] = {
+            "art_sha256": "a" * 64,
+            "step_anchors": [[76.5, 15.4], [76.5, 34.2]],
+            "step_width": 22.5,
+        }
+
+        def overlay(
+            *,
+            mode: str = "base-art-live-copy",
+            coverage: dict[str, object] | None = None,
+            base_art_layout: dict[str, object] | None = None,
+        ) -> dict[str, object]:
+            figure: dict[str, object] = {
+                "id": "main-power",
+                "web_replace_key": "operation.main-power",
+                "layout": "status-right",
+                "step_ids": ["on", "off"],
+                "presentation_mode": mode,
+            }
+            if base_art_layout is not None:
+                figure["base_art_layout"] = base_art_layout
+            value: dict[str, object] = {
+                "overlay_id": "one",
+                "target": {"model": "MODEL", "region": "REGION"},
+                "skeleton_profile": "test-skeleton",
+                "contract_overrides": {"operations": {"figures": [figure]}},
+            }
+            if coverage is not None:
+                value["figure_coverage"] = coverage
+            return value
+
+        def policy(overrides: dict[str, list[str]]) -> dict[str, object]:
+            return {
+                "policy_id": "test-policy",
+                "locales": ["en"],
+                "required_slots": ["operation.main-power"],
+                "allowed_statuses": ["finished-panel", "approved-composite"],
+                "slot_status_overrides": overrides,
+            }
+
+        grant = policy({"operation.main-power": ["base-art-live-copy"]})
+        rejected = (
+            (
+                "no coverage grant",
+                overlay(base_art_layout=layout),
+                "require figure_coverage",
+            ),
+            (
+                "unknown mode",
+                overlay(mode="base-art", coverage=policy({}), base_art_layout=layout),
+                "unsupported presentation_mode",
+            ),
+            (
+                "grant outside required slots",
+                overlay(
+                    coverage=policy({"operation.ac-output": ["base-art-live-copy"]}),
+                    base_art_layout=layout,
+                ),
+                "outside required_slots",
+            ),
+            (
+                "grant missing for a declared mode",
+                overlay(coverage=policy({}), base_art_layout=layout),
+                "exactly match",
+            ),
+            ("no measured layout", overlay(coverage=grant), "base_art_layout is required"),
+            (
+                "layout names an unknown key",
+                overlay(coverage=grant, base_art_layout={**layout, "leader_path": []}),
+                "unknown keys",
+            ),
+            (
+                "layout without the measured art",
+                overlay(coverage=grant, base_art_layout={**layout, "art_sha256": "x"}),
+                "must name the measured art",
+            ),
+            (
+                "one anchor for two steps",
+                overlay(
+                    coverage=grant,
+                    base_art_layout={**layout, "step_anchors": [[76.5, 15.4]]},
+                ),
+                "one anchor per step",
+            ),
+            (
+                "anchor outside the art",
+                overlay(
+                    coverage=grant,
+                    base_art_layout={**layout, "step_anchors": [[76.5, 15.4], [101, 2]]},
+                ),
+                "percentages",
+            ),
+        )
+        for label, candidate, message in rejected:
+            with self.subTest(label), tempfile.TemporaryDirectory() as td:
+                entry = _write_layered_contract(Path(td), overlays=[candidate])
+                with self.assertRaisesRegex(WebPresentationError, message):
+                    load_web_manual_contract(entry, model="MODEL", region="REGION")
+
+        paired = overlay(coverage=grant, base_art_layout=layout)
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[paired])
+            contract = load_web_manual_contract(entry, model="MODEL", region="REGION")
+        requirement = contract["figure_coverage"]["requirements"][0]
+        self.assertEqual(
+            {"operation.main-power": ["base-art-live-copy"]},
+            requirement["slot_status_overrides"],
+        )
 
     def test_debt_baseline_cannot_grant_an_unmatched_or_rebound_exception(self) -> None:
         policy = {

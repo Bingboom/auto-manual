@@ -74,6 +74,7 @@ class PathSegments:
     MANUAL_STYLE_CONTRACT = "manual_style.yaml"
     MANUAL_THEME_CONTRACT = "manual_theme.yaml"
     COMPONENT_REGISTRY_CONTRACT = "component_registry.yaml"
+    WEB_PRESENTATION_CONTRACT = "web_manual.json"
     OVERVIEW_COMPONENT_INSTANCES_JSON = "overview_component_instances.json"
     MANUAL_IR_JSON = "manual.ir.json"
     LATEX_PAGE_PLAN_JSON = "latex_page_plan.json"

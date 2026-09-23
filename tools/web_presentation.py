@@ -29,6 +29,7 @@ from tools.web_composite_presentation import (
 )
 from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
+from tools.web_base_art_operation import BASE_ART_CLASS, arrange_base_art_operation
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
 from tools.web_overview_component import transform_overview
@@ -536,6 +537,15 @@ def _transform_operation_figure(
         source_path=source_path,
         image_key=str(spec["image_key"]),
     )
+    if BASE_ART_CLASS in figure.get("class", []):
+        arrange_base_art_operation(
+            soup,
+            figure=figure,
+            stage=stage,
+            spec=spec,
+            source_path=source_path,
+            error_type=WebPresentationError,
+        )
     figure.append(stage)
 
 

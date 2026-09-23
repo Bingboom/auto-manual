@@ -456,6 +456,62 @@ class WebDocumentIRTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "target does not match document"):
                 read_manual_ir(path)
 
+    def test_base_art_coverage_evidence_must_match_the_asset_manifest(self):
+        from tools.web_figure_coverage import build_web_figure_coverage
+
+        with tempfile.TemporaryDirectory() as td:
+            ir, _, _ = self.build(Path(td))
+            path, digest = next(iter(ir.metadata["asset_sha256"].items()))
+            coverage_ir = SimpleNamespace(
+                model=ir.model,
+                region=ir.region,
+                pages=(SimpleNamespace(page_id="05_operation_guide_placeholder.rst"),),
+                metadata={
+                    "web_contract": {
+                        "product_overview": {"source_patterns": []},
+                        "operations": {
+                            "source_patterns": ["*05_operation_guide_placeholder"],
+                            "figures": [
+                                {
+                                    "id": "main-power",
+                                    "web_replace_key": "operation.main-power",
+                                    "base_art_layout": {"art_sha256": digest},
+                                }
+                            ],
+                        },
+                        "reference_figures": {"figures": []},
+                    },
+                    "illustration_provenance": {"illustrations": []},
+                    "composites": [],
+                    "asset_sha256": {path: digest},
+                },
+            )
+            fragment = (
+                '<figure class="hb-operation-figure hb-base-art-live-copy" '
+                'data-web-replace-key="operation.main-power" '
+                'data-web-presentation-mode="base-art-live-copy" '
+                'data-web-base-art-ref="operation/main_power">'
+                '<div class="hb-operation-stage">'
+                f'<img src="file:///tmp/package/{path}">'
+                '<div class="hb-operation-steps">Live copy</div>'
+                "</div></figure>"
+            )
+            coverage = build_web_figure_coverage(coverage_ir, (fragment,))
+            self.assertEqual("base-art-live-copy", coverage["slots"][0]["status"])
+            validate_document(
+                replace(ir, metadata={**ir.metadata, "web_figure_coverage": coverage})
+            )
+
+            tampered = json.loads(json.dumps(coverage))
+            tampered["slots"][0]["asset"]["sha256"] = "0" * 64
+            with self.assertRaisesRegex(
+                ValueError,
+                "base-art evidence does not match the document asset manifest",
+            ):
+                validate_document(
+                    replace(ir, metadata={**ir.metadata, "web_figure_coverage": tampered})
+                )
+
     def test_missing_or_changed_asset_fails_before_render(self):
         with tempfile.TemporaryDirectory() as td:
             ir, output, _ = self.build(Path(td))

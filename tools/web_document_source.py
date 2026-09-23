@@ -39,6 +39,43 @@ from tools.web_presentation import (
 from tools.utils.path_utils import PathSegments
 
 
+def _operation_panel_copy(text, source_path, *, active_tags):
+    """Return a page's ``operation_panel_copy`` blocks, which HTML drops.
+
+    Parse the same only-normalized RST the fragment is published from so a
+    block inside an inactive ``.. only::`` branch never reaches the page.
+    Invalid JSON is skipped exactly as the IDML source extractor skips it.
+    """
+    if "operation_panel_copy" not in text:
+        return ()
+    from docutils import nodes
+    from docutils.core import publish_doctree
+
+    from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
+
+    doctree = publish_doctree(
+        _normalize_sphinx_only_blocks_for_docutils(text, active_tags=active_tags),
+        source_path=str(source_path),
+        settings_overrides={
+            "report_level": 5,
+            "halt_level": 6,
+            "file_insertion_enabled": False,
+            "raw_enabled": True,
+        },
+    )
+    payloads = []
+    for node in doctree.findall(nodes.raw):
+        if "manual-ir" not in str(node.get("format", "")).split():
+            continue
+        try:
+            payload = json.loads(node.astext())
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict) and payload.get("kind") == "operation_panel_copy":
+            payloads.append(payload)
+    return tuple(payloads)
+
+
 def _consume_covered_annotations(soup, entry, image):
     """Only consume explicitly bound, unchanged copy already present in art."""
     covered = []
@@ -250,6 +287,9 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             ),
             composite_manifest=composite_manifest,
             overview_instance=overview_instance,
+            operation_panel_copy=_operation_panel_copy(
+                text, path, active_tags=active_tags,
+            ),
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name

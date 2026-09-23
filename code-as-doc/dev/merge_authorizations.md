@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-126 | PR #1222（`feat/terminology-jp-rules`，**含本登记行**）：在 `data/terminology_rules.csv` 登记 12 条日语术语规则（飞书 Style Guide 第八章已拍板条目），`tools/check_docs_runtime.py` 为未声明 per-target lang 的单语言家族解析页面语言（术语门与 FCC 渲染契约共用），以及配套测试与 `code-as-doc/build_doc_guide.md` §5.1。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：日文模板与飞书规格表的存量修复、`_infer_fragment_lang` 绝对路径推断修复、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你合入」2026-09-22 | #1222 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-127 | 按顺序合入两项 PR：先 PR #1221（`feat/web-je1000f-base-art`，**含本登记行**：JE-1000F/US 主电源、AC 输出、节能三张操作图在网页端以 `base-art-live-copy` 渲染），再 PR #1223（`feat/idml-je1000f-registered-components`：JE-1000F/US/en 单语言 IDML 以 pilot 组件目标组合已登记页面；合入后发布队列的该目标 IDML 随之切换版式，操作者已知悉）。#1223 须在 #1221 合入后改以 `main` 为基底，并在最终 head 纳入包含 #1221 的最新 main。每项须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：关闭 #1220、DC/USB 与 LED 两张图的后续 PR（另需授权）、手动触发网页发布或发布队列、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你 先按顺序合入，再在最新的 main 上开新分支做剩下的图。」2026-09-23 | #1221 与 #1223 均合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-126 | PR #1222（`feat/terminology-jp-rules`，**含本登记行**）：在 `data/terminology_rules.csv` 登记 12 条日语术语规则（飞书 Style Guide 第八章已拍板条目），`tools/check_docs_runtime.py` 为未声明 per-target lang 的单语言家族解析页面语言（术语门与 FCC 渲染契约共用），以及配套测试与 `code-as-doc/build_doc_guide.md` §5.1。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：日文模板与飞书规格表的存量修复、`_infer_fragment_lang` 绝对路径推断修复、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你合入」2026-09-22 | #1222 合入即失效，或操作者撤销 | 已失效（#1222 squash `ddb2f26a` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |

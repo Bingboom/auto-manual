@@ -1,12 +1,43 @@
 """Structure-first HTML source adapter for operation-panel ComponentSpecs."""
 from __future__ import annotations
 
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any, Mapping
 
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.operation import operation_component_spec
+
+# Source `operation_panel_copy` blocks name the IDML panel layout; this maps a
+# Web figure variant to the panel whose copy it may carry.
+_PANEL_COPY_LAYOUTS = {"footer-overlay": "energy_saving"}
+_BASE_ART_LIVE_COPY = "base-art-live-copy"
+
+
+def _panel_mode_label(
+    panel_copy: Sequence[Mapping[str, Any]],
+    *,
+    variant: str,
+    source_path: Path,
+    operation_id: str,
+) -> str:
+    """Return the source mode label for one base-art figure, if it declares one."""
+
+    panel_layout = _PANEL_COPY_LAYOUTS.get(variant)
+    if panel_layout is None:
+        return ""
+    matches = [
+        entry
+        for entry in panel_copy
+        if str(entry.get("layout") or "").strip() == panel_layout
+    ]
+    if len(matches) > 1:
+        raise ValueError(
+            f"{source_path}: operation {operation_id!r} has {len(matches)} "
+            f"{panel_layout!r} panel-copy blocks"
+        )
+    return str(matches[0].get("mode_label") or "").strip() if matches else ""
 
 
 def _sibling(tag: Tag, *, previous: bool) -> Tag | None:
@@ -41,8 +72,14 @@ def parse_operation_components(
     source_path: Path,
     config: Mapping[str, Any],
     language: str,
+    panel_copy: Sequence[Mapping[str, Any]] = (),
 ) -> tuple[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]], ...]:
-    """Return specs, carrier nodes, artwork, and semantic-only source nodes."""
+    """Return specs, carrier nodes, artwork, and semantic-only source nodes.
+
+    ``panel_copy`` holds the page's ``operation_panel_copy`` source blocks, which
+    HTML conversion drops. Only a base-art figure carries their copy, so every
+    other figure keeps its frozen spec byte for byte.
+    """
 
     parsed: list[tuple[object, tuple[Tag, ...], Tag, tuple[Tag, ...]]] = []
     for raw_figure in config.get("figures", []):
@@ -123,16 +160,32 @@ def parse_operation_components(
             prerequisite = str(candidate)
             owned.append(candidate)
         owned.extend((image, line_block))
+        variant = str(raw_figure.get("layout") or "")
+        presentation_mode = str(raw_figure.get("presentation_mode") or "").strip()
+        mode_label = (
+            _panel_mode_label(
+                panel_copy,
+                variant=variant,
+                source_path=source_path,
+                operation_id=operation_id,
+            )
+            if presentation_mode == _BASE_ART_LIVE_COPY
+            else ""
+        )
         spec = operation_component_spec(
             operation_id=operation_id,
             accessibility_label=str(image.get("alt") or operation_id),
-            layout=str(raw_figure.get("layout") or ""),
+            layout=variant,
             steps=steps,
             prerequisite_html=prerequisite,
             supporting_copy=supporting,
             artwork_ref=str(image.get("src") or ""),
             source_ref=f"{source_path}#operation-{operation_id}",
             language=language,
+            mode_label=mode_label,
+            metadata={"presentation_mode": presentation_mode}
+            if presentation_mode
+            else None,
         )
         parsed.append(
             (spec, tuple(owned), image, tuple(supporting_lines[:supporting_count]))

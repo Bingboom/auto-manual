@@ -1,0 +1,208 @@
+/* Base-art operation figures (tools/web_base_art_operation.py).
+   Frozen, text-free artwork carries the product drawing; live, searchable copy
+   sits on the anchors the target contract declares for that exact art hash.
+   Every rule is scoped to .hb-base-art-live-copy, so other figures and the
+   approved composites keep their existing presentation. */
+
+.hb-base-art-live-copy > .hb-operation-stage {
+  container-type: inline-size;
+}
+
+/* The canvas holds the art box and the steps; the art box is exactly the art,
+   so pill, clock and duration anchors resolve against the drawing alone. */
+.hb-base-art-live-copy .hb-operation-canvas,
+.hb-base-art-live-copy .hb-operation-art-box {
+  position: relative;
+}
+
+/* The art already draws the brackets, pills and clock the copy belongs to, so
+   overlays are transparent: nothing may cover a line of the drawing. */
+.hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  pointer-events: none;
+}
+
+/* Each anchor is a drawn bracket arm: the label sits on it and the
+   instruction hangs below, however many lines the language needs. The offset
+   is the label's line box (2.8cqw x 1.1). */
+.hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+  position: absolute;
+  top: calc(var(--hb-step-y) - 3.08cqw);
+  left: var(--hb-step-x);
+  width: var(--hb-step-width);
+  margin: 0;
+  pointer-events: auto;
+}
+
+.hb-base-art-live-copy .hb-operation-step .line {
+  font-weight: 400;
+}
+
+.hb-base-art-live-copy .hb-operation-step-label,
+.hb-base-art-live-copy .hb-operation-mode-label {
+  display: block;
+  font-size: 2.8cqw;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-step-label strong {
+  font-weight: inherit;
+}
+
+/* Two instruction lines (3.3cqw) must end above art drawn below an arm, such
+   as the main-power clock 3.85cqw under its lower arm. */
+.hb-base-art-live-copy .hb-operation-step-instruction {
+  display: block;
+  font-size: 1.5cqw;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-prerequisite {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  height: var(--hb-height);
+  padding: 0 0 0 1.9cqw;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 1.85cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* The page paragraph rhythm (#furo-main-content p) must not push the copy off
+   the pill's centre. */
+#furo-main-content .hb-base-art-live-copy .hb-operation-prerequisite > p {
+  margin: 0;
+}
+
+.hb-base-art-live-copy .hb-operation-duration {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  font-size: 2.1cqw;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.hb-base-art-live-copy .hb-operation-footer {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 1.8cqw 2.4cqw var(--hb-footer-x);
+}
+
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+  top: 0.3em;
+  right: calc(100% - var(--hb-footer-x) + 1.4cqw);
+  left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  transform: none;
+}
+
+/* The same clock glyph the IDML panel places from icon_clock_3s.png. */
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration::before {
+  content: "";
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23343031'/%3E%3Cpath d='M12 5.2V12h5.4' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-steps {
+  position: static;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-step {
+  margin: 0;
+}
+
+/* Narrow screens: the drawing scales below readable overlay sizes, so copy
+   stacks under the art in source order instead of shrinking. */
+@media (max-width: 760px) {
+  .hb-base-art-live-copy > .hb-operation-stage {
+    display: block;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+    pointer-events: auto;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-label,
+  .hb-base-art-live-copy .hb-operation-mode-label {
+    font-size: 1rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+
+  /* The prerequisite stays on the art's own pill, but readable: it may grow
+     into the blank area the contract declares safe (--hb-max-width) and fills
+     with the art's pill tone so the drawn pill never shows as an empty box. */
+  .hb-base-art-live-copy .hb-operation-prerequisite {
+    width: max-content;
+    min-width: var(--hb-width);
+    max-width: var(--hb-max-width, var(--hb-width));
+    height: auto;
+    min-height: var(--hb-height);
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: #f8f8f8;
+    font-size: 0.78rem;
+    white-space: normal;
+  }
+
+  .hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration {
+    display: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer {
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+    position: static;
+    margin-bottom: 0.3rem;
+    font-size: 0.88rem;
+  }
+}

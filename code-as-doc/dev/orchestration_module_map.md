@@ -213,6 +213,10 @@ empty-cell policies are recorded in
 - [`tools/web_presentation_contract.py`](../../tools/web_presentation_contract.py)
   - fail-closed resolver for `shared base → skeleton profile → target overlay`
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
+- [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
+  - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure
+- [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
+  - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors; never measures the artwork
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
   - whole-document ownership pass for the fourteen registered component types;
     claims shared special sections and native table components once and preserves flow order
