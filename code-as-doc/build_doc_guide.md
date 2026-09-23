@@ -1809,7 +1809,8 @@ with python tools/csv_to_tex_params.py.
 `build.py check` also scans each built bundle for wording the Style Guide has retired:
 
 - `data/terminology_rules.csv` — one row per retired wording: `rule_id`, `lang`, `deprecated_regex`, the `preferred` replacement quoted back in the message, an optional `allow_regex` for contexts where the old form is deliberate (an intentional first-mention gloss, a placeholder token), and a `note` pointing at the Style Guide clause.
-- Pages are matched by language: generated pages take the language from their `_<lang>` filename suffix, authored pages inherit the target's language, so a `ko` rule never fires on a German page.
+- Pages are matched by language: generated pages take the language from their `_<lang>` filename suffix, authored pages inherit the target's language, so a `ko` rule never fires on a German page. A single-language family that declares no per-target `lang` (the JP config, `languages: [ja]`) still resolves its authored pages to that one language; a multi-language family leaves unsuffixed pages unclassified.
+- Japanese rules are keyed `ja` — the JP bundle's page suffix (`spec_ja.rst`) and the JP config's language — not the IDML `jp` prefix. `cover_jp.rst` therefore sits outside them; it carries only product naming. Python's `\b` does not break between kana and ASCII (`APPの` has no word boundary), so Japanese patterns use explicit `(?<![A-Za-z])…(?![A-Za-z])` lookarounds.
 
 Findings surface as `TERMINOLOGY_DEPRECATED`, a warning-only code — a rule can be registered the day a wording is retired and its existing hits cleaned up afterwards without blocking builds. Flip it to a blocking code only once the tracked lines are at zero, the way the capability gate tightened.
 

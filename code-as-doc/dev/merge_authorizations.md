@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-126 | PR #1222（`feat/terminology-jp-rules`，**含本登记行**）：在 `data/terminology_rules.csv` 登记 12 条日语术语规则（飞书 Style Guide 第八章已拍板条目），`tools/check_docs_runtime.py` 为未声明 per-target lang 的单语言家族解析页面语言（术语门与 FCC 渲染契约共用），以及配套测试与 `code-as-doc/build_doc_guide.md` §5.1。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：日文模板与飞书规格表的存量修复、`_infer_fragment_lang` 绝对路径推断修复、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你合入」2026-09-22 | #1222 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-125 | 本登记分支 `codex/share-analytics-authorization`（含本行）及 Hello-Docs PR #112（`codex/share-reading-analytics`）。内容仅限 `docs/knowledge/ai-share/**`：接入用户提供的 Umami Cloud 网站 ID，采集浏览、来源、正文滚动档位、引用稿和下载点击；包含统一注入、隐私限制、测试和维护说明。两项 PR 最终 head 包含最新 main、所有检查成功（含非必需项）、无 changes-requested 或未解决评审线程后 squash merge；随后核验 RTD 发布。不含录屏、身份采集、表单、钉钉写入、工程功能或 workflow 变更。 | 「授权你合入」2026-09-21 | 两项 PR 合入及发布核验完成，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
