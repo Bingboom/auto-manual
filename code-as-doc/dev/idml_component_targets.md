@@ -54,11 +54,13 @@ when
   pins; cover, TOC and back cover belong to the trilingual book).
 
 Otherwise it is **inert**: the build keeps the ordinary layout (the measured
-LaTeX plan through `build.py idml`) and prints every reason:
+LaTeX plan through `build.py idml`) and prints every reason. This is what the
+publish queue printed before the 2026-09-23 refresh:
 
 ```text
-[export-idml] WARNING: COMPONENT TARGET INERT (pilot): JE-1000F/US/en keeps the ordinary layout; 4 issue(s)
+[export-idml] WARNING: COMPONENT TARGET INERT (pilot): JE-1000F/US/en keeps the ordinary layout; 2 issue(s)
 [export-idml] WARNING:   page/symbols_en.rst: source_sha256 does not match (pinned=e0ef55116742, built=2e3cf36d2cbc)
+[export-idml] WARNING:   page/troubleshooting_en.rst: source_sha256 does not match (pinned=c4e01d369e76, built=412dd5952e87)
 ```
 
 An active build prints:
@@ -68,15 +70,29 @@ An active build prints:
 [export-idml] PAGE PLAN SKIPPED (component target): JE-1000F/US/en composes its registered pages; the measured LaTeX plan is not applied
 ```
 
-Business review content (`--source review`) activates the pilot today. Runtime
-source (`--source runtime`, the default for this unapproved target) differs from
-the reviewed pages in four sources and stays inert.
+The publish queue builds the code from `main` and takes only
+`docs/_review/<model>/<region>` from the row's `Git_ref`. Its `publish` step
+runs `sync_review --sync-scope params` **before** the IDML step. That sync
+rewrites the generated review pages from live data and the current generators,
+and the IDML is then built from the synced pages. The pins therefore have to be
+the synced pages' digests. A direct `build.py idml --source review` skips that
+sync, so it can report the pilot active while the queue keeps it inert.
 
-The pins are the approved plan's own. After a content change, refresh them with
-the approved plan's rebind route (see
-[`build_doc_guide.md`](../build_doc_guide.md), approved-PDF replica); the
-pilot follows that review automatically. Never edit a pin by hand to reactivate
-it.
+On 2026-09-23 the review copy was refreshed to the synced state, in this repo
+and on the Hello-Docs review branch. The plan was then rebound with the
+operator's content approval: the six symbols and troubleshooting pages, EN/FR/ES,
+changed their signal-row variants and the F9 "DC/USB" copy. The queue order
+(runtime prepare, `sync_review --sync-scope params`, then
+`build.py idml --source review`) now prints `COMPONENT TARGET OK (pilot) …
+pinned=17/17`. Runtime source (`--source runtime`, the default for this
+unapproved target) still differs from the reviewed pages in the two authored
+sources, `charging.rst` and `12_app_setup_placeholder.rst`, and stays inert.
+
+A later live-data change to a pinned page makes the queue build inert again,
+with the warning above. To reactivate it, refresh the review copy the same way
+and rebind the approved plan with a recorded content approval (see
+[`build_doc_guide.md`](../build_doc_guide.md), approved-PDF replica); the pilot
+follows that review automatically. Never edit a pin by hand to reactivate it.
 
 ## 4. What an active target composes
 
@@ -120,6 +136,32 @@ change pin the shared behaviour at every point #1220 changed globally.
   flow IDML. Of the 30 archived packages only the pilot's production IDML
   changed; its flow IDML is identical too. The two known KR failures (JE-3000C
   and JE-1000F runtime builds) fail the same way.
+
+### 2026-09-23 queue refresh (same snapshot, pages refreshed as in Hello-Docs #116)
+
+- Before the refresh, the queue order on `main` left the pilot inert, with the
+  two issues quoted in section 3.
+- The refreshed pages are exactly what `sync_review --sync-scope params` writes
+  for EN, FR and ES. A second sync changes nothing but `last_synced_at`.
+- Content-change rebind: `identity=content.manual_content_sha256
+  page_bindings=6 content_reapproved=yes composition_map=unchanged
+  validation=passed`. The ordinary rebind was refused, as intended.
+- After the rebind:
+  - The queue order prints `COMPONENT TARGET OK (pilot) … pinned=17/17`.
+  - The runtime build stays inert on its two authored sources.
+  - The trilingual approved build still matches 52/52 sources on 58 pages.
+- Against `main`, across all 17 matrix targets:
+  - Every non-US package, and the JE-1000F/US runtime package, is identical in
+    both the production and the flow IDML.
+  - Each JE-1000F/US review package (en, fr, es) and the trilingual book change
+    only in their production IDML's troubleshooting story (F9 "DC/USB") and
+    symbols story. Their flow IDML changes only in the F9 copy.
+- The symbols stories change because, with semantic keys, the IDML draws the
+  warning triangle only for WARNING/DANGER/CAUTION. NOTE and TIP lose it.
+  - This rule came with the battery-pack line (#955). The queue's JE-1000F/US
+    IDML already applied it.
+  - The V2.0 print, the PDF and the Web keep the triangle on all four rows.
+  - The fix is a separate change.
 
 ## 7. Scope limits
 

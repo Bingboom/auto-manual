@@ -40,7 +40,7 @@ If the fault persists, please contact Jackery Customer Support.
    * - F8
      - Contact Jackery Customer Support.
    * - F9
-     - Remove the load connected to the USB ports of the product. Wait until the fault disappears.
+     - Remove the load connected to the DC/USB ports of the product. Wait until the fault disappears.
    * - FE
      - Contact Jackery Customer Support.
 

@@ -10,10 +10,10 @@ SIGNIFICADO DE LOS SÍMBOLOS
    .. raw:: latex
 
       \HBSymbolTable{Símbolo}{Significado}{%
-      \HBSymbolSignalRow{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
-      \HBSymbolSignalRow{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
-      \HBSymbolSignalRow{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
-      \HBSymbolSignalRow{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEJOS}{Complementa la información importante o consejos de operación en el texto.}
+      \HBSymbolSignalRow[warning]{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{ADVERTENCIA}{Prácticas peligrosas que pueden resultar en lesiones graves, muerte y/o daños a la propiedad.}
+      \HBSymbolSignalRow[caution]{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{PRECAUCIÓN}{Prácticas peligrosas que pueden resultar en lesiones personales y/o daños a la propiedad.}
+      \HBSymbolSignalRow[note]{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{NOTA}{Prácticas peligrosas que pueden resultar en daños en el equipo, pérdida de datos, deterioro del rendimiento o resultados inesperados.}
+      \HBSymbolSignalRow[tips]{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEJOS}{Complementa la información importante o consejos de operación en el texto.}
       }
 
 .. only:: not latex

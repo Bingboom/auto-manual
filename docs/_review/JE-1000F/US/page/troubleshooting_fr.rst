@@ -39,7 +39,7 @@ Si l'un des codes d'erreur suivants apparaît, suivez les actions correctives in
    * - F8
      - Contacter le service à la clientèle de Jackery.
    * - F9
-     - Retirez la charge connectée aux ports USB du produit. Attendez que l'erreur disparaisse.
+     - Retirez la charge connectée aux ports DC/USB du produit. Attendez que l'erreur disparaisse.
    * - FE
      - Contacter le service à la clientèle de Jackery.
 
