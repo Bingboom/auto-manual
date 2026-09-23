@@ -92,6 +92,22 @@ A per-language row is legitimate **only** as font or text fitting — size,
 leading, horizontal scale, hyphenation — where a language's text genuinely does
 not fit the shared value. It is not the place for a panel height.
 
+A category value can also be a text token. Take
+`idml_symbols_signal_alert_icon` (`all` or `hazard`), which says which IDML
+signal badges carry the alert triangle:
+
+- The host-line books print it on every signal word, and the PDF and Web draw it
+  the same way (JE-1000F/US V2.0, p5).
+- The battery-pack books print it only on WARNING/CAUTION (JBP-2000B US
+  V2.0-2026-04-27, p4; JP V2.0-2026-05-28, p3), so
+  `layout_params.idml-compact.csv` sets `hazard`.
+- The renderer rejects any other value.
+
+Its common default, `all`, lives in the renderer for now. Adding it to
+`data/layout_params.csv` would move the approved JE-1000F/US plan's
+`layout_params_sha256`, and re-pinning that plan is an operator decision. So it
+moves into the common file, and becomes a pinned override, at the next re-pin.
+
 ### 3.2 Overriding is visible, not forbidden
 
 `resolve_layout_token_layers` returns every common value a layer replaced, with

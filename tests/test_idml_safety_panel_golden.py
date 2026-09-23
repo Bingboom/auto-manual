@@ -72,7 +72,7 @@ GOLDEN = {
         ),
         "maintenance": (
             "5a1ecf52fae7704c70437ca9aa63e71a3443d2f5bf5ea5fa007fa20efacc6ff9",
-            "f26786221092faef3c7500e1024655f591e154902d630fd7a01c4f96fddf5a79",
+            "fb211148245ed58a628bd93fc722fcea6712de58e42f4fb329acf42f0c3369c5",
         ),
     },
     "fr": {
@@ -86,7 +86,7 @@ GOLDEN = {
         ),
         "maintenance": (
             "5c9687d92ef903eb40be8b59cc27821881ba27be30d96dff06ad73e5f54d761c",
-            "ada7dbef4440220ae9ec385516217fa5bfbe6e3ec3ff0a7bac6dfe0fade03826",
+            "8316b97d3f362d26bcb5623bfde10ac8ab8334573b9716ee3075c6d3a2b5295b",
         ),
     },
     "es": {
@@ -100,7 +100,7 @@ GOLDEN = {
         ),
         "maintenance": (
             "8bbc7d534b09464cf48c21e71152fe220b55a1a2d2587b8b26cb6d2c47a5fa50",
-            "0c925bec63460999c377e6be7865a20316eac3858d537f00f2b706dc9e041ba9",
+            "700414e0b46faf3a9259cd5a0c6aaddf29466d33ad55ecccbb600744008c4f5c",
         ),
     },
 }
