@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-127 | 按顺序合入两项 PR：先 PR #1221（`feat/web-je1000f-base-art`，**含本登记行**：JE-1000F/US 主电源、AC 输出、节能三张操作图在网页端以 `base-art-live-copy` 渲染），再 PR #1223（`feat/idml-je1000f-registered-components`：JE-1000F/US/en 单语言 IDML 以 pilot 组件目标组合已登记页面；合入后发布队列的该目标 IDML 随之切换版式，操作者已知悉）。#1223 须在 #1221 合入后改以 `main` 为基底，并在最终 head 纳入包含 #1221 的最新 main。每项须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：关闭 #1220、DC/USB 与 LED 两张图的后续 PR（另需授权）、手动触发网页发布或发布队列、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你 先按顺序合入，再在最新的 main 上开新分支做剩下的图。」2026-09-23 | #1221 与 #1223 均合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-128 | 按顺序合入两项 PR：先 PR #1227（`feat/web-je1000f-dcusb-led-base-art`，**含本登记行**：JE-1000F/US DC/USB 操作图在网页端以 `base-art-live-copy` 渲染、画出的前提药丸色值入契约（`prerequisite_fill`）、两条网页路径共用面板文案规则、LED footer-panel 卡片组件（本 PR 中 LED 仍用已批准合成图）、等待成品面板的参考图满宽），再 PR #1228（`fix/assets-je1000f-us-led-base-art`：JE-1000F/US 专用 LED 底图——V2.0-2026-07-28 美加规印刷 PDF 第 12 页、配方哈希锁定——登记为 `operation/je1000f_us/led_light` 覆盖行，网页、Word/PDF 与 IDML flow 共用；网页 LED 卡片改用该底图；IDML 受管底图识别名单与评审过的型号字面量白名单；操作者批准的版式计划内容变更重绑 `013e0d03`；对应飞书 04_资产定义行 `recvw2kIKmlyDu` 已按批准写入并回读）。#1228 须在 #1227 合入前改以 `main` 为基底（基底分支删除会自动关闭叠加 PR），并在最终 head 纳入包含 #1227 的最新 main。每项须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：IDML LED 卡片改用登记底图（仍用 `led_light_complete.png`，待操作者决定）、V2.0 源文件在 04_资产源文件的归档及其它线上源表写入、关闭 #1220、#1223 发布队列 inert 的 review 刷新与重绑、手动触发网页发布或发布队列、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你 顺序合入」2026-09-23 | #1227 与 #1228 均合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-127 | 按顺序合入两项 PR：先 PR #1221（`feat/web-je1000f-base-art`，**含本登记行**：JE-1000F/US 主电源、AC 输出、节能三张操作图在网页端以 `base-art-live-copy` 渲染），再 PR #1223（`feat/idml-je1000f-registered-components`：JE-1000F/US/en 单语言 IDML 以 pilot 组件目标组合已登记页面；合入后发布队列的该目标 IDML 随之切换版式，操作者已知悉）。#1223 须在 #1221 合入后改以 `main` 为基底，并在最终 head 纳入包含 #1221 的最新 main。每项须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：关闭 #1220、DC/USB 与 LED 两张图的后续 PR（另需授权）、手动触发网页发布或发布队列、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权你 先按顺序合入，再在最新的 main 上开新分支做剩下的图。」2026-09-23 | #1221 与 #1223 均合入即失效，或操作者撤销 | 已失效（#1221 squash `c1c01477`、#1223 squash `153951b5` 均已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
