@@ -25,7 +25,7 @@
    \hline
    \HBTypeSpecLabel{Dimensioni} & \HBTypeSpecValue{31,4 x 20,1 x 23,4 cm} \\
    \hline
-   \HBTypeSpecLabel{Durata del ciclo} & \HBTypeSpecValue{6000 cicli con capacità residua superiore al 70\%} \\
+   \HBTypeSpecLabel{Durata del ciclo} & \HBTypeSpecValue{4000 cicli con capacità residua superiore al 70\%} \\
    \end{tabularx}
    \end{spectable}
 
@@ -124,7 +124,7 @@
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Durata del ciclo</th>
-            <td class="hb-spec-value">6000 cicli con capacità residua superiore al 70%</td>
+            <td class="hb-spec-value">4000 cicli con capacità residua superiore al 70%</td>
           </tr>
         </tbody>
       </table>
