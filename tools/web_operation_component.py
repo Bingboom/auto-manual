@@ -68,10 +68,14 @@ def render_operation_component(
     # Web module while preserving the frozen compatibility transform in cut 3.
     from tools.web_presentation import _transform_operation_figure
 
+    transform_spec = dict(presentation)
+    if projection.get("mode_label"):
+        # Source panel copy the HTML carrier cannot hold (see operation_html).
+        transform_spec["mode_label"] = projection["mode_label"]
     _transform_operation_figure(
         soup,
         image=image,
-        spec=dict(presentation),
+        spec=transform_spec,
         source_path=source_path,
         composites=composites,
     )

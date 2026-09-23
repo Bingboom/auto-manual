@@ -1033,7 +1033,7 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNone(table.find("col", attrs={"style": re.compile("width:")}))
                 self.assertFalse(any(node.get("style") for node in table.find_all(True)))
 
-    def test_operation_panels_use_localized_pdf_composites_with_semantic_fallback(self) -> None:
+    def test_operation_panels_mix_base_art_live_copy_and_localized_composites(self) -> None:
         localized_sources = {
             "en": "05_operation_guide_placeholder.rst",
             "fr": "p26_05_operation_guide_placeholder.rst",
@@ -1050,21 +1050,37 @@ class WebPresentationTests(unittest.TestCase):
         for language, source_name in localized_sources.items():
             with self.subTest(language=language):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
-                figures = soup.select("figure.hb-operation-figure.hb-has-composite-art")
-                self.assertEqual(5, len(figures))
+                self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
+                self.assertEqual(
+                    2,
+                    len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
+                )
+                self.assertEqual(
+                    3,
+                    len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
+                )
                 for operation_id in operation_ids:
                     figure = soup.select_one(
                         f'.hb-operation-figure[data-operation-id="{operation_id}"]'
                     )
                     self.assertIsNotNone(figure)
-                    composite = figure.select_one(
-                        ".hb-composite-stage .hb-composite-art"
-                    ) if figure else None
-                    self.assertIsNotNone(composite)
-                    self.assertIn(
-                        f"operation.{operation_id}_{language}_",
-                        str(composite.get("src", "")) if composite else "",
+                    composite = (
+                        figure.select_one(".hb-composite-stage .hb-composite-art")
+                        if figure
+                        else None
                     )
+                    if operation_id in {"main-power", "ac-output", "energy-saving"}:
+                        self.assertIsNone(composite)
+                        self.assertEqual(
+                            "base-art-live-copy",
+                            figure.get("data-web-presentation-mode") if figure else None,
+                        )
+                    else:
+                        self.assertIsNotNone(composite)
+                        self.assertIn(
+                            f"operation.{operation_id}_{language}_",
+                            str(composite.get("src", "")) if composite else "",
+                        )
                     self.assertIsNotNone(
                         figure.select_one(".hb-operation-stage .hb-operation-steps")
                         if figure

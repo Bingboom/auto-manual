@@ -19,6 +19,7 @@ from tools.component_specs.lcd_mode_adapters import (
     web_lcd_mode_projection,
     word_lcd_mode_projection,
 )
+from tools.component_specs.model import ComponentSpecError
 from tools.component_specs.operation import (
     OPERATION_COMPONENT_ID,
     operation_component_spec,
@@ -131,6 +132,7 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             artwork_ref="asset:operation/ac_output",
             source_ref="page/operations.rst#ac-output",
             language="en",
+            metadata={"presentation_mode": "base-art-live-copy"},
             registry=self.registry,
             theme=self.theme,
         )
@@ -143,6 +145,7 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 "layout": "status-right",
                 "step_ids": ["on", "off"],
                 "web_replace_key": "operation.ac-output",
+                "presentation_mode": "base-art-live-copy",
             },
         )
         self.assertEqual("hb-operation-figure", web["composition_class"])
@@ -159,6 +162,21 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             idml_operation_payload(spec),
         )
         self.assertEqual("hb-operation-word-panel", word_operation_projection(spec)["panel_class"])
+
+        with self.assertRaisesRegex(
+            ComponentSpecError,
+            "frozen presentation mode.*does not match target contract",
+        ):
+            web_operation_projection(
+                spec,
+                {
+                    "id": "ac-output",
+                    "image_key": "operation/ac_output",
+                    "layout": "status-right",
+                    "step_ids": ["on", "off"],
+                    "web_replace_key": "operation.ac-output",
+                },
+            )
 
     def test_operation_replay_restores_supporting_copy_before_residual_lines(self) -> None:
         spec = operation_component_spec(
@@ -567,9 +585,40 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             soup = BeautifulSoup("".join(fragments), "html.parser")
             self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
             self.assertEqual(
-                5,
+                2,
                 len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
             )
+            self.assertEqual(
+                3,
+                len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
+            )
+            # The raw source panel copy (HTML drops it) survives the frozen IR:
+            # energy saving shows its On/Off label and duration beside the art.
+            energy = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="energy-saving"]'
+            )
+            main_power = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="main-power"]'
+            )
+            self.assertIsNotNone(energy)
+            self.assertIsNotNone(main_power)
+            if energy is None or main_power is None:
+                return
+            mode_label = energy.select_one(".hb-operation-footer .hb-operation-mode-label")
+            self.assertEqual("On/Off", mode_label.get_text(strip=True) if mode_label else None)
+            energy_duration = energy.select_one(".hb-operation-footer .hb-operation-duration")
+            self.assertEqual(
+                "3s", energy_duration.get_text(strip=True) if energy_duration else None
+            )
+            main_duration = main_power.select_one(
+                ".hb-operation-art-box > .hb-operation-duration"
+            )
+            self.assertEqual(
+                "3s", main_duration.get_text(strip=True) if main_duration else None
+            )
+            for figure in soup.select("figure.hb-base-art-live-copy"):
+                art = figure.select_one(".hb-operation-art-box > img.hb-operation-art")
+                self.assertEqual("", art.get("alt") if art else None)
             self.assertEqual(1, len(soup.select("figure.hb-lcd-mode-composition")))
             replayed = "".join(fragments)
             self.assertEqual(1, replayed.count("Default standby time"))

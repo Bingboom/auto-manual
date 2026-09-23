@@ -9,6 +9,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
+from tools.operation_artwork_mode import apply_web_artwork_mode
 from tools.utils.path_utils import PathSegments
 from tools.web_composite_hashing import (
     reference_source_fragment_sha256,
@@ -174,6 +175,8 @@ class WebCompositeContext:
         if key:
             figure["data-web-replace-key"] = key
         figure["data-source-fragment-sha256"] = source_fragment_sha256
+        if apply_web_artwork_mode(figure, component, self.error_type, source_path):
+            return
         entry = self.resolve_entry(component, source_path)
         if entry is not None and entry.source_fragment_sha256 != source_fragment_sha256:
             raise self.error_type(

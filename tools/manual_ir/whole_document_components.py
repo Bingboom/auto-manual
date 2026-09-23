@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 import fnmatch
 from pathlib import Path
-from typing import Callable, Mapping, Sequence
+from typing import Any, Callable, Mapping, Sequence
 
 from bs4 import BeautifulSoup, Comment, Tag
 
@@ -129,6 +129,7 @@ def discover_registered_components(
     declared_role: str | None = None,
     composite_manifest: WebCompositeManifest | None = None,
     overview_instance: Mapping[str, object] | None = None,
+    operation_panel_copy: Sequence[Mapping[str, Any]] = (),
 ) -> tuple[ComponentClaim, ...]:
     """Discover registered families in deterministic ownership order."""
 
@@ -224,6 +225,7 @@ def discover_registered_components(
                 source_path=source_path,
                 config=operation_config,
                 language=language,
+                panel_copy=operation_panel_copy,
             ):
                 claim = ComponentClaim(
                     spec=spec,

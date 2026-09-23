@@ -141,9 +141,60 @@
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "operation.main-power": [
+            "base-art-live-copy"
+          ],
+          "operation.ac-output": [
+            "base-art-live-copy"
+          ],
+          "operation.energy-saving": [
+            "base-art-live-copy"
+          ]
+        }
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "operations": {
+          "figures": [
+            {
+              "id": "main-power",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "74004806e6c0996fb77b2260c046e055194855a96bed97c519bb58c292e3b5e2",
+                "step_anchors": [
+                  [76.5, 15.42],
+                  [76.5, 34.17]
+                ],
+                "step_width": 22.5,
+                "duration_anchor": [81.4, 48.1]
+              }
+            },
+            {
+              "id": "ac-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75",
+                "step_anchors": [
+                  [84.0, 26.51],
+                  [84.0, 36.98]
+                ],
+                "step_width": 15.5,
+                "prerequisite_rect": [1.14, 1.98, 42.83, 6.05],
+                "prerequisite_max_width": 55.0
+              }
+            },
+            {
+              "id": "energy-saving",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07",
+                "footer_x": 72.0
+              }
+            }
+          ]
+        }
+      }
     },
     {
       "overlay_id": "je1000f-eu-v1",

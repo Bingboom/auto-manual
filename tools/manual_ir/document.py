@@ -105,6 +105,16 @@ def validate_document(ir: ManualIR) -> None:
             or figure_coverage.get("region") != ir.region
         ):
             raise ValueError("Web figure coverage target does not match document")
+        for index, slot in enumerate(figure_coverage["slots"]):
+            # Base-art evidence must name the exact packaged asset; replay then
+            # checks those bytes against the same manifest entry.
+            if slot["status"] == "base-art-live-copy" and (
+                assets.get(slot["asset"]["path"]) != slot["asset"]["sha256"]
+            ):
+                raise ValueError(
+                    f"Web figure coverage slot {index} base-art evidence does not "
+                    "match the document asset manifest"
+                )
     declarations = ir.metadata.get("page_declarations")
     if not isinstance(declarations, dict) or set(declarations) - {p.page_id for p in ir.pages}:
         raise ValueError("invalid document page declarations")

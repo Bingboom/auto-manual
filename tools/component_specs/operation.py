@@ -74,6 +74,7 @@ def operation_component_spec(
     source_ref: str,
     language: str,
     artwork_locale_policy: str = "shared",
+    mode_label: str = "",
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
@@ -107,6 +108,9 @@ def operation_component_spec(
         slots.append(ComponentSlot("prerequisite", "rich_text", prerequisite))
     if normalized_support:
         slots.append(ComponentSlot("supporting_copy", "line_items", normalized_support))
+    normalized_mode = str(mode_label).strip()
+    if normalized_mode:
+        slots.append(ComponentSlot("mode_label", "inline_text", normalized_mode))
     spec = ComponentSpec(
         component_id=OPERATION_COMPONENT_ID,
         variant=variant,
@@ -138,7 +142,7 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         (slot.content for slot in spec.slots if slot.role == "supporting_copy"),
         [],
     )
-    return {
+    projection = {
         "operation_id": str(spec.slot("operation_id").content),
         "accessibility_label": str(spec.slot("accessibility_label").content),
         "layout": spec.variant,
@@ -147,6 +151,16 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         "supporting_copy": deepcopy(list(supporting)),
         "artwork_ref": spec.assets[0].asset_ref,
     }
+    mode_label = next(
+        (slot.content for slot in spec.slots if slot.role == "mode_label"),
+        "",
+    )
+    if mode_label:
+        projection["mode_label"] = str(mode_label)
+    presentation_mode = str(spec.metadata.get("presentation_mode") or "").strip()
+    if presentation_mode:
+        projection["presentation_mode"] = presentation_mode
+    return projection
 
 
 __all__ = [

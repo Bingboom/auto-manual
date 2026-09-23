@@ -7,6 +7,7 @@ from copy import deepcopy
 from functools import lru_cache
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 
@@ -18,6 +19,7 @@ FIGURE_DEBT_SCHEMA_VERSION = "web-figure-debt-baseline/v1"
 CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v2"
 LEGACY_CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v1"
 _FINISHED_FIGURE_STATUSES = ("finished-panel", "approved-composite")
+_BASE_ART_LIVE_COPY_STATUS = "base-art-live-copy"
 _DEBT_FIGURE_STATUSES = frozenset({"editable-fallback", "missing"})
 
 
@@ -314,6 +316,135 @@ def _derived_figure_slots(
     return slots
 
 
+_BASE_ART_LAYOUT_KEYS = frozenset({
+    "art_sha256",
+    "step_anchors",
+    "step_width",
+    "duration_anchor",
+    "prerequisite_rect",
+    "prerequisite_max_width",
+    "footer_x",
+})
+_SHA256_HEX_RE = re.compile(r"[0-9a-f]{64}")
+
+
+def _require_percentages(value: Any, *, count: int, field: str) -> None:
+    if (
+        not isinstance(value, list)
+        or len(value) != count
+        or not all(
+            isinstance(item, (int, float)) and not isinstance(item, bool)
+            and 0.0 <= float(item) <= 100.0
+            for item in value
+        )
+    ):
+        raise WebPresentationContractError(f"{field} must be {count} percentages")
+
+
+def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
+    """Fail closed on anchors that do not fit the figure they position."""
+
+    layout = figure.get("base_art_layout")
+    if not isinstance(layout, Mapping):
+        raise WebPresentationContractError(f"{field}.base_art_layout is required")
+    unknown = sorted(set(layout) - _BASE_ART_LAYOUT_KEYS)
+    if unknown:
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout has unknown keys {unknown}"
+        )
+    if not _SHA256_HEX_RE.fullmatch(str(layout.get("art_sha256") or "")):
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.art_sha256 must name the measured art"
+        )
+    variant = str(figure.get("layout") or "")
+    if variant == "status-right":
+        anchors = layout.get("step_anchors")
+        step_ids = figure.get("step_ids")
+        if (
+            not isinstance(anchors, list)
+            or not isinstance(step_ids, list)
+            or len(anchors) != len(step_ids)
+        ):
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.step_anchors must name one anchor per step"
+            )
+        for index, anchor in enumerate(anchors):
+            _require_percentages(
+                anchor, count=2, field=f"{field}.base_art_layout.step_anchors[{index}]"
+            )
+        _require_percentages(
+            [layout.get("step_width")],
+            count=1,
+            field=f"{field}.base_art_layout.step_width",
+        )
+        if "duration_anchor" in layout:
+            _require_percentages(
+                layout["duration_anchor"],
+                count=2,
+                field=f"{field}.base_art_layout.duration_anchor",
+            )
+    elif variant == "footer-overlay":
+        _require_percentages(
+            [layout.get("footer_x")], count=1, field=f"{field}.base_art_layout.footer_x"
+        )
+    else:
+        raise WebPresentationContractError(
+            f"{field}: base-art-live-copy does not support layout {variant!r}"
+        )
+    if figure.get("capture_prerequisite"):
+        _require_percentages(
+            layout.get("prerequisite_rect"),
+            count=4,
+            field=f"{field}.base_art_layout.prerequisite_rect",
+        )
+    if "prerequisite_max_width" in layout:
+        _require_percentages(
+            [layout["prerequisite_max_width"]],
+            count=1,
+            field=f"{field}.base_art_layout.prerequisite_max_width",
+        )
+
+
+def _base_art_live_copy_slots(
+    resolved_contract: Mapping[str, Any],
+    *,
+    prefix: str,
+) -> set[str]:
+    """Return the figure slots whose operation art carries live copy.
+
+    Every inherited layer lands in the resolved contract, so a mode declared
+    anywhere is checked here; only the one bounded mode is recognised, and its
+    anchors must fit the figure they position.
+    """
+
+    operations = resolved_contract.get("operations", {})
+    figures = operations.get("figures", []) if isinstance(operations, Mapping) else []
+    slots: set[str] = set()
+    for figure in figures:
+        if not isinstance(figure, Mapping):
+            continue
+        mode = str(figure.get("presentation_mode") or "").strip()
+        if not mode:
+            continue
+        figure_id = str(figure.get("id") or "").strip() or "<unnamed>"
+        if mode != _BASE_ART_LIVE_COPY_STATUS:
+            raise WebPresentationContractError(
+                f"{prefix}: operation figure {figure_id!r} declares unsupported "
+                f"presentation_mode {mode!r}"
+            )
+        slot = str(figure.get("web_replace_key") or "").strip()
+        if not slot:
+            raise WebPresentationContractError(
+                f"{prefix}: base-art-live-copy figure {figure_id!r} has no "
+                "web_replace_key"
+            )
+        _validate_base_art_layout(
+            figure, field=f"{prefix}: operation figure {figure_id!r}"
+        )
+        slots.add(slot)
+    return slots
+
+
 def _normalize_coverage_policy(
     overlay: Mapping[str, Any],
     *,
@@ -322,10 +453,20 @@ def _normalize_coverage_policy(
     prefix = f"target_overlays.{overlay['overlay_id']}.figure_coverage"
     coverage = overlay.get("figure_coverage")
     figures_enabled = bool(overlay["capabilities"]["figures"])
+    configured_base_art_slots = _base_art_live_copy_slots(
+        resolved_contract,
+        prefix=prefix,
+    )
     if not isinstance(coverage, Mapping):
         if figures_enabled:
             raise WebPresentationContractError(
                 f"{prefix}: figures=true requires figure_coverage"
+            )
+        if configured_base_art_slots:
+            raise WebPresentationContractError(
+                f"{prefix}: base-art-live-copy figures "
+                f"{sorted(configured_base_art_slots)} require figure_coverage "
+                "slot_status_overrides"
             )
         return None
     if "known_debt" in coverage:
@@ -350,6 +491,34 @@ def _normalize_coverage_policy(
             f"{prefix}.allowed_statuses must contain only finished artwork: "
             f"{list(_FINISHED_FIGURE_STATUSES)}"
         )
+    raw_slot_overrides = coverage.get("slot_status_overrides", {})
+    if not isinstance(raw_slot_overrides, Mapping):
+        raise WebPresentationContractError(
+            f"{prefix}.slot_status_overrides must be an object"
+        )
+    slot_status_overrides: dict[str, list[str]] = {}
+    for raw_slot, raw_statuses in raw_slot_overrides.items():
+        slot = _non_empty(raw_slot, field=f"{prefix}.slot_status_overrides key")
+        statuses = _string_list(
+            raw_statuses,
+            field=f"{prefix}.slot_status_overrides.{slot}",
+        )
+        if statuses != [_BASE_ART_LIVE_COPY_STATUS]:
+            raise WebPresentationContractError(
+                f"{prefix}.slot_status_overrides.{slot} must contain only "
+                f"{_BASE_ART_LIVE_COPY_STATUS!r}"
+            )
+        if slot not in required_slots:
+            raise WebPresentationContractError(
+                f"{prefix}.slot_status_overrides.{slot} is outside required_slots"
+            )
+        slot_status_overrides[slot] = statuses
+    if set(slot_status_overrides) != configured_base_art_slots:
+        raise WebPresentationContractError(
+            f"{prefix}.slot_status_overrides must exactly match base-art-live-copy "
+            f"figures; overrides={sorted(slot_status_overrides)}, "
+            f"figures={sorted(configured_base_art_slots)}"
+        )
     if figures_enabled:
         derived = _derived_figure_slots(resolved_contract, target=overlay["target"])
         missing = [slot for slot in derived if slot not in required_slots]
@@ -359,12 +528,15 @@ def _normalize_coverage_policy(
                 f"{prefix}.required_slots are incomplete or out of scope; "
                 f"missing={missing}, extra={extra}"
             )
-    return {
+    normalized = {
         "policy_id": policy_id,
         "locales": locales,
         "required_slots": required_slots,
         "allowed_statuses": allowed_statuses,
     }
+    if slot_status_overrides:
+        normalized["slot_status_overrides"] = slot_status_overrides
+    return normalized
 
 
 def _load_figure_debt(
