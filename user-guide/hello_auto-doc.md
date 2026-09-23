@@ -379,6 +379,17 @@ The same rule applies if the contract file is still approved but its registry
 entry is missing: the build stops and names the orphaned contract. Only a target
 with no approved contract may use measured-LaTeX fallback pagination.
 
+The English single-language manual `JE-1000F / US / en` is a pilot component
+target of that contract: when its source pages match the approved contract,
+`build.py idml` prints `COMPONENT TARGET OK (pilot)` and composes the registered
+LCD, Overview, Charging, Storage+Troubleshooting, Warranty and main-power pages
+instead of the measured LaTeX layout. If the log shows
+`COMPONENT TARGET INERT`, the content differs from the reviewed pages (each
+drifted page is listed); the IDML falls back to the ordinary layout. Do not edit
+hashes by hand: refresh the contract with the rebind commands below after
+review. Details:
+[`idml_component_targets.md`](../code-as-doc/dev/idml_component_targets.md).
+
 When a source refresh changes mutable style/provenance identity without changing
 the approved content or semantic/physical assembly, use the rebind command
 instead of editing one hash or removing the registry entry. It is a dry-run

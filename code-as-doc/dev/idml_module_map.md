@@ -43,6 +43,11 @@ tools/idml/
                               App display-variant binding, and exact duplicate guard
   reference_layout_plan.py    registry lookup + approved-plan validation; exact-target
                               approved files missing from the registry fail closed
+  component_targets.py        per-language registry `component_targets`: a single-language
+                              build composes registered components only while every
+                              source matches its approved-plan pin; else inert + warning
+  registered_component_plan.py one-page registered compositions (Storage+Troubleshooting,
+                              Charging, Warranty) for an active component target
   reference_layout_rebind.py  complete Manual-IR identity/page-binding refresh with
                               unchanged-composition validation and atomic replacement
   reference_layout_scaffold.py review-only draft generator: refreshes Manual-IR
