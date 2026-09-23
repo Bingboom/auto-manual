@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import re
+import shutil
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -878,6 +880,72 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 f"st_anchor_oppanel_led_step_{index}_editable_led", stories)
         self.assertIn("st_anchor_oppanel_led_sos_editable_led", stories)
         self.assertNotIn("<Table", panel)
+
+    def test_led_card_draws_target_art_as_registered_and_substitutes_shared_art(
+        self,
+    ) -> None:
+        """The shared LED extraction lost the magnifier and the hand, so the
+        card substitutes the complete illustration for it. A target's own LED
+        art is drawn as registered and ends where the step circles begin."""
+        base = _ctx()
+        width = base.text_measure
+        # A staged bundle carries the complete illustration under _assets.
+        bundle = tempfile.TemporaryDirectory()
+        self.addCleanup(bundle.cleanup)
+        complete = (
+            Path(bundle.name) / "_assets" / "templates" / "word_template"
+            / "common_assets" / "operation" / "led_light_complete.png"
+        )
+        complete.parent.mkdir(parents=True)
+        shutil.copyfile(
+            ROOT / "docs" / "templates" / "word_template" / "common_assets"
+            / "operation" / "led_light_complete.png",
+            complete,
+        )
+        cases = (
+            (
+                "docs/templates/word_template/common_assets/operation/led_light.png",
+                "led_light_complete.png",
+                width * 0.568,
+            ),
+            (
+                "docs/renderers/latex/assets/op_led_light_je1000f_us.png",
+                "op_led_light_je1000f_us.png",
+                width * (0.59 - 0.054),
+            ),
+        )
+        for image, linked, art_width in cases:
+            with self.subTest(image=image):
+                stories = {}
+
+                def add_story(story_id, _label, parts, stories=stories):
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                ctx = RenderContext(
+                    params=base.params, page_w=base.page_w, m_l=base.m_l,
+                    m_r=base.m_r, root=base.root, bundle_root=Path(bundle.name),
+                    add_story=add_story,
+                )
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "layout": "led_light",
+                        "image": image,
+                        "lead": "The LED light has two modes: Light and SOS.",
+                        "steps": ["First step.", "Second step.", "Third step."],
+                        "sos_label": "SOS",
+                    },
+                    ctx,
+                    tid="led_art",
+                    terminal=False,
+                )
+
+                art = _item_xml(
+                    stories["st_anchor_oppanel_led_art"], "led_artimg", "Rectangle",
+                )
+                self.assertIn(f"/{linked}", art)
+                self.assertAlmostEqual(art_width, _image_width(art), places=2)
 
     def test_long_localized_led_steps_keep_non_overlapping_slots(self) -> None:
         stories = {}
