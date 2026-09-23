@@ -149,6 +149,9 @@
           "operation.ac-output": [
             "base-art-live-copy"
           ],
+          "operation.dc-usb-output": [
+            "base-art-live-copy"
+          ],
           "operation.energy-saving": [
             "base-art-live-copy"
           ]
@@ -181,7 +184,23 @@
                 ],
                 "step_width": 15.5,
                 "prerequisite_rect": [1.14, 1.98, 42.83, 6.05],
-                "prerequisite_max_width": 55.0
+                "prerequisite_max_width": 55.0,
+                "prerequisite_fill": "#f8f8f8"
+              }
+            },
+            {
+              "id": "dc-usb-output",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3",
+                "step_anchors": [
+                  [86.0, 20.28],
+                  [86.0, 31.69]
+                ],
+                "step_width": 13.5,
+                "prerequisite_rect": [1.63, 2.68, 43.49, 7.32],
+                "prerequisite_max_width": 55.0,
+                "prerequisite_fill": "#e8e8e8"
               }
             },
             {

@@ -10,22 +10,26 @@ from bs4 import BeautifulSoup, Tag
 from tools.component_specs.operation import operation_component_spec
 
 # Source `operation_panel_copy` blocks name the IDML panel layout; this maps a
-# Web figure variant to the panel whose copy it may carry.
-_PANEL_COPY_LAYOUTS = {"footer-overlay": "energy_saving"}
+# Web figure variant to the panel whose copy it may carry and the copy field.
+_PANEL_COPY_LAYOUTS = {
+    "footer-overlay": ("energy_saving", "mode_label"),
+    "footer-panel": ("led_light", "sos_label"),
+}
 _BASE_ART_LIVE_COPY = "base-art-live-copy"
 
 
-def _panel_mode_label(
+def _panel_copy_field(
     panel_copy: Sequence[Mapping[str, Any]],
     *,
     variant: str,
+    field: str,
     source_path: Path,
     operation_id: str,
 ) -> str:
-    """Return the source mode label for one base-art figure, if it declares one."""
+    """Return one source panel-copy field for a base-art figure, if it declares one."""
 
-    panel_layout = _PANEL_COPY_LAYOUTS.get(variant)
-    if panel_layout is None:
+    panel_layout, panel_field = _PANEL_COPY_LAYOUTS.get(variant, (None, None))
+    if panel_layout is None or panel_field != field:
         return ""
     matches = [
         entry
@@ -37,7 +41,38 @@ def _panel_mode_label(
             f"{source_path}: operation {operation_id!r} has {len(matches)} "
             f"{panel_layout!r} panel-copy blocks"
         )
-    return str(matches[0].get("mode_label") or "").strip() if matches else ""
+    return str(matches[0].get(field) or "").strip() if matches else ""
+
+
+def base_art_panel_copy(
+    panel_copy: Sequence[Mapping[str, Any]],
+    *,
+    figure: Mapping[str, Any],
+    source_path: Path,
+) -> dict[str, str]:
+    """Return the source panel copy (mode or SOS label) a base-art figure shows.
+
+    HTML conversion drops the page's ``operation_panel_copy`` blocks, so every
+    Web path reads them from the source and asks here which ones apply; other
+    presentation modes keep their figure specs unchanged.
+    """
+
+    if str(figure.get("presentation_mode") or "").strip() != _BASE_ART_LIVE_COPY:
+        return {}
+    variant = str(figure.get("layout") or "")
+    operation_id = str(figure.get("id") or "").strip()
+    fields: dict[str, str] = {}
+    for field in ("mode_label", "sos_label"):
+        value = _panel_copy_field(
+            panel_copy,
+            variant=variant,
+            field=field,
+            source_path=source_path,
+            operation_id=operation_id,
+        )
+        if value:
+            fields[field] = value
+    return fields
 
 
 def _sibling(tag: Tag, *, previous: bool) -> Tag | None:
@@ -162,15 +197,8 @@ def parse_operation_components(
         owned.extend((image, line_block))
         variant = str(raw_figure.get("layout") or "")
         presentation_mode = str(raw_figure.get("presentation_mode") or "").strip()
-        mode_label = (
-            _panel_mode_label(
-                panel_copy,
-                variant=variant,
-                source_path=source_path,
-                operation_id=operation_id,
-            )
-            if presentation_mode == _BASE_ART_LIVE_COPY
-            else ""
+        figure_copy = base_art_panel_copy(
+            panel_copy, figure=raw_figure, source_path=source_path,
         )
         spec = operation_component_spec(
             operation_id=operation_id,
@@ -182,7 +210,8 @@ def parse_operation_components(
             artwork_ref=str(image.get("src") or ""),
             source_ref=f"{source_path}#operation-{operation_id}",
             language=language,
-            mode_label=mode_label,
+            mode_label=figure_copy.get("mode_label", ""),
+            sos_label=figure_copy.get("sos_label", ""),
             metadata={"presentation_mode": presentation_mode}
             if presentation_mode
             else None,

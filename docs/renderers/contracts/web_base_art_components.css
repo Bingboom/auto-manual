@@ -46,12 +46,15 @@
   font-weight: 400;
 }
 
+/* A label is one word on a drawn arm ("Encendido"): it may overhang its step
+   box by a few pixels, never split mid-word onto a second line. */
 .hb-base-art-live-copy .hb-operation-step-label,
 .hb-base-art-live-copy .hb-operation-mode-label {
   display: block;
   font-size: 2.8cqw;
   font-weight: 700;
   line-height: 1.1;
+  overflow-wrap: normal;
 }
 
 .hb-base-art-live-copy .hb-operation-step-label strong {
@@ -143,6 +146,109 @@
   margin: 0;
 }
 
+/* Footer-panel cards (LED): the lead is its own soft panel above the art, and
+   the art shares the row below with numbered steps. The text-free art carries
+   no numbers or step glyphs, so they are drawn here, as the IDML card draws
+   them natively. The lead keeps its prerequisite role; only this rule moves
+   it off the drawn-pill geometry the other layouts use. */
+.hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+  position: static;
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 2.2cqw 2.2cqw 0;
+  padding: 1.5cqw 2.4cqw;
+  border-radius: 2.6cqw;
+  background: var(--hb-surface);
+  font-size: 1.85cqw;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.hb-base-art-live-copy .hb-operation-panel {
+  display: grid;
+  grid-template-columns: var(--hb-art-width) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.2cqw;
+  padding: 1.2cqw 2.2cqw 2.2cqw;
+}
+
+/* One step per row: the editable LED fallback lays its steps out in three
+   columns (web_manual.css); the card stacks them beside the art. */
+.hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.2cqw;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  counter-reset: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+  display: grid;
+  grid-template-columns: 3.4cqw 4.8cqw minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.4cqw;
+  margin: 0;
+  counter-increment: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+  content: counter(hb-panel-step);
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border: 0.2cqw solid var(--hb-text);
+  border-radius: 50%;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hb-base-art-live-copy .hb-operation-step-marker {
+  justify-self: center;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  width: 3.6cqw;
+  height: 3.6cqw;
+  background: center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 1.6v2M5.3 4.3l1.4 1.4M18.7 4.3l-1.4 1.4'/%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+/* The badge is one word in every locale ("SOS"): it never wraps inside its
+   pill, and the marker column is sized to hold it. */
+.hb-base-art-live-copy .hb-operation-marker-sos {
+  white-space: nowrap;
+  padding: 0.25cqw 0.7cqw;
+  border: 0.18cqw solid var(--hb-text);
+  border-radius: 999px;
+  font-size: 1.45cqw;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
+  font-size: 1.75cqw;
+  line-height: 1.35;
+}
+
 /* Narrow screens: the drawing scales below readable overlay sizes, so copy
    stacks under the art in source order instead of shrinking. */
 @media (max-width: 760px) {
@@ -177,7 +283,8 @@
 
   /* The prerequisite stays on the art's own pill, but readable: it may grow
      into the blank area the contract declares safe (--hb-max-width) and fills
-     with the art's pill tone so the drawn pill never shows as an empty box. */
+     with the pill tone the contract measured from that art (--hb-fill), so the
+     drawn pill never shows as an empty box. */
   .hb-base-art-live-copy .hb-operation-prerequisite {
     width: max-content;
     min-width: var(--hb-width);
@@ -186,7 +293,7 @@
     min-height: var(--hb-height);
     padding: 0.28rem 0.7rem;
     border-radius: 999px;
-    background: #f8f8f8;
+    background: var(--hb-fill);
     font-size: 0.78rem;
     white-space: normal;
   }
@@ -203,6 +310,51 @@
   .hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
     position: static;
     margin-bottom: 0.3rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+    margin: 0.65rem 0.65rem 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.8rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+    padding: 0.5rem 0.65rem 0.65rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+    gap: 0.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+    grid-template-columns: 1.6rem 2.5rem minmax(0, 1fr);
+    column-gap: 0.55rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-width: 1.5px;
+    font-size: 0.9rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+  .hb-base-art-live-copy .hb-operation-marker-bulb-off {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-sos {
+    padding: 0.1rem 0.3rem;
+    border-width: 1.5px;
+    font-size: 0.72rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
     font-size: 0.88rem;
   }
 }

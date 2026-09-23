@@ -153,6 +153,9 @@ components:
       mode_label:
         required: false
         content_kinds: [inline_text]
+      sos_label:
+        required: false
+        content_kinds: [inline_text]
     asset_roles:
       artwork: {required: true, locale_policies: [shared, exact]}
     token_roles: [component.special.operation]

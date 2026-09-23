@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import fnmatch
 import re
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -859,6 +859,7 @@ def _transform_operations(
     contract: dict[str, Any],
     composites: WebCompositeContext,
     resolved_component_ids: frozenset[str] = frozenset(),
+    operation_panel_copy: Sequence[Mapping[str, Any]] = (),
 ) -> None:
     operation_contract = contract["operations"]
     _ensure_auto_resume_table(
@@ -894,10 +895,17 @@ def _transform_operations(
             raise WebPresentationError(
                 f"{source_path}: operation page is missing governed image {spec['image_key']}"
             )
+        from tools.component_specs.operation_html import base_art_panel_copy
+
         _transform_operation_figure(
             soup,
             image=image,
-            spec=spec,
+            spec={
+                **spec,
+                **base_art_panel_copy(
+                    operation_panel_copy, figure=spec, source_path=source_path,
+                ),
+            },
             source_path=source_path,
             composites=composites,
         )
@@ -1377,6 +1385,7 @@ def transform_web_fragment(
     declared_lcd_icons: bool = False,
     resolved_component_ids: frozenset[str] | set[str] = frozenset(),
     embedded_components_complete: bool = False,
+    operation_panel_copy: Sequence[Mapping[str, Any]] = (),
 ) -> str:
     """Render declared semantics, then apply target-governed figure composition."""
     soup = BeautifulSoup(html_fragment, "html.parser")
@@ -1577,6 +1586,7 @@ def transform_web_fragment(
             contract=data,
             composites=composites,
             resolved_component_ids=resolved,
+            operation_panel_copy=operation_panel_copy,
         )
     if (
         is_fcc

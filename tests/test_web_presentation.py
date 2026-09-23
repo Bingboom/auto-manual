@@ -1046,17 +1046,20 @@ class WebPresentationTests(unittest.TestCase):
             "energy-saving",
             "led-light",
         )
+        # LED keeps its approved composite until its registered base art is
+        # fixed: the current extraction lost the magnifier and the hand.
+        base_art_ids = {"main-power", "ac-output", "dc-usb-output", "energy-saving"}
 
         for language, source_name in localized_sources.items():
             with self.subTest(language=language):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
                 self.assertEqual(
-                    2,
+                    1,
                     len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
                 )
                 self.assertEqual(
-                    3,
+                    4,
                     len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
                 )
                 for operation_id in operation_ids:
@@ -1069,7 +1072,7 @@ class WebPresentationTests(unittest.TestCase):
                         if figure
                         else None
                     )
-                    if operation_id in {"main-power", "ac-output", "energy-saving"}:
+                    if operation_id in base_art_ids:
                         self.assertIsNone(composite)
                         self.assertEqual(
                             "base-art-live-copy",

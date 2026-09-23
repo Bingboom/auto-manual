@@ -584,14 +584,22 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 )
             soup = BeautifulSoup("".join(fragments), "html.parser")
             self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
+            # LED keeps its approved composite until its registered art is fixed.
             self.assertEqual(
-                2,
+                1,
                 len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
             )
             self.assertEqual(
-                3,
+                4,
                 len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
             )
+            # Each drawn pill keeps the tone the contract measured from its art.
+            for operation_id, tone in (("ac-output", "#f8f8f8"), ("dc-usb-output", "#e8e8e8")):
+                pill = soup.select_one(
+                    f'figure.hb-base-art-live-copy[data-operation-id="{operation_id}"] '
+                    ".hb-operation-art-box > .hb-operation-prerequisite"
+                )
+                self.assertIn(f"--hb-fill:{tone}", pill.get("style", "") if pill else "")
             # The raw source panel copy (HTML drops it) survives the frozen IR:
             # energy saving shows its On/Off label and duration beside the art.
             energy = soup.select_one(

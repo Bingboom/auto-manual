@@ -69,9 +69,10 @@ def render_operation_component(
     from tools.web_presentation import _transform_operation_figure
 
     transform_spec = dict(presentation)
-    if projection.get("mode_label"):
-        # Source panel copy the HTML carrier cannot hold (see operation_html).
-        transform_spec["mode_label"] = projection["mode_label"]
+    for panel_field in ("mode_label", "sos_label"):
+        if projection.get(panel_field):
+            # Source panel copy the HTML carrier cannot hold (see operation_html).
+            transform_spec[panel_field] = projection[panel_field]
     _transform_operation_figure(
         soup,
         image=image,

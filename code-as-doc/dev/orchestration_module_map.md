@@ -217,7 +217,9 @@ empty-cell policies are recorded in
   - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure
   - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
 - [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
-  - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors; never measures the artwork
+  - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, or lays out a footer-panel card (lead, art, numbered steps); never measures the artwork
+- [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`
+  - the one rule both Web paths use to give a base-art figure its source panel copy (`mode_label`, `sos_label`)
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
   - whole-document ownership pass for the fourteen registered component types;
     claims shared special sections and native table components once and preserves flow order

@@ -861,12 +861,17 @@ Web Publish / Read the Docs note:
   separate versioned debt baseline. That baseline currently contains nine US
   Charging fallbacks and nine KR missing panels; new or worsening debt fails,
   and a repaired row must be deleted from the baseline in the same change.
+  While a reference figure waits for its finished panel, its source art fills
+  the figure width (the source's inline `:width:` no longer shrinks it).
   A target overlay may instead grant one Operation slot the bounded
-  `base-art-live-copy` state (today only JE-1000F/US main power, AC output and
-  energy saving, EN/FR/ES): the frozen text-free artwork is the only image and
+  `base-art-live-copy` state (today JE-1000F/US main power, AC output, DC/USB
+  output and energy saving, EN/FR/ES; LED keeps its approved composite until its
+  registered art is fixed): the frozen text-free artwork is the only image and
   the source copy stays live HTML on anchors the overlay's `base_art_layout`
   declares for that exact art (`art_sha256`, bracket-arm `step_anchors`,
-  optional `duration_anchor`, `prerequisite_rect`, `footer_x`). Coverage binds
+  optional `duration_anchor`, `prerequisite_rect` with its measured
+  `prerequisite_fill` tone, `footer_x`, or a footer-panel card's `art_width` and
+  `step_markers`). Coverage binds
   each such slot to its packaged asset path/hash and rejects a layout measured
   on different art, so a new art version must be re-measured before it ships;
   a mode without its exact `slot_status_overrides` grant, an unknown mode, or
