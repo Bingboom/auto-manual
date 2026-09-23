@@ -5,8 +5,8 @@ Status: implemented for Web. The IDML counterpart is described in
 
 ## 1. Scope
 
-All five JE-1000F/US Operation figures render as `base-art-live-copy` on the Web
-in EN, FR and ES:
+Four of the five JE-1000F/US Operation figures render as `base-art-live-copy` on
+the Web in EN, FR and ES:
 
 | Figure | Logical art | Frozen art SHA-256 |
 | --- | --- | --- |
@@ -14,19 +14,24 @@ in EN, FR and ES:
 | `operation.ac-output` | `operation/ac_output` | `43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75` |
 | `operation.dc-usb-output` | `operation/dc_usb_output` | `c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3` |
 | `operation.energy-saving` | `operation/je1000f_us/energy_saving` | `9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07` |
-| `operation.led-light` | `operation/led_light` | `bf4fce34dd33d44a77c7a96dd6aff81ccd76bdc5f6ba34cf59d69f95d021cdd3` |
 
 The frozen, registry-approved art is the figure's only image. Visible copy stays
-owned by the source templates and renders as live, searchable HTML. No
-JE-1000F/US Operation figure uses a composite any more; every other target is
-unchanged. The IDML
+owned by the source templates and renders as live, searchable HTML.
+
+LED light keeps its approved composite. Its registered art (`operation/led_light`,
+`bf4fce34…`) lost the magnifier and the hand when the extraction's text
+redaction removed every graphic touching the magnifier's LIGHT label, so a card
+built on it would drop the hand the composite shows. The footer-panel card LED
+needs is implemented and tested (section 4); the figure switches to it once a
+fixed JE-1000F/US LED base art serves every output (section 6). Every other
+target is unchanged. The IDML
 counterpart (the same main-power art in the production IDML) belongs to the
 single-language component target, which applies it only while its sources match
 the approved contract; see [`idml_component_targets.md`](idml_component_targets.md).
 
 The AC and DC/USB figures keep the approved art with its drawn, empty
-prerequisite pill. The textless AC candidate is not registered; approving it changes the art hash
-and therefore requires new anchors (section 3).
+prerequisite pill. The textless AC candidate is not registered; approving it
+changes the art hash and therefore requires new anchors (section 3).
 
 ## 2. Contract
 
@@ -52,7 +57,6 @@ declares, per figure:
 | AC output | (84.0, 26.51), (84.0, 36.98); width 15.5 | pill `[1.14, 1.98, 42.83, 6.05]` tone `#f8f8f8`, narrow max width 55 |
 | DC/USB output | (86.0, 20.28), (86.0, 31.69); width 13.5 | pill `[1.63, 2.68, 43.49, 7.32]` tone `#e8e8e8`, narrow max width 55 |
 | Energy saving | — | footer text starts at x 72 under the drawn bracket line (x 76.27) |
-| LED light | — | art column 56.8 % of the card (the IDML card's art width); markers `bulb-lit`, `sos`, `bulb-off` |
 
 The anchors were measured once from the frozen PNGs (bracket arms, clock and
 pill bounding boxes, pill tone); the same measurement reproduces the declared
@@ -86,15 +90,17 @@ exists. Main power adds the duration beside its drawn clock, taken from the step
 copy (`3s`, `3 secondes`, `3 segundos`). Energy saving renders a footer under the
 art with the duration, the source `mode_label` and the action.
 
-LED renders as a footer-panel card: the lead sits in its own soft panel above the
-art and bolds its phrase through the first colon (the IDML card's rule); the art
-shares the row below with three numbered steps. The art carries no numbers or
-step glyphs, so the Web draws them (lit bulb, SOS badge, unlit bulb) the way the
-IDML card draws them natively. A one-word step label never splits mid-word; it
-may overhang its step box by a few pixels and still ends inside the art.
+A footer-panel card (built for LED; declared once its base art is fixed) puts the
+lead in its own soft panel above the art and bolds its phrase through the first
+colon (the IDML card's rule); the art shares the row below with numbered steps.
+The art carries no numbers or step glyphs, so the Web draws them (lit bulb, SOS
+badge, unlit bulb) the way the IDML card draws them natively. A one-word step
+label never splits mid-word; it may overhang its step box by a few pixels and
+still ends inside the art.
 
-`mode_label` (energy saving) and `sos_label` (LED) live in the source page's
-`.. raw:: manual-ir` `operation_panel_copy` block, which HTML conversion drops.
+`mode_label` (energy saving) and `sos_label` (the LED card) live in the source
+page's `.. raw:: manual-ir` `operation_panel_copy` block, which HTML conversion
+drops.
 Both Web paths — the whole-document IR and the per-page fallback — read them from
 the same only-normalized RST and ask one rule
 (`component_specs.operation_html.base_art_panel_copy`) which apply; only base-art
@@ -120,16 +126,16 @@ which stay on the drawn pill and fill it with its measured tone.
 - Browser check at 814 px and 375 px in EN, FR and ES: labels sit on the measured
   arms, no copy crosses the art edge, the prerequisite is centred in the pill, and
   the longest FR/ES Off instruction ends 3.7 px above the drawn clock.
-- DC/USB and LED (live phase2 sync 2026-09-23T02:07Z, business review content,
-  Web profile), against `main`: the EN/FR/ES pages differ only in those two
-  figures and in the AC prerequisite's declared tone variable (its look is
-  unchanged). IDML for every JE-1000F/US target is member-identical to `main`,
-  production and flow, including the active en component target.
+- DC/USB (live phase2 sync 2026-09-23T02:07Z, business review content, Web
+  profile), against `main`: the EN/FR/ES pages differ only in the DC/USB figure
+  and in the AC prerequisite's declared tone variable (its look is unchanged);
+  the LED figure is byte-identical (still its composite). IDML for every
+  JE-1000F/US target is member-identical to `main`, production and flow,
+  including the active en component target.
 - Browser check at 814 px and 375 px in EN, FR and ES: the DC/USB labels sit on
   their arms (within 0.02 px) on one line (the Spanish "Encendido" had wrapped
-  mid-word before labels stopped breaking), no copy leaves the art or the card,
-  the narrow-screen DC/USB pill fills with `#e8e8e8`, the LED SOS badge stays on
-  one line and the three step texts start on one edge.
+  mid-word before labels stopped breaking), no copy leaves the art, and the
+  narrow-screen DC/USB pill fills with `#e8e8e8`.
 
 ## 6. Open items
 
@@ -138,8 +144,18 @@ which stay on the drawn pill and fill it with its measured tone.
 - The FR/ES Off instruction wraps to two lines above a clock placed for one EN
   line, so instruction type is set smaller than in the approved composites; the
   ES source copy is also longer than the copy baked into the approved ES composite.
+- LED base art. `operation/led_light` (`bf4fce34…`) lost the magnifier and the
+  hand; the IDML LED card meanwhile substitutes an unregistered
+  `led_light_complete.png` whose right edge crops the magnifier rim and the
+  wrist. A JE-1000F/US replacement extracted from the V2.0 print PDF
+  (2026-07-28, page 12; PNG `483c0dcf…`) keeps the product, the whole magnifier
+  and hand, and the LIGHT product marking. Registered as the target's override
+  it serves every output, so it lands in its own change: the Word/PDF image
+  changes, and because the formal IDML entry measures pagination from the LaTeX
+  PDF, IDML page 05 changes and the approved reference-layout plan needs a
+  content-change rebind. The LED card then declares that art.
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
-  the registered art has none; if a future art version draws them, drop the
-  markers instead of drawing them twice.
+  the art has none; if a future art version draws them, drop the markers instead
+  of drawing them twice.
 - Whole-manual visual acceptance of the published Web page remains with the
   operator.

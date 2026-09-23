@@ -182,7 +182,6 @@ class WebPresentationContractTests(unittest.TestCase):
                 "ac-output": "base-art-live-copy",
                 "dc-usb-output": "base-art-live-copy",
                 "energy-saving": "base-art-live-copy",
-                "led-light": "base-art-live-copy",
             },
             {key: value for key, value in us_modes.items() if value},
         )
@@ -215,7 +214,6 @@ class WebPresentationContractTests(unittest.TestCase):
                 "operation.ac-output": ["base-art-live-copy"],
                 "operation.dc-usb-output": ["base-art-live-copy"],
                 "operation.energy-saving": ["base-art-live-copy"],
-                "operation.led-light": ["base-art-live-copy"],
             },
             us_requirement["slot_status_overrides"],
         )
