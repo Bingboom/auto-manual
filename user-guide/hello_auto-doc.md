@@ -112,10 +112,10 @@ or `approved-composite` artwork can close it. EU Italian is currently 11/11
 approved full panels. The LCD screen-mode block is the exception: keep only the
 market-correct product/display artwork as an image and render its six-row
 explanation table in HTML.
-The one other exception is contract-granted, not a fallback: JE-1000F/US main
-power, AC output and energy saving (EN/FR/ES) use `base-art-live-copy`, the
-frozen text-free art with the source copy as live HTML on anchors measured for
-that exact art hash. Changing that art (for example approving the textless AC
+The one other exception is contract-granted, not a fallback: all five
+JE-1000F/US Operation figures (main power, AC output, DC/USB output, energy
+saving, LED light; EN/FR/ES) use `base-art-live-copy`, the frozen text-free art
+with the source copy as live HTML on anchors measured for that exact art hash. Changing that art (for example approving the textless AC
 candidate) stops the Web build until the anchors are re-measured and the hash
 updated; copy changes still go through the source templates. See
 [`je1000f_us_base_art_web.md`](../code-as-doc/dev/je1000f_us_base_art_web.md).
