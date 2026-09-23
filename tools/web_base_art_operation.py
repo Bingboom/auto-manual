@@ -132,6 +132,31 @@ def _mark_step_parts(soup: BeautifulSoup, steps: Tag) -> list[Tag]:
     return step_tags
 
 
+def _bold_colon_lead(soup: BeautifulSoup, lead: Tag) -> None:
+    """Bold a lead's opening phrase through its first colon, as the IDML card does.
+
+    Only a lead that opens with plain text containing the colon is changed; a
+    lead that already carries emphasis, or none, keeps its source markup.
+    """
+
+    paragraph = lead.find("p") or lead
+    if not isinstance(paragraph, Tag) or paragraph.find(["strong", "b"]) is not None:
+        return
+    first = next(iter(paragraph.contents), None)
+    if not isinstance(first, NavigableString):
+        return
+    text = str(first)
+    marks = [index for index in (text.find(":"), text.find("\uff1a")) if index >= 0]
+    if not marks or not text[: min(marks)].strip():
+        return
+    split_at = min(marks) + 1
+    strong = soup.new_tag("strong")
+    strong.append(text[:split_at])
+    first.replace_with(strong)
+    if text[split_at:]:
+        strong.insert_after(NavigableString(text[split_at:]))
+
+
 def _duration_token(steps: Tag) -> str:
     for step in steps.find_all(class_="hb-operation-step", recursive=False):
         match = _DURATION_RE.search(step.get_text(" ", strip=True))
@@ -189,7 +214,15 @@ def arrange_base_art_operation(
     art_box.append(image.extract())
     canvas.append(art_box)
 
-    if isinstance(prerequisite, Tag):
+    variant = str(spec.get("layout") or "")
+    lead: Tag | None = None
+    if isinstance(prerequisite, Tag) and variant == "footer-panel":
+        # A footer-panel lead is the card's own panel above the art, not copy
+        # on a drawn pill.
+        _bold_colon_lead(soup, prerequisite)
+        _add_class(prerequisite, "hb-operation-lead")
+        lead = prerequisite.extract()
+    elif isinstance(prerequisite, Tag):
         x, y, width, height = _percentages(
             layout.get("prerequisite_rect"),
             count=4,
@@ -224,7 +257,7 @@ def arrange_base_art_operation(
     if steps.has_attr("style"):
         del steps["style"]
     token = _duration_token(steps)
-    variant = str(spec.get("layout") or "")
+    head = canvas
     if variant == "status-right":
         raw_anchors = layout.get("step_anchors")
         if not isinstance(raw_anchors, Sequence) or len(raw_anchors) != len(step_tags):
@@ -294,15 +327,64 @@ def arrange_base_art_operation(
             copy.append(label)
         copy.append(steps.extract())
         footer.append(copy)
+    elif variant == "footer-panel":
+        (art_width,) = _percentages(
+            [layout.get("art_width")],
+            count=1,
+            field="art_width",
+            source_path=source_path,
+            error_type=error_type,
+        )
+        markers = layout.get("step_markers")
+        if (
+            not isinstance(markers, Sequence)
+            or isinstance(markers, (str, bytes))
+            or len(markers) != len(step_tags)
+        ):
+            raise error_type(
+                f"{source_path}: base_art_layout.step_markers must name one marker "
+                f"per step for {operation_id!r}"
+            )
+        sos_label = str(spec.get("sos_label") or "").strip()
+        for step, marker in zip(step_tags, markers, strict=True):
+            # The step copy states the action; its number and glyph repeat it
+            # visually, so assistive technology reads the instruction once.
+            glyph = soup.new_tag(
+                "span",
+                attrs={
+                    "class": f"hb-operation-step-marker hb-operation-marker-{marker}",
+                    "aria-hidden": "true",
+                },
+            )
+            if marker == "sos":
+                if not sos_label:
+                    raise error_type(
+                        f"{source_path}: base-art operation {operation_id!r} marks an "
+                        "SOS step but its source panel copy has no sos_label"
+                    )
+                glyph.append(sos_label)
+            step.insert(0, glyph)
+        head = soup.new_tag(
+            "div",
+            attrs={
+                "class": "hb-operation-panel",
+                "style": f"--hb-art-width:{_css_number(art_width)}%",
+            },
+        )
+        head.append(canvas.extract())
+        head.append(steps.extract())
+        footer = None
     else:
         raise error_type(
             f"{source_path}: base-art operation {operation_id!r} has unsupported "
             f"layout {variant!r}"
         )
 
-    # The art, prerequisite and steps already moved into the canvas/footer; any
-    # other stage content (the supporting copy today) stays, after them.
-    stage.insert(0, canvas)
+    # The art, prerequisite and steps already moved into the canvas, footer or
+    # panel; any other stage content (the supporting copy today) stays after.
+    stage.insert(0, head)
+    if lead is not None:
+        head.insert_before(lead)
     if footer is not None:
         canvas.insert_after(footer)
     if isinstance(supporting, Tag) and supporting.parent is stage:

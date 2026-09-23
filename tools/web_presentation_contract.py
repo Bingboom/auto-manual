@@ -325,7 +325,12 @@ _BASE_ART_LAYOUT_KEYS = frozenset({
     "prerequisite_max_width",
     "prerequisite_fill",
     "footer_x",
+    "art_width",
+    "step_markers",
 })
+# Glyphs a footer-panel step may carry beside its number (the LED card's lit
+# bulb, SOS badge and unlit bulb); the renderer draws them, the art has none.
+_STEP_MARKERS = frozenset({"bulb-lit", "sos", "bulb-off"})
 _SHA256_HEX_RE = re.compile(r"[0-9a-f]{64}")
 _HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 
@@ -389,11 +394,29 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
         _require_percentages(
             [layout.get("footer_x")], count=1, field=f"{field}.base_art_layout.footer_x"
         )
+    elif variant == "footer-panel":
+        _require_percentages(
+            [layout.get("art_width")], count=1, field=f"{field}.base_art_layout.art_width"
+        )
+        markers = layout.get("step_markers")
+        step_ids = figure.get("step_ids")
+        if (
+            not isinstance(markers, list)
+            or not isinstance(step_ids, list)
+            or len(markers) != len(step_ids)
+            or any(marker not in _STEP_MARKERS for marker in markers)
+        ):
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.step_markers must name one of "
+                f"{sorted(_STEP_MARKERS)} per step"
+            )
     else:
         raise WebPresentationContractError(
             f"{field}: base-art-live-copy does not support layout {variant!r}"
         )
-    if figure.get("capture_prerequisite"):
+    # A footer-panel lead is its own panel above the art, not copy on a drawn
+    # pill, so only the other layouts anchor a prerequisite to the art.
+    if figure.get("capture_prerequisite") and variant != "footer-panel":
         _require_percentages(
             layout.get("prerequisite_rect"),
             count=4,

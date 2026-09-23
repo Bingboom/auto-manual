@@ -75,6 +75,7 @@ def operation_component_spec(
     language: str,
     artwork_locale_policy: str = "shared",
     mode_label: str = "",
+    sos_label: str = "",
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
@@ -111,6 +112,9 @@ def operation_component_spec(
     normalized_mode = str(mode_label).strip()
     if normalized_mode:
         slots.append(ComponentSlot("mode_label", "inline_text", normalized_mode))
+    normalized_sos = str(sos_label).strip()
+    if normalized_sos:
+        slots.append(ComponentSlot("sos_label", "inline_text", normalized_sos))
     spec = ComponentSpec(
         component_id=OPERATION_COMPONENT_ID,
         variant=variant,
@@ -157,6 +161,12 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
     )
     if mode_label:
         projection["mode_label"] = str(mode_label)
+    sos_label = next(
+        (slot.content for slot in spec.slots if slot.role == "sos_label"),
+        "",
+    )
+    if sos_label:
+        projection["sos_label"] = str(sos_label)
     presentation_mode = str(spec.metadata.get("presentation_mode") or "").strip()
     if presentation_mode:
         projection["presentation_mode"] = presentation_mode

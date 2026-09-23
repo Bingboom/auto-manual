@@ -39,7 +39,7 @@ from tools.web_presentation import (
 from tools.utils.path_utils import PathSegments
 
 
-def _operation_panel_copy(text, source_path, *, active_tags):
+def operation_panel_copy(text, source_path, *, active_tags):
     """Return a page's ``operation_panel_copy`` blocks, which HTML drops.
 
     Parse the same only-normalized RST the fragment is published from so a
@@ -287,7 +287,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             ),
             composite_manifest=composite_manifest,
             overview_instance=overview_instance,
-            operation_panel_copy=_operation_panel_copy(
+            operation_panel_copy=operation_panel_copy(
                 text, path, active_tags=active_tags,
             ),
         )

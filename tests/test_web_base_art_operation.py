@@ -204,6 +204,121 @@ class BaseArtOperationTests(unittest.TestCase):
         )
         self.assertIsNone(footer.select_one(".hb-operation-step-label"))
 
+    def test_footer_panel_puts_the_lead_above_art_and_numbered_steps(self) -> None:
+        soup, figure, stage = _figure(
+            "footer-panel",
+            '<img class="hb-operation-art" alt="LED placeholder." src="led.png">'
+            '<div class="hb-operation-prerequisite"><p>The LED light has two modes: '
+            "Light mode and SOS mode.</p></div>"
+            '<div class="line-block hb-operation-steps">'
+            + _step("light", ("summary", "Press once to turn on the light."))
+            + _step("sos", ("summary", "Press it again to switch to SOS Mode."))
+            + _step("off", ("summary", "Press it a third time to turn off the light."))
+            + "</div>",
+        )
+        spec = {
+            "id": "led-light",
+            "layout": "footer-panel",
+            "sos_label": "SOS",
+            "base_art_layout": {
+                "art_sha256": "d" * 64,
+                "art_width": 56.8,
+                "step_markers": ["bulb-lit", "sos", "bulb-off"],
+            },
+        }
+
+        arrange_base_art_operation(
+            soup, figure=figure, stage=stage, spec=spec, source_path=SOURCE,
+            error_type=ValueError,
+        )
+
+        children = [child for child in stage.children if getattr(child, "name", None)]
+        self.assertEqual(
+            [["hb-operation-prerequisite", "hb-operation-lead"], ["hb-operation-panel"]],
+            [child["class"] for child in children],
+        )
+        lead, panel = children
+        self.assertEqual("The LED light has two modes:", _text(lead.select_one("strong")))
+        self.assertEqual(
+            "The LED light has two modes: Light mode and SOS mode.", _text(lead)
+        )
+        self.assertEqual("--hb-art-width:56.8%", panel["style"])
+        art = panel.select_one(".hb-operation-canvas > .hb-operation-art-box > img")
+        self.assertEqual("", art["alt"])
+        steps = panel.select(":scope > .hb-operation-steps > .hb-operation-step")
+        self.assertEqual(
+            [
+                ("hb-operation-marker-bulb-lit", "", "Press once to turn on the light."),
+                ("hb-operation-marker-sos", "SOS", "Press it again to switch to SOS Mode."),
+                (
+                    "hb-operation-marker-bulb-off",
+                    "",
+                    "Press it a third time to turn off the light.",
+                ),
+            ],
+            [
+                (
+                    step.select_one(".hb-operation-step-marker")["class"][-1],
+                    _text(step.select_one(".hb-operation-step-marker")),
+                    _text(step.select_one(".hb-operation-step-instruction")),
+                )
+                for step in steps
+            ],
+        )
+        self.assertTrue(
+            all(
+                step.select_one(".hb-operation-step-marker")["aria-hidden"] == "true"
+                for step in steps
+            )
+        )
+
+    def test_footer_panel_fails_closed_without_its_declared_markers(self) -> None:
+        base_stage = (
+            '<img class="hb-operation-art" src="led.png">'
+            '<div class="line-block hb-operation-steps">'
+            + _step("light", ("summary", "Press once."))
+            + _step("sos", ("summary", "Press again."))
+            + "</div>"
+        )
+        layout = {"art_sha256": "d" * 64, "art_width": 56.8, "step_markers": ["bulb-lit", "sos"]}
+        cases = (
+            ({"sos_label": "SOS", "base_art_layout": {**layout, "art_width": None}}, "art_width"),
+            (
+                {"sos_label": "SOS", "base_art_layout": {**layout, "step_markers": ["sos"]}},
+                "one marker per step",
+            ),
+            ({"base_art_layout": layout}, "no sos_label"),
+        )
+        for extra, message in cases:
+            with self.subTest(message=message):
+                soup, figure, stage = _figure("footer-panel", base_stage)
+                with self.assertRaisesRegex(ValueError, message):
+                    arrange_base_art_operation(
+                        soup, figure=figure, stage=stage,
+                        spec={"id": "led-light", "layout": "footer-panel", **extra},
+                        source_path=SOURCE, error_type=ValueError,
+                    )
+
+    def test_lead_bolds_through_its_first_colon_only_when_plain(self) -> None:
+        from tools.web_base_art_operation import _bold_colon_lead
+
+        fullwidth = "\uff1a"
+        for html, expected in (
+            ("<p>Two modes: light and SOS.</p>", "<p><strong>Two modes:</strong> light and SOS.</p>"),
+            ("<p>Deux modes : lumière et SOS.</p>", "<p><strong>Deux modes :</strong> lumière et SOS.</p>"),
+            (
+                f"<p>two{fullwidth}modes</p>",
+                f"<p><strong>two{fullwidth}</strong>modes</p>",
+            ),
+            ("<p><strong>Prerequisite</strong>: on.</p>", "<p><strong>Prerequisite</strong>: on.</p>"),
+            ("<p>No colon here.</p>", "<p>No colon here.</p>"),
+            ("<p>: nothing before.</p>", "<p>: nothing before.</p>"),
+        ):
+            with self.subTest(html=html):
+                soup = BeautifulSoup(f"<div>{html}</div>", "html.parser")
+                _bold_colon_lead(soup, soup.div)
+                self.assertEqual(expected, soup.div.decode_contents())
+
     def test_summary_split_never_drops_copy(self) -> None:
         for summary, expected in (
             ("Press once.", ("", "Press once.")),
@@ -296,7 +411,7 @@ class BaseArtOperationTests(unittest.TestCase):
                 "steps state no duration",
             ),
             (
-                {"id": "x", "layout": "footer-panel", "base_art_layout": layout},
+                {"id": "x", "layout": "status-left", "base_art_layout": layout},
                 "unsupported layout",
             ),
         )
@@ -311,8 +426,39 @@ class BaseArtOperationTests(unittest.TestCase):
 
 
 class OperationPanelCopySourceTests(unittest.TestCase):
+    def test_base_art_figures_take_only_their_layouts_panel_copy(self) -> None:
+        from tools.component_specs.operation_html import base_art_panel_copy
+
+        copy = (
+            {"kind": "operation_panel_copy", "layout": "energy_saving", "mode_label": "On/Off"},
+            {"kind": "operation_panel_copy", "layout": "led_light", "sos_label": "SOS"},
+        )
+        base = {"presentation_mode": "base-art-live-copy"}
+        self.assertEqual(
+            {"sos_label": "SOS"},
+            base_art_panel_copy(copy, figure={**base, "id": "led-light", "layout": "footer-panel"}, source_path=SOURCE),
+        )
+        self.assertEqual(
+            {"mode_label": "On/Off"},
+            base_art_panel_copy(copy, figure={**base, "id": "energy-saving", "layout": "footer-overlay"}, source_path=SOURCE),
+        )
+        self.assertEqual(
+            {},
+            base_art_panel_copy(copy, figure={**base, "id": "ac-output", "layout": "status-right"}, source_path=SOURCE),
+        )
+        self.assertEqual(
+            {},
+            base_art_panel_copy(copy, figure={"id": "led-light", "layout": "footer-panel"}, source_path=SOURCE),
+        )
+        with self.assertRaisesRegex(ValueError, "panel-copy blocks"):
+            base_art_panel_copy(
+                (*copy, copy[1]),
+                figure={**base, "id": "led-light", "layout": "footer-panel"},
+                source_path=SOURCE,
+            )
+
     def test_only_active_panel_copy_reaches_the_page(self) -> None:
-        from tools.web_document_source import _operation_panel_copy
+        from tools.web_document_source import operation_panel_copy
 
         text = "\n".join(
             [
@@ -342,13 +488,13 @@ class OperationPanelCopySourceTests(unittest.TestCase):
             ]
         )
 
-        payloads = _operation_panel_copy(text, SOURCE, active_tags={"lang_en"})
+        payloads = operation_panel_copy(text, SOURCE, active_tags={"lang_en"})
 
         self.assertEqual(
             ({"kind": "operation_panel_copy", "layout": "energy_saving", "mode_label": "On/Off"},),
             payloads,
         )
-        self.assertEqual((), _operation_panel_copy("No panel copy here.", SOURCE, active_tags=set()))
+        self.assertEqual((), operation_panel_copy("No panel copy here.", SOURCE, active_tags=set()))
 
 
 if __name__ == "__main__":

@@ -321,6 +321,10 @@ def _convert_rst_fragment_to_html(
 
     rewritten_fragment = _rewrite_word_friendly_fragment(published_fragment, lang=fragment_lang)
     if profile == WEB_PRESENTATION_PROFILE:
+        # HTML drops the page's operation_panel_copy blocks; read them from the
+        # source exactly as the whole-document Web path does.
+        from tools.web_document_source import operation_panel_copy
+
         rewritten_fragment = transform_web_fragment(
             rewritten_fragment,
             source_path=source_path,
@@ -330,6 +334,9 @@ def _convert_rst_fragment_to_html(
             language=fragment_lang,
             declared_troubleshooting=declared_troubleshooting,
             declared_lcd_icons=declared_lcd_icons,
+            operation_panel_copy=operation_panel_copy(
+                rst_text, source_path, active_tags=active_tags or set(),
+            ),
         )
     else:
         rewritten_fragment = transform_word_fcc_html(
