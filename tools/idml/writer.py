@@ -30,6 +30,7 @@ class IdmlWriter:
         language: str | None = None,
         strict_component_assets: bool = False,
         native_structure_markers: bool = False,
+        registered_components: bool = False,
     ):
         self.params = params
         self.model = model
@@ -37,6 +38,9 @@ class IdmlWriter:
         self.language = language
         self.strict_component_assets = strict_component_assets
         self.native_structure_markers = native_structure_markers
+        # An active component target composes its registered components
+        # (tools/idml/component_targets.py); every other build keeps False.
+        self.registered_components = registered_components
         self.page_w = param_pt(params, "page_paperwidth", 368.79)
         self.page_h = param_pt(params, "page_paperheight", 524.69)
         self.m_l = param_pt(params, "page_margin_left", 28.35)
@@ -170,6 +174,7 @@ class IdmlWriter:
             inline_origin_shift=inline_origin_shift,
             strict_component_assets=self.strict_component_assets,
             native_structure_markers=self.native_structure_markers,
+            registered_components=self.registered_components,
             add_story=self._add_story_parts)
 
     def add_prose_story(self, sid: str, title: str,

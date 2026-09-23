@@ -794,6 +794,29 @@ class ComponentRegistryTests(unittest.TestCase):
 
         self.assertLess(height(params), height(without_section_override))
 
+    def test_declared_warranty_panel_adjust_is_bounded(self) -> None:
+        from tools.idml.components import RenderContext, render
+
+        ctx = RenderContext(
+            params={}, page_w=368.79, m_l=28.35, m_r=28.35, root=ROOT,
+            bundle_root=ROOT / "does-not-exist", language="en",
+            add_story=lambda sid, _title, _parts: sid,
+        )
+        spec = {
+            **MINIMAL_SPECS["warrantysection"],
+            "blocks": [{"kind": "body", "text": "Warranty copy. " * 40}],
+        }
+        _, plain = render(dict(spec), ctx, tid="w_plain", terminal=True)
+        _, adjusted = render(
+            {**spec, "panel_height_adjust": -6.0}, ctx, tid="w_adj", terminal=True,
+        )
+        self.assertAlmostEqual(plain - 6.0, adjusted, places=3)
+        for bad in (10.5, True, "3"):
+            with self.subTest(bad=bad), self.assertRaisesRegex(
+                ValueError, "panel_height_adjust",
+            ):
+                render({**spec, "panel_height_adjust": bad}, ctx, tid="w_bad", terminal=True)
+
     def test_bp_warranty_body_uses_reference_rhythm_only_in_variant(self) -> None:
         from tools.export_idml import load_layout_params
         from tools.idml.components import RenderContext, render

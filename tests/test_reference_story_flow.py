@@ -131,6 +131,21 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
         self.assertNotIn("language", writer.prose_story_options[0])
         self.assertEqual(0.0, writer.prose_story_options[0]["inline_origin_shift"])
 
+    def test_registered_warranty_story_takes_the_governed_frame(self) -> None:
+        writer = _RecordingWriter()
+        writer.language = "en"  # type: ignore[attr-defined]
+        emitter = ReferenceStoryEmitter(
+            writer, _RecordingToc(), ROOT, None, registered_components=True,
+        )
+        emitter.emit(
+            "st_test",
+            "11_warranty",
+            [("component", json.dumps({"kind": "warrantysection"}))],
+            page_cursor=0,
+        )
+        self.assertEqual(17.0, writer.spread_chain_options[0]["bottom_extra"])
+        self.assertEqual("en", writer.prose_story_options[0]["language"])
+
     def test_fallback_span_never_exceeds_the_story_height_estimate(self) -> None:
         """A measured physical gap is not a request to thread blank frames.
 

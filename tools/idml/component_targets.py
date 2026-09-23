@@ -22,6 +22,7 @@ from typing import Any, Mapping
 from tools.manual_ir import ManualIR
 from tools.utils.path_utils import PathSegments, Paths
 
+from .lcd_reference_profile import validate_lcd_reference_profile
 from .reference_layout_plan import (
     REGISTRY_SCHEMA_VERSION,
     SUPPORTED_SCHEMA_VERSIONS,
@@ -140,12 +141,67 @@ class ComponentTarget:
     def label(self) -> str:
         return f"{self.model}/{self.region}/{self.language}"
 
+    def serves(self, language: str | None) -> bool:
+        """Return whether this active target composes the given language."""
+        return self.active and _language(language) == self.language
+
     def source_pins(self) -> dict[str, Mapping[str, Any]]:
         """Return the approved plan's pinned pages for this language."""
         return {
             str(page.get("source_ref") or ""): page
             for page in self.plan.get("pages", [])
             if isinstance(page, dict) and _language(page.get("language")) == self.language
+        }
+
+    def lcd_profile(self) -> dict[str, Any] | None:
+        """Return the approved LCD row-presentation profile this target composes."""
+        if not self.active:
+            return None
+        profile = (
+            ((self.plan.get("idml_contract") or {}).get("editable_components") or {})
+            .get("lcd_icon_table")
+        )
+        if profile is None:
+            return None
+        issues = validate_lcd_reference_profile(profile)
+        if issues:
+            raise ReferenceLayoutPlanError(
+                f"{self.plan_path}: LCD profile is invalid: " + "; ".join(issues)
+            )
+        return dict(profile)
+
+    def composition(
+        self,
+        composition_type: str,
+        source_refs: tuple[str, ...],
+    ) -> dict[str, Any] | None:
+        """Return a one-page registered composition for exactly these sources.
+
+        The sources must all be built and share one approved composition id;
+        the result carries no physical placement beyond its own page.
+        """
+        if not self.active or any(ref not in self.built_sources for ref in source_refs):
+            return None
+        pins = self.source_pins()
+        selected = [pins[ref] for ref in source_refs]
+        composition_ids = {str(page.get("composition_id") or "") for page in selected}
+        if len(composition_ids) != 1 or "" in composition_ids:
+            return None
+        composition_id = composition_ids.pop()
+        return {
+            "plan_source": "registered-component",
+            "physical_page_count": 1,
+            "pages": [
+                {
+                    **page,
+                    "source_path": page.get("source_path") or page["source_ref"],
+                    "composition_id": composition_id,
+                    "composition_type": composition_type,
+                    "start_page": 1,
+                    "page_count": 1,
+                }
+                for page in selected
+            ],
         }
 
     def report(self) -> None:

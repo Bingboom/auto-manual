@@ -95,6 +95,7 @@ def _new_production_writer(
     region: str,
     language: str,
     page_plan: dict | None,
+    registered_components: bool = False,
 ) -> IdmlWriter:
     """Create the production writer with page-plan asset strictness.
 
@@ -115,6 +116,7 @@ def _new_production_writer(
             (page_plan or {}).get("plan_source")
             in {"approved-reference", "target-assembly"}
         ),
+        registered_components=registered_components,
     )
 
 # ---------------------------------------------------------------------------
@@ -156,12 +158,11 @@ def main() -> int:
             layout_params_csv=layout_params_csv,
             layout_param_overlays=layout_param_overlays)
         assembly_plan = Path(args.assembly_plan) if args.assembly_plan else None
+        component_target = _ir_projection.resolve_component_target(
+            manual_ir, root=ROOT, language=args.lang, assembly_plan=assembly_plan)
         page_plan = _ir_projection.build_reference_page_plan(
-            manual_ir,
-            root=ROOT,
-            bundle_root=bundle_root,
-            target_assembly_plan=assembly_plan,
-        )
+            manual_ir, root=ROOT, bundle_root=bundle_root,
+            target_assembly_plan=assembly_plan, component_target=component_target)
     except ValueError as exc:
         print(f"[export-idml] ERROR: same-source IDML preparation failed: {exc}")
         _export_cli.dump_prepared_bundle_debug(
@@ -174,12 +175,8 @@ def main() -> int:
     lcd_rows: list[dict] = []
     trouble_rows: list[tuple[str, str]] = []
     w = _new_production_writer(
-        params,
-        model=args.model,
-        region=args.region,
-        language=args.lang,
-        page_plan=page_plan,
-    )
+        params, model=args.model, region=args.region, language=args.lang, page_plan=page_plan,
+        registered_components=component_target is not None and component_target.active)
     symbol_cache: dict[str, _ir_projection.SymbolPageData | None] = {}
     def symbol_data_for(lang: str) -> _ir_projection.SymbolPageData | None:
         lang = normalize_lang(lang)
@@ -234,7 +231,8 @@ def main() -> int:
     prose_estimator = _prose_flow.idml_page_estimator(IdmlWriter, params, bundle_root)
     def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
     slug_stem = _page_identity.slug
-    story_emitter = _reference_story_flow.ReferenceStoryEmitter(w, toc, bundle_root, page_plan)
+    story_emitter = _reference_story_flow.ReferenceStoryEmitter(
+        w, toc, bundle_root, page_plan, registered_components=w.registered_components)
     def emit_prose_story(sid: str, title: str, blocks: list[tuple[str, str]], columns: int = 1) -> None:
         nonlocal prose_pages, page_cursor
         page_cursor = story_emitter.emit(
@@ -285,9 +283,9 @@ def main() -> int:
                                    fit_content=bool(page_plan) and not approved_reference)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
-            data = _ir_projection.lcd_page_data(
+            data = _ir_projection.governed_lcd_page_data(
                 manual_ir, lang, root=ROOT, data_root=data_root,
-                reference_plan=page_plan)
+                reference_plan=page_plan, component_target=component_target)
             if data is None:
                 return
             rows = list(data.rows)
@@ -339,7 +337,7 @@ def main() -> int:
         root=ROOT, data_root=data_root, output_lang=args.lang, emitted=emitted,
         spec_sections=sections,
         lcd_rows=lcd_rows, trouble_rows=trouble_rows,
-        symbol_data_for=symbol_data_for, slug_stem=slug_stem,
+        symbol_data_for=symbol_data_for, slug_stem=slug_stem, component_target=component_target,
     )
     for page in ordered:
         role = role_by_path[page]
@@ -405,16 +403,15 @@ def main() -> int:
         skipped_raw += res.skipped_raw
         blocks = _prose_flow.align_operation_tail(list(res.blocks), page_plan, page.stem)
         blocks = _prose_flow.align_charging_car_page(blocks, page_plan, page.stem)
-        if approved_reference and role is _page_roles.PageRole.PRODUCT_OVERVIEW:
+        blocks = target_renderer.prepare_page_blocks(page, blocks)
+        if role is _page_roles.PageRole.PRODUCT_OVERVIEW and _ir_projection.uses_native_overview_page(
+            manual_ir, page, bundle_root, approved_reference=approved_reference,
+            component_target=component_target,
+        ):
             flush_prose_flow()
             toc.note_h1s(blocks, page_cursor)
             _overview.add_product_overview_page(
-                w,
-                "st_overview_" + slug_stem(page.stem),
-                blocks,
-                bundle_root,
-                page_cursor,
-            )
+                w, "st_overview_" + slug_stem(page.stem), blocks, bundle_root, page_cursor)
             page_cursor += 1
             prose_pages += 1
             continue

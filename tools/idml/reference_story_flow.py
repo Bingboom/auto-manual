@@ -22,6 +22,7 @@ from .page_roles import classify_page_role
 from .prose_flow import (
     DEDICATED_SECTION_ROLES,
     apply_component_composition_data,
+    component_kind,
     composition_language,
     composition_type,
     operation_final_frame_x_offset,
@@ -52,6 +53,9 @@ class ReferenceStoryEmitter:
     toc: object
     bundle_root: Path
     page_plan: dict | None = None
+    # An active component target's warranty story takes the governed warranty
+    # frame from its registered components; no other build reads this.
+    registered_components: bool = False
     # (title, height-estimate pages, allocated pages).  A story allocated more
     # frames than its content composes into is exactly the trailing-blank-page
     # failure mode; recording both numbers makes the source of each span
@@ -88,6 +92,15 @@ class ReferenceStoryEmitter:
         operation_lang = operation_language(blocks, self.page_plan, title)
         composition_lang = composition_language(self.page_plan, title)
         planned_composition_type = composition_type(self.page_plan, title)
+        has_warranty_components = self.registered_components and any(
+            kind == "component" and component_kind(payload) in {
+                "warrantylead", "warrantysection", "warrantyyears",
+            }
+            for kind, payload in blocks
+        )
+        effective_warranty_lang = composition_lang or (
+            writer.language if has_warranty_components else None
+        )
         is_operation = (
             (self.page_plan or {}).get("plan_source") == "approved-reference"
             and "operation_guide" in title
@@ -127,18 +140,19 @@ class ReferenceStoryEmitter:
         is_warranty = (
             (
                 planned_composition_type == "warranty"
+                or has_warranty_components
                 or (
                     (self.page_plan or {}).get("plan_source")
                     == "approved-reference"
                     and "warranty" in title.casefold()
                 )
             )
-            and composition_lang in governed_languages()
+            and effective_warranty_lang in governed_languages()
         )
         warranty_frame_x_offset = (
             param_pt(
                 writer.params,
-                f"lang_{composition_lang}_idml_warranty_frame_x_offset",
+                f"lang_{effective_warranty_lang}_idml_warranty_frame_x_offset",
                 0.0,
             )
             if is_warranty else 0.0
@@ -152,7 +166,7 @@ class ReferenceStoryEmitter:
         }
         if planned_composition_type is not None:
             prose_options["semantic_page_role"] = planned_composition_type
-        story_language = operation_lang or composition_lang
+        story_language = operation_lang or composition_lang or effective_warranty_lang
         if story_language is not None:
             prose_options["language"] = story_language
         blocks = apply_component_composition_data(
@@ -304,7 +318,7 @@ class ReferenceStoryEmitter:
             )
             bottom_extra = param_pt(
                 writer.params,
-                f"lang_{composition_lang}_comp_warranty_page_extra_height",
+                f"lang_{effective_warranty_lang}_comp_warranty_page_extra_height",
                 shared_warranty_extra,
             )
         elif is_app:
@@ -359,7 +373,7 @@ class ReferenceStoryEmitter:
                 if is_storage_troubleshooting
                 else param_pt(
                     writer.params,
-                    f"lang_{composition_lang}_idml_warranty_page_top_offset",
+                    f"lang_{effective_warranty_lang}_idml_warranty_page_top_offset",
                     master_offsets.get(first_h1, 13.81),
                 )
                 if is_warranty

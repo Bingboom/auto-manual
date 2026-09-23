@@ -742,6 +742,13 @@ def render_warrantysection(
         _language_param(ctx, trim_key, param_pt(ctx.params, trim_key, 0.0))
         if trim_key else 0.0
     )
+    declared_adjust = spec.get("panel_height_adjust", 0.0)
+    if (
+        isinstance(declared_adjust, bool)
+        or not isinstance(declared_adjust, (int, float))
+        or not -10.0 <= float(declared_adjust) <= 10.0
+    ):
+        raise ValueError("warranty panel_height_adjust must be within -10..10 pt")
     panel_adjust = _language_param(
         ctx,
         f"idml_warranty_panel_height_adjust_{index}",
@@ -750,7 +757,7 @@ def render_warrantysection(
         spec,
         ctx,
         f"panel_height_adjust_{index}",
-    )
+    ) + float(declared_adjust)
     panel_h = max(
         22.0,
         pad_top + body_height + pad_bottom - trim + panel_adjust,

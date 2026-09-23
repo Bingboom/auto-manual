@@ -186,6 +186,72 @@ class ComponentTargetTests(unittest.TestCase):
             assembly.issues,
         )
 
+    def test_compositions_and_the_lcd_profile_need_an_active_target(self) -> None:
+        refs = [page.source_ref for page in self.ir.pages]
+        pages = [
+            {
+                "source_ref": page.source_ref,
+                "source_sha256": page.source_sha256,
+                "language": page.language,
+                "composition_id": "en_pair" if index < 2 else f"en_{index}",
+            }
+            for index, page in enumerate(self.ir.pages)
+        ]
+        pages.append({
+            "source_ref": "page/cover-en.rst",
+            "source_sha256": "1" * 64,
+            "language": "en",
+            "composition_id": "front_cover",
+        })
+        profile = {"row_presentation": [{"source_no": "1", "display_no": "1"}]}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self._root(
+                tmp,
+                pages=pages,
+                plan_changes={
+                    "idml_contract": {
+                        "editable_components": {"lcd_icon_table": profile},
+                    },
+                },
+            )
+            target = resolve_component_target(self.ir, root=root, language="en")
+        assert target is not None
+        self.assertTrue(target.active)
+        pair = target.composition("pair", tuple(refs[:2]))
+        assert pair is not None
+        self.assertEqual("registered-component", pair["plan_source"])
+        self.assertEqual(1, pair["physical_page_count"])
+        self.assertEqual(
+            [(ref, "pair", "en_pair", 1, 1) for ref in refs[:2]],
+            [
+                (
+                    page["source_path"], page["composition_type"],
+                    page["composition_id"], page["start_page"], page["page_count"],
+                )
+                for page in pair["pages"]
+            ],
+        )
+        self.assertIsNone(target.composition("mixed", (refs[0], refs[2])))
+        self.assertIsNone(target.composition("cover", ("page/cover-en.rst",)))
+        self.assertEqual(profile, target.lcd_profile())
+        inert = replace(target, issues=("drift",))
+        self.assertIsNone(inert.composition("pair", tuple(refs[:2])))
+        self.assertIsNone(inert.lcd_profile())
+        self.assertTrue(target.serves("EN-us"))
+        self.assertFalse(target.serves("fr"))
+        self.assertFalse(inert.serves("en"))
+        invalid = replace(
+            target,
+            plan={
+                **target.plan,
+                "idml_contract": {
+                    "editable_components": {"lcd_icon_table": {"row_presentation": []}},
+                },
+            },
+        )
+        with self.assertRaisesRegex(ReferenceLayoutPlanError, "LCD profile is invalid"):
+            invalid.lcd_profile()
+
     def test_malformed_declarations_and_plans_fail_closed(self) -> None:
         cases = (
             ({"component_targets": {"language": "en"}}, None, "must be a list"),

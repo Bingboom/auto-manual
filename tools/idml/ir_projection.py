@@ -23,6 +23,7 @@ from .latex_page_plan import (
     write_page_plan,
 )
 from .data_components import parse_data_component
+from .component_targets import ComponentTarget, resolve_component_target
 from .composition_plan import is_explicit_assembly_plan
 from .lcd_reference_profile import apply_lcd_reference_profile
 from .reference_layout_plan import load_approved_reference_plan
@@ -249,6 +250,7 @@ def asset_resolution_issues(ir: ManualIR, *, root: Path, data_root: Path) -> lis
 def lcd_page_data(
     ir: ManualIR, lang: str, *, root: Path, data_root: Path,
     reference_plan: dict[str, Any] | None = None,
+    component_profile: dict[str, Any] | None = None,
 ) -> LcdPageData | None:
     page = _matching_page(ir, "lcd_icons_", lang)
     payload = next((payload for payload in _data_payloads(page)
@@ -264,7 +266,7 @@ def lcd_page_data(
         row["figure"] = _asset_path(root, data_root, "lcd_icons", row["figure"])
         rows.append(row)
 
-    profile = (
+    profile = component_profile or (
         ((reference_plan or {}).get("idml_contract") or {})
         .get("editable_components", {})
         .get("lcd_icon_table")
@@ -292,6 +294,25 @@ def lcd_page_data(
         _heading(page, owner="LCD page title"),
         tuple(rows),
         hero_reference,
+    )
+
+
+def governed_lcd_page_data(
+    ir: ManualIR, lang: str, *, root: Path, data_root: Path,
+    reference_plan: dict[str, Any] | None = None,
+    component_target: ComponentTarget | None = None,
+) -> LcdPageData | None:
+    """Project LCD data, with the registered profile of an active component target."""
+    profile = (
+        component_target.lcd_profile()
+        if reference_plan is None
+        and component_target is not None
+        and component_target.serves(lang)
+        else None
+    )
+    return lcd_page_data(
+        ir, lang, root=root, data_root=data_root,
+        reference_plan=reference_plan, component_profile=profile,
     )
 
 
@@ -477,9 +498,16 @@ def build_reference_page_plan(
     root: Path,
     bundle_root: Path,
     target_assembly_plan: Path | None = None,
+    component_target: ComponentTarget | None = None,
 ) -> dict[str, Any] | None:
-    """Resolve approved, configured-candidate, then measured page assembly."""
+    """Resolve approved, configured-candidate, then measured page assembly.
 
+    An active component target owns its registered pages without any physical
+    page plan, so the measured LaTeX plan is not applied to it.
+    """
+
+    if component_target is not None:
+        component_target.report()
     approved = load_approved_reference_plan(root=root, ir=ir)
     if approved is not None:
         issues = validate_page_plan(approved)
@@ -490,6 +518,13 @@ def build_reference_page_plan(
         return approved
     if target_assembly_plan is not None:
         return load_target_assembly_plan(target_assembly_plan, ir)
+    if component_target is not None and component_target.active:
+        print(
+            f"[export-idml] PAGE PLAN SKIPPED (component target): "
+            f"{component_target.label} composes its registered pages; "
+            "the measured LaTeX plan is not applied"
+        )
+        return None
     reference_pdf = find_reference_pdf(bundle_root)
     if reference_pdf is None:
         return None
@@ -569,3 +604,21 @@ def report_reference_page_count_issues(
                 f"measured LaTeX has {expected}; parity is enforced only under an approved reference plan"
             )
     return bool(issues)
+
+
+def uses_native_overview_page(
+    ir: ManualIR,
+    page: Path,
+    bundle_root: Path,
+    *,
+    approved_reference: bool,
+    component_target: ComponentTarget | None = None,
+) -> bool:
+    """Return whether this source composes the editable native Overview page."""
+    if approved_reference:
+        return True
+    if component_target is None or not component_target.active:
+        return False
+    from tools.component_specs.projection import governed_overview_source_refs
+
+    return page.relative_to(bundle_root).as_posix() in governed_overview_source_refs(ir)
