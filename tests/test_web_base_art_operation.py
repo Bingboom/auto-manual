@@ -122,6 +122,7 @@ class BaseArtOperationTests(unittest.TestCase):
                 "step_width": 15.5,
                 "prerequisite_rect": [1.14, 1.98, 42.83, 6.05],
                 "prerequisite_max_width": 55.0,
+                "prerequisite_fill": "#f8f8f8",
             },
         }
 
@@ -135,7 +136,7 @@ class BaseArtOperationTests(unittest.TestCase):
         )
         self.assertEqual(
             "--hb-x:1.14%;--hb-y:1.98%;--hb-width:42.83%;--hb-height:6.05%;"
-            "--hb-max-width:55%",
+            "--hb-max-width:55%;--hb-fill:#f8f8f8",
             prerequisite["style"],
         )
         self.assertEqual("Prerequisite : The product is powered on.", _text(prerequisite))
@@ -144,6 +145,33 @@ class BaseArtOperationTests(unittest.TestCase):
         self.assertEqual(["On", "Off"], [_text(tag) for tag in labels])
         self.assertEqual(["Press once", "Press once"], [_text(tag) for tag in instructions])
         self.assertIsNone(stage.select_one(".hb-operation-duration"))
+
+    def test_prerequisite_needs_the_measured_pill_tone(self) -> None:
+        for fill in (None, "grey", "#F8F8F8"):
+            with self.subTest(fill=fill):
+                soup, figure, stage = _figure(
+                    "status-right",
+                    '<img class="hb-operation-art" src="ac.png">'
+                    '<div class="hb-operation-prerequisite"><p>Prerequisite: On.</p></div>'
+                    '<div class="line-block hb-operation-steps">'
+                    + _step("on", ("summary", "On: Press once."))
+                    + "</div>",
+                )
+                layout = {
+                    "art_sha256": "b" * 64,
+                    "step_anchors": [[84.0, 26.51]],
+                    "step_width": 15.5,
+                    "prerequisite_rect": [1.14, 1.98, 42.83, 6.05],
+                }
+                if fill is not None:
+                    layout["prerequisite_fill"] = fill
+                with self.assertRaisesRegex(ValueError, "prerequisite_fill"):
+                    arrange_base_art_operation(
+                        soup, figure=figure, stage=stage,
+                        spec={"id": "ac-output", "layout": "status-right",
+                              "base_art_layout": layout},
+                        source_path=SOURCE, error_type=ValueError,
+                    )
 
     def test_footer_carries_mode_label_duration_and_action(self) -> None:
         soup, figure, stage = _figure(

@@ -46,12 +46,15 @@
   font-weight: 400;
 }
 
+/* A label is one word on a drawn arm ("Encendido"): it may overhang its step
+   box by a few pixels, never split mid-word onto a second line. */
 .hb-base-art-live-copy .hb-operation-step-label,
 .hb-base-art-live-copy .hb-operation-mode-label {
   display: block;
   font-size: 2.8cqw;
   font-weight: 700;
   line-height: 1.1;
+  overflow-wrap: normal;
 }
 
 .hb-base-art-live-copy .hb-operation-step-label strong {
@@ -177,7 +180,8 @@
 
   /* The prerequisite stays on the art's own pill, but readable: it may grow
      into the blank area the contract declares safe (--hb-max-width) and fills
-     with the art's pill tone so the drawn pill never shows as an empty box. */
+     with the pill tone the contract measured from that art (--hb-fill), so the
+     drawn pill never shows as an empty box. */
   .hb-base-art-live-copy .hb-operation-prerequisite {
     width: max-content;
     min-width: var(--hb-width);
@@ -186,7 +190,7 @@
     min-height: var(--hb-height);
     padding: 0.28rem 0.7rem;
     border-radius: 999px;
-    background: #f8f8f8;
+    background: var(--hb-fill);
     font-size: 0.78rem;
     white-space: normal;
   }

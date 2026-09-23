@@ -1052,11 +1052,11 @@ class WebPresentationTests(unittest.TestCase):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
                 self.assertEqual(
-                    2,
+                    1,
                     len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
                 )
                 self.assertEqual(
-                    3,
+                    4,
                     len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
                 )
                 for operation_id in operation_ids:
@@ -1069,7 +1069,9 @@ class WebPresentationTests(unittest.TestCase):
                         if figure
                         else None
                     )
-                    if operation_id in {"main-power", "ac-output", "energy-saving"}:
+                    if operation_id in {
+                        "main-power", "ac-output", "dc-usb-output", "energy-saving",
+                    }:
                         self.assertIsNone(composite)
                         self.assertEqual(
                             "base-art-live-copy",

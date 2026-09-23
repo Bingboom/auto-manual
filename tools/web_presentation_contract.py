@@ -323,9 +323,11 @@ _BASE_ART_LAYOUT_KEYS = frozenset({
     "duration_anchor",
     "prerequisite_rect",
     "prerequisite_max_width",
+    "prerequisite_fill",
     "footer_x",
 })
 _SHA256_HEX_RE = re.compile(r"[0-9a-f]{64}")
+_HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 
 
 def _require_percentages(value: Any, *, count: int, field: str) -> None:
@@ -397,6 +399,13 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
             count=4,
             field=f"{field}.base_art_layout.prerequisite_rect",
         )
+        # The tone of the drawn pill, measured from the art: a narrow-screen
+        # pill that grows past the drawing fills with it, never a guessed grey.
+        if not _HEX_COLOR_RE.fullmatch(str(layout.get("prerequisite_fill") or "")):
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.prerequisite_fill must be the drawn "
+                "pill's #rrggbb tone"
+            )
     if "prerequisite_max_width" in layout:
         _require_percentages(
             [layout["prerequisite_max_width"]],

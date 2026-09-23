@@ -17,6 +17,7 @@ from typing import Any
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 BASE_ART_CLASS = "hb-base-art-live-copy"
+_HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 # Compact duration token shown beside a clock, taken from the localized step
 # copy the same way the IDML operation panel derives its editable duration.
 _DURATION_RE = re.compile(
@@ -210,7 +211,13 @@ def arrange_base_art_operation(
                 error_type=error_type,
             )
             style += f";--hb-max-width:{_css_number(max_width)}%"
-        prerequisite["style"] = style
+        fill = str(layout.get("prerequisite_fill") or "")
+        if not _HEX_COLOR_RE.fullmatch(fill):
+            raise error_type(
+                f"{source_path}: base_art_layout.prerequisite_fill must be the drawn "
+                f"pill's #rrggbb tone for {operation_id!r}"
+            )
+        prerequisite["style"] = f"{style};--hb-fill:{fill}"
         art_box.append(prerequisite.extract())
 
     step_tags = _mark_step_parts(soup, steps)

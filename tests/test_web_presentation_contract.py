@@ -180,6 +180,7 @@ class WebPresentationContractTests(unittest.TestCase):
             {
                 "main-power": "base-art-live-copy",
                 "ac-output": "base-art-live-copy",
+                "dc-usb-output": "base-art-live-copy",
                 "energy-saving": "base-art-live-copy",
             },
             {key: value for key, value in us_modes.items() if value},
@@ -211,6 +212,7 @@ class WebPresentationContractTests(unittest.TestCase):
             {
                 "operation.main-power": ["base-art-live-copy"],
                 "operation.ac-output": ["base-art-live-copy"],
+                "operation.dc-usb-output": ["base-art-live-copy"],
                 "operation.energy-saving": ["base-art-live-copy"],
             },
             us_requirement["slot_status_overrides"],
@@ -475,6 +477,7 @@ class WebPresentationContractTests(unittest.TestCase):
             mode: str = "base-art-live-copy",
             coverage: dict[str, object] | None = None,
             base_art_layout: dict[str, object] | None = None,
+            capture_prerequisite: bool = False,
         ) -> dict[str, object]:
             figure: dict[str, object] = {
                 "id": "main-power",
@@ -483,6 +486,8 @@ class WebPresentationContractTests(unittest.TestCase):
                 "step_ids": ["on", "off"],
                 "presentation_mode": mode,
             }
+            if capture_prerequisite:
+                figure["capture_prerequisite"] = True
             if base_art_layout is not None:
                 figure["base_art_layout"] = base_art_layout
             value: dict[str, object] = {
@@ -556,6 +561,28 @@ class WebPresentationContractTests(unittest.TestCase):
                 ),
                 "percentages",
             ),
+            (
+                "pill without its measured tone",
+                overlay(
+                    coverage=grant,
+                    capture_prerequisite=True,
+                    base_art_layout={**layout, "prerequisite_rect": [1, 2, 40, 6]},
+                ),
+                "prerequisite_fill",
+            ),
+            (
+                "pill tone that is not #rrggbb",
+                overlay(
+                    coverage=grant,
+                    capture_prerequisite=True,
+                    base_art_layout={
+                        **layout,
+                        "prerequisite_rect": [1, 2, 40, 6],
+                        "prerequisite_fill": "#E8E8E8",
+                    },
+                ),
+                "prerequisite_fill",
+            ),
         )
         for label, candidate, message in rejected:
             with self.subTest(label), tempfile.TemporaryDirectory() as td:
@@ -567,6 +594,18 @@ class WebPresentationContractTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             entry = _write_layered_contract(Path(td), overlays=[paired])
             contract = load_web_manual_contract(entry, model="MODEL", region="REGION")
+        pill = overlay(
+            coverage=grant,
+            capture_prerequisite=True,
+            base_art_layout={
+                **layout,
+                "prerequisite_rect": [1, 2, 40, 6],
+                "prerequisite_fill": "#e8e8e8",
+            },
+        )
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[pill])
+            load_web_manual_contract(entry, model="MODEL", region="REGION")
         requirement = contract["figure_coverage"]["requirements"][0]
         self.assertEqual(
             {"operation.main-power": ["base-art-live-copy"]},
