@@ -48,6 +48,16 @@ class IdmlIRProjectionTests(unittest.TestCase):
         )
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
 
+    def test_lcd_source_numbers_come_from_source_rows_only(self) -> None:
+        lcd = ir_projection.lcd_page_data(self.ir, "en", root=ROOT, data_root=DATA)
+        assert lcd is not None
+        # The figure file name is an asset key, not a row identity: row 21's
+        # art is 22_* and its source number stays the source's own value.
+        self.assertTrue(Path(lcd.rows[20]["figure"]).name.startswith("22_"))
+        self.assertEqual("㉑", lcd.rows[20]["source_no"])
+        self.assertEqual("①", lcd.rows[0]["source_no"])
+        self.assertTrue(all("row_height_pt" not in row for row in lcd.rows))
+
     def test_specifications_filename_alias_keeps_semantic_spec_page(self) -> None:
         with tempfile.TemporaryDirectory() as td:
             bundle = Path(td) / "rst"

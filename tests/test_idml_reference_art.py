@@ -217,6 +217,44 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             ],
         )
 
+    def test_web_base_art_mode_alone_keeps_the_movable_idml_clock(self) -> None:
+        """A Web contract mode is not an IDML route (fr/es/trilingual/other targets)."""
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        for language in ("en", "fr", "es"):
+            with self.subTest(language=language):
+                ctx = RenderContext(
+                    params=base.params,
+                    page_w=base.page_w,
+                    m_l=base.m_l,
+                    m_r=base.m_r,
+                    root=base.root,
+                    bundle_root=ROOT / "docs",
+                    model="JE-1000F",
+                    region="US",
+                    language=language,
+                    add_story=add_story,
+                )
+                tid = f"us_{language}_power"
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "image": "renderers/latex/assets/op_main_power.png",
+                        "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+                    },
+                    ctx,
+                    tid=tid,
+                    terminal=False,
+                )
+                panel = stories[f"st_anchor_oppanel_{tid}"]
+                self.assertIn(f"oppanel_main_power_clock_mask_{tid}", panel)
+                self.assertIn(f"oppanel_main_power_clock_{tid}", panel)
+
     def test_main_power_duration_is_language_neutral(self) -> None:
         for instruction in (
             "Press and hold for 3 seconds.",

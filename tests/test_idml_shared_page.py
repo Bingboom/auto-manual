@@ -624,6 +624,50 @@ class SharedPageTests(unittest.TestCase):
         self.assertIn("건조한 곳에", story_text(storage_sid))
         self.assertIn("F0", "".join(stories.values()))
 
+    def test_leading_notice_stays_in_the_storage_story_by_default(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(
+            params,
+            model="JE-1000F",
+            region="US",
+            language="en",
+            native_structure_markers=True,
+        )
+        notice = (
+            "component",
+            json.dumps({
+                "kind": "notice",
+                "label": "CAUTION",
+                "texts": ["Do not charge the product from a car socket."],
+            }),
+        )
+        storage_sid, _trouble_sid = add_storage_troubleshooting_page(
+            writer,
+            sid="st_storage_trouble",
+            storage_blocks=[
+                notice,
+                ("h1", "STORAGE AND MAINTENANCE"),
+                ("body", "Store the product in a dry, clean place."),
+            ],
+            trouble_sid="st_troubleshooting_en",
+            trouble_title="troubleshooting_en",
+            trouble_blocks=[
+                ("h1", "TROUBLESHOOTING"),
+                ("table", json.dumps([["Code", "Solution"], ["F0", "Restart."]])),
+            ],
+            bundle_root=ROOT,
+            page_index=15,
+            language="en",
+        )
+
+        stories = dict(writer.stories)
+        self.assertFalse(any("_lead_notice" in sid for sid in stories))
+        # The notice is the storage story's second component, after its H1.
+        self.assertIn(
+            "Do not charge",
+            stories[f"st_anchor_notice_body_{storage_sid}_cmp1"],
+        )
+
     def test_compact_specifications_group_and_reorder_from_target_data(
         self,
     ) -> None:
