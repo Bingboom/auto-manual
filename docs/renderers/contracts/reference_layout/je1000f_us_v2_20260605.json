@@ -27,8 +27,8 @@
   "approval": {
     "status": "approved",
     "approved_by": "夏冰",
-    "approved_at": "2026-09-23T10:09:07Z",
-    "method": "对话确认（Claude Code 会话）：JE-1000F/US LED 底图改用目标覆盖 operation/je1000f_us/led_light，05 操作页 EN/FR/ES 内容变更；排版图不变"
+    "approved_at": "2026-09-23T14:40:20Z",
+    "method": "对话确认（Claude Code 会话）：JE-1000F/US review 页刷新为发布队列同步后的状态，symbols 与 troubleshooting 页 EN/FR/ES 内容变更（符号行变体参数、F9 改为 DC/USB）；排版图不变"
   },
   "render_contract": {
     "dpi": 300,
@@ -445,7 +445,7 @@
     },
     {
       "source_ref": "page/symbols_en.rst",
-      "source_sha256": "e0ef55116742cc9ee4af35c693f9a311c1de219974ea9b98367b18cbc92f0864",
+      "source_sha256": "2e3cf36d2cbc666537f230a436cd669882d56c8708317a5305be9dc06b376998",
       "language": "en",
       "composition_id": "en_maintenance_symbols",
       "start_page": 5,
@@ -530,7 +530,7 @@
     },
     {
       "source_ref": "page/troubleshooting_en.rst",
-      "source_sha256": "c4e01d369e76ca74dd6988ac53d047d0227e08cf1b18d90f3cffcc763fe21e3b",
+      "source_sha256": "412dd5952e8747700f6e493895aaa004e9febe0ed45435fea713e2b76293789e",
       "language": "en",
       "composition_id": "en_storage_troubleshooting",
       "start_page": 17,
@@ -578,7 +578,7 @@
     },
     {
       "source_ref": "page/symbols_fr.rst",
-      "source_sha256": "a86450c8d3fb9d113201f559b92e93e54ec7e09c7dc6c0b326d9c57ff59275f0",
+      "source_sha256": "ca6537cc51b36eb13fea83ac6a879353b645599ad5b709be3762c06fea419153",
       "language": "fr",
       "composition_id": "fr_maintenance_symbols",
       "start_page": 23,
@@ -663,7 +663,7 @@
     },
     {
       "source_ref": "page/troubleshooting_fr.rst",
-      "source_sha256": "1ae2e53892f881adf47a5ab9d5be956f237ee568dd074041b5e28c0ea2c4e8cc",
+      "source_sha256": "9a892d29d38d81caff4de49eae380fb3eed287ae1c54f2383d4d0856ea7f97ad",
       "language": "fr",
       "composition_id": "fr_storage_troubleshooting",
       "start_page": 35,
@@ -711,7 +711,7 @@
     },
     {
       "source_ref": "page/symbols_es.rst",
-      "source_sha256": "c8b277b32a7d27fa648ea1d2b1c5a5124ab1afea2ad6beb107704084420d295a",
+      "source_sha256": "43ae895093801c3b273b8f620ee31c34a6d5f339359cbe35ac787e2754daffc8",
       "language": "es",
       "composition_id": "es_maintenance_symbols",
       "start_page": 41,
@@ -796,7 +796,7 @@
     },
     {
       "source_ref": "page/troubleshooting_es.rst",
-      "source_sha256": "e2bc0a75af995c58b1bf24be4b41f352e0855cf9eee99846c845f80324c28c71",
+      "source_sha256": "7d359a9c9702048614ffc9ee066419532377479aa21f7c9ea2848916424157a3",
       "language": "es",
       "composition_id": "es_storage_troubleshooting",
       "start_page": 53,
@@ -838,7 +838,7 @@
   "identity": {
     "content": {
       "manual_ir_schema_version": "manual-ir/v1",
-      "manual_content_sha256": "f8fb192c7a270f96011ff5f9acb663cf8d980b88e6f231efebab6dfea46a863b"
+      "manual_content_sha256": "46319119142e5824202d3f12297557ed46b67fb89bcbde363b852802980bc678"
     },
     "assembly": {
       "sha256": "c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57"
