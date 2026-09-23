@@ -224,9 +224,23 @@ def _resolve_fragment_asset_path(src: str, source_path: Path) -> Path | None:
     return resolve_fragment_asset_path(src, source_path, (paths.docs_dir, paths.root))
 
 
+def _language_dir_parts(source_path: Path) -> tuple[str, ...]:
+    """Directory names that may carry a language token.
+
+    Inside the repo only the repo-relative part counts: the checkout's own
+    directory (a worktree named ``terminology-jp-rules``) is not a language
+    marker. Paths outside the repo keep every component.
+    """
+    parent = source_path.parent
+    try:
+        return parent.resolve().relative_to(paths.root.resolve()).parts
+    except ValueError:
+        return parent.parts
+
+
 def _infer_fragment_lang(source_path: Path) -> str | None:
     candidates = [source_path.stem.lower()]
-    candidates.extend(part.lower() for part in reversed(source_path.parts[:-1]))
+    candidates.extend(part.lower() for part in reversed(_language_dir_parts(source_path)))
     for candidate in candidates:
         for pattern, code in _LANG_TOKEN_PATTERNS:
             if pattern.search(candidate):
