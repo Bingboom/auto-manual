@@ -108,6 +108,12 @@ def collect_check_issues(
         target_langs = (
             [target.lang] if (target.lang or "").strip() else family_langs
         )
+        # Authored pages carry no _<lang> suffix. A single-language target
+        # that declares no target-level lang (the JP family) still has one
+        # unambiguous page language; collectors that classify pages need it.
+        page_lang = target.lang
+        if not (page_lang or "").strip() and len(target_langs) == 1:
+            page_lang = target_langs[0]
         bundle_dir = bundle_dir_for_target(
             docs_dir=docs_dir,
             docs_build_dir=docs_build_dir,
@@ -150,15 +156,12 @@ def collect_check_issues(
             )
         )
         if collect_fcc_renderer_contract_issues is not None:
-            renderer_lang = target.lang
-            if not (renderer_lang or "").strip() and len(target_langs) == 1:
-                renderer_lang = target_langs[0]
             issues.extend(
                 collect_fcc_renderer_contract_issues(
                     bundle_dir=bundle_dir,
                     model=target.model,
                     region=target.region,
-                    lang=renderer_lang,
+                    lang=page_lang,
                 )
             )
         issues.extend(
@@ -193,7 +196,7 @@ def collect_check_issues(
                     bundle_dir=bundle_dir,
                     model=target.model,
                     region=target.region,
-                    lang=target.lang,
+                    lang=page_lang,
                 )
             )
         if collect_lang_parity_issues is not None:
