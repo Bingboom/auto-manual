@@ -5,8 +5,8 @@ Status: implemented for Web. The IDML counterpart is described in
 
 ## 1. Scope
 
-All five JE-1000F/US Operation figures render as `base-art-live-copy` on the Web
-in EN, FR and ES:
+All five JE-1000F/US Operation figures and its Charging car figure render as
+`base-art-live-copy` on the Web in EN, FR and ES:
 
 | Figure | Logical art | Frozen art SHA-256 |
 | --- | --- | --- |
@@ -15,6 +15,7 @@ in EN, FR and ES:
 | `operation.dc-usb-output` | `operation/dc_usb_output` | `c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3` |
 | `operation.energy-saving` | `operation/je1000f_us/energy_saving` | `9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07` |
 | `operation.led-light` | `operation/je1000f_us/led_light` | `483c0dcfcfd6c0f8c460a32d9e320f07c3b7571cc1af80b1ac9d5b8f235430cc` |
+| `reference.charging-car` | `charging/je1000f_us/car_charge` | `a918de3a4a3b22cc6f400d9250f24905459d010e13e4020c23eadf247e928e75` |
 
 The frozen, registry-approved art is the figure's only image. Visible copy stays
 owned by the source templates and renders as live, searchable HTML.
@@ -44,6 +45,13 @@ The AC and DC/USB figures keep the approved art with its drawn, empty
 prerequisite pill. The textless AC candidate is not registered; approving it
 changes the art hash and therefore requires new anchors (section 3).
 
+The car figure draws the target's registered car art
+(`charging/je1000f_us/car_charge`), which Word/PDF and both IDMLs already use.
+Its two source lines, the "Vehicle" label and the cable note, were baked into the
+approved composites; they are now live text placed where the IDML
+`_charging_car` card sets them: the note as a white pill in a band above the
+drawing, the label above the car inset. The IDML is unchanged.
+
 ## 2. Contract
 
 `docs/renderers/contracts/web_presentation/target_overlays.json` (`je1000f-us-v1`)
@@ -62,6 +70,18 @@ declares, per figure:
     of `bulb-lit`, `sos`, `bulb-off` per step) for footer-panel cards;
 - the matching `figure_coverage.slot_status_overrides` grant.
 
+A reference figure declares a panel instead. Its rectangles are percentages of
+the panel that holds the art: x and widths of its width, y and heights of its
+height.
+
+- `art_sha256`: the art version the rectangles were set for;
+- `panel_top`: the band above the art, as a percentage of the panel width;
+- `panel_fill`: the art's own measured `#rrggbb` background tone, which the band
+  shares;
+- `labels`: one `{line, rect}` for each line the figure captures
+  (`capture_following_lines`), with an optional `fill` that draws the line as a
+  pill of that tone.
+
 | Figure | Anchors (x, y) | Other |
 | --- | --- | --- |
 | Main power | (76.5, 15.42), (76.5, 34.17); width 22.5 | duration (81.4, 48.1) beside the drawn clock |
@@ -69,10 +89,24 @@ declares, per figure:
 | DC/USB output | (86.0, 20.28), (86.0, 31.69); width 13.5 | pill `[1.63, 2.68, 43.49, 7.32]` tone `#e8e8e8`, narrow max width 55 |
 | Energy saving | — | footer text starts at x 72 under the drawn bracket line (x 76.27) |
 | LED light | — | art column 56.8 % of the card (the IDML card's art width); markers `bulb-lit`, `sos`, `bulb-off` |
+| Car charging | — | band 6.15 % of the width, tone `#f2f3f3`; Vehicle `[64.0, 30.6, 18.0, 8.96]`; note pill `[55.0, 3.73, 42.12, 11.19]` in `#ffffff` |
 
 The anchors were measured once from the frozen PNGs (bracket arms, clock and
 pill bounding boxes, pill tone); the same measurement reproduces the declared
 main-power and AC arms exactly. Renderers never infer geometry from pixels.
+
+The car rectangles restate the IDML `_charging_car` card
+(`tools/idml/components/reference_figure.py`), so both outputs place the copy
+alike. The card is a 134 pt panel on the 312.094 pt measure, with the art
+(1256 × 462 px) aligned to its bottom, which leaves a 19.2 pt band (6.15 % of the
+width).
+
+- The note pill starts at 0.55 of the width, 5 pt below the panel top; it is
+  15 pt high and ends 9 pt from the right edge.
+- The vehicle label spans 0.64 to 0.82 of the width, 41 to 53 pt from the top.
+- Type is 6.2 pt on the 312 pt measure, which is 1.99 % of the panel width.
+
+Only the band tone was sampled from the art.
 
 ## 3. Fail-closed rules
 
@@ -81,8 +115,12 @@ coverage grant (including overlays with no coverage policy), a grant outside
 `required_slots`, and a `base_art_layout` with unknown keys, a malformed art hash,
 missing prerequisite geometry or tone, a step/anchor count mismatch, or a
 footer-panel card without its art width or with markers that are unknown or do
-not match its steps. A card that marks an SOS step fails to render when its
-source page declares no `sos_label`. Coverage binds each
+not match its steps. For a reference figure it also rejects a layout that does
+not place each captured source line exactly once (a missing, repeated or
+uncaptured line), a rectangle outside the panel, a band that is not a percentage
+and a tone that is not `#rrggbb`; the renderer checks the page's captured lines
+against the layout again before it moves any copy. A card that marks an SOS step
+fails to render when its source page declares no `sos_label`. Coverage binds each
 base-art slot to its packaged `assets/…` path and SHA and rejects a layout whose
 `art_sha256` differs from the frozen art. Document validation rejects base-art
 evidence that disagrees with the package asset manifest, and cold replay then
@@ -123,6 +161,26 @@ composite it replaces was; the instructions are live text in reading order and
 the duration shorthand, step numbers and step glyphs are `aria-hidden`. At 760 px
 and below the copy stacks under the art, except the AC and DC/USB prerequisites,
 which stay on the drawn pill and fill it with its measured tone.
+
+`tools/web_base_art_reference.py` runs only for base-art reference figures (the
+car figure).
+
+- It puts the registered art at the bottom of a panel of the art's tone, below
+  the declared band.
+- It moves each captured source line, in source order, onto its rectangle as
+  live text; `data-source-line` keeps the line's index.
+- A line with a `fill` becomes a pill that grows downward when a language needs
+  a second line, as the FR and ES notes do.
+- It removes the line block, so no copy shows twice, and sets the art to
+  `alt=""`.
+- The art's own white hairline edge is clipped so the panel tone runs through.
+- At 760 px and below the lines stack under the art, on the panel tone.
+
+Both Web paths render it. The whole-document IR freezes the layout into the
+reference-figure spec, and freezes no approved composite, because cold replay
+never reopens the contract. The spec's variant is therefore `semantic-fallback`,
+while its coverage status is `base-art-live-copy` through the grant, as for the
+Operation figures.
 
 ## 5. Verification
 
@@ -167,6 +225,18 @@ which stay on the drawn pill and fill it with its measured tone.
   missing links or fonts and no overset text; the exported card shows the whole
   magnifier and hand, the wrist ending just before step circle 2, as in the
   V2.0 print page.
+- Car figure (same inputs), against `main`: the EN, FR and ES pages differ only
+  in the car figure (approved composite to the base-art panel on `a918de3a…`),
+  and the stylesheet only gains the reference rules. The pages reference only
+  the registered art. IDML for all 17 IDML targets is member-identical to
+  `main`, production and flow (30 of 30 packages; the JE-3000C and JE-1000F KR
+  runtime builds fail on `main` too), and the trilingual build still passes
+  under the approved plan, so the plan needs no rebind. Word/PDF does not run
+  the Web transforms.
+- Browser check of the car figure at a 1280 px window and at 500 px in EN, FR
+  and ES: the note pill sits in the band at the top right and the vehicle label
+  above the car inset; the FR and ES notes wrap to two lines and the pill grows
+  to hold them; at 500 px the lines stack under the art in source order.
 
 ## 6. Open items
 
@@ -188,5 +258,15 @@ which stay on the drawn pill and fill it with its measured tone.
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
   the art has none; if a future art version draws them, drop the markers instead
   of drawing them twice.
+- The Spanish car note now reads as the source template does ("※El cable de
+  carga para vehículo se vende por separado."), as Word/PDF and the IDML already
+  did. The V2.0 print (physical page 52) and the approved ES composite it
+  replaces say "para auto". Aligning the two is a copy decision; the template
+  (`docs/templates/page_shared/es/08_charging_methods.rst`) is shared by every
+  Spanish target.
+- The approved `reference.charging-car` composites for JE-1000F/US (EN/FR/ES)
+  stay in the Feishu composite manifest and in the IR's composite list, as the
+  five Operation composites do; the pages no longer reference them. Retiring the
+  rows is a source-data change for the operator.
 - Whole-manual visual acceptance of the published Web page remains with the
   operator.

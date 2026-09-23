@@ -192,8 +192,11 @@ def _frozen_source_asset(
 def _base_art_measured_sha256(contract: dict[str, Any], replace_key: str) -> str:
     """Return the art hash the figure's base-art anchors were measured on."""
 
-    operations = contract.get("operations")
-    figures = operations.get("figures", []) if isinstance(operations, dict) else []
+    figures: list[Any] = []
+    for section in ("operations", "reference_figures"):
+        container = contract.get(section)
+        if isinstance(container, dict):
+            figures.extend(container.get("figures", []))
     matches = [
         figure
         for figure in figures

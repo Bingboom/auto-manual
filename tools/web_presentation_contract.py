@@ -437,12 +437,84 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
         )
 
 
+_REFERENCE_BASE_ART_LAYOUT_KEYS = frozenset({
+    "art_sha256",
+    "panel_top",
+    "panel_fill",
+    "labels",
+})
+_REFERENCE_LABEL_KEYS = frozenset({"line", "rect", "fill"})
+
+
+def _validate_reference_base_art_layout(
+    figure: Mapping[str, Any], *, field: str
+) -> None:
+    """Fail closed on a reference card that does not place its source lines.
+
+    Rectangles are percentages of the panel holding the art (its top band,
+    then the art), and every captured source line is placed exactly once.
+    """
+
+    layout = figure.get("base_art_layout")
+    if not isinstance(layout, Mapping):
+        raise WebPresentationContractError(f"{field}.base_art_layout is required")
+    unknown = sorted(set(layout) - _REFERENCE_BASE_ART_LAYOUT_KEYS)
+    if unknown:
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout has unknown keys {unknown}"
+        )
+    if not _SHA256_HEX_RE.fullmatch(str(layout.get("art_sha256") or "")):
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.art_sha256 must name the measured art"
+        )
+    _require_percentages(
+        [layout.get("panel_top")], count=1, field=f"{field}.base_art_layout.panel_top"
+    )
+    if not _HEX_COLOR_RE.fullmatch(str(layout.get("panel_fill") or "")):
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.panel_fill must be the art's #rrggbb tone"
+        )
+    captured = figure.get("capture_following_lines")
+    labels = layout.get("labels")
+    if (
+        not isinstance(captured, int)
+        or isinstance(captured, bool)
+        or captured < 1
+        or not isinstance(labels, list)
+        or len(labels) != captured
+    ):
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.labels must place each captured source line"
+        )
+    seen: set[int] = set()
+    for index, label in enumerate(labels):
+        item = f"{field}.base_art_layout.labels[{index}]"
+        if not isinstance(label, Mapping) or set(label) - _REFERENCE_LABEL_KEYS:
+            raise WebPresentationContractError(
+                f"{item} must name only {sorted(_REFERENCE_LABEL_KEYS)}"
+            )
+        line = label.get("line")
+        if (
+            not isinstance(line, int)
+            or isinstance(line, bool)
+            or not 0 <= line < captured
+            or line in seen
+        ):
+            raise WebPresentationContractError(
+                f"{item}.line must name a distinct captured line below {captured}"
+            )
+        seen.add(line)
+        _require_percentages(label.get("rect"), count=4, field=f"{item}.rect")
+        if "fill" in label and not _HEX_COLOR_RE.fullmatch(str(label["fill"])):
+            raise WebPresentationContractError(f"{item}.fill must be a #rrggbb tone")
+
+
 def _base_art_live_copy_slots(
     resolved_contract: Mapping[str, Any],
     *,
     prefix: str,
 ) -> set[str]:
-    """Return the figure slots whose operation art carries live copy.
+    """Return the figure slots whose operation or reference art carries live copy.
 
     Every inherited layer lands in the resolved contract, so a mode declared
     anywhere is checked here; only the one bounded mode is recognised, and its
@@ -472,6 +544,32 @@ def _base_art_live_copy_slots(
             )
         _validate_base_art_layout(
             figure, field=f"{prefix}: operation figure {figure_id!r}"
+        )
+        slots.add(slot)
+    references = resolved_contract.get("reference_figures", {})
+    reference_figures = (
+        references.get("figures", []) if isinstance(references, Mapping) else []
+    )
+    for figure in reference_figures:
+        if not isinstance(figure, Mapping):
+            continue
+        mode = str(figure.get("presentation_mode") or "").strip()
+        if not mode:
+            continue
+        figure_id = str(figure.get("id") or "").strip() or "<unnamed>"
+        if mode != _BASE_ART_LIVE_COPY_STATUS:
+            raise WebPresentationContractError(
+                f"{prefix}: reference figure {figure_id!r} declares unsupported "
+                f"presentation_mode {mode!r}"
+            )
+        slot = str(figure.get("web_replace_key") or "").strip()
+        if not slot:
+            raise WebPresentationContractError(
+                f"{prefix}: base-art-live-copy figure {figure_id!r} has no "
+                "web_replace_key"
+            )
+        _validate_reference_base_art_layout(
+            figure, field=f"{prefix}: reference figure {figure_id!r}"
         )
         slots.add(slot)
     return slots

@@ -332,6 +332,62 @@ class WebFigureCoverageTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no measured art hash"):
             build_web_figure_coverage(ir, (fragment,))
 
+    def test_base_art_reference_figure_binds_the_art_its_rects_were_measured_on(self) -> None:
+        figure = {
+            "id": "charging-car",
+            "source_patterns": ["*08_charging_methods"],
+            "image_key": "charging/car_charge",
+            "web_replace_key": "reference.charging-car",
+            "base_art_layout": {"art_sha256": "f" * 64},
+        }
+        ir = SimpleNamespace(
+            model="JE-1000F",
+            region="US",
+            pages=(SimpleNamespace(page_id="08_charging_methods.rst"),),
+            metadata={
+                "web_contract": {
+                    "product_overview": {"source_patterns": []},
+                    "operations": {"source_patterns": [], "figures": []},
+                    "reference_figures": {"figures": [figure]},
+                },
+                "illustration_provenance": {"illustrations": []},
+                "composites": [],
+                "asset_sha256": {
+                    "assets/ir/car_charge_123456789abc.png": "f" * 64,
+                },
+            },
+        )
+        fragment = (
+            '<figure class="hb-reference-figure hb-base-art-live-copy" '
+            'data-reference-id="charging-car" '
+            'data-web-replace-key="reference.charging-car" '
+            'data-web-presentation-mode="base-art-live-copy" '
+            'data-web-base-art-ref="charging/car_charge">'
+            '<div class="hb-reference-semantic"><div class="hb-reference-art-panel">'
+            '<img src="file:///tmp/package/assets/ir/car_charge_123456789abc.png">'
+            '<span class="hb-reference-live-label">Vehicle</span>'
+            '</div></div></figure>'
+        )
+
+        coverage = build_web_figure_coverage(ir, (fragment,))
+
+        (slot,) = coverage["slots"]
+        self.assertEqual(
+            ("charging", "reference.charging-car", "base-art-live-copy"),
+            (slot["section"], slot["slot_id"], slot["status"]),
+        )
+        self.assertEqual("charging/car_charge", slot["asset_ref"])
+        self.assertEqual(
+            {"path": "assets/ir/car_charge_123456789abc.png", "sha256": "f" * 64},
+            slot["asset"],
+        )
+        validate_web_figure_coverage(coverage)
+
+        # Rects measured on one art version may not position another.
+        figure["base_art_layout"]["art_sha256"] = "d" * 64
+        with self.assertRaisesRegex(ValueError, "was measured on art dddddddddddd"):
+            build_web_figure_coverage(ir, (fragment,))
+
     def test_reports_without_base_art_keep_the_frozen_v1_summary_shape(self) -> None:
         ir = SimpleNamespace(
             model="JE-1000F",

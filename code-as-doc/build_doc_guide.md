@@ -863,18 +863,21 @@ Web Publish / Read the Docs note:
   and a repaired row must be deleted from the baseline in the same change.
   While a reference figure waits for its finished panel, its source art fills
   the figure width (the source's inline `:width:` no longer shrinks it).
-  A target overlay may instead grant one Operation slot the bounded
-  `base-art-live-copy` state (today all five JE-1000F/US Operation figures,
-  EN/FR/ES; LED on the target's own `operation/je1000f_us/led_light` art): the
-  frozen text-free artwork is the only image and the source copy stays live HTML
-  on anchors the overlay's `base_art_layout` declares for that exact art
-  (`art_sha256`, bracket-arm `step_anchors`, optional `duration_anchor`,
-  `prerequisite_rect` with its measured `prerequisite_fill` tone, `footer_x`, or
-  a footer-panel card's `art_width` and `step_markers`). Coverage binds each
-  such slot to its packaged asset path/hash and rejects a layout measured on
-  different art, so a new art version must be re-measured before it ships; a
-  mode without its exact `slot_status_overrides` grant, an unknown mode, or
-  incomplete anchors stops contract loading. Details and the measured anchors:
+  A target overlay may instead grant one Operation or reference slot the bounded
+  `base-art-live-copy` state (today all five JE-1000F/US Operation figures and
+  its Charging car figure, EN/FR/ES; LED on the target's own
+  `operation/je1000f_us/led_light` art): the frozen text-free artwork is the
+  only image and the source copy stays live HTML on anchors the overlay's
+  `base_art_layout` declares for that exact art (`art_sha256`, bracket-arm
+  `step_anchors`, optional `duration_anchor`, `prerequisite_rect` with its
+  measured `prerequisite_fill` tone, `footer_x`, or a footer-panel card's
+  `art_width` and `step_markers`; a reference figure declares a `panel_top` band,
+  its `panel_fill` tone and one `labels` rectangle per captured source line).
+  Coverage binds each such slot to its packaged asset path/hash and rejects a
+  layout measured on different art, so a new art version must be re-measured
+  before it ships; a mode without its exact `slot_status_overrides` grant, an
+  unknown mode, or incomplete anchors stops contract loading. Details and the
+  measured anchors:
   [`je1000f_us_base_art_web.md`](dev/je1000f_us_base_art_web.md).
   Its 55 crop/page/content/source-fragment pins are recorded by
   `data/asset_recipes/manual_je1000f_eu_web_panels.json`; Italian is 11/11

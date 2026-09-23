@@ -214,10 +214,12 @@ empty-cell policies are recorded in
   - fail-closed resolver for `shared base → skeleton profile → target overlay`
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors
 - [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
-  - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure
+  - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure (Operation or reference)
   - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
 - [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
   - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, or lays out a footer-panel card (lead, art, numbered steps); never measures the artwork
+- [`tools/web_base_art_reference.py`](../../tools/web_base_art_reference.py)
+  - places one base-art reference figure's captured source lines on the panel rectangles its `base_art_layout` declares, each line exactly once; never measures the artwork
 - [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`
   - the one rule both Web paths use to give a base-art figure its source panel copy (`mode_label`, `sos_label`)
 - [`tools/manual_ir/whole_document_components.py`](../../tools/manual_ir/whole_document_components.py)
