@@ -1390,6 +1390,12 @@ def _render_energy_saving_panel(
     )
 
 
+# The shared operation/led_light exports (common and v2 names). Their art lost
+# the magnifier and the hand, so the LED card substitutes the complete
+# illustration for them; any other LED art is a target's own registered art.
+_SUBSTITUTED_LED_ART = frozenset({"led_light", "op_led_light"})
+
+
 def _render_led_light_panel(
     spec: dict,
     ctx: RenderContext,
@@ -1411,20 +1417,27 @@ def _render_led_light_panel(
 
     shapes = [_panel_bounds(tid, width, height)]
     ref = str(spec.get("image") or "").strip()
-    # The reference LED art includes the complete product/LIGHT-button
-    # illustration. Keep the source copy and all step labels as editable
-    # top-layer frames, but use the complete governed illustration as the
-    # background when the staged bundle contains it.
+    circle_left = width * 0.59
+    art_left = width * 0.054
+    # The shared LED extraction lost the magnifier and the hand, so a card on
+    # it substitutes the complete illustration, which runs under the step
+    # circles. A target's own registered LED art is complete: the card draws
+    # it as registered and ends it where the step column begins. Either way
+    # the source copy and all step labels stay editable top-layer frames.
+    substitute = bool(ref) and Path(ref).stem.lower() in _SUBSTITUTED_LED_ART
     asset = (
         ctx.resolve_bundle_image("operation/led_light_complete.png")
-        if ref and "led_light" in Path(ref).stem.lower()
+        if substitute
         else ctx.resolve_bundle_image(ref)
     ) if ref else None
     if asset is not None and asset.exists():
-        art_w, art_h = ctx.art_frame_size(asset, max_w=width * 0.568)
+        art_w, art_h = ctx.art_frame_size(
+            asset,
+            max_w=width * 0.568 if substitute else circle_left - art_left,
+        )
         shapes.append(_positioned_image(
             f"{tid}img", asset, art_w, art_h,
-            left=width * 0.054,
+            left=art_left,
             bottom=-6.0,
         ))
     shapes.append(_shape(
@@ -1437,7 +1450,6 @@ def _render_led_light_panel(
         fill="Color/HB Bg K05",
     ))
 
-    circle_left = width * 0.59
     icon_left = width * 0.65
     row_centers = [-height + 74.0, -height + 98.0, -height + 123.0]
     for index, center in enumerate(row_centers):

@@ -29,7 +29,9 @@ product, the whole magnifier and hand and the LIGHT product marking, and removes
 only the step-number circles, as objects (an edge-only redaction touches their
 outlines and nothing else). Registered as the target's override
 (`operation/je1000f_us/led_light`), it serves every JE-1000F/US output: Web,
-Word/PDF and the IDML flow. Every other target keeps the shared row and is
+Word/PDF, the IDML flow and the production IDML LED card. The card draws it as
+registered and ends it where the numbered step circles begin, so the magnifier
+and the hand stay whole. Every other target keeps the shared row and is
 unchanged. The override changes the manual content that the approved
 reference-layout plan `je1000f_us_v2_20260605.json` pins for the three operation
 pages, so the plan is rebound with a recorded content-change approval; its
@@ -157,6 +159,14 @@ which stay on the drawn pill and fill it with its measured tone.
   and ES: the art column ends 8 px before the step column, the three steps start
   on one edge, the SOS badge stays on one line, no copy leaves the card, and the
   page never scrolls sideways.
+- Production IDML LED card on the registered art, against `main`, for all 17
+  IDML targets: every non-JE-1000F/US package (production and flow) is
+  member-identical; each JE-1000F/US production package changes only its LED card
+  story (the linked art and its frame, 177.3 × 111.5 to 167.3 × 81.7 pt), one
+  per language. InDesign 2026 (pinned 21.0.1.6) opens the en package with no
+  missing links or fonts and no overset text; the exported card shows the whole
+  magnifier and hand, the wrist ending just before step circle 2, as in the
+  V2.0 print page.
 
 ## 6. Open items
 
@@ -165,10 +175,9 @@ which stay on the drawn pill and fill it with its measured tone.
 - The FR/ES Off instruction wraps to two lines above a clock placed for one EN
   line, so instruction type is set smaller than in the approved composites; the
   ES source copy is also longer than the copy baked into the approved ES composite.
-- The production IDML LED card still substitutes an unregistered
-  `led_light_complete.png`, whose right edge crops the magnifier rim and the
-  wrist, instead of the registered LED art. Switching it changes the designer's
-  IDML and waits for the operator.
+- Targets on the shared `operation/led_light` still get the substitute
+  `led_light_complete.png` (its right edge crops the magnifier rim and the wrist)
+  in their IDML LED card; each needs its own registered LED art to drop it.
 - The IDML recognises governed operation art by file name (`_LED_LIGHT_ART`,
   `_ENERGY_SAVING_ART`, the flow's full-measure list), and LaTeX flattens
   `renderers/latex/assets`, so a target override needs a unique basename that the
