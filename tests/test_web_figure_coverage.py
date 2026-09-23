@@ -16,6 +16,7 @@ class WebFigureCoverageTests(unittest.TestCase):
         model: str = "JE-1000F",
         region: str = "EU",
         known_debt: list[dict[str, str]] | None = None,
+        slot_status_overrides: dict[str, list[str]] | None = None,
     ):
         return SimpleNamespace(
             model=model,
@@ -34,6 +35,7 @@ class WebFigureCoverageTests(unittest.TestCase):
                                     "finished-panel",
                                     "approved-composite",
                                 ],
+                                "slot_status_overrides": slot_status_overrides or {},
                                 "known_debt": known_debt or [],
                             }
                         ]
@@ -89,6 +91,7 @@ class WebFigureCoverageTests(unittest.TestCase):
                         "content_sha256": "b" * 64,
                     }
                 ],
+                "asset_sha256": {},
             },
         )
         fragments = (
@@ -131,6 +134,7 @@ class WebFigureCoverageTests(unittest.TestCase):
             {
                 "finished-panel": 1,
                 "approved-composite": 1,
+                "base-art-live-copy": 0,
                 "editable-fallback": 2,
                 "missing": 2,
             },
@@ -195,6 +199,7 @@ class WebFigureCoverageTests(unittest.TestCase):
                     ],
                 },
                 "composites": [],
+                "asset_sha256": {},
             },
         )
         fragment = (
@@ -233,6 +238,7 @@ class WebFigureCoverageTests(unittest.TestCase):
                     }
                     for locale in ("de", "it")
                 ],
+                "asset_sha256": {},
             },
         )
         fragment = (
@@ -253,6 +259,85 @@ class WebFigureCoverageTests(unittest.TestCase):
             "assets/energy-saving-it.png",
             coverage["slots"][0]["asset"]["path"],
         )
+
+    def test_base_art_live_copy_records_the_frozen_source_identity(self) -> None:
+        ir = SimpleNamespace(
+            model="JE-1000F",
+            region="US",
+            pages=(SimpleNamespace(page_id="05_operation_guide_placeholder.rst"),),
+            metadata={
+                "web_contract": {
+                    "product_overview": {"source_patterns": []},
+                    "operations": {
+                        "source_patterns": ["*05_operation_guide_placeholder"],
+                    },
+                    "reference_figures": {"figures": []},
+                },
+                "illustration_provenance": {"illustrations": []},
+                "composites": [],
+                "asset_sha256": {
+                    "assets/ir/main_power_123456789abc.png": "e" * 64,
+                },
+            },
+        )
+        fragment = (
+            '<figure class="hb-operation-figure hb-base-art-live-copy" '
+            'data-web-replace-key="operation.main-power" '
+            'data-web-presentation-mode="base-art-live-copy" '
+            'data-web-base-art-ref="operation/main_power">'
+            '<div class="hb-operation-stage">'
+            '<img src="file:///tmp/package/assets/ir/main_power_123456789abc.png">'
+            '<div class="hb-operation-steps">Live searchable copy</div>'
+            '</div></figure>'
+        )
+
+        coverage = build_web_figure_coverage(ir, (fragment,))
+
+        self.assertEqual("base-art-live-copy", coverage["slots"][0]["status"])
+        self.assertEqual("operation/main_power", coverage["slots"][0]["asset_ref"])
+        self.assertEqual(["main_power.png"], coverage["slots"][0]["source_images"])
+        self.assertEqual(
+            {
+                "path": "assets/ir/main_power_123456789abc.png",
+                "sha256": "e" * 64,
+            },
+            coverage["slots"][0]["asset"],
+        )
+        validate_web_figure_coverage(coverage)
+
+        del coverage["slots"][0]["asset"]
+        with self.assertRaisesRegex(ValueError, "invalid base-art evidence"):
+            validate_web_figure_coverage(coverage)
+
+    def test_base_art_live_copy_rejects_an_unfrozen_rendered_image(self) -> None:
+        ir = SimpleNamespace(
+            model="JE-1000F",
+            region="US",
+            pages=(SimpleNamespace(page_id="05_operation_guide_placeholder.rst"),),
+            metadata={
+                "web_contract": {
+                    "product_overview": {"source_patterns": []},
+                    "operations": {
+                        "source_patterns": ["*05_operation_guide_placeholder"],
+                    },
+                    "reference_figures": {"figures": []},
+                },
+                "illustration_provenance": {"illustrations": []},
+                "composites": [],
+                "asset_sha256": {},
+            },
+        )
+        fragment = (
+            '<figure class="hb-operation-figure hb-base-art-live-copy" '
+            'data-web-replace-key="operation.main-power" '
+            'data-web-presentation-mode="base-art-live-copy" '
+            'data-web-base-art-ref="operation/main_power">'
+            '<img src="file:///tmp/package/assets/ir/main_power.png">'
+            '</figure>'
+        )
+
+        with self.assertRaisesRegex(ValueError, "frozen asset evidence"):
+            build_web_figure_coverage(ir, (fragment,))
 
     def test_required_coverage_allows_composite_and_ignores_nonrequired_fallback(self) -> None:
         coverage = {
@@ -292,6 +377,31 @@ class WebFigureCoverageTests(unittest.TestCase):
             "it/operation.main-power=editable-fallback",
         ):
             enforce_required_web_figure_coverage(self._required_ir(), coverage)
+
+    def test_base_art_live_copy_requires_an_exact_slot_grant(self) -> None:
+        coverage = {
+            "model": "JE-1000F",
+            "region": "EU",
+            "slots": [
+                {
+                    "locale": "it",
+                    "slot_id": "operation.main-power",
+                    "status": "base-art-live-copy",
+                }
+            ],
+        }
+
+        with self.assertRaisesRegex(ValueError, "unregistered debt"):
+            enforce_required_web_figure_coverage(self._required_ir(), coverage)
+
+        enforce_required_web_figure_coverage(
+            self._required_ir(
+                slot_status_overrides={
+                    "operation.main-power": ["base-art-live-copy"],
+                }
+            ),
+            coverage,
+        )
 
     def test_required_coverage_rejects_missing_or_duplicate_slot(self) -> None:
         coverage = {

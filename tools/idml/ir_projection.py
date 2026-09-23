@@ -22,6 +22,7 @@ from .latex_page_plan import (
     validate_page_plan,
     write_page_plan,
 )
+from .lcd_reference_target import find_registered_lcd_profile
 from .data_components import parse_data_component
 from .composition_plan import is_explicit_assembly_plan
 from .lcd_reference_profile import apply_lcd_reference_profile
@@ -249,6 +250,7 @@ def asset_resolution_issues(ir: ManualIR, *, root: Path, data_root: Path) -> lis
 def lcd_page_data(
     ir: ManualIR, lang: str, *, root: Path, data_root: Path,
     reference_plan: dict[str, Any] | None = None,
+    component_profile: dict[str, Any] | None = None,
 ) -> LcdPageData | None:
     page = _matching_page(ir, "lcd_icons_", lang)
     payload = next((payload for payload in _data_payloads(page)
@@ -259,12 +261,18 @@ def lcd_page_data(
     for index, source in enumerate(payload["rows"], start=1):
         row = {key: str(source.get(key) or "") for key in ("no", "figure", "name", "desc")}
         source_number = row["no"].strip()
+        figure_number = Path(row["figure"]).name.partition("_")[0]
+        try:
+            float(source_number)
+        except ValueError:
+            if figure_number.isdigit():
+                source_number = figure_number
         row["source_no"] = source_number or str(index)
-        row["no"] = source_number or str(index)
+        row["no"] = row["no"].strip() or str(index)
         row["figure"] = _asset_path(root, data_root, "lcd_icons", row["figure"])
         rows.append(row)
 
-    profile = (
+    profile = component_profile or (
         ((reference_plan or {}).get("idml_contract") or {})
         .get("editable_components", {})
         .get("lcd_icon_table")
@@ -292,6 +300,20 @@ def lcd_page_data(
         _heading(page, owner="LCD page title"),
         tuple(rows),
         hero_reference,
+    )
+
+
+def governed_lcd_page_data(
+    ir: ManualIR, lang: str, *, root: Path, data_root: Path,
+    reference_plan: dict[str, Any] | None = None,
+) -> LcdPageData | None:
+    """Project LCD data with its registered component-only profile."""
+    profile = None if reference_plan is not None else find_registered_lcd_profile(
+        ir, root=root, language=lang,
+    )
+    return lcd_page_data(
+        ir, lang, root=root, data_root=data_root,
+        reference_plan=reference_plan, component_profile=profile,
     )
 
 
@@ -569,3 +591,18 @@ def report_reference_page_count_issues(
                 f"measured LaTeX has {expected}; parity is enforced only under an approved reference plan"
             )
     return bool(issues)
+
+
+def uses_native_overview_page(
+    ir: ManualIR,
+    page: Path,
+    bundle_root: Path,
+    *,
+    approved_reference: bool,
+) -> bool:
+    """Return whether this source owns the editable Overview composition."""
+    if approved_reference:
+        return True
+    from tools.component_specs.projection import governed_overview_source_refs
+
+    return page.relative_to(bundle_root).as_posix() in governed_overview_source_refs(ir)

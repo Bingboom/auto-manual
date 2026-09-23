@@ -15,6 +15,8 @@ import re
 import warnings
 from pathlib import Path
 
+from tools.operation_artwork_mode import operation_id_from_ref
+
 Block = tuple[str, str]
 
 
@@ -154,6 +156,7 @@ def _special_operation_panel(
             json.dumps(
                 {
                     "kind": "oppanel",
+                    "operation_id": "energy-saving",
                     "layout": "energy_saving",
                     "image": ref,
                     "guidance": guidance,
@@ -586,9 +589,17 @@ def transform(
                         tail = candidate
                         consumed = 3
                 panel_tail, following_body = _split_panel_tail(tail)
-                out.append(("component", json.dumps(
-                    {"kind": "oppanel", "image": text, "prereq": prereq,
-                     "rows": rows, "tail": panel_tail}, ensure_ascii=False)))
+                panel = {
+                    "kind": "oppanel",
+                    "image": text,
+                    "prereq": prereq,
+                    "rows": rows,
+                    "tail": panel_tail,
+                }
+                operation_id = operation_id_from_ref(text)
+                if operation_id:
+                    panel["operation_id"] = operation_id
+                out.append(("component", json.dumps(panel, ensure_ascii=False)))
                 if following_body:
                     following_kind = (
                         "body_operation_inter_section"

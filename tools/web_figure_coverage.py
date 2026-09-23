@@ -18,6 +18,7 @@ WEB_FIGURE_COVERAGE_SCHEMA = "web-figure-coverage/v1"
 WEB_FIGURE_STATUSES = (
     "finished-panel",
     "approved-composite",
+    "base-art-live-copy",
     "editable-fallback",
     "missing",
 )
@@ -157,6 +158,33 @@ def _composite_asset(
     }
 
 
+def _frozen_source_asset(
+    image: Tag,
+    assets: dict[str, str],
+) -> dict[str, str]:
+    """Bind one rendered image to the existing frozen IR asset manifest."""
+
+    src = str(image.get("src") or "").strip()
+    parsed_path = unquote(urlparse(src).path).replace("\\", "/")
+    matches = [
+        (relative, digest)
+        for relative, digest in assets.items()
+        if src == relative or parsed_path.endswith(f"/{relative}")
+    ]
+    if len(matches) != 1:
+        raise ValueError(
+            "base-art Web figure is missing unambiguous frozen asset evidence: "
+            f"src={src!r} matches={[relative for relative, _digest in matches]}"
+        )
+    relative, digest = matches[0]
+    if not relative.startswith("assets/") or not _SHA256_RE.fullmatch(digest):
+        raise ValueError(
+            "base-art Web figure resolved invalid frozen asset evidence: "
+            f"path={relative!r} sha256={digest!r}"
+        )
+    return {"path": relative, "sha256": digest}
+
+
 def _summary(slots: list[dict[str, Any]]) -> dict[str, Any]:
     by_status = {
         status: sum(slot["status"] == status for slot in slots)
@@ -215,6 +243,25 @@ def validate_web_figure_coverage(payload: dict[str, Any]) -> None:
             ):
                 raise ValueError(
                     f"Web figure coverage slot {index} has invalid approved asset evidence"
+                )
+        if status == "base-art-live-copy":
+            source_images = slot.get("source_images")
+            asset = slot.get("asset")
+            if (
+                not isinstance(slot.get("asset_ref"), str)
+                or not slot["asset_ref"]
+                or not isinstance(source_images, list)
+                or len(source_images) != 1
+                or not isinstance(source_images[0], str)
+                or not source_images[0]
+                or not isinstance(asset, dict)
+                or not isinstance(asset.get("path"), str)
+                or not asset["path"].startswith("assets/")
+                or not isinstance(asset.get("sha256"), str)
+                or not _SHA256_RE.fullmatch(asset["sha256"])
+            ):
+                raise ValueError(
+                    f"Web figure coverage slot {index} has invalid base-art evidence"
                 )
     summary = payload.get("summary")
     expected = _summary(slots)
@@ -287,12 +334,15 @@ def enforce_required_web_figure_coverage(
     locales = requirement.get("locales")
     required_slots = requirement.get("required_slots")
     allowed_statuses = requirement.get("allowed_statuses")
+    raw_slot_status_overrides = requirement.get("slot_status_overrides", {})
     if not isinstance(locales, list) or not locales:
         raise ValueError("Web figure coverage requirement locales must be non-empty")
     if not isinstance(required_slots, list) or not required_slots:
         raise ValueError("Web figure coverage required_slots must be non-empty")
     if not isinstance(allowed_statuses, list) or not allowed_statuses:
         raise ValueError("Web figure coverage allowed_statuses must be non-empty")
+    if not isinstance(raw_slot_status_overrides, dict):
+        raise ValueError("Web figure coverage slot_status_overrides must be an object")
 
     normalized_locales = [str(value).strip().casefold() for value in locales]
     normalized_slots = [str(value).strip() for value in required_slots]
@@ -311,6 +361,20 @@ def enforce_required_web_figure_coverage(
         raise ValueError(
             "Web figure coverage allowed_statuses must contain only finished artwork"
         )
+    slot_status_overrides: dict[str, set[str]] = {}
+    for raw_slot, raw_statuses in raw_slot_status_overrides.items():
+        slot = str(raw_slot).strip()
+        if (
+            slot not in normalized_slots
+            or not isinstance(raw_statuses, list)
+            or {str(value).strip() for value in raw_statuses}
+            != {"base-art-live-copy"}
+        ):
+            raise ValueError(
+                "Web figure coverage slot_status_overrides must grant only "
+                "base-art-live-copy to required slots"
+            )
+        slot_status_overrides[slot] = {"base-art-live-copy"}
 
     raw_debt = requirement.get("known_debt", [])
     if not isinstance(raw_debt, list):
@@ -382,7 +446,11 @@ def enforce_required_web_figure_coverage(
                 continue
             status = str(matches[0].get("status") or "")
             registered = debt.get((locale, required_slot))
-            if status in normalized_statuses:
+            accepted_statuses = slot_status_overrides.get(
+                required_slot,
+                normalized_statuses,
+            )
+            if status in accepted_statuses:
                 if registered is not None:
                     stale_debt.append(
                         f"{locale}/{required_slot}=registered:{registered},current:{status}"
@@ -419,8 +487,13 @@ def build_web_figure_coverage(
     contract = ir.metadata.get("web_contract")
     composites = ir.metadata.get("composites")
     provenance = ir.metadata.get("illustration_provenance")
+    assets = ir.metadata.get("asset_sha256")
     page_slots = ir.metadata.get("page_slots", {})
-    if not isinstance(contract, dict) or not isinstance(composites, list):
+    if (
+        not isinstance(contract, dict)
+        or not isinstance(composites, list)
+        or not isinstance(assets, dict)
+    ):
         raise ValueError("Web figure coverage requires document presentation bindings")
     if not isinstance(page_slots, dict):
         raise ValueError("Web figure coverage page slots must be a mapping")
@@ -461,6 +534,24 @@ def build_web_figure_coverage(
             if "hb-has-composite-art" in _classes(figure):
                 slot["status"] = "approved-composite"
                 slot["asset"] = _composite_asset(figure, composites)
+            elif (
+                str(figure.get("data-web-presentation-mode") or "").strip()
+                == "base-art-live-copy"
+                and "hb-base-art-live-copy" in _classes(figure)
+            ):
+                slot["status"] = "base-art-live-copy"
+                slot["asset_ref"] = str(
+                    figure.get("data-web-base-art-ref") or ""
+                ).strip()
+                slot["source_images"] = [
+                    _source_image_name(str(image.get("src") or ""))
+                    for image in figure_images
+                ]
+                if len(figure_images) != 1:
+                    raise ValueError(
+                        "base-art-live-copy Web figure must contain exactly one image"
+                    )
+                slot["asset"] = _frozen_source_asset(figure_images[0], assets)
             else:
                 finished_images = [
                     image

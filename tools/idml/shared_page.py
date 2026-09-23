@@ -34,7 +34,7 @@ from .components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from .components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from .heading_suffix import promote_h2_suffix_pills
 from .params import IDPKG, param_pt
-from .prose_flow import mark_troubleshooting_table
+from .prose_flow import component_kind, mark_troubleshooting_table
 from .page03 import _spread_page
 from .page_overview import product_overview_frames, single_image_overview_frames
 
@@ -849,6 +849,14 @@ def add_storage_troubleshooting_page(
         "idml_compact_storage_trouble_split",
         151.0,
     )
+    storage_blocks = list(storage_blocks)
+    leading_notice: tuple[str, str] | None = None
+    if (
+        storage_blocks
+        and storage_blocks[0][0] == "component"
+        and component_kind(storage_blocks[0][1]) == "notice"
+    ):
+        leading_notice = storage_blocks.pop(0)
     panel = StoragePanel(
         writer,
         sid=sid,
@@ -856,6 +864,18 @@ def add_storage_troubleshooting_page(
         bundle_root=bundle_root,
         language=language,
     ).render()
+    notice_story: tuple[str, float] | None = None
+    if leading_notice is not None:
+        notice_sid = f"{sid}_lead_notice"
+        _, notice_height = writer.add_prose_story(
+            notice_sid,
+            f"{sid} leading notice",
+            [leading_notice],
+            bundle_root,
+            language=language,
+            disable_hyphenation=True,
+        )
+        notice_story = (notice_sid, notice_height)
     writer.add_prose_story(
         trouble_sid,
         trouble_title,
@@ -874,10 +894,36 @@ def add_storage_troubleshooting_page(
         + _spread_page(writer, spread_id, page_index + 1)
         + '</Spread>\n</idPkg:Spread>\n',
     ))
-    writer.add_story_frames(panel.story_id, [(page_index, page_top, split)])
+    trouble_top = split + 4.0
+    if notice_story is None:
+        writer.add_story_frames(panel.story_id, [(page_index, page_top, split)])
+    else:
+        gap = param_pt(
+            writer.params,
+            "idml_compact_storage_trouble_gap",
+            4.0,
+        )
+        safety = param_pt(
+            writer.params,
+            "idml_compact_shared_story_safety",
+            2.0,
+        )
+        notice_sid, notice_height = notice_story
+        notice_bottom = page_top + notice_height + safety
+        storage_top = notice_bottom + gap
+        storage_bottom = storage_top + panel.estimated_height + safety
+        trouble_top = storage_bottom + gap
+        writer.add_story_frames(
+            notice_sid,
+            [(page_index, page_top, notice_bottom)],
+        )
+        writer.add_story_frames(
+            panel.story_id,
+            [(page_index, storage_top, storage_bottom)],
+        )
     writer.add_story_frames(
         trouble_sid,
-        [(page_index, split + 4.0, writer.page_h - writer.m_b + 12.0)],
+        [(page_index, trouble_top, writer.page_h - writer.m_b + 12.0)],
     )
     return panel.story_id, trouble_sid
 

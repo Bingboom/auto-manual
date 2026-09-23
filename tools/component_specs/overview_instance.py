@@ -388,7 +388,8 @@ def resolve_overview_instance(
         matches = [
             (key, value)
             for key, value in materialized.items()
-            if str(value["target"]["model"]).casefold() == str(model or "").casefold()
+            if str(value["target"]["model"]).casefold()
+            == str(model or "").casefold()
             and str(value["target"]["region"]).casefold()
             == str(region or "").casefold()
         ]

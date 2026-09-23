@@ -210,6 +210,14 @@ empty-cell policies are recorded in
   - manual HTML metadata and switcher helpers
 - [`tools/web_presentation.py`](../../tools/web_presentation.py)
   - compatibility facade for web-profile figure/table composition and Pandoc-safe semantic restoration
+- [`tools/operation_artwork_mode.py`](../../tools/operation_artwork_mode.py)
+  - shared eligibility and frozen-asset ownership for editable Operation base art across Web and IDML
+- [`tools/idml/registered_component_plan.py`](../../tools/idml/registered_component_plan.py)
+  - exact target/language/source-hash component ownership for single-language IDML replays without activating a whole-document page plan
+- [`tools/idml/lcd_reference_target.py`](../../tools/idml/lcd_reference_target.py)
+  - approved LCD row-presentation lookup independent of whole-document page-plan activation
+- [`tools/component_specs/overview_target.py`](../../tools/component_specs/overview_target.py)
+  - target-bound Overview instance resolution shared by native IDML routing and Web presentation validation
 - [`tools/web_presentation_contract.py`](../../tools/web_presentation_contract.py)
   - fail-closed resolver for `shared base → skeleton profile → target overlay`
   - recursively merges mappings, merges stable-`id` lists by item, replaces ordinary lists, and derives target-scoped capability selectors

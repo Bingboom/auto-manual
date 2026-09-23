@@ -119,7 +119,7 @@ def operation_story_rhythm_for_next_block(
     if (
         title
         and "operation_guide" in title
-        and kind in {"body", "body_operation_inter_section"}
+        and kind == "body_operation_inter_section"
         and next_block[0] == "h2"
     ):
         # The approved first operation page deliberately holds the second

@@ -10,6 +10,12 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from tools.operation_artwork_mode import (
+    BASE_ART_LIVE_COPY,
+    operation_artwork_mode,
+    operation_id_from_ref,
+)
+
 from ..language_contract import governed_languages
 from ..character_metrics import with_character_metrics
 from ..line_metrics import estimated_line_count, estimated_text_width
@@ -25,6 +31,35 @@ from ..page_objects import rounded_path_geometry
 from ..params import component_param_pt, param_pt
 from ..source_copy import source_text
 from .base import RenderContext, figure_paragraph
+
+
+def _operation_id(spec: dict) -> str:
+    explicit = str(spec.get("operation_id") or "").strip()
+    if explicit:
+        return explicit
+    return operation_id_from_ref(
+        str(spec.get("image") or ""),
+        layout=str(spec.get("layout") or ""),
+    )
+
+
+def _uses_base_art_live_copy(spec: dict, ctx: RenderContext) -> bool:
+    explicit = str(spec.get("presentation_mode") or "").strip()
+    contract_mode = operation_artwork_mode(
+        model=ctx.model,
+        region=ctx.region,
+        operation_id=_operation_id(spec),
+        root=ctx.root,
+    )
+    if explicit and ctx.model and ctx.region and explicit != contract_mode:
+        raise ValueError(
+            f"frozen operation artwork mode {explicit!r} does not match "
+            f"target contract {contract_mode!r}"
+        )
+    mode = explicit or contract_mode
+    if mode not in {None, BASE_ART_LIVE_COPY}:
+        raise ValueError(f"unsupported operation artwork mode {mode!r}")
+    return mode == BASE_ART_LIVE_COPY
 
 
 def _inline_anchor(*, pin: bool = True) -> str:
@@ -96,7 +131,12 @@ def _editable_text_frame(
 
 
 def _prereq_overlay_parts(
-    ctx: RenderContext, *, tid: str, text: str, image_w: float, image_h: float,
+    ctx: RenderContext,
+    *,
+    tid: str,
+    text: str,
+    image_w: float,
+    image_h: float,
 ) -> tuple[str, str]:
     """Return prerequisite underlay and top-layer editable text separately."""
     if not text or ctx.add_story is None:
@@ -167,11 +207,18 @@ def _prereq_overlay(ctx: RenderContext, *, tid: str, text: str,
     return underlay + text_frame
 
 
-def _row_layout(ref: str, image_w: float, image_h: float) -> tuple[float, ...]:
+def _row_layout(
+    ref: str,
+    image_w: float,
+    image_h: float,
+    *,
+    operation_id: str | None = None,
+) -> tuple[float, ...]:
     """Return measured row geometry for POWER, AC, and DC/USB artwork."""
+    stable_id = operation_id or operation_id_from_ref(ref)
     stem = Path(ref).stem.lower()
     scale = image_w / 294.9
-    if "main_power" in stem:
+    if stable_id == "main-power" or "main_power" in stem:
         return (
             image_w * 0.765,
             -image_h + image_h * 0.035,
@@ -179,7 +226,7 @@ def _row_layout(ref: str, image_w: float, image_h: float) -> tuple[float, ...]:
             26.1 * scale,
             22.0 * scale,
         )
-    if "dc_usb" in stem or "dc-usb" in stem:
+    if stable_id == "dc-usb-output" or "dc_usb" in stem or "dc-usb" in stem:
         return (
             image_w * 0.845,
             -image_h + image_h * 0.165,
@@ -207,11 +254,17 @@ def _row_text_layers(
     image_w: float,
     image_h: float,
     panel_w: float | None = None,
+    operation_id: str | None = None,
 ) -> str:
     """Create one independently movable top-layer frame per operation row."""
     if not rows or ctx.add_story is None:
         return ""
-    left, first_top, width, gap, frame_h = _row_layout(ref, image_w, image_h)
+    left, first_top, width, gap, frame_h = _row_layout(
+        ref,
+        image_w,
+        image_h,
+        operation_id=operation_id,
+    )
     panel_right = panel_w if panel_w is not None else image_w / 0.945
     right_edge_offset = component_param_pt(
         ctx.params,
@@ -256,7 +309,7 @@ def _row_text_layers(
     stem = Path(ref).stem.lower()
     row_x_offset = 0.0
     row_y_offsets = [0.0, 0.0]
-    if "main_power" in stem:
+    if operation_id == "main-power" or "main_power" in stem:
         row_y_offsets = [
             component_param_pt(
                 ctx.params,
@@ -436,12 +489,16 @@ def _main_power_clock_overlay(
     rows: list[tuple[str, str]],
     image_w: float,
     image_h: float,
+    operation_id: str | None = None,
+    mask_baked_art: bool = True,
+    place_clock: bool = True,
 ) -> str:
-    """Replace the baked POWER clock and restore its editable duration."""
-    if "main_power" not in Path(ref).stem.lower():
+    """Keep one POWER clock while restoring the editable duration."""
+    stable_id = operation_id or operation_id_from_ref(ref)
+    if stable_id != "main-power" and "main_power" not in Path(ref).stem.lower():
         return ""
-    clock = ctx.resolve_bundle_image("icon_clock_3s.png")
-    if clock is None or not clock.exists():
+    clock = ctx.resolve_bundle_image("icon_clock_3s.png") if place_clock else None
+    if place_clock and (clock is None or not clock.exists()):
         return ""
 
     size = component_param_pt(
@@ -510,19 +567,31 @@ def _main_power_clock_overlay(
         right=image_w * 0.810,
         bottom=-image_h * 0.45,
         fill="Color/Paper",
-    )
-    clock_xml = _positioned_image(
-        f"oppanel_main_power_clock_{tid}",
-        clock,
-        size,
-        size,
-        left=clock_left,
-        bottom=clock_bottom,
-        pin=False,
+    ) if mask_baked_art else ""
+    clock_xml = (
+        _positioned_image(
+            f"oppanel_main_power_clock_{tid}",
+            clock,
+            size,
+            size,
+            left=clock_left,
+            bottom=clock_bottom,
+            pin=False,
+        )
+        if clock is not None else ""
     )
     if not duration:
         return mask + clock_xml
-    duration_left = clock_left + size + duration_gap + duration_x_offset
+    # The approved base art retains its single baked clock farther right than
+    # the legacy movable replacement. Keep the legacy formula byte-for-byte,
+    # but anchor base-art duration copy after the measured baked-clock edge so
+    # the editable token cannot overlap the icon.
+    clock_right = (
+        clock_left + size
+        if place_clock
+        else image_w * 0.804
+    )
+    duration_left = clock_right + duration_gap + duration_x_offset
     duration_top = clock_bottom - size + duration_y_offset
     duration_xml = _editable_text_frame(
         ctx,
@@ -846,12 +915,18 @@ def _render_image_notice_panel(
     rows = [tuple(row) for row in spec.get("rows", [])]
     prereq = str(spec.get("prereq") or "").strip()
     tail = str(spec.get("tail") or "").strip()
+    operation_id = _operation_id(spec)
+    base_art_live_copy = _uses_base_art_live_copy(spec, ctx)
     art_w, art_h = ctx.art_frame_size(asset, max_w=width - 18.0)
     art_left = (width - art_w) / 2.0
     height = art_h + notice_h + 19.0
     art_bottom = -notice_h - 12.0
     prereq_underlay, prereq_text = _prereq_overlay_parts(
-        ctx, tid=tid, text=prereq, image_w=art_w, image_h=art_h,
+        ctx,
+        tid=tid,
+        text=prereq,
+        image_w=art_w,
+        image_h=art_h,
     )
     tail_underlay, tail_text = _tail_overlay_parts(
         ctx, tid=tid, text=tail, image_w=art_w, image_h=art_h,
@@ -864,7 +939,15 @@ def _render_image_notice_panel(
         + prereq_underlay
         + tail_underlay
         + _main_power_clock_overlay(
-            ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+            ctx,
+            tid=tid,
+            ref=ref,
+            rows=rows,
+            image_w=art_w,
+            image_h=art_h,
+            operation_id=operation_id,
+            mask_baked_art=not base_art_live_copy,
+            place_clock=not base_art_live_copy,
         )
         + prereq_text
         + tail_text
@@ -876,6 +959,7 @@ def _render_image_notice_panel(
             image_w=art_w,
             image_h=art_h,
             panel_w=art_w,
+            operation_id=operation_id,
         )
         + "</Group>"
     )
@@ -1014,13 +1098,19 @@ def _render_image_guidance_stack(
     rows = [tuple(row) for row in spec.get("rows", [])]
     prereq = str(spec.get("prereq") or "").strip()
     tail = str(spec.get("tail") or "").strip()
+    operation_id = _operation_id(spec)
+    base_art_live_copy = _uses_base_art_live_copy(spec, ctx)
     art_w, art_h = ctx.art_frame_size(asset, max_w=width - 18.0)
     art_left = (width - art_w) / 2.0
     art_bottom = first_top - gap
     outer_top = art_bottom - art_h - 7.0
     height = -outer_top
     prereq_underlay, prereq_text = _prereq_overlay_parts(
-        ctx, tid=tid, text=prereq, image_w=art_w, image_h=art_h,
+        ctx,
+        tid=tid,
+        text=prereq,
+        image_w=art_w,
+        image_h=art_h,
     )
     tail_underlay, tail_text = _tail_overlay_parts(
         ctx, tid=tid, text=tail, image_w=art_w, image_h=art_h,
@@ -1033,7 +1123,15 @@ def _render_image_guidance_stack(
         + prereq_underlay
         + tail_underlay
         + _main_power_clock_overlay(
-            ctx, tid=tid, ref=ref, rows=rows, image_w=art_w, image_h=art_h,
+            ctx,
+            tid=tid,
+            ref=ref,
+            rows=rows,
+            image_w=art_w,
+            image_h=art_h,
+            operation_id=operation_id,
+            mask_baked_art=not base_art_live_copy,
+            place_clock=not base_art_live_copy,
         )
         + prereq_text
         + tail_text
@@ -1045,6 +1143,7 @@ def _render_image_guidance_stack(
             image_w=art_w,
             image_h=art_h,
             panel_w=art_w,
+            operation_id=operation_id,
         )
         + "</Group>"
     )
@@ -1518,6 +1617,8 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
     body_w = measure_w or ctx.text_measure
     rows = [tuple(r) for r in spec.get("rows", [])]
     prereq = (spec.get("prereq") or "").strip()
+    operation_id = _operation_id(spec)
+    base_art_live_copy = _uses_base_art_live_copy(spec, ctx)
 
     icon = ""
     img_h = 0.0
@@ -1530,18 +1631,31 @@ def render_oppanel(spec: dict, ctx: RenderContext, *, tid: str, terminal: bool,
         # to roughly one third of the intended visual area.
         iw, ih = ctx.art_frame_size(asset, max_w=body_w * 0.945)
         prereq_underlay, prereq_text = _prereq_overlay_parts(
-            ctx, tid=tid, text=prereq, image_w=iw, image_h=ih,
+            ctx,
+            tid=tid,
+            text=prereq,
+            image_w=iw,
+            image_h=ih,
         )
         tail = (spec.get("tail") or "").strip()
         tail_underlay, tail_text = _tail_overlay_parts(
             ctx, tid=tid, text=tail, image_w=iw, image_h=ih,
         )
         main_power_clock = _main_power_clock_overlay(
-            ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
+            ctx,
+            tid=tid,
+            ref=ref,
+            rows=rows,
+            image_w=iw,
+            image_h=ih,
+            operation_id=operation_id,
+            mask_baked_art=not base_art_live_copy,
+            place_clock=not base_art_live_copy,
         )
         row_text = _row_text_layers(
             ctx, tid=tid, ref=ref, rows=rows, image_w=iw, image_h=ih,
             panel_w=body_w,
+            operation_id=operation_id,
         )
         overlay = (
             prereq_underlay + tail_underlay + main_power_clock

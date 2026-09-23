@@ -66,7 +66,28 @@ class TargetAssemblyRenderer:
         symbol_data_for: Callable[[str], ir_projection.SymbolPageData | None],
         slug_stem: Callable[[str], str],
     ) -> None:
-        self.enabled = (page_plan or {}).get("plan_source") == "target-assembly"
+        fallback_page_plan = None
+        self.registered_warranty_plan = None
+        self.registered_charging_plan = None
+        if page_plan is None:
+            from .registered_component_plan import resolve_registered_component_plans
+
+            (
+                fallback_page_plan,
+                self.registered_warranty_plan,
+                self.registered_charging_plan,
+            ) = (
+                resolve_registered_component_plans(
+                    manual_ir,
+                    root=root,
+                    bundle_root=bundle_root,
+                    language=output_lang,
+                    projected_by_path=projected_by_path,
+                )
+            )
+        self.enabled = (page_plan or {}).get("plan_source") in {
+            "target-assembly", "registered-component",
+        }
         plan = (
             composition_plan.build_composition_plan(page_plan)
             if self.enabled and page_plan is not None
@@ -103,6 +124,27 @@ class TargetAssemblyRenderer:
         self.handled_compositions: set[str] = set()
         self.routed_tail_blocks: dict[str, list[tuple[str, str]]] = {}
         self.back_cover_added = False
+        self.fallback = (
+            TargetAssemblyRenderer(
+                page_plan=fallback_page_plan,
+                projected_by_path=projected_by_path,
+                bundle_root=bundle_root,
+                writer=writer,
+                toc=toc,
+                manual_ir=manual_ir,
+                root=root,
+                data_root=data_root,
+                output_lang=output_lang,
+                emitted=emitted,
+                spec_sections=spec_sections,
+                lcd_rows=lcd_rows,
+                trouble_rows=trouble_rows,
+                symbol_data_for=symbol_data_for,
+                slug_stem=slug_stem,
+            )
+            if fallback_page_plan is not None
+            else None
+        )
 
     def _source_ref_for(self, page: Path) -> str:
         try:
@@ -114,6 +156,38 @@ class TargetAssemblyRenderer:
         entry = self.plan_entry_by_ref[source_ref]
         source_path = str(entry.get("source_path") or source_ref)
         return self.projected_by_path[self.bundle_root / source_path]
+
+    def prepare_page_blocks(
+        self,
+        page: Path,
+        blocks: list[tuple[str, str]],
+    ) -> list[tuple[str, str]]:
+        """Apply exact registered single-page preparation before fallback flow."""
+        source_ref = self._source_ref_for(page)
+        if self.registered_charging_plan is not None and source_ref in {
+            entry.get("source_ref")
+            for entry in self.registered_charging_plan.get("pages", [])
+            if isinstance(entry, dict)
+        }:
+            from .prose_flow import promote_reference_figures
+
+            return promote_reference_figures(
+                blocks, self.registered_charging_plan, page.stem,
+            )
+        if self.registered_warranty_plan is not None and source_ref in {
+            entry.get("source_ref")
+            for entry in self.registered_warranty_plan.get("pages", [])
+            if isinstance(entry, dict)
+        }:
+            from .registered_component_plan import registered_warranty_blocks
+
+            return registered_warranty_blocks(
+                page.stem,
+                blocks,
+                self.page_plan,
+                self.registered_warranty_plan,
+            )
+        return blocks
 
     def render(
         self,
@@ -130,7 +204,17 @@ class TargetAssemblyRenderer:
             or composition is None
             or composition.composition_type not in SPECIAL_COMPOSITION_TYPES
         ):
-            return None
+            return (
+                self.fallback.render(
+                    page,
+                    get_page_cursor=get_page_cursor,
+                    flush_prose_flow=flush_prose_flow,
+                    flush_pending_fcc=flush_pending_fcc,
+                    flush_pending_prefix=flush_pending_prefix,
+                )
+                if self.fallback is not None
+                else None
+            )
         if composition.composition_id in self.handled_compositions:
             return RenderDelta(page_count=0, skipped_raw=0)
         self.handled_compositions.add(composition.composition_id)
@@ -438,6 +522,8 @@ class TargetAssemblyRenderer:
                 language=lang,
             )
             self.emitted.add(f"trouble:{lang}")
+            if (self.page_plan or {}).get("plan_source") == "registered-component":
+                self.emitted.add("trouble")
         elif composition.composition_type == "troubleshooting_specifications":
             _trouble, _spec = composition_pages
             trouble_data = ir_projection.trouble_page_data(self.manual_ir, lang)

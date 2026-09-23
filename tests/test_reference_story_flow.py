@@ -46,6 +46,7 @@ def _approved_app_plan(
 class _RecordingWriter:
     def __init__(self) -> None:
         self.params: dict[str, tuple[str, str]] = {}
+        self.language = "en"
         self.m_l = 20.0
         self.m_r = 21.0
         self.m_t = 22.0
@@ -115,6 +116,21 @@ class _RecordingToc:
 
 
 class ReferenceStoryEmitterTests(unittest.TestCase):
+    def test_no_plan_warranty_keeps_complete_last_frame_and_language(self) -> None:
+        writer = _RecordingWriter()
+        emitter = ReferenceStoryEmitter(writer, _RecordingToc(), ROOT, None)
+        emitter.emit(
+            "st_test",
+            "11_warranty",
+            [("component", json.dumps({"kind": "warrantysection"}))],
+            page_cursor=0,
+        )
+        self.assertEqual(
+            17.0,
+            writer.spread_chain_options[0]["bottom_extra"],
+        )
+        self.assertEqual("en", writer.prose_story_options[0]["language"])
+
     def test_fallback_span_never_exceeds_the_story_height_estimate(self) -> None:
         """A measured physical gap is not a request to thread blank frames.
 

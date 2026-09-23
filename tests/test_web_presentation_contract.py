@@ -9,6 +9,7 @@ from pathlib import Path
 
 from tools.web_presentation import WebPresentationError, load_web_manual_contract
 from tools.web_presentation_contract import merge_contract_layers
+from tools.operation_artwork_mode import operation_artwork_mode
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
@@ -167,7 +168,32 @@ class WebPresentationContractTests(unittest.TestCase):
         )
         self.assertEqual("JE-1000F", eu["figure_coverage"]["requirements"][0]["target"]["model"])
         self.assertEqual("EU", eu["figure_coverage"]["requirements"][0]["target"]["region"])
-        self.assertEqual(us["operations"], eu["operations"])
+        us_modes = {
+            figure["id"]: figure.get("presentation_mode")
+            for figure in us["operations"]["figures"]
+        }
+        eu_modes = {
+            figure["id"]: figure.get("presentation_mode")
+            for figure in eu["operations"]["figures"]
+        }
+        self.assertEqual(
+            {
+                "main-power": "base-art-live-copy",
+                "ac-output": "base-art-live-copy",
+                "energy-saving": "base-art-live-copy",
+            },
+            {key: value for key, value in us_modes.items() if value},
+        )
+        for operation_id, presentation_mode in us_modes.items():
+            self.assertEqual(
+                presentation_mode,
+                operation_artwork_mode(
+                    model="JE-1000F",
+                    region="US",
+                    operation_id=operation_id,
+                ),
+            )
+        self.assertFalse(any(eu_modes.values()))
         self.assertNotIn("instance_id", us["product_overview"])
 
     def test_us_and_kr_debt_is_explicit_without_weakening_final_statuses(self) -> None:
@@ -180,6 +206,14 @@ class WebPresentationContractTests(unittest.TestCase):
         self.assertEqual(
             ["finished-panel", "approved-composite"],
             us_requirement["allowed_statuses"],
+        )
+        self.assertEqual(
+            {
+                "operation.main-power": ["base-art-live-copy"],
+                "operation.ac-output": ["base-art-live-copy"],
+                "operation.energy-saving": ["base-art-live-copy"],
+            },
+            us_requirement["slot_status_overrides"],
         )
         self.assertEqual(9, len(us_requirement["known_debt"]))
         self.assertEqual(

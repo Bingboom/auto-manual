@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 import json
 import tempfile
 import unittest
@@ -8,6 +9,12 @@ from pathlib import Path
 from unittest.mock import patch
 
 from tools.idml import ir_projection
+from tools.idml.lcd_reference_target import find_registered_lcd_profile
+from tools.idml.reference_layout_plan import ReferenceLayoutPlanError
+from tools.idml.registered_component_plan import (
+    apply_registered_warranty_footer_clearance,
+    find_registered_component_plan,
+)
 from tools.manual_ir import build_manual_ir
 from tools.render_contract import (
     layout_tokens_sha256,
@@ -41,12 +48,163 @@ class IdmlIRProjectionTests(unittest.TestCase):
         self.assertEqual(16, sum(len(section["rows"]) for section in spec.sections))
         self.assertEqual(26, len(lcd.rows))
         self.assertEqual("①", lcd.rows[0]["no"])
+        self.assertEqual("1", lcd.rows[0]["source_no"])
+        self.assertEqual("22", lcd.rows[20]["source_no"])
         self.assertEqual(4, len(symbols.signals))
         self.assertEqual(
             ["warning", "caution", "note", "tips"],
             [row["signal_key"] for row in symbols.signals],
         )
         self.assertEqual(11, len(ir_projection.trouble_rows(self.ir, "en")))
+
+    def test_registered_lcd_profile_has_exact_target_and_source_ownership(self) -> None:
+        profile = find_registered_lcd_profile(
+            self.ir,
+            root=ROOT,
+            language="en",
+        )
+        self.assertIsNotNone(profile)
+        assert profile is not None
+        self.assertEqual("1", profile["row_presentation"][0]["source_no"])
+        self.assertEqual(19.95, profile["row_presentation"][0][
+            "row_height_pt_by_language"
+        ]["en"])
+
+        self.assertIsNone(find_registered_lcd_profile(
+            replace(self.ir, model="JBP-2000B"),
+            root=ROOT,
+            language="en",
+        ))
+        renamed_page = replace(
+            next(page for page in self.ir.pages if "lcd_icons_" in page.source_ref),
+            source_ref="page/lcd_display_en.rst",
+            source_path="page/lcd_display_en.rst",
+        )
+        renamed = replace(
+            self.ir,
+            pages=tuple(
+                renamed_page if "lcd_icons_" in page.source_ref else page
+                for page in self.ir.pages
+            ),
+        )
+        self.assertIsNone(find_registered_lcd_profile(
+            renamed,
+            root=ROOT,
+            language="en",
+        ))
+
+    def test_registered_lcd_profile_preserves_undeclared_language_fallback(self) -> None:
+        self.assertIsNone(find_registered_lcd_profile(
+            self.ir,
+            root=ROOT,
+            language="de",
+        ))
+
+        lcd_page = next(
+            page for page in self.ir.pages if "lcd_icons_" in page.source_ref
+        )
+        fallback_ir = replace(
+            self.ir,
+            pages=tuple(
+                replace(page, language="de") if page is lcd_page else page
+                for page in self.ir.pages
+            ),
+        )
+        lcd = ir_projection.governed_lcd_page_data(
+            fallback_ir,
+            "de",
+            root=ROOT,
+            data_root=DATA,
+        )
+        self.assertIsNotNone(lcd)
+        assert lcd is not None
+        self.assertEqual("①", lcd.rows[0]["no"])
+        self.assertEqual("1", lcd.rows[0]["source_no"])
+        self.assertNotIn("row_height_pt", lcd.rows[0])
+
+    def test_registered_component_plan_rejects_invalid_contract_envelopes(self) -> None:
+        source_page = next(page for page in self.ir.pages if page.language == "en")
+        source_ref = source_page.source_ref
+        target = {
+            "model": self.ir.model,
+            "region": self.ir.region,
+            "languages": ["en"],
+        }
+
+        def resolve(payload_changes: dict | None = None):
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                contracts = root / "docs" / "renderers" / "contracts"
+                plan_path = contracts / "reference_layout" / "plan.json"
+                plan_path.parent.mkdir(parents=True)
+                payload = {
+                    "schema_version": "approved-reference-layout-plan/v2",
+                    "target": target,
+                    "approval": {"status": "approved"},
+                    "pages": [{
+                        "source_ref": source_ref,
+                        "source_sha256": source_page.source_sha256,
+                        "language": "en",
+                        "composition_id": "storage_trouble",
+                    }],
+                }
+                payload.update(payload_changes or {})
+                plan_path.write_text(json.dumps(payload), encoding="utf-8")
+                (contracts / "reference_layout_registry.json").write_text(
+                    json.dumps({
+                        "schema_version": "approved-reference-layout-registry/v1",
+                        "plans": [{
+                            "target": target,
+                            "path": plan_path.relative_to(root).as_posix(),
+                        }],
+                    }),
+                    encoding="utf-8",
+                )
+                return find_registered_component_plan(
+                    self.ir,
+                    root=root,
+                    language="en",
+                    composition_type="storage_troubleshooting",
+                    source_refs=(source_ref,),
+                )
+
+        self.assertIsNotNone(resolve())
+        with self.assertRaisesRegex(ReferenceLayoutPlanError, "schema"):
+            resolve({"schema_version": "unsupported/v1"})
+        with self.assertRaisesRegex(ReferenceLayoutPlanError, "target"):
+            resolve({"target": {**target, "region": "EU"}})
+        with self.assertRaisesRegex(ReferenceLayoutPlanError, "pages must be a list"):
+            resolve({"pages": {}})
+        self.assertIsNone(resolve({
+            "pages": [{
+                "source_ref": source_ref,
+                "source_sha256": source_page.source_sha256,
+                "language": "fr",
+                "composition_id": "storage_trouble",
+            }],
+        }))
+
+    def test_registered_warranty_clearance_only_adjusts_final_panel(self) -> None:
+        blocks = [
+            ("h1", "WARRANTY"),
+            ("component", json.dumps({
+                "kind": "warrantysection", "index": 5, "title": "Exclusions",
+            })),
+            ("component", json.dumps({
+                "kind": "warrantysection", "index": 6, "title": "Interpretation",
+            })),
+        ]
+        projected = apply_registered_warranty_footer_clearance(
+            blocks,
+            {
+                "plan_source": "registered-component",
+                "pages": [{"composition_type": "warranty"}],
+            },
+        )
+        fifth = json.loads(projected[1][1])
+        sixth = json.loads(projected[2][1])
+        self.assertNotIn("panel_height_adjust", fifth)
+        self.assertEqual(-6.0, sixth["panel_height_adjust"])
 
     def test_specifications_filename_alias_keeps_semantic_spec_page(self) -> None:
         with tempfile.TemporaryDirectory() as td:

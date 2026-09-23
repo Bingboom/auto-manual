@@ -10,9 +10,60 @@ from tools.component_specs.inbox import inbox_spec_from_payload
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.model import ComponentSpecError
 from tools.component_specs.overview import overview_spec_from_blocks
-from tools.component_specs.overview_instance import resolve_overview_instance
+from tools.component_specs.overview_target import find_overview_instance
 from tools.component_specs.spec_table import spec_table_component_spec
 from tools.manual_ir import ManualIR
+
+
+def governed_overview_source_refs(ir: ManualIR) -> frozenset[str]:
+    """Return Overview-owned source refs without parsing their page shape."""
+    overview_instance = find_overview_instance(model=ir.model, region=ir.region)
+    if overview_instance is None:
+        return frozenset()
+    governed: set[str] = set()
+    for page in ir.pages:
+        source_stem = page.source_path.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+        if not any(
+            fnmatch.fnmatch(source_stem.casefold(), str(pattern).casefold())
+            for pattern in overview_instance["source_patterns"]
+        ):
+            continue
+        language = str(page.language or "").casefold()
+        for view in overview_instance["views"]:
+            locales = [
+                str(mapping.get("locale") or "").casefold()
+                for mapping in view["composite_locales"]
+            ]
+            if locales.count(language) != 1:
+                raise ComponentSpecError(
+                    f"{page.source_ref}: overview language {page.language!r} must be "
+                    f"declared once for view {view['id']!r}; got {locales!r}"
+                )
+        governed.add(page.source_ref)
+    return frozenset(governed)
+
+
+def project_overview_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
+    """Project semantic specs for governed two-view Overview source pages."""
+    governed = governed_overview_source_refs(ir)
+    if not governed:
+        return ()
+    overview_instance = find_overview_instance(model=ir.model, region=ir.region)
+    if overview_instance is None:  # pragma: no cover - guarded above
+        return ()
+    projected: list[ComponentSpec] = []
+    for page in ir.pages:
+        if page.source_ref not in governed:
+            continue
+        projected.append(
+            overview_spec_from_blocks(
+                tuple((block.kind, block.payload) for block in page.blocks),
+                instance=overview_instance,
+                source_ref=page.source_ref,
+                language=page.language,
+            )
+        )
+    return tuple(projected)
 
 
 def project_manual_ir_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
@@ -35,26 +86,14 @@ def project_manual_ir_components(ir: ManualIR) -> tuple[ComponentSpec, ...]:
         )
 
     projected: list[ComponentSpec] = []
-    try:
-        overview_instance = resolve_overview_instance(model=ir.model, region=ir.region)
-    except ComponentSpecError:
-        overview_instance = None
+    overview_by_source = {
+        spec.source_ref: spec
+        for spec in project_overview_components(ir)
+    }
     for page in ir.pages:
-        if overview_instance is not None and any(
-            fnmatch.fnmatch(
-                page.source_path.rsplit("/", 1)[-1].rsplit(".", 1)[0].casefold(),
-                str(pattern).casefold(),
-            )
-            for pattern in overview_instance["source_patterns"]
-        ):
-            projected.append(
-                overview_spec_from_blocks(
-                    tuple((block.kind, block.payload) for block in page.blocks),
-                    instance=overview_instance,
-                    source_ref=page.source_ref,
-                    language=page.language,
-                )
-            )
+        overview = overview_by_source.get(page.source_ref)
+        if overview is not None:
+            projected.append(overview)
         for block_index, block in enumerate(page.blocks):
             if not isinstance(block.payload, dict):
                 continue

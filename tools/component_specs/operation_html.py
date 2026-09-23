@@ -133,6 +133,11 @@ def parse_operation_components(
             artwork_ref=str(image.get("src") or ""),
             source_ref=f"{source_path}#operation-{operation_id}",
             language=language,
+            metadata={
+                "presentation_mode": str(raw_figure.get("presentation_mode") or "").strip()
+            }
+            if str(raw_figure.get("presentation_mode") or "").strip()
+            else None,
         )
         parsed.append(
             (spec, tuple(owned), image, tuple(supporting_lines[:supporting_count]))

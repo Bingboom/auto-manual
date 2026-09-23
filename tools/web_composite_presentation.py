@@ -1,5 +1,4 @@
 """Bind frozen Web-composite assets to responsive semantic figures."""
-
 from __future__ import annotations
 
 import fnmatch
@@ -19,6 +18,7 @@ from tools.web_composite_manifest import (
     WebCompositeManifest,
     WebCompositeManifestError,
 )
+from tools.operation_artwork_mode import apply_web_artwork_mode
 
 
 def _matches_source(source_path: Path, patterns: list[str]) -> bool:
@@ -174,6 +174,8 @@ class WebCompositeContext:
         if key:
             figure["data-web-replace-key"] = key
         figure["data-source-fragment-sha256"] = source_fragment_sha256
+        if apply_web_artwork_mode(figure, component, self.error_type, source_path):
+            return
         entry = self.resolve_entry(component, source_path)
         if entry is not None and entry.source_fragment_sha256 != source_fragment_sha256:
             raise self.error_type(
@@ -230,7 +232,6 @@ class WebCompositeContext:
             source_path=source_path,
             source_fragment_sha256=source_hash,
         )
-
 
 __all__ = (
     "WebCompositeContext",

@@ -372,6 +372,28 @@ The same rule applies if the contract file is still approved but its registry
 entry is missing: the build stops and names the orphaned contract. Only a target
 with no approved contract may use measured-LaTeX fallback pagination.
 
+Whole-document pagination approval and Product Overview component eligibility
+are separate contracts. A single-language IDML target may have no approved
+reference page plan and still use the native editable Product Overview when its
+model/region has exactly one entry in
+[`overview_component_instances.json`](../docs/renderers/contracts/overview_component_instances.json),
+the source stem matches that instance, and the document language is declared
+for both views. This route keeps the instance's governed linked art, native
+leaders, and editable callout text; it does not approve or synthesize a
+whole-document reference plan. Unregistered targets keep ordinary prose, while
+a matching registered page with an undeclared language stops with an explicit
+contract error.
+
+The LCD icon table follows the same separation without borrowing the rest of
+the approved page plan. When a single-language IDML export matches an approved
+reference-layout registry entry by model/region, exact LCD source page, and
+declared language, it reuses only that contract's `lcd_icon_table` profile:
+row order, display numbers, icon size, and per-language physical row heights.
+This prevents the zero-inset standalone settings from being applied to
+unmeasured automatic rows. A non-owned source keeps the ordinary LCD fallback;
+an undeclared language for a registered target also keeps that generic fallback
+and never borrows another language's registered geometry.
+
 When a source refresh changes mutable style/provenance identity without changing
 the approved content or semantic/physical assembly, use the rebind command
 instead of editing one hash or removing the registry entry. It is a dry-run

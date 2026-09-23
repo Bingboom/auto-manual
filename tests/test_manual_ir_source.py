@@ -6,11 +6,13 @@ from dataclasses import replace
 import io
 import json
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 import tempfile
 import textwrap
 import unittest
+import zipfile
 from unittest.mock import patch
 
 from tools.manual_ir import (
@@ -187,6 +189,237 @@ class ManualIRSourceTests(unittest.TestCase):
                 self.assertEqual(1, len(built))
                 self.assertEqual(built[0], read_manual_ir(path))
                 self.assertEqual(FIXTURE_CONTENT_SHA, built[0].content_sha256)
+
+    def test_real_exporter_routes_registered_single_language_overview_without_plan(self) -> None:
+        from tools import export_idml
+
+        overview = """\
+PRODUCT OVERVIEW
+================
+
+FRONT VIEW
+----------
+
+.. image:: front.png
+
+.. list-table::
+   :header-rows: 0
+
+   * - **POWER Button**
+     - **LCD**
+   * - **DC 12 V Port** 12 V / 10 A max.
+     - **LED Light Button**
+   * - **DC / USB Power Button**
+     - **LED Light**
+   * - **USB-C 30 W Output** 30 W max.
+     - **AC Power Button**
+   * - **USB-C 100 W Output** 100 W max.
+     - **AC Output** 120 V~
+   * - **USB-A 18 W Output** 18 W max.
+     -
+
+.. list-table::
+   :header-rows: 0
+
+   * - **Total Output** 1500 W Rated
+
+RIGHT SIDE VIEW
+---------------
+
+.. image:: right.png
+
+.. list-table::
+   :header-rows: 0
+
+   * - **Handle**
+     - **AC Input** 100 V-120 V~
+   * -
+     - **DC Input (2×DC8020 Ports)** PV: 16-60 V⎓12 A max. Car: 11-16 V⎓8 A max.
+"""
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "bundle"
+            shutil.copytree(BUNDLE, bundle)
+            overview_path = bundle / "page" / "03_product_overview_placeholder.rst"
+            overview_path.write_text(overview, encoding="utf-8")
+            (bundle / "front.png").write_bytes(b"governed-front-art")
+            (bundle / "right.png").write_bytes(b"governed-right-art")
+            index = bundle / "index.rst"
+            index.write_text(
+                index.read_text(encoding="utf-8")
+                + "\n.. include:: page/03_product_overview_placeholder.rst\n",
+                encoding="utf-8",
+            )
+            output = root / "manual.idml"
+            plan_results = []
+            real_plan = export_idml._ir_projection.build_reference_page_plan
+
+            def capture_plan(*args, **kwargs):
+                plan = real_plan(*args, **kwargs)
+                plan_results.append(plan)
+                return plan
+
+            argv = [
+                "export_idml.py",
+                "--bundle-root", str(bundle),
+                "--model", "JE-1000F",
+                "--region", "US",
+                "--lang", "en",
+                "--data-root", str(DATA),
+                "--out", str(output),
+            ]
+            with patch.object(
+                export_idml._ir_projection,
+                "build_reference_page_plan",
+                side_effect=capture_plan,
+            ), patch.object(sys, "argv", argv), redirect_stdout(io.StringIO()):
+                self.assertEqual(0, export_idml.main())
+
+            self.assertEqual([None], plan_results)
+            with zipfile.ZipFile(output) as archive:
+                overview_spreads = [
+                    archive.read(name).decode("utf-8")
+                    for name in archive.namelist()
+                    if name.startswith("Spreads/")
+                    and b"art_st_overview_03_product_overview_placeholder_front"
+                    in archive.read(name)
+                ]
+                self.assertEqual(1, len(overview_spreads))
+                spread = overview_spreads[0]
+                self.assertEqual(2, spread.count('ContentType="GraphicType"'))
+                self.assertEqual(32, spread.count("<GraphicLine "))
+                self.assertIn((bundle / "front.png").resolve().as_uri(), spread)
+                self.assertIn((bundle / "right.png").resolve().as_uri(), spread)
+                overview_stories = "".join(
+                    archive.read(name).decode("utf-8")
+                    for name in archive.namelist()
+                    if name.startswith("Stories/Story_st_overview_")
+                )
+                self.assertIn("Total Output", overview_stories)
+                self.assertIn("DC Input (2×DC8020 Ports)", overview_stories)
+                self.assertIn("Car: 11-16", overview_stories)
+                self.assertNotIn("<Table ", overview_stories)
+
+    def test_real_exporter_keeps_registered_single_art_overview_supported(self) -> None:
+        from tools import export_idml
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "bundle"
+            shutil.copytree(BUNDLE, bundle)
+            overview_path = bundle / "page" / "03_product_overview_placeholder.rst"
+            overview_path.write_text(
+                "PRODUCT OVERVIEW\n================\n\n"
+                ".. image:: overview.pdf\n",
+                encoding="utf-8",
+            )
+            (bundle / "overview.pdf").write_bytes(b"governed-overview-composite")
+            index = bundle / "index.rst"
+            index.write_text(
+                index.read_text(encoding="utf-8")
+                + "\n.. include:: page/03_product_overview_placeholder.rst\n",
+                encoding="utf-8",
+            )
+            output = root / "manual.idml"
+            argv = [
+                "export_idml.py",
+                "--bundle-root", str(bundle),
+                "--model", "JE-1000F",
+                "--region", "US",
+                "--lang", "en",
+                "--data-root", str(DATA),
+                "--out", str(output),
+            ]
+            with patch.object(sys, "argv", argv), redirect_stdout(io.StringIO()):
+                self.assertEqual(0, export_idml.main())
+
+            with zipfile.ZipFile(output) as archive:
+                overview_spreads = [
+                    archive.read(name).decode("utf-8")
+                    for name in archive.namelist()
+                    if name.startswith("Spreads/")
+                    and b"art_st_overview_03_product_overview_placeholder_composite"
+                    in archive.read(name)
+                ]
+                self.assertEqual(1, len(overview_spreads))
+                self.assertEqual(
+                    1,
+                    overview_spreads[0].count('ContentType="GraphicType"'),
+                )
+                self.assertIn(
+                    (bundle / "overview.pdf").resolve().as_uri(),
+                    overview_spreads[0],
+                )
+
+    def test_real_exporter_applies_registered_lcd_geometry_without_plan(self) -> None:
+        from tools import export_idml
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            bundle = root / "bundle"
+            shutil.copytree(BUNDLE, bundle)
+            source_numbers = [*range(1, 21), *range(22, 28)]
+            rows = [
+                {
+                    "no": str(number),
+                    "figure": "",
+                    "name": f"Indicator {number}",
+                    "desc": f"Description {number}",
+                }
+                for number in source_numbers
+            ]
+            (bundle / "page" / "lcd_icons_en.rst").write_text(
+                "LCD DISPLAY\n===========\n\n.. raw:: manual-ir\n\n   "
+                + json.dumps({"kind": "lcd_icons", "rows": rows})
+                + "\n",
+                encoding="utf-8",
+            )
+            output = root / "manual.idml"
+            plan_results = []
+            real_plan = export_idml._ir_projection.build_reference_page_plan
+
+            def capture_plan(*args, **kwargs):
+                plan = real_plan(*args, **kwargs)
+                plan_results.append(plan)
+                return plan
+
+            argv = [
+                "export_idml.py",
+                "--bundle-root", str(bundle),
+                "--model", "JE-1000F",
+                "--region", "US",
+                "--lang", "en",
+                "--data-root", str(DATA),
+                "--out", str(output),
+            ]
+            with patch.object(
+                export_idml._ir_projection,
+                "build_reference_page_plan",
+                side_effect=capture_plan,
+            ), patch.object(sys, "argv", argv), redirect_stdout(io.StringIO()):
+                self.assertEqual(0, export_idml.main())
+
+            self.assertEqual([None], plan_results)
+            with zipfile.ZipFile(output) as archive:
+                first = archive.read(
+                    "Stories/Story_st_anchor_lcd_table_en_0.xml"
+                ).decode("utf-8")
+                continuation = archive.read(
+                    "Stories/Story_st_anchor_lcd_table_en_1.xml"
+                ).decode("utf-8")
+
+            self.assertEqual(7, first.count('AutoGrow="false"'))
+            self.assertIn(
+                'SingleRowHeight="19.95" MinimumHeight="19.95"',
+                first,
+            )
+            self.assertIn(
+                'SingleRowHeight="21.49" MinimumHeight="21.49"',
+                first,
+            )
+            self.assertNotIn('TopInset="13.322"', first)
+            self.assertEqual(19, continuation.count('AutoGrow="true"'))
+            self.assertEqual(19, continuation.count('SingleRowHeight="'))
 
     def test_prepared_only_category_and_legacy_language_policy_remains_local(self) -> None:
         from tools.idml.flow_md import _FlowMarkdownWriter

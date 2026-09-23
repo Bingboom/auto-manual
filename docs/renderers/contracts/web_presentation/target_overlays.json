@@ -141,9 +141,37 @@
         "allowed_statuses": [
           "finished-panel",
           "approved-composite"
-        ]
+        ],
+        "slot_status_overrides": {
+          "operation.main-power": [
+            "base-art-live-copy"
+          ],
+          "operation.ac-output": [
+            "base-art-live-copy"
+          ],
+          "operation.energy-saving": [
+            "base-art-live-copy"
+          ]
+        }
       },
-      "contract_overrides": {}
+      "contract_overrides": {
+        "operations": {
+          "figures": [
+            {
+              "id": "main-power",
+              "presentation_mode": "base-art-live-copy"
+            },
+            {
+              "id": "ac-output",
+              "presentation_mode": "base-art-live-copy"
+            },
+            {
+              "id": "energy-saving",
+              "presentation_mode": "base-art-live-copy"
+            }
+          ]
+        }
+      }
     },
     {
       "overlay_id": "je1000f-eu-v1",

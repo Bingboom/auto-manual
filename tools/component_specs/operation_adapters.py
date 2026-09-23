@@ -40,6 +40,13 @@ def web_operation_projection(
     presentation: Mapping[str, Any],
 ) -> dict[str, Any]:
     projection = _projection(spec, "web")
+    explicit_mode = str(projection.get("presentation_mode") or "").strip()
+    contract_mode = str(presentation.get("presentation_mode") or "").strip()
+    if explicit_mode and explicit_mode != contract_mode:
+        raise ComponentSpecError(
+            f"{spec.component_id}: frozen presentation mode {explicit_mode!r} "
+            f"does not match target contract {contract_mode or None!r}"
+        )
     if str(presentation.get("id") or "") != projection["operation_id"]:
         raise ComponentSpecError(
             f"{spec.component_id}: Web presentation does not match operation id"
@@ -107,28 +114,36 @@ def idml_operation_payload(spec: ComponentSpec) -> dict[str, Any]:
     support = [_plain_html(value) for value in projection["supporting_copy"]]
     layout = projection["layout"]
     if layout == "footer-overlay":
-        return {
+        payload = {
             "kind": "oppanel",
+            "operation_id": projection["operation_id"],
             "layout": "energy_saving",
             "image": projection["artwork_ref"],
             "action": rows[0][1] if rows else "",
             "guidance": support,
         }
-    if layout == "footer-panel":
-        return {
+    elif layout == "footer-panel":
+        payload = {
             "kind": "oppanel",
+            "operation_id": projection["operation_id"],
             "layout": "led_light",
             "image": projection["artwork_ref"],
             "lead": prereq,
             "steps": [instruction or label for label, instruction in rows],
         }
-    return {
-        "kind": "oppanel",
-        "image": projection["artwork_ref"],
-        "prereq": prereq,
-        "rows": rows,
-        "tail": "\n".join(support),
-    }
+    else:
+        payload = {
+            "kind": "oppanel",
+            "operation_id": projection["operation_id"],
+            "image": projection["artwork_ref"],
+            "prereq": prereq,
+            "rows": rows,
+            "tail": "\n".join(support),
+        }
+    presentation_mode = str(projection.get("presentation_mode") or "").strip()
+    if presentation_mode:
+        payload["presentation_mode"] = presentation_mode
+    return payload
 
 
 def word_operation_projection(spec: ComponentSpec) -> dict[str, Any]:

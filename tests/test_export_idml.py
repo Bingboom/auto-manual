@@ -1249,6 +1249,25 @@ class ExportIdmlTests(unittest.TestCase):
             story,
         )
 
+    def test_operation_rhythm_does_not_leak_into_later_generic_sections(self) -> None:
+        from tools.idml.writer import IdmlWriter
+
+        writer = IdmlWriter({
+            "lang_en_idml_operation_inter_section_space_after": ("48.2", "pt"),
+        })
+        writer.add_prose_story(
+            "st_operation_with_charging_tail",
+            "05_operation_guide_placeholder + charging",
+            [
+                ("body", "Emergency charging detail."),
+                ("h2", "CHARGING VIA SOLAR PANELS"),
+            ],
+            ROOT,
+            language="en",
+        )
+        story = dict(writer.stories)["st_operation_with_charging_tail"]
+        self.assertNotIn('SpaceAfter="48.2"', story)
+
     def test_operation_first_page_rhythm_preserves_second_panel_position(self) -> None:
         from tools.idml.story_rhythm import operation_story_rhythm_for_next_block
 
@@ -2481,6 +2500,45 @@ class ExportIdmlTests(unittest.TestCase):
                 {"plan_source": "measured-latex", "pages": []},
                 "08_charging_methods",
             ),
+        )
+
+    def test_registered_charging_component_absorbs_vehicle_lineblock(self) -> None:
+        from tools.idml.prose_flow import promote_reference_figures
+
+        plan = {
+            "plan_source": "registered-component",
+            "pages": [{
+                "source_ref": "page/08_charging_methods.rst",
+                "source_path": "page/08_charging_methods.rst",
+                "composition_id": "en_charging_methods",
+                "composition_type": "charging_methods",
+            }],
+        }
+        lineblock = "Vehicle\n*The car charging cable is sold separately."
+        blocks = [
+            ("h2", "CHARGING VIA A CAR CHARGER"),
+            ("body", "Use a 12V car charger."),
+            ("image", "renderers/latex/assets/car_charge.png"),
+            ("body", lineblock),
+        ]
+
+        promoted = promote_reference_figures(
+            blocks, plan, "08_charging_methods",
+        )
+
+        spec = next(
+            json.loads(payload)
+            for kind, payload in promoted
+            if kind == "component"
+        )
+        self.assertEqual("charging_car", spec["layout"])
+        self.assertEqual("Vehicle", spec["vehicle"])
+        self.assertEqual(
+            "*The car charging cable is sold separately.", spec["note"],
+        )
+        self.assertNotIn(("body", lineblock), promoted)
+        self.assertIn(
+            ("h2_charging_car", "CHARGING VIA A CAR CHARGER"), promoted,
         )
 
     def test_charging_reference_promotion_requires_canonical_page_stem(self) -> None:

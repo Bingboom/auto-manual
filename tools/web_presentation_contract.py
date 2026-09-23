@@ -18,6 +18,7 @@ FIGURE_DEBT_SCHEMA_VERSION = "web-figure-debt-baseline/v1"
 CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v2"
 LEGACY_CONTRACT_SCHEMA_VERSION = "web-manual-presentation/v1"
 _FINISHED_FIGURE_STATUSES = ("finished-panel", "approved-composite")
+_BASE_ART_LIVE_COPY_STATUS = "base-art-live-copy"
 _DEBT_FIGURE_STATUSES = frozenset({"editable-fallback", "missing"})
 
 
@@ -350,6 +351,44 @@ def _normalize_coverage_policy(
             f"{prefix}.allowed_statuses must contain only finished artwork: "
             f"{list(_FINISHED_FIGURE_STATUSES)}"
         )
+    raw_slot_overrides = coverage.get("slot_status_overrides", {})
+    if not isinstance(raw_slot_overrides, Mapping):
+        raise WebPresentationContractError(
+            f"{prefix}.slot_status_overrides must be an object"
+        )
+    slot_status_overrides: dict[str, list[str]] = {}
+    for raw_slot, raw_statuses in raw_slot_overrides.items():
+        slot = _non_empty(raw_slot, field=f"{prefix}.slot_status_overrides key")
+        statuses = _string_list(
+            raw_statuses,
+            field=f"{prefix}.slot_status_overrides.{slot}",
+        )
+        if statuses != [_BASE_ART_LIVE_COPY_STATUS]:
+            raise WebPresentationContractError(
+                f"{prefix}.slot_status_overrides.{slot} must contain only "
+                f"{_BASE_ART_LIVE_COPY_STATUS!r}"
+            )
+        if slot not in required_slots:
+            raise WebPresentationContractError(
+                f"{prefix}.slot_status_overrides.{slot} is outside required_slots"
+            )
+        slot_status_overrides[slot] = statuses
+    operations = resolved_contract.get("operations", {})
+    configured_base_art_slots = {
+        str(figure.get("web_replace_key") or "").strip()
+        for figure in (
+            operations.get("figures", []) if isinstance(operations, Mapping) else []
+        )
+        if isinstance(figure, Mapping)
+        and str(figure.get("presentation_mode") or "").strip()
+        == _BASE_ART_LIVE_COPY_STATUS
+    }
+    if set(slot_status_overrides) != configured_base_art_slots:
+        raise WebPresentationContractError(
+            f"{prefix}.slot_status_overrides must exactly match base-art-live-copy "
+            f"figures; overrides={sorted(slot_status_overrides)}, "
+            f"figures={sorted(configured_base_art_slots)}"
+        )
     if figures_enabled:
         derived = _derived_figure_slots(resolved_contract, target=overlay["target"])
         missing = [slot for slot in derived if slot not in required_slots]
@@ -359,12 +398,15 @@ def _normalize_coverage_policy(
                 f"{prefix}.required_slots are incomplete or out of scope; "
                 f"missing={missing}, extra={extra}"
             )
-    return {
+    normalized = {
         "policy_id": policy_id,
         "locales": locales,
         "required_slots": required_slots,
         "allowed_statuses": allowed_statuses,
     }
+    if slot_status_overrides:
+        normalized["slot_status_overrides"] = slot_status_overrides
+    return normalized
 
 
 def _load_figure_debt(

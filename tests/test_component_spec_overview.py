@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import replace
 from pathlib import Path
 import unittest
 
@@ -25,6 +26,7 @@ from tools.component_specs.overview_instance import (
     validate_resolved_overview_instance,
     validate_overview_instance_registry,
 )
+from tools.component_specs.overview_target import find_overview_instance
 from tools.component_specs.projection import project_manual_ir_components
 from tools.component_specs.registry import load_component_registry, validate_component_spec
 from tools.component_specs.theme import load_manual_theme
@@ -151,6 +153,13 @@ class OverviewComponentSpecTests(unittest.TestCase):
                 region="CN",
                 registry=self.instance_registry,
             )
+        self.assertIsNone(
+            find_overview_instance(
+                model="JBP-2000B",
+                region="CN",
+                registry=self.instance_registry,
+            )
+        )
 
     def test_resolved_instance_is_self_contained_and_hashable_for_ir_replay(self) -> None:
         self.assertEqual([], validate_resolved_overview_instance(self.instance))
@@ -374,6 +383,22 @@ class OverviewComponentSpecTests(unittest.TestCase):
         self.assertEqual("en", spec.language)
         self.assertEqual(["front_art", "right_art"], [asset.role for asset in spec.assets])
         self.assertEqual(15, sum(len(view["callouts"]) for view in spec.slot("views").content))
+
+        unregistered = replace(ir, model="UNREGISTERED")
+        self.assertFalse(
+            any(
+                candidate.component_id == COMPONENT_ID
+                for candidate in project_manual_ir_components(unregistered)
+            )
+        )
+
+        undeclared_page = replace(page, language="de")
+        undeclared = replace(ir, language="de", pages=(undeclared_page,))
+        with self.assertRaisesRegex(
+            ComponentSpecError,
+            "overview language 'de' must be declared once",
+        ):
+            project_manual_ir_components(undeclared)
 
     def test_idml_block_adapter_preserves_legacy_right_view_marker(self) -> None:
         blocks = [

@@ -217,6 +217,132 @@ class ReferenceArtGeometryTests(unittest.TestCase):
             ],
         )
 
+    def test_us_base_art_keeps_one_clock_and_legacy_safe_prereq_stack(self) -> None:
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+        us_ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=ROOT / "docs",
+            model="JE-1000F",
+            region="US",
+            language="en",
+            add_story=add_story,
+        )
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "operation_id": "main-power",
+                "image": "renderers/latex/assets/op_main_power.png",
+                "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+            },
+            us_ctx,
+            tid="us_base_power",
+            terminal=False,
+        )
+        power_panel = stories["st_anchor_oppanel_us_base_power"]
+        self.assertNotIn("oppanel_main_power_clock_mask_us_base_power", power_panel)
+        self.assertNotIn("oppanel_main_power_clock_us_base_power", power_panel)
+        self.assertIn("tf_oppanel_main_power_duration_us_base_power", power_panel)
+        self.assertIn("st_anchor_oppanel_row_0_us_base_power", stories)
+        base_duration = _item_bounds(
+            power_panel,
+            "tf_oppanel_main_power_duration_us_base_power",
+        )
+
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "operation_id": "ac-output",
+                "image": "renderers/latex/assets/op_ac_output.png",
+                "prereq": "Prerequisite: The product is powered on.",
+                "rows": [["On", "Press once"], ["Off", "Press once"]],
+            },
+            us_ctx,
+            tid="us_base_ac",
+            terminal=False,
+        )
+        ac_panel = stories["st_anchor_oppanel_us_base_ac"]
+        self.assertIn("oppanel_prereq_mask_us_base_ac", ac_panel)
+        self.assertIn("oppanel_prereq_bg_us_base_ac", ac_panel)
+        self.assertIn("tf_oppanel_prereq_us_base_ac", ac_panel)
+
+        eu_ctx = RenderContext(
+            params=base.params,
+            page_w=base.page_w,
+            m_l=base.m_l,
+            m_r=base.m_r,
+            root=base.root,
+            bundle_root=ROOT / "docs",
+            model="JE-1000F",
+            region="EU",
+            language="en",
+            add_story=add_story,
+        )
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "operation_id": "ac-output",
+                "image": "renderers/latex/assets/op_ac_output.png",
+                "prereq": "Prerequisite: The product is powered on.",
+                "rows": [["On", "Press once"], ["Off", "Press once"]],
+            },
+            eu_ctx,
+            tid="eu_legacy_ac",
+            terminal=False,
+        )
+        self.assertIn(
+            "oppanel_prereq_mask_eu_legacy_ac",
+            stories["st_anchor_oppanel_eu_legacy_ac"],
+        )
+        render_oppanel(
+            {
+                "kind": "oppanel",
+                "operation_id": "main-power",
+                "image": "renderers/latex/assets/op_main_power.png",
+                "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+            },
+            eu_ctx,
+            tid="eu_legacy_power",
+            terminal=False,
+        )
+        legacy_power = stories["st_anchor_oppanel_eu_legacy_power"]
+        self.assertIn("oppanel_main_power_clock_mask_eu_legacy_power", legacy_power)
+        self.assertIn("oppanel_main_power_clock_eu_legacy_power", legacy_power)
+        self.assertIn("tf_oppanel_main_power_duration_eu_legacy_power", legacy_power)
+        legacy_duration = _item_bounds(
+            legacy_power,
+            "tf_oppanel_main_power_duration_eu_legacy_power",
+        )
+        self.assertGreater(base_duration[0], legacy_duration[0] + 15.0)
+        self.assertAlmostEqual(base_duration[1], legacy_duration[1], places=3)
+        self.assertAlmostEqual(base_duration[3], legacy_duration[3], places=3)
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "frozen operation artwork mode.*does not match target contract",
+        ):
+            render_oppanel(
+                {
+                    "kind": "oppanel",
+                    "operation_id": "main-power",
+                    "presentation_mode": "base-art-live-copy",
+                    "image": "renderers/latex/assets/op_main_power.png",
+                    "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+                },
+                eu_ctx,
+                tid="eu_stale_base_mode",
+                terminal=False,
+            )
+
     def test_main_power_duration_is_language_neutral(self) -> None:
         for instruction in (
             "Press and hold for 3 seconds.",

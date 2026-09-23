@@ -285,7 +285,7 @@ def main() -> int:
                                    fit_content=bool(page_plan) and not approved_reference)
             chain(sid, w.estimate_spec_height(secs) + 10.0 * len(notes))
         elif kind == "lcd":
-            data = _ir_projection.lcd_page_data(
+            data = _ir_projection.governed_lcd_page_data(
                 manual_ir, lang, root=ROOT, data_root=data_root,
                 reference_plan=page_plan)
             if data is None:
@@ -405,16 +405,15 @@ def main() -> int:
         skipped_raw += res.skipped_raw
         blocks = _prose_flow.align_operation_tail(list(res.blocks), page_plan, page.stem)
         blocks = _prose_flow.align_charging_car_page(blocks, page_plan, page.stem)
-        if approved_reference and role is _page_roles.PageRole.PRODUCT_OVERVIEW:
+        blocks = target_renderer.prepare_page_blocks(page, blocks)
+        if role is _page_roles.PageRole.PRODUCT_OVERVIEW and _ir_projection.uses_native_overview_page(
+            manual_ir, page, bundle_root, approved_reference=approved_reference,
+        ):
             flush_prose_flow()
             toc.note_h1s(blocks, page_cursor)
             _overview.add_product_overview_page(
-                w,
-                "st_overview_" + slug_stem(page.stem),
-                blocks,
-                bundle_root,
-                page_cursor,
-            )
+                w, "st_overview_" + slug_stem(page.stem), blocks,
+                bundle_root, page_cursor)
             page_cursor += 1
             prose_pages += 1
             continue

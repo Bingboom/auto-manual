@@ -624,6 +624,73 @@ class SharedPageTests(unittest.TestCase):
         self.assertIn("건조한 곳에", story_text(storage_sid))
         self.assertIn("F0", "".join(stories.values()))
 
+    def test_leading_car_notice_gets_own_region_before_storage(self) -> None:
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        writer = IdmlWriter(
+            params,
+            model="JE-1000F",
+            region="US",
+            language="en",
+            native_structure_markers=True,
+        )
+        notice = (
+            "component",
+            json.dumps({
+                "kind": "notice",
+                "label": "CAUTION",
+                "texts": ["Do not charge the product from a car socket."],
+            }),
+        )
+        storage_sid, trouble_sid = add_storage_troubleshooting_page(
+            writer,
+            sid="st_storage_trouble",
+            storage_blocks=[
+                notice,
+                ("h1", "STORAGE AND MAINTENANCE"),
+                ("body", "Store the product in a dry, clean place."),
+                ("body", "Recharge it every three months."),
+            ],
+            trouble_sid="st_troubleshooting_en",
+            trouble_title="troubleshooting_en",
+            trouble_blocks=[
+                ("h1", "TROUBLESHOOTING"),
+                ("table", json.dumps([["Code", "Solution"], ["F0", "Restart."]])),
+            ],
+            bundle_root=ROOT,
+            page_index=15,
+            language="en",
+        )
+
+        spread = dict(writer.spreads)["sp_15"]
+
+        def frame_y_range(story_id: str) -> tuple[float, float]:
+            frame = spread.split(f'ParentStory="{story_id}"', 1)[1].split(
+                "</TextFrame>", 1,
+            )[0]
+            anchors = [
+                float(chunk.split('"', 1)[0].split(" ")[1])
+                for chunk in frame.split('Anchor="')[1:]
+            ]
+            return min(anchors), max(anchors)
+
+        notice_sid = f"{storage_sid}_lead_notice"
+        notice_top, notice_bottom = frame_y_range(notice_sid)
+        storage_top, storage_bottom = frame_y_range(storage_sid)
+        trouble_top, trouble_bottom = frame_y_range(trouble_sid)
+        self.assertLess(notice_top, notice_bottom)
+        self.assertLess(notice_bottom, storage_top)
+        self.assertLess(storage_top, storage_bottom)
+        self.assertLess(storage_bottom, trouble_top)
+        self.assertLess(trouble_top, trouble_bottom)
+
+        stories = dict(writer.stories)
+        self.assertIn(
+            "Do not charge",
+            stories[f"st_anchor_notice_body_{notice_sid}_cmp0"],
+        )
+        self.assertNotIn("Do not charge", stories[storage_sid])
+        self.assertIn("Recharge it every three months.", stories[storage_sid])
+
     def test_compact_specifications_group_and_reorder_from_target_data(
         self,
     ) -> None:

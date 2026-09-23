@@ -1030,6 +1030,25 @@ page, or density should reuse an existing visual component, follow
 [`dev/style_component_usage_guide.md`](dev/style_component_usage_guide.md) before
 adding page-level geometry or finalizer behavior.
 
+The whole-document reference plan does not gate a target-scoped Product
+Overview component. For a single-language export with no approved page plan,
+production IDML still selects the native Overview compositor when the resolved
+`overview_component_instances.json` entry matches the exact model/region,
+source stem, and language. That component uses only the prepared bundle's
+governed linked art and emits native leaders plus editable text. A target with
+no matching instance retains ordinary prose behavior; a matching source in an
+undeclared language fails rather than borrowing another language's geometry.
+
+The registered approved-reference LCD profile is also component-scoped. If a
+single-language export has no whole-document page plan, production IDML may
+still apply `idml_contract.editable_components.lcd_icon_table` when the
+registry entry matches the exact model/region, LCD source reference, and
+language. Only row presentation, icon sizing, and per-language row geometry
+are reused; page counts and other reference compositions remain inactive.
+Unowned pages keep the generic LCD path, and a registered target cannot borrow
+LCD geometry from an undeclared language; that language keeps the generic LCD
+fallback instead of failing or borrowing the registered profile.
+
 `JBP-2000B / EU / en+fr+es+de+it+uk` is the second target resolved from the
 same `BP@INTL` skeleton. Build it with `configs/config.bp-eu.yaml`; `uk` is
 Ukrainian and this target makes no UK-market claim. Its paired host is named

@@ -138,7 +138,7 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         (slot.content for slot in spec.slots if slot.role == "supporting_copy"),
         [],
     )
-    return {
+    projection = {
         "operation_id": str(spec.slot("operation_id").content),
         "accessibility_label": str(spec.slot("accessibility_label").content),
         "layout": spec.variant,
@@ -147,6 +147,10 @@ def operation_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         "supporting_copy": deepcopy(list(supporting)),
         "artwork_ref": spec.assets[0].asset_ref,
     }
+    presentation_mode = str(spec.metadata.get("presentation_mode") or "").strip()
+    if presentation_mode:
+        projection["presentation_mode"] = presentation_mode
+    return projection
 
 
 __all__ = [
