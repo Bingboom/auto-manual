@@ -255,6 +255,86 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                 self.assertIn(f"oppanel_main_power_clock_mask_{tid}", panel)
                 self.assertIn(f"oppanel_main_power_clock_{tid}", panel)
 
+    def test_registered_base_art_keeps_one_drawn_clock(self) -> None:
+        stories = {}
+
+        def add_story(story_id, _label, parts):
+            stories[story_id] = "".join(parts)
+            return story_id
+
+        base = _ctx()
+
+        def ctx(region: str, *, registered: bool) -> RenderContext:
+            return RenderContext(
+                params=base.params,
+                page_w=base.page_w,
+                m_l=base.m_l,
+                m_r=base.m_r,
+                root=base.root,
+                bundle_root=ROOT / "docs",
+                model="JE-1000F",
+                region=region,
+                language="en",
+                registered_components=registered,
+                add_story=add_story,
+            )
+
+        power = {
+            "kind": "oppanel",
+            "image": "renderers/latex/assets/op_main_power.png",
+            "rows": [["On", "Press once"], ["Off", "Hold for 3 seconds"]],
+        }
+        ac = {
+            "kind": "oppanel",
+            "image": "renderers/latex/assets/op_ac_output.png",
+            "prereq": "Prerequisite: The product is powered on.",
+            "rows": [["On", "Press once"], ["Off", "Press once"]],
+        }
+        render_oppanel(power, ctx("US", registered=True), tid="base_power", terminal=False)
+        render_oppanel(power, ctx("US", registered=False), tid="legacy_power", terminal=False)
+        render_oppanel(power, ctx("EU", registered=True), tid="eu_power", terminal=False)
+        render_oppanel(ac, ctx("US", registered=True), tid="base_ac", terminal=False)
+
+        base_power = stories["st_anchor_oppanel_base_power"]
+        self.assertNotIn("oppanel_main_power_clock_mask_base_power", base_power)
+        self.assertNotIn("oppanel_main_power_clock_base_power", base_power)
+        self.assertIn("st_anchor_oppanel_row_0_base_power", stories)
+        base_duration = _item_bounds(
+            base_power, "tf_oppanel_main_power_duration_base_power",
+        )
+        legacy_power = stories["st_anchor_oppanel_legacy_power"]
+        self.assertIn("oppanel_main_power_clock_mask_legacy_power", legacy_power)
+        self.assertIn("oppanel_main_power_clock_legacy_power", legacy_power)
+        legacy_duration = _item_bounds(
+            legacy_power, "tf_oppanel_main_power_duration_legacy_power",
+        )
+        # The editable duration moves past the drawn clock, on the same line.
+        self.assertGreater(base_duration[0], legacy_duration[0] + 15.0)
+        self.assertAlmostEqual(base_duration[1], legacy_duration[1], places=3)
+        self.assertAlmostEqual(base_duration[3], legacy_duration[3], places=3)
+        # A target whose contract has no base-art mode keeps the legacy panel.
+        self.assertIn(
+            "oppanel_main_power_clock_mask_eu_power",
+            stories["st_anchor_oppanel_eu_power"],
+        )
+        # Only the main-power panel changes; the AC prerequisite keeps its mask.
+        self.assertIn("oppanel_prereq_mask_base_ac", stories["st_anchor_oppanel_base_ac"])
+
+        stale = {**power, "presentation_mode": "base-art-live-copy"}
+        for label, context in (
+            ("other target", ctx("EU", registered=True)),
+            ("no target", RenderContext(
+                params=base.params, page_w=base.page_w, m_l=base.m_l,
+                m_r=base.m_r, root=base.root, bundle_root=ROOT / "docs",
+                add_story=add_story,
+            )),
+        ):
+            with self.subTest(label), self.assertRaisesRegex(
+                ValueError,
+                "frozen operation artwork mode.*does not match target contract",
+            ):
+                render_oppanel(stale, context, tid="stale_mode", terminal=False)
+
     def test_main_power_duration_is_language_neutral(self) -> None:
         for instruction in (
             "Press and hold for 3 seconds.",

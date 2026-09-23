@@ -12,6 +12,17 @@ from tools.web_presentation_contract import load_web_presentation_contract
 BASE_ART_LIVE_COPY = "base-art-live-copy"
 
 
+def operation_id_from_ref(ref: str, *, layout: str = "") -> str:
+    """Return a stable operation id without making the asset filename a layout API."""
+
+    normalized_layout = str(layout or "").strip().casefold().replace("_", "-")
+    if normalized_layout == "energy-saving":
+        return "energy-saving"
+    stem = Path(str(ref or "").replace("\\", "/")).stem.casefold()
+    normalized = stem.replace("_", "-")
+    return normalized.removeprefix("op-")
+
+
 def operation_artwork_mode_from_contract(
     contract: Mapping[str, Any],
     *,
@@ -92,4 +103,5 @@ __all__ = [
     "apply_web_artwork_mode",
     "operation_artwork_mode",
     "operation_artwork_mode_from_contract",
+    "operation_id_from_ref",
 ]
