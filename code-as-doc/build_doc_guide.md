@@ -861,6 +861,8 @@ Web Publish / Read the Docs note:
   separate versioned debt baseline. That baseline currently contains nine US
   Charging fallbacks and nine KR missing panels; new or worsening debt fails,
   and a repaired row must be deleted from the baseline in the same change.
+  While a reference figure waits for its finished panel, its source art fills
+  the figure width (the source's inline `:width:` no longer shrinks it).
   A target overlay may instead grant one Operation slot the bounded
   `base-art-live-copy` state (today all five JE-1000F/US Operation figures,
   EN/FR/ES): the frozen text-free artwork is the only image and the source copy

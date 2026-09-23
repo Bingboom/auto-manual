@@ -1151,6 +1151,15 @@ body {
   object-fit: contain;
 }
 
+/* The source image keeps its RST ``:width:`` as an inline 360px, which beat the
+   rule above: a figure still waiting for its finished panel showed its art at
+   half the figure width. Like operation art, reference art fills its figure. */
+.hb-reference-figure .hb-reference-art {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
 .hb-reference-caption-grid {
   display: grid;
   grid-template-columns: repeat(var(--hb-caption-count, 1), minmax(0, 1fr));
