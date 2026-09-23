@@ -69,6 +69,11 @@ ALLOWED_MODEL_LITERALS = {
     ("asset_contracts.py", "asset:controls/je1000f_us/network_pairing_panel"),
     ("prose_image.py", "/app/je1000f_us/add_device_je1000f_us.png"),
     ("prose_image.py", "/app/je1000f_us/connect_result_je1000f_us.png"),
+    # The JE-1000F/US LED override: LaTeX flattens renderers/latex/assets, so
+    # its basename must be unique, and the IDML recognises governed operation
+    # art by file name. Retire both when that recognition moves to asset keys.
+    ("prose_image.py", "/assets/op_led_light_je1000f_us.png"),
+    ("oppanel.py", "op_led_light_je1000f_us"),
     ("page_placed.py", "docs/renderers/latex/assets/back_cover_qr_jbp2000b.pdf"),
     ("page_placed.py", "jbp2000b"),
     ("page_placed.py", "je1000f"),

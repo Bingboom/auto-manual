@@ -154,6 +154,9 @@
           ],
           "operation.energy-saving": [
             "base-art-live-copy"
+          ],
+          "operation.led-light": [
+            "base-art-live-copy"
           ]
         }
       },
@@ -209,6 +212,15 @@
               "base_art_layout": {
                 "art_sha256": "9dd943d3063031c0795ff8c4b2b6aac266bfb2bff78e2250e445f27352c23a07",
                 "footer_x": 72.0
+              }
+            },
+            {
+              "id": "led-light",
+              "presentation_mode": "base-art-live-copy",
+              "base_art_layout": {
+                "art_sha256": "483c0dcfcfd6c0f8c460a32d9e320f07c3b7571cc1af80b1ac9d5b8f235430cc",
+                "art_width": 56.8,
+                "step_markers": ["bulb-lit", "sos", "bulb-off"]
               }
             }
           ]

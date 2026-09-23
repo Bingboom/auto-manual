@@ -1033,7 +1033,7 @@ class WebPresentationTests(unittest.TestCase):
                 self.assertIsNone(table.find("col", attrs={"style": re.compile("width:")}))
                 self.assertFalse(any(node.get("style") for node in table.find_all(True)))
 
-    def test_operation_panels_mix_base_art_live_copy_and_localized_composites(self) -> None:
+    def test_operation_panels_render_base_art_live_copy_in_every_locale(self) -> None:
         localized_sources = {
             "en": "05_operation_guide_placeholder.rst",
             "fr": "p26_05_operation_guide_placeholder.rst",
@@ -1046,20 +1046,17 @@ class WebPresentationTests(unittest.TestCase):
             "energy-saving",
             "led-light",
         )
-        # LED keeps its approved composite until its registered base art is
-        # fixed: the current extraction lost the magnifier and the hand.
-        base_art_ids = {"main-power", "ac-output", "dc-usb-output", "energy-saving"}
 
         for language, source_name in localized_sources.items():
             with self.subTest(language=language):
                 soup = BeautifulSoup(_web_fragment(source_name), "html.parser")
                 self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
                 self.assertEqual(
-                    1,
+                    0,
                     len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
                 )
                 self.assertEqual(
-                    4,
+                    5,
                     len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
                 )
                 for operation_id in operation_ids:
@@ -1072,18 +1069,11 @@ class WebPresentationTests(unittest.TestCase):
                         if figure
                         else None
                     )
-                    if operation_id in base_art_ids:
-                        self.assertIsNone(composite)
-                        self.assertEqual(
-                            "base-art-live-copy",
-                            figure.get("data-web-presentation-mode") if figure else None,
-                        )
-                    else:
-                        self.assertIsNotNone(composite)
-                        self.assertIn(
-                            f"operation.{operation_id}_{language}_",
-                            str(composite.get("src", "")) if composite else "",
-                        )
+                    self.assertIsNone(composite)
+                    self.assertEqual(
+                        "base-art-live-copy",
+                        figure.get("data-web-presentation-mode") if figure else None,
+                    )
                     self.assertIsNotNone(
                         figure.select_one(".hb-operation-stage .hb-operation-steps")
                         if figure
@@ -1104,10 +1094,35 @@ class WebPresentationTests(unittest.TestCase):
                 led_light = soup.select_one(
                     '.hb-operation-figure[data-operation-id="led-light"]'
                 )
-                self.assertIsNotNone(
-                    led_light.select_one(".hb-operation-prerequisite")
-                    if led_light
-                    else None
+                self.assertIsNotNone(led_light)
+                if led_light is None:
+                    continue
+                # The lead is its own panel above the art; like the IDML card it
+                # bolds the phrase through its first colon.
+                lead = led_light.select_one(
+                    ".hb-operation-stage > .hb-operation-prerequisite.hb-operation-lead"
+                )
+                self.assertIsNotNone(lead)
+                bold = lead.select_one("strong") if lead else None
+                self.assertTrue(
+                    bold is not None and bold.get_text().rstrip().endswith(":")
+                )
+                panel = led_light.select_one(".hb-operation-stage > .hb-operation-panel")
+                self.assertEqual("--hb-art-width:56.8%", panel.get("style") if panel else None)
+                self.assertEqual(
+                    [
+                        ("light", "hb-operation-marker-bulb-lit", ""),
+                        ("sos", "hb-operation-marker-sos", "SOS"),
+                        ("off", "hb-operation-marker-bulb-off", ""),
+                    ],
+                    [
+                        (
+                            step.get("data-step-id"),
+                            step.select_one(".hb-operation-step-marker")["class"][-1],
+                            step.select_one(".hb-operation-step-marker").get_text(strip=True),
+                        )
+                        for step in led_light.select(".hb-operation-panel .hb-operation-step")
+                    ],
                 )
 
     def test_operation_steps_share_semantics_without_swallowing_locale_notes(self) -> None:

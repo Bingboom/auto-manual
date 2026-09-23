@@ -515,6 +515,10 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 "lcd_mode",
             )
         }
+        # JE-1000F/US resolves its LED art to the target's own override.
+        replacements["asset:operation/led_light"] = str(
+            ROOT / "docs" / "renderers" / "latex" / "assets" / "op_led_light_je1000f_us.png"
+        )
         manifest = load_web_composite_manifest(
             ROOT / "tests" / "fixtures" / "phase2" / "web_composite_manifest.json"
         )
@@ -584,15 +588,20 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
                 )
             soup = BeautifulSoup("".join(fragments), "html.parser")
             self.assertEqual(5, len(soup.select("figure.hb-operation-figure")))
-            # LED keeps its approved composite until its registered art is fixed.
             self.assertEqual(
-                1,
+                0,
                 len(soup.select("figure.hb-operation-figure.hb-has-composite-art")),
             )
             self.assertEqual(
-                4,
+                5,
                 len(soup.select("figure.hb-operation-figure.hb-base-art-live-copy")),
             )
+            # The SOS badge is source panel copy too; it survives the frozen IR.
+            sos = soup.select_one(
+                'figure.hb-base-art-live-copy[data-operation-id="led-light"] '
+                ".hb-operation-marker-sos"
+            )
+            self.assertEqual("SOS", sos.get_text(strip=True) if sos else None)
             # Each drawn pill keeps the tone the contract measured from its art.
             for operation_id, tone in (("ac-output", "#f8f8f8"), ("dc-usb-output", "#e8e8e8")):
                 pill = soup.select_one(
