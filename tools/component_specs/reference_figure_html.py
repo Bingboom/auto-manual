@@ -1,6 +1,7 @@
 """Structure-first HTML adapter for governed reference-figure ComponentSpecs."""
 from __future__ import annotations
 
+from copy import deepcopy
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -183,6 +184,12 @@ def parse_reference_figure_html(
             "source_fragment_sha256": approved_entry.source_fragment_sha256,
         }
         frozen_assets = (("approved_composite", approved_path),)
+    presentation_mode = str(config.get("presentation_mode") or "").strip()
+    if presentation_mode:
+        # A base-art figure draws its registered art with live copy; the
+        # approved composite it replaces is not frozen into the spec.
+        approved = None
+        frozen_assets = ()
 
     source_policy = (
         "shared"
@@ -209,6 +216,14 @@ def parse_reference_figure_html(
             "captions_embedded": bool(config.get("captions_embedded")),
             "captions_origin": "configured" if configured_captions else "carrier",
             "composite_locale": str(composite_locale or ""),
+            **(
+                {
+                    "presentation_mode": presentation_mode,
+                    "base_art_layout": deepcopy(config.get("base_art_layout")),
+                }
+                if presentation_mode
+                else {}
+            ),
         },
     )
     owned = [image]

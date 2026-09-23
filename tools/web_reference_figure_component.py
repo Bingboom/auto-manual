@@ -1,6 +1,7 @@
 """Web renderer for governed reference-figure ComponentSpecs."""
 from __future__ import annotations
 
+from copy import deepcopy
 from pathlib import Path
 from urllib.parse import unquote, urlparse
 
@@ -36,6 +37,9 @@ def _component_contract(payload: dict) -> dict:
         component["caption_labels"] = [item["text"] for item in payload["captions"]]
     if isinstance(payload.get("adjacent_copy"), dict):
         component["capture_adjacent_paragraph"] = True
+    if payload.get("presentation_mode"):
+        component["presentation_mode"] = payload["presentation_mode"]
+        component["base_art_layout"] = deepcopy(payload.get("base_art_layout"))
     resolved_locale = str(payload.get("composite_locale") or "").strip()
     if resolved_locale.casefold() == "shared":
         component["composite_locale"] = "shared"

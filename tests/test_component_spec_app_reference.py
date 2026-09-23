@@ -265,8 +265,23 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                 and spec.variant == "approved-composite"
             ]
             self.assertEqual(
-                {"charging-car", "app-connect-result"},
+                {"app-connect-result"},
                 {str(spec.slot("reference_id").content) for spec in selected},
+            )
+            # JE-1000F/US draws the car figure on its registered art with live
+            # copy: no approved composite is frozen, and the layout replays
+            # from the spec because replay never reopens the contract.
+            (car,) = [
+                spec
+                for spec in specs
+                if spec.component_id == REFERENCE_FIGURE_COMPONENT_ID
+                and str(spec.slot("reference_id").content) == "charging-car"
+            ]
+            self.assertEqual(["source_art"], [asset.role for asset in car.assets])
+            self.assertEqual("base-art-live-copy", car.metadata["presentation_mode"])
+            self.assertEqual(
+                [0, 1],
+                [label["line"] for label in car.metadata["base_art_layout"]["labels"]],
             )
             for spec in specs:
                 for asset in spec.assets:
@@ -316,15 +331,32 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
             self.assertEqual(1, len(soup.select("figure.hb-app-add-device-composition")))
             self.assertEqual(5, len(soup.select("figure.hb-reference-figure")))
             self.assertEqual(
-                2,
+                1,
                 len(soup.select("figure.hb-reference-figure.hb-has-composite-art")),
+            )
+            car_figure = soup.select_one(
+                'figure.hb-reference-figure.hb-base-art-live-copy'
+                '[data-reference-id="charging-car"]'
+            )
+            self.assertIsNotNone(car_figure)
+            self.assertEqual(
+                ["Vehicle", "*The car charging cable is sold separately."],
+                [
+                    " ".join(label.get_text().split())
+                    for label in (
+                        car_figure.select(
+                            ".hb-reference-art-panel > .hb-reference-live-label"
+                        )
+                        if car_figure
+                        else []
+                    )
+                ],
             )
             expected_hashes = {
                 entry.web_replace_key: entry.source_fragment_sha256
                 for entry in manifest.entries
                 if entry.locale in {"en", "shared"}
-                and entry.web_replace_key
-                in {"reference.charging-car", "reference.app-connect-result"}
+                and entry.web_replace_key == "reference.app-connect-result"
             }
             self.assertEqual(
                 expected_hashes,

@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-129 | PR #1229（`feat/idml-led-card-registered-art`，**含本登记行**）：JE-1000F/US 生产 IDML 的 LED 卡片改用登记底图 `operation/je1000f_us/led_light`（止于编号圆列），替代图 `led_light_complete.png` 只保留给共用 `operation/led_light` 导出；会改变交给设计师的 JE-1000F/US IDML LED 卡片（操作者已确认「=== 改」），其它目标不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它目标的 LED 底图、LED 卡片以外的 IDML 版式改动、手动触发发布队列或网页发布、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权」2026-09-23 | #1229 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-130 | PR #1230（`feat/web-je1000f-us-car-base-art`，**含本登记行**）：JE-1000F/US 网页车充图改用登记底图 `charging/je1000f_us/car_charge`（Word/PDF 与 IDML 已在用），「Vehicle」标签与车充线注释改为实时文字、位置照 IDML `_charging_car` 卡片；网页展示契约新增参考图 `base_art_layout`（色带、底色、每条源文字行一个矩形，fail-closed），整书 IR 冻结该布局；西语注释保持模板措辞 vehículo（操作者已定）。IDML、Word/PDF 与已批准版式计划不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：#1223 发布队列 inert 的 review 刷新与内容变更重绑（另开 PR）、西语模板与印刷版的术语统一、飞书合成图清单行的退役及其它线上源表写入、手动触发网页发布或发布队列、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权合入」2026-09-23 | #1230 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-129 | PR #1229（`feat/idml-led-card-registered-art`，**含本登记行**）：JE-1000F/US 生产 IDML 的 LED 卡片改用登记底图 `operation/je1000f_us/led_light`（止于编号圆列），替代图 `led_light_complete.png` 只保留给共用 `operation/led_light` 导出；会改变交给设计师的 JE-1000F/US IDML LED 卡片（操作者已确认「=== 改」），其它目标不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它目标的 LED 底图、LED 卡片以外的 IDML 版式改动、手动触发发布队列或网页发布、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「授权」2026-09-23 | #1229 合入即失效，或操作者撤销 | 已失效（#1229 squash `30f66015` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |

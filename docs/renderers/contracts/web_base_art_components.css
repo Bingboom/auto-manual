@@ -249,6 +249,50 @@
   line-height: 1.35;
 }
 
+/* Base-art reference figures (tools/web_base_art_reference.py): the registered
+   art sits at the bottom of a panel of its own measured tone, a top band holds
+   copy the print card places above the drawing, and the figure's source lines
+   sit on the rectangles the contract declares, as percentages of the panel. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+  position: relative;
+  container-type: inline-size;
+  padding-top: var(--hb-panel-top);
+  overflow: hidden;
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-panel-fill);
+}
+
+/* The art's own hairline white edge and corner cut-outs would show as seams
+   inside the panel; clip them so the panel tone runs through. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel > .hb-reference-art {
+  display: block;
+  border-radius: 0;
+  clip-path: inset(0 0.24% 0.65% 0.16%);
+}
+
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  color: var(--hb-text);
+  font-size: 1.99cqw;
+  line-height: 1.16;
+}
+
+/* A pill grows downward when a language needs a second line. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+  justify-content: center;
+  padding: 0.3cqw 1.2cqw;
+  border-radius: 999px;
+  background: var(--hb-fill);
+  text-align: center;
+}
+
 /* Narrow screens: the drawing scales below readable overlay sizes, so copy
    stacks under the art in source order instead of shrinking. */
 @media (max-width: 760px) {
@@ -356,5 +400,27 @@
 
   .hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
     font-size: 0.88rem;
+  }
+
+  /* The drawing scales below readable label sizes: the source lines stack
+     under the art in source order, on the panel tone. */
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+    padding-top: 0;
+    padding-bottom: 0.55rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+    position: static;
+    display: block;
+    width: auto;
+    min-height: 0;
+    margin: 0.45rem 0.65rem 0;
+    font-size: 0.88rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+    width: fit-content;
+    max-width: calc(100% - 1.3rem);
+    padding: 0.15rem 0.7rem;
   }
 }

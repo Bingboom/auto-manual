@@ -30,6 +30,7 @@ from tools.web_composite_presentation import (
 from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
 from tools.web_base_art_operation import BASE_ART_CLASS, arrange_base_art_operation
+from tools.web_base_art_reference import arrange_base_art_reference
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
 from tools.web_overview_component import transform_overview
@@ -987,6 +988,16 @@ def _transform_reference_figure(
         caption_labels=caption_labels,
     )
     image["class"] = [*image.get("class", []), "hb-composite-art"]
+    if BASE_ART_CLASS in figure.get("class", []):
+        arrange_base_art_reference(
+            soup,
+            semantic=semantic,
+            image=image,
+            label_block=label_block,
+            spec=spec,
+            source_path=source_path,
+            error_type=WebPresentationError,
+        )
     append_reference_captions(
         soup,
         figure,

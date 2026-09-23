@@ -245,6 +245,10 @@ def reference_figure_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
     if spec.variant == "approved-composite":
         payload["approved_composite"]["asset_ref"] = spec.assets[1].asset_ref
         payload["approved_composite"]["locale_policy"] = spec.assets[1].locale_policy
+    presentation_mode = str(spec.metadata.get("presentation_mode") or "").strip()
+    if presentation_mode:
+        payload["presentation_mode"] = presentation_mode
+        payload["base_art_layout"] = deepcopy(spec.metadata.get("base_art_layout"))
     return payload
 
 

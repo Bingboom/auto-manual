@@ -196,6 +196,18 @@ class WebPresentationContractTests(unittest.TestCase):
                 ),
             )
         self.assertFalse(any(eu_modes.values()))
+        reference_modes = {
+            region: {
+                figure["id"]: figure["presentation_mode"]
+                for figure in contract["reference_figures"]["figures"]
+                if figure.get("presentation_mode")
+            }
+            for region, contract in (("US", us), ("EU", eu))
+        }
+        self.assertEqual(
+            {"US": {"charging-car": "base-art-live-copy"}, "EU": {}},
+            reference_modes,
+        )
         self.assertNotIn("instance_id", us["product_overview"])
 
     def test_us_and_kr_debt_is_explicit_without_weakening_final_statuses(self) -> None:
@@ -216,6 +228,7 @@ class WebPresentationContractTests(unittest.TestCase):
                 "operation.dc-usb-output": ["base-art-live-copy"],
                 "operation.energy-saving": ["base-art-live-copy"],
                 "operation.led-light": ["base-art-live-copy"],
+                "reference.charging-car": ["base-art-live-copy"],
             },
             us_requirement["slot_status_overrides"],
         )
@@ -656,6 +669,79 @@ class WebPresentationContractTests(unittest.TestCase):
             {"operation.main-power": ["base-art-live-copy"]},
             requirement["slot_status_overrides"],
         )
+
+    def test_reference_base_art_places_each_captured_line_once(self) -> None:
+        vehicle = {"line": 0, "rect": [64.0, 30.6, 18.0, 8.96]}
+        note = {"line": 1, "rect": [55.0, 3.73, 42.12, 11.19], "fill": "#ffffff"}
+        layout: dict[str, object] = {
+            "art_sha256": "c" * 64,
+            "panel_top": 6.15,
+            "panel_fill": "#f2f3f3",
+            "labels": [vehicle, note],
+        }
+
+        def overlay(
+            base_art_layout: dict[str, object] | None,
+            *,
+            mode: str = "base-art-live-copy",
+            granted: bool = True,
+        ) -> dict[str, object]:
+            figure: dict[str, object] = {
+                "id": "charging-car",
+                "web_replace_key": "reference.charging-car",
+                "capture_following_lines": 2,
+                "presentation_mode": mode,
+            }
+            if base_art_layout is not None:
+                figure["base_art_layout"] = base_art_layout
+            return {
+                "overlay_id": "one",
+                "target": {"model": "MODEL", "region": "REGION"},
+                "skeleton_profile": "test-skeleton",
+                "figure_coverage": {
+                    "policy_id": "test-policy",
+                    "locales": ["en"],
+                    "required_slots": ["reference.charging-car"],
+                    "allowed_statuses": ["finished-panel", "approved-composite"],
+                    "slot_status_overrides": (
+                        {"reference.charging-car": ["base-art-live-copy"]}
+                        if granted
+                        else {}
+                    ),
+                },
+                "contract_overrides": {"reference_figures": {"figures": [figure]}},
+            }
+
+        def placed(**changes: object) -> dict[str, object]:
+            return {**layout, "labels": [vehicle, {**note, **changes}]}
+
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[overlay(layout)])
+            contract = load_web_manual_contract(entry, model="MODEL", region="REGION")
+        self.assertEqual(
+            {"reference.charging-car": ["base-art-live-copy"]},
+            contract["figure_coverage"]["requirements"][0]["slot_status_overrides"],
+        )
+        rejected = (
+            ("grant missing for a declared mode", overlay(layout, granted=False), "exactly match"),
+            ("unknown mode", overlay(layout, mode="base-art"), "unsupported presentation_mode"),
+            ("no measured layout", overlay(None), "base_art_layout is required"),
+            ("layout names an unknown key", overlay({**layout, "leader_path": []}), "unknown keys"),
+            ("layout without the measured art", overlay({**layout, "art_sha256": "x"}), "must name the measured art"),
+            ("band outside the panel", overlay({**layout, "panel_top": 101}), "panel_top"),
+            ("panel tone that is not #rrggbb", overlay({**layout, "panel_fill": "#F2F3F3"}), "panel_fill"),
+            ("a captured line left unplaced", overlay({**layout, "labels": [vehicle]}), "place each captured"),
+            ("a line placed twice", overlay(placed(line=0)), "distinct captured line"),
+            ("a line that was not captured", overlay(placed(line=2)), "distinct captured line"),
+            ("rect outside the panel", overlay(placed(rect=[55, 3.73, 42.12, 111])), "rect must be 4 percentages"),
+            ("pill tone that is not #rrggbb", overlay(placed(fill="white")), "fill must be a #rrggbb tone"),
+            ("label names a leader", overlay(placed(leader=[1, 2])), "must name only"),
+        )
+        for label, candidate, message in rejected:
+            with self.subTest(label), tempfile.TemporaryDirectory() as td:
+                entry = _write_layered_contract(Path(td), overlays=[candidate])
+                with self.assertRaisesRegex(WebPresentationError, message):
+                    load_web_manual_contract(entry, model="MODEL", region="REGION")
 
     def test_debt_baseline_cannot_grant_an_unmatched_or_rebound_exception(self) -> None:
         policy = {
