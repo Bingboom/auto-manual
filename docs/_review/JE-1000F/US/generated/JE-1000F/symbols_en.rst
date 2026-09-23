@@ -6,10 +6,10 @@ MEANING OF SYMBOLS
    .. raw:: latex
 
       \HBSymbolTable{Symbol}{Meaning}{%
-      \HBSymbolSignalRow{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{WARNING}{Hazardous practices that may result in severe injury, death, and/or property damage.}
-      \HBSymbolSignalRow{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{CAUTION}{Hazardous practices that may result in personal injury and/or property damage.}
-      \HBSymbolSignalRow{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{NOTE}{Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.}
-      \HBSymbolSignalRow{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{TIP}{Supplements the important information or operation tips in the text.}
+      \HBSymbolSignalRow[warning]{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{WARNING}{Hazardous practices that may result in severe injury, death, and/or property damage.}
+      \HBSymbolSignalRow[caution]{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{CAUTION}{Hazardous practices that may result in personal injury and/or property damage.}
+      \HBSymbolSignalRow[note]{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{NOTE}{Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results.}
+      \HBSymbolSignalRow[tips]{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{TIP}{Supplements the important information or operation tips in the text.}
       }
 
 .. only:: not latex

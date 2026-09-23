@@ -198,12 +198,14 @@ class ReferenceLayoutPlanTests(unittest.TestCase):
             [],
             contract["idml_contract"]["allowed_unclassified_source_refs"],
         )
-        # The 2026-09-23 operator-approved content rebind moved the three
-        # operation pages (EN/FR/ES) to the JE-1000F/US LED override art. It
-        # changed exactly those three page bindings and left the 52-source /
-        # 58-page composition map unchanged, like the 2026-08-29 rebind before it.
+        # Two operator-approved content rebinds on 2026-09-23: the first moved
+        # the three operation pages (EN/FR/ES) to the JE-1000F/US LED override
+        # art; the second pinned the six symbols and troubleshooting pages
+        # (EN/FR/ES) in the state the publish queue's review sync writes. Each
+        # changed exactly those page bindings and left the 52-source /
+        # 58-page composition map unchanged, like the 2026-08-29 rebind before.
         self.assertEqual(
-            "f8fb192c7a270f96011ff5f9acb663cf8d980b88e6f231efebab6dfea46a863b",
+            "46319119142e5824202d3f12297557ed46b67fb89bcbde363b852802980bc678",
             contract["identity"]["content"]["manual_content_sha256"],
         )
         self.assertRegex(contract["identity"]["assembly"]["sha256"], r"^[0-9a-f]{64}$")

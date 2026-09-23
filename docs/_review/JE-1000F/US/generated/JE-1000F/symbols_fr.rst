@@ -6,10 +6,10 @@ SIGNIFICATION DES SYMBOLES
    .. raw:: latex
 
       \HBSymbolTable{Symbole}{Signification}{%
-      \HBSymbolSignalRow{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{AVERTISSEMENT}{Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.}
-      \HBSymbolSignalRow{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{ATTENTION}{Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.}
-      \HBSymbolSignalRow{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{REMARQUE}{Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.}
-      \HBSymbolSignalRow{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEIL}{Complète les informations importantes ou les conseils d'utilisation dans le texte.}
+      \HBSymbolSignalRow[warning]{1_warning_D6L1bU14ho67qJxfgFsckZPLnvi.png}{AVERTISSEMENT}{Pratiques dangereuses pouvant entraîner des blessures graves, la mort et/ou des dommages matériels.}
+      \HBSymbolSignalRow[caution]{2_caution_RyzGbLVsxoTIXgxub2ucbCubnue.png}{ATTENTION}{Pratiques dangereuses pouvant entraîner des blessures corporelles et/ou des dommages matériels.}
+      \HBSymbolSignalRow[note]{3_note_S1F6ba2TeoJ2Kjx5kjIcB7h0nwc.png}{REMARQUE}{Pratiques dangereuses pouvant entraîner des dommages à l'équipement, une perte de données, une détérioration des performances ou des résultats inattendus.}
+      \HBSymbolSignalRow[tips]{4_tips_UcS0bmgJnoxqnPxKOS8c8NfjnXd.png}{CONSEIL}{Complète les informations importantes ou les conseils d'utilisation dans le texte.}
       }
 
 .. only:: not latex

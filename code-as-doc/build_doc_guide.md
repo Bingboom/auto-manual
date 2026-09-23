@@ -1151,13 +1151,20 @@ configs keep that historical default unless `--lang` is supplied explicitly.
 The approved v2 contract separates enforced identity from provenance:
 
 The committed engineering-plane review copy is synchronized to
-`Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`.
+`Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`
+plus the 2026-09-23 refresh to the publish queue's review-sync output: the same
+16 files, byte for byte, as
+[Hello-Docs #116](https://github.com/Bingboom/Hello-Docs/pull/116).
 The 2026-08-29 content reapproval covers the current editable IDML semantic
 projection; its rebind changed zero page bindings and left the 58-page
-composition map unchanged. The 2026-09-23 content reapproval moved the three
-operation pages (EN/FR/ES) to the JE-1000F/US LED override art
+composition map unchanged. The first 2026-09-23 content reapproval moved the
+three operation pages (EN/FR/ES) to the JE-1000F/US LED override art
 (`operation/je1000f_us/led_light`); that rebind changed exactly those three page
-bindings and also left the composition map unchanged.
+bindings and also left the composition map unchanged. The second refreshed the
+review copy to the state the publish queue's review sync writes (the six
+symbols and troubleshooting pages, EN/FR/ES: signal-row variants and the F9
+"DC/USB" copy from live data); it changed exactly those six page bindings and
+left the composition map unchanged.
 
 | Contract item | Approved value |
 | --- | --- |
@@ -1166,7 +1173,7 @@ bindings and also left the composition map unchanged.
 | Reference SHA-256 | `e72b1ba01882062e261b17d5ba54a2f7c3099e5ba531a6428be13888641083f2` |
 | Page contract | 58 pages, `368.787 × 524.692 pt`, tolerance `0.02 pt` |
 | Print contract | PDF/X-4, Output Intent `Japan Color 2001 Coated`, Output Condition `JC200103` |
-| Content identity (enforced) | `f8fb192c7a270f96011ff5f9acb663cf8d980b88e6f231efebab6dfea46a863b` |
+| Content identity (enforced) | `46319119142e5824202d3f12297557ed46b67fb89bcbde363b852802980bc678` |
 | Assembly identity (enforced) | `c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57` |
 | Style-contract identity (enforced) | `cdf3b81f7b002bca4596565418c52c0a852666454b7fb77206ae71d1ab9ae420` |
 | Layout-params identity (enforced) | `2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82` |

@@ -35,7 +35,7 @@ Si aparece alguno de los siguientes códigos de fallo, siga las acciones correct
    * - F8
      - Contacte con atención al cliente de Jackery.
    * - F9
-     - Retire la carga conectada a los puertos USB del producto. Espere hasta que la falla desaparezca.
+     - Retire la carga conectada a los puertos DC/USB del producto. Espere hasta que la falla desaparezca.
    * - FE
      - Contacte con atención al cliente de Jackery.
 
