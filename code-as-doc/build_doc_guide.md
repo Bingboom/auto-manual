@@ -2265,6 +2265,13 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 导航。两个界面共用 RTD 项目的可见性设置，详见
 [Personal workspace entry](dev/rtd_manual_portal.md#personal-workspace-entry)。
 
+同一构建还生成 `/workspace/system/` 系统建设页：状态来自
+`tools/rtd_portal_assets/system_workspace.yaml`，数量来自
+`docs/publish/publish_manifest.json`，阶段门进度来自执行台账。修改状态配置后运行
+`python tools/rtd_system_workspace.py check`（加 `--online` 可再核对 PR 与链接）。
+状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
+[System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
+
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
 [目录构建校验](dev/rtd_manual_portal.md#catalog-validation-during-a-build)。

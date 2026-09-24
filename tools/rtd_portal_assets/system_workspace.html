@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="系统建设：已有能力、证据与阶段进度。">
+  <title>系统建设</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
+</head>
+<body class="system-workspace">
+{%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
+{%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+{%- macro evidence_links(rows) -%}{% for ev in rows %}{% if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>{% else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>{% endif %}{% endfor %}{%- endmacro -%}
+<aside class="sidebar">
+  <a class="brand" href="{{ pathto('workspace/index') }}">知识库<span>.</span></a>
+  <div class="workspace"><span>资料库</span></div>
+  <div class="nav-label">工作空间</div>
+  <nav aria-label="知识库导航">
+    <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
+    <a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>
+    <a href="#top" class="nav-link active" aria-current="page"><i>◈</i> 系统建设</a>
+    <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
+    <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
+  </nav>
+</aside>
+
+<div class="shell">
+  <header class="topbar">
+    <button class="mobile-menu" type="button" aria-label="展开导航">☰</button>
+    <div class="breadcrumb">工作空间 <span>/</span> <b>系统建设</b></div>
+    <div class="topbar-right">
+      <div class="edition-switch" aria-label="切换页面">
+        <a class="selected" href="{{ pathto('workspace/index') }}">知识库</a>
+        <a href="{{ pathto('index') }}">工作资料</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="sw-hero">
+      <div class="eyebrow">SYSTEM WORKSPACE</div>
+      <h1>{{ hero.title|e }}<span class="title-dot">.</span></h1>
+      <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
+      <div class="sw-stage"><span>当前阶段</span><b>{{ hero.stage|e }}</b></div>
+      <p class="sw-stage-note">{{ hero.stage_note|e }}</p>
+    </section>
+
+    <section class="sw-tiles" aria-label="系统快照">
+      {%- for tile in tiles %}
+      <div class="sw-tile">
+        <small>{{ tile.label|e }}</small>
+        {%- if tile.kind == 'number' %}
+        <strong>{{ tile.value }}<em>{{ tile.unit|e }}</em></strong>
+        <span>{{ tile.sub|e }}</span>
+        {%- elif tile.kind == 'status' %}
+        <strong>{{ badge(tile.status, tile.status_label) }}</strong>
+        {%- elif tile.kind == 'list' %}
+        <ul class="sw-formats">{% for entry in tile.entries %}<li class="is-{{ entry.status|e }}">{{ entry.label|e }}{% if entry.note %}<em>{{ entry.note|e }}</em>{% endif %}</li>{% endfor %}</ul>
+        {%- elif tile.kind == 'date' %}
+        <strong class="sw-date">{{ tile.value|e }}</strong>
+        <span>{{ tile.sub|e }}</span>
+        {%- else %}
+        <strong class="sw-nodata">无数据</strong>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </section>
+
+    <section class="sw-section" id="capabilities">
+      <div class="section-header"><div>
+        <h2>能力地图</h2>
+        <p>每项状态都附证据；超过 {{ stale_after_days }} 天未复核或证据有变的，标为“待复核”。</p>
+      </div></div>
+      <ul class="sw-legend" aria-label="状态说明">
+        {%- for row in legend %}
+        <li>{{ badge(row.status, row.label) }}<span>{{ row.description|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      <div class="sw-cards">
+        {%- for card in cards %}
+        <article class="sw-card" id="cap-{{ card.id|e }}">
+          <header>
+            <div><h3>{{ card.title|e }}</h3><small>{{ card.en|e }}</small></div>
+            {{ badge(card.status, card.status_label) }}
+          </header>
+          <p class="sw-summary">{{ card.summary|e }}</p>
+          <ul class="sw-items">
+            {%- for entry in card.entries %}
+            <li>
+              <div class="sw-item-head"><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</div>
+              {%- if entry.note %}<p>{{ entry.note|e }}</p>{% endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+          <details class="sw-evidence">
+            <summary>查看证据</summary>
+            <ul>
+              {%- for entry in card.entries %}
+              <li><span>{{ entry.label|e }}</span><span class="sw-refs">{{ evidence_links(entry.evidence) }}</span></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </article>
+        {%- endfor %}
+      </div>
+    </section>
+
+    <section class="sw-section" id="flow">
+      <div class="section-header"><div>
+        <h2>生产流程与连接</h2>
+        <p>单项能力跑通不等于整条链路连通；“人工衔接”表示这一步仍要人来触发或搬运。</p>
+      </div></div>
+      <ol class="sw-flow">
+        {%- for link in flow %}
+        <li>
+          <div class="sw-link-path"><span>{{ link.source|e }}</span><i aria-hidden="true">→</i><span>{{ link.target|e }}</span></div>
+          <div class="sw-link-state">{{ badge(link.status, link.status_label) }}<span class="sw-mode is-{{ link.mode|e }}">{{ link.mode_label|e }}</span>{{ stale_mark(link.stale) }}</div>
+          <p>{{ link.note|e }}</p>
+          <div class="sw-refs">{{ evidence_links(link.evidence) }}</div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </section>
+
+    <section class="sw-section" id="now-next">
+      <div class="section-header"><div>
+        <h2>正在做与下一步</h2>
+        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
+      </div></div>
+      {%- if gates %}
+      <div class="sw-gates">
+        {%- for gate in gates %}
+        <div class="sw-gate is-{{ gate.state|e }}">
+          <div class="sw-gate-head"><b>{{ gate.id|e }}</b><span>{{ gate.label|e }}</span><em>{{ gate.done }} / {{ gate.total }}</em></div>
+          <div class="sw-bar" role="img" aria-label="{{ gate.label|e }}：完成 {{ gate.done }} / {{ gate.total }}"><span style="width:{{ gate.percent }}%"></span></div>
+          <small>{{ gate.tally|e }}</small>
+        </div>
+        {%- endfor %}
+      </div>
+      {%- if now %}
+      <ul class="sw-now" aria-label="当前在做">
+        {%- for row in now %}
+        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>执行台账当前不可读。</p></div>
+      {%- endif %}
+    </section>
+
+    <section class="sw-section" id="working">
+      <div class="section-header"><div>
+        <h2>现在就能用</h2>
+        <p>这些入口已经上线，可以直接打开。</p>
+      </div></div>
+      <div class="sw-open-grid">
+        {%- for row in working %}
+        {%- if row.docname %}
+        <a class="sw-open" href="{{ pathto(row.docname)|e }}">
+          <small>{{ row.meta|e }}</small><h3>{{ row.label|e }}</h3><p>{{ row.note|e }}</p><span>打开 <b>→</b></span>
+        </a>
+        {%- else %}
+        <div class="sw-open is-missing">
+          <small>无数据</small><h3>{{ row.label|e }}</h3><p>发布清单里没有找到这个入口。</p>
+        </div>
+        {%- endif %}
+        {%- endfor %}
+      </div>
+    </section>
+
+    <footer>
+      <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
+      <span>数据来源：发布清单 · 执行台账 · 状态配置（复核于 {{ verified_on|e }}）</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
+</script>
+</body>
+</html>

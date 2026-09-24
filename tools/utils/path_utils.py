@@ -85,6 +85,7 @@ class PathSegments:
     TARGET_ASSEMBLY_PLAN_JSON = "target_assembly_plan.json"
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
     PUBLISH_META_JSON = "publish_meta.json"
+    PUBLISH_MANIFEST_JSON = "publish_manifest.json"
     OPS_CATALOG_RECONCILE_WHITELIST_JSON = "ops_catalog_reconcile_whitelist.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
