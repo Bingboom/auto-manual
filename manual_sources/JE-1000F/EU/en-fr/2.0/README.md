@@ -11,9 +11,12 @@ The historical review manifest is retained as imported provenance, not proof
 of the current release version or freshness of its file hashes.
 
 Only target-matching/shared CSV rows and referenced assets are included.
-The composite manifest contains 22 approved EU panels (11 per locale), with
-embedded localized text. Specifications, LCD mode and other semantic tables
-remain HTML, not screenshots. No online table or queue is required.
+The composite manifest contains 55 approved EU panels (11 per locale for
+EN/FR/ES/DE/IT), with embedded localized text, plus one `locale=shared` App
+connect-result panel: all five language blocks of the PDF print the same
+English App screens (PDF physical page 22 in the EN block). Specifications,
+LCD mode and other semantic tables remain HTML, not screenshots. No online
+table or queue is required.
 
 PDF-backed normalizations in this candidate:
 
@@ -45,6 +48,12 @@ python3 build.py check --config configs/config.eu-en.yaml \
 Repeat with `configs/config.eu-fr.yaml`, `--lang fr` and a different staging
 root. Do not use the merged `config.eu.yaml`: its source index includes a
 French preface absent from the accepted single-language preview.
+
+ES/DE/IT build from the same data root with their `config.eu-<lang>.yaml`
+and the default `--source auto`, not `review-asis`: their reviewed LCD pages
+fail the `review-asis` LCD-table validation (row 20). On 2026-09-24 that
+build matched the published 2026-09-14 ES/DE/IT pages except for the App
+connect-result figure, which now uses the shared panel.
 Then run `build.py md`
 with the same inputs, assemble RTD source below that staging build root, and
 run strict Sphinx. Release identity must use the verified locale,
