@@ -137,7 +137,10 @@ replaces `connect_result.png` in every language, and the localized "screenshots
 are for reference only" sentence stays live text. Its recipe,
 `data/asset_recipes/manual_je2000f_eu_web_app.json`, keeps the crop quarantined
 under the same gate: the hash-pinned manifest entries are its only route onto
-the page, and the frozen source binds the recipe as `app_asset_recipe`. Earlier
+the page, and the frozen source binds the recipe as `app_asset_recipe`.
+`JE-3000C / EU` does the same for its fr/es/de/it/uk routes through five
+one-entry manifests, cut at the 12x scale of its English App panels; English
+keeps its own approved panel. Earlier
 Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
 because their keys carry none of the gate's tokens.
 

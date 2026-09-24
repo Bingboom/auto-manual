@@ -13,6 +13,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
+from tools.build_paths import resolve_web_illustration_manifest
 from tools.manual_ir import read_manual_ir
 from tools.web_document_ir import render_document_fragments
 
@@ -24,6 +25,55 @@ FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = ROOT / "docs/renderers/web/je3000c_eu_en_illustrations.json"
 WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
+APP_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web_app.json"
+SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
+
+
+def _build_web_package(tmp: Path, *, config: Path, lang: str) -> Path:
+    staging = tmp / "staging"
+    fake_bin = tmp / "bin"
+    fake_bin.mkdir()
+    fake_pandoc = fake_bin / "pandoc"
+    fake_pandoc.write_text(
+        "#!/usr/bin/env python3\n"
+        "from pathlib import Path\n"
+        "import sys\n"
+        "if '--list-output-formats' in sys.argv:\n"
+        "    print('myst')\n"
+        "    raise SystemExit(0)\n"
+        "source = Path(sys.argv[1])\n"
+        "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
+        "target.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')\n",
+        encoding="utf-8",
+    )
+    fake_pandoc.chmod(0o755)
+    env = {
+        **os.environ,
+        "AUTO_MANUAL_OSS_ARCHIVE_CONFIG": "off",
+        "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
+        "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+    }
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "build.py"),
+            "md",
+            "--config", str(config),
+            "--model", "JE-3000C",
+            "--region", "EU",
+            "--lang", lang,
+            "--data-root", str(FORMAL_DATA_ROOT),
+            "--staging-root", str(staging),
+        ],
+        cwd=ROOT,
+        env=env,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        raise AssertionError(f"JE-3000C/{lang} formal-source Web build failed:\n" + result.stdout + result.stderr)
+    return staging / f"docs/_build/JE-3000C/EU/{lang}/md"
 
 
 class Je3000cEuEnWebTests(unittest.TestCase):
@@ -106,7 +156,7 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         self.assertFalse(manifest["live_bitable_dependency"])
         self.assertEqual("V2.0-2026-07-31", manifest["authority"]["published_revision"])
         self.assertEqual("55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d", manifest["authority"]["published_pdf_sha256"])
-        for binding in ("asset_recipe", "web_illustration_manifest"):
+        for binding in ("asset_recipe", "app_asset_recipe", "web_illustration_manifest"):
             bound = manifest[binding]
             self.assertEqual(bound["sha256"], hashlib.sha256((ROOT / bound["path"]).read_bytes()).hexdigest())
         for record in manifest["files"]:
@@ -259,6 +309,46 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             css,
         )
 
+    def test_single_language_routes_bind_the_one_shared_app_connect_panel(self) -> None:
+        """The fr/es/de/it/uk blocks of the print place the same five bitmaps."""
+        self.assertEqual(
+            "7cc37c8a0234a6cddc347ec0efbcd0731a234f7a81cc70f724089baf72481d28",
+            hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
+        )
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        (asset,) = app_recipe["assets"]
+        (output,) = asset["outputs"]
+        # App screenshots stay quarantined in their recipe (the App/QR/URL/
+        # localized-UI gate); the illustration manifests are their only
+        # route onto the page. English keeps its own approved panel.
+        self.assertFalse(asset["build_eligible"])
+        self.assertTrue(asset["visual_review_required"])
+        self.assertEqual("quarantine", asset["gate"]["status"])
+        self.assertIn("app-ui", asset["risk_tags"])
+        self.assertEqual(12, output["scale"])
+        self.assertEqual(list(SINGLE_LANGUAGES), asset["scope"]["locales"])
+        for lang in SINGLE_LANGUAGES:
+            path = resolve_web_illustration_manifest(
+                ROOT / f"configs/config.eu-{lang}.yaml",
+                repo_root=ROOT,
+                model="JE-3000C",
+                region="EU",
+            )
+            self.assertEqual(ILLUSTRATIONS.parent / f"je3000c_eu_{lang}_illustrations.json", path, lang)
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(lang, manifest["language"])
+            (item,) = manifest["illustrations"]
+            self.assertEqual(["connect_result.png"], item["replaces"], lang)
+            panel = path.parent / item["path"]
+            self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(item["sha256"], hashlib.sha256(panel.read_bytes()).hexdigest(), lang)
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-connect-result", item["reference_id"], lang)
+
     def test_public_ir_cold_replay_and_tamper_detection(self) -> None:
         self.assertEqual(17, len(render_document_fragments(self.ir, package_root=self.package)))
         with tempfile.TemporaryDirectory() as td:
@@ -269,6 +359,43 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             (copied / relative).write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "asset missing or changed"):
                 render_document_fragments(ir, package_root=copied)
+
+
+
+class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
+    """The French route shows the print's App screens, not the JP screenshot."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory()
+        package = _build_web_package(
+            Path(cls._tmp.name), config=ROOT / "configs/config.eu-fr.yaml", lang="fr"
+        )
+        cls.html = (package / "manual_bundle.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_app_connect_result_is_the_shared_print_panel(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        panel = soup.select_one(
+            'img.manual-finished-illustration[data-reference-id="app-connect-result"]'
+        )
+        self.assertIsNotNone(panel)
+        self.assertEqual(
+            "assets/je3000c_eu_shared/app_connect_result.png",
+            panel["data-web-finished-panel-path"],
+        )
+        self.assertEqual(
+            [],
+            [
+                image["src"]
+                for image in soup.find_all("img")
+                if str(image.get("src", "")).endswith("/connect_result.png")
+            ],
+        )
+        self.assertIn("Les captures d'écran ci-dessus sont fournies à titre indicatif.", self.html)
 
 
 if __name__ == "__main__":
