@@ -103,10 +103,10 @@ signal badges carry the alert triangle:
   `layout_params.idml-compact.csv` sets `hazard`.
 - The renderer rejects any other value.
 
-Its common default, `all`, lives in the renderer for now. Adding it to
-`data/layout_params.csv` would move the approved JE-1000F/US plan's
-`layout_params_sha256`, and re-pinning that plan is an operator decision. So it
-moves into the common file, and becomes a pinned override, at the next re-pin.
+The common file sets `all`, and the battery-pack overlay overrides it. That
+override is pinned in `tests/test_layout_token_override.py`. Adding the common
+row moved the approved JE-1000F/US plan's `layout_params_sha256`, so the plan
+was re-pinned in the same change with the operator's approval.
 
 ### 3.2 Overriding is visible, not forbidden
 
