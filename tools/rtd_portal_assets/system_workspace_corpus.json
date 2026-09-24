@@ -1,0 +1,45 @@
+{
+  "schema": "hello-docs-tm-corpus/v1",
+  "exported_at": "2026-09-24",
+  "sentence_pairs": {
+    "total": 1372,
+    "by_language": {
+      "en": 1057,
+      "zh": 369,
+      "zh-TW": 722,
+      "fr": 494,
+      "es": 497,
+      "de": 550,
+      "it": 535,
+      "uk": 108,
+      "ko": 644,
+      "jp": 171,
+      "pt-BR": 308
+    },
+    "by_status": {
+      "Approved": 971,
+      "Deprecated": 24,
+      "Draft": 377
+    }
+  },
+  "terms": {
+    "total": 232,
+    "by_language": {
+      "en": 115,
+      "zh": 180,
+      "zh-TW": 135,
+      "fr": 68,
+      "es": 68,
+      "de": 51,
+      "it": 51,
+      "uk": 43,
+      "ko": 96,
+      "jp": 79,
+      "pt-BR": 75
+    },
+    "by_status": {
+      "Approved": 149,
+      "Draft": 83
+    }
+  }
+}

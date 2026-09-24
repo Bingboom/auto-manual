@@ -82,6 +82,109 @@ separate access-control boundary.
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
 
+## System workspace page
+
+`/workspace/system/` (系统建设) shows what the system can already do, what is
+still being built, and how far the execution-ledger gates have got. The page is
+built at RTD time from frozen inputs only. It never reads Feishu or the network.
+
+- `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
+  contract: capability cards, production-flow links, gate labels and entry
+  links. It is maintained in auto-manual and reaches Hello-Docs through the
+  mirror.
+- `docs/publish/publish_manifest.json` is the only source of the counts shown.
+  It uses the REV-04 caliber: a book is one model × region, and language
+  editions are counted separately.
+- The execution ledger named by `now_next.source` supplies REV statuses and the
+  gate composition. The page reads them and never restates a REV status.
+
+The page is public, on the same RTD project as the manuals. `noindex` is not
+access control, so the contract holds only publishable facts. Gap narratives
+and resource needs belong to the Feishu internal page, not this file. The
+workspace sidebar shows the entry only when the page was built.
+
+### Language assets block
+
+The page also shows the translation memory's scale and per-language coverage:
+sentence pairs, terms, languages covered, the approved share, and one bar per
+language. The numbers come from `tools/rtd_portal_assets/system_workspace_corpus.json`,
+an aggregate snapshot that holds counts only, never corpus text. The build
+never reads Feishu. Refresh the snapshot monthly through a PR:
+
+```bash
+python tools/rtd_system_workspace.py corpus-export
+```
+
+The command reads the live TM base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`)
+and writes the snapshot next to the contract. It is read-only. Pass
+`--cli-bin "lark-cli --profile prod" --as bot` for the bot lane. The contract's
+`corpus.languages` list fixes the languages counted and their labels; a column
+missing from either table fails the export instead of counting zero.
+
+A snapshot older than `corpus.stale_after_days` (default 45) shows 待复核. An
+unreadable or malformed snapshot shows 无数据 for this block only, with a
+Sphinx warning; the rest of the page still renders. `check` reports both
+cases.
+
+### Status rules
+
+- One vocabulary: `available`, `validated`, `in_progress`, `planned`,
+  `blocked`, `retired`, `no_data`, defined in the contract. Flow links also
+  carry `mode: automated | manual`.
+- Every entry carries evidence: `pr:<repo>#<n>`, `file:<repo>:<path>`,
+  `url:<https-url>`, `rev:REV-nn=<ledger status>` or
+  `ack:<who> <YYYY-MM-DD>「quote」`. An operator ack is never the only evidence.
+- `planned` must cite a REV row. Ideas that are not registered do not go on the
+  page.
+- A card may not claim more than its weakest implemented item (`available`,
+  `validated` or `in_progress`). It may be set lower by hand.
+- `retired` entries are removed, not shown.
+- The contract text states no quantities; `check` warns when it does.
+
+### Drift and failure behaviour
+
+- Drift still renders. A cited file that no longer exists, a REV whose ledger
+  status moved, or an entry older than `stale_after_days` shows **待复核**, with
+  the reason as a tooltip.
+- An authoring error drops only this page, with a Sphinx warning. Examples are
+  an unknown status, a card above its ceiling, broken evidence syntax, or a
+  gate REV that the ledger does not name. The manual site keeps building, and
+  the sidebar hides the entry.
+
+### Maintaining the contract
+
+Edit the YAML in an auto-manual PR. Update `verified_on` when you re-check the
+entries, then run:
+
+```bash
+python tools/rtd_system_workspace.py check
+python tools/rtd_system_workspace.py check --online
+```
+
+The first command works offline and checks the rules, evidence files, REV ids
+and drift. `--online` also confirms that cited PRs are merged and that URLs
+answer 200.
+
+Offline, `file:hello-docs:` refs resolve only inside a tree that carries
+`docs/publish`; `--online` checks them against Hello-Docs `main` instead.
+The unit suite runs the offline check against the shipped
+contract, so deleting a cited file fails CI in the same PR. A moved REV status
+is only a warning: the page shows 待复核 until the contract is re-checked.
+
+Verification (2026-09-24): full Sphinx builds of Hello-Docs `main` `3dededf7`
+(54 language editions, 22 books) were made with and without this change. They
+differ in exactly two added files, `workspace/system/index.html` and
+`_static/system-workspace.css`, and in three changed files:
+
+- `workspace/index.html`: the one sidebar line;
+- `manual-deployment.json`: entries for those files;
+- `.buildinfo`: the config hash.
+
+230 of 231 HTML pages are byte-identical, and neither build emits a warning.
+
+Rollback: revert the change. The workspace entry, manual URLs and QR aliases
+are unaffected.
+
 ## Maintenance surface
 
 Product improvement suggestions use an independent opt-in `product_voc_endpoint`

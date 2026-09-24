@@ -17,6 +17,7 @@ from tools.rtd_product_voc import normalize_endpoint, page_markup
 from tools.rtd_page_metadata import (
     head_markup, normalize_site_base_url, page_description, page_title, portal_head_markup,
 )
+from tools.rtd_system_workspace import SYSTEM_PAGE, SYSTEM_TEMPLATE, system_page_context
 from tools.safe_copy import copytree_replace_no_symlinks
 
 ASSETS = Path(__file__).with_name("rtd_portal_assets")
@@ -240,9 +241,14 @@ def collect_workspace_pages(app):
     share_entry = workspace_content(app) / "ai-share" / "00_打开分享.html"
     if not share_entry.is_file():
         return
+    # The system page lives inside the workspace, so it only exists alongside it.
+    system = system_page_context(app, ASSETS)
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html",
+        "system_entry": system is not None,
     }, "workspace_portal.html"
+    if system is not None:
+        yield SYSTEM_PAGE, system, SYSTEM_TEMPLATE
 
 
 def copy_workspace_content(app, exception) -> None:
@@ -266,6 +272,8 @@ def setup(app):
     from tools.rtd_portal_search import write_search_index
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
+    # ISO date for the system page's staleness rule; empty means the build date (UTC).
+    app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)
     app.connect("builder-inited", prepare_catalog)
     app.connect("html-page-context", page_context)
