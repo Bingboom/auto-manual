@@ -48,14 +48,17 @@ python3 build.py check --config configs/config.eu-en.yaml \
 Repeat with `configs/config.eu-fr.yaml`, `--lang fr` and a different staging
 root. Do not use the merged `config.eu.yaml`: its source index includes a
 French preface absent from the accepted single-language preview.
-
-ES/DE/IT build from the same data root with their `config.eu-<lang>.yaml`
-and the default `--source auto`, not `review-asis`: their reviewed LCD pages
-fail the `review-asis` LCD-table validation (row 20). On 2026-09-24 that
-build matched the published 2026-09-14 ES/DE/IT pages except for the App
-connect-result figure, which now uses the shared panel.
 Then run `build.py md`
 with the same inputs, assemble RTD source below that staging build root, and
 run strict Sphinx. Release identity must use the verified locale,
 not infer it only from a filename. Immutable language evidence, visual checks and
 the business release PR remain required before production publication.
+
+ES/DE/IT build from the same data root with their `config.eu-<lang>.yaml`
+and `--source review`, not `review-asis`: their reviewed LCD pages fail the
+`review-asis` LCD-table validation (row 20). Use `review`, not the default
+`auto`, for all three release actions. Under `auto`, `check` skips the review
+sync that `md` runs, so the check, md and html language-projection captures
+differ and staging refuses them. On 2026-09-24 the `review` build matched the
+published 2026-09-14 ES/DE/IT pages except for the App connect-result figure,
+which now uses the shared panel.
