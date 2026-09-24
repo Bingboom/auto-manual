@@ -263,6 +263,12 @@ Operation figures.
   `08_charging_methods`: under a measured plan the story estimate counts the
   frame foot an unbreakable figure leaves (see
   [the JP overflow review](../reviews/je1000f_jp_native_overflow_2026-09.md)).
+- The front view (`overview/front_product`) is recognised by slot too.
+  - JE-1000F/JP's approved override `je1000f_jp_front` fills the measure like
+    the shared `front_product.jpg`, and keeps its 1.58 pt space after.
+  - A UPS override keeps the UPS space before.
+  - Before, both overrides fell to the 120 pt default and the plain figure
+    spacing, because those rules matched the shared file names only.
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
   the art has none; if a future art version draws them, drop the markers instead
   of drawing them twice.
