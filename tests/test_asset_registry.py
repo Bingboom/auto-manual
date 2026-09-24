@@ -32,9 +32,9 @@ class TestAssetRegistry(unittest.TestCase):
     def test_real_registry_exports_have_matching_hashes(self) -> None:
         report = check_registry(self.records, repo_root=ROOT)
 
-        self.assertEqual(435, report.records)
+        self.assertEqual(436, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(427, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(428, report.status_counts[APPROVED_STATUS])
         self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
@@ -136,7 +136,7 @@ class TestAssetRegistry(unittest.TestCase):
             source=ROOT / "data" / "asset_registry.csv",
         )
 
-        self.assertEqual(435, report.records)
+        self.assertEqual(436, report.records)
         self.assertEqual((), report.errors)
         self.assertEqual((), report.updated)
         self.assertGreater(len(report.unchanged), 0)
@@ -737,7 +737,7 @@ class TestAssetRegistry(unittest.TestCase):
         records = load_registry(source)  # type: ignore[arg-type]
 
         self.assertEqual(1, source.calls)
-        self.assertEqual(435, len(records))
+        self.assertEqual(436, len(records))
 
     def test_temporary_asset_is_not_importable_by_default(self) -> None:
         with self.assertRaisesRegex(AssetRegistryError, "only ✅成品"):

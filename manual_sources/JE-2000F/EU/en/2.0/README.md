@@ -11,6 +11,8 @@ release of `JE-2000F / EU / en`, version `2.0`.
   full-frame recipe are hash-locked through `source_manifest.json`. Eleven
   panels retain their complete grey frame and image-owned text boxes; the LCD
   mode remains a device-only illustration beside a semantic CSS/HTML table.
+  The App recipe is hash-locked the same way: its one quarantined panel, the
+  App connect-result screens from PDF page 21, is shared by all six languages.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:

@@ -26,9 +26,13 @@
     "path": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
     "sha256": "a8a202b0a44a3646bfea9c4279947eab98b32ff03c4715c16445bf52c8f15de6"
   },
+  "app_asset_recipe": {
+    "path": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+    "sha256": "f24e33d4250c07e7ca659c8a6ce2a32453087c3b6bfe7a2bd4f54cb908989cc3"
+  },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000f_eu_en_illustrations.json",
-    "sha256": "0b01dab2215e9b11df97caf561ff7c3a09a0f7c61a664d6d05006030706ec1f3"
+    "sha256": "34470cb9cb092e13bbdaa0671d784d3235bf8bf18003a5c69313fcd40bdae313"
   },
   "files": [
     {
