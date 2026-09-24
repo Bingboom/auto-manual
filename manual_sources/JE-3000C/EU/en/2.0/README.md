@@ -11,6 +11,9 @@ release of `JE-3000C / EU / en`, version `2.0`.
   `source_manifest.json`. Operation and charging panels retain their complete
   grey frames and image-owned text; the LCD mode remains a device-only
   illustration beside a semantic CSS/HTML table.
+  The App recipe is hash-locked the same way: its one quarantined panel, the
+  App connect-result screens from PDF page 21, serves the fr/es/de/it/uk
+  routes built from this source; English keeps its own approved panel.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:
