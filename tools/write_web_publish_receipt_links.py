@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 import sys
 import time
 from typing import Any
@@ -76,6 +77,9 @@ DEFAULT_DEPLOY_TIMEOUT_SECONDS = 1800.0
 DEFAULT_POLL_INTERVAL_SECONDS = 60.0
 # Bitable writes land with seconds of lag; pause before the verify read.
 DEFAULT_READBACK_DELAY_SECONDS = 2.0
+# Feishu stores a URL written to a text field as a link segment, and
+# ``lark-cli base +record-get`` reads that segment back as ``[label](url)``.
+_MARKDOWN_LINK_RE = re.compile(r"\[[^\]]*\]\((https?://[^)\s]+)\)")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -266,6 +270,13 @@ def fetch_record_fields(
     return {name: row[index] if index < len(row) else None for index, name in enumerate(names)}
 
 
+def registered_link(value: Any) -> str:
+    """The URL an ``HTML_link`` cell holds, plain or read back as ``[label](url)``."""
+    text = scalar_text(value).strip()
+    match = _MARKDOWN_LINK_RE.fullmatch(text)
+    return match.group(1) if match else text
+
+
 def register_target_links(
     *,
     source: Any,
@@ -290,7 +301,7 @@ def register_target_links(
             table_id=binding.table_id,
             record_id=record_id,
         )
-        before = scalar_text(before_fields.get(field_name)).strip()
+        before = registered_link(before_fields.get(field_name))
         if before == url:
             print(f"[web-receipt] SKIP {record_id}: {field_name} already registered ({url})")
             outcomes.append({"record_id": record_id, "action": "already-registered"})
@@ -310,7 +321,7 @@ def register_target_links(
             table_id=binding.table_id,
             record_id=record_id,
         )
-        after = scalar_text(after_fields.get(field_name)).strip()
+        after = registered_link(after_fields.get(field_name))
         if after != url:
             raise RuntimeError(
                 f"HTML_link readback mismatch for {record_id}: wrote {url!r}, "

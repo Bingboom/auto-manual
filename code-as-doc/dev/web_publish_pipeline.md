@@ -217,7 +217,10 @@ change JP D1–D4 or promote production eligibility.
    until the deployment verifies or the deploy timeout expires, and only then
    writes the canonical URL to each queue row — idempotently (an equal stored
    value is skipped, so reruns never re-register) and with a same-record
-   readback after every write. Verification failure or timeout registers
+   readback after every write. Both comparisons use the stored URL: Feishu
+   keeps a URL written to the text field as a link, and
+   `lark-cli base +record-get` reads it back as a Markdown link whose label
+   and target are that URL. Verification failure or timeout registers
    nothing and opens the `queue-failure-web-receipt` sentinel; the retry is a
    `workflow_dispatch` re-run (optionally scoped by `record_ids`), never a
    re-publish of the manual.
