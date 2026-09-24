@@ -715,6 +715,18 @@
       "web_replace_key": "product-overview.right"
     },
     {
+      "asset_key": "web-composite/je1000f_eu/reference.app-connect-result",
+      "content_sha256": "a41b6db31865f5091511b0d8ca830221cf328b45efdb4454fd864dba0132f059",
+      "format": "png",
+      "locale": "shared",
+      "model_scope": "JE-1000F",
+      "path": "_attachments/web_composites/reference.app-connect-result_shared_a41b6db31865.png",
+      "region_scope": "EU",
+      "source_fragment_sha256": "7a8700a6aa1dee58a471d51dac7f12f96dc512196cf2308ec569f5ea6e0f5f62",
+      "source_page": 22,
+      "web_replace_key": "reference.app-connect-result"
+    },
+    {
       "asset_key": "web-composite/reference.app-connect-result",
       "content_sha256": "17ccfa065009948c9e6e661017fab0b261adac03d880c025178d207e2f47ffe3",
       "definition_record_id": "recvr496YTxM1B",
