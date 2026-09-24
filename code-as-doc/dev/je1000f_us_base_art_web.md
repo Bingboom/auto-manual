@@ -245,6 +245,19 @@ Operation figures.
 - The FR/ES Off instruction wraps to two lines above a clock placed for one EN
   line, so instruction type is set smaller than in the approved composites; the
   ES source copy is also longer than the copy baked into the approved ES composite.
+- JE-1000F/EU and JE-1000F/JP register their own LED art as well.
+  - The EU print draws different sockets per language block, so its overrides
+    are scoped by language:
+    - `operation/je1000f_eu/led_light_en`: UK sockets, from EU-UK V2.0
+      physical page 13, with the US recipe's edge-only step-circle redaction.
+    - `operation/je1000f_eu/led_light` for FR/ES/DE/IT: Schuko sockets, from
+      page 47.
+  - `operation/je1000f_jp/led_light` comes from JP V1.0 page 15.
+  - The recipes are `data/asset_recipes/manual_je1000f_eu_uk_20260618_led_light.json`
+    and `manual_je1000f_jp_reference_led_light.json`.
+  - The EU and JP review branches still reference the shared LED art by path.
+    Their published books pick up the new art only once those pages use
+    `asset:operation/led_light`.
 - Targets on the shared `operation/led_light` still get the substitute
   `led_light_complete.png` (its right edge crops the magnifier rim and the wrist)
   in their IDML LED card; each needs its own registered LED art to drop it.
