@@ -227,7 +227,7 @@ def main() -> int:
     approved_reference = (
         (page_plan or {}).get("plan_source") == "approved-reference"
     )
-    prose_flow = _prose_flow.ProseFlowBuffer()
+    prose_flow = _prose_flow.ProseFlowBuffer(bundle_root=bundle_root)
     prose_estimator = _prose_flow.idml_page_estimator(IdmlWriter, params, bundle_root)
     def page_lang(page: Path) -> str: return _page_identity.page_language(page, args.lang)
     slug_stem = _page_identity.slug

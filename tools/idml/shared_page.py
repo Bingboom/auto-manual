@@ -11,6 +11,7 @@ import json
 from pathlib import Path
 
 from . import oppanel
+from .asset_slots import bundle_asset_slots
 from .components.prose_image import (
     IMAGE_ROLE_CHARGING_DIAGRAM,
     IMAGE_ROLE_FULL_MEASURE,
@@ -363,7 +364,9 @@ def add_lcd_operations_page(
     """Place the existing compact LCD and Operations components on one page."""
 
     lcd_options = dict((composition_data or {}).get("lcd") or {})
-    operation_blocks = oppanel.transform(operation_blocks)
+    operation_blocks = oppanel.transform(
+        operation_blocks, asset_slot=bundle_asset_slots(bundle_root)
+    )
     operation_panel_variant = str(
         lcd_options.get("operation_panel_variant") or ""
     )
@@ -802,7 +805,9 @@ def add_app_composition(
 
     from .prose_flow import align_app_second_page, promote_reference_figures
 
-    prepared = oppanel.transform(list(blocks))
+    prepared = oppanel.transform(
+        list(blocks), asset_slot=bundle_asset_slots(bundle_root)
+    )
     prepared = align_app_second_page(prepared, page_plan, source_stem)
     prepared = promote_reference_figures(prepared, page_plan, source_stem)
     writer.add_prose_story(

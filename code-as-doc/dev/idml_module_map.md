@@ -13,8 +13,12 @@ tools/export_idml.py          façade + CLI: main()'s page-composition state mac
                               every method is a thin delegate), full re-export surface
 tools/bundle_asset_manifest.py
                               fail-closed renderer boundary for semantic bundle assets:
-                              schema/target/consumer/format/path/hash validation
+                              schema/target/consumer/format/path/hash validation;
+                              manifest_asset_slot maps a staged file back to the slot
+                              its source named
 tools/idml/
+  asset_slots.py              recognise governed art by asset slot, not file name
+                              (bundle_asset_slots lookup; RenderContext.asset_slot)
   asset_contracts.py          approved-contract component/page ownership plus hidden
                               native-IDML asset requirements shared by bundle
                               finalization and component promotion; no target-named

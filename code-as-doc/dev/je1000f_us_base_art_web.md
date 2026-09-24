@@ -248,13 +248,23 @@ Operation figures.
 - Targets on the shared `operation/led_light` still get the substitute
   `led_light_complete.png` (its right edge crops the magnifier rim and the wrist)
   in their IDML LED card; each needs its own registered LED art to drop it.
-- The IDML recognises governed operation art by file name (`_LED_LIGHT_ART`,
-  `_ENERGY_SAVING_ART`, the flow's full-measure list), and LaTeX flattens
-  `renderers/latex/assets`, so a target override needs a unique basename that the
-  renderer then names: `op_led_light_je1000f_us` is listed there and in the
-  reviewed `ALLOWED_MODEL_LITERALS` of `tests/test_idml_page_boundaries.py`. An
-  unlisted override silently demotes the LED card to prose and a 120 pt image.
-  Recognising governed art by asset key would retire both lists.
+- LaTeX flattens `renderers/latex/assets`, so a target override still needs a
+  unique basename. The IDML operation cards (LED, energy saving) and the App
+  figure widths recognise governed art by the slot the source named
+  (`asset:operation/led_light`) instead of its file name; the bundle usage
+  manifest records that slot for every rewritten reference
+  (`tools/idml/asset_slots.py`). A new target override of those slots needs no
+  renderer change or `ALLOWED_MODEL_LITERALS` entry; file stems remain only as
+  the fallback for bundles without a manifest.
+- The UPS and charging figures are still widened by shared file suffix, so an
+  override with a basename of its own keeps the 120 pt default. That is the case
+  for JE-1000F/JP's five overrides (`je1000f_jp_ups`, `_ac_wall`,
+  `_solar_direct`, `_solar_adapter`, `_car_charge`); the JE-1000F/AU IDML gives
+  the same figures, on the shared art, the full 312 pt measure. Recognising
+  them by slot widens them and reflows the
+  JP book (one more spread); InDesign 21.0.1.6 then reports the
+  `08_charging_methods` story overset on pages 16–17, where main has none. The
+  width change waits for a layout decision.
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
   the art has none; if a future art version draws them, drop the markers instead
   of drawing them twice.

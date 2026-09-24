@@ -748,27 +748,38 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertIn('AnchorSpaceAbove="0"', result_xml)
 
     def test_led_override_art_keeps_the_shared_art_full_measure(self) -> None:
-        """Flow sizes named art by path; a target's LED override must match the
-        shared LED art instead of falling back to the 120pt default."""
+        """A target's LED override fills the measure like the shared LED art.
+
+        It is recognised by the slot its source named (``asset:operation/
+        led_light``), whatever its file is called; without a usage manifest the
+        same file falls back to the 120pt default.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
         from tools.idml.components.prose_image import render_image_block
 
         params = load_layout_params(ROOT / "data" / "layout_params.csv")
         w = IdmlWriter(params)
-        ctx = w._render_context(ROOT / "tests" / "fixtures" / "idml_bundle")
-        widths = []
-        for image in (
-            ROOT / "docs" / "templates" / "word_template" / "common_assets"
-            / "operation" / "led_light.png",
-            ROOT / "docs" / "renderers" / "latex" / "assets"
-            / "op_led_light_je1000f_us.png",
-        ):
-            xml, _ = render_image_block(
-                image.as_posix(), ctx, rect_id="led", terminal=False)
+        shared = "_assets/templates/word_template/common_assets/operation/led_light.png"
+        override = "renderers/latex/assets/op_led_light_any_target.png"
+
+        def width(bundle: Path, ref: str) -> float:
+            ctx = w._render_context(bundle)
+            xml, _ = render_image_block(ref, ctx, rect_id="led", terminal=False)
             corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
-            widths.append(max(float(x) for x, _y in corners))
-        self.assertEqual(2, len(widths))
-        for width in widths:
-            self.assertAlmostEqual(ctx.text_measure, width, places=3)
+            return max(float(x) for x, _y in corners)
+
+        with tempfile.TemporaryDirectory() as td:
+            bundle = write_bundle_with_rewrites(Path(td), [
+                (shared, "operation/led_light", "operation/led_light",
+                 ROOT / "docs/templates/word_template/common_assets/operation/led_light.png"),
+                (override, "operation/led_light", "operation/target/led_light",
+                 ROOT / "docs/renderers/latex/assets/op_led_light_je1000f_us.png"),
+            ])
+            measure = w._render_context(bundle).text_measure
+            self.assertAlmostEqual(measure, width(bundle, shared), places=3)
+            self.assertAlmostEqual(measure, width(bundle, override), places=3)
+            (bundle / "asset_usage_manifest.json").unlink()
+            self.assertAlmostEqual(120.0, width(bundle, override), places=3)
 
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes

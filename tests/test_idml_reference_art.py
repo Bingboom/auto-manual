@@ -401,25 +401,41 @@ class ReferenceArtGeometryTests(unittest.TestCase):
         self.assertIn('SpaceBefore="3.2"', xml or "")
 
     def test_app_art_uses_role_specific_measure_widths(self) -> None:
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+
         base = _ctx()
         app_root = ROOT / "docs/templates/word_template/common_assets/app"
-        ctx = RenderContext(
-            params=base.params,
-            page_w=base.page_w,
-            m_l=base.m_l,
-            m_r=base.m_r,
-            root=base.root,
-            bundle_root=app_root,
-        )
+
+        def ctx_for(bundle_root: Path) -> RenderContext:
+            return RenderContext(
+                params=base.params,
+                page_w=base.page_w,
+                m_l=base.m_l,
+                m_r=base.m_r,
+                root=base.root,
+                bundle_root=bundle_root,
+            )
+
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        # Target overrides keep their App slot whatever their files are called.
+        overrides = write_bundle_with_rewrites(Path(temp.name), [
+            ("app/add_device_any_target.png", "app/add_device",
+             "app/target/add_device", app_root / "je1000f_us/add_device_je1000f_us.png"),
+            ("app/connect_result_any_target.png", "app/connect_result",
+             "app/target/connect_result",
+             app_root / "je1000f_us/connect_result_je1000f_us.png"),
+        ])
         refs_and_ratios = (
-            ("download.png", 0.60),
-            ("add_device.png", 0.55),
-            ("connect_result.png", 0.58),
-            ("je1000f_us/add_device_je1000f_us.png", 0.55),
-            ("je1000f_us/connect_result_je1000f_us.png", 0.58),
+            (app_root, "download.png", 0.60),
+            (app_root, "add_device.png", 0.55),
+            (app_root, "connect_result.png", 0.58),
+            (overrides, "app/add_device_any_target.png", 0.55),
+            (overrides, "app/connect_result_any_target.png", 0.58),
         )
-        for index, (name, ratio) in enumerate(refs_and_ratios):
+        for index, (bundle_root, name, ratio) in enumerate(refs_and_ratios):
             with self.subTest(name=name):
+                ctx = ctx_for(bundle_root)
                 xml, height = render_image_block(
                     name,
                     ctx,
@@ -941,6 +957,65 @@ class ReferenceArtGeometryTests(unittest.TestCase):
                     terminal=False,
                 )
 
+                art = _item_xml(
+                    stories["st_anchor_oppanel_led_art"], "led_artimg", "Rectangle",
+                )
+                self.assertIn(f"/{linked}", art)
+                self.assertAlmostEqual(art_width, _image_width(art), places=2)
+
+    def test_led_card_substitution_follows_the_resolved_asset_key(self) -> None:
+        """With a usage manifest the resolved asset key decides, not the name:
+        an override staged as ``led_light.png`` is drawn as registered, and the
+        shared row under any file name is still substituted."""
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+
+        base = _ctx()
+        width = base.text_measure
+        common = ROOT / "docs/templates/word_template/common_assets/operation"
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        bundle = write_bundle_with_rewrites(Path(temp.name), [
+            ("renderers/latex/assets/led_light.png", "operation/led_light",
+             "operation/target/led_light",
+             ROOT / "docs/renderers/latex/assets/op_led_light_je1000f_us.png"),
+            ("renderers/latex/assets/shared_led_copy.png", "operation/led_light",
+             "operation/led_light", common / "led_light.png"),
+        ])
+        complete = bundle / "_assets/templates/word_template/common_assets/operation"
+        complete.mkdir(parents=True)
+        shutil.copyfile(common / "led_light_complete.png", complete / "led_light_complete.png")
+        cases = (
+            ("renderers/latex/assets/led_light.png", "led_light.png",
+             width * (0.59 - 0.054)),
+            ("renderers/latex/assets/shared_led_copy.png", "led_light_complete.png",
+             width * 0.568),
+        )
+        for image, linked, art_width in cases:
+            with self.subTest(image=image):
+                stories = {}
+
+                def add_story(story_id, _label, parts, stories=stories):
+                    stories[story_id] = "".join(parts)
+                    return story_id
+
+                ctx = RenderContext(
+                    params=base.params, page_w=base.page_w, m_l=base.m_l,
+                    m_r=base.m_r, root=base.root, bundle_root=bundle,
+                    add_story=add_story,
+                )
+                render_oppanel(
+                    {
+                        "kind": "oppanel",
+                        "layout": "led_light",
+                        "image": image,
+                        "lead": "The LED light has two modes: Light and SOS.",
+                        "steps": ["First step.", "Second step.", "Third step."],
+                        "sos_label": "SOS",
+                    },
+                    ctx,
+                    tid="led_art",
+                    terminal=False,
+                )
                 art = _item_xml(
                     stories["st_anchor_oppanel_led_art"], "led_artimg", "Rectangle",
                 )

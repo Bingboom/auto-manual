@@ -6,6 +6,7 @@ from pathlib import Path
 import unittest
 import warnings
 
+from tools.bundle_asset_manifest import AssetSlot
 from tools.idml_rst_extract import extract_page
 from tools.idml.oppanel import (
     parse_rows,
@@ -585,14 +586,21 @@ class TransformTest(unittest.TestCase):
             ("body", "The LED light has two modes: Light mode and SOS mode."),
         ]
 
-        # The shared art and the JE-1000F/US override are both governed LED art.
-        for led_art in (
-            "_assets/operation/op_led_light.png",
-            "renderers/latex/assets/op_led_light_je1000f_us.png",
+        # Both are governed LED art: the shared export by its stem (no usage
+        # manifest), and a target's override by the slot its source named,
+        # whatever its file is called.
+        override = "renderers/latex/assets/op_led_light_any_target.png"
+        slots = {
+            override: AssetSlot("operation/led_light", "operation/target/led_light"),
+        }
+        for led_art, asset_slot in (
+            ("_assets/operation/op_led_light.png", None),
+            (override, slots.get),
         ):
             with self.subTest(led_art=led_art):
                 out = transform(
-                    [*blocks, ("image", led_art), ("body", "\n".join(steps))]
+                    [*blocks, ("image", led_art), ("body", "\n".join(steps))],
+                    asset_slot=asset_slot,
                 )
 
                 kinds = [kind for kind, _payload in out]
