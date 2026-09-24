@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-142 | PR #1243（`feat/portal-system-workspace`，**含本登记行**）：新增 RTD 知识库「系统建设」页 `/workspace/system/`。状态契约 `tools/rtd_portal_assets/system_workspace.yaml`（能力卡、生产流程连接、阶段门标签，每条带证据）、`tools/rtd_system_workspace.py`（规则校验、`check` / `check --online`、只读的 `corpus-export`）、页面模板与样式；`collect_workspace_pages` 在 `workspace/index` 之后挂页，知识库侧栏只在页面生成时显示入口；语言资产块读取汇总快照 `system_workspace_corpus.json`（只存计数，2026-09-24 首份：句对 1372、术语 232）。Hello-Docs `3dededf7` 整站 A/B：新增 2 个文件、3 个文件按预期变化，231 个 HTML 中 230 个逐字节一致。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：飞书写入（内部治理视图已按操作者另行指示建好）、定时联网校验或定时语料导出的 workflow、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1243」2026-09-24（此前操作者本地看过整站渲染后答「没问题，补测试和文档，开 PR」，语料库可视化答「1」「3」） | #1243 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-140 | 按顺序合入两项 PR：(a) Hello-Docs PR #120（`publish` → `main`）——JE-1000F/EU 五语（en/fr/es/de/it）Web **2.1** 的 Git-only 发布：由 auto-manual `95a6907c`（#1241 冻结源）构建，App 连接结果图改用欧规印刷版的英文截图面板，英语另换 LED 隐藏层底图（可见成品图不变）；115 个文件全部在 `docs/publish/**`，且只涉及 JE-1000F/EU、资产池与发布清单；54 个目标集合不变，英语旧路由 `JE-1000F/EU/md` 与别名保留。(b) 本登记 PR（`docs/authorize-hello-docs-120`，**含本登记行**）。先合 (a) 再合 (b)（先合 (b) 会让镜像同步推进 Hello-Docs main，使 (a) 的 head 落后）。两项均须最终 head 包含最新 main（(a) 为 Hello-Docs `main`）、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge；(a) 合入后核对 RTD 上五个规范网址、根别名、旧路由与图片。**不含**：Hello-Docs 评审分支上的任何合入、其它目标的发布、飞书写入（Git-only 不写 `HTML_link`）、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「批准，全绿后合入」2026-09-24（答复 Hello-Docs #120 上线问题） | (a)(b) 均合入且 RTD 核对完成即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
