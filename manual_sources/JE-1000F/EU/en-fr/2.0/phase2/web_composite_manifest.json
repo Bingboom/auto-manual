@@ -703,6 +703,20 @@
       "source_fragment_sha256": "0cfe2756bd4ba83fd8b7dc4af014c1061d99f4da6f57889e89469c070287d567",
       "source_page": 85,
       "web_replace_key": "reference.charging-solar-direct"
+    },
+    {
+      "asset_key": "web-composite/je1000f_eu/reference.app-connect-result",
+      "content_sha256": "a41b6db31865f5091511b0d8ca830221cf328b45efdb4454fd864dba0132f059",
+      "definition_record_id": "recvw99MxT9aoM",
+      "export_record_id": "recvw99X9kqlAf",
+      "format": "png",
+      "locale": "shared",
+      "model_scope": "JE-1000F",
+      "path": "_attachments/web_composites/reference.app-connect-result_shared_a41b6db31865.png",
+      "region_scope": "EU",
+      "source_fragment_sha256": "7a8700a6aa1dee58a471d51dac7f12f96dc512196cf2308ec569f5ea6e0f5f62",
+      "source_page": 22,
+      "web_replace_key": "reference.app-connect-result"
     }
   ],
   "generated_at": "2026-09-13T12:31:27.520758+00:00",

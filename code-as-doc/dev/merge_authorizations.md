@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-138 | PR #1240（`feat/assets-je1000f-eu-app-screenshots`，**含本登记行**）：JE-1000F/EU 网页 App 连接结果改用欧规印刷版（`source/manual_je1000f_eu_uk_20260618`）p22 裁出的成品面板，五语共用（`locale=shared`），配方条目按 App/QR 配方关卡保持隔离；测试夹具面板与清单条目（钉值 `7a8700a6…`）、登记表新行 `web-composite/je1000f_eu/reference.app-connect-result`，并把两张共享 App 图 `app/add_device`、`app/connect_result` 的备注如实改为日规截图（解析不变）。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：飞书 `04_资产定义`/`04_资产导出物` 两行的写入（另经操作者批准）、欧规网页重新发布、打印用 App 截图覆盖版与转正合同（另开任务）、另外四个欧规型号、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1240 合入问题） | #1240 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-139 | PR #1241（`feat/web-je1000f-eu-frozen-app-panel`，**含本登记行**）：把 #1240 的欧规 App 共用面板并入 JE-1000F/EU 冻结源 `manual_sources/JE-1000F/EU/en-fr/2.0/phase2`（清单条目按原顺序追加，附件与夹具逐字节一致）；`source_manifest.json` 锁定完整 phase2（115 个文件：补登 #1138 的 33 个西德意附件、修正已过期的清单哈希），`build_configs` 补西德意，README 写明西德意用 `--source review`（默认的 `auto` 下 check 不做评审同步，三步证据对不上；2026-09-24 更正）；新增冻结源一致性测试。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：Hello-Docs 发布 PR 的合入（欧规五语 2.1 发布另经操作者批准）、`target.languages`/`publication_status`/`unverified_languages` 字段改动、飞书写入、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1241 合入问题；同轮定欧规五语重新发布版本号为 2.1） | #1241 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-138 | PR #1240（`feat/assets-je1000f-eu-app-screenshots`，**含本登记行**）：JE-1000F/EU 网页 App 连接结果改用欧规印刷版（`source/manual_je1000f_eu_uk_20260618`）p22 裁出的成品面板，五语共用（`locale=shared`），配方条目按 App/QR 配方关卡保持隔离；测试夹具面板与清单条目（钉值 `7a8700a6…`）、登记表新行 `web-composite/je1000f_eu/reference.app-connect-result`，并把两张共享 App 图 `app/add_device`、`app/connect_result` 的备注如实改为日规截图（解析不变）。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：飞书 `04_资产定义`/`04_资产导出物` 两行的写入（另经操作者批准）、欧规网页重新发布、打印用 App 截图覆盖版与转正合同（另开任务）、另外四个欧规型号、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1240 合入问题） | #1240 合入即失效，或操作者撤销 | 已失效（#1240 squash `11a754d4` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
