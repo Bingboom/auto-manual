@@ -9,7 +9,7 @@ from .params import param_pt
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
 from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
-from .story_estimates import paragraph_estimate
+from .story_estimates import StoryHeight, paragraph_estimate
 from .operation_stack import OperationStorySpacing
 from .story_parts import add_story_parts as _add_story_parts
 from .story_parts import add_text_story
@@ -22,10 +22,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     image_roles: tuple[str, ...] = (),
                     image_callouts: tuple[tuple[dict, ...], ...] = (),
                     disable_hyphenation: bool = False,
-                    first_h1_space_after: float | None = None, semantic_page_role: str | None = None) -> tuple[str, float]:
+                    first_h1_space_after: float | None = None, semantic_page_role: str | None = None,
+                    figure_frame_height: float | None = None) -> tuple[str, float]:
     """Story from extracted prose blocks; returns (sid, est_height_pt)."""
     parts: list[str] = []
-    est = 0.0
     img_n = 0
     image_role_index = 0
     # A figure whose target declares callouts prints the labels over the art.
@@ -39,6 +39,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
     next_h1_page_top: float | None = None
     next_trouble_h1_language, next_storage_h1_language = None, None
     has_twocol_layout = any(kind == "layout" for kind, _ in blocks)
+    est = StoryHeight(None if has_twocol_layout else figure_frame_height)
     page_language = story_language(blocks, language)
     text_measure = writer.page_w - writer.m_l - writer.m_r
     if is_preface:
@@ -71,6 +72,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                         1,
                     )
                 parts.append(_flow.start_next_page(page_break))
+                est.next_frame()
             elif text.startswith("next_h1_page_top:"):
                 next_h1_page_top = float(text.split(":", 1)[1])
             elif text.startswith("trouble_h1_before:"):
@@ -94,7 +96,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     bi, spec, xml_part, h,
                 )
                 parts.append(xml_part)
-                est += h
+                est.add(h)
             continue
         if kind == "table":
             import json as _json
@@ -114,7 +116,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             xml_part = _flow.align_table_xml(xml_part, blocks, bi)
             xml_part, h = operation_rhythm.apply_block(bi, xml_part, h)
             parts.append(xml_part)
-            est += h
+            est.add(h)
             continue
         if kind == "image":
             role = image_role(image_roles, image_role_index, title=title)
@@ -131,7 +133,7 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             img_n += 1
             xml_part, h = operation_rhythm.apply_block(bi, xml_part, h)
             parts.append(xml_part)
-            est += h
+            est.add(h, unbreakable=True)
             continue
         if kind == "h1":
             h1_xml = _po.h1_pill_paragraph(writer, text, text_measure)
@@ -156,8 +158,9 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
                     1,
                 )
                 next_h1_page_top = None
+                est.next_frame()
             parts.append(h1_xml)
-            est += 24.0
+            est.add(24.0)
             continue
         next_block = blocks[bi + 1] if bi + 1 < len(blocks) else ("", "")
         paragraph, semantic_kind, is_h2, text = build_text_paragraph(
@@ -247,10 +250,10 @@ def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],
             operation_spacing=operation_spacing,
         )
         operation_rhythm.record_estimate(kind, lines)
-        est += paragraph_height
+        est.add(paragraph_height)
     require_all_image_roles(image_roles, image_role_index, title=title)
     operation_rhythm.assert_complete()
     if disable_hyphenation:
         parts = _flow.disable_story_hyphenation(parts)
     _add_story_parts(writer, sid, title, parts)
-    return sid, est
+    return sid, est.total

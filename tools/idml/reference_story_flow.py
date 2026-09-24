@@ -169,6 +169,15 @@ class ReferenceStoryEmitter:
         story_language = operation_lang or composition_lang or effective_warranty_lang
         if story_language is not None:
             prose_options["language"] = story_language
+        # A measured plan caps the chain at this estimate, so it counts the
+        # frame foot an unbreakable figure leaves; an approved assembly plan
+        # fixes the span itself.
+        if (
+            columns == 1
+            and measured_fallback
+            and not is_explicit_assembly_plan(self.page_plan)
+        ):
+            prose_options["figure_frame_height"] = writer.frame_height()
         blocks = apply_component_composition_data(
             blocks,
             self.page_plan,

@@ -256,15 +256,13 @@ Operation figures.
   (`tools/idml/asset_slots.py`). A new target override of those slots needs no
   renderer change or `ALLOWED_MODEL_LITERALS` entry; file stems remain only as
   the fallback for bundles without a manifest.
-- The UPS and charging figures are still widened by shared file suffix, so an
-  override with a basename of its own keeps the 120 pt default. That is the case
-  for JE-1000F/JP's five overrides (`je1000f_jp_ups`, `_ac_wall`,
-  `_solar_direct`, `_solar_adapter`, `_car_charge`); the JE-1000F/AU IDML gives
-  the same figures, on the shared art, the full 312 pt measure. Recognising
-  them by slot widens them and reflows the
-  JP book (one more spread); InDesign 21.0.1.6 then reports the
-  `08_charging_methods` story overset on pages 16–17, where main has none. The
-  width change waits for a layout decision.
+- The UPS and charging figures are recognised by slot too, so JE-1000F/JP's five
+  overrides (`je1000f_jp_ups`, `_ac_wall`, `_solar_direct`, `_solar_adapter`,
+  `_car_charge`) fill the measure as the print does (its crops are 313–319 pt
+  wide) instead of the 120 pt default. The wider figures no longer overset
+  `08_charging_methods`: under a measured plan the story estimate counts the
+  frame foot an unbreakable figure leaves (see
+  [the JP overflow review](../reviews/je1000f_jp_native_overflow_2026-09.md)).
 - The LED step glyphs (bulbs, SOS badge) are drawn by the Web component because
   the art has none; if a future art version draws them, drop the markers instead
   of drawing them twice.

@@ -2086,6 +2086,16 @@ shorten a chain but never lengthen it past what the story needs, counted as its
 height estimate or one frame per authored page break, whichever is larger. An
 approved-reference or target-assembly contract stays authoritative in both
 directions, since a human mapped it page by page.
+
+Because that cap sizes a fallback chain from the height estimate, the estimate
+also counts the frame foot an unbreakable figure leaves. A figure line cannot
+break: when a single-column story's figure does not fit the space left in a
+frame, InDesign moves it to the next frame and the foot stays empty.
+JE-1000F/JP's charging methods estimated 929 pt (two pages) with full-width
+figures, but its solar-adapter and car figures each moved on, leaving 186 pt
+and 80 pt feet; the section needed about two and a half pages and overset.
+Counting those feet allocates three pages. Two-column stories and
+approved-reference or target-assembly contracts keep the linear estimate.
 Prepared-source integrity: a declared page include that is missing or is not a
 file now stops source discovery with the index and source path. Registered
 prose macros need complete arguments; unsupported content around recognized

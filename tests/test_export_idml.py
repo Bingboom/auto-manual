@@ -781,6 +781,51 @@ class ExportIdmlTests(unittest.TestCase):
             (bundle / "asset_usage_manifest.json").unlink()
             self.assertAlmostEqual(120.0, width(bundle, override), places=3)
 
+    def test_ups_and_charging_overrides_fill_the_measure_by_slot(self) -> None:
+        """UPS and charging overrides fill the measure like their shared art.
+
+        A target override needs a basename of its own, so the shared file
+        suffixes never match it; its slot does. Without a usage manifest the
+        same file falls back to the 120pt default.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        art = ROOT / "docs/renderers/latex/assets"
+        slots = {
+            "operation/ups_mode": art / "je1000f_jp_ups.png",
+            "charging/ac_wall": art / "je1000f_jp_ac_wall.png",
+            "charging/solar_direct": art / "je1000f_jp_solar_direct.png",
+            "charging/solar_adapter": art / "je1000f_jp_solar_adapter.png",
+            "charging/car_charge": art / "je1000f_jp_car_charge.png",
+        }
+
+        def width(bundle: Path, ref: str) -> float:
+            ctx = w._render_context(bundle)
+            xml, _ = render_image_block(ref, ctx, rect_id="art", terminal=False)
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            return max(float(x) for x, _y in corners)
+
+        with tempfile.TemporaryDirectory() as td:
+            staged = {
+                slot: f"renderers/latex/assets/{slot.rsplit('/', 1)[1]}_any_target.png"
+                for slot in slots
+            }
+            bundle = write_bundle_with_rewrites(Path(td), [
+                (staged[slot], slot, slot.replace("/", "/target/", 1), source)
+                for slot, source in slots.items()
+            ])
+            measure = w._render_context(bundle).text_measure
+            for slot, ref in staged.items():
+                with self.subTest(slot):
+                    self.assertAlmostEqual(measure, width(bundle, ref), places=3)
+            (bundle / "asset_usage_manifest.json").unlink()
+            for slot, ref in staged.items():
+                with self.subTest(f"{slot} without a manifest"):
+                    self.assertAlmostEqual(120.0, width(bundle, ref), places=3)
+
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
         # InDesign pink-highlight the text (designer-reported)
