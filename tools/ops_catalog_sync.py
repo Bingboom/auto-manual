@@ -49,6 +49,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
+from tools.document_link_queue import split_rendered_url  # noqa: E402
 from tools.feishu_record_transport import run_lark_cli_json as _transport_run  # noqa: E402
 from tools.manual_operations_online_health import publication_url  # noqa: E402
 from tools.phase2_support import parse_json_payload, resolved_cli_command_parts  # noqa: E402
@@ -663,7 +664,19 @@ def _flatten_text(value: Any) -> str:
 
 
 def extract_link(value: Any) -> str:
-    match = _URL_RE.search(_flatten_text(value))
+    """The URL a Document_link ``HTML_link`` cell points at, or ``""``.
+
+    Reconcile is a lenient reader by design: it reports what the catalog holds.
+    The ``url``-field rendering shape (``[label](target)``) is owned by
+    ``document_link_queue.split_rendered_url`` — the link *target* is what a
+    reader would open, so it wins over any label. Everything else falls back to
+    the first URL found anywhere in the flattened cell.
+    """
+    text = _flatten_text(value)
+    pair = split_rendered_url(text)
+    if pair is not None and pair[1]:
+        return pair[1].rstrip(")].,")
+    match = _URL_RE.search(text)
     return match.group(0).rstrip(")].,") if match else ""
 
 

@@ -8,6 +8,11 @@ import unittest
 from unittest import mock
 
 from tools import publish_branch_assembly, write_web_publish_receipt_links as receipt_links
+from tools.document_link_queue import (
+    describe_url_field,
+    split_rendered_url,
+    url_field_matches,
+)
 
 
 def write_release_target(
@@ -68,22 +73,11 @@ class _RecordingSource:
 
 
 class _FieldStore:
-    """Fake per-record field values with post-write visibility.
+    """Fake per-record field values with post-write visibility."""
 
-    ``render_as_link`` reads stored URLs back the way ``lark-cli base
-    +record-get`` does for a Feishu text cell: as ``[url](url)``.
-    """
-
-    def __init__(
-        self,
-        initial: dict[str, str],
-        field_name: str = "HTML_link",
-        *,
-        render_as_link: bool = False,
-    ) -> None:
+    def __init__(self, initial: dict[str, str], field_name: str = "HTML_link") -> None:
         self.values = dict(initial)
         self.field_name = field_name
-        self.render_as_link = render_as_link
         self.reads: list[str] = []
 
     def attach(self, source: _RecordingSource) -> None:
@@ -101,10 +95,7 @@ class _FieldStore:
 
     def fetch(self, *, cli_bin, identity, base_token, table_id, record_id):
         self.reads.append(record_id)
-        value = self.values.get(record_id, "")
-        if self.render_as_link and value:
-            value = f"[{value}]({value})"
-        return {self.field_name: value}
+        return {self.field_name: self.values.get(record_id, "")}
 
 
 class ReceiptLaneManifestTests(unittest.TestCase):
@@ -258,43 +249,6 @@ class ReceiptLaneManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "readback mismatch"):
             self._run(args=self._args(), verify_fn=self._verify_ok, store=store)
 
-    def test_link_segment_readback_verifies_the_registration(self) -> None:
-        # Feishu keeps the written URL as a link segment; +record-get renders
-        # it as [url](url). That is the registered value, not a mismatch.
-        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""}, render_as_link=True)
-        exit_code, report, source = self._run(
-            args=self._args(), verify_fn=self._verify_ok, store=store
-        )
-        self.assertEqual(0, exit_code)
-        self.assertEqual("registered", report["status"])
-        self.assertEqual(2, report["records_written"])
-        expected_url = (
-            "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html"
-        )
-        self.assertEqual(
-            [{"HTML_link": expected_url}, {"HTML_link": expected_url}],
-            [record for *_ids, record in source.upserts],
-        )
-
-    def test_link_segment_holding_the_url_is_already_registered(self) -> None:
-        url = "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html"
-        store = _FieldStore({"rec_web_1": url, "rec_web_2": url}, render_as_link=True)
-        exit_code, report, source = self._run(
-            args=self._args(), verify_fn=self._verify_ok, store=store
-        )
-        self.assertEqual(0, exit_code)
-        self.assertEqual([], source.upserts)
-        self.assertEqual(2, report["records_already_registered"])
-
-    def test_link_segment_to_another_url_still_fails_the_readback(self) -> None:
-        store = _FieldStore(
-            {"rec_web_1": "https://old.example/entry.html", "rec_web_2": ""},
-            render_as_link=True,
-        )
-        store.attach = lambda source: None  # type: ignore[method-assign]
-        with self.assertRaisesRegex(RuntimeError, "readback mismatch.*old.example"):
-            self._run(args=self._args(), verify_fn=self._verify_ok, store=store)
-
     def test_failed_verification_registers_nothing(self) -> None:
         store = _FieldStore({})
         exit_code, report, source = self._run(
@@ -371,6 +325,101 @@ class ReceiptLaneManifestTests(unittest.TestCase):
             self.assertEqual("no-queue-rows", report["status"])
             forbidden.assert_not_called()
 
+    # --- url-field rendering (Hello-Docs run 35492573107) -------------------
+    # HTML_link is a Bitable ``url``-type field: lark-cli reads a stored URL
+    # back as ``[url](url)``. The lane must accept that rendering and still
+    # reject a pair whose halves disagree.
+
+    RENDERED_URL = (
+        "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html"
+    )
+
+    def _rendering_store(self, initial: dict[str, str]) -> _FieldStore:
+        """A store whose writes become visible in the CLI's rendered form."""
+        store = _FieldStore(initial)
+
+        def attach(source: _RecordingSource) -> None:
+            inner = source.upsert_record
+
+            def rendering_upsert(*, base_token, table_id, record_id, record):
+                result = inner(
+                    base_token=base_token, table_id=table_id,
+                    record_id=record_id, record=record,
+                )
+                value = str(record[store.field_name])
+                store.values[record_id] = f"[{value}]({value})"
+                return result
+
+            source.upsert_record = rendering_upsert
+
+        store.attach = attach  # type: ignore[method-assign]
+        return store
+
+    def test_rendered_readback_is_accepted_as_registered(self) -> None:
+        store = self._rendering_store({"rec_web_1": "", "rec_web_2": ""})
+        exit_code, report, source = self._run(
+            args=self._args(), verify_fn=self._verify_ok, store=store
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual("registered", report["status"])
+        self.assertEqual(2, report["records_written"])
+        # The write still carries the bare URL; only the readback is rendered.
+        self.assertEqual(
+            [{"HTML_link": self.RENDERED_URL}, {"HTML_link": self.RENDERED_URL}],
+            [upsert[3] for upsert in source.upserts],
+        )
+
+    def test_rerun_over_a_rendered_row_is_idempotent(self) -> None:
+        rendered = f"[{self.RENDERED_URL}]({self.RENDERED_URL})"
+        store = _FieldStore({"rec_web_1": rendered, "rec_web_2": rendered})
+        exit_code, report, source = self._run(
+            args=self._args(), verify_fn=self._verify_ok, store=store
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual([], source.upserts)
+        self.assertEqual(0, report["records_written"])
+        self.assertEqual(2, report["records_already_registered"])
+
+    def test_rendered_pair_pointing_elsewhere_still_fails_the_readback(self) -> None:
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""})
+
+        def attach(source: _RecordingSource) -> None:
+            inner = source.upsert_record
+
+            def wrong_upsert(*, base_token, table_id, record_id, record):
+                result = inner(
+                    base_token=base_token, table_id=table_id,
+                    record_id=record_id, record=record,
+                )
+                # Halves that disagree are a real difference, not the CLI
+                # rendering artifact: the lane must stay red.
+                store.values[record_id] = (
+                    f"[{record[store.field_name]}](https://wrong.example/x.html)"
+                )
+                return result
+
+            source.upsert_record = wrong_upsert
+
+        store.attach = attach  # type: ignore[method-assign]
+        with self.assertRaisesRegex(RuntimeError, "readback mismatch") as caught:
+            self._run(args=self._args(), verify_fn=self._verify_ok, store=store)
+        self.assertIn("https://wrong.example/x.html", str(caught.exception))
+
+    def test_titled_link_to_the_page_is_rewritten_to_the_canonical_url(self) -> None:
+        # Only the CLI rendering shape counts as registered: a hand-titled
+        # link to the right page is rewritten to the bare canonical URL.
+        titled = f"[Manual]({self.RENDERED_URL})"
+        store = self._rendering_store({"rec_web_1": titled, "rec_web_2": titled})
+        exit_code, report, source = self._run(
+            args=self._args(), verify_fn=self._verify_ok, store=store
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual(2, report["records_written"])
+        self.assertEqual(
+            [{"HTML_link": self.RENDERED_URL}, {"HTML_link": self.RENDERED_URL}],
+            [upsert[3] for upsert in source.upserts],
+        )
+
 
 class FetchRecordFieldsTests(unittest.TestCase):
     def test_positional_arrays_map_to_field_names(self) -> None:
@@ -404,27 +453,53 @@ class FetchRecordFieldsTests(unittest.TestCase):
             )
 
 
-class RegisteredLinkTests(unittest.TestCase):
+class UrlFieldReadbackNormalizationTests(unittest.TestCase):
+    """``HTML_link`` is a ``url``-type field; lark-cli reads it back rendered.
+
+    The normalization absorbs exactly that rendering artifact. It must not
+    absorb a real difference, so a ``[label](target)`` pair whose halves
+    disagree never matches — not even when one half is the expected URL.
+    """
+
     URL = "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html"
 
-    def test_reads_plain_and_link_rendered_cells_as_the_url(self) -> None:
-        for value in (
-            self.URL,
-            f"  {self.URL}\n",
-            f"[{self.URL}]({self.URL})",
-            f"[Manual]({self.URL})",
-            {"link": self.URL, "text": self.URL},
-            [{"link": self.URL, "text": self.URL}],
-        ):
-            with self.subTest(value=value):
-                self.assertEqual(self.URL, receipt_links.registered_link(value))
+    def test_plain_string_equal_matches(self) -> None:
+        self.assertTrue(url_field_matches(self.URL, self.URL))
 
-    def test_leaves_other_text_unchanged(self) -> None:
-        self.assertEqual("", receipt_links.registered_link(None))
-        self.assertEqual("", receipt_links.registered_link(""))
-        # Only a cell that is exactly one link is unwrapped.
-        text = f"see [{self.URL}]({self.URL})"
-        self.assertEqual(text, receipt_links.registered_link(text))
+    def test_plain_string_different_fails(self) -> None:
+        self.assertFalse(url_field_matches("https://other.example/x.html", self.URL))
+
+    def test_cli_rendered_pair_matches(self) -> None:
+        """The exact shape that reddened Hello-Docs run 35492573107."""
+        self.assertTrue(url_field_matches(f"[{self.URL}]({self.URL})", self.URL))
+
+    def test_rendered_pair_with_disagreeing_halves_fails(self) -> None:
+        self.assertFalse(
+            url_field_matches("[https://a.example/a.html](https://b.example/b.html)", self.URL)
+        )
+
+    def test_rendered_pair_matching_only_one_half_fails(self) -> None:
+        # Fail-closed: a label or target that alone equals the expected URL is
+        # not the CLI rendering shape, so it stays a real difference.
+        self.assertFalse(url_field_matches(f"[a label]({self.URL})", self.URL))
+        self.assertFalse(url_field_matches(f"[{self.URL}](https://b.example/b.html)", self.URL))
+
+    def test_empty_and_missing_values_never_match(self) -> None:
+        self.assertFalse(url_field_matches("", self.URL))
+        self.assertFalse(url_field_matches(None, self.URL))
+
+    def test_split_rendered_url_reports_the_parsed_halves(self) -> None:
+        self.assertEqual(
+            ("https://a.example/a.html", "https://b.example/b.html"),
+            split_rendered_url("[https://a.example/a.html](https://b.example/b.html)"),
+        )
+        self.assertIsNone(split_rendered_url(self.URL))
+
+    def test_description_exposes_both_halves_of_a_mismatching_pair(self) -> None:
+        described = describe_url_field("[https://a.example/a.html](https://b.example/b.html)")
+        self.assertIn("https://a.example/a.html", described)
+        self.assertIn("https://b.example/b.html", described)
+        self.assertIn("link target", described)
 
 
 if __name__ == "__main__":
