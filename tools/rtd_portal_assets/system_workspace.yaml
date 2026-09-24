@@ -126,6 +126,7 @@ capabilities:
         evidence:
           - "pr:auto-manual#521"
           - "file:auto-manual:.agents/skills/bitable-translation-memory/SKILL.md"
+          - "file:auto-manual:tools/rtd_portal_assets/system_workspace_corpus.json"
       - id: short_copy
         label: 短文案自动取译文
         status: available
@@ -321,6 +322,24 @@ capabilities:
         evidence:
           - "file:auto-manual:.agents/skills"
           - "file:auto-manual:AGENTS.md"
+
+corpus:
+  # Counts only, from `python tools/rtd_system_workspace.py corpus-export`
+  # (read-only TM read); refresh monthly through a PR.
+  snapshot: system_workspace_corpus.json
+  stale_after_days: 45
+  languages:
+    - {code: en, label: 英语}
+    - {code: zh, label: 简体中文}
+    - {code: zh-TW, label: 繁体中文}
+    - {code: fr, label: 法语}
+    - {code: es, label: 西班牙语}
+    - {code: de, label: 德语}
+    - {code: it, label: 意大利语}
+    - {code: uk, label: 乌克兰语}
+    - {code: ko, label: 韩语}
+    - {code: jp, label: 日语}
+    - {code: pt-BR, label: 巴西葡语}
 
 flow:
   - from: 规格书

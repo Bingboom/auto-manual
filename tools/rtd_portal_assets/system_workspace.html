@@ -107,6 +107,32 @@
       </div>
     </section>
 
+    {%- if corpus_enabled %}
+    <section class="sw-section" id="language-assets">
+      <div class="section-header"><div>
+        <h2>语言资产</h2>
+        <p>翻译记忆库的规模与各语言覆盖，按月快照；不展示语料内容。</p>
+      </div></div>
+      {%- if corpus %}
+      <div class="sw-corpus-tiles">
+        {%- for tile in corpus.tiles %}
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong></div>
+        {%- endfor %}
+      </div>
+      <div class="sw-corpus">
+        <div class="sw-corpus-head"><span>各语言有译文的句对</span><span>快照 {{ corpus.exported_at|e }}{{ stale_mark(corpus.stale) }}</span></div>
+        <ul class="sw-corpus-bars" aria-label="各语言有译文的句对数">
+          {%- for row in corpus.rows %}
+          <li><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>语料快照当前不可读。</p></div>
+      {%- endif %}
+    </section>
+    {%- endif %}
+
     <section class="sw-section" id="flow">
       <div class="section-header"><div>
         <h2>生产流程与连接</h2>

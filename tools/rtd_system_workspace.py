@@ -10,7 +10,10 @@ builds from:
 - ``docs/publish/publish_manifest.json``: the published-target catalog and the
   only source of the counts the page shows;
 - the execution ledger named by ``now_next.source``: REV statuses and the
-  composition of the G1-G4 gates.
+  composition of the G1-G4 gates;
+- the corpus snapshot named by ``corpus.snapshot``: translation-memory counts
+  (never its text), written from the live TM base by ``corpus-export`` and
+  committed like any other frozen input.
 
 Data drift never breaks the build: a missing evidence file, a REV whose status
 moved, or an entry older than ``stale_after_days`` renders as 待复核. An
@@ -58,6 +61,11 @@ STATUS_LABELS = {
 MODE_LABELS = {"automated": "自动衔接", "manual": "人工衔接"}
 LEDGER_LABELS = {"done": "完成", "verifying": "在验", "planned": "待做", "deferred": "暂缓"}
 EVIDENCE_KINDS = ("pr", "file", "url", "rev", "ack")
+CORPUS_SCHEMA = "hello-docs-tm-corpus/v1"
+CORPUS_STATUS_FIELD = "Status"
+CORPUS_APPROVED = "Approved"
+CORPUS_UNLABELLED = "(未标注)"
+DEFAULT_CORPUS_STALE_DAYS = 45
 
 _QUANTITY = re.compile(r"\d+\s*(个|本|项|种|条|份|%|倍)")
 _ACK = re.compile(r"\S+ (\d{4}-\d{2}-\d{2})「.+」")
@@ -66,6 +74,7 @@ _REV_ROW = re.compile(r"^\|[^|]*?(REV-\d+)\s*\|")
 _GATE_ROW = re.compile(r"^\|\s*(G\d+|IDML)\b[^|]*\|([^|]*)\|")
 _REV_RANGE = re.compile(r"REV-(\d+)[–-](\d+)")
 _DOCNAME = re.compile(r"^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)*$")
+_SNAPSHOT_NAME = re.compile(r"^[A-Za-z0-9_.-]+\.json$")
 
 
 class ContractError(ValueError):
@@ -347,6 +356,19 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
             publication = entry["publication"] or {}
             if not all(publication.get(k) for k in ("model", "region", "lang")):
                 error(where, "publication needs model, region and lang")
+
+    corpus = contract.get("corpus")
+    if corpus is not None:
+        languages = corpus.get("languages") if isinstance(corpus, dict) else None
+        codes = [str(lang.get("code")) for lang in languages or [] if isinstance(lang, dict)]
+        if not isinstance(corpus, dict) or not _SNAPSHOT_NAME.fullmatch(str(corpus.get("snapshot"))):
+            error("corpus.snapshot", "must name a .json file next to the contract")
+        if not codes or len(set(codes)) != len(codes) or not all(
+                isinstance(lang, dict) and lang.get("label") for lang in languages or []):
+            error("corpus.languages", "needs unique codes, each with a label")
+        stale = corpus.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS) if isinstance(corpus, dict) else 0
+        if not isinstance(stale, int) or stale <= 0:
+            error("corpus.stale_after_days", "must be a positive integer")
     return out
 
 
@@ -381,8 +403,9 @@ def _checkable(repo: str, root: Path) -> bool:
     return repo != "hello-docs" or (root / PathSegments.DOCS / PathSegments.PUBLISH).is_dir()
 
 
-def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date) -> list[Finding]:
-    """Offline check: rules, in-tree evidence files, REV ids and drift."""
+def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
+                   assets: Path | None = None) -> list[Finding]:
+    """Offline check: rules, in-tree evidence files, REV ids, drift and the corpus snapshot."""
     ledger = load_ledger(contract, root)
     findings = structural_findings(contract, ledger)
     if ledger is None:
@@ -393,7 +416,178 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date) -> l
         for reason in drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today):
             broken = reason.startswith(("证据文件不存在", "台账中找不到"))
             findings.append(Finding("error" if broken else "warning", where, reason))
+    snapshot, problems = load_corpus(contract, assets or DEFAULT_CONTRACT.parent)
+    findings += [Finding("error", "corpus", problem) for problem in problems]
+    if snapshot is not None:
+        findings += [Finding("warning", "corpus", reason) for reason in corpus_view(contract, snapshot, today)["stale"]]
     return findings
+
+
+# --- corpus snapshot (aggregates of the translation memory; never its text) ----
+
+
+def _count(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
+
+def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
+    """Why a committed corpus snapshot cannot be shown; empty when it is sound."""
+    if not isinstance(snapshot, dict) or snapshot.get("schema") != CORPUS_SCHEMA:
+        return [f"snapshot schema must be {CORPUS_SCHEMA}"]
+    problems = []
+    try:
+        dt.date.fromisoformat(str(snapshot.get("exported_at")))
+    except ValueError:
+        problems.append("exported_at must be an ISO date")
+    extra = set(snapshot) - {"schema", "exported_at", "sentence_pairs", "terms"}
+    if extra:
+        problems.append(f"snapshot carries unexpected keys {sorted(extra)} (aggregates only)")
+    for key in ("sentence_pairs", "terms"):
+        block = snapshot.get(key)
+        if not isinstance(block, dict) or not _count(block.get("total")):
+            problems.append(f"{key}.total must be a non-negative integer")
+            continue
+        total = block["total"]
+        if set(block) - {"total", "by_language", "by_status"}:
+            problems.append(f"{key} carries unexpected keys (aggregates only)")
+        by_language = block.get("by_language")
+        if not isinstance(by_language, dict) or set(by_language) != set(codes):
+            problems.append(f"{key}.by_language must list exactly the contract languages")
+        elif not all(_count(v) and v <= total for v in by_language.values()):
+            problems.append(f"{key}.by_language counts must be integers between 0 and total")
+        by_status = block.get("by_status")
+        if (not isinstance(by_status, dict) or not all(_count(v) for v in by_status.values())
+                or sum(by_status.values()) != total):
+            problems.append(f"{key}.by_status must be integer counts that sum to total")
+    return problems
+
+
+def load_corpus(contract: dict[str, Any], assets: Path) -> tuple[dict[str, Any] | None, list[str]]:
+    """The committed snapshot named by ``corpus.snapshot``, or None with the reasons."""
+    config = contract.get("corpus")
+    if not config:
+        return None, []
+    name = str(config.get("snapshot"))
+    try:
+        data = json.loads((assets / name).read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return None, [f"cannot read {name}: {exc}"]
+    problems = corpus_problems(data, [str(lang["code"]) for lang in config["languages"]])
+    return (None if problems else data), problems
+
+
+def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.date) -> dict[str, Any]:
+    config = contract["corpus"]
+    pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
+    total = pairs["total"]
+    rows = [{"code": lang["code"], "label": lang["label"], "count": pairs["by_language"][lang["code"]]}
+            for lang in config["languages"]]
+    rows.sort(key=lambda row: -row["count"])  # stable: ties keep the contract order
+    for row in rows:
+        row["percent"] = round(100 * row["count"] / total) if total else 0
+        row["count_text"] = f"{row['count']:,}"
+    approved = pairs["by_status"].get(CORPUS_APPROVED, 0)
+    exported = dt.date.fromisoformat(snapshot["exported_at"])
+    limit = int(config.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS))
+    stale = [f"语料快照已超过 {limit} 天（导出于 {exported.isoformat()}）"] if (today - exported).days > limit else []
+    return {
+        "tiles": [
+            {"label": "句对", "value": f"{total:,}"},
+            {"label": "术语", "value": f"{terms['total']:,}"},
+            {"label": "覆盖语言", "value": str(sum(1 for row in rows if row["count"]))},
+            {"label": "句对已批准", "value": f"{round(100 * approved / total)}%" if total else "—"},
+        ],
+        "rows": rows,
+        "exported_at": exported.isoformat(),
+        "stale": stale,
+    }
+
+
+def _field_name(item: object) -> str:
+    if isinstance(item, dict):
+        return str(item.get("field_name") or item.get("name") or "")
+    return str(item)
+
+
+def _filled(value: object) -> bool:
+    if value is None:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, list):
+        return any(_filled(part) for part in value)
+    return True
+
+
+def _cell_text(value: object) -> str:
+    if isinstance(value, list):
+        value = value[0] if value else ""
+    if isinstance(value, dict):
+        value = value.get("text") or value.get("name") or ""
+    return str(value).strip() if value is not None else ""
+
+
+def _table_rows(run, base_token: str, table_id: str) -> tuple[list[str], list[dict[str, Any]]]:
+    """Every row of one table as {field: value}; +record-list caps a page at 200."""
+    header: list[str] = []
+    rows: list[dict[str, Any]] = []
+    offset = 0
+    while True:
+        payload = run(["base", "+record-list", "--base-token", base_token, "--table-id", table_id,
+                       "--format", "json", "--limit", "200", "--offset", str(offset)])
+        data = payload.get("data") if isinstance(payload, dict) else None
+        if not isinstance(data, dict):
+            raise RuntimeError(f"record-list returned no data payload for {table_id}")
+        names = [_field_name(item) for item in data.get("fields") or []]
+        header = header or names
+        page = data.get("data") or []
+        rows += [dict(zip(names, row)) for row in page if isinstance(row, list)]
+        if len(page) < 200:
+            return header, rows
+        offset += 200
+
+
+def _table_aggregate(header: list[str], rows: list[dict[str, Any]], codes: list[str]) -> dict[str, Any]:
+    missing = [name for name in [*codes, CORPUS_STATUS_FIELD] if name not in header]
+    if missing:
+        raise RuntimeError(f"translation-memory table is missing columns {missing}")
+    status: dict[str, int] = {}
+    for row in rows:
+        key = _cell_text(row.get(CORPUS_STATUS_FIELD)) or CORPUS_UNLABELLED
+        status[key] = status.get(key, 0) + 1
+    return {
+        "total": len(rows),
+        "by_language": {code: sum(_filled(row.get(code)) for row in rows) for code in codes},
+        "by_status": dict(sorted(status.items())),
+    }
+
+
+def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.date) -> dict[str, Any]:
+    """Aggregate the live TM base into a snapshot; read-only, counts only."""
+    from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
+
+    codes = [str(lang["code"]) for lang in contract["corpus"]["languages"]]
+    return {
+        "schema": CORPUS_SCHEMA,
+        "exported_at": today.isoformat(),
+        "sentence_pairs": _table_aggregate(*_table_rows(run, base_token, TM_SENTENCE_TABLE), codes),
+        "terms": _table_aggregate(*_table_rows(run, base_token, TM_TERMS_TABLE), codes),
+    }
+
+
+def lark_runner(cli_bin: str, identity: str):
+    """``run(args) -> payload`` over the shared hardened lark-cli transport."""
+    from tools.feishu_record_transport import run_lark_cli_json
+    from tools.phase2_support import parse_json_payload, resolved_cli_command_parts
+
+    def run(args: list[str]) -> dict[str, Any]:
+        if identity:
+            args = [*args[:2], "--as", identity, *args[2:]]
+        return run_lark_cli_json(cli_bin=cli_bin, args=args, repo_root=_REPO_ROOT,
+                                 resolved_cli_command_parts=resolved_cli_command_parts,
+                                 parse_json_payload=parse_json_payload, on_command=lambda cmd: None)
+
+    return run
 
 
 def online_findings(contract: dict[str, Any]) -> list[Finding]:
@@ -472,7 +666,8 @@ def _status_view(status: str) -> dict[str, str]:
 
 
 def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None,
-                  facts: dict[str, Any] | None, today: dt.date) -> dict[str, Any]:
+                  facts: dict[str, Any] | None, today: dt.date,
+                  corpus: dict[str, Any] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
@@ -576,6 +771,8 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "build_date": today.isoformat(),
         "last_published": (facts or {}).get("last_published", ""),
         "ledger_url": ledger_url,
+        "corpus_enabled": bool(contract.get("corpus")),
+        "corpus": corpus_view(contract, corpus, today) if corpus else None,
     }
 
 
@@ -617,7 +814,10 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
         except ValueError:
             logger.warning("rtd_system_workspace_date %r is not an ISO date; using %s", configured, today)
     facts = publication_facts(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
-    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today)
+    corpus, problems = load_corpus(contract, assets)
+    if problems:
+        logger.warning("System workspace corpus block shows no data: %s", "; ".join(problems[:3]))
+    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today, corpus=corpus)
 
 
 # --- CLI ----------------------------------------------------------------------
@@ -626,7 +826,7 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Check the System Workspace status contract.")
     commands = parser.add_subparsers(dest="command", required=True)
-    check = commands.add_parser("check", help="validate rules, evidence refs and drift")
+    check = commands.add_parser("check", help="validate rules, evidence refs, drift and the corpus snapshot")
     check.add_argument("--contract", type=Path, default=DEFAULT_CONTRACT)
     check.add_argument("--root", type=Path, default=None,
                        help="tree that file: evidence resolves against (default: this checkout)")
@@ -634,12 +834,25 @@ def main(argv: list[str] | None = None) -> int:
                        help="ISO date used for staleness (default: today, UTC)")
     check.add_argument("--online", action="store_true",
                        help="also confirm pr: refs are merged and url: refs answer 200")
+    export = commands.add_parser("corpus-export",
+                                 help="write the aggregate translation-memory snapshot (read-only Feishu read)")
+    export.add_argument("--contract", type=Path, default=DEFAULT_CONTRACT)
+    export.add_argument("--output", type=Path, default=None,
+                        help="default: the snapshot named by corpus.snapshot, next to the contract")
+    export.add_argument("--base-token", default=os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", ""),
+                        help="TM base token (default: $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN)")
+    export.add_argument("--cli-bin", default="lark-cli", help='lark-cli command, e.g. "lark-cli --profile prod"')
+    export.add_argument("--as", dest="identity", default="", help="lark-cli identity (user or bot); default: the CLI default")
+    export.add_argument("--today", type=_iso_date, default=None, help="export date to record (default: today, UTC)")
     args = parser.parse_args(argv)
+    if args.command == "corpus-export":
+        return _run_corpus_export(args)
 
     root = (args.root or repo_root()).resolve()
     try:
         contract = load_contract(args.contract)
-        findings = check_contract(contract, root=root, today=args.today or _utc_today())
+        findings = check_contract(contract, root=root, today=args.today or _utc_today(),
+                                  assets=args.contract.resolve().parent)
         if args.online and not any(f.severity == "error" for f in findings):
             findings += online_findings(contract)
     except ContractError as exc:
@@ -651,6 +864,35 @@ def main(argv: list[str] | None = None) -> int:
                  else "; hello-docs file refs unchecked (use --online or a Hello-Docs --root)")
     print(f"system workspace contract: {errors} error(s), {len(findings) - errors} warning(s){unchecked}")
     return 1 if errors else 0
+
+
+def _run_corpus_export(args) -> int:
+    try:
+        contract = load_contract(args.contract)
+    except ContractError as exc:
+        print(f"ERROR   {exc}")
+        return 1
+    if not contract.get("corpus"):
+        print("ERROR   the contract has no corpus section")
+        return 1
+    if not args.base_token:
+        print("ERROR   need --base-token or $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN")
+        return 1
+    try:
+        snapshot = corpus_export(contract, base_token=args.base_token,
+                                 run=lark_runner(args.cli_bin, args.identity), today=args.today or _utc_today())
+    except RuntimeError as exc:
+        print(f"ERROR   {exc}")
+        return 1
+    problems = corpus_problems(snapshot, [str(lang["code"]) for lang in contract["corpus"]["languages"]])
+    if problems:
+        print("ERROR   " + "; ".join(problems))
+        return 1
+    output = args.output or args.contract.resolve().parent / str(contract["corpus"]["snapshot"])
+    output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
+    print(f"wrote {output}: {pairs['total']} sentence pairs, {terms['total']} terms, exported {snapshot['exported_at']}")
+    return 0
 
 
 if __name__ == "__main__":

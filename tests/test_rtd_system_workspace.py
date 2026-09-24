@@ -284,6 +284,137 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         self.assertEqual(idml["stale"], ["REV-03 在台账中已变为 planned（记录为 done）"])
 
 
+def corpus_contract() -> dict:
+    data = contract()
+    data["corpus"] = {"snapshot": "corpus.json", "stale_after_days": 45,
+                      "languages": [{"code": "en", "label": "英语"}, {"code": "fr", "label": "法语"}]}
+    return data
+
+
+def corpus_snapshot() -> dict:
+    return {
+        "schema": sw.CORPUS_SCHEMA, "exported_at": "2026-09-24",
+        "sentence_pairs": {"total": 10, "by_language": {"en": 4, "fr": 9},
+                           "by_status": {"Approved": 7, "Draft": 3}},
+        "terms": {"total": 2, "by_language": {"en": 2, "fr": 1}, "by_status": {"Approved": 2}},
+    }
+
+
+class CorpusSnapshotTests(unittest.TestCase):
+    def setUp(self):
+        temp = TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+        (self.root / "ledger.md").write_text(LEDGER, encoding="utf-8")
+        (self.root / "tool.py").write_text("", encoding="utf-8")
+
+    def write_snapshot(self, snapshot) -> None:
+        (self.root / "corpus.json").write_text(json.dumps(snapshot), encoding="utf-8")
+
+    def test_sound_snapshot_passes_and_malformed_ones_are_named(self):
+        self.assertEqual(sw.corpus_problems(corpus_snapshot(), ["en", "fr"]), [])
+
+        def pairs(s):
+            return s["sentence_pairs"]
+
+        mutations = {
+            "schema must be": lambda s: s.update(schema="other/v0"),
+            "exported_at must be an ISO date": lambda s: s.update(exported_at="24/09/2026"),
+            "aggregates only": lambda s: s.update(rows=[{"en": "text"}]),
+            "must list exactly the contract languages": lambda s: pairs(s)["by_language"].pop("fr"),
+            "between 0 and total": lambda s: pairs(s)["by_language"].update(fr=11),
+            "sum to total": lambda s: pairs(s)["by_status"].update(Draft=9),
+            "total must be a non-negative integer": lambda s: pairs(s).update(total=-1),
+        }
+        for fragment, mutate in mutations.items():
+            with self.subTest(fragment):
+                snapshot = corpus_snapshot()
+                mutate(snapshot)
+                problems = sw.corpus_problems(snapshot, ["en", "fr"])
+                self.assertTrue(any(fragment in p for p in problems), problems)
+
+    def test_export_pages_every_table_and_keeps_counts_only(self):
+        from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
+
+        header = ["en", "fr", "Status", "Source"]
+        sentence_rows = [["Hi", "Salut", "Approved", "x"]] * 200 + [["Bye", "", ["Draft"], "x"], ["", None, None, "x"]]
+        terms_rows = [["Term", "Terme", "Approved", "x"]]
+        calls = []
+
+        def run(args):
+            table, offset = args[args.index("--table-id") + 1], int(args[args.index("--offset") + 1])
+            calls.append((table, offset))
+            rows = sentence_rows if table == TM_SENTENCE_TABLE else terms_rows
+            return {"code": 0, "data": {"fields": header, "data": rows[offset:offset + 200]}}
+
+        snapshot = sw.corpus_export(corpus_contract(), base_token="base", run=run, today=TODAY)
+        self.assertEqual(calls, [(TM_SENTENCE_TABLE, 0), (TM_SENTENCE_TABLE, 200), (TM_TERMS_TABLE, 0)])
+        self.assertEqual(snapshot["sentence_pairs"], {"total": 202, "by_language": {"en": 201, "fr": 200},
+                                                      "by_status": {"(未标注)": 1, "Approved": 200, "Draft": 1}})
+        self.assertEqual(snapshot["terms"]["total"], 1)
+        self.assertEqual(sw.corpus_problems(snapshot, ["en", "fr"]), [])
+        self.assertNotIn("Salut", json.dumps(snapshot, ensure_ascii=False))
+
+        def run_without_fr(args):
+            return {"code": 0, "data": {"fields": ["en", "Status"], "data": [["Hi", "Approved"]]}}
+
+        with self.assertRaisesRegex(RuntimeError, r"missing columns \['fr'\]"):
+            sw.corpus_export(corpus_contract(), base_token="base", run=run_without_fr, today=TODAY)
+
+    def test_view_sorts_languages_and_marks_an_old_snapshot(self):
+        view = sw.corpus_view(corpus_contract(), corpus_snapshot(), TODAY)
+        self.assertEqual([(r["label"], r["count"], r["percent"]) for r in view["rows"]],
+                         [("法语", 9, 90), ("英语", 4, 40)])
+        self.assertEqual([t["value"] for t in view["tiles"]], ["10", "2", "2", "70%"])
+        self.assertEqual(view["stale"], [])
+        old = sw.corpus_view(corpus_contract(), corpus_snapshot(), TODAY + dt.timedelta(days=46))
+        self.assertEqual(old["stale"], ["语料快照已超过 45 天（导出于 2026-09-24）"])
+
+    def test_check_reports_broken_and_stale_snapshots(self):
+        data = corpus_contract()
+        self.write_snapshot(corpus_snapshot())
+        self.assertEqual(sw.check_contract(data, root=self.root, today=TODAY, assets=self.root), [])
+        stale = sw.check_contract(data, root=self.root, today=TODAY + dt.timedelta(days=46), assets=self.root)
+        self.assertIn(("warning", "corpus"), {(f.severity, f.where) for f in stale})
+        broken = corpus_snapshot()
+        broken["terms"]["by_status"] = {"Approved": 1}
+        self.write_snapshot(broken)
+        findings = sw.check_contract(data, root=self.root, today=TODAY, assets=self.root)
+        self.assertEqual([(f.severity, f.where) for f in findings], [("error", "corpus")])
+        (self.root / "corpus.json").unlink()
+        self.assertIn("cannot read corpus.json",
+                      sw.check_contract(data, root=self.root, today=TODAY, assets=self.root)[0].message)
+
+    def test_corpus_config_errors_are_structural(self):
+        for fragment, mutate in {
+            "must name a .json file": lambda c: c.update(snapshot="../corpus.json"),
+            "needs unique codes": lambda c: c["languages"].append({"code": "en", "label": "again"}),
+            "must be a positive integer": lambda c: c.update(stale_after_days=0),
+        }.items():
+            with self.subTest(fragment):
+                data = corpus_contract()
+                mutate(data["corpus"])
+                errors = [f.message for f in sw.structural_findings(data, sw.parse_ledger(LEDGER))]
+                self.assertTrue(any(fragment in m for m in errors), errors)
+
+    def test_corpus_export_cli_writes_the_snapshot(self):
+        path = self.root / "contract.yaml"
+        path.write_text(yaml.safe_dump(corpus_contract(), allow_unicode=True), encoding="utf-8")
+
+        def run(args):
+            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]]}}
+
+        with redirect_stdout(io.StringIO()) as out, patch.dict("os.environ", {}, clear=False):
+            self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", ""]), 1)
+        self.assertIn("need --base-token", out.getvalue())
+        with redirect_stdout(io.StringIO()) as out, patch.object(sw, "lark_runner", return_value=run):
+            self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base",
+                                      "--today", "2026-09-24"]), 0)
+        written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
+        self.assertEqual((written["exported_at"], written["sentence_pairs"]["total"]), ("2026-09-24", 1))
+        self.assertIn("1 sentence pairs", out.getvalue())
+
+
 class ShippedSystemWorkspaceTests(unittest.TestCase):
     def test_shipped_contract_passes_the_offline_check(self):
         data = sw.load_contract(sw.DEFAULT_CONTRACT)
@@ -352,9 +483,20 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn("版本 9.9", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
+            self.assertIn("语言资产", page)
+            self.assertIn('class="sw-corpus-bars"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
+
+            snapshot = assets / sw.load_contract(assets / sw.CONTRACT_NAME)["corpus"]["snapshot"]
+            snapshot.write_text("{not json", encoding="utf-8")
+            result = build("no-corpus")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("corpus block shows no data", result.stderr)
+            page = (base / "no-corpus" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
+            self.assertIn("语料快照当前不可读", page)
+            self.assertIn("能力地图", page)
 
             broken = sw.load_contract(assets / sw.CONTRACT_NAME)
             broken = copy.deepcopy(broken)

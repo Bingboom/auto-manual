@@ -31,7 +31,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 
-知识库侧栏的“系统建设”页（`/workspace/system/`）展示已有能力、生产流程连接和阶段门进度。页面上的数量来自发布清单，进度来自执行台账；各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据。修改该文件走 auto-manual PR，提交前运行 `python tools/rtd_system_workspace.py check`。页面公开可见，只写可公开的内容。规则见[系统建设页](../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
+知识库侧栏的“系统建设”页（`/workspace/system/`）展示已有能力、生产流程连接和阶段门进度。页面上的数量来自发布清单，进度来自执行台账；各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据。修改该文件走 auto-manual PR，提交前运行 `python tools/rtd_system_workspace.py check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；每月运行 `python tools/rtd_system_workspace.py corpus-export`（只读取线上语料库）刷新快照，再提交 PR。规则见[系统建设页](../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
 
 ### 发布候选、撤回与恢复
 

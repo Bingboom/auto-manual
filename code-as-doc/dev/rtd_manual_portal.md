@@ -103,6 +103,29 @@ access control, so the contract holds only publishable facts. Gap narratives
 and resource needs belong to the Feishu internal page, not this file. The
 workspace sidebar shows the entry only when the page was built.
 
+### Language assets block
+
+The page also shows the translation memory's scale and per-language coverage:
+sentence pairs, terms, languages covered, the approved share, and one bar per
+language. The numbers come from `tools/rtd_portal_assets/system_workspace_corpus.json`,
+an aggregate snapshot that holds counts only, never corpus text. The build
+never reads Feishu. Refresh the snapshot monthly through a PR:
+
+```bash
+python tools/rtd_system_workspace.py corpus-export
+```
+
+The command reads the live TM base (`$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN`)
+and writes the snapshot next to the contract. It is read-only. Pass
+`--cli-bin "lark-cli --profile prod" --as bot` for the bot lane. The contract's
+`corpus.languages` list fixes the languages counted and their labels; a column
+missing from either table fails the export instead of counting zero.
+
+A snapshot older than `corpus.stale_after_days` (default 45) shows 待复核. An
+unreadable or malformed snapshot shows 无数据 for this block only, with a
+Sphinx warning; the rest of the page still renders. `check` reports both
+cases.
+
 ### Status rules
 
 - One vocabulary: `available`, `validated`, `in_progress`, `planned`,

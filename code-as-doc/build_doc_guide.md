@@ -2269,6 +2269,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 `tools/rtd_portal_assets/system_workspace.yaml`，数量来自
 `docs/publish/publish_manifest.json`，阶段门进度来自执行台账。修改状态配置后运行
 `python tools/rtd_system_workspace.py check`（加 `--online` 可再核对 PR 与链接）。
+页内“语言资产”块读取汇总快照 `tools/rtd_portal_assets/system_workspace_corpus.json`，
+每月用 `python tools/rtd_system_workspace.py corpus-export` 只读导出后提交。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
