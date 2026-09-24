@@ -155,6 +155,17 @@ the aggregate as well as individual file hashes. Eight target tests pass,
 including native HTML AC output and unchanged input-current assertions.
 Full build/regression and independent release acceptance remain separate gates.
 
+## 2026-09-24 App connect-result panel
+
+The App setup row above lists the result panel from PDF page 21, but the
+intake bound only the add-device control panel, so every language kept the
+shared JP-market `connect_result.png`. One panel cut from the EN block (p21,
+bbox 49 137.5 321 298 at 4x) now replaces it in all six language manifests,
+because the other five blocks place the same five bitmaps. As App UI, its
+recipe `manual_je2000f_eu_web_app.json` stays quarantined, and the source
+manifest binds it as `app_asset_recipe`. The operator confirmed the crop on
+2026-09-24.
+
 ## Non-goals
 
 - No live Bitable write, queue-row mutation, review reseed, OSS upload, or

@@ -25,6 +25,8 @@ SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = (
     ROOT / "docs" / "renderers" / "web" / "je2000f_eu_en_illustrations.json"
 )
+APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000f_eu_web_app.json"
+LANGUAGES = ("en", "fr", "es", "de", "it", "uk")
 
 
 class Je2000fEuEnWebTests(unittest.TestCase):
@@ -159,6 +161,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
         for binding in (
             "asset_recipe",
             "corrective_asset_recipe",
+            "app_asset_recipe",
             "web_illustration_manifest",
         ):
             bound = manifest[binding]
@@ -230,6 +233,26 @@ class Je2000fEuEnWebTests(unittest.TestCase):
             app_add_device.get("alt"),
         )
         self.assertEqual([], soup.select(".hb-app-add-device-live-label"))
+        # The print's own App screens replace the shared JP-market screenshot;
+        # the "for reference only" sentence stays live text below the panel.
+        app_connect = soup.select_one(
+            'img.manual-finished-illustration[data-reference-id="app-connect-result"]'
+        )
+        self.assertIsNotNone(app_connect)
+        self.assertTrue(
+            str(app_connect["data-web-finished-panel-path"]).endswith(
+                "/app_connect_result.png"
+            )
+        )
+        self.assertEqual(
+            [],
+            [
+                image["src"]
+                for image in soup.find_all("img")
+                if str(image.get("src", "")).endswith("/connect_result.png")
+            ],
+        )
+        self.assertIn("The above screenshots are for reference only.", self.html)
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
@@ -243,7 +266,7 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 if slot["status"] == "editable-fallback"
             ],
         )
-        self.assertEqual(14, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(15, len(soup.select(".manual-finished-illustration")))
         self.assertEqual(17, len(self.ir.pages))
         for expected in (
             "4000 cycles to 70%+ capacity",
@@ -354,18 +377,32 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 (ROOT / manifest["correction_recipe"]).read_bytes()
             ).hexdigest(),
         )
-        self.assertEqual(15, len(manifest["illustrations"]))
+        self.assertEqual(
+            "f24e33d4250c07e7ca659c8a6ce2a32453087c3b6bfe7a2bd4f54cb908989cc3",
+            hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
+        )
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        self.assertEqual(16, len(manifest["illustrations"]))
         self.assertEqual(14, len(original_recipe["assets"]))
         self.assertEqual(11, len(correction_recipe["assets"]))
+        self.assertEqual(1, len(app_recipe["assets"]))
         for asset in original_recipe["assets"] + correction_recipe["assets"]:
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
         for asset in correction_recipe["assets"]:
             self.assertEqual([12], [output["scale"] for output in asset["outputs"]])
+        # App screenshots stay quarantined in their recipe (the App/QR/URL/
+        # localized-UI gate); the illustration manifests are their only
+        # route onto the page.
+        for asset in app_recipe["assets"]:
+            self.assertFalse(asset["build_eligible"])
+            self.assertTrue(asset["visual_review_required"])
+            self.assertEqual("quarantine", asset["gate"]["status"])
+            self.assertIn("app-ui", asset["risk_tags"])
         output_hashes = {
             output["path"]: output["expected_sha256"]
-            for recipe in (original_recipe, correction_recipe)
+            for recipe in (original_recipe, correction_recipe, app_recipe)
             for asset in recipe["assets"]
             for output in asset["outputs"]
         }
@@ -378,6 +415,37 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 illustration["sha256"],
                 output_hashes[path.relative_to(ROOT).as_posix()],
             )
+
+    def test_every_language_binds_the_one_shared_app_connect_panel(self) -> None:
+        """The six language blocks of the print place the same five bitmaps."""
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        (asset,) = app_recipe["assets"]
+        (output,) = asset["outputs"]
+        self.assertEqual(list(LANGUAGES), asset["scope"]["locales"])
+        for lang in LANGUAGES:
+            manifest = json.loads(
+                (
+                    ILLUSTRATIONS.parent / f"je2000f_eu_{lang}_illustrations.json"
+                ).read_text(encoding="utf-8")
+            )
+            bound = [
+                item
+                for item in manifest["illustrations"]
+                if "connect_result.png" in item["replaces"]
+            ]
+            self.assertEqual(1, len(bound), lang)
+            (item,) = bound
+            path = ILLUSTRATIONS.parent / item["path"]
+            self.assertEqual(output["path"], path.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(
+                item["sha256"], hashlib.sha256(path.read_bytes()).hexdigest(), lang
+            )
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-connect-result", item["reference_id"], lang)
 
     def test_public_ir_replay_and_tamper_detection(self) -> None:
         fragments = render_document_fragments(self.ir, package_root=self.package)

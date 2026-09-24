@@ -129,6 +129,18 @@ rows make it Web-buildable. The print App screenshots `app/add_device` and
 `app/connect_result` still resolve to the shared JP-market images for
 JE-1000F/EU until a reviewed promotion covers them.
 
+`JE-2000F / EU` binds its App connect-result panel through its six per-language
+`web-illustrations/v1` manifests rather than composites. The six language blocks
+of its EU/UK print place the same five screen bitmaps, so one panel cut from the
+EN block (p21: the three screens with their embedded 2.3/2.4/2.5 captions)
+replaces `connect_result.png` in every language, and the localized "screenshots
+are for reference only" sentence stays live text. Its recipe,
+`data/asset_recipes/manual_je2000f_eu_web_app.json`, keeps the crop quarantined
+under the same gate: the hash-pinned manifest entries are its only route onto
+the page, and the frozen source binds the recipe as `app_asset_recipe`. Earlier
+Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
+because their keys carry none of the gate's tokens.
+
 Every newly generated Web `manual.ir.json` contains a
 `metadata.web_figure_coverage` payload with schema
 `web-figure-coverage/v1`. It audits actual rendered Overview, Operation and
