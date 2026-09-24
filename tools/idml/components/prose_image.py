@@ -20,6 +20,7 @@ from .base import RenderContext
 # its asset directory, so an override needs a basename of its own). The
 # suffixes below are the fallback for bundles without a usage manifest.
 _FULL_MEASURE_SLOTS = frozenset({
+    "overview/front_product",
     "operation/energy_saving",
     "operation/led_light",
     "operation/ups_mode",
@@ -323,6 +324,10 @@ def render_image_block(
         + "</CharacterStyleRange></ParagraphStyleRange>\n")
     space_before = param_pt(ctx.params, "idml_figure_space_before", 2.83)
     space_after = param_pt(ctx.params, "idml_figure_space_after", 4.25)
+    # A target override keeps its shared art's spacing: match by the slot the
+    # source named as well as by the shared file name.
+    slot = ctx.asset_slot(ref)
+    slot_key = slot.logical_key if slot is not None else ""
     if spacing_variant == "charging":
         # Above-line image paragraphs already contribute their native line
         # box.  Charging's diagram-to-heading transition therefore needs no
@@ -337,7 +342,7 @@ def render_image_block(
             "idml_charging_figure_space_after",
             0.0,
         )
-    if any(
+    if slot_key == "operation/ups_mode" or any(
         path.endswith(("/operation/ups_mode.png", "/assets/op_ups_mode.png"))
         for path in (ref.replace("\\", "/"), img.as_posix())
     ):
@@ -347,7 +352,7 @@ def render_image_block(
             f"lang_{language}_idml_ups_image_space_before",
             param_pt(ctx.params, "idml_ups_image_space_before", 5.2),
         )
-    if ref.endswith("front_product.jpg"):
+    if slot_key == "overview/front_product" or ref.endswith("front_product.jpg"):
         space_after = 1.58
     xml = xml.replace(
         "<ParagraphStyleRange ",

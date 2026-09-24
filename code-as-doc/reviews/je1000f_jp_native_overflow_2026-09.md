@@ -368,3 +368,12 @@ widths on the shared file suffixes.
   approved on 2026-09-05. These labels still await editable copy:
   "SolarSaga 200 × 2", "SolarSaga 100 Air × 4", the SolarSaga adapter note
   and 車.
+- **Front view.** The approved front view `je1000f_jp_front`, cropped from the
+  print's page 1 at 295 pt wide, also rendered at the 120 pt default.
+  - Recognising `overview/front_product` by slot gives it the full measure and
+    the front view's spacing, as the shared `front_product.jpg` already has.
+  - The UPS override gains the UPS space before.
+  - Result on the template path: the overview takes two pages and the IDML has
+    25. InDesign 21.0.1.6 reports 0 overset and no blank page.
+  - The 17-target matrix changes only the JE-1000F/JP auto packages.
+

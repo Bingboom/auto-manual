@@ -826,6 +826,64 @@ class ExportIdmlTests(unittest.TestCase):
                 with self.subTest(f"{slot} without a manifest"):
                     self.assertAlmostEqual(120.0, width(bundle, ref), places=3)
 
+    def test_front_and_ups_overrides_keep_their_shared_figure_treatment(self) -> None:
+        """An override matches its shared art's width and spacing by slot.
+
+        The shared front view and UPS art are recognised by file name for their
+        measure and spacing; a target override with a basename of its own gets
+        the same treatment through the slot its source named, and falls back to
+        the plain defaults without a usage manifest.
+        """
+        from tests.bundle_manifest_fixture import write_bundle_with_rewrites
+        from tools.idml.components.prose_image import render_image_block
+
+        params = load_layout_params(ROOT / "data" / "layout_params.csv")
+        w = IdmlWriter(params)
+        latex = ROOT / "docs/renderers/latex/assets"
+        common = ROOT / "docs/templates/word_template/common_assets"
+        pairs = {
+            "overview/front_product": (
+                "_assets/templates/word_template/common_assets/overview/front_product.jpg",
+                common / "overview/front_product.jpg",
+                "renderers/latex/assets/front_product_any_target.png",
+                latex / "je1000f_jp_front.png",
+            ),
+            "operation/ups_mode": (
+                "_assets/templates/word_template/common_assets/operation/ups_mode.png",
+                common / "operation/ups_mode.png",
+                "renderers/latex/assets/ups_mode_any_target.png",
+                latex / "je1000f_jp_ups.png",
+            ),
+        }
+
+        def figure(bundle: Path, ref: str) -> tuple[float, str, str]:
+            xml, _ = render_image_block(
+                ref, w._render_context(bundle), rect_id="art", terminal=False,
+            )
+            corners = re.findall(r'Anchor="([0-9.]+) ([0-9.]+)"', xml)
+            before = re.search(r'SpaceBefore="([0-9.]+)"', xml).group(1)
+            after = re.search(r'SpaceAfter="([0-9.]+)"', xml).group(1)
+            return max(float(x) for x, _y in corners), before, after
+
+        with tempfile.TemporaryDirectory() as td:
+            rewrites = []
+            for slot, (shared, shared_src, override, override_src) in pairs.items():
+                rewrites.append((shared, slot, slot, shared_src))
+                rewrites.append((override, slot, slot.replace("/", "/target/", 1), override_src))
+            bundle = write_bundle_with_rewrites(Path(td), rewrites)
+            measure = w._render_context(bundle).text_measure
+            for slot, (shared, _src, override, _osrc) in pairs.items():
+                with self.subTest(slot):
+                    shared_figure = figure(bundle, shared)
+                    self.assertAlmostEqual(measure, shared_figure[0], places=3)
+                    self.assertEqual(shared_figure, figure(bundle, override))
+            (bundle / "asset_usage_manifest.json").unlink()
+            plain = (120.0, "2.83", "4.25")
+            for slot, (_shared, _src, override, _osrc) in pairs.items():
+                with self.subTest(f"{slot} without a manifest"):
+                    width, before, after = figure(bundle, override)
+                    self.assertEqual(plain, (round(width, 3), before, after))
+
     def test_no_semibold_font_style_in_paragraph_styles(self) -> None:
         # the licensed Gilroy set has no SemiBold face; referencing it makes
         # InDesign pink-highlight the text (designer-reported)

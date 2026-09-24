@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-134 | PR #1236（`feat/assets-je1000f-eu-jp-led-base-art`，**含本登记行**）：登记 JE-1000F/EU（按语言：en 英标插座、fr/es/de/it 欧标插座）与 JE-1000F/JP 自有 LED 底图——两份配方哈希锁定、6 个导出物、`data/asset_registry.csv` 3 行（清单 431→434）；飞书 `04_资产定义` 同三行已按操作者批准写入并回读（`recvw7710A8Edc` / `recvw7710AMOja` / `recvw7710ATzZr`，预览附件 token 非空；同步合并对 CSV 无改动）。17 个 IDML 目标 22/30 包不变，JE-1000F EU de/en/fr 与 JP 的 LED 卡片与 flow 图换成登记底图，InDesign 两本 0 溢出；欧规网页可见页面不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：Hello-Docs 评审分支（`review/*`）上的任何合入（操作者 2026-09-24：评审分支不能合，含 Hello-Docs #117）、JE-1000F/JP 正面产品图的 IDML 宽度修复（另开 PR）、手动触发发布队列或网页发布、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1236 合入问题） | #1236 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-135 | PR #1237（`fix/idml-front-product-override-width`，**含本登记行**）：IDML 按资产槽位识别 `overview/front_product`（整栏宽、段后距 1.58 pt），UPS 覆盖图按槽位取 UPS 段前距；17 个 IDML 目标 28/30 包不变，只变 JE-1000F/JP 模板源两个包，InDesign 25 页 0 溢出（并入含 #1236 的 main 后复验）；生产评审源输出不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：Hello-Docs 评审分支（`review/*`）上的任何合入（操作者 2026-09-24：评审分支不能合）、JBP-2000B `left_side_ports` 宽度、手动触发发布队列或网页发布、线上源表写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1237 合入问题） | #1237 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-134 | PR #1236（`feat/assets-je1000f-eu-jp-led-base-art`，**含本登记行**）：登记 JE-1000F/EU（按语言：en 英标插座、fr/es/de/it 欧标插座）与 JE-1000F/JP 自有 LED 底图——两份配方哈希锁定、6 个导出物、`data/asset_registry.csv` 3 行（清单 431→434）；飞书 `04_资产定义` 同三行已按操作者批准写入并回读（`recvw7710A8Edc` / `recvw7710AMOja` / `recvw7710ATzZr`，预览附件 token 非空；同步合并对 CSV 无改动）。17 个 IDML 目标 22/30 包不变，JE-1000F EU de/en/fr 与 JP 的 LED 卡片与 flow 图换成登记底图，InDesign 两本 0 溢出；欧规网页可见页面不变。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：Hello-Docs 评审分支（`review/*`）上的任何合入（操作者 2026-09-24：评审分支不能合，含 Hello-Docs #117）、JE-1000F/JP 正面产品图的 IDML 宽度修复（另开 PR）、手动触发发布队列或网页发布、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「全绿后合入」2026-09-24（答复 #1236 合入问题） | #1236 合入即失效，或操作者撤销 | 已失效（#1236 squash `5cc23ff3` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
