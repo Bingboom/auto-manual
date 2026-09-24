@@ -55,7 +55,7 @@ class WebCompositeManifestTests(unittest.TestCase):
             COMMITTED_FIXTURE_ROOT / "web_composite_manifest.json"
         )
 
-        self.assertEqual(80, len(manifest.entries))
+        self.assertEqual(81, len(manifest.entries))
         for entry in manifest.entries:
             with self.subTest(key=entry.web_replace_key, locale=entry.locale):
                 if entry.region_scope == "US":
@@ -83,13 +83,15 @@ class WebCompositeManifestTests(unittest.TestCase):
         eu_entries = [
             entry for entry in manifest.entries if entry.region_scope == "EU"
         ]
-        self.assertEqual(55, len(eu_entries))
+        self.assertEqual(56, len(eu_entries))
         self.assertEqual(
             {
                 (locale, slot)
                 for locale in ("en", "fr", "es", "de", "it")
                 for slot in required_slots
-            },
+            }
+            # One App connect panel serves all five languages, as in the print.
+            | {("shared", "reference.app-connect-result")},
             {(entry.locale, entry.web_replace_key) for entry in eu_entries},
         )
         self.assertTrue(
@@ -120,7 +122,7 @@ class WebCompositeManifestTests(unittest.TestCase):
         source = sources[recipe["source"]["source_key"]]
         self.assertEqual(recipe["source"]["expected_sha256"], source["sha256"])
         self.assertEqual(str(recipe["source"]["expected_page_count"]), source["page_count"])
-        self.assertEqual(55, len(recipe["assets"]))
+        self.assertEqual(56, len(recipe["assets"]))
 
         manifest_entries = {
             (entry.asset_key, entry.locale): entry
@@ -129,12 +131,14 @@ class WebCompositeManifestTests(unittest.TestCase):
         }
         registry_keys: set[str] = set()
         for asset in recipe["assets"]:
+            shared = asset["asset_key"].split("/")[2] == "shared"
             self.assertEqual("localized-full-page", asset["text_policy"])
-            self.assertEqual("approved", asset["gate"]["status"])
+            # The recipe keeps App UI quarantined; 04_资产定义 approves it for the Web.
+            self.assertEqual("quarantine" if shared else "approved", asset["gate"]["status"])
             self.assertEqual(["crop"], [item["op"] for item in asset["transforms"]])
             self.assertEqual(1, len(asset["outputs"]))
             output = asset["outputs"][0]
-            locale = asset["scope"]["locales"][0]
+            locale = "shared" if shared else asset["scope"]["locales"][0]
             registry_key = f"web-composite/je1000f_eu/{asset['asset_key'].rsplit('/', 1)[-1]}"
             entry = manifest_entries[(registry_key, locale)]
             self.assertEqual(output["expected_sha256"], entry.content_sha256)
@@ -145,13 +149,13 @@ class WebCompositeManifestTests(unittest.TestCase):
             registry_keys.add(registry_key)
             self.assertEqual("JE-1000F", row["适用机型"])
             self.assertEqual("EU", row["适用区域"])
-            self.assertEqual("en,fr,es,de,it", row["语言变体"])
+            self.assertEqual("shared" if shared else "en,fr,es,de,it", row["语言变体"])
             self.assertIn(
                 f"{Path(entry.path).name}:{entry.content_sha256[:12]}",
                 row["内容哈希"],
             )
 
-        self.assertEqual(11, len(registry_keys))
+        self.assertEqual(12, len(registry_keys))
 
     def test_manifest_round_trip_and_exact_locale_precedes_shared(self) -> None:
         with tempfile.TemporaryDirectory() as td:
