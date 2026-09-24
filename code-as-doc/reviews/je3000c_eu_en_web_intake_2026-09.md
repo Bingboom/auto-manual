@@ -57,3 +57,16 @@ recent content drift. Add explicit aggregate-digest verification. No online
 data, artwork, workflow or publication changes; full-book acceptance is open.
 
 The target now integrates the merged EU Web baseline. Shared fixture CSVs retain complete logical records when combining target additions, including quoted multiline symbol descriptions; this preserves the existing JP and US consumers. The final integration is validated against the current main and the full test suite before merge.
+
+## 2026-09-24 App connect-result panel for fr/es/de/it/uk
+
+The fr/es/de/it/uk routes, wired later from this frozen source, had no
+illustration manifest, so their App setup step 2.5 showed the shared
+JP-market `connect_result.png`. The print's other five language blocks
+(p37/p53/p69/p85/p101) place the same five bitmaps as the English block, so
+one panel cut from p21 (bbox 51.75 142.25 323.75 302.75 at 12x, the scale of
+the English App panels) now replaces it in five one-entry manifests; the
+localized "screenshots are for reference only" sentence stays live text. As
+App UI, its recipe `manual_je3000c_eu_web_app.json` stays quarantined, and the
+source manifest binds it as `app_asset_recipe`. English is unchanged. The
+operator confirmed the crop on 2026-09-24.

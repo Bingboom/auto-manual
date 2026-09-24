@@ -1,0 +1,28 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-3000C",
+  "region": "EU",
+  "language": "uk",
+  "source_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
+  "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
+  "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je3000c_eu_shared/app_connect_result.png",
+      "sha256": "0dfd46ee1d5825b432ebffc3f560e7a50f7beb6ed43d208130e268f923b7e1b6",
+      "source_page": 21,
+      "bbox_pt": [
+        51.75,
+        142.25,
+        323.75,
+        302.75
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-connect-result"
+    }
+  ]
+}
