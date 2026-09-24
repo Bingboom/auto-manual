@@ -73,6 +73,9 @@ class _RecordingWriter:
     def pages_for_height(self, _height: float) -> int:
         return 1
 
+    def frame_height(self) -> float:
+        return 455.0
+
     def add_spread_chain(
         self,
         sid: str,
@@ -209,6 +212,36 @@ class ReferenceStoryEmitterTests(unittest.TestCase):
 
         self.assertEqual(11, next_page)
         self.assertEqual([("st_operation", 4, 7, 1)], writer.spread_chains)
+
+    def test_only_a_measured_plan_counts_figure_frame_breaks(self) -> None:
+        """The cap sizes a measured chain from the estimate, so only there does
+        the writer count the frame foot an unbreakable figure leaves behind."""
+        measured = {"physical_page_count": 20, "pages": [
+            {"source_path": "page/charging.rst", "latex_start_page": 14},
+        ]}
+        explicit = {"plan_source": "target-assembly", "physical_page_count": 20, "pages": [{
+            "source_path": "page/charging.rst",
+            "latex_start_page": 14,
+            "composition_id": "charging-en",
+            "planned_page_count": 1,
+        }]}
+        cases = (
+            ("measured, one column", measured, 1, 455.0),
+            ("measured, two columns", measured, 2, None),
+            ("explicit assembly", explicit, 1, None),
+            ("no plan", None, 1, None),
+        )
+        for label, plan, columns, expected in cases:
+            with self.subTest(label):
+                writer = _RecordingWriter()
+                ReferenceStoryEmitter(writer, _RecordingToc(), ROOT, plan).emit(
+                    "st_charging", "charging", [("h1", "CHARGING")],
+                    page_cursor=0, columns=columns,
+                )
+                self.assertEqual(
+                    expected,
+                    writer.prose_story_options[0].get("figure_frame_height"),
+                )
 
     def test_authored_page_breaks_keep_a_frame_each(self) -> None:
         """The height estimate ignores forced breaks; the cap must not."""

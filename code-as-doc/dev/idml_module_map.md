@@ -65,7 +65,8 @@ tools/idml/
                               source page has no explicit HBFccBlock
   notice_labels.py            localized NOTE/TIP/CAUTION/WARNING/DANGER label mapping
                               for notice-style list-table extraction
-  stories.py                  story builders: prose (block-stream dispatch), lcd, symbols,
+  stories.py                  story builders: prose (block-stream dispatch; under a measured
+                              plan story_estimates.StoryHeight counts figure breaks), lcd, symbols,
                               trouble, spec, text; delegates localized operation rhythm
   package.py                  zip contract (mimetype first + STORED), designmap wiring,
                               linked spread chain, height estimation

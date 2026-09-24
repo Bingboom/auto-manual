@@ -15,14 +15,19 @@ from ..style_names import paragraph_style_ref
 from .base import RenderContext
 
 
-# Full-measure art is recognised by the slot its source named
-# (RenderContext.asset_slot) where a target override needs a file name of its
-# own (LaTeX flattens its asset directory), so no suffix list has to name it.
-# Only the LED slot has moved: UPS and charging overrides are still matched by
-# the shared suffixes, and one with a file name of its own keeps the narrow
-# default. Widening those reflows the books that use them, which is a layout
-# change of its own.
-_FULL_MEASURE_SLOTS = frozenset({"operation/led_light"})
+# Full-measure art, by the slot its source named (RenderContext.asset_slot):
+# a target override keeps its slot whatever its file is called (LaTeX flattens
+# its asset directory, so an override needs a basename of its own). The
+# suffixes below are the fallback for bundles without a usage manifest.
+_FULL_MEASURE_SLOTS = frozenset({
+    "operation/energy_saving",
+    "operation/led_light",
+    "operation/ups_mode",
+    "charging/ac_wall",
+    "charging/solar_direct",
+    "charging/solar_adapter",
+    "charging/car_charge",
+})
 _FULL_MEASURE_SUFFIXES = (
     "/operation/energy_saving.png",
     "/operation/led_light.png",

@@ -314,3 +314,57 @@ Resulting JE-1000F/JP allocation — every span now equals its own estimate:
 Overset, not blank pages, is now the failure mode when a section runs short of
 room. The next screenshot round must check the InDesign overset markers on the
 charging-methods and App sections, which each lost their surplus page.
+
+## Figure-break estimate and full-measure overrides — 2026-09-24
+
+The operator asked for the JE-1000F/JP UPS and charging widths to be fixed in
+their own task (2026-09-23). The asset-slot recognition PR had left those
+widths on the shared file suffixes.
+
+- **Width.** On the template/runtime path, the approved JP artwork reaches the
+  IDML as target overrides. Each override has its own basename (`je1000f_jp_ups`,
+  `_ac_wall`, `_solar_direct`, `_solar_adapter`, `_car_charge`), which misses the
+  shared full-measure suffixes, so all five rendered at the 120 pt default.
+  - The print sets these figures at the full measure: the recipe crops are
+    313–319 pt wide.
+  - LaTeX sets them at 270 pt, from the templates' `:width: 360px`.
+  - The IDML now recognises the five slots by the asset slot the source named,
+    so they fill the 312.094 pt measure.
+- **Overset.** With full-measure figures, InDesign 21.0.1.6 reported
+  `08_charging_methods` overset on physical pages 16–17; `main` has none.
+  - A disposable measurement (a temporary overflow frame, closed without
+    saving) found 226.5 pt of overflow: the car figure and its note.
+  - The height estimate summed 929 pt, so the story got two 473.7 pt frames.
+  - A figure line cannot break, so a figure that does not fit moves to the next
+    frame. The solar-adapter figure (185.6 pt) and the car figure (159.7 pt)
+    each missed the foot of their frame, leaving 186 pt and 80 pt empty.
+  - Widening the LaTeX figures to the measure was tried and dropped. It
+    re-measured the same plan and left the IDML byte-identical.
+- **Repair.** Under a measured plan, a single-column story's estimate now also
+  counts the frame foot an unbreakable figure leaves.
+  - The fallback cap decided on 2026-09-05 is unchanged: a chain still never
+    exceeds its estimate. The estimate is now simply closer to native
+    composition.
+  - Two-column stories, approved-reference and target-assembly contracts, and
+    no-plan builds keep the linear estimate.
+- **Result.**
+  - Charging methods now takes three pages.
+  - The IDML has 24 physical pages against LaTeX's 23. Under a fallback plan
+    this is a note, not an error.
+  - InDesign reports 0 overset stories or cells and no blank page, and the PDF
+    exported.
+  - Across the 17-target IDML matrix, only the two JE-1000F/JP auto packages
+    change (28 of 30 are member-identical).
+- **Production is not affected yet.** The queue builds JP from
+  `review/JE-1000F-JP` (`b295209f`).
+  - Those review pages still reference the shared generic artwork by path. The
+    approved JP artwork, and so this repair, does not reach them: the
+    review-source IDML is byte-identical before and after.
+  - The same pages reference `energy_saving_12h.svg`, which LaTeX cannot size.
+    A local production-equivalent build needed its PNG sibling.
+  - Bringing the approved artwork into those review pages is a separate
+    data-plane change.
+- **Still open.** The approved artwork keeps its empty annotation panels, as
+  approved on 2026-09-05. These labels still await editable copy:
+  "SolarSaga 200 × 2", "SolarSaga 100 Air × 4", the SolarSaga adapter note
+  and 車.

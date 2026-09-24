@@ -129,7 +129,9 @@ HOTSPOT_LINE_THRESHOLDS: dict[str, int] = {
     # +2 per-language data-page titles/sids (parity); +9 target-declared
     # figure callouts -- one planning call, one lookup, and the skip for a
     # label table now printed over the art (tools/idml/components/prose_image.py).
-    "tools/idml/stories.py": 256,
+    # +3 figure-break estimate: one chain-height parameter and two forced-break
+    # resets; the accumulator itself lives in tools/idml/story_estimates.py.
+    "tools/idml/stories.py": 259,
     "tools/idml/pages.py": 500,
     "tools/idml/package.py": 160,
 }

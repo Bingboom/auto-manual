@@ -186,7 +186,8 @@ class IdmlWriter:
                         image_callouts: tuple[tuple[dict, ...], ...] = (),
                         disable_hyphenation: bool = False,
                         first_h1_space_after: float | None = None,
-                        semantic_page_role: str | None = None) -> tuple[str, float]:
+                        semantic_page_role: str | None = None,
+                        figure_frame_height: float | None = None) -> tuple[str, float]:
         return _stories.add_prose_story(
             self,
             sid,
@@ -200,6 +201,7 @@ class IdmlWriter:
             disable_hyphenation=disable_hyphenation,
             first_h1_space_after=first_h1_space_after,
             semantic_page_role=semantic_page_role,
+            figure_frame_height=figure_frame_height,
         )
 
     def add_lcd_story(self, rows: list[dict], data_root: Path, **kw) -> str:
