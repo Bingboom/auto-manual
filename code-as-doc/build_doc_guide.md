@@ -1151,10 +1151,9 @@ configs keep that historical default unless `--lang` is supplied explicitly.
 The approved v2 contract separates enforced identity from provenance:
 
 The committed engineering-plane review copy is synchronized to
-`Bingboom/Hello-Docs:review/JE-1000F-US@e06def5e49e107e1a9595c1f38bb11b1d5496f94`
-plus the 2026-09-23 refresh to the publish queue's review-sync output: the same
-16 files, byte for byte, as
-[Hello-Docs #116](https://github.com/Bingboom/Hello-Docs/pull/116).
+`Bingboom/Hello-Docs:review/JE-1000F-US@731f1954c0e19020bd22b68876b0c536d564f647`,
+which includes the 2026-09-23 refresh to the publish queue's review-sync output
+([Hello-Docs #116](https://github.com/Bingboom/Hello-Docs/pull/116)).
 The 2026-08-29 content reapproval covers the current editable IDML semantic
 projection; its rebind changed zero page bindings and left the 58-page
 composition map unchanged. The first 2026-09-23 content reapproval moved the
@@ -1165,6 +1164,9 @@ review copy to the state the publish queue's review sync writes (the six
 symbols and troubleshooting pages, EN/FR/ES: signal-row variants and the F9
 "DC/USB" copy from live data); it changed exactly those six page bindings and
 left the composition map unchanged.
+A later 2026-09-23 style re-pin followed the common `idml_symbols_signal_alert_icon`
+row in `data/layout_params.csv`. It changed only the layout-params identity; there
+were no page bindings and no content change.
 
 | Contract item | Approved value |
 | --- | --- |
@@ -1176,7 +1178,7 @@ left the composition map unchanged.
 | Content identity (enforced) | `46319119142e5824202d3f12297557ed46b67fb89bcbde363b852802980bc678` |
 | Assembly identity (enforced) | `c5d6d94c5bc6eaf18e767af3113aa9c766fb01c519062751003d310e9684eb57` |
 | Style-contract identity (enforced) | `cdf3b81f7b002bca4596565418c52c0a852666454b7fb77206ae71d1ab9ae420` |
-| Layout-params identity (enforced) | `2a7e0ea1b75180acc52ff0f169f42322416bc881de860255f1ca778ce2858d82` |
+| Layout-params identity (enforced) | `9781ef9eec94bd356fd862b231e57d04d2e56f0cd03016d78d85412e7312515b` |
 | Snapshot provenance (not an activation gate) | `4c7b267672c8be081977c5644b444a6eb0059cacbd81de0a995ac6f58a859a2e` |
 
 The 52 plan rows bind every IR source reference, by composition, to this
