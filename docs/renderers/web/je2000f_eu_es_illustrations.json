@@ -302,6 +302,23 @@
           "text": "※El cable de carga para vehículo se vende por separado."
         }
       ]
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je2000f_eu_shared/app_connect_result.png",
+      "sha256": "6797b35ec9237f51288866c2a4b16a2a98052341c3692d7978883fd15fe3a842",
+      "source_page": 21,
+      "bbox_pt": [
+        49.0,
+        137.5,
+        321.0,
+        298.0
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-connect-result"
     }
   ]
 }
