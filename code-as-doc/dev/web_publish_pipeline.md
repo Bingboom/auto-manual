@@ -217,13 +217,15 @@ change JP D1–D4 or promote production eligibility.
    until the deployment verifies or the deploy timeout expires, and only then
    writes the canonical URL to each queue row — idempotently (an equal stored
    value is skipped, so reruns never re-register) and with a same-record
-   readback after every write. Both comparisons use the stored URL: Feishu
-   keeps a URL written to the text field as a link, and
-   `lark-cli base +record-get` reads it back as a Markdown link whose label
-   and target are that URL. Verification failure or timeout registers
-   nothing and opens the `queue-failure-web-receipt` sentinel; the retry is a
-   `workflow_dispatch` re-run (optionally scoped by `record_ids`), never a
-   re-publish of the manual.
+   readback after every write. `HTML_link` is a Bitable URL field, which
+   `lark-cli base +record-get` reads back as a Markdown link whose label and
+   target are both the stored URL. Both comparisons accept exactly that form
+   (`document_link_queue.url_field_matches`); a link whose label or target
+   differs is a mismatch, so a hand-titled link is rewritten to the canonical
+   URL and a link to another page fails the readback. Verification failure or
+   timeout registers nothing and opens the `queue-failure-web-receipt`
+   sentinel; the retry is a `workflow_dispatch` re-run (optionally scoped by
+   `record_ids`), never a re-publish of the manual.
 
 ### 2.2 Git-only transaction
 

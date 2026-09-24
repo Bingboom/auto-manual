@@ -8,6 +8,62 @@ from typing import Any, Callable
 from tools.language_aliases import normalize_language, normalize_region
 
 _EXPLICIT_DOCUMENT_KEY_RE = re.compile(r"[A-Za-z0-9-]+_[A-Za-z0-9-]+")
+# lark-cli renders a Bitable ``url``-type field (Document_link.HTML_link is one)
+# as a markdown link rather than a bare string: a cell storing ``https://u``
+# reads back as ``[https://u](https://u)`` — label and target both the stored
+# URL. Observed live in the ops_catalog_sync reconcile lane and again in the
+# web-publish-receipt first run (Hello-Docs run 35492573107). This is the single
+# definition of that rendering shape; callers apply their own strictness on top.
+_RENDERED_URL_RE = re.compile(r"\[\s*([^\]]*?)\s*\]\(\s*([^)]*?)\s*\)")
+
+
+def split_rendered_url(text: Any) -> tuple[str, str] | None:
+    """``[label](target)`` -> ``(label, target)``; ``None`` when not that form.
+
+    Returns the parsed halves without judging them: a caller that must not
+    swallow a real difference compares both halves itself.
+    """
+    candidate = str(text or "").strip()
+    match = _RENDERED_URL_RE.fullmatch(candidate)
+    if not match:
+        return None
+    return match.group(1), match.group(2)
+
+
+def url_field_matches(actual: Any, expected: str) -> bool:
+    """Does a read-back ``url``-field value carry exactly ``expected``?
+
+    Fail-closed: this absorbs the lark-cli rendering artifact and nothing else.
+    A bare string must equal ``expected``; a rendered ``[label](target)`` pair
+    matches only when label **and** target are both ``expected``. A pair whose
+    halves disagree is a real difference and never matches, even when one half
+    happens to be the expected URL.
+    """
+    wanted = str(expected or "").strip()
+    candidate = str(actual or "").strip()
+    if candidate == wanted:
+        return True
+    pair = split_rendered_url(candidate)
+    if pair is None:
+        return False
+    label, target = pair
+    return label == wanted and target == wanted
+
+
+def describe_url_field(actual: Any) -> str:
+    """Render a read-back value for an error message, exposing both halves.
+
+    A mismatching rendered pair is reported as its label/target parts so the
+    operator sees *which* half disagreed rather than one opaque string.
+    """
+    candidate = str(actual or "").strip()
+    pair = split_rendered_url(candidate)
+    if pair is None:
+        return repr(candidate)
+    label, target = pair
+    if label == target:
+        return repr(candidate)
+    return f"{candidate!r} (link text {label!r} != link target {target!r})"
 
 
 def scalar_text(value: Any) -> str:
