@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
+from .asset_slots import AssetSlotLookup, bundle_asset_slots
 from .language_contract import governed_languages
 from .asset_contracts import (
     APP_ADD_DEVICE_COMPONENT,
@@ -63,6 +64,11 @@ class ProseFlowBuffer:
     """Collect consecutive prose pages until a hard layout boundary appears."""
 
     items: list[tuple[str, list[Block], int]] = field(default_factory=list)
+    # The prepared bundle, so governed art is recognised by its asset slot.
+    bundle_root: Path | None = None
+
+    def _asset_slot(self) -> AssetSlotLookup | None:
+        return bundle_asset_slots(self.bundle_root) if self.bundle_root else None
 
     def add(self, stem: str, blocks: list[Block], columns: int = 1) -> None:
         self.items.append((stem, blocks, columns))
@@ -120,13 +126,17 @@ class ProseFlowBuffer:
                 planned_starts.get(batches[index + 1][0][0])
                 if respect_page_plan else None
             )
-            blocks, columns = self._batch_content(batches[index], page_plan)
+            blocks, columns = self._batch_content(
+                batches[index], page_plan, asset_slot=self._asset_slot()
+            )
             if start and next_start and estimate_pages(blocks, columns) > next_start - start:
                 batches[index].extend(batches.pop(index + 1))
             else:
                 index += 1
         for batch in batches:
-            self._emit_batch(batch, emit, slug_stem, page_plan)
+            self._emit_batch(
+                batch, emit, slug_stem, page_plan, asset_slot=self._asset_slot()
+            )
         self.items.clear()
         return True
 
@@ -245,6 +255,8 @@ class ProseFlowBuffer:
     def _batch_content(
         items: list[tuple[str, list[Block], int]],
         page_plan: dict | None = None,
+        *,
+        asset_slot: AssetSlotLookup | None = None,
     ) -> tuple[list[Block], int]:
         from . import oppanel as _oppanel
         from . import page_roles as _page_roles
@@ -267,14 +279,18 @@ class ProseFlowBuffer:
                 for block in page_blocks
             ],
             default_langtag_language=default_langtag_language,
+            asset_slot=asset_slot,
         ), prepared_items[0][2])
 
     @staticmethod
     def _emit_batch(items: list[tuple[str, list[Block], int]],
                     emit: EmitProse, slug_stem: SlugStem,
-                    page_plan: dict | None = None) -> None:
+                    page_plan: dict | None = None, *,
+                    asset_slot: AssetSlotLookup | None = None) -> None:
         stems = [stem for stem, _, _ in items]
-        blocks, columns = ProseFlowBuffer._batch_content(items, page_plan)
+        blocks, columns = ProseFlowBuffer._batch_content(
+            items, page_plan, asset_slot=asset_slot
+        )
         if len(stems) == 1:
             sid = "st_" + slug_stem(stems[0])
             title = stems[0]

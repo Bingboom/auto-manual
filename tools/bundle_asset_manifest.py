@@ -1,8 +1,10 @@
 """Read a finalized bundle's governed asset resolutions safely."""
 from __future__ import annotations
 
+import functools
 import hashlib
 import json
+from dataclasses import dataclass
 from pathlib import Path
 
 ASSET_URI_PREFIX = "asset:"
@@ -12,6 +14,16 @@ SUPPORTED_SCHEMA_VERSIONS = frozenset({2})
 
 class BundleAssetManifestError(RuntimeError):
     """A finalized bundle asset cannot be resolved safely."""
+
+
+@dataclass(frozen=True)
+class AssetSlot:
+    """The governed slot one staged bundle file was rewritten from."""
+
+    logical_key: str
+    """The asset key the source named (``asset:<logical_key>``)."""
+    asset_key: str
+    """The registry row the target resolved it to: an override or the shared row."""
 
 
 def is_asset_uri(value: str) -> bool:
@@ -278,8 +290,67 @@ def resolve_manifest_asset(
     return staged
 
 
+@functools.lru_cache(maxsize=32)
+def _manifest_slots(manifest_path: str, mtime_ns: int, size: int) -> dict[str, AssetSlot]:
+    del mtime_ns, size  # cache key only: a rebuilt manifest is read again
+    try:
+        payload = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise BundleAssetManifestError(
+            f"asset usage manifest is invalid: {manifest_path}"
+        ) from exc
+    if (
+        not isinstance(payload, dict)
+        or type(payload.get("schema_version")) is not int
+        or payload["schema_version"] not in SUPPORTED_SCHEMA_VERSIONS
+        or not isinstance(payload.get("rewrites", []), list)
+    ):
+        raise BundleAssetManifestError(
+            f"asset usage manifest has an unsupported shape: {manifest_path}"
+        )
+    found: dict[str, set[AssetSlot]] = {}
+    for row in payload.get("rewrites", []):
+        if not isinstance(row, dict):
+            continue
+        original = str(row.get("original_value") or "")
+        staged = str(row.get("staged_path") or "").strip()
+        asset_key = str(row.get("asset_key") or "").strip()
+        if not staged or not asset_key or not is_asset_uri(original):
+            continue
+        found.setdefault(Path(staged).as_posix(), set()).add(
+            AssetSlot(_parse_asset_uri(original), asset_key)
+        )
+    return {path: next(iter(slots)) for path, slots in found.items() if len(slots) == 1}
+
+
+def manifest_asset_slot(bundle_dir: Path, staged_file: Path) -> AssetSlot | None:
+    """Return the governed slot a staged bundle file was rewritten from.
+
+    Renderers recognise governed art by the slot the source named, so a target
+    override, which resolves to a file of its own, needs no renderer change.
+    A file the manifest never rewrote, a bundle without a usage manifest, or a
+    file rewritten from two different slots returns None, and callers keep
+    their file-name fallback. An unreadable manifest fails closed.
+    """
+
+    try:
+        bundle_root = bundle_dir.resolve(strict=True)
+        relative = Path(staged_file).resolve(strict=True).relative_to(bundle_root)
+    except (FileNotFoundError, OSError, ValueError):
+        return None
+    manifest = bundle_root / ASSET_USAGE_MANIFEST_FILENAME
+    try:
+        stat = manifest.stat()
+    except (FileNotFoundError, OSError):
+        return None
+    slots = _manifest_slots(str(manifest), stat.st_mtime_ns, stat.st_size)
+    return slots.get(relative.as_posix())
+
+
 __all__ = (
+    "AssetSlot",
     "BundleAssetManifestError",
     "is_asset_uri",
+    "manifest_asset_slot",
     "resolve_manifest_asset",
 )

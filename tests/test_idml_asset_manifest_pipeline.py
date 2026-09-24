@@ -13,7 +13,12 @@ from xml.sax.saxutils import escape
 from PIL import Image
 
 from tools.bundle_asset_finalize import finalize_materialized_bundle
-from tools.bundle_asset_manifest import BundleAssetManifestError, resolve_manifest_asset
+from tools.bundle_asset_manifest import (
+    AssetSlot,
+    BundleAssetManifestError,
+    manifest_asset_slot,
+    resolve_manifest_asset,
+)
 from tools.gen_index_bundle_models import MaterializedBundle
 from tools.idml.asset_contracts import (
     APP_ADD_DEVICE_ICON_ASSET_URI,
@@ -729,6 +734,112 @@ class IdmlAssetManifestPipelineTests(unittest.TestCase):
                 }
             self.assertTrue(expected_names.issubset(link_names))
             self.assertNotIn(rst_panel.name, link_names)
+
+
+class ManifestAssetSlotTests(unittest.TestCase):
+    """Reverse lookup from a staged bundle file to the slot its source named."""
+
+    def _bundle(self, root: Path, rewrites: list[dict]) -> Path:
+        for row in rewrites:
+            staged = root / row["staged_path"]
+            staged.parent.mkdir(parents=True, exist_ok=True)
+            staged.write_bytes(b"art")
+        (root / "asset_usage_manifest.json").write_text(
+            json.dumps({"schema_version": 2, "rewrites": rewrites}),
+            encoding="utf-8",
+        )
+        return root
+
+    def test_a_rewritten_file_reports_the_slot_its_source_named(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = self._bundle(Path(td), [
+                {
+                    "original_value": "asset:operation/led_light",
+                    "asset_key": "operation/je1000f_us/led_light",
+                    "staged_path": "renderers/latex/assets/op_led_light_target.png",
+                },
+                # The same file rewritten again from the same slot stays one slot.
+                {
+                    "original_value": "asset:operation/led_light",
+                    "asset_key": "operation/je1000f_us/led_light",
+                    "staged_path": "renderers/latex/assets/op_led_light_target.png",
+                },
+            ])
+            self.assertEqual(
+                AssetSlot("operation/led_light", "operation/je1000f_us/led_light"),
+                manifest_asset_slot(
+                    root, root / "renderers/latex/assets/op_led_light_target.png"
+                ),
+            )
+
+    def test_ungoverned_outside_or_ambiguous_files_have_no_slot(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = self._bundle(Path(td) / "bundle", [
+                {
+                    "original_value": "asset:charging/car_charge",
+                    "asset_key": "charging/car_charge",
+                    "staged_path": "shared/art.png",
+                },
+                {
+                    "original_value": "asset:charging/ac_wall",
+                    "asset_key": "charging/ac_wall",
+                    "staged_path": "shared/art.png",
+                },
+                {
+                    "original_value": "renderers/latex/assets/plain.png",
+                    "asset_key": "plain/art",
+                    "staged_path": "plain.png",
+                },
+            ])
+            outside = Path(td) / "outside.png"
+            outside.write_bytes(b"art")
+            loose = root / "loose.png"
+            loose.write_bytes(b"art")
+            for label, path in (
+                ("two slots", root / "shared/art.png"),
+                ("not an asset URI", root / "plain.png"),
+                ("never rewritten", loose),
+                ("outside the bundle", outside),
+                ("missing file", root / "missing.png"),
+            ):
+                with self.subTest(label):
+                    self.assertIsNone(manifest_asset_slot(root, path))
+
+    def test_a_bundle_without_a_manifest_has_no_slots_and_a_bad_one_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            art = root / "art.png"
+            art.write_bytes(b"art")
+            self.assertIsNone(manifest_asset_slot(root, art))
+            (root / "asset_usage_manifest.json").write_text("{", encoding="utf-8")
+            with self.assertRaises(BundleAssetManifestError):
+                manifest_asset_slot(root, art)
+            (root / "asset_usage_manifest.json").write_text(
+                json.dumps({"schema_version": 1, "rewrites": []}), encoding="utf-8"
+            )
+            with self.assertRaises(BundleAssetManifestError):
+                manifest_asset_slot(root, art)
+
+    def test_a_rebuilt_manifest_is_read_again(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = self._bundle(Path(td), [{
+                "original_value": "asset:operation/led_light",
+                "asset_key": "operation/led_light",
+                "staged_path": "art.png",
+            }])
+            self.assertEqual(
+                "operation/led_light",
+                manifest_asset_slot(root, root / "art.png").asset_key,
+            )
+            self._bundle(root, [{
+                "original_value": "asset:operation/led_light",
+                "asset_key": "operation/target_override/led_light",
+                "staged_path": "art.png",
+            }])
+            self.assertEqual(
+                "operation/target_override/led_light",
+                manifest_asset_slot(root, root / "art.png").asset_key,
+            )
 
 
 if __name__ == "__main__":

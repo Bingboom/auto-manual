@@ -15,6 +15,14 @@ from ..style_names import paragraph_style_ref
 from .base import RenderContext
 
 
+# Full-measure art is recognised by the slot its source named
+# (RenderContext.asset_slot) where a target override needs a file name of its
+# own (LaTeX flattens its asset directory), so no suffix list has to name it.
+# Only the LED slot has moved: UPS and charging overrides are still matched by
+# the shared suffixes, and one with a file name of its own keeps the narrow
+# default. Widening those reflows the books that use them, which is a layout
+# change of its own.
+_FULL_MEASURE_SLOTS = frozenset({"operation/led_light"})
 _FULL_MEASURE_SUFFIXES = (
     "/operation/energy_saving.png",
     "/operation/led_light.png",
@@ -24,17 +32,19 @@ _FULL_MEASURE_SUFFIXES = (
     "/charging/solar_adapter.png",
     "/charging/car_charge.png",
     "/assets/op_energy_saving.png",
-    "/assets/op_led_light_je1000f_us.png",
     "/assets/op_ups_mode.png",
     "/assets/solar_adapter.png",
     "/assets/car_charge.png",
 )
+_APP_MEASURE_RATIOS_BY_SLOT = {
+    "app/download": 0.60,
+    "app/add_device": 0.55,
+    "app/connect_result": 0.58,
+}
 _APP_MEASURE_RATIOS = {
     "/app/download.png": 0.60,
     "/app/add_device.png": 0.55,
     "/app/connect_result.png": 0.58,
-    "/app/je1000f_us/add_device_je1000f_us.png": 0.55,
-    "/app/je1000f_us/connect_result_je1000f_us.png": 0.58,
 }
 
 IMAGE_ROLE_DEFAULT = "default"
@@ -109,6 +119,13 @@ def _semantic_max_width(
     paths = (ref.replace("\\", "/"), resolved.replace("\\", "/"))
     if any(path.endswith(("front_product.jpg", "right_side_ports.png")) for path in paths):
         return ctx.text_measure
+    slot = ctx.asset_slot(ref)
+    if slot is not None:
+        if slot.logical_key in _FULL_MEASURE_SLOTS:
+            return ctx.text_measure
+        slot_ratio = _APP_MEASURE_RATIOS_BY_SLOT.get(slot.logical_key)
+        if slot_ratio is not None:
+            return ctx.text_measure * slot_ratio
     if any(path.endswith(_FULL_MEASURE_SUFFIXES) for path in paths):
         return ctx.text_measure
     for suffix, ratio in _APP_MEASURE_RATIOS.items():

@@ -16,9 +16,19 @@ from pathlib import Path
 from typing import Callable
 
 try:
-    from tools.bundle_asset_manifest import is_asset_uri, resolve_manifest_asset
+    from tools.bundle_asset_manifest import (
+        AssetSlot,
+        is_asset_uri,
+        manifest_asset_slot,
+        resolve_manifest_asset,
+    )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
-    from bundle_asset_manifest import is_asset_uri, resolve_manifest_asset  # type: ignore
+    from bundle_asset_manifest import (  # type: ignore
+        AssetSlot,
+        is_asset_uri,
+        manifest_asset_slot,
+        resolve_manifest_asset,
+    )
 
 from ..primitives import art_frame_size, resolve_bundle_image
 from ..style_names import paragraph_style_ref
@@ -105,6 +115,15 @@ class RenderContext:
             if resolved is not None:
                 return resolved
         return None
+
+    def asset_slot(self, ref: str) -> AssetSlot | None:
+        """The governed slot a bundle image was rewritten from, if any.
+
+        Renderers recognise governed art by this slot rather than by file
+        name, so a target override needs no renderer change.
+        """
+        image = self.resolve_bundle_image(ref) if ref else None
+        return manifest_asset_slot(self.bundle_root, image) if image is not None else None
 
 
 def figure_paragraph(

@@ -15,6 +15,8 @@ import re
 import warnings
 from pathlib import Path
 
+from .asset_slots import AssetSlotLookup
+
 Block = tuple[str, str]
 
 
@@ -50,8 +52,13 @@ _WARRANTY_COMBINED_CELL = re.compile(
     re.IGNORECASE | re.S,
 )
 
+# Governed operation art, by the slot its source names; a target override
+# keeps its slot whatever its file is called. The stems are the fallback for
+# bundles without a usage manifest.
+_ENERGY_SAVING_SLOT = "operation/energy_saving"
+_LED_LIGHT_SLOT = "operation/led_light"
 _ENERGY_SAVING_ART = {"op_energy_saving"}
-_LED_LIGHT_ART = {"led_light", "op_led_light", "op_led_light_je1000f_us"}
+_LED_LIGHT_ART = {"led_light", "op_led_light"}
 
 
 def operation_story_rhythm(
@@ -97,26 +104,39 @@ def _special_operation_panel(
     blocks: list[Block],
     index: int,
     operation_copy: dict[str, dict],
+    asset_slot: AssetSlotLookup | None = None,
 ) -> tuple[Block, int] | None:
     """Group Energy Saving / LED artwork with its editable source copy.
 
     These two V2.0 panels do not use the generic image + On/Off-row carrier.
-    Match them by governed art basename and exact neighbouring block shape so
+    Match them by governed art slot (the file stem for a bundle without a
+    usage manifest) and exact neighbouring block shape so
     localized headings never become part of the detection contract.
     """
     kind, ref = blocks[index]
     if kind != "image" or index + 1 >= len(blocks):
         return None
-    stem = _image_stem(ref)
+    slot = asset_slot(ref) if asset_slot is not None else None
+    if slot is not None:
+        # Only a target's registered energy art composes the card; the shared
+        # export stays a plain image unless the page declares panel copy (the
+        # copy-key clause below), as its file stem rule always did.
+        energy_art = (
+            slot.logical_key == _ENERGY_SAVING_SLOT
+            and slot.asset_key != _ENERGY_SAVING_SLOT
+        )
+        led_art = slot.logical_key == _LED_LIGHT_SLOT
+    else:
+        stem = _image_stem(ref)
+        energy_art = stem in _ENERGY_SAVING_ART
+        led_art = stem in _LED_LIGHT_ART
 
     # The copy-key clauses admit targets whose art uses non-governed stems
-    # (the KR line). A governed stem must never enter the OTHER panel's
+    # (the KR line). Governed art must never enter the OTHER panel's
     # fuzzy branch: with both semantics registered (the US template order),
     # the LED image would fail the energy shape check and return None,
     # demoting the approved led_light component to a raw image.
-    if stem in _ENERGY_SAVING_ART or (
-        "energy_saving" in operation_copy and stem not in _LED_LIGHT_ART
-    ):
+    if energy_art or ("energy_saving" in operation_copy and not led_art):
         # h2, intro, then one combined or two separate guidance paragraphs,
         # followed by image + action. Spanish review copy combines its
         # disable/low-power guidance in one paragraph while EN/FR keep two.
@@ -165,9 +185,7 @@ def _special_operation_panel(
             ),
         ), 2
 
-    if stem in _LED_LIGHT_ART or (
-        "led_light" in operation_copy and stem not in _ENERGY_SAVING_ART
-    ):
+    if led_art or ("led_light" in operation_copy and not energy_art):
         # h2, lead, image, exactly three newline-separated instructions.
         if (
             len(out) < 2
@@ -484,6 +502,7 @@ def transform(
     blocks: list[Block],
     *,
     default_langtag_language: str | None = None,
+    asset_slot: AssetSlotLookup | None = None,
 ) -> list[Block]:
     out: list[Block] = []
     i = 0
@@ -562,7 +581,9 @@ def transform(
                      "texts": [tag.group(2)]}, ensure_ascii=False)))
                 i += 1
                 continue
-        special = _special_operation_panel(out, blocks, i, operation_copy)
+        special = _special_operation_panel(
+            out, blocks, i, operation_copy, asset_slot
+        )
         if special is not None:
             component, consumed = special
             out.append(component)

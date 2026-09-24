@@ -1390,9 +1390,12 @@ def _render_energy_saving_panel(
     )
 
 
-# The shared operation/led_light exports (common and v2 names). Their art lost
-# the magnifier and the hand, so the LED card substitutes the complete
-# illustration for them; any other LED art is a target's own registered art.
+# The shared operation/led_light row. Its art lost the magnifier and the hand,
+# so the LED card substitutes the complete illustration for it; a target's own
+# registered LED art resolves to an override row and is drawn as registered.
+# The file stems (common and v2 names) are the fallback for bundles without a
+# usage manifest.
+_SUBSTITUTED_LED_ASSET = "operation/led_light"
 _SUBSTITUTED_LED_ART = frozenset({"led_light", "op_led_light"})
 
 
@@ -1424,7 +1427,12 @@ def _render_led_light_panel(
     # circles. A target's own registered LED art is complete: the card draws
     # it as registered and ends it where the step column begins. Either way
     # the source copy and all step labels stay editable top-layer frames.
-    substitute = bool(ref) and Path(ref).stem.lower() in _SUBSTITUTED_LED_ART
+    slot = ctx.asset_slot(ref) if ref else None
+    substitute = (
+        slot.asset_key == _SUBSTITUTED_LED_ASSET
+        if slot is not None
+        else bool(ref) and Path(ref).stem.lower() in _SUBSTITUTED_LED_ART
+    )
     asset = (
         ctx.resolve_bundle_image("operation/led_light_complete.png")
         if substitute
