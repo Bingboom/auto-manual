@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-144 | PR #1246（`docs/registry-expire-spent-grants`，**含本登记行**）：登记表清账——把 42 行失效条件已满足的授权状态改为已失效，每行写明所列 PR 的 squash SHA，带上线核验条件的另附证据（Hello-Docs 每日部署校验 2026-09-24 run 35974913402 或 RTD 实页检查）；MA-088、MA-109 按操作者 2026-09-24 裁定改为已失效。只改状态格，不增删行；MA-002、MA-141、MA-066、MA-016、MA-023、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1246」2026-09-24（此前「清一次登记表」「MA-088 和 MA-109 算失效」） | #1246 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-142 | PR #1243（`feat/portal-system-workspace`，**含本登记行**）：新增 RTD 知识库「系统建设」页 `/workspace/system/`。状态契约 `tools/rtd_portal_assets/system_workspace.yaml`（能力卡、生产流程连接、阶段门标签，每条带证据）、`tools/rtd_system_workspace.py`（规则校验、`check` / `check --online`、只读的 `corpus-export`）、页面模板与样式；`collect_workspace_pages` 在 `workspace/index` 之后挂页，知识库侧栏只在页面生成时显示入口；语言资产块读取汇总快照 `system_workspace_corpus.json`（只存计数，2026-09-24 首份：句对 1372、术语 232）。Hello-Docs `3dededf7` 整站 A/B：新增 2 个文件、3 个文件按预期变化，231 个 HTML 中 230 个逐字节一致。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：飞书写入（内部治理视图已按操作者另行指示建好）、定时联网校验或定时语料导出的 workflow、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1243」2026-09-24（此前操作者本地看过整站渲染后答「没问题，补测试和文档，开 PR」，语料库可视化答「1」「3」） | #1243 合入即失效，或操作者撤销 | 已失效（#1243 squash `14c04619` 已合入；2026-09-24 RTD 实页核验通过） |
 
 | ID | Scope | Grant | Expiry | Status |
