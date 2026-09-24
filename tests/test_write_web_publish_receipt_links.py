@@ -68,11 +68,22 @@ class _RecordingSource:
 
 
 class _FieldStore:
-    """Fake per-record field values with post-write visibility."""
+    """Fake per-record field values with post-write visibility.
 
-    def __init__(self, initial: dict[str, str], field_name: str = "HTML_link") -> None:
+    ``render_as_link`` reads stored URLs back the way ``lark-cli base
+    +record-get`` does for a Feishu text cell: as ``[url](url)``.
+    """
+
+    def __init__(
+        self,
+        initial: dict[str, str],
+        field_name: str = "HTML_link",
+        *,
+        render_as_link: bool = False,
+    ) -> None:
         self.values = dict(initial)
         self.field_name = field_name
+        self.render_as_link = render_as_link
         self.reads: list[str] = []
 
     def attach(self, source: _RecordingSource) -> None:
@@ -90,7 +101,10 @@ class _FieldStore:
 
     def fetch(self, *, cli_bin, identity, base_token, table_id, record_id):
         self.reads.append(record_id)
-        return {self.field_name: self.values.get(record_id, "")}
+        value = self.values.get(record_id, "")
+        if self.render_as_link and value:
+            value = f"[{value}]({value})"
+        return {self.field_name: value}
 
 
 class ReceiptLaneManifestTests(unittest.TestCase):
@@ -244,6 +258,43 @@ class ReceiptLaneManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "readback mismatch"):
             self._run(args=self._args(), verify_fn=self._verify_ok, store=store)
 
+    def test_link_segment_readback_verifies_the_registration(self) -> None:
+        # Feishu keeps the written URL as a link segment; +record-get renders
+        # it as [url](url). That is the registered value, not a mismatch.
+        store = _FieldStore({"rec_web_1": "", "rec_web_2": ""}, render_as_link=True)
+        exit_code, report, source = self._run(
+            args=self._args(), verify_fn=self._verify_ok, store=store
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual("registered", report["status"])
+        self.assertEqual(2, report["records_written"])
+        expected_url = (
+            "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html"
+        )
+        self.assertEqual(
+            [{"HTML_link": expected_url}, {"HTML_link": expected_url}],
+            [record for *_ids, record in source.upserts],
+        )
+
+    def test_link_segment_holding_the_url_is_already_registered(self) -> None:
+        url = "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us_en.html"
+        store = _FieldStore({"rec_web_1": url, "rec_web_2": url}, render_as_link=True)
+        exit_code, report, source = self._run(
+            args=self._args(), verify_fn=self._verify_ok, store=store
+        )
+        self.assertEqual(0, exit_code)
+        self.assertEqual([], source.upserts)
+        self.assertEqual(2, report["records_already_registered"])
+
+    def test_link_segment_to_another_url_still_fails_the_readback(self) -> None:
+        store = _FieldStore(
+            {"rec_web_1": "https://old.example/entry.html", "rec_web_2": ""},
+            render_as_link=True,
+        )
+        store.attach = lambda source: None  # type: ignore[method-assign]
+        with self.assertRaisesRegex(RuntimeError, "readback mismatch.*old.example"):
+            self._run(args=self._args(), verify_fn=self._verify_ok, store=store)
+
     def test_failed_verification_registers_nothing(self) -> None:
         store = _FieldStore({})
         exit_code, report, source = self._run(
@@ -351,6 +402,29 @@ class FetchRecordFieldsTests(unittest.TestCase):
                 table_id="tbl_link", record_id="rec_1",
                 run_json=lambda **_kwargs: {"data": {"fields": ["A"], "data": []}},
             )
+
+
+class RegisteredLinkTests(unittest.TestCase):
+    URL = "https://ht-doc.readthedocs.io/JE-1000F/US/en/md/manual_je1000f_us.html"
+
+    def test_reads_plain_and_link_rendered_cells_as_the_url(self) -> None:
+        for value in (
+            self.URL,
+            f"  {self.URL}\n",
+            f"[{self.URL}]({self.URL})",
+            f"[Manual]({self.URL})",
+            {"link": self.URL, "text": self.URL},
+            [{"link": self.URL, "text": self.URL}],
+        ):
+            with self.subTest(value=value):
+                self.assertEqual(self.URL, receipt_links.registered_link(value))
+
+    def test_leaves_other_text_unchanged(self) -> None:
+        self.assertEqual("", receipt_links.registered_link(None))
+        self.assertEqual("", receipt_links.registered_link(""))
+        # Only a cell that is exactly one link is unwrapped.
+        text = f"see [{self.URL}]({self.URL})"
+        self.assertEqual(text, receipt_links.registered_link(text))
 
 
 if __name__ == "__main__":
