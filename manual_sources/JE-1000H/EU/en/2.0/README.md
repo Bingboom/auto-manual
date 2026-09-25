@@ -34,3 +34,7 @@ storage cells of `phase2/Spec_Master.csv` are rebuilt from each language block o
 the released PDF (table cells split by the page's ruling lines). The earlier
 extraction had dropped `⎓`, truncated values and glued footnote numbers onto
 labels. `source_manifest.json` re-locks the file; English is unchanged.
+
+Ukrainian footnote ② (2026-09-25): the print omits "струму" ("…вихідних портів
+змінного працюють разом"); the operator ruled to add it here and in JE-3000C.
+`source_manifest.json` re-locks `phase2/Spec_Footnotes.csv`.

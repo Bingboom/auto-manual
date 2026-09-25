@@ -333,6 +333,13 @@ class Je1000hEuTranslatedSpecCellTests(unittest.TestCase):
             with self.subTest(key=key, line=line, column=column):
                 self.assertEqual(value, cells[(key, line)][column])
 
+    def test_ukrainian_total_output_footnote_keeps_its_noun(self) -> None:
+        # 印刷稿漏印「струму」；操作者 2026-09-25 裁定与 JE-3000C 一并补上
+        with (FORMAL_DATA_ROOT / "Spec_Footnotes.csv").open(encoding="utf-8", newline="") as handle:
+            notes = {row["Footnote_id"]: row for row in csv.DictReader(handle)}
+        self.assertEqual("Вказує, що два або більше вихідних портів змінного струму працюють разом.",
+                         notes["ac_total_output"]["Text_uk"])
+
 
 if __name__ == "__main__":
     unittest.main()
