@@ -153,8 +153,15 @@ button labels, so it stays outside the crop and the labels stay live text.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier
-Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
-because their keys carry none of the gate's tokens.
+Web App panels for JE-1000H, JE-2000E and JE-3000C were recipe-approved only
+because their keys carry none of the gate's tokens. Since 2026-09-25 the
+JE-1000H/EU (download, add-device and connect-result, six languages) and
+JE-3000C/EU English App panels are quarantined with App risk tags, keeping
+their keys, files and hashes. `tests/test_app_figure_gate.py` requires every
+manifest entry that replaces an App setup image (`download.png`,
+`add_device.png`, `connect_result.png`) or carries an `app-` reference id to
+resolve to a quarantined recipe asset; the two JE-2000E/EU English panels are
+its only listed exceptions until the open JE-2000E add-device change lands.
 
 The App add-device figure of `JE-2000F / EU` (six routes), `JE-3000C / EU`
 (fr/es/de/it/uk) and `JE-3600A / EU` (en/es/fr) is, since 2026-09-24, each

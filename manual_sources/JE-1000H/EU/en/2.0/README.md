@@ -25,3 +25,6 @@ python build.py md \
   --data-root manual_sources/JE-1000H/EU/en/2.0/phase2 \
   --staging-root <fresh-root>
 ```
+
+Recipe gate (2026-09-25): the 18 App panels in `asset_recipe` are quarantined as App UI;
+`source_manifest.json` rebinds the recipe hash. Pages are unchanged.

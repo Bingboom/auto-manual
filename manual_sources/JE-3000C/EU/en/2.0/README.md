@@ -40,3 +40,6 @@ unchanged.
 App add-device figure (2026-09-24): the fr/es/de/it/uk routes bind their own language block's crop of
 the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
 alone in `source_manifest.json`); see the intake review addendum of the same date.
+
+Recipe gate (2026-09-25): the three English App panels in `asset_recipe` are quarantined as App UI;
+`source_manifest.json` rebinds the recipe hash. Pages are unchanged.

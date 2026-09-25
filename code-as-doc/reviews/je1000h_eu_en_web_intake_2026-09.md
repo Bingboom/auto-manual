@@ -79,3 +79,12 @@ PR #1120 is merged at `fcfe46a6419a92eb751d4eed840c11e27e3538fc`; this
 candidate is rebased onto it. Its target-data regression now explicitly checks
 the source-authored parent/parameter representation and ordered power labels,
 while the generic distinct-label preservation regression remains unchanged.
+
+## 2026-09-25 App panels quarantined under the recipe gate
+
+The 18 App panels of this source (`download_panel`, `control_panel` and `connect_result_panel` for en/fr/es/de/it/uk) were recipe-approved only because neither their keys nor their risk tags
+carried a gate token (`app`, `qr`, `screenshot`, …). They are now quarantined
+with `app-ui`/`screenshot`/`localized-ui` risk tags (plus `qr` for the download
+panels); keys, outputs and hashes are unchanged, so the pages are unchanged.
+`source_manifest.json` rebinds `asset_recipe`. The operator approved the fix on
+2026-09-25.
