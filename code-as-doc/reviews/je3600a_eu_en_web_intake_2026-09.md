@@ -102,3 +102,24 @@ fr/es manifests. Each route keeps its own reference sentence as live text. As
 App UI, its recipe `manual_je3600a_eu_web_app.json` stays quarantined; the
 source manifest binds it as `app_asset_recipe` and rebinds the English
 manifest. The operator confirmed the crop on 2026-09-24.
+
+## 2026-09-24 Localized control-panel button names
+
+The fr/es routes showed the English button names in the App page (step 2.2,
+the add-device labels and the Wi-Fi reset notes): the three `CONTROLS` label
+rows in the frozen `Spec_Master.csv` held only `Value_source`. They now carry
+the names each language block prints next to the control-panel drawing:
+
+| Row | fr (p38) | es (p55) | de (p72) | it (p89) |
+| --- | --- | --- | --- | --- |
+| main_power_button | Bouton d'alimentation principal | Botón de encendido principal | POWER-Taste | Pulsante di accensione principale |
+| dc_usb_power_button | Bouton d'alimentation USB | Botón de energía USB | USB-Stromtaste | Pulsante Alimentazione USB |
+| ac_power_button | Bouton d'alimentation CA | Botón de energía CA | AC-Ausgangstaste | Pulsante AC |
+
+A trial build against the live fr/es pages removes 12 of their 14 English
+button names. The remaining two sit in whole English sentences that the
+fr/es routes still carry from the English source (for example the
+energy-saving and parallel-connection notes), which is a separate
+translation gap. de/it are filled from the print for completeness but are not
+published. The live Feishu placeholder table has no JE-3600A_EU rows, so
+nothing was written there. The operator approved the change on 2026-09-24.
