@@ -110,6 +110,9 @@ frozen inputs only. It never reads Feishu or the network.
 - The skeleton blueprints under `docs/manifests/skeletons/*/blueprint.yaml`
   say which product families already generate their manual structure from a
   skeleton. The mirror carries them, so RTD reads the same files.
+- The agent skills under `.agents/skills` and `.claude/skills`, the Claude Code
+  hooks in `.claude/settings.json` and the steps of `.githooks/pre-push` feed
+  the skills and hooks block; see [Skills and hooks](#skills-and-hooks).
 
 The page is public, on the same RTD project as the manuals. `noindex` is not
 access control, so the contract holds only publishable facts. Gap narratives
@@ -174,6 +177,37 @@ A snapshot older than `corpus.stale_after_days` (default 45) shows 待复核. An
 unreadable or malformed snapshot shows 无数据 for this block only, with a
 Sphinx warning; the rest of the page still renders. `check` reports both
 cases.
+
+### Skills and hooks
+
+The 技能与钩子 block lists what agents can call and what runs automatically.
+It is read from the tree at build time (`tools/rtd_system_tooling.py`), and
+none of it is hand-listed.
+
+- **Skills**: one row per skill directory, merging the Codex copy
+  (`.agents/skills/<name>/SKILL.md`) and the Claude Code copy
+  (`.claude/skills/<name>/SKILL.md`). The row shows the first sentence of the
+  frontmatter `description`; the full text is the tooltip.
+  - A Codex copy needs frontmatter `name` equal to its directory.
+  - A Claude copy may omit `name`, because Claude Code uses the directory name.
+  - Every copy needs a `description`.
+- **Registration**: a Codex copy must be linked from `AGENTS.md` §7, and a
+  Claude copy must be listed in `.claude/skills/README.md`. Unregistered copies
+  show 未登记.
+- **Lanes**: `tooling.skill_lanes` in the contract maps skills to focus lanes,
+  and an empty list shows that the lane has no skill yet. Unmapped skills are
+  listed under 其他技能.
+- **Hooks**:
+  - Claude Code hooks come from `.claude/settings.json`, and git hooks from the
+    steps of `.githooks/pre-push`. An `exec` step blocks the push (拦截); the
+    others only advise (提醒).
+  - A hook counts as tested when `tests/test_<script>.py` exists. Its purpose is
+    the first line of the script's module docstring.
+  - Git hooks run only where `core.hooksPath` points at `.githooks`, and the
+    page says so.
+
+`check` warns about unregistered copies, frontmatter gaps, missing hook scripts
+and hooks without tests. A lane mapping that names a missing skill is an error.
 
 ### Status rules
 
