@@ -473,3 +473,16 @@ working_today:
     label: 知识库与 AI 分享
     note: 分享资料与实践记录
     page: workspace/index
+
+# Skills and hooks: read from the tree at build time (.agents/skills,
+# .claude/skills, .claude/settings.json, .githooks/pre-push); nothing is
+# hand-listed here. The contract only maps skills to focus lanes (an empty list
+# shows the lane has no skill yet); unmapped skills are listed under 其他技能.
+# `check` warns about unregistered skills and hook scripts without tests.
+tooling:
+  note: Agent 可调用的技能和自动运行的钩子，构建时从仓库读取；未登记的技能和没有测试的钩子会标出来。
+  skill_lanes:
+    web: [hello-docs-pipeline-dispatch-triage, local-publish-queue-run]
+    corpus: [bitable-translation-memory, bilingual-tm-maintenance, lark-tm-translation-preprocess, manual-rewrite-with-tm]
+    shared_ir: []
+    skeletons: []

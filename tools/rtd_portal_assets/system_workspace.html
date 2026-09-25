@@ -249,6 +249,50 @@
       </ol>
     </section>
 
+    {%- if tooling %}
+    <section class="sw-section" id="tooling">
+      <div class="section-header"><div>
+        <h2>技能与钩子</h2>
+        <p>{{ tooling.note|e }}</p>
+      </div></div>
+      <div class="sw-tooling-tiles">
+        {%- for tile in tooling.tiles %}
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong>{% if tile.sub %}<span class="sw-tile-sub">{{ tile.sub|e }}</span>{% endif %}</div>
+        {%- endfor %}
+      </div>
+      <div class="sw-skill-groups">
+        {%- for group in tooling.groups %}
+        <div class="sw-skill-group{% if not group.horizon %} is-rest{% endif %}">
+          <h3>{{ group.title|e }}{% if group.horizon_label %}<span class="sw-tag is-{{ group.horizon|e }}">{{ group.horizon_label|e }}</span>{% endif %}<em>{{ group.rows|length }}</em></h3>
+          {%- if group.rows %}
+          <ul class="sw-skills">
+            {%- for skill in group.rows %}
+            <li title="{{ skill.description|e }}">
+              <div class="sw-skill-head"><code>{{ skill.id|e }}</code>{% for agent in skill.agents %}<span class="sw-agent">{{ agent|e }}</span>{% endfor %}{% if skill.unregistered %}<span class="sw-stale" title="未登记：{{ skill.unregistered|join('、')|e }}">未登记</span>{% endif %}{% if skill.problems %}<span class="sw-stale" title="{{ skill.problems|join('；')|e }}">文件头有问题</span>{% endif %}</div>
+              <p>{{ skill.summary|e }}</p>
+            </li>
+            {%- endfor %}
+          </ul>
+          {%- else %}
+          <p class="sw-lane-empty">暂无对应技能</p>
+          {%- endif %}
+        </div>
+        {%- endfor %}
+      </div>
+      <div class="sw-hooks-wrap">
+        <table class="sw-hooks">
+          <thead><tr><th>层</th><th>触发</th><th>脚本</th><th>作用</th><th>方式</th><th>测试</th></tr></thead>
+          <tbody>
+            {%- for hook in tooling.hooks %}
+            <tr><td>{{ hook.layer|e }}</td><td>{{ hook.trigger|e }}</td><td><code>{{ hook.script|e }}</code></td><td>{{ hook.purpose|e }}</td><td>{{ hook.mode_label|e }}</td><td>{% if hook.tested %}<span class="sw-badge is-available">有</span>{% elif hook.exists %}<span class="sw-stale">没有测试</span>{% else %}<span class="sw-stale">脚本缺失</span>{% endif %}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="sw-hooks-note">git 钩子要在本机设置 <code>core.hooksPath</code> 才会运行；Claude Code 钩子随项目设置生效。</p>
+    </section>
+    {%- endif %}
+
     <section class="sw-section" id="working">
       <div class="section-header"><div>
         <h2>现在就能用</h2>

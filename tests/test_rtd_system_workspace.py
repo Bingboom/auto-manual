@@ -155,6 +155,8 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "needs a family and a label": lambda d: d["focus"].update(skeleton_families=[{"family": "BP"}]),
             "fold must be true or false": lambda d: card(d).update(fold="yes"),
             "focus: no evidence": lambda d: d["focus"].update(evidence=[]),
+            "unknown focus lane 'nope'": lambda d: d.update(tooling={"skill_lanes": {"nope": []}}),
+            "must be a list of skill names": lambda d: d.update(tooling={"skill_lanes": {"web": "alpha"}}),
             "missing from the ledger": lambda d: d["now_next"]["gates"][1].update(revs=["REV-09"]),
             "does not name": lambda d: d["now_next"]["gates"][0].update(revs=["REV-01..REV-03"]),
             "no such gate": lambda d: d["now_next"]["gates"][1].update(id="G9"),
@@ -339,6 +341,19 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         data = contract()
         del data["focus"]
         self.assertIsNone(self.context(data)["focus"])
+
+    def test_tooling_block_groups_skills_under_the_focus_lanes(self):
+        self.assertIsNone(self.context()["tooling"])
+        data = contract()
+        data["tooling"] = {"note": "n", "skill_lanes": {"web": ["alpha"], "sk": []}}
+        skills = [{"id": "alpha", "description": "Alpha.", "agents": ["Codex"], "unregistered": [], "problems": []}]
+        hooks = [{"layer": "git", "event": "pre-push", "matcher": "", "script": "scripts/g.py", "blocking": True,
+                  "exists": True, "tested": True, "purpose": "Guard."}]
+        view = sw.build_context(data, root=self.root, ledger=sw.parse_ledger(LEDGER), facts=None, today=TODAY,
+                                skills=skills, hooks=hooks)["tooling"]
+        self.assertEqual([(g["title"], g["horizon_label"], [r["id"] for r in g["rows"]]) for g in view["groups"]],
+                         [("网页化", "现在", ["alpha"]), ("骨架", "下一步", [])])
+        self.assertEqual(view["hooks"][0]["mode_label"], "拦截")
 
     def test_gates_and_now_items_read_the_ledger(self):
         view = self.context()
@@ -674,7 +689,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             result = build("good")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
-            headings = ("当前重点", "语言资产", "能力地图", "正在做与下一步", "生产流程与连接", "现在就能用")
+            headings = ("当前重点", "语言资产", "能力地图", "正在做与下一步", "生产流程与连接", "技能与钩子", "现在就能用")
             self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
             self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
             self.assertIn('id="lane-web"', page)
@@ -683,6 +698,10 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not
             self.assertIn('href="#cap-web_publishing"', page)
             self.assertEqual(page.count('<details class="sw-more">'), 2)  # folded cards and gates
+            # Skills and hooks come from this tree, not from the contract.
+            self.assertIn('id="tooling"', page)
+            self.assertIn("<code>hardcore-task-execution</code>", page)
+            self.assertIn("scripts/git_branch_guard.py", page)
             self.assertIn("版本 9.9", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
