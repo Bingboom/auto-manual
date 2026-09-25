@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-156 | 只授权一项发布 PR 的合入。前置 PR #1258（`feat/web-je2000e-eu-app-control-panel`，**含本登记行**）由操作者自己审阅后合入（操作者选「先不合」，本行**不**授权代理合入该 PR）；它把 JE-2000E/EU 英/法/西/德/意的 App 添加设备图换成各语块自己的「两屏截图加灰底控制面板」12x 裁图（配方 `manual_je2000e_eu_web_app.json` 新增五条隔离条目，共享截图条目收窄为只供乌克兰语），法/西/德/意页面的四行按键名改为图片替代文字，乌克兰语不动（其印刷面板把 AC2 印成 AC1）。本行授权的是：在 #1258 由操作者合入且镜像同步落地后，从新 main 按冻结源 `manual_sources/JE-2000E/EU/en/2.0/phase2`（默认来源模式）Git-only 构建 JE-2000E/EU 英/法/西/德/意 Web **2.2**（英语由 2.0-20260913、法/西/德/意由 2.1 统一为 2.2；乌克兰语不重建），开 Hello-Docs `publish` → `main` PR；仅当候选差异只有：这五个语种的添加设备图换成新裁图、法/西/德/意的四行按键名文字移除（留作替代文字）、新图入池（及不再被引用的旧池文件随之移除）、发布证据与元数据、以及英语路由的证据格式追平（去掉其自带的 `web_manual.css`、`manual.ir.json`、`manual_bundle.html` 等旧格式文件，同 JE-3600A 英语那次）时，全部检查成功（含非必需项，pending 不算绿）且无 changes-requested 或未解决评审线程后合入（不带 `--delete-branch`），并逐个核对 RTD 网址。**不含**：#1258 本身的合入、乌克兰语路由、Hello-Docs `review/*` 评审分支 PR 的合入、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。（原拟编号 MA-155 已被 #1257 占用，故改为 MA-156。） | 「英法西德意五个，乌语不动（推荐）」「先不合」「统一 2.2（推荐）」「候选只动这些就发（推荐）」2026-09-24（答复 JE-2000E/EU 按键面板的范围、合入、版本与发布四问） | 发布 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-155 | PR #1257（`docs/registry-expire-spent-0925`，**含本登记行**）：登记表清账——把失效条件已满足的 MA-152、MA-154 两行状态改为已失效（MA-152 附 #1255 `09f3ba1f`、Hello-Docs #126 `54463827` 两个 squash SHA，以及 2026-09-25 RTD 英/法/西/德/意五个规范网址均返回 200、版本为 2.2 的核验；MA-154 附 #1256 `ae3c6940` 与线上 `/workspace/`、`/workspace/system/` 的核验）。只改这两行的状态格，不增删行；MA-002、MA-016、MA-023、MA-066、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「等 CI 跑完，你合入」2026-09-25（此前「清一次登记表」） | #1257 合入即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
