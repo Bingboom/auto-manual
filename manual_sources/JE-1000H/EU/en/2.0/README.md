@@ -28,3 +28,9 @@ python build.py md \
 
 Recipe gate (2026-09-25): the 18 App panels in `asset_recipe` are quarantined as App UI;
 `source_manifest.json` rebinds the recipe hash. Pages are unchanged.
+
+Translated specification cells (2026-09-25): the fr/es/de/it/uk specification and
+storage cells of `phase2/Spec_Master.csv` are rebuilt from each language block of
+the released PDF (table cells split by the page's ruling lines). The earlier
+extraction had dropped `⎓`, truncated values and glued footnote numbers onto
+labels. `source_manifest.json` re-locks the file; English is unchanged.
