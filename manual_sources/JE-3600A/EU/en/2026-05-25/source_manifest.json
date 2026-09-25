@@ -20,9 +20,13 @@
     "path": "data/asset_recipes/manual_je3600a_eu_web.json",
     "sha256": "9d1a690315b1185df7fd425bc84b9cb2a6f5c46730bb12bed5ba0b87aa2c1948"
   },
+  "app_asset_recipe": {
+    "path": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+    "sha256": "1afdd84096dfa0f07ff70ce3ae8248e1d44900727f992c0c00d9d62497423b85"
+  },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3600a_eu_en_illustrations.json",
-    "sha256": "c20da63a369258365a0181d4ab58c0fb4c367d26e9a1182b7a8a467563edab62"
+    "sha256": "2216579f8bb8b3a1c4c7cc36f9e49ce5df63ab620aba55c62d10e8fcb223f170"
   },
   "files": [
     {

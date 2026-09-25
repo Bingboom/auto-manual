@@ -88,3 +88,17 @@ URL.
 ## Main integration
 
 The EU family manifest selects the JE-3600A expansion chapter through the shared generated-page model override, preserving the JE-1000H and JE-2000E carriers. Fixture integration retains complete CSV records, including quoted multiline descriptions. The final merge gate uses the updated main and full regression checks.
+
+## 2026-09-24 App connect-result panel
+
+The English route, and the fr/es routes wired later from this frozen source,
+showed the shared JP-market `connect_result.png` for App setup step 2.5. The
+print's language blocks place the same App bitmaps (device name overlaid as
+"E3600 Plus" / "Explorer 3600 Plus"), so one panel cut from EN-block p22 (bbox
+58 138.4 313.25 287.75 at 12x: the three screens with their 2.3/2.4/2.5
+captions, excluding the "screenshots are for reference only" sentence) now
+replaces it: as a 17th entry in the English manifest and through one-entry
+fr/es manifests. Each route keeps its own reference sentence as live text. As
+App UI, its recipe `manual_je3600a_eu_web_app.json` stays quarantined; the
+source manifest binds it as `app_asset_recipe` and rebinds the English
+manifest. The operator confirmed the crop on 2026-09-24.

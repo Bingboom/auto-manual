@@ -1,0 +1,28 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-3600A",
+  "region": "EU",
+  "language": "es",
+  "source_pdf_sha256": "bfbcc4377fb474952f5e0850818289449016c8df11b1df48aff192b646eedf6d",
+  "source_pdf_name": "Jackery Explorer 3600 Plus User Manual-EU-UK-2026-05-25.pdf",
+  "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je3600a_eu_shared/app_connect_result.png",
+      "sha256": "a1dfd4b71a46c7d832ee2622e4ff2c19dada15fbed2c6267e4d89f97257d304c",
+      "source_page": 22,
+      "bbox_pt": [
+        58.0,
+        138.4,
+        313.25,
+        287.75
+      ],
+      "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-connect-result"
+    }
+  ]
+}

@@ -8,7 +8,10 @@ release of `JE-3600A / EU / en`, published revision `2026-05-25`.
 - Structured source: `phase2/` contains only the target rows and shared
   dictionaries needed to render the English manual.
 - Artwork: complete grey operation and charging panels remain intact. The LCD
-  uses a device-only source illustration plus semantic CSS/HTML tables.
+  uses a device-only source illustration plus semantic CSS/HTML tables. The
+  App recipe is hash-locked through `source_manifest.json` as well: its one
+  quarantined panel, the App connect-result screens from PDF page 22, serves
+  the en, fr and es routes built from this source.
 - Live systems: this source has no live Bitable or build-queue dependency.
 
 Build it with:
