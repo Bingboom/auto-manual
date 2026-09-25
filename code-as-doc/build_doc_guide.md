@@ -463,7 +463,7 @@ Git branch safety note:
 - start a new branch with `powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>` on Windows or `./scripts/start_branch.sh <type>/<area>-<topic>` on mac/Linux so the branch is created from the latest `origin/main`; use a change-type prefix such as `feat/`, `fix/`, `refactor/`, or `docs/`, never an agent-name prefix
 - enable the repo-managed pre-push guard with `git config core.hooksPath .githooks`
 - that guard now runs through the shared [`../scripts/git_branch_guard.py`](../scripts/git_branch_guard.py) core instead of a bash-only hook, with [`.githooks/pre-push.cmd`](../.githooks/pre-push.cmd) and [`.githooks/pre-push.ps1`](../.githooks/pre-push.ps1) kept as Windows-native companion launchers
-- the guard blocks pushes from branches that do not contain the latest `origin/main`; use `git push --no-verify` only when the older base is intentional
+- the guard blocks pushes from branches that do not contain the latest `origin/main`; use `git push --no-verify` only when the older base is intentional. `review/*` and `backport/*` branches, and pushes to remotes other than `origin` such as `hello-docs`, are exempt
 - if a PR adds a new helper boundary or changes workflow ownership, update the owning docs and [`dev/orchestration_module_map.md`](./dev/orchestration_module_map.md) in the same change instead of leaving the new rule as tribal knowledge
 
 ## 2. Config Rule
