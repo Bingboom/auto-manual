@@ -1882,6 +1882,7 @@ For the EU charger family, the Web illustration path resolves from the selected 
 由独立接收接口交给机器人写入专用飞书多维表，不要求访客登录飞书。
 本机 OpenClaw `main`（HT-Docs）已被指定为 Mac agent。接收服务负责入库，
 OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证公网接收地址前不启用线上入口。
+2026-09-25 起线上入口已关闭：试运行用的临时隧道失效，提交送不到，已清空接收地址；换成验证过的长期地址后再开启。
 配置、数据边界和联调步骤见 [产品 VOC](../code-as-doc/dev/product_voc.md)。
 
 首页以紧凑产品列表呈现已发布手册；同一关键词框同时检索型号、章节及
