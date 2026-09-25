@@ -31,7 +31,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
 
-知识库侧栏的“系统建设”页（`/workspace/system/`）先列“当前重点”：现在是说明书网页化、语料库建设与管理，下一步是 IR 共享、骨架拓展。每条线的数字取自发布清单、语料快照和骨架定义，进度取自执行台账。下面依次是语言资产、能力地图、阶段门进度和生产流程连接。各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据；当前重点由操作者决定，改动时一并更新。修改该文件走 auto-manual PR，提交前运行 `python tools/rtd_system_workspace.py check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；每月运行 `python tools/rtd_system_workspace.py corpus-export`（只读取线上语料库）刷新快照，再提交 PR。快照会保留往月的汇总数，页面显示与上期的对比。规则见[系统建设页](../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
+知识库侧栏的“系统建设”页（`/workspace/system/`）先列“当前重点”：现在是说明书网页化、语料库建设与管理，下一步是 IR 共享、骨架拓展。每条线的数字取自发布清单、语料快照和骨架定义，进度取自执行台账。下面依次是语言资产、能力地图、阶段门进度和生产流程连接。各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据；当前重点由操作者决定，改动时一并更新。修改该文件走 auto-manual PR，提交前运行 `python tools/rtd_system_workspace.py check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；每月运行 `python tools/rtd_system_workspace.py corpus-export`（只读取线上语料库）刷新快照，再提交 PR。快照会保留往月的汇总数，页面显示与上期的对比。图中各语言的百分比是语料库句对覆盖（该语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率。规则见[系统建设页](../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
 
 ### 发布候选、撤回与恢复
 
@@ -1893,7 +1893,8 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 说明书中心和 AI 分享作为两个独立界面维护；`/workspace/` 是两者的个人内容
 入口。AI 分享稿及其演示、配图和参考资料保存在 Hello-Docs 的
 `docs/knowledge/ai-share/`，不放进 auto-manual。随同一次 RTD 构建发布到
-`/ai-share/`。两个界面共用 RTD 项目的可见性设置。
+`/ai-share/`。两个界面共用 RTD 项目的可见性设置。AI 分享是可选入口：分享包缺失时，
+`/workspace/` 和系统建设页照常生成，只是不显示分享入口。
 
 RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生成一页都重复扫描
 所有说明书；下次构建仍重新校验，说明书内容与发布检查保持不变。见

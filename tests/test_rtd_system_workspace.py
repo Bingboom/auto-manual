@@ -688,9 +688,29 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             self.assertNotIn("Jackery", page)
             self.assertIn("语言资产", page)
             self.assertIn('class="sw-corpus-bars"', page)
+            # Corpus coverage must not read as manual localization completion.
+            self.assertIn("语料库句对覆盖", page)
+            self.assertIn("不是说明书的翻译完成率", page)
+            self.assertIn('#shares" class="nav-link"', page)
             self.assertTrue((base / "good" / "_static" / "system-workspace.css").is_file())
             workspace = (base / "good" / "workspace" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="system/index.html"', workspace)
+            self.assertIn('href="../ai-share/00_打开分享.html"', workspace)
+
+            # The workspace and its system page do not depend on the AI sharing package.
+            share.rename(base / "share-aside")
+            result = build("no-share")
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            workspace = (base / "no-share" / "workspace" / "index.html").read_text(encoding="utf-8")
+            self.assertIn('href="system/index.html"', workspace)
+            for absent in ("ai-share", 'id="shares"', 'id="search"', 'href="#shares"'):
+                self.assertNotIn(absent, workspace)
+            self.assertIn('document.querySelector(".mobile-menu")', workspace)
+            page = (base / "no-share" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
+            self.assertIn("当前重点", page)
+            self.assertNotIn('#shares" class="nav-link"', page)
+            self.assertFalse((base / "no-share" / "ai-share").exists())
+            (base / "share-aside").rename(share)
 
             snapshot = assets / sw.load_contract(assets / sw.CONTRACT_NAME)["corpus"]["snapshot"]
             snapshot.write_text("{not json", encoding="utf-8")

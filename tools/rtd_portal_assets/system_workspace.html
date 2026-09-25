@@ -55,7 +55,7 @@
   <div class="nav-label">工作空间</div>
   <nav aria-label="知识库导航">
     <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
-    <a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>
+    {% if has_share %}<a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>{% endif %}
     <a href="#top" class="nav-link active" aria-current="page"><i>◈</i> 系统建设</a>
     <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
     <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
@@ -147,7 +147,7 @@
     <section class="sw-section" id="language-assets">
       <div class="section-header"><div>
         <h2>语言资产</h2>
-        <p>翻译记忆库的规模与各语言覆盖，按月快照；不展示语料内容。</p>
+        <p>翻译记忆库的规模与语料库句对覆盖，按月快照；不展示语料内容。</p>
       </div></div>
       {%- if corpus %}
       <div class="sw-corpus-tiles">
@@ -156,12 +156,13 @@
         {%- endfor %}
       </div>
       <div class="sw-corpus">
-        <div class="sw-corpus-head"><span>各语言有译文的句对</span><span>快照 {{ corpus.exported_at|e }}{% if corpus.previous %} · 上期 {{ corpus.previous|e }}{% else %} · 首份快照，下期起显示变化{% endif %}{{ stale_mark(corpus.stale) }}</span></div>
-        <ul class="sw-corpus-bars" aria-label="各语言有译文的句对数">
+        <div class="sw-corpus-head"><span>语料库句对覆盖：各语言有译文的句对，占记忆库全部句对的比例</span><span>快照 {{ corpus.exported_at|e }}{% if corpus.previous %} · 上期 {{ corpus.previous|e }}{% else %} · 首份快照，下期起显示变化{% endif %}{{ stale_mark(corpus.stale) }}</span></div>
+        <ul class="sw-corpus-bars" aria-label="语料库句对覆盖：各语言有译文的句对数，及占记忆库全部句对的比例">
           {%- for row in corpus.rows %}
-          <li><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
+          <li title="{{ row.label|e }}：记忆库中 {{ row.count_text|e }} 条句对有该语言译文，占全部句对的 {{ row.percent }}%；不是说明书翻译完成率"><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
           {%- endfor %}
         </ul>
+        <p class="sw-corpus-note">这是翻译记忆库里的语料覆盖，不是说明书的翻译完成率；说明书各语言的上线情况看“说明书网页化”。</p>
       </div>
       {%- else %}
       <div class="empty-state"><h3>无数据</h3><p>语料快照当前不可读。</p></div>

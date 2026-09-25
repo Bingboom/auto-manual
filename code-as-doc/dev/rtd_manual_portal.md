@@ -79,6 +79,13 @@ figures therefore keep working without another host. The two interfaces share
 the RTD project's visibility settings; the workspace path is navigation, not a
 separate access-control boundary.
 
+The workspace itself exists in every portal build: the manual center always
+links to it, and the system page lives inside it. The sharing package is an
+optional entry. Without `ai-share/00_打开分享.html`, the workspace hides the
+share navigation link, card, search box and update line, and the system page
+hides its share link. Nothing else changes. With the package present, both
+pages are byte-identical to the earlier behaviour.
+
 Rollback: revert the portal extension's RTD activation and rebuild. Frozen
 content, QR aliases and nested manual URLs are unchanged.
 
@@ -139,7 +146,10 @@ collapsed 其他能力 or 其他阶段门 group at the end of their section.
 
 The page also shows the translation memory's scale and per-language coverage:
 sentence pairs, terms, languages covered, the approved share, and one bar per
-language. The numbers come from `tools/rtd_portal_assets/system_workspace_corpus.json`,
+language. Each bar is corpus coverage: the sentence pairs that carry a
+translation in that language, as a share of all sentence pairs in the memory.
+It is not manual localization completion, and the page says so under the
+chart; online manuals per language belong to the web lane. The numbers come from `tools/rtd_portal_assets/system_workspace_corpus.json`,
 an aggregate snapshot that holds counts only, never corpus text. The build
 never reads Feishu. Refresh the snapshot monthly through a PR:
 
