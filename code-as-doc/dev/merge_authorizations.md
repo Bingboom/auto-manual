@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-146 | PR #1247（`fix/portal-voc-preview-copy`，**含本登记行**）：产品建议弹窗的预览模式回复由 `Preview only — nothing was sent to Feishu.` 改为 `Preview only — nothing was sent.`（保留参考编号，含义不变），`tests/product_voc_ui.test.mjs` 断言新文案且回复不含平台名（本地 5/5 通过；换回旧 JS 时该断言失败）；同一次改动把 MA-144 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，合入后经既有镜像与 RTD 链路核验线上 `product-voc.js`。**不含**：服务端 `integrations/product_voc/**` 的异常文本与注释、把 Node UI 测试接入 CI（需改 `.github/workflows/**`）、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1247」2026-09-24（此前「预览模式那句 Feishu 也删掉」） | #1247 合入且线上 `product-voc.js` 核验完成即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-147 | PR #1249（`chore/ci-node-ui-tests`，**含本登记行**）：`Manual Validation` 新增 `node-ui` 任务（Node 22、无 npm 依赖，沿用现有 Node 任务的 checkout/setup-node 写法），运行全部 `tests/*.test.mjs`；`code-as-doc/build_doc_guide.md` 记下该任务与本地命令。本 PR 首次 CI 中 `node-ui` 实跑 5/5 通过；同一次改动把 MA-146 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：把 `node-ui` 设为必需检查、钉钉适配器 Node 测试接入 CI（操作者 2026-09-24 选择不管）、`tests/AGENTS.md` / `tests/CLAUDE.md` 改动、其它 workflow、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1249」「等它跑完再合入 #1249」2026-09-24（此前「把 Node UI 测试接进 CI」） | #1249 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-146 | PR #1247（`fix/portal-voc-preview-copy`，**含本登记行**）：产品建议弹窗的预览模式回复由 `Preview only — nothing was sent to Feishu.` 改为 `Preview only — nothing was sent.`（保留参考编号，含义不变），`tests/product_voc_ui.test.mjs` 断言新文案且回复不含平台名（本地 5/5 通过；换回旧 JS 时该断言失败）；同一次改动把 MA-144 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，合入后经既有镜像与 RTD 链路核验线上 `product-voc.js`。**不含**：服务端 `integrations/product_voc/**` 的异常文本与注释、把 Node UI 测试接入 CI（需改 `.github/workflows/**`）、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1247」2026-09-24（此前「预览模式那句 Feishu 也删掉」） | #1247 合入且线上 `product-voc.js` 核验完成即失效，或操作者撤销 | 已失效（#1247 squash `7d444194` 已合入；线上 `product-voc.js` 已为新文案、无 Feishu，手册页引用 `?v=17a9d866`） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
