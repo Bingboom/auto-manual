@@ -126,6 +126,20 @@ jobs:
         working-directory: integrations/openclaw/feishu-im-webhook-adapter
         run: npm test
 
+  # Browser-side portal scripts (tools/rtd_portal_assets/_static/*.js) are
+  # tested with Node's built-in runner against a minimal fake DOM; there are
+  # no npm dependencies. Every tests/*.test.mjs file runs, so a new UI test is
+  # picked up without editing this job.
+  node-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run Node UI tests
+        run: node --test tests/*.test.mjs
+
   unit:
     runs-on: ubuntu-latest
     steps:
