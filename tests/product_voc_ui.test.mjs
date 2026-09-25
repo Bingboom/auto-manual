@@ -78,7 +78,7 @@ test("double submit while busy makes only one call", async () => {
   assert.equal(f.fields.disabled, false);
 });
 
-test("error responses do not claim success; preview is explicitly not a Feishu write", async () => {
+test("error responses do not claim success; preview says nothing was sent and names no platform", async () => {
   for (const status of [400, 403, 409, 429, 503]) {
     const f = fixture(async () => ({ ok: false, status, json: async () => ({ ok: false }) }));
     await f.submit();
@@ -87,7 +87,8 @@ test("error responses do not claim success; preview is explicitly not a Feishu w
   }
   const f = fixture(async () => ({ ok: true, json: async () => ({ ok: true, preview: true }) }));
   await f.submit();
-  assert.match(f.status.textContent, /nothing was sent to Feishu/);
+  assert.match(f.status.textContent, /Preview only — nothing was sent\. Reference: /);
+  assert.doesNotMatch(f.status.textContent, /Feishu|飞书/);
 });
 
 test("modal opens without sending and close restores focus while retaining input", () => {
