@@ -23,6 +23,29 @@ FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 APP_RECIPE = ROOT / "data/asset_recipes/manual_je3600a_eu_web_app.json"
 APP_PANEL = "assets/je3600a_eu_shared/app_connect_result.png"
 LANGUAGES = ("en", "fr", "es")
+# The control-panel button names each language block of the print uses (PDF
+# pages 38/55/72/89). Without them the fr/es routes fell back to the English
+# source names in the App page.
+CONTROL_LABELS = {
+    "main_power_button": {
+        "fr": "Bouton d'alimentation principal",
+        "es": "Botón de encendido principal",
+        "de": "POWER-Taste",
+        "it": "Pulsante di accensione principale",
+    },
+    "dc_usb_power_button": {
+        "fr": "Bouton d'alimentation USB",
+        "es": "Botón de energía USB",
+        "de": "USB-Stromtaste",
+        "it": "Pulsante Alimentazione USB",
+    },
+    "ac_power_button": {
+        "fr": "Bouton d'alimentation CA",
+        "es": "Botón de energía CA",
+        "de": "AC-Ausgangstaste",
+        "it": "Pulsante AC",
+    },
+}
 
 
 def _build_web_package(tmp: Path, *, lang: str) -> Path:
@@ -131,6 +154,18 @@ class Je3600aEuEnWebTests(unittest.TestCase):
             codes = [row["error_code"] for row in csv.DictReader(handle)]
         self.assertEqual(["F0", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "FA", "FC"], codes)
 
+    def test_control_labels_follow_each_print_block(self) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            rows = {
+                row["Row_key"]: row
+                for row in csv.DictReader(handle)
+                if row["Row_key"] in CONTROL_LABELS and row["Slot_key"] == "label"
+            }
+        self.assertEqual(sorted(CONTROL_LABELS), sorted(rows))
+        for row_key, labels in CONTROL_LABELS.items():
+            for lang, label in labels.items():
+                self.assertEqual(label, rows[row_key][f"Value_{lang}"], (row_key, lang))
+
     def test_source_manifest_locks_frozen_inputs(self) -> None:
         manifest = json.loads((FORMAL_SOURCE / "source_manifest.json").read_text(encoding="utf-8"))
         self.assertEqual("formal-published-source-audited-git-input", manifest["source_role"])
@@ -223,6 +258,23 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
         self.assertEqual([], [image["src"] for image in soup.find_all("img")
                               if str(image.get("src", "")).endswith("/connect_result.png")])
         self.assertIn("Las capturas de pantalla anteriores sirven solo de referencia.", self.html)
+
+    def test_control_labels_are_spanish(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        live = {
+            span["class"][-1].removeprefix("hb-app-add-device-live-label-"): span.get_text(strip=True)
+            for span in soup.select(".hb-app-add-device-live-label")
+        }
+        self.assertEqual(
+            {
+                "main-power": CONTROL_LABELS["main_power_button"]["es"],
+                "dc-usb": CONTROL_LABELS["dc_usb_power_button"]["es"],
+                "ac-power": CONTROL_LABELS["ac_power_button"]["es"],
+            },
+            live,
+        )
+        self.assertIn("Presione una vez el botón de encendido principal del dispositivo", self.html)
+        self.assertNotIn("el power button", self.html)
 
 
 if __name__ == "__main__":
