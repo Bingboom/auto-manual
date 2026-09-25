@@ -16,6 +16,13 @@ ALLOWED_DIRTY_PREFIXES = (
     "reports/releases/",
 )
 
+# The base check guards engineering branches pushed to origin. Data-plane pushes
+# (review/backport branches, or anything pushed to another remote such as
+# hello-docs) start from a review branch or from Hello-Docs main, never from
+# auto-manual main, so checking them would block every backport round.
+ENGINEERING_REMOTE = "origin"
+DATA_PLANE_BRANCH_PREFIXES = ("review/", "backport/")
+
 
 class GitCommandError(RuntimeError):
     pass
@@ -180,6 +187,8 @@ def pre_push_command(args: argparse.Namespace) -> int:
         return 0
 
     remote = args.remote or "origin"
+    if remote != ENGINEERING_REMOTE or branch_name.startswith(DATA_PLANE_BRANCH_PREFIXES):
+        return 0
     base_branch = args.base_branch or os.environ.get("AUTO_MANUAL_BASE_BRANCH", "main")
 
     try:
