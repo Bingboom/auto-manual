@@ -11,16 +11,22 @@
       "replaces": [
         "add_device.png"
       ],
-      "path": "assets/je2000e_eu_shared/app_add_device.png",
-      "sha256": "662646752f7e432edae4e01fc78e9ae9f7a6045f231a62fafb76308c8e96a302",
-      "source_page": 23,
+      "path": "assets/je2000e_eu_fr/app_add_device_panel.png",
+      "sha256": "0e122ce341ae0faa89352898c058a1f9e343d88837f4af7517772ad046ea8669",
+      "source_page": 42,
       "bbox_pt": [
-        41.0,
-        208.0,
-        322.75,
-        349.0
+        26.7,
+        204.3,
+        340.6,
+        423.2
       ],
       "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Bouton POWER principal Bouton CC / USB Bouton CA1 Bouton CA2"
+        }
+      ],
       "consume_before_presentation": true,
       "reference_id": "app-add-device"
     },
