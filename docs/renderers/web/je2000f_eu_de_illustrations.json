@@ -313,6 +313,29 @@
     },
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_de/app_add_device_panel.png",
+      "sha256": "91623b3adc677e3460b9a4aa9a0a2616a457a098e7bdfae5a25602b7090e74eb",
+      "source_page": 68,
+      "bbox_pt": [
+        32.5,
+        229.1,
+        334.9,
+        471.5
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Haupt-POWER-Taste AC-Einschalttaste DC/USB-Einschalttaste"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je2000f_eu_shared/app_connect_result.png",

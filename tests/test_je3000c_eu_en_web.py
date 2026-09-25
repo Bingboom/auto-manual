@@ -350,11 +350,16 @@ class Je3000cEuEnWebTests(unittest.TestCase):
     def test_single_language_routes_bind_the_one_shared_app_connect_panel(self) -> None:
         """The fr/es/de/it/uk blocks of the print place the same five bitmaps."""
         self.assertEqual(
-            "7cc37c8a0234a6cddc347ec0efbcd0731a234f7a81cc70f724089baf72481d28",
+            "c1ed0192e86930a9f899cb4c975a160bb1816922385e7c05fdcd87b28f6ffc0b",
             hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
         )
         app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
-        (asset,) = app_recipe["assets"]
+        self.assertEqual(6, len(app_recipe["assets"]))
+        (asset,) = [
+            item
+            for item in app_recipe["assets"]
+            if item["asset_key"] == "web/je3000c/eu/shared/app_connect_result"
+        ]
         (output,) = asset["outputs"]
         # App screenshots stay quarantined in their recipe (the App/QR/URL/
         # localized-UI gate); the illustration manifests are their only
@@ -375,8 +380,10 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             self.assertEqual(ILLUSTRATIONS.parent / f"je3000c_eu_{lang}_illustrations.json", path, lang)
             manifest = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(lang, manifest["language"])
-            (item,) = manifest["illustrations"]
-            self.assertEqual(["connect_result.png"], item["replaces"], lang)
+            self.assertEqual(2, len(manifest["illustrations"]), lang)
+            (item,) = [
+                entry for entry in manifest["illustrations"] if entry["replaces"] == ["connect_result.png"]
+            ]
             panel = path.parent / item["path"]
             self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
             self.assertEqual(output["expected_sha256"], item["sha256"], lang)
@@ -386,6 +393,42 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
             self.assertTrue(item["consume_before_presentation"], lang)
             self.assertEqual("app-connect-result", item["reference_id"], lang)
+
+    def test_single_language_routes_bind_their_own_add_device_panel(self) -> None:
+        """Each block prints the App screens with this model's control panel."""
+        order = {
+            "fr": ("main_power_button", "dc_usb_power_button", "ac_power_button"),
+            "es": ("main_power_button", "dc_usb_power_button", "ac_power_button"),
+            "de": ("main_power_button", "ac_power_button", "dc_usb_power_button"),
+            "it": ("main_power_button", "ac_power_button", "dc_usb_power_button"),
+            "uk": ("main_power_button", "ac_power_button", "dc_usb_power_button"),
+        }
+        assets = {
+            item["asset_key"]: item
+            for item in json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]
+        }
+        for lang in SINGLE_LANGUAGES:
+            asset = assets[f"web/je3000c/eu/{lang}/app_add_device_panel"]
+            (output,) = asset["outputs"]
+            self.assertEqual("quarantine", asset["gate"]["status"], lang)
+            self.assertEqual([lang], asset["scope"]["locales"], lang)
+            self.assertEqual(12, output["scale"], lang)
+            path = ILLUSTRATIONS.parent / f"je3000c_eu_{lang}_illustrations.json"
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            (item,) = [
+                entry for entry in manifest["illustrations"] if entry["replaces"] == ["add_device.png"]
+            ]
+            panel = path.parent / item["path"]
+            self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(item["sha256"], hashlib.sha256(panel.read_bytes()).hexdigest(), lang)
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-add-device", item["reference_id"], lang)
+            text = " ".join(CONTROL_LABELS[row][lang] for row in order[lang])
+            self.assertEqual([{"selector": ".line-block", "text": text}], item["covered_annotations"], lang)
 
     def test_public_ir_cold_replay_and_tamper_detection(self) -> None:
         self.assertEqual(17, len(render_document_fragments(self.ir, package_root=self.package)))
@@ -435,20 +478,27 @@ class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
         )
         self.assertIn("Les captures d'écran ci-dessus sont fournies à titre indicatif.", self.html)
 
-    def test_control_labels_are_french(self) -> None:
+    def test_add_device_is_the_french_print_panel(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
-        live = {
-            span["class"][-1].removeprefix("hb-app-add-device-live-label-"): span.get_text(strip=True)
-            for span in soup.select(".hb-app-add-device-live-label")
-        }
-        self.assertEqual(
-            {
-                "main-power": CONTROL_LABELS["main_power_button"]["fr"],
-                "dc-usb": CONTROL_LABELS["dc_usb_power_button"]["fr"],
-                "ac-power": CONTROL_LABELS["ac_power_button"]["fr"],
-            },
-            live,
+        panel = soup.select_one(
+            'img.manual-finished-illustration[data-reference-id="app-add-device"]'
         )
+        self.assertIsNotNone(panel)
+        self.assertEqual(
+            "assets/je3000c_eu_fr/app_add_device_panel.png",
+            panel["data-web-finished-panel-path"],
+        )
+        # The print's control panel carries the button names, so the page's
+        # label lines move into the figure's alt text.
+        self.assertEqual(
+            " ".join(
+                CONTROL_LABELS[row]["fr"]
+                for row in ("main_power_button", "dc_usb_power_button", "ac_power_button")
+            ),
+            panel["alt"],
+        )
+        self.assertEqual([], soup.select(".hb-app-add-device-live-label"))
+        self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         for english in ("POWER Button", "POWER button", "AC power button", "DC / USB power button"):
             self.assertNotIn(english, self.html)
 

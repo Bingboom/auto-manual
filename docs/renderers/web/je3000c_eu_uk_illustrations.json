@@ -9,6 +9,29 @@
   "illustrations": [
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_uk/app_add_device_panel.png",
+      "sha256": "4dd6d11cf40405800c9d6014fb27a66637e7733cb2479082b5f10a27aeddd026",
+      "source_page": 100,
+      "bbox_pt": [
+        32.4,
+        229.4,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Кнопка POWER Кнопка живлення AC Кнопка живлення DC/USB"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je3000c_eu_shared/app_connect_result.png",

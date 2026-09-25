@@ -23,7 +23,7 @@
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web_app.json",
-    "sha256": "7cc37c8a0234a6cddc347ec0efbcd0731a234f7a81cc70f724089baf72481d28"
+    "sha256": "c1ed0192e86930a9f899cb4c975a160bb1816922385e7c05fdcd87b28f6ffc0b"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3000c_eu_en_illustrations.json",

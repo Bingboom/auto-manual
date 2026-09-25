@@ -9,6 +9,29 @@
   "illustrations": [
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_fr/app_add_device_panel.png",
+      "sha256": "c52a046479034be8e2f054f82a5eb86ee5f3c74cb35fa843a9a579f19ed49137",
+      "source_page": 36,
+      "bbox_pt": [
+        32.4,
+        229.4,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Bouton d'alimentation principal Bouton d'alimentation CC/USB Bouton d'alimentation CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je3000c_eu_shared/app_connect_result.png",

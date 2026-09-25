@@ -204,9 +204,11 @@ class Je3600aEuEnWebTests(unittest.TestCase):
 
     def test_published_routes_bind_the_one_shared_app_connect_panel(self) -> None:
         """The print's language blocks place the same App bitmaps."""
-        self.assertEqual("1afdd84096dfa0f07ff70ce3ae8248e1d44900727f992c0c00d9d62497423b85",
+        self.assertEqual("6e666959bf1a0579d0116df50ff8235b95c8d3c67af159c8cfca8e6bc2ca113c",
                          hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest())
-        (asset,) = json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]
+        assets = json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]
+        self.assertEqual(4, len(assets))
+        (asset,) = [item for item in assets if item["asset_key"] == "web/je3600a/eu/shared/app_connect_result"]
         (output,) = asset["outputs"]
         # App screenshots stay quarantined in their recipe (the App/QR/URL/
         # localized-UI gate); the illustration manifests are their only route
@@ -237,6 +239,36 @@ class Je3600aEuEnWebTests(unittest.TestCase):
             self.assertEqual("app-connect-result", item["reference_id"], lang)
 
 
+    def test_published_routes_bind_their_own_add_device_panel(self) -> None:
+        """Each block prints the App screens with this model's control panel."""
+        order = ("main_power_button", "dc_usb_power_button", "ac_power_button")
+        assets = {item["asset_key"]: item for item in json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]}
+        for lang in LANGUAGES:
+            asset = assets[f"web/je3600a/eu/{lang}/app_add_device_panel"]
+            (output,) = asset["outputs"]
+            self.assertEqual("quarantine", asset["gate"]["status"], lang)
+            self.assertEqual([lang], asset["scope"]["locales"], lang)
+            self.assertEqual(12, output["scale"], lang)
+            path = ROOT / f"docs/renderers/web/je3600a_eu_{lang}_illustrations.json"
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            (item,) = [entry for entry in manifest["illustrations"] if entry["replaces"] == ["add_device.png"]]
+            panel = path.parent / item["path"]
+            self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
+            self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+            self.assertEqual(item["sha256"], hashlib.sha256(panel.read_bytes()).hexdigest(), lang)
+            self.assertEqual(asset["page"], item["source_page"], lang)
+            self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+            self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+            if lang == "en":
+                # The English page has no button-label lines to cover.
+                self.assertNotIn("covered_annotations", item)
+                continue
+            self.assertTrue(item["consume_before_presentation"], lang)
+            self.assertEqual("app-add-device", item["reference_id"], lang)
+            text = " ".join(CONTROL_LABELS[row][lang] for row in order)
+            self.assertEqual([{"selector": ".line-block", "text": text}], item["covered_annotations"], lang)
+
+
 class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
     """The Spanish route shows the print's App screens, not the JP screenshot."""
 
@@ -259,20 +291,19 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
                               if str(image.get("src", "")).endswith("/connect_result.png")])
         self.assertIn("Las capturas de pantalla anteriores sirven solo de referencia.", self.html)
 
-    def test_control_labels_are_spanish(self) -> None:
+    def test_add_device_is_the_spanish_print_panel(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
-        live = {
-            span["class"][-1].removeprefix("hb-app-add-device-live-label-"): span.get_text(strip=True)
-            for span in soup.select(".hb-app-add-device-live-label")
-        }
+        panel = soup.select_one('img.manual-finished-illustration[data-reference-id="app-add-device"]')
+        self.assertIsNotNone(panel)
+        self.assertEqual("assets/je3600a_eu_es/app_add_device_panel.png", panel["data-web-finished-panel-path"])
+        # The print's control panel carries the button names, so the page's
+        # label lines move into the figure's alt text.
         self.assertEqual(
-            {
-                "main-power": CONTROL_LABELS["main_power_button"]["es"],
-                "dc-usb": CONTROL_LABELS["dc_usb_power_button"]["es"],
-                "ac-power": CONTROL_LABELS["ac_power_button"]["es"],
-            },
-            live,
+            " ".join(CONTROL_LABELS[row]["es"] for row in ("main_power_button", "dc_usb_power_button", "ac_power_button")),
+            panel["alt"],
         )
+        self.assertEqual([], soup.select(".hb-app-add-device-live-label"))
+        self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         self.assertIn("Presione una vez el botón de encendido principal del dispositivo", self.html)
         self.assertNotIn("el power button", self.html)
 

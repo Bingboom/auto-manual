@@ -1251,6 +1251,162 @@
         "screenshot",
         "localized-ui"
       ]
+    },
+    {
+      "asset_key": "web/je3600a/eu/en/app_add_device_panel",
+      "page": 21,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3600A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.5,
+            212.4,
+            341.4,
+            464.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3600a_eu_en/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "ed037e0a4292ede0e3fb669fad0cc9976d01408c1e86f64327698e76ea5f6c69"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3600A/EU en illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the EN-block p21 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing (EN: the control-panel-only crop); the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3600a/eu/es/app_add_device_panel",
+      "page": 55,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3600A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.7,
+            223.6,
+            340.6,
+            469.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3600a_eu_es/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "2b3e2108cb43a2597fd6e71c830d198a312aa28c912ae83b780a6363f2d39079"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3600A/EU es illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the ES-block p55 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing (EN: the control-panel-only crop); the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3600a/eu/fr/app_add_device_panel",
+      "page": 38,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3600A"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.7,
+            222.2,
+            340.6,
+            466.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3600a_eu_fr/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "916c92f8f66d6f7bea344d2d595b32367dff362b1b619dc17c87d66b748e9abe"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3600A/EU fr illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the FR-block p38 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing (EN: the control-panel-only crop); the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
     }
   ]
 }
