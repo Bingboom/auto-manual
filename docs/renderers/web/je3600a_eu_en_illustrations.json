@@ -28,6 +28,7 @@
       {"selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line", "text": "Vehicle"},
       {"selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line", "text": "*The car charging cable is sold separately."}
     ]},
-    {"replaces": ["add_device.png"], "path": "assets/je3600a_eu_en/control_panel.png", "sha256": "2d802d195f949e5c13ffbfc0c65be91dd737b995d71b422bdf0709dc7cba526b", "source_page": 21, "bbox_pt": [28, 380, 342, 461]}
+    {"replaces": ["add_device.png"], "path": "assets/je3600a_eu_en/control_panel.png", "sha256": "2d802d195f949e5c13ffbfc0c65be91dd737b995d71b422bdf0709dc7cba526b", "source_page": 21, "bbox_pt": [28, 380, 342, 461]},
+    {"replaces": ["connect_result.png"], "path": "assets/je3600a_eu_shared/app_connect_result.png", "sha256": "a1dfd4b71a46c7d832ee2622e4ff2c19dada15fbed2c6267e4d89f97257d304c", "source_page": 22, "bbox_pt": [58.0, 138.4, 313.25, 287.75], "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json", "consume_before_presentation": true, "reference_id": "app-connect-result"}
   ]
 }
