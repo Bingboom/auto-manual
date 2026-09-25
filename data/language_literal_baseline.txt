@@ -3,7 +3,7 @@
 # that can be removed. Regenerate intentionally with:
 #   python tools/check_language_literal_ratchet.py update
 tools/app_ui_promotion.py	list	en,es,fr	5eada9b2707c0336
-tools/app_ui_promotion.py	set	en,es,fr	76cf83ce30586e10
+tools/app_ui_promotion.py	tuple	de,en,es,fr,it,uk	6745e31781721bc2
 tools/app_ui_promotion.py	tuple	en,es,fr	4bd0c80b3af0745f
 tools/audit_code_copy.py	set	de,en,es,fr,it,ja,jp,pt-BR,pt-br,uk,zh	556e8122dd9b5bff
 tools/build_docs_resolve.py	set	br,pt-br	99450eee8f53e556
