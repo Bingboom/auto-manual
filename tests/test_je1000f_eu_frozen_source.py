@@ -75,6 +75,23 @@ class Je1000fEuFrozenSourceTests(unittest.TestCase):
         self.assertEqual(("JE-1000F", "EU", "shared"), (row["适用机型"], row["适用区域"], row["语言变体"]))
         self.assertIn(f"{attachment.name}:{APP_PANEL_SHA256}", row["内容哈希"])
 
+    def test_locked_review_pages_reference_the_reviewed_app_screens(self) -> None:
+        """Raw shared paths would bypass je1000f-eu-app-ui-v1 and pull the JP screenshots."""
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        app_setup = []
+        for record in manifest["review_files"]:
+            if not record["path"].endswith(".rst"):
+                continue
+            text = (ROOT / record["path"]).read_text(encoding="utf-8")
+            for screen in ("add_device", "connect_result"):
+                self.assertNotIn(f"common_assets/app/{screen}.png", text, record["path"])
+            if "12_app_setup" in record["path"]:
+                app_setup.append(record["path"])
+                self.assertIn(".. image:: asset:app/add_device\n", text, record["path"])
+                self.assertIn(".. image:: asset:app/connect_result\n", text, record["path"])
+        # Six language pages plus their six generated drafts.
+        self.assertEqual(12, len(app_setup))
+
 
 if __name__ == "__main__":
     unittest.main()

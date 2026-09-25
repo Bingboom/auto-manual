@@ -22,7 +22,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
 
 2.2 Premi il pulsante POWER principale sul dispositivo per accenderlo; le icone Wi-Fi e Bluetooth sul dispositivo lampeggiano per indicare che il dispositivo è entrato nella modalità di configurazione di rete. Fai clic sul pulsante "**Icon Flashed**" (icona lampeggiante) e consenti all'app di connettersi ai dispositivi vicini e di aprire le autorizzazioni Bluetooth.
 
-.. image:: _assets/templates/word_template/common_assets/app/add_device.png
+.. image:: asset:app/add_device
    :alt: Segnaposto per il passaggio di aggiunta dispositivo nell'app.
    :width: 320px
 
@@ -56,7 +56,7 @@ In alternativa, scansiona il codice QR qui sotto per scaricare e installare l'ap
 
 | Dopo che il dispositivo è stato aggiunto con successo all'app, l'icona Wi-Fi sul dispositivo resterà sempre accesa.
 
-.. image:: _assets/templates/word_template/common_assets/app/connect_result.png
+.. image:: asset:app/connect_result
    :alt: Segnaposto schermata di risultato configurazione app.
    :width: 360px
 
