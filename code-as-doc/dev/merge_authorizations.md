@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-157 | 按顺序合入两项 PR：(a) PR（`fix/web-eu-control-button-labels`，**含本登记行**）：JE-3000C/EU 与 JE-3600A/EU 冻结源 `Spec_Master.csv` 中 `CONTROLS` 段三个按键名（主电源、DC/USB、AC）补上各语块印刷原文（JE-3000C 法/西/德/意/乌 15 格，JE-3600A 法/西/德/意 12 格），两份 `source_manifest.json` 重新锁定，冻结源 README 与入库评审文档补附记，新增测试；不写飞书（两冻结源无线上依赖，线上占位参数表也无这两个目标的行）。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。(b) 在 (a) 合入且镜像同步落地后，从新 main 按冻结源（默认来源模式）Git-only 构建 JE-3000C/EU 法/西/德/意/乌 Web **2.2**（由 2.1 升级）与 JE-3600A/EU 西/法 Web **2026-05-25.2**（由 2026-05-25.1 升级），两个英语路由不重建，合为一个 Hello-Docs `publish` → `main` PR；仅当候选差异只有这 7 个页面上按键名所在行的变化以及发布证据与元数据时，全部检查成功后合入（不带 `--delete-branch`），并逐个核对 RTD 网址。**不含**：JE-3600A 法/西页面整段英文漏翻的处理、#1258 的合入（由操作者合）、Hello-Docs `review/*` 评审分支 PR、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。（MA-156 已由 #1258 分支预留，故本行用 MA-157。） | 「按印刷原文补两个型号（推荐）」「全绿后合入（推荐）」「3000C 2.2，3600A 05-25.2（推荐）」「候选只动这些就发（推荐）」2026-09-24（答复 JE-3000C/JE-3600A 按键名的方案、合入、版本与发布四问） | (a) 与 (b) 均合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-155 | PR #1257（`docs/registry-expire-spent-0925`，**含本登记行**）：登记表清账——把失效条件已满足的 MA-152、MA-154 两行状态改为已失效（MA-152 附 #1255 `09f3ba1f`、Hello-Docs #126 `54463827` 两个 squash SHA，以及 2026-09-25 RTD 英/法/西/德/意五个规范网址均返回 200、版本为 2.2 的核验；MA-154 附 #1256 `ae3c6940` 与线上 `/workspace/`、`/workspace/system/` 的核验）。只改这两行的状态格，不增删行；MA-002、MA-016、MA-023、MA-066、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「等 CI 跑完，你合入」2026-09-25（此前「清一次登记表」） | #1257 合入即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |

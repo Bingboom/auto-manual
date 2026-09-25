@@ -27,6 +27,32 @@ ILLUSTRATIONS = ROOT / "docs/renderers/web/je3000c_eu_en_illustrations.json"
 WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
 APP_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
+# The control-panel button names each language block of the V2.0 print uses
+# (PDF pages 36/52/68/84/100). Without them the fr-uk routes fell back to the
+# English source names in the Product Overview, energy-saving and App pages.
+CONTROL_LABELS = {
+    "main_power_button": {
+        "fr": "Bouton d'alimentation principal",
+        "es": "Botón de encendido principal",
+        "de": "POWER-Taste",
+        "it": "Pulsante di accensione principale",
+        "uk": "Кнопка POWER",
+    },
+    "dc_usb_power_button": {
+        "fr": "Bouton d'alimentation CC/USB",
+        "es": "Botón de energía CC/USB",
+        "de": "DC/USB-Stromtaste",
+        "it": "Pulsante Alimentazione DC/USB",
+        "uk": "Кнопка живлення DC/USB",
+    },
+    "ac_power_button": {
+        "fr": "Bouton d'alimentation CA",
+        "es": "Botón de energía CA",
+        "de": "AC-Ausgangstaste",
+        "it": "Pulsante AC",
+        "uk": "Кнопка живлення AC",
+    },
+}
 
 
 def _build_web_package(tmp: Path, *, config: Path, lang: str) -> Path:
@@ -171,6 +197,18 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         value = label.parent.select_one("td").get_text(" ", strip=True)
         self.assertIn("PV: 16 V-60 V⎓12 A max., Double to 24 A / 1000 W max.", value)
         self.assertNotIn("24 A max.", value)
+
+    def test_control_labels_follow_each_print_block(self) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            rows = {
+                row["Row_key"]: row
+                for row in csv.DictReader(handle)
+                if row["Row_key"] in CONTROL_LABELS and row["Slot_key"] == "label"
+            }
+        self.assertEqual(sorted(CONTROL_LABELS), sorted(rows))
+        for row_key, labels in CONTROL_LABELS.items():
+            for lang, label in labels.items():
+                self.assertEqual(label, rows[row_key][f"Value_{lang}"], (row_key, lang))
 
     def test_inventory_digest_matches_canonical_file_records(self) -> None:
         manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
@@ -396,6 +434,23 @@ class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
             ],
         )
         self.assertIn("Les captures d'écran ci-dessus sont fournies à titre indicatif.", self.html)
+
+    def test_control_labels_are_french(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        live = {
+            span["class"][-1].removeprefix("hb-app-add-device-live-label-"): span.get_text(strip=True)
+            for span in soup.select(".hb-app-add-device-live-label")
+        }
+        self.assertEqual(
+            {
+                "main-power": CONTROL_LABELS["main_power_button"]["fr"],
+                "dc-usb": CONTROL_LABELS["dc_usb_power_button"]["fr"],
+                "ac-power": CONTROL_LABELS["ac_power_button"]["fr"],
+            },
+            live,
+        )
+        for english in ("POWER Button", "POWER button", "AC power button", "DC / USB power button"):
+            self.assertNotIn(english, self.html)
 
 
 if __name__ == "__main__":
