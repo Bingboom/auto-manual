@@ -196,3 +196,14 @@ automatic background worker. No visitor message was sent.
 The suggestion form opens in a native modal dialog from a compact floating button.
 Close, Escape, and backdrop dismissal preserve typed input and submission state.
 Opening the dialog does not transmit data; only Send suggestion submits.
+
+Trial closed (2026-09-25): the quick-tunnel hostname no longer resolved (DNS
+lookup failed), so every live submission ended with "Delivery is not
+confirmed" and nothing arrived. On the operator's decision
+(「先关掉提交，开 PR」) `product_voc_endpoint` is empty again. The
+suggestion button and form no longer render on manual pages or the Manual
+Center home, and `product-voc.js` / `product-voc.css` are no longer added to
+pages. The receiver code, the dedicated VOC table and the TEST rows are
+unchanged. The trial grant (MA-104) was ruled expired the same day.
+Re-enable only with a verified permanent HTTPS endpoint, through the normal
+engineering PR → Hello-Docs mirror → RTD path.
