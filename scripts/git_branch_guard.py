@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Branch hygiene: start branches from the latest main; block stale engineering pushes.
+
+``start-branch`` creates a branch from the freshly fetched base. ``pre-push`` (run by
+``.githooks/pre-push`` once ``core.hooksPath`` points there) blocks pushes of engineering
+branches to origin that do not contain the latest base; review/backport branches and
+pushes to other remotes are data-plane work and skip the check.
+"""
 from __future__ import annotations
 
 import argparse
