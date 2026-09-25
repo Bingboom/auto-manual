@@ -62,3 +62,14 @@ sync that `md` runs, so the check, md and html language-projection captures
 differ and staging refuses them. On 2026-09-24 the `review` build matched the
 published 2026-09-14 ES/DE/IT pages except for the App connect-result figure,
 which now uses the shared panel.
+
+App screenshots (2026-09-24): the reviewed promotion `je1000f-eu-app-ui-v1`
+(#1252) resolves `asset:app/add_device` and `asset:app/connect_result` to the
+EU print's own screens for JE-1000F/EU. The EN page and the EN/FR generated
+drafts already used those URIs. The FR/ES/DE/IT/UK pages (p31/p46/p61/p76/p91)
+and the DE/ES/IT/UK generated drafts pointed at the shared JP-market
+screenshots through raw `common_assets/app/*.png` paths; they now use the same
+URIs, matching Hello-Docs #125 on `review/JE-1000F-EU`, and
+`source_manifest.json` re-locks those nine files. The visible Web App panels
+are unchanged; the connect-result figure's hidden semantic image becomes the
+EU export in all five languages.
