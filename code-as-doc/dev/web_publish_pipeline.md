@@ -140,7 +140,10 @@ under the same gate: the hash-pinned manifest entries are its only route onto
 the page, and the frozen source binds the recipe as `app_asset_recipe`.
 `JE-3000C / EU` does the same for its fr/es/de/it/uk routes through five
 one-entry manifests, cut at the 12x scale of its English App panels; English
-keeps its own approved panel. Earlier
+keeps its own approved panel. `JE-2000E / EU` replaces both App figures of its
+fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result); the
+print's control-panel box below the add-device screens carries per-language
+button labels, so it stays outside the crop and the labels stay live text. Earlier
 Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
 because their keys carry none of the gate's tokens.
 

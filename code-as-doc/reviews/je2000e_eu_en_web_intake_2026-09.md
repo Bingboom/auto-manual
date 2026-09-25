@@ -141,3 +141,19 @@ The operator explicitly deferred repeated PDF/content and desktop/mobile visual
 acceptance to later manual review on 2026-09-13. It is pending, not claimed as
 passed and not a blocker for the authorized batch Web publication. Required
 automated build, artifact-integrity and URL checks remain release gates.
+
+## 2026-09-24 App panels for fr/es/de/it/uk
+
+The fr/es/de/it/uk routes, wired later from this frozen source, had no
+illustration manifest, so App setup showed the shared JP-market
+`add_device.png` and `connect_result.png`. The print's other five language
+blocks place the same App bitmaps as the English block, so two shared panels
+cut at 12x now replace them through five two-entry manifests: the add-device
+screens with their 2.1/2.2 captions from p23 (bbox 41 208 322.75 349, stopping
+above the grey control-panel box whose button labels are translated per
+block and stay live text) and the connection-result screens with their
+2.3/2.4/2.5 captions from p24 (bbox 41 79 322.75 249.5, excluding the
+localized "screenshots are for reference only" sentence). As App UI, their
+recipe `manual_je2000e_eu_web_app.json` stays quarantined, and the source
+manifest binds it as `app_asset_recipe`. English is unchanged. The operator
+confirmed both crops on 2026-09-24.
