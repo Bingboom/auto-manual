@@ -110,3 +110,89 @@ with `app-ui`/`screenshot`/`localized-ui` risk tags (plus `qr` for the download
 panel); keys, outputs and hashes are unchanged, so the pages are unchanged.
 `source_manifest.json` rebinds `asset_recipe`. The operator approved the fix on
 2026-09-25.
+
+## 2026-09-25 fr–uk English fallbacks filled from the print
+
+The fr–uk routes showed English in several places:
+
+- the specification table;
+- the storage durations;
+- the front and right-side overview callouts, which are rendered as HTML tables;
+- the standby and auto-off times quoted in the text (`2 hours`, `12 hours`);
+- Latin units in Ukrainian sentences;
+- footnote ② was missing.
+
+The cause was that the fr/es/de/it/uk columns of those `Spec_Master.csv` rows and
+of `Spec_Footnotes.csv` `ac_total` were empty.
+
+**What changed.** 324 JE-3000C cells hold each language block's printed text from
+this source's V2.0-2026-07-31 PDF. Specification and overview cells are split by
+the pages' ruling lines or grouped by callout font (7 pt bold label, 5 pt value
+lines).
+
+| Rows | Cells per language |
+| --- | --- |
+| Specification | 19 |
+| Storage | 3 |
+| Overview slots | 15 |
+| Standby/auto-off | 2 |
+| Ukrainian units | 4 (Ukrainian only) |
+| Footnote ② | 1 |
+
+**Rules, operator-confirmed.** These are the same rules as for JE-1000H and JE-3600A:
+
+- Wording comes from the print, in the house format of the reviewed frozen
+  sources.
+- Print defects use reviewed cross-model wording.
+- Cells whose printed wording matches the English value (for example `25 W`,
+  `10 ms` outside Ukrainian) keep their fallback.
+
+**Deviations from the print:**
+
+- **German:**
+  - the 12 V port label is printed as `DC-12V-Ausgangstaste` (an output button),
+    so it reads `1 × DC 12 V-Anschluss` in the spec and `12-V-DC-Anschluss` in
+    the overview;
+  - the car line of the spec table is printed in English (`Car:`), so it reads
+    `Auto:` as this block's own overview prints.
+- **Italian:** the bypass parameter is printed with the English `AC modalità
+  bypass`, so it reads `Modalità bypass`.
+- **Spanish:**
+  - the USB-A row is labelled `USB-C 18W`;
+  - the PV value reads 400 W, which the 2026-09-15 revision of the same print
+    corrects to 1000 W, as in English.
+- **French:** `Oiture:` becomes `Voiture :`.
+- **Ukrainian:**
+  - the bypass label (`режим` → `режимі`), the plural `2 виходи USB-A` and a
+    stray `від` glued to the charging-temperature label are fixed;
+  - the energy-saving threshold is printed `25 В` (volts) and reads `25 Вт`;
+  - footnote ② gains the missing `струму` by operator ruling, also applied to
+    JE-1000H.
+- **Kept as printed:** the Ukrainian dimensions in mm (`435 × 326 × 281 мм`) and
+  the spec rows without car/PV prefixes; the German and Ukrainian overview AC
+  output without "rated".
+
+**The newer revision.** The 2026-09-15 revision on the design share differs only
+in that Spanish PV value and in an added vehicle-charging caution block on the
+storage/fault pages. The storage lines and the other specification text are
+identical. The authority stays V2.0-2026-07-31, because every recipe is
+hash-locked to it.
+
+**Verification:**
+
+- **Independent print check:** every written cell is found in the plain text of
+  its PDF page after canonicalisation, a different extraction path from the one
+  that built it. Only the listed substitutions are exempt (22 cells).
+- **Figures:** values keep the English digits and `⎓` count, except the
+  Ukrainian dimensions in mm and the cell-chemistry subscript.
+- **English controls:**
+  - specification: 16 of 19 rows land on their print cells;
+  - overview: 11 of 13 slots land on their callouts;
+  - the misses are English edits (`Vehicle:` for the printed `Car:`, `MAX`
+    dropped).
+- **Regression tests:** `Je3000cEuTranslatedCellTests` fails 214 subtests on the
+  previous file.
+- **Trial Web build:** 0 English segments identical to English remain on any
+  fr–uk route. The changes are confined to the overview, specification, storage
+  and footnote sections plus the sentences that quote the standby time, the
+  thresholds, the UPS time and the temperature range.

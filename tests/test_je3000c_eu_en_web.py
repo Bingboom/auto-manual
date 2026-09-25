@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -510,6 +511,76 @@ class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
         self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         for english in ("POWER Button", "POWER button", "AC power button", "DC / USB power button"):
             self.assertNotIn(english, self.html)
+
+
+FIGURES = re.compile(r"\d+(?:[.,]\d+)?")
+UNCLEAN = re.compile("[\x00-\x08\x0b-\x1fﬀ-ﬆ]")
+LOCALIZED_SETTINGS = ("default_standby_duration", "energy_saving_auto_off_duration")
+
+
+def frozen_rows(name: str) -> list[dict[str, str]]:
+    with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+class Je3000cEuTranslatedCellTests(unittest.TestCase):
+    """fr–uk specification, storage, overview, setting and footnote cells follow each print block."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.rows = frozen_rows("Spec_Master.csv")
+        cls.cells = {(row["Page"], row["Row_key"], row["Slot_key"], row["Line_order"]): row for row in cls.rows}
+
+    def test_translated_cells_are_complete_and_clean(self) -> None:
+        # 法–乌列曾整列为空，页面静默回落英文：规格表、储存、概览标注、待机时长都印英文
+        checked = [row for row in self.rows
+                   if row["Page"] in ("specifications", "storage")
+                   or (row["Page"] == "Product overview" and row["Section"] != "CONTROLS")
+                   or row["Row_key"] in LOCALIZED_SETTINGS]
+        self.assertEqual(19 + 3 + 15 + 2, len(checked))
+        for row in checked:
+            source = row["Value_source"]
+            for lang in SINGLE_LANGUAGES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    self.assertTrue(value)
+                    self.assertNotRegex(value, UNCLEAN)
+                    self.assertEqual(value.count("("), value.count(")"))
+                    exempt = row["Row_key"] == "cell_chemistry" or (lang, row["Row_key"]) == ("uk", "dimensions")
+                    if not exempt and not row["Slot_key"].endswith("label"):
+                        self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                         FIGURES.findall(value.replace(",", ".")))
+                        self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    if row["Page"] == "specifications":
+                        self.assertTrue(row[f"Row_label_{lang}"])
+                    if row["Page"] == "storage":
+                        self.assertTrue(row[f"Param_{lang}"])
+        for footnote in frozen_rows("Spec_Footnotes.csv"):
+            for lang in SINGLE_LANGUAGES:
+                with self.subTest(footnote=footnote["Footnote_id"], lang=lang):
+                    self.assertTrue(footnote[f"Text_{lang}"])
+
+    def test_cells_follow_each_print_block(self) -> None:
+        expected = {
+            ("specifications", "dc8020_ports", "", "1", "Value_fr"): "Voiture : 12 V-16 V⎓8 A max., double à 8 A max.",
+            ("specifications", "dc8020_ports", "", "1", "Value_de"): "Auto: 12-16 V⎓8 A max., Doppelanschluss 8 A max.",
+            ("specifications", "dc8020_ports", "", "2", "Value_es"): "PV: 16-60 V⎓12 A, Doble a 24 A máx./1000 W máx.",
+            ("specifications", "usb_a", "", "1", "Row_label_es"): "2 × Salida USB-A 18W MAX",
+            ("specifications", "dc12_port", "", "1", "Row_label_de"): "1 × DC 12 V-Anschluss",
+            ("specifications", "ac_input", "", "2", "Param_it"): "Modalità bypass",
+            ("specifications", "charging_temperature", "", "1", "Row_label_uk"): "Температура заряджання",
+            ("specifications", "dimensions", "", "1", "Value_uk"): "435 × 326 × 281 мм",
+            ("Product overview", "ac_input", "side.label", "1", "Value_fr"): "Entrée CA",
+            ("Product overview", "dc12_port", "front.label", "1", "Value_de"): "12-V-DC-Anschluss",
+            ("Product overview", "total_output", "front.spec", "1", "Value_fr"): "3600 W nominal, 7200 W crête",
+            ("operation_guide", "energy_saving_ac_threshold", "value", "1", "Value_uk"): "25 Вт",
+            ("operation_guide", "default_standby_duration", "value", "1", "Value_fr"): "2 heures",
+        }
+        for (*key, column), value in expected.items():
+            with self.subTest(key=key, column=column):
+                self.assertEqual(value, self.cells[tuple(key)][column])
+        total = {row["Footnote_id"]: row for row in frozen_rows("Spec_Footnotes.csv")}["ac_total"]
+        self.assertEqual("Вказує, що два або більше вихідних портів змінного струму працюють разом.", total["Text_uk"])
 
 
 if __name__ == "__main__":

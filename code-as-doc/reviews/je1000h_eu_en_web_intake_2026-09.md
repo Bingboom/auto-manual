@@ -150,3 +150,10 @@ Verification:
 Remaining: the `Product overview` slot rows carry the same extraction damage into
 the finished overview images' alt text, through `covered_annotations`. Fixing them
 needs the five illustration manifests re-bound and is left as a follow-up.
+
+## 2026-09-25 Ukrainian footnote ② completed
+
+The Ukrainian footnote ② for the total AC output was printed without "струму"
+("…вихідних портів змінного працюють разом"). The operator ruled to add the noun
+in both JE-1000H and JE-3000C. One cell changes: `Spec_Footnotes.csv` `Text_uk`
+for `ac_total_output`. The file is re-locked in `source_manifest.json`.

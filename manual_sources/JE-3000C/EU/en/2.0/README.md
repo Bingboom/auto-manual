@@ -43,3 +43,11 @@ alone in `source_manifest.json`); see the intake review addendum of the same dat
 
 Recipe gate (2026-09-25): the three English App panels in `asset_recipe` are quarantined as App UI;
 `source_manifest.json` rebinds the recipe hash. Pages are unchanged.
+
+Translated cells (2026-09-25): the fr/es/de/it/uk columns of the specification,
+storage, overview-callout and standby/auto-off rows of `phase2/Spec_Master.csv`
+and of footnote ② in `phase2/Spec_Footnotes.csv` were empty, so the fr–uk routes
+printed English there. They now hold each language block's printed text from
+this source's V2.0-2026-07-31 PDF; defects use reviewed wording, and the Spanish
+PV value takes the 2026-09-15 revision's correction (see the intake review
+addendum of the same date). `source_manifest.json` re-locks both files.
