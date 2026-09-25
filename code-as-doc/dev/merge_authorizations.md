@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-155 | PR #1257（`docs/registry-expire-spent-0925`，**含本登记行**）：登记表清账——把失效条件已满足的 MA-152、MA-154 两行状态改为已失效（MA-152 附 #1255 `09f3ba1f`、Hello-Docs #126 `54463827` 两个 squash SHA，以及 2026-09-25 RTD 英/法/西/德/意五个规范网址均返回 200、版本为 2.2 的核验；MA-154 附 #1256 `ae3c6940` 与线上 `/workspace/`、`/workspace/system/` 的核验）。只改这两行的状态格，不增删行；MA-002、MA-016、MA-023、MA-066、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「等 CI 跑完，你合入」2026-09-25（此前「清一次登记表」） | #1257 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-154 | PR #1256（`fix/portal-workspace-review-followups`，**含本登记行**）：工作空间 `/workspace/` 与系统建设页不再依赖 AI 分享包——`collect_workspace_pages` 始终生成两页，分享包缺失时只隐藏分享导航、分享卡片、搜索框与最近更新中的分享条目（无分享时改用只绑定手机菜单的脚本），系统建设页按 `has_share` 隐藏分享链接；有分享时 `workspace/index.html` 与 main 逐字节一致。语言资产块写明是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例）：每条柱加提示，格子改为「语料覆盖语言」，图下注明不是说明书翻译完成率。Hello-Docs `4f36d5eb` 整站 A/B：有分享时 1195 个文件中 4 个按预期变化（系统建设页只改语料文案），232 个 HTML 中 231 个逐字节一致；无分享时新增工作空间与系统建设页两页，原有 209 个 HTML 全部不变。同一次改动把 MA-153 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，合入后经既有镜像与 RTD 链路核验线上 `/workspace/` 与 `/workspace/system/`。**不含**：SSOT 来源登记（待设计文档）、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「等 CI 跑完，你合入」2026-09-25（此前「前两项合成一个 PR，开 PR」） | #1256 合入且线上 `/workspace/` 与 `/workspace/system/` 核验完成即失效，或操作者撤销 | 已失效（#1256 squash `ae3c6940` 已合入；2026-09-25 RTD 实页核验 `/workspace/` 与 `/workspace/system/` 通过） |
 
 | ID | Scope | Grant | Expiry | Status |
