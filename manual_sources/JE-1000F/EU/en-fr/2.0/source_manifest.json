@@ -72,6 +72,14 @@
         22
       ],
       "change": "Bind one shared finished panel (web-composite/je1000f_eu/reference.app-connect-result, locale=shared) cropped from the EN block with its 2.3/2.4/2.5 captions; the FR/ES/DE/IT blocks print the same English screens. It replaces the JP-market shared app/connect_result art the Web pages showed."
+    },
+    {
+      "scope": "App setup review pages",
+      "pdf_physical_pages": [
+        21,
+        22
+      ],
+      "change": "Switch the raw paths to the shared JP-market app/add_device and app/connect_result screenshots in the FR/ES/DE/IT/UK pages and the DE/ES/IT/UK generated drafts to asset:app/add_device and asset:app/connect_result, which the reviewed promotion je1000f-eu-app-ui-v1 resolves to the EU print's own screens (the same change as Hello-Docs #125 on review/JE-1000F-EU)."
     }
   ],
   "files": [
@@ -714,8 +722,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_de.rst",
-      "size": 4164,
-      "sha256": "6f0ad0a92d85f82cb22f6b84e86aa9d62b74c53d9461f0ec1347fc5351190046"
+      "size": 4076,
+      "sha256": "3f13be1bd8ca407edd9e0a830e438915c3b9ed22a93daa1532b22885af45f6f6"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_en.rst",
@@ -724,8 +732,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_es.rst",
-      "size": 4354,
-      "sha256": "9ae8e30ef8a095f7018b63409e2d02882aa83dd8574b40e6cd9e3f38aceafa4c"
+      "size": 4266,
+      "sha256": "d92dc557f3033098970a90aff3ea39cd0c25571e89f14fe9d0fb7c9d3286dd65"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_fr.rst",
@@ -734,13 +742,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_it.rst",
-      "size": 4163,
-      "sha256": "03ee50038f92586d130335fd452eb5be3f066e606e55905ae238103e0f4dd530"
+      "size": 4075,
+      "sha256": "81ee1af96eeeb686bb8294d78cf1b73bcd5beb4efb2391ddfa9cda93eebe948b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/draft/12_app_setup_uk.rst",
-      "size": 5721,
-      "sha256": "0cc3d6612e5f0ac2a91fa41241a867028dc68d717a908a32a4b692e378fa1d34"
+      "size": 5633,
+      "sha256": "a4c119eefea243b74b4e51d7a7f54323a4a24ec10f20d86cf52c47175c06f9a8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/lcd_icons_de.rst",
@@ -1009,8 +1017,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p31_12_app_setup_placeholder.rst",
-      "size": 4302,
-      "sha256": "22135d4f8f0ee7fd9f48449c76b8fe2e858d61132f836a9f0ba282d14c16ed20"
+      "size": 4214,
+      "sha256": "793a59ca7fa9061760aad77242169345a8babe2c14e7b20ba35d6bc8bf80a62b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p33_01_user_maintenance_instructions.rst",
@@ -1059,8 +1067,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p46_12_app_setup_placeholder.rst",
-      "size": 4354,
-      "sha256": "9ae8e30ef8a095f7018b63409e2d02882aa83dd8574b40e6cd9e3f38aceafa4c"
+      "size": 4266,
+      "sha256": "d92dc557f3033098970a90aff3ea39cd0c25571e89f14fe9d0fb7c9d3286dd65"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p48_01_user_maintenance_instructions.rst",
@@ -1109,8 +1117,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p61_12_app_setup_placeholder.rst",
-      "size": 4164,
-      "sha256": "6f0ad0a92d85f82cb22f6b84e86aa9d62b74c53d9461f0ec1347fc5351190046"
+      "size": 4076,
+      "sha256": "3f13be1bd8ca407edd9e0a830e438915c3b9ed22a93daa1532b22885af45f6f6"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p63_01_user_maintenance_instructions.rst",
@@ -1159,8 +1167,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p76_12_app_setup_placeholder.rst",
-      "size": 4163,
-      "sha256": "03ee50038f92586d130335fd452eb5be3f066e606e55905ae238103e0f4dd530"
+      "size": 4075,
+      "sha256": "81ee1af96eeeb686bb8294d78cf1b73bcd5beb4efb2391ddfa9cda93eebe948b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p78_01_user_maintenance_instructions.rst",
@@ -1209,8 +1217,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p91_12_app_setup_placeholder.rst",
-      "size": 5721,
-      "sha256": "0cc3d6612e5f0ac2a91fa41241a867028dc68d717a908a32a4b692e378fa1d34"
+      "size": 5633,
+      "sha256": "a4c119eefea243b74b4e51d7a7f54323a4a24ec10f20d86cf52c47175c06f9a8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/safety_de.rst",
