@@ -13,6 +13,7 @@ import unittest
 
 from bs4 import BeautifulSoup
 
+from tools.build_paths import resolve_web_illustration_manifest
 from tools.manual_ir import read_manual_ir
 from tools.web_document_ir import render_document_fragments
 
@@ -23,6 +24,68 @@ FORMAL_SOURCE = ROOT / "manual_sources" / "JE-2000E" / "EU" / "en" / "2.0"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "je2000e_eu_en_illustrations.json"
+APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000e_eu_web_app.json"
+SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
+# replaced source image -> (shared panel file, reference id)
+APP_PANELS = {
+    "add_device.png": ("app_add_device.png", "app-add-device"),
+    "connect_result.png": ("app_connect_result.png", "app-connect-result"),
+}
+
+
+def _build_web_package(tmp: Path, *, config: Path, lang: str) -> Path:
+    staging = tmp / "staging"
+    fake_bin = tmp / "bin"
+    fake_bin.mkdir()
+    fake_pandoc = fake_bin / "pandoc"
+    fake_pandoc.write_text(
+        "#!/usr/bin/env python3\n"
+        "from pathlib import Path\n"
+        "import sys\n"
+        "if '--list-output-formats' in sys.argv:\n"
+        "    print('myst')\n"
+        "    raise SystemExit(0)\n"
+        "source = Path(sys.argv[1])\n"
+        "target = Path(sys.argv[sys.argv.index('-o') + 1])\n"
+        "target.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')\n",
+        encoding="utf-8",
+    )
+    fake_pandoc.chmod(0o755)
+    env = {
+        **os.environ,
+        "AUTO_MANUAL_OSS_ARCHIVE_CONFIG": "off",
+        "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
+        "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
+    }
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "build.py"),
+            "md",
+            "--config",
+            str(config),
+            "--model",
+            "JE-2000E",
+            "--region",
+            "EU",
+            "--lang",
+            lang,
+            "--data-root",
+            str(FORMAL_DATA_ROOT),
+            "--staging-root",
+            str(staging),
+        ],
+        cwd=ROOT,
+        env=env,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode:
+        raise AssertionError(
+            f"JE-2000E/{lang} formal-source Web build failed:\n" + result.stdout + result.stderr
+        )
+    return staging / "docs" / "_build" / "JE-2000E" / "EU" / lang / "md"
 
 
 class Je2000eEuEnWebTests(unittest.TestCase):
@@ -151,7 +214,7 @@ class Je2000eEuEnWebTests(unittest.TestCase):
             "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
             manifest["authority"]["published_pdf_sha256"],
         )
-        for binding in ("asset_recipe", "web_illustration_manifest"):
+        for binding in ("asset_recipe", "app_asset_recipe", "web_illustration_manifest"):
             bound = manifest[binding]
             self.assertEqual(
                 bound["sha256"],
@@ -223,6 +286,59 @@ class Je2000eEuEnWebTests(unittest.TestCase):
                 output_hashes[path.relative_to(ROOT).as_posix()],
             )
 
+    def test_single_language_routes_bind_the_shared_app_panels(self) -> None:
+        """The fr/es/de/it/uk blocks of the print place the same App bitmaps."""
+        self.assertEqual(
+            "a2ba163364d9764a8f61a1be393ff6f0bef5015e22e0c5ad21c981f2f03cae65",
+            hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
+        )
+        app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
+        self.assertEqual(2, len(app_recipe["assets"]))
+        outputs = {}
+        for asset in app_recipe["assets"]:
+            # App screenshots stay quarantined in their recipe (the App/QR/URL/
+            # localized-UI gate); the illustration manifests are their only
+            # route onto the page. English keeps its own approved panels.
+            self.assertFalse(asset["build_eligible"])
+            self.assertTrue(asset["visual_review_required"])
+            self.assertEqual("quarantine", asset["gate"]["status"])
+            self.assertIn("app-ui", asset["risk_tags"])
+            self.assertEqual(list(SINGLE_LANGUAGES), asset["scope"]["locales"])
+            (output,) = asset["outputs"]
+            self.assertEqual(12, output["scale"])
+            outputs[Path(output["path"]).name] = (asset, output)
+        for lang in SINGLE_LANGUAGES:
+            path = resolve_web_illustration_manifest(
+                ROOT / "configs" / f"config.eu-{lang}.yaml",
+                repo_root=ROOT,
+                model="JE-2000E",
+                region="EU",
+            )
+            self.assertEqual(
+                ILLUSTRATIONS.parent / f"je2000e_eu_{lang}_illustrations.json", path, lang
+            )
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(lang, manifest["language"])
+            self.assertEqual(
+                sorted(APP_PANELS),
+                sorted(item["replaces"][0] for item in manifest["illustrations"]),
+                lang,
+            )
+            for item in manifest["illustrations"]:
+                panel_name, reference_id = APP_PANELS[item["replaces"][0]]
+                asset, output = outputs[panel_name]
+                panel = path.parent / item["path"]
+                self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
+                self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+                self.assertEqual(
+                    item["sha256"], hashlib.sha256(panel.read_bytes()).hexdigest(), lang
+                )
+                self.assertEqual(asset["page"], item["source_page"], lang)
+                self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
+                self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
+                self.assertTrue(item["consume_before_presentation"], lang)
+                self.assertEqual(reference_id, item["reference_id"], lang)
+
     def test_public_ir_replay_and_tamper_detection(self) -> None:
         fragments = render_document_fragments(self.ir, package_root=self.package)
         self.assertEqual(18, len(fragments))
@@ -234,6 +350,53 @@ class Je2000eEuEnWebTests(unittest.TestCase):
             (copied / relative).write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "asset missing or changed"):
                 render_document_fragments(ir, package_root=copied)
+
+
+
+class Je2000eEuGermanAppPanelTests(unittest.TestCase):
+    """The German route shows the print's App screens, not the JP screenshots."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory()
+        package = _build_web_package(
+            Path(cls._tmp.name), config=ROOT / "configs" / "config.eu-de.yaml", lang="de"
+        )
+        cls.html = (package / "manual_bundle.html").read_text(encoding="utf-8")
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_app_figures_are_the_shared_print_panels(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        for panel_name, reference_id in APP_PANELS.values():
+            image = soup.select_one(
+                f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
+            )
+            self.assertIsNotNone(image, reference_id)
+            self.assertEqual(
+                f"assets/je2000e_eu_shared/{panel_name}",
+                image["data-web-finished-panel-path"],
+            )
+        self.assertEqual(
+            [],
+            [
+                image["src"]
+                for image in soup.find_all("img")
+                if Path(str(image.get("src", ""))).name in APP_PANELS
+            ],
+        )
+        # The control-panel button labels and the reference sentence are
+        # translated per language, so they stay live text.
+        for text in (
+            "Haupt-POWER-Taste",
+            "AC1-Einschalttaste",
+            "AC2-Einschalttaste",
+            "DC / USB-Einschalttaste",
+            "Die oben gezeigten Screenshots dienen nur als Referenz.",
+        ):
+            self.assertIn(text, self.html)
 
 
 if __name__ == "__main__":
