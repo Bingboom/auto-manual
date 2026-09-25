@@ -2277,6 +2277,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 每月用 `python tools/rtd_system_workspace.py corpus-export` 只读导出后提交；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
 柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
+页内“技能与钩子”块在构建时读取 `.agents/skills`、`.claude/skills`、`.claude/settings.json` 与 `.githooks/pre-push`，
+按重点线列出技能，标出未登记的技能和没有测试的钩子；`check` 对这些缺口给出警告。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 

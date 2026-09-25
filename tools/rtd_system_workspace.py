@@ -43,6 +43,13 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
+from tools.rtd_system_tooling import (  # noqa: E402
+    hook_facts,
+    skill_facts,
+    tooling_findings,
+    tooling_problems,
+    tooling_view,
+)
 from tools.utils.path_utils import PathSegments, repo_root, skeletons_of  # noqa: E402
 
 SCHEMA = "hello-docs-system-workspace/v1"
@@ -393,6 +400,10 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         gate_ids = {str(gate.get("id")) for gate in now_next.get("gates") or []}
         out += _focus_findings(contract["focus"], card_ids=card_ids, gate_ids=gate_ids,
                                ledger=ledger, has_corpus=corpus is not None)
+    if "tooling" in contract:
+        lane_ids = {str(lane.get("id")) for lane in (contract.get("focus") or {}).get("lanes") or []
+                    if isinstance(lane, dict)}
+        out += [Finding("error", "tooling", problem) for problem in tooling_problems(contract["tooling"], lane_ids)]
     return out
 
 
@@ -506,6 +517,9 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
     lanes = (contract.get("focus") or {}).get("lanes") or []
     if any("skeletons" in (lane.get("metrics") or []) for lane in lanes) and skeleton_facts(root) is None:
         findings.append(Finding("warning", "focus", "no readable skeleton blueprints; the skeleton metric shows 无数据"))
+    if "tooling" in contract:
+        findings += [Finding(*finding) for finding in
+                     tooling_findings(contract["tooling"], skill_facts(root), hook_facts(root))]
     return findings
 
 
@@ -877,7 +891,9 @@ def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | No
 def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None,
                   facts: dict[str, Any] | None, today: dt.date,
                   corpus: dict[str, Any] | None = None,
-                  skeletons: list[dict[str, str]] | None = None) -> dict[str, Any]:
+                  skeletons: list[dict[str, str]] | None = None,
+                  skills: list[dict[str, Any]] | None = None,
+                  hooks: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
@@ -984,6 +1000,11 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             "stale": drift_reasons(focus, contract=contract, root=root, ledger=ledger, today=today),
         }
 
+    tooling = None
+    if contract.get("tooling"):
+        tooling = tooling_view(contract["tooling"], skills or [], hooks or [],
+                               {lane["id"]: lane_tag(lane) for lane in lanes})
+
     status_vocabulary = contract["vocabulary"]["status"]
     return {
         "hero": contract["hero"],
@@ -1002,6 +1023,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "ledger_url": ledger_url,
         "corpus_enabled": bool(contract.get("corpus")),
         "corpus": corpus_block,
+        "tooling": tooling,
     }
 
 
@@ -1047,7 +1069,7 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
     if problems:
         logger.warning("System workspace corpus block shows no data: %s", "; ".join(problems[:3]))
     return build_context(contract, root=root, ledger=ledger, facts=facts, today=today, corpus=corpus,
-                         skeletons=skeleton_facts(root))
+                         skeletons=skeleton_facts(root), skills=skill_facts(root), hooks=hook_facts(root))
 
 
 # --- CLI ----------------------------------------------------------------------
