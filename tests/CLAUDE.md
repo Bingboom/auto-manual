@@ -1,6 +1,6 @@
 # Tests Directory
 
-`tests/` uses Python `unittest`. Test files are organized by repo behavior, not by a separate test framework.
+`tests/` uses Python `unittest`. Test files are organized by repo behavior, not by a separate test framework. Browser-side portal scripts also have Node UI tests (`*.test.mjs`) on Node's built-in test runner.
 
 ## Map
 
@@ -8,6 +8,7 @@
 - `test_check_*.py`: validation and guardrail coverage.
 - `test_queue_*.py`, `test_process_*queue*.py`: queue routing and writeback coverage.
 - `test_diff_report.py`, `test_release_manifest.py`: traceability outputs.
+- `*.test.mjs`: Node UI tests for `tools/rtd_portal_assets/_static/*.js` against a minimal fake DOM; the `Manual Validation` `node-ui` job runs every file.
 - `fixtures/`: committed fixtures only; do not overwrite broad fixture trees casually.
 
 ## Local Rules
@@ -21,4 +22,5 @@
 - One module: `python3 -m unittest tests.test_<name>`
 - Several modules: `python3 -m unittest tests.test_config_loader tests.test_validate_config`
 - Full suite: `python3 -m unittest`
+- Node UI tests, when a portal script or a `*.test.mjs` file changes: `node --test tests/*.test.mjs`
 - Lint when tests or Python implementation changed: `python3 -m ruff check build.py integrations tools tests scripts`
