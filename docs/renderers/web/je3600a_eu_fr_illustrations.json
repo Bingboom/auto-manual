@@ -9,6 +9,29 @@
   "illustrations": [
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3600a_eu_fr/app_add_device_panel.png",
+      "sha256": "916c92f8f66d6f7bea344d2d595b32367dff362b1b619dc17c87d66b748e9abe",
+      "source_page": 38,
+      "bbox_pt": [
+        26.7,
+        222.2,
+        340.6,
+        466.4
+      ],
+      "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Bouton d'alimentation principal Bouton d'alimentation USB Bouton d'alimentation CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je3600a_eu_shared/app_connect_result.png",

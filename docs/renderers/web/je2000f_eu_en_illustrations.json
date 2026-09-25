@@ -324,24 +324,24 @@
       "replaces": [
         "add_device.png"
       ],
-      "path": "assets/je2000f_eu_en_full_frames/app_control_panel.png",
-      "sha256": "19bdaee9345f6cb13e7880e4b06437abfa3b352d432955bc2266d7019b6998ac",
+      "path": "assets/je2000f_eu_en/app_add_device_panel.png",
+      "sha256": "58d950017bd22da2161cb5b6d2df5dc5e5a490b39ca0f538f26663b743fc7c66",
       "source_page": 20,
       "bbox_pt": [
-        35,
-        394,
-        337,
-        463
+        34.9,
+        223.6,
+        337.3,
+        464.4
       ],
-      "recipe": "data/asset_recipes/manual_je2000f_eu_web_full_frames.json",
-      "consume_before_presentation": true,
-      "reference_id": "app-add-device",
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
       "covered_annotations": [
         {
           "selector": ".line-block",
           "text": "Main POWER Button AC Power Button DC / USB Power Button"
         }
-      ]
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
     },
     {
       "replaces": [

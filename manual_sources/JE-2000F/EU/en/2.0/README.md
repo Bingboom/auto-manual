@@ -26,3 +26,7 @@ python build.py md \
   --data-root manual_sources/JE-2000F/EU/en/2.0/phase2 \
   --staging-root <fresh-root>
 ```
+
+App add-device figure (2026-09-24): all six routes bind their own language block's crop of
+the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
+together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.

@@ -1344,6 +1344,266 @@
         "screenshot",
         "localized-ui"
       ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/app_add_device_panel",
+      "page": 36,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.4,
+            229.4,
+            334.8,
+            487.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "c52a046479034be8e2f054f82a5eb86ee5f3c74cb35fa843a9a579f19ed49137"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3000C/EU fr illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the FR-block p36 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing; the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/app_add_device_panel",
+      "page": 52,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.4,
+            229.8,
+            334.8,
+            487.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "91685191a0c1fc3039fedd346a92f6c1419e4345c241869383e6a257d6d5d004"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3000C/EU es illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the ES-block p52 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing; the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/app_add_device_panel",
+      "page": 68,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.4,
+            229.4,
+            334.8,
+            487.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "5d01f161495e04fc986988816870193c798b8f3bba57fa136e56d400d0101fcb"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3000C/EU de illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the DE-block p68 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing; the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/app_add_device_panel",
+      "page": 84,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.4,
+            229.4,
+            334.8,
+            487.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "1d6e0586d006dda7dd40366bef68916d81efeac481488aaa239729a92573cba9"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3000C/EU it illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the IT-block p84 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing; the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/app_add_device_panel",
+      "page": 100,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            32.4,
+            229.4,
+            334.8,
+            487.1
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "4dd6d11cf40405800c9d6014fb27a66637e7733cb2479082b5f10a27aeddd026"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-3000C/EU uk illustration manifest.",
+          "2026-09-24 operator approved per-language crops: the UK-block p100 region at 12x holding the two App screens with their 2.1/2.2 captions and this model's own grey control-panel box with the block's printed button labels. It replaces the composition of the generic App screens with the JE-1000F control-panel drawing; the page's button-label lines become covered annotations (kept as the image's alt text)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
     }
   ]
 }

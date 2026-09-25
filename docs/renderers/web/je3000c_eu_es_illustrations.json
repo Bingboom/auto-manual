@@ -9,6 +9,29 @@
   "illustrations": [
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_es/app_add_device_panel.png",
+      "sha256": "91685191a0c1fc3039fedd346a92f6c1419e4345c241869383e6a257d6d5d004",
+      "source_page": 52,
+      "bbox_pt": [
+        32.4,
+        229.8,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Botón de encendido principal Botón de energía CC/USB Botón de energía CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je3000c_eu_shared/app_connect_result.png",

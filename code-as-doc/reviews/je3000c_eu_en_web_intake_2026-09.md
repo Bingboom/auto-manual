@@ -91,3 +91,13 @@ button name (fr 19, es 17, de 16, it 16, uk 6 occurrences); English is unchanged
 The live Feishu placeholder table has no JE-3000C_EU rows (this source has no
 live dependency), so nothing was written there. The operator approved the
 change on 2026-09-24.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The fr/es/de/it/uk routes composed generic App screens with the JE-1000F/US control-panel drawing; the English route already bound its own complete `setup_add_device` panel and is unchanged. Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. The five routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je3000c/eu/<lang>/app_add_device_panel`, PDF pages 36/52/68/84/100). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.

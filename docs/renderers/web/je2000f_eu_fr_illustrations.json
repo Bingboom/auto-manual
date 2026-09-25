@@ -297,6 +297,29 @@
     },
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_fr/app_add_device_panel.png",
+      "sha256": "cd654b883bf983a016b9c478739ff4fa54f9807e48bca4deb5c3c28afda4799a",
+      "source_page": 36,
+      "bbox_pt": [
+        33.6,
+        227.1,
+        335.9,
+        469.1
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Bouton POWER principal Bouton CC / USB Bouton CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je2000f_eu_shared/app_connect_result.png",
