@@ -194,10 +194,23 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             output["path"]: output["expected_sha256"]
             for asset in recipe["assets"] for output in asset["outputs"]
         }
+        app_panels = {"download_panel", "control_panel", "connect_result_panel"}
         for asset in recipe["assets"]:
+            if asset["asset_key"].rsplit("/", 1)[-1] in app_panels:
+                # App screens and the QR download panel stay quarantined under the
+                # App/QR/URL/localized-UI gate; the manifests are their only route.
+                self.assertFalse(asset["build_eligible"])
+                self.assertTrue(asset["visual_review_required"])
+                self.assertEqual("quarantine", asset["gate"]["status"])
+                self.assertIn("app-ui", asset["risk_tags"])
+                continue
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
+        self.assertEqual(
+            len(app_panels) * len(MANUAL_LOCALES),
+            sum(asset["gate"]["status"] == "quarantine" for asset in recipe["assets"]),
+        )
         for illustration in manifest["illustrations"]:
             path = ILLUSTRATIONS.parent / illustration["path"]
             actual = hashlib.sha256(path.read_bytes()).hexdigest()

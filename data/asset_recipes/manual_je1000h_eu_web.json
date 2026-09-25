@@ -2254,7 +2254,7 @@
     {
       "asset_key": "web/je1000h/eu/en/download_panel",
       "page": 21,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -2267,7 +2267,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2289,21 +2289,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/en/control_panel",
       "page": 21,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -2316,7 +2321,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2338,21 +2343,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/en/connect_result_panel",
       "page": 22,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -2365,7 +2374,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2387,15 +2396,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-08 source-matched JE-1000H crop visually verified at 12x; text-bearing frames remain complete and LCD detail remains semantic HTML/CSS."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -3292,7 +3305,7 @@
     {
       "asset_key": "web/je1000h/eu/fr/download_panel",
       "page": 38,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -3305,7 +3318,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -3327,21 +3340,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 法 语块(38 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 bottom+4.7pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/fr/control_panel",
       "page": 38,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -3354,7 +3372,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -3376,21 +3394,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 法 语块(38 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/fr/connect_result_panel",
       "page": 39,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -3403,7 +3425,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -3425,15 +3447,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 法 语块(39 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -4330,7 +4356,7 @@
     {
       "asset_key": "web/je1000h/eu/es/download_panel",
       "page": 55,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -4343,7 +4369,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -4365,21 +4391,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 西 语块(55 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 left-4.7,bottom+3.6pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/es/control_panel",
       "page": 55,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -4392,7 +4423,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -4414,21 +4445,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 西 语块(55 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/es/connect_result_panel",
       "page": 56,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -4441,7 +4476,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -4463,15 +4498,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 西 语块(56 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 top+15.6pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -5368,7 +5407,7 @@
     {
       "asset_key": "web/je1000h/eu/de/download_panel",
       "page": 72,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -5381,7 +5420,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -5403,21 +5442,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 德 语块(72 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 bottom+4.7pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/de/control_panel",
       "page": 72,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -5430,7 +5474,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -5452,21 +5496,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 德 语块(72 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/de/connect_result_panel",
       "page": 73,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -5479,7 +5527,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -5501,15 +5549,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 德 语块(73 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 top+7.6pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -6406,7 +6458,7 @@
     {
       "asset_key": "web/je1000h/eu/it/download_panel",
       "page": 89,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -6419,7 +6471,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -6441,21 +6493,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 意 语块(89 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 bottom+4.7pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/it/control_panel",
       "page": 89,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -6468,7 +6525,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -6490,21 +6547,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 意 语块(89 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/it/connect_result_panel",
       "page": 90,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -6517,7 +6578,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -6539,15 +6600,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 意 语块(90 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 top+9.1pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -7444,7 +7509,7 @@
     {
       "asset_key": "web/je1000h/eu/uk/download_panel",
       "page": 106,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -7457,7 +7522,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -7479,21 +7544,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 乌 语块(106 页)按英语基准框裁出;图内文字越界已逐行复核为零截断;裁切框较英语基准调整 bottom+4.7pt 以排除邻接正文/纳入换行的图内文字。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/uk/control_panel",
       "page": 106,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -7506,7 +7576,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -7528,21 +7598,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 乌 语块(106 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je1000h/eu/uk/connect_result_panel",
       "page": 107,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-1000H"
@@ -7555,7 +7629,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -7577,15 +7651,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-15 从同一源 PDF 的 乌 语块(107 页)按英语基准框裁出;图内文字越界已逐行复核为零截断。"
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     }
   ]

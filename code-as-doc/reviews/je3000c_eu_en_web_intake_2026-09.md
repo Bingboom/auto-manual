@@ -101,3 +101,12 @@ entries `web/je3000c/eu/<lang>/app_add_device_panel`, PDF pages 36/52/68/84/100)
 crop ends in the white gap before the next paragraph and has pure-white edges.
 The page's button-label lines become covered annotations, kept as the figure's
 alt text. The operator approved the crops on 2026-09-24.
+
+## 2026-09-25 App panels quarantined under the recipe gate
+
+The three English App panels (`setup_download`, `setup_add_device`, `setup_connect_result`) were recipe-approved only because neither their keys nor their risk tags
+carried a gate token (`app`, `qr`, `screenshot`, …). They are now quarantined
+with `app-ui`/`screenshot`/`localized-ui` risk tags (plus `qr` for the download
+panel); keys, outputs and hashes are unchanged, so the pages are unchanged.
+`source_manifest.json` rebinds `asset_recipe`. The operator approved the fix on
+2026-09-25.

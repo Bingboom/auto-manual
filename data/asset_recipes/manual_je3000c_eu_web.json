@@ -2058,7 +2058,7 @@
     {
       "asset_key": "web/je3000c/eu/en/setup_download",
       "page": 20,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-3000C"
@@ -2071,7 +2071,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2092,21 +2092,26 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots with a QR code and store links, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-08 deterministic 12x crop visually verified against the current formal PDF; source content was neither redrawn nor removed."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "qr"
       ]
     },
     {
       "asset_key": "web/je3000c/eu/en/setup_add_device",
       "page": 20,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-3000C"
@@ -2119,7 +2124,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2140,21 +2145,25 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-08 deterministic 12x crop visually verified against the current formal PDF; source content was neither redrawn nor removed."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
       "asset_key": "web/je3000c/eu/en/setup_connect_result",
       "page": 21,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-3000C"
@@ -2167,7 +2176,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2188,15 +2197,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots, so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-25: it had been approved only because neither its key nor its risk tags carried a gate token (operator-approved gate fix; key, output and hash unchanged).",
           "2026-09-09 deterministic 12x crop visually verified against the current formal PDF; duplicate 2.5 body copy and the preceding NOTE fragment are excluded while all three screenshots, step labels, and the reference note are retained."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     }
   ]

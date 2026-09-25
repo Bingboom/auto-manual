@@ -19,7 +19,7 @@
   "data_root": "manual_sources/JE-3000C/EU/en/2.0/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web.json",
-    "sha256": "19f2c30acd196c962554327cae6a63f59755e2c768426477d4e74f8d6e86bc86"
+    "sha256": "084550339770f23d7152e8b6e237e8bdd35af786766dc8ea9e1286f091ff2acd"
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web_app.json",
