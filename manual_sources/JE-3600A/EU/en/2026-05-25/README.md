@@ -36,3 +36,11 @@ published), and `source_manifest.json` re-locks the file. English is unchanged.
 App add-device figure (2026-09-24): the en/es/fr routes bind their own language block's crop of
 the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
 together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
+
+Translated cells (2026-09-25): the fr/es columns of the LCD, troubleshooting,
+specification, storage, standby-duration, spec-note and footnote rows were
+empty, so the fr/es routes printed about 70 English segments and omitted the
+notes. They now hold each language block's printed text. The cells are split by
+the pages' ruling lines; the English rows' structure is kept, and print defects
+use reviewed cross-model wording (see the intake review addendum of the same
+date). `source_manifest.json` re-locks the five files; English is unchanged.
