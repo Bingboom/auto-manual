@@ -46,6 +46,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-153 | PR #1254（`feat/portal-system-focus-lanes`，**含本登记行**）：系统建设页 `/workspace/system/` 按操作者 2026-09-25 定的四条线重排——页首「当前重点」（现在：说明书网页化、语料库建设与管理；下一步：IR 共享、骨架拓展），每条线的数字在构建时由发布清单、语料快照和 `docs/manifests/skeletons/*/blueprint.yaml` 算出，进度读执行台账；语言资产上移，`corpus-export` 按月带历史（`history`），页面显示与上期对比；能力卡与阶段门加线标签，评审回写、Agent 执行两张卡和 IDML、G4 两道门 `fold: true` 收起；去掉首屏阶段语与六格快照；`tools/utils/path_utils.py` 增 `skeletons_of`；执行台账新增 REV-35–43（均 planned），先在范围变更表登记（语料线可与 G1–G3 并行，IR、骨架不进 G1–G4 串行门、不阻塞 Web 门）。Hello-Docs `9745093a` 整站 A/B：1195 个文件中 4 个按预期变化（页面、样式表、部署回执对应条目、`.buildinfo` 路径哈希），232 个 HTML 中 231 个逐字节一致。本 PR 含执行台账条目（状态类文档，惯例由操作者合入）；Claude 说明后操作者仍明确指示由 Claude 合入。同一次改动把 MA-149 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，合入后经既有镜像与 RTD 链路核验线上 `/workspace/system/`。**不含**：飞书写入（内部页四条线对照表已按操作者批准的方案另行完成）、定时联网校验或定时语料导出的 workflow、Hello-Docs 评审分支上的任何合入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「等 CI 跑完. 你合入」2026-09-25（此前「1,2」批准页面调整与台账补条目，本地预览后「①对 ②不改 ③可以，开 PR」） | #1254 合入且线上 `/workspace/system/` 核验完成即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-152 | 按顺序合入两项 PR：(a) PR（`fix/je1000f-eu-review-app-asset-uris`，**含本登记行**）：JE-1000F/EU 冻结评审副本 `docs/_review/JE-1000F/EU` 中 FR/ES/DE/IT/UK 五个 App 设置页（p31/p46/p61/p76/p91）与 DE/ES/IT/UK 四个生成稿的 `add_device`、`connect_result` 图，由共享日规截图的原始路径改为 `asset:app/add_device`、`asset:app/connect_result`（与 Hello-Docs #125 同样改法），共 18 处；`manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json` 只重新锁定这 9 个文件并追加一条规范化记录，冻结源 README 补附记，`web_publish_pipeline.md` §1.1 补一句，新增守卫测试；同一次改动把 MA-151 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。(b) 在 (a) 合入且镜像同步落地后，从新 main 按冻结源发布配方（英/法 `review-asis`、西/德/意 `review`）Git-only 构建 JE-1000F/EU 英/法/西/德/意 Web **2.2**，开 Hello-Docs `publish` → `main` PR；仅当候选差异只有：五个页面各一行 App 连接结果图（隐藏语义图由日规截图换成欧规导出图）、欧规图入池（及不再被引用的旧池文件随之移除）、共享 `web_manual.css` 中 #1253 那一条规则、以及发布证据与元数据时，全部检查成功后合入（不带 `--delete-branch`），并逐个核对 RTD 网址。**不含**：Hello-Docs `review/*` 评审分支 PR（含 #125）的合入、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「按这样两步做（推荐）」「全绿后合入（推荐）」「2.2（推荐）」「候选只动这些就发（推荐）」2026-09-24（答复 JE-1000F/EU 隐藏日规截图的方案、合入、版本与发布四问） | (a) 与 (b) 均合入即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
@@ -58,7 +62,7 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-149 | PR #1251（`docs/tests-node-ui-note`，**含本登记行**）：`tests/AGENTS.md` 与 `tests/CLAUDE.md` 各补三处（开头说明、地图一行、验证命令一行）：浏览器端门户脚本另有 Node UI 测试 `*.test.mjs`，由 `Manual Validation` 的 `node-ui` 任务全部运行，本地命令 `node --test tests/*.test.mjs`；改前已按 Claude 与 Codex 两份 config-review 流程审查。同一次改动把 MA-147 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：根 `AGENTS.md` / `CLAUDE.md`、其它目录的导航文件、`.claude/**` 与 `.agents/**`、workflow、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1251」2026-09-24（此前「tests/AGENTS.md 和 CLAUDE.md 也补上」） | #1251 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-149 | PR #1251（`docs/tests-node-ui-note`，**含本登记行**）：`tests/AGENTS.md` 与 `tests/CLAUDE.md` 各补三处（开头说明、地图一行、验证命令一行）：浏览器端门户脚本另有 Node UI 测试 `*.test.mjs`，由 `Manual Validation` 的 `node-ui` 任务全部运行，本地命令 `node --test tests/*.test.mjs`；改前已按 Claude 与 Codex 两份 config-review 流程审查。同一次改动把 MA-147 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：根 `AGENTS.md` / `CLAUDE.md`、其它目录的导航文件、`.claude/**` 与 `.agents/**`、workflow、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1251」2026-09-24（此前「tests/AGENTS.md 和 CLAUDE.md 也补上」） | #1251 合入即失效，或操作者撤销 | 已失效（#1251 squash `7144fd59` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
