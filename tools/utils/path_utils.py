@@ -56,6 +56,7 @@ class PathSegments:
     RELEASES = "releases"
     VERSIONS = "versions"
     MANIFESTS = "manifests"
+    SKELETONS = "skeletons"
     LATEST = "latest"
     SNAPSHOT = "snapshot"
     RELEASE_SNAPSHOT_IDENTITY_JSON = "release_snapshot_identity.json"
@@ -86,6 +87,7 @@ class PathSegments:
     WEB_COMPOSITE_MANIFEST_JSON = "web_composite_manifest.json"
     PUBLISH_META_JSON = "publish_meta.json"
     PUBLISH_MANIFEST_JSON = "publish_manifest.json"
+    SKELETON_BLUEPRINT_YAML = "blueprint.yaml"
     OPS_CATALOG_RECONCILE_WHITELIST_JSON = "ops_catalog_reconcile_whitelist.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
@@ -178,6 +180,11 @@ def docs_publish_of(docs_dir: Path) -> Path:
 
 def docs_publish_web_of(docs_dir: Path) -> Path:
     return docs_publish_of(docs_dir) / PathSegments.WEB
+
+
+def skeletons_of(base_root: Path) -> Path:
+    """``docs/manifests/skeletons`` of a repo-shaped tree: one directory per skeleton cell."""
+    return base_root / PathSegments.DOCS / PathSegments.MANIFESTS / PathSegments.SKELETONS
 
 
 def web_publish_release_dir_of(release_dir: Path) -> Path:

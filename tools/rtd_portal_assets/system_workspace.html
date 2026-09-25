@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="系统建设：已有能力、证据与阶段进度。">
+  <meta name="description" content="系统建设：当前重点、已有能力、证据与阶段进度。">
   <title>系统建设</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
   <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
@@ -13,6 +13,42 @@
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
 {%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
 {%- macro evidence_links(rows) -%}{% for ev in rows %}{% if ev.href %}<a href="{{ ev.href|e }}" title="{{ ev.title|e }}" target="_blank" rel="noopener">{{ ev.label|e }}</a>{% else %}<span title="{{ ev.title|e }}">{{ ev.label|e }}</span>{% endif %}{% endfor %}{%- endmacro -%}
+{%- macro lane_tags(tags, with_horizon) -%}{% if tags %}<div class="sw-tags">{% for tag in tags %}<span class="sw-tag is-{{ tag.horizon|e }}">{% if with_horizon %}{{ tag.horizon_label|e }} · {% endif %}{{ tag.title|e }}</span>{% endfor %}</div>{% endif %}{%- endmacro -%}
+{%- macro progress_bar(row) -%}<div class="sw-bar" role="img" aria-label="{{ row.label|e }}：完成 {{ row.done }} / {{ row.total }}"><span style="width:{{ row.percent }}%"></span></div>{%- endmacro -%}
+{%- macro capability_card(card) -%}
+        <article class="sw-card" id="cap-{{ card.id|e }}">
+          <header>
+            <div><h3>{{ card.title|e }}</h3><small>{{ card.en|e }}</small></div>
+            {{ badge(card.status, card.status_label) }}
+          </header>
+          {{ lane_tags(card.lanes, true) }}
+          <p class="sw-summary">{{ card.summary|e }}</p>
+          <ul class="sw-items">
+            {%- for entry in card.entries %}
+            <li>
+              <div class="sw-item-head"><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</div>
+              {%- if entry.note %}<p>{{ entry.note|e }}</p>{% endif %}
+            </li>
+            {%- endfor %}
+          </ul>
+          <details class="sw-evidence">
+            <summary>查看证据</summary>
+            <ul>
+              {%- for entry in card.entries %}
+              <li><span>{{ entry.label|e }}</span><span class="sw-refs">{{ evidence_links(entry.evidence) }}</span></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </article>
+{%- endmacro -%}
+{%- macro gate_card(gate) -%}
+        <div class="sw-gate is-{{ gate.state|e }}">
+          <div class="sw-gate-head"><b>{{ gate.id|e }}</b><span>{{ gate.label|e }}</span><em>{{ gate.done }} / {{ gate.total }}</em></div>
+          {{ progress_bar(gate) }}
+          <small>{{ gate.tally|e }}</small>
+          {{ lane_tags(gate.lanes, false) }}
+        </div>
+{%- endmacro -%}
 <aside class="sidebar">
   <a class="brand" href="{{ pathto('workspace/index') }}">知识库<span>.</span></a>
   <div class="workspace"><span>资料库</span></div>
@@ -43,69 +79,69 @@
       <div class="eyebrow">SYSTEM WORKSPACE</div>
       <h1>{{ hero.title|e }}<span class="title-dot">.</span></h1>
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
-      <div class="sw-stage"><span>当前阶段</span><b>{{ hero.stage|e }}</b></div>
-      <p class="sw-stage-note">{{ hero.stage_note|e }}</p>
     </section>
 
-    <section class="sw-tiles" aria-label="系统快照">
-      {%- for tile in tiles %}
-      <div class="sw-tile">
-        <small>{{ tile.label|e }}</small>
-        {%- if tile.kind == 'number' %}
-        <strong>{{ tile.value }}<em>{{ tile.unit|e }}</em></strong>
-        <span>{{ tile.sub|e }}</span>
-        {%- elif tile.kind == 'status' %}
-        <strong>{{ badge(tile.status, tile.status_label) }}</strong>
-        {%- elif tile.kind == 'list' %}
-        <ul class="sw-formats">{% for entry in tile.entries %}<li class="is-{{ entry.status|e }}">{{ entry.label|e }}{% if entry.note %}<em>{{ entry.note|e }}</em>{% endif %}</li>{% endfor %}</ul>
-        {%- elif tile.kind == 'date' %}
-        <strong class="sw-date">{{ tile.value|e }}</strong>
-        <span>{{ tile.sub|e }}</span>
-        {%- else %}
-        <strong class="sw-nodata">无数据</strong>
-        {%- endif %}
-      </div>
-      {%- endfor %}
-    </section>
-
-    <section class="sw-section" id="capabilities">
+    {%- if focus %}
+    <section class="sw-section" id="focus">
       <div class="section-header"><div>
-        <h2>能力地图</h2>
-        <p>每项状态都附证据；超过 {{ stale_after_days }} 天未复核或证据有变的，标为“待复核”。</p>
+        <h2>当前重点</h2>
+        <p>{{ focus.note|e }}</p>
       </div></div>
-      <ul class="sw-legend" aria-label="状态说明">
-        {%- for row in legend %}
-        <li>{{ badge(row.status, row.label) }}<span>{{ row.description|e }}</span></li>
-        {%- endfor %}
-      </ul>
-      <div class="sw-cards">
-        {%- for card in cards %}
-        <article class="sw-card" id="cap-{{ card.id|e }}">
-          <header>
-            <div><h3>{{ card.title|e }}</h3><small>{{ card.en|e }}</small></div>
-            {{ badge(card.status, card.status_label) }}
-          </header>
-          <p class="sw-summary">{{ card.summary|e }}</p>
-          <ul class="sw-items">
-            {%- for entry in card.entries %}
-            <li>
-              <div class="sw-item-head"><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</div>
-              {%- if entry.note %}<p>{{ entry.note|e }}</p>{% endif %}
-            </li>
-            {%- endfor %}
-          </ul>
-          <details class="sw-evidence">
-            <summary>查看证据</summary>
-            <ul>
-              {%- for entry in card.entries %}
-              <li><span>{{ entry.label|e }}</span><span class="sw-refs">{{ evidence_links(entry.evidence) }}</span></li>
+      {%- for group in focus.groups %}
+      <div class="sw-focus-group is-{{ group.horizon|e }}">
+        <div class="sw-horizon">{{ group.label|e }}</div>
+        <div class="sw-lanes">
+          {%- for lane in group.lanes %}
+          <article class="sw-lane is-{{ lane.horizon|e }}" id="lane-{{ lane.id|e }}">
+            <header>
+              <h3>{{ lane.title|e }}</h3>
+              {%- if lane.card %}<a class="sw-lane-link" href="#cap-{{ lane.card|e }}">能力与证据 <b>↓</b></a>{% endif %}
+            </header>
+            {%- if lane.goal %}<p class="sw-lane-goal">{{ lane.goal|e }}</p>{% endif %}
+            {%- if lane.metrics %}
+            <div class="sw-metrics">
+              {%- for metric in lane.metrics %}
+              <div class="sw-metric">
+                <small>{{ metric.label|e }}</small>
+                {%- if metric.no_data %}
+                <strong class="sw-nodata">无数据</strong>
+                {%- else %}
+                <strong>{{ metric.value|e }}{% if metric.unit %}<em>{{ metric.unit|e }}</em>{% endif %}</strong>
+                {%- if metric.sub %}<span>{{ metric.sub|e }}</span>{% endif %}
+                {%- if metric.delta %}<span class="sw-delta">{{ metric.delta|e }}</span>{% endif %}
+                {%- endif %}
+              </div>
+              {%- endfor %}
+            </div>
+            {%- endif %}
+            {%- if lane.entries %}
+            <ul class="sw-lane-items">
+              {%- for entry in lane.entries %}
+              <li><span class="sw-dot is-{{ entry.status|e }}" aria-hidden="true"></span><b>{{ entry.label|e }}</b><span class="sw-state">{{ entry.status_label|e }}</span>{{ stale_mark(entry.stale) }}</li>
               {%- endfor %}
             </ul>
-          </details>
-        </article>
-        {%- endfor %}
+            {%- endif %}
+            <div class="sw-lane-progress">
+              {%- for row in lane.progress %}
+              <div class="sw-lane-row is-{{ row.state|e }}">
+                <div class="sw-lane-row-head"><b>{{ row.id|e }}</b><span>{{ row.label|e }}</span><em>{{ row.done }} / {{ row.total }}</em></div>
+                {{ progress_bar(row) }}
+                {%- if row.revs %}
+                <ul class="sw-revs">{% for rev in row.revs %}<li><a class="sw-rev is-{{ rev.status|e }}" href="{{ rev.href|e }}" title="{{ rev.rev|e }}：{{ rev.status_label|e }}" target="_blank" rel="noopener">{{ rev.rev|e }}</a></li>{% endfor %}</ul>
+                {%- endif %}
+              </div>
+              {%- endfor %}
+              {%- if lane.untracked %}<p class="sw-lane-empty">尚未入执行台账</p>{% endif %}
+              {%- if lane.ledger_missing %}<p class="sw-lane-empty">执行台账当前不可读</p>{% endif %}
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
       </div>
+      {%- endfor %}
+      <div class="sw-focus-foot"><span>依据</span><span class="sw-refs">{{ evidence_links(focus.evidence) }}</span>{{ stale_mark(focus.stale) }}</div>
     </section>
+    {%- endif %}
 
     {%- if corpus_enabled %}
     <section class="sw-section" id="language-assets">
@@ -116,11 +152,11 @@
       {%- if corpus %}
       <div class="sw-corpus-tiles">
         {%- for tile in corpus.tiles %}
-        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong></div>
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong>{% if tile.delta %}<span class="sw-delta">{{ tile.delta|e }}</span>{% endif %}</div>
         {%- endfor %}
       </div>
       <div class="sw-corpus">
-        <div class="sw-corpus-head"><span>各语言有译文的句对</span><span>快照 {{ corpus.exported_at|e }}{{ stale_mark(corpus.stale) }}</span></div>
+        <div class="sw-corpus-head"><span>各语言有译文的句对</span><span>快照 {{ corpus.exported_at|e }}{% if corpus.previous %} · 上期 {{ corpus.previous|e }}{% else %} · 首份快照，下期起显示变化{% endif %}{{ stale_mark(corpus.stale) }}</span></div>
         <ul class="sw-corpus-bars" aria-label="各语言有译文的句对数">
           {%- for row in corpus.rows %}
           <li><span class="sw-corpus-label">{{ row.label|e }}</span><span class="sw-corpus-track" aria-hidden="true"><span style="width:{{ row.percent }}%"></span></span><span class="sw-corpus-value">{{ row.count_text|e }}<em>{{ row.percent }}%</em></span></li>
@@ -132,6 +168,68 @@
       {%- endif %}
     </section>
     {%- endif %}
+
+    <section class="sw-section" id="capabilities">
+      <div class="section-header"><div>
+        <h2>能力地图</h2>
+        <p>每项状态都附证据；超过 {{ stale_after_days }} 天未复核或证据有变的，标为“待复核”。</p>
+      </div></div>
+      <ul class="sw-legend" aria-label="状态说明">
+        {%- for row in legend %}
+        <li>{{ badge(row.status, row.label) }}<span>{{ row.description|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- set folded_cards = cards|selectattr('fold')|list %}
+      <div class="sw-cards">
+        {%- for card in cards|rejectattr('fold') %}
+{{ capability_card(card) }}
+        {%- endfor %}
+      </div>
+      {%- if folded_cards %}
+      <details class="sw-more">
+        <summary>其他能力：{{ folded_cards|map(attribute='title')|join('、')|e }}</summary>
+        <div class="sw-cards">
+          {%- for card in folded_cards %}
+{{ capability_card(card) }}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endif %}
+    </section>
+
+    <section class="sw-section" id="now-next">
+      <div class="section-header"><div>
+        <h2>正在做与下一步</h2>
+        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
+      </div></div>
+      {%- if gates %}
+      {%- set folded_gates = gates|selectattr('fold')|list %}
+      <div class="sw-gates">
+        {%- for gate in gates|rejectattr('fold') %}
+{{ gate_card(gate) }}
+        {%- endfor %}
+      </div>
+      {%- if folded_gates %}
+      <details class="sw-more">
+        <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
+        <div class="sw-gates">
+          {%- for gate in folded_gates %}
+{{ gate_card(gate) }}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endif %}
+      {%- if now %}
+      <ul class="sw-now" aria-label="当前在做">
+        {%- for row in now %}
+        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>执行台账当前不可读。</p></div>
+      {%- endif %}
+    </section>
 
     <section class="sw-section" id="flow">
       <div class="section-header"><div>
@@ -148,33 +246,6 @@
         </li>
         {%- endfor %}
       </ol>
-    </section>
-
-    <section class="sw-section" id="now-next">
-      <div class="section-header"><div>
-        <h2>正在做与下一步</h2>
-        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
-      </div></div>
-      {%- if gates %}
-      <div class="sw-gates">
-        {%- for gate in gates %}
-        <div class="sw-gate is-{{ gate.state|e }}">
-          <div class="sw-gate-head"><b>{{ gate.id|e }}</b><span>{{ gate.label|e }}</span><em>{{ gate.done }} / {{ gate.total }}</em></div>
-          <div class="sw-bar" role="img" aria-label="{{ gate.label|e }}：完成 {{ gate.done }} / {{ gate.total }}"><span style="width:{{ gate.percent }}%"></span></div>
-          <small>{{ gate.tally|e }}</small>
-        </div>
-        {%- endfor %}
-      </div>
-      {%- if now %}
-      <ul class="sw-now" aria-label="当前在做">
-        {%- for row in now %}
-        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
-        {%- endfor %}
-      </ul>
-      {%- endif %}
-      {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>执行台账当前不可读。</p></div>
-      {%- endif %}
     </section>
 
     <section class="sw-section" id="working">
@@ -199,7 +270,7 @@
 
     <footer>
       <span>快照 {{ build_date|e }}{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
-      <span>数据来源：发布清单 · 执行台账 · 状态配置（复核于 {{ verified_on|e }}）</span>
+      <span>数据来源：发布清单 · 执行台账 · 语料快照 · 骨架定义 · 状态配置（复核于 {{ verified_on|e }}）</span>
     </footer>
   </main>
 </div>

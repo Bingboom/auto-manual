@@ -46,14 +46,19 @@ def contract() -> dict:
                          "hello-docs": "https://github.com/o/Hello-Docs"},
         "vocabulary": {"status": {name: name for name in sw.STATUS_ORDER},
                        "mode": {"automated": "a", "manual": "m"}},
-        "hero": {"title": "T", "subtitle": "S", "stage": "St", "stage_note": "N",
-                 "evidence": ["file:auto-manual:ledger.md"]},
-        "snapshot": [
-            {"key": "books", "label": "在线手册", "source": "publications"},
-            {"key": "outputs", "label": "输出格式", "items": ["prod.web", "prod.idml"]},
-            {"key": "prod", "label": "生产", "card": "prod"},
-            {"key": "time", "label": "快照时间", "source": "build_date"},
-        ],
+        "hero": {"title": "T", "subtitle": "S", "evidence": ["file:auto-manual:ledger.md"]},
+        "focus": {
+            "note": "n",
+            "evidence": ["file:auto-manual:ledger.md", "ack:someone 2026-09-24「focus」"],
+            "lanes": [
+                {"id": "web", "horizon": "now", "title": "网页化", "goal": "g", "card": "prod",
+                 "metrics": ["publications", "regions"], "gates": ["G1"]},
+                {"id": "tm", "horizon": "now", "title": "语料", "revs": ["REV-02..REV-03"]},
+                {"id": "sk", "horizon": "next", "title": "骨架", "items": ["prod.idml"], "metrics": ["skeletons"]},
+            ],
+            "regions": {"US": "美规"},
+            "skeleton_families": [{"family": "MAIN", "label": "便携电源"}, {"family": "BP", "label": "电池包"}],
+        },
         "capabilities": [{
             "id": "prod", "title": "生产", "en": "Production", "status": "in_progress", "summary": "s",
             "items": [
@@ -88,6 +93,14 @@ def manifest() -> dict:
     ]}
 
 
+def write_blueprint(root: Path, cell: str, family: str, text: str | None = None) -> None:
+    path = root / "docs" / "manifests" / "skeletons" / cell / "blueprint.yaml"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text if text is not None else
+                    f"schema_version: {sw.SKELETON_SCHEMA}\nskeleton_id: {cell}\nskeleton_family: {family}\n",
+                    encoding="utf-8")
+
+
 class SystemWorkspaceContractTests(unittest.TestCase):
     def setUp(self):
         temp = TemporaryDirectory()
@@ -95,6 +108,7 @@ class SystemWorkspaceContractTests(unittest.TestCase):
         self.root = Path(temp.name)
         (self.root / "ledger.md").write_text(LEDGER, encoding="utf-8")
         (self.root / "tool.py").write_text("", encoding="utf-8")
+        write_blueprint(self.root, "bp-intl", "BP")
 
     def findings(self, data: dict, *, today: dt.date = TODAY) -> list[sw.Finding]:
         return sw.check_contract(data, root=self.root, today=today)
@@ -108,6 +122,9 @@ class SystemWorkspaceContractTests(unittest.TestCase):
 
         def item(data, index=0):
             return card(data)["items"][index]
+
+        def lane(data, index=0):
+            return data["focus"]["lanes"][index]
 
         mutations = {
             "status 'finished' not in vocabulary": lambda d: item(d).update(status="finished"),
@@ -124,9 +141,20 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "ack evidence wants": lambda d: item(d, 1).update(evidence=["rev:REV-03=planned", "ack:someone「ok」"]),
             "unknown repository": lambda d: item(d).update(evidence=["pr:elsewhere#1"]),
             "mode 'sometimes' not in vocabulary": lambda d: d["flow"][0].update(mode="sometimes"),
-            "unknown card": lambda d: d["snapshot"][2].update(card="missing"),
-            "unknown item": lambda d: d["snapshot"][1].update(items=["prod.missing"]),
-            "needs exactly one of source / items / card": lambda d: d["snapshot"][0].update(card="prod"),
+            "needs a non-empty lanes list": lambda d: d["focus"].update(lanes=[]),
+            "duplicate lane id": lambda d: d["focus"]["lanes"].append(copy.deepcopy(lane(d))),
+            "horizon must be one of": lambda d: lane(d).update(horizon="later"),
+            "needs a title": lambda d: lane(d).update(title=""),
+            "unknown card": lambda d: lane(d).update(card="missing"),
+            "unknown item": lambda d: lane(d, 2).update(items=["prod.missing"]),
+            "unknown metric": lambda d: lane(d).update(metrics=["visits"]),
+            "the corpus metric needs the corpus section": lambda d: lane(d).update(metrics=["corpus"]),
+            "unknown gate": lambda d: lane(d).update(gates=["G9"]),
+            "revs must be a non-empty list": lambda d: lane(d, 1).update(revs=[]),
+            "must map region codes to labels": lambda d: d["focus"].update(regions={"US": ""}),
+            "needs a family and a label": lambda d: d["focus"].update(skeleton_families=[{"family": "BP"}]),
+            "fold must be true or false": lambda d: card(d).update(fold="yes"),
+            "focus: no evidence": lambda d: d["focus"].update(evidence=[]),
             "missing from the ledger": lambda d: d["now_next"]["gates"][1].update(revs=["REV-09"]),
             "does not name": lambda d: d["now_next"]["gates"][0].update(revs=["REV-01..REV-03"]),
             "no such gate": lambda d: d["now_next"]["gates"][1].update(id="G9"),
@@ -139,8 +167,17 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             with self.subTest(fragment):
                 data = contract()
                 mutate(data)
-                errors = [f for f in self.findings(data) if f.severity == "error"]
-                self.assertTrue(any(fragment in f.message for f in errors), errors)
+                errors = [f"{f.where}: {f.message}" for f in self.findings(data) if f.severity == "error"]
+                self.assertTrue(any(fragment in e for e in errors), errors)
+
+        for gate_fold in ("yes", 1):
+            data = contract()
+            data["now_next"]["gates"][0]["fold"] = gate_fold
+            self.assertIn(("gate G1", "fold must be true or false"),
+                          {(f.where, f.message) for f in self.findings(data)})
+        data = contract()
+        data["focus"]["lanes"][1]["revs"] = ["REV-09"]
+        self.assertIn("focus.tm", {f.where for f in self.findings(data) if "missing from the ledger" in f.message})
 
     def test_quantity_in_text_is_only_a_warning(self):
         data = contract()
@@ -148,6 +185,15 @@ class SystemWorkspaceContractTests(unittest.TestCase):
         findings = self.findings(data)
         self.assertEqual([f.severity for f in findings], ["warning"])
         self.assertIn("quantity", findings[0].message)
+        data = contract()
+        data["focus"]["lanes"][0]["goal"] = "覆盖 3 个区域"
+        self.assertEqual([(f.severity, f.where) for f in self.findings(data)], [("warning", "focus.web")])
+
+    def test_skeleton_metric_without_blueprints_is_a_warning(self):
+        shutil.rmtree(self.root / "docs")
+        findings = self.findings(contract())
+        self.assertEqual([(f.severity, f.where) for f in findings], [("warning", "focus")])
+        self.assertIn("no readable skeleton blueprints", findings[0].message)
 
     def test_drift_is_graded_broken_references_fail_moved_states_warn(self):
         data = contract()
@@ -227,24 +273,72 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         (self.root / "tool.py").write_text("", encoding="utf-8")
         (self.root / "publish_manifest.json").write_text(json.dumps(manifest()), encoding="utf-8")
 
-    def context(self, data=None, facts="default"):
+    SKELETONS = [{"id": "bp-intl", "family": "BP"}, {"id": "bp-jp", "family": "BP"}, {"id": "tent", "family": "TENT"}]
+
+    def context(self, data=None, facts="default", ledger="default", skeletons=SKELETONS):
         data = data or contract()
         if facts == "default":
             facts = sw.publication_facts(self.root / "publish_manifest.json")
-        return sw.build_context(data, root=self.root, ledger=sw.parse_ledger(LEDGER), facts=facts, today=TODAY)
+        if ledger == "default":
+            ledger = sw.parse_ledger(LEDGER)
+        return sw.build_context(data, root=self.root, ledger=ledger, facts=facts, today=TODAY,
+                                skeletons=skeletons)
 
-    def test_tiles_come_from_the_manifest_cards_and_build_date(self):
-        tiles = {tile["label"]: tile for tile in self.context()["tiles"]}
-        self.assertEqual((tiles["在线手册"]["value"], tiles["在线手册"]["sub"]), (2, "3 个语言版"))
-        self.assertEqual([(e["label"], e["note"]) for e in tiles["输出格式"]["entries"]],
-                         [("网页", ""), ("IDML", "建设中")])
-        self.assertEqual(tiles["生产"]["status_label"], "建设中")
-        self.assertEqual((tiles["快照时间"]["value"], tiles["快照时间"]["sub"]), ("2026-09-24", "最近发布 2026-09-22"))
+    def lanes(self, view) -> dict:
+        return {lane["id"]: lane for group in view["focus"]["groups"] for lane in group["lanes"]}
 
-    def test_missing_publications_render_as_no_data(self):
-        view = self.context(facts=None)
-        self.assertEqual(view["tiles"][0]["kind"], "no_data")
+    def test_focus_groups_lanes_by_horizon_in_contract_order(self):
+        focus = self.context()["focus"]
+        self.assertEqual([(g["label"], [lane["id"] for lane in g["lanes"]]) for g in focus["groups"]],
+                         [("现在", ["web", "tm"]), ("下一步", ["sk"])])
+        self.assertEqual([ev["label"] for ev in focus["evidence"]], ["ledger.md", "操作者确认 2026-09-24"])
+        self.assertEqual(focus["stale"], [])
+
+    def test_lane_figures_come_from_the_manifest_and_the_blueprints(self):
+        lanes = self.lanes(self.context())
+        self.assertEqual([(m["label"], m["value"], m["unit"], m["sub"]) for m in lanes["web"]["metrics"]], [
+            ("在线手册", "2", "本", "3 个语言版"),
+            ("覆盖区域", "2", "个", "EU 1 本 · 美规 1 本"),  # unlabelled region codes show as they are
+        ])
+        (skeleton,) = lanes["sk"]["metrics"]
+        # Declared families come first, "未建" when none exists; undeclared ones follow as found.
+        self.assertEqual((skeleton["value"], skeleton["sub"]), ("3", "便携电源 未建 · 电池包 2 · TENT 1"))
+
+    def test_lane_progress_reads_gates_or_ledger_rows(self):
+        lanes = self.lanes(self.context())
+        (g1,) = lanes["web"]["progress"]
+        self.assertEqual((g1["kind"], g1["id"], g1["done"], g1["total"], g1["state"]), ("gate", "G1", 1, 2, "active"))
+        (rows,) = lanes["tm"]["progress"]
+        self.assertEqual((rows["kind"], rows["done"], rows["total"], rows["tally"]), ("revs", 0, 2, "在验 1 · 待做 1"))
+        self.assertEqual([(r["rev"], r["status_label"], r["href"]) for r in rows["revs"]], [
+            ("REV-02", "在验", "https://github.com/o/auto-manual/blob/main/ledger.md#rev-02"),
+            ("REV-03", "待做", "https://github.com/o/auto-manual/blob/main/ledger.md#rev-03"),
+        ])
+        self.assertEqual((lanes["sk"]["progress"], lanes["sk"]["untracked"]), ([], True))
+        self.assertEqual([(e["label"], e["status_label"]) for e in lanes["sk"]["entries"]], [("IDML", "建设中")])
+
+        unread = self.lanes(self.context(ledger=None))
+        self.assertEqual([(lane["progress"], lane["ledger_missing"]) for lane in unread.values()],
+                         [([], True), ([], True), ([], False)])
+
+    def test_cards_and_gates_carry_their_lane_and_fold_flags(self):
+        data = contract()
+        data["capabilities"].append({**copy.deepcopy(data["capabilities"][0]), "id": "other", "fold": True})
+        data["now_next"]["gates"][1]["fold"] = True
+        view = self.context(data)
+        self.assertEqual([(c["id"], c["fold"], [t["title"] for t in c["lanes"]]) for c in view["cards"]],
+                         [("prod", False, ["网页化"]), ("other", True, [])])
+        self.assertEqual([(g["id"], g["fold"], [t["horizon_label"] for t in g["lanes"]]) for g in view["gates"]],
+                         [("G1", False, ["现在"]), ("G2", True, [])])
+
+    def test_missing_sources_render_as_no_data(self):
+        view = self.context(facts=None, skeletons=None)
+        lanes = self.lanes(view)
+        self.assertEqual([m["no_data"] for lane in lanes.values() for m in lane["metrics"]], [True, True, True])
         self.assertEqual(view["working"][1]["docname"], "")
+        data = contract()
+        del data["focus"]
+        self.assertIsNone(self.context(data)["focus"])
 
     def test_gates_and_now_items_read_the_ledger(self):
         view = self.context()
@@ -300,6 +394,11 @@ def corpus_snapshot() -> dict:
     }
 
 
+def month(exported_at: str, *, pairs: int = 8, terms: int = 2, approved: int = 5) -> dict:
+    """One history entry: an earlier month's headline figures."""
+    return {"exported_at": exported_at, "sentence_pairs": pairs, "terms": terms, "approved": approved}
+
+
 class CorpusSnapshotTests(unittest.TestCase):
     def setUp(self):
         temp = TemporaryDirectory()
@@ -307,6 +406,7 @@ class CorpusSnapshotTests(unittest.TestCase):
         self.root = Path(temp.name)
         (self.root / "ledger.md").write_text(LEDGER, encoding="utf-8")
         (self.root / "tool.py").write_text("", encoding="utf-8")
+        write_blueprint(self.root, "bp-intl", "BP")
 
     def write_snapshot(self, snapshot) -> None:
         (self.root / "corpus.json").write_text(json.dumps(snapshot), encoding="utf-8")
@@ -325,6 +425,12 @@ class CorpusSnapshotTests(unittest.TestCase):
             "between 0 and total": lambda s: pairs(s)["by_language"].update(fr=11),
             "sum to total": lambda s: pairs(s)["by_status"].update(Draft=9),
             "total must be a non-negative integer": lambda s: pairs(s).update(total=-1),
+            "history must be a list": lambda s: s.update(history={}),
+            "history entries carry exactly": lambda s: s.update(history=[{"exported_at": "2026-08-24"}]),
+            "history exported_at must be an ISO date": lambda s: s.update(history=[month("Aug")]),
+            "end before this export": lambda s: s.update(history=[month("2026-09-24")]),
+            "oldest first": lambda s: s.update(history=[month("2026-08-01"), month("2026-07-01")]),
+            "approved at most sentence_pairs": lambda s: s.update(history=[month("2026-08-24", approved=9)]),
         }
         for fragment, mutate in mutations.items():
             with self.subTest(fragment):
@@ -332,6 +438,8 @@ class CorpusSnapshotTests(unittest.TestCase):
                 mutate(snapshot)
                 problems = sw.corpus_problems(snapshot, ["en", "fr"])
                 self.assertTrue(any(fragment in p for p in problems), problems)
+        self.assertEqual(sw.corpus_problems(dict(corpus_snapshot(), history=[month("2026-07-24"), month("2026-08-24")]),
+                                            ["en", "fr"]), [])
 
     def test_export_pages_every_table_and_keeps_counts_only(self):
         from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
@@ -361,14 +469,44 @@ class CorpusSnapshotTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, r"missing columns \['fr'\]"):
             sw.corpus_export(corpus_contract(), base_token="base", run=run_without_fr, today=TODAY)
 
+    def test_export_carries_one_headline_per_earlier_month(self):
+        def run(args):
+            return {"code": 0, "data": {"fields": ["en", "fr", "Status"], "data": [["Hi", "Salut", "Approved"]]}}
+
+        def export(previous, today=TODAY):
+            return sw.corpus_export(corpus_contract(), base_token="base", run=run, today=today, previous=previous)
+
+        self.assertNotIn("history", export(None))
+        earlier = dict(corpus_snapshot(), exported_at="2026-08-20", history=[month("2026-07-24")])
+        carried = export(earlier)
+        self.assertEqual(carried["history"], [month("2026-07-24"), month("2026-08-20", pairs=10, approved=7)])
+        self.assertEqual(sw.corpus_problems(carried, ["en", "fr"]), [])
+        # A re-export in the same month supersedes the snapshot it replaces.
+        same_month = dict(corpus_snapshot(), exported_at="2026-09-02", history=[month("2026-08-24")])
+        self.assertEqual(export(same_month)["history"], [month("2026-08-24")])
+        self.assertNotIn("history", export(dict(corpus_snapshot(), exported_at="2026-09-02")))
+        long_run = dict(corpus_snapshot(), exported_at="2026-08-20",
+                        history=[month(f"{2024 + i // 12}-{i % 12 + 1:02d}-01") for i in range(30)])
+        kept = export(long_run)["history"]
+        self.assertEqual((len(kept), kept[-1]["exported_at"]), (sw.CORPUS_HISTORY_KEEP, "2026-08-20"))
+
     def test_view_sorts_languages_and_marks_an_old_snapshot(self):
         view = sw.corpus_view(corpus_contract(), corpus_snapshot(), TODAY)
         self.assertEqual([(r["label"], r["count"], r["percent"]) for r in view["rows"]],
                          [("法语", 9, 90), ("英语", 4, 40)])
         self.assertEqual([t["value"] for t in view["tiles"]], ["10", "2", "2", "70%"])
+        self.assertEqual(([t["delta"] for t in view["tiles"]], view["previous"]), (["", "", "", ""], ""))
         self.assertEqual(view["stale"], [])
         old = sw.corpus_view(corpus_contract(), corpus_snapshot(), TODAY + dt.timedelta(days=46))
         self.assertEqual(old["stale"], ["语料快照已超过 45 天（导出于 2026-09-24）"])
+
+    def test_view_compares_with_the_latest_earlier_month(self):
+        snapshot = dict(corpus_snapshot(), history=[month("2026-07-24", pairs=4), month("2026-08-24", approved=6)])
+        view = sw.corpus_view(corpus_contract(), snapshot, TODAY)
+        # 10 vs 8 pairs, 2 vs 2 terms, 70% vs 75% approved (6/8).
+        self.assertEqual([t["delta"] for t in view["tiles"]],
+                         ["较 2026-08-24 +2", "较 2026-08-24 持平", "", "较 2026-08-24 -5 个百分点"])
+        self.assertEqual(view["previous"], "2026-08-24")
 
     def test_check_reports_broken_and_stale_snapshots(self):
         data = corpus_contract()
@@ -413,6 +551,65 @@ class CorpusSnapshotTests(unittest.TestCase):
         written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
         self.assertEqual((written["exported_at"], written["sentence_pairs"]["total"]), ("2026-09-24", 1))
         self.assertIn("1 sentence pairs", out.getvalue())
+
+        # The next month's export carries this one's headline forward.
+        with redirect_stdout(io.StringIO()) as out, patch.object(sw, "lark_runner", return_value=run):
+            self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base",
+                                      "--today", "2026-10-24"]), 0)
+        written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
+        self.assertEqual(written["history"], [month("2026-09-24", pairs=1, terms=1, approved=1)])
+        self.assertIn("history carries 1 earlier month(s)", out.getvalue())
+
+        # A replaced snapshot that cannot be read or trusted stops the export instead of dropping history.
+        for text, fragment in (("{not json", "cannot read the snapshot being replaced"),
+                               (json.dumps(dict(corpus_snapshot(), history={})), "is unsound")):
+            (self.root / "corpus.json").write_text(text, encoding="utf-8")
+            with redirect_stdout(io.StringIO()) as out, patch.object(sw, "lark_runner", return_value=run):
+                self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base"]), 1)
+            self.assertIn(fragment, out.getvalue())
+            self.assertEqual((self.root / "corpus.json").read_text(encoding="utf-8"), text)
+
+        # Judged by its own languages: one added to the contract since then does not block the carry.
+        (self.root / "corpus.json").write_text(json.dumps(dict(corpus_snapshot(), exported_at="2026-08-24")),
+                                               encoding="utf-8")
+        wider = corpus_contract()
+        wider["corpus"]["languages"].append({"code": "de", "label": "德语"})
+        path.write_text(yaml.safe_dump(wider, allow_unicode=True), encoding="utf-8")
+
+        def run_with_de(args):
+            return {"code": 0, "data": {"fields": ["en", "fr", "de", "Status"], "data": [["Hi", "", "Hallo", "Approved"]]}}
+
+        with redirect_stdout(io.StringIO()), patch.object(sw, "lark_runner", return_value=run_with_de):
+            self.assertEqual(sw.main(["corpus-export", "--contract", str(path), "--base-token", "base",
+                                      "--today", "2026-09-24"]), 0)
+        written = json.loads((self.root / "corpus.json").read_text(encoding="utf-8"))
+        self.assertEqual(written["history"], [month("2026-08-24", pairs=10, approved=7)])
+
+
+class SkeletonFactsTests(unittest.TestCase):
+    def setUp(self):
+        temp = TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name)
+
+    def test_one_entry_per_blueprint_and_no_data_when_unsure(self):
+        self.assertIsNone(sw.skeleton_facts(self.root))
+        write_blueprint(self.root, "solar-intl", "SOLAR")
+        write_blueprint(self.root, "bp-intl", "BP")
+        (self.root / "docs" / "manifests" / "skeletons" / "bp-intl" / "slot_templates.yaml").write_text(
+            "schema_version: other\n", encoding="utf-8")
+        self.assertEqual(sw.skeleton_facts(self.root), [{"id": "bp-intl", "family": "BP"},
+                                                         {"id": "solar-intl", "family": "SOLAR"}])
+        for text in ("schema_version: [unclosed\n", "schema_version: other\nskeleton_family: BP\n",
+                     f"schema_version: {sw.SKELETON_SCHEMA}\n"):
+            with self.subTest(text):
+                write_blueprint(self.root, "broken", "X", text)
+                self.assertIsNone(sw.skeleton_facts(self.root))
+
+    def test_shipped_blueprints_are_readable(self):
+        cells = sw.skeleton_facts(REPO)
+        self.assertTrue(cells)
+        self.assertTrue(all(cell["family"] for cell in cells))
 
 
 class ShippedSystemWorkspaceTests(unittest.TestCase):
@@ -477,9 +674,15 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             result = build("good")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
-            for heading in ("能力地图", "生产流程与连接", "正在做与下一步", "现在就能用"):
-                self.assertIn(heading, page)
+            headings = ("当前重点", "语言资产", "能力地图", "正在做与下一步", "生产流程与连接", "现在就能用")
+            self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
+            self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
+            self.assertIn('id="lane-web"', page)
             self.assertIn("1 个语言版", page)
+            self.assertIn("美规 1 本", page)
+            self.assertIn("便携电源", page)  # a declared skeleton family, built or not
+            self.assertIn('href="#cap-web_publishing"', page)
+            self.assertEqual(page.count('<details class="sw-more">'), 2)  # folded cards and gates
             self.assertIn("版本 9.9", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("Jackery", page)
