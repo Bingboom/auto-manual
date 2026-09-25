@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-144 | PR #1246（`docs/registry-expire-spent-grants`，**含本登记行**）：登记表清账——把 42 行失效条件已满足的授权状态改为已失效，每行写明所列 PR 的 squash SHA，带上线核验条件的另附证据（Hello-Docs 每日部署校验 2026-09-24 run 35974913402 或 RTD 实页检查）；MA-088、MA-109 按操作者 2026-09-24 裁定改为已失效。只改状态格，不增删行；MA-002、MA-141、MA-066、MA-016、MA-023、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1246」2026-09-24（此前「清一次登记表」「MA-088 和 MA-109 算失效」） | #1246 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-145 | PR #1247（`fix/portal-voc-preview-copy`，**含本登记行**）：产品建议弹窗的预览模式回复由 `Preview only — nothing was sent to Feishu.` 改为 `Preview only — nothing was sent.`（保留参考编号，含义不变），`tests/product_voc_ui.test.mjs` 断言新文案且回复不含平台名（本地 5/5 通过；换回旧 JS 时该断言失败）；同一次改动把 MA-144 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，合入后经既有镜像与 RTD 链路核验线上 `product-voc.js`。**不含**：服务端 `integrations/product_voc/**` 的异常文本与注释、把 Node UI 测试接入 CI（需改 `.github/workflows/**`）、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1247」2026-09-24（此前「预览模式那句 Feishu 也删掉」） | #1247 合入且线上 `product-voc.js` 核验完成即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-144 | PR #1246（`docs/registry-expire-spent-grants`，**含本登记行**）：登记表清账——把 42 行失效条件已满足的授权状态改为已失效，每行写明所列 PR 的 squash SHA，带上线核验条件的另附证据（Hello-Docs 每日部署校验 2026-09-24 run 35974913402 或 RTD 实页检查）；MA-088、MA-109 按操作者 2026-09-24 裁定改为已失效。只改状态格，不增删行；MA-002、MA-141、MA-066、MA-016、MA-023、MA-104 保持生效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：其它行的内容改动、重复编号（MA-067/077/081）的改号、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入 #1246」2026-09-24（此前「清一次登记表」「MA-088 和 MA-109 算失效」） | #1246 合入即失效，或操作者撤销 | 已失效（#1246 squash `1f733d33` 已合入） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
