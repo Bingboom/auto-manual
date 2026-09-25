@@ -624,7 +624,8 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
              "delta": change(total, last["sentence_pairs"] if last else None)},
             {"key": "terms", "label": "术语", "value": f"{terms['total']:,}",
              "delta": change(terms["total"], last["terms"] if last else None)},
-            {"key": "languages", "label": "覆盖语言", "value": str(sum(1 for row in rows if row["count"])),
+            # Languages with any translated pair: corpus coverage, not manual localization.
+            {"key": "languages", "label": "语料覆盖语言", "value": str(sum(1 for row in rows if row["count"])),
              "delta": ""},
             {"key": "approved", "label": "句对已批准", "value": f"{share}%" if share is not None else "—",
              "delta": change(share, before_share, " 个百分点")},

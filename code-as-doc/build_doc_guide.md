@@ -2263,7 +2263,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
 `/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
-导航。两个界面共用 RTD 项目的可见性设置，详见
+导航。分享包是可选的：缺失时 `/workspace/` 与系统建设页照常生成，只隐藏分享入口。
+两个界面共用 RTD 项目的可见性设置，详见
 [Personal workspace entry](dev/rtd_manual_portal.md#personal-workspace-entry)。
 
 同一构建还生成 `/workspace/system/` 系统建设页：状态来自
@@ -2275,6 +2276,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 页内“语言资产”块读取汇总快照 `tools/rtd_portal_assets/system_workspace_corpus.json`，
 每月用 `python tools/rtd_system_workspace.py corpus-export` 只读导出后提交；
 导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
+柱状图是语料库句对覆盖（各语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率，页面在图下写明。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 

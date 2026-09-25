@@ -237,18 +237,20 @@ def workspace_content(app) -> Path:
 
 
 def collect_workspace_pages(app):
-    """Add a personal content entry without changing the manual-center root."""
-    share_entry = workspace_content(app) / "ai-share" / "00_打开分享.html"
-    if not share_entry.is_file():
-        return
-    # The system page lives inside the workspace, so it only exists alongside it.
+    """Add the workspace entry and its system page without changing the manual-center root.
+
+    The workspace always exists: the manual center links to it, and the system
+    page lives inside it. The AI sharing package is an optional entry, so
+    moving or withdrawing it hides only its own links.
+    """
+    has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = system_page_context(app, ASSETS)
     yield "workspace/index", {
-        "share_entry": "../ai-share/00_打开分享.html",
+        "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
     }, "workspace_portal.html"
     if system is not None:
-        yield SYSTEM_PAGE, system, SYSTEM_TEMPLATE
+        yield SYSTEM_PAGE, {**system, "has_share": has_share}, SYSTEM_TEMPLATE
 
 
 def copy_workspace_content(app, exception) -> None:
