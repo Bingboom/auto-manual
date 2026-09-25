@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tempfile
@@ -306,6 +307,84 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
         self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         self.assertIn("Presione una vez el botón de encendido principal del dispositivo", self.html)
         self.assertNotIn("el power button", self.html)
+
+
+TRANSLATED_LOCALES = ("fr", "es")
+FIGURES = re.compile(r"\d+(?:[.,]\d+)?")
+UNCLEAN = re.compile("[\x00-\x08\x0b-\x1fﬀ-ﬆ]")
+
+
+def frozen_rows(name: str) -> list[dict[str, str]]:
+    with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
+        return list(csv.DictReader(handle))
+
+
+class Je3600aEuTranslatedCellTests(unittest.TestCase):
+    """The fr/es LCD, fault, specification, storage and note cells follow each print block."""
+
+    def test_translated_cells_are_complete_and_clean(self) -> None:
+        # 西/法列曾整列为空，渲染静默回落英文（约 70 段）；逐格要求有值、干净，规格值与英文同数字
+        cells = [(f"lcd {row['No.']}", row[f"{column}_{lang}"])
+                 for row in frozen_rows("lcd_icons_blocks.csv")
+                 for column in ("icon", "icon_desc") for lang in TRANSLATED_LOCALES]
+        cells += [(f"fault {row['error_code']}", row[f"corrective_measures_{lang}"])
+                  for row in frozen_rows("troubleshooting_blocks.csv") for lang in TRANSLATED_LOCALES]
+        cells += [(f"note {row['Note_id']}", row[f"Text_{lang}"])
+                  for row in frozen_rows("Spec_Notes.csv") for lang in TRANSLATED_LOCALES]
+        cells += [(f"footnote {row['Footnote_id']}", row[f"Text_{lang}"])
+                  for row in frozen_rows("Spec_Footnotes.csv") for lang in TRANSLATED_LOCALES]
+        self.assertEqual(21 * 4 + 12 * 2 + 1 * 2 + 2 * 2, len(cells))
+        for where, text in cells:
+            with self.subTest(where=where):
+                self.assertTrue(text.strip())
+                self.assertNotRegex(text, UNCLEAN)
+        spec = [row for row in frozen_rows("Spec_Master.csv") if row["Page"] in ("specifications", "storage")]
+        self.assertEqual(24, len(spec))
+        for row in spec:
+            source = row["Value_source"]
+            for lang in TRANSLATED_LOCALES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    if row["Row_key"] != "cell_chemistry":
+                        self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                         FIGURES.findall(value.replace(",", ".")))
+                    self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    self.assertEqual(value.count("("), value.count(")"))
+                    self.assertNotRegex(value, UNCLEAN)
+                    label_or_param = row[f"Row_label_{lang}" if row["Page"] == "specifications" else f"Param_{lang}"]
+                    self.assertTrue(label_or_param)
+
+    def test_cells_follow_each_print_block(self) -> None:
+        lcd = {row["No."]: row for row in frozen_rows("lcd_icons_blocks.csv")}
+        # 结构跟英文行：第 4 项合并两模式并删去 Off 句，第 19 项压成一行；第 18 项保留印刷的两句
+        self.assertTrue(lcd["4"]["icon_desc_fr"].startswith("Mode d’Économie de Batterie : Limite la capacité"))
+        self.assertNotIn("Éteint", lcd["4"]["icon_desc_fr"])
+        self.assertNotIn("Apagado", lcd["4"]["icon_desc_es"])
+        self.assertNotIn("\n", lcd["19"]["icon_desc_es"])
+        self.assertEqual(1, lcd["18"]["icon_desc_fr"].count("\n"))
+        self.assertIn("significativamente", lcd["3"]["icon_desc_es"])
+        faults = {row["error_code"]: row for row in frozen_rows("troubleshooting_blocks.csv")}
+        self.assertIn("Vérifiez si les entrées et sorties d'air", faults["F6"]["corrective_measures_fr"])
+        self.assertIn("20 cm a ambos lados", faults["F6"]["corrective_measures_es"])
+        spec = {}
+        for row in frozen_rows("Spec_Master.csv"):
+            spec.setdefault((row["Page"], row["Row_key"]), []).append(row)
+        expected = {
+            (("specifications", "ac_total_output"), 0, "Value_fr"): "3600 W nominal, 7200 W crête",
+            (("specifications", "charging_temperature"), 0, "Row_label_es"): "Temperatura de carga",
+            (("specifications", "model_no"), 0, "Row_label_es"): "Nº de modelo",
+            (("specifications", "model_no"), 0, "Value_fr"): "JE-3600A",
+            (("specifications", "capacity"), 0, "Value_fr"): "80 Ah / 44,8 V CC (3584 Wh)",
+            (("specifications", "ac_input"), 1, "Param_fr"): "Mode dérivation",
+            (("specifications", "dc8020_ports"), 1, "Value_es"): "16-60 V⎓12 A, Doble a 24 A máx./1000 W máx.",
+            (("storage", "storage_temperature"), 0, "Param_es"): "1 mes",
+            (("operation_guide", "default_standby_duration"), 0, "Value_fr"): "2 heures",
+        }
+        for (key, index, column), value in expected.items():
+            with self.subTest(key=key, index=index, column=column):
+                self.assertEqual(value, spec[key][index][column])
+        note = frozen_rows("Spec_Notes.csv")[0]
+        self.assertEqual("※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.", note["Text_fr"])
 
 
 if __name__ == "__main__":

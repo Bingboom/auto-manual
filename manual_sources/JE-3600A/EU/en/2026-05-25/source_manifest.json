@@ -46,18 +46,18 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 453,
-      "sha256": "c748fbc56ceb3134fdee0337c551f56bc54430ae1589a853b446a53803079845"
+      "size": 847,
+      "sha256": "1d0994636990f526de08cf92c9cb8b029e71d6f45266f9c66d78552d9fe87888"
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 11031,
-      "sha256": "375ca036691fd22d75542330f015595d16a7b93bb10c6eda535ab17bb939081c"
+      "size": 13284,
+      "sha256": "cd58ee3d9d4e6721514f04e6a503bc8be38c620632795e11a9f43e1113d1b8a1"
     },
     {
       "path": "phase2/Spec_Notes.csv",
-      "size": 305,
-      "sha256": "b8f237246305a9dbc7f4aa23ecfadd5d0a0e692ec2ccc8fd49b298b343c97f48"
+      "size": 463,
+      "sha256": "ffb62a75f6fc63299e3d5d2464bd6a183ddca53842187558587a10d6660557b3"
     },
     {
       "path": "phase2/Status_Words.csv",
@@ -116,8 +116,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 7470,
-      "sha256": "ecef50768789a59bcdc4dda26d9aa083c8e748c43f7fb1854f902685eff05467"
+      "size": 15105,
+      "sha256": "6f1fd7c5c6de58dc86e2751c9115509d52e2315b13ba534fb6a25a369f3f106d"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -141,8 +141,8 @@
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
-      "size": 3612,
-      "sha256": "46be326a0e926d0de26be4bc98ba6821ce2930dd956d552730d768ef97b353ba"
+      "size": 6650,
+      "sha256": "afe8421aa6b71dc7a007df03dcdb36196d92dd3af63e40214297410c6f049c66"
     },
     {
       "path": "phase2/web_composite_manifest.json",
@@ -150,7 +150,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "c578c43e3fc68c6572f5d4f39fe029e37634ca2743ffa76fdcdcda037e2f8c10",
+  "files_inventory_sha256": "8cf0b39456b81ade78461447ff1f9634020aba63ec3769abf1423dce0b33b675",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
