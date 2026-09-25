@@ -61,7 +61,7 @@ document.querySelectorAll("form[data-product-voc]").forEach((form) => {
         throw new Error(messages[response.status] || "Delivery is not confirmed. Your text is kept; retry with the same reference.");
       }
       status.textContent = result.preview === true
-        ? `Preview only — nothing was sent to Feishu. Reference: ${requestId}`
+        ? `Preview only — nothing was sent. Reference: ${requestId}`
         : `Thank you — your suggestion was received. Reference: ${requestId}`;
       button.disabled = true;
     } catch (error) {

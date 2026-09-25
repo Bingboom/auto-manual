@@ -1,0 +1,45 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JE-2000E",
+  "region": "EU",
+  "language": "uk",
+  "source_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
+  "source_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
+  "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000e_eu_shared/app_add_device.png",
+      "sha256": "662646752f7e432edae4e01fc78e9ae9f7a6045f231a62fafb76308c8e96a302",
+      "source_page": 23,
+      "bbox_pt": [
+        41.0,
+        208.0,
+        322.75,
+        349.0
+      ],
+      "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
+        "connect_result.png"
+      ],
+      "path": "assets/je2000e_eu_shared/app_connect_result.png",
+      "sha256": "efa9084d8a028e9781cd16eed9cbe71fe281efed640f4e436a1345f956814baf",
+      "source_page": 24,
+      "bbox_pt": [
+        41.0,
+        79.0,
+        322.75,
+        249.5
+      ],
+      "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+      "consume_before_presentation": true,
+      "reference_id": "app-connect-result"
+    }
+  ]
+}
