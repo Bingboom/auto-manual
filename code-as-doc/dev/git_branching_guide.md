@@ -118,6 +118,7 @@ git config core.hooksPath .githooks
 ```
 
 After that, [`.githooks/pre-push`](../../.githooks/pre-push) blocks pushes from branches that do not contain the latest `origin/main`.
+Pushes of `review/*` and `backport/*` branches, and pushes to any remote other than `origin` (for example `hello-docs`), are exempt: they start from a review branch or from Hello-Docs `main`, never from auto-manual `main`.
 The managed hook now runs through the shared [`../../scripts/git_branch_guard.py`](../../scripts/git_branch_guard.py) core instead of a bash-only entrypoint, and the repo also ships [`.githooks/pre-push.cmd`](../../.githooks/pre-push.cmd) plus [`.githooks/pre-push.ps1`](../../.githooks/pre-push.ps1) as Windows-native companion launchers.
 Use `git push --no-verify` only when the older base is intentional.
 

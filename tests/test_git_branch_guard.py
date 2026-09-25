@@ -146,6 +146,41 @@ class TestGitBranchGuard(unittest.TestCase):
 
             self.assertEqual(1, result)
 
+    def _stale_branch(self, remote_repo: Path, clone_repo: Path, name: str) -> None:
+        """A branch cut from main, after which main moves on: the base check would fail."""
+        run_git(clone_repo, "switch", "-c", name)
+        run_git(clone_repo, "switch", "main")
+        (clone_repo / "README.md").write_text("updated on main\n", encoding="utf-8")
+        run_git(clone_repo, "add", "README.md")
+        run_git(clone_repo, "commit", "-m", "update main")
+        run_git(clone_repo, "push", "origin", "main")
+        run_git(remote_repo, "symbolic-ref", "HEAD", "refs/heads/main")
+        run_git(clone_repo, "switch", name)
+
+    def _pre_push(self, clone_repo: Path, remote: str) -> int:
+        return git_branch_guard.pre_push_command(
+            git_branch_guard.build_parser().parse_args(
+                ["pre-push", "--repo-root", str(clone_repo), "--remote", remote, "--base-branch", "main"]
+            )
+        )
+
+    def test_pre_push_should_let_data_plane_branches_through(self) -> None:
+        # review/* and backport/* start from a review branch, not from main.
+        for name in ("backport/JE-TEST-EU-r1", "review/JE-TEST-EU"):
+            with self.subTest(name), tempfile.TemporaryDirectory() as td:
+                remote_repo, clone_repo = init_remote_clone(Path(td))
+                self._stale_branch(remote_repo, clone_repo, name)
+                self.assertEqual(0, self._pre_push(clone_repo, "origin"))
+
+    def test_pre_push_should_skip_remotes_other_than_origin(self) -> None:
+        # Pushes to hello-docs are judged against Hello-Docs, not auto-manual main;
+        # the guard returns before fetching, so the remote need not even exist here.
+        with tempfile.TemporaryDirectory() as td:
+            remote_repo, clone_repo = init_remote_clone(Path(td))
+            self._stale_branch(remote_repo, clone_repo, "fix/stale-elsewhere")
+            self.assertEqual(0, self._pre_push(clone_repo, "hello-docs"))
+            self.assertEqual(1, self._pre_push(clone_repo, "origin"))
+
 
 if __name__ == "__main__":
     unittest.main()
