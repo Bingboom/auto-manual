@@ -70,3 +70,24 @@ localized "screenshots are for reference only" sentence stays live text. As
 App UI, its recipe `manual_je3000c_eu_web_app.json` stays quarantined, and the
 source manifest binds it as `app_asset_recipe`. English is unchanged. The
 operator confirmed the crop on 2026-09-24.
+
+## 2026-09-24 Localized control-panel button names
+
+The fr/es/de/it/uk routes showed the English button names in the Product
+Overview callouts, the energy-saving and UPS text, and the App add-device
+labels: the three `CONTROLS` label rows in the frozen `Spec_Master.csv` held
+only `Value_source`. They now carry the names each language block prints next
+to the control-panel drawing:
+
+| Row | fr (p36) | es (p52) | de (p68) | it (p84) | uk (p100) |
+| --- | --- | --- | --- | --- | --- |
+| main_power_button | Bouton d'alimentation principal | Botón de encendido principal | POWER-Taste | Pulsante di accensione principale | Кнопка POWER |
+| dc_usb_power_button | Bouton d'alimentation CC/USB | Botón de energía CC/USB | DC/USB-Stromtaste | Pulsante Alimentazione DC/USB | Кнопка живлення DC/USB |
+| ac_power_button | Bouton d'alimentation CA | Botón de energía CA | AC-Ausgangstaste | Pulsante AC | Кнопка живлення AC |
+
+French uses the straight apostrophe that dominates the French pages (the print
+mixes both forms). A trial build against the live pages removes every English
+button name (fr 19, es 17, de 16, it 16, uk 6 occurrences); English is unchanged.
+The live Feishu placeholder table has no JE-3000C_EU rows (this source has no
+live dependency), so nothing was written there. The operator approved the
+change on 2026-09-24.

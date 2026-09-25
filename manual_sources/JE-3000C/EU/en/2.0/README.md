@@ -27,3 +27,12 @@ python build.py md \
   --data-root manual_sources/JE-3000C/EU/en/2.0/phase2 \
   --staging-root <fresh-root>
 ```
+
+Control-panel button names (2026-09-24): the three `CONTROLS` label rows of
+`phase2/Spec_Master.csv` (`main_power_button`, `dc_usb_power_button`,
+`ac_power_button`) carried only the English source value, so the fr/es/de/it/uk
+routes printed "POWER Button", "DC / USB Power Button" and "AC Power Button" in
+the Product Overview, energy-saving, UPS and App pages. Their `Value_fr` …
+`Value_uk` cells now hold each language block's printed names (PDF pages
+36/52/68/84/100), and `source_manifest.json` re-locks the file. English is
+unchanged.
