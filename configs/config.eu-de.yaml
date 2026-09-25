@@ -22,6 +22,7 @@ paths:
     JE-1000H_EU: docs/renderers/web/je1000h_eu_de_illustrations.json
     JE-2000F_EU: docs/renderers/web/je2000f_eu_de_illustrations.json
     JE-3000C_EU: docs/renderers/web/je3000c_eu_de_illustrations.json
+    JE-2000E_EU: docs/renderers/web/je2000e_eu_de_illustrations.json
 checks:
   allowed_foreign_identity_literals:
     - 占位符

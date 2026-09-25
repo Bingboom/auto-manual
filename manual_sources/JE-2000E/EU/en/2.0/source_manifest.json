@@ -25,6 +25,10 @@
     "path": "data/asset_recipes/manual_je2000e_eu_web.json",
     "sha256": "aaf8dc347be9f2f429c38a1eb91434204dc2f0612a234ce825dcd9819302c72d"
   },
+  "app_asset_recipe": {
+    "path": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+    "sha256": "a2ba163364d9764a8f61a1be393ff6f0bef5015e22e0c5ad21c981f2f03cae65"
+  },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000e_eu_en_illustrations.json",
     "sha256": "35a4c7860bdbe7cce08aaa8ddc18881b17411de6972176253520ac90cb7a2425"
