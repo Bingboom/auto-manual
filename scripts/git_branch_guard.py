@@ -215,8 +215,8 @@ def pre_push_command(args: argparse.Namespace) -> int:
     if merge_base != remote_base_sha:
         _print_error(f"[pre-push] Current branch does not contain the latest {remote_base_ref}.")
         _print_error("[pre-push] Start new work with:")
-        _print_error("[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>")
-        _print_error("[pre-push]   ./scripts/start_branch.sh codex/<topic>")
+        _print_error("[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>")
+        _print_error("[pre-push]   ./scripts/start_branch.sh <type>/<area>-<topic>")
         _print_error("[pre-push] Or update this branch before pushing:")
         _print_error(f"[pre-push]   git fetch {remote}")
         _print_error(f"[pre-push]   git rebase {remote_base_ref}")
