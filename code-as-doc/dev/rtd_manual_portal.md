@@ -84,24 +84,56 @@ content, QR aliases and nested manual URLs are unchanged.
 
 ## System workspace page
 
-`/workspace/system/` (系统建设) shows what the system can already do, what is
-still being built, and how far the execution-ledger gates have got. The page is
-built at RTD time from frozen inputs only. It never reads Feishu or the network.
+`/workspace/system/` (系统建设) opens with the current focus: the lanes being
+pushed now and next, each with its figures and ledger progress. Below it, the
+page shows what the system can already do, what is still being built, and how
+far the execution-ledger gates have got. The page is built at RTD time from
+frozen inputs only. It never reads Feishu or the network.
 
 - `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
-  contract: capability cards, production-flow links, gate labels and entry
-  links. It is maintained in auto-manual and reaches Hello-Docs through the
-  mirror.
-- `docs/publish/publish_manifest.json` is the only source of the counts shown.
+  contract: focus lanes, capability cards, production-flow links, gate labels
+  and entry links. It is maintained in auto-manual and reaches Hello-Docs
+  through the mirror.
+- `docs/publish/publish_manifest.json` is the source of the publication counts.
   It uses the REV-04 caliber: a book is one model × region, and language
   editions are counted separately.
-- The execution ledger named by `now_next.source` supplies REV statuses and the
-  gate composition. The page reads them and never restates a REV status.
+- The execution ledger named by `now_next.source` supplies REV statuses, the
+  gate composition and each lane's progress. The page reads them and never
+  restates a REV status.
+- The skeleton blueprints under `docs/manifests/skeletons/*/blueprint.yaml`
+  say which product families already generate their manual structure from a
+  skeleton. The mirror carries them, so RTD reads the same files.
 
 The page is public, on the same RTD project as the manuals. `noindex` is not
 access control, so the contract holds only publishable facts. Gap narratives
 and resource needs belong to the Feishu internal page, not this file. The
 workspace sidebar shows the entry only when the page was built.
+
+### Current focus
+
+The operator decides the focus, and it sets the page order. Since 2026-09-25
+the lanes are 说明书网页化 and 语料库建设与管理 (now), then IR 共享 and 骨架拓展
+(next). Each lane in `focus.lanes` declares:
+
+- `id`, `title`, an optional one-line `goal`, and `horizon: now | next`;
+- `card`: the capability card it links to. That card, and every gate the lane
+  lists, carries the lane's tag further down the page;
+- `items`: capability items shown with their status inside the lane;
+- `metrics`, computed at build time:
+  - `publications`: books and language editions from the publish manifest;
+  - `regions`: books per region, labelled by `focus.regions`;
+  - `corpus`: sentence pairs, terms and approved share from the corpus snapshot;
+  - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
+    未建 for a declared family that has none;
+- progress: `gates` (ids from `now_next.gates`), `revs` (ledger rows, ranges
+  allowed), or both. A lane with neither shows 尚未入执行台账.
+
+A source that cannot be read shows 无数据 for that figure, never zero. The focus
+block carries evidence like any other entry, and it goes stale with
+`verified_on`, so re-confirm it with the operator at each re-check.
+
+Cards and gates outside the focus can set `fold: true`. They then render in a
+collapsed 其他能力 or 其他阶段门 group at the end of their section.
 
 ### Language assets block
 
@@ -120,6 +152,13 @@ and writes the snapshot next to the contract. It is read-only. Pass
 `--cli-bin "lark-cli --profile prod" --as bot` for the bot lane. The contract's
 `corpus.languages` list fixes the languages counted and their labels; a column
 missing from either table fails the export instead of counting zero.
+
+Each export carries the earlier months forward in `history`: one headline per
+month (sentence pairs, terms, approved), oldest first, up to 24 months. The
+page compares the current figures with the latest of them. A second export in
+the same month replaces that month's figures. If the snapshot being replaced
+cannot be read or is malformed, the export stops, so history is never dropped.
+A language added to the contract later does not block the carry.
 
 A snapshot older than `corpus.stale_after_days` (default 45) shows 待复核. An
 unreadable or malformed snapshot shows 无数据 for this block only, with a
@@ -181,6 +220,13 @@ differ in exactly two added files, `workspace/system/index.html` and
 - `.buildinfo`: the config hash.
 
 230 of 231 HTML pages are byte-identical, and neither build emits a warning.
+
+Verification (2026-09-25, focus lanes): full builds of Hello-Docs `main`
+`9745093a` (1,195 files) with `main` `367bd444` and with this change differ in
+four files: `workspace/system/index.html`, `_static/system-workspace.css`,
+their entries in `manual-deployment.json`, and the `.buildinfo` config hash.
+The hash moves because the two trees sit at different paths. 231 of 232 HTML
+pages are byte-identical, and neither build emits a warning.
 
 Rollback: revert the change. The workspace entry, manual URLs and QR aliases
 are unaffected.

@@ -3,7 +3,8 @@
 # Public page, public repository — write only what may be published. Internal
 # framing (gap narrative, resource needs) belongs to the Feishu internal page.
 # Numbers never appear in this file: every figure on the page is computed at
-# build time from docs/publish/publish_manifest.json or the execution ledger.
+# build time from docs/publish/publish_manifest.json, the execution ledger, the
+# corpus snapshot or the skeleton blueprints under docs/manifests/skeletons.
 #
 # Evidence grammar (checked by `python tools/rtd_system_workspace.py check`):
 #   pr:<repo>#<n>             merged pull request (verified with --online)
@@ -37,81 +38,112 @@ vocabulary:
 hero:
   title: Hello Docs
   subtitle: 从结构化产品数据到多语言、多格式资料交付
-  stage: 连接与规模化
-  stage_note: 核心能力已分别跑通，当前重点是把它们连成稳定的生产链
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
 
-snapshot:
-  - key: online_books
-    label: 在线手册
-    source: publications
-    derive: 发布清单中不同的（型号, 区域）数，副标注语言版数（REV-04 口径）
-  - key: outputs
-    label: 输出格式
-    items: [document_production.web, document_production.word, document_production.pdf, document_production.idml]
-  - key: foundation
-    label: 内容地基
-    card: content_foundation
-  - key: language
-    label: 语言资产
-    card: language
-  - key: agent
-    label: Agent 执行
-    card: agent_operations
-  - key: snapshot_time
-    label: 快照时间
-    source: build_date
-    derive: 构建日期；另显示发布清单中最近一次发布的日期
+# Current focus decides the page order: lanes marked now come first, next
+# after, and the cards and gates they name carry the lane's tag. A lane's
+# figures come from the publish manifest (publications: books by model x
+# region, REV-04 caliber; regions), the corpus snapshot or the skeleton
+# blueprints; its progress from the ledger gates or rows it lists. The focus
+# is the operator's call: re-confirm it whenever verified_on moves.
+focus:
+  note: 本页按当前重点排列。数字取自发布清单、语料快照和仓库里的骨架定义，进度读取执行台账。
+  evidence:
+    - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+    - "ack:夏冰 2026-09-25「我现在重点放在说明书网页化和语料库建设与管理 后续就会继续做IR共享以及骨架拓展」"
+  lanes:
+    - id: web
+      horizon: now
+      title: 说明书网页化
+      goal: 已出版的说明书转成在线手册，逐步覆盖更多区域和语言
+      card: web_publishing
+      metrics: [publications, regions]
+      gates: [G1, G2, G3]
+    - id: corpus
+      horizon: now
+      title: 语料库建设与管理
+      goal: 句对和术语持续入库、审核与治理，为网页化的目标语言供稿
+      card: language
+      metrics: [corpus]
+      revs: [REV-11, REV-18, REV-35..REV-38]
+    - id: shared_ir
+      horizon: next
+      title: IR 共享
+      goal: 网页、IDML、Word、PDF 从同一份中间表示生成，新手册不按型号另写渲染
+      card: document_production
+      items: [document_production.shared_ir]
+      revs: [REV-39..REV-40]
+    - id: skeletons
+      horizon: next
+      title: 骨架拓展
+      goal: 按产品线建骨架，新产品从骨架生成手册结构，不再复制页面模板
+      card: content_foundation
+      items: [content_foundation.skeletons]
+      metrics: [skeletons]
+      revs: [REV-41..REV-43]
+  regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
+  skeleton_families:
+    - {family: MAIN, label: 便携电源}
+    - {family: BP, label: 电池包}
+    - {family: SOLAR, label: 太阳能板}
+    - {family: CHARGER, label: 充电器}
 
 capabilities:
-  - id: content_foundation
-    title: 内容地基
-    en: Content Foundation
-    status: in_progress
-    summary: 产品数据、共享模板和插图资产集中维护，按型号、区域、语言组装手册
+  - id: web_publishing
+    title: 网页发布
+    en: Web Publishing
+    status: available
+    summary: 在线手册按产品、市场、语言浏览；每次发布有版本和回执，每天自动校验
     items:
-      - id: structured_data
-        label: 结构化产品数据
+      - id: manual_center
+        label: 手册中心
         status: available
-        note: 规格书经人工确认后入库，构建直接取表内数值
+        note: 按产品、区域、语言进入在线手册
         evidence:
-          - "pr:auto-manual#496"
-          - "file:auto-manual:.agents/skills/spec-sheet-structured-intake/SKILL.md"
-          - "file:auto-manual:code-as-doc/reviews/jbp2000b_us_intake_order_2026-08.md"
-      - id: shared_templates
-        label: 共享模板与继承
+          - "url:https://ht-doc.readthedocs.io/"
+          - "file:auto-manual:tools/rtd_portal.py"
+      - id: search
+        label: 站内搜索
         status: available
-        note: 一套共享模板加家族配置继承，差异按区域、语言覆盖
+        note: 按手册目录和章节关键词搜索
         evidence:
-          - "file:auto-manual:docs/templates/page_shared"
-          - "file:auto-manual:code-as-doc/manual_family_guide.md"
-      - id: skeletons
-        label: 产品骨架
-        status: in_progress
-        note: 电池包、太阳能板、充电器已由骨架生成清单；便携电源仍用区域家族清单；骨架库设计待批
+          - "pr:auto-manual#1133"
+      - id: locale_nav
+        label: 语言切换
+        status: available
+        note: 同一本手册在各语言版之间跳转
         evidence:
-          - "pr:auto-manual#936"
-          - "pr:auto-manual#983"
-          - "file:auto-manual:docs/manifests/skeletons"
-          - "file:auto-manual:docs/manifests/family/index.yaml"
-          - "file:auto-manual:code-as-doc/architecture/Product_Skeleton_Library_Design.md"
-      - id: reusable_blocks
-        label: 可复用内容组件
-        status: in_progress
-        note: 规格、符号、故障排除等参考类页面由数据驱动；说明类正文仍按语言分模板
+          - "pr:auto-manual#1073"
+      - id: receipt
+        label: 版本与部署回执
+        status: available
+        note: 线上内容与发布源逐文件对应，可回查到提交
         evidence:
-          - "file:auto-manual:tools/csv_pages"
-          - "file:auto-manual:code-as-doc/architecture/Long_Form_Content_Block_Design.md"
-      - id: asset_library
-        label: 插图资产库
-        status: in_progress
-        note: 插图登记并做哈希校验；按目标的覆盖和去文字化仍在推进
+          - "pr:auto-manual#1127"
+          - "url:https://ht-doc.readthedocs.io/manual-deployment.json"
+      - id: daily_check
+        label: 每日部署校验
+        status: available
+        note: 每天核对线上页面与发布源是否一致，出错自动开告警
         evidence:
-          - "pr:auto-manual#662"
-          - "pr:auto-manual#670"
-          - "pr:auto-manual#1236"
-          - "file:auto-manual:code-as-doc/dev/asset_ai_master_intake_plan.md"
+          - "pr:auto-manual#1192"
+          - "pr:auto-manual#1193"
+          - "rev:REV-08=done"
+          - "file:auto-manual:.github/workflows/verify-web-deployment.yml"
+      - id: qr_entry
+        label: 印刷二维码入口
+        status: available
+        note: 印刷手册上的二维码进入对应在线手册，可单独统计
+        evidence:
+          - "pr:auto-manual#1160"
+      - id: analytics
+        label: 访问统计
+        status: available
+        note: 按入口和页面统计访问
+        evidence:
+          - "pr:auto-manual#1155"
+          - "pr:auto-manual#1163"
 
   - id: language
     title: 语言资产
@@ -204,65 +236,59 @@ capabilities:
           - "pr:auto-manual#955"
           - "rev:REV-20=planned"
 
-  - id: web_publishing
-    title: 网页发布
-    en: Web Publishing
-    status: available
-    summary: 在线手册按产品、市场、语言浏览；每次发布有版本和回执，每天自动校验
+  - id: content_foundation
+    title: 内容地基
+    en: Content Foundation
+    status: in_progress
+    summary: 产品数据、共享模板和插图资产集中维护，按型号、区域、语言组装手册
     items:
-      - id: manual_center
-        label: 手册中心
+      - id: structured_data
+        label: 结构化产品数据
         status: available
-        note: 按产品、区域、语言进入在线手册
+        note: 规格书经人工确认后入库，构建直接取表内数值
         evidence:
-          - "url:https://ht-doc.readthedocs.io/"
-          - "file:auto-manual:tools/rtd_portal.py"
-      - id: search
-        label: 站内搜索
+          - "pr:auto-manual#496"
+          - "file:auto-manual:.agents/skills/spec-sheet-structured-intake/SKILL.md"
+          - "file:auto-manual:code-as-doc/reviews/jbp2000b_us_intake_order_2026-08.md"
+      - id: shared_templates
+        label: 共享模板与继承
         status: available
-        note: 按手册目录和章节关键词搜索
+        note: 一套共享模板加家族配置继承，差异按区域、语言覆盖
         evidence:
-          - "pr:auto-manual#1133"
-      - id: locale_nav
-        label: 语言切换
-        status: available
-        note: 同一本手册在各语言版之间跳转
+          - "file:auto-manual:docs/templates/page_shared"
+          - "file:auto-manual:code-as-doc/manual_family_guide.md"
+      - id: skeletons
+        label: 产品骨架
+        status: in_progress
+        note: 电池包、太阳能板、充电器已由骨架生成清单；便携电源仍用区域家族清单；骨架库设计待批
         evidence:
-          - "pr:auto-manual#1073"
-      - id: receipt
-        label: 版本与部署回执
-        status: available
-        note: 线上内容与发布源逐文件对应，可回查到提交
+          - "pr:auto-manual#936"
+          - "pr:auto-manual#983"
+          - "file:auto-manual:docs/manifests/skeletons"
+          - "file:auto-manual:docs/manifests/family/index.yaml"
+          - "file:auto-manual:code-as-doc/architecture/Product_Skeleton_Library_Design.md"
+      - id: reusable_blocks
+        label: 可复用内容组件
+        status: in_progress
+        note: 规格、符号、故障排除等参考类页面由数据驱动；说明类正文仍按语言分模板
         evidence:
-          - "pr:auto-manual#1127"
-          - "url:https://ht-doc.readthedocs.io/manual-deployment.json"
-      - id: daily_check
-        label: 每日部署校验
-        status: available
-        note: 每天核对线上页面与发布源是否一致，出错自动开告警
+          - "file:auto-manual:tools/csv_pages"
+          - "file:auto-manual:code-as-doc/architecture/Long_Form_Content_Block_Design.md"
+      - id: asset_library
+        label: 插图资产库
+        status: in_progress
+        note: 插图登记并做哈希校验；按目标的覆盖和去文字化仍在推进
         evidence:
-          - "pr:auto-manual#1192"
-          - "pr:auto-manual#1193"
-          - "rev:REV-08=done"
-          - "file:auto-manual:.github/workflows/verify-web-deployment.yml"
-      - id: qr_entry
-        label: 印刷二维码入口
-        status: available
-        note: 印刷手册上的二维码进入对应在线手册，可单独统计
-        evidence:
-          - "pr:auto-manual#1160"
-      - id: analytics
-        label: 访问统计
-        status: available
-        note: 按入口和页面统计访问
-        evidence:
-          - "pr:auto-manual#1155"
-          - "pr:auto-manual#1163"
+          - "pr:auto-manual#662"
+          - "pr:auto-manual#670"
+          - "pr:auto-manual#1236"
+          - "file:auto-manual:code-as-doc/dev/asset_ai_master_intake_plan.md"
 
   - id: review_backport
     title: 评审回写
     en: Review & Backport
     status: in_progress
+    fold: true
     summary: 评审意见回到受控的源头，不只改在生成的文档里
     items:
       - id: review
@@ -305,6 +331,7 @@ capabilities:
     title: Agent 执行
     en: Agent Operations
     status: in_progress
+    fold: true
     summary: Agent 可调用部分成熟能力，都是有边界、写入前须人工确认的受控操作；多 Agent 调度与任务续接尚未建设
     items:
       - id: im_control
@@ -427,8 +454,8 @@ now_next:
     - {id: G1, label: 发布基线, revs: [REV-01..REV-12]}
     - {id: G2, label: 维护试点, revs: [REV-13..REV-19]}
     - {id: G3, label: 网页扩展, revs: [REV-21..REV-25, REV-27]}
-    - {id: IDML, label: 印刷独立验收, revs: [REV-20, REV-26]}
-    - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31]}
+    - {id: IDML, label: 印刷独立验收, revs: [REV-20, REV-26], fold: true}
+    - {id: G4, label: 协作与服务准备, revs: [REV-29..REV-31], fold: true}
   now_labels:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练

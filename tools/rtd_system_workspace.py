@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 """Build-time System Workspace page: curated status plus frozen facts, no network.
 
-``/workspace/system/`` joins three inputs that already exist in the tree RTD
-builds from:
+``/workspace/system/`` joins inputs that already exist in the tree RTD builds
+from:
 
 - ``tools/rtd_portal_assets/system_workspace.yaml``: the curated status
-  contract (capability cards, flow links, gate labels); every entry carries
-  evidence refs;
+  contract (current-focus lanes, capability cards, flow links, gate labels);
+  every entry carries evidence refs;
 - ``docs/publish/publish_manifest.json``: the published-target catalog and the
-  only source of the counts the page shows;
-- the execution ledger named by ``now_next.source``: REV statuses and the
-  composition of the G1-G4 gates;
+  source of the publication counts;
+- the execution ledger named by ``now_next.source``: REV statuses, the
+  composition of the G1-G4 gates and the progress of each focus lane;
 - the corpus snapshot named by ``corpus.snapshot``: translation-memory counts
-  (never its text), written from the live TM base by ``corpus-export`` and
-  committed like any other frozen input.
+  (never its text) plus the headline of earlier months, written from the live
+  TM base by ``corpus-export`` and committed like any other frozen input;
+- the skeleton blueprints under ``docs/manifests/skeletons``: which product
+  families already generate their manual structure from a skeleton.
 
 Data drift never breaks the build: a missing evidence file, a REV whose status
 moved, or an entry older than ``stale_after_days`` renders as 待复核. An
@@ -41,7 +43,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from tools.utils.path_utils import PathSegments, repo_root  # noqa: E402
+from tools.utils.path_utils import PathSegments, repo_root, skeletons_of  # noqa: E402
 
 SCHEMA = "hello-docs-system-workspace/v1"
 CONTRACT_NAME = "system_workspace.yaml"
@@ -66,6 +68,12 @@ CORPUS_STATUS_FIELD = "Status"
 CORPUS_APPROVED = "Approved"
 CORPUS_UNLABELLED = "(未标注)"
 DEFAULT_CORPUS_STALE_DAYS = 45
+CORPUS_HISTORY_KEYS = ("exported_at", "sentence_pairs", "terms", "approved")
+CORPUS_HISTORY_KEEP = 24  # months of headline figures carried by each snapshot
+HORIZON_LABELS = {"now": "现在", "next": "下一步"}
+FOCUS_METRICS = ("publications", "regions", "corpus", "skeletons")
+SKELETON_SCHEMA = "skeleton-blueprint/v1"
+_UNSTATUSED = frozenset({"hero", "focus"})  # evidence-bearing entries without a status
 
 _QUANTITY = re.compile(r"\d+\s*(个|本|项|种|条|份|%|倍)")
 _ACK = re.compile(r"\S+ (\d{4}-\d{2}-\d{2})「.+」")
@@ -161,7 +169,7 @@ def parse_evidence(ref: object) -> tuple[str, str, str]:
 
 def expand_revs(tokens: object) -> list[str]:
     if not isinstance(tokens, list) or not tokens:
-        raise ContractError(f"gate revs must be a non-empty list: {tokens!r}")
+        raise ContractError(f"revs must be a non-empty list: {tokens!r}")
     revs: list[str] = []
     for token in tokens:
         text = str(token)
@@ -214,12 +222,34 @@ def publication_facts(manifest_path: Path) -> dict[str, Any] | None:
     }
 
 
+def skeleton_facts(root: Path) -> list[dict[str, str]] | None:
+    """One ``{id, family}`` per skeleton cell; None (no data) when there is none or one is unreadable.
+
+    An unreadable blueprint makes the whole count unknown rather than one
+    lower: the page never shows a number it cannot stand behind.
+    """
+    cells: list[dict[str, str]] = []
+    for path in sorted(skeletons_of(root).glob(f"*/{PathSegments.SKELETON_BLUEPRINT_YAML}")):
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except (OSError, yaml.YAMLError):
+            return None
+        if not isinstance(data, dict) or data.get("schema_version") != SKELETON_SCHEMA \
+                or not data.get("skeleton_family"):
+            return None
+        cells.append({"id": str(data.get("skeleton_id") or path.parent.name),
+                      "family": str(data["skeleton_family"])})
+    return cells or None
+
+
 # --- rules --------------------------------------------------------------------
 
 
 def _entries(contract: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
     """Every evidence-bearing entry with a readable location."""
     found: list[tuple[str, dict[str, Any]]] = [("hero", contract.get("hero") or {})]
+    if isinstance(contract.get("focus"), dict):
+        found.append(("focus", contract["focus"]))
     for card in contract.get("capabilities") or []:
         for item in card.get("items") or []:
             found.append((f"{card.get('id')}.{item.get('id')}", item))
@@ -268,7 +298,7 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
                 error(where, f"unknown repository {first!r} in {ref!r}")
         if kinds and set(kinds) == {"ack"}:
             error(where, "an operator ack cannot be the only evidence")
-        if where != "hero":
+        if where not in _UNSTATUSED:
             status = entry.get("status")
             if status not in statuses:
                 error(where, f"status {status!r} not in vocabulary")
@@ -276,7 +306,7 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
                 error(where, "planned needs a rev: reference")
             if status == "retired":
                 error(where, "retired entries do not belong on the public page")
-        for field in ("label", "note", "summary", "subtitle", "stage", "stage_note"):
+        for field in ("label", "note", "summary", "subtitle"):
             if _QUANTITY.search(str(entry.get(field) or "")):
                 out.append(Finding("warning", where, f"{field} states a quantity; counts must come from the snapshot"))
 
@@ -289,6 +319,8 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         if not items:
             error(cid, "card has no items")
         card_ids[cid] = {str(item.get("id")) for item in items}
+        if not isinstance(card.get("fold", False), bool):
+            error(cid, "fold must be true or false")
         if card.get("status") not in statuses:
             error(cid, f"card status {card.get('status')!r} not in vocabulary")
             continue
@@ -304,21 +336,6 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         if link.get("mode") not in modes:
             error(f"flow#{index}", f"mode {link.get('mode')!r} not in vocabulary")
 
-    for tile in contract.get("snapshot") or []:
-        key = tile.get("key")
-        sources = [name for name in ("source", "items", "card") if name in tile]
-        if len(sources) != 1:
-            error(f"snapshot.{key}", "needs exactly one of source / items / card")
-        elif "source" in tile and tile["source"] not in {"publications", "build_date"}:
-            error(f"snapshot.{key}", f"unknown source {tile['source']!r}")
-        elif "card" in tile and tile["card"] not in card_ids:
-            error(f"snapshot.{key}", f"unknown card {tile['card']!r}")
-        elif "items" in tile:
-            for ref in tile["items"]:
-                cid, _, iid = str(ref).partition(".")
-                if iid not in card_ids.get(cid, set()):
-                    error(f"snapshot.{key}", f"unknown item {ref!r}")
-
     now_next = contract.get("now_next") or {}
     try:
         ledger_ref(contract)
@@ -326,6 +343,8 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         error("now_next.source", str(exc))
     for gate in now_next.get("gates") or []:
         gid = str(gate.get("id"))
+        if not isinstance(gate.get("fold", False), bool):
+            error(f"gate {gid}", "fold must be true or false")
         try:
             revs = expand_revs(gate.get("revs"))
         except ContractError as exc:
@@ -369,6 +388,70 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
         stale = corpus.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS) if isinstance(corpus, dict) else 0
         if not isinstance(stale, int) or stale <= 0:
             error("corpus.stale_after_days", "must be a positive integer")
+
+    if "focus" in contract:
+        gate_ids = {str(gate.get("id")) for gate in now_next.get("gates") or []}
+        out += _focus_findings(contract["focus"], card_ids=card_ids, gate_ids=gate_ids,
+                               ledger=ledger, has_corpus=corpus is not None)
+    return out
+
+
+def _focus_findings(focus: object, *, card_ids: dict[str, set[str]], gate_ids: set[str],
+                    ledger: Ledger | None, has_corpus: bool) -> list[Finding]:
+    """Rules for the current-focus lanes: every reference resolves, progress comes from the ledger."""
+    if not isinstance(focus, dict) or not isinstance(focus.get("lanes"), list) or not focus["lanes"]:
+        return [Finding("error", "focus", "needs a non-empty lanes list")]
+    out: list[Finding] = []
+
+    def error(where: str, message: str) -> None:
+        out.append(Finding("error", where, message))
+
+    seen: set[str] = set()
+    for lane in focus["lanes"]:
+        if not isinstance(lane, dict):
+            error("focus", f"lane must be a mapping: {lane!r}")
+            continue
+        lid = str(lane.get("id"))
+        where = f"focus.{lid}"
+        if lid in seen:
+            error(where, "duplicate lane id")
+        seen.add(lid)
+        if lane.get("horizon") not in HORIZON_LABELS:
+            error(where, f"horizon must be one of {sorted(HORIZON_LABELS)}")
+        if not lane.get("title"):
+            error(where, "needs a title")
+        if "card" in lane and lane["card"] not in card_ids:
+            error(where, f"unknown card {lane['card']!r}")
+        for ref in lane.get("items") or []:
+            cid, _, iid = str(ref).partition(".")
+            if iid not in card_ids.get(cid, set()):
+                error(where, f"unknown item {ref!r}")
+        for metric in lane.get("metrics") or []:
+            if metric not in FOCUS_METRICS:
+                error(where, f"unknown metric {metric!r}")
+            elif metric == "corpus" and not has_corpus:
+                error(where, "the corpus metric needs the corpus section")
+        for gid in lane.get("gates") or []:
+            if str(gid) not in gate_ids:
+                error(where, f"unknown gate {gid!r}")
+        if "revs" in lane:
+            try:
+                revs = expand_revs(lane["revs"])
+            except ContractError as exc:
+                error(where, str(exc))
+                revs = []
+            unknown = [rev for rev in revs if ledger is not None and rev not in ledger.statuses]
+            if unknown:
+                error(where, f"REV ids missing from the ledger: {unknown}")
+        if _QUANTITY.search(str(lane.get("goal") or "")):
+            out.append(Finding("warning", where, "goal states a quantity; counts must come from the snapshot"))
+    regions = focus.get("regions", {})
+    if not isinstance(regions, dict) or not all(isinstance(v, str) and v for v in regions.values()):
+        error("focus.regions", "must map region codes to labels")
+    families = focus.get("skeleton_families", [])
+    if not isinstance(families, list) or not all(
+            isinstance(entry, dict) and entry.get("family") and entry.get("label") for entry in families):
+        error("focus.skeleton_families", "each entry needs a family and a label")
     return out
 
 
@@ -420,6 +503,9 @@ def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
     findings += [Finding("error", "corpus", problem) for problem in problems]
     if snapshot is not None:
         findings += [Finding("warning", "corpus", reason) for reason in corpus_view(contract, snapshot, today)["stale"]]
+    lanes = (contract.get("focus") or {}).get("lanes") or []
+    if any("skeletons" in (lane.get("metrics") or []) for lane in lanes) and skeleton_facts(root) is None:
+        findings.append(Finding("warning", "focus", "no readable skeleton blueprints; the skeleton metric shows 无数据"))
     return findings
 
 
@@ -436,12 +522,14 @@ def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
         return [f"snapshot schema must be {CORPUS_SCHEMA}"]
     problems = []
     try:
-        dt.date.fromisoformat(str(snapshot.get("exported_at")))
+        exported = dt.date.fromisoformat(str(snapshot.get("exported_at")))
     except ValueError:
         problems.append("exported_at must be an ISO date")
-    extra = set(snapshot) - {"schema", "exported_at", "sentence_pairs", "terms"}
+        exported = None
+    extra = set(snapshot) - {"schema", "exported_at", "sentence_pairs", "terms", "history"}
     if extra:
         problems.append(f"snapshot carries unexpected keys {sorted(extra)} (aggregates only)")
+    problems += _history_problems(snapshot.get("history", []), exported)
     for key in ("sentence_pairs", "terms"):
         block = snapshot.get(key)
         if not isinstance(block, dict) or not _count(block.get("total")):
@@ -460,6 +548,34 @@ def corpus_problems(snapshot: object, codes: list[str]) -> list[str]:
                 or sum(by_status.values()) != total):
             problems.append(f"{key}.by_status must be integer counts that sum to total")
     return problems
+
+
+def _history_problems(history: object, exported: dt.date | None) -> list[str]:
+    """Earlier months' headline figures: counts only, oldest first, all before this export."""
+    if not isinstance(history, list):
+        return ["history must be a list"]
+    previous: dt.date | None = None
+    for entry in history:
+        if not isinstance(entry, dict) or set(entry) != set(CORPUS_HISTORY_KEYS):
+            return [f"history entries carry exactly {list(CORPUS_HISTORY_KEYS)} (aggregates only)"]
+        try:
+            when = dt.date.fromisoformat(str(entry["exported_at"]))
+        except ValueError:
+            return ["history exported_at must be an ISO date"]
+        if (previous and when <= previous) or (exported and when >= exported):
+            return ["history must run oldest first and end before this export"]
+        if not all(_count(entry[key]) for key in CORPUS_HISTORY_KEYS[1:]) \
+                or entry["approved"] > entry["sentence_pairs"]:
+            return ["history counts must be non-negative integers, approved at most sentence_pairs"]
+        previous = when
+    return []
+
+
+def corpus_headline(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """The figures one month keeps in later snapshots' history."""
+    pairs = snapshot["sentence_pairs"]
+    return {"exported_at": snapshot["exported_at"], "sentence_pairs": pairs["total"],
+            "terms": snapshot["terms"]["total"], "approved": pairs["by_status"].get(CORPUS_APPROVED, 0)}
 
 
 def load_corpus(contract: dict[str, Any], assets: Path) -> tuple[dict[str, Any] | None, list[str]]:
@@ -487,18 +603,35 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
         row["percent"] = round(100 * row["count"] / total) if total else 0
         row["count_text"] = f"{row['count']:,}"
     approved = pairs["by_status"].get(CORPUS_APPROVED, 0)
+    share = round(100 * approved / total) if total else None
     exported = dt.date.fromisoformat(snapshot["exported_at"])
     limit = int(config.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS))
     stale = [f"语料快照已超过 {limit} 天（导出于 {exported.isoformat()}）"] if (today - exported).days > limit else []
+    history = snapshot.get("history") or []
+    last = history[-1] if history else None
+
+    def change(now: int | None, before: int | None, unit: str = "") -> str:
+        if last is None or now is None or before is None:
+            return ""
+        diff = now - before
+        return f"较 {last['exported_at']} {diff:+,}{unit}" if diff else f"较 {last['exported_at']} 持平"
+
+    before_share = (round(100 * last["approved"] / last["sentence_pairs"])
+                    if last and last["sentence_pairs"] else None)
     return {
         "tiles": [
-            {"label": "句对", "value": f"{total:,}"},
-            {"label": "术语", "value": f"{terms['total']:,}"},
-            {"label": "覆盖语言", "value": str(sum(1 for row in rows if row["count"]))},
-            {"label": "句对已批准", "value": f"{round(100 * approved / total)}%" if total else "—"},
+            {"key": "pairs", "label": "句对", "value": f"{total:,}",
+             "delta": change(total, last["sentence_pairs"] if last else None)},
+            {"key": "terms", "label": "术语", "value": f"{terms['total']:,}",
+             "delta": change(terms["total"], last["terms"] if last else None)},
+            {"key": "languages", "label": "覆盖语言", "value": str(sum(1 for row in rows if row["count"])),
+             "delta": ""},
+            {"key": "approved", "label": "句对已批准", "value": f"{share}%" if share is not None else "—",
+             "delta": change(share, before_share, " 个百分点")},
         ],
         "rows": rows,
         "exported_at": exported.isoformat(),
+        "previous": last["exported_at"] if last else "",
         "stale": stale,
     }
 
@@ -562,17 +695,31 @@ def _table_aggregate(header: list[str], rows: list[dict[str, Any]], codes: list[
     }
 
 
-def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.date) -> dict[str, Any]:
-    """Aggregate the live TM base into a snapshot; read-only, counts only."""
+def corpus_export(contract: dict[str, Any], *, base_token: str, run, today: dt.date,
+                  previous: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Aggregate the live TM base into a snapshot; read-only, counts only.
+
+    ``previous`` is the snapshot being replaced. Its headline joins the
+    history when it came from an earlier month; a re-export within the same
+    month supersedes it, so history keeps one entry per month.
+    """
     from tools.lang_asset_sweep import TM_SENTENCE_TABLE, TM_TERMS_TABLE
 
     codes = [str(lang["code"]) for lang in contract["corpus"]["languages"]]
-    return {
+    snapshot: dict[str, Any] = {
         "schema": CORPUS_SCHEMA,
         "exported_at": today.isoformat(),
         "sentence_pairs": _table_aggregate(*_table_rows(run, base_token, TM_SENTENCE_TABLE), codes),
         "terms": _table_aggregate(*_table_rows(run, base_token, TM_TERMS_TABLE), codes),
     }
+    month = today.isoformat()[:7]
+    history = list((previous or {}).get("history") or [])
+    if previous:
+        history.append(corpus_headline(previous))
+    history = [entry for entry in history if str(entry["exported_at"])[:7] < month][-CORPUS_HISTORY_KEEP:]
+    if history:
+        snapshot["history"] = history
+    return snapshot
 
 
 def lark_runner(cli_bin: str, identity: str):
@@ -665,12 +812,76 @@ def _status_view(status: str) -> dict[str, str]:
     return {"status": status, "status_label": STATUS_LABELS[status]}
 
 
+def _progress(revs: list[str], ledger: Ledger) -> dict[str, Any]:
+    """Done count, bar width, state and tally for a set of ledger rows."""
+    counts: dict[str, int] = {}
+    for rev in revs:
+        state = ledger.statuses.get(rev, "planned")
+        counts[state] = counts.get(state, 0) + 1
+    done = counts.get("done", 0)
+    if done == len(revs):
+        state = "done"
+    elif counts.get("deferred", 0) == len(revs):
+        state = "deferred"
+    elif done or counts.get("verifying"):
+        state = "active"
+    else:
+        state = "idle"
+    tally = " · ".join(f"{LEDGER_LABELS.get(k, k)} {counts[k]}" for k in LEDGER_LABELS if counts.get(k))
+    return {"state": state, "tally": tally, "done": done, "total": len(revs),
+            "percent": round(100 * done / len(revs))}
+
+
+def _metric(label: str, value: object = None, unit: str = "", sub: str = "", delta: str = "") -> dict[str, Any]:
+    if value is None:
+        return {"label": label, "no_data": True, "value": "", "unit": "", "sub": "", "delta": ""}
+    return {"label": label, "no_data": False, "value": str(value), "unit": unit, "sub": sub, "delta": delta}
+
+
+def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | None,
+                 corpus: dict[str, Any] | None, skeletons: list[dict[str, str]] | None) -> list[dict[str, Any]]:
+    """The figures one focus lane shows; each source missing renders as 无数据, never as zero."""
+    if name == "publications":
+        if not facts:
+            return [_metric("在线手册")]
+        return [_metric("在线手册", facts["books"], "本", f"{facts['editions']} 个语言版")]
+    if name == "regions":
+        if not facts:
+            return [_metric("覆盖区域")]
+        labels = focus.get("regions") or {}
+        books: dict[str, int] = {}
+        for _model, region in {(t["model"], t["region"]) for t in facts["targets"]}:
+            books[region] = books.get(region, 0) + 1
+        order = sorted(books, key=lambda region: (-books[region], region))
+        sub = " · ".join(f"{labels.get(region, region)} {books[region]} 本" for region in order)
+        return [_metric("覆盖区域", len(books), "个", sub)]
+    if name == "corpus":
+        if not corpus:
+            return [_metric("语料快照")]
+        tiles = {tile["key"]: tile for tile in corpus["tiles"]}
+        return [_metric(tiles[key]["label"], tiles[key]["value"], delta=tiles[key]["delta"])
+                for key in ("pairs", "terms", "approved")]
+    if not skeletons:
+        return [_metric("产品骨架")]
+    declared = {str(entry["family"]): str(entry["label"]) for entry in focus.get("skeleton_families") or []}
+    counts: dict[str, int] = {}
+    for cell in skeletons:
+        counts[cell["family"]] = counts.get(cell["family"], 0) + 1
+    families = [*declared, *sorted(set(counts) - set(declared))]
+    sub = " · ".join(f"{declared.get(family, family)} {counts[family]}" if family in counts
+                     else f"{declared[family]} 未建" for family in families)
+    return [_metric("产品骨架", len(skeletons), "个", sub)]
+
+
 def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None,
                   facts: dict[str, Any] | None, today: dt.date,
-                  corpus: dict[str, Any] | None = None) -> dict[str, Any]:
+                  corpus: dict[str, Any] | None = None,
+                  skeletons: list[dict[str, str]] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
+    focus = contract.get("focus") or {}
+    lanes = focus.get("lanes") or []
 
     def entry_view(entry: dict[str, Any]) -> dict[str, Any]:
         return {
@@ -679,6 +890,9 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             "stale": drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today),
             "evidence": [evidence_view(ref, repositories, ledger_url) for ref in entry["evidence"]],
         }
+
+    def lane_tag(lane: dict[str, Any]) -> dict[str, str]:
+        return {"title": lane["title"], "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]]}
 
     cards = []
     items_by_ref: dict[str, dict[str, Any]] = {}
@@ -689,28 +903,9 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             items_by_ref[f"{card['id']}.{item['id']}"] = view
             entries.append(view)
         cards.append({"id": card["id"], "title": card["title"], "en": card.get("en") or "",
-                      "summary": card.get("summary") or "", "entries": entries,
+                      "summary": card.get("summary") or "", "entries": entries, "fold": bool(card.get("fold")),
+                      "lanes": [lane_tag(lane) for lane in lanes if lane.get("card") == card["id"]],
                       **_status_view(card["status"])})
-    cards_by_id = {card["id"]: card for card in cards}
-
-    tiles = []
-    for tile in contract.get("snapshot") or []:
-        view: dict[str, Any] = {"label": tile["label"], "kind": "no_data"}
-        if tile.get("source") == "publications" and facts:
-            view.update(kind="number", value=facts["books"], unit="本",
-                        sub=f"{facts['editions']} 个语言版")
-        elif tile.get("source") == "build_date":
-            view.update(kind="date", value=today.isoformat(),
-                        sub=f"最近发布 {facts['last_published']}" if facts and facts["last_published"] else "")
-        elif "card" in tile:
-            view.update(kind="status", **_status_view(cards_by_id[tile["card"]]["status"]))
-        elif "items" in tile:
-            view.update(kind="list", entries=[
-                {"label": items_by_ref[ref]["short"], "status": items_by_ref[ref]["status"],
-                 "note": "" if items_by_ref[ref]["status"] == "available" else items_by_ref[ref]["status_label"]}
-                for ref in tile["items"]
-            ])
-        tiles.append(view)
 
     flow = [{"source": link["from"], "target": link["to"], "mode": link["mode"],
              "mode_label": MODE_LABELS[link["mode"]], **entry_view(link)} for link in contract["flow"]]
@@ -718,23 +913,9 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
     gates, now = [], []
     if ledger is not None:
         for gate in contract["now_next"]["gates"]:
-            revs = expand_revs(gate["revs"])
-            counts: dict[str, int] = {}
-            for rev in revs:
-                state = ledger.statuses.get(rev, "planned")
-                counts[state] = counts.get(state, 0) + 1
-            done = counts.get("done", 0)
-            if done == len(revs):
-                state = "done"
-            elif counts.get("deferred", 0) == len(revs):
-                state = "deferred"
-            elif done or counts.get("verifying"):
-                state = "active"
-            else:
-                state = "idle"
-            tally = " · ".join(f"{LEDGER_LABELS.get(k, k)} {counts[k]}" for k in LEDGER_LABELS if counts.get(k))
-            gates.append({"id": gate["id"], "label": gate["label"], "state": state, "tally": tally,
-                          "done": done, "total": len(revs), "percent": round(100 * done / len(revs))})
+            gates.append({"id": gate["id"], "label": gate["label"], "fold": bool(gate.get("fold")),
+                          "lanes": [lane_tag(lane) for lane in lanes if gate["id"] in (lane.get("gates") or [])],
+                          **_progress(expand_revs(gate["revs"]), ledger)})
         for rev, label in (contract["now_next"].get("now_labels") or {}).items():
             state = ledger.statuses.get(rev, "planned")
             now.append({"rev": rev, "label": label, "status": state,
@@ -755,10 +936,57 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                 view["meta"] = f"版本 {match.get('version') or '未标注'}"
         working.append(view)
 
+    corpus_block = corpus_view(contract, corpus, today) if corpus else None
+    gates_by_id = {gate["id"]: gate for gate in gates}
+
+    def lane_view(lane: dict[str, Any]) -> dict[str, Any]:
+        tracked = bool(lane.get("gates") or lane.get("revs"))
+        progress: list[dict[str, Any]] = []
+        if ledger is not None:
+            for gid in lane.get("gates") or []:
+                if gid in gates_by_id:
+                    progress.append({"kind": "gate", **gates_by_id[gid]})
+            if lane.get("revs"):
+                revs = expand_revs(lane["revs"])
+                rows = []
+                for rev in revs:
+                    state = ledger.statuses.get(rev, "planned")
+                    rows.append({"rev": rev, "status": state, "status_label": LEDGER_LABELS.get(state, state),
+                                 "href": f"{ledger_url}#{rev.lower()}"})
+                progress.append({"kind": "revs", "id": "台账", "label": "执行台账", "revs": rows,
+                                 **_progress(revs, ledger)})
+        return {
+            "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
+            "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
+            "card": lane.get("card") or "",
+            "metrics": [metric for name in lane.get("metrics") or []
+                        for metric in lane_metrics(name, focus=focus, facts=facts,
+                                                   corpus=corpus_block, skeletons=skeletons)],
+            # Not "items": Jinja resolves lane.items to the dict method.
+            "entries": [items_by_ref[ref] for ref in lane.get("items") or []],
+            "progress": progress,
+            "untracked": not tracked,
+            "ledger_missing": tracked and ledger is None,
+        }
+
+    focus_view = None
+    if lanes:
+        groups = []
+        for horizon, label in HORIZON_LABELS.items():
+            views = [lane_view(lane) for lane in lanes if lane["horizon"] == horizon]
+            if views:
+                groups.append({"horizon": horizon, "label": label, "lanes": views})
+        focus_view = {
+            "note": focus.get("note") or "",
+            "groups": groups,
+            "evidence": [evidence_view(ref, repositories, ledger_url) for ref in focus.get("evidence") or []],
+            "stale": drift_reasons(focus, contract=contract, root=root, ledger=ledger, today=today),
+        }
+
     status_vocabulary = contract["vocabulary"]["status"]
     return {
         "hero": contract["hero"],
-        "tiles": tiles,
+        "focus": focus_view,
         "legend": [{"status": s, "label": STATUS_LABELS[s], "description": status_vocabulary[s]}
                    for s in STATUS_ORDER if s in status_vocabulary and s != "retired"],
         "cards": cards,
@@ -772,7 +1000,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "last_published": (facts or {}).get("last_published", ""),
         "ledger_url": ledger_url,
         "corpus_enabled": bool(contract.get("corpus")),
-        "corpus": corpus_view(contract, corpus, today) if corpus else None,
+        "corpus": corpus_block,
     }
 
 
@@ -817,7 +1045,8 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
     corpus, problems = load_corpus(contract, assets)
     if problems:
         logger.warning("System workspace corpus block shows no data: %s", "; ".join(problems[:3]))
-    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today, corpus=corpus)
+    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today, corpus=corpus,
+                         skeletons=skeleton_facts(root))
 
 
 # --- CLI ----------------------------------------------------------------------
@@ -878,9 +1107,14 @@ def _run_corpus_export(args) -> int:
     if not args.base_token:
         print("ERROR   need --base-token or $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN")
         return 1
+    output = args.output or args.contract.resolve().parent / str(contract["corpus"]["snapshot"])
+    previous, problem = _previous_snapshot(output)
+    if problem:
+        print(f"ERROR   {problem}")
+        return 1
     try:
-        snapshot = corpus_export(contract, base_token=args.base_token,
-                                 run=lark_runner(args.cli_bin, args.identity), today=args.today or _utc_today())
+        snapshot = corpus_export(contract, base_token=args.base_token, run=lark_runner(args.cli_bin, args.identity),
+                                 today=args.today or _utc_today(), previous=previous)
     except RuntimeError as exc:
         print(f"ERROR   {exc}")
         return 1
@@ -888,11 +1122,30 @@ def _run_corpus_export(args) -> int:
     if problems:
         print("ERROR   " + "; ".join(problems))
         return 1
-    output = args.output or args.contract.resolve().parent / str(contract["corpus"]["snapshot"])
     output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
-    print(f"wrote {output}: {pairs['total']} sentence pairs, {terms['total']} terms, exported {snapshot['exported_at']}")
+    print(f"wrote {output}: {pairs['total']} sentence pairs, {terms['total']} terms, exported "
+          f"{snapshot['exported_at']}; history carries {len(snapshot.get('history') or [])} earlier month(s)")
     return 0
+
+
+def _previous_snapshot(path: Path) -> tuple[dict[str, Any] | None, str]:
+    """The snapshot an export replaces (its history is carried forward), or the reason it cannot be."""
+    if not path.exists():
+        return None, ""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        return None, f"cannot read the snapshot being replaced ({path.name}): {exc}"
+    # Judge it by its own language set: a language added to the contract since
+    # then must not block carrying the earlier months forward.
+    pairs = data.get("sentence_pairs") if isinstance(data, dict) else None
+    languages = list((pairs.get("by_language") or {})) if isinstance(pairs, dict) else []
+    problems = corpus_problems(data, languages)
+    if problems:
+        return None, (f"the snapshot being replaced ({path.name}) is unsound, so its history cannot be "
+                      "carried: " + "; ".join(problems))
+    return data, ""
 
 
 if __name__ == "__main__":

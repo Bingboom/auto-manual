@@ -2268,10 +2268,13 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 
 同一构建还生成 `/workspace/system/` 系统建设页：状态来自
 `tools/rtd_portal_assets/system_workspace.yaml`，数量来自
-`docs/publish/publish_manifest.json`，阶段门进度来自执行台账。修改状态配置后运行
-`python tools/rtd_system_workspace.py check`（加 `--online` 可再核对 PR 与链接）。
+`docs/publish/publish_manifest.json`，阶段门进度来自执行台账。页首“当前重点”按
+配置里的 `focus.lanes` 分“现在 / 下一步”列出各条线，数字取自发布清单、语料快照和
+`docs/manifests/skeletons/*/blueprint.yaml`，进度取自各线列出的阶段门或台账行。
+修改状态配置后运行 `python tools/rtd_system_workspace.py check`（加 `--online` 可再核对 PR 与链接）。
 页内“语言资产”块读取汇总快照 `tools/rtd_portal_assets/system_workspace_corpus.json`，
-每月用 `python tools/rtd_system_workspace.py corpus-export` 只读导出后提交。
+每月用 `python tools/rtd_system_workspace.py corpus-export` 只读导出后提交；
+导出会把往月汇总数带进快照的 `history`，页面据此显示与上期的对比。
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
