@@ -174,3 +174,13 @@ manifest binds it as `app_asset_recipe`. The operator confirmed the crop on
   publish-branch mutation, or PR merge.
 - No whole-page screenshot rendering. Source panels remain illustrations inside
   shared semantic sections and components.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The fr/es/de/it/uk routes composed generic App screens with the JE-1000F/US control-panel drawing, and the English route bound a crop of the control-panel box alone (`app_control_panel`, no screens). Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. All six routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je2000f/eu/<lang>/app_add_device_panel`, PDF pages 20/36/52/68/84/100). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.

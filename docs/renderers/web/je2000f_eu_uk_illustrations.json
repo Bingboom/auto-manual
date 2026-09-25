@@ -313,6 +313,29 @@
     },
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_uk/app_add_device_panel.png",
+      "sha256": "8da4a952b5f6e596f445d921f59cc55663dcd547b0a3f75550b57827b762c964",
+      "source_page": 100,
+      "bbox_pt": [
+        32.3,
+        227.8,
+        334.6,
+        470.2
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Головна кнопка POWER Кнопка AC Кнопка DC / USB"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je2000f_eu_shared/app_connect_result.png",

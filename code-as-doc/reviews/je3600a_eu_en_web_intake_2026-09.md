@@ -123,3 +123,13 @@ energy-saving and parallel-connection notes), which is a separate
 translation gap. de/it are filled from the print for completeness but are not
 published. The live Feishu placeholder table has no JE-3600A_EU rows, so
 nothing was written there. The operator approved the change on 2026-09-24.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The es/fr routes composed generic App screens with the JE-1000F/US control-panel drawing, and the English route bound a crop of the control-panel box alone (`control_panel`, no screens). The English print labels the AC button "AC Button"; the English page has no label lines to cover. Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. The en/es/fr routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je3600a/eu/<lang>/app_add_device_panel`, PDF pages 21/55/38). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.

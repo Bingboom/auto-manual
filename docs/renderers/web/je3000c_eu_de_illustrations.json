@@ -9,6 +9,29 @@
   "illustrations": [
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_de/app_add_device_panel.png",
+      "sha256": "5d01f161495e04fc986988816870193c798b8f3bba57fa136e56d400d0101fcb",
+      "source_page": 68,
+      "bbox_pt": [
+        32.4,
+        229.4,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "POWER-Taste AC-Ausgangstaste DC/USB-Stromtaste"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je3000c_eu_shared/app_connect_result.png",

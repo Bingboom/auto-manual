@@ -156,6 +156,17 @@ and one-entry fr/es manifests. Earlier
 Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
 because their keys carry none of the gate's tokens.
 
+The App add-device figure of `JE-2000F / EU` (six routes), `JE-3000C / EU`
+(fr/es/de/it/uk) and `JE-3600A / EU` (en/es/fr) is, since 2026-09-24, each
+language block's own crop of the 2.1/2.2 screens together with that model's
+control-panel box and its printed button labels (quarantined App recipe entries
+`web/<model>/eu/<lang>/app_add_device_panel`). It replaces the shared
+composition of generic App screens with the JE-1000F/US control-panel drawing,
+and on the JE-2000F and JE-3600A English routes a crop of the control-panel box
+without the screens. The page's button-label lines become covered annotations
+(the figure's alt text). The JE-3000C English route already had its own complete
+panel.
+
 Every newly generated Web `manual.ir.json` contains a
 `metadata.web_figure_coverage` payload with schema
 `web-figure-coverage/v1`. It audits actual rendered Overview, Operation and

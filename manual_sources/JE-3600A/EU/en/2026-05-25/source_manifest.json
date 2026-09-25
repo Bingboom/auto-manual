@@ -22,11 +22,11 @@
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3600a_eu_web_app.json",
-    "sha256": "1afdd84096dfa0f07ff70ce3ae8248e1d44900727f992c0c00d9d62497423b85"
+    "sha256": "6e666959bf1a0579d0116df50ff8235b95c8d3c67af159c8cfca8e6bc2ca113c"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3600a_eu_en_illustrations.json",
-    "sha256": "2216579f8bb8b3a1c4c7cc36f9e49ce5df63ab620aba55c62d10e8fcb223f170"
+    "sha256": "fc3f36173d3a4b53d959994bbe87c12504f1aeea1d085d4b60468a8455cf9938"
   },
   "files": [
     {

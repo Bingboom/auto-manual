@@ -32,3 +32,7 @@ routes printed "Power Button", "USB Power Button" and "AC Power Button" in the
 App page. Their `Value_fr`, `Value_es`, `Value_de` and `Value_it` cells now hold
 each language block's printed names (PDF pages 38/55/72/89; only fr/es are
 published), and `source_manifest.json` re-locks the file. English is unchanged.
+
+App add-device figure (2026-09-24): the en/es/fr routes bind their own language block's crop of
+the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
+together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
