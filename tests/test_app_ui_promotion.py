@@ -11,11 +11,14 @@ from tempfile import TemporaryDirectory
 
 from tools.app_ui_promotion import (
     CANDIDATE_ASSET_KEYS,
+    EU_PROMOTION,
+    EU_PROMOTION_ID,
     PROMOTED_ASSET_KEYS,
     PROMOTION_CONTRACT_SHA256,
     PROMOTION_ID,
     PROMOTION_RELATIVE_PATH,
     ReviewedPromotionError,
+    promotion_for_asset,
     validate_reviewed_promotion,
 )
 from tools.asset_rewrites import restore_registry_asset_uris
@@ -38,6 +41,9 @@ EVIDENCE_RELATIVE_PATH = Path("data/asset_evidence/app_ui_candidates.json")
 CANDIDATE_DIR = Path("data/asset_evidence/app_ui/je1000f_us")
 PROMOTED_DIR = Path("docs/templates/word_template/common_assets/app/je1000f_us")
 LEGACY_APP_DIR = Path("docs/templates/word_template/common_assets/app")
+EU_CANDIDATE_DIR = Path("data/asset_evidence/app_ui/je1000f_eu")
+EU_PROMOTED_DIR = Path("docs/templates/word_template/common_assets/app/je1000f_eu")
+EU_LANGUAGES = ("en", "fr", "es", "de", "it", "uk")
 
 
 def _sha256(path: Path) -> str:
@@ -59,6 +65,37 @@ def _copy_promotion_inputs(root: Path) -> None:
         _copy_file(root, relative)
     shutil.copytree(ROOT / CANDIDATE_DIR, root / CANDIDATE_DIR)
     shutil.copytree(ROOT / PROMOTED_DIR, root / PROMOTED_DIR)
+
+
+def _copy_eu_promotion_inputs(root: Path) -> None:
+    for relative in (
+        EU_PROMOTION.contract_path,
+        EU_PROMOTION.recipe_path,
+        EU_PROMOTION.evidence_path,
+    ):
+        _copy_file(root, relative)
+    shutil.copytree(ROOT / EU_CANDIDATE_DIR, root / EU_CANDIDATE_DIR)
+    shutil.copytree(ROOT / EU_PROMOTED_DIR, root / EU_PROMOTED_DIR)
+
+
+def _rewrite_app_page(bundle: Path, source: str, target: AssetTarget) -> tuple[str, BundleAssetUsage]:
+    page = bundle / "page" / "app.rst"
+    page.parent.mkdir(parents=True)
+    page.write_text(source, encoding="utf-8")
+    usage = BundleAssetUsage(target=target, repo_root=ROOT)
+    rewritten = rewrite_rst_asset_paths(
+        source,
+        source_path=page,
+        target_path=page,
+        bundle_dir=bundle,
+        docs_dir=ROOT / "docs",
+        repo_root=ROOT,
+        asset_usage=usage,
+        model=target.model,
+        region=target.region,
+        language=target.language,
+    )
+    return rewritten, usage
 
 
 class TestAppUiReviewedPromotion(unittest.TestCase):
@@ -242,12 +279,14 @@ class TestAppUiReviewedPromotion(unittest.TestCase):
             self.assertIn("\\HBAppAsset{asset:app/add_device}", restored)
             self.assertIn(".. image:: asset:app/add_device", restored)
 
-    def test_raw_latex_alias_does_not_leak_to_jp_eu_or_ko_targets(self) -> None:
+    def test_raw_latex_alias_does_not_leak_outside_reviewed_targets(self) -> None:
         source = "\\HBAppAsset{add_device.png}{66mm}{57mm}\n"
         targets = (
             AssetTarget(model="JE-1000F", region="JP", language="ja"),
-            AssetTarget(model="JE-1000F", region="EU", language="de"),
             AssetTarget(model="JE-1000F", region="KR", language="ko"),
+            # A reviewed region is still limited to its reviewed languages.
+            AssetTarget(model="JE-1000F", region="US", language="de"),
+            AssetTarget(model="JE-2000F", region="EU", language="de"),
         )
         with TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -385,6 +424,166 @@ class TestAppUiReviewedPromotion(unittest.TestCase):
                         PROMOTION_ID,
                         registry_record=mutated,
                     )
+
+
+class TestJe1000fEuAppUiReviewedPromotion(unittest.TestCase):
+    """The EU contract: the EU print's own English App screens for JE-1000F/EU."""
+
+    def setUp(self) -> None:
+        self.records = load_registry(ROOT / "data" / "asset_registry.csv")
+        self.by_key = {record.asset_key: record for record in self.records}
+
+    def test_shared_keys_resolve_to_each_target_region_own_screens(self) -> None:
+        expectations = (
+            ("EU", EU_LANGUAGES, f"reviewed-promotion:{EU_PROMOTION_ID}", EU_PROMOTED_DIR),
+            ("US", ("en", "fr", "es"), f"reviewed-promotion:{PROMOTION_ID}", PROMOTED_DIR),
+        )
+        for shared_key in ("app/add_device", "app/connect_result"):
+            for region, languages, source, directory in expectations:
+                for language in languages:
+                    with self.subTest(asset_key=shared_key, region=region, language=language):
+                        resolution = resolve_asset(
+                            self.records,
+                            repo_root=ROOT,
+                            asset_key=shared_key,
+                            format_name="png",
+                            language=language,
+                            model="JE-1000F",
+                            region=region,
+                        )
+                        self.assertEqual(source, resolution.source)
+                        self.assertEqual(directory.as_posix(), Path(resolution.path).parent.as_posix())
+            with self.subTest(asset_key=shared_key, region="JP"):
+                jp = resolve_asset(
+                    self.records,
+                    repo_root=ROOT,
+                    asset_key=shared_key,
+                    format_name="png",
+                    language="ja",
+                    model="JE-1000F",
+                    region="JP",
+                )
+                self.assertEqual(LEGACY_APP_DIR.as_posix(), Path(jp.path).parent.as_posix())
+
+        report = check_registry(
+            self.records,
+            repo_root=ROOT,
+            asset_keys=EU_PROMOTION.promoted_asset_keys,
+            publish=True,
+        )
+        self.assertEqual((), report.errors)
+
+    def test_exports_are_the_confirmed_print_crops_byte_for_byte(self) -> None:
+        for candidate, output in zip(EU_PROMOTION.candidates, EU_PROMOTION.outputs, strict=True):
+            with self.subTest(asset_key=output.asset_key):
+                self.assertEqual(candidate.sha256, output.sha256)
+                self.assertEqual(
+                    (ROOT / candidate.path).read_bytes(), (ROOT / output.path).read_bytes()
+                )
+                self.assertEqual(
+                    ((candidate.asset_key, (0, 0), (0, 0) + candidate.dimensions_px),),
+                    tuple(
+                        (item.candidate_asset_key, item.xy_px, item.source_rect_px)
+                        for item in output.placements
+                    ),
+                )
+
+    def test_raw_latex_alias_and_image_uri_use_the_eu_screens(self) -> None:
+        source = (
+            ".. raw:: latex\n\n"
+            "   \\HBAppAsset{connect_result.png}{78mm}{50mm}\n\n"
+            ".. image:: asset:app/connect_result\n"
+        )
+        for language in ("de", "uk"):
+            with self.subTest(language=language), TemporaryDirectory() as tmp:
+                bundle = Path(tmp) / "bundle"
+                rewritten, usage = _rewrite_app_page(
+                    bundle, source, AssetTarget(model="JE-1000F", region="EU", language=language)
+                )
+                unique_name = "connect_result_je1000f_eu.png"
+                staged = bundle / "_assets" / (EU_PROMOTED_DIR / unique_name).relative_to("docs")
+                self.assertIn(f"\\HBAppAsset{{{unique_name}}}", rewritten)
+                self.assertIn(staged.relative_to(bundle).as_posix(), rewritten)
+                self.assertEqual((ROOT / EU_PROMOTED_DIR / unique_name).read_bytes(), staged.read_bytes())
+                self.assertNotIn("je1000f_us", rewritten)
+
+    def test_candidates_stay_quarantined_evidence(self) -> None:
+        for asset_key in EU_PROMOTION.candidate_asset_keys:
+            with self.subTest(asset_key=asset_key):
+                with self.assertRaisesRegex(AssetRegistryError, "not registered"):
+                    resolve_asset(
+                        self.records,
+                        repo_root=ROOT,
+                        asset_key=asset_key,
+                        format_name="png",
+                        language="en",
+                        model="JE-1000F",
+                        region="EU",
+                    )
+
+    def test_contracts_do_not_cross(self) -> None:
+        self.assertIs(EU_PROMOTION, promotion_for_asset("app/je1000f_eu/add_device"))
+        self.assertIsNone(promotion_for_asset("app/add_device"))
+        us_record = self.by_key[PROMOTED_ASSET_KEYS[0]]
+        eu_record = self.by_key["app/je1000f_eu/add_device"]
+        for record, promotion_id in ((us_record, EU_PROMOTION_ID), (eu_record, PROMOTION_ID)):
+            with self.subTest(asset_key=record.asset_key, promotion_id=promotion_id):
+                with self.assertRaisesRegex(ReviewedPromotionError, "outside the promoted output whitelist"):
+                    validate_reviewed_promotion(ROOT, promotion_id, registry_record=record)
+
+    def test_contract_rejects_decision_scope_hash_and_whitelist_tampering(self) -> None:
+        cases = (
+            ("reviewer", lambda row: row["decision"].update(reviewer="Someone Else"), "reviewer"),
+            ("decision time", lambda row: row["decision"].update(decided_at="2026-09-24T06:18:01-07:00"), "decision time"),
+            ("scope", lambda row: row["scope"]["languages"].append("pl"), "scope"),
+            ("region", lambda row: row["scope"].update(regions=["US"]), "scope"),
+            ("source", lambda row: row["bindings"]["source"].update(sha256="0" * 64), "source"),
+            ("recipe", lambda row: row["bindings"]["recipe"].update(sha256="0" * 64), "recipe"),
+            ("evidence", lambda row: row["bindings"]["evidence"].update(sha256="0" * 64), "evidence"),
+            ("candidate hash", lambda row: row["candidate_assets"][0].update(sha256="0" * 64), "candidate"),
+            ("output hash", lambda row: row["promoted_outputs"][0].update(sha256="0" * 64), "output"),
+            ("extra output", lambda row: row["promoted_outputs"].append(deepcopy(row["promoted_outputs"][0])), "output whitelist"),
+        )
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            _copy_eu_promotion_inputs(root)
+            contract_path = root / EU_PROMOTION.contract_path
+            baseline = json.loads(contract_path.read_text(encoding="utf-8"))
+            self.assertEqual(EU_PROMOTION_ID, validate_reviewed_promotion(root, EU_PROMOTION_ID))
+            for label, mutate, message in cases:
+                with self.subTest(case=label):
+                    payload = deepcopy(baseline)
+                    mutate(payload)
+                    contract_path.write_text(
+                        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+                        encoding="utf-8",
+                    )
+                    with self.assertRaisesRegex(ReviewedPromotionError, message):
+                        validate_reviewed_promotion(root, EU_PROMOTION_ID)
+            contract_path.write_text(
+                json.dumps(baseline, ensure_ascii=False, indent=2) + "\n\n",
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(ReviewedPromotionError, "SHA-256"):
+                validate_reviewed_promotion(root, EU_PROMOTION_ID)
+
+    def test_registry_binding_must_match_the_reviewed_contract_exactly(self) -> None:
+        record = self.by_key["app/je1000f_eu/connect_result"]
+        cases = (
+            (replace(record, region_scope=("US",)), "region scope"),
+            (replace(record, override_for="app/add_device"), "override target"),
+            (replace(record, language_variants=("en", "fr", "es", "de", "it")), "language variants"),
+            (replace(record, export_root=PROMOTED_DIR), "export root"),
+            (replace(record, hashes=(("png", "0" * 64),)), "registry hash"),
+            (replace(record, notes=f"reviewed-promotion={PROMOTION_ID}"), "promotion marker"),
+        )
+        self.assertEqual(
+            EU_PROMOTION_ID, validate_reviewed_promotion(ROOT, EU_PROMOTION_ID, registry_record=record)
+        )
+        for mutated, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ReviewedPromotionError, message):
+                    validate_reviewed_promotion(ROOT, EU_PROMOTION_ID, registry_record=mutated)
 
 
 if __name__ == "__main__":

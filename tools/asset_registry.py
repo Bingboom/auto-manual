@@ -23,9 +23,9 @@ from pathlib import Path
 from typing import Iterable
 
 from tools.app_ui_promotion import (
-    PROMOTED_ASSET_KEYS,
-    PROMOTION_ID,
+    ALL_PROMOTED_ASSET_KEYS,
     ReviewedPromotionError,
+    promotion_for_asset,
     validate_reviewed_promotion,
 )
 from tools.utils.path_utils import PathSegments
@@ -564,18 +564,19 @@ def resolve_asset(
         )
     resolved_language = _resolution_language(record, language)
     resolution_source = "registry-export"
-    if asset_key in PROMOTED_ASSET_KEYS:
+    promotion = promotion_for_asset(asset_key)
+    if promotion is not None:
         try:
             validate_reviewed_promotion(
                 repo_root,
-                PROMOTION_ID,
+                promotion.promotion_id,
                 registry_record=record,
             )
         except ReviewedPromotionError as exc:
             raise AssetRegistryError(
                 f"asset {asset_key} reviewed promotion is invalid: {exc}"
             ) from exc
-        resolution_source = f"reviewed-promotion:{PROMOTION_ID}"
+        resolution_source = f"reviewed-promotion:{promotion.promotion_id}"
     candidates = _matching_artifacts(
         record,
         repo_root=repo_root,
@@ -632,7 +633,7 @@ def check_registry(
     for key in sorted(selected_keys - known_keys):
         errors.append(AssetIssue("unknown_asset", key, "asset key is not registered"))
     if not selected_keys:
-        for key in sorted(set(PROMOTED_ASSET_KEYS) - known_keys):
+        for key in sorted(set(ALL_PROMOTED_ASSET_KEYS) - known_keys):
             errors.append(
                 AssetIssue(
                     "reviewed_promotion_missing",
@@ -649,11 +650,12 @@ def check_registry(
 
     for record in selected_records:
         status_counts[record.status] += 1
-        if record.asset_key in PROMOTED_ASSET_KEYS:
+        promotion = promotion_for_asset(record.asset_key)
+        if promotion is not None:
             try:
                 validate_reviewed_promotion(
                     repo_root,
-                    PROMOTION_ID,
+                    promotion.promotion_id,
                     registry_record=record,
                 )
             except ReviewedPromotionError as exc:
