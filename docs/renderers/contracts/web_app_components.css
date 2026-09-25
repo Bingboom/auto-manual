@@ -51,6 +51,15 @@
   height: auto !important;
   margin: 0 auto !important;
   object-fit: contain;
+  /*
+   * The live labels are positioned against this box, and the image is
+   * lazy-loaded.  Reserve the artwork's ratio so the box already has its
+   * height before the file arrives; otherwise the labels collapse onto one
+   * line and overlap.  `auto` lets the loaded file's own ratio win.  Keep the
+   * numbers equal to the declared control artwork's pixel ratio (a test checks
+   * every contract's control_artwork).
+   */
+  aspect-ratio: auto 1203 / 265;
 }
 
 .hb-app-add-device-live-label {

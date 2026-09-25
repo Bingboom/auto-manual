@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 import tempfile
 import unittest
@@ -1294,6 +1295,43 @@ class WebPresentationTests(unittest.TestCase):
                     "embedded",
                     figure.get("data-step-captions") if figure else None,
                 )
+
+    def test_app_control_panel_reserves_its_artwork_ratio_before_the_image_loads(self) -> None:
+        """The labels sit on a lazy-loaded image; an unloaded box must not collapse."""
+        css = (ROOT / "docs" / "renderers" / "contracts" / "web_app_components.css").read_text(
+            encoding="utf-8"
+        )
+        rule = re.search(
+            r"#furo-main-content \.hb-app-add-device-control-art \{(?P<body>[^}]*)\}", css
+        )
+        self.assertIsNotNone(rule)
+        ratio = re.search(
+            r"aspect-ratio:\s*auto\s+(\d+)\s*/\s*(\d+);", rule.group("body") if rule else ""
+        )
+        self.assertIsNotNone(ratio, "the control art must reserve `auto W / H`")
+        css_w, css_h = (int(ratio.group(1)), int(ratio.group(2))) if ratio else (0, 0)
+
+        def control_artworks(node):
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    if key == "control_artwork" and isinstance(value, str):
+                        yield value
+                    else:
+                        yield from control_artworks(value)
+            elif isinstance(node, list):
+                for value in node:
+                    yield from control_artworks(value)
+
+        declared = sorted({
+            artwork
+            for contract in (ROOT / "docs" / "renderers" / "contracts").rglob("*.json")
+            for artwork in control_artworks(json.loads(contract.read_text(encoding="utf-8")))
+        })
+        self.assertTrue(declared)
+        for artwork in declared:
+            with self.subTest(artwork=artwork), Image.open(ROOT / artwork) as image:
+                width, height = image.size
+                self.assertEqual(css_w * height, css_h * width, f"{artwork} is {width}x{height}")
 
     def test_app_add_device_embeds_steps_and_keeps_live_localized_labels(self) -> None:
         localized = {
