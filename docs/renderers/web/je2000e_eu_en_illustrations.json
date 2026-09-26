@@ -9,6 +9,48 @@
   "illustrations": [
     {
       "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je2000e_eu_en/inbox_main.png",
+      "sha256": "48f36d3f9743b72050fe218c72ddcefad0dcbf513ff72877d3e951bb1ad235ab",
+      "source_page": 7,
+      "bbox_pt": [
+        47,
+        323,
+        130,
+        405
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je2000e_eu_en/inbox_cable.png",
+      "sha256": "c6cdf9a78185cd034e0032fa427477c576c80d88ef28f90c0b887a4fc0fa4539",
+      "source_page": 7,
+      "bbox_pt": [
+        175,
+        323,
+        222,
+        405
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je2000e_eu_en/inbox_manual.png",
+      "sha256": "212dc1705383bf23f618d42aed0f210026edf755f9417a9435b08f35c4614dc7",
+      "source_page": 7,
+      "bbox_pt": [
+        267,
+        323,
+        321,
+        405
+      ]
+    },
+    {
+      "replaces": [
         "front_product.jpg"
       ],
       "path": "assets/je2000e_eu_en/overview_front.png",

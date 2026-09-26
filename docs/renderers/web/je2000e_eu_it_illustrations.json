@@ -5,8 +5,347 @@
   "language": "it",
   "source_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
   "source_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
-  "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je2000e_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je2000e_eu_it/inbox_main.png",
+      "sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada",
+      "source_page": 83,
+      "bbox_pt": [
+        44.5,
+        328.5,
+        127.5,
+        410.5
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je2000e_eu_it/inbox_cable.png",
+      "sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b",
+      "source_page": 83,
+      "bbox_pt": [
+        174.0,
+        325.5,
+        221.0,
+        407.5
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je2000e_eu_it/inbox_manual.png",
+      "sha256": "fbf65a42e2126aea6d62845b86edfbb5f7466e07930f88111fef916a90217f50",
+      "source_page": 83,
+      "bbox_pt": [
+        263.0,
+        323.5,
+        317.0,
+        405.5
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000e_eu_it/overview_front.png",
+      "sha256": "80dd8b7e26c7e8966c06c32eeba21c8d404a7596b933dc5af8720e80460a6b0a",
+      "source_page": 84,
+      "bbox_pt": [
+        27.25,
+        73.25,
+        341.25,
+        240.25
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-frontale > table",
+          "text": "Pulsante POWER principale LCD Porta 12 V CC 12 V⎓10 A max. Pulsante luce LED Pulsante DC / USB Luce LED Uscita USB-C 30 W 30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A Pulsante CA1 Uscita USB-C da 140 W 140 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A Pulsante CA2 Uscita USB-A 18 W 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A Uscita CA 230 V~ 50 Hz, 10 A max., 2400 W nominali"
+        },
+        {
+          "selector": "#vista-frontale > table",
+          "text": "Uscita totale 2400 W nominali, 4800 W di picco"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000e_eu_it/overview_side.png",
+      "sha256": "99a844febdab5cd076ddd6691c694e333a84cda1eea86a74c4409f038f3378b9",
+      "source_page": 84,
+      "bbox_pt": [
+        26.25,
+        247.4,
+        340.25,
+        500.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#viste-laterali-sinistra-e-destra > table",
+          "text": "Maniglia Porta di Espansione CC Collegare al pacco batteria Ingresso CA 220 V-240 V~ 50 Hz, 10 A max. Ingresso DC (2×porte DC8020) PV: 16-60 V⎓12 A max., fino a 21 A / 800 W max. con doppio ingresso Auto: 11-16 V⎓8 A max., fino a 8 A max. con doppio ingresso"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000e_eu_it/lcd_map.png",
+      "sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825",
+      "source_page": 85,
+      "bbox_pt": [
+        34.0,
+        55.0,
+        325.0,
+        240.0
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_power.png",
+      "sha256": "1f678cd2a4c2ff2959697886a2af1fa1042477b5c4199eeffe3619efcd8f33a6",
+      "source_page": 88,
+      "bbox_pt": [
+        27.0,
+        74.0,
+        342.0,
+        248.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#accensione-spegnimento > .line-block",
+          "text": "Accensione: premi una volta. Spegnimento: tieni premuto per 3 s."
+        },
+        {
+          "selector": "#accensione-spegnimento > .line-block",
+          "text": "Tempo di standby predefinito: 2 ore. Il prodotto si spegnerà automaticamente dopo 2 ore di inattività, senza ricarica o scarica. *Il tempo di standby può essere impostato nell'App Jackery. Quando la Modalità risparmio energetico è attiva, il prodotto si spegnerà automaticamente dopo 12 ore se l'uscita CA o DC/USB è attiva ma il prodotto non sta caricando o scaricando."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_ac.png",
+      "sha256": "3ea92238650865bf01e911a103f50b5579010c3d413a9dc7340c767b38f3ed5c",
+      "source_page": 88,
+      "bbox_pt": [
+        27.0,
+        272.0,
+        342.0,
+        497.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#uscita-ca-attiva-disattiva > p",
+          "text": "Prerequisito : il prodotto è acceso."
+        },
+        {
+          "selector": "#uscita-ca-attiva-disattiva > p",
+          "text": "I pulsanti di alimentazione CA1 e CA2 controllano due coppie separate di prese CA. Premendo ciascun pulsante si attiva o disattiva la rispettiva coppia di prese CA."
+        },
+        {
+          "selector": "#uscita-ca-attiva-disattiva > .line-block",
+          "text": "Accensione Premi una volta Spegnimento Premi una volta"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_dc.png",
+      "sha256": "dd2198db5431f53d0986e2401a62267b5e164cba6de01938026b8d306d5cbff3",
+      "source_page": 89,
+      "bbox_pt": [
+        27.0,
+        45.0,
+        342.0,
+        286.8
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#uscita-cc-12-v-usb-attiva-disattiva > p",
+          "text": "Prerequisito : il prodotto è acceso."
+        },
+        {
+          "selector": "#uscita-cc-12-v-usb-attiva-disattiva > .line-block",
+          "text": "Accensione Premi una volta Spegnimento Premi una volta"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_energy.png",
+      "sha256": "7474817b057474da3b7f300f31b25beecb055dc19dc3025470d10b49f2af0240",
+      "source_page": 90,
+      "bbox_pt": [
+        27.0,
+        46.0,
+        342.0,
+        304.05
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#modalita-risparmio-energetico > p",
+          "text": "Per evitare un consumo inutile della batteria dovuto al mancato spegnimento dell'uscita, il prodotto abilita per impostazione predefinita la Modalità risparmio energetico. Quando l'uscita CA o CC è attiva, l'icona della Modalità risparmio energetico viene visualizzata sullo schermo LCD. In questa modalità, se non è collegato alcun dispositivo oppure il consumo del dispositivo collegato è inferiore a una certa soglia (25 W per l'uscita CA o 2 W per l'uscita DC/USB), l'uscita corrispondente si spegnerà automaticamente dopo il tempo impostato. L'impostazione predefinita e 12 ore. La durata della Modalità risparmio energetico può essere impostata nell'App Jackery su 1 H, 2 H, 8 H, 12 H o 24 H. Se viene impostata su Mai spegnimento, la Modalità risparmio energetico sarà disattivata."
+        },
+        {
+          "selector": "#modalita-risparmio-energetico > p",
+          "text": "Per disattivare la Modalità risparmio energetico, tieni premuti per più di 3 secondi sia il pulsante CA1 sia il pulsante POWER principale. Una volta disattivata la Modalità risparmio energetico, l'icona non comparirà più sullo schermo LCD e il prodotto non spegnerà automaticamente l'uscita CA o DC/USB."
+        },
+        {
+          "selector": "#modalita-risparmio-energetico > p",
+          "text": "Quando si alimentano dispositivi a basso consumo (CA <= 25 W oppure DC/USB <= 2 W), disattiva la Modalità risparmio energetico per evitare che l'uscita si spenga automaticamente durante il funzionamento."
+        },
+        {
+          "selector": "#modalita-risparmio-energetico > .line-block",
+          "text": "Tieni premuti entrambi i pulsanti per più di 3 secondi."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_led.png",
+      "sha256": "e508e7a2efac75f6077a6c1514e8c2e9978df2cccc447983c9376b2a0a4d2009",
+      "source_page": 90,
+      "bbox_pt": [
+        25.91,
+        354.29,
+        340.91,
+        498.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#luce-led-on-off > p",
+          "text": "La luce LED ha due modalità: modalità luce e modalità SOS. In qualsiasi modalità, tieni premuto il pulsante della luce LED per spegnere la luce."
+        },
+        {
+          "selector": "#luce-led-on-off > .line-block",
+          "text": "Premi una volta il pulsante luce LED per accendere la luce. Premilo di nuovo per passare alla modalità SOS. Premilo una terza volta per spegnere la luce."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000e_eu_it/operation_lcd.png",
+      "sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f",
+      "source_page": 91,
+      "bbox_pt": [
+        37.0,
+        57.5,
+        149.0,
+        206.5
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000e_eu_it/ups.png",
+      "sha256": "10cb6c23c35de220cf103ac486013579198ac15909dfa99478f73473a66e0fd8",
+      "source_page": 92,
+      "bbox_pt": [
+        27.0,
+        217.39,
+        342.0,
+        402.83
+      ],
+      "covered_annotations": [
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "Un gruppo di continuità (UPS) è un sistema di alimentazione continua che fornisce automaticamente energia di riserva a un carico quando viene a mancare l'alimentazione della rete elettrica."
+        },
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "In caso di improvvisa interruzione dell'alimentazione di rete, Jackery Explorer 2000 Plus passerà automaticamente all'alimentazione accumulata entro 10 ms per mantenere in funzione i tuoi apparecchi."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "extra_battery.png"
+      ],
+      "path": "assets/je2000e_eu_it/extra_battery.png",
+      "sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b",
+      "source_page": 93,
+      "bbox_pt": [
+        29.09,
+        103.22,
+        343.09,
+        315.22
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000e_eu_it/charging_ac.png",
+      "sha256": "aef694a3044c4c69e1b0ef98e7cce02bbbd616eca35b23a6be8aefe57ab4d78f",
+      "source_page": 94,
+      "bbox_pt": [
+        28.87,
+        194.84,
+        341.87,
+        299.22
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ricarica-tramite-presa-a-muro-ca > p",
+          "text": "Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una presa a muro."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000e_eu_it/charging_solar.png",
+      "sha256": "ed5ffb54a716fbef7b3500e06c20ac30e6924d138292a1179f34e95c26496931",
+      "source_page": 95,
+      "bbox_pt": [
+        29.68,
+        25.46,
+        345.06,
+        163.46
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000e_eu_it/charging_car.png",
+      "sha256": "47f746c84f9e827432ded2d66faf90e2a8b5acba87f33e79229f80b2c37423d1",
+      "source_page": 95,
+      "bbox_pt": [
+        26.12,
+        296.39,
+        341.12,
+        429.16
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ricarica-tramite-caricatore-per-auto-venduti-separatamente > .line-block",
+          "text": "Veicolo *Il cavo di ricarica per auto è venduto separatamente."
+        }
+      ]
+    },
     {
       "replaces": [
         "add_device.png"

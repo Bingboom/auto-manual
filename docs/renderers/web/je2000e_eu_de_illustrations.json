@@ -5,8 +5,347 @@
   "language": "de",
   "source_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
   "source_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
-  "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je2000e_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je2000e_eu_de/inbox_main.png",
+      "sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada",
+      "source_page": 64,
+      "bbox_pt": [
+        44.5,
+        328.5,
+        127.5,
+        410.5
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je2000e_eu_de/inbox_cable.png",
+      "sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b",
+      "source_page": 64,
+      "bbox_pt": [
+        174.0,
+        325.5,
+        221.0,
+        407.5
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je2000e_eu_de/inbox_manual.png",
+      "sha256": "cf4e7b489c4476aca921d1c85136012d814fdbe1074ae3bbedd5e4750e80f9d5",
+      "source_page": 64,
+      "bbox_pt": [
+        263.0,
+        323.5,
+        317.0,
+        405.5
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000e_eu_de/overview_front.png",
+      "sha256": "f4c9f42371c39cb54f5b7b7a338d874238f5c715f43d993ca9799f7c6169f4a6",
+      "source_page": 65,
+      "bbox_pt": [
+        27.25,
+        73.25,
+        341.25,
+        240.25
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Haupt-POWER-Taste LCD 12-V-DC-Anschluss 12 V⎓10 A max. LED-Lichttaste DC / USB-Einschalttaste LED-Licht USB-C 30 W-Ausgang 30 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A AC1-Einschalttaste USB-C 140 W-Ausgang 140 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A AC2-Einschalttaste USB-A 18 W-Ausgang 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A AC-Ausgang 230 V~ 50 Hz, 10 A max., 2400 W Nennleistung"
+        },
+        {
+          "selector": "#vorderansicht > table",
+          "text": "Gesamtausgang 2400 W Nennleistung, 4800 W Spitzenleistung (Surge)"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000e_eu_de/overview_side.png",
+      "sha256": "618f98b6fc6c5632f0540c3b68b0ddb725b86dea70b3fab576b9644a97090526",
+      "source_page": 65,
+      "bbox_pt": [
+        26.25,
+        247.4,
+        340.25,
+        500.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#linke-und-rechte-seitenansicht > table",
+          "text": "Griff DC-Erweiterungsanschluss An Batteriepack anschließen AC-Eingang 220 V-240 V~ 50 Hz, 10 A max. DC-Eingang (2×DC8020-Anschlüsse) PV: 16–60 V⎓12 A max., bei Verwendung beider Eingänge bis zu 21 A / 800 W max. Auto: 11–16 V⎓8 A max., bei Verwendung beider Eingänge bis zu 8 A max."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000e_eu_de/lcd_map.png",
+      "sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825",
+      "source_page": 66,
+      "bbox_pt": [
+        34.0,
+        55.0,
+        325.0,
+        240.0
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_power.png",
+      "sha256": "6fbaec6c18cfd535fe9318348d68cf4c1c7256ca7db7f0bd55eab30bab1e7abf",
+      "source_page": 69,
+      "bbox_pt": [
+        27.0,
+        74.0,
+        342.0,
+        248.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block",
+          "text": "Ein: Einmal drücken. Aus: 3 s lang gedrückt halten."
+        },
+        {
+          "selector": "#hauptstromversorgung-ein-aus > .line-block",
+          "text": "Standard-Standby-Zeit: 2 Stunden. Das Produkt schaltet sich nach 2 Stunden Inaktivität automatisch aus, wenn weder geladen noch entladen wird. *Die Standby-Zeit kann in der Jackery-App eingestellt werden. Wenn der Energiesparmodus aktiviert ist, schaltet sich das Produkt automatisch nach 12 Stunden aus, wenn die AC- oder DC/USB-Einschalttaste eingeschaltet ist, das Produkt jedoch weder lädt noch entlädt."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_ac.png",
+      "sha256": "65d146f550ce39df194ff524f624d772e72175a2f25952603778c70e11ad6dd3",
+      "source_page": 69,
+      "bbox_pt": [
+        27.0,
+        272.0,
+        342.0,
+        497.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ac-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#ac-ausgang-ein-aus > p",
+          "text": "Die AC1- und AC2-Stromtasten steuern zwei getrennte Paare von AC-Ausgängen. Durch Drücken jeder Taste wird das entsprechende AC-Steckdosenpaar ein- oder ausgeschaltet."
+        },
+        {
+          "selector": "#ac-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_dc.png",
+      "sha256": "8313822ab320e53ed49adad589e8999a66232651f54f2d43e5aae4f828e807cb",
+      "source_page": 70,
+      "bbox_pt": [
+        27.0,
+        45.0,
+        342.0,
+        286.8
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > p",
+          "text": "Voraussetzung : Das Produkt ist eingeschaltet."
+        },
+        {
+          "selector": "#dc-12v-usb-ausgang-ein-aus > .line-block",
+          "text": "Ein Einmal drücken Aus Einmal drücken"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_energy.png",
+      "sha256": "db2aac5744b79ea573606bd54aa904f653f6a945f1b1cf3d7c4999961256d162",
+      "source_page": 71,
+      "bbox_pt": [
+        27.0,
+        46.0,
+        342.0,
+        304.05
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Um zu verhindern, dass die Batterie unnötig entladen wird, wenn das Ausschalten des Ausgangs vergessen wird, ist der Energiesparmodus standardmäßig aktiviert. Wenn der AC- oder DC/USB-Ausgang eingeschaltet wird, wird das Energiesparmodus-Symbol auf dem LCD angezeigt. In diesem Modus schaltet sich der entsprechende Ausgang nach der eingestellten Zeit automatisch aus, wenn kein Gerät angeschlossen ist oder die Leistungsaufnahme des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (25 W beim AC-Ausgang oder 2 W beim DC/USB-Ausgang). Die Standardeinstellung ist 12 Stunden. Die Dauer des Energiesparmodus kann in der Jackery-App auf 1 H, 2 H, 8 H, 12 H oder 24 H eingestellt werden. Wenn \"Nie ausschalten\" eingestellt ist, wird der Energiesparmodus deaktiviert."
+        },
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC1-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus."
+        },
+        {
+          "selector": "#energiesparmodus > p",
+          "text": "Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= 25 W oder DC/USB <= 2 W), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird."
+        },
+        {
+          "selector": "#energiesparmodus > .line-block",
+          "text": "Halten Sie beide Tasten länger als 3 Sekunden gedrückt."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_led.png",
+      "sha256": "b465458444ae768eee080bb02c636430692aecf841ffe8180065545bff335fdb",
+      "source_page": 71,
+      "bbox_pt": [
+        25.91,
+        354.29,
+        340.91,
+        498.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#led-licht-ein-aus > p",
+          "text": "Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten."
+        },
+        {
+          "selector": "#led-licht-ein-aus > .line-block",
+          "text": "Drücken Sie die LED-Lichttaste einmal, um das Licht einzuschalten. Drücken Sie sie erneut, um in den SOS-Modus zu wechseln. Drücken Sie sie ein drittes Mal, um das Licht auszuschalten."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000e_eu_de/operation_lcd.png",
+      "sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f",
+      "source_page": 72,
+      "bbox_pt": [
+        37.0,
+        57.5,
+        149.0,
+        206.5
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000e_eu_de/ups.png",
+      "sha256": "ca021c4e40686f6780f3fcda0d204b188c4f602ec431d5ea62a26f2feaf47d57",
+      "source_page": 73,
+      "bbox_pt": [
+        27.0,
+        217.39,
+        342.0,
+        402.83
+      ],
+      "covered_annotations": [
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt."
+        },
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "Bei einem plötzlichen Ausfall der Netzstromversorgung schaltet Jackery Explorer 2000 Plus innerhalb von 10 ms automatisch auf gespeicherte Energie um, damit Ihre Geräte weiterlaufen."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "extra_battery.png"
+      ],
+      "path": "assets/je2000e_eu_de/extra_battery.png",
+      "sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b",
+      "source_page": 74,
+      "bbox_pt": [
+        29.09,
+        103.22,
+        343.09,
+        315.22
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000e_eu_de/charging_ac.png",
+      "sha256": "89ac8dd0b6bf565ddbc042b9f51f393de6186ab59715d8cc5b311cd190079cf8",
+      "source_page": 75,
+      "bbox_pt": [
+        28.87,
+        194.84,
+        341.87,
+        299.22
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-eine-ac-steckdose > p",
+          "text": "Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an eine Steckdose an."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000e_eu_de/charging_solar.png",
+      "sha256": "fe154a059060bfc0bf2ada7d8564665ad7cb433e945f46515b7b6fe102c747ed",
+      "source_page": 76,
+      "bbox_pt": [
+        29.68,
+        25.46,
+        345.06,
+        163.46
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000e_eu_de/charging_car.png",
+      "sha256": "d7c120fbdf4d31d70357d33d7140b04f4937396eed66e5c7540a890df1b239e6",
+      "source_page": 76,
+      "bbox_pt": [
+        26.12,
+        296.39,
+        341.12,
+        429.16
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#aufladen-uber-das-autoladegerat-separat-erhaltlich > .line-block",
+          "text": "Fahrzeug *Das Autoladekabel ist separat erhältlich."
+        }
+      ]
+    },
     {
       "replaces": [
         "add_device.png"
