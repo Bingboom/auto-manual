@@ -5,7 +5,7 @@
 
    Questo prodotto può supportare fino a 5 battery pack per soddisfare le esigenze di grande capacità energetica. Per i dettagli sull'utilizzo, fare riferimento al *Manuale utente di Jackery Battery Pack 2000*.
 
-   .. image:: asset:in_the_box/main_unit1
+   .. image:: renderers/web/assets/je2000e_eu_it/extra_battery.png
       :alt: Segnaposto diagramma di collegamento al battery pack.
       :width: 360px
 

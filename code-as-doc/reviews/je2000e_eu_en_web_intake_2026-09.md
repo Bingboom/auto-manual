@@ -181,3 +181,71 @@ pure-white edges. The page's four label lines become covered annotations, so
 the figure's alt text keeps the page wording. The uk block (p118) prints
 "Кнопка AC1" for both AC buttons; that crop is not reused, and uk keeps the
 shared screens with live labels. The operator chose this scope on 2026-09-24.
+
+## 2026-09-26 fr–uk figures from each print block
+
+Problem:
+
+- The fr/es/de/it/uk illustration manifests bound only the two App panels. The
+  other figure slots fell back to the shared art from the JE-1000F/US master,
+  which shows another product and US outlets. The battery-pack section showed
+  the in-box unit image as a placeholder.
+- English bound its block crops but not its in-box crops. "Implemented source
+  calibration" above says the shared in-box line art matches the paper manual.
+  It does not: the print draws the Explorer 2000 Plus, with UK sockets in the
+  English block and EU sockets in the fr–uk blocks.
+
+Change:
+
+- `data/asset_recipes/manual_je2000e_eu_web.json` gains 85 approved crops, 17
+  per language (the English figures plus the three in-box items), from the fr
+  (PDF pages 25–43), es (44–62), de (63–81), it (82–100) and uk (101–119)
+  blocks:
+  - The positions come from raster matching with the text removed, then each
+    block's own panel frame. The blocks drift from English by up to 9.5 pt.
+  - Crop edges exclude the neighbouring headings and text.
+  - The 19 English outputs are unchanged.
+- The English manifest binds its approved in-box crops (`inbox_main`,
+  `inbox_cable`, `inbox_manual`, p7) to the three in-box cards.
+- The five fr–uk manifests bind the 17 crops to the English slots. Their
+  `recipe` is now the web recipe; the App entries keep their own.
+- The fr–uk `charging.rst` templates' battery-pack section (JE-2000E only) now
+  points at its block's `extra_battery` crop, as English has since #1085. It
+  used the in-box unit image, whose shared name made the in-box binding
+  ambiguous (`repeated Web illustration source`).
+- Copy printed in a crop moves from the page into the figure's alt text, with
+  English's selectors: the overview callout tables, the operation panel lines,
+  the energy-saving notes, the LED lines, the UPS paragraphs, the AC wall
+  sentence and the car line.
+  - The French power section keeps its on/off and standby lines in one block,
+    so it has one binding where English has two.
+  - Like English, the fr–uk entries need no `consume_before_presentation`.
+- `source_manifest.json` re-locks the web recipe and the English manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 104 outputs against their
+  expected hashes; the 19 English crops are byte-identical.
+- **Visual review:** every crop was checked next to the English crop and its
+  page. The fr–uk crops show EU sockets and their own language's labels; no
+  English line remains apart from product markings (`LIGHT`).
+- **Covered copy:** each covered text was compared with the print text inside
+  its crop. The remaining misses are wording variants of the same instruction
+  (uk "Увімкнення" vs the page's "Увімкнути") and Italian accents that the PDF
+  text layer drops.
+- **Trial Web builds** (frozen data root, web profile) against the live pages
+  (2.2; uk 2.1):
+  - each fr–uk route replaces its 17 figures, drops the second solar figure as
+    English does, and removes only the covered copy (57–59 text lines);
+  - English replaces only its three in-box images;
+  - no shared JE-1000F figure remains on any route.
+- **Regression tests:** `Je2000eEuBlockIllustrationTests` and the German build
+  test fail on the previous recipe, manifests and templates (five failures, one
+  error).
+
+Still open (not changed here):
+
+- On fr–uk the LCD-mode image stays in the page's plain table; the English
+  LCD-mode component is not built there. Only the image changed.
+- `page_shared/pt-BR/charging.rst` keeps the in-box placeholder in its JE-2000E
+  block; there is no JE-2000E pt-BR route.
