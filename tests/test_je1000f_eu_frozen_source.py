@@ -19,6 +19,17 @@ BLOCK_ART_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je1000f_eu_uk_20260
 BLOCK_ART_SLOTS = ("in_the_box/main_unit1", "operation/lcd_mode", "operation/ups_mode")
 
 
+def storage_labels(data_root: Path) -> dict[str, tuple[str, str]]:
+    """Line order -> (Param_es, Param_de) of the storage temperature rows."""
+    with (data_root / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+        return {row["Line_order"]: (row["Param_es"], row["Param_de"])
+                for row in csv.DictReader(handle) if row["Row_key"] == "storage_temperature"}
+
+
+# Each print block's storage durations; the es and de cells were once swapped.
+STORAGE_LABELS = {"1": ("1 mes", "1 Monat"), "2": ("3 meses", "3 Monate"), "3": ("12 meses", "12 Monate")}
+
+
 def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -159,6 +170,18 @@ class Je1000fEuFrozenSourceTests(unittest.TestCase):
                 records, repo_root=ROOT, asset_key=slot, format_name="png", language="en", model="JE-2000E", region="EU"
             )
             self.assertEqual(slot, other.asset_key)
+
+    def test_storage_durations_follow_each_print_block(self) -> None:
+        """es printed German '1 monat…' and de Spanish '1 mes…' until 2026-09-26."""
+        self.assertEqual(STORAGE_LABELS, storage_labels(FORMAL_DATA_ROOT))
+        pages = ROOT / "docs/_review/JE-1000F/EU/page"
+        spanish = (pages / "p42_09_storage_and_maintenance.rst").read_text(encoding="utf-8")
+        german = (pages / "p57_09_storage_and_maintenance.rst").read_text(encoding="utf-8")
+        for es, de in STORAGE_LABELS.values():
+            self.assertIn(f"- {es}: ", spanish)
+            self.assertIn(f"- {de}: ", german)
+        self.assertNotIn("monat", spanish.lower())
+        self.assertNotIn("- 1 mes:", german)
 
 
 if __name__ == "__main__":

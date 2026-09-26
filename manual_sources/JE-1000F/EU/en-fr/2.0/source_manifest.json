@@ -92,6 +92,14 @@
         32
       ],
       "change": "Switch the raw shared-art paths and bare basenames for in_the_box/main_unit1, operation/lcd_mode and operation/ups_mode in the FR/ES/DE/IT/UK pages, the DE/ES/IT/UK generated drafts and the EN in-box LaTeX macro to asset:in_the_box/main_unit1, asset:operation/lcd_mode and asset:operation/ups_mode. The JE-1000F/EU target overrides resolve them to the released print's own blocks (the English block's BS 1363 sockets for en, the French block's EU sockets for fr/es/de/it/uk) instead of the shared art (a US-outlet unit and another, wheeled model)."
+    },
+    {
+      "scope": "ES/DE storage durations",
+      "pdf_physical_pages": [
+        52,
+        70
+      ],
+      "change": "The storage duration labels of the Spanish and German rows were swapped (es printed German '1 monat/3 monate/12 monate', de printed Spanish '1 mes/3 meses/12 meses'). Spec_Master Param_es and Param_de and the p42/p57 review pages now hold each block's printed labels: es '1 mes/3 meses/12 meses' (PDF page 52), de '1 Monat/3 Monate/12 Monate' (page 70, where the print sets them in lowercase; German capitalization follows JE-2000E's print and the other models)."
     }
   ],
   "files": [
@@ -118,7 +126,7 @@
     {
       "path": "phase2/Spec_Master.csv",
       "size": 22380,
-      "sha256": "c29f793839c01c4d441e92abd7dbb8176b50d6f0dec528bdbfa02ff82f50063f"
+      "sha256": "6418641d0978c72de96604edb9ebbfc8902d46724419938f149d2e34a001b9b6"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -1069,8 +1077,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p42_09_storage_and_maintenance.rst",
-      "size": 652,
-      "sha256": "fd2df83d97f19919aca9e8759863380991ab7f7d96b4de6e9411e1154d5589c3"
+      "size": 648,
+      "sha256": "7a052905569b2be0f141d10a96444235243fb7247b84e40de90561b3d49d4c5b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p45_11_warranty.rst",
@@ -1119,8 +1127,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p57_09_storage_and_maintenance.rst",
-      "size": 692,
-      "sha256": "8650e0f58aed5d34375f34fa9eb984ae296e31e02772e4586d70c97eedaf9bde"
+      "size": 696,
+      "sha256": "306e5fb8e59d9590d2b9062f0fd961d9b2d9824f7cff0521b8adf17776149817"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p60_11_warranty.rst",
