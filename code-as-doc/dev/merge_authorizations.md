@@ -46,7 +46,11 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
-| MA-170 | PR #1275（`docs/plan-rev44-accepted`，**含本登记行**）：记录 REV-44 验收——台账 REV-44 由 verifying 改为 done 并写明证据（#1273、#1274 与 RTD 线上核验）和验收原话；系统建设页“Agent 执行”卡的“来源登记（SSOT）”由 available 改为 validated，证据改为 `rev:REV-44=done` 并加操作者确认，REV-44 移出“当前在做”；设计文档状态行记验收。同一次改动把 MA-169 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：REV-39 契约表、REV-45 的设计与实施、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入」2026-09-25（答复“要合的话说‘合入’，CI 通过后我就合”；此前「验收」） | 本 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+| MA-172 | PR #1276（`docs/plan-multi-agent-dispatch`，**含本登记行**）：REV-45 多 Agent 调度与任务续接的设计定稿 `code-as-doc/dev/multi_agent_dispatch_design.md`（第一版不做自动调度：台账“执行”格认领、交接记录写在任务 PR 描述里、续接只读四样、只读取号工具、认领 7 天过期、用 REV-39 契约表冻结演示）；台账 REV-45 记起草与定稿；系统建设页“当前在做”加 REV-45，“Agent 执行”卡的“多 Agent 调度与任务续接”附设计。同一次改动把 MA-170 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：REV-45 的实施（取号工具、任务状态数据域、`AGENTS.md` 规则，另开 PR）、REV-39 契约表、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。（MA-171 已由开着的 #1277 预留，故用 MA-172。） | 「合入」2026-09-25（答复“合入 #1276：设计定稿、台账 REV-45 的执行记录、系统建设页当前在做里的 REV-45”） | 本 PR 合入即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-170 | PR #1275（`docs/plan-rev44-accepted`，**含本登记行**）：记录 REV-44 验收——台账 REV-44 由 verifying 改为 done 并写明证据（#1273、#1274 与 RTD 线上核验）和验收原话；系统建设页“Agent 执行”卡的“来源登记（SSOT）”由 available 改为 validated，证据改为 `rev:REV-44=done` 并加操作者确认，REV-44 移出“当前在做”；设计文档状态行记验收。同一次改动把 MA-169 标为已失效。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge。**不含**：REV-39 契约表、REV-45 的设计与实施、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「合入」2026-09-25（答复“要合的话说‘合入’，CI 通过后我就合”；此前「验收」） | 本 PR 合入即失效，或操作者撤销 | 已失效（#1275 squash `313fa642` 已合入；2026-09-25 RTD `377b8d54` 核验：“来源登记（SSOT）”显示已验证，REV-44 已移出“当前在做”） |
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
