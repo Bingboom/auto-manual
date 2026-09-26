@@ -362,11 +362,11 @@ capabilities:
           - "rev:REV-44=done"
           - "ack:夏冰 2026-09-25「验收」"
       - id: agent_dispatch
-        label: 多 Agent 调度与任务续接
+        label: 多 Agent 设计储备（暂缓）
         status: planned
-        note: 派发任务、跟踪状态、跨会话接着做；建在来源登记之上，设计已定稿
+        note: 操作者尚未准备建设多 Agent；仅保留设计参考，实施暂缓，重启须另行批准，不阻塞网页化、语料、SSOT、IR 或 IDML 工作
         evidence:
-          - "rev:REV-45=planned"
+          - "rev:REV-45=deferred"
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
 
 corpus:
@@ -478,7 +478,6 @@ now_next:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
     REV-39: IR 共享：公共语义边界摸底
-    REV-45: 多 Agent 调度设计
 
 working_today:
   - id: manual_center

@@ -1,6 +1,7 @@
 # 多 Agent 调度与任务续接设计
 
-- 状态：定稿，2026-09-25（第 5 节已由操作者回答）。
+- 状态：历史设计储备，暂缓实施（2026-09-26）。2026-09-25 的设计选择保留供参考；操作者尚未准备建设多 Agent，本稿不构成当前开工依据。
+- 后续发现与协议参考见 [agent_task_state_design_2026-09.md](agent_task_state_design_2026-09.md)。两稿均暂缓；重启需操作者重新批准，不因 SSOT 验收自动启动。
 - 台账：[REV-45](manual_revitalization_execution.md#rev-45)，依赖已验收的 [REV-44 来源登记](ssot_source_registry_design.md)。
 - 来源：系统建设页“Agent 执行”卡写着“多 Agent 调度与任务续接尚未建设”；操作者 2026-09-25 决定先记进台账，出设计后再建。
 
