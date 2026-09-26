@@ -349,6 +349,19 @@ capabilities:
         evidence:
           - "file:auto-manual:.agents/skills"
           - "file:auto-manual:AGENTS.md"
+      - id: source_registry
+        label: 来源登记（SSOT）
+        status: planned
+        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，写成一份登记，页面和 Agent 都按它取数；设计已定稿
+        evidence:
+          - "rev:REV-44=planned"
+          - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"
+      - id: agent_dispatch
+        label: 多 Agent 调度与任务续接
+        status: planned
+        note: 派发任务、跟踪状态、跨会话接着做；建在来源登记之上
+        evidence:
+          - "rev:REV-45=planned"
 
 corpus:
   # Counts only, from `python tools/rtd_system_workspace.py corpus-export`
@@ -459,6 +472,8 @@ now_next:
   now_labels:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
+    REV-39: IR 共享：公共语义边界摸底
+    REV-44: SSOT 来源登记设计
 
 working_today:
   - id: manual_center
