@@ -23,15 +23,10 @@
 .dl-none { color: #b5b9c1; }
 .dl-empty, .dl-note { margin: 10px 0 0; font-size: 11.5px; line-height: 1.7; color: #8a8f99; }
 
-@media (max-width: 900px) {
+/* Below 980px the sidebar leaves the table less than its 660px, so each region
+   becomes a card with the formats stacked instead of scrolling sideways. */
+@media (max-width: 980px) {
   .dl-meta { margin-left: 0; align-items: flex-start; width: 100%; }
-}
-@media (max-width: 660px) {
-  .dl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .dl-select { width: 100%; }
-  /* A select is as wide as its longest option unless told it may shrink. */
-  .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }
-  /* One card per region: the formats stack instead of scrolling sideways. */
   .dl-table { min-width: 0; }
   .dl-table thead { display: none; }
   .dl-model, .dl-model th { display: block; }
@@ -39,4 +34,10 @@
   .dl-table tr[data-region] td { display: flex; gap: 10px; padding: 0; border: 0; width: auto; }
   .dl-table td[data-label]::before { content: attr(data-label); flex: 0 0 68px; padding-top: 3px; font-size: 11px; color: #8a8f99; }
   .dl-region { font-weight: 600; }
+}
+@media (max-width: 660px) {
+  .dl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dl-select { width: 100%; }
+  /* A select is as wide as its longest option unless told it may shrink. */
+  .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }
 }
