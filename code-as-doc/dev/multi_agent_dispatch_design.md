@@ -1,7 +1,7 @@
 # 多 Agent 调度与任务续接设计
 
 - 状态：定稿，2026-09-25（第 5 节已由操作者回答）。
-- 2026-09-25 操作者需求把 REV-45 拉回盘点与设计阶段：本稿第 3 节的做法按 [agent_task_state_design_2026-09.md](agent_task_state_design_2026-09.md) 重新评估，在那份设计定稿前不作为实施依据。
+- 2026-09-25 起，本稿第 3 节的做法已被 [agent_task_state_design_2026-09.md](agent_task_state_design_2026-09.md) 取代（操作者按建议确认），不再作为实施依据；第 1、2 节的背景仍可参考。
 - 台账：[REV-45](manual_revitalization_execution.md#rev-45)，依赖已验收的 [REV-44 来源登记](ssot_source_registry_design.md)。
 - 来源：系统建设页“Agent 执行”卡写着“多 Agent 调度与任务续接尚未建设”；操作者 2026-09-25 决定先记进台账，出设计后再建。
 
