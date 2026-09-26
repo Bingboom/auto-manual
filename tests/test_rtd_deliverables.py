@@ -16,12 +16,15 @@ from unittest.mock import patch
 
 from tools import rtd_deliverables as dl
 from tools import rtd_portal
+from tools.rtd_source_registry import load_registry
 from tools.utils.path_utils import repo_root
 
 REPO = repo_root()
 TODAY = dt.date(2026, 9, 25)
 LABELS = {"EU": "欧规", "US": "美规", "JP": "日规", "BR": "巴西规"}
 ORDER = json.loads((rtd_portal.ASSETS / "settings.json").read_text(encoding="utf-8"))["language_labels"]
+FEISHU = load_registry(rtd_portal.ASSETS)[0][dl.FEISHU_DOMAIN]
+SNAPSHOT_NAME = FEISHU["snapshot"]
 
 
 def link(url: str) -> str:
@@ -153,14 +156,14 @@ class SnapshotTests(unittest.TestCase):
 
     def test_load_reports_unreadable_files(self):
         with TemporaryDirectory() as temp:
-            path = Path(temp) / dl.SNAPSHOT_NAME
+            path = Path(temp) / SNAPSHOT_NAME
             path.write_text("{not json", encoding="utf-8")
             data, problems = dl.load_snapshot(path)
             self.assertIsNone(data)
             self.assertIn("cannot read", problems[0])
 
     def test_committed_snapshot_is_sound(self):
-        data, problems = dl.load_snapshot(dl.DEFAULT_SNAPSHOT)
+        data, problems = dl.load_snapshot(dl.ASSETS / SNAPSHOT_NAME)
         self.assertEqual(problems, [])
         self.assertTrue(data["documents"])
 
@@ -172,7 +175,7 @@ class ViewTests(unittest.TestCase):
              target("JE-2000F", "EU", "de")] if targets is None else targets,
             snapshot() if data is None else data,
             names={("JE-1000F", "US"): "Explorer 1000", ("JE-2000F", "EU"): "Explorer 2000"},
-            labels=LABELS, language_order=ORDER, today=today,
+            labels=LABELS, language_order=ORDER, today=today, feishu_domain=FEISHU,
         )
 
     def test_one_row_per_region_under_each_model(self):
@@ -205,10 +208,11 @@ class ViewTests(unittest.TestCase):
         view = self.view()
         self.assertEqual((view["snapshot_date"], view["stale"], view["last_published"]), ("2026-09-25", [], "2026-09-24"))
         self.assertIn("超过 45 天", self.view(today=TODAY + dt.timedelta(days=46))["stale"][0])
-        bare = dl.deliverables_view(None, None, names={}, labels=LABELS, language_order=ORDER, today=TODAY)
+        bare = dl.deliverables_view(None, None, names={}, labels=LABELS, language_order=ORDER, today=TODAY,
+                                    feishu_domain=FEISHU)
         self.assertEqual((bare["models"], bare["web_missing"], bare["feishu_missing"]), ([], True, True))
         web_only = dl.deliverables_view([target("JE-1000F", "US", "en")], None, names={}, labels={},
-                                        language_order=ORDER, today=TODAY)
+                                        language_order=ORDER, today=TODAY, feishu_domain=FEISHU)
         self.assertEqual(web_only["models"][0]["rows"][0]["region_label"], "US")  # no labels: the code
         self.assertTrue(web_only["feishu_missing"])
 
@@ -225,7 +229,7 @@ class ViewTests(unittest.TestCase):
 class CliTests(unittest.TestCase):
     def test_check_reports_coverage_staleness_and_errors(self):
         with TemporaryDirectory() as temp:
-            path = Path(temp) / dl.SNAPSHOT_NAME
+            path = Path(temp) / SNAPSHOT_NAME
             path.write_text(json.dumps(snapshot()), encoding="utf-8")
             with redirect_stdout(io.StringIO()) as out:
                 self.assertEqual(dl.main(["check", "--snapshot", str(path), "--today", "2026-09-25"]), 0)
@@ -256,7 +260,7 @@ class RealSphinxTests(unittest.TestCase):
             manifest.write_text(json.dumps({"targets": [target("JE-1000F", "US", "en")]}), encoding="utf-8")
             assets = base / "assets"
             shutil.copytree(rtd_portal.ASSETS, assets)
-            (assets / dl.SNAPSHOT_NAME).write_text(json.dumps(snapshot()), encoding="utf-8")
+            (assets / SNAPSHOT_NAME).write_text(json.dumps(snapshot()), encoding="utf-8")
             settings = json.loads((assets / "settings.json").read_text(encoding="utf-8"))
             (assets / "settings.json").write_text(json.dumps(dict(settings, product_voc_endpoint="")), encoding="utf-8")
             (web / "conf.py").write_text(
@@ -296,10 +300,10 @@ class RealSphinxTests(unittest.TestCase):
             self.assertIn('href="../system/index.html"', page)
 
             # An unsound snapshot empties only the Feishu columns.
-            (assets / dl.SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
+            (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
             result, page = build("no-snapshot")
             self.assertIn("Deliverables page shows no Feishu links", result.stderr)
-            self.assertIn("飞书快照 当前不可读", page)
+            self.assertIn("飞书快照当前不可读", page)
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertNotIn("t.feishu.cn", page)
 

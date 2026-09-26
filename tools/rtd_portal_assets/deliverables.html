@@ -57,8 +57,8 @@
         <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
         <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
         <div class="dl-meta">
-          <span>网页手册：发布清单{% if web_missing %}当前不可读{% elif last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
-          <span>印刷交付包、Word 云文档：飞书快照 {% if snapshot_date %}{{ snapshot_date|e }}{% else %}当前不可读{% endif %}{{ stale_mark(stale) }}</span>
+          <span>网页手册：{% if web_missing %}{{ fallbacks.publications|e }}{% else %}发布清单{% if last_published %} · 最近发布 {{ last_published|e }}{% endif %}{% endif %}</span>
+          <span>印刷交付包、Word 云文档：{% if snapshot_date %}飞书快照 {{ snapshot_date|e }}{% else %}{{ fallbacks.deliverables_feishu|e }}{% endif %}{{ stale_mark(stale) }}</span>
         </div>
       </div>
       {%- if models %}

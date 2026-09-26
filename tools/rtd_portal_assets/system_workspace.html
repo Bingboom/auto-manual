@@ -133,7 +133,7 @@
               </div>
               {%- endfor %}
               {%- if lane.untracked %}<p class="sw-lane-empty">尚未入执行台账</p>{% endif %}
-              {%- if lane.ledger_missing %}<p class="sw-lane-empty">执行台账当前不可读</p>{% endif %}
+              {%- if lane.ledger_missing %}<p class="sw-lane-empty">{{ fallbacks.ledger|e }}</p>{% endif %}
             </div>
           </article>
           {%- endfor %}
@@ -166,7 +166,7 @@
         <p class="sw-corpus-note">这是翻译记忆库里的语料覆盖，不是说明书的翻译完成率；说明书各语言的上线情况看“说明书网页化”。</p>
       </div>
       {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>语料快照当前不可读。</p></div>
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.corpus|e }}。</p></div>
       {%- endif %}
     </section>
     {%- endif %}
@@ -229,7 +229,7 @@
       </ul>
       {%- endif %}
       {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>执行台账当前不可读。</p></div>
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
       {%- endif %}
     </section>
 
@@ -311,6 +311,23 @@
         </div>
         {%- endif %}
         {%- endfor %}
+      </div>
+    </section>
+
+    <section class="sw-section" id="sources">
+      <div class="section-header"><div>
+        <h2>数据来源</h2>
+        <p>页面上每类数字和状态以哪里为准、怎么取、多久算过期、取不到时显示什么。登记在 source_registry.yaml，页面按它读取。</p>
+      </div></div>
+      <div class="sw-hooks-wrap">
+        <table class="sw-hooks sw-sources">
+          <thead><tr><th>数据</th><th>以哪里为准</th><th>怎么取</th><th>新鲜度</th><th>取不到时</th><th>用在</th></tr></thead>
+          <tbody>
+            {%- for row in sources %}
+            <tr id="source-{{ row.id|e }}"><td>{{ row.label|e }}</td><td><span class="sw-refs">{{ evidence_links(row.sources) }}</span></td><td>{{ row.how|e }}{% if row.refresh %}<code>{{ row.refresh|e }}</code>{% endif %}</td><td>{{ row.freshness|e }}{{ stale_mark(row.stale) }}</td><td>{{ row.fallback|e }}</td><td>{{ row.used_by|e }}</td></tr>
+            {%- endfor %}
+          </tbody>
+        </table>
       </div>
     </section>
 

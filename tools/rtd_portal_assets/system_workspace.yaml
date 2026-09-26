@@ -13,10 +13,13 @@
 #   rev:<REV-nn>=<status>     execution-ledger row and the status it had when verified
 #   ack:<who> <YYYY-MM-DD>「…」 operator confirmation; never an entry's only evidence
 # See code-as-doc/dev/rtd_manual_portal.md#system-workspace-page for the rules.
+#
+# Where each figure comes from, how often entries are re-reviewed, the snapshot
+# files and what shows when a source cannot be read are registered once, in
+# source_registry.yaml next to this file, not here.
 
 schema: hello-docs-system-workspace/v1
 verified_on: 2026-09-24
-stale_after_days: 30
 
 repositories:
   auto-manual: https://github.com/Bingboom/auto-manual
@@ -351,11 +354,12 @@ capabilities:
           - "file:auto-manual:AGENTS.md"
       - id: source_registry
         label: 来源登记（SSOT）
-        status: planned
-        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，写成一份登记，页面和 Agent 都按它取数；设计已定稿
+        status: available
+        note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部公开列出
         evidence:
-          - "rev:REV-44=planned"
+          - "file:auto-manual:tools/rtd_portal_assets/source_registry.yaml"
           - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"
+          - "rev:REV-44=verifying"
       - id: agent_dispatch
         label: 多 Agent 调度与任务续接
         status: planned
@@ -365,9 +369,8 @@ capabilities:
 
 corpus:
   # Counts only, from `python tools/rtd_system_workspace.py corpus-export`
-  # (read-only TM read); refresh monthly through a PR.
-  snapshot: system_workspace_corpus.json
-  stale_after_days: 45
+  # (read-only TM read); refresh monthly through a PR. The snapshot file and
+  # its freshness limit are the `corpus` domain of source_registry.yaml.
   languages:
     - {code: en, label: 英语}
     - {code: zh, label: 简体中文}
@@ -473,7 +476,7 @@ now_next:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
     REV-39: IR 共享：公共语义边界摸底
-    REV-44: SSOT 来源登记设计
+    REV-44: SSOT 来源登记
 
 working_today:
   - id: manual_center
