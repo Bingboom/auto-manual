@@ -87,3 +87,11 @@ LaTeX macro now reference them as `asset:` URIs (the charging pages'
 `main_unit1` sits in a JE-2000E-only block and is unchanged), and
 `source_manifest.json` re-locks those 20 files. On the Web, all five routes
 change exactly these three visible figures; alt text and copy are unchanged.
+
+Storage durations (2026-09-26): the Spanish and German storage rows carried
+each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
+meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the
+p42/p57 review pages now hold the print's es `1 mes/3 meses/12 meses` (PDF page
+52) and de `1 Monat/3 Monate/12 Monate` (page 70). The print sets the German
+labels in lowercase; they are capitalized as in JE-2000E's print and the other
+models. `source_manifest.json` re-locks the three files.

@@ -23,6 +23,17 @@ CONFIG = ROOT / "configs" / "config.eu-en.yaml"
 FORMAL_SOURCE = ROOT / "manual_sources" / "JE-2000E" / "EU" / "en" / "2.0"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
+
+
+def storage_labels(data_root: Path) -> dict[str, tuple[str, str]]:
+    """Line order -> (Param_es, Param_de) of the storage temperature rows."""
+    with (data_root / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+        return {row["Line_order"]: (row["Param_es"], row["Param_de"])
+                for row in csv.DictReader(handle) if row["Row_key"] == "storage_temperature"}
+
+
+# Each print block's storage durations; the es and de cells were once swapped.
+STORAGE_LABELS = {"1": ("1 mes", "1 Monat"), "2": ("3 meses", "3 Monate"), "3": ("12 meses", "12 Monate")}
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "je2000e_eu_en_illustrations.json"
 APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000e_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
@@ -86,6 +97,12 @@ def _build_web_package(tmp: Path, *, config: Path, lang: str) -> Path:
             f"JE-2000E/{lang} formal-source Web build failed:\n" + result.stdout + result.stderr
         )
     return staging / "docs" / "_build" / "JE-2000E" / "EU" / lang / "md"
+
+
+class Je2000eEuStorageLabelTests(unittest.TestCase):
+    def test_storage_durations_follow_each_print_block(self) -> None:
+        """es printed German '1 monat…' and de Spanish '1 mes…' until 2026-09-26."""
+        self.assertEqual(STORAGE_LABELS, storage_labels(FORMAL_DATA_ROOT))
 
 
 class Je2000eEuEnWebTests(unittest.TestCase):
