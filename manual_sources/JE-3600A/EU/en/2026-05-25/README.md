@@ -25,3 +25,35 @@ python build.py md \
   --data-root manual_sources/JE-3600A/EU/en/2026-05-25/phase2 \
   --staging-root <fresh-root>
 ```
+
+Control-panel button names (2026-09-24): the three `CONTROLS` label rows of
+`phase2/Spec_Master.csv` carried only the English source value, so the fr/es
+routes printed "Power Button", "USB Power Button" and "AC Power Button" in the
+App page. Their `Value_fr`, `Value_es`, `Value_de` and `Value_it` cells now hold
+each language block's printed names (PDF pages 38/55/72/89; only fr/es are
+published), and `source_manifest.json` re-locks the file. English is unchanged.
+
+App add-device figure (2026-09-24): the en/es/fr routes bind their own language block's crop of
+the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
+together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
+
+Translated cells (2026-09-25): the fr/es columns of the LCD, troubleshooting,
+specification, storage, standby-duration, spec-note and footnote rows were
+empty, so the fr/es routes printed about 70 English segments and omitted the
+notes. They now hold each language block's printed text. The cells are split by
+the pages' ruling lines; the English rows' structure is kept, and print defects
+use reviewed cross-model wording (see the intake review addendum of the same
+date). `source_manifest.json` re-locks the five files; English is unchanged.
+
+Block figures (2026-09-25): the fr/es routes bind their own language block's
+figures (15 crops each in `asset_recipe`) instead of the shared JE-1000F art, and
+the LCD crop is widened on all three routes so callouts 8, 9, 20 and 21 show; see
+the intake review addendum of the same date. `source_manifest.json` re-locks the
+web recipe and the English illustration manifest.
+
+Emergency charging and the AC wall sentence (2026-09-26): the fr/es routes no
+longer print an Emergency Charging Mode block. This model lacks the feature, and
+the shared fr–uk charging templates now carry the English file's capability
+markers. On all three routes, the AC wall sentence that the crop already prints
+moves into the figure's alt text. See the intake review addendum of the same
+date. `source_manifest.json` re-locks the English illustration manifest.

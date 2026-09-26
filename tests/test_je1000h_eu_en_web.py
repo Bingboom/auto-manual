@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -194,10 +195,23 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             output["path"]: output["expected_sha256"]
             for asset in recipe["assets"] for output in asset["outputs"]
         }
+        app_panels = {"download_panel", "control_panel", "connect_result_panel"}
         for asset in recipe["assets"]:
+            if asset["asset_key"].rsplit("/", 1)[-1] in app_panels:
+                # App screens and the QR download panel stay quarantined under the
+                # App/QR/URL/localized-UI gate; the manifests are their only route.
+                self.assertFalse(asset["build_eligible"])
+                self.assertTrue(asset["visual_review_required"])
+                self.assertEqual("quarantine", asset["gate"]["status"])
+                self.assertIn("app-ui", asset["risk_tags"])
+                continue
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
+        self.assertEqual(
+            len(app_panels) * len(MANUAL_LOCALES),
+            sum(asset["gate"]["status"] == "quarantine" for asset in recipe["assets"]),
+        )
         for illustration in manifest["illustrations"]:
             path = ILLUSTRATIONS.parent / illustration["path"]
             actual = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -264,6 +278,67 @@ class Je1000hEuEnWebTests(unittest.TestCase):
             (copied / relative).write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "asset missing or changed"):
                 render_document_fragments(ir, package_root=copied)
+
+
+TRANSLATED_LOCALES = ("fr", "es", "de", "it", "uk")
+FIGURES = re.compile(r"\d+(?:[.,]\d+)?")
+
+
+class Je1000hEuTranslatedSpecCellTests(unittest.TestCase):
+    """fr–uk specification and storage cells follow each language block of the released PDF."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            cls.rows = [row for row in csv.DictReader(handle)
+                        if row["Page"] in ("specifications", "storage")]
+
+    def test_every_cell_keeps_the_english_figures(self) -> None:
+        # 旧抽取按 y 聚类：⎓ 丢失、值被截断或串入邻格、脚注号粘进标签，只比数字的自检拦不住
+        self.assertEqual(25, len(self.rows))
+        for row in self.rows:
+            source = row["Value_source"]
+            for lang in TRANSLATED_LOCALES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                     FIGURES.findall(value.replace(",", ".")))
+                    self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    self.assertEqual(value.count("("), value.count(")"))
+                    self.assertNotRegex(value, "[ﬀ-ﬆ]")
+                    if row["Page"] == "specifications":
+                        label = row[f"Row_label_{lang}"]
+                        self.assertTrue(label)
+                        self.assertNotRegex(label, r"(?:[^\W\d_]|\s)[12]$")
+                    else:
+                        self.assertTrue(row[f"Param_{lang}"])
+
+    def test_cells_the_old_extraction_broke_match_the_print(self) -> None:
+        cells = {(row["Row_key"], row["Line_order"]): row for row in self.rows}
+        self.assertEqual(len(self.rows), len(cells))
+        expected = {
+            ("ac_total_output", "1", "Value_fr"): "1800 W nominal, 3600 W crête",
+            ("ac_output_bypass", "1", "Value_de"): "220 V-240 V~ 50 Hz, 7,83 A",
+            ("dc12_port", "1", "Value_uk"): "12 В⎓10 А макс.",
+            ("dc8020_ports", "1", "Value_fr"): "Voiture : 11 V-16 V⎓8 A max., double à 8 A max.",
+            ("capacity", "1", "Value_es"): "1024 Wh (20 Ah/51,2 V CC)",
+            ("ac_total_output", "1", "Row_label_it"): "Uscita totale CA",
+            ("charging_temperature", "1", "Row_label_de"): "Ladetemperatur",
+            ("ac_output_bypass", "1", "Row_label_uk"): "Вихід змінного струму у байпасному режимі",
+            ("ac_input", "2", "Param_fr"): "Mode dérivation",
+            ("storage_temperature", "1", "Param_es"): "1 mes",
+            ("storage_temperature", "3", "Value_de"): "0 °C bis 25 °C (0–60 % relative Luftfeuchtigkeit)",
+        }
+        for (key, line, column), value in expected.items():
+            with self.subTest(key=key, line=line, column=column):
+                self.assertEqual(value, cells[(key, line)][column])
+
+    def test_ukrainian_total_output_footnote_keeps_its_noun(self) -> None:
+        # 印刷稿漏印「струму」；操作者 2026-09-25 裁定与 JE-3000C 一并补上
+        with (FORMAL_DATA_ROOT / "Spec_Footnotes.csv").open(encoding="utf-8", newline="") as handle:
+            notes = {row["Footnote_id"]: row for row in csv.DictReader(handle)}
+        self.assertEqual("Вказує, що два або більше вихідних портів змінного струму працюють разом.",
+                         notes["ac_total_output"]["Text_uk"])
 
 
 if __name__ == "__main__":

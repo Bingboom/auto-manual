@@ -140,7 +140,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>
@@ -173,7 +173,7 @@ LCD-ANZEIGE
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Kurzzeitig an}{Ein}{Drücken Sie die Haupt-POWER-Taste oder während das Produkt geladen wird.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Minuten Inaktivität automatisch aus und wechselt in den Schlafmodus.}
       \HBLcdModeSecondGroup{Dauerhaft an (beim Laden oder Entladen)}{Ein}{Drücken Sie die Haupt-POWER-Taste zweimal, wenn das Produkt eingeschaltet ist.}{Aus}{Drücken Sie die Haupt-POWER-Taste.}{Autom. aus}{Die LCD-Anzeige schaltet sich nach 2 Stunden Inaktivität automatisch aus.}
       \end{HBLcdModeTable}

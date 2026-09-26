@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Branch hygiene: start branches from the latest main; block stale engineering pushes.
+
+``start-branch`` creates a branch from the freshly fetched base. ``pre-push`` (run by
+``.githooks/pre-push`` once ``core.hooksPath`` points there) blocks pushes of engineering
+branches to origin that do not contain the latest base; review/backport branches and
+pushes to other remotes are data-plane work and skip the check.
+"""
 from __future__ import annotations
 
 import argparse
@@ -15,6 +22,13 @@ ALLOWED_DIRTY_PREFIXES = (
     "reports/version_tracking/",
     "reports/releases/",
 )
+
+# The base check guards engineering branches pushed to origin. Data-plane pushes
+# (review/backport branches, or anything pushed to another remote such as
+# hello-docs) start from a review branch or from Hello-Docs main, never from
+# auto-manual main, so checking them would block every backport round.
+ENGINEERING_REMOTE = "origin"
+DATA_PLANE_BRANCH_PREFIXES = ("review/", "backport/")
 
 
 class GitCommandError(RuntimeError):
@@ -180,6 +194,8 @@ def pre_push_command(args: argparse.Namespace) -> int:
         return 0
 
     remote = args.remote or "origin"
+    if remote != ENGINEERING_REMOTE or branch_name.startswith(DATA_PLANE_BRANCH_PREFIXES):
+        return 0
     base_branch = args.base_branch or os.environ.get("AUTO_MANUAL_BASE_BRANCH", "main")
 
     try:
@@ -199,8 +215,8 @@ def pre_push_command(args: argparse.Namespace) -> int:
     if merge_base != remote_base_sha:
         _print_error(f"[pre-push] Current branch does not contain the latest {remote_base_ref}.")
         _print_error("[pre-push] Start new work with:")
-        _print_error("[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 codex/<topic>")
-        _print_error("[pre-push]   ./scripts/start_branch.sh codex/<topic>")
+        _print_error("[pre-push]   powershell -ExecutionPolicy Bypass -File scripts/start_branch.ps1 <type>/<area>-<topic>")
+        _print_error("[pre-push]   ./scripts/start_branch.sh <type>/<area>-<topic>")
         _print_error("[pre-push] Or update this branch before pushing:")
         _print_error(f"[pre-push]   git fetch {remote}")
         _print_error(f"[pre-push]   git rebase {remote_base_ref}")

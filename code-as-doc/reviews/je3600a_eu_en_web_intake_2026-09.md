@@ -102,3 +102,202 @@ fr/es manifests. Each route keeps its own reference sentence as live text. As
 App UI, its recipe `manual_je3600a_eu_web_app.json` stays quarantined; the
 source manifest binds it as `app_asset_recipe` and rebinds the English
 manifest. The operator confirmed the crop on 2026-09-24.
+
+## 2026-09-24 Localized control-panel button names
+
+The fr/es routes showed the English button names in the App page (step 2.2,
+the add-device labels and the Wi-Fi reset notes): the three `CONTROLS` label
+rows in the frozen `Spec_Master.csv` held only `Value_source`. They now carry
+the names each language block prints next to the control-panel drawing:
+
+| Row | fr (p38) | es (p55) | de (p72) | it (p89) |
+| --- | --- | --- | --- | --- |
+| main_power_button | Bouton d'alimentation principal | Botón de encendido principal | POWER-Taste | Pulsante di accensione principale |
+| dc_usb_power_button | Bouton d'alimentation USB | Botón de energía USB | USB-Stromtaste | Pulsante Alimentazione USB |
+| ac_power_button | Bouton d'alimentation CA | Botón de energía CA | AC-Ausgangstaste | Pulsante AC |
+
+A trial build against the live fr/es pages removes 12 of their 14 English
+button names. The remaining two sit in whole English sentences that the
+fr/es routes still carry from the English source (for example the
+energy-saving and parallel-connection notes), which is a separate
+translation gap. de/it are filled from the print for completeness but are not
+published. The live Feishu placeholder table has no JE-3600A_EU rows, so
+nothing was written there. The operator approved the change on 2026-09-24.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The es/fr routes composed generic App screens with the JE-1000F/US control-panel drawing, and the English route bound a crop of the control-panel box alone (`control_panel`, no screens). The English print labels the AC button "AC Button"; the English page has no label lines to cover. Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. The en/es/fr routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je3600a/eu/<lang>/app_add_device_panel`, PDF pages 21/55/38). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.
+
+## 2026-09-25 fr/es LCD, fault, specification and note cells from the print
+
+The fr/es routes showed about 70 English segments. The LCD table, the fault
+codes, the specification table, the storage durations and the standby duration
+were all in English, and the spec note and two footnotes were missing. The
+reason is that the fr/es columns of `lcd_icons_blocks.csv`,
+`troubleshooting_blocks.csv`, `Spec_Master.csv`, `Spec_Notes.csv` and
+`Spec_Footnotes.csv` were empty, and rendering fell back to English. 216 cells
+now hold each language block's printed text:
+
+| Table | Cells | PDF pages (fr / es) |
+| --- | --- | --- |
+| LCD | 21 rows × name + description | 26–27 / 43–44 |
+| Fault codes | 12 | 35 / 52 |
+| Specification rows | 21 | 36 / 53 |
+| Storage lines | 3 | 35 / 52 |
+| Standby duration | 1 | 28 / 45 |
+| Spec note and footnotes | 3 | 36 / 53 |
+
+The cells are split by each page's own ruling lines. On the first LCD page the
+fr/es name/description divider sits at x = 155, not at 165 as in English.
+
+Rules, confirmed by the operator:
+
+- **Wording comes from the print.** Format follows the reviewed fr/es frozen
+  sources: unit spacing, `V~ 50 Hz`, `max.`/`máx.`, decimal comma, `V CC`,
+  `-20 °C`, spaced `×` and `%`. Ligatures and line-end hyphenation are resolved.
+  Missing spaces after a full stop are restored. Neutral values (product name,
+  model number, IEC code, cell chemistry) are kept as printed.
+- **LCD rows keep the English row's structure without rewriting a printed
+  sentence.**
+  - Item 4 merges the two modes into one row with the mode names as prefixes
+    and drops the Off sentence, as English does.
+  - Item 19 is flattened, as English does.
+  - Item 18 keeps both printed sentences, because English rewrote them into one.
+  - Item 5 keeps the printed wording, because English rephrased it.
+- **Print defects use reviewed cross-model wording:**
+  - The Spanish temperature labels are printed in French
+    (`Température de charge/décharge`), so they read
+    `Temperatura de carga/descarga`.
+  - The French total AC output carries the English `Rated`, so it reads
+    `3600 W nominal, 7200 W crête`, following JE-1000H/fr.
+  - The Spanish `Nº` glyph has no text mapping (U+001F), so the label reads
+    `Nº de modelo` as rendered.
+- **Kept as printed:**
+  - `IEC code` is kept in both languages; no reviewed wording exists.
+  - The Spanish LCD item 7 omits "when the AC output is turned on".
+  - The fr/es F6 give 20 cm where English says 200 mm.
+
+The de/it columns are left empty because no de/it routes exist.
+
+Verification:
+
+- **Independent print check:** every written sentence is found in the plain
+  text of its PDF page after canonicalisation. This is a different extraction
+  path from the one that built the cells; only the listed substitutions are
+  exempt.
+- **English controls:**
+  - LCD: 14 of 21 English rows reproduce the English CSV exactly; the other 7
+    differ only by the English editors' own edits.
+  - Specification: 19 of 21 rows land on their print cells; the 2 expansion-port
+    values differ only by an English edit.
+- **Figures:** every specification and storage value keeps the English digits
+  and `⎓` count.
+- **Regression tests:** `Je3600aEuTranslatedCellTests` fails 162 subtests on the
+  previous files.
+- **Trial Web build:** 0 English segments identical to English remain on either
+  page, against 70 and 67 before. Two sentences that quote the standby time and
+  the temperature range (`2 hours`, `-20 °C to 45 °C`) are corrected along with
+  the tables.
+
+## 2026-09-25 fr/es figures from each print block; English LCD callouts
+
+Problem:
+
+- The fr/es illustration manifests bound only the two App panels. The other 16
+  figure slots fell back to the shared art extracted from the JE-1000F/US
+  master, which shows another product:
+  - the front view is a JE-1000F photo with US outlets;
+  - the LCD map has 25 callouts (with TOU and UPS) against this model's 21;
+  - the AC wall-charging figure shows a US outlet.
+- The English LCD crop (x 68-329 pt) cut callouts 8, 9, 20 and 21, while the
+  table lists 21 items.
+
+Change:
+
+- `data/asset_recipes/manual_je3600a_eu_web.json` gains 30 approved crops, 15 per
+  language, from the French (PDF pages 24-34) and Spanish (41-51) blocks.
+  - Each crop takes the English crop's frame, refitted where the block's panel
+    outline moved or grew: the Spanish energy-saving panel (2.7 pt taller), UPS,
+    the AC and solar charging panels, and the French car panel (25 pt lower).
+  - All three LCD crops use `[34, 55, 339, 195]`, which keeps all 21 callouts.
+- The fr/es illustration manifests bind the crops to the same file names as
+  English. Their `recipe` is now the web recipe; the App entries keep their own.
+- Copy printed in a crop moves from the page into the figure's alt text, as on
+  English (`covered_annotations`):
+  - the UPS description (fr/es);
+  - the Spanish car-panel lines.
+
+  The page lines differ from the print only in the product-name form (`Jackery
+  Explorer 3600 Plus` against `le/el Explorer 3600 Plus`, as in English) and, in
+  the Spanish car note, `vehículo` against `auto`.
+- **French car panel (operator ruling):** the French block prints this panel's
+  copy in English (`Vehicle`, `*The car charging cable is sold separately.`).
+  The crop drops its text with `redact_text` and leaves the empty note frame; the
+  page keeps the template's French lines.
+- `source_manifest.json` re-locks the web recipe and the English illustration
+  manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 56 outputs against their
+  expected hashes; the unchanged English crops are byte-identical.
+- **Visual review:** every fr/es crop was checked next to the approved English
+  crop and its page. The French LCD crop differs from the Spanish one only in
+  the anti-aliasing of four digit glyphs (another embedded font subset); the
+  Spanish crop is byte-identical to the English one.
+- **Trial Web builds against the live pages:**
+  - English changes only the LCD figure.
+  - fr/es replace 15 figures, drop the second solar figure (as English does),
+    and move the UPS lines (fr/es) and the car lines (es) into alt text.
+  - No other text changes.
+- **Regression tests:** `Je3600aEuBlockIllustrationTests` and the Spanish build
+  test (no shared JE-1000F art digest remains) fail on the previous files (four
+  failures, one error).
+
+Still open (not changed here):
+
+- All three routes print the AC wall-charging instruction both in the crop and
+  as page text; English has done so since its first release. (Resolved
+  2026-09-26; see below.)
+- The fr/es pages print an Emergency Charging Mode block that neither the print
+  nor English has. `docs/templates/page_shared/es/charging.rst` and
+  `fr/charging.rst` lack the `hb-capability-begin: 应急快充模式` markers of the
+  English file. (Resolved 2026-09-26; see below.)
+- JE-3000C fr-uk and JE-2000E de-uk have the same gap (their manifests bind only
+  the App panels), and JE-1000F/EU has no Web illustration manifest.
+
+## 2026-09-26 Emergency Charging Mode gate and the AC wall sentence
+
+- **Emergency Charging Mode:** the fr/es routes printed this block under AC wall
+  charging, although JE-3600A_EU has the capability FALSE in
+  `data/model_capabilities.csv` and no language block of the print has it.
+  - Only the English shared charging template carried the
+    `hb-capability-begin: 应急快充模式` markers.
+  - `docs/templates/page_shared/{fr,es,de,it,uk}/charging.rst` now carry them
+    too. The begin marker sits between the two existing blank lines and the end
+    marker directly after the last body line, so a TRUE target's page stays
+    byte-identical and a FALSE target's page drops the block.
+- **AC wall sentence:** each language block's AC wall crop prints the connect
+  sentence, and the page repeated it next to the figure. The three illustration
+  manifests move it into the figure's alt text (`covered_annotations` on
+  `charging_ac`), and `source_manifest.json` re-locks the English manifest.
+
+Verification:
+
+- **Template proof:** for every target in the capability table and each of the
+  five templates, `strip_capability_sections` returns the old bytes when the
+  capability is TRUE (115 cases) and drops exactly the block when FALSE (70).
+- **Trial Web builds** (default source, frozen data root):
+  - en loses the standalone sentence, and its crop's alt becomes the sentence;
+  - fr/es do the same and also lose the Emergency Charging Mode block;
+  - nothing else changes.
+- **Regression tests:** they fail on the previous templates and manifests:
+  - `EmergencyChargingTemplateTests`;
+  - the English and Spanish build tests;
+  - the AC wall `covered_annotations` check.

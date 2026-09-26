@@ -58,7 +58,7 @@
     {
       "path": "phase2/Spec_Master.csv",
       "size": 23573,
-      "sha256": "59278dfe00e07fa8170117ef3db9aaf7c04e2d2c1ec85607ab0272202cc27214"
+      "sha256": "145f7ae4251d9cc6a3fb779cc344298f6ed0b59067c907b99a0a0618b3cc1248"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -333,6 +333,7 @@
   ],
   "notes": [
     "The formal PDF cover/body uses Jackery Explorer 2000 Plus; the DingTalk file title uses HomePower 2000 Plus. The website follows the visible formal PDF copy while retaining JE-2000E as the target key.",
-    "No live Base write, asset-record upload, OSS archive or publication was performed."
+    "No live Base write, asset-record upload, OSS archive or publication was performed.",
+    "2026-09-26: the Spanish and German storage duration labels in Spec_Master (Param_es, Param_de) were swapped; they now hold the print's es '1 mes/3 meses/12 meses' (PDF page 58) and de '1 Monat/3 Monate/12 Monate' (page 77)."
   ]
 }

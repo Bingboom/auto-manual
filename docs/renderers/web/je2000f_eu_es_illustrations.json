@@ -305,6 +305,29 @@
     },
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_es/app_add_device_panel.png",
+      "sha256": "1bd305fd5c9f637b0979accf7e68338bdd994bfe9092f4031bf611a05f96d62b",
+      "source_page": 52,
+      "bbox_pt": [
+        39.1,
+        230.6,
+        341.4,
+        473.0
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Botón POWER principal Botón CC/USB Botón CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je2000f_eu_shared/app_connect_result.png",

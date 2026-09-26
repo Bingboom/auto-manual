@@ -11,15 +11,20 @@ from:
   source of the publication counts;
 - the execution ledger named by ``now_next.source``: REV statuses, the
   composition of the G1-G4 gates and the progress of each focus lane;
-- the corpus snapshot named by ``corpus.snapshot``: translation-memory counts
-  (never its text) plus the headline of earlier months, written from the live
-  TM base by ``corpus-export`` and committed like any other frozen input;
+- the corpus snapshot registered as the ``corpus`` domain of
+  ``source_registry.yaml``: translation-memory counts (never its text) plus the
+  headline of earlier months, written from the live TM base by
+  ``corpus-export`` and committed like any other frozen input;
 - the skeleton blueprints under ``docs/manifests/skeletons``: which product
-  families already generate their manual structure from a skeleton.
+  families already generate their manual structure from a skeleton;
+- the source registry (``source_registry.yaml``, REV-44): every snapshot name,
+  freshness limit and fallback text the page shows, listed on the page as
+  数据来源.
 
 Data drift never breaks the build: a missing evidence file, a REV whose status
-moved, or an entry older than ``stale_after_days`` renders as 待复核. An
-authoring error (vocabulary, card ceiling, evidence rules) drops only this page
+moved, or an entry older than the ``capabilities`` domain's review cycle
+renders as 待复核. An authoring error (vocabulary, card ceiling, evidence
+rules, an unsound source registry) drops only this page
 with a Sphinx warning, so the manual site around it keeps building. ``check``
 catches both classes before merge.
 """
@@ -43,6 +48,22 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
+from tools.rtd_system_tooling import (  # noqa: E402
+    hook_facts,
+    skill_facts,
+    tooling_findings,
+    tooling_problems,
+    tooling_view,
+)
+from tools.rtd_source_registry import (  # noqa: E402
+    REGISTRY_NAME,
+    Registry,
+    file_refs,
+    load_registry,
+    snapshot_date,
+    sources_view,
+    stale_reason,
+)
 from tools.utils.path_utils import PathSegments, repo_root, skeletons_of  # noqa: E402
 
 SCHEMA = "hello-docs-system-workspace/v1"
@@ -67,7 +88,6 @@ CORPUS_SCHEMA = "hello-docs-tm-corpus/v1"
 CORPUS_STATUS_FIELD = "Status"
 CORPUS_APPROVED = "Approved"
 CORPUS_UNLABELLED = "(未标注)"
-DEFAULT_CORPUS_STALE_DAYS = 45
 CORPUS_HISTORY_KEYS = ("exported_at", "sentence_pairs", "terms", "approved")
 CORPUS_HISTORY_KEEP = 24  # months of headline figures carried by each snapshot
 HORIZON_LABELS = {"now": "现在", "next": "下一步"}
@@ -82,7 +102,6 @@ _REV_ROW = re.compile(r"^\|[^|]*?(REV-\d+)\s*\|")
 _GATE_ROW = re.compile(r"^\|\s*(G\d+|IDML)\b[^|]*\|([^|]*)\|")
 _REV_RANGE = re.compile(r"REV-(\d+)[–-](\d+)")
 _DOCNAME = re.compile(r"^[A-Za-z0-9_.-]+(/[A-Za-z0-9_.-]+)*$")
-_SNAPSHOT_NAME = re.compile(r"^[A-Za-z0-9_.-]+\.json$")
 
 
 class ContractError(ValueError):
@@ -380,19 +399,18 @@ def structural_findings(contract: dict[str, Any], ledger: Ledger | None) -> list
     if corpus is not None:
         languages = corpus.get("languages") if isinstance(corpus, dict) else None
         codes = [str(lang.get("code")) for lang in languages or [] if isinstance(lang, dict)]
-        if not isinstance(corpus, dict) or not _SNAPSHOT_NAME.fullmatch(str(corpus.get("snapshot"))):
-            error("corpus.snapshot", "must name a .json file next to the contract")
         if not codes or len(set(codes)) != len(codes) or not all(
                 isinstance(lang, dict) and lang.get("label") for lang in languages or []):
             error("corpus.languages", "needs unique codes, each with a label")
-        stale = corpus.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS) if isinstance(corpus, dict) else 0
-        if not isinstance(stale, int) or stale <= 0:
-            error("corpus.stale_after_days", "must be a positive integer")
 
     if "focus" in contract:
         gate_ids = {str(gate.get("id")) for gate in now_next.get("gates") or []}
         out += _focus_findings(contract["focus"], card_ids=card_ids, gate_ids=gate_ids,
                                ledger=ledger, has_corpus=corpus is not None)
+    if "tooling" in contract:
+        lane_ids = {str(lane.get("id")) for lane in (contract.get("focus") or {}).get("lanes") or []
+                    if isinstance(lane, dict)}
+        out += [Finding("error", "tooling", problem) for problem in tooling_problems(contract["tooling"], lane_ids)]
     return out
 
 
@@ -456,11 +474,14 @@ def _focus_findings(focus: object, *, card_ids: dict[str, set[str]], gate_ids: s
 
 
 def drift_reasons(entry: dict[str, Any], *, contract: dict[str, Any], root: Path,
-                  ledger: Ledger | None, today: dt.date) -> list[str]:
-    """Why an entry should read 待复核 right now; empty when it is current."""
+                  ledger: Ledger | None, today: dt.date, review_days: int) -> list[str]:
+    """Why an entry should read 待复核 right now; empty when it is current.
+
+    ``review_days`` is the ``capabilities`` domain's review cycle in the source registry.
+    """
     reasons: list[str] = []
     verified = entry.get("verified_on") or contract.get("verified_on")
-    limit = int(contract.get("stale_after_days") or 30)
+    limit = review_days
     if isinstance(verified, dt.date) and (today - verified).days > limit:
         reasons.append(f"超过 {limit} 天未复核（上次 {verified.isoformat()}）")
     for ref in entry.get("evidence") or []:
@@ -487,25 +508,51 @@ def _checkable(repo: str, root: Path) -> bool:
 
 
 def check_contract(contract: dict[str, Any], *, root: Path, today: dt.date,
-                   assets: Path | None = None) -> list[Finding]:
-    """Offline check: rules, in-tree evidence files, REV ids, drift and the corpus snapshot."""
+                   assets: Path | None = None, registry: Registry | None = None) -> list[Finding]:
+    """Offline check: rules, the source registry, in-tree evidence files, REV ids, drift and snapshots.
+
+    ``registry`` defaults to ``source_registry.yaml`` in ``assets``.
+    """
+    assets = assets or DEFAULT_CONTRACT.parent
     ledger = load_ledger(contract, root)
     findings = structural_findings(contract, ledger)
     if ledger is None:
         findings.append(Finding("error", "now_next.source", "execution ledger is not readable"))
-    if any(f.severity == "error" for f in findings):
+    if registry is None:
+        registry, problems = load_registry(assets)
+        findings += [Finding("error", REGISTRY_NAME, problem) for problem in problems]
+    if registry is not None:
+        for domain_id, repo, path in file_refs(registry):
+            if _checkable(repo, root) and not (root / path).exists():
+                findings.append(Finding("error", f"{REGISTRY_NAME}: {domain_id}", f"authority does not exist: {path}"))
+    if registry is None or any(f.severity == "error" for f in findings):
         return findings
+    review_days = int(registry["capabilities"]["stale_after_days"])
     for where, entry in _entries(contract):
-        for reason in drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today):
+        for reason in drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today,
+                                    review_days=review_days):
             broken = reason.startswith(("证据文件不存在", "台账中找不到"))
             findings.append(Finding("error" if broken else "warning", where, reason))
-    snapshot, problems = load_corpus(contract, assets or DEFAULT_CONTRACT.parent)
+    corpus_domain = registry["corpus"]
+    snapshot, problems = load_corpus(contract, assets, str(corpus_domain["snapshot"]))
     findings += [Finding("error", "corpus", problem) for problem in problems]
     if snapshot is not None:
-        findings += [Finding("warning", "corpus", reason) for reason in corpus_view(contract, snapshot, today)["stale"]]
+        findings += [Finding("warning", "corpus", reason) for reason in
+                     corpus_view(contract, snapshot, today, int(corpus_domain["stale_after_days"]))["stale"]]
+    for domain_id, domain in registry.items():
+        if domain["read"] != "snapshot" or domain_id == "corpus":
+            continue  # the corpus snapshot is checked in depth above
+        exported = snapshot_date(assets, domain)
+        reason = (f"cannot read the exported_at of {domain['snapshot']}" if exported is None
+                  else stale_reason(domain, exported, today))
+        if reason:
+            findings.append(Finding("warning", f"{REGISTRY_NAME}: {domain_id}", reason))
     lanes = (contract.get("focus") or {}).get("lanes") or []
     if any("skeletons" in (lane.get("metrics") or []) for lane in lanes) and skeleton_facts(root) is None:
         findings.append(Finding("warning", "focus", "no readable skeleton blueprints; the skeleton metric shows 无数据"))
+    if "tooling" in contract:
+        findings += [Finding(*finding) for finding in
+                     tooling_findings(contract["tooling"], skill_facts(root), hook_facts(root))]
     return findings
 
 
@@ -578,12 +625,11 @@ def corpus_headline(snapshot: dict[str, Any]) -> dict[str, Any]:
             "terms": snapshot["terms"]["total"], "approved": pairs["by_status"].get(CORPUS_APPROVED, 0)}
 
 
-def load_corpus(contract: dict[str, Any], assets: Path) -> tuple[dict[str, Any] | None, list[str]]:
-    """The committed snapshot named by ``corpus.snapshot``, or None with the reasons."""
+def load_corpus(contract: dict[str, Any], assets: Path, name: str) -> tuple[dict[str, Any] | None, list[str]]:
+    """The committed corpus snapshot ``name`` (from the source registry), or None with the reasons."""
     config = contract.get("corpus")
     if not config:
         return None, []
-    name = str(config.get("snapshot"))
     try:
         data = json.loads((assets / name).read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
@@ -592,7 +638,8 @@ def load_corpus(contract: dict[str, Any], assets: Path) -> tuple[dict[str, Any] 
     return (None if problems else data), problems
 
 
-def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.date) -> dict[str, Any]:
+def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.date,
+                stale_days: int) -> dict[str, Any]:
     config = contract["corpus"]
     pairs, terms = snapshot["sentence_pairs"], snapshot["terms"]
     total = pairs["total"]
@@ -605,7 +652,7 @@ def corpus_view(contract: dict[str, Any], snapshot: dict[str, Any], today: dt.da
     approved = pairs["by_status"].get(CORPUS_APPROVED, 0)
     share = round(100 * approved / total) if total else None
     exported = dt.date.fromisoformat(snapshot["exported_at"])
-    limit = int(config.get("stale_after_days", DEFAULT_CORPUS_STALE_DAYS))
+    limit = stale_days
     stale = [f"语料快照已超过 {limit} 天（导出于 {exported.isoformat()}）"] if (today - exported).days > limit else []
     history = snapshot.get("history") or []
     last = history[-1] if history else None
@@ -876,19 +923,24 @@ def lane_metrics(name: str, *, focus: dict[str, Any], facts: dict[str, Any] | No
 
 def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None,
                   facts: dict[str, Any] | None, today: dt.date,
+                  registry: Registry, assets: Path,
                   corpus: dict[str, Any] | None = None,
-                  skeletons: list[dict[str, str]] | None = None) -> dict[str, Any]:
+                  skeletons: list[dict[str, str]] | None = None,
+                  skills: list[dict[str, Any]] | None = None,
+                  hooks: list[dict[str, Any]] | None = None) -> dict[str, Any]:
     repositories = {k: str(v).rstrip("/") for k, v in (contract.get("repositories") or {}).items()}
     ledger_repo, ledger_path = ledger_ref(contract)
     ledger_url = f"{repositories[ledger_repo]}/blob/main/{ledger_path}"
     focus = contract.get("focus") or {}
     lanes = focus.get("lanes") or []
+    review_days = int(registry["capabilities"]["stale_after_days"])
 
     def entry_view(entry: dict[str, Any]) -> dict[str, Any]:
         return {
             **_status_view(entry["status"]),
             "note": entry.get("note") or "",
-            "stale": drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today),
+            "stale": drift_reasons(entry, contract=contract, root=root, ledger=ledger, today=today,
+                                   review_days=review_days),
             "evidence": [evidence_view(ref, repositories, ledger_url) for ref in entry["evidence"]],
         }
 
@@ -937,7 +989,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                 view["meta"] = f"版本 {match.get('version') or '未标注'}"
         working.append(view)
 
-    corpus_block = corpus_view(contract, corpus, today) if corpus else None
+    corpus_block = corpus_view(contract, corpus, today, int(registry["corpus"]["stale_after_days"])) if corpus else None
     gates_by_id = {gate["id"]: gate for gate in gates}
 
     def lane_view(lane: dict[str, Any]) -> dict[str, Any]:
@@ -981,8 +1033,14 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             "note": focus.get("note") or "",
             "groups": groups,
             "evidence": [evidence_view(ref, repositories, ledger_url) for ref in focus.get("evidence") or []],
-            "stale": drift_reasons(focus, contract=contract, root=root, ledger=ledger, today=today),
+            "stale": drift_reasons(focus, contract=contract, root=root, ledger=ledger, today=today,
+                                   review_days=review_days),
         }
+
+    tooling = None
+    if contract.get("tooling"):
+        tooling = tooling_view(contract["tooling"], skills or [], hooks or [],
+                               {lane["id"]: lane_tag(lane) for lane in lanes})
 
     status_vocabulary = contract["vocabulary"]["status"]
     return {
@@ -995,13 +1053,17 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
         "gates": gates,
         "now": now,
         "working": working,
-        "stale_after_days": int(contract.get("stale_after_days") or 30),
+        "stale_after_days": review_days,
         "verified_on": contract["verified_on"].isoformat(),
         "build_date": today.isoformat(),
         "last_published": (facts or {}).get("last_published", ""),
         "ledger_url": ledger_url,
         "corpus_enabled": bool(contract.get("corpus")),
         "corpus": corpus_block,
+        "tooling": tooling,
+        "fallbacks": {domain_id: domain["fallback"] for domain_id, domain in registry.items()},
+        "sources": sources_view(registry, assets=assets, today=today,
+                                link=lambda ref: evidence_view(ref, repositories, ledger_url)),
     }
 
 
@@ -1031,7 +1093,9 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
         errors = [f for f in structural_findings(contract, ledger) if f.severity == "error"]
     except ContractError as exc:
         errors = [Finding("error", CONTRACT_NAME, str(exc))]
-    if errors:
+    registry, problems = load_registry(assets)
+    errors += [Finding("error", REGISTRY_NAME, problem) for problem in problems]
+    if errors or registry is None:
         logger.warning("System workspace page skipped: %s",
                        "; ".join(f"{f.where}: {f.message}" for f in errors[:5]))
         return None
@@ -1043,11 +1107,12 @@ def system_page_context(app, assets: Path) -> dict[str, Any] | None:
         except ValueError:
             logger.warning("rtd_system_workspace_date %r is not an ISO date; using %s", configured, today)
     facts = publication_facts(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
-    corpus, problems = load_corpus(contract, assets)
+    corpus, problems = load_corpus(contract, assets, str(registry["corpus"]["snapshot"]))
     if problems:
         logger.warning("System workspace corpus block shows no data: %s", "; ".join(problems[:3]))
-    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today, corpus=corpus,
-                         skeletons=skeleton_facts(root))
+    return build_context(contract, root=root, ledger=ledger, facts=facts, today=today,
+                         registry=registry, assets=assets, corpus=corpus,
+                         skeletons=skeleton_facts(root), skills=skill_facts(root), hooks=hook_facts(root))
 
 
 # --- CLI ----------------------------------------------------------------------
@@ -1068,7 +1133,7 @@ def main(argv: list[str] | None = None) -> int:
                                  help="write the aggregate translation-memory snapshot (read-only Feishu read)")
     export.add_argument("--contract", type=Path, default=DEFAULT_CONTRACT)
     export.add_argument("--output", type=Path, default=None,
-                        help="default: the snapshot named by corpus.snapshot, next to the contract")
+                        help="default: the corpus snapshot named in source_registry.yaml, next to the contract")
     export.add_argument("--base-token", default=os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN", ""),
                         help="TM base token (default: $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN)")
     export.add_argument("--cli-bin", default="lark-cli", help='lark-cli command, e.g. "lark-cli --profile prod"')
@@ -1108,7 +1173,12 @@ def _run_corpus_export(args) -> int:
     if not args.base_token:
         print("ERROR   need --base-token or $FEISHU_TRANSLATION_MEMORY_BASE_TOKEN")
         return 1
-    output = args.output or args.contract.resolve().parent / str(contract["corpus"]["snapshot"])
+    assets = args.contract.resolve().parent
+    registry, problems = load_registry(assets)
+    if registry is None:
+        print("ERROR   " + "; ".join(problems))
+        return 1
+    output = args.output or assets / str(registry["corpus"]["snapshot"])
     previous, problem = _previous_snapshot(output)
     if problem:
         print(f"ERROR   {problem}")

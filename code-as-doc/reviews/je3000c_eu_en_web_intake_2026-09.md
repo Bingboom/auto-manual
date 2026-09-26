@@ -70,3 +70,204 @@ localized "screenshots are for reference only" sentence stays live text. As
 App UI, its recipe `manual_je3000c_eu_web_app.json` stays quarantined, and the
 source manifest binds it as `app_asset_recipe`. English is unchanged. The
 operator confirmed the crop on 2026-09-24.
+
+## 2026-09-24 Localized control-panel button names
+
+The fr/es/de/it/uk routes showed the English button names in the Product
+Overview callouts, the energy-saving and UPS text, and the App add-device
+labels: the three `CONTROLS` label rows in the frozen `Spec_Master.csv` held
+only `Value_source`. They now carry the names each language block prints next
+to the control-panel drawing:
+
+| Row | fr (p36) | es (p52) | de (p68) | it (p84) | uk (p100) |
+| --- | --- | --- | --- | --- | --- |
+| main_power_button | Bouton d'alimentation principal | Botón de encendido principal | POWER-Taste | Pulsante di accensione principale | Кнопка POWER |
+| dc_usb_power_button | Bouton d'alimentation CC/USB | Botón de energía CC/USB | DC/USB-Stromtaste | Pulsante Alimentazione DC/USB | Кнопка живлення DC/USB |
+| ac_power_button | Bouton d'alimentation CA | Botón de energía CA | AC-Ausgangstaste | Pulsante AC | Кнопка живлення AC |
+
+French uses the straight apostrophe that dominates the French pages (the print
+mixes both forms). A trial build against the live pages removes every English
+button name (fr 19, es 17, de 16, it 16, uk 6 occurrences); English is unchanged.
+The live Feishu placeholder table has no JE-3000C_EU rows (this source has no
+live dependency), so nothing was written there. The operator approved the
+change on 2026-09-24.
+
+## 2026-09-24 App add-device figure with this model's control panel
+
+The fr/es/de/it/uk routes composed generic App screens with the JE-1000F/US control-panel drawing; the English route already bound its own complete `setup_add_device` panel and is unchanged. Each language block prints the 2.1/2.2 screens and this model's own
+control-panel box, with the block's button labels, as one region. The five routes now
+bind a 12x crop of that region from their own block (quarantined App recipe
+entries `web/je3000c/eu/<lang>/app_add_device_panel`, PDF pages 36/52/68/84/100). Each
+crop ends in the white gap before the next paragraph and has pure-white edges.
+The page's button-label lines become covered annotations, kept as the figure's
+alt text. The operator approved the crops on 2026-09-24.
+
+## 2026-09-25 App panels quarantined under the recipe gate
+
+The three English App panels (`setup_download`, `setup_add_device`, `setup_connect_result`) were recipe-approved only because neither their keys nor their risk tags
+carried a gate token (`app`, `qr`, `screenshot`, …). They are now quarantined
+with `app-ui`/`screenshot`/`localized-ui` risk tags (plus `qr` for the download
+panel); keys, outputs and hashes are unchanged, so the pages are unchanged.
+`source_manifest.json` rebinds `asset_recipe`. The operator approved the fix on
+2026-09-25.
+
+## 2026-09-25 fr–uk English fallbacks filled from the print
+
+The fr–uk routes showed English in several places:
+
+- the specification table;
+- the storage durations;
+- the front and right-side overview callouts, which are rendered as HTML tables;
+- the standby and auto-off times quoted in the text (`2 hours`, `12 hours`);
+- Latin units in Ukrainian sentences;
+- footnote ② was missing.
+
+The cause was that the fr/es/de/it/uk columns of those `Spec_Master.csv` rows and
+of `Spec_Footnotes.csv` `ac_total` were empty.
+
+**What changed.** 324 JE-3000C cells hold each language block's printed text from
+this source's V2.0-2026-07-31 PDF. Specification and overview cells are split by
+the pages' ruling lines or grouped by callout font (7 pt bold label, 5 pt value
+lines).
+
+| Rows | Cells per language |
+| --- | --- |
+| Specification | 19 |
+| Storage | 3 |
+| Overview slots | 15 |
+| Standby/auto-off | 2 |
+| Ukrainian units | 4 (Ukrainian only) |
+| Footnote ② | 1 |
+
+**Rules, operator-confirmed.** These are the same rules as for JE-1000H and JE-3600A:
+
+- Wording comes from the print, in the house format of the reviewed frozen
+  sources.
+- Print defects use reviewed cross-model wording.
+- Cells whose printed wording matches the English value (for example `25 W`,
+  `10 ms` outside Ukrainian) keep their fallback.
+
+**Deviations from the print:**
+
+- **German:**
+  - the 12 V port label is printed as `DC-12V-Ausgangstaste` (an output button),
+    so it reads `1 × DC 12 V-Anschluss` in the spec and `12-V-DC-Anschluss` in
+    the overview;
+  - the car line of the spec table is printed in English (`Car:`), so it reads
+    `Auto:` as this block's own overview prints.
+- **Italian:** the bypass parameter is printed with the English `AC modalità
+  bypass`, so it reads `Modalità bypass`.
+- **Spanish:**
+  - the USB-A row is labelled `USB-C 18W`;
+  - the PV value reads 400 W, which the 2026-09-15 revision of the same print
+    corrects to 1000 W, as in English.
+- **French:** `Oiture:` becomes `Voiture :`.
+- **Ukrainian:**
+  - the bypass label (`режим` → `режимі`), the plural `2 виходи USB-A` and a
+    stray `від` glued to the charging-temperature label are fixed;
+  - the energy-saving threshold is printed `25 В` (volts) and reads `25 Вт`;
+  - footnote ② gains the missing `струму` by operator ruling, also applied to
+    JE-1000H.
+- **Kept as printed:** the Ukrainian dimensions in mm (`435 × 326 × 281 мм`) and
+  the spec rows without car/PV prefixes; the German and Ukrainian overview AC
+  output without "rated".
+
+**The newer revision.** The 2026-09-15 revision on the design share differs only
+in that Spanish PV value and in an added vehicle-charging caution block on the
+storage/fault pages. The storage lines and the other specification text are
+identical. The authority stays V2.0-2026-07-31, because every recipe is
+hash-locked to it.
+
+**Verification:**
+
+- **Independent print check:** every written cell is found in the plain text of
+  its PDF page after canonicalisation, a different extraction path from the one
+  that built it. Only the listed substitutions are exempt (22 cells).
+- **Figures:** values keep the English digits and `⎓` count, except the
+  Ukrainian dimensions in mm and the cell-chemistry subscript.
+- **English controls:**
+  - specification: 16 of 19 rows land on their print cells;
+  - overview: 11 of 13 slots land on their callouts;
+  - the misses are English edits (`Vehicle:` for the printed `Car:`, `MAX`
+    dropped).
+- **Regression tests:** `Je3000cEuTranslatedCellTests` fails 214 subtests on the
+  previous file.
+- **Trial Web build:** 0 English segments identical to English remain on any
+  fr–uk route. The changes are confined to the overview, specification, storage
+  and footnote sections plus the sentences that quote the standby time, the
+  thresholds, the UPS time and the temperature range.
+
+## 2026-09-25 fr–uk figures from each print block
+
+Problem:
+
+- The fr/es/de/it/uk illustration manifests bound only the two App panels. The
+  other 16 figure slots fell back to the shared art extracted from the JE-1000F/US
+  master, which shows another product and US outlets.
+- This print is region-variant: the English block draws UK sockets on the unit;
+  the fr–uk blocks draw EU sockets. Each route therefore takes its own block's
+  figures. The English route keeps the English block's figures.
+
+Change:
+
+- `data/asset_recipes/manual_je3000c_eu_web.json` gains 75 approved crops, 15 per
+  language, from the fr (PDF pages 22–37), es (38–53), de (54–69), it (70–85)
+  and uk (86–101) blocks:
+  - The positions come from raster matching with the text removed, then each
+    block's own panel frame or art extent. The blocks' layouts drift from English
+    by up to 30 pt.
+  - Crop edges exclude the neighbouring section headings and table rows.
+  - The DC panel keeps the English whiteouts, and `web_manual.css` gives the
+    five fr–uk DC figures the English figure's border.
+- The five illustration manifests bind the crops to the English slots. Their
+  `recipe` is now the web recipe; the App entries keep their own.
+- Copy printed in a crop moves from the page into the figure's alt text, as on
+  English: the overview callout tables, the operation panel lines, the
+  energy-saving note and the car-panel lines. These entries set
+  `consume_before_presentation`, because registered components claim those
+  nodes.
+- **Print defects (operator ruling):**
+  - The German front view prints `DC-12V-Ausgangstaste` and a French `Bouton
+    d'alimentation CA`, and the French side view prints `Oiture:`. These two
+    figures stay as printed and keep the page's corrected callout table.
+  - The Italian and Ukrainian blocks print the energy-saving caption in English
+    (`Press and hold both buttons for more than 3s`). That line is redacted, and
+    the page keeps the localized sentence (the JE-3600A fr car precedent).
+- `source_manifest.json` re-locks the web recipe.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 93 outputs against their
+  expected hashes; the 18 English crops are byte-identical.
+- **Visual review:** every crop was checked next to the English crop and its
+  page. No English line remains in a block crop apart from the redacted captions
+  and the product name `SolarSaga 200 ×4`.
+- **Trial Web builds:** each fr–uk route replaces 15 figures, drops the second
+  solar figure (as English does) and moves the covered copy into alt text; no
+  shared JE-1000F figure remains.
+- **Regression tests:** `Je3000cEuBlockIllustrationTests` and the French build
+  test fail on the previous recipe and manifests (three failures, one error).
+
+Still open (not changed here):
+
+- The English route shows the English block's UK sockets. (Operator ruling
+  2026-09-26: kept as printed, as JE-1000F/EU does.)
+- The App download panel stays the shared QR image on fr–uk. The image matches
+  the print and is language-neutral.
+
+## 2026-09-26 Emergency Charging Mode gate
+
+The fr/es/de/it/uk routes printed an Emergency Charging Mode block under AC wall
+charging, although JE-3000C_EU has the capability FALSE in
+`data/model_capabilities.csv` and no language block of the V2.0-2026-07-31
+print has it. (The uk block's `аварійного використання` is the car panel's
+"emergency use only" caution, a different sentence.)
+
+- Only the English shared charging template carried the
+  `hb-capability-begin: 应急快充模式` markers.
+- `docs/templates/page_shared/{fr,es,de,it,uk}/charging.rst` now carry them too.
+  TRUE targets keep byte-identical pages, and FALSE targets drop the block.
+
+Trial Web builds: each fr–uk route loses exactly that block; English is
+unchanged. `Je3000cEuFrenchAppPanelTests.test_no_emergency_charging_block` fails
+on the previous templates.

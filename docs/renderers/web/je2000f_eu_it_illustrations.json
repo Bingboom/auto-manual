@@ -313,6 +313,29 @@
     },
     {
       "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je2000f_eu_it/app_add_device_panel.png",
+      "sha256": "3517f0e43eb2b0e5480378dee11c240d7ce7c6a46a6b03310d590bcee5b3f38d",
+      "source_page": 84,
+      "bbox_pt": [
+        32.3,
+        223.8,
+        334.6,
+        466.2
+      ],
+      "recipe": "data/asset_recipes/manual_je2000f_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Pulsante POWER principale Pulsante CA Pulsante DC / USB"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
+    {
+      "replaces": [
         "connect_result.png"
       ],
       "path": "assets/je2000f_eu_shared/app_connect_result.png",

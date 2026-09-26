@@ -26,5 +26,5 @@
   "feedback_channels": [
     {"label": "Email support (hello@jackery.com)", "url": "mailto:hello@jackery.com"}
   ],
-  "product_voc_endpoint": "https://talking-corporate-packages-applies.trycloudflare.com/api/voc"
+  "product_voc_endpoint": ""
 }

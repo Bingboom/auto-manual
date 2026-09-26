@@ -57,6 +57,12 @@ class PathSegments:
     VERSIONS = "versions"
     MANIFESTS = "manifests"
     SKELETONS = "skeletons"
+    AGENTS_DIR = ".agents"
+    CLAUDE_DIR = ".claude"
+    GITHOOKS_DIR = ".githooks"
+    SKILLS = "skills"
+    HOOKS = "hooks"
+    TESTS = "tests"
     LATEST = "latest"
     SNAPSHOT = "snapshot"
     RELEASE_SNAPSHOT_IDENTITY_JSON = "release_snapshot_identity.json"
@@ -88,6 +94,11 @@ class PathSegments:
     PUBLISH_META_JSON = "publish_meta.json"
     PUBLISH_MANIFEST_JSON = "publish_manifest.json"
     SKELETON_BLUEPRINT_YAML = "blueprint.yaml"
+    SKILL_MD = "SKILL.md"
+    AGENTS_MD = "AGENTS.md"
+    README_MD = "README.md"
+    SETTINGS_JSON = "settings.json"
+    PRE_PUSH = "pre-push"
     OPS_CATALOG_RECONCILE_WHITELIST_JSON = "ops_catalog_reconcile_whitelist.json"
 
     DEFAULT_CONFIG_US = "config.us.yaml"
@@ -185,6 +196,26 @@ def docs_publish_web_of(docs_dir: Path) -> Path:
 def skeletons_of(base_root: Path) -> Path:
     """``docs/manifests/skeletons`` of a repo-shaped tree: one directory per skeleton cell."""
     return base_root / PathSegments.DOCS / PathSegments.MANIFESTS / PathSegments.SKELETONS
+
+
+def codex_skills_of(base_root: Path) -> Path:
+    """``.agents/skills``: Codex/local skills, one directory per skill."""
+    return base_root / PathSegments.AGENTS_DIR / PathSegments.SKILLS
+
+
+def claude_skills_of(base_root: Path) -> Path:
+    """``.claude/skills``: Claude Code project skills, one directory per skill."""
+    return base_root / PathSegments.CLAUDE_DIR / PathSegments.SKILLS
+
+
+def claude_settings_of(base_root: Path) -> Path:
+    """``.claude/settings.json``: the committed Claude Code project settings, hooks included."""
+    return base_root / PathSegments.CLAUDE_DIR / PathSegments.SETTINGS_JSON
+
+
+def githooks_of(base_root: Path) -> Path:
+    """``.githooks``: the repo-managed git hooks (active once ``core.hooksPath`` points here)."""
+    return base_root / PathSegments.GITHOOKS_DIR
 
 
 def web_publish_release_dir_of(release_dir: Path) -> Path:

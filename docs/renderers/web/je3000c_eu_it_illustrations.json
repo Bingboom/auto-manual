@@ -5,8 +5,311 @@
   "language": "it",
   "source_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
   "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
-  "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je3000c_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3000c_eu_it/inbox_unit.png",
+      "sha256": "70fb11671aa7d65871030485cfd458afcae941db07d6cec79564cc89453a27f7",
+      "source_page": 71,
+      "bbox_pt": [
+        45.0,
+        321.0,
+        125.0,
+        386.0
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3000c_eu_it/inbox_cable.png",
+      "sha256": "5395066757a4ffcd8ab27c28e2260017eb2466b8a3805b3ff66562589cd51e1a",
+      "source_page": 71,
+      "bbox_pt": [
+        165.0,
+        316.0,
+        220.0,
+        391.0
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3000c_eu_it/inbox_manual.png",
+      "sha256": "d3e74810c6c056db09af82c642f0034a4114eebca4e5720d6fc79a922b56878b",
+      "source_page": 71,
+      "bbox_pt": [
+        270.0,
+        321.0,
+        315.0,
+        386.0
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3000c_eu_it/overview_front.png",
+      "sha256": "2cba2d749f51dcf074ec6a00483c6918f520c72f8796e0df3b030ace2592edca",
+      "source_page": 72,
+      "bbox_pt": [
+        27.0,
+        70.0,
+        342.0,
+        286.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-frontale > table",
+          "text": "Pulsante di accensione principale LCD Presa da 12V CC 12 V⎓10 A max. Pulsante Alimentazione DC/USB Uscita USB-C 100W MAX 100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A Pulsante AC Uscita USB-A 18W MAX 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A Uscita CA 230 V~ 50 Hz, 15,6 A, 3600 W nominali"
+        },
+        {
+          "selector": "#vista-frontale > table",
+          "text": "Uscita totale CA 3600 W nominali, 7200 W picco di sovratensione"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3000c_eu_it/overview_side.png",
+      "sha256": "9be91f4431f73383f1860e6da2b4bc4bb14263782d2aed7be19f7200166d583b",
+      "source_page": 72,
+      "bbox_pt": [
+        27.0,
+        323.0,
+        342.0,
+        426.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-lato-destro > table",
+          "text": "Maniglia Ingresso CA 220 V-240 V~ 50 Hz, 10 A max. Ingresso DC (Porte DC8020) FV: 16-60 V⎓12 A, raddoppiabile fino a 24 A max./ 1000 W max. Auto: 12-16 V⎓8 A max., raddoppiabile fino a 8 A max."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3000c_eu_it/lcd_map.png",
+      "sha256": "624360a75e9232be18a38b94aa3bcd6af478b589948abc7531c4e4a84a9f4561",
+      "source_page": 73,
+      "bbox_pt": [
+        34,
+        53.7,
+        326,
+        200
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3000c_eu_it/operation_power.png",
+      "sha256": "5c4ab6b6899ff2440ea1879e829d25ff758c4f6629bd52fae3909a6711cd492a",
+      "source_page": 75,
+      "bbox_pt": [
+        26.79,
+        70.47,
+        342.79,
+        241.47
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#accensione-spegnimento > .line-block",
+          "text": "Accensione: premi una volta. Spegnimento: tieni premuto per 3 s."
+        },
+        {
+          "selector": "#accensione-spegnimento > .line-block",
+          "text": "Tempo di standby predefinito: 2 ore. Il prodotto si spegnerà automaticamente dopo 2 ore di inattività, senza ricarica o scarica. *Il tempo di standby può essere impostato nell'App Jackery. Quando la Modalità risparmio energetico è attiva, il prodotto si spegnerà automaticamente dopo 12 ore se l'uscita CA o DC/USB è attiva ma il prodotto non sta caricando o scaricando."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3000c_eu_it/operation_ac.png",
+      "sha256": "c2a481a927ac7bb408a96f32ab297fdd639a41e2f9ffc1a9b4ab28199fce6d85",
+      "source_page": 75,
+      "bbox_pt": [
+        26.79,
+        260.23,
+        342.79,
+        495.47
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#uscita-ca-attiva-disattiva > p",
+          "text": "Prerequisito : il prodotto è acceso."
+        },
+        {
+          "selector": "#uscita-ca-attiva-disattiva > .line-block",
+          "text": "Accensione Premi una volta Spegnimento Premi una volta"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3000c_eu_it/operation_dc.png",
+      "sha256": "8c3b77b522fbe585f45aa3c2dfcf7091d441ef619272c9530d753e2aee2ba0d3",
+      "source_page": 76,
+      "bbox_pt": [
+        21.5,
+        39.0,
+        337.5,
+        213.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#uscita-cc-12-v-usb-attiva-disattiva > p",
+          "text": "Prerequisito : il prodotto è acceso."
+        },
+        {
+          "selector": "#uscita-cc-12-v-usb-attiva-disattiva > .line-block",
+          "text": "Accensione Premi una volta Spegnimento Premi una volta"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3000c_eu_it/operation_energy.png",
+      "sha256": "03cb595b062a2dd8ce573c4d9096e2b24121e5da2dc54d7bf36003ea0edabe53",
+      "source_page": 77,
+      "bbox_pt": [
+        27.0,
+        58.46,
+        342.0,
+        196.46
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#modalita-risparmio-energetico > table",
+          "text": "NOTA La Modalità risparmio energetico riprende il suo stato precedente dopo l'accensione. Per cambiare modalità è necessario un intervento manuale."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3000c_eu_it/operation_lcd.png",
+      "sha256": "a9f5957b765c2477710792ee295242b91a1430e80c858b7b978c7f9757a4d608",
+      "source_page": 77,
+      "bbox_pt": [
+        35.0,
+        214.98,
+        305.0,
+        303.0
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3000c_eu_it/ups.png",
+      "sha256": "67ad1e3f1b4baf798c0dde84ee89ecc701f50273dc17ce4fff8e256c1088dd75",
+      "source_page": 78,
+      "bbox_pt": [
+        27.0,
+        305.78,
+        342.0,
+        431.78
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3000c_eu_it/charging_ac.png",
+      "sha256": "95f5fd32f3794460712e348645fbec266fa94ab2cbd6dd90dc7620c44a519b07",
+      "source_page": 79,
+      "bbox_pt": [
+        27.0,
+        224.18,
+        342.0,
+        363.18
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3000c_eu_it/charging_solar.png",
+      "sha256": "8c460ea0858da2362f26666325a03ef5d0c2d3b9fa8babd4466386be4600c810",
+      "source_page": 80,
+      "bbox_pt": [
+        27.0,
+        28.0,
+        342.0,
+        157.26
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3000c_eu_it/charging_car.png",
+      "sha256": "4807f7b5716a1b70bd564bf1d8636f23fca0e438db48535d8279721ed124a1fc",
+      "source_page": 80,
+      "bbox_pt": [
+        27.0,
+        306.75,
+        342.0,
+        427.17
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ricarica-tramite-caricatore-per-auto-venduti-separatamente > .line-block > .line",
+          "text": "Veicolo"
+        },
+        {
+          "selector": "#ricarica-tramite-caricatore-per-auto-venduti-separatamente > .line-block > .line",
+          "text": "*Il cavo di ricarica per auto è venduto separatamente."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_it/app_add_device_panel.png",
+      "sha256": "1d6e0586d006dda7dd40366bef68916d81efeac481488aaa239729a92573cba9",
+      "source_page": 84,
+      "bbox_pt": [
+        32.4,
+        229.4,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Pulsante di accensione principale Pulsante AC Pulsante Alimentazione DC/USB"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
     {
       "replaces": [
         "connect_result.png"

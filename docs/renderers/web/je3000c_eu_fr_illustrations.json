@@ -5,8 +5,304 @@
   "language": "fr",
   "source_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
   "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
-  "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je3000c_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3000c_eu_fr/inbox_unit.png",
+      "sha256": "920826b80d6bf79b22fac53ef498f90fe67deeb375c5c09a16c787e5d737a20a",
+      "source_page": 23,
+      "bbox_pt": [
+        45.0,
+        315.0,
+        125.0,
+        380.0
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3000c_eu_fr/inbox_cable.png",
+      "sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f",
+      "source_page": 23,
+      "bbox_pt": [
+        165.0,
+        310.0,
+        220.0,
+        385.0
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3000c_eu_fr/inbox_manual.png",
+      "sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6",
+      "source_page": 23,
+      "bbox_pt": [
+        270.0,
+        315.0,
+        315.0,
+        380.0
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3000c_eu_fr/overview_front.png",
+      "sha256": "4426f8359eb21ef933343621aa1829a218c94cca6e5ef974a8f05a44b8a47cf2",
+      "source_page": 24,
+      "bbox_pt": [
+        27.0,
+        70.0,
+        342.0,
+        286.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vue-de-face > table",
+          "text": "Bouton d'alimentation principal LCD Port CC 12 V 12 V⎓10 A max. Bouton d'alimentation CC/USB Sortie USB-C 100W MAX 100 W max., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A Bouton d'alimentation CA Sortie USB-A 18W MAX 18 W max., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A Sortie CA 230 V~ 50 Hz, 15,6 A, 3600 W nominal"
+        },
+        {
+          "selector": "#vue-de-face > table",
+          "text": "Sortie totale CA 3600 W nominal, 7200 W crête"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3000c_eu_fr/overview_side.png",
+      "sha256": "56d446d252a5d57dce44b2d4c274ff140c6a97e7d4bf6f70f30b8e4765b8d1c4",
+      "source_page": 24,
+      "bbox_pt": [
+        27.0,
+        323.0,
+        342.0,
+        426.0
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3000c_eu_fr/lcd_map.png",
+      "sha256": "e837d526e41f6b8a05152b3848921755b6d4f4ba3e7e99ff6f91483ba1947e98",
+      "source_page": 25,
+      "bbox_pt": [
+        34.0,
+        53.6,
+        326.0,
+        190.3
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3000c_eu_fr/operation_power.png",
+      "sha256": "ec32ac665f3e66556ff9f7f238a3f2450e790c758044cb42ea15191cf09a8450",
+      "source_page": 27,
+      "bbox_pt": [
+        26.79,
+        70.33,
+        342.79,
+        241.33
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#marche-arret > .line-block",
+          "text": "Marche : appuyez une fois. Arrêt : appuyez et maintenez pendant 3 secondes. Temps de veille par défaut : 2 heures. Le produit s'éteindra automatiquement après 2 heures d'inactivité, sans charge ni décharge. *Le temps de veille peut être réglé dans l'application Jackery. Lorsque le mode d'économie d'énergie est activé, le produit s'éteindra automatiquement après 12 heures si le bouton d'alimentation CA ou le bouton d'alimentation CC/USB est activé mais que le produit ne charge ni ne décharge."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3000c_eu_fr/operation_ac.png",
+      "sha256": "6557298b9caeee08bc603da2705db60c6a535ef38540e27eb9e90e6e4adcc5d2",
+      "source_page": 27,
+      "bbox_pt": [
+        26.79,
+        260.09,
+        342.79,
+        495.33
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#sortie-ca-marche-arret > p",
+          "text": "Prérequis : Le produit est allumé."
+        },
+        {
+          "selector": "#sortie-ca-marche-arret > .line-block",
+          "text": "Marche appuyez une fois Arrêt appuyez une fois"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3000c_eu_fr/operation_dc.png",
+      "sha256": "43db98f7a9687bed4cbe4588af5ac7131513884ec49fa63e1132ccc733364ef0",
+      "source_page": 28,
+      "bbox_pt": [
+        27.0,
+        39.0,
+        343.0,
+        213.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#sortie-cc-12v-usb-marche-arret > p",
+          "text": "Prérequis : Le produit est allumé."
+        },
+        {
+          "selector": "#sortie-cc-12v-usb-marche-arret > .line-block",
+          "text": "Marche appuyez une fois Arrêt appuyez une fois"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3000c_eu_fr/operation_energy.png",
+      "sha256": "48d9f2ba58336aabe08491c911bb5090609436cea7712969378d239896b9e80c",
+      "source_page": 29,
+      "bbox_pt": [
+        27.0,
+        58.32,
+        342.0,
+        196.32
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#mode-d-economie-d-energie > .line-block",
+          "text": "Maintenez les deux boutons enfoncés pendant plus de 3 secondes."
+        },
+        {
+          "selector": "#mode-d-economie-d-energie > table",
+          "text": "REMARQUE Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Toute modification du mode doit être effectuée manuellement."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3000c_eu_fr/operation_lcd.png",
+      "sha256": "974ebc5f6fbf636175670014e3a18ae973ccea78b3bdf915fb7a0f045446d5e4",
+      "source_page": 29,
+      "bbox_pt": [
+        35.0,
+        214.84,
+        305.0,
+        303.0
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3000c_eu_fr/ups.png",
+      "sha256": "7ab195f9c3a8c9f32f935b4d308bd9e3718da40f7f8bf765af9d528e01d80ac7",
+      "source_page": 30,
+      "bbox_pt": [
+        27.0,
+        305.78,
+        342.0,
+        431.78
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3000c_eu_fr/charging_ac.png",
+      "sha256": "470b3c4a516a97d31377c4e22aaec1332a8bb9e299d53c4eff545c068fae9abc",
+      "source_page": 31,
+      "bbox_pt": [
+        27.0,
+        222.0,
+        342.0,
+        361.0
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3000c_eu_fr/charging_solar.png",
+      "sha256": "64c2d74df2212a39e3f573ccd7e78731979450712ccc41a3d2b9ac1f5edfc09e",
+      "source_page": 32,
+      "bbox_pt": [
+        27.0,
+        28.0,
+        342.0,
+        157.26
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3000c_eu_fr/charging_car.png",
+      "sha256": "d947970a3f3225a80553bdefcc4754792a6499f1b052027cd1ab10531366b185",
+      "source_page": 32,
+      "bbox_pt": [
+        27.0,
+        317.69,
+        342.0,
+        438.11
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#chargement-par-prise-de-voiture-vendu-separement > .line-block > .line",
+          "text": "Véhicule"
+        },
+        {
+          "selector": "#chargement-par-prise-de-voiture-vendu-separement > .line-block > .line",
+          "text": "※Le câble de chargement de voiture est vendu séparément."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "add_device.png"
+      ],
+      "path": "assets/je3000c_eu_fr/app_add_device_panel.png",
+      "sha256": "c52a046479034be8e2f054f82a5eb86ee5f3c74cb35fa843a9a579f19ed49137",
+      "source_page": 36,
+      "bbox_pt": [
+        32.4,
+        229.4,
+        334.8,
+        487.1
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Bouton d'alimentation principal Bouton d'alimentation CC/USB Bouton d'alimentation CA"
+        }
+      ],
+      "consume_before_presentation": true,
+      "reference_id": "app-add-device"
+    },
     {
       "replaces": [
         "connect_result.png"

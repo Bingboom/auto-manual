@@ -110,6 +110,14 @@ frozen inputs only. It never reads Feishu or the network.
 - The skeleton blueprints under `docs/manifests/skeletons/*/blueprint.yaml`
   say which product families already generate their manual structure from a
   skeleton. The mirror carries them, so RTD reads the same files.
+- The agent skills under `.agents/skills` and `.claude/skills`, the Claude Code
+  hooks in `.claude/settings.json` and the steps of `.githooks/pre-push` feed
+  the skills and hooks block; see [Skills and hooks](#skills-and-hooks).
+- `tools/rtd_portal_assets/source_registry.yaml` is the source registry. For
+  every data domain on the page, it records where the fact is decided, how it
+  is read, how fresh it must be and what shows without it. The page takes its
+  snapshot names, freshness limits and fallback text from it, and lists it
+  publicly as 数据来源; see [Source registry](#source-registry).
 
 The page is public, on the same RTD project as the manuals. `noindex` is not
 access control, so the contract holds only publishable facts. Gap narratives
@@ -170,10 +178,72 @@ the same month replaces that month's figures. If the snapshot being replaced
 cannot be read or is malformed, the export stops, so history is never dropped.
 A language added to the contract later does not block the carry.
 
-A snapshot older than `corpus.stale_after_days` (default 45) shows 待复核. An
+A snapshot older than the `stale_after_days` of the source registry's `corpus`
+domain (45) shows 待复核. The registry also names the snapshot file. An
 unreadable or malformed snapshot shows 无数据 for this block only, with a
 Sphinx warning; the rest of the page still renders. `check` reports both
 cases.
+
+### Skills and hooks
+
+The 技能与钩子 block lists what agents can call and what runs automatically.
+It is read from the tree at build time (`tools/rtd_system_tooling.py`), and
+none of it is hand-listed.
+
+- **Skills**: one row per skill directory, merging the Codex copy
+  (`.agents/skills/<name>/SKILL.md`) and the Claude Code copy
+  (`.claude/skills/<name>/SKILL.md`). The row shows the first sentence of the
+  frontmatter `description`; the full text is the tooltip.
+  - A Codex copy needs frontmatter `name` equal to its directory.
+  - A Claude copy may omit `name`, because Claude Code uses the directory name.
+  - Every copy needs a `description`.
+- **Registration**: a Codex copy must be linked from `AGENTS.md` §7, and a
+  Claude copy must be listed in `.claude/skills/README.md`. Unregistered copies
+  show 未登记.
+- **Lanes**: `tooling.skill_lanes` in the contract maps skills to focus lanes,
+  and an empty list shows that the lane has no skill yet. Unmapped skills are
+  listed under 其他技能.
+- **Hooks**:
+  - Claude Code hooks come from `.claude/settings.json`, and git hooks from the
+    steps of `.githooks/pre-push`. An `exec` step blocks the push (拦截); the
+    others only advise (提醒).
+  - A hook counts as tested when `tests/test_<script>.py` exists. Its purpose is
+    the first line of the script's module docstring.
+  - Git hooks run only where `core.hooksPath` points at `.githooks`, and the
+    page says so.
+
+`check` warns about unregistered copies, frontmatter gaps, missing hook scripts
+and hooks without tests. A lane mapping that names a missing skill is an error.
+
+### Source registry
+
+`tools/rtd_portal_assets/source_registry.yaml` registers each data domain the
+workspace pages show, once. It is REV-44, the single source of truth for where
+each fact comes from; the design is in
+[ssot_source_registry_design.md](ssot_source_registry_design.md). Each domain
+records:
+
+| Field | Meaning |
+| --- | --- |
+| `authority` | where the fact is decided: a `file:<repo>:<path>` ref, or text, such as a Feishu table named by its environment variable (never a token) |
+| `read` | `build` (read at build time) or `snapshot` (a committed JSON file) |
+| `snapshot`, `refresh` | the snapshot next to the registry, and the read-only command that rewrites it |
+| `stale_after_days` | a snapshot's age limit, or an entry review cycle, after which the page shows 待复核 |
+| `fallback` | what the page shows when the source cannot be read |
+| `used_by` | the page blocks that show the fact |
+
+- The system page and the deliverables page take snapshot names, freshness
+  limits and fallback text from the registry. None of them is written in page
+  code or in the status contract any more.
+- The system page lists every domain publicly under 数据来源, with each
+  snapshot's date, and 待复核 once a snapshot is past its limit.
+- `check` fails on an unsound registry, an unregistered page domain, or a
+  `file:auto-manual:` authority that does not exist. It warns about a stale or
+  unreadable snapshot.
+- An unsound registry is an authoring error. The system page drops out with a
+  Sphinx warning, and the deliverables page shows its Feishu columns as 无数据.
+- Agents look a fact's authority up here instead of keeping their own copy.
+  Multi-agent dispatch (REV-45) builds on this.
 
 ### Status rules
 
@@ -193,11 +263,12 @@ cases.
 ### Drift and failure behaviour
 
 - Drift still renders. A cited file that no longer exists, a REV whose ledger
-  status moved, or an entry older than `stale_after_days` shows **待复核**, with
-  the reason as a tooltip.
+  status moved, or an entry older than the review cycle of the source
+  registry's `capabilities` domain (30 days) shows **待复核**, with the reason
+  as a tooltip.
 - An authoring error drops only this page, with a Sphinx warning. Examples are
-  an unknown status, a card above its ceiling, broken evidence syntax, or a
-  gate REV that the ledger does not name. The manual site keeps building, and
+  an unknown status, a card above its ceiling, broken evidence syntax, a gate
+  REV that the ledger does not name, or an unsound source registry. The manual site keeps building, and
   the sidebar hides the entry.
 
 ### Maintaining the contract
@@ -240,6 +311,66 @@ pages are byte-identical, and neither build emits a warning.
 
 Rollback: revert the change. The workspace entry, manual URLs and QR aliases
 are unaffected.
+
+## Deliverables page
+
+`/workspace/deliverables/` (交付物) gathers the links to what the pipeline has
+delivered in one table. It is grouped by model, with one row per region and one
+column per format:
+
+| Column | What it links to | Source |
+| --- | --- | --- |
+| 网页手册 | each language edition's page on this site | `docs/publish/publish_manifest.json`, read at build time |
+| 印刷交付包 (IDML + PDF) | the Publish handoff ZIP in the Feishu wiki | the build table's `idml_file` column, through the snapshot |
+| Word 云文档 | the Draft Word output, imported as a Feishu cloud doc | the build table's `飞书云文档` column, through the snapshot |
+
+- Each cell holds one chip per language, with its version. 整本 marks a
+  whole-book document that carries all its languages in one file.
+- The PDF has no link of its own: it ships inside the handoff ZIP, and the
+  publish tree refuses PDF files.
+- Two selects filter the table by model and by region. On a phone, each region
+  becomes a card with the formats stacked.
+- Product names come from the manual center. A model that the manual center
+  does not list shows its code only. The build table's own product names are
+  not used, because some of them are wrong or empty.
+
+The Feishu links open only for signed-in Feishu users, but their addresses are
+public on this page. The operator chose this on 2026-09-25 (「直接放飞书链接」).
+The page accepts only https links on a Feishu or Lark host.
+
+### Refreshing the Feishu snapshot
+
+RTD never reads Feishu, so the two Feishu columns come from
+`tools/rtd_portal_assets/deliverables_snapshot.json`, the snapshot of the
+source registry's `deliverables_feishu` domain. Refresh it through a PR
+after new Draft or Publish builds:
+
+```bash
+python tools/rtd_deliverables.py export --cli-bin "lark-cli --profile prod" --as bot
+python tools/rtd_deliverables.py check
+```
+
+`export` is read-only. It reads two tables in the base named by
+`$FEISHU_PHASE2_BASE_TOKEN`:
+
+- the build table, `$FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`;
+- the Document_key table, `$FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` (the
+  model-capabilities table is the Document_key table).
+
+It keeps the highest version for each model, region, language and format. It
+skips rows without a resolvable key or without a Feishu link. A missing column
+fails the export instead of silently dropping a format.
+
+### Failure behaviour
+
+- Without a publish manifest, the web column is empty and the page says
+  发布清单当前不可读.
+- An unreadable or unsound snapshot empties the two Feishu columns only, with a
+  Sphinx warning.
+- A snapshot older than the registry's limit (45 days) shows 待复核, and
+  `check` warns about it.
+- The page always renders. The workspace and system pages link to it from their
+  sidebars, and the workspace's 最近更新 list links to it too.
 
 ## Maintenance surface
 

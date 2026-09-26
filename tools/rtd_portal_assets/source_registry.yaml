@@ -1,0 +1,88 @@
+# Source registry (SSOT, REV-44): where each fact on the workspace pages comes
+# from, how fresh it must be, and what shows when it cannot be read. Design:
+# code-as-doc/dev/ssot_source_registry_design.md.
+#
+# The system and deliverables pages read snapshot names, freshness limits and
+# fallback text from here instead of hardcoding them; the system page lists
+# every domain publicly as 数据来源; agents look up a fact's authority here.
+# Name Feishu sources by their environment variables, never by token.
+#
+#   authority        where the fact is decided: a file:<repo>:<path> ref, or text
+#   read             build (read at build time) | snapshot (a committed JSON file)
+#   snapshot         the snapshot next to this file (snapshot domains only)
+#   refresh          the read-only command that rewrites the snapshot
+#   stale_after_days snapshot age, or review cycle, after which the page shows 待复核
+#   fallback         what the page shows when the source cannot be read
+#   used_by          the page blocks that show this fact
+schema: hello-docs-source-registry/v1
+
+domains:
+  - id: publications
+    label: 发布目标
+    authority: "file:hello-docs:docs/publish/publish_manifest.json"
+    read: build
+    fallback: 发布清单当前不可读
+    used_by: 系统建设页的发布数字、交付物页的网页手册列、现在就能用
+
+  - id: ledger
+    label: 执行进度
+    authority: "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+    read: build
+    fallback: 执行台账当前不可读
+    used_by: 当前重点的进度、阶段门、当前在做
+
+  - id: corpus
+    label: 语料规模
+    authority: 飞书翻译记忆库（$FEISHU_TRANSLATION_MEMORY_BASE_TOKEN）
+    read: snapshot
+    snapshot: system_workspace_corpus.json
+    refresh: python tools/rtd_system_workspace.py corpus-export
+    stale_after_days: 45
+    fallback: 语料快照当前不可读
+    used_by: 语言资产
+
+  - id: deliverables_feishu
+    label: 交付物飞书链接
+    authority: 飞书文档构建表与 Document_key 表（$FEISHU_PHASE2_BASE_TOKEN）
+    read: snapshot
+    snapshot: deliverables_snapshot.json
+    refresh: python tools/rtd_deliverables.py export
+    stale_after_days: 45
+    fallback: 飞书快照当前不可读
+    used_by: 交付物页的印刷交付包、Word 云文档两列
+
+  - id: skeletons
+    label: 骨架覆盖
+    authority: "file:auto-manual:docs/manifests/skeletons"
+    read: build
+    fallback: 无数据
+    used_by: 当前重点·骨架拓展
+
+  - id: tooling
+    label: 技能与钩子
+    authority:
+      - "file:auto-manual:.agents/skills"
+      - "file:auto-manual:.claude/skills"
+      - "file:auto-manual:.claude/settings.json"
+      - "file:auto-manual:.githooks/pre-push"
+    read: build
+    fallback: 不显示这一块
+    used_by: 技能与钩子
+
+  - id: capabilities
+    label: 能力状态
+    authority: "file:auto-manual:tools/rtd_portal_assets/system_workspace.yaml"
+    read: build
+    stale_after_days: 30
+    fallback: 待复核
+    used_by: 能力地图、生产流程与连接
+
+  - id: focus
+    label: 当前重点
+    authority:
+      - 操作者决定
+      - "file:auto-manual:tools/rtd_portal_assets/system_workspace.yaml"
+      - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
+    read: build
+    fallback: 不显示这一块
+    used_by: 当前重点

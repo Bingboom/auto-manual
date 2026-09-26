@@ -19,11 +19,11 @@
   "data_root": "manual_sources/JE-3000C/EU/en/2.0/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web.json",
-    "sha256": "19f2c30acd196c962554327cae6a63f59755e2c768426477d4e74f8d6e86bc86"
+    "sha256": "b2e9a82fbb68a8f5db4ed8b8e9622098560cb82ee37a2959a488e91891f82c9a"
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3000c_eu_web_app.json",
-    "sha256": "7cc37c8a0234a6cddc347ec0efbcd0731a234f7a81cc70f724089baf72481d28"
+    "sha256": "c1ed0192e86930a9f899cb4c975a160bb1816922385e7c05fdcd87b28f6ffc0b"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3000c_eu_en_illustrations.json",
@@ -47,13 +47,13 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 1417,
-      "sha256": "09eff835a437c329e9dbd1f3b3e162e594d590fecec2cb3f2700ac1a86d4e624"
+      "size": 1817,
+      "sha256": "d743fe5471b85ee17160db5cce64ff7db5e77227a535857a520ad2d5d9bc378c"
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 11536,
-      "sha256": "ff2d54d14d7969bff0ef135b7de054f8a11092fcc8bc9edbbcc72ecb6546a7bf"
+      "size": 20651,
+      "sha256": "913f009f98e6b93928946f6f83a67f4bd9f87b87421013b21aa45897e30aa890"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -306,7 +306,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "e569606418c15991ef4bb944e3875f2742c4a6c3ada88c911c2cdd6e2a8342f9",
+  "files_inventory_sha256": "b34d1a5cabb2e61f3836d7cf4ae8f2a02d3473edc775a5a089d2984abb62f91a",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

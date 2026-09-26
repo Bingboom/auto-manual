@@ -69,6 +69,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | RTD 手册中心：首页、地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | RTD 知识库与工作资料入口（内容存于 Hello-Docs） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#personal-workspace-entry) |
 | RTD 系统建设页：当前重点、能力、证据与阶段进度 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#system-workspace-page) |
+| RTD 交付物页：各型号网页手册、印刷交付包与 Word 云文档的链接汇总 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#deliverables-page) |
 | RTD 手册反馈：售后邮箱入口与发布后健康检查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
 | 产品改进建议：网页表单与飞书机器人代提交 | [`VOC 接入`](code-as-doc/dev/product_voc.md) |
 | RTD 访问统计（默认关闭，Cloudflare Web Analytics） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |

@@ -135,6 +135,16 @@ FR/ES/DE/IT/UK pages; the EN page already used the URIs), so a Web rebuild from
 it carries the EU export, not the JP screenshot, as the connect-result figure's
 hidden semantic image in all five routes.
 
+The in-box unit, LCD display mode and UPS figures are ordinary registry art, not
+composites. Their JE-1000F/EU target overrides (`in_the_box/je1000f_eu/main_unit1`,
+`operation/je1000f_eu/lcd_mode` and `operation/je1000f_eu/ups_mode`, each with an
+`_en` sibling; recipe `manual_je1000f_eu_uk_20260618_block_art.json`) vary by
+language: EN takes the English block (BS 1363 sockets), FR/ES/DE/IT/UK the French
+block (EU sockets). The frozen review copy switched those references to `asset:`
+URIs on 2026-09-26, so a Web rebuild shows the print's own art in those three
+visible figures on all five routes instead of the shared art (a US-outlet unit and
+another, wheeled model).
+
 `JE-2000F / EU` binds its App connect-result panel through its six per-language
 `web-illustrations/v1` manifests rather than composites. The six language blocks
 of its EU/UK print place the same five screen bitmaps, so one panel cut from the
@@ -157,8 +167,26 @@ screens and live labels, because its block prints `AC1` for the AC2 button.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier
-Web App panels for JE-1000H, JE-2000E and JE-3000C are recipe-approved only
-because their keys carry none of the gate's tokens.
+Web App panels for JE-1000H, JE-2000E and JE-3000C were recipe-approved only
+because their keys carry none of the gate's tokens. Since 2026-09-25 the
+JE-1000H/EU (download, add-device and connect-result, six languages) and
+JE-3000C/EU English App panels are quarantined with App risk tags, keeping
+their keys, files and hashes. `tests/test_app_figure_gate.py` requires every
+manifest entry that replaces an App setup image (`download.png`,
+`add_device.png`, `connect_result.png`) or carries an `app-` reference id to
+resolve to a quarantined recipe asset; the two JE-2000E/EU English panels are
+its only listed exceptions until the open JE-2000E add-device change lands.
+
+The App add-device figure of `JE-2000F / EU` (six routes), `JE-3000C / EU`
+(fr/es/de/it/uk) and `JE-3600A / EU` (en/es/fr) is, since 2026-09-24, each
+language block's own crop of the 2.1/2.2 screens together with that model's
+control-panel box and its printed button labels (quarantined App recipe entries
+`web/<model>/eu/<lang>/app_add_device_panel`). It replaces the shared
+composition of generic App screens with the JE-1000F/US control-panel drawing,
+and on the JE-2000F and JE-3600A English routes a crop of the control-panel box
+without the screens. The page's button-label lines become covered annotations
+(the figure's alt text). The JE-3000C English route already had its own complete
+panel.
 
 Every newly generated Web `manual.ir.json` contains a
 `metadata.web_figure_coverage` payload with schema

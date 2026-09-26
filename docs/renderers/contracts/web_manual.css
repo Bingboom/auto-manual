@@ -1086,7 +1086,12 @@ body {
   margin-inline: auto;
 }
 
-#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"] {
+#furo-main-content #dc-12v-usb-output-on-off > img[data-web-finished-panel-path="assets/je3000c_eu_en/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_fr/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_es/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_de/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_it/operation_dc.png"],
+#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_uk/operation_dc.png"] {
   box-sizing: border-box; border: 2px solid var(--hb-line-soft);
   border-radius: 0.82rem; background: var(--hb-paper);
 }

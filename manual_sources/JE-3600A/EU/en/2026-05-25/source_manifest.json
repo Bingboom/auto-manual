@@ -18,15 +18,15 @@
   "data_root": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je3600a_eu_web.json",
-    "sha256": "9d1a690315b1185df7fd425bc84b9cb2a6f5c46730bb12bed5ba0b87aa2c1948"
+    "sha256": "19f0cb5eb3e71f463ec9fd5dafabcee87e3098954a3c0244945b27323e655c23"
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3600a_eu_web_app.json",
-    "sha256": "1afdd84096dfa0f07ff70ce3ae8248e1d44900727f992c0c00d9d62497423b85"
+    "sha256": "6e666959bf1a0579d0116df50ff8235b95c8d3c67af159c8cfca8e6bc2ca113c"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3600a_eu_en_illustrations.json",
-    "sha256": "2216579f8bb8b3a1c4c7cc36f9e49ce5df63ab620aba55c62d10e8fcb223f170"
+    "sha256": "e4e9c8f0cd774302912d0c499af2ee57d0090c4c2856beab6717babf80f49588"
   },
   "files": [
     {
@@ -46,18 +46,18 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 453,
-      "sha256": "c748fbc56ceb3134fdee0337c551f56bc54430ae1589a853b446a53803079845"
+      "size": 847,
+      "sha256": "1d0994636990f526de08cf92c9cb8b029e71d6f45266f9c66d78552d9fe87888"
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 10768,
-      "sha256": "6c8b5768601ce3689fbd5c1717279e82ea98558117845179f0caa27aee236705"
+      "size": 13284,
+      "sha256": "cd58ee3d9d4e6721514f04e6a503bc8be38c620632795e11a9f43e1113d1b8a1"
     },
     {
       "path": "phase2/Spec_Notes.csv",
-      "size": 305,
-      "sha256": "b8f237246305a9dbc7f4aa23ecfadd5d0a0e692ec2ccc8fd49b298b343c97f48"
+      "size": 463,
+      "sha256": "ffb62a75f6fc63299e3d5d2464bd6a183ddca53842187558587a10d6660557b3"
     },
     {
       "path": "phase2/Status_Words.csv",
@@ -116,8 +116,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 7470,
-      "sha256": "ecef50768789a59bcdc4dda26d9aa083c8e748c43f7fb1854f902685eff05467"
+      "size": 15105,
+      "sha256": "6f1fd7c5c6de58dc86e2751c9115509d52e2315b13ba534fb6a25a369f3f106d"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -141,8 +141,8 @@
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
-      "size": 3612,
-      "sha256": "46be326a0e926d0de26be4bc98ba6821ce2930dd956d552730d768ef97b353ba"
+      "size": 6650,
+      "sha256": "afe8421aa6b71dc7a007df03dcdb36196d92dd3af63e40214297410c6f049c66"
     },
     {
       "path": "phase2/web_composite_manifest.json",
@@ -150,7 +150,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "fb53b2ce0e51660439698058f60ac0e88dbf5def64ba968440d922a617d0e630",
+  "files_inventory_sha256": "8cf0b39456b81ade78461447ff1f9634020aba63ec3769abf1423dce0b33b675",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

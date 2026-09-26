@@ -28,11 +28,11 @@
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je2000f_eu_web_app.json",
-    "sha256": "f24e33d4250c07e7ca659c8a6ce2a32453087c3b6bfe7a2bd4f54cb908989cc3"
+    "sha256": "5de57e2ac1efe413f3ee833dc9f3d6b27eedb1a515e2103e7688afc7e149f7ff"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000f_eu_en_illustrations.json",
-    "sha256": "34470cb9cb092e13bbdaa0671d784d3235bf8bf18003a5c69313fcd40bdae313"
+    "sha256": "8b0a3ab9381db427e48a4f345dcd5822c43bbc3b1780d1086233202260b8d758"
   },
   "files": [
     {

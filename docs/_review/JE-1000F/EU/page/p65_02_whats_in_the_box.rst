@@ -7,7 +7,7 @@
    .. raw:: latex
 
       \section{CONTENUTO DELLA CONFEZIONE}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Cavo di ricarica CA}{manual_icon1.png}{Manuale utente}
+      \HBInBoxThree{asset:in_the_box/main_unit1}{Jackery Explorer 1000}{ac_charging_cable.png}{Cavo di ricarica CA}{manual_icon1.png}{Manuale utente}
       \HBTipBlock{SUGGERIMENTO}{Il cavo di ricarica per auto non è incluso, ma è disponibile per l'acquisto separato sul nostro sito web. Per assistenza, contatta il servizio clienti Jackery.}
 
 .. only:: not latex
@@ -20,7 +20,7 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Segnaposto immagine della stazione di alimentazione.
              :width: 120px
 
