@@ -196,3 +196,60 @@ hash-locked to it.
   fr–uk route. The changes are confined to the overview, specification, storage
   and footnote sections plus the sentences that quote the standby time, the
   thresholds, the UPS time and the temperature range.
+
+## 2026-09-25 fr–uk figures from each print block
+
+Problem:
+
+- The fr/es/de/it/uk illustration manifests bound only the two App panels. The
+  other 16 figure slots fell back to the shared art extracted from the JE-1000F/US
+  master, which shows another product and US outlets.
+- This print is region-variant: the English block draws UK sockets on the unit;
+  the fr–uk blocks draw EU sockets. Each route therefore takes its own block's
+  figures. The English route keeps the English block's figures.
+
+Change:
+
+- `data/asset_recipes/manual_je3000c_eu_web.json` gains 75 approved crops, 15 per
+  language, from the fr (PDF pages 22–37), es (38–53), de (54–69), it (70–85)
+  and uk (86–101) blocks:
+  - The positions come from raster matching with the text removed, then each
+    block's own panel frame or art extent. The blocks' layouts drift from English
+    by up to 30 pt.
+  - Crop edges exclude the neighbouring section headings and table rows.
+  - The DC panel keeps the English whiteouts, and `web_manual.css` gives the
+    five fr–uk DC figures the English figure's border.
+- The five illustration manifests bind the crops to the English slots. Their
+  `recipe` is now the web recipe; the App entries keep their own.
+- Copy printed in a crop moves from the page into the figure's alt text, as on
+  English: the overview callout tables, the operation panel lines, the
+  energy-saving note and the car-panel lines. These entries set
+  `consume_before_presentation`, because registered components claim those
+  nodes.
+- **Print defects (operator ruling):**
+  - The German front view prints `DC-12V-Ausgangstaste` and a French `Bouton
+    d'alimentation CA`, and the French side view prints `Oiture:`. These two
+    figures stay as printed and keep the page's corrected callout table.
+  - The Italian and Ukrainian blocks print the energy-saving caption in English
+    (`Press and hold both buttons for more than 3s`). That line is redacted, and
+    the page keeps the localized sentence (the JE-3600A fr car precedent).
+- `source_manifest.json` re-locks the web recipe.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 93 outputs against their
+  expected hashes; the 18 English crops are byte-identical.
+- **Visual review:** every crop was checked next to the English crop and its
+  page. No English line remains in a block crop apart from the redacted captions
+  and the product name `SolarSaga 200 ×4`.
+- **Trial Web builds:** each fr–uk route replaces 15 figures, drops the second
+  solar figure (as English does) and moves the covered copy into alt text; no
+  shared JE-1000F figure remains.
+- **Regression tests:** `Je3000cEuBlockIllustrationTests` and the French build
+  test fail on the previous recipe and manifests (three failures, one error).
+
+Still open (not changed here):
+
+- The English route shows the English block's UK sockets.
+- The App download panel stays the shared QR image on fr–uk. The image matches
+  the print and is language-neutral.

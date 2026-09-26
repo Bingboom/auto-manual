@@ -51,3 +51,9 @@ printed English there. They now hold each language block's printed text from
 this source's V2.0-2026-07-31 PDF; defects use reviewed wording, and the Spanish
 PV value takes the 2026-09-15 revision's correction (see the intake review
 addendum of the same date). `source_manifest.json` re-locks both files.
+
+Block figures (2026-09-25): the fr/es/de/it/uk routes bind their own language
+block's figures (15 crops each in `asset_recipe`; the fr–uk blocks draw EU
+sockets, the English block UK sockets) instead of the shared JE-1000F art; see
+the intake review addendum of the same date. `source_manifest.json` re-locks
+the web recipe.
