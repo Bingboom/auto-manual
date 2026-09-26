@@ -28,6 +28,40 @@ ILLUSTRATIONS = ROOT / "docs/renderers/web/je3000c_eu_en_illustrations.json"
 WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
 APP_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
+WEB_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web.json"
+# PDF pages of each language block of the V2.0 print; each route crops its own block
+# (the English block draws UK sockets, the others EU sockets).
+BLOCK_PAGES = {"fr": range(22, 38), "es": range(38, 54), "de": range(54, 70), "it": range(70, 86), "uk": range(86, 102)}
+BLOCK_CROPS = (
+    "inbox_unit", "inbox_cable", "inbox_manual", "overview_front", "overview_side", "lcd_map",
+    "operation_power", "operation_ac", "operation_dc", "operation_energy", "operation_lcd",
+    "ups", "charging_ac", "charging_solar", "charging_car",
+)
+# The shared art the fr-uk routes showed before 2026-09-25: JE-1000F figures from the
+# JE-1000F/US master (another product, US outlets).
+SHARED_ART = (
+    "in_the_box/main_unit1", "in_the_box/ac_charging_cable", "in_the_box/manual_icon1",
+    "in_the_box/main_unit", "overview/front_product", "overview/right_side_ports", "lcd/lcd_map",
+    "operation/main_power", "operation/dc_usb_output", "operation/ac_output", "operation/energy_saving",
+    "operation/lcd_mode", "operation/ups_mode", "charging/ac_wall", "charging/solar_direct",
+    "charging/solar_adapter", "charging/car_charge",
+)
+# Print defects in the callout labels (de "DC-12V-Ausgangstaste" and a French label,
+# fr "Oiture:"): these figures keep the page's corrected callout table (operator ruling).
+KEEP_CALLOUT_TABLE = {("de", "overview_front"), ("fr", "overview_side")}
+# The it/uk blocks print this panel's caption in English; the line is redacted.
+ENGLISH_CAPTION = {"it", "uk"}
+
+
+def shared_art_digests() -> set[str]:
+    with (ROOT / "data/asset_registry.csv").open(encoding="utf-8", newline="") as handle:
+        rows = {row["asset_key"]: row for row in csv.DictReader(handle)}
+    digests = set()
+    for key in SHARED_ART:
+        found = re.findall(r"[0-9a-f]{64}", rows[key]["内容哈希"])
+        assert found, key
+        digests.update(found)
+    return digests
 # The control-panel button names each language block of the V2.0 print uses
 # (PDF pages 36/52/68/84/100). Without them the fr-uk routes fell back to the
 # English source names in the Product Overview, energy-saving and App pages.
@@ -253,7 +287,8 @@ class Je3000cEuEnWebTests(unittest.TestCase):
     def test_illustration_recipe_and_files_are_approved_and_hash_locked(self) -> None:
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         recipe = json.loads((ROOT / manifest["recipe"]).read_text(encoding="utf-8"))
-        self.assertEqual(18, len(recipe["assets"]))
+        self.assertEqual(18, len([asset for asset in recipe["assets"] if asset["scope"]["locales"] == ["en"]]))
+        self.assertEqual(18 + len(BLOCK_CROPS) * len(SINGLE_LANGUAGES), len(recipe["assets"]))
         self.assertEqual(18, len(manifest["illustrations"]))
         outputs = {}
         app_panels = {"setup_download", "setup_add_device", "setup_connect_result"}
@@ -390,7 +425,8 @@ class Je3000cEuEnWebTests(unittest.TestCase):
             self.assertEqual(ILLUSTRATIONS.parent / f"je3000c_eu_{lang}_illustrations.json", path, lang)
             manifest = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(lang, manifest["language"])
-            self.assertEqual(2, len(manifest["illustrations"]), lang)
+            # The two App panels plus this block's own figure crops.
+            self.assertEqual(2 + len(BLOCK_CROPS), len(manifest["illustrations"]), lang)
             (item,) = [
                 entry for entry in manifest["illustrations"] if entry["replaces"] == ["connect_result.png"]
             ]
@@ -511,6 +547,103 @@ class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
         self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         for english in ("POWER Button", "POWER button", "AC power button", "DC / USB power button"):
             self.assertNotIn(english, self.html)
+
+    def test_every_figure_is_the_french_print_block(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        finished = soup.select("img.manual-finished-illustration")
+        self.assertEqual(17, len(finished))
+        paths = {image["data-web-finished-panel-path"] for image in finished}
+        for name in BLOCK_CROPS:
+            self.assertIn(f"assets/je3000c_eu_fr/{name}.png", paths)
+        digests = {match.group(1) for image in soup.find_all("img")
+                   if (match := re.search(r"assets/ir/([0-9a-f]{64})/", str(image.get("src", ""))))}
+        self.assertEqual(set(), digests & shared_art_digests())
+
+        def section(name):
+            image = soup.select_one(f'img[data-web-finished-panel-path="assets/je3000c_eu_fr/{name}.png"]')
+            return image, image.find_parent("section")
+
+        # The front view prints its callouts; the side view keeps the corrected table
+        # because its print reads "Oiture:".
+        _, front = section("overview_front")
+        self.assertEqual([], front.select(":scope > table"))
+        _, side = section("overview_side")
+        self.assertIn("Voiture :", side.select_one(":scope > table").get_text(" ", strip=True))
+        car, _ = section("charging_car")
+        self.assertEqual("Véhicule；※Le câble de chargement de voiture est vendu séparément.", car["alt"])
+
+
+class Je3000cEuBlockIllustrationTests(unittest.TestCase):
+    """Each fr-uk route shows its own print block's figures, not the JE-1000F shared art."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.recipe = json.loads(WEB_RECIPE.read_text(encoding="utf-8"))
+        cls.assets = {asset["asset_key"]: asset for asset in cls.recipe["assets"]}
+        cls.english = {
+            Path(entry["path"]).stem: entry
+            for entry in json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["illustrations"]
+        }
+        cls.manifests = {}
+        for lang in SINGLE_LANGUAGES:
+            path = resolve_web_illustration_manifest(
+                ROOT / f"configs/config.eu-{lang}.yaml", repo_root=ROOT, model="JE-3000C", region="EU",
+            )
+            cls.manifests[lang] = (path, json.loads(path.read_text(encoding="utf-8")))
+
+    def entries(self, lang: str) -> dict[str, dict]:
+        _, manifest = self.manifests[lang]
+        return {Path(entry["path"]).stem: entry for entry in manifest["illustrations"]
+                if entry["path"].startswith(f"assets/je3000c_eu_{lang}/") and "/app_" not in entry["path"]}
+
+    def test_each_route_binds_its_own_block_crops(self) -> None:
+        for lang in SINGLE_LANGUAGES:
+            path, manifest = self.manifests[lang]
+            self.assertEqual(WEB_RECIPE.relative_to(ROOT).as_posix(), manifest["recipe"], lang)
+            entries = self.entries(lang)
+            self.assertEqual(sorted(BLOCK_CROPS), sorted(entries), lang)
+            for name, entry in entries.items():
+                asset = self.assets[f"web/je3000c/eu/{lang}/{name}"]
+                (output,) = asset["outputs"]
+                with self.subTest(lang=lang, name=name):
+                    self.assertEqual(self.english[name]["replaces"], entry["replaces"])
+                    self.assertEqual("approved", asset["gate"]["status"])
+                    self.assertEqual([lang], asset["scope"]["locales"])
+                    self.assertIn(asset["page"], BLOCK_PAGES[lang])
+                    self.assertEqual(asset["page"], entry["source_page"])
+                    self.assertEqual(asset["transforms"][0]["bbox_pt"], entry["bbox_pt"])
+                    file = path.parent / entry["path"]
+                    self.assertEqual(output["path"], file.relative_to(ROOT).as_posix())
+                    self.assertEqual(output["expected_sha256"], entry["sha256"])
+                    self.assertEqual(entry["sha256"], hashlib.sha256(file.read_bytes()).hexdigest())
+
+    def test_printed_copy_leaves_the_page_once_except_print_defects(self) -> None:
+        english = {name: len(entry.get("covered_annotations", [])) > 0 for name, entry in self.english.items()}
+        for lang in SINGLE_LANGUAGES:
+            for name, entry in self.entries(lang).items():
+                with self.subTest(lang=lang, name=name):
+                    covered = entry.get("covered_annotations", [])
+                    if (lang, name) in KEEP_CALLOUT_TABLE:
+                        self.assertEqual([], covered)
+                        continue
+                    self.assertEqual(english[name], bool(covered))
+                    if covered:
+                        # Registered components claim these nodes; consume them first.
+                        self.assertTrue(entry["consume_before_presentation"])
+            energy = self.assets[f"web/je3000c/eu/{lang}/operation_energy"]
+            redactions = [t for t in energy["transforms"] if t["op"] == "redact_text_region"]
+            selectors = [item["selector"].split(" > ", 1)[1] for item in self.entries(lang)["operation_energy"]["covered_annotations"]]
+            if lang in ENGLISH_CAPTION:
+                self.assertEqual(1, len(redactions), lang)
+                self.assertEqual(["table"], selectors, lang)
+            else:
+                self.assertEqual([], redactions, lang)
+                self.assertEqual([".line-block", "table"], selectors, lang)
+
+    def test_dc_panels_get_the_english_panel_border(self) -> None:
+        css = WEB_CSS.read_text(encoding="utf-8")
+        for lang in SINGLE_LANGUAGES:
+            self.assertIn(f'#furo-main-content img[data-web-finished-panel-path="assets/je3000c_eu_{lang}/operation_dc.png"]', css)
 
 
 FIGURES = re.compile(r"\d+(?:[.,]\d+)?")
