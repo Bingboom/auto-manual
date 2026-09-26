@@ -354,12 +354,13 @@ capabilities:
           - "file:auto-manual:AGENTS.md"
       - id: source_registry
         label: 来源登记（SSOT）
-        status: available
+        status: validated
         note: 每项事实以哪里为准、多久算过期、取不到时怎么显示，登记在一份文件里；系统建设页和交付物页按它取数，并在页面底部公开列出
         evidence:
           - "file:auto-manual:tools/rtd_portal_assets/source_registry.yaml"
           - "file:auto-manual:code-as-doc/dev/ssot_source_registry_design.md"
-          - "rev:REV-44=verifying"
+          - "rev:REV-44=done"
+          - "ack:夏冰 2026-09-25「验收」"
       - id: agent_dispatch
         label: 多 Agent 调度与任务续接
         status: planned
@@ -476,7 +477,6 @@ now_next:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
     REV-39: IR 共享：公共语义边界摸底
-    REV-44: SSOT 来源登记
 
 working_today:
   - id: manual_center
