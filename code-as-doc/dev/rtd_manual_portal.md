@@ -275,6 +275,64 @@ pages are byte-identical, and neither build emits a warning.
 Rollback: revert the change. The workspace entry, manual URLs and QR aliases
 are unaffected.
 
+## Deliverables page
+
+`/workspace/deliverables/` (交付物) gathers the links to what the pipeline has
+delivered in one table. It is grouped by model, with one row per region and one
+column per format:
+
+| Column | What it links to | Source |
+| --- | --- | --- |
+| 网页手册 | each language edition's page on this site | `docs/publish/publish_manifest.json`, read at build time |
+| 印刷交付包 (IDML + PDF) | the Publish handoff ZIP in the Feishu wiki | the build table's `idml_file` column, through the snapshot |
+| Word 云文档 | the Draft Word output, imported as a Feishu cloud doc | the build table's `飞书云文档` column, through the snapshot |
+
+- Each cell holds one chip per language, with its version. 整本 marks a
+  whole-book document that carries all its languages in one file.
+- The PDF has no link of its own: it ships inside the handoff ZIP, and the
+  publish tree refuses PDF files.
+- Two selects filter the table by model and by region. On a phone, each region
+  becomes a card with the formats stacked.
+- Product names come from the manual center. A model that the manual center
+  does not list shows its code only. The build table's own product names are
+  not used, because some of them are wrong or empty.
+
+The Feishu links open only for signed-in Feishu users, but their addresses are
+public on this page. The operator chose this on 2026-09-25 (「直接放飞书链接」).
+The page accepts only https links on a Feishu or Lark host.
+
+### Refreshing the Feishu snapshot
+
+RTD never reads Feishu, so the two Feishu columns come from
+`tools/rtd_portal_assets/deliverables_snapshot.json`. Refresh it through a PR
+after new Draft or Publish builds:
+
+```bash
+python tools/rtd_deliverables.py export --cli-bin "lark-cli --profile prod" --as bot
+python tools/rtd_deliverables.py check
+```
+
+`export` is read-only. It reads two tables in the base named by
+`$FEISHU_PHASE2_BASE_TOKEN`:
+
+- the build table, `$FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID`;
+- the Document_key table, `$FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` (the
+  model-capabilities table is the Document_key table).
+
+It keeps the highest version for each model, region, language and format. It
+skips rows without a resolvable key or without a Feishu link. A missing column
+fails the export instead of silently dropping a format.
+
+### Failure behaviour
+
+- Without a publish manifest, the web column is empty and the page says
+  发布清单当前不可读.
+- An unreadable or unsound snapshot empties the two Feishu columns only, with a
+  Sphinx warning.
+- A snapshot older than 45 days shows 待复核, and `check` warns about it.
+- The page always renders. The workspace and system pages link to it from their
+  sidebars, and the workspace's 最近更新 list links to it too.
+
 ## Maintenance surface
 
 Product improvement suggestions use an independent opt-in `product_voc_endpoint`

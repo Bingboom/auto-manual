@@ -2282,6 +2282,8 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
+同一构建还生成 `/workspace/deliverables/` 交付物页：按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
+
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
 [目录构建校验](dev/rtd_manual_portal.md#catalog-validation-during-a-build)。

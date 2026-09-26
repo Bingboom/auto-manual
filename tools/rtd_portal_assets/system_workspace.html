@@ -57,6 +57,7 @@
     <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
     {% if has_share %}<a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>{% endif %}
     <a href="#top" class="nav-link active" aria-current="page"><i>◈</i> 系统建设</a>
+    {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}" class="nav-link"><i>▦</i> 交付物</a>{% endif %}
     <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
     <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
   </nav>

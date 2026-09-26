@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="交付物：每个型号在各区域的网页手册、印刷交付包与 Word 云文档链接。">
+  <title>交付物</title>
+  <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/deliverables.css', 1) }}">
+</head>
+<body class="system-workspace deliverables">
+{%- macro stale_mark(reasons) -%}{% if reasons %}<span class="sw-stale" title="{{ reasons|join('；')|e }}">待复核</span>{% endif %}{%- endmacro -%}
+{%- macro web_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip" href="{{ pathto(item.docname)|e }}" title="{{ item.title|e }}"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+{%- macro feishu_chips(items) -%}{% if items %}<div class="dl-chips">{% for item in items %}<a class="dl-chip is-feishu" href="{{ item.url|e }}" title="{{ item.title|e }}（飞书，需登录）" target="_blank" rel="noopener"><b>{{ item.label|e }}</b>{{ item.version|e }}</a>{% endfor %}</div>{% else %}<span class="dl-none">—</span>{% endif %}{%- endmacro -%}
+<aside class="sidebar">
+  <a class="brand" href="{{ pathto('workspace/index') }}">知识库<span>.</span></a>
+  <div class="workspace"><span>资料库</span></div>
+  <div class="nav-label">工作空间</div>
+  <nav aria-label="知识库导航">
+    <a href="{{ pathto('workspace/index') }}" class="nav-link"><i>⌂</i> 概览</a>
+    {% if has_share %}<a href="{{ pathto('workspace/index') }}#shares" class="nav-link"><i>✦</i> 分享资料</a>{% endif %}
+    {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}" class="nav-link"><i>◈</i> 系统建设</a>{% endif %}
+    <a href="#top" class="nav-link active" aria-current="page"><i>▦</i> 交付物</a>
+    <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
+    <a href="{{ pathto('workspace/index') }}#updates" class="nav-link"><i>◷</i> 最近更新</a>
+  </nav>
+</aside>
+
+<div class="shell">
+  <header class="topbar">
+    <button class="mobile-menu" type="button" aria-label="展开导航">☰</button>
+    <div class="breadcrumb">工作空间 <span>/</span> <b>交付物</b></div>
+    <div class="topbar-right">
+      <div class="edition-switch" aria-label="切换页面">
+        <a class="selected" href="{{ pathto('workspace/index') }}">知识库</a>
+        <a href="{{ pathto('index') }}">工作资料</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="sw-hero">
+      <div class="eyebrow">DELIVERABLES</div>
+      <h1>交付物<span class="title-dot">.</span></h1>
+      <p class="sw-subtitle">每个型号在各区域交付了哪些格式：网页手册、印刷交付包（IDML + PDF）和 Word 云文档，链接都汇总在这张表里。</p>
+    </section>
+
+    <section class="sw-section" id="deliverables">
+      <div class="dl-tiles">
+        {%- for tile in tiles %}
+        <div class="sw-tile"><small>{{ tile.label|e }}</small><strong>{{ tile.value|e }}</strong><span class="sw-tile-sub">{{ tile.sub|e }}</span></div>
+        {%- endfor %}
+      </div>
+      <div class="dl-toolbar">
+        <label class="dl-select"><span>型号</span><select id="dl-model"><option value="">全部型号</option>{% for m in models %}<option value="{{ m.model|e }}">{{ m.model|e }}{% if m.name %} · {{ m.name|e }}{% endif %}</option>{% endfor %}</select></label>
+        <label class="dl-select"><span>区域</span><select id="dl-region"><option value="">全部区域</option>{% for r in regions %}<option value="{{ r.code|e }}">{{ r.label|e }}</option>{% endfor %}</select></label>
+        <div class="dl-meta">
+          <span>网页手册：发布清单{% if web_missing %}当前不可读{% elif last_published %} · 最近发布 {{ last_published|e }}{% endif %}</span>
+          <span>印刷交付包、Word 云文档：飞书快照 {% if snapshot_date %}{{ snapshot_date|e }}{% else %}当前不可读{% endif %}{{ stale_mark(stale) }}</span>
+        </div>
+      </div>
+      {%- if models %}
+      <div class="dl-table-wrap">
+        <table class="dl-table">
+          <thead><tr><th>区域</th><th>网页手册</th><th>印刷交付包<small>IDML + PDF</small></th><th>Word 云文档</th></tr></thead>
+          {%- for m in models %}
+          <tbody data-model="{{ m.model|e }}">
+            <tr class="dl-model"><th colspan="4"><b>{{ m.model|e }}</b>{% if m.name %}<span>{{ m.name|e }}</span>{% endif %}</th></tr>
+            {%- for row in m.rows %}
+            <tr data-region="{{ row.region|e }}">
+              <td class="dl-region">{{ row.region_label|e }}</td>
+              <td data-label="网页手册">{{ web_chips(row.web) }}</td>
+              <td data-label="印刷交付包">{{ feishu_chips(row.print) }}</td>
+              <td data-label="Word 云文档">{{ feishu_chips(row.word) }}</td>
+            </tr>
+            {%- endfor %}
+          </tbody>
+          {%- endfor %}
+        </table>
+      </div>
+      <p class="dl-empty" id="dl-empty" hidden>没有符合筛选条件的交付物。</p>
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>发布清单和飞书快照当前都不可读。</p></div>
+      {%- endif %}
+      <p class="dl-note">每个小标签是一个语言版本和它的版本号，“整本”表示多种语言合在一本。网页手册的标签点开就是线上手册；印刷交付包和 Word 云文档的标签是飞书知识库链接，要登录飞书才能打开。PDF 在印刷交付包的压缩包里。</p>
+    </section>
+
+    <footer>
+      <span>快照 {{ build_date|e }}</span>
+      <span>数据来源：发布清单 · 飞书文档构建表快照</span>
+    </footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
+  const model = document.getElementById("dl-model");
+  const region = document.getElementById("dl-region");
+  const empty = document.getElementById("dl-empty");
+  const groups = [...document.querySelectorAll(".dl-table tbody")];
+  if (!model || !region || !empty) return;
+  function refresh() {
+    let shown = 0;
+    groups.forEach((group) => {
+      const modelMatch = !model.value || group.dataset.model === model.value;
+      let rows = 0;
+      group.querySelectorAll("tr[data-region]").forEach((row) => {
+        const visible = modelMatch && (!region.value || row.dataset.region === region.value);
+        row.hidden = !visible;
+        if (visible) rows += 1;
+      });
+      group.hidden = rows === 0;
+      shown += rows;
+    });
+    empty.hidden = shown !== 0;
+  }
+  model.addEventListener("change", refresh);
+  region.addEventListener("change", refresh);
+})();
+</script>
+</body>
+</html>

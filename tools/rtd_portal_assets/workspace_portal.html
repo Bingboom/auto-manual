@@ -17,6 +17,7 @@
     <a href="#home" class="nav-link active"><i>⌂</i> 概览</a>
     {% if share_entry %}<a href="#shares" class="nav-link"><i>✦</i> 分享资料 <span class="nav-count">1</span></a>{% endif %}
     {% if system_entry %}<a href="{{ pathto('workspace/system/index') }}" class="nav-link"><i>◈</i> 系统建设</a>{% endif %}
+    {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}" class="nav-link"><i>▦</i> 交付物</a>{% endif %}
     <a href="{{ pathto('index') }}" class="nav-link"><i>▤</i> 工作资料</a>
     <a href="#updates" class="nav-link"><i>◷</i> 最近更新</a>
   </nav>
@@ -81,6 +82,7 @@
           <div class="section-header"><div><h2>最近更新</h2><p>新加入的分享资料和工作资料入口。</p></div></div>
           <div class="updates-list">
             {% if share_entry %}<a href="{{ share_entry|e }}"><span class="update-icon">✦</span><span><strong>AI 使用知识分享</strong><small>已加入分享稿与配套示例</small></span><em>分享资料</em><b>→</b></a>{% endif %}
+            {% if deliverables_entry %}<a href="{{ pathto('workspace/deliverables/index') }}"><span class="update-icon">▦</span><span><strong>交付物</strong><small>各型号的网页手册、印刷交付包和 Word 云文档链接</small></span><em>交付</em><b>→</b></a>{% endif %}
             <a href="{{ pathto('index') }}"><span class="update-icon">▤</span><span><strong>工作资料</strong><small>查看产品说明书等已交付资料</small></span><em>交付</em><b>→</b></a>
           </div>
         </section>
