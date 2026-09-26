@@ -37,11 +37,30 @@ STORAGE_LABELS = {"1": ("1 mes", "1 Monat"), "2": ("3 meses", "3 Monate"), "3": 
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "je2000e_eu_en_illustrations.json"
 APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000e_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
-# replaced source image -> (shared panel file, reference id)
-APP_PANELS = {
-    "add_device.png": ("app_add_device.png", "app-add-device"),
-    "connect_result.png": ("app_connect_result.png", "app-connect-result"),
+# replaced source image -> reference id
+APP_REFERENCES = {
+    "add_device.png": "app-add-device",
+    "connect_result.png": "app-connect-result",
 }
+# Routes whose add-device figure is their own print block's App screens plus
+# its control-panel box. The box prints the button labels, so the page's four
+# label lines become covered annotations (the figure's alt text). The uk block
+# prints "AC1" for the AC2 button, so uk keeps the shared screens and live labels.
+PANEL_LANGUAGES = ("en", "fr", "es", "de", "it")
+COVERED_LABELS = {
+    "en": "Main POWER Button AC1 Power Button AC2 Power Button DC / USB Power Button",
+    "fr": "Bouton POWER principal Bouton CC / USB Bouton CA1 Bouton CA2",
+    "es": "Botón POWER principal Botón CC / USB Botón CA1 Botón CA2",
+    "de": "Haupt-POWER-Taste AC1-Einschalttaste AC2-Einschalttaste DC / USB-Einschalttaste",
+    "it": "Pulsante POWER principale Pulsante CA1 Pulsante CA2 Pulsante DC / USB",
+}
+
+
+def _expected_app_panel(lang: str, replaced: str) -> str:
+    """The App recipe output that a route's App figure must bind."""
+    if replaced == "add_device.png" and lang in PANEL_LANGUAGES:
+        return f"docs/renderers/web/assets/je2000e_eu_{lang}/app_add_device_panel.png"
+    return f"docs/renderers/web/assets/je2000e_eu_shared/app_{Path(replaced).stem}.png"
 
 
 def _build_web_package(tmp: Path, *, config: Path, lang: str) -> Path:
@@ -284,47 +303,65 @@ class Je2000eEuEnWebTests(unittest.TestCase):
         recipe = json.loads((ROOT / manifest["recipe"]).read_text(encoding="utf-8"))
         self.assertEqual(19, len(recipe["assets"]))
         self.assertEqual(16, len(manifest["illustrations"]))
-        output_hashes = {
-            output["path"]: output["expected_sha256"]
-            for asset in recipe["assets"]
-            for output in asset["outputs"]
-        }
         for asset in recipe["assets"]:
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
             self.assertEqual([12], [output["scale"] for output in asset["outputs"]])
+        output_hashes: dict[str, dict[str, str]] = {}
         for illustration in manifest["illustrations"]:
+            recipe_path = illustration.get("recipe", manifest["recipe"])
+            if recipe_path not in output_hashes:
+                bound = json.loads((ROOT / recipe_path).read_text(encoding="utf-8"))
+                output_hashes[recipe_path] = {
+                    output["path"]: output["expected_sha256"]
+                    for asset in bound["assets"]
+                    for output in asset["outputs"]
+                }
             path = ILLUSTRATIONS.parent / illustration["path"]
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             self.assertEqual(illustration["sha256"], digest)
             self.assertEqual(
                 digest,
-                output_hashes[path.relative_to(ROOT).as_posix()],
+                output_hashes[recipe_path][path.relative_to(ROOT).as_posix()],
             )
-
-    def test_single_language_routes_bind_the_shared_app_panels(self) -> None:
-        """The fr/es/de/it/uk blocks of the print place the same App bitmaps."""
+        # Only the add-device figure comes from the quarantined App recipe. The
+        # approved crop it replaced held the control-panel box without the screens.
         self.assertEqual(
-            "a2ba163364d9764a8f61a1be393ff6f0bef5015e22e0c5ad21c981f2f03cae65",
+            ["add_device.png"],
+            [
+                item["replaces"][0]
+                for item in manifest["illustrations"]
+                if item.get("recipe") == APP_RECIPE.relative_to(ROOT).as_posix()
+            ],
+        )
+        self.assertNotIn(
+            "assets/je2000e_eu_en/control_panel.png",
+            [item["path"] for item in manifest["illustrations"]],
+        )
+
+    def test_routes_bind_their_app_panels(self) -> None:
+        """Each route binds its own block's add-device panel, except uk."""
+        self.assertEqual(
+            "bd06a012f23c92d930b27d1775bd16069b3b743f18bde64cb8e03894b50a2dc5",
             hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
         )
         app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
-        self.assertEqual(2, len(app_recipe["assets"]))
-        outputs = {}
+        self.assertEqual(7, len(app_recipe["assets"]))
+        assets = {}
         for asset in app_recipe["assets"]:
             # App screenshots stay quarantined in their recipe (the App/QR/URL/
             # localized-UI gate); the illustration manifests are their only
-            # route onto the page. English keeps its own approved panels.
+            # route onto the page.
             self.assertFalse(asset["build_eligible"])
             self.assertTrue(asset["visual_review_required"])
             self.assertEqual("quarantine", asset["gate"]["status"])
             self.assertIn("app-ui", asset["risk_tags"])
-            self.assertEqual(list(SINGLE_LANGUAGES), asset["scope"]["locales"])
             (output,) = asset["outputs"]
             self.assertEqual(12, output["scale"])
-            outputs[Path(output["path"]).name] = (asset, output)
-        for lang in SINGLE_LANGUAGES:
+            assets[output["path"]] = asset
+        app_recipe_path = APP_RECIPE.relative_to(ROOT).as_posix()
+        for lang in ("en", *SINGLE_LANGUAGES):
             path = resolve_web_illustration_manifest(
                 ROOT / "configs" / f"config.eu-{lang}.yaml",
                 repo_root=ROOT,
@@ -336,25 +373,33 @@ class Je2000eEuEnWebTests(unittest.TestCase):
             )
             manifest = json.loads(path.read_text(encoding="utf-8"))
             self.assertEqual(lang, manifest["language"])
-            self.assertEqual(
-                sorted(APP_PANELS),
-                sorted(item["replaces"][0] for item in manifest["illustrations"]),
-                lang,
-            )
-            for item in manifest["illustrations"]:
-                panel_name, reference_id = APP_PANELS[item["replaces"][0]]
-                asset, output = outputs[panel_name]
+            app_items = [
+                item for item in manifest["illustrations"] if item.get("recipe") == app_recipe_path
+            ]
+            # English keeps its own approved connect-result panel.
+            expected = ["add_device.png"] if lang == "en" else sorted(APP_REFERENCES)
+            self.assertEqual(expected, sorted(item["replaces"][0] for item in app_items), lang)
+            for item in app_items:
+                replaced = item["replaces"][0]
                 panel = path.parent / item["path"]
-                self.assertEqual(output["path"], panel.relative_to(ROOT).as_posix(), lang)
-                self.assertEqual(output["expected_sha256"], item["sha256"], lang)
+                self.assertEqual(
+                    _expected_app_panel(lang, replaced), panel.relative_to(ROOT).as_posix(), lang
+                )
+                asset = assets[_expected_app_panel(lang, replaced)]
+                self.assertIn(lang, asset["scope"]["locales"], lang)
+                self.assertEqual(asset["outputs"][0]["expected_sha256"], item["sha256"], lang)
                 self.assertEqual(
                     item["sha256"], hashlib.sha256(panel.read_bytes()).hexdigest(), lang
                 )
                 self.assertEqual(asset["page"], item["source_page"], lang)
                 self.assertEqual(asset["transforms"][0]["bbox_pt"], item["bbox_pt"], lang)
-                self.assertEqual(APP_RECIPE.relative_to(ROOT).as_posix(), item["recipe"], lang)
                 self.assertTrue(item["consume_before_presentation"], lang)
-                self.assertEqual(reference_id, item["reference_id"], lang)
+                self.assertEqual(APP_REFERENCES[replaced], item["reference_id"], lang)
+                covered = [binding["text"] for binding in item.get("covered_annotations", [])]
+                if replaced == "add_device.png" and lang in PANEL_LANGUAGES:
+                    self.assertEqual([COVERED_LABELS[lang]], covered, lang)
+                else:
+                    self.assertEqual([], covered, lang)
 
     def test_public_ir_replay_and_tamper_detection(self) -> None:
         fragments = render_document_fragments(self.ir, package_root=self.package)
@@ -371,7 +416,7 @@ class Je2000eEuEnWebTests(unittest.TestCase):
 
 
 class Je2000eEuGermanAppPanelTests(unittest.TestCase):
-    """The German route shows the print's App screens, not the JP screenshots."""
+    """The German route shows its print block's App screens and control panel."""
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -385,35 +430,40 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
 
-    def test_app_figures_are_the_shared_print_panels(self) -> None:
+    def test_app_figures_are_the_print_panels(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
-        for panel_name, reference_id in APP_PANELS.values():
+        expected = {
+            "app-add-device": "assets/je2000e_eu_de/app_add_device_panel.png",
+            "app-connect-result": "assets/je2000e_eu_shared/app_connect_result.png",
+        }
+        for reference_id, panel in expected.items():
             image = soup.select_one(
                 f'img.manual-finished-illustration[data-reference-id="{reference_id}"]'
             )
             self.assertIsNotNone(image, reference_id)
-            self.assertEqual(
-                f"assets/je2000e_eu_shared/{panel_name}",
-                image["data-web-finished-panel-path"],
-            )
+            self.assertEqual(panel, image["data-web-finished-panel-path"])
         self.assertEqual(
             [],
             [
                 image["src"]
                 for image in soup.find_all("img")
-                if Path(str(image.get("src", ""))).name in APP_PANELS
+                if Path(str(image.get("src", ""))).name in APP_REFERENCES
             ],
         )
-        # The control-panel button labels and the reference sentence are
-        # translated per language, so they stay live text.
-        for text in (
-            "Haupt-POWER-Taste",
-            "AC1-Einschalttaste",
-            "AC2-Einschalttaste",
-            "DC / USB-Einschalttaste",
-            "Die oben gezeigten Screenshots dienen nur als Referenz.",
-        ):
-            self.assertIn(text, self.html)
+        # The German block's control-panel box prints the button labels, so the
+        # page's label lines move into the figure's alt text. The reference
+        # sentence is translated per language and stays live text.
+        add_device = soup.select_one('img[data-reference-id="app-add-device"]')
+        self.assertEqual(COVERED_LABELS["de"], add_device["alt"])
+        self.assertEqual(
+            [],
+            [
+                node
+                for node in soup.select(".line-block")
+                if " ".join(node.get_text(" ", strip=True).split()) == COVERED_LABELS["de"]
+            ],
+        )
+        self.assertIn("Die oben gezeigten Screenshots dienen nur als Referenz.", self.html)
 
 
 if __name__ == "__main__":

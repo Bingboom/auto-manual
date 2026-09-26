@@ -11,16 +11,22 @@
       "replaces": [
         "add_device.png"
       ],
-      "path": "assets/je2000e_eu_shared/app_add_device.png",
-      "sha256": "662646752f7e432edae4e01fc78e9ae9f7a6045f231a62fafb76308c8e96a302",
-      "source_page": 23,
+      "path": "assets/je2000e_eu_de/app_add_device_panel.png",
+      "sha256": "ef9a7f55a2d60bd75276c25497bbf63d7653bdeac2e290e1b89f46488a8ae581",
+      "source_page": 80,
       "bbox_pt": [
-        41.0,
-        208.0,
-        322.75,
-        349.0
+        25.1,
+        217.5,
+        339.0,
+        438.0
       ],
       "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Haupt-POWER-Taste AC1-Einschalttaste AC2-Einschalttaste DC / USB-Einschalttaste"
+        }
+      ],
       "consume_before_presentation": true,
       "reference_id": "app-add-device"
     },

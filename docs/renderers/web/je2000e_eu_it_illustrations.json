@@ -11,16 +11,22 @@
       "replaces": [
         "add_device.png"
       ],
-      "path": "assets/je2000e_eu_shared/app_add_device.png",
-      "sha256": "662646752f7e432edae4e01fc78e9ae9f7a6045f231a62fafb76308c8e96a302",
-      "source_page": 23,
+      "path": "assets/je2000e_eu_it/app_add_device_panel.png",
+      "sha256": "a8fa59e49182bb667d5bf6cb996df768a041e3f0be8fe9c19e80eb6cd7ad748e",
+      "source_page": 99,
       "bbox_pt": [
-        41.0,
-        208.0,
-        322.75,
-        349.0
+        25.1,
+        217.5,
+        339.0,
+        438.0
       ],
       "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+      "covered_annotations": [
+        {
+          "selector": ".line-block",
+          "text": "Pulsante POWER principale Pulsante CA1 Pulsante CA2 Pulsante DC / USB"
+        }
+      ],
       "consume_before_presentation": true,
       "reference_id": "app-add-device"
     },

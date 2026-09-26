@@ -157,3 +157,27 @@ localized "screenshots are for reference only" sentence). As App UI, their
 recipe `manual_je2000e_eu_web_app.json` stays quarantined, and the source
 manifest binds it as `app_asset_recipe`. English is unchanged. The operator
 confirmed both crops on 2026-09-24.
+
+## 2026-09-24 App add-device figure with the control-panel box
+
+The English add-device figure bound the approved `control_panel` crop (p23,
+bbox 28 351 342 431), which holds the grey control-panel box but not the
+2.1/2.2 App screens above it, while fr–uk showed the shared screens with the
+four button labels as plain text. Each language block prints the screens and
+its own control-panel box as one region, so EN/FR/ES/DE/IT now bind a 12x crop
+of that region from their own block (quarantined App recipe entries
+`web/je2000e/eu/<lang>/app_add_device_panel`):
+
+| Route | PDF page | bbox (pt) | Printed labels vs page labels |
+| --- | --- | --- | --- |
+| en | 23 | 27.5 208 341.5 434.5 | "Main Power Button" vs "Main POWER Button" |
+| fr | 42 | 26.7 204.3 340.6 423.2 | same wording |
+| es | 61 | 25.1 217.5 339 438 | same wording |
+| de | 80 | 25.1 217.5 339 438 | "POWER-Taste" vs "Haupt-POWER-Taste" |
+| it | 99 | 25.1 217.5 339 438 | "Pulsante CC/USB" vs "Pulsante DC / USB" |
+
+Each crop ends in the white gap above the next paragraph (step 2.3) and has
+pure-white edges. The page's four label lines become covered annotations, so
+the figure's alt text keeps the page wording. The uk block (p118) prints
+"Кнопка AC1" for both AC buttons; that crop is not reused, and uk keeps the
+shared screens with live labels. The operator chose this scope on 2026-09-24.

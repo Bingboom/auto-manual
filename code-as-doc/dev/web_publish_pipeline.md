@@ -157,9 +157,13 @@ the page, and the frozen source binds the recipe as `app_asset_recipe`.
 `JE-3000C / EU` does the same for its fr/es/de/it/uk routes through five
 one-entry manifests, cut at the 12x scale of its English App panels; English
 keeps its own approved panel. `JE-2000E / EU` replaces both App figures of its
-fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result); the
+fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result). The
 print's control-panel box below the add-device screens carries per-language
-button labels, so it stays outside the crop and the labels stay live text.
+button labels, so since 2026-09-24 EN/FR/ES/DE/IT each bind their own block's
+crop of the screens together with that box, and the page's four label lines
+become covered annotations (kept as the figure's alt text). The labels in the
+art are the print's wording (DE `POWER-Taste`, IT `CC/USB`). UK keeps the shared
+screens and live labels, because its block prints `AC1` for the AC2 button.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier
