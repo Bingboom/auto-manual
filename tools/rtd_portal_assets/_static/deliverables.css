@@ -1,0 +1,50 @@
+/* Deliverables page; layered on workspace.css (shell, sidebar) and system-workspace.css (hero, tiles, badges). */
+.dl-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+.dl-toolbar { display: flex; align-items: center; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 12px; }
+.dl-select { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: #5d636e; }
+.dl-select select { font: inherit; font-size: 13px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; max-width: 280px; }
+.dl-meta { margin-left: auto; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; font-size: 11.5px; color: #8a8f99; }
+.dl-meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+.dl-table-wrap { overflow-x: auto; background: #fff; border: 1px solid var(--line); border-radius: 11px; }
+.dl-table { width: 100%; min-width: 660px; border-collapse: collapse; font-size: 12.5px; }
+.dl-table thead th { text-align: left; font-size: 12px; font-weight: 600; color: #858b96; padding: 10px 14px; border-bottom: 1px solid #f0f1f4; white-space: nowrap; }
+.dl-table thead th small { margin-left: 6px; font-size: 11px; font-weight: 500; color: #a3a8b1; }
+.dl-table td { padding: 9px 14px; border-bottom: 1px solid #f0f1f4; vertical-align: top; }
+.dl-model th { text-align: left; padding: 12px 14px 8px; background: #fafbfc; border-bottom: 1px solid #f0f1f4; }
+.dl-model b { font-size: 13.5px; font-weight: 650; }
+.dl-model span { margin-left: 8px; font-size: 12px; font-weight: 500; color: #6c727d; }
+.dl-region { width: 72px; white-space: nowrap; color: #3a3f48; }
+.dl-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+/* Every chip is a link and must look like one: link colour, underline, and ↗ when it opens Feishu. */
+.dl-chip { display: inline-flex; align-items: baseline; gap: 4px; font-size: 11.5px; line-height: 1.3; white-space: nowrap;
+  color: #b44a0f; background: #fdf3ec; border-radius: 5px; padding: 3px 7px;
+  text-decoration: underline; text-underline-offset: 2px; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+.dl-chip b { font-size: 10.5px; font-weight: 700; letter-spacing: .3px; }
+.dl-chip.is-feishu { color: #1f5fae; background: #eef4fb; }
+.dl-chip.is-feishu::after { content: "↗"; font-size: 10px; text-decoration: none; }
+.dl-chip:hover { text-decoration-color: currentColor; background: #fbe4d5; }
+.dl-chip.is-feishu:hover { background: #dce9f8; }
+.dl-hint { margin: 0 0 10px; font-size: 12px; color: #6c727d; }
+.dl-hint .dl-chip { pointer-events: none; }
+.dl-none { color: #b5b9c1; }
+.dl-empty, .dl-note { margin: 10px 0 0; font-size: 11.5px; line-height: 1.7; color: #8a8f99; }
+
+/* Below 980px the sidebar leaves the table less than its 660px, so each region
+   becomes a card with the formats stacked instead of scrolling sideways. */
+@media (max-width: 980px) {
+  .dl-meta { margin-left: 0; align-items: flex-start; width: 100%; }
+  .dl-table { min-width: 0; }
+  .dl-table thead { display: none; }
+  .dl-model, .dl-model th { display: block; }
+  .dl-table tr[data-region] { display: grid; gap: 7px; padding: 10px 14px; border-bottom: 1px solid #f0f1f4; }
+  .dl-table tr[data-region] td { display: flex; gap: 10px; padding: 0; border: 0; width: auto; }
+  .dl-table td[data-label]::before { content: attr(data-label); flex: 0 0 68px; padding-top: 3px; font-size: 11px; color: #8a8f99; }
+  .dl-region { font-weight: 600; }
+}
+@media (max-width: 660px) {
+  .dl-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dl-select { width: 100%; }
+  /* A select is as wide as its longest option unless told it may shrink. */
+  .dl-select select { flex: 1 1 0; width: 0; min-width: 0; max-width: none; }
+}

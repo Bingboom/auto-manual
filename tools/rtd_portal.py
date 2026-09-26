@@ -12,6 +12,7 @@ from tools.utils.path_utils import PathSegments, repo_root, static_dir_of
 from tools.rtd_publication_catalog import group_publications, publication_identity
 from tools.rtd_analytics import BEACON_SRC, beacon_attributes, beacon_markup, normalize_beacon_token
 from tools.rtd_alias_entry import alias_head_markup, alias_targets, delayed_forward_body
+from tools.rtd_deliverables import DELIVERABLES_PAGE, DELIVERABLES_TEMPLATE, deliverables_page_context
 from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_channels
 from tools.rtd_product_voc import normalize_endpoint, page_markup
 from tools.rtd_page_metadata import (
@@ -237,20 +238,28 @@ def workspace_content(app) -> Path:
 
 
 def collect_workspace_pages(app):
-    """Add the workspace entry and its system page without changing the manual-center root.
+    """Add the workspace entry, its system page and its deliverables page, leaving the manual-center root alone.
 
     The workspace always exists: the manual center links to it, and the system
-    page lives inside it. The AI sharing package is an optional entry, so
-    moving or withdrawing it hides only its own links.
+    and deliverables pages live inside it. The deliverables page always renders
+    (a missing input shows as 无数据); the system page drops out on an authoring
+    error. The AI sharing package is an optional entry, so moving or withdrawing
+    it hides only its own links.
     """
     has_share = (workspace_content(app) / "ai-share" / "00_打开分享.html").is_file()
     system = system_page_context(app, ASSETS)
+    settings, products = portal_data(app)
+    names = {(product["model"], product["region"]): product.get("name") or "" for product in products}
+    deliverables = deliverables_page_context(app, ASSETS, names, list(settings.get("language_labels") or {}))
     yield "workspace/index", {
         "share_entry": "../ai-share/00_打开分享.html" if has_share else "",
         "system_entry": system is not None,
+        "deliverables_entry": True,
     }, "workspace_portal.html"
     if system is not None:
-        yield SYSTEM_PAGE, {**system, "has_share": has_share}, SYSTEM_TEMPLATE
+        yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True}, SYSTEM_TEMPLATE
+    yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None}, \
+        DELIVERABLES_TEMPLATE
 
 
 def copy_workspace_content(app, exception) -> None:
@@ -274,7 +283,7 @@ def setup(app):
     from tools.rtd_portal_search import write_search_index
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
-    # ISO date for the system page's staleness rule; empty means the build date (UTC).
+    # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
     app.add_config_value("rtd_system_workspace_date", "", "html")
     app.connect("config-inited", configure)
     app.connect("builder-inited", prepare_catalog)
