@@ -44,3 +44,9 @@ notes. They now hold each language block's printed text. The cells are split by
 the pages' ruling lines; the English rows' structure is kept, and print defects
 use reviewed cross-model wording (see the intake review addendum of the same
 date). `source_manifest.json` re-locks the five files; English is unchanged.
+
+Block figures (2026-09-25): the fr/es routes bind their own language block's
+figures (15 crops each in `asset_recipe`) instead of the shared JE-1000F art, and
+the LCD crop is widened on all three routes so callouts 8, 9, 20 and 21 show; see
+the intake review addendum of the same date. `source_manifest.json` re-locks the
+web recipe and the English illustration manifest.

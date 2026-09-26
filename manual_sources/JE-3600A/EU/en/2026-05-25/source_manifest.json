@@ -18,7 +18,7 @@
   "data_root": "manual_sources/JE-3600A/EU/en/2026-05-25/phase2",
   "asset_recipe": {
     "path": "data/asset_recipes/manual_je3600a_eu_web.json",
-    "sha256": "9d1a690315b1185df7fd425bc84b9cb2a6f5c46730bb12bed5ba0b87aa2c1948"
+    "sha256": "19f0cb5eb3e71f463ec9fd5dafabcee87e3098954a3c0244945b27323e655c23"
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je3600a_eu_web_app.json",
@@ -26,7 +26,7 @@
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je3600a_eu_en_illustrations.json",
-    "sha256": "fc3f36173d3a4b53d959994bbe87c12504f1aeea1d085d4b60468a8455cf9938"
+    "sha256": "b736fd3079f29e79596914ef08a94f8a319025f9c083dd9016b7b269bb0263ca"
   },
   "files": [
     {
