@@ -135,6 +135,16 @@ FR/ES/DE/IT/UK pages; the EN page already used the URIs), so a Web rebuild from
 it carries the EU export, not the JP screenshot, as the connect-result figure's
 hidden semantic image in all five routes.
 
+The in-box unit, LCD display mode and UPS figures are ordinary registry art, not
+composites. Their JE-1000F/EU target overrides (`in_the_box/je1000f_eu/main_unit1`,
+`operation/je1000f_eu/lcd_mode` and `operation/je1000f_eu/ups_mode`, each with an
+`_en` sibling; recipe `manual_je1000f_eu_uk_20260618_block_art.json`) vary by
+language: EN takes the English block (BS 1363 sockets), FR/ES/DE/IT/UK the French
+block (EU sockets). The frozen review copy switched those references to `asset:`
+URIs on 2026-09-26, so a Web rebuild shows the print's own art in those three
+visible figures on all five routes instead of the shared art (a US-outlet unit and
+another, wheeled model).
+
 `JE-2000F / EU` binds its App connect-result panel through its six per-language
 `web-illustrations/v1` manifests rather than composites. The six language blocks
 of its EU/UK print place the same five screen bitmaps, so one panel cut from the
