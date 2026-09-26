@@ -279,6 +279,52 @@ class CapabilitySectionStripTests(unittest.TestCase):
         self.assertNotIn("hb-capability", outside_comments)
 
 
+_EMERGENCY_HEADINGS = {
+    "en": "**Emergency Charging Mode**",
+    "fr": "**Mode de charge d'urgence**",
+    "es": "**Modo de Carga de Emergencia**",
+    "de": "**Notfall-Lademodus**",
+    "it": "**Modalità di ricarica di emergenza**",
+    "uk": "**Аварійний режим заряджання**",
+}
+
+
+def _emergency_data_dir() -> Path:
+    td = Path(tempfile.mkdtemp())
+    (td / "model_capabilities.csv").write_text(
+        "Document_key,Project,应急快充模式\n"
+        "JE-3600A_EU,HTE139,FALSE\n"
+        "JE-1000F_EU,HTE153,TRUE\n", encoding="utf-8")
+    return td
+
+
+class EmergencyChargingTemplateTests(unittest.TestCase):
+    """Every shared charging template gates Emergency Charging Mode as English does.
+
+    The fr/es/de/it/uk copies printed the block unmarked, so JE-3000C/EU and
+    JE-3600A/EU (capability FALSE, absent from their prints) showed it.
+    """
+
+    def test_every_language_gates_the_block_by_capability(self) -> None:
+        data_dir = _emergency_data_dir()
+        for lang, heading in _EMERGENCY_HEADINGS.items():
+            text = (ROOT / "docs/templates/page_shared" / lang / "charging.rst").read_text(encoding="utf-8")
+            with self.subTest(lang=lang):
+                self.assertIn(heading, text)
+                dropped, notes = strip_capability_sections(
+                    text, model="JE-3600A", region="EU", data_dir=data_dir, label=lang)
+                self.assertNotIn(heading, dropped)
+                self.assertEqual(["capability '应急快充模式' is FALSE for JE-3600A_EU: "
+                                  f"dropped a marked section in {lang}"], notes)
+                kept, notes = strip_capability_sections(
+                    text, model="JE-1000F", region="EU", data_dir=data_dir, label=lang)
+                self.assertEqual([], notes)
+                self.assertIn(heading, kept)
+                self.assertNotIn("hb-capability", kept)
+                # TRUE removes exactly the two marker lines, nothing else.
+                self.assertEqual(len(text.splitlines()) - 2, len(kept.splitlines()))
+
+
 class MarkedTemplateInventoryTests(unittest.TestCase):
     def test_every_marked_section_names_a_known_capability(self) -> None:
         rules = (ROOT / "data" / "capability_page_rules.csv").read_text(encoding="utf-8")

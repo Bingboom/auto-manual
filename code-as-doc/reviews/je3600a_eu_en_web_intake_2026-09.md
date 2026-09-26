@@ -263,10 +263,41 @@ Verification:
 Still open (not changed here):
 
 - All three routes print the AC wall-charging instruction both in the crop and
-  as page text; English has done so since its first release.
+  as page text; English has done so since its first release. (Resolved
+  2026-09-26; see below.)
 - The fr/es pages print an Emergency Charging Mode block that neither the print
   nor English has. `docs/templates/page_shared/es/charging.rst` and
   `fr/charging.rst` lack the `hb-capability-begin: 应急快充模式` markers of the
-  English file.
+  English file. (Resolved 2026-09-26; see below.)
 - JE-3000C fr-uk and JE-2000E de-uk have the same gap (their manifests bind only
   the App panels), and JE-1000F/EU has no Web illustration manifest.
+
+## 2026-09-26 Emergency Charging Mode gate and the AC wall sentence
+
+- **Emergency Charging Mode:** the fr/es routes printed this block under AC wall
+  charging, although JE-3600A_EU has the capability FALSE in
+  `data/model_capabilities.csv` and no language block of the print has it.
+  - Only the English shared charging template carried the
+    `hb-capability-begin: 应急快充模式` markers.
+  - `docs/templates/page_shared/{fr,es,de,it,uk}/charging.rst` now carry them
+    too. The begin marker sits between the two existing blank lines and the end
+    marker directly after the last body line, so a TRUE target's page stays
+    byte-identical and a FALSE target's page drops the block.
+- **AC wall sentence:** each language block's AC wall crop prints the connect
+  sentence, and the page repeated it next to the figure. The three illustration
+  manifests move it into the figure's alt text (`covered_annotations` on
+  `charging_ac`), and `source_manifest.json` re-locks the English manifest.
+
+Verification:
+
+- **Template proof:** for every target in the capability table and each of the
+  five templates, `strip_capability_sections` returns the old bytes when the
+  capability is TRUE (115 cases) and drops exactly the block when FALSE (70).
+- **Trial Web builds** (default source, frozen data root):
+  - en loses the standalone sentence, and its crop's alt becomes the sentence;
+  - fr/es do the same and also lose the Emergency Charging Mode block;
+  - nothing else changes.
+- **Regression tests:** they fail on the previous templates and manifests:
+  - `EmergencyChargingTemplateTests`;
+  - the English and Spanish build tests;
+  - the AC wall `covered_annotations` check.
