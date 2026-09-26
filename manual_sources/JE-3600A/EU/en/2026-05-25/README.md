@@ -50,3 +50,10 @@ figures (15 crops each in `asset_recipe`) instead of the shared JE-1000F art, an
 the LCD crop is widened on all three routes so callouts 8, 9, 20 and 21 show; see
 the intake review addendum of the same date. `source_manifest.json` re-locks the
 web recipe and the English illustration manifest.
+
+Emergency charging and the AC wall sentence (2026-09-26): the fr/es routes no
+longer print an Emergency Charging Mode block. This model lacks the feature, and
+the shared fr–uk charging templates now carry the English file's capability
+markers. On all three routes, the AC wall sentence that the crop already prints
+moves into the figure's alt text. See the intake review addendum of the same
+date. `source_manifest.json` re-locks the English illustration manifest.

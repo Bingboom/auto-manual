@@ -22,7 +22,9 @@
       {"selector": ".line-block > .line", "text": "An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails."},
       {"selector": ".line-block > .line", "text": "In the event of a sudden loss of grid power, Jackery Explorer 3600 Plus will automatically switch to stored power within 10 ms to keep your appliances running."}
     ]},
-    {"replaces": ["ac_wall.png"], "path": "assets/je3600a_eu_en/charging_ac.png", "sha256": "f8d8a51eed0daad27a43d72fec023e0473555fa3f5129ffedcd7e7025ab57d6c", "source_page": 16, "bbox_pt": [30, 179, 344, 282]},
+    {"replaces": ["ac_wall.png"], "path": "assets/je3600a_eu_en/charging_ac.png", "sha256": "f8d8a51eed0daad27a43d72fec023e0473555fa3f5129ffedcd7e7025ab57d6c", "source_page": 16, "bbox_pt": [30, 179, 344, 282], "covered_annotations": [
+      {"selector": "#charging-via-ac-wall-outlet > p", "text": "Connect the AC charging cable to the AC input port of the product and a wall outlet."}
+    ]},
     {"replaces": ["solar_direct.png", "solar_adapter.png"], "path": "assets/je3600a_eu_en/charging_solar.png", "sha256": "a435ab83d55e2ff2ba91d21cd436b6bfb334f56fe1c672e485191ca3caac2b0e", "source_page": 16, "bbox_pt": [30, 364, 344, 497]},
     {"replaces": ["car_charge.png"], "path": "assets/je3600a_eu_en/charging_car.png", "sha256": "f8852a5e606e97f5bff54a5abc3280e07d7b8fe3f75d4e8f63e5e1b4e6527aae", "source_page": 17, "bbox_pt": [28, 196, 341, 322], "covered_annotations": [
       {"selector": "#charging-via-a-car-charger-sold-separately > .line-block > .line", "text": "Vehicle"},

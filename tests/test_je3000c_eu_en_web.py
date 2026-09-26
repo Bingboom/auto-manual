@@ -572,6 +572,12 @@ class Je3000cEuFrenchAppPanelTests(unittest.TestCase):
         car, _ = section("charging_car")
         self.assertEqual("Véhicule；※Le câble de chargement de voiture est vendu séparément.", car["alt"])
 
+    def test_no_emergency_charging_block(self) -> None:
+        # JE-3000C has no Emergency Charging Mode (capability FALSE, absent from the print);
+        # the car panel's "usage d'urgence" caution is a different sentence and stays.
+        self.assertNotIn("Mode de charge d'urgence", self.html)
+        self.assertIn("usage d'urgence uniquement", self.html)
+
 
 class Je3000cEuBlockIllustrationTests(unittest.TestCase):
     """Each fr-uk route shows its own print block's figures, not the JE-1000F shared art."""

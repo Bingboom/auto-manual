@@ -250,6 +250,24 @@ Verification:
 
 Still open (not changed here):
 
-- The English route shows the English block's UK sockets.
+- The English route shows the English block's UK sockets. (Operator ruling
+  2026-09-26: kept as printed, as JE-1000F/EU does.)
 - The App download panel stays the shared QR image on fr–uk. The image matches
   the print and is language-neutral.
+
+## 2026-09-26 Emergency Charging Mode gate
+
+The fr/es/de/it/uk routes printed an Emergency Charging Mode block under AC wall
+charging, although JE-3000C_EU has the capability FALSE in
+`data/model_capabilities.csv` and no language block of the V2.0-2026-07-31
+print has it. (The uk block's `аварійного використання` is the car panel's
+"emergency use only" caution, a different sentence.)
+
+- Only the English shared charging template carried the
+  `hb-capability-begin: 应急快充模式` markers.
+- `docs/templates/page_shared/{fr,es,de,it,uk}/charging.rst` now carry them too.
+  TRUE targets keep byte-identical pages, and FALSE targets drop the block.
+
+Trial Web builds: each fr–uk route loses exactly that block; English is
+unchanged. `Je3000cEuFrenchAppPanelTests.test_no_emergency_charging_block` fails
+on the previous templates.

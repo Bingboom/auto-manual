@@ -197,6 +197,12 @@
         175.1,
         342.3,
         274.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#carga-mediante-una-toma-de-corriente-de-pared-alterna > p",
+          "text": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente."
+        }
       ]
     },
     {

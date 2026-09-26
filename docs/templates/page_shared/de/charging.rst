@@ -75,8 +75,10 @@ Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an 
    * - **VORSICHT**
      - Stellen Sie sicher, dass das AC-Ladekabel vollständig und sicher in den AC-Eingangsanschluss eingesteckt ist. Eine unvollständige Verbindung kann zu instabilem Strom, Überhitzung, schlechtem Kontakt oder Fehlfunktionen des Geräts führen.
 
+.. hb-capability-begin: 应急快充模式
 
 **Notfall-Lademodus**
 
 | In diesem Modus können Sie die tragbare Powerstation mit der AC-Lademethode schnell aufladen. Diese Notfall-Ladefunktion kann über die Jackery-App aktiviert oder deaktiviert werden. Im Notfall-Lademodus blinkt die kreisförmige Leuchte, die den Ladezustand (SOC) anzeigt, schneller.
 | \*Um die Batterielebensdauer zu maximieren, ist das Laden mit normaler Geschwindigkeit vorzuziehen. Verwenden Sie den Notfall-Lademodus nur bei Bedarf. Für den regelmäßigen Langzeitgebrauch wird er nicht empfohlen.
+.. hb-capability-end:
