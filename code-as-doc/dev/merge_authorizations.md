@@ -34,8 +34,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 ## Grant / revoke flow
 
-- **Grant**: operator states the scope in chat → agent adds a row (next
-  `MA-nnn`, scope, grant quote + date, expiry condition) → the entry is live
+- **Grant**: operator states the scope in chat → agent adds a row (the next
+  free `MA-nnn` from `python tools/next_registry_id.py ma`, which counts main,
+  open PRs and the checkout; scope, grant quote + date, expiry condition) → the entry is live
   once pushed. Time-boxed grants name their milestone/date; standing grants
   say "until revoked".
 - **Revoke / expire**: operator says so, or the expiry condition is met →
@@ -492,3 +493,7 @@ MA-066 expires automatically after the actual #1103 merge.
 
 | MA-113 | 本授权登记 PR（`docs/authorize-hello-docs-99`，含本登记）与 Hello-Docs #99（`docs/knowledge-direct-editing`），按授权登记 PR → Hello-Docs #99 顺序合入。范围仅为持久登记 `docs/knowledge/**` 是 Hello-Docs 业务内容直编区，并在该目录增加 Agent 操作边界和人工内容 PR 流程；Hello-Docs #99 的最终 diff 只允许 `docs/knowledge/AGENTS.md` 与 `docs/knowledge/README.md`。两项 PR 均须最终 head 全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 和未解决评审线程后 squash merge。**不含**：本次改写分享正文、修改 `docs/publish/**`、镜像工程代码、workflow、依赖、线上 Base 或 RTD 配置。 | 「提交 合入」2026-09-20 | 两项 PR 合入即失效（状态由下一次实质性触碰本文件时补记） | 已失效（Hello-Docs #99 squash `49ca66d0`、登记 #1209 squash `cd580b3c` 均已合入） |
 | MA-118 | Hello-Docs PR #106（`release/je1000h-eu-20260920` → `main`，**含本登记行所在 auto-manual PR**）——按操作者「那重跑 JE-1000H 六语发布」重跑 JE-1000H/EU 六语 Git-only 发布，让线上拿到 #1197 恢复到 scale 4 的索引色成品整图。路由与手册文件名不变（`JE-1000H/EU/<lang>/md/manual_je1000h_eu_<lang>.md`），仅版本元数据 `2.0` → `2.0-20260920`（`web_publish_meta.json` 按版本不可变，同版本改内容会报 `metadata is immutable`；沿用线上既有 `2.0-20260913` 先例，手册编辑版本仍是 V2.0-2026-08-03）。已用 RTD 的确切命令（`sphinx -b html -D extensions=myst_parser,tools.rtd_portal`）本地验证：构建成功、`manual-deployment.json` 部署回执生成、en/fr/uk 逐页 28 张图零断链且 21 张为索引色、发布树 3579 文件 / 278.8MB（占 512MiB 闸门 52%）。PR diff 只含 `docs/publish/**`，越界文件 0。须在最终 head 上全部检查成功（含非必需项，pending 不算绿）、无 changes-requested、无未解决评审线程后 squash merge，合入后核对 RTD 实际构建成功与六个语言页可访问。**不含**：其余型号的调色板转换（各需自己的设计母版重渲，另立）；手册编辑版本升版或任何正文/翻译改动；`sources/` 池化（破坏冻结包自包含语义，另立）；不越过 F6 线上源表写入、`.github/workflows/**`、公开 CLI 行为、依赖版本、Base schema 等独立 gate | 「那重跑 JE-1000H 六语发布」2026-09-20 | Hello-Docs #106 合入且六语完成 RTD 上线验证，或操作者撤销 | 已失效（Hello-Docs #106 squash `ba2b0744` 已合入；操作者 2026-09-24「MA-107 和 MA-118 也标成失效」） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
+| MA-177 | 仅合入 auto-manual PR #1225（语言识别路径修复）、#1206（搜索空状态修复）、#1281（只读取号工具及其必要规则，含本登记行）。逐个核对最新 head 的全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge，并核验 main 合入 SHA；允许在原范围内同步最新 main、解决组合冲突并重跑检查。不含 #1279（保持草稿，暂缓）、#1280、#1224、#1226、#1278 或任何其它 PR，不启动多 Agent，不授权生产内容发布或飞书写入。 | 「授权先合入 #1225、#1206、#1281 这三个」2026-09-26 | 三项均合入即失效，或操作者撤销 | 生效（推送后生效） |
