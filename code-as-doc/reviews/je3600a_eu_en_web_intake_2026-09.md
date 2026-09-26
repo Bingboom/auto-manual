@@ -204,3 +204,69 @@ Verification:
   page, against 70 and 67 before. Two sentences that quote the standby time and
   the temperature range (`2 hours`, `-20 °C to 45 °C`) are corrected along with
   the tables.
+
+## 2026-09-25 fr/es figures from each print block; English LCD callouts
+
+Problem:
+
+- The fr/es illustration manifests bound only the two App panels. The other 16
+  figure slots fell back to the shared art extracted from the JE-1000F/US
+  master, which shows another product:
+  - the front view is a JE-1000F photo with US outlets;
+  - the LCD map has 25 callouts (with TOU and UPS) against this model's 21;
+  - the AC wall-charging figure shows a US outlet.
+- The English LCD crop (x 68-329 pt) cut callouts 8, 9, 20 and 21, while the
+  table lists 21 items.
+
+Change:
+
+- `data/asset_recipes/manual_je3600a_eu_web.json` gains 30 approved crops, 15 per
+  language, from the French (PDF pages 24-34) and Spanish (41-51) blocks.
+  - Each crop takes the English crop's frame, refitted where the block's panel
+    outline moved or grew: the Spanish energy-saving panel (2.7 pt taller), UPS,
+    the AC and solar charging panels, and the French car panel (25 pt lower).
+  - All three LCD crops use `[34, 55, 339, 195]`, which keeps all 21 callouts.
+- The fr/es illustration manifests bind the crops to the same file names as
+  English. Their `recipe` is now the web recipe; the App entries keep their own.
+- Copy printed in a crop moves from the page into the figure's alt text, as on
+  English (`covered_annotations`):
+  - the UPS description (fr/es);
+  - the Spanish car-panel lines.
+
+  The page lines differ from the print only in the product-name form (`Jackery
+  Explorer 3600 Plus` against `le/el Explorer 3600 Plus`, as in English) and, in
+  the Spanish car note, `vehículo` against `auto`.
+- **French car panel (operator ruling):** the French block prints this panel's
+  copy in English (`Vehicle`, `*The car charging cable is sold separately.`).
+  The crop drops its text with `redact_text` and leaves the empty note frame; the
+  page keeps the template's French lines.
+- `source_manifest.json` re-locks the web recipe and the English illustration
+  manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 56 outputs against their
+  expected hashes; the unchanged English crops are byte-identical.
+- **Visual review:** every fr/es crop was checked next to the approved English
+  crop and its page. The French LCD crop differs from the Spanish one only in
+  the anti-aliasing of four digit glyphs (another embedded font subset); the
+  Spanish crop is byte-identical to the English one.
+- **Trial Web builds against the live pages:**
+  - English changes only the LCD figure.
+  - fr/es replace 15 figures, drop the second solar figure (as English does),
+    and move the UPS lines (fr/es) and the car lines (es) into alt text.
+  - No other text changes.
+- **Regression tests:** `Je3600aEuBlockIllustrationTests` and the Spanish build
+  test (no shared JE-1000F art digest remains) fail on the previous files (four
+  failures, one error).
+
+Still open (not changed here):
+
+- All three routes print the AC wall-charging instruction both in the crop and
+  as page text; English has done so since its first release.
+- The fr/es pages print an Emergency Charging Mode block that neither the print
+  nor English has. `docs/templates/page_shared/es/charging.rst` and
+  `fr/charging.rst` lack the `hb-capability-begin: 应急快充模式` markers of the
+  English file.
+- JE-3000C fr-uk and JE-2000E de-uk have the same gap (their manifests bind only
+  the App panels), and JE-1000F/EU has no Web illustration manifest.

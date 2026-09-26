@@ -5,8 +5,239 @@
   "language": "es",
   "source_pdf_sha256": "bfbcc4377fb474952f5e0850818289449016c8df11b1df48aff192b646eedf6d",
   "source_pdf_name": "Jackery Explorer 3600 Plus User Manual-EU-UK-2026-05-25.pdf",
-  "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je3600a_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3600a_eu_es/inbox_unit.png",
+      "sha256": "57b84050c54bc3665adeefe0a49bd7364d65601b76f8315ab93aa2bcf79c60b7",
+      "source_page": 41,
+      "bbox_pt": [
+        46.8,
+        327,
+        119.8,
+        407
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3600a_eu_es/inbox_cable.png",
+      "sha256": "062251011189b6167944ed21be4f84cf0f19ca869fd08bcfad81dbff62940ff6",
+      "source_page": 41,
+      "bbox_pt": [
+        172.8,
+        322,
+        215.8,
+        398
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3600a_eu_es/inbox_manual.png",
+      "sha256": "545255e32c8e2b47a7b7ea842a3fe87484ec3f8d7a9e11b1fcc73fddc04a98a9",
+      "source_page": 41,
+      "bbox_pt": [
+        263.8,
+        329,
+        319.8,
+        399
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3600a_eu_es/overview_front.png",
+      "sha256": "9e5bb7db58051603ac036f112fef8cc4260eb35ccd877783a7daf968e108852a",
+      "source_page": 42,
+      "bbox_pt": [
+        27,
+        58,
+        342,
+        220
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3600a_eu_es/overview_side.png",
+      "sha256": "ae595b600453aa9a6ccabfdc7d32a10315a0328fee1ac053379b0b7cb89c5081",
+      "source_page": 42,
+      "bbox_pt": [
+        27,
+        235,
+        342,
+        497
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3600a_eu_es/lcd_map.png",
+      "sha256": "37ef74780972edcdb0cf2dbdd4ec8ccaa4ee898f615b1daa5fa89616cb5ec15f",
+      "source_page": 43,
+      "bbox_pt": [
+        34,
+        55,
+        339,
+        195
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3600a_eu_es/operation_power.png",
+      "sha256": "4b6fda21711043389c22cca71979ba0f03f3f3c52b9c818613033ced2503f82a",
+      "source_page": 45,
+      "bbox_pt": [
+        28,
+        75,
+        342,
+        248
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3600a_eu_es/operation_usb.png",
+      "sha256": "f50f38d7c4a1567e65f30d74162a48b63ee8bd9a5362ee01059b05b5149c5654",
+      "source_page": 45,
+      "bbox_pt": [
+        28,
+        267,
+        342,
+        425
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3600a_eu_es/operation_ac.png",
+      "sha256": "aec9b82b4a086758ec3dd518d8fe03272701a719cf2a31bb5f795b88cc3d0428",
+      "source_page": 46,
+      "bbox_pt": [
+        28,
+        46,
+        342,
+        229
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3600a_eu_es/operation_energy.png",
+      "sha256": "db4ce3a5bc85d12fb1beca84383540e6aa3a9118d766582a9f6f0b11efa440ae",
+      "source_page": 46,
+      "bbox_pt": [
+        28,
+        259,
+        343,
+        463
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3600a_eu_es/lcd_mode_device.png",
+      "sha256": "e6c56996348f010fbdda97a3eb656bc5bd859d93e6ae671e085bc238b5c9d49a",
+      "source_page": 47,
+      "bbox_pt": [
+        38,
+        57,
+        150,
+        227
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3600a_eu_es/ups.png",
+      "sha256": "98d43fdae4902cea310d9c1fcff0728e915cd1c8862e4a0678e42955f0ac72d2",
+      "source_page": 48,
+      "bbox_pt": [
+        25.4,
+        84.8,
+        342.4,
+        321.8
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block > .line",
+          "text": "Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal."
+        },
+        {
+          "selector": ".line-block > .line",
+          "text": "En caso de una pérdida repentina de energía de la red, Jackery Explorer 3600 Plus cambiará automáticamente a la energía almacenada en menos de 10 ms para mantener sus electrodomésticos en funcionamiento."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3600a_eu_es/charging_ac.png",
+      "sha256": "3083826c7c0ed4795dede769a9304c9f2984787543127c1295f32e1e9c797cda",
+      "source_page": 50,
+      "bbox_pt": [
+        28.3,
+        175.1,
+        342.3,
+        274.0
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3600a_eu_es/charging_solar.png",
+      "sha256": "f0967febf87c4fc8022af15db633d69df90c91d43edf9400f52fb30a834b7728",
+      "source_page": 50,
+      "bbox_pt": [
+        29.3,
+        367.4,
+        343.3,
+        497.0
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3600a_eu_es/charging_car.png",
+      "sha256": "a5e5d20db405bf4b4f1754dababc7c36be033b9e4f8d8950609a7dd41756fcee",
+      "source_page": 51,
+      "bbox_pt": [
+        27.1,
+        194.4,
+        340.1,
+        320.4
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block > .line",
+          "text": "Vehículo"
+        },
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block > .line",
+          "text": "※El cable de carga para vehículo se vende por separado."
+        }
+      ]
+    },
     {
       "replaces": [
         "add_device.png"

@@ -23,6 +23,34 @@ FORMAL_SOURCE = ROOT / "manual_sources/JE-3600A/EU/en/2026-05-25"
 FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 APP_RECIPE = ROOT / "data/asset_recipes/manual_je3600a_eu_web_app.json"
 APP_PANEL = "assets/je3600a_eu_shared/app_connect_result.png"
+WEB_RECIPE = ROOT / "data/asset_recipes/manual_je3600a_eu_web.json"
+# PDF pages of each language block of the print; each route crops its own block.
+BLOCK_PAGES = {"en": range(6, 23), "fr": range(23, 40), "es": range(40, 57)}
+BLOCK_CROPS = (
+    "inbox_unit", "inbox_cable", "inbox_manual", "overview_front", "overview_side", "lcd_map",
+    "operation_power", "operation_usb", "operation_ac", "operation_energy", "lcd_mode_device",
+    "ups", "charging_ac", "charging_solar", "charging_car",
+)
+# The shared art the fr/es routes showed before 2026-09-25: JE-1000F figures
+# extracted from the JE-1000F/US master (another product, US outlets).
+SHARED_ART = (
+    "in_the_box/main_unit1", "in_the_box/ac_charging_cable", "in_the_box/manual_icon1",
+    "in_the_box/main_unit", "overview/front_product", "overview/right_side_ports", "lcd/lcd_map",
+    "operation/main_power", "operation/dc_usb_output", "operation/ac_output", "operation/energy_saving",
+    "operation/lcd_mode", "operation/ups_mode", "charging/ac_wall", "charging/solar_direct",
+    "charging/solar_adapter", "charging/car_charge",
+)
+
+
+def shared_art_digests() -> set[str]:
+    with (ROOT / "data/asset_registry.csv").open(encoding="utf-8", newline="") as handle:
+        rows = {row["asset_key"]: row for row in csv.DictReader(handle)}
+    digests = set()
+    for key in SHARED_ART:
+        found = re.findall(r"[0-9a-f]{64}", rows[key]["内容哈希"])
+        assert found, key
+        digests.update(found)
+    return digests
 LANGUAGES = ("en", "fr", "es")
 # The control-panel button names each language block of the print uses (PDF
 # pages 38/55/72/89). Without them the fr/es routes fell back to the English
@@ -307,6 +335,95 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
         self.assertIsNone(soup.select_one("figure.hb-app-add-device-composition"))
         self.assertIn("Presione una vez el botón de encendido principal del dispositivo", self.html)
         self.assertNotIn("el power button", self.html)
+
+    def test_every_figure_is_the_spanish_print_block(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        finished = soup.select("img.manual-finished-illustration")
+        self.assertEqual(17, len(finished))
+        paths = {image["data-web-finished-panel-path"] for image in finished}
+        for name in BLOCK_CROPS:
+            self.assertIn(f"assets/je3600a_eu_es/{name}.png", paths)
+        digests = {match.group(1) for image in soup.find_all("img")
+                   if (match := re.search(r"assets/ir/([0-9a-f]{64})/", str(image.get("src", ""))))}
+        self.assertEqual(28, len(soup.find_all("img")))
+        self.assertEqual(set(), digests & shared_art_digests())
+        # Copy the crops already print moves into their alt text once.
+        ups = soup.select_one('img[data-web-finished-panel-path="assets/je3600a_eu_es/ups.png"]')
+        self.assertTrue(ups["alt"].startswith("Un sistema de alimentación ininterrumpida (UPS)"))
+        car = soup.select_one('img[data-web-finished-panel-path="assets/je3600a_eu_es/charging_car.png"]')
+        self.assertEqual("Vehículo；※El cable de carga para vehículo se vende por separado.", car["alt"])
+        lines = [" ".join(node.get_text(" ", strip=True).split()) for node in soup.select(".line-block > .line")]
+        self.assertNotIn("Vehículo", lines)
+        self.assertFalse([line for line in lines if line.startswith("Un sistema de alimentación ininterrumpida")])
+        self.assertIn("la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.", lines)
+
+
+class Je3600aEuBlockIllustrationTests(unittest.TestCase):
+    """Each route shows its own print block's figures, not the JE-1000F shared art."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.recipe = json.loads(WEB_RECIPE.read_text(encoding="utf-8"))
+        cls.assets = {asset["asset_key"]: asset for asset in cls.recipe["assets"]}
+        cls.catalog = {row["page"]: row["locale"] for row in cls.recipe["page_catalog"]}
+        cls.manifests = {}
+        for lang in LANGUAGES:
+            path = resolve_web_illustration_manifest(
+                ROOT / f"configs/config.eu-{lang}.yaml", repo_root=ROOT, model="JE-3600A", region="EU",
+            )
+            cls.manifests[lang] = (path, json.loads(path.read_text(encoding="utf-8")))
+
+    def entries(self, lang: str) -> dict[str, dict]:
+        _, manifest = self.manifests[lang]
+        return {Path(entry["path"]).stem: entry for entry in manifest["illustrations"]
+                if entry["path"].startswith(f"assets/je3600a_eu_{lang}/") and "/app_" not in entry["path"]}
+
+    def test_each_route_binds_its_own_block_crops(self) -> None:
+        english = self.entries("en")
+        for lang in LANGUAGES:
+            path, manifest = self.manifests[lang]
+            self.assertEqual(WEB_RECIPE.relative_to(ROOT).as_posix(), manifest["recipe"], lang)
+            entries = self.entries(lang)
+            self.assertEqual(sorted(BLOCK_CROPS), sorted(entries), lang)
+            for name, entry in entries.items():
+                asset = self.assets[f"web/je3600a/eu/{lang}/{name}"]
+                (output,) = asset["outputs"]
+                with self.subTest(lang=lang, name=name):
+                    self.assertEqual(english[name]["replaces"], entry["replaces"])
+                    self.assertEqual("approved", asset["gate"]["status"])
+                    self.assertEqual([lang], asset["scope"]["locales"])
+                    self.assertIn(asset["page"], BLOCK_PAGES[lang])
+                    self.assertEqual(lang, self.catalog[asset["page"]])
+                    self.assertEqual(asset["page"], entry["source_page"])
+                    self.assertEqual(asset["transforms"][0]["bbox_pt"], entry["bbox_pt"])
+                    file = path.parent / entry["path"]
+                    self.assertEqual(output["path"], file.relative_to(ROOT).as_posix())
+                    self.assertEqual(output["expected_sha256"], entry["sha256"])
+                    self.assertEqual(entry["sha256"], hashlib.sha256(file.read_bytes()).hexdigest())
+
+    def test_lcd_crops_keep_every_callout(self) -> None:
+        # The print's LCD figure spans x 36.2-336.9 pt: callouts 8 and 9 sit on
+        # the left, 20 and 21 on the right. The first English crop (x 68-329)
+        # cut all four while the table lists 21 items.
+        for lang in LANGUAGES:
+            x0, _, x1, _ = self.assets[f"web/je3600a/eu/{lang}/lcd_map"]["transforms"][0]["bbox_pt"]
+            self.assertLessEqual(x0, 36, lang)
+            self.assertGreaterEqual(x1, 337, lang)
+
+    def test_copy_printed_in_the_art_leaves_the_page_once(self) -> None:
+        for lang in LANGUAGES:
+            self.assertEqual(2, len(self.entries(lang)["ups"]["covered_annotations"]), lang)
+        self.assertEqual(
+            ["Vehículo", "※El cable de carga para vehículo se vende por separado."],
+            [item["text"] for item in self.entries("es")["charging_car"]["covered_annotations"]],
+        )
+        # The French block prints this panel's copy in English ("Vehicle",
+        # "*The car charging cable is sold separately."): the crop drops its
+        # text and the page keeps the template's French lines.
+        car = self.assets["web/je3600a/eu/fr/charging_car"]
+        self.assertIn("redact_text", [transform["op"] for transform in car["transforms"]])
+        self.assertEqual("fixed-product-markings", car["text_policy"])
+        self.assertNotIn("covered_annotations", self.entries("fr")["charging_car"])
 
 
 TRANSLATED_LOCALES = ("fr", "es")

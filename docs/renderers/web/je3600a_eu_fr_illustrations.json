@@ -5,8 +5,229 @@
   "language": "fr",
   "source_pdf_sha256": "bfbcc4377fb474952f5e0850818289449016c8df11b1df48aff192b646eedf6d",
   "source_pdf_name": "Jackery Explorer 3600 Plus User Manual-EU-UK-2026-05-25.pdf",
-  "recipe": "data/asset_recipes/manual_je3600a_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je3600a_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3600a_eu_fr/inbox_unit.png",
+      "sha256": "57b84050c54bc3665adeefe0a49bd7364d65601b76f8315ab93aa2bcf79c60b7",
+      "source_page": 24,
+      "bbox_pt": [
+        46.8,
+        327,
+        119.8,
+        407
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3600a_eu_fr/inbox_cable.png",
+      "sha256": "062251011189b6167944ed21be4f84cf0f19ca869fd08bcfad81dbff62940ff6",
+      "source_page": 24,
+      "bbox_pt": [
+        172.8,
+        322,
+        215.8,
+        398
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3600a_eu_fr/inbox_manual.png",
+      "sha256": "0965c21449161b5e04f6dfd6dbd1ccb09b809a801ab7b88cfc857d6d176f2ba1",
+      "source_page": 24,
+      "bbox_pt": [
+        263.8,
+        329,
+        319.8,
+        399
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3600a_eu_fr/overview_front.png",
+      "sha256": "753d1a3df21af0ac46717d3f02bd3ec5c40dfe8b079aaaf171614a94a0a6c1b6",
+      "source_page": 25,
+      "bbox_pt": [
+        27,
+        58,
+        342,
+        220
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3600a_eu_fr/overview_side.png",
+      "sha256": "838bc9f36b41bbb39448c33e4d90d6cd69ec2336530e03126cd89df3d42af6da",
+      "source_page": 25,
+      "bbox_pt": [
+        27,
+        235,
+        342,
+        497
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3600a_eu_fr/lcd_map.png",
+      "sha256": "2f1696e86674f69eb06f28725fa2769585cd92eac7494f068f0f8e18e409a81a",
+      "source_page": 26,
+      "bbox_pt": [
+        34,
+        55,
+        339,
+        195
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3600a_eu_fr/operation_power.png",
+      "sha256": "4bc3bcff974abdb7b589806d27e89f1cce8f68e61ba901768222400a9425afe5",
+      "source_page": 28,
+      "bbox_pt": [
+        28,
+        75,
+        342,
+        248
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3600a_eu_fr/operation_usb.png",
+      "sha256": "4a100d775d4b4577cc2bd0406c29ccfaae3efb3d991e08f5476e30cfa25c1196",
+      "source_page": 28,
+      "bbox_pt": [
+        28,
+        267,
+        342,
+        425
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3600a_eu_fr/operation_ac.png",
+      "sha256": "2e6e7dfe6fa7c5e34e7b9820a0f1a0fe93e1e82550a81c6c57cfaaa01f1d3715",
+      "source_page": 29,
+      "bbox_pt": [
+        28,
+        46,
+        342,
+        229
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3600a_eu_fr/operation_energy.png",
+      "sha256": "9560b32723845be2f789dba22e08b3e64cb37e75c003b32c90473256583d4dce",
+      "source_page": 29,
+      "bbox_pt": [
+        28,
+        260,
+        342,
+        460
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3600a_eu_fr/lcd_mode_device.png",
+      "sha256": "1b375970b19be6ee9b6e61b76399ec9f866cc42f3064ba8f9f2cc7cec4cc18de",
+      "source_page": 30,
+      "bbox_pt": [
+        38,
+        57,
+        150,
+        227
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3600a_eu_fr/ups.png",
+      "sha256": "b76180e69336a68d2cf888f9fa7ee7117c538fad461c2e75f024221b2e5e5936",
+      "source_page": 31,
+      "bbox_pt": [
+        25.5,
+        85.3,
+        342.5,
+        322.3
+      ],
+      "covered_annotations": [
+        {
+          "selector": ".line-block > .line",
+          "text": "Une alimentation sans coupure (UPS) est un système d'alimentation continue qui fournit automatiquement une alimentation électrique de secours à une charge lorsque l'alimentation du réseau principal est interrompue."
+        },
+        {
+          "selector": ".line-block > .line",
+          "text": "En cas de perte soudaine de l'alimentation du réseau, le Jackery Explorer 3600 Plus basculera automatiquement sur l'alimentation stockée en moins de 10 ms pour maintenir vos appareils en fonctionnement."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3600a_eu_fr/charging_ac.png",
+      "sha256": "4292f4c7f2c9dd7bdb7c2e30c27dfcefcfd0091e4f3b00150f285c8719d96708",
+      "source_page": 33,
+      "bbox_pt": [
+        29.1,
+        172.7,
+        343.1,
+        271.5
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3600a_eu_fr/charging_solar.png",
+      "sha256": "e6f34925df08f5bd0f60cea96934c0b40b0d0be1d862f53b0875fc6c6866d7ff",
+      "source_page": 33,
+      "bbox_pt": [
+        29.7,
+        367.5,
+        343.7,
+        497.0
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3600a_eu_fr/charging_car.png",
+      "sha256": "6687da516a486f620499e1fbd3459c4df350b5cbc1a345b79acb4e9a6fd327c3",
+      "source_page": 34,
+      "bbox_pt": [
+        27.1,
+        221.0,
+        340.1,
+        347.1
+      ]
+    },
     {
       "replaces": [
         "add_device.png"
