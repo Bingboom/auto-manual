@@ -92,9 +92,9 @@ content, QR aliases and nested manual URLs are unchanged.
 ## System workspace page
 
 `/workspace/system/` (系统建设) opens with the current focus: the lanes being
-pushed now and next, each with its figures and ledger progress. Below it, the
-page shows what the system can already do, what is still being built, and how
-far the execution-ledger gates have got. The page is built at RTD time from
+ordered by delivery priority, each with its next action and ledger progress.
+Stage acceptance follows immediately; corpus statistics, capabilities and evidence
+remain available further down the page. The page is built at RTD time from
 frozen inputs only. It never reads Feishu or the network.
 
 - `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
@@ -126,11 +126,23 @@ workspace sidebar shows the entry only when the page was built.
 
 ### Current focus
 
-The operator decides the focus, and it sets the page order. Since 2026-09-25
-the lanes are 说明书网页化 and 语料库建设与管理 (now), then IR 共享 and 骨架拓展
-(next). Each lane in `focus.lanes` declares:
+The operator decides the focus. Since 2026-09-26 the sequence is:
 
-- `id`, `title`, an optional one-line `goal`, and `horizon: now | next`;
+1. Web publication and real maintenance: REV-07 → REV-09 → G1 acceptance → G2 pilot.
+2. Corpus reuse and SSOT support that work concurrently. REV-18 checks actual
+   translation hits/corrections; source authority, writers, approvers and frozen
+   release inputs are established as real data needs arise.
+3. Shared IR: settle REV-39 boundaries, then accept a representative REV-40 target
+   and its dependencies before expansion. IDML acceptance does not block Web.
+4. Expand skeletons and coverage once production and maintenance are stable.
+5. Multi-agent work remains a design reference, reconsidered only after persistent
+   handoff or concurrency bottlenecks. It is absent from the current-work list.
+
+This page order does not rewrite ledger statuses or claim those gates are complete.
+Each lane in `focus.lanes` declares:
+
+- `id`, `title`, optional `goal` and `action`, and
+  `horizon: now | support | next | later | deferred`;
 - `card`: the capability card it links to. That card, and every gate the lane
   lists, carries the lane's tag further down the page;
 - `items`: capability items shown with their status inside the lane;
@@ -141,7 +153,8 @@ the lanes are 说明书网页化 and 语料库建设与管理 (now), then IR 共
   - `skeletons`: blueprints per family, in `focus.skeleton_families` order, with
     未建 for a declared family that has none;
 - progress: `gates` (ids from `now_next.gates`), `revs` (ledger rows, ranges
-  allowed), or both. A lane with neither shows 尚未入执行台账.
+  allowed), or both. A lane with neither shows 尚未入执行台账, except a deferred
+  design reference, which intentionally carries no execution progress.
 
 A source that cannot be read shows 无数据 for that figure, never zero. The focus
 block carries evidence like any other entry, and it goes stale with
@@ -149,6 +162,30 @@ block carries evidence like any other entry, and it goes stale with
 
 Cards and gates outside the focus can set `fold: true`. They then render in a
 collapsed 其他能力 or 其他阶段门 group at the end of their section.
+
+### Published version and refresh
+
+Every main merge already triggers the engineering mirror into Hello-Docs/main;
+RTD then rebuilds the page from that checkout. No second scheduler or browser
+GitHub token is needed. A successful mirror is not evidence of successful RTD
+publication: diagnose the mirror run first, then the RTD build and served page.
+
+`tools/rtd_workspace_revision.py` stamps the HTML and
+`_static/system-workspace-revision.json` with the same checkout SHA and UTC build
+time. On RTD the SHA belongs to the Hello-Docs checkout, not auto-manual/main.
+The page displays that identity. Its JS probes only the same-origin deployed
+receipt on entry, every minute while visible, and on returning to the tab.
+A different, later-built receipt offers **刷新到新版本**, preserving the URL anchor
+and adding a version query to avoid a stale cached page. It does not interrupt
+reading automatically. Older receipts, malformed responses, timeouts and offline
+states never trigger navigation; the current snapshot remains readable. JS/CSS
+URLs include the checkout version. This check confirms the deployed page version,
+not that the deployed version has caught up with GitHub main.
+
+Ledger, tooling and skeleton changes appear on the next successful build.
+Capability claims still require curated evidence. Corpus/Feishu counts remain
+frozen snapshots and only change after their reviewed export is committed;
+a main merge does not read live tables or automatically approve capabilities.
 
 ### Language assets block
 

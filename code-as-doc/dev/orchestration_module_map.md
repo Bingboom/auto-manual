@@ -56,6 +56,13 @@ read-only served HTML/resource hash verification. `rtd_portal.setup` registers
 its callback; queue, publication assembly and link writers are not callers.
 See the [Git-only receipt contract](rtd_deployment_receipt.md).
 
+[`tools/rtd_workspace_revision.py`](../../tools/rtd_workspace_revision.py) owns only
+the system page's checkout identity and successful-build version receipt.
+`rtd_portal` supplies that context and registers the writer before the deployment
+receipt. Browser refresh probes the served same-origin receipt; it neither queries
+GitHub nor changes publication/source authority. See
+[published workspace version](rtd_manual_portal.md#published-version-and-refresh).
+
 Internal frozen Web language projection lives in
 [`tools/web_language_bundle.py`](../../tools/web_language_bundle.py); it projects
 explicit source language before rendering, not by slicing generated HTML.
