@@ -386,8 +386,11 @@ Feishu credentials or runs the receiver.
   These category rules are navigation hints, not new product master data.
 - `.readthedocs.yaml` activates the extension for frozen and bootstrap builds.
   This is needed for old frozen configs as well as future publications.
-- The template renders real links before JavaScript; scripts only enhance
-  filtering and the language dialog. Search/aliases/manual pages are unchanged.
+- The portal template renders real links before JavaScript; scripts only enhance
+  filtering and the language dialog. The search template keeps Sphinx's native
+  result container and scripts, and adds a visible query form so a direct visit
+  to `/search.html` is usable before a query is present. Alias and manual bodies
+  remain unchanged.
 - Feedback is configured by `feedback_channels` in
   `tools/rtd_portal_assets/settings.json`. The consumer-facing channel is the
   after-sales mailbox `hello@jackery.com` already printed in shipped manuals
@@ -516,6 +519,10 @@ excluded; the index does not claim OCR coverage. Results initially show twelve
 sections and can be expanded. The operator accepted the local preview for deployment on 2026-09-13.
 Deployment uses the existing engineering mirror and RTD build; manual source
 publication, online tables and OSS uploads are outside this change.
+
+The Furo `/search.html` route also has a server-rendered landing form. A bare
+visit therefore shows an actionable query field instead of an empty content
+panel; submitting it uses the existing `q` parameter and Sphinx search index.
 
 ## Product hub rollback — 2026-09-15
 
