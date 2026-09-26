@@ -5,8 +5,288 @@
   "language": "uk",
   "source_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
   "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-07-31.pdf",
-  "recipe": "data/asset_recipes/manual_je3000c_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je3000c_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je3000c_eu_uk/inbox_unit.png",
+      "sha256": "04f2cd211a89c461fb6b6a0a25c28884fb8fce19031df682472dac2d30cec548",
+      "source_page": 87,
+      "bbox_pt": [
+        45.0,
+        321.0,
+        125.0,
+        386.0
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je3000c_eu_uk/inbox_cable.png",
+      "sha256": "59e2fa98eaf11b00969de6439e4b3749baf270b61d83f2a019542927a2454177",
+      "source_page": 87,
+      "bbox_pt": [
+        165.0,
+        316.0,
+        220.0,
+        391.0
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je3000c_eu_uk/inbox_manual.png",
+      "sha256": "0aed07438c0128430a02de93042803cd1e4714ce7dbdcd4f51342a6cef7c31e2",
+      "source_page": 87,
+      "bbox_pt": [
+        270.0,
+        321.0,
+        315.0,
+        386.0
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je3000c_eu_uk/overview_front.png",
+      "sha256": "816e1c0e9ed4757c84fd257215eeeaa9a33fec60c8a939e4f06a9392707a2332",
+      "source_page": 88,
+      "bbox_pt": [
+        27.0,
+        70.0,
+        342.0,
+        286.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > table",
+          "text": "Кнопка POWER LCD Порт постійного струму 12 В 12 В⎓10 А макс. Кнопка живлення DC/USB Вихід USB-C 100W MAX 100 Вт макс., 5 В⎓3 A, 9 В⎓3 A, 12 В⎓3 A, 15 В⎓3 A, 20 В⎓5 A Кнопка живлення AC Вихід USB-A 18W MAX 18 Вт макс., 5-6 В⎓3 A, 6-9 В⎓2 A, 9-12 В⎓1,5 A Вихід змінного струму 230 В~ 50 Гц, 15,6 A, 3600 Вт"
+        },
+        {
+          "selector": "#section-2 > table",
+          "text": "Загальний вихід змінного струму 3600 Вт ном. потужності, 7200 Вт пікове значення"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je3000c_eu_uk/overview_side.png",
+      "sha256": "5b5bfd6892dfb1403294722d077e77ca04e13adb8cbda124ec4a52930e742136",
+      "source_page": 88,
+      "bbox_pt": [
+        27.0,
+        323.0,
+        342.0,
+        426.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > table",
+          "text": "Ручка Вхід змінного струму 220 В-240 В~ 50 Гц, 10 А макс. Вхід постійного струму (2 порти DC8020) ФЕ: 16-60 В⎓12 A, подв. до 24 A макс. / 1000 Вт макс. Автомобіль: 12-16 В⎓8 A макс., подв. до 8 A макс."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je3000c_eu_uk/lcd_map.png",
+      "sha256": "64a72082bcbadaa047c819fd397522b968ee7ee609806069d2a4971acdaacc1a",
+      "source_page": 89,
+      "bbox_pt": [
+        30.9,
+        52.0,
+        326.0,
+        184.2
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je3000c_eu_uk/operation_power.png",
+      "sha256": "f64bce873ffd3c1f4f0d81c403607f834c8729feab8ea0646c7eecaeddfe3adf",
+      "source_page": 91,
+      "bbox_pt": [
+        26.79,
+        70.47,
+        342.79,
+        241.47
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Увімкнення: натисніть один раз. Вимкнення: натисніть і утримуйте 3 с."
+        },
+        {
+          "selector": "#section-2 > .line-block",
+          "text": "Стандартний час очікування: 2 години. Пристрій автоматично вимкнеться після 2 годин бездіяльності, якщо не відбувається заряджання чи розряджання. * Час очікування можна налаштувати в Додатку Jackery. Коли режим енергозбереження ввімкнено, пристрій автоматично вимкнеться після 12 годин, якщо вихід AC або DC / USB увімкнено, але пристрій не заряджається і не розряджається."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je3000c_eu_uk/operation_ac.png",
+      "sha256": "e444ce534dc54c9e73f53c82a9892f8496cfa334b3df2bfa301c4af004cd135b",
+      "source_page": 91,
+      "bbox_pt": [
+        26.79,
+        260.23,
+        342.79,
+        495.47
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#ac > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#ac > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je3000c_eu_uk/operation_dc.png",
+      "sha256": "767a3a5fe1ff80e212c8784a49cfe9f49f92c3c7c3d94a6c49e940f75c6c7003",
+      "source_page": 92,
+      "bbox_pt": [
+        21.5,
+        39.0,
+        337.5,
+        213.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#dc-12-usb > p",
+          "text": "Передумова : пристрій увімкнено."
+        },
+        {
+          "selector": "#dc-12-usb > .line-block",
+          "text": "Увімкнути Натисніть один раз Вимкнути Натисніть один раз"
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je3000c_eu_uk/operation_energy.png",
+      "sha256": "2cd27a5389f34c21ae57708be32272bb4d1a9ae627e72236f07c828a74be375d",
+      "source_page": 93,
+      "bbox_pt": [
+        27.0,
+        58.46,
+        342.0,
+        196.46
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-3 > table",
+          "text": "ПРИМІТКА Після ввімкнення пристрій відновлює попередній стан режиму енергозбереження. Для зміни режиму потрібне ручне перемикання."
+        }
+      ],
+      "consume_before_presentation": true
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je3000c_eu_uk/operation_lcd.png",
+      "sha256": "3a5279b872814f9c8b0a070a3f4c8a19ed434feac942771e9891401e4e495fee",
+      "source_page": 93,
+      "bbox_pt": [
+        35.0,
+        214.98,
+        305.0,
+        303.0
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je3000c_eu_uk/ups.png",
+      "sha256": "e8f2d4055898aca259b560efbb12aade6ee942fda4527bcdabcf9ee706e38407",
+      "source_page": 94,
+      "bbox_pt": [
+        27.0,
+        305.78,
+        342.0,
+        431.78
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je3000c_eu_uk/charging_ac.png",
+      "sha256": "b5896a2fc92c9ba998362121453314f17480d43f7623cbe608c07606be47040e",
+      "source_page": 95,
+      "bbox_pt": [
+        27.0,
+        224.18,
+        342.0,
+        363.18
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je3000c_eu_uk/charging_solar.png",
+      "sha256": "c465d070c3e8dd1d3747aa5fc2f4ed573fa9ec8dde0f9483cc4072b480c39b3a",
+      "source_page": 96,
+      "bbox_pt": [
+        27.0,
+        28.0,
+        342.0,
+        157.26
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je3000c_eu_uk/charging_car.png",
+      "sha256": "17a55b17aa36fe5ac541630d1b78708eff0e365ccc4971145cae4c7f606a4654",
+      "source_page": 96,
+      "bbox_pt": [
+        27.0,
+        311.63,
+        342.0,
+        432.05
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "Автомобіль"
+        },
+        {
+          "selector": "#section-2 > .line-block > .line",
+          "text": "* Кабель для заряджання від автомобіля продається окремо."
+        }
+      ],
+      "consume_before_presentation": true
+    },
     {
       "replaces": [
         "add_device.png"

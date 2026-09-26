@@ -2211,6 +2211,3857 @@
         "screenshot",
         "localized-ui"
       ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/inbox_unit",
+      "page": 23,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.0,
+            315.0,
+            125.0,
+            380.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "920826b80d6bf79b22fac53ef498f90fe67deeb375c5c09a16c787e5d737a20a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/inbox_cable",
+      "page": 23,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165.0,
+            310.0,
+            220.0,
+            385.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/inbox_manual",
+      "page": 23,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            270.0,
+            315.0,
+            315.0,
+            380.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/overview_front",
+      "page": 24,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            70.0,
+            342.0,
+            286.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "4426f8359eb21ef933343621aa1829a218c94cca6e5ef974a8f05a44b8a47cf2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/overview_side",
+      "page": 24,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            323.0,
+            342.0,
+            426.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "56d446d252a5d57dce44b2d4c274ff140c6a97e7d4bf6f70f30b8e4765b8d1c4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/lcd_map",
+      "page": 25,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            53.6,
+            326.0,
+            190.3
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "e837d526e41f6b8a05152b3848921755b6d4f4ba3e7e99ff6f91483ba1947e98"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/operation_power",
+      "page": 27,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            70.33,
+            342.79,
+            241.33
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "ec32ac665f3e66556ff9f7f238a3f2450e790c758044cb42ea15191cf09a8450"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/operation_ac",
+      "page": 27,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            260.09,
+            342.79,
+            495.33
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "6557298b9caeee08bc603da2705db60c6a535ef38540e27eb9e90e6e4adcc5d2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/operation_dc",
+      "page": 28,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            343.0,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            343.0,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            35.4,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            48.0,
+            29.2,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            333.9,
+            39.0,
+            343.0,
+            50.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            340.2,
+            48.0,
+            343.0,
+            213.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "43db98f7a9687bed4cbe4588af5ac7131513884ec49fa63e1132ccc733364ef0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/operation_energy",
+      "page": 29,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            58.32,
+            342.0,
+            196.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "48d9f2ba58336aabe08491c911bb5090609436cea7712969378d239896b9e80c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/operation_lcd",
+      "page": 29,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.0,
+            214.84,
+            305.0,
+            303.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "974ebc5f6fbf636175670014e3a18ae973ccea78b3bdf915fb7a0f045446d5e4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/ups",
+      "page": 30,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            305.78,
+            342.0,
+            431.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/ups.png",
+          "scale": 12,
+          "expected_sha256": "7ab195f9c3a8c9f32f935b4d308bd9e3718da40f7f8bf765af9d528e01d80ac7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/charging_ac",
+      "page": 31,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            222.0,
+            342.0,
+            361.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "470b3c4a516a97d31377c4e22aaec1332a8bb9e299d53c4eff545c068fae9abc"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/charging_solar",
+      "page": 32,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            28.0,
+            342.0,
+            157.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "64c2d74df2212a39e3f573ccd7e78731979450712ccc41a3d2b9ac1f5edfc09e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/fr/charging_car",
+      "page": 32,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            317.69,
+            342.0,
+            438.11
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_fr/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "d947970a3f3225a80553bdefcc4754792a6499f1b052027cd1ab10531366b185"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the French block (PDF pages 22-37) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/inbox_unit",
+      "page": 39,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.0,
+            315.0,
+            125.0,
+            380.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "920826b80d6bf79b22fac53ef498f90fe67deeb375c5c09a16c787e5d737a20a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/inbox_cable",
+      "page": 39,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165.0,
+            310.0,
+            220.0,
+            385.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "ed74c99208e4c6536d7a2f60ef696da8a2a6108e088f13bbafa02a3ce653ed6f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/inbox_manual",
+      "page": 39,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            270.0,
+            315.0,
+            315.0,
+            380.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "0a922d74500800e0d323f5f1be125c3122bd43e859dc499bcac47bad7e5a2bb6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/overview_front",
+      "page": 40,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            70.0,
+            342.0,
+            286.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "2e9d7cff07fc9317b9d774c7728e3e52c8c03594d78e364d5ea108f36f40a1a0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/overview_side",
+      "page": 40,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            323.0,
+            342.0,
+            426.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "71062f4d37cdfebd40a9e77ec04faa6df4743f9c5bf3417fbed8db400e25a968"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/lcd_map",
+      "page": 41,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            53.6,
+            326.0,
+            192.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "8a1bbdc552d1c1de151013c5fec88c386c04abe260871badc5c7ab6a968ac477"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/operation_power",
+      "page": 43,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.31,
+            70.62,
+            343.31,
+            241.62
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "d12e29f7b05c630da4811ce192717a65b3156b8dc7531ebf3f34e0cdf6607248"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/operation_ac",
+      "page": 43,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            19.5,
+            266.05,
+            335.5,
+            501.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "d0cfec0d50bfbf014a9e55cf0bde5bb68df8b26da28ba7e8d5bc6b491c6a2096"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/operation_dc",
+      "page": 44,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            29.9,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            48.0,
+            23.7,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            328.4,
+            39.0,
+            337.5,
+            50.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            334.7,
+            48.0,
+            337.5,
+            213.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "da29f9319eebb2896d9525d2ddb1530bed0a1b50969107bea2e37a973c690364"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/operation_energy",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            58.32,
+            342.0,
+            196.32
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "dffc0ed2975e7c0396e75cdf00cbbe3bbf7d8a6f65a186ab2401f70f2421ee64"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/operation_lcd",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.0,
+            214.84,
+            305.0,
+            300.24
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "3a9033c4a9575f02a97d2b9024ad75d0a40e66d70d9571f4f2f17f874dc42d5f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/ups",
+      "page": 46,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            300.44,
+            342.0,
+            426.44
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/ups.png",
+          "scale": 12,
+          "expected_sha256": "09b73aa495c4a52f3851afc48e8dfabca5170727215af16bbafac5b098092ea0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/charging_ac",
+      "page": 47,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            221.99,
+            342.0,
+            360.99
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "c7000268928ec94a0e249d27eee18b19e3aa3642b8fc05420d25477e5178e842"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/charging_solar",
+      "page": 48,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            27.99,
+            342.0,
+            157.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "3a55abcfe0d9a78f376539744f2d71d5b60b11d5f1e7e96f251f11106e43a242"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/es/charging_car",
+      "page": 48,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            304.14,
+            342.0,
+            424.56
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_es/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "5465709cbb3a96a20fbaa819315db1c2f62bacdb2693f8ee1e3881eaf6f02391"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Spanish block (PDF pages 38-53) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/inbox_unit",
+      "page": 55,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.0,
+            321.0,
+            125.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "0f23ea8449b9c28cbc70b90f44cd93f12b48182e7a6f53b4cd161da1ce45f8c8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/inbox_cable",
+      "page": 55,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165.0,
+            316.0,
+            220.0,
+            391.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "b004bfbf86e12f5e756ead4c0704440ea903ae79c60cdea73e4b7b96786428e2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/inbox_manual",
+      "page": 55,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            270.0,
+            321.0,
+            315.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "b98c6ca475af687033412671c8466ba967dbb8bd52fc7a50759e91838d099145"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/overview_front",
+      "page": 56,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            70.0,
+            342.0,
+            286.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "81ee2a583672151b4c10c66f7533997adf0e3bc9ba264a141541fa724ef753a5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/overview_side",
+      "page": 56,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            323.0,
+            342.0,
+            426.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "32306d99c3354888d8bb31aa71b97760d31173b6201db5c122063e0a40d397de"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/lcd_map",
+      "page": 57,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            53.7,
+            326.0,
+            190.4
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "1aec5c89ee664632aeaf72c60041b13fbd19f2e85f4302c87f278dcb5164b564"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/operation_power",
+      "page": 59,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            70.47,
+            342.79,
+            241.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "c13fbd36ae27d5e1b8c4986c58aeb39a49b08470c7574a219f232c5665ecefcf"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/operation_ac",
+      "page": 59,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            260.23,
+            342.79,
+            495.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "00c5cce542535043d60228c490d6617888a0a8d1723f866ef9cc353827000f05"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/operation_dc",
+      "page": 60,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            343.0,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            343.0,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            39.0,
+            35.4,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            27.0,
+            48.0,
+            29.2,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            333.9,
+            39.0,
+            343.0,
+            50.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            340.2,
+            48.0,
+            343.0,
+            213.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "894ab26cd5a8dec7023c29eefe662dcd852227323bd3e6639396c2f566e0b0a7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/operation_energy",
+      "page": 61,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            58.46,
+            342.0,
+            196.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "256f0b08488cbbaf11278ea7afd4d66e0239f1bc187f48c7089f6b77868fc2c8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/operation_lcd",
+      "page": 61,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.0,
+            214.98,
+            305.0,
+            303.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "3954b26c4bdd7270751e917c1e9067b74ce3d750791558daabad7a334a5eac6e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/ups",
+      "page": 62,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            305.78,
+            342.0,
+            431.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/ups.png",
+          "scale": 12,
+          "expected_sha256": "41189bca047827b6c753dbf0ba019112645f3176f1fde6033814c55dae1536ab"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/charging_ac",
+      "page": 63,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            234.33,
+            342.0,
+            373.33
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "9bff9d750aa6c06141ef68dfe2e22ef3d77ea63931740c00a80d2621eb12c0d1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/charging_solar",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            28.0,
+            342.0,
+            157.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "0f6dfac6b313b214a2b3b028150d5551389bd9bfc674c087d2edeceecc7cb052"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/de/charging_car",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            309.19,
+            342.0,
+            429.61
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_de/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "0227f02c17b1464615375d93b70608c4b46cc29bdf5300ed9e149ab94ef3efd1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the German block (PDF pages 54-69) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/inbox_unit",
+      "page": 71,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.0,
+            321.0,
+            125.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "70fb11671aa7d65871030485cfd458afcae941db07d6cec79564cc89453a27f7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/inbox_cable",
+      "page": 71,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165.0,
+            316.0,
+            220.0,
+            391.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "5395066757a4ffcd8ab27c28e2260017eb2466b8a3805b3ff66562589cd51e1a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/inbox_manual",
+      "page": 71,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            270.0,
+            321.0,
+            315.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "d3e74810c6c056db09af82c642f0034a4114eebca4e5720d6fc79a922b56878b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/overview_front",
+      "page": 72,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            70.0,
+            342.0,
+            286.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "2cba2d749f51dcf074ec6a00483c6918f520c72f8796e0df3b030ace2592edca"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/overview_side",
+      "page": 72,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            323.0,
+            342.0,
+            426.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "9be91f4431f73383f1860e6da2b4bc4bb14263782d2aed7be19f7200166d583b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/lcd_map",
+      "page": 73,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34,
+            53.7,
+            326,
+            200
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "624360a75e9232be18a38b94aa3bcd6af478b589948abc7531c4e4a84a9f4561"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/operation_power",
+      "page": 75,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            70.47,
+            342.79,
+            241.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "5c4ab6b6899ff2440ea1879e829d25ff758c4f6629bd52fae3909a6711cd492a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/operation_ac",
+      "page": 75,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            260.23,
+            342.79,
+            495.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "c2a481a927ac7bb408a96f32ab297fdd639a41e2f9ffc1a9b4ab28199fce6d85"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/operation_dc",
+      "page": 76,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            29.9,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            48.0,
+            23.7,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            328.4,
+            39.0,
+            337.5,
+            50.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            334.7,
+            48.0,
+            337.5,
+            213.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "8c3b77b522fbe585f45aa3c2dfcf7091d441ef619272c9530d753e2aee2ba0d3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/operation_energy",
+      "page": 77,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            58.46,
+            342.0,
+            196.46
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            201.5,
+            149.8,
+            326.2,
+            155.9
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "03cb595b062a2dd8ce573c4d9096e2b24121e5da2dc54d7bf36003ea0edabe53"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop.",
+          "2026-09-25: this block prints the caption \"Press and hold both buttons for more than 3s\" in English; that line is redacted and the page keeps the template's localized sentence."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/operation_lcd",
+      "page": 77,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.0,
+            214.98,
+            305.0,
+            303.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "a9f5957b765c2477710792ee295242b91a1430e80c858b7b978c7f9757a4d608"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/ups",
+      "page": 78,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            305.78,
+            342.0,
+            431.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/ups.png",
+          "scale": 12,
+          "expected_sha256": "67ad1e3f1b4baf798c0dde84ee89ecc701f50273dc17ce4fff8e256c1088dd75"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/charging_ac",
+      "page": 79,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            224.18,
+            342.0,
+            363.18
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "95f5fd32f3794460712e348645fbec266fa94ab2cbd6dd90dc7620c44a519b07"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/charging_solar",
+      "page": 80,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            28.0,
+            342.0,
+            157.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "8c460ea0858da2362f26666325a03ef5d0c2d3b9fa8babd4466386be4600c810"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/it/charging_car",
+      "page": 80,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            306.75,
+            342.0,
+            427.17
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_it/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "4807f7b5716a1b70bd564bf1d8636f23fca0e438db48535d8279721ed124a1fc"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Italian block (PDF pages 70-85) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/inbox_unit",
+      "page": 87,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            45.0,
+            321.0,
+            125.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/inbox_unit.png",
+          "scale": 12,
+          "expected_sha256": "04f2cd211a89c461fb6b6a0a25c28884fb8fce19031df682472dac2d30cec548"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/inbox_cable",
+      "page": 87,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            165.0,
+            316.0,
+            220.0,
+            391.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "59e2fa98eaf11b00969de6439e4b3749baf270b61d83f2a019542927a2454177"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/inbox_manual",
+      "page": 87,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            270.0,
+            321.0,
+            315.0,
+            386.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "0aed07438c0128430a02de93042803cd1e4714ce7dbdcd4f51342a6cef7c31e2"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/overview_front",
+      "page": 88,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            70.0,
+            342.0,
+            286.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "816e1c0e9ed4757c84fd257215eeeaa9a33fec60c8a939e4f06a9392707a2332"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/overview_side",
+      "page": 88,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            323.0,
+            342.0,
+            426.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "5b5bfd6892dfb1403294722d077e77ca04e13adb8cbda124ec4a52930e742136"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/lcd_map",
+      "page": 89,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.9,
+            52.0,
+            326.0,
+            184.2
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "64a72082bcbadaa047c819fd397522b968ee7ee609806069d2a4971acdaacc1a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/operation_power",
+      "page": 91,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            70.47,
+            342.79,
+            241.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "f64bce873ffd3c1f4f0d81c403607f834c8729feab8ea0646c7eecaeddfe3adf"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/operation_ac",
+      "page": 91,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.79,
+            260.23,
+            342.79,
+            495.47
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "e444ce534dc54c9e73f53c82a9892f8496cfa334b3df2bfa301c4af004cd135b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/operation_dc",
+      "page": 92,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            337.5,
+            43.5
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            39.0,
+            29.9,
+            49.1
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            21.5,
+            48.0,
+            23.7,
+            213.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            328.4,
+            39.0,
+            337.5,
+            50.0
+          ]
+        },
+        {
+          "op": "whiteout",
+          "bbox_pt": [
+            334.7,
+            48.0,
+            337.5,
+            213.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "767a3a5fe1ff80e212c8784a49cfe9f49f92c3c7c3d94a6c49e940f75c6c7003"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/operation_energy",
+      "page": 93,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            58.46,
+            342.0,
+            196.46
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            201.5,
+            149.8,
+            326.2,
+            155.9
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "2cd27a5389f34c21ae57708be32272bb4d1a9ae627e72236f07c828a74be375d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop.",
+          "2026-09-25: this block prints the caption \"Press and hold both buttons for more than 3s\" in English; that line is redacted and the page keeps the template's localized sentence."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/operation_lcd",
+      "page": 93,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35.0,
+            214.98,
+            305.0,
+            303.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "3a5279b872814f9c8b0a070a3f4c8a19ed434feac942771e9891401e4e495fee"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/ups",
+      "page": 94,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            305.78,
+            342.0,
+            431.78
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/ups.png",
+          "scale": 12,
+          "expected_sha256": "e8f2d4055898aca259b560efbb12aade6ee942fda4527bcdabcf9ee706e38407"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/charging_ac",
+      "page": 95,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            224.18,
+            342.0,
+            363.18
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "b5896a2fc92c9ba998362121453314f17480d43f7623cbe608c07606be47040e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/charging_solar",
+      "page": 96,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            28.0,
+            342.0,
+            157.26
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "c465d070c3e8dd1d3747aa5fc2f4ed573fa9ec8dde0f9483cc4072b480c39b3a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je3000c/eu/uk/charging_car",
+      "page": 96,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-3000C"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            311.63,
+            342.0,
+            432.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je3000c_eu_uk/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "17a55b17aa36fe5ac541630d1b78708eff0e365ccc4971145cae4c7f606a4654"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-25: cropped from the Ukrainian block (PDF pages 86-101) at the English crop's frame, refitted to this block's panel or art; visually reviewed against the V2.0-2026-07-31 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
     }
   ]
 }
