@@ -5,7 +5,7 @@
 GRUPPO DI CONTINUITÀ (UPS)
 ==========================
 | Collega il prodotto a una presa a muro con il cavo di ricarica CA, quindi premi il pulsante CA e alimenta contemporaneamente i tuoi apparecchi.
-.. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: Segnaposto diagramma di connessione UPS.
    :width: 360px
 

@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 import unittest
 
+from tools.asset_registry import load_registry, resolve_asset
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMAL_SOURCE = ROOT / "manual_sources" / "JE-1000F" / "EU" / "en-fr" / "2.0"
@@ -13,6 +15,8 @@ FORMAL_DATA_ROOT = FORMAL_SOURCE / "phase2"
 SOURCE_MANIFEST = FORMAL_SOURCE / "source_manifest.json"
 APP_PANEL_KEY = "web-composite/je1000f_eu/reference.app-connect-result"
 APP_PANEL_SHA256 = "a41b6db31865f5091511b0d8ca830221cf328b45efdb4454fd864dba0132f059"
+BLOCK_ART_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je1000f_eu_uk_20260618_block_art.json"
+BLOCK_ART_SLOTS = ("in_the_box/main_unit1", "operation/lcd_mode", "operation/ups_mode")
 
 
 def _sha256(path: Path) -> str:
@@ -91,6 +95,70 @@ class Je1000fEuFrozenSourceTests(unittest.TestCase):
                 self.assertIn(".. image:: asset:app/connect_result\n", text, record["path"])
         # Six language pages plus their six generated drafts.
         self.assertEqual(12, len(app_setup))
+
+
+    def test_locked_review_pages_resolve_block_art_through_the_registry(self) -> None:
+        """Raw shared paths would pull a US-outlet unit and another model's LCD/UPS art."""
+        manifest = json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))
+        found = {"inbox": 0, "lcd": 0, "ups": 0}
+        for record in manifest["review_files"]:
+            path = record["path"]
+            if not path.endswith(".rst") or path.endswith("charging.rst"):
+                # The charging pages' main_unit1 sits in a JE-2000E-only block.
+                continue
+            text = (ROOT / path).read_text(encoding="utf-8")
+            for shared in ("in_the_box/main_unit1.png", "operation/lcd_mode.png", "operation/ups_mode.png"):
+                self.assertNotIn(f"common_assets/{shared}", text, path)
+            self.assertNotIn("{main_unit1.png}", text, path)
+            self.assertNotIn("{lcd_mode.png}", text, path)
+            if "02_whats_in_the_box" in path:
+                found["inbox"] += 1
+                self.assertIn("\\HBInBoxThree{asset:in_the_box/main_unit1}", text, path)
+                self.assertIn(".. image:: asset:in_the_box/main_unit1\n", text, path)
+            if "05_operation_guide" in path:
+                found["lcd"] += 1
+                self.assertIn('<img src="asset:operation/lcd_mode"', text, path)
+                self.assertIn("{asset:operation/lcd_mode}", text, path)
+            if "06_ups_mode" in path:
+                found["ups"] += 1
+                self.assertIn(".. image:: asset:operation/ups_mode\n", text, path)
+        # Six language pages each; the operation guide also has six generated drafts.
+        self.assertEqual({"inbox": 6, "lcd": 12, "ups": 6}, found)
+
+    def test_block_art_overrides_resolve_per_language_to_the_locked_crops(self) -> None:
+        """EN takes the English block (BS 1363 sockets); the other languages the French block (EU)."""
+        recipe = json.loads(BLOCK_ART_RECIPE.read_text(encoding="utf-8"))
+        self.assertEqual(
+            manifest_sha := json.loads(SOURCE_MANIFEST.read_text(encoding="utf-8"))["authority"]["published_pdf_sha256"],
+            recipe["source"]["expected_sha256"],
+        )
+        locked = {
+            output["path"]: output["expected_sha256"]
+            for asset in recipe["assets"]
+            for output in asset["outputs"]
+        }
+        self.assertEqual(12, len(locked), manifest_sha)
+        for path, digest in locked.items():
+            self.assertEqual(digest, _sha256(ROOT / path), path)
+        records = load_registry(ROOT / "data" / "asset_registry.csv")
+        for slot in BLOCK_ART_SLOTS:
+            for language in ("en", "fr", "es", "de", "it", "uk"):
+                resolved = resolve_asset(
+                    records,
+                    repo_root=ROOT,
+                    asset_key=slot,
+                    format_name="png",
+                    language=language,
+                    model="JE-1000F",
+                    region="EU",
+                )
+                suffix = "_je1000f_eu_en.png" if language == "en" else "_je1000f_eu.png"
+                self.assertTrue(resolved.path.endswith(suffix), (slot, language, resolved.path))
+                self.assertEqual(locked[resolved.path], resolved.content_hash, (slot, language))
+            other = resolve_asset(
+                records, repo_root=ROOT, asset_key=slot, format_name="png", language="en", model="JE-2000E", region="EU"
+            )
+            self.assertEqual(slot, other.asset_key)
 
 
 if __name__ == "__main__":

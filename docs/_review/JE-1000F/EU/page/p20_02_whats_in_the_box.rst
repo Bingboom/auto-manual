@@ -7,7 +7,7 @@
    .. raw:: latex
 
       \section{CONTENU DE LA BOÎTE}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Documents}
+      \HBInBoxThree{asset:in_the_box/main_unit1}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Documents}
       \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service client Jackery.}
 
 .. only:: latex and region_eu
@@ -15,7 +15,7 @@
    .. raw:: latex
 
       \section{CONTENU DE LA BOÎTE}
-      \HBInBoxThree{main_unit1.png}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Manuel d’utilisation}
+      \HBInBoxThree{asset:in_the_box/main_unit1}{Jackery Explorer 1000}{ac_charging_cable.png}{Câble de charge CA}{manual_icon1.png}{Manuel d’utilisation}
       \HBTipBlock{CONSEILS}{Le câble de chargement pour voiture n'est pas inclus, mais peut être acheté séparément sur notre site Web. Pour obtenir de l'aide, veuillez contacter le service client Jackery.}
 
 .. only:: not latex and region_us
@@ -28,7 +28,7 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Image de la station d'énergie.
              :width: 120px
 
@@ -54,7 +54,7 @@
       :header-rows: 0
       :widths: 33 33 34
 
-      * - .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
+      * - .. image:: asset:in_the_box/main_unit1
              :alt: Image de la station d'énergie.
              :width: 120px
 
