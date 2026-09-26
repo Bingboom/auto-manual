@@ -73,3 +73,25 @@ URIs, matching Hello-Docs #125 on `review/JE-1000F-EU`, and
 `source_manifest.json` re-locks those nine files. The visible Web App panels
 are unchanged; the connect-result figure's hidden semantic image becomes the
 EU export in all five languages.
+
+In-box, LCD display mode and UPS art (2026-09-26): these pages showed shared
+art: a unit with US outlets in the box, and another, wheeled model in the LCD
+mode and UPS figures. Target overrides cropped from this print
+(`data/asset_recipes/manual_je1000f_eu_uk_20260618_block_art.json`) now serve
+`in_the_box/main_unit1`, `operation/lcd_mode` and `operation/ups_mode` by
+language: EN takes the English block (PDF pages 7, 14, 15; BS 1363 sockets),
+FR/ES/DE/IT/UK the French block (pages 24, 31, 32; EU sockets). The LCD crops
+keep the 536×404 px layout of `op_lcd_mode.png` that the IDML LCD panel assumes.
+The FR/ES/DE/IT/UK pages, the DE/ES/IT/UK generated drafts and the EN in-box
+LaTeX macro now reference them as `asset:` URIs (the charging pages'
+`main_unit1` sits in a JE-2000E-only block and is unchanged), and
+`source_manifest.json` re-locks those 20 files. On the Web, all five routes
+change exactly these three visible figures; alt text and copy are unchanged.
+
+Storage durations (2026-09-26): the Spanish and German storage rows carried
+each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
+meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the
+p42/p57 review pages now hold the print's es `1 mes/3 meses/12 meses` (PDF page
+52) and de `1 Monat/3 Monate/12 Monate` (page 70). The print sets the German
+labels in lowercase; they are capitalized as in JE-2000E's print and the other
+models. `source_manifest.json` re-locks the three files.

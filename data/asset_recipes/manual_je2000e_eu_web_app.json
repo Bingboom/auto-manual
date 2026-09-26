@@ -1521,10 +1521,6 @@
           "EU"
         ],
         "locales": [
-          "fr",
-          "es",
-          "de",
-          "it",
           "uk"
         ]
       },
@@ -1552,8 +1548,9 @@
       "gate": {
         "status": "quarantine",
         "reasons": [
-          "App UI screenshots, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the five hash-pinned JE-2000E/EU fr/es/de/it/uk illustration manifests.",
-          "2026-09-24 operator confirmed the EN-block p23 crop at 12x, the scale of this model's English panels: the two App screens with their embedded 2.1/2.2 captions, stopping above the grey control-panel box whose button labels are translated per language block (those labels stay live text). The fr/es/de/it/uk blocks (p42/p61/p80/p99/p118) place the same two bitmaps, so one panel serves those five languages; English keeps its own approved control_panel entry."
+          "App UI screenshots, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU uk illustration manifest.",
+          "2026-09-24 operator confirmed the EN-block p23 crop at 12x, the scale of this model's English panels: the two App screens with their embedded 2.1/2.2 captions, stopping above the grey control-panel box whose button labels are translated per language block (those labels stay live text). The fr/es/de/it/uk blocks (p42/p61/p80/p99/p118) place the same two bitmaps, so one panel serves those five languages; English keeps its own approved control_panel entry.",
+          "2026-09-24 the operator moved EN/FR/ES/DE/IT to per-language crops that add each block's control-panel box (web/je2000e/eu/<lang>/app_add_device_panel). Only uk keeps this crop: the UK block's control-panel box prints “AC1” for the AC2 button, so it is not reused and the Ukrainian button labels stay live text."
         ]
       },
       "risk_tags": [
@@ -1562,6 +1559,266 @@
         "app-ui",
         "screenshot",
         "localized-ui"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/en/app_add_device_panel",
+      "page": 23,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.5,
+            208.0,
+            341.5,
+            434.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_en/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "177b7e6f1ccc14dd9bbfac680c9d9971c1032ce7bc63d109a3b61f51d7404f46"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU en illustration manifest.",
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the EN-block p23 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording (“Main Power Button” where the live text says “Main POWER Button”), as in the approved control_panel crop it replaces."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/app_add_device_panel",
+      "page": 42,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.7,
+            204.3,
+            340.6,
+            423.2
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "0e122ce341ae0faa89352898c058a1f9e343d88837f4af7517772ad046ea8669"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU fr illustration manifest.",
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the FR-block p42 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The printed labels match the live French labels."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/app_add_device_panel",
+      "page": 61,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.1,
+            217.5,
+            339.0,
+            438.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "c9556bd7200b61c11de697f77562d9852f892a939e2e36a5faf0dbe4518b1b87"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU es illustration manifest.",
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the ES-block p61 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The printed labels match the live Spanish labels."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/app_add_device_panel",
+      "page": 80,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.1,
+            217.5,
+            339.0,
+            438.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "ef9a7f55a2d60bd75276c25497bbf63d7653bdeac2e290e1b89f46488a8ae581"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU de illustration manifest.",
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the DE-block p80 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “POWER-Taste” where the live text says “Haupt-POWER-Taste”."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/app_add_device_panel",
+      "page": 99,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.1,
+            217.5,
+            339.0,
+            438.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "a8fa59e49182bb667d5bf6cb996df768a041e3f0be8fe9c19e80eb6cd7ad748e"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU it illustration manifest.",
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the IT-block p99 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “Pulsante CC/USB” where the live text says “Pulsante DC / USB”."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
       ]
     },
     {

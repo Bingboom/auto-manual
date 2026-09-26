@@ -135,6 +135,16 @@ FR/ES/DE/IT/UK pages; the EN page already used the URIs), so a Web rebuild from
 it carries the EU export, not the JP screenshot, as the connect-result figure's
 hidden semantic image in all five routes.
 
+The in-box unit, LCD display mode and UPS figures are ordinary registry art, not
+composites. Their JE-1000F/EU target overrides (`in_the_box/je1000f_eu/main_unit1`,
+`operation/je1000f_eu/lcd_mode` and `operation/je1000f_eu/ups_mode`, each with an
+`_en` sibling; recipe `manual_je1000f_eu_uk_20260618_block_art.json`) vary by
+language: EN takes the English block (BS 1363 sockets), FR/ES/DE/IT/UK the French
+block (EU sockets). The frozen review copy switched those references to `asset:`
+URIs on 2026-09-26, so a Web rebuild shows the print's own art in those three
+visible figures on all five routes instead of the shared art (a US-outlet unit and
+another, wheeled model).
+
 `JE-2000F / EU` binds its App connect-result panel through its six per-language
 `web-illustrations/v1` manifests rather than composites. The six language blocks
 of its EU/UK print place the same five screen bitmaps, so one panel cut from the
@@ -147,9 +157,13 @@ the page, and the frozen source binds the recipe as `app_asset_recipe`.
 `JE-3000C / EU` does the same for its fr/es/de/it/uk routes through five
 one-entry manifests, cut at the 12x scale of its English App panels; English
 keeps its own approved panel. `JE-2000E / EU` replaces both App figures of its
-fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result); the
+fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result). The
 print's control-panel box below the add-device screens carries per-language
-button labels, so it stays outside the crop and the labels stay live text.
+button labels, so since 2026-09-24 EN/FR/ES/DE/IT each bind their own block's
+crop of the screens together with that box, and the page's four label lines
+become covered annotations (kept as the figure's alt text). The labels in the
+art are the print's wording (DE `POWER-Taste`, IT `CC/USB`). UK keeps the shared
+screens and live labels, because its block prints `AC1` for the AC2 button.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier

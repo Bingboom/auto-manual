@@ -129,6 +129,8 @@ def restore_registry_asset_uris(
             transform=restore,
             latex_app_transform=restore,
             latex_lcd_mode_transform=restore,
+            latex_inbox_transform=restore,
+            latex_graphics_transform=restore,
         )
         if strict:
             missing = [

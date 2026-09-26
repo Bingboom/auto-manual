@@ -6,6 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest import mock
 
 import yaml
 from bs4 import BeautifulSoup
@@ -20,6 +21,7 @@ from tools.word_bundle_html import (
     _rewrite_word_friendly_fragment,
     _stage_fragment_assets,
 )
+from tools import word_bundle_html
 from tools.word_bundle_html_rewrite import _extract_spec_word_data
 from tools.web_presentation import load_web_manual_contract
 
@@ -1152,6 +1154,28 @@ DC OUTPUT
         self.assertNotIn("warning_bar.png", out)
         self.assertNotIn("<strong>WARNING</strong>", out)
         self.assertNotIn("manual-callout-table", out)
+
+
+class FragmentLanguageInferenceTests(unittest.TestCase):
+    """Path-based language inference must not read the checkout's own directory name."""
+
+    _ROOT = Path("/work/auto-manual-worktrees/terminology-jp-rules")
+
+    def _infer(self, path: Path):
+        with mock.patch.object(word_bundle_html, "paths", SimpleNamespace(root=self._ROOT)):
+            return word_bundle_html._infer_fragment_lang(path)
+
+    def test_checkout_directory_name_is_not_a_language(self) -> None:
+        # A worktree named *-jp-* once made every US review page resolve to ja.
+        page = self._ROOT / "docs/_review/JE-1000F/US/page/03_product_overview_placeholder.rst"
+        self.assertIsNone(self._infer(page))
+
+    def test_repo_directories_still_carry_the_language(self) -> None:
+        self.assertEqual(self._infer(self._ROOT / "docs/templates/page_jp/charging.rst"), "ja")
+        self.assertEqual(self._infer(self._ROOT / "docs/templates/page_shared/fr/charging.rst"), "fr")
+
+    def test_paths_outside_the_repo_keep_every_component(self) -> None:
+        self.assertEqual(self._infer(Path("/elsewhere/bundle/fr/page/11_warranty.rst")), "fr")
 
 
 if __name__ == "__main__":

@@ -191,6 +191,13 @@ class RtdPortalTests(unittest.TestCase):
             (self.root / "after" / "ai-share" / "00_打开分享.html").read_bytes(),
             (share / "00_打开分享.html").read_bytes(),
         )
+        search_page = (self.root / "after" / "search.html").read_text()
+        self.assertIn('id="manual-search-title">Search all manuals</h1>', search_page)
+        self.assertIn('id="manual-search-query" name="q" type="search"', search_page)
+        self.assertIn('id="search-results"', search_page)
+        self.assertIn('manual-search.css', search_page)
+        self.assertTrue((self.root / "after" / "_static" / "manual-search.css").is_file())
+        self.assertNotIn("manual-search-title", (self.root / "before" / "search.html").read_text())
 
 
 if __name__ == "__main__":

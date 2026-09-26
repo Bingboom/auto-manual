@@ -141,7 +141,7 @@ LED-світло має два режими: режим освітлення т�
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Заглушка режиму дисплея LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Заглушка режиму дисплея LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Короткочасне увімкнення</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Увімкнути</td>
@@ -174,7 +174,7 @@ LED-світло має два режими: режим освітлення т�
 
    .. raw:: latex
 
-      \begin{HBLcdModeTable}{lcd_mode.png}
+      \begin{HBLcdModeTable}{asset:operation/lcd_mode}
       \HBLcdModeFirstGroup{Короткочасне увімкнення}{Увімкнути}{Натисніть кнопку POWER або коли пристрій заряджається.}{Вимкнути}{Натисніть кнопку POWER.}{Автовимкнення}{LCD автоматично вимикається та переходить у режим сну після 2 хвилин бездіяльності.}
       \HBLcdModeSecondGroup{Постійно увімкнено (під час заряджання або розряджання)}{Увімкнути}{Натисніть кнопку POWER двічі, коли пристрій увімкнено.}{Вимкнути}{Натисніть кнопку POWER.}{Автовимкнення}{LCD автоматично вимикається після 2 годин бездіяльності.}
       \end{HBLcdModeTable}

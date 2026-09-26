@@ -197,6 +197,12 @@
         172.7,
         343.1,
         271.5
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#chargement-par-prise-murale-ca > p",
+          "text": "Connectez le câble de charge CA au port d'entrée CA de l'appareil et à une prise murale."
+        }
       ]
     },
     {

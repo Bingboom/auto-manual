@@ -57,3 +57,8 @@ block's figures (15 crops each in `asset_recipe`; the fr–uk blocks draw EU
 sockets, the English block UK sockets) instead of the shared JE-1000F art; see
 the intake review addendum of the same date. `source_manifest.json` re-locks
 the web recipe.
+
+Emergency charging (2026-09-26): the fr–uk routes no longer print an Emergency
+Charging Mode block. This model lacks the feature, and the shared fr–uk
+charging templates now carry the English file's capability markers; see the
+intake review addendum of the same date.

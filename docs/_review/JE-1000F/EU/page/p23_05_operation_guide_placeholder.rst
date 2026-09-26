@@ -116,7 +116,7 @@ AFFICHAGE LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="_assets/templates/word_template/common_assets/operation/lcd_mode.png" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Mode d'affichage LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer en discontinu</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Allumer</td>
@@ -154,7 +154,7 @@ AFFICHAGE LCD
       \setlength{\tabcolsep}{6pt}
       \begin{tabular}{|m{0.24\linewidth}|m{0.16\linewidth}|m{0.12\linewidth}|m{0.36\linewidth}|}
       \hline
-      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{lcd_mode.png}}}
+      \multirow{6}{*}{\parbox[c]{0.22\linewidth}{\centering\includegraphics[width=0.20\linewidth]{asset:operation/lcd_mode}}}
       & \multirow{3}{*}{\parbox[t]{0.14\linewidth}{Allumer en discontinu}} & Allumer & Appuyez sur le bouton POWER principal ou lorsque le produit est en charge. \\ \cline{3-4}
       & & Éteindre & Appuyez sur le bouton POWER principal. \\ \cline{3-4}
       & & Arrêt automatique & L'écran LCD s'éteint automatiquement et entre en mode veille après 2 minutes d'inactivité. \\ \cline{2-4}

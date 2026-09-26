@@ -52,6 +52,20 @@ def shared_art_digests() -> set[str]:
         digests.update(found)
     return digests
 LANGUAGES = ("en", "fr", "es")
+# Each block's AC wall crop prints this sentence; the page no longer repeats it.
+AC_WALL_SENTENCE = {
+    "en": "Connect the AC charging cable to the AC input port of the product and a wall outlet.",
+    "fr": "Connectez le câble de charge CA au port d'entrée CA de l'appareil et à une prise murale.",
+    "es": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente.",
+}
+
+
+def assert_ac_wall_sentence_once(case: unittest.TestCase, soup: BeautifulSoup, lang: str) -> None:
+    image = soup.select_one(f'img[data-web-finished-panel-path="assets/je3600a_eu_{lang}/charging_ac.png"]')
+    case.assertIsNotNone(image)
+    case.assertEqual(AC_WALL_SENTENCE[lang], image["alt"])
+    paragraphs = [" ".join(p.get_text(" ", strip=True).split()) for p in soup.find_all("p")]
+    case.assertNotIn(AC_WALL_SENTENCE[lang], paragraphs)
 # The control-panel button names each language block of the print uses (PDF
 # pages 38/55/72/89). Without them the fr/es routes fell back to the English
 # source names in the App page.
@@ -223,6 +237,9 @@ class Je3600aEuEnWebTests(unittest.TestCase):
         self.assertEqual(0, coverage["by_status"]["missing"])
         self.assertEqual(18, len(self.ir.pages))
 
+    def test_ac_wall_sentence_appears_once_as_alt_text(self) -> None:
+        assert_ac_wall_sentence_once(self, self.soup, "en")
+
     def test_app_connect_result_is_the_shared_print_panel(self) -> None:
         panel = self.soup.select_one('img.manual-finished-illustration[data-reference-id="app-connect-result"]')
         self.assertIsNotNone(panel)
@@ -357,6 +374,12 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
         self.assertFalse([line for line in lines if line.startswith("Un sistema de alimentación ininterrumpida")])
         self.assertIn("la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.", lines)
 
+    def test_ac_wall_sentence_once_and_no_emergency_charging(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        assert_ac_wall_sentence_once(self, soup, "es")
+        # JE-3600A has no Emergency Charging Mode (capability FALSE, absent from the print).
+        self.assertNotIn("Modo de Carga de Emergencia", self.html)
+
 
 class Je3600aEuBlockIllustrationTests(unittest.TestCase):
     """Each route shows its own print block's figures, not the JE-1000F shared art."""
@@ -413,6 +436,11 @@ class Je3600aEuBlockIllustrationTests(unittest.TestCase):
     def test_copy_printed_in_the_art_leaves_the_page_once(self) -> None:
         for lang in LANGUAGES:
             self.assertEqual(2, len(self.entries(lang)["ups"]["covered_annotations"]), lang)
+            self.assertEqual(
+                [AC_WALL_SENTENCE[lang]],
+                [item["text"] for item in self.entries(lang)["charging_ac"]["covered_annotations"]],
+                lang,
+            )
         self.assertEqual(
             ["Vehículo", "※El cable de carga para vehículo se vende por separado."],
             [item["text"] for item in self.entries("es")["charging_car"]["covered_annotations"]],

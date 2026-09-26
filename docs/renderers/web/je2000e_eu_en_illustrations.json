@@ -308,15 +308,16 @@
       "replaces": [
         "add_device.png"
       ],
-      "path": "assets/je2000e_eu_en/control_panel.png",
-      "sha256": "2ebc90dfa9afa0b4510e034043404525607a7c4d876318723f6977054f15c5d3",
+      "path": "assets/je2000e_eu_en/app_add_device_panel.png",
+      "sha256": "177b7e6f1ccc14dd9bbfac680c9d9971c1032ce7bc63d109a3b61f51d7404f46",
       "source_page": 23,
       "bbox_pt": [
-        28,
-        351,
-        342,
-        431
+        27.5,
+        208.0,
+        341.5,
+        434.5
       ],
+      "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
       "covered_annotations": [
         {
           "selector": ".line-block",

@@ -5,7 +5,7 @@
 UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
 =========================================
 | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die AC-Einschalttaste, um Ihre Geräte gleichzeitig zu versorgen.
-.. image:: _assets/templates/word_template/common_assets/operation/ups_mode.png
+.. image:: asset:operation/ups_mode
    :alt: Abbildung der UPS-Verbindung als Platzhalter.
    :width: 360px
 
