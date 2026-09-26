@@ -95,7 +95,8 @@ content, QR aliases and nested manual URLs are unchanged.
 ordered by delivery priority, each with its next action and ledger progress.
 Stage acceptance follows immediately; corpus statistics, capabilities and evidence
 remain available further down the page. The page is built at RTD time from
-frozen inputs only. It never reads Feishu or the network.
+frozen inputs only. The build never contacts Feishu or GitHub; browser version
+checks read only the already-published same-origin receipt.
 
 - `tools/rtd_portal_assets/system_workspace.yaml` is the curated status
   contract: focus lanes, capability cards, production-flow links, gate labels
@@ -169,6 +170,10 @@ Every main merge already triggers the engineering mirror into Hello-Docs/main;
 RTD then rebuilds the page from that checkout. No second scheduler or browser
 GitHub token is needed. A successful mirror is not evidence of successful RTD
 publication: diagnose the mirror run first, then the RTD build and served page.
+If the mirror is current but RTD has no build for that commit, inspect Hello-Docs
+Settings → Webhooks → Recent deliveries. Redeliver only the failed main-push
+notification (for example an HTTP 502), then verify the resulting RTD build SHA,
+success and served page. A webhook returning 200 is only trigger acceptance.
 
 `tools/rtd_workspace_revision.py` stamps the HTML and
 `_static/system-workspace-revision.json` with the same checkout SHA and UTC build
