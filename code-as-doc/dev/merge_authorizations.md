@@ -34,8 +34,9 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 ## Grant / revoke flow
 
-- **Grant**: operator states the scope in chat → agent adds a row (next
-  `MA-nnn`, scope, grant quote + date, expiry condition) → the entry is live
+- **Grant**: operator states the scope in chat → agent adds a row (the next
+  free `MA-nnn` from `python tools/next_registry_id.py ma`, which counts main,
+  open PRs and the checkout; scope, grant quote + date, expiry condition) → the entry is live
   once pushed. Time-boxed grants name their milestone/date; standing grants
   say "until revoked".
 - **Revoke / expire**: operator says so, or the expiry condition is met →
