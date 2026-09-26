@@ -10,14 +10,16 @@ model, one row per region and one column per format:
   Word 云文档 (the Draft Word output imported as a Feishu cloud doc): the
   latest version per model, region and language in the Feishu build table
   (文档构建表). RTD never reads Feishu, so ``export`` writes these links into the
-  committed snapshot ``deliverables_snapshot.json``, refreshed through a PR like
-  the corpus snapshot. The links open only for signed-in Feishu users; the
-  operator chose to list them on this public page anyway (2026-09-25).
+  committed snapshot registered as the ``deliverables_feishu`` domain of
+  ``source_registry.yaml``, which also fixes its freshness limit and fallback
+  text; it is refreshed through a PR like the corpus snapshot. The links open
+  only for signed-in Feishu users; the operator chose to list them on this
+  public page anyway (2026-09-25).
 
 Missing inputs never break the build: without a publish manifest the web
 column is empty, and an unreadable or unsound snapshot empties the Feishu
-columns with a Sphinx warning. A snapshot older than ``STALE_AFTER_DAYS``
-renders as 待复核.
+columns with a Sphinx warning. A snapshot older than the domain's
+``stale_after_days`` renders as 待复核.
 """
 from __future__ import annotations
 
@@ -43,6 +45,7 @@ from tools.queue_contract import (  # noqa: E402
     LANG_FIELD,
     VERSION_FIELD,
 )
+from tools.rtd_source_registry import PAGE_DOMAINS, load_registry, stale_reason  # noqa: E402
 from tools.rtd_system_workspace import (  # noqa: E402
     CONTRACT_NAME,
     ContractError,
@@ -54,10 +57,10 @@ from tools.utils.path_utils import PathSegments  # noqa: E402
 
 DELIVERABLES_PAGE = "workspace/deliverables/index"
 DELIVERABLES_TEMPLATE = "deliverables.html"
-SNAPSHOT_NAME = "deliverables_snapshot.json"
-DEFAULT_SNAPSHOT = Path(__file__).with_name("rtd_portal_assets") / SNAPSHOT_NAME
+ASSETS = Path(__file__).with_name("rtd_portal_assets")
+# The source-registry domain naming the snapshot, its freshness limit and fallback text.
+FEISHU_DOMAIN = "deliverables_feishu"
 SNAPSHOT_SCHEMA = "hello-docs-deliverables/v1"
-STALE_AFTER_DAYS = 45
 
 # Build-table column per Feishu-held format. The Publish ZIP link lives in the
 # column the queue calls DOCUMENT_LINK_FIELD ("idml_file").
@@ -268,7 +271,8 @@ def region_code(region: str, labels: dict[str, str]) -> str:
 
 def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, Any] | None, *,
                       names: dict[tuple[str, str], str], labels: dict[str, str],
-                      language_order: Sequence[str], today: dt.date) -> dict[str, Any]:
+                      language_order: Sequence[str], today: dt.date,
+                      feishu_domain: dict[str, Any] | None) -> dict[str, Any]:
     """Context for the page: models, each with one row per region and a cell per format.
 
     ``targets`` is None when the publish manifest cannot be read, ``snapshot``
@@ -276,6 +280,7 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
     own columns. ``names`` maps ``(model, region)`` to the manual center's
     product name; a model the manual center does not list shows its code only.
     Chips follow ``language_order`` (the manual center's), whole books first.
+    ``feishu_domain`` is the snapshot's source-registry entry (its freshness limit).
     """
     cells: dict[tuple[str, str], dict[str, list[dict[str, str]]]] = {}
 
@@ -343,8 +348,8 @@ def deliverables_view(targets: list[dict[str, Any]] | None, snapshot: dict[str, 
     if snapshot is not None:
         exported_on = dt.date.fromisoformat(snapshot["exported_at"])
         exported = exported_on.isoformat()
-        if (today - exported_on).days > STALE_AFTER_DAYS:
-            stale = [f"飞书链接快照已超过 {STALE_AFTER_DAYS} 天（导出于 {exported}）"]
+        reason = stale_reason(feishu_domain, exported_on, today) if feishu_domain else ""
+        stale = [reason] if reason else []
     built = sorted(item["date"] for row in rows for item in row["web"] if item["date"])
     return {
         "models": list(models.values()),
@@ -379,11 +384,20 @@ def deliverables_page_context(app, assets: Path, names: dict[tuple[str, str], st
         except ValueError:
             logger.warning("rtd_system_workspace_date %r is not an ISO date; using %s", configured, today)
     facts = publication_facts(Path(app.srcdir).parent / PathSegments.PUBLISH_MANIFEST_JSON)
-    snapshot, problems = load_snapshot(assets / SNAPSHOT_NAME)
+    registry, problems = load_registry(assets)
+    domain = registry[FEISHU_DOMAIN] if registry else None
+    snapshot = None
+    if domain is not None:
+        snapshot, problems = load_snapshot(assets / str(domain["snapshot"]))
     if problems:
         logger.warning("Deliverables page shows no Feishu links: %s", "; ".join(problems[:3]))
-    return deliverables_view(facts["targets"] if facts else None, snapshot, names=names,
-                             labels=region_labels(assets), language_order=language_order, today=today)
+    view = deliverables_view(facts["targets"] if facts else None, snapshot, names=names,
+                             labels=region_labels(assets), language_order=language_order, today=today,
+                             feishu_domain=domain)
+    # Without a usable registry the page still renders, with the generic 无数据.
+    view["fallbacks"] = ({key: value["fallback"] for key, value in registry.items()} if registry
+                         else dict.fromkeys(PAGE_DOMAINS, "无数据"))
+    return view
 
 
 # --- CLI ----------------------------------------------------------------------------
@@ -407,10 +421,12 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Export or check the Deliverables page's Feishu link snapshot.")
     commands = parser.add_subparsers(dest="command", required=True)
     check = commands.add_parser("check", help="validate the committed snapshot and report its coverage")
-    check.add_argument("--snapshot", type=Path, default=DEFAULT_SNAPSHOT)
+    check.add_argument("--snapshot", type=Path, default=None,
+                       help="default: the snapshot named in source_registry.yaml")
     check.add_argument("--today", type=_iso_date, default=None, help="ISO date used for staleness (default: today, UTC)")
     export = commands.add_parser("export", help="write the snapshot from the Feishu build table (read-only)")
-    export.add_argument("--output", type=Path, default=DEFAULT_SNAPSHOT)
+    export.add_argument("--output", type=Path, default=None,
+                        help="default: the snapshot named in source_registry.yaml")
     export.add_argument("--base-token", default=os.environ.get("FEISHU_PHASE2_BASE_TOKEN", ""),
                         help="文档构建 base token (default: $FEISHU_PHASE2_BASE_TOKEN)")
     export.add_argument("--build-table", default=os.environ.get("FEISHU_PHASE2_DOCUMENT_LINK_TABLE_ID", ""),
@@ -422,6 +438,12 @@ def main(argv: list[str] | None = None) -> int:
                         help="lark-cli identity (default: $FEISHU_PHASE2_IDENTITY)")
     export.add_argument("--today", type=_iso_date, default=None, help="export date to record (default: today, UTC)")
     args = parser.parse_args(argv)
+    registry, problems = load_registry(ASSETS)
+    if registry is None:
+        print("ERROR   " + "; ".join(problems[:5]))
+        return 1
+    domain = registry[FEISHU_DOMAIN]
+    default_snapshot = ASSETS / str(domain["snapshot"])
 
     if args.command == "export":
         missing = [flag for flag, value in (("--base-token", args.base_token), ("--build-table", args.build_table),
@@ -440,20 +462,21 @@ def main(argv: list[str] | None = None) -> int:
         if problems:
             print("ERROR   " + "; ".join(problems[:5]))
             return 1
-        args.output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        print(f"wrote {args.output}: {_summary(snapshot)}; exported {snapshot['exported_at']}")
+        output = args.output or default_snapshot
+        output.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"wrote {output}: {_summary(snapshot)}; exported {snapshot['exported_at']}")
         return 0
 
-    snapshot, problems = load_snapshot(args.snapshot)
+    path = args.snapshot or default_snapshot
+    snapshot, problems = load_snapshot(path)
     for problem in problems:
-        print(f"ERROR   {args.snapshot.name}: {problem}")
+        print(f"ERROR   {path.name}: {problem}")
     if snapshot is None:
         return 1
     today = args.today or _utc_today()
-    age = (today - dt.date.fromisoformat(snapshot["exported_at"])).days
-    if age > STALE_AFTER_DAYS:
-        print(f"WARNING {args.snapshot.name}: exported {snapshot['exported_at']}, {age} days ago "
-              f"(over {STALE_AFTER_DAYS}); the page marks it 待复核 — rerun export")
+    reason = stale_reason(domain, dt.date.fromisoformat(snapshot["exported_at"]), today)
+    if reason:
+        print(f"WARNING {path.name}: {reason}; the page marks it 待复核 — rerun export")
     print(f"deliverables snapshot: exported {snapshot['exported_at']}; {_summary(snapshot)}")
     return 0
 

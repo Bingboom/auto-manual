@@ -157,6 +157,10 @@
 .sw-hooks td:nth-child(-n+3), .sw-hooks td:nth-child(n+5) { white-space: nowrap; }
 .sw-hooks code { font-size: 11.5px; }
 .sw-hooks-note { margin: 10px 0 0; font-size: 11.5px; color: #8a8f99; }
+/* Data sources: the hooks table's look, but its text wraps. */
+.sw-hooks.sw-sources td, .sw-hooks.sw-sources td:nth-child(n) { white-space: normal; }
+.sw-hooks.sw-sources td:first-child { white-space: nowrap; font-weight: 600; }
+.sw-sources code { display: block; margin-top: 3px; font-size: 11px; color: #6c727d; overflow-wrap: anywhere; }
 
 /* Flow */
 .sw-flow { list-style: none; margin: 0; padding: 0; background: #fff; border: 1px solid var(--line); border-radius: 11px; overflow: hidden; }

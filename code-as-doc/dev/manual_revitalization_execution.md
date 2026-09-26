@@ -84,7 +84,7 @@ PR/报告保存证据；不在多份文件分别勾选同一任务。既有 OPS 
 | <a id="rev-41"></a>REV-41 | 骨架拓展 | — | 骨架库设计（Product_Skeleton_Library_Design，Phase B，2026-08-20 起待批）得到操作者决定：批准、修改或暂缓，决定在册 | planned | 待指派 / — |
 | <a id="rev-42"></a>REV-42 | 骨架拓展 | REV-41 | 便携电源 MAIN@INTL 骨架：[PR #1101](https://github.com/Bingboom/auto-manual/pull/1101) 在当前主线重做基线后合入；JE-2000F/EU/en 的清单由骨架生成，已验收的网页输出不变 | planned | 待指派 / — |
 | <a id="rev-43"></a>REV-43 | 骨架拓展 | REV-42 | 按操作者指定清单扩展骨架覆盖：逐目标记录产品手册计划绑定和从骨架自动构建网页的结果；未覆盖的目标写明缺口，不用复制页面模板冒充覆盖 | planned | 待指派 / — |
-| <a id="rev-44"></a>REV-44 | SSOT 来源登记 | — | 来源登记设计经操作者定稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)，2026-09-25 定稿）：每个数据域写明权威来源、读取方式、新鲜度与取不到时的显示；登记文件与 `check` 先落地且整站输出逐字节不变，页面再改为按登记读取新鲜度与降级文案 | planned | 执行=Claude 2026-09-25 起草并定稿设计；证据=[设计定稿](ssot_source_registry_design.md) |
+| <a id="rev-44"></a>REV-44 | SSOT 来源登记 | — | 来源登记设计经操作者定稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)，2026-09-25 定稿）：每个数据域写明权威来源、读取方式、新鲜度与取不到时的显示；登记文件与 `check` 先落地且整站输出逐字节不变，页面再改为按登记读取新鲜度与降级文案 | verifying | 执行=Claude 2026-09-25 设计定稿并实施：登记文件 `tools/rtd_portal_assets/source_registry.yaml`、两页按登记读取、系统建设页公开“数据来源”表；证据=[设计](ssot_source_registry_design.md)、实施 PR（待合入与验收） |
 | <a id="rev-45"></a>REV-45 | 多 Agent 调度 | REV-44 | 多 Agent 调度与任务续接的设计经操作者定稿：任务从哪里派发、状态以哪里为准（作为 REV-44 的一个数据域登记）、交接记录的格式、续接时读什么；再用一条真实任务演示派发、交接与续接，不宣称自动调度已启用 | planned | 待指派 / — |
 
 REV-28–34 的初始 deferred 理由：前置试点、维护能力或消费需求尚未在本轮确认；
