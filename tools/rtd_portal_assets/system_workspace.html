@@ -7,7 +7,7 @@
   <meta name="description" content="系统建设：当前重点、已有能力、证据与阶段进度。">
   <title>系统建设</title>
   <link rel="stylesheet" href="{{ pathto('_static/workspace.css', 1) }}">
-  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}">
+  <link rel="stylesheet" href="{{ pathto('_static/system-workspace.css', 1) }}?v={{ workspace_revision.revision|e }}">
 </head>
 <body class="system-workspace">
 {%- macro badge(status, label) -%}<span class="sw-badge is-{{ status|e }}">{{ label|e }}</span>{%- endmacro -%}
@@ -82,6 +82,13 @@
       <p class="sw-subtitle">{{ hero.subtitle|e }}</p>
     </section>
 
+    <div class="sw-update" data-revision="{{ workspace_revision.revision|e }}" data-built-at="{{ workspace_revision.built_at|e }}" data-version-url="{{ pathto('_static/system-workspace-revision.json', 1) }}">
+      <div><b>页面版本 <code>{{ workspace_revision.short_revision|e }}</code></b><span>构建于 {{ workspace_revision.built_at|e }} · 主线合入后，经同步和站点构建更新</span></div>
+      <p role="status" aria-live="polite" id="sw-update-status">检查已发布的新版本…</p>
+      <button type="button" id="sw-refresh" hidden>刷新到新版本 ↻</button>
+    </div>
+    <nav class="sw-page-nav" aria-label="本页导航"><a href="#focus">建设顺序</a><a href="#now-next">阶段验收</a><a href="#language-assets">语料覆盖</a><a href="#capabilities">能力与证据</a><a href="#sources">数据来源</a></nav>
+
     {%- if focus %}
     <section class="sw-section" id="focus">
       <div class="section-header"><div>
@@ -99,6 +106,7 @@
               {%- if lane.card %}<a class="sw-lane-link" href="#cap-{{ lane.card|e }}">能力与证据 <b>↓</b></a>{% endif %}
             </header>
             {%- if lane.goal %}<p class="sw-lane-goal">{{ lane.goal|e }}</p>{% endif %}
+            <p class="sw-lane-action">{{ lane.action|e }}</p>
             {%- if lane.metrics %}
             <div class="sw-metrics">
               {%- for metric in lane.metrics %}
@@ -143,6 +151,40 @@
       <div class="sw-focus-foot"><span>依据</span><span class="sw-refs">{{ evidence_links(focus.evidence) }}</span>{{ stale_mark(focus.stale) }}</div>
     </section>
     {%- endif %}
+
+    <section class="sw-section" id="now-next">
+      <div class="section-header"><div>
+        <h2>正在做与下一步</h2>
+        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
+      </div></div>
+      {%- if gates %}
+      {%- set folded_gates = gates|selectattr('fold')|list %}
+      <div class="sw-gates">
+        {%- for gate in gates|rejectattr('fold') %}
+{{ gate_card(gate) }}
+        {%- endfor %}
+      </div>
+      {%- if folded_gates %}
+      <details class="sw-more">
+        <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
+        <div class="sw-gates">
+          {%- for gate in folded_gates %}
+{{ gate_card(gate) }}
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endif %}
+      {%- if now %}
+      <ul class="sw-now" aria-label="当前在做">
+        {%- for row in now %}
+        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+      {%- else %}
+      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
+      {%- endif %}
+    </section>
 
     {%- if corpus_enabled %}
     <section class="sw-section" id="language-assets">
@@ -196,40 +238,6 @@
           {%- endfor %}
         </div>
       </details>
-      {%- endif %}
-    </section>
-
-    <section class="sw-section" id="now-next">
-      <div class="section-header"><div>
-        <h2>正在做与下一步</h2>
-        <p>阶段门与进度直接读取<a href="{{ ledger_url|e }}" target="_blank" rel="noopener">执行台账</a>；前一道门验收后才进入下一道，IDML 独立验收。</p>
-      </div></div>
-      {%- if gates %}
-      {%- set folded_gates = gates|selectattr('fold')|list %}
-      <div class="sw-gates">
-        {%- for gate in gates|rejectattr('fold') %}
-{{ gate_card(gate) }}
-        {%- endfor %}
-      </div>
-      {%- if folded_gates %}
-      <details class="sw-more">
-        <summary>其他阶段门：{{ folded_gates|map(attribute='label')|join('、')|e }}</summary>
-        <div class="sw-gates">
-          {%- for gate in folded_gates %}
-{{ gate_card(gate) }}
-          {%- endfor %}
-        </div>
-      </details>
-      {%- endif %}
-      {%- if now %}
-      <ul class="sw-now" aria-label="当前在做">
-        {%- for row in now %}
-        <li><a href="{{ row.href|e }}" target="_blank" rel="noopener">{{ row.rev|e }}</a><span>{{ row.label|e }}</span><span class="sw-ledger is-{{ row.status|e }}">{{ row.status_label|e }}</span></li>
-        {%- endfor %}
-      </ul>
-      {%- endif %}
-      {%- else %}
-      <div class="empty-state"><h3>无数据</h3><p>{{ fallbacks.ledger|e }}。</p></div>
       {%- endif %}
     </section>
 
@@ -338,8 +346,6 @@
   </main>
 </div>
 
-<script>
-document.querySelector(".mobile-menu").addEventListener("click", () => document.body.classList.toggle("menu-open"));
-</script>
+<script src="{{ pathto('_static/system-workspace.js', 1) }}?v={{ workspace_revision.revision|e }}" defer></script>
 </body>
 </html>

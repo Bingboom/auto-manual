@@ -40,7 +40,7 @@ vocabulary:
 
 hero:
   title: Hello Docs
-  subtitle: 从结构化产品数据到多语言、多格式资料交付
+  subtitle: 先跑通网页交付与真实维护，再按实际需求补齐语料与来源治理
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
 
@@ -51,40 +51,56 @@ hero:
 # blueprints; its progress from the ledger gates or rows it lists. The focus
 # is the operator's call: re-confirm it whenever verified_on moves.
 focus:
-  note: 本页按当前重点排列。数字取自发布清单、语料快照和仓库里的骨架定义，进度读取执行台账。
+  note: 一条交付主线，语料与 SSOT 随实际需求补齐。先完成发布基线和真实维护，再逐步扩展共享与覆盖。
   evidence:
     - "file:auto-manual:code-as-doc/dev/manual_revitalization_execution.md"
-    - "ack:夏冰 2026-09-25「我现在重点放在说明书网页化和语料库建设与管理 后续就会继续做IR共享以及骨架拓展」"
+    - "ack:夏冰 2026-09-26「按这个顺序 当下的系统建设布局 做一下 更清晰的布局版面的调整」"
   lanes:
     - id: web
       horizon: now
-      title: 说明书网页化
-      goal: 已出版的说明书转成在线手册，逐步覆盖更多区域和语言
+      title: 网页发布与维护闭环
+      goal: 先收口发布基线，再用真实修订验证发布、恢复与维护全过程
+      action: 收口 REV-07 → 完成 REV-09 修订、发布与恢复演练 → 验收 G1 → 开始 G2 维护试点
       card: web_publishing
       metrics: [publications, regions]
-      gates: [G1, G2, G3]
+      gates: [G1, G2]
     - id: corpus
-      horizon: now
+      horizon: support
       title: 语料库建设与管理
-      goal: 句对和术语持续入库、审核与治理，为网页化的目标语言供稿
+      goal: 围绕下一批明确的型号、区域和语言补译、审核，让语料服务实际交付
+      action: 用 REV-18 记录真实命中与人工修正；以复用质量验证收益，不以句对数量代替验收
       card: language
       metrics: [corpus]
       revs: [REV-11, REV-18, REV-35..REV-38]
+    - id: ssot
+      horizon: support
+      title: SSOT · 贯穿全程
+      goal: 每碰到一类实际数据，就明确来源、写入者、批准者和发布快照
+      action: 按需求扩展现有来源登记；无需先建完所有事实域、任务状态和审批系统
+      items: [agent_operations.source_registry]
+      revs: [REV-44]
     - id: shared_ir
       horizon: next
       title: IR 共享
-      goal: 网页、IDML、Word、PDF 从同一份中间表示生成，新手册不按型号另写渲染
+      goal: 先明确公共语义与各格式排版边界，再用代表目标验证共享收益
+      action: 完成 REV-39 边界设计；按 REV-40 及其依赖验收代表目标，再决定扩展。IDML 独立验收不阻塞 Web 交付
       card: document_production
       items: [document_production.shared_ir]
       revs: [REV-39..REV-40]
     - id: skeletons
-      horizon: next
-      title: 骨架拓展
-      goal: 按产品线建骨架，新产品从骨架生成手册结构，不再复制页面模板
+      horizon: later
+      title: 骨架与覆盖扩展
+      goal: 在生产和维护方式稳定后，减少新型号接入时复制模板的工作
+      action: 复用已经验证的生产方式，按产品线逐步扩展骨架和覆盖
       card: content_foundation
       items: [content_foundation.skeletons]
       metrics: [skeletons]
       revs: [REV-41..REV-43]
+    - id: multi_agent
+      horizon: deferred
+      title: 多 Agent · 按需再启动
+      goal: 当前只保留设计参考，不进入交付主线
+      action: 出现持续的交接或并发瓶颈后，再评估是否启动；不作为网页、语料、SSOT 或 IR 的前置条件
   regions: {EU: 欧规, US: 美规, UK: 英规, JP: 日规, KR: 韩规, CN: 中规, AU: 澳规, BR: 巴西规, TW: 台规}
   skeleton_families:
     - {family: MAIN, label: 便携电源}
@@ -364,7 +380,7 @@ capabilities:
       - id: agent_dispatch
         label: 多 Agent 调度与任务续接
         status: planned
-        note: 派发任务、跟踪状态、跨会话接着做；建在来源登记之上，设计已定稿
+        note: 仅保留设计参考，当前暂不启动；出现持续交接或并发瓶颈后再评估，不作为网页交付前置条件
         evidence:
           - "rev:REV-45=planned"
           - "file:auto-manual:code-as-doc/dev/multi_agent_dispatch_design.md"
@@ -478,7 +494,6 @@ now_next:
     REV-07: 发布登记幂等与失败重试
     REV-09: 代表目标修订、发布与恢复演练
     REV-39: IR 共享：公共语义边界摸底
-    REV-45: 多 Agent 调度设计
 
 working_today:
   - id: manual_center
