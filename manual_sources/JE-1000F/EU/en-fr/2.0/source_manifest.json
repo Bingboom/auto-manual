@@ -803,7 +803,7 @@
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_de.rst",
       "size": 7765,
-      "sha256": "c405044587e70f9e70fd549e67f69905068633554256167f8f0785cf05511732"
+      "sha256": "751db50bf552a3a9384982d4e7048cd7a153fb2013b26f3760ca69088d839d80"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_en.rst",
@@ -813,7 +813,7 @@
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_es.rst",
       "size": 7753,
-      "sha256": "71272b1ae89946e36ff85dbc4efc6492c21287bea5520c5833e96cddfb4f9f04"
+      "sha256": "d350aaf2a59a1fe57f9c742d77ec69cfbe7b654ec6beb61db931e39ca6c05041"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_fr.rst",
@@ -823,12 +823,12 @@
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_it.rst",
       "size": 7733,
-      "sha256": "78d52e86b7b992204d64cfd59490dd260e825ceff7323ef4439dfdf40e0e5025"
+      "sha256": "ed5a2380f7f85bb0c7e136bb78eb9fa7959ea111f67c04d76632bb8c4d2782a4"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/spec_uk.rst",
       "size": 9293,
-      "sha256": "0e91a0be45979cde9a77ea0c32aa2729862c6c1341dd975eceb62eb1940cf22e"
+      "sha256": "a01f826d06897d5145fced5141abe8259ad6c74b8ef8ec602858a3d0de2b907a"
     },
     {
       "path": "docs/_review/JE-1000F/EU/generated/JE-1000F/symbols_de.rst",
@@ -1273,7 +1273,7 @@
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_de.rst",
       "size": 7802,
-      "sha256": "6dfc78ae4406f822573870add4aa4b60abefd8a3b53d887bb18246cef7735c40"
+      "sha256": "287e6eb43e68f1e9b892530f1f0c4e727e5c05005e1580f448ccaebac3d97d90"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_en.rst",
@@ -1283,7 +1283,7 @@
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_es.rst",
       "size": 7790,
-      "sha256": "911c6a43a8f37a2356a2ece90924b08138aab548de8fcb0c3c5a044fcb38821e"
+      "sha256": "70e60160428e9de281f2200aac7beda6e7a19c95541600bc89dcee356368ba35"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_fr.rst",
@@ -1293,12 +1293,12 @@
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_it.rst",
       "size": 7770,
-      "sha256": "62ea05c6484ce1c270c8c6095a90f3b9dc8072b889e8343361654ecd037d39a7"
+      "sha256": "b05617584b30de03dd3c5e020ec8610bc390e402ee8bb632c012a11ae5992675"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_uk.rst",
       "size": 9330,
-      "sha256": "1d7f0a0b9a949d5b82bca4f74d3b67aec31d55743eb99e71e9815b6d5000f437"
+      "sha256": "4eb68bf4bed174091a33af378770c5a6447299b20ee2ccfcda5a366fcbb94282"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/symbols_de.rst",
