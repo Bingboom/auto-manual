@@ -84,7 +84,7 @@ PR/报告保存证据；不在多份文件分别勾选同一任务。既有 OPS 
 | <a id="rev-41"></a>REV-41 | 骨架拓展 | — | 骨架库设计（Product_Skeleton_Library_Design，Phase B，2026-08-20 起待批）得到操作者决定：批准、修改或暂缓，决定在册 | planned | 待指派 / — |
 | <a id="rev-42"></a>REV-42 | 骨架拓展 | REV-41 | 便携电源 MAIN@INTL 骨架：[PR #1101](https://github.com/Bingboom/auto-manual/pull/1101) 在当前主线重做基线后合入；JE-2000F/EU/en 的清单由骨架生成，已验收的网页输出不变 | planned | 待指派 / — |
 | <a id="rev-43"></a>REV-43 | 骨架拓展 | REV-42 | 按操作者指定清单扩展骨架覆盖：逐目标记录产品手册计划绑定和从骨架自动构建网页的结果；未覆盖的目标写明缺口，不用复制页面模板冒充覆盖 | planned | 待指派 / — |
-| <a id="rev-44"></a>REV-44 | SSOT 来源登记 | — | 来源登记设计经操作者定稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)，2026-09-25 定稿）：每个数据域写明权威来源、读取方式、新鲜度与取不到时的显示；登记文件与 `check` 先落地且整站输出逐字节不变，页面再改为按登记读取新鲜度与降级文案 | verifying | 执行=Claude 2026-09-25 设计定稿并实施：登记文件 `tools/rtd_portal_assets/source_registry.yaml`、两页按登记读取、系统建设页公开“数据来源”表；证据=[设计](ssot_source_registry_design.md)、实施 PR（待合入与验收） |
+| <a id="rev-44"></a>REV-44 | SSOT 来源登记 | — | 来源登记设计经操作者定稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)，2026-09-25 定稿）：每个数据域写明权威来源、读取方式、新鲜度与取不到时的显示；登记文件与 `check` 先落地且整站输出逐字节不变，页面再改为按登记读取新鲜度与降级文案 | done | 执行=Claude 2026-09-25 设计定稿并实施：登记文件 `tools/rtd_portal_assets/source_registry.yaml`、两页按登记读取、系统建设页公开“数据来源”表；证据=[设计](ssot_source_registry_design.md)、[#1273](https://github.com/Bingboom/auto-manual/pull/1273)（`4005e4a3`）、[#1274](https://github.com/Bingboom/auto-manual/pull/1274)（`eb114b8f`）、RTD `ae3889c2` 线上核验（数据来源表 8 个数据域、交付物页不变）；验收原话「验收」2026-09-25 |
 | <a id="rev-45"></a>REV-45 | 多 Agent 调度 | REV-44 | 多 Agent 调度与任务续接的设计经操作者定稿：任务从哪里派发、状态以哪里为准（作为 REV-44 的一个数据域登记）、交接记录的格式、续接时读什么；再用一条真实任务演示派发、交接与续接，不宣称自动调度已启用 | planned | 待指派 / — |
 
 REV-28–34 的初始 deferred 理由：前置试点、维护能力或消费需求尚未在本轮确认；
@@ -123,6 +123,7 @@ REV-34 是条件性专项，不是所有路线结束前必须完成的任务。
 
 ## 4. 当前续接点
 
+- REV-44 验收（2026-09-25）：来源登记上线（#1274 `eb114b8f`），系统建设页与交付物页的快照名、过期天数和降级文案都从 `tools/rtd_portal_assets/source_registry.yaml` 读取，系统建设页底部公开“数据来源”表；操作者原话「验收」，翻 done。下一步：REV-45（多 Agent 调度与任务续接）可开始设计。
 - 范围变更（2026-09-25 晚）：新增 REV-44 SSOT 来源登记、REV-45 多 Agent 调度与任务续接（依赖 REV-44），均为 planned。REV-39 与 REV-44 同日开始：REV-39 为多 agent 只读摸底，产出契约表草稿；REV-44 为设计草稿（[ssot_source_registry_design.md](ssot_source_registry_design.md)），待操作者定稿。系统建设页“当前在做”列出这两项，“Agent 执行”能力卡加对应两项。
 - 范围变更（2026-09-25）：新增 REV-35–43，均为 planned。语料建设与管理 REV-35–38 为当前重点，可与 G1–G3 并行；IR 共享 REV-39–40、骨架拓展 REV-41–43 为下一步。系统建设页按网页化、语料库、IR 共享、骨架拓展四条线显示进度。
 - 本轮（2026-09-19 REV-07 开工）：REV-08 翻 done（#1193 合入 `b0f60e53` + 全量绿跑 run 35451362215 + 哨兵 HD#91 关，验收原话「合并 验收」在册）。REV-07 M2+M1 首切片交付进 verifying：`tools/ops_catalog_sync.py`（sync=运营表机器列幂等 upsert、人工列不碰、失败行独立重试；reconcile=manifest↔运营表↔构建表回执三面核对+白名单分类 exit 0/1）、白名单种子=rev06 M0-05 的 49 个 Git-only 无回执 target、实跑=运营表 row20 JE-1000H/EU/en 陈旧 built_at/commit 已授权刷新（52 行不变，回读齐，reconcile exit 0），日志=[revitalization/rev07_m2_log.md](revitalization/rev07_m2_log.md)。
