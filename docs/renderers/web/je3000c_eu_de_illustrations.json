@@ -53,15 +53,18 @@
       "replaces": [
         "front_product.jpg"
       ],
-      "path": "assets/je3000c_eu_de/overview_front.png",
-      "sha256": "81ee2a583672151b4c10c66f7533997adf0e3bc9ba264a141541fa724ef753a5",
+      "path": "assets/je3000c_eu_de_20260915/overview_front.png",
+      "sha256": "69f7bf15ea0707c93b3209e12590f6d4b6368fde25d90dcf96736840bab1deae",
       "source_page": 56,
       "bbox_pt": [
         27.0,
         70.0,
         342.0,
         286.0
-      ]
+      ],
+      "recipe": "data/asset_recipes/manual_je3000c_eu_uk_20260915_de_overview_front.json",
+      "source_pdf_sha256": "f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32",
+      "source_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-09-15.pdf"
     },
     {
       "replaces": [
