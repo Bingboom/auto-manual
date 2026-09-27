@@ -129,13 +129,13 @@
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Localized_Copy.csv",
-      "sha256": "c6dc9da37a524e3c196200c85d47505d94b788163b0a752a44098d00fd19b865",
-      "size_bytes": 9463
+      "sha256": "96bab8c01c185150066e3b3aefed95e23e2a4c39bdf81c359f7fd8977bf80ec7",
+      "size_bytes": 9273
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Manual_Copy_Source.csv",
-      "sha256": "276d5ce2fab4e7293d92f410a33c8d44cb0e7952384aba0fd9ee69720db12986",
-      "size_bytes": 3437
+      "sha256": "5fb0c4b59c8d9c677b35c59935f0e29412efa3c43d268994ee321988df36fe9a",
+      "size_bytes": 3353
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Footnotes.csv",
@@ -144,8 +144,8 @@
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Master.csv",
-      "sha256": "40c2d52b65d63a194b523f468c131ee39b5fc9eb8260ffa4e4f8fb0d4dd08eff",
-      "size_bytes": 8026
+      "sha256": "5f6f706f25ae65f5564b3a7253681114539429342b8f3e08d1e57c15aefdfb1d",
+      "size_bytes": 8046
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/Spec_Notes.csv",
@@ -244,8 +244,8 @@
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/spec_titles.csv",
-      "sha256": "1b90d563ef16d98c6d7fb653f4b8126a4442f7282ab7d925567097ce7b9f64b8",
-      "size_bytes": 1044
+      "sha256": "61f3d0da78d7c3234905df3e97e789372b3e4ceecb9036ed21abb49e6f8edcd4",
+      "size_bytes": 961
     },
     {
       "path": "manual_sources/JBP-2000B/EU/en/2.0/phase2/symbols_blocks.csv",
