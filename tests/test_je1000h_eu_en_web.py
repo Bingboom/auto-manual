@@ -439,5 +439,73 @@ class Je1000hEuOverviewSlotTests(unittest.TestCase):
                          (ROOT / "docs/renderers/web/je1000h_eu_de_illustrations.json").read_text(encoding="utf-8"))
 
 
+DISPLAYED_SIGNALS = ("warning", "caution", "note", "tips")
+
+
+class Je1000hEuResidualCopyTests(unittest.TestCase):
+    """fr–uk headings and signal labels are never English or another block's language.
+
+    The print sets the temperature heading in English in its de/it blocks (PDF pages
+    70/87) and the Italian ``AVVERTENZA`` in the uk symbols table (PDF page 91).
+    """
+
+    @staticmethod
+    def _rows(name: str) -> list[dict[str, str]]:
+        with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+
+    def test_residual_heading_and_warning_label_are_localized(self) -> None:
+        # 德/意语块把温度小节标题印成英文：按跨型号审定译法（JE-2000F 印刷第 66/82 页；JE-3000C 同缺陷同处理）
+        # 乌语符号表把 WARNING 印成意大利语 AVVERTENZA：同页安全须知印的是 ПОПЕРЕДЖЕННЯ
+        from tools.csv_pages.renderers_spec_parser import _load_spec_title_map
+        from tools.localized_copy import LocalizedCopyResolver
+
+        heading = "ENVIRONMENTAL OPERATING TEMPERATURE"
+        for lang, expected in (("de", "UMGEBUNGSTEMPERATUR IM BETRIEB"),
+                               ("it", "TEMPERATURA OPERATIVA AMBIENTALE")):
+            with self.subTest(lang=lang):
+                titles = _load_spec_title_map(FORMAL_DATA_ROOT / "spec_titles.csv", title_lang=lang)
+                self.assertEqual(expected, titles[heading.lower()])
+                copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
+                self.assertEqual(expected, copy.resolve("spec.section.environmental_operating_temperature",
+                                                        lang=lang, model="JE-1000H", region="EU"))
+        with self.subTest(signal="warning", lang="uk"):
+            copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
+            self.assertEqual("ПОПЕРЕДЖЕННЯ", copy.resolve("symbols.signal.warning.label",
+                                                          lang="uk", model="JE-1000H", region="EU"))
+            warning, = [row for row in self._rows("symbols_blocks.csv") if row["symbol_key"] == "warning"]
+            self.assertEqual(("ПОПЕРЕДЖЕННЯ", "ПОПЕРЕДЖЕННЯ"), (warning["label_uk"], warning["aliases_uk"]))
+
+        titles = {row["title_en"]: row for row in self._rows("spec_titles.csv")}
+        section_copy = {row["text_en"]: row for row in self._rows("Localized_Copy.csv")
+                        if row["copy_type"] in ("page_title", "section_title")}
+        signals = {row["copy_key"]: row for row in self._rows("Localized_Copy.csv")
+                   if row["copy_type"] == "signal_label"}
+        blocks = {row["symbol_key"]: row for row in self._rows("symbols_blocks.csv")
+                  if row["block_type"] == "signal_row"}
+        for lang in TRANSLATED_LOCALES:
+            for english, row in titles.items():
+                with self.subTest(table="spec_titles", title=english, lang=lang):
+                    self.assertNotIn(row[f"title_{lang}"], ("", english))
+            for english, row in section_copy.items():
+                with self.subTest(table="Localized_Copy", title=english, lang=lang):
+                    self.assertNotIn(row[f"text_{lang}"], ("", english))
+            for key in DISPLAYED_SIGNALS:
+                label = signals[f"symbols.signal.{key}.label"][f"text_{lang}"]
+                with self.subTest(signal=key, lang=lang):
+                    self.assertTrue(label)
+                    self.assertEqual(label, blocks[key][f"label_{lang}"])
+                    self.assertEqual(label, blocks[key][f"aliases_{lang}"])
+                    if lang == "uk":
+                        self.assertRegex(label, r"^[А-ЯҐЄІЇ’ʼ -]+$")
+                    else:
+                        self.assertRegex(label, r"^[A-ZÀ-ÖØ-Þ -]+$")
+                    # es/it 都写 NOTA 是各自正确的译法；其余语种之间不得互相借用
+                    borrowed = {other for other in MANUAL_LOCALES if other != lang and label
+                                == signals[f"symbols.signal.{key}.label"][f"text_{other}"]}
+                    shared = {"es", "it"} - {lang} if key == "note" and lang in ("es", "it") else set()
+                    self.assertEqual(shared, borrowed)
+
+
 if __name__ == "__main__":
     unittest.main()

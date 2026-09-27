@@ -217,3 +217,63 @@ notes table has no JE-1000H row, so there is nothing to write back.
   is the callout label-sizer spans that main already carries (#1288).
 - **Live tables:** no `JE-1000H_EU` rows exist in 规格参数明细 or 页面占位参数
   (only AU/KR rows), so the frozen source is the only place to fix.
+
+## 2026-09-27 Temperature heading and Ukrainian warning label
+
+The 2026-09-15 intake entered two print defects as printed, in shared-dictionary
+rows of the frozen source. Both reached the Web pages.
+
+**What changed.** Seven cells in three files. The rule is the same as on
+2026-09-25/26: print defects use reviewed cross-model wording.
+
+| File | Row | Columns | Before | After |
+| --- | --- | --- | --- | --- |
+| `spec_titles.csv` | `ENVIRONMENTAL OPERATING TEMPERATURE` | `title_de`, `title_it` | the English heading | `UMGEBUNGSTEMPERATUR IM BETRIEB`, `TEMPERATURA OPERATIVA AMBIENTALE` |
+| `Localized_Copy.csv` | `spec.section.environmental_operating_temperature` | `text_de`, `text_it` | the English heading | as above |
+| `Localized_Copy.csv` | `symbols.signal.warning.label` | `text_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+| `symbols_blocks.csv` | `warning` | `label_uk`, `aliases_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+
+**Print evidence:**
+
+- **Heading.** The de and it blocks print the heading in English: PDF page 70
+  (printed 65) and page 87 (printed 82). The new wording is printed in the
+  JE-2000F EU print (PDF pages 66/82). The JE-2000E, JE-2000F, JE-3000C and
+  JE-3600A sources carry it, and the live JE-2000E, JE-2000F and JE-3000C de/it
+  pages show it. The JE-3600A EU print and the JE-3000C EU print
+  (V2.0-2026-09-15) set the same English heading.
+- **Warning label.** The uk symbols table prints the Italian `AVVERTENZA` (PDF
+  page 91, printed 86). The same page prints the uk WARNING callout as
+  `ПОПЕРЕДЖЕННЯ`, and every other EU frozen source uses that label.
+
+**Verification:**
+
+- **Trial Web build:** all six languages, compared with the live pages
+  (`2.0-20260926`).
+  - en/fr/es: no line changes.
+  - de/it: 2 lines each, the section heading and its table `aria-label`.
+  - uk: 1 line, the symbols-table row. Its badge `aria-label` and visible label
+    change.
+- **Regression test:** `Je1000hEuResidualCopyTests` resolves the cells through
+  the spec-title and localized-copy loaders. It also checks every fr–uk heading
+  and displayed signal label: none may be empty, English or another block's
+  word. It fails 9 subtests on the previous files.
+- **Live tables:** there is nothing to write back. The approved
+  Translation_Memory rows already hold this wording:
+  - `recvgEwErzHV3h` (section title): de `UMGEBUNGSTEMPERATUR IM BETRIEB`, it
+    `TEMPERATURA OPERATIVA AMBIENTALE`.
+  - `recvllSNnTchQq` (`WARNING`): uk `ПОПЕРЕДЖЕННЯ`.
+  - The shared 内容源_Symbols row `recviwLdx0HcdN` also has uk
+    `ПОПЕРЕДЖЕННЯ`.
+
+**Still open.** These are the same kind of defect, but the print gives no
+correct text in the block, or the text comes from a shared template:
+
+- **LCD row 4:** the de/it description falls back to English. Both blocks print
+  it in French (PDF pages 60/77). The German name prints as `Ladeplan Plan`.
+- **Italian LCD rows 11–13:** PDF page 78 prints the German `Verbleibende
+  Aufladezeit` and `Autoladeanzeige`. It also shifts the car and solar texts up
+  one row. The source copies all of this.
+- **Shared EU templates:** the fr–uk operation caution says `USB-C 100 W` and
+  omits the `28 V/5 A, 140 W` cable rating. The print says 140 W in every block
+  (PDF pages 12/29/46/63/80/97). The it heading `LUCE LED ON/OFF` prints as
+  `LUCE LED ACCENSIONE/SPEGNIMENTO` (PDF page 80).
