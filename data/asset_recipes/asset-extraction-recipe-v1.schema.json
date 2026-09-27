@@ -400,6 +400,27 @@
     }
    }
   },
+  "copy_pdf_region": {
+   "type": "object",
+   "additionalProperties": false,
+   "required": [
+    "op",
+    "bbox_pt",
+    "other_bbox_pt"
+   ],
+   "description": "One-way native PDF copy: bbox_pt is repainted with the source page's own content from other_bbox_pt, read from the immutable source, with no background painted. Equal-size, disjoint rectangles inside the crop.",
+   "properties": {
+    "op": {
+     "const": "copy_pdf_region"
+    },
+    "bbox_pt": {
+     "$ref": "#/$defs/bbox"
+    },
+    "other_bbox_pt": {
+     "$ref": "#/$defs/bbox"
+    }
+   }
+  },
   "retain_vector_drawings": {
    "type": "object",
    "additionalProperties": false,
@@ -558,6 +579,9 @@
        },
        {
         "$ref": "#/$defs/whiteout"
+       },
+       {
+        "$ref": "#/$defs/copy_pdf_region"
        },
        {
         "$ref": "#/$defs/drop_leader_strokes"

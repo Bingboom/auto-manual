@@ -908,6 +908,13 @@ Web Publish / Read the Docs note:
   equal-size, disjoint native regions on white backgrounds, inside the asset
   crop. Freeze source/output hashes and visually verify the final PNG. JBP-2000B
   JP uses this to correct reversed on/off titles according to structured source.
+- `copy_pdf_region` is the one-way form: it repaints `bbox_pt` with the source
+  page's own content from `other_bbox_pt` (equal size, disjoint, both inside the
+  crop, read from the immutable source) and paints no background, so it can
+  land on tinted art. Pair it with a text-only `redact_text_region` to re-set a
+  mis-printed character from a same-font glyph on the same page. JE-2000E EU uk
+  uses this for the App control-panel label the print sets as `AC1` instead of
+  `AC2`; pixel-diff the result against the uncorrected crop.
 
 - `Review Preview Package` uploads the review-preview workspace as a GitHub artifact only
 - [`.github/workflows/feishu-build-queue.yml`](../.github/workflows/feishu-build-queue.yml) owns print Publish only; it no longer builds a Vercel candidate or writes `HTML_link`

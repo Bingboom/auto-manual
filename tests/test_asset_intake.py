@@ -67,6 +67,31 @@ class TestAssetIntake(unittest.TestCase):
             self.assertEqual(after.pixel(60, 50), before.pixel(60, 50))
             result.close()
 
+    def test_native_pdf_region_copy_keeps_the_destination_background(self):
+        from types import SimpleNamespace
+        from tools.asset_pipeline.extract import _prepare_asset_source
+        from tools.asset_pipeline.models import TransformSpec
+        with TemporaryDirectory() as tmp:
+            source = Path(tmp) / "copy.pdf"
+            doc = fitz.open()
+            page = doc.new_page(width=120, height=100)
+            page.draw_rect(fitz.Rect(50, 5, 115, 45), color=None, fill=(0.5, 0.5, 0.5))  # tinted panel
+            page.draw_rect(fitz.Rect(11, 32, 13, 35), color=None, fill=(1, 0, 0))  # "glyph" on white
+            doc.save(source)
+            before = page.get_pixmap()
+            doc.close()
+            asset = SimpleNamespace(page=1, asset_key="test", crop_bbox=(0, 0, 120, 100), transforms=(
+                TransformSpec(op="crop", bbox_pt=(0, 0, 120, 100)),
+                TransformSpec(op="copy_pdf_region", bbox_pt=(60, 10, 64, 17), other_bbox_pt=(10, 30, 14, 37)),
+            ))
+            result, _ = _prepare_asset_source(fitz=fitz, source_path=source, asset=asset)
+            after = result[0].get_pixmap()
+            self.assertEqual(before.pixel(11, 33), after.pixel(61, 13))  # the glyph landed
+            self.assertEqual(before.pixel(60, 10), after.pixel(60, 10))  # no white patch around it
+            self.assertEqual(before.pixel(11, 33), after.pixel(11, 33))  # the source stays in place
+            self.assertEqual(before.pixel(90, 30), after.pixel(90, 30))
+            result.close()
+
     def _make_source(
         self,
         path: Path,

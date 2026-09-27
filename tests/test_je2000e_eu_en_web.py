@@ -88,14 +88,33 @@ APP_REFERENCES = {
 # Routes whose add-device figure is their own print block's App screens plus
 # its control-panel box. The box prints the button labels, so the page's four
 # label lines become covered annotations (the figure's alt text). The uk block
-# prints "AC1" for the AC2 button, so uk keeps the shared screens and live labels.
-PANEL_LANGUAGES = ("en", "fr", "es", "de", "it")
+# prints "AC1" for the AC2 button; its crop re-sets that one character from the
+# print's own glyphs (see UK_LABEL_CORRECTION).
+PANEL_LANGUAGES = ("en", "fr", "es", "de", "it", "uk")
 COVERED_LABELS = {
     "en": "Main POWER Button AC1 Power Button AC2 Power Button DC / USB Power Button",
     "fr": "Bouton POWER principal Bouton CC / USB Bouton CA1 Bouton CA2",
     "es": "Botón POWER principal Botón CC / USB Botón CA1 Botón CA2",
-    "de": "Haupt-POWER-Taste AC1-Einschalttaste AC2-Einschalttaste DC / USB-Einschalttaste",
-    "it": "Pulsante POWER principale Pulsante CA1 Pulsante CA2 Pulsante DC / USB",
+    "de": "POWER-Taste AC1-Einschalttaste AC2-Einschalttaste DC / USB-Einschalttaste",
+    "it": "Pulsante POWER principale Pulsante CA1 Pulsante CA2 Pulsante CC / USB",
+    "uk": "Головна кнопка POWER Кнопка AC1 Кнопка AC2 Кнопка DC / USB",
+}
+# The uk crop's two corrective transforms on PDF page 118: remove the wrong "1"
+# of the lower AC label (text only), then paint the "2" of the page's own "2.1"
+# caption (same font, size and colour as the labels) where the "2" belongs.
+UK_LABEL_CORRECTION = [
+    {"op": "redact_text_region", "bbox_pt": [324.75, 400.3, 326.5, 406.8],
+     "images": "preserve", "graphics": "preserve", "fill": None},
+    {"op": "copy_pdf_region", "bbox_pt": [324.54, 399.94, 327.69, 407.14],
+     "other_bbox_pt": [128.64, 344.21, 131.79, 351.41]},
+]
+# Button labels as every page of each print block names them (the German block
+# never prints "Haupt-POWER-Taste", the Italian block's DC/USB button is "CC/USB",
+# the Ukrainian block's DC/USB button carries no "POWER").
+PRINT_BUTTON_LABELS = {
+    ("main_power_button", "Value_de"): "POWER-Taste",
+    ("dc_usb_power_button", "Value_it"): "Pulsante CC / USB",
+    ("dc_usb_power_button", "Value_uk"): "Кнопка DC / USB",
 }
 
 
@@ -165,6 +184,55 @@ class Je2000eEuStorageLabelTests(unittest.TestCase):
     def test_storage_durations_follow_each_print_block(self) -> None:
         """es printed German '1 monat…' and de Spanish '1 mes…' until 2026-09-26."""
         self.assertEqual(STORAGE_LABELS, storage_labels(FORMAL_DATA_ROOT))
+
+
+class Je2000eEuButtonLabelTests(unittest.TestCase):
+    """The page names each button as its print block does, so text and figures agree."""
+
+    def test_frozen_button_labels_follow_the_print(self) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            rows = {row["Row_key"]: row for row in csv.DictReader(handle) if row["Section"] == "CONTROLS"}
+        for (row_key, column), label in PRINT_BUTTON_LABELS.items():
+            self.assertEqual(label, rows[row_key][column], (row_key, column))
+
+    def test_model_templates_use_the_print_button_names(self) -> None:
+        templates = ROOT / "docs" / "templates"
+        german = (templates / "page_eu-de" / "05_operation_guide_je2000e.rst").read_text(encoding="utf-8")
+        self.assertNotIn("Haupt-POWER-Taste", german)
+        self.assertIn("   * - POWER-Taste + AC1-Einschalttaste", german)
+        italian = (templates / "page_eu-it" / "05_operation_guide_je2000e.rst").read_text(encoding="utf-8")
+        self.assertNotIn("Pulsante DC/USB", italian)
+        self.assertEqual(2, italian.count("Pulsante CC/USB"))
+        ukrainian = (templates / "page_shared" / "uk" / "12_app_setup_je2000e.rst").read_text(encoding="utf-8")
+        # Notes 4.1/4.2 name the AC1 button, as the print (p119) and the de/it/en pages do.
+        self.assertEqual(2, ukrainian.count("кнопку DC / USB + кнопку AC1,"))
+        self.assertNotIn("кнопку AC,", ukrainian)
+        with (FORMAL_DATA_ROOT / "lcd_icons_blocks.csv").open(encoding="utf-8", newline="") as handle:
+            (energy,) = [row for row in csv.DictReader(handle) if row["icon_en"] == "Energy Saving Mode"]
+        self.assertIn("premendo il pulsante CA o CC/USB:", energy["icon_desc_it"])
+
+    def test_uk_panel_corrects_only_the_misprinted_label(self) -> None:
+        """uk prints "Кнопка AC1" for the AC2 button; the crop re-sets that one character."""
+        assets = {asset["asset_key"]: asset for asset in json.loads(APP_RECIPE.read_text(encoding="utf-8"))["assets"]}
+        uk = assets["web/je2000e/eu/uk/app_add_device_panel"]
+        italian = assets["web/je2000e/eu/it/app_add_device_panel"]
+        self.assertEqual(118, uk["page"])
+        # The same region as the es/de/it blocks, which lay the page out identically.
+        self.assertEqual(italian["transforms"][0], uk["transforms"][0])
+        self.assertEqual(UK_LABEL_CORRECTION, uk["transforms"][1:])
+        # The App gate keeps every App crop quarantined in its recipe; the operator
+        # accepted the corrected label (2026-09-27), so its registry row is finished
+        # like the other five panels.
+        self.assertEqual("quarantine", uk["gate"]["status"])
+        with (ROOT / "data" / "asset_registry.csv").open(encoding="utf-8", newline="") as handle:
+            statuses = {row["asset_key"]: row["状态"] for row in csv.DictReader(handle)}
+        for lang in PANEL_LANGUAGES:
+            self.assertEqual("✅成品", statuses[f"web/je2000e/eu/{lang}/app_add_device_panel"], lang)
+        # No route binds the shared add-device screens any more.
+        shared = "assets/je2000e_eu_shared/app_add_device.png"
+        for lang in ("en", *SINGLE_LANGUAGES):
+            manifest = json.loads((ILLUSTRATIONS.parent / f"je2000e_eu_{lang}_illustrations.json").read_text(encoding="utf-8"))
+            self.assertNotIn(shared, [entry["path"] for entry in manifest["illustrations"]], lang)
 
 
 class Je2000eEuEnWebTests(unittest.TestCase):
@@ -402,13 +470,15 @@ class Je2000eEuEnWebTests(unittest.TestCase):
         )
 
     def test_routes_bind_their_app_panels(self) -> None:
-        """Each route binds its own block's add-device panel, except uk."""
+        """Each route binds its own block's add-device panel."""
         self.assertEqual(
-            "bd06a012f23c92d930b27d1775bd16069b3b743f18bde64cb8e03894b50a2dc5",
+            "9fc7acdaed25c3a219379f657d8b4166de599d779dc60af9fcad0bcfbf346cf3",
             hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
         )
         app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))
-        self.assertEqual(7, len(app_recipe["assets"]))
+        # Six per-language panels, the shared connect-result screens, and the
+        # shared add-device screens that no route binds any more (uk's fallback).
+        self.assertEqual(8, len(app_recipe["assets"]))
         assets = {}
         for asset in app_recipe["assets"]:
             # App screenshots stay quarantined in their recipe (the App/QR/URL/
@@ -526,6 +596,11 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
             ],
         )
         self.assertIn("Die oben gezeigten Screenshots dienen nur als Referenz.", self.html)
+
+    def test_page_names_the_main_button_as_the_print_does(self) -> None:
+        """The German block's figures and text all say "POWER-Taste", so the page does too."""
+        self.assertNotIn("Haupt-POWER-Taste", self.html)
+        self.assertIn("Drücken Sie die POWER-Taste am Gerät", self.html)
 
     def test_every_figure_is_the_german_print_block(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")

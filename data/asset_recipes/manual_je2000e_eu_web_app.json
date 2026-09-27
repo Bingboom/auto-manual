@@ -1550,7 +1550,8 @@
         "reasons": [
           "App UI screenshots, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU uk illustration manifest.",
           "2026-09-24 operator confirmed the EN-block p23 crop at 12x, the scale of this model's English panels: the two App screens with their embedded 2.1/2.2 captions, stopping above the grey control-panel box whose button labels are translated per language block (those labels stay live text). The fr/es/de/it/uk blocks (p42/p61/p80/p99/p118) place the same two bitmaps, so one panel serves those five languages; English keeps its own approved control_panel entry.",
-          "2026-09-24 the operator moved EN/FR/ES/DE/IT to per-language crops that add each block's control-panel box (web/je2000e/eu/<lang>/app_add_device_panel). Only uk keeps this crop: the UK block's control-panel box prints “AC1” for the AC2 button, so it is not reused and the Ukrainian button labels stay live text."
+          "2026-09-24 the operator moved EN/FR/ES/DE/IT to per-language crops that add each block's control-panel box (web/je2000e/eu/<lang>/app_add_device_panel). Only uk keeps this crop: the UK block's control-panel box prints “AC1” for the AC2 button, so it is not reused and the Ukrainian button labels stay live text.",
+          "2026-09-26 uk moved to its own block crop with the corrected AC2 label (web/je2000e/eu/uk/app_add_device_panel), so no route binds this crop any more. It stays as uk's fallback until that correction is confirmed and can then be retired."
         ]
       },
       "risk_tags": [
@@ -1757,7 +1758,8 @@
         "status": "quarantine",
         "reasons": [
           "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU de illustration manifest.",
-          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the DE-block p80 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “POWER-Taste” where the live text says “Haupt-POWER-Taste”."
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the DE-block p80 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “POWER-Taste” where the live text says “Haupt-POWER-Taste”.",
+          "2026-09-26 the page text follows the print: every page of the German block that names the main button (p65, p71, p72, p80, p81) calls it “POWER-Taste” (“Power-taste” in two notes), never “Haupt-POWER-Taste”, so the frozen main_power_button label and the German operation template now say “POWER-Taste”."
         ]
       },
       "risk_tags": [
@@ -1809,7 +1811,89 @@
         "status": "quarantine",
         "reasons": [
           "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU it illustration manifest.",
-          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the IT-block p99 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “Pulsante CC/USB” where the live text says “Pulsante DC / USB”."
+          "2026-09-24 operator chose per-language crops for EN/FR/ES/DE/IT: the IT-block p99 region at 12x holding the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text). The labels are the print's own wording: “Pulsante CC/USB” where the live text says “Pulsante DC / USB”.",
+          "2026-09-26 the page text follows the print: every page of the Italian block that names the DC/USB button (p84, p87, p91, p99, p100) calls it “Pulsante CC/USB” (“DC / USB” appears only as the drawings' port silkscreen), so the frozen dc_usb_power_button label, the Italian key-combination rows and the LCD-icon note now say “CC / USB” (“CC/USB” where the copy writes it without spaces)."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "app-ui",
+        "screenshot",
+        "localized-ui",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/app_add_device_panel",
+      "page": 118,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.1,
+            217.5,
+            339.0,
+            438.0
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            324.75,
+            400.3,
+            326.5,
+            406.8
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "copy_pdf_region",
+          "bbox_pt": [
+            324.54,
+            399.94,
+            327.69,
+            407.14
+          ],
+          "other_bbox_pt": [
+            128.64,
+            344.21,
+            131.79,
+            351.41
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/app_add_device_panel.png",
+          "scale": 12,
+          "expected_sha256": "ce5ffc5a0ae089bec38cfd27b225d95a5eef903b0f5edacfccefd4867a23f04f"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU uk illustration manifest.",
+          "2026-09-26 the UK-block p118 region at 12x, the same region as the es/de/it crops: the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text).",
+          "Print defect corrected: the box labels the lower AC button “Кнопка AC1”. The UK block's own overview (p103) and every other block's panel name that button AC2, and the UK AC operation text (p107) names AC1 and AC2. The crop re-sets that one character from the print's own glyphs: redact_text_region removes the wrong “1” (text only; the panel, leaders and screens stay) and copy_pdf_region paints the “2” of this page's “2.1” caption (Gilroy-Regular 6 pt, #404041, the labels' own font, size and colour) at the C–2 kerning the English block prints for “AC2”. Everything else is the print unchanged.",
+          "2026-09-27 the operator accepted the corrected label (「接受修正，合入并发布 2.7」): the registry row is ✅成品 like the other panels, and this recipe keeps the crop quarantined under the App gate, as it does every App crop."
         ]
       },
       "risk_tags": [

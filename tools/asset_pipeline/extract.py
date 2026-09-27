@@ -339,6 +339,19 @@ def _prepare_asset_source(
                 for destination, origin in ((first, second), (second, first)):
                     page.draw_rect(destination, color=None, fill=(1, 1, 1), overlay=True)
                     page.show_pdf_page(destination, original, asset.page - 1, clip=origin, overlay=True)
+        elif transform.op == "copy_pdf_region":
+            # One-way copy of native PDF content from the immutable source.
+            # Unlike swap_pdf_regions nothing is painted first, so the copy
+            # lands on whatever art the destination keeps (a tinted panel
+            # after redact_text_region removed a mis-printed glyph there).
+            if transform.bbox_pt is None or transform.other_bbox_pt is None:
+                raise ArtifactValidationError("copy_pdf_region requires two rectangles")
+            destination = fitz.Rect(transform.bbox_pt)
+            origin = fitz.Rect(transform.other_bbox_pt)
+            if not crop.contains(destination) or not crop.contains(origin):
+                raise ArtifactValidationError("copied PDF regions must stay within crop")
+            with fitz.open(str(source_path)) as original:
+                page.show_pdf_page(destination, original, asset.page - 1, clip=origin, overlay=True)
         elif transform.op == "whiteout":
             if transform.bbox_pt is None:
                 raise ArtifactValidationError(f"asset {asset.asset_key!r} has invalid whiteout")
