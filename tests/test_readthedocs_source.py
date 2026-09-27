@@ -150,6 +150,23 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("table.hb-symbol-signal-table", css_text)
             self.assertIn(".hb-signal-badge", css_text)
             self.assertIn(".hb-signal-icon", css_text)
+            # A long localized badge widens its content-sized label column instead of overflowing.
+            signal_table_css = css_text.split(
+                "#furo-main-content table.hb-symbol-signal-table {", 1
+            )[1].split("}", 1)[0]
+            self.assertIn("table-layout: auto", signal_table_css)
+            badge_css = css_text.split("#furo-main-content .hb-signal-badge {", 1)[1].split("}", 1)[0]
+            self.assertIn("min-width: max-content", badge_css)
+            # Component tables fit the desktop reading column; only narrower screens scroll.
+            for selector in (
+                "#furo-main-content table.hb-lcd-icon-table {",
+                "#furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) {",
+            ):
+                self.assertIn("min-width: 40rem", css_text.split(selector, 1)[1].split("}", 1)[0])
+            lcd_mode_table_css = css_text.split(
+                "#furo-main-content table.hb-lcd-mode-table {", 1
+            )[1].split("}", 1)[0]
+            self.assertNotIn("min-width", lcd_mode_table_css)
             self.assertIn("--hb-component-band-max", css_text)
             component_band_css = css_text.split(
                 "/* All full-width manual components share one outer-width",
@@ -185,7 +202,9 @@ class ReadTheDocsSourceTests(unittest.TestCase):
                 1,
             )[0]
             self.assertIn("overflow-x: auto", troubleshooting_css)
-            self.assertIn("min-width: 42rem", troubleshooting_css)
+            self.assertIn("min-width: 40rem", troubleshooting_css)
+            # The code header wraps at spaces instead of running past its column.
+            self.assertNotIn("white-space: nowrap", troubleshooting_css)
             self.assertIn("width: 14%", troubleshooting_css)
             self.assertIn("width: 86%", troubleshooting_css)
             self.assertIn("border-right: 1.25px solid var(--hb-brand-dark)", troubleshooting_css)
@@ -269,6 +288,17 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertIn("grid-template-columns: minmax(0, 1fr)", narrow_css)
             self.assertIn("table.hb-lcd-mode-table", narrow_css)
             self.assertIn("min-width: 34rem", narrow_css)
+            # Phone table cells keep words whole; only raw tables, which have no scroll
+            # box, fall back to splitting on the narrowest phones.
+            self.assertRegex(
+                narrow_css,
+                r"#furo-main-content :is\(td, th\) \{\s*overflow-wrap: break-word;",
+            )
+            narrowest_css = css_text.split("@media (max-width: 520px)", 1)[1].split("@media print", 1)[0]
+            self.assertRegex(
+                narrowest_css,
+                r"#furo-main-content section > table :is\(td, th\) \{\s*overflow-wrap: anywhere;",
+            )
             self.assertIn("@media", css_text)
 
     def test_assemble_rtd_source_should_require_output_inside_build_root(self) -> None:
