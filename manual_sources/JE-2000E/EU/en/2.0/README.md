@@ -46,6 +46,12 @@ line prefix.
   therefore each block's first and second printed line; they are not the same
   port in every language.
 - AC outputs: es/de/it/uk `2 ×` becomes `3 ×`.
+- Expansion ports: the fr/es/de/it/uk input and output cells were empty, so
+  the page showed the English `36.8 V-57.6 V⎓75 A max.` / `…55 A max.`. They now
+  hold each block's printed cell with a decimal comma and the page's own units:
+  fr/de/it `36,8 V-57,6 V⎓75 A max.`, es `… máx.`, uk
+  `36,8 В-57,6 В⎓75 A макс.` (the output rows say 55 A). The Italian input cell
+  gains the house space the print leaves out (`36,8V-57,6V`).
 - USB-C: fr–uk print one row per port. The two rows had the same translated
   label, so the renderer merged them; each port now has its own label.
 - Labels: en `Charge Temperature` / `Discharge Temperature`; fr `N° modèle`,
@@ -59,8 +65,16 @@ line prefix.
 - Footnote (`phase2/Spec_Footnotes.csv`): de ① says `AC-Ausgangsanschlüsse`,
   as printed.
 
-Where the print is wrong, the page keeps the reviewed wording. The German table
-prints `Ladtemperatur` (PDF page 78); the cell now reads `Ladetemperatur`, as
-the block's own prose prints it (page 75). Seven print defects that the page
-already corrected stay corrected. `source_manifest.json` re-locks the four
-files.
+Where the print is wrong, the page keeps the reviewed wording:
+
+- The German table prints `Ladtemperatur` (PDF page 78); the cell now reads
+  `Ladetemperatur`, as the block's own prose prints it (page 75).
+- The German port headings print as the mixed pair `EINGANGSPORTS` /
+  `AUSGANGSPORTE` (page 78). They now read `EINGANGSANSCHLÜSSE` /
+  `AUSGANGSANSCHLÜSSE` in `phase2/spec_titles.csv` and its
+  `phase2/Localized_Copy.csv` twins, as the JE-1000H and JE-3600A EU prints set
+  them (PDF page 70 of each) and as the table's own `DC8020-Anschlüsse` and
+  `DC 12 V-Anschluss` read.
+- Seven print defects that the page already corrected stay corrected.
+
+`source_manifest.json` re-locks the four files.

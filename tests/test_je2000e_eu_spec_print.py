@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 from pathlib import Path
+import re
 import unittest
 
 from tools.csv_pages.builder import BuildPaths, CsvPageBuilder
@@ -99,6 +100,25 @@ GERMAN_FOOTNOTE = (
     "① Das Produkt kann den Akku über die Steckdose aufladen und gleichzeitig Strom "
     "über die AC-Ausgangsanschlüsse liefern."
 )
+# The expansion-port cells (input, output) as each block prints them, with a decimal comma
+# and the page's own units. The fr-uk cells were empty until 2026-09-27, so the page showed
+# the English "36.8 V-57.6 V". The Italian input prints "36,8V-57,6V" and gains the house
+# space; uk prints Cyrillic В with a Latin A, as most of its other amp values do.
+EXPANSION_VALUES = {
+    "en": ("36.8 V-57.6 V⎓75 A max.", "36.8 V-57.6 V⎓55 A max."),
+    "fr": ("36,8 V-57,6 V⎓75 A max.", "36,8 V-57,6 V⎓55 A max."),
+    "es": ("36,8 V-57,6 V⎓75 A máx.", "36,8 V-57,6 V⎓55 A máx."),
+    "de": ("36,8 V-57,6 V⎓75 A max.", "36,8 V-57,6 V⎓55 A max."),
+    "it": ("36,8 V-57,6 V⎓75 A max.", "36,8 V-57,6 V⎓55 A max."),
+    "uk": ("36,8 В-57,6 В⎓75 A макс.", "36,8 В-57,6 В⎓55 A макс."),
+}
+# The de block prints the mixed pair EINGANGSPORTS / AUSGANGSPORTE (PDF page 78). The
+# reviewed pair is the one the JE-1000H and JE-3600A EU prints set (PDF page 70 of each).
+GERMAN_PORT_HEADINGS = {
+    ("INPUT PORTS", "spec.section.input_ports"): "EINGANGSANSCHLÜSSE",
+    ("OUTPUT PORTS", "spec.section.output_ports"): "AUSGANGSANSCHLÜSSE",
+}
+ENGLISH_DECIMAL = re.compile(r"\d\.\d")
 
 
 def spec_content(lang: str, data_root: Path | None = None) -> dict[str, object]:
@@ -222,6 +242,32 @@ class Je2000eEuSpecPrintTests(unittest.TestCase):
             with self.subTest(lang=lang):
                 _ac_input, (_label, value), _expansion = self.section(lang, INPUTS)
                 self.assertNotIn("Car:", value)
+
+    def test_expansion_ports_follow_each_block(self) -> None:
+        for lang, (value_in, value_out) in EXPANSION_VALUES.items():
+            with self.subTest(lang=lang):
+                self.assertEqual(value_in, self.section(lang, INPUTS)[2][1])
+                self.assertEqual(value_out, self.section(lang, OUTPUTS)[6][1])
+
+    def test_translated_values_use_a_decimal_comma(self) -> None:
+        """No fr-uk specification value keeps an English decimal point."""
+        for lang in TRANSLATED:
+            with self.subTest(lang=lang):
+                values = [value for section in self.content[lang]["sections"] for _label, value in section["rows"]]
+                self.assertEqual([], [value for value in values if ENGLISH_DECIMAL.search(value)])
+
+    def test_german_port_headings_use_the_reviewed_pair(self) -> None:
+        german = [section["title"] for section in self.content["de"]["sections"]]
+        self.assertEqual(
+            ["ALLGEMEINE INFORMATIONEN", "EINGANGSANSCHLÜSSE", "AUSGANGSANSCHLÜSSE", "UMGEBUNGSTEMPERATUR IM BETRIEB"],
+            german,
+        )
+        titles = {row["title_en"]: row for row in _rows("spec_titles.csv")}
+        copy = {row["copy_key"]: row for row in _rows("Localized_Copy.csv")}
+        for (title_key, copy_key), heading in GERMAN_PORT_HEADINGS.items():
+            with self.subTest(heading=heading):
+                self.assertEqual(heading, titles[title_key]["title_de"])
+                self.assertEqual(heading, copy[copy_key]["text_de"])
 
 
 if __name__ == "__main__":

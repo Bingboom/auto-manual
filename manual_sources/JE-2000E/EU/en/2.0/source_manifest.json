@@ -42,8 +42,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 10031,
-      "sha256": "036047a0a5190610d69337b47057b56121cbe937b60c3518f5a797be83a969fd"
+      "size": 10043,
+      "sha256": "300f4622c27401029c71cf92c0013fe10f6ad2d49c8dc3a6e36352b46dc8cefd"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -57,8 +57,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23703,
-      "sha256": "3ceec70f7528c4272d6e9797e4687d385e5a02c7776e9c35188196af6341360d"
+      "size": 23989,
+      "sha256": "1d96992ab9cb5a1b15a33f2c7cf5236a6f4e1deb79df2152ca59a20c003e1a17"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -317,8 +317,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 1031,
-      "sha256": "63b196541c3054808310470b8683fd08bb73263dd516e5d40d2e05c7c52a3194"
+      "size": 1043,
+      "sha256": "74bc26945f9e9906a92709736199380b5c64c69971829d3c8d143503e53b8977"
     },
     {
       "path": "phase2/symbols_blocks.csv",
@@ -337,6 +337,6 @@
     "2026-09-26: the Spanish and German storage duration labels in Spec_Master (Param_es, Param_de) were swapped; they now hold the print's es '1 mes/3 meses/12 meses' (PDF page 58) and de '1 Monat/3 Monate/12 Monate' (page 77).",
     "2026-09-26: the fr/es/de/it/uk routes bind their own language block's figures (17 crops each in asset_recipe, PDF pages 25-43/44-62/63-81/82-100/101-119; those blocks draw EU sockets) instead of the shared JE-1000F art, and English binds its approved in-box crops (UK sockets); asset_recipe and web_illustration_manifest are re-locked.",
     "2026-09-26 (second change): the es/de/it/uk battery-pack figure is the French block's copy of the same art (their blocks print '≥ 0,66 pies (200 mm)', the French block '≥ 200 mm'); every route gains the battery-pack kit box cut from its own block in place of the label-only table; the English connect-result App panel is quarantined in place; asset_recipe and web_illustration_manifest are re-locked.",
-    "2026-09-27: the specification tables follow each block's printed spec page (PDF pages 21/40/59/78/97/116): the fr/es/de/it/uk weight is 19,1 kg; the DC8020 lines keep each block's printed order (fr PV first like English, es/de/it/uk car first) with its own prefixes, and fr adds the printed 'max.' after 12 A; es/de/it/uk list 3 AC outputs; each USB-C port has its own row; labels and headings follow the print (en Charge/Discharge Temperature, the fr/it/uk labels, the it headings, the uk title, the es/it 12 V port, the de footnote), and the print's German typo 'Ladtemperatur' takes the reviewed 'Ladetemperatur'. Spec_Master.csv, spec_titles.csv, Localized_Copy.csv and Spec_Footnotes.csv are re-locked."
+    "2026-09-27: the specification tables follow each block's printed spec page (PDF pages 21/40/59/78/97/116): the fr/es/de/it/uk weight is 19,1 kg; the DC8020 lines keep each block's printed order (fr PV first like English, es/de/it/uk car first) with its own prefixes, and fr adds the printed 'max.' after 12 A; es/de/it/uk list 3 AC outputs; each USB-C port has its own row; labels and headings follow the print (en Charge/Discharge Temperature, the fr/it/uk labels, the it headings, the uk title, the es/it 12 V port, the de footnote), and the print's German typo 'Ladtemperatur' takes the reviewed 'Ladetemperatur'. The fr/es/de/it/uk expansion-port values, which fell back to the English '36.8 V-57.6 V', now hold each block's printed cell (decimal comma, the page's own 'max.'/'máx.'/'макс.' and uk 'В'). The German port headings EINGANGSPORTS/AUSGANGSPORTE, a mixed pair in the print, take the reviewed EINGANGSANSCHLÜSSE/AUSGANGSANSCHLÜSSE that the JE-1000H and JE-3600A EU prints set (PDF page 70 of each). Spec_Master.csv, spec_titles.csv, Localized_Copy.csv and Spec_Footnotes.csv are re-locked."
   ]
 }

@@ -426,12 +426,19 @@ Change (frozen `phase2/` cells; the page is regenerated from them):
 | uk | `spec_titles` and `Localized_Copy` page title | `Специфікації` → `ТЕХНІЧНІ ХАРАКТЕРИСТИКИ` | 116 |
 | uk | `ac_input` l02 `Param_uk`; `Row_label_uk` of `usb_a`, `dc12_port`, `discharging_temperature` | `Режим байпасу` → `Байпасний режим`; `1 вихід USB-A` → `1 вихід USB-A 18 Вт`; `1 × порт DC 12 В` → `Порт постійного струму 12 В`; `Температура розряду` → `Температура розряджання` | 116 |
 | de | `charging_temperature` `Row_label_de` | `Ladtemperatur` → `Ladetemperatur` (reviewed wording, below) | 78; prose 75 |
+| fr–uk | `dc_expansion_input` / `dc_expansion_output` `Value_<lang>` | empty, so the page showed the English `36.8 V-57.6 V⎓75 A max.` / `…55 A max.` → fr/de/it `36,8 V-57,6 V⎓75 A max.`, es `36,8 V-57,6 V⎓75 A máx.`, uk `36,8 В-57,6 В⎓75 A макс.` (outputs 55 A) | 40/59/78/97/116 |
+| de | `spec_titles` and `Localized_Copy` port headings | `EINGANGSPORTS` / `AUSGANGSPORTE` → `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` (reviewed wording, below) | 78 |
 
 The labels keep the house number–unit space where the fr/es/it prints set
-`30W`, `140W` or `12V`. The DC8020 lines are positional: line 1 and line 2 are
-each block's first and second printed line, so `l01` is the PV port in en/fr and
-the car port in es/de/it/uk. The regression test checks that every prefix
-carries its own port's rating.
+`30W`, `140W` or `12V`. The expansion cells equal their printed cells except the
+Italian input, which prints `36,8V-57,6V` and gains the same space. The uk cells
+print Cyrillic `В` and `макс.` with a Latin `A`, as 21 of the page's 26 amp
+values do; the frozen uk cells follow the print letter for letter.
+
+The DC8020 lines are positional: line 1 and line 2 are each block's first and
+second printed line, so `l01` is the PV port in en/fr and the car port in
+es/de/it/uk. The regression test checks that every prefix carries its own port's
+rating.
 
 Where a block words the same item differently, the spec page decides:
 
@@ -450,6 +457,16 @@ Where the print is wrong, the page keeps the reviewed wording:
 
 - de `Ladtemperatur` (p78) becomes `Ladetemperatur`, as the block's own prose
   prints it (p75). The page had copied the typo.
+- de port headings: p78 prints the mixed pair `EINGANGSPORTS` /
+  `AUSGANGSPORTE`. They become `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`, the
+  pair two other EU prints set on PDF page 70:
+  - JE-1000H EU `V2.0-2026-08-03` (SHA-256 `07e9ac4b…`);
+  - JE-3600A EU `2026-05-25` (SHA-256 `bfbcc437…`).
+
+  Both are the prints their frozen sources lock. The JE-2000F lane (#1301)
+  corrects the same pair. The German table itself already says
+  `DC8020-Anschlüsse` and `DC 12 V-Anschluss`. On the page, each heading's
+  table `aria-label` changes with it.
 - The seven print defects the page already corrected stay corrected: the fr
   trademark note printed in English and fr footnote `① 1.`; de `máx.` on the
   bypass output, `1 × USB-A -Ausgänge` and the heading
@@ -461,10 +478,9 @@ Where the print is wrong, the page keeps the reviewed wording:
 
 Not changed:
 
-- The 39 FORMAT differences stay under the house rules. Among them, the fr–uk
-  expansion-port values are the English source text (`36.8 V-57.6 V⎓75 A
-  max.`), where the es/uk prints say `máx.`/`макс.` and uk `В`. They are
-  English fallbacks rather than spacing and may need their own ruling.
+- The other 29 FORMAT differences stay under the house rules. The audit counted
+  39; the ten expansion-port values among them were English fallbacks rather
+  than spacing, so a follow-up of the same day fills them (above).
 - The order of the trademark note and footnote ① comes from the shared
   specification template, which another change handles.
 - The Product overview rows (figure alt text) are not part of this change.
@@ -473,11 +489,19 @@ Verification:
 
 - **Trial Web builds** (default mode, frozen data root) of the six routes: the
   unchanged source reproduces the live 2.8 pages exactly, with image `src`
-  normalized. With the change, only the fixed lines differ: en 2 labels; fr 4
-  cells and the USB-C split; es 4 cells and the split; de 5 and the split; it 11
-  (title, three headings, seven cells) and the split; uk 8 and the split.
+  normalized. With the change, only the fixed lines differ:
+  - en: the 2 temperature labels;
+  - fr: 6 cells (4 plus the two expansion values) and the USB-C split;
+  - es: 6 cells and the split;
+  - de: 7 cells (footnote ① included), the two port headings with their
+    `aria-label`s, and the split;
+  - it: the title, three headings, 9 cells and the split;
+  - uk: the title, 9 cells and the split.
 - **Print check:** every rendered label, prefix and value was compared with the
   page's plain text (a second extraction path, whitespace removed). What is left
-  is FORMAT or one of the eight reviewed corrections.
-- **Regression tests:** `tests/test_je2000e_eu_spec_print.py` (9 tests) fails
-  on the previous cells (28 failures); its print-defect guard passes on both.
+  is FORMAT or a reviewed correction: the seven kept print defects,
+  `Ladetemperatur` and the German heading pair. The ten expansion cells were also
+  compared character by character with their printed cells.
+- **Regression tests:** `tests/test_je2000e_eu_spec_print.py` (12 tests) fails
+  on the previous cells: 11 tests, 39 failing subtests. Its print-defect guard
+  passes on both, by design.
