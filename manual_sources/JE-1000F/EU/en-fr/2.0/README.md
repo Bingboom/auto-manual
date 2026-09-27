@@ -165,8 +165,22 @@ becomes `Ladetemperatur`, as the DE block spells it in running text (PDF page
 (V2.0-2026-08-03) and the JE-3600A EU print (2026-05-25) set that pair on PDF
 page 70 of each. The IT DC8020 line 2 keeps the print's `12 A` without `max.`;
 it may be a print defect, but it is left as printed. The ES/DE/IT review pages
-are not edited, because the review sync rewrites them from these cells. Their
-print blocks put the ① footnote first, but on the Web it still follows the ※
-note, because the shared spec template renders notes first. EN is unchanged:
+are not edited, because the review sync rewrites them from these cells. Like
+their print blocks, they now render the ① footnote before the ※ note, through
+`docs/templates/spec_template_footnotes_first.rst` (#1306, see the notes-order
+note below). EN is unchanged:
 its block (PDF page 19) prints the ※ note first. `source_manifest.json`
 re-locks the four CSV files and the FR review page.
+
+Specification notes order (2026-09-27): the FR/ES/DE/IT blocks of the print set
+the footnote above the ※ USB Type-C trademark note (PDF pages 36/53/71/88); the
+EN block sets the ※ note first (page 19). The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. The `--source review` build regenerates the ES/DE/IT spec pages
+through this template, so the review pages are not edited. EN and FR build
+`review-asis` from their reviewed pages, which this change does not touch; EN
+keeps the printed ※-first order. `source_manifest.json` re-locks the registry
+and records the change.

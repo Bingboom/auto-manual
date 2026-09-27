@@ -73,3 +73,12 @@ parameter label. An empty `Param_uk` falls back to the English `Param_source`, s
 the appended `line_text_uk` column (the documented `line_text_*` rendered-line
 field) holds those two lines; each repeats `Value_uk`. `source_manifest.json`
 re-locks the file.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnotes above the ※ USB Type-C trademark note (PDF pages
+19/36/53/70/87/104), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.

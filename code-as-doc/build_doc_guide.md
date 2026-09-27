@@ -702,7 +702,10 @@ Carrier tag axes:
 - use `Note_id` as the stable note key and `Note_order` as the rendered order
 - keep `Type=Note` in the synced Feishu-backed rows so downstream renderers preserve the explicit trailer type
 - keep only plain note text in `Text_*`
-- when both note and footnote blocks appear at the bottom of one spec page, the final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
+- when both note and footnote blocks appear at the bottom of one spec page, the final display order follows the template named by the `spec` row of the `page_registry.csv` the build reads (each frozen `manual_sources/.../phase2` source carries its own; [`../data/phase2/page_registry.csv`](../data/phase2/page_registry.csv) serves every live target):
+  - [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst), the default, puts the notes (such as the ※ USB Type-C trademark note) first
+  - [`../docs/templates/spec_template_footnotes_first.rst`](../docs/templates/spec_template_footnotes_first.rst) puts the footnotes first, for sources whose print sets them first; [`../tests/test_spec_notes_order.py`](../tests/test_spec_notes_order.py) lists the frozen sources that name it
+  - the two templates differ only in the order of their two HTML trailer placeholders, so the Web and the Word bundle (which takes its trailer order from the HTML) follow the named template, while the LaTeX branch, and with it the PDF and IDML output, is the same; keep the files otherwise identical (the test checks it)
 
 run:
 
