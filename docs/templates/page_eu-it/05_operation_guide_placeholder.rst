@@ -48,15 +48,33 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 | Premi una volta
 |
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. The JE-1000H print (EU-UK V2.0-2026-08-03, PDF page 80) rates its high-power
+   USB-C port at 140 W and adds the 28 V/5 A cable rating; each model follows its
+   own print.
 
-   * - **ATTENZIONE**
-     -
-       - **USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).** Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio.
-       - Collega |PRODUCT_NAME| solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o di altri standard equivalenti).
-       - Per ottenere la massima potenza di uscita, usa il cavo da USB-C a USB-C da 5 A (20 V CC/5 A, 100 W).
+.. only:: model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENZIONE**
+        -
+          - **USB-C 140W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).** Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio.
+          - Collega |PRODUCT_NAME| solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o di altri standard equivalenti).
+          - Per ottenere la massima potenza di uscita, usa il cavo da USB-C a USB-C da 5 A (20 V CC/5 A, 100 W; 28 V CC/5 A, 140 W).
+
+.. only:: not model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENZIONE**
+        -
+          - **USB-C 100W è una porta di uscita ad alta potenza USB-PD Power Source 3 (PS3).** Se il dispositivo o l'accessorio collegato non soddisfa i requisiti di sicurezza, potrebbe esserci un rischio di incendio. Prima di utilizzare queste porte, assicurarsi che il dispositivo o l'accessorio collegato sia dotato di protezione antincendio.
+          - Collega |PRODUCT_NAME| solo a dispositivi o accessori conformi alle clausole 6.3, 6.4 e 6.5 della norma IEC/EN/UL 62368-1 (o di altri standard equivalenti).
+          - Per ottenere la massima potenza di uscita, usa il cavo da USB-C a USB-C da 5 A (20 V CC/5 A, 100 W).
 
 | Il prodotto può ricaricare la batteria dell'auto utilizzando il cavo Jackery per la ricarica della batteria dell'auto a 12 V, venduto separatamente e disponibile sul nostro sito web.
  

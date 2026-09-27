@@ -55,5 +55,8 @@ Ukrainian warning label (2026-09-27): the uk symbols table prints the Italian
 `AVVERTENZA` (PDF page 91). The uk WARNING label now reads `ПОПЕРЕДЖЕННЯ`, as
 the same page prints it on its safety callout, in `phase2/Localized_Copy.csv`
 and `phase2/symbols_blocks.csv`. `source_manifest.json` re-locks both files.
-The de/it temperature heading stays in English, as printed (PDF pages 70/87);
-whether to translate it is an open operator question.
+The de/it temperature heading, which the print sets in English (PDF pages
+70/87), now uses the reviewed `UMGEBUNGSTEMPERATUR IM BETRIEB` /
+`TEMPERATURA OPERATIVA AMBIENTALE` in `phase2/spec_titles.csv` and
+`phase2/Localized_Copy.csv` (operator ruling 2026-09-27); `source_manifest.json`
+re-locks both files.
