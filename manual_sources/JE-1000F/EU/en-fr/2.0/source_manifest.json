@@ -124,6 +124,24 @@
         88
       ],
       "change": "The ENVIRONMENTAL OPERATING TEMPERATURE row of spec_titles.csv carried the English fallback in title_es/title_de/title_it, and the ES/DE/IT Web specification pages showed that English heading (and figure label). The cells now hold each block's printed heading: es 'TEMPERATURA DE FUNCIONAMIENTO' (PDF page 53), de 'UMGEBUNGSBETRIEBSTEMPERATUR' (page 71), it 'TEMPERATURA OPERATIVA AMBIENTALE' (page 88); the non-rendering Localized_Copy.csv twin spec.section.environmental_operating_temperature (text_es/text_de/text_it) matches. The --source review build regenerates the spec pages from these cells, so the review pages are unchanged. FR keeps its reviewed heading (review-asis) and the FR/UK cells are unchanged."
+    },
+    {
+      "scope": "FR/ES/DE/IT specification tables",
+      "pdf_physical_pages": [
+        36,
+        53,
+        67,
+        71,
+        88
+      ],
+      "change": "Values, structure and labels of the Web specification tables now follow each print block; unit spacing, case, decimal comma, '⎓' and 'max.' keep the house format. FR (review-asis; the spec_fr.rst review page, both carriers; PDF page 36): 'N° modèle', capacity '1024 Wh (20 Ah / 51,2 V DC)', and the ① bypass footnote now precedes the ※ USB Type-C note as printed. ES/DE/IT (--source review regenerates their spec pages from Spec_Master.csv; PDF pages 53, 71, 88): es DC8020 line 2 gains the printed maximum ('16 V-60 V⎓12 A máx., …'); de/it drop the unprinted temperature condition from the 100 W USB-C line; the merged USB-C row splits into the printed 30 W and 100 W rows (es 'Salida USB-C 30 W'/'Salida USB-C 100 W', de '1 × USB-C-Ausgang 30 W'/'… 100 W', it '1 × Uscita USB-C 30 W'/'… 100 W'); es 'Química de las celdas', 'Vida útil en ciclos' with '4000 ciclos hasta conservar más del 70 % de capacidad', '1 × Puerto CC 12 V' and capacity '… V DC'; de '2 × DC8020-Ports' and '1 × USB-A'; it capacity '1024 Wh (20 Ah / 51,2 V DC)', 'Vita ciclica', '1 × USB-A' and 'Temperatura di scarica'. Spec_Footnotes.csv ac_bypass Text_es/Text_de/Text_it hold each block's printed bypass footnote, so the bypass row also gets its ① marker. spec_titles.csv title_it and the non-rendering Localized_Copy.csv twins hold the printed 'PORTE IN INGRESSO' and 'PORTE IN USCITA'. Print defects keep the reviewed wording: the it AC input/output '60 Hz' stays 50 Hz, the de 'máx.' stays 'max.', and the de table's 'Ladtemperatur' becomes 'Ladetemperatur', as the DE block spells it in running text (PDF page 67). The it DC8020 line 2 keeps the print's '12 A' without 'max.' (a possible defect, left as printed). EN (PDF page 19 prints the ※ note first) and the UK cells are unchanged. The ES/DE/IT review pages are not edited because the review sync rewrites them from these cells; their ① footnote still follows the ※ note because the shared spec template renders notes first, while their print blocks put ① first."
+    },
+    {
+      "scope": "DE specification port headings (print defect)",
+      "pdf_physical_pages": [
+        71
+      ],
+      "change": "The DE block prints the port headings as a mixed pair, 'EINGANGSPORTS' / 'AUSGANGSPORTE' (PDF page 71). The Web now uses the reviewed pair 'EINGANGSANSCHLÜSSE' / 'AUSGANGSANSCHLÜSSE', which the JE-1000H EU print (V2.0-2026-08-03, sha256 07e9ac4b…) and the JE-3600A EU print (2026-05-25, sha256 bfbcc437…) set on PDF page 70 of each; JE-2000F/EU takes the same pair (#1301). spec_titles.csv title_de of the INPUT PORTS and OUTPUT PORTS rows and the non-rendering Localized_Copy.csv twins (spec.section.input_ports / output_ports, text_de) hold it. The --source review build regenerates the DE spec page from these cells, so the review page is not edited."
     }
   ],
   "files": [
@@ -134,8 +152,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 9987,
-      "sha256": "ace51736c2ca1585d5d8917b9e1e6905177c74a4063b24c5eb32f094e561b891"
+      "size": 10002,
+      "sha256": "8e591e380a30d4fcf2f80136146b7c19c947e492c0d93648b2ad32364646b28a"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -144,13 +162,13 @@
     },
     {
       "path": "phase2/Spec_Footnotes.csv",
-      "size": 480,
-      "sha256": "b98d5aa0f6f345395df9b45ae00f44b89f38c33103dbf673dd977f61201c9c21"
+      "size": 848,
+      "sha256": "e2b4dd4d941b1a0a08cb8ed43070e695e7e6a44c850b600bbb55139b2790e95b"
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 22380,
-      "sha256": "6418641d0978c72de96604edb9ebbfc8902d46724419938f149d2e34a001b9b6"
+      "size": 22357,
+      "sha256": "5236d39c19e761c40bc387a3c83c79e2df608667f37c337b7a2938d6f3d5c4e4"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -684,8 +702,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 1011,
-      "sha256": "1b965f97136f44d6fe19c2fa69360cd022a3e43d62a38e7d2bfca444f0820e4b"
+      "size": 1026,
+      "sha256": "a78fd77b6bc758dc5f32db72f7d845b1c9cf0782c8b337bc37b942090207e4b8"
     },
     {
       "path": "phase2/symbols_blocks.csv",
@@ -1311,8 +1329,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_fr.rst",
-      "size": 7939,
-      "sha256": "1c2911ca02ab1a4f06e211c79392249e763a04b11474658cc2be72f94554b3af"
+      "size": 7933,
+      "sha256": "68ba03b1d245d5e0f839952768deabefb2d1713596ec1a2f29502f8674d8bda7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/spec_it.rst",
