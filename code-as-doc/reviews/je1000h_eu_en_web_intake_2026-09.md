@@ -157,3 +157,63 @@ The Ukrainian footnote ② for the total AC output was printed without "стру
 ("…вихідних портів змінного працюють разом"). The operator ruled to add the noun
 in both JE-1000H and JE-3000C. One cell changes: `Spec_Footnotes.csv` `Text_uk`
 for `ac_total_output`. The file is re-locked in `source_manifest.json`.
+
+## 2026-09-26 Product-overview callouts and trademark note
+
+This closes the follow-up left open on 2026-09-25. The finished fr–uk overview
+figures consume their callout tables and keep the text as the image alt text
+(`covered_annotations`). That alt text carried the 2026-09-15 extraction damage:
+a lost `⎓`, truncated values (`1800 W nomi`, `12 В 10`, `…/400`), the PV/car
+prefixes dropped, the `ﬁ` ligature and `~50 Hz` spacing. It also carried the
+German print defect `DC-12V-Ausgangstaste`, which labels the 12 V socket as an
+output button.
+
+**What changed.** 41 `Spec_Master.csv` cells: the eight `Product overview` value
+slots (DC 12 V, USB-C 140 W / 30 W, USB-A, AC output, AC input, PV, car) in each
+of fr/es/de/it/uk, plus the German 12 V port label. Each value comes from its
+block's printed overview (PDF pages 25/42/59/76/93). Callouts are grouped by font
+(bold label, regular value lines) and located by column and position, which
+all six blocks share. The rules are the same as for the specification cells:
+
+- Wording comes from the print, in the house format of the reviewed frozen
+  sources. JE-3000C's print-derived overview cells are the reference.
+- Print defects use reviewed cross-model wording.
+
+The five `je1000h_eu_<lang>_illustrations.json` overview bindings are re-bound
+to the corrected tables, with the selectors unchanged. The other labels, the
+controls and the total-output row are unchanged; total output is not printed
+on this overview.
+
+**Deviations from the print:**
+
+- **German:** the 12 V port reads `12-V-DC-Anschluss`, as on JE-1000F, JE-2000E,
+  JE-2000F and JE-3000C. The figure itself stays as printed.
+- **French:** `Oiture:` becomes `Voiture :`; the truncated `1800 W nomina`
+  becomes `1800 W nominal`, as in this model's specification table.
+- **Spanish:** split decimals (`1, 5 A`) are joined.
+- **Ukrainian:** the Latin `9V` becomes `9 В`.
+
+**Trademark note.** The it and uk blocks print the German conjunction in
+`※ USB Type-C® und USB-C® …`. `Spec_Notes.csv` now uses the reviewed `e`
+(it) and `та` (uk) of the JE-1000F/JE-2000E/JE-2000F/JE-3000C EU rows. The live
+notes table has no JE-1000H row, so there is nothing to write back.
+
+**Verification:**
+
+- **Independent print check:** every changed value, canonicalised, equals a run
+  of whole lines in its overview page's plain `get_text("text")`. This is a
+  different extraction path from the span extractor that built the cells, and
+  it also catches truncation. Only the listed substitutions are exempt. The
+  pre-change file fails 36 of the 41 cells.
+- **Figures:** every value keeps the English digit sequence and `⎓` count.
+- **English control:** 8 of 8 value slots land on their printed callout
+  digits.
+- **Regression tests:** `Je1000hEuOverviewSlotTests` also checks that every
+  overview cell appears in its figure's binding. It and the trademark-note test
+  fail 50 subtests on the previous files.
+- **Trial Web build:** against the origin/main build, only the two overview
+  `alt` attributes change on each fr–uk route, plus the trademark line on it and
+  uk. English is unchanged. Against the live pages, the only other difference
+  is the callout label-sizer spans that main already carries (#1288).
+- **Live tables:** no `JE-1000H_EU` rows exist in 规格参数明细 or 页面占位参数
+  (only AU/KR rows), so the frozen source is the only place to fix.

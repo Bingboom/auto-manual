@@ -47,13 +47,13 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23445,
-      "sha256": "c2e28e1e2734856253bf22c8d4c9a23e00e839fd152fa01f5ab98a7c908b1c50"
+      "size": 23834,
+      "sha256": "32f01c13a67269f101f6f11f6cce1407061027d3da1bf3dd9d75a90cb9a84d4e"
     },
     {
       "path": "phase2/Spec_Notes.csv",
-      "size": 750,
-      "sha256": "39415bb96dd4dc07b2cd00ddaff828aa510ff1eaa0270ff0ea06f380ad398de9"
+      "size": 749,
+      "sha256": "17e5553a57290991c5919dbcfc6a0b3bbad30ac53c4f9b47d722943f4fd7b02a"
     },
     {
       "path": "phase2/Status_Words.csv",
@@ -106,7 +106,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "b605ce2a9c03f1584e05afddc7121bd9ca1d60e468e09f80bc611b105935adea",
+  "files_inventory_sha256": "44ffffb9abb6af022f38fbdfe944db2d518aa85cb3146b395fc61ee46862fe39",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
