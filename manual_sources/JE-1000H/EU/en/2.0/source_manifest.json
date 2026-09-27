@@ -32,8 +32,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 7364,
-      "sha256": "095d6e8bc6de8d6cce2c76ab7d10a2bc9edaa7b106f62b55acdaddfb5dbaa048"
+      "size": 7378,
+      "sha256": "2d168c36988ead753be91666e939fe0fcf748e3991f9dccdd7ea1572fa0348f8"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -92,8 +92,8 @@
     },
     {
       "path": "phase2/symbols_blocks.csv",
-      "size": 10665,
-      "sha256": "f57329dd0c1b8676adb03e4be582c638ef5d9278022227ede50359c9e88304df"
+      "size": 10693,
+      "sha256": "e006948ad7ff4674a0bc95a7d17697cd83acc0b91ab5f6bd9fb270040a0f9a09"
     },
     {
       "path": "phase2/troubleshooting_blocks.csv",
@@ -106,7 +106,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "44ffffb9abb6af022f38fbdfe944db2d518aa85cb3146b395fc61ee46862fe39",
+  "files_inventory_sha256": "9d4514b01a8e0bcfdbd650f2625186bb1d613addda55797d2845fb7fcde71659",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
