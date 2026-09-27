@@ -18,8 +18,24 @@ UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
    :header-rows: 0
    :widths: 12 88
 
+   * - **WARNUNG**
+     - Verwenden Sie dieses Produkt nicht für Anwendungen wie Datenserver oder medizinische Geräte, bei denen eine Fehlfunktion lebensgefährlich sein oder erhebliche Sachschäden verursachen kann.
+
+       Bei den folgenden Geräten kann ein Ausfall der Stromversorgung während des Betriebs zu schweren Personenschäden oder erheblichen Sachschäden führen:
+
+       - Medizinische Geräte und andere Geräte, die unmittelbar der Sicherheit von Menschen dienen.
+       - Kritische Einrichtungen wie Infrastruktur und öffentliche Versorgung.
+       - Geschäftskritische Unternehmenssysteme usw.
+
+       Personen mit einem Herzschrittmacher (Schrittmacherträger) dürfen dieses Produkt nicht verwenden.
+
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
    * - **VORSICHT**
      -
        - Dieses Produkt unterstützt kein Umschalten mit 0 ms. Schließen Sie es nicht an Geräte an, die eine Stromversorgung mit 0-ms-Umschaltung erfordern, wie z. B. Datenserver oder Workstations.
        - Testen Sie vor der Verwendung die Kompatibilität mit Ihrem Gerät mehrmals.
        - Schließen Sie keine Lasten an, die die maximale Ausgangsleistung des Produkts überschreiten. Andernfalls wird der Überlastschutz ausgelöst.
+       - Die UPS-Funktion funktioniert nur, wenn ein einzelnes Gerät direkt an eine Netzsteckdose angeschlossen ist. Schließen Sie nicht mehrere tragbare Power Stations in Reihe (Kaskadenschaltung) an. In einer Kaskadenschaltung funktioniert die UPS-Funktion nicht: Das Gerät kann bei einem Stromausfall möglicherweise nicht umschalten, wodurch angeschlossene Geräte ausfallen.

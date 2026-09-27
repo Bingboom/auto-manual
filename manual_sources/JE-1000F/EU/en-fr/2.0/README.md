@@ -184,3 +184,18 @@ through this template, so the review pages are not edited. EN and FR build
 `review-asis` from their reviewed pages, which this change does not touch; EN
 keeps the printed ※-first order. `source_manifest.json` re-locks the registry
 and records the change.
+
+UPS warning (2026-09-27): the six UPS review pages (`page/06_ups_mode.rst` and
+`p24`/`p39`/`p54`/`p69`/`p84` for fr/es/de/it/uk) gain a UPS WARNING (data
+servers and medical devices; life-safety, infrastructure and business-critical
+equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth
+CAUTION bullet (one unit directly on a wall outlet, no cascade). The shared
+`docs/templates/page_shared/<lang>/06_ups_mode.rst` templates carry the same two
+blocks. The operator ruled on 2026-09-27 that every model using the shared UPS
+template carries them, although this model's V2.0-2026-06-18 print does not.
+The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print
+(PDF pages 14-15, 30-31, 46-47, 62-63, 78-79, 94-95). House fixes: `outlet. Do`
+for the printed `outlet.Do`, whole-word labels, and a real bullet for the
+Ukrainian item. The UK page, which no published Web route reads, changes too, so
+the merged book stays consistent. No composite governs the UPS page.
+`source_manifest.json` re-locks the six files and records the change.

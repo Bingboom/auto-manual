@@ -151,6 +151,10 @@
         88
       ],
       "change": "The FR/ES/DE/IT blocks of the print set the footnotes above the ※ USB-IF trademark note (PDF pages 36, 53, 71 and 88); the EN block sets the ※ note first (page 19). The spec row of phase2/page_registry.csv now names docs/templates/spec_template_footnotes_first.rst, whose HTML branch renders the footnotes before the notes and whose LaTeX branch is byte-identical to spec_template.rst, so the PDF and IDML output is unchanged. The --source review build regenerates the ES/DE/IT spec pages through this template, so the review pages are not edited. EN and FR build review-asis from their reviewed pages, which this change does not touch; EN keeps the printed ※-first order."
+    },
+    {
+      "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages",
+      "change": "The six UPS review pages (page/06_ups_mode.rst and p24/p39/p54/p69/p84 for fr/es/de/it/uk) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator ruling of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79/94-95), with the house fixes 'outlet. Do', whole-word labels and a real Ukrainian bullet. The UK page, which no published Web route reads, changes with the others so the merged book stays consistent. No Web composite governs the UPS page."
     }
   ],
   "files": [
@@ -983,8 +987,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/06_ups_mode.rst",
-      "size": 1384,
-      "sha256": "f4ad3c3009f2b9e980c6fa9bae6870c952b00a7ff10a06a8b88915dde599da39"
+      "size": 2399,
+      "sha256": "02a68ef234a0a69a5c6a052248ab4abca617554b8fdbc8a897fbb6e5a6bac17d"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/08_charging_methods.rst",
@@ -1063,8 +1067,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst",
-      "size": 1674,
-      "sha256": "f5905e61ccfdf8d2086c1831c0c91e55b3f7046afff9729368f0a6ace641fa00"
+      "size": 2929,
+      "sha256": "03280c208bc2481b2c9f4396edbf8e7066b657d2b676cf55628f561e693fe964"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p25_charging.rst",
@@ -1113,8 +1117,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst",
-      "size": 1609,
-      "sha256": "638697edc57cbbae91fed1b50b8ece7c2bbe076e8013a6654941a5d15ac44896"
+      "size": 2812,
+      "sha256": "236fc12e3b2ca0104334b446606905c18bad39e8030ba3a0831105f9716c4a36"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p40_charging.rst",
@@ -1163,8 +1167,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst",
-      "size": 1600,
-      "sha256": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8"
+      "size": 2764,
+      "sha256": "81a3a35000176dcf66a3eb712daeba6b6cd2c2babd79236b0b52d939be2eb32d"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p55_charging.rst",
@@ -1213,8 +1217,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst",
-      "size": 1574,
-      "sha256": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe"
+      "size": 2792,
+      "sha256": "db38f1287a4533f2ff66f337fdb998fd39858b47cf3987c1ade2b2b9bbe57231"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p70_charging.rst",
@@ -1263,8 +1267,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst",
-      "size": 2534,
-      "sha256": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5"
+      "size": 4374,
+      "sha256": "fa5a9073f0a09cb07f8627b20a3fafb17a32926f5aaed842649cabdd7b65dc92"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p85_charging.rst",
