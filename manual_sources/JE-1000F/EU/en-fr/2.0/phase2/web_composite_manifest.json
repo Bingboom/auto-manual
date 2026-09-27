@@ -8,7 +8,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.ac-output_de_eefd36599ef3.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "29718991dc1aa6bb7d403b201a13c136ea82969a70c9d9eba62f7376fd9647a2",
+      "source_fragment_sha256": "003e1edc68e5eaf7beeca38b1ceb31c56010eb16595a7c795b728c8c7e4e6ee6",
       "source_page": 63,
       "web_replace_key": "operation.ac-output"
     },
@@ -20,7 +20,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.dc-usb-output_de_db2e22568da0.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "15af87d97a1dab919d9632106f00643d7be85dd8057eaf431725742240f3b02c",
+      "source_fragment_sha256": "896337c1b26d03b73565987ac28fb1fbb224e6536afec6a4921a960b2c8f9f25",
       "source_page": 64,
       "web_replace_key": "operation.dc-usb-output"
     },
@@ -32,7 +32,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.energy-saving_de_b9eb96b32d60.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "a9c10c37f4d91bd421f7a99cc1c3833b6112033c0414b7d424317ce9398d309d",
+      "source_fragment_sha256": "883aeb040c1d3095c77fec53051b882eeeb968006fa0437d35fc7ec8af707621",
       "source_page": 65,
       "web_replace_key": "operation.energy-saving"
     },
@@ -44,7 +44,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.led-light_de_f35210360304.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "bab5e8484c09cb31e8c4206d083363e3a437a5a98440c2da55f1e756d8270970",
+      "source_fragment_sha256": "108010b3918443ceb3417b19fd1ee0cc76b09e16e938575054795c33eebd3103",
       "source_page": 65,
       "web_replace_key": "operation.led-light"
     },
@@ -56,7 +56,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.main-power_de_41b0974b8970.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "58cd0783aec3c9a18267a7bc488bc8fc1b786063f8569530e6333e0c31f8afa8",
+      "source_fragment_sha256": "f10a240ca2caf3dc9e1c1236155d44b5630775c442906639c38af0ef9cec9580",
       "source_page": 63,
       "web_replace_key": "operation.main-power"
     },
@@ -68,7 +68,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.front_de_95164f86b2b7.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "6533d7e321ec4bbe2607f2e568d25cb1e4b86ee217f47026ae89b827ac32a146",
+      "source_fragment_sha256": "02ad9d8a9f009a544909c7f91be409ea6ee8baf00573e66bf7e5a6cfbc8f9a50",
       "source_page": 60,
       "web_replace_key": "product-overview.front"
     },
@@ -80,7 +80,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.right_de_3edc17cfcca3.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "5edc80abc23c8085c801acfa39027b1b739555d5e51d863dc59f3276972f9fca",
+      "source_fragment_sha256": "acc4eaac701f66699fdabcc060f963be90e6e620e4f1036511eb3c552800f240",
       "source_page": 60,
       "web_replace_key": "product-overview.right"
     },
@@ -92,7 +92,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-ac-wall_de_816f5bfb098b.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "75dc60b3ea37ad6ac5b0f9ffe41bb29f71397f93b707cd872dfcb6f8174b6ab2",
+      "source_fragment_sha256": "3b47b07aacf64560d7479e3a164d0e0bd929870de5737cca0940e5122a84c65b",
       "source_page": 68,
       "web_replace_key": "reference.charging-ac-wall"
     },
@@ -104,7 +104,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-car_de_4e3894dbfbe0.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "1de0cbced53ee411b876ffc0452c20c2c624cfcd534200185489bc6d4429e888",
+      "source_fragment_sha256": "5c4e26a9a2d0621f338d3e4d643069de69babc69548f2ce7f3b1c1c15ae6b83e",
       "source_page": 69,
       "web_replace_key": "reference.charging-car"
     },
@@ -116,7 +116,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-adapter_de_6eb8244df99a.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "b88129955637d5ce562ef507f050a0c911c8887718b4e28adc1b76827556ba1e",
+      "source_fragment_sha256": "c796ae12d18c5e794634b26f9d30917f8b003e0423b35ef17efba762ad434c9b",
       "source_page": 69,
       "web_replace_key": "reference.charging-solar-adapter"
     },
@@ -128,7 +128,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-direct_de_2e3b2cbda5f2.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "49f99bf96d9a9097e380af9deb8a82211a19214e83d7510998a70688c62983b6",
+      "source_fragment_sha256": "5cf70f6e8b386fca1c92eeff8f22fec86e35a6750b444c1de9ad116674609afd",
       "source_page": 68,
       "web_replace_key": "reference.charging-solar-direct"
     },
@@ -142,7 +142,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.ac-output_en_d775fac753d4.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "0e29b06a0a636991126862b686c09f3237a2a385d16c9e58421dea059cf3b84a",
+      "source_fragment_sha256": "91b6a88acbfbb8b598fcf535640121312ca05068b22b1b9b6616e47c67d62be1",
       "source_page": 11,
       "web_replace_key": "operation.ac-output"
     },
@@ -156,7 +156,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.dc-usb-output_en_8d9c9faed173.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "be51378ed387cb0ef0aad1d604334be5de0cd40315893e4b1b024adc5cc737ca",
+      "source_fragment_sha256": "bb50bf7da201494920513fa8eb3685bb9afb118da58053e6fd891f1e44968605",
       "source_page": 12,
       "web_replace_key": "operation.dc-usb-output"
     },
@@ -170,7 +170,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.energy-saving_en_0172891c9485.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "d1e471435b17fcf3e0ec6ec54938f66e5fcf1be9a061b3302a965404f8c25a12",
+      "source_fragment_sha256": "2c6da97b05105773b1b33b9521378d37c02c61f42b7e4f5683c8286d160c5748",
       "source_page": 13,
       "web_replace_key": "operation.energy-saving"
     },
@@ -184,7 +184,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.led-light_en_ca664bce0375.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "67650270634ec2e587ab7a5195585f20c0d92faccd0a2f622af14cd8b713e3d9",
+      "source_fragment_sha256": "634a027c3f010d332ba419e25a70554aaea716e9c0d2d46b293d07a9f0a81a62",
       "source_page": 13,
       "web_replace_key": "operation.led-light"
     },
@@ -198,7 +198,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.main-power_en_d146a09b705b.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "01f995ade5e371cb39f73d74d82b19870877b65b485c117e0286a4b4ee81bcb6",
+      "source_fragment_sha256": "469825329f104ea8112cd40e1da125cad9620d32f32c7db23eb4600b1ac8ccab",
       "source_page": 11,
       "web_replace_key": "operation.main-power"
     },
@@ -212,7 +212,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.front_en_29bdd9e2f9e6.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "58b968c6267988c7d7d8c1f4f0e04bec15bfd28b4d7e40436267f463aded4065",
+      "source_fragment_sha256": "3fb5c98d2bb7ef523f530724dcee6279445dcafe3df4374bf4b058593766c9a3",
       "source_page": 8,
       "web_replace_key": "product-overview.front"
     },
@@ -226,7 +226,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.right_en_51e55d14c7f2.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "ddea23a86d6496e833646524236550847d6a45d6b1a9743b688bc5f99913d816",
+      "source_fragment_sha256": "83f1c63115438a30aa9b1e758a281ec14567ad667a3116b4ae6ea23b91180f10",
       "source_page": 8,
       "web_replace_key": "product-overview.right"
     },
@@ -240,7 +240,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-ac-wall_en_4f2729db0ddb.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "cd4f99e6cc22ddd8c44bcf810fcf23d3fb4c65c4377a0c851173e60cc47759f8",
+      "source_fragment_sha256": "879883d0a9b16d7234f23e7efc45cacb8f7b6d4790762e1d5512f3727983d131",
       "source_page": 16,
       "web_replace_key": "reference.charging-ac-wall"
     },
@@ -254,7 +254,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-car_en_11ef39e9a113.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "517541c7cc5ac5bbfc6c28beb4d4514ed19ba8bf30a4f84262ec77f599bf867e",
+      "source_fragment_sha256": "b9f6a0b34017081b2caee4d75b1c7f2ae1523c7a96647bd15471fd7cf67504e5",
       "source_page": 17,
       "web_replace_key": "reference.charging-car"
     },
@@ -268,7 +268,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-adapter_en_c57e7dbb85f0.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "04f1cf78c699f357ee7cd5e8308c801210a80abbbca6a3a93fab145f1e6ffdac",
+      "source_fragment_sha256": "d208fc4dec2b33f2feb45ac87fd76ae8cf0942cea47a557297d065c33a35ec7f",
       "source_page": 17,
       "web_replace_key": "reference.charging-solar-adapter"
     },
@@ -282,7 +282,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-direct_en_5c91e2f80ff4.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "6631fa89f0f18188b6701f43b926411d6b553914ccf6c79f41f642a46466ce2d",
+      "source_fragment_sha256": "e170161a0bf0d85738bcf9864929c152ed57952ffb1010464aaeea23f8f25203",
       "source_page": 16,
       "web_replace_key": "reference.charging-solar-direct"
     },
@@ -580,7 +580,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.ac-output_it_3fae4a706b6f.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "f787a55802293f568633bba3cd99772778d968d00fb7efb9b4342338c88f4af1",
+      "source_fragment_sha256": "b70692f558a329d7a08544816b59fb7b01c7ecd74399145ea5671f15afdc34fe",
       "source_page": 80,
       "web_replace_key": "operation.ac-output"
     },
@@ -592,7 +592,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.dc-usb-output_it_46e632819072.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "bc94b223d0418fc0ad0d11a5b59bd8372b9900b12b4591b32fa3c3ce1c91ba00",
+      "source_fragment_sha256": "cee3ff234f0a265712553077c90228d947ed61370a1ae6e4f185887f5a6bd842",
       "source_page": 81,
       "web_replace_key": "operation.dc-usb-output"
     },
@@ -604,7 +604,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.energy-saving_it_57a3296be38a.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "e527901532000def89171f6727a955beb0ff5be6d57ebb0c58c354ffc35c1c7a",
+      "source_fragment_sha256": "6d64e263cd8162db82d8757128ab1cb24359e83efd5a72c2b723620eb6f4bf0d",
       "source_page": 82,
       "web_replace_key": "operation.energy-saving"
     },
@@ -616,7 +616,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.led-light_it_cbd02dc0d35e.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "2302437af192d37b6376c63f62958554181586cd1fcf0e4bd2ee165ae56604ba",
+      "source_fragment_sha256": "bcd252c6d5dac9a909f94594bf4cc38ffc67ec3574f5ba26c90b2e395566af01",
       "source_page": 82,
       "web_replace_key": "operation.led-light"
     },
@@ -628,7 +628,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/operation.main-power_it_b6ba22bf8a02.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "086a1bcd8402d023dc06b5732fa15f6da4030146f7b4e8914d17f26978ef522e",
+      "source_fragment_sha256": "1557131cb50575949b09ad5c5991538372b828ae8b61ce10e5f89d7a18f2a3ae",
       "source_page": 80,
       "web_replace_key": "operation.main-power"
     },
@@ -640,7 +640,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.front_it_94e88239416f.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "9d29d0b92cb4c49695be6b622ec7d4e4776309c7c8ffe8c47f7e6aef02df9261",
+      "source_fragment_sha256": "916ea6603cc6c70548ca4b320b41f43134eef750a89c756b5d98fe17a67df090",
       "source_page": 77,
       "web_replace_key": "product-overview.front"
     },
@@ -652,7 +652,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/product-overview.right_it_92b0ed2a03fb.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "1c8e3099c776f630ad992a180966d656c30b471d367e72c9272abb107cbb9c63",
+      "source_fragment_sha256": "8ce096d808d91e8678d0edcdf27dbfc68b7da3987c1a6682c5178b32f6fe3516",
       "source_page": 77,
       "web_replace_key": "product-overview.right"
     },
@@ -664,7 +664,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-ac-wall_it_8415ace8180e.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "18c935b5e908262e13c7c05094de6e75bc295484a59df49cc5f013fb9b14edf0",
+      "source_fragment_sha256": "f2d0d01e598919b6eb57dc274f70319d8498de2538cd333583a6a311d36ce4e9",
       "source_page": 85,
       "web_replace_key": "reference.charging-ac-wall"
     },
@@ -676,7 +676,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-car_it_ed8f8cb22483.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "cc4a261082634bf0e0311cad15a07b5b2cdea6bbc5e9bfbab1b75efc5aac05cb",
+      "source_fragment_sha256": "2df7696559b581c2e7bb6da64bb7010cfb5ddc2aac835d3ba34fc302b3d980a3",
       "source_page": 86,
       "web_replace_key": "reference.charging-car"
     },
@@ -688,7 +688,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-adapter_it_6eb8244df99a.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "eb150fe7acab6c35f3b3a23e9269e04589ab9285c82eb2e53dad7232094879b8",
+      "source_fragment_sha256": "9e58fec8494080030487f5e551b2277e2273d7a0eea5c6d8c7ce9021c0d4b817",
       "source_page": 86,
       "web_replace_key": "reference.charging-solar-adapter"
     },
@@ -700,7 +700,7 @@
       "model_scope": "JE-1000F",
       "path": "_attachments/web_composites/reference.charging-solar-direct_it_2e3b2cbda5f2.png",
       "region_scope": "EU",
-      "source_fragment_sha256": "0cfe2756bd4ba83fd8b7dc4af014c1061d99f4da6f57889e89469c070287d567",
+      "source_fragment_sha256": "3aa9e6596a5fae2b8ec19566ced9c5aca0ee045d4f99caffe58fd2d9f0e4ac6b",
       "source_page": 85,
       "web_replace_key": "reference.charging-solar-direct"
     },

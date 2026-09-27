@@ -4,13 +4,13 @@ AUFLADEN ÜBER SOLARMODULE (SEPARAT ERHÄLTLICH)
 |PRODUCT_NAME| verfügt über zwei |DC_INPUT_CONNECTOR|-Eingangsanschlüsse und ist mit den Jackery-Solarmodulen kompatibel.
 
 .. image:: asset:charging/solar_direct
-   :alt: Abbildung der Solarladeverbindung als Platzhalter 1.
+   :alt: Abbildung der Solarladeverbindung (1).
    :width: 360px
 
 Wenn ein |DC_INPUT_CONNECTOR|-Eingangsanschluss zwei Solarmodule gleichzeitig anschließen muss, beziehen Sie sich bitte auf die folgende Abbildung zum Aufladen über den Solarpanel-Anschluss (separat erhältlich, nicht im Lieferumfang enthalten).
 
 .. image:: asset:charging/solar_adapter
-   :alt: Abbildung der Solarladeverbindung als Platzhalter 2.
+   :alt: Abbildung der Solarladeverbindung (2).
    :width: 360px
 
 .. list-table::
@@ -39,7 +39,7 @@ AUFLADEN ÜBER DAS AUTOLADEGERÄT (SEPARAT ERHÄLTLICH)
 Dieses Produkt kann mit einem 12-V-Autoladegerät aufgeladen werden. Stellen Sie sicher, dass das Autoladegerät und die 12-V-Autosteckdose (Zigarettenanzünder) gut verbunden sind.
 
 .. image:: asset:charging/car_charge
-   :alt: Abbildung der Autoladeverbindung als Platzhalter.
+   :alt: Abbildung der Autoladeverbindung.
    :width: 360px
 
 | Fahrzeug

@@ -2,7 +2,7 @@ GRUPPO DI CONTINUITÀ (UPS)
 ==========================
 | Collega il prodotto a una presa a muro con il cavo di ricarica CA, quindi premi il |AC_POWER_BUTTON_LABEL_LOWER| e alimenta contemporaneamente i tuoi apparecchi.
 .. image:: asset:operation/ups_mode
-   :alt: Segnaposto diagramma di connessione UPS.
+   :alt: Diagramma di connessione UPS.
    :width: 360px
 
 | Un gruppo di continuità (UPS) è un sistema di alimentazione continua che fornisce automaticamente energia di riserva a un carico quando viene a mancare l'alimentazione della rete elettrica.

@@ -21,17 +21,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Abbildung der Powerstation als Platzhalter.
+             :alt: Abbildung der Powerstation.
              :width: 120px
 
           **Jackery Explorer 1000**
         - .. image:: _assets/templates/word_template/common_assets/in_the_box/ac_charging_cable.png
-             :alt: Abbildung des AC-Ladekabels als Platzhalter.
+             :alt: Abbildung des AC-Ladekabels.
              :width: 120px
 
           **AC-Ladekabel**
         - .. image:: _assets/templates/word_template/common_assets/in_the_box/manual_icon1.png
-             :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
+             :alt: Abbildung des Benutzerhandbuchs.
              :width: 120px
 
           Benutzerhandbuch

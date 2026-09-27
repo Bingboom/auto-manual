@@ -9,7 +9,7 @@ APP-EINSTELLUNG
 ----------------------------------------------------
 
 .. image:: _assets/templates/word_template/common_assets/app/download.png
-   :alt: Platzhalter für QR-Code und App-Store-Download.
+   :alt: QR-Code und App-Store-Download.
    :width: 320px
 
 Suchen Sie im Google Play Store oder im App Store nach "Jackery", um die App zu installieren. Danach können Sie sich registrieren und anmelden.
@@ -23,7 +23,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 2.2 Drücken Sie die Haupt-POWER-Taste am Gerät, um es einzuschalten. Die WLAN- und Bluetooth-Symbole auf dem Gerät blinken, um anzuzeigen, dass das Gerät in den Netzwerkkonfigurationsmodus gewechselt ist. Tippen Sie auf die Schaltfläche "**Symbol blinkt**" und erlauben Sie der App, sich mit Geräten in der Nähe zu verbinden und auf Bluetooth zuzugreifen.
 
 .. image:: asset:app/add_device
-   :alt: Platzhalter für den Schritt „Gerät hinzufügen“.
+   :alt: Schritt „Gerät hinzufügen“.
    :width: 320px
 
 
@@ -57,7 +57,7 @@ Alternativ können Sie den folgenden QR-Code scannen, um die App herunterzuladen
 | Nachdem das Gerät erfolgreich zur App hinzugefügt wurde, leuchtet das WLAN-Symbol am Gerät dauerhaft.
 
 .. image:: asset:app/connect_result
-   :alt: Platzhalter für das Ergebnis der App-Einrichtung.
+   :alt: Ergebnis der App-Einrichtung.
    :width: 360px
 
 | Die oben gezeigten Screenshots dienen nur als Referenz.

@@ -88,6 +88,17 @@ LaTeX macro now reference them as `asset:` URIs (the charging pages'
 `source_manifest.json` re-locks those 20 files. On the Web, all five routes
 change exactly these three visible figures; alt text and copy are unchanged.
 
+Figure alt text (2026-09-27): the EN/DE/IT/ES review pages that feed the Web
+carried template alt text that called each figure a placeholder (`… image
+placeholder.`, `… als Platzhalter.`, `Platzhalter für …`, `Segnaposto …`,
+`Marcador de posición …`). These 22 pages now describe the figure in the page
+language, as the shared templates do. A composite's approval hash covers its
+semantic fragment, alt text included, so the 33 EN/DE/IT
+`source_fragment_sha256` values in `phase2/web_composite_manifest.json` are
+re-approved against these pages; the approved panel art is unchanged. The UK
+pages and the generated drafts, which no published Web route reads, keep their
+wording. `source_manifest.json` re-locks the 23 files.
+
 Storage durations (2026-09-26): the Spanish and German storage rows carried
 each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
 meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the

@@ -5,7 +5,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
 .. image:: asset:operation/main_power
-   :alt: Platzhalter für Ein-/Ausschalten.
+   :alt: Ein-/Ausschalten.
    :width: 360px
 
 | Ein: Einmal drücken.
@@ -22,7 +22,7 @@ AC-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/ac_output
-   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :alt: AC-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -38,7 +38,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :alt: DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -79,7 +79,7 @@ Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
 .. image:: asset:operation/energy_saving
-   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :alt: Tastenbedienung des Energiesparmodus.
    :width: 320px
 
 
@@ -125,7 +125,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>

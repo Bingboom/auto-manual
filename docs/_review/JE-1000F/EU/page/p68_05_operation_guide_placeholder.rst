@@ -9,7 +9,7 @@ ACCENSIONE/SPEGNIMENTO
 ----------------------
 
 .. image:: _assets/templates/word_template/common_assets/operation/main_power.png
-   :alt: Segnaposto operazione accensione/spegnimento.
+   :alt: Operazione accensione/spegnimento.
    :width: 360px
 
 | Accensione: premi una volta.
@@ -26,7 +26,7 @@ USCITA CA ATTIVA/DISATTIVA
 **Prerequisito**: il prodotto è acceso.
 
 .. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
-   :alt: Segnaposto operazione uscita CA attiva/disattiva.
+   :alt: Operazione uscita CA attiva/disattiva.
    :width: 360px
 
 
@@ -42,7 +42,7 @@ USCITA CC 12 V/ USB ATTIVA/DISATTIVA
 **Prerequisito**: il prodotto è acceso.
 
 .. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
-   :alt: Segnaposto operazione uscita CC USB attiva/disattiva.
+   :alt: Operazione uscita CC USB attiva/disattiva.
    :width: 360px
 
 
@@ -85,7 +85,7 @@ Per disattivare la Modalità risparmio energetico, tieni premuti per più di 3 s
 Quando si alimentano dispositivi a basso consumo (CA <= 25 W oppure DC/USB <= 2 W), disattiva la Modalità risparmio energetico per evitare che l'uscita si spenga automaticamente durante il funzionamento.
 
 .. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
-   :alt: Segnaposto operazione tasti modalità risparmio energetico.
+   :alt: Operazione tasti modalità risparmio energetico.
    :width: 320px
 
 
@@ -105,7 +105,7 @@ LUCE LED ON/OFF
 La luce LED ha due modalità: modalità luce e modalità SOS. In qualsiasi modalità, tieni premuto il pulsante della luce LED per spegnere la luce.
 
 .. image:: _assets/templates/word_template/common_assets/operation/led_light.png
-   :alt: Segnaposto operazione modalità luce LED.
+   :alt: Operazione modalità luce LED.
    :width: 360px
 
 
@@ -140,7 +140,7 @@ SCHERMO LCD
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Segnaposto modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Modalità display LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Acceso brevemente</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Accendi</td>

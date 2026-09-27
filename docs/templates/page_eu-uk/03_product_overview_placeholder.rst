@@ -26,7 +26,7 @@
    -------------
 
    .. image:: asset:overview/front_product
-      :alt: Заглушка схеми вигляду спереду.
+      :alt: Схема вигляду спереду.
       :width: 420px
 
    .. list-table::
@@ -68,7 +68,7 @@
    ------------------
 
    .. image:: asset:overview/right_side_ports
-      :alt: Заглушка схеми вигляду правого боку.
+      :alt: Схема вигляду правого боку.
       :width: 420px
 
    .. list-table::

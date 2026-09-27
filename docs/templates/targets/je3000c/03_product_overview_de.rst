@@ -24,7 +24,7 @@
    -------------
 
    .. image:: asset:overview/front_product
-      :alt: Abbildung der Vorderansicht als Platzhalter.
+      :alt: Abbildung der Vorderansicht.
       :width: 420px
 
    .. list-table::
@@ -60,7 +60,7 @@
    -------------------------
 
    .. image:: asset:overview/right_side_ports
-      :alt: Abbildung der rechten Seitenansicht als Platzhalter.
+      :alt: Abbildung der rechten Seitenansicht.
       :width: 420px
 
    .. list-table::

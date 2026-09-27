@@ -6,7 +6,7 @@ UNINTERRUPTIBLE POWER SUPPLY (UPS)
 ==================================
 | Connect the product to a wall outlet with the AC charging cable, then press the AC power button and power your appliances at the same time.
 .. image:: asset:operation/ups_mode
-   :alt: UPS connection diagram placeholder.
+   :alt: UPS connection diagram.
    :width: 360px
 
 | An uninterruptible power supply (UPS) is a type of continual power system that provides automated backup electric power to a load when the mains grid power fails.
