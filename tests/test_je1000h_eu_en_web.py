@@ -440,13 +440,17 @@ class Je1000hEuOverviewSlotTests(unittest.TestCase):
 
 
 DISPLAYED_SIGNALS = ("warning", "caution", "note", "tips")
+# 德/意语块印刷把温度小节标题印成英文（PDF 第 70/87 页）；以 PDF 为准照印，是否翻译待操作者裁定
+PRINTED_IN_ENGLISH = {("ENVIRONMENTAL OPERATING TEMPERATURE", "de"),
+                      ("ENVIRONMENTAL OPERATING TEMPERATURE", "it")}
 
 
 class Je1000hEuResidualCopyTests(unittest.TestCase):
-    """fr–uk headings and signal labels are never English or another block's language.
+    """fr–uk signal labels and headings are never English or another block's language.
 
-    The print sets the temperature heading in English in its de/it blocks (PDF pages
-    70/87) and the Italian ``AVVERTENZA`` in the uk symbols table (PDF page 91).
+    The uk symbols table prints the Italian ``AVVERTENZA`` (PDF page 91); the same
+    page prints the uk WARNING callout as ``ПОПЕРЕДЖЕННЯ``. The only English heading
+    left is the one the de/it blocks print in English.
     """
 
     @staticmethod
@@ -454,21 +458,10 @@ class Je1000hEuResidualCopyTests(unittest.TestCase):
         with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
             return list(csv.DictReader(handle))
 
-    def test_residual_heading_and_warning_label_are_localized(self) -> None:
-        # 德/意语块把温度小节标题印成英文：按跨型号审定译法（JE-2000F 印刷第 66/82 页；JE-3000C 同缺陷同处理）
+    def test_signal_labels_and_headings_stay_in_their_block_language(self) -> None:
         # 乌语符号表把 WARNING 印成意大利语 AVVERTENZA：同页安全须知印的是 ПОПЕРЕДЖЕННЯ
-        from tools.csv_pages.renderers_spec_parser import _load_spec_title_map
         from tools.localized_copy import LocalizedCopyResolver
 
-        heading = "ENVIRONMENTAL OPERATING TEMPERATURE"
-        for lang, expected in (("de", "UMGEBUNGSTEMPERATUR IM BETRIEB"),
-                               ("it", "TEMPERATURA OPERATIVA AMBIENTALE")):
-            with self.subTest(lang=lang):
-                titles = _load_spec_title_map(FORMAL_DATA_ROOT / "spec_titles.csv", title_lang=lang)
-                self.assertEqual(expected, titles[heading.lower()])
-                copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
-                self.assertEqual(expected, copy.resolve("spec.section.environmental_operating_temperature",
-                                                        lang=lang, model="JE-1000H", region="EU"))
         with self.subTest(signal="warning", lang="uk"):
             copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
             self.assertEqual("ПОПЕРЕДЖЕННЯ", copy.resolve("symbols.signal.warning.label",
@@ -486,10 +479,14 @@ class Je1000hEuResidualCopyTests(unittest.TestCase):
         for lang in TRANSLATED_LOCALES:
             for english, row in titles.items():
                 with self.subTest(table="spec_titles", title=english, lang=lang):
-                    self.assertNotIn(row[f"title_{lang}"], ("", english))
+                    self.assertTrue(row[f"title_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"title_{lang}"])
             for english, row in section_copy.items():
                 with self.subTest(table="Localized_Copy", title=english, lang=lang):
-                    self.assertNotIn(row[f"text_{lang}"], ("", english))
+                    self.assertTrue(row[f"text_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"text_{lang}"])
             for key in DISPLAYED_SIGNALS:
                 label = signals[f"symbols.signal.{key}.label"][f"text_{lang}"]
                 with self.subTest(signal=key, lang=lang):

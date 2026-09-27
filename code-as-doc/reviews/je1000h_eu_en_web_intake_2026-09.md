@@ -218,52 +218,48 @@ notes table has no JE-1000H row, so there is nothing to write back.
 - **Live tables:** no `JE-1000H_EU` rows exist in 规格参数明细 or 页面占位参数
   (only AU/KR rows), so the frozen source is the only place to fix.
 
-## 2026-09-27 Temperature heading and Ukrainian warning label
+## 2026-09-27 Ukrainian warning label
 
-The 2026-09-15 intake entered two print defects as printed, in shared-dictionary
-rows of the frozen source. Both reached the Web pages.
+The 2026-09-15 intake entered the uk symbols-table label as printed. The print
+sets the Italian `AVVERTENZA` there (PDF page 91, printed 86). The same page
+prints the uk WARNING callout as `ПОПЕРЕДЖЕННЯ`, and every other EU frozen
+source uses that label.
 
-**What changed.** Seven cells in three files. The rule is the same as on
-2026-09-25/26: print defects use reviewed cross-model wording.
+**What changed.** Three cells in two files:
 
 | File | Row | Columns | Before | After |
 | --- | --- | --- | --- | --- |
-| `spec_titles.csv` | `ENVIRONMENTAL OPERATING TEMPERATURE` | `title_de`, `title_it` | the English heading | `UMGEBUNGSTEMPERATUR IM BETRIEB`, `TEMPERATURA OPERATIVA AMBIENTALE` |
-| `Localized_Copy.csv` | `spec.section.environmental_operating_temperature` | `text_de`, `text_it` | the English heading | as above |
 | `Localized_Copy.csv` | `symbols.signal.warning.label` | `text_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
 | `symbols_blocks.csv` | `warning` | `label_uk`, `aliases_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
-
-**Print evidence:**
-
-- **Heading.** The de and it blocks print the heading in English: PDF page 70
-  (printed 65) and page 87 (printed 82). The new wording is printed in the
-  JE-2000F EU print (PDF pages 66/82). The JE-2000E, JE-2000F, JE-3000C and
-  JE-3600A sources carry it, and the live JE-2000E, JE-2000F and JE-3000C de/it
-  pages show it. The JE-3600A EU print and the JE-3000C EU print
-  (V2.0-2026-09-15) set the same English heading.
-- **Warning label.** The uk symbols table prints the Italian `AVVERTENZA` (PDF
-  page 91, printed 86). The same page prints the uk WARNING callout as
-  `ПОПЕРЕДЖЕННЯ`, and every other EU frozen source uses that label.
 
 **Verification:**
 
 - **Trial Web build:** all six languages, compared with the live pages
-  (`2.0-20260926`).
-  - en/fr/es: no line changes.
-  - de/it: 2 lines each, the section heading and its table `aria-label`.
-  - uk: 1 line, the symbols-table row. Its badge `aria-label` and visible label
-    change.
-- **Regression test:** `Je1000hEuResidualCopyTests` resolves the cells through
-  the spec-title and localized-copy loaders. It also checks every fr–uk heading
-  and displayed signal label: none may be empty, English or another block's
-  word. It fails 9 subtests on the previous files.
-- **Live tables:** there is nothing to write back. The approved
-  Translation_Memory rows already hold this wording:
-  - `recvgEwErzHV3h` (section title): de `UMGEBUNGSTEMPERATUR IM BETRIEB`, it
-    `TEMPERATURA OPERATIVA AMBIENTALE`.
-  - `recvllSNnTchQq` (`WARNING`): uk `ПОПЕРЕДЖЕННЯ`.
-  - The shared 内容源_Symbols row `recviwLdx0HcdN` also has uk
+  (`2.0-20260926`). Only the uk symbols-table row changes: its badge
+  `aria-label` and its visible label. The other five languages have no line
+  changes.
+- **Regression test:** `Je1000hEuResidualCopyTests` resolves the uk label
+  through the localized-copy loader. It also checks every fr–uk displayed signal
+  label and heading: none may be empty, English or another block's word. The
+  one exception is the heading the print sets in English (below). The test fails
+  3 subtests on the previous files.
+- **Live tables:** there is nothing to write back.
+  - The approved Translation_Memory row `recvllSNnTchQq` (`WARNING`) has uk
     `ПОПЕРЕДЖЕННЯ`.
+  - So does the shared 内容源_Symbols row `recviwLdx0HcdN`.
+
+**Open question for the operator: the de/it temperature heading.** The de and
+it blocks print `ENVIRONMENTAL OPERATING TEMPERATURE` in English (PDF page 70,
+printed 65; page 87, printed 82). Under 以 PDF 为准 the frozen source keeps it
+as printed. If it should be translated, a reviewed wording exists:
+
+- de `UMGEBUNGSTEMPERATUR IM BETRIEB` and it `TEMPERATURA OPERATIVA AMBIENTALE`;
+- the JE-2000F EU print sets this wording (PDF pages 66/82);
+- the approved Translation_Memory row `recvgEwErzHV3h` holds it;
+- the JE-2000E, JE-2000F, JE-3000C and JE-3600A sources carry it.
+
+The JE-3600A EU print and the JE-3000C EU print (V2.0-2026-09-15) set the same
+English heading, while their sources translate it.
 
 **Still open.** These are the same kind of defect, but the print gives no
 correct text in the block, or the text comes from a shared template:
