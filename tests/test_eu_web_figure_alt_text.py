@@ -32,7 +32,8 @@ JE1000F_EU_SOURCE = ROOT / "manual_sources" / "JE-1000F" / "EU" / "en-fr" / "2.0
 
 # The wording each language's carriers used for an unfinished figure.
 PLACEHOLDER_WORDING = re.compile(
-    r"placeholder|Platzhalter|Segnaposto|Заглушка|Marcador de posición|marcador de tienda",
+    r"placeholder|Platzhalter|Segnaposto|Заглушка|Marcador de posición|marcador de tienda"
+    r"|emplacement réservé",
     re.IGNORECASE,
 )
 ALT_TEXT = re.compile(r"^\s*:alt:\s*(?P<option>.*?)\s*$|alt=\"(?P<attribute>[^\"]*)\"", re.MULTILINE)

@@ -105,6 +105,10 @@
       "change": "The p53 review page's first 12 V caution bullet named the car socket 'Der DC-12-V-Anschluss'; the print's DE block reads 'Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.' The other two bullets already match the print."
     },
     {
+      "scope": "FR App figure alt text on the Web review page",
+      "change": "Replace the p31 review page's three App figure alt texts that called the figure a reserved slot ('emplacement réservé') with a description of the figure in French, as in the shared FR templates. No Web composite governs these figures."
+    },
+    {
       "scope": "ES/DE storage durations",
       "pdf_physical_pages": [
         52,
@@ -1048,8 +1052,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p31_12_app_setup_placeholder.rst",
-      "size": 4214,
-      "sha256": "793a59ca7fa9061760aad77242169345a8babe2c14e7b20ba35d6bc8bf80a62b"
+      "size": 4149,
+      "sha256": "c47a33c291630aaba3b08a0863a132f1b1eed401e3adcec20164475645856062"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p33_01_user_maintenance_instructions.rst",

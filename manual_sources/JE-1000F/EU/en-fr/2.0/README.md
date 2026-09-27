@@ -105,6 +105,12 @@ German 12 V caution (2026-09-27): the p53 page named the car socket
 24-V-Systeme geeignet.` The other two bullets of that caution already match the
 print. `source_manifest.json` re-locks p53.
 
+French App alt text (2026-09-27): the p31 page's three App figures carried alt
+text that called them a reserved slot (`… emplacement réservé aux boutiques.`,
+`Emplacement réservé à …`); they now describe the figure, as the shared FR
+templates do. No composite covers these figures. `source_manifest.json`
+re-locks p31.
+
 Storage durations (2026-09-26): the Spanish and German storage rows carried
 each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
 meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the
