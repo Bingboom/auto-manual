@@ -2420,6 +2420,4086 @@
         "region-locked-art",
         "localized-copy"
       ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/inbox_main",
+      "page": 26,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            43.5,
+            332.5,
+            126.5,
+            414.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/inbox_main.png",
+          "scale": 12,
+          "expected_sha256": "da518e1e0617c3ee551dad4fce455e833be06a87378bd703e38846920d512255"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/inbox_cable",
+      "page": 26,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            172.25,
+            329.0,
+            219.25,
+            411.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "bf19c11e9f7b14dc8e3b53bec1921ef2c3ade32e520292c74785054a71cf66bd"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/inbox_manual",
+      "page": 26,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            261.25,
+            328.51,
+            315.25,
+            409.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "e4932ceb687f73207c7e37a87ba4874d25e2b91cb180f2bdabe394a1b10f5f8c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/overview_front",
+      "page": 27,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.25,
+            75.0,
+            341.25,
+            242.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "2353365a3b80b426752099b1ef388191c66f905d015d43e7e9b7f36048a19c48"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/overview_side",
+      "page": 27,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.25,
+            249.29,
+            340.25,
+            499.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "e5db86f6ce58764cc41df34f5ffa9e6501a9de4d3225fde0f221102b74c26d59"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/lcd_map",
+      "page": 28,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            55.0,
+            325.0,
+            240.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_power",
+      "page": 31,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            74.0,
+            342.0,
+            248.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "0838c662fcdac0e2d124771b893769057fcef53c86955b8a35f099fa2dc51939"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_ac",
+      "page": 31,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.0,
+            342.0,
+            497.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "8cce6cb0339159d7d1fe3a12497152ce2f34e981d5e55b4cc9dbe36e5f18d07a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_dc",
+      "page": 32,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            45.0,
+            342.0,
+            300.91
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "1864630843bcd97b491f86585351ab42db077be1df71401f85c1beadf3dbf5ec"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_energy",
+      "page": 33,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            46.0,
+            342.0,
+            293.86
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "b5604b1f8fe8064fb52e1d49ae7dc07a64b80c793d4928c5e7e8e9f00b81bb82"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_led",
+      "page": 33,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            30.65,
+            349.25,
+            345.65,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "0dc65f22d47abb54ee677221e7aadde0aea998a4a61660fc1d8a3a1dbdc59357"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/operation_lcd",
+      "page": 34,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.0,
+            57.5,
+            149.0,
+            206.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "5ad760a312744579dfde8a81c4b34a35cee8d0881e9f416fcccc7b314043e30c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/ups",
+      "page": 35,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            209.34,
+            342.0,
+            405.25
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/ups.png",
+          "scale": 12,
+          "expected_sha256": "b6d2af53302b183766ca726495e7722c96d4a0df4adcd1801a1429d38f045680"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/extra_battery",
+      "page": 36,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.09,
+            106.46,
+            343.09,
+            318.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/extra_battery.png",
+          "scale": 12,
+          "expected_sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/charging_ac",
+      "page": 37,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.23,
+            197.48,
+            341.23,
+            298.45
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "58e41d5780397885bc1b01a70ffb13eee176340d7ca30874e3a17324dac2bb0d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/charging_solar",
+      "page": 38,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.93,
+            26.88,
+            342.31,
+            164.88
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "ce89e008b72a6541b72059f7e258fc187d11a10325dea2620b08ecd3f4ba28f1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/charging_car",
+      "page": 38,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.98,
+            300.23,
+            341.98,
+            433.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "78e8d59f7cbb67c46f92a08000fb1adae7a5ce156a9a07ebf2039c5428b199e7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/inbox_main",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44.5,
+            328.5,
+            127.5,
+            410.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/inbox_main.png",
+          "scale": 12,
+          "expected_sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/inbox_cable",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            174.0,
+            325.5,
+            221.0,
+            407.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/inbox_manual",
+      "page": 45,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            263.0,
+            323.5,
+            317.0,
+            405.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "4a9ec88f0d97e3c9df2f0f44fb4496ddc5baaa560c5c3fe6636fafb6c79214f5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/overview_front",
+      "page": 46,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.25,
+            73.25,
+            341.25,
+            240.25
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "cc954b94d3a05f5887cefbbe017a6b5991da456b421da8a0bf10e48cb817c9a1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/overview_side",
+      "page": 46,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.25,
+            247.4,
+            340.25,
+            500.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "28ffcbf9af284efc6870c0dc8ea46e81ed64bd3ee7da2d4ea4ab9a39cabc47d8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/lcd_map",
+      "page": 47,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            55.0,
+            325.0,
+            240.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_power",
+      "page": 50,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            74.0,
+            342.0,
+            248.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "2372bbde654166c6ccbb9981ddfb41a8e73283cde66ba66c9e296af8e4709550"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_ac",
+      "page": 50,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.0,
+            342.0,
+            497.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "f895fc8176250f851b519ee65a4b78a5f786b072dc92bd8402a12e9568639bf4"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_dc",
+      "page": 51,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            45.0,
+            342.0,
+            286.8
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "2452544f4334334d3d2004077c62b34bfca2f0af2cb71d9b809f9bf9777d3518"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_energy",
+      "page": 52,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            46.0,
+            342.0,
+            304.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "67ef7e45cce6e4995148f64426e056b9fab49e6b43e03fa88a900a919b6b426d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_led",
+      "page": 52,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.91,
+            354.29,
+            340.91,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "a5c2bf51a18ab69a4a002107f12abb33f404c3e986bcec537adf2319193957fb"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/operation_lcd",
+      "page": 53,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.0,
+            57.5,
+            149.0,
+            206.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/ups",
+      "page": 54,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            217.39,
+            342.0,
+            403.65
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/ups.png",
+          "scale": 12,
+          "expected_sha256": "656654e0ffbd168b4387004a02ce8bcb0884d9a1c6049192f23c4936a6a747d0"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/extra_battery",
+      "page": 55,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.09,
+            103.22,
+            343.09,
+            315.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/extra_battery.png",
+          "scale": 12,
+          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/charging_ac",
+      "page": 56,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.87,
+            194.84,
+            341.87,
+            299.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "50bb1e623ab68e5dda070494b23af9a09ad3c9f55de0030c3ce7f98ef573279d"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/charging_solar",
+      "page": 57,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.68,
+            25.46,
+            345.06,
+            163.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "674807cf7f7dcddd6b2a81ca9d4bad2501be19623e099159b0ce35e6b09441d1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/charging_car",
+      "page": 57,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.12,
+            296.39,
+            341.12,
+            429.16
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "8ca3aa8fc7e3ed489a34d716704452270a5477f7c0a7d92f397f1fb31e6d0933"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/inbox_main",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44.5,
+            328.5,
+            127.5,
+            410.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/inbox_main.png",
+          "scale": 12,
+          "expected_sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/inbox_cable",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            174.0,
+            325.5,
+            221.0,
+            407.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/inbox_manual",
+      "page": 64,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            263.0,
+            323.5,
+            317.0,
+            405.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "cf4e7b489c4476aca921d1c85136012d814fdbe1074ae3bbedd5e4750e80f9d5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/overview_front",
+      "page": 65,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.25,
+            73.25,
+            341.25,
+            240.25
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "f4c9f42371c39cb54f5b7b7a338d874238f5c715f43d993ca9799f7c6169f4a6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/overview_side",
+      "page": 65,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.25,
+            247.4,
+            340.25,
+            500.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "618f98b6fc6c5632f0540c3b68b0ddb725b86dea70b3fab576b9644a97090526"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/lcd_map",
+      "page": 66,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            55.0,
+            325.0,
+            240.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_power",
+      "page": 69,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            74.0,
+            342.0,
+            248.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "6fbaec6c18cfd535fe9318348d68cf4c1c7256ca7db7f0bd55eab30bab1e7abf"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_ac",
+      "page": 69,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.0,
+            342.0,
+            497.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "65d146f550ce39df194ff524f624d772e72175a2f25952603778c70e11ad6dd3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_dc",
+      "page": 70,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            45.0,
+            342.0,
+            286.8
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "8313822ab320e53ed49adad589e8999a66232651f54f2d43e5aae4f828e807cb"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_energy",
+      "page": 71,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            46.0,
+            342.0,
+            304.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "db2aac5744b79ea573606bd54aa904f653f6a945f1b1cf3d7c4999961256d162"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_led",
+      "page": 71,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.91,
+            354.29,
+            340.91,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "b465458444ae768eee080bb02c636430692aecf841ffe8180065545bff335fdb"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/operation_lcd",
+      "page": 72,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.0,
+            57.5,
+            149.0,
+            206.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/ups",
+      "page": 73,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            217.39,
+            342.0,
+            402.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/ups.png",
+          "scale": 12,
+          "expected_sha256": "ca021c4e40686f6780f3fcda0d204b188c4f602ec431d5ea62a26f2feaf47d57"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/extra_battery",
+      "page": 74,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.09,
+            103.22,
+            343.09,
+            315.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/extra_battery.png",
+          "scale": 12,
+          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/charging_ac",
+      "page": 75,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.87,
+            194.84,
+            341.87,
+            299.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "89ac8dd0b6bf565ddbc042b9f51f393de6186ab59715d8cc5b311cd190079cf8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/charging_solar",
+      "page": 76,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.68,
+            25.46,
+            345.06,
+            163.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "fe154a059060bfc0bf2ada7d8564665ad7cb433e945f46515b7b6fe102c747ed"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/charging_car",
+      "page": 76,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.12,
+            296.39,
+            341.12,
+            429.16
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "d7c120fbdf4d31d70357d33d7140b04f4937396eed66e5c7540a890df1b239e6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/inbox_main",
+      "page": 83,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44.5,
+            328.5,
+            127.5,
+            410.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/inbox_main.png",
+          "scale": 12,
+          "expected_sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/inbox_cable",
+      "page": 83,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            174.0,
+            325.5,
+            221.0,
+            407.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/inbox_manual",
+      "page": 83,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            263.0,
+            323.5,
+            317.0,
+            405.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "fbf65a42e2126aea6d62845b86edfbb5f7466e07930f88111fef916a90217f50"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/overview_front",
+      "page": 84,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.25,
+            73.25,
+            341.25,
+            240.25
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "80dd8b7e26c7e8966c06c32eeba21c8d404a7596b933dc5af8720e80460a6b0a"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/overview_side",
+      "page": 84,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.25,
+            247.4,
+            340.25,
+            500.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "99a844febdab5cd076ddd6691c694e333a84cda1eea86a74c4409f038f3378b9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/lcd_map",
+      "page": 85,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            55.0,
+            325.0,
+            240.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_power",
+      "page": 88,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            74.0,
+            342.0,
+            248.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "1f678cd2a4c2ff2959697886a2af1fa1042477b5c4199eeffe3619efcd8f33a6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_ac",
+      "page": 88,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.0,
+            342.0,
+            497.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "3ea92238650865bf01e911a103f50b5579010c3d413a9dc7340c767b38f3ed5c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_dc",
+      "page": 89,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            45.0,
+            342.0,
+            286.8
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "dd2198db5431f53d0986e2401a62267b5e164cba6de01938026b8d306d5cbff3"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_energy",
+      "page": 90,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            46.0,
+            342.0,
+            304.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "7474817b057474da3b7f300f31b25beecb055dc19dc3025470d10b49f2af0240"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_led",
+      "page": 90,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.91,
+            354.29,
+            340.91,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "e508e7a2efac75f6077a6c1514e8c2e9978df2cccc447983c9376b2a0a4d2009"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/operation_lcd",
+      "page": 91,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.0,
+            57.5,
+            149.0,
+            206.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/ups",
+      "page": 92,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            217.39,
+            342.0,
+            402.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/ups.png",
+          "scale": 12,
+          "expected_sha256": "10cb6c23c35de220cf103ac486013579198ac15909dfa99478f73473a66e0fd8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/extra_battery",
+      "page": 93,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.09,
+            103.22,
+            343.09,
+            315.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/extra_battery.png",
+          "scale": 12,
+          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/charging_ac",
+      "page": 94,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.87,
+            194.84,
+            341.87,
+            299.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "aef694a3044c4c69e1b0ef98e7cce02bbbd616eca35b23a6be8aefe57ab4d78f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/charging_solar",
+      "page": 95,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.68,
+            25.46,
+            345.06,
+            163.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "ed5ffb54a716fbef7b3500e06c20ac30e6924d138292a1179f34e95c26496931"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/charging_car",
+      "page": 95,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.12,
+            296.39,
+            341.12,
+            429.16
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "47f746c84f9e827432ded2d66faf90e2a8b5acba87f33e79229f80b2c37423d1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/inbox_main",
+      "page": 102,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44.5,
+            328.5,
+            127.5,
+            410.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/inbox_main.png",
+          "scale": 12,
+          "expected_sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/inbox_cable",
+      "page": 102,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            174.0,
+            325.5,
+            221.0,
+            407.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/inbox_cable.png",
+          "scale": 12,
+          "expected_sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/inbox_manual",
+      "page": 102,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            261.5,
+            323.5,
+            315.5,
+            405.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/inbox_manual.png",
+          "scale": 12,
+          "expected_sha256": "be87c3e284d6896cc21d53e24244568ba9d2039f53640167c826a12c965bc09c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/overview_front",
+      "page": 103,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.25,
+            73.25,
+            341.25,
+            240.25
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/overview_front.png",
+          "scale": 12,
+          "expected_sha256": "7d68b6cff1963a2b0062c2d863c1a15b0cba1fdf5006162c17647fb00ed7b9c7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/overview_side",
+      "page": 103,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.25,
+            247.4,
+            340.25,
+            500.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/overview_side.png",
+          "scale": 12,
+          "expected_sha256": "6c5e53bd04fbee737738bb5f586e490c2367185cbe1ed2ccba04cd701a99bdf8"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/lcd_map",
+      "page": 104,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            34.0,
+            55.0,
+            325.0,
+            240.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/lcd_map.png",
+          "scale": 12,
+          "expected_sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_power",
+      "page": 107,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            74.0,
+            342.0,
+            248.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_power.png",
+          "scale": 12,
+          "expected_sha256": "985bf28528232800bce76485e4996b3bf9aff1a3e4b783c8898858e30e1ba641"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_ac",
+      "page": 107,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            272.0,
+            342.0,
+            497.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_ac.png",
+          "scale": 12,
+          "expected_sha256": "679643811e8d99afae57b8fa8a6206316c73480aa36824ff3f2da7b2e7054867"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_dc",
+      "page": 108,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            45.0,
+            342.0,
+            286.8
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_dc.png",
+          "scale": 12,
+          "expected_sha256": "7fb56e98bcafa7d8500819c34af4836452f99e64fbed1a01514e53ded4e416e5"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_energy",
+      "page": 109,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            46.0,
+            342.0,
+            304.05
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_energy.png",
+          "scale": 12,
+          "expected_sha256": "d9f31e0059dfef76bbc024c6da12e904e11bf7dbb7c1fdee5b8131fce571e168"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_led",
+      "page": 109,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25.91,
+            354.29,
+            340.91,
+            498.0
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_led.png",
+          "scale": 12,
+          "expected_sha256": "0c1d223f20b2e3ba2f28b3042835cf796a2435fe76a35146db74e7ed43fd9bc1"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/operation_lcd",
+      "page": 110,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            37.0,
+            57.5,
+            149.0,
+            206.5
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/operation_lcd.png",
+          "scale": 12,
+          "expected_sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/ups",
+      "page": 111,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            27.0,
+            217.39,
+            342.0,
+            402.83
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/ups.png",
+          "scale": 12,
+          "expected_sha256": "8d821dcb8c1c1c2ba4885dec2b1e405c11eb2f51ceff27f2bc4f7e2f97061b9e"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/extra_battery",
+      "page": 112,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.09,
+            103.22,
+            343.09,
+            315.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/extra_battery.png",
+          "scale": 12,
+          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/charging_ac",
+      "page": 113,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            28.87,
+            194.84,
+            341.87,
+            299.22
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/charging_ac.png",
+          "scale": 12,
+          "expected_sha256": "8655ffac8291cf521cca5c656612b45d0bd7d76f00439983b1de89b4e62f5a55"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/charging_solar",
+      "page": 114,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.68,
+            25.46,
+            345.06,
+            163.46
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/charging_solar.png",
+          "scale": 12,
+          "expected_sha256": "bb18f58f6e6578e3f92c682435a0d1ee37d6039bdb9f1fe98d3a3b0d63e6e37c"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/charging_car",
+      "page": 114,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            26.12,
+            298.86,
+            341.12,
+            431.63
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/charging_car.png",
+          "scale": 12,
+          "expected_sha256": "418a9c7f6855036e7fd6b43760b2efcb1d3e9adec80f09979cc9e41437936bd7"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
     }
   ]
 }

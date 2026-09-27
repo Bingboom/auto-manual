@@ -5,8 +5,347 @@
   "language": "es",
   "source_pdf_sha256": "734f89ad824d2436d2c79c7ac1231d2dc111dd83ef43e8ee6326674124c396d0",
   "source_pdf_name": "Jackery HomePower 2000 Plus User Manual (JE-2000E) EUUK V2.0-2026-08-03.pdf",
-  "recipe": "data/asset_recipes/manual_je2000e_eu_web_app.json",
+  "recipe": "data/asset_recipes/manual_je2000e_eu_web.json",
   "illustrations": [
+    {
+      "replaces": [
+        "main_unit1.png"
+      ],
+      "path": "assets/je2000e_eu_es/inbox_main.png",
+      "sha256": "0a9c016c2dfcdaba1081654fc09f60856416a4383d7a652a45093c8fb132bada",
+      "source_page": 45,
+      "bbox_pt": [
+        44.5,
+        328.5,
+        127.5,
+        410.5
+      ]
+    },
+    {
+      "replaces": [
+        "ac_charging_cable.png"
+      ],
+      "path": "assets/je2000e_eu_es/inbox_cable.png",
+      "sha256": "9c526f2917e4483af821a37a78898f9add0aa6f7538ac83fd2ff232755e3d28b",
+      "source_page": 45,
+      "bbox_pt": [
+        174.0,
+        325.5,
+        221.0,
+        407.5
+      ]
+    },
+    {
+      "replaces": [
+        "manual_icon1.png"
+      ],
+      "path": "assets/je2000e_eu_es/inbox_manual.png",
+      "sha256": "4a9ec88f0d97e3c9df2f0f44fb4496ddc5baaa560c5c3fe6636fafb6c79214f5",
+      "source_page": 45,
+      "bbox_pt": [
+        263.0,
+        323.5,
+        317.0,
+        405.5
+      ]
+    },
+    {
+      "replaces": [
+        "front_product.jpg"
+      ],
+      "path": "assets/je2000e_eu_es/overview_front.png",
+      "sha256": "cc954b94d3a05f5887cefbbe017a6b5991da456b421da8a0bf10e48cb817c9a1",
+      "source_page": 46,
+      "bbox_pt": [
+        27.25,
+        73.25,
+        341.25,
+        240.25
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Botón POWER principal LCD Puerto DC 12 V 12 V⎓10 A máx. Botón de luz LED Botón CC / USB Luz LED Salida USB-C de 30 W 30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A Botón CA1 Salida USB-C de 100 W 140 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓3 A, 15 V⎓3 A, 20 V⎓5 A, 28 V⎓5 A Botón CA2 Salida USB-A 18 W 18 W máx., 5-6 V⎓3 A, 6-9 V⎓2 A, 9-12 V⎓1,5 A Salida de CA 230 V~ 50 Hz, 10 A máx., 2400 W Nominal"
+        },
+        {
+          "selector": "#vista-frontal > table",
+          "text": "Salida Total 2400 W de potencia nominal, 4800 W de pico de sobrecarga"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "right_side_ports.png"
+      ],
+      "path": "assets/je2000e_eu_es/overview_side.png",
+      "sha256": "28ffcbf9af284efc6870c0dc8ea46e81ed64bd3ee7da2d4ea4ab9a39cabc47d8",
+      "source_page": 46,
+      "bbox_pt": [
+        26.25,
+        247.4,
+        340.25,
+        500.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#vistas-laterales-izquierda-y-derecha > table",
+          "text": "Asa Puerto de expansión CC Conectar al paquete de baterías Entrada de CA 220 V-240 V~ 50 Hz, 10 A máx. Entrada de CC (2×Puertos DC8020) PV: 16-60 V⎓12 A máx., Doble hasta 21 A / 800 W máx. Vehículo: 11-16 V⎓8 A máx., Doble hasta 8 A máx."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_map.png"
+      ],
+      "path": "assets/je2000e_eu_es/lcd_map.png",
+      "sha256": "ab12c2def67ebf89f522bbd357393cefa66750662dd9d6583f98266f00712825",
+      "source_page": 47,
+      "bbox_pt": [
+        34.0,
+        55.0,
+        325.0,
+        240.0
+      ]
+    },
+    {
+      "replaces": [
+        "op_main_power.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_power.png",
+      "sha256": "2372bbde654166c6ccbb9981ddfb41a8e73283cde66ba66c9e296af8e4709550",
+      "source_page": 50,
+      "bbox_pt": [
+        27.0,
+        74.0,
+        342.0,
+        248.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#encendido-apagado > .line-block",
+          "text": "Encendido Presione una vez Apagado Mantenga presionado durante más de 3 segundos"
+        },
+        {
+          "selector": "#encendido-apagado > .line-block",
+          "text": "Tiempo de espera predeterminado: 2 horas. El producto se apagará automáticamente después de 2 horas de inactividad, sin carga ni descarga. *El tiempo de espera puede configurarse en la aplicación Jackery. Cuando el modo de ahorro de energía está activado, el producto se apagará automáticamente después de 12 horas si la salida de CA o la salida CC/USB está activada, pero el producto no está cargando ni descargando."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_ac_output.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_ac.png",
+      "sha256": "f895fc8176250f851b519ee65a4b78a5f786b072dc92bd8402a12e9568639bf4",
+      "source_page": 50,
+      "bbox_pt": [
+        27.0,
+        272.0,
+        342.0,
+        497.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-ca > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-ca > p",
+          "text": "Los botones CA1 y CA2 controlan dos pares separados de tomas de corriente CA. Al presionar cada botón se enciende o apaga su par correspondiente de tomas de corriente CA."
+        },
+        {
+          "selector": "#encender-apagar-salida-ca > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "op_dc_usb_output.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_dc.png",
+      "sha256": "2452544f4334334d3d2004077c62b34bfca2f0af2cb71d9b809f9bf9777d3518",
+      "source_page": 51,
+      "bbox_pt": [
+        27.0,
+        45.0,
+        342.0,
+        286.8
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > p",
+          "text": "Requisito previo: el producto está encendido."
+        },
+        {
+          "selector": "#encender-apagar-salida-cc-12v-usb > .line-block",
+          "text": "Encendido Presione una vez Apagado Presione una vez"
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "energy_saving.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_energy.png",
+      "sha256": "67ef7e45cce6e4995148f64426e056b9fab49e6b43e03fa88a900a919b6b426d",
+      "source_page": 52,
+      "bbox_pt": [
+        27.0,
+        46.0,
+        342.0,
+        304.05
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Para evitar un consumo innecesario de batería por olvidar apagar la salida, el producto activa por defecto el Modo de Ahorro de Energía. Cuando la salida de CA o CC/USB está encendida, el icono del modo de ahorro de energía se mostrará en la pantalla LCD. En este modo, si no hay ningún dispositivo conectado o si el consumo del dispositivo conectado está por debajo de cierto umbral (25 W en salida de CA o 2 W en salida de CC/USB), la salida correspondiente se apagará automáticamente después del tiempo configurado. La configuración predeterminada es 12 horas. La duración del Modo de Ahorro de Energía puede configurarse en la aplicación Jackery en 1H, 2 H, 8 H, 12 H o 24 H. Si se establece en \"Never Off\", el Modo de Ahorro de Energía se desactivará."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el botón CA1 y el botón POWER principal durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > p",
+          "text": "Cuando alimente dispositivos de baja potencia (CA ≤ 25 W o CC/USB ≤ 2 W), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento."
+        },
+        {
+          "selector": "#modo-de-ahorro-de-energia > .line-block",
+          "text": "Mantenga pulsados ambos botones durante 3 segundos."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "led_light.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_led.png",
+      "sha256": "a5c2bf51a18ab69a4a002107f12abb33f404c3e986bcec537adf2319193957fb",
+      "source_page": 52,
+      "bbox_pt": [
+        25.91,
+        354.29,
+        340.91,
+        498.0
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#encender-apagar-luz-led > p",
+          "text": "La luz LED tiene dos modos: modo de luz y modo SOS. En cualquier modo, mantenga presionado el botón de luz LED para apagarla."
+        },
+        {
+          "selector": "#encender-apagar-luz-led > .line-block",
+          "text": "Presione una vez el botón de la luz LED para encenderla. Presiónelo nuevamente para cambiar al modo SOS. Presiónelo una tercera vez para apagar la luz."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "lcd_mode.png"
+      ],
+      "path": "assets/je2000e_eu_es/operation_lcd.png",
+      "sha256": "71f85bd15d966cb3b856e158091d58f181a6fe4991bd96459ff08e3f9964161f",
+      "source_page": 53,
+      "bbox_pt": [
+        37.0,
+        57.5,
+        149.0,
+        206.5
+      ]
+    },
+    {
+      "replaces": [
+        "ups_mode.png"
+      ],
+      "path": "assets/je2000e_eu_es/ups.png",
+      "sha256": "656654e0ffbd168b4387004a02ce8bcb0884d9a1c6049192f23c4936a6a747d0",
+      "source_page": 54,
+      "bbox_pt": [
+        27.0,
+        217.39,
+        342.0,
+        403.65
+      ],
+      "covered_annotations": [
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal."
+        },
+        {
+          "selector": "h1 ~ .line-block > .line",
+          "text": "En caso de una pérdida repentina de energía de la red, Jackery Explorer 2000 Plus cambiará automáticamente a la energía almacenada en menos de 10 ms para mantener sus electrodomésticos en funcionamiento."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "extra_battery.png"
+      ],
+      "path": "assets/je2000e_eu_es/extra_battery.png",
+      "sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b",
+      "source_page": 55,
+      "bbox_pt": [
+        29.09,
+        103.22,
+        343.09,
+        315.22
+      ]
+    },
+    {
+      "replaces": [
+        "ac_wall.png"
+      ],
+      "path": "assets/je2000e_eu_es/charging_ac.png",
+      "sha256": "50bb1e623ab68e5dda070494b23af9a09ad3c9f55de0030c3ce7f98ef573279d",
+      "source_page": 56,
+      "bbox_pt": [
+        28.87,
+        194.84,
+        341.87,
+        299.22
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#carga-mediante-una-toma-de-corriente-de-pared-alterna > p",
+          "text": "Conecte el cable de carga de CA al puerto de entrada de CA del producto y a una toma de corriente."
+        }
+      ]
+    },
+    {
+      "replaces": [
+        "solar_direct.png",
+        "solar_adapter.png"
+      ],
+      "path": "assets/je2000e_eu_es/charging_solar.png",
+      "sha256": "674807cf7f7dcddd6b2a81ca9d4bad2501be19623e099159b0ce35e6b09441d1",
+      "source_page": 57,
+      "bbox_pt": [
+        29.68,
+        25.46,
+        345.06,
+        163.46
+      ]
+    },
+    {
+      "replaces": [
+        "car_charge.png"
+      ],
+      "path": "assets/je2000e_eu_es/charging_car.png",
+      "sha256": "8ca3aa8fc7e3ed489a34d716704452270a5477f7c0a7d92f397f1fb31e6d0933",
+      "source_page": 57,
+      "bbox_pt": [
+        26.12,
+        296.39,
+        341.12,
+        429.16
+      ],
+      "covered_annotations": [
+        {
+          "selector": "#carga-con-un-cargador-para-vehiculo-se-vende-por-separado > .line-block",
+          "text": "Vehículo ※El cable de carga para vehículo se vende por separado."
+        }
+      ]
+    },
     {
       "replaces": [
         "add_device.png"

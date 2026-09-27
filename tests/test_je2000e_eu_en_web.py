@@ -5,6 +5,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -37,6 +38,44 @@ STORAGE_LABELS = {"1": ("1 mes", "1 Monat"), "2": ("3 meses", "3 Monate"), "3": 
 ILLUSTRATIONS = ROOT / "docs" / "renderers" / "web" / "je2000e_eu_en_illustrations.json"
 APP_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000e_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
+WEB_RECIPE = ROOT / "data" / "asset_recipes" / "manual_je2000e_eu_web.json"
+# PDF pages of each language block of the V2.0 print. Each route crops its own
+# block: the English block draws UK sockets, the fr-uk blocks EU sockets.
+BLOCK_PAGES = {
+    "fr": range(25, 44), "es": range(44, 63), "de": range(63, 82), "it": range(82, 101), "uk": range(101, 120),
+}
+BLOCK_CROPS = (
+    "inbox_main", "inbox_cable", "inbox_manual", "overview_front", "overview_side", "lcd_map",
+    "operation_power", "operation_ac", "operation_dc", "operation_energy", "operation_led",
+    "operation_lcd", "ups", "extra_battery", "charging_ac", "charging_solar", "charging_car",
+)
+INBOX_SLOTS = {"inbox_main": "main_unit1.png", "inbox_cable": "ac_charging_cable.png", "inbox_manual": "manual_icon1.png"}
+# The shared art the fr-uk routes (and the English in-box cards) showed before
+# 2026-09-26: figures from the JE-1000F/US master (another product, US outlets).
+SHARED_ART = (
+    "in_the_box/main_unit1", "in_the_box/ac_charging_cable", "in_the_box/manual_icon1",
+    "overview/front_product", "overview/right_side_ports", "lcd/lcd_map", "operation/main_power",
+    "operation/ac_output", "operation/dc_usb_output", "operation/energy_saving", "operation/led_light",
+    "operation/lcd_mode", "operation/ups_mode", "charging/ac_wall", "charging/solar_direct",
+    "charging/solar_adapter", "charging/car_charge",
+)
+
+
+def shared_art_digests() -> set[str]:
+    with (ROOT / "data" / "asset_registry.csv").open(encoding="utf-8", newline="") as handle:
+        rows = {row["asset_key"]: row for row in csv.DictReader(handle)}
+    digests = set()
+    for key in SHARED_ART:
+        found = re.findall(r"[0-9a-f]{64}", rows[key]["内容哈希"])
+        assert found, key
+        digests.update(found)
+    return digests
+
+
+def page_image_digests(html: str) -> set[str]:
+    soup = BeautifulSoup(html, "html.parser")
+    return {match.group(1) for image in soup.find_all("img")
+            if (match := re.search(r"assets/ir/([0-9a-f]{64})/", str(image.get("src", ""))))}
 # replaced source image -> reference id
 APP_REFERENCES = {
     "add_device.png": "app-add-device",
@@ -264,7 +303,13 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_web_output_is_target_isolated_and_complete(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(18, len(self.ir.pages))
-        self.assertEqual(15, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(18, len(soup.select(".manual-finished-illustration")))
+        # The in-box cards show the English block's crops (UK sockets), not the shared art.
+        self.assertEqual(
+            [f"assets/je2000e_eu_en/{name}.png" for name in INBOX_SLOTS],
+            [card.select_one("img")["data-web-finished-panel-path"] for card in soup.select(".hb-inbox-card")],
+        )
+        self.assertEqual(set(), page_image_digests(self.html) & shared_art_digests())
         coverage = self.ir.metadata["web_figure_coverage"]
         self.assertEqual(12, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
@@ -301,8 +346,9 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_illustrations_are_hash_locked_and_use_source_crops(self) -> None:
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         recipe = json.loads((ROOT / manifest["recipe"]).read_text(encoding="utf-8"))
-        self.assertEqual(19, len(recipe["assets"]))
-        self.assertEqual(16, len(manifest["illustrations"]))
+        self.assertEqual(19, len([asset for asset in recipe["assets"] if asset["scope"]["locales"] == ["en"]]))
+        self.assertEqual(19 + len(BLOCK_CROPS) * len(SINGLE_LANGUAGES), len(recipe["assets"]))
+        self.assertEqual(19, len(manifest["illustrations"]))
         for asset in recipe["assets"]:
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
@@ -416,7 +462,7 @@ class Je2000eEuEnWebTests(unittest.TestCase):
 
 
 class Je2000eEuGermanAppPanelTests(unittest.TestCase):
-    """The German route shows its print block's App screens and control panel."""
+    """The German route shows its print block's figures, App screens and control panel."""
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -464,6 +510,94 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
             ],
         )
         self.assertIn("Die oben gezeigten Screenshots dienen nur als Referenz.", self.html)
+
+    def test_every_figure_is_the_german_print_block(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        paths = [image["data-web-finished-panel-path"] for image in soup.select("img.manual-finished-illustration")]
+        self.assertEqual(19, len(paths))
+        self.assertEqual(
+            sorted(f"assets/je2000e_eu_de/{name}.png" for name in BLOCK_CROPS),
+            sorted(path for path in paths if "/app_" not in path),
+        )
+        self.assertEqual(set(), page_image_digests(self.html) & shared_art_digests())
+        # The battery-pack section showed the in-box unit as a placeholder.
+        battery = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/extra_battery.png"]')
+        self.assertIn("BATTERIEPACK", battery.find_parent("section").select_one("h1, h2").get_text().upper())
+        # Copy printed in a crop moves into its alt text, as on English.
+        front = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/overview_front.png"]')
+        self.assertEqual([], front.find_parent("section").select(":scope > table"))
+        car = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/charging_car.png"]')
+        self.assertEqual("Fahrzeug *Das Autoladekabel ist separat erhältlich.", car["alt"])
+
+
+class Je2000eEuBlockIllustrationTests(unittest.TestCase):
+    """Each fr-uk route shows its own print block's figures, not the JE-1000F shared art."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.recipe = json.loads(WEB_RECIPE.read_text(encoding="utf-8"))
+        cls.assets = {asset["asset_key"]: asset for asset in cls.recipe["assets"]}
+        cls.english = {
+            Path(entry["path"]).stem: entry
+            for entry in json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["illustrations"]
+        }
+        cls.manifests = {}
+        for lang in SINGLE_LANGUAGES:
+            path = resolve_web_illustration_manifest(
+                ROOT / "configs" / f"config.eu-{lang}.yaml", repo_root=ROOT, model="JE-2000E", region="EU",
+            )
+            cls.manifests[lang] = (path, json.loads(path.read_text(encoding="utf-8")))
+
+    def entries(self, lang: str) -> dict[str, dict]:
+        _, manifest = self.manifests[lang]
+        return {Path(entry["path"]).stem: entry for entry in manifest["illustrations"]
+                if entry["path"].startswith(f"assets/je2000e_eu_{lang}/") and "/app_" not in entry["path"]}
+
+    def test_english_binds_its_in_box_crops(self) -> None:
+        for name, replaced in INBOX_SLOTS.items():
+            entry = self.english[name]
+            (output,) = self.assets[f"web/je2000e/eu/en/{name}"]["outputs"]
+            self.assertEqual([replaced], entry["replaces"])
+            self.assertEqual(output["expected_sha256"], entry["sha256"])
+            self.assertEqual(7, entry["source_page"])
+
+    def test_each_route_binds_its_own_block_crops(self) -> None:
+        for lang in SINGLE_LANGUAGES:
+            path, manifest = self.manifests[lang]
+            self.assertEqual(WEB_RECIPE.relative_to(ROOT).as_posix(), manifest["recipe"], lang)
+            entries = self.entries(lang)
+            self.assertEqual(sorted(BLOCK_CROPS), sorted(entries), lang)
+            for name, entry in entries.items():
+                asset = self.assets[f"web/je2000e/eu/{lang}/{name}"]
+                (output,) = asset["outputs"]
+                with self.subTest(lang=lang, name=name):
+                    self.assertEqual(self.english[name]["replaces"], entry["replaces"])
+                    self.assertEqual("approved", asset["gate"]["status"])
+                    self.assertEqual([lang], asset["scope"]["locales"])
+                    self.assertIn(asset["page"], BLOCK_PAGES[lang])
+                    self.assertEqual(asset["page"], entry["source_page"])
+                    self.assertEqual(asset["transforms"][0]["bbox_pt"], entry["bbox_pt"])
+                    file = path.parent / entry["path"]
+                    self.assertEqual(output["path"], file.relative_to(ROOT).as_posix())
+                    self.assertEqual(output["expected_sha256"], entry["sha256"])
+                    self.assertEqual(entry["sha256"], hashlib.sha256(file.read_bytes()).hexdigest())
+
+    def test_printed_copy_leaves_the_page_where_english_does(self) -> None:
+        for lang in SINGLE_LANGUAGES:
+            for name, entry in self.entries(lang).items():
+                with self.subTest(lang=lang, name=name):
+                    self.assertEqual(
+                        bool(self.english[name].get("covered_annotations")), bool(entry.get("covered_annotations"))
+                    )
+                    self.assertNotIn("consume_before_presentation", entry)
+
+    def test_battery_pack_section_uses_the_block_crop(self) -> None:
+        # The fr-uk templates showed the in-box unit here; English already used its crop.
+        for lang in ("en", *SINGLE_LANGUAGES):
+            template = (ROOT / "docs" / "templates" / "page_shared" / lang / "charging.rst").read_text(encoding="utf-8")
+            block = template.split("\n.. only::", 1)[0]
+            self.assertIn(f".. image:: renderers/web/assets/je2000e_eu_{lang}/extra_battery.png", block, lang)
+            self.assertNotIn("asset:in_the_box/main_unit1", block, lang)
 
 
 if __name__ == "__main__":
