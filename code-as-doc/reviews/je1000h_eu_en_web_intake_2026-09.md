@@ -248,10 +248,11 @@ source uses that label.
     `ПОПЕРЕДЖЕННЯ`.
   - So does the shared 内容源_Symbols row `recviwLdx0HcdN`.
 
-**Open question for the operator: the de/it temperature heading.** The de and
+**Resolved 2026-09-27: the de/it temperature heading.** The operator ruled to use
+the reviewed translation (「按审核译文翻译」); the frozen source now carries it. The de and
 it blocks print `ENVIRONMENTAL OPERATING TEMPERATURE` in English (PDF page 70,
 printed 65; page 87, printed 82). Under 以 PDF 为准 the frozen source keeps it
-as printed. If it should be translated, a reviewed wording exists:
+as printed; the reviewed wording now used is:
 
 - de `UMGEBUNGSTEMPERATUR IM BETRIEB` and it `TEMPERATURA OPERATIVA AMBIENTALE`;
 - the JE-2000F EU print sets this wording (PDF pages 66/82);
@@ -260,6 +261,14 @@ as printed. If it should be translated, a reviewed wording exists:
 
 The JE-3600A EU print and the JE-3000C EU print (V2.0-2026-09-15) set the same
 English heading, while their sources translate it.
+
+**Resolved 2026-09-27: the USB-C caution wattage.** Every block of the print rates the
+high-power USB-C port at 140 W and lists the cable at `20 V/5 A, 100 W; 28 V/5 A, 140 W`
+(fr/es/de/it/uk PDF pages 29/46/63/80/97), while the shared EU operation templates say
+100 W. The operator ruled to fix it in this batch (「加进这一批一起修」). Each
+`docs/templates/page_eu-<lang>/05_operation_guide_placeholder.rst` now has a
+`.. only:: model_je_1000h` branch with the printed wattage and the added rating; every other
+model keeps the unchanged 100 W text in the `.. only:: not model_je_1000h` branch.
 
 **Still open.** These are the same kind of defect, but the print gives no
 correct text in the block, or the text comes from a shared template:

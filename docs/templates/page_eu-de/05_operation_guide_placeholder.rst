@@ -48,15 +48,33 @@ DC 12V/USB-AUSGANG EIN/AUS
 | Einmal drücken
 |
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. The JE-1000H print (EU-UK V2.0-2026-08-03, PDF page 63) rates its high-power
+   USB-C port at 140 W and adds the 28 V/5 A cable rating; each model follows its
+   own print.
 
-   * - **VORSICHT**
-     -
-       - **Der USB-C-100-W-Anschluss ist ein Hochleistungs-Ausgangsanschluss des USB-PD-Typs Power Source 3 (PS3).** Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Stellen Sie vor der Verwendung dieses Anschlusses sicher, dass das angeschlossene Gerät oder Zubehör über Brandschutz verfügt.
-       - Schließen Sie |PRODUCT_NAME| nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.
-       - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).
+.. only:: model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **VORSICHT**
+        -
+          - **Der USB-C-140-W-Anschluss ist ein Hochleistungs-Ausgangsanschluss des USB-PD-Typs Power Source 3 (PS3).** Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Stellen Sie vor der Verwendung dieses Anschlusses sicher, dass das angeschlossene Gerät oder Zubehör über Brandschutz verfügt.
+          - Schließen Sie |PRODUCT_NAME| nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.
+          - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W; 28 V DC/5 A, 140 W).
+
+.. only:: not model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **VORSICHT**
+        -
+          - **Der USB-C-100-W-Anschluss ist ein Hochleistungs-Ausgangsanschluss des USB-PD-Typs Power Source 3 (PS3).** Wenn das angeschlossene Benutzergerät oder Zubehör die Sicherheitsanforderungen nicht erfüllt, kann Brandgefahr bestehen. Stellen Sie vor der Verwendung dieses Anschlusses sicher, dass das angeschlossene Gerät oder Zubehör über Brandschutz verfügt.
+          - Schließen Sie |PRODUCT_NAME| nur an Geräte oder Zubehör an, die den Abschnitten 6.3, 6.4 und 6.5 der IEC/EN/UL 62368-1 (oder anderen gleichwertigen Normen) entsprechen.
+          - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).
 
 | Das Produkt kann Ihre Fahrzeugbatterie mit dem Jackery 12-V-Autobatterie-Ladekabel aufladen, das separat erhältlich und auf unserer Website verfügbar ist.
 

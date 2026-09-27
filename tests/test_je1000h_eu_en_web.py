@@ -440,17 +440,18 @@ class Je1000hEuOverviewSlotTests(unittest.TestCase):
 
 
 DISPLAYED_SIGNALS = ("warning", "caution", "note", "tips")
-# 德/意语块印刷把温度小节标题印成英文（PDF 第 70/87 页）；以 PDF 为准照印，是否翻译待操作者裁定
-PRINTED_IN_ENGLISH = {("ENVIRONMENTAL OPERATING TEMPERATURE", "de"),
-                      ("ENVIRONMENTAL OPERATING TEMPERATURE", "it")}
+# 德/意语块印刷把温度小节标题印成英文（PDF 第 70/87 页），属印刷漏译；操作者 2026-09-27 裁定按审核译文翻译
+PRINTED_IN_ENGLISH: set[tuple[str, str]] = set()
+REVIEWED_HEADING = {"de": "UMGEBUNGSTEMPERATUR IM BETRIEB", "it": "TEMPERATURA OPERATIVA AMBIENTALE"}
 
 
 class Je1000hEuResidualCopyTests(unittest.TestCase):
     """fr–uk signal labels and headings are never English or another block's language.
 
     The uk symbols table prints the Italian ``AVVERTENZA`` (PDF page 91); the same
-    page prints the uk WARNING callout as ``ПОПЕРЕДЖЕННЯ``. The only English heading
-    left is the one the de/it blocks print in English.
+    page prints the uk WARNING callout as ``ПОПЕРЕДЖЕННЯ``. The de/it blocks print the
+    temperature heading in English (PDF pages 70/87); the operator ruled on 2026-09-27
+    to use the reviewed translation, as JE-2000F prints it.
     """
 
     @staticmethod
@@ -503,6 +504,40 @@ class Je1000hEuResidualCopyTests(unittest.TestCase):
                     shared = {"es", "it"} - {lang} if key == "note" and lang in ("es", "it") else set()
                     self.assertEqual(shared, borrowed)
 
+
+    def test_temperature_heading_uses_the_reviewed_translation(self) -> None:
+        titles = {row["title_en"]: row for row in self._rows("spec_titles.csv")}
+        copy = {row["copy_key"]: row for row in self._rows("Localized_Copy.csv")}
+        for lang, heading in REVIEWED_HEADING.items():
+            with self.subTest(lang=lang):
+                self.assertEqual(heading, titles["ENVIRONMENTAL OPERATING TEMPERATURE"][f"title_{lang}"])
+                self.assertEqual(heading, copy["spec.section.environmental_operating_temperature"][f"text_{lang}"])
+
+
+class Je1000hEuUsbCCautionTests(unittest.TestCase):
+    """JE-1000H's print rates the high-power USB-C port at 140 W (fr/es/de/it/uk PDF pages 29/46/63/80/97).
+
+    The shared EU operation carrier keeps the other models' 100 W text; JE-1000H gets its own
+    ``.. only:: model_je_1000h`` branch with the printed wattage and the added 28 V/5 A rating.
+    """
+
+    def test_je1000h_branch_carries_the_printed_rating_and_others_keep_100w(self) -> None:
+        import re
+
+        for lang in ("fr", "es", "de", "it", "uk"):
+            text = (ROOT / f"docs/templates/page_eu-{lang}/05_operation_guide_placeholder.rst").read_text(encoding="utf-8")
+            je1000h = text.split(".. only:: model_je_1000h", 1)[1].split(".. only:: not model_je_1000h", 1)[0]
+            others = text.split(".. only:: not model_je_1000h", 1)[1]
+            with self.subTest(lang=lang):
+                usb_c = [line for line in je1000h.splitlines() if "PS3" in line]
+                self.assertEqual(1, len(usb_c))
+                self.assertIn("140", usb_c[0])
+                self.assertNotIn("100", usb_c[0])
+                self.assertRegex(je1000h, r"\(20\s?(V|В)[^)]*100\s?(W|Вт)\s?; 28\s?(V|В)[^)]*140\s?(W|Вт)\)")
+                other_usb_c = [line for line in others.splitlines() if "PS3" in line]
+                self.assertEqual(1, len(other_usb_c))
+                self.assertIn("100", other_usb_c[0])
+                self.assertNotRegex(others.split("PS3", 1)[1].split("\n\n", 1)[0], r"28\s?(V|В)")
 
 if __name__ == "__main__":
     unittest.main()

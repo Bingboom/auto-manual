@@ -43,15 +43,33 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 | **Arrêt** 
 | appuyez une fois
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. The JE-1000H print (EU-UK V2.0-2026-08-03, PDF page 29) rates its high-power
+   USB-C port at 140 W and adds the 28 V/5 A cable rating; each model follows its
+   own print.
 
-   * - **ATTENTION**
-     -
-       - **Les ports USB-C de 100 W sont des ports de sortie haute puissance de type Source d'alimentation 3 (PS3) selon USB-PD.** Si l'appareil utilisateur ou l'accessoire connecté ne répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre les incendies.
-       - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
-       - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W).
+.. only:: model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENTION**
+        -
+          - **Les ports USB-C de 140 W sont des ports de sortie haute puissance de type Source d'alimentation 3 (PS3) selon USB-PD.** Si l'appareil utilisateur ou l'accessoire connecté ne répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre les incendies.
+          - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
+          - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W ; 28 V CC/5A, 140 W).
+
+.. only:: not model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENTION**
+        -
+          - **Les ports USB-C de 100 W sont des ports de sortie haute puissance de type Source d'alimentation 3 (PS3) selon USB-PD.** Si l'appareil utilisateur ou l'accessoire connecté ne répond pas aux exigences de sécurité, il peut présenter un risque d'incendie. Avant d'utiliser ces ports, assurez-vous que l'appareil ou l'accessoire connecté dispose d'une protection contre les incendies.
+          - Ne connectez |PRODUCT_NAME| qu'à des appareils ou accessoires conformes aux clauses 6.3, 6.4 et 6.5 de la norme IEC/EN/UL 62368-1 (ou autres normes équivalentes).
+          - Pour obtenir la puissance de sortie maximale, utilisez le câble USB-C vers USB-C 5 A (20 V CC/5A, 100 W).
 
 | Le produit peut charger la batterie de votre voiture à l'aide du câble de charge de batterie automobile Jackery 12V, vendu séparément et disponible sur notre site web.
 
