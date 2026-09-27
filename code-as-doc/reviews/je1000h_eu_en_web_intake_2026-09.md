@@ -116,8 +116,10 @@ Deviations from the print:
   - The German 12 V port is printed as `DC-12V-Ausgangstaste` (an output
     button), so it reads `1 × DC 12 V-Anschluss`.
   - Ukrainian prints the two USB-C ports as separate label rows, so they share
-    the label `2 виходи USB-C` with the port names as parameters.
-- **Newly substituted:**
+    the label `2 виходи USB-C` with the port names as parameters. Superseded on
+    2026-09-27: the rows follow the print (below).
+- **Newly substituted** (both superseded on 2026-09-27; the cells follow the
+  print, below):
   - The Italian bypass parameter is printed with the English `AC modalità
     bypass`, so it reads `Modalità bypass`.
   - The charge-mode parameter is not printed in fr/es/de/it, so it reads
@@ -282,3 +284,68 @@ correct text in the block, or the text comes from a shared template:
   omits the `28 V/5 A, 140 W` cable rating. The print says 140 W in every block
   (PDF pages 12/29/46/63/80/97). The it heading `LUCE LED ON/OFF` prints as
   `LUCE LED ACCENSIONE/SPEGNIMENTO` (PDF page 80).
+
+## 2026-09-27 Specification tables follow the print
+
+A read-only audit compared the six Web specification sections with the print's
+specification pages (PDF pages 19/36/53/70/87/104, printed 14/31/48/65/82/99).
+It found no value differences. The operator ruled that values, structure and
+labels follow the print, formatting keeps the house rules, and where the print
+itself is wrong the reviewed wording stays.
+
+**What changed.** 14 cells of `Spec_Master.csv`, plus one appended column:
+
+| Row | Column | Before | After | Print |
+| --- | --- | --- | --- | --- |
+| `ac_input` line 1 | `Param_source` | `Charge Mode` | empty | p19 |
+| `ac_input` line 1 | `Param_fr`, `_es`, `_de`, `_it` | `Mode de charge`, `Modo de carga`, `Lademodus`, `Modalità di ricarica` | empty | p36/53/70/87 |
+| `ac_input` line 2 | `Param_it` | `Modalità bypass` | `AC modalità bypass` | p87 |
+| `dc_expansion_input` | `Row_label_source` | `1 × DC Expansion Input` | `1 × DC Expansion Port` | p19 |
+| `dc_expansion_output` | `Row_label_source` | `1 × DC Expansion Output` | `1 × DC Expansion Port` | p19 |
+| `usb_c` 30W, 140W | `Row_label_uk` | `2 виходи USB-C` | `виходи USB-C 30W`, `виходи USB-C 140W` | p104 |
+| `usb_c` 30W, 140W | `Param_uk` | `USB-C 30W`, `USB-C 140W` | empty | p104 |
+| `usb_c` 30W, 140W | `line_text_uk` (new) | — | the row's `Value_uk` | p104 |
+
+Only the uk block prints the charge-mode label, so `Param_uk` keeps
+`Режим заряджання`. The uk labels keep the print's wording and case.
+
+**Why `line_text_uk`.** The spec reader falls back from an empty `Param_uk` to
+the English `Param_source` (`USB-C 30W`). The printed value-only line therefore
+uses Spec_Master's documented `line_text_*` field, the rendered line text that
+bypasses `Param_* + Value_*` (see
+[spec_master_user_guide.md](../spec_master_user_guide.md) §3.7). The column is
+appended last, is filled on the two uk USB-C rows only, and repeats `Value_uk`
+verbatim. No reader or renderer changes, and the other languages do not read
+the column.
+
+**Not changed here:**
+
+- **Notes order:** the print sets the numbered footnotes before the ※ trademark
+  note; all six routes set the note first. The order comes from the shared
+  `docs/templates/spec_template.rst`, which a separate change owns.
+- **Print defects** keep the reviewed wording recorded above: French `Oiture:`,
+  Ukrainian `у байпасному режим` and footnote ②, the de/it USB-C label printed in
+  French, the German `DC-12V-Ausgangstaste`, the it/uk trademark `und`, and the
+  de/it temperature heading printed in English.
+- **Formatting** keeps the house rules: unit spacing, `max.`/`máx.`, fr/es
+  `V CC`, the `①`/`②` markers, Cyrillic `мм`.
+- **IDML:** `tools/idml/loaders.py` does not read `line_text_*`. An IDML build
+  of this source would still fall back to `USB-C 30W:` / `USB-C 140W:` on the two
+  uk lines.
+
+**Verification:**
+
+- **Trial Web build:** all six languages from the frozen data root, compared
+  with the live pages (Hello-Docs `4a7526b0`; the routes as released in
+  `ea5f0e9f`), with `src` normalized to the content hash. A build of the base
+  commit reproduces all six live pages exactly. The trial changes only the fixed
+  cells: en the AC input cell and both DC expansion labels; fr/es/de/it the AC
+  input cell (for it, also the bypass line); uk the USB-C row, which becomes two
+  rows. Nothing else changes in any route.
+- **Regression tests:** `tests/test_je1000h_eu_spec_print.py` renders the six
+  tables through the spec reader, assembled as the build assembles them. Five of
+  its seven tests fail on the previous file. The other two guard the unchanged
+  en–it USB-C rows and the print-defect wording.
+- **Live tables:** none was read or written. The 2026-09-26 check found no
+  `JE-1000H_EU` rows in 规格参数明细, so the frozen source is the only place to
+  fix.
