@@ -385,3 +385,99 @@ Verification:
   - it: 9 lines, only `DC` → `CC` in the DC/USB button's name;
   - uk: the add-device image and its alt text, the four label lines removed, the
     overview alt's DC/USB label, and notes 4.1/4.2.
+
+## 2026-09-27 specification tables per print
+
+A read-only audit compared the six live specification tables (Hello-Docs
+`ea5f0e9f`) with each block's printed spec page (PDF pages 21/40/59/78/97/116)
+and listed 92 differences: 15 VALUE, 26 LABEL, 5 STRUCTURE, 39 FORMAT and 7
+PRINT-DEFECT (the print is wrong and the page already corrects it). The
+operator's ruling: values, structure and labels follow the print; formatting
+keeps this source's house rules; where the print is wrong, the page keeps the
+reviewed wording.
+
+Cause:
+
+- #1124 (2026-09-14) matched only the English columns to the print. English
+  lists the DC8020 PV line first, so its two cells swapped and gained `PV`/`Car`
+  prefixes. The translated cells kept the car rating on line 1 and fell back to
+  the English prefixes, so the car rating read `PV` and the PV rating `Car`. The
+  two USB-C ports got their own English labels; the fr–uk labels stayed equal,
+  so the renderer still merged the two rows into one.
+- The intake set the English weight to the print's 19.1 kg; the translations
+  kept 18,8 kg. The es/de/it/uk AC-output count (`2 ×`) and the other labels
+  came in with the translated rows (#1085).
+
+Change (frozen `phase2/` cells; the page is regenerated from them):
+
+| Route | Cell | Before → after | PDF page |
+| --- | --- | --- | --- |
+| fr–uk | `Spec_Master` `weight` `Value_<lang>` | `18,8` → `19,1` kg | 40/59/78/97/116 |
+| fr | `dc8020_ports` l01/l02 `Param_fr`, `Value_fr` | `PV: 11 V-16 V⎓8 A…` / `Car: 16 V-60 V⎓12 A, …` → `PV: 16 V-60 V⎓12 A max., Double à 21 A / 800 W max.` / `Voiture: 11 V-16 V⎓8 A max., Double à 8 A max.` | 40 |
+| es/de/it/uk | `dc8020_ports` l01/l02 `Param_<lang>` | English fallback `PV`/`Car` → es `Coche`/`PV`, de `Auto`/`PV`, it `Auto`/`FV`, uk `Автомобіль`/`PV` (values unchanged) | 59/78/97/116 |
+| es/de/it/uk | `ac_output` `Row_label_<lang>` | `2 ×` → `3 ×` (it `2 × uscite CA` → `3 × Uscita CA`) | 59/78/97/116 |
+| fr–uk | `usb_c` 30w/140w `Row_label_<lang>` | one shared label (`2 × Sortie USB-C` …) → fr `1 × Sortie USB-C 30 W`/`140 W`, es `1 × Salida USB-C 30 W`/`140 W`, de `1 × USB-C-Ausgang 30 W`/`140 W`, it `1 × Uscita USB-C 30 W`/`140 W`, uk `Вихід USB-C 30 Вт`/`140 Вт` | 40/59/78/97/116 |
+| en | `charging_temperature`, `discharging_temperature` `Row_label_source` | `Charging`/`Discharging Temperature` → `Charge`/`Discharge Temperature` | 21 |
+| fr | `model_no` `Row_label_fr`; `ac_input` l01/l02 `Param_fr` | `N° de modèle` → `N° modèle`; `Mode de charge` → `Mode charge`; `Mode bypass` → `Mode dérivation` | 40 |
+| es | `dc12_port` `Row_label_es` | `1 × Puerto CC 12 V` → `1 × Puerto DC 12 V` | 59 |
+| de | `Spec_Footnotes` `ac_bypass` `Text_de` | `… über die AC-Ausgänge liefern.` → `… über die AC-Ausgangsanschlüsse liefern.` | 78 |
+| it | `spec_titles` and `Localized_Copy` | `SPECIFICHE`, `INFO GENERALI`, `PORTE DI INPUT`, `PORTE DI USCITA` → `SPECIFICHE TECNICHE`, `INFORMAZIONI GENERALI`, `PORTE IN INGRESSO`, `PORTE IN USCITA` | 97 |
+| it | `Row_label_it` of `model_no`, `dc12_port` and the temperatures | `Numero di modello` → `Modello n.`; `1 × Porta CC 12 V` → `1 × Presa da 12 V CC`; `Temperatura di ricarica`/`di scarico` → `di carica`/`di scarica` | 97 |
+| uk | `spec_titles` and `Localized_Copy` page title | `Специфікації` → `ТЕХНІЧНІ ХАРАКТЕРИСТИКИ` | 116 |
+| uk | `ac_input` l02 `Param_uk`; `Row_label_uk` of `usb_a`, `dc12_port`, `discharging_temperature` | `Режим байпасу` → `Байпасний режим`; `1 вихід USB-A` → `1 вихід USB-A 18 Вт`; `1 × порт DC 12 В` → `Порт постійного струму 12 В`; `Температура розряду` → `Температура розряджання` | 116 |
+| de | `charging_temperature` `Row_label_de` | `Ladtemperatur` → `Ladetemperatur` (reviewed wording, below) | 78; prose 75 |
+
+The labels keep the house number–unit space where the fr/es/it prints set
+`30W`, `140W` or `12V`. The DC8020 lines are positional: line 1 and line 2 are
+each block's first and second printed line, so `l01` is the PV port in en/fr and
+the car port in es/de/it/uk. The regression test checks that every prefix
+carries its own port's rating.
+
+Where a block words the same item differently, the spec page decides:
+
+- en: the table prints `Charge`/`Discharge Temperature`; the prose (p18) says
+  "charging temperature".
+- fr: the input line prints `Mode dérivation`; the output row on the same page
+  keeps its printed `Sortie CA en mode bypass`.
+- es: `Puerto DC 12 V`; the overview (p46) prints `Puerto CC 12 V`.
+- it: `FV`; the overview (p84) prints `PV`. `Presa da 12 V CC`; the overview
+  prints `Porta 12 V CC` and p89 `La porta CC 12 V`. `Temperatura di carica`;
+  the prose (p94) says `ricarica`.
+- uk: `Порт постійного струму 12 В`; the overview (p103) prints `Порт DC 12 В`.
+  The uk USB-C and 12 V rows carry no count, as printed; the other rows do.
+
+Where the print is wrong, the page keeps the reviewed wording:
+
+- de `Ladtemperatur` (p78) becomes `Ladetemperatur`, as the block's own prose
+  prints it (p75). The page had copied the typo.
+- The seven print defects the page already corrected stay corrected: the fr
+  trademark note printed in English and fr footnote `① 1.`; de `máx.` on the
+  bypass output, `1 × USB-A -Ausgänge` and the heading
+  `UMGEBUNGSAUFBETRIEBSTEMPERATUR`; it `2 × DC8020 Ports` in English; uk
+  `1 вхід змінного струму` on the DC8020 row.
+
+`source_manifest.json` re-locks `Spec_Master.csv`, `spec_titles.csv`,
+`Localized_Copy.csv` and `Spec_Footnotes.csv`.
+
+Not changed:
+
+- The 39 FORMAT differences stay under the house rules. Among them, the fr–uk
+  expansion-port values are the English source text (`36.8 V-57.6 V⎓75 A
+  max.`), where the es/uk prints say `máx.`/`макс.` and uk `В`. They are
+  English fallbacks rather than spacing and may need their own ruling.
+- The order of the trademark note and footnote ① comes from the shared
+  specification template, which another change handles.
+- The Product overview rows (figure alt text) are not part of this change.
+
+Verification:
+
+- **Trial Web builds** (default mode, frozen data root) of the six routes: the
+  unchanged source reproduces the live 2.8 pages exactly, with image `src`
+  normalized. With the change, only the fixed lines differ: en 2 labels; fr 4
+  cells and the USB-C split; es 4 cells and the split; de 5 and the split; it 11
+  (title, three headings, seven cells) and the split; uk 8 and the split.
+- **Print check:** every rendered label, prefix and value was compared with the
+  page's plain text (a second extraction path, whitespace removed). What is left
+  is FORMAT or one of the eight reviewed corrections.
+- **Regression tests:** `tests/test_je2000e_eu_spec_print.py` (9 tests) fails
+  on the previous cells (28 failures); its print-defect guard passes on both.
