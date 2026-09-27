@@ -31,6 +31,21 @@ App add-device figure (2026-09-24): all six routes bind their own language block
 the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
 together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
 
+Specification tables (2026-09-27): values, structure and labels follow the
+print; formatting keeps the house rules. The fr/es/de/it/uk tables now give
+4000 cycles, the 3 × AC outputs without `10 A max.`, and the bypass output at
+`2200 W max.` (PDF pages 34/50/66/82/98). The it capacity reads
+`2048 Wh (40 Ah / 51,2 V ⎓)`, in the printed order. The en DC8020 line says
+`Car:` (PDF pages 18 and 8), and the fr labels read `N° modèle` and
+`3 × Sortie CA` (PDF page 34). Three print defects use the reviewed wording:
+de `Ladetemperatur` and it `Temperatura di scarica`, which the print's own
+charging notes use (PDF pages 63 and 79), and the de headings
+`EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`, which the JE-1000H and JE-3600A
+EU prints set. The cells are in `phase2/Spec_Master.csv`,
+`phase2/spec_titles.csv` and `phase2/Localized_Copy.csv`, and
+`source_manifest.json` re-locks all three; see the intake review addendum of the
+same date.
+
 Specification notes order (2026-09-27): every language block of the print sets
 the footnote above the ※ USB Type-C trademark note (PDF pages
 18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of

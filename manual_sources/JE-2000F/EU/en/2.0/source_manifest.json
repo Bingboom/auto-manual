@@ -42,8 +42,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 9615,
-      "sha256": "b257e9badfec4c3cf501b1496b2d90f479b1ee4d3a5fc8e80e63c3f57e0d7d86"
+      "size": 9627,
+      "sha256": "718b182130dcaaf51efcc6bd4529b0a4b0ce100fac891b538fc9d6060f03499d"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -57,8 +57,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23757,
-      "sha256": "1eee1d2b1f658745b7e8f57d643c3c93fb2ee8b12e6fab6243a27a7e0f84fd7d"
+      "size": 23700,
+      "sha256": "d02aa1977c8ed0f5497094c84f1838bf2030572a73b4858a1a54ebdbc28037be"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -292,8 +292,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 990,
-      "sha256": "54ec1e1d9988d56d04bf27e64b1fe1208039492779502f1991cbac52f367bc9d"
+      "size": 1002,
+      "sha256": "7315048c0555d3638ec5e06372f4d167c2543041746283752397419a2d86a916"
     },
     {
       "path": "phase2/symbols_blocks.csv",
@@ -311,7 +311,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "64e95bd0fd0d54f7e31b4ea2822a89c47ec082c1f7c09edbfa791b7502bb4ddd",
+  "files_inventory_sha256": "963e1281064a9511f24011eb4922595233525e37feb92db2efa1eb37e4b49957",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

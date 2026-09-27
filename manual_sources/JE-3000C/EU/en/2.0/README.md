@@ -63,6 +63,19 @@ Charging Mode block. This model lacks the feature, and the shared fr–uk
 charging templates now carry the English file's capability markers; see the
 intake review addendum of the same date.
 
+Specification tables (2026-09-27): the six spec tables follow this source's
+V2.0-2026-07-31 print (PDF pages 18/34/50/66/82/98) in values and labels;
+formatting keeps the house rules and print defects keep reviewed wording
+(operator ruling of the same date). In `phase2/Spec_Master.csv`, AC input line 1
+loses its charge-mode label in en/fr/es/de/it (the uk block prints one). English
+reads `Car:`, `2 × USB-C 100 W max.`, `2 × USB-A 18 W max.`, `Charge Temperature`
+and `Discharge Temperature`. The fr/es capacity reads `V DC`, and the Italian cycle
+life reads `fino al 70%`. In `phase2/Spec_Footnotes.csv`, footnote ① takes the
+printed German `AC-Ausgangsports` and the Ukrainian `або ATS`.
+`phase2/spec_titles.csv`, mirrored in `phase2/Localized_Copy.csv`, takes the
+printed de/it/uk page title and de/it section headings. See the intake review
+addendum of the same date. `source_manifest.json` re-locks the four files.
+
 Specification notes order (2026-09-27): every language block of the print sets
 the footnotes above the ※ USB Type-C trademark note (PDF pages
 18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of
