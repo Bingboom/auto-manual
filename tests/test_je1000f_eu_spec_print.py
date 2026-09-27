@@ -25,7 +25,8 @@ REVIEW_PAGES = ROOT / "docs" / "_review" / "JE-1000F" / "EU" / "page"
 
 # Each print block's specification table as the Web shows it (PDF pages 53,
 # 71 and 88). Until 2026-09-27 these routes merged the two USB-C rows, lacked
-# the bypass footnote and carried non-print labels and values.
+# the bypass footnote and carried non-print labels and values. Print defects
+# use the reviewed wording (see test_print_defects_keep_the_reviewed_wording).
 PRINTED_TABLES: dict[str, list[tuple[str, list[tuple[str, str]]]]] = {
     "es": [
         ("INFORMACIÓN GENERAL", [
@@ -66,12 +67,12 @@ PRINTED_TABLES: dict[str, list[tuple[str, list[tuple[str, str]]]]] = {
             ("Abmessungen", "31,4 x 20,1 x 23,4 cm"),
             ("Zykluslebensdauer", "4000 Zyklen bei über 70 % Restkapazität"),
         ]),
-        ("EINGANGSPORTS", [
+        ("EINGANGSANSCHLÜSSE", [
             ("1 × AC-Eingang", "Lademodus: 220-240 V~ 50 Hz, 10 A max."),
             ("2 × DC8020-Ports", "11–16 V⎓8 A max., bei Verwendung beider Eingänge bis zu 8 A max.\n"
                                  "16–60 V⎓12 A max., bei Verwendung beider Eingänge bis zu 21 A / 400 W max."),
         ]),
-        ("AUSGANGSPORTE", [
+        ("AUSGANGSANSCHLÜSSE", [
             ("2 × AC-Ausgänge", "230 V~ 50 Hz, 6,5 A max., 1500 W Nennleistung pro Port, 1500 W insgesamt, "
                                 "3000 W Spitzenleistung"),
             ("AC-Ausgang im Bypass-Modus①", "220 V-240 V~ 50 Hz, 1500 W"),
@@ -203,14 +204,28 @@ class Je1000fEuSpecPrintTests(unittest.TestCase):
         # (PDF page 67) spells "Ladetemperatur".
         self.assertIn(("Ladetemperatur", "von 0 °C bis 45 °C"), german)
         self.assertFalse([label for label, _value in german if label == "Ladtemperatur"])
+        # The DE block mixes two nouns in its port headings, EINGANGSPORTS /
+        # AUSGANGSPORTE (PDF page 71). The JE-1000H and JE-3600A EU prints set
+        # EINGANGSANSCHLÜSSE / AUSGANGSANSCHLÜSSE (PDF page 70 of each).
+        german_titles = [section["title"] for section in _spec_content("de")["sections"]]
+        self.assertEqual(["EINGANGSANSCHLÜSSE", "AUSGANGSANSCHLÜSSE"], german_titles[1:3])
+        self.assertFalse({"EINGANGSPORTS", "AUSGANGSPORTE"} & set(german_titles))
 
-    def test_italian_port_headings_match_their_non_rendering_twins(self) -> None:
-        titles = {row["title_en"]: row["title_it"] for row in _rows("spec_titles.csv")}
-        copy = {row["copy_key"]: row["text_it"] for row in _rows("Localized_Copy.csv")}
-        self.assertEqual("PORTE IN INGRESSO", titles["INPUT PORTS"])
-        self.assertEqual("PORTE IN USCITA", titles["OUTPUT PORTS"])
-        self.assertEqual(titles["INPUT PORTS"], copy["spec.section.input_ports"])
-        self.assertEqual(titles["OUTPUT PORTS"], copy["spec.section.output_ports"])
+    def test_port_headings_match_their_non_rendering_twins(self) -> None:
+        headings = {
+            # Printed on PDF page 88.
+            "it": ("PORTE IN INGRESSO", "PORTE IN USCITA"),
+            # The reviewed pair for the DE block's print defect (page 71).
+            "de": ("EINGANGSANSCHLÜSSE", "AUSGANGSANSCHLÜSSE"),
+        }
+        for lang, (input_heading, output_heading) in headings.items():
+            with self.subTest(lang=lang):
+                titles = {row["title_en"]: row[f"title_{lang}"] for row in _rows("spec_titles.csv")}
+                copy = {row["copy_key"]: row[f"text_{lang}"] for row in _rows("Localized_Copy.csv")}
+                self.assertEqual(input_heading, titles["INPUT PORTS"])
+                self.assertEqual(output_heading, titles["OUTPUT PORTS"])
+                self.assertEqual(titles["INPUT PORTS"], copy["spec.section.input_ports"])
+                self.assertEqual(titles["OUTPUT PORTS"], copy["spec.section.output_ports"])
 
     def test_french_review_page_follows_the_print(self) -> None:
         latex, html = _carriers("spec_fr.rst")

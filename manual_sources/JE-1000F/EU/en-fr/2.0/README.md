@@ -158,10 +158,15 @@ format.
 Print defects keep the reviewed wording: the IT block's `60 Hz` AC rows stay
 50 Hz, the DE block's `máx.` stays `max.`, and the DE table's `Ladtemperatur`
 becomes `Ladetemperatur`, as the DE block spells it in running text (PDF page
-67). The IT DC8020 line 2 keeps the print's `12 A` without `max.`; it may be a
-print defect, but it is left as printed. The ES/DE/IT review pages are not
-edited, because the review sync rewrites them from these cells. Their print
-blocks put the ① footnote first, but on the Web it still follows the ※ note,
-because the shared spec template renders notes first. EN is unchanged: its
-block (PDF page 19) prints the ※ note first. `source_manifest.json` re-locks
-the four CSV files and the FR review page.
+67). The DE port headings mix two nouns in the print (`EINGANGSPORTS` /
+`AUSGANGSPORTE`, PDF page 71). `phase2/spec_titles.csv` (`title_de`) and its
+`phase2/Localized_Copy.csv` twins now hold the reviewed pair
+`EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`. The JE-1000H EU print
+(V2.0-2026-08-03) and the JE-3600A EU print (2026-05-25) set that pair on PDF
+page 70 of each. The IT DC8020 line 2 keeps the print's `12 A` without `max.`;
+it may be a print defect, but it is left as printed. The ES/DE/IT review pages
+are not edited, because the review sync rewrites them from these cells. Their
+print blocks put the ① footnote first, but on the Web it still follows the ※
+note, because the shared spec template renders notes first. EN is unchanged:
+its block (PDF page 19) prints the ※ note first. `source_manifest.json`
+re-locks the four CSV files and the FR review page.
