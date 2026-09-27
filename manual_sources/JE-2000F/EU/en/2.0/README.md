@@ -54,3 +54,16 @@ the footnote above the ※ USB Type-C trademark note (PDF pages
 and the Word bundle, which takes its order from the HTML) puts the footnotes
 first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
 are unchanged. `source_manifest.json` re-locks the registry.
+
+Product overview AC output (2026-09-27): the front view of every language block
+of the print (PDF pages 8/24/40/56/72/88) gives the AC output its voltage,
+frequency and rating only; the surge peak is in the Total Output callout. The
+front-view figure's alt text now says what the print says: en
+`230 V~ 50 Hz, 2200 W Rated`, fr and es `230 V~ 50 Hz, 2200 W Nominal`, de
+`230 V~ 50 Hz, 2200 W Nennleistung`, it `230 V~ 50 Hz, 2200 W nominali`, uk
+`230 В~ 50 Гц, 2200 Вт ном. потужності`. The text is line 20 of
+`phase2/Spec_Master.csv` (`Value_source` and `Value_fr`/`es`/`de`/`it`/`uk`).
+The six `docs/renderers/web/je2000f_eu_<lang>_illustrations.json` bind it by
+exact text, so they change with it, and `source_manifest.json` re-locks
+`Spec_Master.csv` and the English manifest. The images do not change; see the
+intake review addendum of the same date.
