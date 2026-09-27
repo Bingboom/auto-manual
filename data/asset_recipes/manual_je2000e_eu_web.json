@@ -2182,6 +2182,54 @@
       ]
     },
     {
+      "asset_key": "web/je2000e/eu/en/battery_pack_kit",
+      "page": 17,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "en"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            425.31,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_en/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "a92d67baa23725e768f882b3f47fa885a685ac817fbc469c7883a175312fb1a6"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the English block (PDF page 17); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
       "asset_key": "web/je2000e/eu/en/charging_ac",
       "page": 18,
       "build_eligible": true,
@@ -2376,7 +2424,7 @@
     {
       "asset_key": "web/je2000e/eu/en/connect_result",
       "page": 24,
-      "build_eligible": true,
+      "build_eligible": false,
       "scope": {
         "models": [
           "JE-2000E"
@@ -2389,7 +2437,7 @@
         ]
       },
       "text_policy": "localized-full-page",
-      "visual_review_required": false,
+      "visual_review_required": true,
       "transforms": [
         {
           "op": "crop",
@@ -2410,15 +2458,19 @@
         }
       ],
       "gate": {
-        "status": "approved",
+        "status": "quarantine",
         "reasons": [
+          "App UI screenshots (the connection result), so this crop is quarantined under the App/QR/URL/localized-UI recipe gate; it reaches the Web only through its hash-pinned illustration manifest entry. Reclassified 2026-09-26 after #1258: it had been approved only because neither its key nor its risk tags carried a gate token (key, output and hash unchanged).",
           "2026-09-08 target-local 12x source/candidate pixel review confirmed the JE-2000E EU crop; LCD remains a device-only image plus semantic CSS/HTML table."
         ]
       },
       "risk_tags": [
         "model-specific",
         "region-locked-art",
-        "localized-copy"
+        "localized-copy",
+        "app-ui",
+        "screenshot",
+        "localized-ui"
       ]
     },
     {
@@ -3085,6 +3137,54 @@
         "status": "approved",
         "reasons": [
           "2026-09-26: cropped from the French block (PDF pages 25-43) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/fr/battery_pack_kit",
+      "page": 36,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "fr"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            425.92,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_fr/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "19c2003d531888e872ee7017a6b4d14e8177b3452233ab84d87d00518f316c22"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the French block (PDF page 36); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
         ]
       },
       "risk_tags": [
@@ -3863,7 +3963,7 @@
     },
     {
       "asset_key": "web/je2000e/eu/es/extra_battery",
-      "page": 55,
+      "page": 36,
       "build_eligible": true,
       "scope": {
         "models": [
@@ -3883,9 +3983,9 @@
           "op": "crop",
           "bbox_pt": [
             29.09,
-            103.22,
+            106.46,
             343.09,
-            315.22
+            318.46
           ]
         }
       ],
@@ -3894,13 +3994,62 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je2000e_eu_es/extra_battery.png",
           "scale": 12,
-          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+          "expected_sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
+          "2026-09-26: the es/de/it/uk blocks print this figure's clearance label as '≥ 0,66 pies (200 mm)', the Spanish art reused with an imperial value; on the operator's instruction (「印刷问题要纠正」) this crop is cut from the French block (PDF page 36), whose copy of the same art reads '≥ 200 mm'. An aligned pixel diff of the two blocks' crops differs only in that label.",
           "2026-09-26: cropped from the Spanish block (PDF pages 44-62) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/es/battery_pack_kit",
+      "page": 55,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "es"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            421.33,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_es/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "75abf1db7d77deeddb23a68c93d5fcb1015277c0b873ea5c105b106709481173"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the Spanish block (PDF page 55); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
         ]
       },
       "risk_tags": [
@@ -4679,7 +4828,7 @@
     },
     {
       "asset_key": "web/je2000e/eu/de/extra_battery",
-      "page": 74,
+      "page": 36,
       "build_eligible": true,
       "scope": {
         "models": [
@@ -4699,9 +4848,9 @@
           "op": "crop",
           "bbox_pt": [
             29.09,
-            103.22,
+            106.46,
             343.09,
-            315.22
+            318.46
           ]
         }
       ],
@@ -4710,13 +4859,62 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je2000e_eu_de/extra_battery.png",
           "scale": 12,
-          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+          "expected_sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
+          "2026-09-26: the es/de/it/uk blocks print this figure's clearance label as '≥ 0,66 pies (200 mm)', the Spanish art reused with an imperial value; on the operator's instruction (「印刷问题要纠正」) this crop is cut from the French block (PDF page 36), whose copy of the same art reads '≥ 200 mm'. An aligned pixel diff of the two blocks' crops differs only in that label.",
           "2026-09-26: cropped from the German block (PDF pages 63-81) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/de/battery_pack_kit",
+      "page": 74,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "de"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            421.33,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_de/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "7eadbd024f515b6ba3bf3f51eb9b57a688d8dd786c6d5bbc824b6db178857ce9"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the German block (PDF page 74); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
         ]
       },
       "risk_tags": [
@@ -5495,7 +5693,7 @@
     },
     {
       "asset_key": "web/je2000e/eu/it/extra_battery",
-      "page": 93,
+      "page": 36,
       "build_eligible": true,
       "scope": {
         "models": [
@@ -5515,9 +5713,9 @@
           "op": "crop",
           "bbox_pt": [
             29.09,
-            103.22,
+            106.46,
             343.09,
-            315.22
+            318.46
           ]
         }
       ],
@@ -5526,13 +5724,62 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je2000e_eu_it/extra_battery.png",
           "scale": 12,
-          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+          "expected_sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
+          "2026-09-26: the es/de/it/uk blocks print this figure's clearance label as '≥ 0,66 pies (200 mm)', the Spanish art reused with an imperial value; on the operator's instruction (「印刷问题要纠正」) this crop is cut from the French block (PDF page 36), whose copy of the same art reads '≥ 200 mm'. An aligned pixel diff of the two blocks' crops differs only in that label.",
           "2026-09-26: cropped from the Italian block (PDF pages 82-100) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/it/battery_pack_kit",
+      "page": 93,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "it"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            421.33,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_it/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "bf8394b547b972858de16221fd6b0927745e92fc4cbdb2ab833d4f30155b7036"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the Italian block (PDF page 93); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
         ]
       },
       "risk_tags": [
@@ -6311,7 +6558,7 @@
     },
     {
       "asset_key": "web/je2000e/eu/uk/extra_battery",
-      "page": 112,
+      "page": 36,
       "build_eligible": true,
       "scope": {
         "models": [
@@ -6331,9 +6578,9 @@
           "op": "crop",
           "bbox_pt": [
             29.09,
-            103.22,
+            106.46,
             343.09,
-            315.22
+            318.46
           ]
         }
       ],
@@ -6342,13 +6589,62 @@
           "format": "png",
           "path": "docs/renderers/web/assets/je2000e_eu_uk/extra_battery.png",
           "scale": 12,
-          "expected_sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b"
+          "expected_sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b"
         }
       ],
       "gate": {
         "status": "approved",
         "reasons": [
+          "2026-09-26: the es/de/it/uk blocks print this figure's clearance label as '≥ 0,66 pies (200 mm)', the Spanish art reused with an imperial value; on the operator's instruction (「印刷问题要纠正」) this crop is cut from the French block (PDF page 36), whose copy of the same art reads '≥ 200 mm'. An aligned pixel diff of the two blocks' crops differs only in that label.",
           "2026-09-26: cropped from the Ukrainian block (PDF pages 101-119) at the English crop's position (text-free raster match, refitted to this block's panel frame where one exists, crop edges kept off neighbouring text); visually reviewed against the V2.0 EUUK 2026-08-03 PDF next to the approved English crop."
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-locked-art",
+        "localized-copy"
+      ]
+    },
+    {
+      "asset_key": "web/je2000e/eu/uk/battery_pack_kit",
+      "page": 112,
+      "build_eligible": true,
+      "scope": {
+        "models": [
+          "JE-2000E"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "uk"
+        ]
+      },
+      "text_policy": "localized-full-page",
+      "visual_review_required": false,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            29.5,
+            421.33,
+            343.6,
+            496.6
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "png",
+          "path": "docs/renderers/web/assets/je2000e_eu_uk/battery_pack_kit.png",
+          "scale": 12,
+          "expected_sha256": "1dbe225c47bfe00a2abe24b03c020756b73270bef797244276e871e2a650c847"
+        }
+      ],
+      "gate": {
+        "status": "approved",
+        "reasons": [
+          "2026-09-26: the battery-pack kit box (dashed frame: Battery Pack 2000, expansion cable, user manual and the sold-separately badge) cut at 12x from the Ukrainian block (PDF page 112); it replaces the page's label-only table, whose header row rendered empty. Visually reviewed against the print."
         ]
       },
       "risk_tags": [

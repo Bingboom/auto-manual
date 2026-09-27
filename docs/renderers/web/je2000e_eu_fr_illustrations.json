@@ -289,6 +289,20 @@
     },
     {
       "replaces": [
+        "battery_pack_kit.png"
+      ],
+      "path": "assets/je2000e_eu_fr/battery_pack_kit.png",
+      "sha256": "19c2003d531888e872ee7017a6b4d14e8177b3452233ab84d87d00518f316c22",
+      "source_page": 36,
+      "bbox_pt": [
+        29.5,
+        425.92,
+        343.6,
+        496.6
+      ]
+    },
+    {
+      "replaces": [
         "ac_wall.png"
       ],
       "path": "assets/je2000e_eu_fr/charging_ac.png",

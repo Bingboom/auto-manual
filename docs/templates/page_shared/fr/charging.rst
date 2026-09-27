@@ -46,13 +46,9 @@
 
    .. only:: region_eu
 
-      .. list-table::
-         :header-rows: 0
-         :widths: 34 33 33
-
-         * - **Jackery Battery Pack 2000**
-           - **Câble de rallonge**
-           - **Manuel d’utilisation**
+      .. image:: renderers/web/assets/je2000e_eu_fr/battery_pack_kit.png
+         :alt: Jackery Battery Pack 2000, Câble de rallonge, Manuel d’utilisation (vendu séparément)
+         :width: 360px
 
 CHARGE
 ======

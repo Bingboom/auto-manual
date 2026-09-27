@@ -46,13 +46,9 @@
 
    .. only:: region_eu
 
-      .. list-table::
-         :header-rows: 0
-         :widths: 34 33 33
-
-         * - **Jackery Battery Pack 2000**
-           - **Expansion Cable**
-           - **User Manual**
+      .. image:: renderers/web/assets/je2000e_eu_en/battery_pack_kit.png
+         :alt: Jackery Battery Pack 2000, Expansion Cable, User Manual (sold separately)
+         :width: 360px
 
 CHARGING
 ========

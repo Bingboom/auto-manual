@@ -174,8 +174,9 @@ JE-3000C/EU English App panels are quarantined with App risk tags, keeping
 their keys, files and hashes. `tests/test_app_figure_gate.py` requires every
 manifest entry that replaces an App setup image (`download.png`,
 `add_device.png`, `connect_result.png`) or carries an `app-` reference id to
-resolve to a quarantined recipe asset; the two JE-2000E/EU English panels are
-its only listed exceptions until the open JE-2000E add-device change lands.
+resolve to a quarantined recipe asset. The JE-2000E/EU English connect-result
+panel was quarantined the same way on 2026-09-26, after #1258 moved its
+add-device figure to the App recipe, so the test lists no exceptions.
 
 The App add-device figure of `JE-2000F / EU` (six routes), `JE-3000C / EU`
 (fr/es/de/it/uk) and `JE-3600A / EU` (en/es/fr) is, since 2026-09-24, each
