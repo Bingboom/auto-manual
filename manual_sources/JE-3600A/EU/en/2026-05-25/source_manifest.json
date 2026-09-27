@@ -51,8 +51,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 13284,
-      "sha256": "cd58ee3d9d4e6721514f04e6a503bc8be38c620632795e11a9f43e1113d1b8a1"
+      "size": 13293,
+      "sha256": "8d8c1f0eff6383411e3db22b82e78705b4ca3d6b85551cbb193336b7a21372b3"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -150,7 +150,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "8cf0b39456b81ade78461447ff1f9634020aba63ec3769abf1423dce0b33b675",
+  "files_inventory_sha256": "48fbadfb37adbd2cbcb8b898ebfcb803ba412ae9ca10ec2f16c7a61dcb75a136",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
