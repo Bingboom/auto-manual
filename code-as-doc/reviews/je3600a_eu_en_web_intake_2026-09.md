@@ -301,3 +301,50 @@ Verification:
   - `EmergencyChargingTemplateTests`;
   - the English and Spanish build tests;
   - the AC wall `covered_annotations` check.
+
+## 2026-09-27 Specification footnote marks at the print's anchors
+
+The specification-table audit of the three routes against PDF pages 19/36/53
+found no value or label difference, but two footnote-mark issues. The operator
+ruled that values, structure and labels follow the print, and that formatting
+keeps the house rules:
+
+- The "AC Output in Bypass Mode" row had no ①, although every block prints ①
+  on that label.
+- The Web set ① at the end of the AC input's bypass-mode value and ② at the end
+  of the AC Total Output value. The print sets ① after the mode name
+  (`Bypass Mode① :`, `Mode dérivation① :`, `Modo bypass① :`) and ② on the
+  label.
+
+`Spec_Master.csv` now uses the columns the other EU frozen sources use for the
+same rows:
+
+| Row (file line) | Before | After | Same column in |
+| --- | --- | --- | --- |
+| `ac_input`, Bypass Mode (25) | `Value_footnote_refs=ac_bypass` | `Param_footnote_refs=ac_bypass` | JE-1000H, JE-2000E, JE-2000F, JE-3000C |
+| `ac_total_output` (30) | `Value_footnote_refs=ac_total` | `Row_label_footnote_refs=ac_total` | JE-1000H, JE-3000C |
+| `ac_output_bypass` (31) | none | `Row_label_footnote_refs=ac_bypass` | JE-1000F, JE-1000H, JE-2000E, JE-2000F, JE-3000C |
+
+Not changed:
+
+- The print splits the AC input value into two ruled sub-cells; the Web keeps
+  one cell with two lines. This is renderer layout; the text and the line order
+  match.
+- The print defects the Web already corrects keep their reviewed wording (the
+  Spanish temperature labels printed in French, the French "Rated").
+- The print's typography keeps the house format (unit spacing, `max.`/`máx.`,
+  decimal comma, `V CC`).
+- The order of the note and the footnotes under the tables comes from the
+  shared specification template and is handled separately.
+
+Verification:
+
+- **Trial Web builds** (default source, frozen data root) against the live
+  pages (Hello-Docs `ea5f0e9f`): the unchanged source rebuilds all three pages
+  byte-identically. With the change, each route differs in four lines, all in
+  the specification tables: the AC input cell, the two AC Total Output cells and
+  the AC Output in Bypass Mode label. The ① and ② footnote texts render once
+  each.
+- **Regression tests:** `test_je3600a_eu_spec_footnote_refs.py` pins the three
+  source cells, the published cells of all three routes and the two footnotes.
+  Its source test and three route subtests fail on the previous file.
