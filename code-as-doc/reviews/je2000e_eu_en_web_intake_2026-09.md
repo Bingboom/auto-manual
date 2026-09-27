@@ -303,3 +303,84 @@ Verification:
   LCD-mode composition).
 - **Regression tests:** the updated tests fail on the previous state (13
   failures).
+
+## 2026-09-26 uk App panel and the print's button names
+
+The uk add-device figure was the only one without its block's control-panel
+box, and the German, Italian and Ukrainian pages named some buttons
+differently from the figures next to them. The print decides, as for the other
+items in this record.
+
+**uk App panel.** The uk block (p118) sets the two screens and its
+control-panel box exactly as the es/de/it blocks do (same bitmaps, box and text
+positions) but labels the lower AC button `Кнопка AC1`. The block's own
+overview (p103), its AC text (p107: AC1 and AC2 each switch one pair of AC
+outlets) and every other block's panel call that button AC2. The quarantined
+entry `web/je2000e/eu/uk/app_add_device_panel` cuts the es/de/it bbox
+(25.1 217.5 339 438) at 12x and re-sets that one character from the print's own
+glyphs:
+
+- `redact_text_region` 324.75 400.3 326.5 406.8 removes the wrong `1`. It removes
+  text only: the grey box, leaders and screens stay.
+- `copy_pdf_region` paints the `2` of the same page's `2.1` caption
+  (128.64 344.21 131.79 351.41; Gilroy-Regular 6 pt, #404041, the labels' own
+  font, size and colour) at 324.54 399.94 327.69 407.14. That is the C–2
+  kerning the English block prints for `AC2 Power Button`.
+
+A pixel diff against the uncorrected crop changes 768 pixels, all inside
+pt 324.68 401.33 327.43 405.67. `copy_pdf_region` is new: the one-way form of
+`swap_pdf_regions`, painting no background so the copy can land on the grey
+box. The page's four label lines become the figure's alt text, as on the other
+routes. The correction awaits the operator's confirmation, so its registry row
+is `⛔隔离` until then. The shared screens crop stays in the recipe, unbound, as
+the fallback.
+
+**Button names.** The print's figures and text agree unless noted.
+
+| Route | Button | Page before | Print (PDF pages) | Result |
+| --- | --- | --- | --- | --- |
+| de | main | Haupt-POWER-Taste | POWER-Taste (65, 71, 72, 80, 81) | page follows the print |
+| de | AC1 | AC1-Einschalttaste | AC1-Einschalttaste (65, 80, 81), AC1-Stromtaste (69, 71, 72) | kept: the print is split, and the page matches its overview and App panel |
+| it | DC/USB | Pulsante DC / USB | Pulsante CC/USB (84, 87, 91, 99, 100) | page follows the print, with the page's ` / ` spacing |
+| uk | DC/USB label | Кнопка POWER DC / USB | Кнопка DC / USB (103, 118) | page follows the print |
+| uk | App notes 4.1/4.2 | кнопку AC | кнопку AC1 (119) | page follows the print |
+
+The page terms came from #319 (2026-06-03). It applied the reviewed JE-2000F EU
+revision to the shared EU templates: `POWER-Taste` → `Haupt-POWER-Taste`,
+`CC/USB` → `DC/USB` and `*-Stromtaste` → `*-Einschalttaste`. JE-2000E inherited
+them when it joined the single-language lines (#1139). The JE-2000E print,
+published later, keeps `POWER-Taste` and `CC/USB`. Other models' pages are
+unchanged.
+
+Files changed:
+
+- the frozen `Spec_Master.csv`: three cells (`main_power_button` Value_de,
+  `dc_usb_power_button` Value_it and Value_uk);
+- the frozen `lcd_icons_blocks.csv`: the Italian energy-saving note now says
+  `pulsante CA o CC/USB`;
+- `page_eu-de/05_operation_guide_je2000e.rst`: twelve `POWER-Taste`;
+- `page_eu-it/05_operation_guide_je2000e.rst`: the two key-combination rows;
+- `page_shared/uk/12_app_setup_je2000e.rst`: notes 4.1/4.2;
+- the matching covered texts in the de/it/uk manifests.
+
+The live 页面占位参数 rows `recvkvYQNbA32V` and `recvkvYQNb4X7g` still hold the
+old values. They were read only; the frozen source does not depend on them.
+
+Left as found:
+
+- The fr–uk LCD-icon energy note says `CA`/`AC` where the print says `AC1/2`.
+- The Italian operation text names outputs `uscita … DC/USB`; the print says
+  `CC/USB`.
+- The German print says `Stromtaste` in its energy and key-combination
+  sections.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all eight App outputs; the
+  seven existing ones are unchanged.
+- **Trial Web builds** against the live 2.6 pages:
+  - en/fr/es: no changed line;
+  - de: 10 lines, only `Haupt-POWER-Taste` → `POWER-Taste`;
+  - it: 9 lines, only `DC` → `CC` in the DC/USB button's name;
+  - uk: the add-device image and its alt text, the four label lines removed, the
+    overview alt's DC/USB label, and notes 4.1/4.2.

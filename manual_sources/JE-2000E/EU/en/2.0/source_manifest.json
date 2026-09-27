@@ -27,7 +27,7 @@
   },
   "app_asset_recipe": {
     "path": "data/asset_recipes/manual_je2000e_eu_web_app.json",
-    "sha256": "bd06a012f23c92d930b27d1775bd16069b3b743f18bde64cb8e03894b50a2dc5"
+    "sha256": "6a2ea9d7082980c18d02467406f84cf88714888a966963a1a2391fd15ef3162c"
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000e_eu_en_illustrations.json",
@@ -57,8 +57,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23573,
-      "sha256": "145f7ae4251d9cc6a3fb779cc344298f6ed0b59067c907b99a0a0618b3cc1248"
+      "size": 23561,
+      "sha256": "db4a969c0d393fb5634163fc8d8a54e8ccb681de8594f0589faa721f31aa87c2"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -303,7 +303,7 @@
     {
       "path": "phase2/lcd_icons_blocks.csv",
       "size": 64917,
-      "sha256": "c1749db79ac36622cdaccce57684a7ceb13bd596043eec35f2b1f8853e230a7a"
+      "sha256": "a486d45e13c69415bc13b1d33d9485b58623f813bdd159776118256f60b335f4"
     },
     {
       "path": "phase2/page_registry.csv",

@@ -197,10 +197,10 @@ COMBINAZIONI DI TASTI
    * - Pulsante POWER principale + Pulsante CA1
      - Tieni premuti entrambi per 3 s
      - Attiva/disattiva la Modalità risparmio energetico
-   * - Pulsante POWER principale + Pulsante DC/USB
+   * - Pulsante POWER principale + Pulsante CC/USB
      - Tieni premuti entrambi per 3 s
      - Ripristina Wi-Fi e Bluetooth
-   * - Pulsante DC/USB + Pulsante CA1
+   * - Pulsante CC/USB + Pulsante CA1
      - Tieni premuti entrambi per 1 s
      - Attiva/disattiva Wi-Fi e Bluetooth
    * - Pulsante POWER principale + Pulsante luce LED

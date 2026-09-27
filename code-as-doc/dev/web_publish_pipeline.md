@@ -159,11 +159,15 @@ one-entry manifests, cut at the 12x scale of its English App panels; English
 keeps its own approved panel. `JE-2000E / EU` replaces both App figures of its
 fr/es/de/it/uk routes the same way (add-device 2.1/2.2 and connect-result). The
 print's control-panel box below the add-device screens carries per-language
-button labels, so since 2026-09-24 EN/FR/ES/DE/IT each bind their own block's
-crop of the screens together with that box, and the page's four label lines
-become covered annotations (kept as the figure's alt text). The labels in the
-art are the print's wording (DE `POWER-Taste`, IT `CC/USB`). UK keeps the shared
-screens and live labels, because its block prints `AC1` for the AC2 button.
+button labels, so since 2026-09-24 EN/FR/ES/DE/IT (and since 2026-09-26 UK) each
+bind their own block's crop of the screens together with that box, and the
+page's four label lines become covered annotations (kept as the figure's alt
+text). Since 2026-09-26 the German and Italian pages also name those buttons as
+their print blocks do (DE `POWER-Taste`, IT `CC / USB`). The UK block prints
+`AC1` for the AC2 button, so its crop re-sets that one character from the
+print's own glyphs (`redact_text_region`, then `copy_pdf_region`); the
+correction awaits the operator's confirmation and its registry row stays
+`⛔隔离` until then.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier
