@@ -84,3 +84,15 @@ the footnotes above the ※ USB Type-C trademark note (PDF pages
 and the Word bundle, which takes its order from the HTML) puts the footnotes
 first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
 are unchanged. `source_manifest.json` re-locks the registry.
+
+German front view (2026-09-27): the de `overview_front` figure is re-cropped
+from the German block of the V2.0-2026-09-15 print (PDF page 56), with the
+approved 07-31 frame and scale. The only change is the AC button callout:
+`Bouton d'alimentation CA` becomes `AC-Ausgangstaste`, and the rest of the crop
+is pixel-identical. The operator confirmed the candidate on 2026-09-27. The
+corrective recipe
+`data/asset_recipes/manual_je3000c_eu_uk_20260915_de_overview_front.json` is
+pinned under `supplemental_asset_recipes` in `source_manifest.json`. The 07-31
+recipe and every other figure are unchanged. The printed
+`DC-12V-Ausgangstaste` label is still a print defect, so the page keeps its
+corrected callout table.

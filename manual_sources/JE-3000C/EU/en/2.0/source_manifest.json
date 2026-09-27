@@ -312,5 +312,11 @@
     "path": "phase2/.gitattributes",
     "rule": "*.csv text eol=lf",
     "purpose": "Preserve manifest-locked CSV bytes identically on every Git checkout"
-  }
+  },
+  "supplemental_asset_recipes": [
+    {
+      "path": "data/asset_recipes/manual_je3000c_eu_uk_20260915_de_overview_front.json",
+      "sha256": "e1f59864eaec6573b46569fad8040d27881393987cc2999b37837085c2640097"
+    }
+  ]
 }
