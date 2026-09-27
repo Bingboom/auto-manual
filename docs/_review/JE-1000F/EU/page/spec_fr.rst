@@ -14,9 +14,9 @@
    \begin{spectable}
    \HBTypeSpecLabel{Nom du produit} & \HBTypeSpecValue{Jackery Explorer 1000} \tabularnewline
    \hline
-   \HBTypeSpecLabel{N° de modèle} & \HBTypeSpecValue{JE-1000F} \tabularnewline
+   \HBTypeSpecLabel{N° modèle} & \HBTypeSpecValue{JE-1000F} \tabularnewline
    \hline
-   \HBTypeSpecLabel{Capacité} & \HBTypeSpecValue{1024 Wh (20 Ah / 51,2 V CC)} \tabularnewline
+   \HBTypeSpecLabel{Capacité} & \HBTypeSpecValue{1024 Wh (20 Ah / 51,2 V DC)} \tabularnewline
    \hline
    \HBTypeSpecLabel{Cellule Chimique} & \HBTypeSpecValue{LiFePO₄} \tabularnewline
    \hline
@@ -66,18 +66,18 @@
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.}\par
+   \HBTypeSpecNote{\HBSpecMarkerOne{} Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
    }
 
 
 
 .. raw:: latex
 
-   \vspace*{\csname HBcomp_spec_footnotes_before\endcsname}
+   \vspace*{\csname HBcomp_spec_notes_before\endcsname}
    {\noindent
-   \HBTypeSpecNote{\HBSpecMarkerOne{} Le produit peut charger la batterie à partir d'une prise murale CA tout en fournissant de l'énergie via les ports de sortie CA.}\par
+   \HBTypeSpecNote{※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.}\par
    }
 
 .. raw:: latex
@@ -103,12 +103,12 @@
             <td class="hb-spec-value">Jackery Explorer 1000</td>
           </tr>
           <tr>
-            <th scope="row" class="hb-spec-label">N° de modèle</th>
+            <th scope="row" class="hb-spec-label">N° modèle</th>
             <td class="hb-spec-value">JE-1000F</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Capacité</th>
-            <td class="hb-spec-value">1024 Wh (20 Ah / 51,2 V CC)</td>
+            <td class="hb-spec-value">1024 Wh (20 Ah / 51,2 V DC)</td>
           </tr>
           <tr>
             <th scope="row" class="hb-spec-label">Cellule Chimique</th>
@@ -195,8 +195,8 @@
 
    .. raw:: html
 
-      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.</p>
+      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
 
    .. raw:: html
 
-      <p class="hb-spec-footnote" data-spec-trailer-kind="footnote">① Le produit peut charger la batterie à partir d&#x27;une prise murale CA tout en fournissant de l&#x27;énergie via les ports de sortie CA.</p>
+      <p class="hb-spec-note" data-spec-trailer-kind="note">※ USB Type-C® et USB-C® sont des marques déposées de USB Implementers Forum.</p>
