@@ -439,5 +439,70 @@ class Je1000hEuOverviewSlotTests(unittest.TestCase):
                          (ROOT / "docs/renderers/web/je1000h_eu_de_illustrations.json").read_text(encoding="utf-8"))
 
 
+DISPLAYED_SIGNALS = ("warning", "caution", "note", "tips")
+# 德/意语块印刷把温度小节标题印成英文（PDF 第 70/87 页）；以 PDF 为准照印，是否翻译待操作者裁定
+PRINTED_IN_ENGLISH = {("ENVIRONMENTAL OPERATING TEMPERATURE", "de"),
+                      ("ENVIRONMENTAL OPERATING TEMPERATURE", "it")}
+
+
+class Je1000hEuResidualCopyTests(unittest.TestCase):
+    """fr–uk signal labels and headings are never English or another block's language.
+
+    The uk symbols table prints the Italian ``AVVERTENZA`` (PDF page 91); the same
+    page prints the uk WARNING callout as ``ПОПЕРЕДЖЕННЯ``. The only English heading
+    left is the one the de/it blocks print in English.
+    """
+
+    @staticmethod
+    def _rows(name: str) -> list[dict[str, str]]:
+        with (FORMAL_DATA_ROOT / name).open(encoding="utf-8", newline="") as handle:
+            return list(csv.DictReader(handle))
+
+    def test_signal_labels_and_headings_stay_in_their_block_language(self) -> None:
+        # 乌语符号表把 WARNING 印成意大利语 AVVERTENZA：同页安全须知印的是 ПОПЕРЕДЖЕННЯ
+        from tools.localized_copy import LocalizedCopyResolver
+
+        with self.subTest(signal="warning", lang="uk"):
+            copy = LocalizedCopyResolver.from_csv(FORMAL_DATA_ROOT / "Localized_Copy.csv")
+            self.assertEqual("ПОПЕРЕДЖЕННЯ", copy.resolve("symbols.signal.warning.label",
+                                                          lang="uk", model="JE-1000H", region="EU"))
+            warning, = [row for row in self._rows("symbols_blocks.csv") if row["symbol_key"] == "warning"]
+            self.assertEqual(("ПОПЕРЕДЖЕННЯ", "ПОПЕРЕДЖЕННЯ"), (warning["label_uk"], warning["aliases_uk"]))
+
+        titles = {row["title_en"]: row for row in self._rows("spec_titles.csv")}
+        section_copy = {row["text_en"]: row for row in self._rows("Localized_Copy.csv")
+                        if row["copy_type"] in ("page_title", "section_title")}
+        signals = {row["copy_key"]: row for row in self._rows("Localized_Copy.csv")
+                   if row["copy_type"] == "signal_label"}
+        blocks = {row["symbol_key"]: row for row in self._rows("symbols_blocks.csv")
+                  if row["block_type"] == "signal_row"}
+        for lang in TRANSLATED_LOCALES:
+            for english, row in titles.items():
+                with self.subTest(table="spec_titles", title=english, lang=lang):
+                    self.assertTrue(row[f"title_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"title_{lang}"])
+            for english, row in section_copy.items():
+                with self.subTest(table="Localized_Copy", title=english, lang=lang):
+                    self.assertTrue(row[f"text_{lang}"])
+                    if (english, lang) not in PRINTED_IN_ENGLISH:
+                        self.assertNotEqual(english, row[f"text_{lang}"])
+            for key in DISPLAYED_SIGNALS:
+                label = signals[f"symbols.signal.{key}.label"][f"text_{lang}"]
+                with self.subTest(signal=key, lang=lang):
+                    self.assertTrue(label)
+                    self.assertEqual(label, blocks[key][f"label_{lang}"])
+                    self.assertEqual(label, blocks[key][f"aliases_{lang}"])
+                    if lang == "uk":
+                        self.assertRegex(label, r"^[А-ЯҐЄІЇ’ʼ -]+$")
+                    else:
+                        self.assertRegex(label, r"^[A-ZÀ-ÖØ-Þ -]+$")
+                    # es/it 都写 NOTA 是各自正确的译法；其余语种之间不得互相借用
+                    borrowed = {other for other in MANUAL_LOCALES if other != lang and label
+                                == signals[f"symbols.signal.{key}.label"][f"text_{other}"]}
+                    shared = {"es", "it"} - {lang} if key == "note" and lang in ("es", "it") else set()
+                    self.assertEqual(shared, borrowed)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -217,3 +217,59 @@ notes table has no JE-1000H row, so there is nothing to write back.
   is the callout label-sizer spans that main already carries (#1288).
 - **Live tables:** no `JE-1000H_EU` rows exist in 规格参数明细 or 页面占位参数
   (only AU/KR rows), so the frozen source is the only place to fix.
+
+## 2026-09-27 Ukrainian warning label
+
+The 2026-09-15 intake entered the uk symbols-table label as printed. The print
+sets the Italian `AVVERTENZA` there (PDF page 91, printed 86). The same page
+prints the uk WARNING callout as `ПОПЕРЕДЖЕННЯ`, and every other EU frozen
+source uses that label.
+
+**What changed.** Three cells in two files:
+
+| File | Row | Columns | Before | After |
+| --- | --- | --- | --- | --- |
+| `Localized_Copy.csv` | `symbols.signal.warning.label` | `text_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+| `symbols_blocks.csv` | `warning` | `label_uk`, `aliases_uk` | `AVVERTENZA` | `ПОПЕРЕДЖЕННЯ` |
+
+**Verification:**
+
+- **Trial Web build:** all six languages, compared with the live pages
+  (`2.0-20260926`). Only the uk symbols-table row changes: its badge
+  `aria-label` and its visible label. The other five languages have no line
+  changes.
+- **Regression test:** `Je1000hEuResidualCopyTests` resolves the uk label
+  through the localized-copy loader. It also checks every fr–uk displayed signal
+  label and heading: none may be empty, English or another block's word. The
+  one exception is the heading the print sets in English (below). The test fails
+  3 subtests on the previous files.
+- **Live tables:** there is nothing to write back.
+  - The approved Translation_Memory row `recvllSNnTchQq` (`WARNING`) has uk
+    `ПОПЕРЕДЖЕННЯ`.
+  - So does the shared 内容源_Symbols row `recviwLdx0HcdN`.
+
+**Open question for the operator: the de/it temperature heading.** The de and
+it blocks print `ENVIRONMENTAL OPERATING TEMPERATURE` in English (PDF page 70,
+printed 65; page 87, printed 82). Under 以 PDF 为准 the frozen source keeps it
+as printed. If it should be translated, a reviewed wording exists:
+
+- de `UMGEBUNGSTEMPERATUR IM BETRIEB` and it `TEMPERATURA OPERATIVA AMBIENTALE`;
+- the JE-2000F EU print sets this wording (PDF pages 66/82);
+- the approved Translation_Memory row `recvgEwErzHV3h` holds it;
+- the JE-2000E, JE-2000F, JE-3000C and JE-3600A sources carry it.
+
+The JE-3600A EU print and the JE-3000C EU print (V2.0-2026-09-15) set the same
+English heading, while their sources translate it.
+
+**Still open.** These are the same kind of defect, but the print gives no
+correct text in the block, or the text comes from a shared template:
+
+- **LCD row 4:** the de/it description falls back to English. Both blocks print
+  it in French (PDF pages 60/77). The German name prints as `Ladeplan Plan`.
+- **Italian LCD rows 11–13:** PDF page 78 prints the German `Verbleibende
+  Aufladezeit` and `Autoladeanzeige`. It also shifts the car and solar texts up
+  one row. The source copies all of this.
+- **Shared EU templates:** the fr–uk operation caution says `USB-C 100 W` and
+  omits the `28 V/5 A, 140 W` cable rating. The print says 140 W in every block
+  (PDF pages 12/29/46/63/80/97). The it heading `LUCE LED ON/OFF` prints as
+  `LUCE LED ACCENSIONE/SPEGNIMENTO` (PDF page 80).
