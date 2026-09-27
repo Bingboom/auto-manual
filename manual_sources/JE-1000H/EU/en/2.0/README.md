@@ -61,6 +61,19 @@ The de/it temperature heading, which the print sets in English (PDF pages
 `phase2/Localized_Copy.csv` (operator ruling 2026-09-27); `source_manifest.json`
 re-locks both files.
 
+Specification tables follow the print (2026-09-27): the operator ruled that
+values, structure and labels follow the print, formatting keeps the house rules,
+and print defects keep the reviewed wording. In `phase2/Spec_Master.csv`, AC
+input line 1 loses its charge-mode label in en/fr/es/de/it (only the uk block
+prints `Режим заряджання:`, PDF page 104). The Italian bypass line reads the
+printed `AC modalità bypass` (PDF page 87). Both English DC expansion rows read
+`1 × DC Expansion Port` (PDF page 19). The Ukrainian USB-C row splits into the
+printed `виходи USB-C 30W` / `виходи USB-C 140W` rows, whose value cells have no
+parameter label. An empty `Param_uk` falls back to the English `Param_source`, so
+the appended `line_text_uk` column (the documented `line_text_*` rendered-line
+field) holds those two lines; each repeats `Value_uk`. `source_manifest.json`
+re-locks the file.
+
 Specification notes order (2026-09-27): every language block of the print sets
 the footnotes above the ※ USB Type-C trademark note (PDF pages
 19/36/53/70/87/104), while the Web put the ※ note first. The `spec` row of
