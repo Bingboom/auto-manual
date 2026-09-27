@@ -172,10 +172,12 @@ lines).
   the spec rows without car/PV prefixes; the German and Ukrainian overview AC
   output without "rated".
 
-**The newer revision.** The 2026-09-15 revision on the design share differs only
-in that Spanish PV value and in an added vehicle-charging caution block on the
-storage/fault pages. The storage lines and the other specification text are
-identical. The authority stays V2.0-2026-07-31, because every recipe is
+**The newer revision** (corrected 2026-09-27). In the specification and storage
+text, the 2026-09-15 revision on the design share differs only in that Spanish PV
+value. It is not a one-value revision, though. Every block adds warnings and a UPS
+caution bullet, and the back page rewrites the declaration of conformity. The
+vehicle-charging caution is not new; it only moves with the reflow. See the
+2026-09-27 addendum. The authority stays V2.0-2026-07-31, because every recipe is
 hash-locked to it.
 
 **Verification:**
@@ -271,3 +273,101 @@ print has it. (The uk block's `аварійного використання` is
 Trial Web builds: each fr–uk route loses exactly that block; English is
 unchanged. `Je3000cEuFrenchAppPanelTests.test_no_emergency_charging_block` fails
 on the previous templates.
+
+## 2026-09-27 Specification tables follow the 07-31 print
+
+**Ruling.** On 2026-09-27 the operator ruled that the EU Web specification tables
+follow each model's approved print in values, structure and labels. Formatting
+keeps the house rules, and print defects keep reviewed wording. For JE-3000C the
+authority is V2.0-2026-07-31; the 2026-09-15 revision is a separate item.
+
+**Audit.** A read-only audit compared the 42 items of each route's live table
+(252 in all) with the print's specification pages (PDF 18/34/50/66/82/98). Every
+live item reconstructs from this frozen source. The audit found 90 differences:
+1 value, 21 labels, 6 structure, 50 format and 12 print defects.
+
+**What changed.** 23 cells, plus 8 mirror cells in `Localized_Copy.csv`:
+
+| Route | Cell | Before | After | PDF page |
+| --- | --- | --- | --- | --- |
+| en | `Spec_Master.csv` AC input line 1, `Param_source` | `Charge Mode` | empty | 18 |
+| en | DC8020 line 1, `Value_source` | `Vehicle: …` | `Car: …` | 18 |
+| en | USB-C row, `Row_label_source` | `2 × USB-C` | `2 × USB-C 100 W max.` | 18 |
+| en | USB-A row, `Row_label_source` | `2 × USB-A` | `2 × USB-A 18 W max.` | 18 |
+| en | temperature rows, `Row_label_source` | `Charging Temperature`, `Discharging Temperature` | `Charge Temperature`, `Discharge Temperature` | 18 |
+| fr, es | capacity, `Value_fr`/`Value_es` | `…51,2 V CC)` | `…51,2 V DC)` | 34, 50 |
+| fr, es, de, it | AC input line 1, `Param_<lang>` | `Mode de charge`, `Modo de carga`, `Lademodus`, `Modalità di ricarica` | empty | 34, 50, 66, 82 |
+| de | `spec_titles.csv` page title, input and output headings | `Spezifikationen`, `EINGANGSPORTS`, `AUSGANGSPORTE` | `TECHNISCHE DATEN`, `EINGANGSANSCHLÜSSE`, `AUSGANGSANSCHLÜSSE` | 66 |
+| de | `Spec_Footnotes.csv` ①, `Text_de` | `…über die AC-Ausgänge liefern.` | `…über die AC-Ausgangsports liefern.` | 66 |
+| it | page title, general, input and output headings | `SPECIFICHE`, `INFO GENERALI`, `PORTE DI INPUT`, `PORTE DI USCITA` | `SPECIFICHE TECNICHE`, `INFORMAZIONI GENERALI`, `PORTE IN INGRESSO`, `PORTE IN USCITA` | 82 |
+| it | cycle life, `Value_it` | `4000 cicli fino all' 70% di capacità` | `4000 cicli fino al 70% di capacità` | 82 |
+| uk | page title | `Специфікації` | `ТЕХНІЧНІ ХАРАКТЕРИСТИКИ` | 98 |
+| uk | ①, `Text_uk` | `…змінного струму, одночасно…` | `…змінного струму або ATS, одночасно…` | 98 |
+
+How the rules apply:
+
+- The English USB labels print `100W Max` and `18W Max`. They take the house unit
+  spacing and the `max.` of the values; this column already spaces its labels
+  (`1 × DC 12 V Port`).
+- The uk block prints its charge-mode label (`Режим заряджання:`), so it stays.
+- The Italian cycle life copied a print defect: the elided `all'` goes only
+  before a vowel, and `70` is read `settanta`. It now reads `fino al 70%`. The
+  reviewed Italian cycle-life rows use the same `al 70%` (`…superiore al 70%` in
+  the JE-1000F, JE-2000E and JE-2000F EU frozen sources and in
+  `docs/_review/JE-1000F/EU/page/spec_it.rst`).
+- `Localized_Copy.csv` mirrors the spec titles, as for JE-1000H. The Web build
+  reads `spec_titles.csv`; a trial build with the old `Localized_Copy.csv` renders
+  the same pages.
+
+**Not changed:**
+
+- The 50 format differences keep the house rules (unit spacing, `max.`,
+  `V~ 50 Hz`, `-10 °C`, `мм` and so on).
+- The notes order (the Web sets ※ before ①②; the print sets ①, ②, ※) comes
+  from the shared `docs/templates/spec_template.rst`, which a separate change
+  reorders.
+- The 12 print defects keep the reviewed wording already on the Web:
+  - French: `Oiture:` and the truncated trademark note;
+  - Spanish: the `400 W` PV value and the `USB-C 18W` label of the USB-A row;
+  - German: `Car:`, `DC-12V-Ausgangstaste` and the English temperature heading;
+  - Italian: `AC modalità bypass` and the English temperature heading;
+  - Ukrainian: `2 вихід`, `заряджаннявід` and footnote ② without `струму`.
+- In fr/es/de/it, footnote ① names no ATS, while en and uk do. It stays as
+  printed.
+
+**The 2026-09-15 revision (correction).** The 2026-09-25 addendum said that this
+revision differs only in the Spanish PV value and an added vehicle-charging
+caution. That is wrong. A word-level comparison of the two prints, made
+independently of the audit, shows:
+
+- The specification pages differ only in the Spanish PV value (`/400 W Máx` →
+  `/1000 W Máx`, PDF page 50), which this source already carries.
+- Every language block adds three items; the following pages reflow:
+  - an Energy Saving Mode WARNING box;
+  - a UPS WARNING box (data servers, medical and life-critical equipment,
+    pacemaker wearers);
+  - a UPS caution bullet (one unit on a wall outlet, no cascade).
+- The vehicle-charging CAUTION is unchanged; the reflow only moves it.
+- The German front-view callout prints `AC-Ausgangstaste` instead of the French
+  `Bouton d'alimentation CA` (PDF page 56).
+- The back page (PDF page 102) rewrites the declaration:
+  - `DECLARATION OF CONFORMITY` with 2014/53/EU and 2011/65/EU+(EU)2015/863;
+  - the URL `https://eu.jackery.com/pages/declaration-of-conformity`;
+  - Wi-Fi and Bluetooth frequency ranges and maximum RF output power;
+  - a six-language App download line.
+
+This is a note only; nothing from that revision changes here.
+
+**Verification:**
+
+- **Print check:** each changed cell was compared with the text layer of its PDF
+  page, with house formatting removed first. Every new wording is on its page.
+  The removed charge-mode labels are absent from the en/fr/es/de/it pages, and the
+  uk page prints its own. The Italian cycle life is the only exemption.
+- **Trial Web builds:** the six routes were built from the frozen source in the
+  default mode. Before the change, they equal the live Hello-Docs pages (main
+  `ea5f0e9f`) once image `src` paths are normalized. After it, 28 lines change
+  (en 6, fr 2, es 2, de 7, it 9, uk 2), each one a cell above. A changed heading
+  also changes its table's `aria-label`.
+- **Regression tests:** `tests/test_je3000c_eu_spec_print.py` renders the six
+  tables from the frozen source. Five of its six tests fail on the previous files.
