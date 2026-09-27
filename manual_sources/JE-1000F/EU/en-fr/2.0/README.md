@@ -131,3 +131,16 @@ Web but now holds the same values. The `--source review` build rebuilds the
 spec pages from these cells, so the review pages are not edited. FR keeps its
 reviewed heading and the FR/UK cells are unchanged. `source_manifest.json`
 re-locks the two files.
+
+Specification notes order (2026-09-27): the FR/ES/DE/IT blocks of the print set
+the footnote above the ※ USB Type-C trademark note (PDF pages 36/53/71/88); the
+EN block sets the ※ note first (page 19). The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. The `--source review` build regenerates the ES/DE/IT spec pages
+through this template, so the review pages are not edited. EN and FR build
+`review-asis` from their reviewed pages, which this change does not touch; EN
+keeps the printed ※-first order. `source_manifest.json` re-locks the registry
+and records the change.

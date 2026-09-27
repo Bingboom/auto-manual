@@ -30,3 +30,12 @@ python build.py md \
 App add-device figure (2026-09-24): all six routes bind their own language block's crop of
 the App screens plus this model's control-panel box (`app_asset_recipe`, re-bound
 together with the English illustration manifest in `source_manifest.json`); see the intake review addendum of the same date.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnote above the ※ USB Type-C trademark note (PDF pages
+18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.

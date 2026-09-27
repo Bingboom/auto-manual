@@ -661,7 +661,7 @@ Current rule:
 - use `Note_order` to control the rendered note order
 - keep `Type=Note` for explicit trailer classification coming from the Feishu source
 - `Spec_Notes.csv` is not referenced from spec cells and does not generate superscript markers
-- when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst)
+- when one rendered spec page contains both notes and footnotes at the bottom, their final display order follows the template named by the `spec` row of the `page_registry.csv` the build reads (each frozen `manual_sources/.../phase2` source carries its own; `data/phase2/page_registry.csv` serves every live target): the default [`../docs/templates/spec_template.rst`](../docs/templates/spec_template.rst) puts the notes (such as the ※ trademark note) first, and [`../docs/templates/spec_template_footnotes_first.rst`](../docs/templates/spec_template_footnotes_first.rst) puts the footnotes first, for sources whose print sets them first. Only the HTML order differs, so the Web and the Word bundle (which takes its trailer order from the HTML) follow the named template; the PDF and IDML output is the same for both
 
 ### 7.3 How [`Spec_Master.csv`](../data/phase2/Spec_Master.csv) References Footnotes
 

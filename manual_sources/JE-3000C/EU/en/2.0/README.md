@@ -62,3 +62,12 @@ Emergency charging (2026-09-26): the fr–uk routes no longer print an Emergency
 Charging Mode block. This model lacks the feature, and the shared fr–uk
 charging templates now carry the English file's capability markers; see the
 intake review addendum of the same date.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnotes above the ※ USB Type-C trademark note (PDF pages
+18/34/50/66/82/98), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.

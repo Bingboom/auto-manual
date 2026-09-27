@@ -124,6 +124,15 @@
         88
       ],
       "change": "The ENVIRONMENTAL OPERATING TEMPERATURE row of spec_titles.csv carried the English fallback in title_es/title_de/title_it, and the ES/DE/IT Web specification pages showed that English heading (and figure label). The cells now hold each block's printed heading: es 'TEMPERATURA DE FUNCIONAMIENTO' (PDF page 53), de 'UMGEBUNGSBETRIEBSTEMPERATUR' (page 71), it 'TEMPERATURA OPERATIVA AMBIENTALE' (page 88); the non-rendering Localized_Copy.csv twin spec.section.environmental_operating_temperature (text_es/text_de/text_it) matches. The --source review build regenerates the spec pages from these cells, so the review pages are unchanged. FR keeps its reviewed heading (review-asis) and the FR/UK cells are unchanged."
+    },
+    {
+      "scope": "ES/DE/IT Web specification trailer order",
+      "pdf_physical_pages": [
+        53,
+        71,
+        88
+      ],
+      "change": "The FR/ES/DE/IT blocks of the print set the footnotes above the ※ USB-IF trademark note (PDF pages 36, 53, 71 and 88); the EN block sets the ※ note first (page 19). The spec row of phase2/page_registry.csv now names docs/templates/spec_template_footnotes_first.rst, whose HTML branch renders the footnotes before the notes and whose LaTeX branch is byte-identical to spec_template.rst, so the PDF and IDML output is unchanged. The --source review build regenerates the ES/DE/IT spec pages through this template, so the review pages are not edited. EN and FR build review-asis from their reviewed pages, which this change does not touch; EN keeps the printed ※-first order."
     }
   ],
   "files": [
@@ -674,8 +683,8 @@
     },
     {
       "path": "phase2/page_registry.csv",
-      "size": 524,
-      "sha256": "4a347be200109527813038c2b52a09191a00946c8da6f0123d4ac4b92a623d4f"
+      "size": 540,
+      "sha256": "bba1487c6fdb715c70c625a9f5df533e109d585ad268f059318ec26d9b19cebc"
     },
     {
       "path": "phase2/row_key_mapping.csv",

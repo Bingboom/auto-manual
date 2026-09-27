@@ -60,3 +60,12 @@ The de/it temperature heading, which the print sets in English (PDF pages
 `TEMPERATURA OPERATIVA AMBIENTALE` in `phase2/spec_titles.csv` and
 `phase2/Localized_Copy.csv` (operator ruling 2026-09-27); `source_manifest.json`
 re-locks both files.
+
+Specification notes order (2026-09-27): every language block of the print sets
+the footnotes above the ※ USB Type-C trademark note (PDF pages
+19/36/53/70/87/104), while the Web put the ※ note first. The `spec` row of
+`phase2/page_registry.csv` now names
+`docs/templates/spec_template_footnotes_first.rst`, whose HTML branch (the Web,
+and the Word bundle, which takes its order from the HTML) puts the footnotes
+first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
+are unchanged. `source_manifest.json` re-locks the registry.
