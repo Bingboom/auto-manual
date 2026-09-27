@@ -20,24 +20,27 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # (|PRODUCT_NAME_JOSA_EUN| → literal 본 제품은), a family-wide KR wording backport.
 # The ko charging golden moved for the same 본 제품 simplification in 08_charging_methods
 # (solar DC8020 intro + Voc DC-input sentence: |PRODUCT_NAME…| → literal 본 제품).
+# The en/de/it/uk charging and en/de/it UPS goldens moved when those figures'
+# alt text stopped calling the figure a placeholder; the rendered diff was
+# exactly those :alt: lines, nothing else.
 CHARGING_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "d7529e0ce6e7c02591c42251e6bc9cc18339e929608d5a853e031efac0c9bf79"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
     "es": (SPEC_MASTER, "JE-1000F", "US", "df5714e532914ca36e533ef67f3d31b2375e3d4f46a02a1aca3d02ace1d85e73"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "78a2169e709ea3b2814f066afff47e3fa2d7bee26d25cf37e32812d69e144f45"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "58e3ccbeaf293bdaa3e236fad51eaea01c4af1dc6f16156794040e78f9f3e304"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "538455b593163c25c96d5e4eb9de4ea7d9ecbe6030c355e701aaf6708b7fd3c9"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "59cb400cc4281f1285808960b2946eff99f9a8f8c1e097b19df4d3e289894cbe"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "8466079e2070ecdfbadc777c4c2bc69f101dde9f248f5d85367f16232bb57c19"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "7a61c39d6e9e61dc440fefb5cbac66c6388049fa6f7a9a06867fcc35ed8c2051"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "f86471a4b029af64e396444ce7543a50da1fcaef1c46e22e41e1ed5a5b73d24b"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "2f91c9eb6ed9585dc80feedf783b8d0db7df60ecd24abe55d7d783e4924f51ee"),
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "ebda8dfde504619ee86f9fec5637931487d53d3598d00bdcbd635036dae207c8"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "0d284555c591744b31ab0ba85bb7234be4b99153b782821104746b929caef38d"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "7e86629d410104f7d8be9c07a7d0f9cb0345281d568307c1522f8d7ab0d1d4b8"),
     "es": (SPEC_MASTER, "JE-1000F", "US", "5357dde7f545649c6c473c2dcb8e0931bfb881efa1a375f2690176d023caee10"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "8db266d60cb81c87bec75edb7e9bf636f977ca22292371d80cd67608ae4e3028"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "f2e6a41184ca3a17194a542a4d74de42680eec5a94eff3f55d22edbb55ea7622"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "7d0e61ffc0fcc1a45e46d9f83a9daa2c58dde3c40d44cad36877811864c16c68"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "c1b9d1526394e4e382ad160903b5c2823c6c433e999097fadef61cdc16a1da9f"),
     "uk": (SPEC_MASTER, "JE-1000F", "EU", "2691fe1006dbe89008d0596e556ef53805bbd0a49238930a5795f7d73e0850d6"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }

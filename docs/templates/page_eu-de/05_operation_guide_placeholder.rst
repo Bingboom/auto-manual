@@ -5,7 +5,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
 .. image:: asset:operation/main_power
-   :alt: Platzhalter für Ein-/Ausschalten.
+   :alt: Ein-/Ausschalten.
    :width: 360px
 
 | Ein: Einmal drücken.
@@ -22,7 +22,7 @@ AC-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/ac_output
-   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :alt: AC-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -38,7 +38,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :alt: DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
 | 
@@ -59,17 +59,35 @@ DC 12V/USB-AUSGANG EIN/AUS
        - Verwenden Sie für die maximale Ausgangsleistung das USB-C-auf-USB-C-5 A-Kabel (20 V DC/5 A, 100 W).
 
 | Das Produkt kann Ihre Fahrzeugbatterie mit dem Jackery 12-V-Autobatterie-Ladekabel aufladen, das separat erhältlich und auf unserer Website verfügbar ist.
- 
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
 
-   * - **VORSICHT**
-     -
-       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
-       - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
-       - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
+.. The JE-1000H German print (EU-UK V2.0-2026-08-03, PDF page 63) words
+   this 12 V caution differently from the other models on this carrier; each
+   model follows its own print.
+
+.. only:: model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **VORSICHT**
+        -
+          - Der Zigarettenanzünderanschluss ist nur mit 12V-Autobatterien kompatibel und nicht für 24V-Systeme geeignet.
+          - Starten Sie das Fahrzeug nicht, während das Gerät die Autobatterie über den 12V-DC-Ausgang (Zigarettenanzünderanschluss) lädt, da dies das Gerät beschädigen kann.
+          - Diese Funktion ist ausschließlich für den Notfall vorgesehen und kann eine vollständig entladene oder defekte Autobatterie nicht aufladen.
+
+.. only:: not model_je_1000h
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **VORSICHT**
+        -
+          - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
+          - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
+          - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
 
 ENERGIESPARMODUS
 ----------------
@@ -81,7 +99,7 @@ Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
 .. image:: asset:operation/energy_saving
-   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :alt: Tastenbedienung des Energiesparmodus.
    :width: 320px
 
 
@@ -101,7 +119,7 @@ LED-LICHT EIN/AUS
 Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten.
 
 .. image:: asset:operation/led_light
-   :alt: Platzhalter für den LED-Licht-Modus.
+   :alt: LED-Licht-Modus.
    :width: 360px
 
 |
@@ -141,7 +159,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>

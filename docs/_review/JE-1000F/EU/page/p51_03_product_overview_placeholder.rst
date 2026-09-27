@@ -30,7 +30,7 @@
    -------------
 
    .. image:: _assets/templates/word_template/common_assets/overview/front_product.jpg
-      :alt: Abbildung der Vorderansicht als Platzhalter.
+      :alt: Abbildung der Vorderansicht.
       :width: 420px
 
    .. list-table::
@@ -72,7 +72,7 @@
    -------------------------
 
    .. image:: _assets/templates/word_template/common_assets/overview/right_side_ports.png
-      :alt: Abbildung der rechten Seitenansicht als Platzhalter.
+      :alt: Abbildung der rechten Seitenansicht.
       :width: 420px
 
    .. list-table::

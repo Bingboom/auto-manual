@@ -5,7 +5,7 @@
 ---------
 
 .. image:: asset:operation/main_power
-   :alt: Заглушка операції вмикання/вимикання живлення.
+   :alt: Операція вмикання/вимикання живлення.
    :width: 360px
 
 | Увімкнення: натисніть один раз.
@@ -22,7 +22,7 @@
 **Передумова**: пристрій увімкнено.
 
 .. image:: asset:operation/ac_output
-   :alt: Заглушка операції вмикання/вимикання виходу AC.
+   :alt: Операція вмикання/вимикання виходу AC.
    :width: 360px
 
 Кнопка AC1 і кнопка AC2 керують двома окремими парами розеток змінного струму. Натискання
@@ -41,7 +41,7 @@
 **Передумова**: пристрій увімкнено.
 
 .. image:: asset:operation/dc_usb_output
-   :alt: Заглушка операції вмикання/вимикання виходу DC USB.
+   :alt: Операція вмикання/вимикання виходу DC USB.
    :width: 360px
 
 | 
@@ -85,7 +85,7 @@
 Під час живлення малопотужних пристроїв (AC <= |ENERGY_SAVING_AC_THRESHOLD| або DC / USB <= |ENERGY_SAVING_DC_THRESHOLD|) вимкніть режим енергозбереження, щоб запобігти автоматичному вимкненню виходу під час роботи.
 
 .. image:: asset:operation/energy_saving
-   :alt: Заглушка операції керування режимом енергозбереження.
+   :alt: Операція керування режимом енергозбереження.
    :width: 320px
 
 
@@ -105,7 +105,7 @@
 LED-світло має два режими: режим освітлення та режим SOS. У будь-якому режимі натисніть і утримуйте кнопку LED-світла, щоб вимкнути світло.
 
 .. image:: asset:operation/led_light
-   :alt: Заглушка операції режимів LED-світла.
+   :alt: Операція режимів LED-світла.
    :width: 360px
 
 |
@@ -145,7 +145,7 @@ LED-світло має два режими: режим освітлення т�
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Заглушка режиму дисплея LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="Режим дисплея LCD." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Короткочасне увімкнення</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Увімкнути</td>

@@ -10,7 +10,7 @@
    Questo prodotto può supportare fino a 5 battery pack per soddisfare le esigenze di grande capacità energetica. Per i dettagli sull'utilizzo, fare riferimento al *Manuale utente di Jackery Battery Pack 2000*.
 
    .. image:: _assets/templates/word_template/common_assets/in_the_box/main_unit1.png
-      :alt: Segnaposto diagramma di collegamento al battery pack.
+      :alt: Diagramma di collegamento al battery pack.
       :width: 360px
 
    .. only:: region_us
@@ -69,7 +69,7 @@ RICARICA TRAMITE PRESA A MURO CA
 Collegare il cavo di ricarica CA alla porta di ingresso CA del prodotto e a una presa a muro.
 
 .. image:: _assets/templates/word_template/common_assets/charging/ac_wall.png
-   :alt: Segnaposto diagramma di ricarica da presa a muro CA.
+   :alt: Diagramma di ricarica da presa a muro CA.
    :width: 360px
 
 .. list-table::

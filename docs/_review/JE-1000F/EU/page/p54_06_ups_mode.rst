@@ -6,7 +6,7 @@ UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
 =========================================
 | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die AC-Einschalttaste, um Ihre Geräte gleichzeitig zu versorgen.
 .. image:: asset:operation/ups_mode
-   :alt: Abbildung der UPS-Verbindung als Platzhalter.
+   :alt: Abbildung der UPS-Verbindung.
    :width: 360px
 
 | Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.

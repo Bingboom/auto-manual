@@ -9,7 +9,7 @@ HAUPTSTROMVERSORGUNG EIN/AUS
 ----------------------------
 
 .. image:: _assets/templates/word_template/common_assets/operation/main_power.png
-   :alt: Platzhalter für Ein-/Ausschalten.
+   :alt: Ein-/Ausschalten.
    :width: 360px
 
 | Ein: Einmal drücken.
@@ -26,7 +26,7 @@ AC-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: _assets/templates/word_template/common_assets/operation/ac_output.png
-   :alt: Platzhalter für AC-Ausgang Ein/Aus.
+   :alt: AC-Ausgang Ein/Aus.
    :width: 360px
 
 
@@ -42,7 +42,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 **Voraussetzung**: Das Produkt ist eingeschaltet.
 
 .. image:: _assets/templates/word_template/common_assets/operation/dc_usb_output.png
-   :alt: Platzhalter für DC/USB-Ausgang Ein/Aus.
+   :alt: DC/USB-Ausgang Ein/Aus.
    :width: 360px
 
 
@@ -71,7 +71,7 @@ DC 12V/USB-AUSGANG EIN/AUS
 
    * - **VORSICHT**
      -
-       - Der DC-12-V-Anschluss ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
+       - Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.
        - Starten Sie das Fahrzeug nicht, während das Produkt die Fahrzeugbatterie über den 12-V-DC-Ausgang lädt, da dies das Produkt beschädigen kann.
        - Diese Funktion ist nur für den Notfall vorgesehen und kann eine leere oder beschädigte Fahrzeugbatterie nicht aufladen.
 
@@ -85,7 +85,7 @@ Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste
 Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= 25 W oder DC/USB <= 2 W), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
 
 .. image:: _assets/templates/word_template/common_assets/operation/energy_saving.png
-   :alt: Platzhalter für die Tastenbedienung des Energiesparmodus.
+   :alt: Tastenbedienung des Energiesparmodus.
    :width: 320px
 
 
@@ -105,7 +105,7 @@ LED-LICHT EIN/AUS
 Die LED-Leuchte verfügt über zwei Modi: Lichtmodus und SOS-Modus. Halten Sie in jedem Modus die LED-Lichttaste gedrückt, um das Licht auszuschalten.
 
 .. image:: _assets/templates/word_template/common_assets/operation/led_light.png
-   :alt: Platzhalter für den LED-Licht-Modus.
+   :alt: LED-Licht-Modus.
    :width: 360px
 
 
@@ -140,7 +140,7 @@ LCD-ANZEIGE
       <table style="width:100%; border-collapse:collapse; margin:0.75rem 0 0.5rem 0;">
         <tr>
           <td rowspan="6" style="width:24%; border:1px solid #cfcfcf; padding:8px; vertical-align:top; text-align:center;">
-            <img src="asset:operation/lcd_mode" alt="Platzhalter für den LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
+            <img src="asset:operation/lcd_mode" alt="LCD-Anzeigemodus." style="max-width:140px; width:100%; height:auto; display:block; margin:0 auto;">
           </td>
           <td rowspan="3" style="width:18%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Kurzzeitig an</td>
           <td style="width:12%; border:1px solid #cfcfcf; padding:8px; vertical-align:top;">Ein</td>

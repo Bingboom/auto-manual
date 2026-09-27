@@ -88,6 +88,29 @@ LaTeX macro now reference them as `asset:` URIs (the charging pages'
 `source_manifest.json` re-locks those 20 files. On the Web, all five routes
 change exactly these three visible figures; alt text and copy are unchanged.
 
+Figure alt text (2026-09-27): the EN/DE/IT/ES review pages that feed the Web
+carried template alt text that called each figure a placeholder (`… image
+placeholder.`, `… als Platzhalter.`, `Platzhalter für …`, `Segnaposto …`,
+`Marcador de posición …`). These 22 pages now describe the figure in the page
+language, as the shared templates do. A composite's approval hash covers its
+semantic fragment, alt text included, so the 33 EN/DE/IT
+`source_fragment_sha256` values in `phase2/web_composite_manifest.json` are
+re-approved against these pages; the approved panel art is unchanged. The UK
+pages and the generated drafts, which no published Web route reads, keep their
+wording. `source_manifest.json` re-locks the 23 files.
+
+German 12 V caution (2026-09-27): the p53 page named the car socket
+`Der DC-12-V-Anschluss`; it now reads as the print's DE block does (PDF page
+64): `Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für
+24-V-Systeme geeignet.` The other two bullets of that caution already match the
+print. `source_manifest.json` re-locks p53.
+
+French App alt text (2026-09-27): the p31 page's three App figures carried alt
+text that called them a reserved slot (`… emplacement réservé aux boutiques.`,
+`Emplacement réservé à …`); they now describe the figure, as the shared FR
+templates do. No composite covers these figures. `source_manifest.json`
+re-locks p31.
+
 Storage durations (2026-09-26): the Spanish and German storage rows carried
 each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
 meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the

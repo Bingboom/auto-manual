@@ -17,17 +17,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Abbildung der Powerstation als Platzhalter.
+             :alt: Abbildung der Powerstation.
              :width: 120px
 
           |PRODUCT_NAME_BOLD|
         - .. image:: asset:in_the_box/ac_charging_cable
-             :alt: Abbildung des AC-Ladekabels als Platzhalter.
+             :alt: Abbildung des AC-Ladekabels.
              :width: 120px
 
           **AC-Ladekabel**
         - .. image:: asset:in_the_box/manual_icon1
-             :alt: Abbildung des Benutzerhandbuchs als Platzhalter.
+             :alt: Abbildung des Benutzerhandbuchs.
              :width: 120px
 
           Benutzerhandbuch

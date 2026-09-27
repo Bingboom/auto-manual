@@ -94,6 +94,21 @@
       "change": "Switch the raw shared-art paths and bare basenames for in_the_box/main_unit1, operation/lcd_mode and operation/ups_mode in the FR/ES/DE/IT/UK pages, the DE/ES/IT/UK generated drafts and the EN in-box LaTeX macro to asset:in_the_box/main_unit1, asset:operation/lcd_mode and asset:operation/ups_mode. The JE-1000F/EU target overrides resolve them to the released print's own blocks (the English block's BS 1363 sockets for en, the French block's EU sockets for fr/es/de/it/uk) instead of the shared art (a US-outlet unit and another, wheeled model)."
     },
     {
+      "scope": "EN/DE/IT/ES figure alt text on the Web review pages",
+      "change": "Replace placeholder-worded image alt text (en 'image/diagram/operation placeholder', de 'als Platzhalter' and 'Platzhalter für', it 'Segnaposto', es 'Marcador de posición' and 'marcador de tienda') with a description of the figure in the page language on the 22 EN/DE/IT/ES review pages that feed the published Web routes. Re-approve the 33 EN/DE/IT source_fragment_sha256 values in phase2/web_composite_manifest.json, because that hash covers the semantic fragment including its alt text; the approved panel art is unchanged. The UK pages and generated drafts, which no published Web route reads, are unchanged."
+    },
+    {
+      "scope": "DE 12 V caution",
+      "pdf_physical_pages": [
+        64
+      ],
+      "change": "The p53 review page's first 12 V caution bullet named the car socket 'Der DC-12-V-Anschluss'; the print's DE block reads 'Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.' The other two bullets already match the print."
+    },
+    {
+      "scope": "FR App figure alt text on the Web review page",
+      "change": "Replace the p31 review page's three App figure alt texts that called the figure a reserved slot ('emplacement réservé') with a description of the figure in French, as in the shared FR templates. No Web composite governs these figures."
+    },
+    {
       "scope": "ES/DE storage durations",
       "pdf_physical_pages": [
         52,
@@ -685,7 +700,7 @@
     {
       "path": "phase2/web_composite_manifest.json",
       "size": 32984,
-      "sha256": "0481111d8381ed59e85c67f2d87eb2230d852ee0c09333d490c8141ceee95e0b"
+      "sha256": "f57309bba83011cf6c994c764edda7cdcc521b5e662cbe25b7ddf97c4f27530c"
     }
   ],
   "review_files": [
@@ -926,28 +941,28 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/02_whats_in_the_box.rst",
-      "size": 2406,
-      "sha256": "071c0072252618db9cdb684360f7b15616c2d971ed3d92e5864f13261b7a420f"
+      "size": 2298,
+      "sha256": "617d98a9510f7da8e9b8c88c350ef9535966c5e45a6e0a4bad9a5c786403d486"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/03_product_overview_placeholder.rst",
-      "size": 2615,
-      "sha256": "16a24fb6f4b049220f155c5dc4044f5b708ba5c30d32cda314fea2f276831154"
+      "size": 2591,
+      "sha256": "143812217b0392689500ba43e0035d119c18b20a6615494e1bce0c906d779505"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/05_operation_guide_placeholder.rst",
-      "size": 9431,
-      "sha256": "40a90b2b96a4fa6920b1a634cc265eb0f227f00447685fa13c80cfb972e0d229"
+      "size": 9359,
+      "sha256": "e63d7d3517c1d46274d2416d75bd940a25c1baa70d23eecd614222c99a664f9b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/06_ups_mode.rst",
-      "size": 1396,
-      "sha256": "6a7a102dce1c72b380e0ccf50be1856e466bef0cb887677b27cf82fafa871586"
+      "size": 1384,
+      "sha256": "f4ad3c3009f2b9e980c6fa9bae6870c952b00a7ff10a06a8b88915dde599da39"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/08_charging_methods.rst",
-      "size": 2577,
-      "sha256": "76a79b316e61692e0452cecc2f09ac6a372b060c7738f19705fdf1a35c01a35c"
+      "size": 2545,
+      "sha256": "750ab7860216c0ef3db1eae0f079b3a3716e4ebbe1f77cf5e39074fed88a641b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/09_storage_and_maintenance.rst",
@@ -961,13 +976,13 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/12_app_setup_placeholder.rst",
-      "size": 3339,
-      "sha256": "869188e40464448f4ff7b9d782297b60306adec7752cd5b6a45f65156b7b4cd2"
+      "size": 3307,
+      "sha256": "0823100ce80326031a25dc651a5848816894eaff5a342936f16b4fd027c49cb1"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/charging.rst",
-      "size": 4703,
-      "sha256": "513f492c738ecce8361414d60a10894d9f73db4d84ab5993e95d8de1d9b334b4"
+      "size": 4679,
+      "sha256": "b5d072f32e3aef3f013083c23e92c986d8323e620256ea3058553e569715300b"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/lcd_icons_de.rst",
@@ -1046,8 +1061,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p31_12_app_setup_placeholder.rst",
-      "size": 4214,
-      "sha256": "793a59ca7fa9061760aad77242169345a8babe2c14e7b20ba35d6bc8bf80a62b"
+      "size": 4149,
+      "sha256": "c47a33c291630aaba3b08a0863a132f1b1eed401e3adcec20164475645856062"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p33_01_user_maintenance_instructions.rst",
@@ -1096,8 +1111,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p46_12_app_setup_placeholder.rst",
-      "size": 4266,
-      "sha256": "d92dc557f3033098970a90aff3ea39cd0c25571e89f14fe9d0fb7c9d3286dd65"
+      "size": 4213,
+      "sha256": "7143dd28f2c1ab27beeffa7f98aa2b2eb777d72ade61920ceb02e96ba0c126b4"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p48_01_user_maintenance_instructions.rst",
@@ -1106,33 +1121,33 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p50_02_whats_in_the_box.rst",
-      "size": 1471,
-      "sha256": "44e471c1f5373c23f41abe4097b352a40f3fce1183b0288062c9a5c36bffd0a8"
+      "size": 1423,
+      "sha256": "4e60aea851a4c6e0d983cede5b921d396ae6c8422b869f3a2fb7ed74bed477b7"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p51_03_product_overview_placeholder.rst",
-      "size": 3007,
-      "sha256": "49f6982a65e264c702a2ae76dc853301ccd975eb9b660b2d32afc15e02771468"
+      "size": 2975,
+      "sha256": "926e5e2f273acb630602a1cb02641e924f7ace2f22f8f69c48a6981ac71228a5"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p53_05_operation_guide_placeholder.rst",
-      "size": 10787,
-      "sha256": "5f13008565fb76df3685fff81aa865c202bca2154b5f6247d44b2fb78674961f"
+      "size": 10669,
+      "sha256": "2694298b30ed6842f7c71bb29ec1d3d38d7cc114b982b1af06fb1bdd57241c49"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst",
-      "size": 1616,
-      "sha256": "dfd2d9c4b0c2c0203994f7ad38bcab7381e30c0a1dcc44e0bdea5717f4024ba9"
+      "size": 1600,
+      "sha256": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p55_charging.rst",
-      "size": 5122,
-      "sha256": "4b90d1a7b3727f4f0c8c2391598de7599719d8de85f9f1d3659ccc7f1a2f29aa"
+      "size": 5090,
+      "sha256": "7509d9f8a3020f9c11bb94eaca997b75ac2d11e3fb8633486913e4255e7be5ab"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p56_08_charging_methods.rst",
-      "size": 3101,
-      "sha256": "08739dafc3636cc820a2b80ab6e554370e3428cd0873795db620a376994b3fc6"
+      "size": 3057,
+      "sha256": "851cf90fb12a6348c5e81a983c4d3eb3a59ef72bc4350dddedaa4024d32bc352"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p57_09_storage_and_maintenance.rst",
@@ -1146,8 +1161,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p61_12_app_setup_placeholder.rst",
-      "size": 4076,
-      "sha256": "3f13be1bd8ca407edd9e0a830e438915c3b9ed22a93daa1532b22885af45f6f6"
+      "size": 4017,
+      "sha256": "a2dcfe83fed12297bb0718d12e8119a17c48422f61e852068ffad0e3edf0c5ed"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p63_01_user_maintenance_instructions.rst",
@@ -1156,33 +1171,33 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p65_02_whats_in_the_box.rst",
-      "size": 1501,
-      "sha256": "fcd3fa10d2f9251e8fa78e114b5a7360a7280822962a5caca0a973916abc0099"
+      "size": 1468,
+      "sha256": "4a55d2329c1bfde1c53255a7a6f65f7a7a787366c8f697a1c69ed4f795c5be66"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p66_03_product_overview_placeholder.rst",
-      "size": 2900,
-      "sha256": "24bde89bff463e5ca24f013300b789c83067126d4341c522565c7850b85e96d3"
+      "size": 2878,
+      "sha256": "989df876ba882368fd0dc37524bc80094c20e98ec7af36a2b84114fcd36fbc46"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p68_05_operation_guide_placeholder.rst",
-      "size": 10993,
-      "sha256": "68c15e8b2bd61e56e7b2fe99434d385cb7103aee7f01da75c08c9fee54f1d70b"
+      "size": 10927,
+      "sha256": "8d042336ae606a2e7518dad74fde4bd62ccf1c0c93924d7ab4f948b9364fa904"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst",
-      "size": 1585,
-      "sha256": "7fe5094f6d09b93d0a06a848f9e1e6185b64603434a7a658a420780dbad10c71"
+      "size": 1574,
+      "sha256": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p70_charging.rst",
-      "size": 5116,
-      "sha256": "2f44ac8e96484fe90d0cbaa6c25ded09d785d311f8186837da48bccb79e22994"
+      "size": 5094,
+      "sha256": "e57397ec51f86ee305e6ee1521130481ed84f693ca7e4d2ad559a8d944f01e40"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p71_08_charging_methods.rst",
-      "size": 3099,
-      "sha256": "4c4d5dc14b6b8c2703d267396ed884817ff35566b00abb9529008acd34861100"
+      "size": 3070,
+      "sha256": "9d6f44f402958f0b0ac909fac51300bf028035db168d246d61515b1f7d3f1527"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p72_09_storage_and_maintenance.rst",
@@ -1196,8 +1211,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p76_12_app_setup_placeholder.rst",
-      "size": 4075,
-      "sha256": "81ee1af96eeeb686bb8294d78cf1b73bcd5beb4efb2391ddfa9cda93eebe948b"
+      "size": 4035,
+      "sha256": "12d0aa8622f5b84c1deaa9872f503df1e5b214abc6027e1be4917e67ed338f95"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p78_01_user_maintenance_instructions.rst",

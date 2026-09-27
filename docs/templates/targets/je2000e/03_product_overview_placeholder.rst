@@ -27,7 +27,7 @@
    ----------
 
    .. image:: asset:overview/front_product
-      :alt: Front view diagram placeholder.
+      :alt: Front view diagram.
       :width: 420px
 
    .. list-table::
@@ -69,7 +69,7 @@
    -------------------------
 
    .. image:: asset:overview/right_side_ports
-      :alt: Right side view diagram placeholder.
+      :alt: Right side view diagram.
       :width: 420px
 
    .. list-table::

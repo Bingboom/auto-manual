@@ -7,6 +7,9 @@ from pathlib import Path
 # The ko goldens moved once when the ko templates stopped printing the ambiguous
 # 은(는) form and started naming a particle pair (|PRODUCT_NAME_JOSA_EUN|); the
 # rendered diff was exactly those placeholder tokens, nothing else.
+# The en/de/it/uk goldens moved when the solar and car figures' alt text
+# stopped calling the figure a placeholder; the rendered diff was exactly
+# those :alt: lines, nothing else.
 from tools.page_contracts import load_page_contracts, required_page_values_for_lang
 from tools.utils.spec_master import resolve_template_substitutions_from_spec_master
 from tools.word_bundle_common import apply_rst_substitutions
@@ -17,13 +20,13 @@ SPEC_MASTER = ROOT / "tests" / "fixtures" / "phase2" / "Spec_Master.csv"
 LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_Master.csv"
 
 CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "635dff46139d296036f26d9c5937f3bf5239088d8d4ed3870c674d2544e3d788"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "0c6a185ebc344c0b647aa3cd39d04b94bad3d70a81877155e526dfc592eb6003"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "d1b136c55a74e9edba2b26fccf6293a1585cf508e6fc9d5a0020b2c4d8047e1d"),
     "es": (SPEC_MASTER, "JE-1000F", "US", "2a22ee4048cc16df40f0bff81e13c7b46a6ecf60a6b13ef22dcdbf1ef6e78453"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "1e734e6b9e80f01c466d0258e1a424dfb2a0eec892bde47a69321b04d67ca5d4"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "bf7c790b17badebf1019eafd99d1616c937bdf755f9ce6b491e4095db7894e96"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "5e287d0de2c8448e3196ce9b1ca24cc11f0e6c22c0e3ef30267154b8f4aedc8d"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "ac9ea9d794fe7968dcbd6f6999818e8dee12cdbcdab5cd3fc7da2e4b7055847c"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "7cc8c3a39d975ee532849059bd3a863afcd68c598214e2766f1ba7f2c6f64d9f"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "dcd26c720708a4e64ec8bf0638e7b963e6dee27ccf796e2ababa1ba405037690"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "2b349ebcfabcda306390354d8064d110252f7bcc029a6c61e0d2c967397af7e4"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "a09684b4cb7f405158c3099cce2642b86042123d51c8df38c5dbbe24e144d9de"),
 }
 

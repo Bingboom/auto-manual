@@ -29,17 +29,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Power station image placeholder.
+             :alt: Power station.
              :width: 120px
 
           **Jackery Explorer 1000**
         - .. image:: asset:in_the_box/ac_charging_cable
-             :alt: AC charging cable image placeholder.
+             :alt: AC charging cable.
              :width: 120px
 
           **AC Charging Cable**
         - .. image:: asset:in_the_box/manual_icon1
-             :alt: User manual image placeholder.
+             :alt: User manual.
              :width: 120px
 
           Documents
@@ -55,17 +55,17 @@
       :widths: 33 33 34
 
       * - .. image:: asset:in_the_box/main_unit1
-             :alt: Power station image placeholder.
+             :alt: Power station.
              :width: 120px
 
           **Jackery Explorer 1000**
         - .. image:: asset:in_the_box/ac_charging_cable
-             :alt: AC charging cable image placeholder.
+             :alt: AC charging cable.
              :width: 120px
 
           **AC Charging Cable**
         - .. image:: asset:in_the_box/manual_icon1
-             :alt: User manual image placeholder.
+             :alt: User manual.
              :width: 120px
 
           User Manual

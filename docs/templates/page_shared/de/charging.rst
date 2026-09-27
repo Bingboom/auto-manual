@@ -6,7 +6,7 @@
    Dieses Produkt unterstützt bis zu 5 Batteriepacks, um den Bedarf an großer Energiekapazität zu decken. Weitere Informationen zur Verwendung finden Sie im *Jackery Battery Pack 2000 Benutzerhandbuch*.
 
    .. image:: renderers/web/assets/je2000e_eu_de/extra_battery.png
-      :alt: Abbildung der Batteriepack-Verbindung als Platzhalter.
+      :alt: Abbildung der Batteriepack-Verbindung.
       :width: 360px
 
    .. only:: region_us
@@ -61,7 +61,7 @@ AUFLADEN ÜBER EINE AC-STECKDOSE
 Schließen Sie das AC-Ladekabel an den AC-Eingangsanschluss des Produkts und an eine Steckdose an.
 
 .. image:: asset:charging/ac_wall
-   :alt: Abbildung des AC-Wandladens als Platzhalter.
+   :alt: Abbildung des AC-Wandladens.
    :width: 360px
 
 .. list-table::

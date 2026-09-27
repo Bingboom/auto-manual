@@ -33,7 +33,7 @@ CONFIGURACIÓN DE LA APLICACIÓN
 **1. Descargar la aplicación e iniciar sesión**
 
 .. image:: asset:app/download
-   :alt: Código QR de descarga de la aplicación y marcador de tienda.
+   :alt: Código QR de descarga de la aplicación y tiendas de aplicaciones.
    :width: 320px
 
 Buscar "Jackery" en Google Play o en la App Store para instalar la aplicación. Después, podrá registrarse e iniciar sesión.
@@ -47,7 +47,7 @@ Alternativamente, escanee el código QR a continuación para descargar e instala
 Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar que el dispositivo ha entrado en el modo de configuración de red. A continuación, pulse el botón "icono parpadeante" y permita que la aplicación se conecte a los dispositivos cercanos y abra los permisos de Bluetooth.
 
 .. image:: asset:app/add_device
-   :alt: Marcador de posición para el paso de añadir dispositivo en la aplicación.
+   :alt: Paso de añadir dispositivo en la aplicación.
    :width: 320px
 
 | |MAIN_POWER_BUTTON_LABEL|
@@ -80,7 +80,7 @@ Los iconos del wifi y del Bluetooth del dispositivo parpadearán para indicar qu
 | Después de agregar exitosamente el dispositivo en la App, el icono del Wi-Fi en el dispositivo permanecerá siempre encendido.
 
 .. image:: asset:app/connect_result
-   :alt: Marcador de posición de la pantalla de resultado de conexión en la aplicación.
+   :alt: Pantalla de resultado de conexión en la aplicación.
    :width: 360px
 
 | Las capturas de pantalla anteriores sirven solo de referencia.

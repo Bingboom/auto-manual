@@ -24,7 +24,7 @@
    --------------
 
    .. image:: asset:overview/front_product
-      :alt: Segnaposto diagramma vista frontale.
+      :alt: Diagramma vista frontale.
       :width: 420px
 
    .. list-table::
@@ -60,7 +60,7 @@
    -----------------
 
    .. image:: asset:overview/right_side_ports
-      :alt: Segnaposto diagramma vista lato destro.
+      :alt: Diagramma vista lato destro.
       :width: 420px
 
    .. list-table::
