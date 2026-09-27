@@ -340,6 +340,104 @@ class Je1000hEuTranslatedSpecCellTests(unittest.TestCase):
         self.assertEqual("Вказує, що два або більше вихідних портів змінного струму працюють разом.",
                          notes["ac_total_output"]["Text_uk"])
 
+    def test_trademark_note_has_no_german_conjunction_outside_german(self) -> None:
+        # 意/乌语块印刷把商标注记的连词印成德语 und；按跨型号已审定译法改为 e / та
+        with (FORMAL_DATA_ROOT / "Spec_Notes.csv").open(encoding="utf-8", newline="") as handle:
+            note, = [row for row in csv.DictReader(handle) if row["Note_id"] == "usb_type_c_trademark"]
+        self.assertEqual("※ USB Type-C® e USB-C® sono marchi registrati di USB Implementers Forum.",
+                         note["Text_it"])
+        self.assertEqual("※ USB Type-C® та USB-C® є зареєстрованими торговельними марками USB Implementers Forum.",
+                         note["Text_uk"])
+        for column, text in note.items():
+            if column.startswith("Text_") and column != "Text_de":
+                with self.subTest(column=column):
+                    self.assertNotRegex(text or "", r"\bund\b")
+
+
+OVERVIEW_VALUE_SLOTS = ("front.spec", "front.high.spec", "front.low.spec",
+                        "side.spec", "side.pv.spec", "side.car.spec")
+
+
+class Je1000hEuOverviewSlotTests(unittest.TestCase):
+    """fr–uk Product-overview callouts follow each block's printed overview.
+
+    The finished overview figures consume these callout tables and keep their
+    text as the image alt text (``covered_annotations``), so a damaged cell
+    reaches readers only through assistive technology.
+    """
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        with (FORMAL_DATA_ROOT / "Spec_Master.csv").open(encoding="utf-8", newline="") as handle:
+            cls.rows = [row for row in csv.DictReader(handle) if row["Page"] == "Product overview"]
+        cls.cells = {(row["Row_key"], row["Slot_key"]): row for row in cls.rows}
+
+    def test_value_slots_keep_the_english_figures_and_symbols(self) -> None:
+        # 09-15 的抽取丢了 ⎓、截断了值（`1800 W nomi`、`12 В 10`）、吞了 PV/车充前缀并留下 ﬁ 连字
+        values = [row for row in self.rows if row["Slot_key"] in OVERVIEW_VALUE_SLOTS
+                  and row["Row_key"] != "total_output"]
+        self.assertEqual(8, len(values))
+        for row in values:
+            source = row["Value_source"]
+            for lang in TRANSLATED_LOCALES:
+                value = row[f"Value_{lang}"]
+                with self.subTest(row=row["spec_row_key"], lang=lang):
+                    self.assertEqual(FIGURES.findall(source.replace(",", ".")),
+                                     FIGURES.findall(value.replace(",", ".")))
+                    self.assertEqual(source.count("⎓"), value.count("⎓"))
+                    self.assertEqual(value.count("("), value.count(")"))
+                    self.assertNotRegex(value, "[ﬀ-ﬆ]")
+                    if row["Slot_key"] == "side.pv.spec":
+                        self.assertRegex(value, r"^(PV|FV|ФЕ)\s?:")
+                    if row["Slot_key"] == "side.car.spec":
+                        self.assertRegex(value, r"^(Voiture|Auto|Fahrzeug|Автомобіль)\s?:")
+
+    def test_cells_the_old_extraction_broke_match_the_print(self) -> None:
+        expected = {
+            ("dc12_port", "front.spec", "Value_uk"): "12 В⎓10 А макс.",
+            ("ac_output", "front.spec", "Value_fr"): "230 V~ 50 Hz, 7,83 A, 1800 W nominal",
+            ("ac_output", "front.spec", "Value_uk"): "230 В~ 50 Гц, 7,83 A, 1800 Вт ном. потужності",
+            ("dc_input", "side.car.spec", "Value_fr"): "Voiture : 11-16 V⎓8 A max., double à 8 A max.",
+            ("dc_input", "side.pv.spec", "Value_it"): "FV: 16-60 V⎓12 A, raddoppiabile fino a 21 A max./ 400 W max.",
+            ("dc_input", "side.pv.spec", "Value_uk"): "ФЕ: 16 В-60 В⎓12 A, подв. до 21 A макс. / 400 Вт макс.",
+            ("usb_c", "front.low.spec", "Value_es"): "30 W máx., 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A",
+            # 德语印刷把 12 V 插座标成输出「按键」（Ausgangstaste）；插图照印，页面文字用跨型号审定译法
+            ("dc12_port", "front.label", "Value_de"): "12-V-DC-Anschluss",
+        }
+        for (key, slot, column), value in expected.items():
+            with self.subTest(key=key, slot=slot, column=column):
+                self.assertEqual(value, self.cells[(key, slot)][column])
+
+    def test_overview_figures_bind_the_current_callout_cells(self) -> None:
+        # 成品概览图吃掉标注表并把原文留作 alt；这里保证绑定文本与冻结源同步
+        english = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["illustrations"]
+        english_symbols = {
+            Path(entry["path"]).name: "".join(b["text"] for b in entry["covered_annotations"]).count("⎓")
+            for entry in english if Path(entry["path"]).name.startswith("overview_")
+        }
+        for lang in TRANSLATED_LOCALES:
+            manifest = json.loads(
+                (ROOT / f"docs/renderers/web/je1000h_eu_{lang}_illustrations.json").read_text(encoding="utf-8")
+            )
+            bound = {
+                Path(entry["path"]).name: " ".join(b["text"] for b in entry["covered_annotations"])
+                for entry in manifest["illustrations"] if Path(entry["path"]).name.startswith("overview_")
+            }
+            self.assertEqual(set(english_symbols), set(bound), lang)
+            for name, text in bound.items():
+                with self.subTest(lang=lang, figure=name):
+                    self.assertEqual(english_symbols[name], text.count("⎓"))
+                    self.assertNotRegex(text, "[ﬀ-ﬆ]")
+            for row in self.rows:
+                value = " ".join(row[f"Value_{lang}"].split())
+                if not value:
+                    continue
+                figure = "overview_side.png" if row["Slot_key"].startswith("side.") else "overview_front.png"
+                with self.subTest(lang=lang, slot=(row["Row_key"], row["Slot_key"])):
+                    self.assertIn(value, bound[figure])
+        self.assertNotIn("DC-12V-Ausgangstaste",
+                         (ROOT / "docs/renderers/web/je1000h_eu_de_illustrations.json").read_text(encoding="utf-8"))
+
 
 if __name__ == "__main__":
     unittest.main()

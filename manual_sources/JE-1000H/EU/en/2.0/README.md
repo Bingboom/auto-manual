@@ -38,3 +38,15 @@ labels. `source_manifest.json` re-locks the file; English is unchanged.
 Ukrainian footnote ② (2026-09-25): the print omits "струму" ("…вихідних портів
 змінного працюють разом"); the operator ruled to add it here and in JE-3000C.
 `source_manifest.json` re-locks `phase2/Spec_Footnotes.csv`.
+
+Product-overview callouts (2026-09-26): the fr/es/de/it/uk value slots of the
+`Product overview` rows follow each block's printed overview (PDF pages
+25/42/59/76/93) in the house format of the reviewed frozen sources. The earlier
+extraction had dropped `⎓` and the PV/car prefixes and truncated values. The
+finished overview figures keep this text as their alt text, so the five
+`docs/renderers/web/je1000h_eu_<lang>_illustrations.json` overview bindings
+change with it. The German 12 V port label takes the reviewed
+`12-V-DC-Anschluss`; the print calls the port an output button
+(`DC-12V-Ausgangstaste`), and the figure stays as printed. In
+`phase2/Spec_Notes.csv`, the it/uk trademark note replaces the printed German
+`und` with the reviewed `e` / `та`. `source_manifest.json` re-locks both files.
