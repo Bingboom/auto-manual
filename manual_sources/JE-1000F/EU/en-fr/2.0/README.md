@@ -132,6 +132,46 @@ spec pages from these cells, so the review pages are not edited. FR keeps its
 reviewed heading and the FR/UK cells are unchanged. `source_manifest.json`
 re-locks the two files.
 
+Specification tables (2026-09-27): the FR/ES/DE/IT specification tables now
+follow each print block in values, structure and labels (PDF pages 36, 53, 71
+and 88). Unit spacing, case, the decimal comma, `⎓` and `max.` keep the house
+format.
+
+- FR, from the `page/spec_fr.rst` review page (`review-asis`), in both
+  carriers: `N° modèle`, capacity `1024 Wh (20 Ah / 51,2 V DC)`, and the ①
+  bypass footnote now comes before the ※ USB Type-C note, as printed.
+- ES/DE/IT, from `phase2/Spec_Master.csv`: the merged USB-C row is split into
+  the printed 30 W and 100 W rows (es `Salida USB-C 30 W`, de
+  `1 × USB-C-Ausgang 30 W`, it `1 × Uscita USB-C 30 W`, and the same for
+  100 W). The de/it 100 W line loses a temperature condition the print does
+  not have, and the es DC8020 line 2 gains the printed `12 A máx.`. The other
+  labels follow the print: es `Química de las celdas`, `Vida útil en ciclos`
+  (with the printed value), `1 × Puerto CC 12 V` and capacity `… V DC`; de
+  `2 × DC8020-Ports` and `1 × USB-A`; it capacity `1024 Wh (20 Ah / 51,2 V DC)`,
+  `Vita ciclica`, `1 × USB-A` and `Temperatura di scarica`.
+- `phase2/Spec_Footnotes.csv` (`ac_bypass`, `Text_es`/`Text_de`/`Text_it`) holds
+  each block's printed bypass footnote, so the bypass row gets its ① marker.
+- `phase2/spec_titles.csv` (`title_it`) and its non-rendering
+  `phase2/Localized_Copy.csv` twins hold the printed `PORTE IN INGRESSO` and
+  `PORTE IN USCITA`.
+
+Print defects keep the reviewed wording: the IT block's `60 Hz` AC rows stay
+50 Hz, the DE block's `máx.` stays `max.`, and the DE table's `Ladtemperatur`
+becomes `Ladetemperatur`, as the DE block spells it in running text (PDF page
+67). The DE port headings mix two nouns in the print (`EINGANGSPORTS` /
+`AUSGANGSPORTE`, PDF page 71). `phase2/spec_titles.csv` (`title_de`) and its
+`phase2/Localized_Copy.csv` twins now hold the reviewed pair
+`EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE`. The JE-1000H EU print
+(V2.0-2026-08-03) and the JE-3600A EU print (2026-05-25) set that pair on PDF
+page 70 of each. The IT DC8020 line 2 keeps the print's `12 A` without `max.`;
+it may be a print defect, but it is left as printed. The ES/DE/IT review pages
+are not edited, because the review sync rewrites them from these cells. Like
+their print blocks, they now render the ① footnote before the ※ note, through
+`docs/templates/spec_template_footnotes_first.rst` (#1306, see the notes-order
+note below). EN is unchanged:
+its block (PDF page 19) prints the ※ note first. `source_manifest.json`
+re-locks the four CSV files and the FR review page.
+
 Specification notes order (2026-09-27): the FR/ES/DE/IT blocks of the print set
 the footnote above the ※ USB Type-C trademark note (PDF pages 36/53/71/88); the
 EN block sets the ※ note first (page 19). The `spec` row of
