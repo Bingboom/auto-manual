@@ -29,6 +29,13 @@ WEB_CSS = ROOT / "docs/renderers/contracts/web_manual.css"
 APP_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web_app.json"
 SINGLE_LANGUAGES = ("fr", "es", "de", "it", "uk")
 WEB_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_web.json"
+# The 07-31 recipe stays byte-identical (the formal source manifest pins it). The de front
+# view is re-cut from the V2.0-2026-09-15 print, whose p56 prints the German AC button
+# callout where 07-31 printed the French "Bouton d'alimentation CA".
+WEB_RECIPE_SHA256 = "b2e9a82fbb68a8f5db4ed8b8e9622098560cb82ee37a2959a488e91891f82c9a"
+REPRINT_RECIPE = ROOT / "data/asset_recipes/manual_je3000c_eu_uk_20260915_de_overview_front.json"
+REPRINT_SOURCE_SHA256 = "f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32"
+REPRINT_CROPS = {("de", "overview_front")}
 # PDF pages of each language block of the V2.0 print; each route crops its own block
 # (the English block draws UK sockets, the others EU sockets).
 BLOCK_PAGES = {"fr": range(22, 38), "es": range(38, 54), "de": range(54, 70), "it": range(70, 86), "uk": range(86, 102)}
@@ -46,8 +53,9 @@ SHARED_ART = (
     "operation/lcd_mode", "operation/ups_mode", "charging/ac_wall", "charging/solar_direct",
     "charging/solar_adapter", "charging/car_charge",
 )
-# Print defects in the callout labels (de "DC-12V-Ausgangstaste" and a French label,
-# fr "Oiture:"): these figures keep the page's corrected callout table (operator ruling).
+# Print defects in the callout labels (de "DC-12V-Ausgangstaste", still printed in the
+# 09-15 re-cut; fr "Oiture:"): these figures keep the page's corrected callout table
+# (operator ruling).
 KEEP_CALLOUT_TABLE = {("de", "overview_front"), ("fr", "overview_side")}
 # The it/uk blocks print this panel's caption in English; the line is redacted.
 ENGLISH_CAPTION = {"it", "uk"}
@@ -219,7 +227,8 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         self.assertEqual("55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d", manifest["authority"]["published_pdf_sha256"])
         # Since 2026-09-27 three blocks of copy follow the V2.0-2026-09-15 revision
         # (operator ruling: new copy only). The 07-31 print stays the authority for
-        # the figures and everything else, so every recipe stays locked to it.
+        # the figures and everything else, so the web and App recipes stay locked to
+        # it; the one re-cut figure (de front view) has its own supplemental recipe.
         (revision,) = manifest["authority"]["adopted_copy_revisions"]
         self.assertEqual("V2.0-2026-09-15", revision["published_revision"])
         self.assertEqual("f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32", revision["published_pdf_sha256"])
@@ -235,6 +244,12 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         for binding in ("asset_recipe", "app_asset_recipe", "web_illustration_manifest"):
             bound = manifest[binding]
             self.assertEqual(bound["sha256"], hashlib.sha256((ROOT / bound["path"]).read_bytes()).hexdigest())
+        self.assertEqual(
+            [REPRINT_RECIPE.relative_to(ROOT).as_posix()],
+            [binding["path"] for binding in manifest["supplemental_asset_recipes"]],
+        )
+        for binding in manifest["supplemental_asset_recipes"]:
+            self.assertEqual(binding["sha256"], hashlib.sha256((ROOT / binding["path"]).read_bytes()).hexdigest())
         for record in manifest["files"]:
             data = (FORMAL_SOURCE / record["path"]).read_bytes()
             self.assertEqual(record["size"], len(data))
@@ -601,6 +616,11 @@ class Je3000cEuBlockIllustrationTests(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.recipe = json.loads(WEB_RECIPE.read_text(encoding="utf-8"))
         cls.assets = {asset["asset_key"]: asset for asset in cls.recipe["assets"]}
+        cls.reprint = json.loads(REPRINT_RECIPE.read_text(encoding="utf-8"))
+        cls.recipe_assets = {
+            WEB_RECIPE.relative_to(ROOT).as_posix(): cls.assets,
+            REPRINT_RECIPE.relative_to(ROOT).as_posix(): {asset["asset_key"]: asset for asset in cls.reprint["assets"]},
+        }
         cls.english = {
             Path(entry["path"]).stem: entry
             for entry in json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))["illustrations"]
@@ -614,8 +634,9 @@ class Je3000cEuBlockIllustrationTests(unittest.TestCase):
 
     def entries(self, lang: str) -> dict[str, dict]:
         _, manifest = self.manifests[lang]
+        block = re.compile(rf"assets/je3000c_eu_{lang}(?:_\d{{8}})?/")
         return {Path(entry["path"]).stem: entry for entry in manifest["illustrations"]
-                if entry["path"].startswith(f"assets/je3000c_eu_{lang}/") and "/app_" not in entry["path"]}
+                if block.match(entry["path"]) and "/app_" not in entry["path"]}
 
     def test_each_route_binds_its_own_block_crops(self) -> None:
         for lang in SINGLE_LANGUAGES:
@@ -624,9 +645,11 @@ class Je3000cEuBlockIllustrationTests(unittest.TestCase):
             entries = self.entries(lang)
             self.assertEqual(sorted(BLOCK_CROPS), sorted(entries), lang)
             for name, entry in entries.items():
-                asset = self.assets[f"web/je3000c/eu/{lang}/{name}"]
+                recipe = entry.get("recipe", manifest["recipe"])
+                asset = self.recipe_assets[recipe][f"web/je3000c/eu/{lang}/{name}"]
                 (output,) = asset["outputs"]
                 with self.subTest(lang=lang, name=name):
+                    self.assertEqual((lang, name) in REPRINT_CROPS, recipe == REPRINT_RECIPE.relative_to(ROOT).as_posix())
                     self.assertEqual(self.english[name]["replaces"], entry["replaces"])
                     self.assertEqual("approved", asset["gate"]["status"])
                     self.assertEqual([lang], asset["scope"]["locales"])
@@ -637,6 +660,21 @@ class Je3000cEuBlockIllustrationTests(unittest.TestCase):
                     self.assertEqual(output["path"], file.relative_to(ROOT).as_posix())
                     self.assertEqual(output["expected_sha256"], entry["sha256"])
                     self.assertEqual(entry["sha256"], hashlib.sha256(file.read_bytes()).hexdigest())
+
+    def test_german_front_view_is_recut_from_the_0915_print(self) -> None:
+        self.assertEqual(WEB_RECIPE_SHA256, hashlib.sha256(WEB_RECIPE.read_bytes()).hexdigest())
+        self.assertEqual("source/manual_je3000c_eu_uk_20260915", self.reprint["source"]["source_key"])
+        self.assertEqual(REPRINT_SOURCE_SHA256, self.reprint["source"]["expected_sha256"])
+        (asset,) = self.reprint["assets"]
+        self.assertEqual("web/je3000c/eu/de/overview_front", asset["asset_key"])
+        original = self.assets[asset["asset_key"]]
+        # Page 56 did not move between the prints: same page, frame and scale as the 07-31 crop.
+        self.assertEqual(original["page"], asset["page"])
+        self.assertEqual(original["transforms"], asset["transforms"])
+        self.assertEqual([o["scale"] for o in original["outputs"]], [o["scale"] for o in asset["outputs"]])
+        entry = self.entries("de")["overview_front"]
+        self.assertEqual(REPRINT_SOURCE_SHA256, entry["source_pdf_sha256"])
+        self.assertNotEqual(original["outputs"][0]["expected_sha256"], entry["sha256"])
 
     def test_printed_copy_leaves_the_page_once_except_print_defects(self) -> None:
         english = {name: len(entry.get("covered_annotations", [])) > 0 for name, entry in self.english.items()}

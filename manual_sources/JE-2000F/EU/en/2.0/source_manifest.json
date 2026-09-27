@@ -32,7 +32,7 @@
   },
   "web_illustration_manifest": {
     "path": "docs/renderers/web/je2000f_eu_en_illustrations.json",
-    "sha256": "8b0a3ab9381db427e48a4f345dcd5822c43bbc3b1780d1086233202260b8d758"
+    "sha256": "61f60692d4c3e118415616bb52fa6d181688546663f557ac6948235740d2e6e4"
   },
   "files": [
     {
@@ -57,8 +57,8 @@
     },
     {
       "path": "phase2/Spec_Master.csv",
-      "size": 23700,
-      "sha256": "d02aa1977c8ed0f5497094c84f1838bf2030572a73b4858a1a54ebdbc28037be"
+      "size": 23394,
+      "sha256": "3ee0146acf53fe3840f002c72afbb40b29d453e67eb6cc8fe3c62b58a8ff4bad"
     },
     {
       "path": "phase2/Spec_Notes.csv",
@@ -311,7 +311,7 @@
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
     }
   ],
-  "files_inventory_sha256": "963e1281064a9511f24011eb4922595233525e37feb92db2efa1eb37e4b49957",
+  "files_inventory_sha256": "797f03827657a8546b260c531453caffc620d903012ad05a5a3a858e2e1bd7ab",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",

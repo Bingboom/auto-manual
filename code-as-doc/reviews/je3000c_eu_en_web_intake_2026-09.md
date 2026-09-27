@@ -379,7 +379,9 @@ This is a note only; nothing from that revision changes here.
 V2.0-2026-09-15 print (SHA-256
 `f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32`, design
 share). The figures stay on the V2.0-2026-07-31 crops, because the 09-15
-drawings carry nine defects. The UPS additions go into the shared UPS template
+drawings carry nine defects. The one exception is the German front view, which
+#1308 re-cuts from 09-15 page 56 for its AC-Ausgangstaste callout (operator
+confirmed separately). The UPS additions go into the shared UPS template
 for every model that uses it, although the other models' prints lack them.
 The operator made that choice knowingly (「所有用这个模板的型号都加」).
 
@@ -416,18 +418,21 @@ Everything else, apostrophes included, is the print's text.
   - the fr–uk "resume disabled by default" sentence;
   - the UPS figure position;
   - the de/it/uk family UPS wording.
-- The 09-15 back page (declaration of conformity, App download line) and its
-  German front-view callout.
+- The 09-15 back page (declaration of conformity, App download line). The
+  German front-view callout is #1308's separate figure change.
 - The ko, pt-BR, ja and zh UPS carriers and the JE-500A English UPS page. The
   print has no block for those languages, and JE-500A does not use the shared
   template; they wait for an operator decision.
 - The JE-1000F/US and JE-3000C/KR review pages (the operator's review lines).
 
 **Authority.** `source_manifest.json` keeps V2.0-2026-07-31 as the authority
-for the figures and all other content, because every recipe is hash-locked to
-it. It records the 09-15 print, the three adopted items and the house fixes
-under `authority.adopted_copy_revisions`. No `phase2/` file and no recipe
-changes.
+for the figures and all other content, because the web and App recipes are
+hash-locked to it. The German front view is the exception; its own recipe is
+pinned under `supplemental_asset_recipes`. The manifest records the 09-15
+print, the three adopted items and the house fixes under
+`authority.adopted_copy_revisions`. It also lists this revision's other
+adoptions: the Spanish PV value of 2026-09-25 and the German front view. No
+`phase2/` file and no recipe changes.
 
 **Verification:**
 

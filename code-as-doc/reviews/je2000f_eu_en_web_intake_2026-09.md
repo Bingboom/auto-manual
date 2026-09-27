@@ -275,3 +275,81 @@ Evidence:
   CSVs from before the edit, every check fails except the kept-wording test.
 - `source_manifest.json` re-locks `Spec_Master.csv`, `spec_titles.csv`,
   `Localized_Copy.csv` and the canonical inventory digest.
+
+## 2026-09-27 Product-overview alt text follows the print
+
+The front-view figure of each route (`overview_front.png`) keeps the copy of
+the product-overview table as its alt text. Its AC output line still had the
+specification-table text: `10 A max.`, the in-total rating and the surge peak.
+The front view of every print block gives the AC output only its voltage,
+frequency and rating. The surge peak is in the separate Total Output callout,
+whose alt text already follows the print. Under the same ruling of 2026-09-27
+(the print decides the content, and formatting keeps the house rules), line 20
+of `Spec_Master.csv` (`…__ac_output__front.spec__l01`) now holds the printed
+callout:
+
+| Route | Old → new | Print (PDF page / printed) | Source cell |
+| --- | --- | --- | --- |
+| en | `230 V~ 50 Hz, 10 A max., 2200 W rated in total, 4400 W surge peak` → `230 V~ 50 Hz, 2200 W Rated` | 8 / 3 | `Value_source` |
+| fr | `230 V~ 50 Hz, 10 A max., 2200 W nominal au total, 4400 W pointe de surtension` → `230 V~ 50 Hz, 2200 W Nominal` | 24 / 19 | `Value_fr` |
+| es | `230 V~ 50 Hz, 10 A máx., 2200 W Nominal en Total, 4400 W Pico de sobrecarga` → `230 V~ 50 Hz, 2200 W Nominal` | 40 / 35 | `Value_es` |
+| de | `230 V~ 50 Hz, 10 A max., 2200 W Nennleistung insgesamt, 4400 W Spitzenleistung` → `230 V~ 50 Hz, 2200 W Nennleistung` | 56 / 51 | `Value_de` |
+| it | `230 V~ 50 Hz, 10 A max., 2200 W nominali totali, 4400 W di picco` → `230 V~ 50 Hz, 2200 W nominali` | 72 / 67 | `Value_it` |
+| uk | `230 В~ 50 Гц, 10 А макс., номінальна потужність 2200 Вт загалом, пікова потужність 4400 Вт` → `230 В~ 50 Гц, 2200 Вт ном. потужності` | 88 / 83 | `Value_uk` |
+
+The print's case (`Rated`, `Nominal`) and the uk abbreviation `ном.` are kept,
+as the Total Output alt text keeps the print's `2200 W Rated, 4400 W Surge
+Peak`. The print already sets these callouts with the house unit spacing.
+
+How the text is bound and locked:
+
+- `_consume_covered_annotations` in `tools/web_document_source.py` reads each
+  `covered_annotations` entry of the route's illustration manifest. It finds
+  the one node under the entry's `selector` whose whitespace-normalized text
+  equals the entry's `text`, removes that node, and writes the texts, joined by
+  `；`, into the finished image's `alt`. No match or two matches stop the build
+  with `covered illustration annotation changed or ambiguous`.
+- The front-view entry (`replaces: front_product.jpg`) of each
+  `docs/renderers/web/je2000f_eu_<lang>_illustrations.json` binds the
+  front-view table twice. The first binding ends with the AC output line, so its
+  `text` changes with line 20 in all six manifests. The second (Total Output)
+  does not change.
+- `source_manifest.json` locks the English manifest
+  (`web_illustration_manifest.sha256`), `phase2/Spec_Master.csv` (`size`,
+  `sha256`) and the canonical inventory digest (`files_inventory_sha256`); all
+  three are re-locked. The fr–uk manifests have no hash lock; the new tests pin
+  their bindings. `tests/test_je2000f_eu_en_web.py` checks the locks.
+- No image changes. The panel hashes in the manifests and the recipes stay the
+  same.
+
+Kept:
+
+- The en right-side drawing (PDF page 8) labels the AC inlet
+  `AC 100V-120V 15A MAX`, a US rating; the other five blocks print
+  `AC 220V-240V 10A MAX`. The figure stays as printed. No Web alt text on the six
+  routes repeats the US rating: the en right-side alt text is the callout copy,
+  `AC Input 220 V-240 V~ 50 Hz, 10 A max.`.
+- `Value_br` of line 20 does not change. `br` is not a route of this target and
+  the print has no Portuguese block; the table fix left `br` alone in the same
+  way.
+- The shared CI fixture `tests/fixtures/phase2/Spec_Master.csv` does not
+  change, as for the table fix.
+
+Other figure text: on the six routes, no alt text or `aria-label` repeats a value
+that the table fix corrected. No `6000` appears. `10 A` appears in figure text
+only for the DC 12 V port (`12 V⎓10 A max.`, front view) and the AC input
+(`220 V-240 V~ 50 Hz, 10 A max.`, right side view), as printed. No figure gives
+the bypass output a value.
+
+Evidence:
+
+- Before the edit, trial Web builds of all six routes (`build.py md`, the web
+  profile and this data root) matched the live route pages line for line. The
+  pages were from Hello-Docs main `2c259771`, version 2.4, git ref `424983ad`,
+  with each `src` attribute reduced to the image hash.
+- After the edit, one line changes per route: the front-view image's `alt`, and
+  nothing else on that line (en line 71; fr, es, de, it and uk line 62).
+- `tests/test_je2000f_eu_overview_alt.py` pins the six cells, the six manifest
+  bindings, the rendered alt text of all six routes and the figure-text check
+  above. Against the tree from before the edit, all five tests fail in all six
+  languages.
