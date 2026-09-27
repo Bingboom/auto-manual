@@ -165,9 +165,9 @@ page's four label lines become covered annotations (kept as the figure's alt
 text). Since 2026-09-26 the German and Italian pages also name those buttons as
 their print blocks do (DE `POWER-Taste`, IT `CC / USB`). The UK block prints
 `AC1` for the AC2 button, so its crop re-sets that one character from the
-print's own glyphs (`redact_text_region`, then `copy_pdf_region`); the
-correction awaits the operator's confirmation and its registry row stays
-`⛔隔离` until then.
+print's own glyphs (`redact_text_region`, then `copy_pdf_region`). The operator
+accepted that correction on 2026-09-27, so its registry row is `✅成品` like the
+other panels.
 `JE-3600A / EU`, whose English route also showed the JP screenshot, binds one
 shared connect-result panel for en/fr/es: an extra entry in its English manifest
 and one-entry fr/es manifests. Earlier

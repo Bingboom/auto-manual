@@ -220,7 +220,14 @@ class Je2000eEuButtonLabelTests(unittest.TestCase):
         # The same region as the es/de/it blocks, which lay the page out identically.
         self.assertEqual(italian["transforms"][0], uk["transforms"][0])
         self.assertEqual(UK_LABEL_CORRECTION, uk["transforms"][1:])
+        # The App gate keeps every App crop quarantined in its recipe; the operator
+        # accepted the corrected label (2026-09-27), so its registry row is finished
+        # like the other five panels.
         self.assertEqual("quarantine", uk["gate"]["status"])
+        with (ROOT / "data" / "asset_registry.csv").open(encoding="utf-8", newline="") as handle:
+            statuses = {row["asset_key"]: row["状态"] for row in csv.DictReader(handle)}
+        for lang in PANEL_LANGUAGES:
+            self.assertEqual("✅成品", statuses[f"web/je2000e/eu/{lang}/app_add_device_panel"], lang)
         # No route binds the shared add-device screens any more.
         shared = "assets/je2000e_eu_shared/app_add_device.png"
         for lang in ("en", *SINGLE_LANGUAGES):
@@ -465,7 +472,7 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_routes_bind_their_app_panels(self) -> None:
         """Each route binds its own block's add-device panel."""
         self.assertEqual(
-            "6a2ea9d7082980c18d02467406f84cf88714888a966963a1a2391fd15ef3162c",
+            "9fc7acdaed25c3a219379f657d8b4166de599d779dc60af9fcad0bcfbf346cf3",
             hashlib.sha256(APP_RECIPE.read_bytes()).hexdigest(),
         )
         app_recipe = json.loads(APP_RECIPE.read_text(encoding="utf-8"))

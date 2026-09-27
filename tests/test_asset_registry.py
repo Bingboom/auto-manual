@@ -34,8 +34,8 @@ class TestAssetRegistry(unittest.TestCase):
 
         self.assertEqual(468, report.records)
         self.assertEqual((), report.errors)
-        self.assertEqual(459, report.status_counts[APPROVED_STATUS])
-        self.assertEqual(4, report.status_counts[QUARANTINED_STATUS])
+        self.assertEqual(460, report.status_counts[APPROVED_STATUS])
+        self.assertEqual(3, report.status_counts[QUARANTINED_STATUS])
 
     def test_battery_pack_templates_only_name_resolvable_asset_keys(self) -> None:
         """Every asset key the page_bp family names must actually resolve.

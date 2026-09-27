@@ -1893,7 +1893,7 @@
           "App UI screenshots with a localized control-panel box, so the recipe keeps this crop quarantined (App/QR/URL/localized-UI gate); it reaches the Web only through the hash-pinned JE-2000E/EU uk illustration manifest.",
           "2026-09-26 the UK-block p118 region at 12x, the same region as the es/de/it crops: the two App screens with their 2.1/2.2 captions and that block's grey control-panel box with its button labels. The page's four live label lines become covered annotations (kept as the image's alt text).",
           "Print defect corrected: the box labels the lower AC button “Кнопка AC1”. The UK block's own overview (p103) and every other block's panel name that button AC2, and the UK AC operation text (p107) names AC1 and AC2. The crop re-sets that one character from the print's own glyphs: redact_text_region removes the wrong “1” (text only; the panel, leaders and screens stay) and copy_pdf_region paints the “2” of this page's “2.1” caption (Gilroy-Regular 6 pt, #404041, the labels' own font, size and colour) at the C–2 kerning the English block prints for “AC2”. Everything else is the print unchanged.",
-          "The corrected label awaits the operator's confirmation in the PR that adds it; the registry row stays ⛔隔离 until then."
+          "2026-09-27 the operator accepted the corrected label (「接受修正，合入并发布 2.7」): the registry row is ✅成品 like the other panels, and this recipe keeps the crop quarantined under the App gate, as it does every App crop."
         ]
       },
       "risk_tags": [

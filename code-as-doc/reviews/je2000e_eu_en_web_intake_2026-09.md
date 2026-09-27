@@ -331,9 +331,10 @@ A pixel diff against the uncorrected crop changes 768 pixels, all inside
 pt 324.68 401.33 327.43 405.67. `copy_pdf_region` is new: the one-way form of
 `swap_pdf_regions`, painting no background so the copy can land on the grey
 box. The page's four label lines become the figure's alt text, as on the other
-routes. The correction awaits the operator's confirmation, so its registry row
-is `⛔隔离` until then. The shared screens crop stays in the recipe, unbound, as
-the fallback.
+routes. The operator accepted the correction on 2026-09-27
+(「接受修正，合入并发布 2.7」), so its registry row is `✅成品` like the other
+panels; the recipe keeps it quarantined under the App gate, as every App crop.
+The shared screens crop stays in the recipe, unbound, and can now be retired.
 
 **Button names.** The print's figures and text agree unless noted.
 
