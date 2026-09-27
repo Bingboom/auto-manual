@@ -30,6 +30,7 @@ from tools.web_presentation import (
     restore_web_figures_after_pandoc,
     restore_web_inline_controls_after_pandoc,
 )
+from tools.web_callout_alignment import align_callout_label_columns
 from tools.web_language_navigation import (
     protect_web_language_navigation_for_pandoc,
     restore_web_language_navigation_after_pandoc,
@@ -283,10 +284,11 @@ def export_markdown_from_bundle(
             markdown_text,
             protected_inline_controls,
         )
-        out_path.write_text(
-            restore_web_callouts_after_pandoc(markdown_text, protected_callouts),
-            encoding="utf-8",
-        )
+        markdown_text = restore_web_callouts_after_pandoc(markdown_text, protected_callouts)
+        if protected_callouts:
+            # One label-column width per page: see tools/web_callout_alignment.py.
+            markdown_text = align_callout_label_columns(markdown_text)
+        out_path.write_text(markdown_text, encoding="utf-8")
     _rewrite_local_file_uris_to_relative(out_path)
     bundle_title = materialized_bundle.title if materialized_bundle is not None else "Manual"
     _write_myst_sphinx_scaffold(

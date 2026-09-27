@@ -260,6 +260,9 @@ empty-cell policies are recorded in
     and optional explicit carrier language/variant declarations
 - [`tools/web_callout_ir.py`](../../tools/web_callout_ir.py)
   - public IR replay for the Web/Pandoc placeholder handoff; verifies semantics against retained markup
+- [`tools/web_callout_alignment.py`](../../tools/web_callout_alignment.py)
+  - page-level pass after the callouts are restored: every label cell carries the page's distinct labels
+    as invisible width references, so all label columns share one width that fits the widest label
   - `web_presentation` passes IR and `markdown_bundle` supplies actual source/target context;
     standalone MyST uses the same consumer after Sphinx renders its resolved child nodes;
     already-protected composite figures remain a separate path
