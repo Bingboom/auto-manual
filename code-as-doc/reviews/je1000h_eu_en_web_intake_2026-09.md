@@ -180,9 +180,9 @@ all six blocks share. The rules are the same as for the specification cells:
 - Print defects use reviewed cross-model wording.
 
 The five `je1000h_eu_<lang>_illustrations.json` overview bindings are re-bound
-to the corrected tables, with the selectors unchanged. Labels, controls and
-the total-output row are unchanged; total output is not printed on this
-overview.
+to the corrected tables, with the selectors unchanged. The other labels, the
+controls and the total-output row are unchanged; total output is not printed
+on this overview.
 
 **Deviations from the print:**
 
