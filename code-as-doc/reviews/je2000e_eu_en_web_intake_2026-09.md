@@ -249,3 +249,57 @@ Still open (not changed here):
   LCD-mode component is not built there. Only the image changed.
 - `page_shared/pt-BR/charging.rst` keeps the in-box placeholder in its JE-2000E
   block; there is no JE-2000E pt-BR route.
+
+## 2026-09-26 print correction and open items
+
+The operator asked for the battery-pack print defect to be corrected and for the
+open items of the addendum above to be resolved (「印刷问题要纠正」「把遗留问题解决掉」).
+
+Changes:
+
+- **Battery-pack clearance label.** The es/de/it/uk blocks print the figure's
+  label as `≥ 0,66 pies (200 mm)`: the Spanish art reused, with an imperial
+  value. The French block prints the same art as `≥ 200 mm`, and an aligned
+  pixel diff of the two crops differs only in that label. The es/de/it/uk
+  recipe entries now cut the French block's copy (PDF page 36), so their files
+  equal the French crop. English keeps its own `≥ 20cm`.
+- **Battery-pack kit box.** The print shows the kit (Battery Pack 2000,
+  expansion cable, user manual and a sold-separately badge) as a dashed box of
+  pictures. The pages rendered a label-only table whose header row came out
+  empty.
+  - Six new 12x crops, one per block (PDF pages 17/36/55/74/93/112), replace
+    that table in the EU variant of each language's `charging.rst` JE-2000E
+    block. English, French and Spanish keep the US variant.
+  - The figure's alt text holds the removed labels plus the heading's
+    sold-separately wording.
+- **Operation page components on fr–uk.** The Web contract matched operation
+  pages only by `*05_operation_guide_placeholder`, but JE-2000E's fr–uk pages
+  are `05_operation_guide_je2000e`. `shared_base.json` now lists that stem too,
+  so those pages get the English page's LCD-mode component (each with its own
+  block's LCD-mode crop), auto-resume table and key-combination table. No other
+  template uses the stem.
+- **App gate.** The English connect-result panel is App UI and is now
+  quarantined in place (key, output and hash unchanged). The retired English
+  control-panel crop is no longer bound, so `tests/test_app_figure_gate.py`
+  lists no exceptions.
+- **pt-BR placeholder.** `page_shared/pt-BR/charging.rst` has no JE-2000E route.
+  Its copy of the block now shows the English battery-pack figure instead of
+  the in-box image.
+- `source_manifest.json` re-locks the recipe and the English manifest.
+
+Verification:
+
+- **Recipe:** `tools/asset_intake.py` reproduces all 110 outputs. 100 are
+  unchanged; the four es/de/it/uk battery-pack files now equal the French
+  crop; six kit files are new.
+- **Trial Web builds** against the live 2.3 pages:
+  - every route gains the kit figure and loses the package table;
+  - es/de/it/uk switch the battery-pack figure to the French art;
+  - on fr–uk the key-combination table moves into the English composition with
+    the same words, the LCD-mode image moves into the component and the
+    auto-resume table gains its composition;
+  - the English page changes only in the kit figure.
+- **Figure coverage:** 13 slots on every route (12 finished panels plus the
+  LCD-mode composition).
+- **Regression tests:** the updated tests fail on the previous state (13
+  failures).

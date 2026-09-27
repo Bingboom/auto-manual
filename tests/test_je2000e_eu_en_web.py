@@ -47,8 +47,12 @@ BLOCK_PAGES = {
 BLOCK_CROPS = (
     "inbox_main", "inbox_cable", "inbox_manual", "overview_front", "overview_side", "lcd_map",
     "operation_power", "operation_ac", "operation_dc", "operation_energy", "operation_led",
-    "operation_lcd", "ups", "extra_battery", "charging_ac", "charging_solar", "charging_car",
+    "operation_lcd", "ups", "extra_battery", "battery_pack_kit", "charging_ac", "charging_solar", "charging_car",
 )
+# These blocks print the battery-pack clearance label as "≥ 0,66 pies (200 mm)",
+# the Spanish art reused with an imperial value. Their figure is the French
+# block's copy of the same art, which reads "≥ 200 mm" (operator, 2026-09-26).
+FRENCH_BATTERY_ART = ("es", "de", "it", "uk")
 INBOX_SLOTS = {"inbox_main": "main_unit1.png", "inbox_cable": "ac_charging_cable.png", "inbox_manual": "manual_icon1.png"}
 # The shared art the fr-uk routes (and the English in-box cards) showed before
 # 2026-09-26: figures from the JE-1000F/US master (another product, US outlets).
@@ -303,7 +307,10 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_web_output_is_target_isolated_and_complete(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(18, len(self.ir.pages))
-        self.assertEqual(18, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(19, len(soup.select(".manual-finished-illustration")))
+        kit = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_en/battery_pack_kit.png"]')
+        self.assertEqual("Jackery Battery Pack 2000, Expansion Cable, User Manual (sold separately)", kit["alt"])
+        self.assertEqual([], [table for table in soup.find_all("table") if "Expansion Cable" in table.get_text()])
         # The in-box cards show the English block's crops (UK sockets), not the shared art.
         self.assertEqual(
             [f"assets/je2000e_eu_en/{name}.png" for name in INBOX_SLOTS],
@@ -311,9 +318,9 @@ class Je2000eEuEnWebTests(unittest.TestCase):
         )
         self.assertEqual(set(), page_image_digests(self.html) & shared_art_digests())
         coverage = self.ir.metadata["web_figure_coverage"]
-        self.assertEqual(12, coverage["summary"]["total"])
+        self.assertEqual(13, coverage["summary"]["total"])
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
-        self.assertEqual(11, coverage["summary"]["by_status"]["finished-panel"])
+        self.assertEqual(12, coverage["summary"]["by_status"]["finished-panel"])
         self.assertEqual(1, coverage["summary"]["by_status"]["editable-fallback"])
         self.assertEqual(3, len(soup.select(".hb-inbox-card")))
         self.assertIsNotNone(soup.select_one("figure.hb-lcd-mode-composition"))
@@ -346,14 +353,22 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_illustrations_are_hash_locked_and_use_source_crops(self) -> None:
         manifest = json.loads(ILLUSTRATIONS.read_text(encoding="utf-8"))
         recipe = json.loads((ROOT / manifest["recipe"]).read_text(encoding="utf-8"))
-        self.assertEqual(19, len([asset for asset in recipe["assets"] if asset["scope"]["locales"] == ["en"]]))
-        self.assertEqual(19 + len(BLOCK_CROPS) * len(SINGLE_LANGUAGES), len(recipe["assets"]))
-        self.assertEqual(19, len(manifest["illustrations"]))
+        self.assertEqual(20, len([asset for asset in recipe["assets"] if asset["scope"]["locales"] == ["en"]]))
+        self.assertEqual(20 + len(BLOCK_CROPS) * len(SINGLE_LANGUAGES), len(recipe["assets"]))
+        self.assertEqual(20, len(manifest["illustrations"]))
         for asset in recipe["assets"]:
+            self.assertEqual([12], [output["scale"] for output in asset["outputs"]])
+            if asset["asset_key"] == "web/je2000e/eu/en/connect_result":
+                # App screens stay quarantined under the App/QR/URL/localized-UI
+                # gate; the manifest is their only route onto the page.
+                self.assertFalse(asset["build_eligible"])
+                self.assertTrue(asset["visual_review_required"])
+                self.assertEqual("quarantine", asset["gate"]["status"])
+                self.assertIn("app-ui", asset["risk_tags"])
+                continue
             self.assertTrue(asset["build_eligible"])
             self.assertFalse(asset["visual_review_required"])
             self.assertEqual("approved", asset["gate"]["status"])
-            self.assertEqual([12], [output["scale"] for output in asset["outputs"]])
         output_hashes: dict[str, dict[str, str]] = {}
         for illustration in manifest["illustrations"]:
             recipe_path = illustration.get("recipe", manifest["recipe"])
@@ -515,8 +530,9 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
         soup = BeautifulSoup(self.html, "html.parser")
         paths = [image["data-web-finished-panel-path"] for image in soup.select("img.manual-finished-illustration")]
         self.assertEqual(19, len(paths))
+        # The LCD-mode crop sits inside the LCD-mode component, as on English.
         self.assertEqual(
-            sorted(f"assets/je2000e_eu_de/{name}.png" for name in BLOCK_CROPS),
+            sorted(f"assets/je2000e_eu_de/{name}.png" for name in BLOCK_CROPS if name != "operation_lcd"),
             sorted(path for path in paths if "/app_" not in path),
         )
         self.assertEqual(set(), page_image_digests(self.html) & shared_art_digests())
@@ -528,6 +544,27 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
         self.assertEqual([], front.find_parent("section").select(":scope > table"))
         car = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/charging_car.png"]')
         self.assertEqual("Fahrzeug *Das Autoladekabel ist separat erhältlich.", car["alt"])
+        # The German block prints "≥ 0,66 pies (200 mm)"; the page shows the French block's copy.
+        french = next(entry for entry in json.loads((ROOT / "docs/renderers/web/je2000e_eu_fr_illustrations.json")
+                                                    .read_text(encoding="utf-8"))["illustrations"]
+                      if entry["path"].endswith("/extra_battery.png"))
+        self.assertEqual(french["sha256"], battery["data-web-finished-panel-sha256"])
+        kit = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/battery_pack_kit.png"]')
+        self.assertEqual("Jackery Battery Pack 2000, Verlängerungskabel, Benutzerhandbuch (separat erhältlich)", kit["alt"])
+        self.assertEqual([], [table for table in soup.find_all("table") if "Verlängerungskabel" in table.get_text()])
+
+    def test_operation_page_uses_the_english_compositions(self) -> None:
+        """The model-specific operation page gets the LCD-mode, auto-resume and key-combination components."""
+        soup = BeautifulSoup(self.html, "html.parser")
+        lcd = soup.select_one('figure.hb-lcd-mode-composition[data-component-id="HB-TABLE-LCD-MODE"]')
+        self.assertIsNotNone(lcd)
+        german = next(entry for entry in json.loads((ROOT / "docs/renderers/web/je2000e_eu_de_illustrations.json")
+                                                    .read_text(encoding="utf-8"))["illustrations"]
+                      if entry["path"].endswith("/operation_lcd.png"))
+        self.assertIn(german["sha256"], lcd.select_one("img")["src"])
+        self.assertEqual(6, len(lcd.select("tr")))
+        self.assertIsNotNone(soup.select_one(".hb-auto-resume-composition"))
+        self.assertIsNotNone(soup.select_one(".hb-key-combination-composition"))
 
 
 class Je2000eEuBlockIllustrationTests(unittest.TestCase):
@@ -574,7 +611,13 @@ class Je2000eEuBlockIllustrationTests(unittest.TestCase):
                     self.assertEqual(self.english[name]["replaces"], entry["replaces"])
                     self.assertEqual("approved", asset["gate"]["status"])
                     self.assertEqual([lang], asset["scope"]["locales"])
-                    self.assertIn(asset["page"], BLOCK_PAGES[lang])
+                    if lang in FRENCH_BATTERY_ART and name == "extra_battery":
+                        french = self.assets["web/je2000e/eu/fr/extra_battery"]
+                        self.assertEqual(french["page"], asset["page"])
+                        self.assertEqual(french["transforms"], asset["transforms"])
+                        self.assertEqual(french["outputs"][0]["expected_sha256"], output["expected_sha256"])
+                    else:
+                        self.assertIn(asset["page"], BLOCK_PAGES[lang])
                     self.assertEqual(asset["page"], entry["source_page"])
                     self.assertEqual(asset["transforms"][0]["bbox_pt"], entry["bbox_pt"])
                     file = path.parent / entry["path"]
@@ -598,6 +641,23 @@ class Je2000eEuBlockIllustrationTests(unittest.TestCase):
             block = template.split("\n.. only::", 1)[0]
             self.assertIn(f".. image:: renderers/web/assets/je2000e_eu_{lang}/extra_battery.png", block, lang)
             self.assertNotIn("asset:in_the_box/main_unit1", block, lang)
+        # pt-BR has no JE-2000E route; its copy of the block shows the English figure.
+        template = (ROOT / "docs/templates/page_shared/pt-BR/charging.rst").read_text(encoding="utf-8")
+        block = template.split("\n.. only::", 1)[0]
+        self.assertIn(".. image:: renderers/web/assets/je2000e_eu_en/extra_battery.png", block)
+        self.assertNotIn("asset:in_the_box/main_unit1", block)
+
+    def test_package_kit_replaces_the_label_table(self) -> None:
+        """The print shows the kit as a dashed box of pictures; the label-only table rendered an empty header row."""
+        us_table = "   .. only:: region_us\n\n      .. list-table::\n         :header-rows: 0\n         :widths: 34 33 33\n"
+        for lang in ("en", *SINGLE_LANGUAGES):
+            template = (ROOT / "docs" / "templates" / "page_shared" / lang / "charging.rst").read_text(encoding="utf-8")
+            block = template.split("\n.. only::", 1)[0]
+            with self.subTest(lang=lang):
+                self.assertEqual(1, block.count(f".. image:: renderers/web/assets/je2000e_eu_{lang}/battery_pack_kit.png"))
+                # English, French and Spanish keep their US variant of the label table.
+                self.assertEqual(1 if lang in ("en", "fr", "es") else 0, block.count(":widths: 34 33 33"))
+                self.assertEqual(1 if lang in ("en", "fr", "es") else 0, block.count(us_table))
 
 
 if __name__ == "__main__":

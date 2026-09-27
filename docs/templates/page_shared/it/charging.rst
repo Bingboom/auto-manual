@@ -34,13 +34,9 @@
              - Quando il prodotto viene utilizzato con battery pack collegati, il numero massimo predefinito di battery pack impilati e 3, e il prodotto deve essere collocato su una superficie piana e stabile con sufficiente capacità di carico.
              - Se occorre impilare 4 o più battery pack, il prodotto deve essere collocato in un'area stabile contro una parete e protetto dagli urti esterni, adottando le necessarie misure di fissaggio antiribaltamento.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
-
-      * - **Jackery Battery Pack 2000**
-        - **Cavo di espansione**
-        - **Manuale utente**
+   .. image:: renderers/web/assets/je2000e_eu_it/battery_pack_kit.png
+      :alt: Jackery Battery Pack 2000, Cavo di espansione, Manuale utente (venduti separatamente)
+      :width: 360px
 
 RICARICA
 ========

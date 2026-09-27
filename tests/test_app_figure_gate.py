@@ -11,12 +11,9 @@ MANIFESTS = ROOT / "docs" / "renderers" / "web"
 # Source images that are App setup figures: store/QR download, add device,
 # and the connection result.
 APP_SOURCES = {"download.png", "add_device.png", "connect_result.png"}
-# The English JE-2000E/EU App panels share files with the open JE-2000E
-# add-device change (auto-manual #1258); reclassify them after it merges.
-KNOWN_APPROVED = {
-    ("je2000e_eu_en_illustrations.json", "assets/je2000e_eu_en/control_panel.png"),
-    ("je2000e_eu_en_illustrations.json", "assets/je2000e_eu_en/connect_result.png"),
-}
+# Manifest entries allowed to bind an approved App figure. The last two, the
+# JE-2000E/EU English panels, were reclassified on 2026-09-26 after #1258.
+KNOWN_APPROVED: frozenset[tuple[str, str]] = frozenset()
 
 
 def _recipe_assets() -> dict[str, dict]:

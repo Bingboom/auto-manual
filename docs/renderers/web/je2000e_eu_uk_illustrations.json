@@ -282,13 +282,27 @@
         "extra_battery.png"
       ],
       "path": "assets/je2000e_eu_uk/extra_battery.png",
-      "sha256": "acaef3bb1842037d52742b65f27fa351f652f393448dae6b35d8c9febcdae23b",
-      "source_page": 112,
+      "sha256": "71c2640879dfc04adc93621859b3713abf0af483f8d6b2ba452b13f854187c0b",
+      "source_page": 36,
       "bbox_pt": [
         29.09,
-        103.22,
+        106.46,
         343.09,
-        315.22
+        318.46
+      ]
+    },
+    {
+      "replaces": [
+        "battery_pack_kit.png"
+      ],
+      "path": "assets/je2000e_eu_uk/battery_pack_kit.png",
+      "sha256": "1dbe225c47bfe00a2abe24b03c020756b73270bef797244276e871e2a650c847",
+      "source_page": 112,
+      "bbox_pt": [
+        29.5,
+        421.33,
+        343.6,
+        496.6
       ]
     },
     {

@@ -34,13 +34,9 @@
              - Wenn das Produkt mit angeschlossenen Batteriepacks verwendet wird, beträgt die Standard-Maximalanzahl der gestapelten Batteriepacks 3, und das Produkt muss auf einer ebenen, stabilen und ausreichend tragfähigen Oberfläche stehen.
              - Wenn 4 oder mehr Batteriepacks gestapelt werden müssen, muss das Produkt an einem stabilen, an der Wand anliegenden Ort aufgestellt und vor äußeren Einwirkungen geschützt werden, und es müssen die erforderlichen Kipp-Sicherungsmaßnahmen getroffen werden.
 
-   .. list-table::
-      :header-rows: 0
-      :widths: 34 33 33
-
-      * - **Jackery Battery Pack 2000**
-        - **Verlängerungskabel**
-        - **Benutzerhandbuch**
+   .. image:: renderers/web/assets/je2000e_eu_de/battery_pack_kit.png
+      :alt: Jackery Battery Pack 2000, Verlängerungskabel, Benutzerhandbuch (separat erhältlich)
+      :width: 360px
 
 LADEN
 =====

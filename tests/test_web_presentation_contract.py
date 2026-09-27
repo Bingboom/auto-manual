@@ -13,7 +13,7 @@ from tools.operation_artwork_mode import operation_artwork_mode
 
 
 COMPATIBILITY_CANONICAL_SHA256 = (
-    "94bd58aa689301f8090d8c7d40e89d99b8224cf2cafe61e2beb20fd3cb9de8db"
+    "a8e222a084242334776f19a9eb084698787fc170726181507076710c4694929c"
 )
 
 
@@ -298,8 +298,10 @@ class WebPresentationContractTests(unittest.TestCase):
             ["*03_product_overview_placeholder"],
             contract["product_overview"]["source_patterns"],
         )
+        # JE-2000E's model-specific operation page is an operation page wherever
+        # a manifest picks it; no other template uses that stem.
         self.assertEqual(
-            ["*05_operation_guide_placeholder"],
+            ["*05_operation_guide_placeholder", "*05_operation_guide_je2000e"],
             contract["operations"]["source_patterns"],
         )
         self.assertEqual(4, contract["operations"]["auto_resume_table"]["body_rows"])
