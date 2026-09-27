@@ -7,6 +7,7 @@
 - Source lock: 102 pages; SHA-256 `55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d`; English body on physical pages 6–21 and EU declaration on physical page 102.
 - Requirement record: Base `YndMj49yWjP03jNjCDojvAQdJ3pmz5aA`, table `97v7518`, record `FBHsOuFTMQ`; read only. It identifies HTE156 / E3000V2 / material `160102000382`, status `已定稿`, and the same formal source node.
 - No calibration or version comparison was performed. The current PDF governs visible copy, parameters, ordering, and illustrations.
+- Since 2026-09-27, three blocks of copy follow the V2.0-2026-09-15 revision instead; see [the addendum of that date](#2026-09-27-new-copy-from-the-2026-09-15-revision).
 
 ## Structure and reuse boundaries
 
@@ -371,3 +372,76 @@ This is a note only; nothing from that revision changes here.
   also changes its table's `aria-label`.
 - **Regression tests:** `tests/test_je3000c_eu_spec_print.py` renders the six
   tables from the frozen source. Five of its six tests fail on the previous files.
+
+## 2026-09-27 New copy from the 2026-09-15 revision
+
+**Ruling.** On 2026-09-27 the operator adopted only the new copy of the
+V2.0-2026-09-15 print (SHA-256
+`f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32`, design
+share). The figures stay on the V2.0-2026-07-31 crops, because the 09-15
+drawings carry nine defects. The UPS additions go into the shared UPS template
+for every model that uses it, although the other models' prints lack them.
+The operator made that choice knowingly (「所有用这个模板的型号都加」).
+
+**What changed.** Each language block of the print adds three items. The Web
+takes each one from its own block:
+
+| Item | Carrier | PDF pages (en/fr/es/de/it/uk) |
+| --- | --- | --- |
+| Energy Saving Mode WARNING below the energy-saving NOTE | `docs/templates/targets/je3000c/05_operation_guide_*.rst` (JE-3000C only) | 13/29/45/61/77/93 |
+| UPS WARNING between the UPS text and the CAUTION | `docs/templates/page_shared/<lang>/06_ups_mode.rst` | 14/30/46/62/78/94 |
+| Fourth UPS CAUTION bullet: one unit directly on a wall outlet, no cascade | the same | 15/31/47/63/79/95 |
+
+- The energy-saving panel keeps the 07-31 crop, which holds the NOTE; the
+  WARNING is live text after the figure, as the print places it.
+- The UPS WARNING keeps the print's structure: two sentences, three bullets,
+  the pacemaker sentence.
+- The JE-1000F/EU review pages, which that model's Web routes render instead of
+  the templates, take the same two UPS blocks. `manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json`
+  re-locks them.
+
+House fixes, not print defects (operator ruling of the same date):
+
+- the English bullet reads `outlet. Do` (printed `outlet.Do`);
+- the fr and uk labels are set as whole words (printed `AVERTISSE`/`MENT`,
+  `AVERTISSEM`/`ENT`, `ПОПЕРЕД`/`ЖЕННЯ`, `ПОПЕРЕДЖЕ`/`ННЯ`);
+- the Ukrainian bullet, printed without its glyph, is a list item.
+
+Everything else, apostrophes included, is the print's text.
+
+**Not changed:**
+
+- The older Web-vs-print gaps are a separate item and stay as they are:
+  - the fr–uk energy-saving opening paragraph;
+  - the fr–uk "resume disabled by default" sentence;
+  - the UPS figure position;
+  - the de/it/uk family UPS wording.
+- The 09-15 back page (declaration of conformity, App download line) and its
+  German front-view callout.
+- The ko, pt-BR, ja and zh UPS carriers and the JE-500A English UPS page. The
+  print has no block for those languages, and JE-500A does not use the shared
+  template; they wait for an operator decision.
+- The JE-1000F/US and JE-3000C/KR review pages (the operator's review lines).
+
+**Authority.** `source_manifest.json` keeps V2.0-2026-07-31 as the authority
+for the figures and all other content, because every recipe is hash-locked to
+it. It records the 09-15 print, the three adopted items and the house fixes
+under `authority.adopted_copy_revisions`. No `phase2/` file and no recipe
+changes.
+
+**Verification:**
+
+- **Print check:** every added string is found in the text layer of its 09-15
+  page, with line breaks joined. None of them occurs in the 07-31 print. The
+  house fixes are the only exemptions.
+- **Trial Web builds** (default mode, frozen sources):
+  - Before the change, the six JE-3000C routes and the JE-1000H, JE-2000E,
+    JE-2000F, JE-3600A and JE-1000F routes equal their live Hello-Docs pages
+    once image `src` paths are normalized.
+  - After it, every JE-3000C route adds 21 lines: the energy WARNING table, the
+    UPS WARNING table and the fourth bullet. Every other EU route adds 15 lines:
+    the two UPS blocks. Nothing is removed.
+  - JE-1000F/US and JE-500A are unchanged.
+- **Regression tests:** `tests/test_je3000c_0915_warnings.py` checks the
+  carriers, a Web build of each JE-3000C route, the untouched carriers and the
+  house fixes. Its tests of the additions fail on the previous tree.

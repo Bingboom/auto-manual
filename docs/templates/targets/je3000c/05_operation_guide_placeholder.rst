@@ -93,6 +93,13 @@ To disable the energy saving mode, press and hold both the AC power button and t
    * - **NOTE**
      - Energy Saving Mode resumes its previous state after powering on. Manual switching is required for mode changes.
 
+.. list-table::
+   :header-rows: 0
+   :widths: 12 88
+
+   * - **WARNING**
+     - When Energy Saving Mode is enabled, the product automatically turns off the AC output if the connected device’s power consumption remains low for the configured period. When powering devices that require continuous power, such as refrigerators, routers, security cameras, or aquarium air pumps, we recommend turning off Energy Saving Mode to prevent unexpected power loss from interrupting their operation.
+
 
 LCD SCREEN
 ----------

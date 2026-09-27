@@ -13,7 +13,59 @@
     "published_pdf_sha256": "55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d",
     "source_node": "https://alidocs.dingtalk.com/i/nodes/a9E05BDRVQ6mQG3GhyyglLX9J63zgkYA",
     "requirement_record": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA/97v7518/FBHsOuFTMQ",
-    "audit_record": "code-as-doc/reviews/je3000c_eu_en_web_intake_2026-09.md"
+    "audit_record": "code-as-doc/reviews/je3000c_eu_en_web_intake_2026-09.md",
+    "scope": "Figures, recipes and all copy except the adopted_copy_revisions items follow this V2.0-2026-07-31 print; every asset recipe is hash-locked to it.",
+    "adopted_copy_revisions": [
+      {
+        "published_revision": "V2.0-2026-09-15",
+        "published_pdf_name": "Jackery Explorer 3000 User Manual (JE-3000C)-EUUK-V2.0-2026-09-15.pdf",
+        "published_pdf_sha256": "f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32",
+        "source_location": "design share 设计规范/说明书汇总/便携主机/E3000/HTE156/欧英规 (not the DingTalk source node)",
+        "ruling": "operator 2026-09-27: adopt only the new copy; figures stay on V2.0-2026-07-31 (the 09-15 drawings carry nine defects)",
+        "adopted": [
+          {
+            "item": "Energy Saving Mode WARNING below the energy-saving NOTE",
+            "pdf_physical_pages": [
+              13,
+              29,
+              45,
+              61,
+              77,
+              93
+            ],
+            "carrier": "docs/templates/targets/je3000c/05_operation_guide_{placeholder,fr,es,de,it,uk}.rst (JE-3000C only)"
+          },
+          {
+            "item": "UPS WARNING between the UPS text and the CAUTION",
+            "pdf_physical_pages": [
+              14,
+              30,
+              46,
+              62,
+              78,
+              94
+            ],
+            "carrier": "docs/templates/page_shared/{en,fr,es,de,it,uk}/06_ups_mode.rst (every model that uses the shared UPS template)"
+          },
+          {
+            "item": "fourth UPS CAUTION bullet: one unit directly on a wall outlet, no cascade",
+            "pdf_physical_pages": [
+              15,
+              31,
+              47,
+              63,
+              79,
+              95
+            ],
+            "carrier": "docs/templates/page_shared/{en,fr,es,de,it,uk}/06_ups_mode.rst (every model that uses the shared UPS template)"
+          }
+        ],
+        "house_fixes": "en 'outlet. Do' for the printed 'outlet.Do'; fr/uk labels set as whole words (printed split); the uk fourth bullet is a list item (printed without its glyph)",
+        "not_adopted": "figures (the Web keeps the V2.0-2026-07-31 crops); the back-page declaration of conformity and App download line; the German front-view callout label",
+        "earlier_adoption": "the Spanish PV value '/1000 W Máx' (PDF page 50) was taken from this revision on 2026-09-25 as the correction of a V2.0-2026-07-31 print defect",
+        "audit_record": "code-as-doc/reviews/je3000c_eu_en_web_intake_2026-09.md#2026-09-27-new-copy-from-the-2026-09-15-revision"
+      }
+    ]
   },
   "engineering_content_commit": "d1b12bf8686941b5e79d9b507d7cc991da3427b9",
   "data_root": "manual_sources/JE-3000C/EU/en/2.0/phase2",

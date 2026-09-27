@@ -4,7 +4,9 @@ This directory is the audited, target-scoped build input for the Git-only Web
 release of `JE-3000C / EU / en`, version `2.0`.
 
 - Authority: the current published `V2.0-2026-07-31` EUUK manual identified in
-  [`source_manifest.json`](source_manifest.json).
+  [`source_manifest.json`](source_manifest.json), for the figures and all
+  content except three blocks of copy taken from its `V2.0-2026-09-15` revision
+  (see the 2026-09-27 note below).
 - Structured source: [`phase2/`](phase2) contains the target rows and shared
   dictionaries required to render the English manual.
 - Artwork: the deterministic extraction recipe is hash-locked through
@@ -84,3 +86,19 @@ the footnotes above the ※ USB Type-C trademark note (PDF pages
 and the Word bundle, which takes its order from the HTML) puts the footnotes
 first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
 are unchanged. `source_manifest.json` re-locks the registry.
+
+New copy from the 2026-09-15 revision (2026-09-27): three blocks now follow each
+language block of the V2.0-2026-09-15 print (SHA-256 `f3264481…`), by operator
+ruling of the same date:
+
+- the Energy Saving Mode WARNING below the energy-saving NOTE, in this model's
+  own `docs/templates/targets/je3000c/05_operation_guide_*.rst`;
+- the UPS WARNING before the UPS CAUTION, and
+- a fourth UPS CAUTION bullet (one unit directly on a wall outlet, no cascade).
+
+The two UPS blocks sit in the shared `page_shared/<lang>/06_ups_mode.rst`, so
+every model that uses that template carries them. Figures and all other content
+stay on V2.0-2026-07-31, because the 09-15 drawings carry nine defects. That
+print remains the authority in `source_manifest.json`, which now scopes it and
+records the 09-15 print under `authority.adopted_copy_revisions`. No file of
+`phase2/` and no recipe changes; see the intake review addendum of the same date.
