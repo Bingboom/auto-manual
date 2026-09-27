@@ -420,7 +420,8 @@ body {
 
 #furo-main-content table.hb-troubleshooting-table {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -468,9 +469,9 @@ body {
   text-align: center;
 }
 
+/* The header wraps at spaces, so es "Código de fallo" stays inside the compact code column. */
 #furo-main-content table.hb-troubleshooting-table thead .hb-troubleshooting-code {
   font-size: 0.9rem;
-  white-space: nowrap;
 }
 
 #furo-main-content table.hb-troubleshooting-table .hb-troubleshooting-measures {
@@ -808,7 +809,8 @@ body {
 
 #furo-main-content table.hb-lcd-icon-table {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -925,7 +927,8 @@ body {
 
 #furo-main-content table:is(.hb-auto-resume-table, .hb-key-combination-table) {
   width: 100% !important;
-  min-width: 42rem;
+  /* 40rem fits the desktop reading column; narrower screens scroll. */
+  min-width: 40rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -1020,7 +1023,6 @@ body {
 
 #furo-main-content table.hb-lcd-mode-table {
   width: 100% !important;
-  min-width: 25rem;
   margin: 0 !important;
   border: 0 !important;
   border-collapse: separate !important;
@@ -1482,6 +1484,12 @@ body {
     overflow-wrap: anywhere;
   }
 
+  /* Table cells keep words whole: inheriting anywhere would let content-sized columns
+     shrink below a word (es "automático") even where the table has room. */
+  #furo-main-content :is(td, th) {
+    overflow-wrap: break-word;
+  }
+
   #furo-main-content > section,
   #furo-main-content > section > section {
     margin-top: 2.2rem;
@@ -1660,6 +1668,12 @@ body {
 }
 
 @media (max-width: 520px) {
+  /* A raw HTML table sits in no scroll box; on the narrowest phones it may split a word
+     rather than run past the page edge, which .content clips. */
+  #furo-main-content section > table :is(td, th) {
+    overflow-wrap: anywhere;
+  }
+
   #furo-main-content table.manual-callout-table,
   #furo-main-content table.manual-callout-table tbody,
   #furo-main-content table.manual-callout-table tr,
