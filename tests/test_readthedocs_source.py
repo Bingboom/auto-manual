@@ -239,7 +239,10 @@ class ReadTheDocsSourceTests(unittest.TestCase):
             self.assertNotIn("#meaning-of-symbols", css_text)
             self.assertNotIn("#signification-des-symboles", css_text)
             self.assertNotIn("#significado-de-los-simbolos", css_text)
-            self.assertIn("table-layout: fixed !important", css_text)
+            # Callout label columns size to content; the page-level width references
+            # (tools/web_callout_alignment.py) keep one boundary per page.
+            self.assertIn("table-layout: auto !important", css_text)
+            self.assertIn(".manual-callout-label-sizer", css_text)
             self.assertIn("width: clamp(7.5rem, 16%, 9.5rem)", css_text)
             self.assertIn("width: 84%", css_text)
             self.assertNotIn("h1 + .table-wrapper", css_text)

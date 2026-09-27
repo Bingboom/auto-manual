@@ -202,6 +202,8 @@ class MarkdownBundleTests(unittest.TestCase):
             self.assertEqual(4, output.count('class="manual-callout-table"'))
             self.assertEqual(4, output.count('class="manual-callout-label"'))
             self.assertEqual(4, output.count('class="manual-callout-body"'))
+            # Every label cell carries the page's four labels as width references.
+            self.assertEqual(16, output.count('class="manual-callout-label-sizer"'))
             self.assertNotIn("|  |  |", output)
             self.assertNotIn("<colgroup", output)
             self.assertNotIn("<thead", output)

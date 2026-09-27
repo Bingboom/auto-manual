@@ -337,7 +337,8 @@ body {
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: a heading such as "Symbole" never breaks mid-word. */
+  table-layout: auto;
   background: var(--hb-paper);
   color: var(--hb-text);
   font-size: clamp(0.82rem, 1.35vw, 0.96rem);
@@ -359,6 +360,7 @@ body {
   border: 0 !important;
   background: var(--hb-paper);
   vertical-align: middle !important;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content table.hb-symbol-panel-table thead th {
@@ -735,7 +737,11 @@ body {
   line-height: 1.3;
 }
 
-/* Every WARNING/DANGER/CAUTION/NOTE uses the same light IDML callout treatment. */
+/* Every WARNING/DANGER/CAUTION/NOTE uses the same light IDML callout treatment.
+ * The label column sizes to content so a long localized label never breaks
+ * mid-word; every label cell carries the page's labels as invisible width
+ * references (tools/web_callout_alignment.py), which keeps one first-column
+ * boundary across the page in the reader's own font. */
 #furo-main-content table.manual-callout-table {
   width: 100% !important;
   margin: 1rem 0 1.35rem !important;
@@ -746,7 +752,7 @@ body {
   border-spacing: 0;
   background: var(--hb-surface);
   color: var(--hb-text);
-  table-layout: fixed !important;
+  table-layout: auto !important;
 }
 
 #furo-main-content .manual-callout-label {
@@ -759,6 +765,18 @@ body {
   font-weight: 700;
   text-align: center;
   vertical-align: middle !important;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
+#furo-main-content .manual-callout-label-sizer {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 #furo-main-content .manual-callout-body {
@@ -795,7 +813,8 @@ body {
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: long German compounds widen the name column instead of splitting. */
+  table-layout: auto;
   background: var(--hb-paper);
   font-size: 0.9rem;
   line-height: 1.23;
@@ -824,7 +843,7 @@ body {
   border-right: 1px solid var(--hb-line) !important;
   border-bottom: 1px solid var(--hb-line) !important;
   vertical-align: middle !important;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content table.hb-lcd-icon-table tr:last-child > td {
@@ -1006,7 +1025,8 @@ body {
   border: 0 !important;
   border-collapse: separate !important;
   border-spacing: 0;
-  table-layout: fixed;
+  /* Content-sized columns: fr "automatique" or uk "Автовимкнення" stays whole. */
+  table-layout: auto;
   color: var(--hb-text);
   font-size: 0.82rem;
   line-height: 1.17;
@@ -1032,7 +1052,7 @@ body {
   border-bottom: 1px solid var(--hb-brand-dark) !important;
   vertical-align: middle !important;
   text-align: left;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 #furo-main-content .hb-lcd-mode-state,

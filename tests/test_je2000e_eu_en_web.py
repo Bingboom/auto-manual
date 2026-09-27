@@ -486,6 +486,7 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
             Path(cls._tmp.name), config=ROOT / "configs" / "config.eu-de.yaml", lang="de"
         )
         cls.html = (package / "manual_bundle.html").read_text(encoding="utf-8")
+        cls.markdown = (package / "manual_je2000e_eu_de.md").read_text(encoding="utf-8")
 
     @classmethod
     def tearDownClass(cls) -> None:
@@ -552,6 +553,16 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
         kit = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_de/battery_pack_kit.png"]')
         self.assertEqual("Jackery Battery Pack 2000, Verlängerungskabel, Benutzerhandbuch (separat erhältlich)", kit["alt"])
         self.assertEqual([], [table for table in soup.find_all("table") if "Verlängerungskabel" in table.get_text()])
+
+    def test_callout_label_columns_share_the_page_width_reference(self) -> None:
+        """Each label cell carries the page's labels, so all label columns share one width."""
+        soup = BeautifulSoup(self.markdown, "html.parser")
+        cells = soup.select("table.manual-callout-table td.manual-callout-label")
+        self.assertGreater(len(cells), 3)
+        references = {
+            tuple(span.get_text() for span in cell.select("span.manual-callout-label-sizer")) for cell in cells
+        }
+        self.assertEqual({("WARNUNG", "VORSICHT", "HINWEIS")}, references)
 
     def test_operation_page_uses_the_english_compositions(self) -> None:
         """The model-specific operation page gets the LCD-mode, auto-resume and key-combination components."""
