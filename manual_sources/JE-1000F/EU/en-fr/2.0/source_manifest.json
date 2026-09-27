@@ -98,6 +98,13 @@
       "change": "Replace placeholder-worded image alt text (en 'image/diagram/operation placeholder', de 'als Platzhalter' and 'Platzhalter für', it 'Segnaposto', es 'Marcador de posición' and 'marcador de tienda') with a description of the figure in the page language on the 22 EN/DE/IT/ES review pages that feed the published Web routes. Re-approve the 33 EN/DE/IT source_fragment_sha256 values in phase2/web_composite_manifest.json, because that hash covers the semantic fragment including its alt text; the approved panel art is unchanged. The UK pages and generated drafts, which no published Web route reads, are unchanged."
     },
     {
+      "scope": "DE 12 V caution",
+      "pdf_physical_pages": [
+        64
+      ],
+      "change": "The p53 review page's first 12 V caution bullet named the car socket 'Der DC-12-V-Anschluss'; the print's DE block reads 'Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für 24-V-Systeme geeignet.' The other two bullets already match the print."
+    },
+    {
       "scope": "ES/DE storage durations",
       "pdf_physical_pages": [
         52,
@@ -1111,8 +1118,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p53_05_operation_guide_placeholder.rst",
-      "size": 10673,
-      "sha256": "bda2492ec02650b640dbae8dd73bdf34ecc7dac6b154f9458cfbf9fab435151d"
+      "size": 10669,
+      "sha256": "2694298b30ed6842f7c71bb29ec1d3d38d7cc114b982b1af06fb1bdd57241c49"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst",

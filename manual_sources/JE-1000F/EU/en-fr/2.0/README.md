@@ -99,6 +99,12 @@ re-approved against these pages; the approved panel art is unchanged. The UK
 pages and the generated drafts, which no published Web route reads, keep their
 wording. `source_manifest.json` re-locks the 23 files.
 
+German 12 V caution (2026-09-27): the p53 page named the car socket
+`Der DC-12-V-Anschluss`; it now reads as the print's DE block does (PDF page
+64): `Die DC-12V-Buchse ist nur mit 12-V-Autobatterien kompatibel und nicht für
+24-V-Systeme geeignet.` The other two bullets of that caution already match the
+print. `source_manifest.json` re-locks p53.
+
 Storage durations (2026-09-26): the Spanish and German storage rows carried
 each other's duration labels (es `1 monat/3 monate/12 monate`, de `1 mes/3
 meses/12 meses`). `phase2/Spec_Master.csv` (`Param_es`, `Param_de`) and the
