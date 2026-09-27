@@ -25,7 +25,7 @@
     "structured_copy": "docs/templates/page_charger/ja_ad600a/en",
     "structured_copy_snapshot_sha256": "ece5e1aa1b017097e0919ca2e00c43cac2def96b31edb4f77038054bf0e66e6e",
     "data_root": "data/manual_sources/ja_ad600a_eu_en",
-    "snapshot_sha256": "155fbfe7e3a476d8fb0f6c7a756f338fff23fc9b122b2cc20eab1b1d11ec85d4",
+    "snapshot_sha256": "27656d75fdd9c27cca387f1c5c14455e69fd65daf38858b7942dfd6bbba0f296",
     "snapshot_hash_algorithm": "sha256 of LC_ALL=C sorted lines '<file_sha256>  <basename>\\n' for the six CSV files"
   },
   "files": [
@@ -39,7 +39,7 @@
     },
     {
       "path": "Spec_Master.csv",
-      "sha256": "42c3849abcb0970800617a07501a63ebc3e2d496a3e1b2ee3f36585a8afdc915"
+      "sha256": "dbe98783585cc15c51ac8c7972060b5071b507e247964bd362838193cd942494"
     },
     {
       "path": "Spec_Notes.csv",
