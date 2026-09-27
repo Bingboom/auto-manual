@@ -115,6 +115,15 @@
         70
       ],
       "change": "The storage duration labels of the Spanish and German rows were swapped (es printed German '1 monat/3 monate/12 monate', de printed Spanish '1 mes/3 meses/12 meses'). Spec_Master Param_es and Param_de and the p42/p57 review pages now hold each block's printed labels: es '1 mes/3 meses/12 meses' (PDF page 52), de '1 Monat/3 Monate/12 Monate' (page 70, where the print sets them in lowercase; German capitalization follows JE-2000E's print and the other models)."
+    },
+    {
+      "scope": "ES/DE/IT environmental operating temperature heading",
+      "pdf_physical_pages": [
+        53,
+        71,
+        88
+      ],
+      "change": "The ENVIRONMENTAL OPERATING TEMPERATURE row of spec_titles.csv carried the English fallback in title_es/title_de/title_it, and the ES/DE/IT Web specification pages showed that English heading (and figure label). The cells now hold each block's printed heading: es 'TEMPERATURA DE FUNCIONAMIENTO' (PDF page 53), de 'UMGEBUNGSBETRIEBSTEMPERATUR' (page 71), it 'TEMPERATURA OPERATIVA AMBIENTALE' (page 88); the non-rendering Localized_Copy.csv twin spec.section.environmental_operating_temperature (text_es/text_de/text_it) matches. The --source review build regenerates the spec pages from these cells, so the review pages are unchanged. FR keeps its reviewed heading (review-asis) and the FR/UK cells are unchanged."
     }
   ],
   "files": [
@@ -125,8 +134,8 @@
     },
     {
       "path": "phase2/Localized_Copy.csv",
-      "size": 10004,
-      "sha256": "597f726f7faf29e57c27f7b78747fa431d21532ecd571548e532f7ad3b888bcf"
+      "size": 9987,
+      "sha256": "ace51736c2ca1585d5d8917b9e1e6905177c74a4063b24c5eb32f094e561b891"
     },
     {
       "path": "phase2/Manual_Copy_Source.csv",
@@ -675,8 +684,8 @@
     },
     {
       "path": "phase2/spec_titles.csv",
-      "size": 1028,
-      "sha256": "6e92e1172b2515eb4c35a07fc873d44504c0764e852de8b0992df15861b974d4"
+      "size": 1011,
+      "sha256": "1b965f97136f44d6fe19c2fa69360cd022a3e43d62a38e7d2bfca444f0820e4b"
     },
     {
       "path": "phase2/symbols_blocks.csv",
