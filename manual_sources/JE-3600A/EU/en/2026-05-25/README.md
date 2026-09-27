@@ -57,3 +57,20 @@ the shared fr–uk charging templates now carry the English file's capability
 markers. On all three routes, the AC wall sentence that the crop already prints
 moves into the figure's alt text. See the intake review addendum of the same
 date. `source_manifest.json` re-locks the English illustration manifest.
+
+Specification footnote marks (2026-09-27): every language block of the print
+(PDF pages 19/36/53) sets ① after the AC input's bypass-mode name and on the
+"AC Output in Bypass Mode" label, and ② on the "AC Total Output" label. The
+en/fr/es routes set ① and ② at the end of the values instead, and the bypass
+output row had no mark. `phase2/Spec_Master.csv` now uses the columns the other
+EU frozen sources use for these rows:
+
+- AC input bypass line: `Param_footnote_refs=ac_bypass` (was
+  `Value_footnote_refs`);
+- AC Total Output: `Row_label_footnote_refs=ac_total` (was
+  `Value_footnote_refs`);
+- AC Output in Bypass Mode: `Row_label_footnote_refs=ac_bypass` (was empty).
+
+Each footnote still renders once, and values and labels are unchanged.
+`source_manifest.json` re-locks the file; see the intake review addendum of the
+same date.
