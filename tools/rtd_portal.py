@@ -260,7 +260,10 @@ def collect_workspace_pages(app):
         "deliverables_entry": True,
     }, "workspace_portal.html"
     if system is not None:
-        yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True}, SYSTEM_TEMPLATE
+        from tools.rtd_workspace_revision import page_revision
+
+        yield SYSTEM_PAGE, {**system, "has_share": has_share, "deliverables_entry": True,
+                            "workspace_revision": page_revision(app)}, SYSTEM_TEMPLATE
     yield DELIVERABLES_PAGE, {**deliverables, "has_share": has_share, "system_entry": system is not None}, \
         DELIVERABLES_TEMPLATE
 
@@ -284,6 +287,7 @@ def copy_workspace_content(app, exception) -> None:
 def setup(app):
     from tools.rtd_deployment_receipt import write_deployment_receipt
     from tools.rtd_portal_search import write_search_index
+    from tools.rtd_workspace_revision import write_workspace_revision
 
     app.add_config_value("rtd_knowledge_dir", "", "html")
     # ISO date for the system and deliverables pages' staleness rules; empty means the build date (UTC).
@@ -295,6 +299,7 @@ def setup(app):
     # Generated conf.py copies manual assets at the default priority (500).
     app.connect("build-finished", copy_workspace_content, priority=800)
     app.connect("build-finished", write_search_index, priority=900)
+    app.connect("build-finished", write_workspace_revision, priority=950)
     app.connect("build-finished", write_deployment_receipt, priority=1000)
     app.connect("build-finished", clear_catalog_cache, priority=1100)
     return {"version": "1", "parallel_read_safe": True, "parallel_write_safe": True}

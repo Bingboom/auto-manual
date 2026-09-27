@@ -165,7 +165,7 @@ class SystemWorkspaceContractTests(unittest.TestCase):
             "mode 'sometimes' not in vocabulary": lambda d: d["flow"][0].update(mode="sometimes"),
             "needs a non-empty lanes list": lambda d: d["focus"].update(lanes=[]),
             "duplicate lane id": lambda d: d["focus"]["lanes"].append(copy.deepcopy(lane(d))),
-            "horizon must be one of": lambda d: lane(d).update(horizon="later"),
+            "horizon must be one of": lambda d: lane(d).update(horizon="unknown"),
             "needs a title": lambda d: lane(d).update(title=""),
             "unknown card": lambda d: lane(d).update(card="missing"),
             "unknown item": lambda d: lane(d, 2).update(items=["prod.missing"]),
@@ -314,7 +314,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
     def test_focus_groups_lanes_by_horizon_in_contract_order(self):
         focus = self.context()["focus"]
         self.assertEqual([(g["label"], [lane["id"] for lane in g["lanes"]]) for g in focus["groups"]],
-                         [("现在", ["web", "tm"]), ("下一步", ["sk"])])
+                         [("01 · 当前主线", ["web", "tm"]), ("02 · 代表试点", ["sk"])])
         self.assertEqual([ev["label"] for ev in focus["evidence"]], ["ledger.md", "操作者确认 2026-09-24"])
         self.assertEqual(focus["stale"], [])
 
@@ -353,7 +353,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         self.assertEqual([(c["id"], c["fold"], [t["title"] for t in c["lanes"]]) for c in view["cards"]],
                          [("prod", False, ["网页化"]), ("other", True, [])])
         self.assertEqual([(g["id"], g["fold"], [t["horizon_label"] for t in g["lanes"]]) for g in view["gates"]],
-                         [("G1", False, ["现在"]), ("G2", True, [])])
+                         [("G1", False, ["01 · 当前主线"]), ("G2", True, [])])
 
     def test_missing_sources_render_as_no_data(self):
         view = self.context(facts=None, skeletons=None)
@@ -374,7 +374,7 @@ class SystemWorkspaceContextTests(unittest.TestCase):
         view = sw.build_context(data, root=self.root, ledger=sw.parse_ledger(LEDGER), facts=None, today=TODAY,
                                 registry=registry(), assets=self.root, skills=skills, hooks=hooks)["tooling"]
         self.assertEqual([(g["title"], g["horizon_label"], [r["id"] for r in g["rows"]]) for g in view["groups"]],
-                         [("网页化", "现在", ["alpha"]), ("骨架", "下一步", [])])
+                         [("网页化", "01 · 当前主线", ["alpha"]), ("骨架", "02 · 代表试点", [])])
         self.assertEqual(view["hooks"][0]["mode_label"], "拦截")
 
     def test_gates_and_now_items_read_the_ledger(self):
@@ -709,11 +709,19 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
             result = build("good")
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             page = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
-            headings = ("当前重点", "语言资产", "能力地图", "正在做与下一步", "生产流程与连接", "技能与钩子", "现在就能用",
+            headings = ("当前重点", "正在做与下一步", "语言资产", "能力地图", "生产流程与连接", "技能与钩子", "现在就能用",
                         "数据来源")
             self.assertEqual([page.find(f"<h2>{h}</h2>") >= 0 for h in headings], [True] * len(headings))
             self.assertEqual(sorted(headings, key=lambda h: page.find(f"<h2>{h}</h2>")), list(headings))
             self.assertIn('id="lane-web"', page)
+            lanes = ["web", "corpus", "ssot", "shared_ir", "skeletons", "multi_agent"]
+            self.assertEqual(sorted(lanes, key=lambda lane: page.index(f'id="lane-{lane}"')), lanes)
+            self.assertIn("当前只保留设计参考，不进入交付主线", page)
+            self.assertNotIn("多 Agent 调度设计</span>", page)
+            receipt = json.loads((base / "good" / "_static" / "system-workspace-revision.json").read_text())
+            self.assertIn(f'data-revision="{receipt["revision"]}"', page)
+            self.assertIn(f'data-built-at="{receipt["built_at"]}"', page)
+            self.assertTrue((base / "good" / "_static" / "system-workspace.js").is_file())
             self.assertIn("1 个语言版", page)
             self.assertIn("美规 1 本", page)
             self.assertIn("便携电源", page)  # a declared skeleton family, built or not

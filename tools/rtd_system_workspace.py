@@ -90,7 +90,10 @@ CORPUS_APPROVED = "Approved"
 CORPUS_UNLABELLED = "(未标注)"
 CORPUS_HISTORY_KEYS = ("exported_at", "sentence_pairs", "terms", "approved")
 CORPUS_HISTORY_KEEP = 24  # months of headline figures carried by each snapshot
-HORIZON_LABELS = {"now": "现在", "next": "下一步"}
+HORIZON_LABELS = {
+    "now": "01 · 当前主线", "support": "同期 · 持续支撑",
+    "next": "02 · 代表试点", "later": "03 · 稳定后扩展", "deferred": "后置 · 按需",
+}
 FOCUS_METRICS = ("publications", "regions", "corpus", "skeletons")
 SKELETON_SCHEMA = "skeleton-blueprint/v1"
 _UNSTATUSED = frozenset({"hero", "focus"})  # evidence-bearing entries without a status
@@ -1010,6 +1013,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
                                  **_progress(revs, ledger)})
         return {
             "id": lane["id"], "title": lane["title"], "goal": lane.get("goal") or "",
+            "action": lane.get("action") or "",
             "horizon": lane["horizon"], "horizon_label": HORIZON_LABELS[lane["horizon"]],
             "card": lane.get("card") or "",
             "metrics": [metric for name in lane.get("metrics") or []
@@ -1018,7 +1022,7 @@ def build_context(contract: dict[str, Any], *, root: Path, ledger: Ledger | None
             # Not "items": Jinja resolves lane.items to the dict method.
             "entries": [items_by_ref[ref] for ref in lane.get("items") or []],
             "progress": progress,
-            "untracked": not tracked,
+            "untracked": not tracked and lane["horizon"] != "deferred",
             "ledger_missing": tracked and ledger is None,
         }
 
