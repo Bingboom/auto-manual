@@ -173,7 +173,9 @@ class Jbp3600aEuEnWebTests(unittest.TestCase):
         )
         self.assertIsNotNone(soup.select_one("table.lcd-text-only"))
         self.assertIsNotNone(soup.select_one('[data-component-id="HB-TABLE-TROUBLESHOOTING"]'))
-        self.assertEqual(4, len(soup.select(".hb-spec-table-composition")))
+        # The print (PDF page 11) sets one INPUT/OUTPUT PORTS table, so the
+        # specification page has three compositions, not four.
+        self.assertEqual(3, len(soup.select(".hb-spec-table-composition")))
         self.assertGreaterEqual(len(soup.select(".manual-finished-illustration")), 7)
         # The LCD adapter owns its image class; assert every finished asset by
         # its content-addressed URL, not only standalone figure CSS classes.

@@ -21,3 +21,18 @@ AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
   --data-root manual_sources/JBP-3600A/EU/en/phase2 \
   --staging-root <fresh-root>
 ```
+
+## Specification page per print (2026-09-27)
+
+The operator ruled that values, structure and labels follow the print, with the
+house formatting kept, so capacity and dimensions keep their house spacing. On
+PDF page 11 the IEC row reads `IEC Code` / `IFpR41/136[14S4P]M/-20+40/90`; it
+was `Secondary Li-ion Battery` / `IEC: …`, and its row key is now `iec_code`.
+Both DC expansion rows now sit in one `INPUT/OUTPUT PORTS` section as
+`DC Expansion Port (Input)` and `DC Expansion Port (Output)`; they were
+`DC Input` and `DC Output` in two sections. The fix is in
+`phase2/Spec_Master.csv` and `phase2/spec_titles.csv`;
+`phase2/Localized_Copy.csv` and `phase2/Manual_Copy_Source.csv` carry the merged
+title, with the fr/es/de/it wording from PDF pages 19/27/35/43. This print has no
+uk block, so the uk cell reuses the JBP-2000B print's `ВХІДНІ/ВИХІДНІ ПОРТИ`.
+`source_manifest.json` re-locks the four files.
