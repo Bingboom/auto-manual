@@ -95,3 +95,16 @@ p42/p57 review pages now hold the print's es `1 mes/3 meses/12 meses` (PDF page
 52) and de `1 Monat/3 Monate/12 Monate` (page 70). The print sets the German
 labels in lowercase; they are capitalized as in JE-2000E's print and the other
 models. `source_manifest.json` re-locks the three files.
+
+Operating temperature heading (2026-09-27): the ES/DE/IT specification pages
+showed the English heading `ENVIRONMENTAL OPERATING TEMPERATURE`, because the
+`title_es`, `title_de` and `title_it` cells of that row in
+`phase2/spec_titles.csv` held the English fallback. They now hold the print's
+es `TEMPERATURA DE FUNCIONAMIENTO` (PDF page 53), de
+`UMGEBUNGSBETRIEBSTEMPERATUR` (page 71) and it `TEMPERATURA OPERATIVA
+AMBIENTALE` (page 88). The matching `phase2/Localized_Copy.csv` row
+(`spec.section.environmental_operating_temperature`) does not render on the
+Web but now holds the same values. The `--source review` build rebuilds the
+spec pages from these cells, so the review pages are not edited. FR keeps its
+reviewed heading and the FR/UK cells are unchanged. `source_manifest.json`
+re-locks the two files.
