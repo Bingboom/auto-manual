@@ -184,3 +184,94 @@ entries `web/je2000f/eu/<lang>/app_add_device_panel`, PDF pages 20/36/52/68/84/1
 crop ends in the white gap before the next paragraph and has pure-white edges.
 The page's button-label lines become covered annotations, kept as the figure's
 alt text. The operator approved the crops on 2026-09-24.
+
+## 2026-09-27 Specification tables follow the print
+
+A read-only audit compared the six Web specification tables with the print
+(PDF pages 18/34/50/66/82/98, printed 13/29/45/61/77/93). The intake and the
+2026-09-13 note above corrected only the English cells, so the other five
+languages still had the review branch's values. The operator ruled on
+2026-09-27:
+
+- values, structure and labels follow the print;
+- formatting keeps the house rules;
+- where the print itself is wrong, the reviewed wording is used.
+
+Each fix is a cell of the frozen phase2 source. The house rules stay as they
+are: unit spacing, `⎓` for DC, one line per value and `x` in dimensions.
+
+| Fix | Old → new | Print (PDF page) | Source cell |
+| --- | --- | --- | --- |
+| Cycle life, fr/es/de/it/uk | `6000` → `4000` cycles | 34/50/66/82/98 | `Spec_Master.csv` line 32, `Value_<lang>` |
+| 3 × AC outputs, fr/es/de/it/uk | `10 A max.` (`máx.`, `10 А макс.`) removed | 34/50/66/82/98 | line 37, `Value_<lang>` |
+| Bypass output, fr/es/de/it/uk | `10 A max.` → `2200 W max.` (`máx.`, `2200 Вт макс.`) | 34/50/66/82/98 | line 38, `Value_<lang>` |
+| it capacity | `40 Ah / 51,2 V ⎓ (2048 Wh)` → `2048 Wh (40 Ah / 51,2 V ⎓)` | 82 | line 28, `Value_it` |
+| en DC8020 car line | `Vehicle:` → `Car:` | 18; overview 8 | line 35, `Value_source` |
+| fr model label | `N° de modèle` → `N° modèle` | 34 | line 27, `Row_label_fr` |
+| fr AC output label | `3 × Sorties CA` → `3 × Sortie CA` | 34 | line 37, `Row_label_fr` |
+| de charging label (print defect) | `Ladtemperatur` → `Ladetemperatur` | 66; charging note 63 | line 43, `Row_label_de` |
+| it discharging label (print defect) | `Temperatura di scarico` → `Temperatura di scarica` | 82; charging note 79 | line 44, `Row_label_it` |
+| de port headings (print defect) | `EINGANGSPORTS` / `AUSGANGSPORTE` → `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` | 66 | `spec_titles.csv` lines 3-4, `title_de`; `Localized_Copy.csv` lines 13-14, `text_de` |
+
+Sources for the reviewed wording:
+
+- de `Ladetemperatur` and it `scarica` are what this print's own charging
+  notes say (PDF pages 63 and 79). The JE-1000H and JE-3600A EU prints use the
+  same labels in their specification tables (PDF pages 70 and 87 of each).
+- The de headings mix two nouns on one page. The JE-1000H EU print
+  (V2.0-2026-08-03) and the JE-3600A EU print (2026-05-25) set
+  `EINGANGSANSCHLÜSSE` / `AUSGANGSANSCHLÜSSE` (PDF page 70 of each); both are
+  the prints their frozen sources lock. The same table already says
+  `DC8020-Anschlüsse` and `DC 12 V-Anschluss`, and the JE-1000H frozen source
+  uses the same pair.
+- The `Localized_Copy.csv` rows do not render on the Web; they now hold the same
+  headings as `spec_titles.csv`.
+
+Kept as reviewed:
+
+- en `Dimensions` stays plural. The print's `Dimension` (PDF page 18) is a
+  typo; the other five blocks use the plural.
+- fr `-10 °C à 45 °C` stays. The print detaches the minus sign (`- 10 °C`,
+  PDF page 34), and its charging note prints `-10 °C` (PDF page 31).
+
+Not changed here:
+
+- The product-overview figure's alt text still says `10 A max.` for the AC
+  output in all six languages (`Spec_Master.csv` line 20). No block of the
+  print overview (PDF pages 8/24/40/56/72/88) gives the AC output a current;
+  en prints `230 V~ 50 Hz, 2200 W Rated`. The alt text is the covered
+  annotation that `docs/renderers/web/je2000f_eu_<lang>_illustrations.json`
+  binds by its exact text. A trial build with only line 20 changed fails with
+  `covered illustration annotation changed or ambiguous`. The fix must change
+  line 20 and the six illustration manifests together, and re-lock the English
+  manifest's hash, so it is a separate change.
+- The print puts the ① footnote before the ※ note. The order comes from the
+  shared `docs/templates/spec_template.rst`, which a separate change handles.
+- The print has three more defects. The ruling does not list them, and the Web
+  copies them as printed:
+  - the spec pages' `PV: 16 V-60 V⎓12 A` has no `max.`, while the overview has
+    `12 A max.`;
+  - fr `Mode de charge:` has no space before the colon;
+  - the count prefixes are mixed (`1 ×`, `2 porte`, `1 вхід`).
+- Formatting-only differences stay as they are, because they follow the house
+  rules: unit spacing, `⎓` where the print has `DC`, `x` where it has `×`, es
+  `N°` where it has `Nº`, and the de/uk page-title case in the Markdown text.
+- The shared CI fixture `tests/fixtures/phase2/Spec_Master.csv` still has the
+  earlier JE-2000F EU rows. It was already out of date after the 2026-09-13
+  English fix. The Web builds from this frozen source only.
+
+Evidence:
+
+- Before the edit, trial Web builds of all six languages matched the live
+  Hello-Docs route pages line for line. The builds used `build.py md`, the web
+  profile and this data root. The route pages were from Hello-Docs main
+  `4a7526b0`, version 2.3, git ref `54a4cd24`. The comparison reduced each
+  `src` attribute to the image hash.
+- After the edit, only the 25 table lines above change: en 1, fr 5, es 3, de 8,
+  it 5, uk 3. Each de heading changes both the `##` heading and the table's
+  `aria-label`.
+- `tests/test_je2000f_eu_spec_print.py` pins the printed cells, the rendered
+  tables of all six languages, the de headings and the kept wording. Against the
+  CSVs from before the edit, every check fails except the kept-wording test.
+- `source_manifest.json` re-locks `Spec_Master.csv`, `spec_titles.csv`,
+  `Localized_Copy.csv` and the canonical inventory digest.
