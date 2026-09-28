@@ -17,8 +17,9 @@ it is not the release candidate and must not replace the five existing books.
   The source record labels it `最新`; that label does not establish approved
   paper version or publication approval. Do not substitute JE-2000F or the
   older JE-1000F six-language review bundle.
-- Engineering baseline: `origin/main` at `a3c7a2d1` on 2026-09-27. This task
-  owns `feat/web-je1000f-nine-language` in an isolated worktree.
+- Engineering source branch: `feat/web-je1000f-eu-four-languages`, based on
+  `origin/main` at `9122b958` on 2026-09-27. The earlier nine-language shell
+  was exploratory and is not the release input.
 - Existing `configs/config.eu.yaml` names six languages while
   `data/model_languages.csv` currently names five for JE-1000F/EU and says
   Ukrainian is absent. The current **published** source is more specific:
@@ -33,11 +34,10 @@ it is not the release candidate and must not replace the five existing books.
   market. Physical page 1 is the cover, 2-4 contain multilingual prefaces,
   5-7 the contents, and 161 the common declaration/contact tail.
 - The EN PDF-compatible text layer omits printed copy on multiple pages.
-  That finding does not transfer to the four new languages: their safety
-  first pages, storage/troubleshooting pages, and specification pages have
-  selectable text in the AI PDF-compatible layer and Illustrator's new PDF
-  export. Native text frames and full-page completeness still need review.
-  The original AI remains the visual authority because the local Illustrator
+  That finding does not transfer to the four new languages: all 68 body pages
+  contain selectable text. Native text frames and 84 page crops plus 28 paired
+  pictogram crops passed the source extraction and crop-boundary audit. The
+  original AI remains the visual authority because the local Illustrator
   installation reports missing fonts during export.
 
 ## Existing outlet
@@ -50,27 +50,30 @@ and, after an authorized merge, RTD route verification. It does not include
 online-table writes, source schema, dependency, or workflow changes. The
 existing five target sources, figures, and URLs must remain unchanged.
 
-## Local candidate status (in progress)
+## Local candidate status (2026-09-28)
 
-The source extractor has produced 21 locale-page crops plus seven individually
+The source extractor produced 21 locale-page crops plus seven individually
 paired pictogram crops per new language from the exact AI, with per-file
-hashes. A source-local adapter now builds selectable MyST/HTML from direct
-AI text objects and geometry; the LCD, symbol, troubleshooting, specification,
+hashes. A source-local adapter builds selectable MyST/HTML from direct AI text
+objects and geometry; the LCD, symbol, troubleshooting, specification,
 warranty, App and operating tables/lists are structured. The original nine-
 language shell remains excluded from release. The candidate contains only four
-new language targets.
+new language targets. Its 268 input files are inventoried by SHA-256.
 
 | Language | Content | Figures | Local build | Browser | Publication |
 | --- | --- | --- | --- | --- | --- |
-| uk (Ukrainian) | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; final QA pending | Strict Sphinx passes; 28/28 image paths exist | Revised local review in progress | Not published |
-| pt | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; final QA pending | Strict Sphinx passes; 28/28 image paths exist | Revised local review in progress | Not published |
-| nl | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; final QA pending | Strict Sphinx passes; 28/28 image paths exist | Revised local review in progress | Not published |
-| pl | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; final QA pending | Strict Sphinx passes; 28/28 image paths exist | Revised local review in progress | Not published |
+| uk (Ukrainian) | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
+| pt | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
+| nl | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
+| pl | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
 
 Four-language candidate source: `manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web`; local served HTML:
 `/tmp/je1000f-four-candidate/html`. Each local page has a locale root HTML
-attribute. The real publication assembly, five-language hash comparison and
-RTD acceptance remain separate gates.
+attribute. A provisional 58-target Hello-Docs assembly and strict portal
+Sphinx build passed. The five existing JE-1000F/EU source subtrees matched the
+Hello-Docs main baseline file by file. Formal release evidence must be sealed
+against the final remote engineering commit after the source errata decisions;
+the Hello-Docs PR, merge, and RTD acceptance remain separate gates.
 
 ## Implementation phases
 
