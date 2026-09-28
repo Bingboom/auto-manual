@@ -1,4 +1,4 @@
-"""The new copy of the JE-3000C/EU V2.0-2026-09-15 print (operator ruling 2026-09-27).
+"""The new copy of the JE-3000C/EU V2.0-2026-09-15 print, on the Web and in Word only.
 
 The operator adopted only the new copy of the 09-15 print (sha256 f3264481...);
 its figures carry drawing defects, so the Web keeps the V2.0-2026-07-31 crops.
@@ -13,23 +13,39 @@ Each of the six language blocks adds three items:
   (PDF pages 15/31/47/63/79/95).
 
 The two UPS items go into the shared ``docs/templates/page_shared/<lang>/06_ups_mode.rst``
-for every model that uses it (ruling 「所有用这个模板的型号都加」), and into the
-en/fr/es/de/it JE-1000F/EU review pages, which that model's Web routes render
-instead of the templates. House fixes, not print defects: en ``outlet. Do``
-(printed ``outlet.Do``), whole-word labels (the fr and uk labels print split
-across two lines) and a real list item for the uk bullet (printed without its
-glyph). Everything else is the print's text.
+for every model that uses it (ruling 「所有用这个模板的型号都加」), into the
+en/fr/es/de/it JE-1000F/EU review pages that model's Web routes render, and into
+JE-500A's own English UPS page (ruling 「也加上」).
 
-The UPS carriers of languages the print has no block for (ko, pt-BR, ja, zh),
-the JE-500A English UPS page and the US/KR review pages stay byte for byte:
-they await the operator's decision. So does the JE-1000F/EU uk review page:
-that model ships no Ukrainian, so no output renders it.
+Operator ruling 「先只进网页和 Word」 (2026-09-27): until the LaTeX and IDML
+renderers keep these callouts' paragraphs, the new copy reaches only the Web and
+Word outputs. The PDF (LaTeX) and IDML stay exactly as on main. The gate is the
+repo's print/screen branch selection:
+
+* ``.. only:: not latex`` bodies reach the Web and Word pipelines, whose tag set
+  is ``html`` plus model/region/lang (``tools.word_bundle_html``); the Sphinx
+  LaTeX builder and the IDML extractor (tags ``latex``/``idml``) drop them;
+* ``.. only:: latex`` bodies go the other way.
+
+So the energy WARNING is one ``not latex`` block after the NOTE, and each UPS
+page holds a ``not latex`` block (the WARNING plus the four-bullet CAUTION)
+followed by main's CAUTION, unchanged, under ``latex``.
+
+House fixes, not print defects: en ``outlet. Do`` (printed ``outlet.Do``),
+whole-word labels (the fr and uk labels print split across two lines) and a real
+list item for the uk bullet (printed without its glyph). Everything else is the
+print's text.
+
+The ko, pt-BR, ja and zh UPS carriers (no print block; translations await
+review), the US/KR review pages and the JE-1000F/EU uk review page (a language
+JE-1000F/EU does not ship) stay byte for byte.
 """
 
 from __future__ import annotations
 
 import csv
 import hashlib
+import json
 import os
 import re
 import subprocess
@@ -43,10 +59,15 @@ from bs4 import BeautifulSoup
 
 from tools.config_loader import load_config_mapping
 from tools.config_pages import GeneratedPage, RstIncludePage, parse_config_pages
+from tools.idml_rst_extract import extract_page
+from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
+from tools.word_bundle_html_only import _build_word_only_tags
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "docs" / "templates"
+LATEX_RENDERER = ROOT / "docs" / "renderers" / "latex"
 JE3000C_DATA_ROOT = ROOT / "manual_sources/JE-3000C/EU/en/2.0/phase2"
+JE500A_DATA_ROOT = ROOT / "manual_sources/JE-500A/EU/en/2.0/phase2"
 LANGS = ("en", "fr", "es", "de", "it", "uk")
 
 # The print's text per language block. Straight and curly apostrophes are as printed.
@@ -142,37 +163,71 @@ JE1000F_EU_REVIEW_UPS = {
     for lang, name in zip(LANGS[:5], ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
                                       "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"))
 }
+JE500A_UPS = TEMPLATES / "page_je500a_eu-en" / "06_ups_mode.rst"
 
-# Each edited carrier before the change: removing the added blocks must give these bytes back.
-PRE_CHANGE_SHA256 = {
-    "docs/templates/targets/je3000c/05_operation_guide_placeholder.rst": "4c1fc59abf1a3e543e7aedfec355ac183c02500aaf27f3ed6a1983b99880ace0",
-    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "998d04b40534df05a858f5d0ea587ab41a8e1d2f30c84719c63162a248e219ec",
-    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "260237c69803ed7735b27f62b32ce5f040c4bc8efdbc67aaa59bcbc5f21b3eaf",
-    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "fb2e3d445c05a8b39bc2de0fa1ccf320015a59bf3c88bb4b44934059002f2fe0",
-    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "f9a364466bd52bbaccaa50227716fd0355b11d7bfc233413cd4f41e26144a586",
-    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "a31642e4ffe19d465545d514b72c04b4c41494a3d29f2addb2eab286b8ae5a74",
-    "docs/templates/page_shared/en/06_ups_mode.rst": "c26c7c9c3c255ef469da87deadf16a5e31d843aebaa88738490637dfa0edcb0e",
-    "docs/templates/page_shared/fr/06_ups_mode.rst": "1c7d193805ce2adf1ac0febeefd0e0e78464b511a669719d89ce8dfdb2a658e5",
-    "docs/templates/page_shared/es/06_ups_mode.rst": "80e9f2310637c89760d1468385a2d2de3845e0eadfb2badad2ffdb7073b39509",
-    "docs/templates/page_shared/de/06_ups_mode.rst": "d948a4922603106bbe57ca270a268a25d8f96e4fb830eb16a850ea120c138479",
-    "docs/templates/page_shared/it/06_ups_mode.rst": "6d6b074c0bfc328b83b72f26b64b1c011a4aac38fd744bc8cb00b98b4f3c3880",
-    "docs/templates/page_shared/uk/06_ups_mode.rst": "0761ccc0fa73b3029d22c5476ab14a500d80be252a18f9471235865c9252f799",
+# carrier -> (language, shape, model whose outputs read it)
+EDITED: dict[Path, tuple[str, str, str]] = {}
+for _lang in LANGS:
+    EDITED[ENERGY_CARRIERS[_lang]] = (_lang, "energy", "JE-3000C")
+    EDITED[UPS_TEMPLATES[_lang]] = (_lang, "ups", "JE-3000C")
+for _lang, _path in JE1000F_EU_REVIEW_UPS.items():
+    EDITED[_path] = (_lang, "ups", "JE-1000F")
+EDITED[JE500A_UPS] = ("en", "admonitions", "JE-500A")
+
+# sha256 of print_view() of each carrier on origin/main (bd201fc2). The UPS pages had
+# no only-blocks there, so for them this is main's file hash itself.
+MAIN_PRINT_VIEW_SHA256 = {
     "docs/_review/JE-1000F/EU/page/06_ups_mode.rst": "f4ad3c3009f2b9e980c6fa9bae6870c952b00a7ff10a06a8b88915dde599da39",
     "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst": "f5905e61ccfdf8d2086c1831c0c91e55b3f7046afff9729368f0a6ace641fa00",
     "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst": "638697edc57cbbae91fed1b50b8ece7c2bbe076e8013a6654941a5d15ac44896",
     "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8",
     "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe",
+    "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "a940aa134298aef6b23828bbf73a508f69602af92af3f14def0bc218a7f7c138",
+    "docs/templates/page_shared/de/06_ups_mode.rst": "d948a4922603106bbe57ca270a268a25d8f96e4fb830eb16a850ea120c138479",
+    "docs/templates/page_shared/en/06_ups_mode.rst": "c26c7c9c3c255ef469da87deadf16a5e31d843aebaa88738490637dfa0edcb0e",
+    "docs/templates/page_shared/es/06_ups_mode.rst": "80e9f2310637c89760d1468385a2d2de3845e0eadfb2badad2ffdb7073b39509",
+    "docs/templates/page_shared/fr/06_ups_mode.rst": "1c7d193805ce2adf1ac0febeefd0e0e78464b511a669719d89ce8dfdb2a658e5",
+    "docs/templates/page_shared/it/06_ups_mode.rst": "6d6b074c0bfc328b83b72f26b64b1c011a4aac38fd744bc8cb00b98b4f3c3880",
+    "docs/templates/page_shared/uk/06_ups_mode.rst": "0761ccc0fa73b3029d22c5476ab14a500d80be252a18f9471235865c9252f799",
+    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "2832615fe0a948547ea98892001b1f2d4b71ec56a13134a66d6c583920842ee1",
+    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "d83e8b18e7912782dcbae810e6b5049dd683c58f54cf63814e0463d47d7e78f6",
+    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "683344546f3381a3decf664760c8d611e4624f06397c186c62fca6bf868e048e",
+    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "0f82b5f0714c8d8dfadf89de15b530f0a8cb6bb306e49389f8e44b1544ca7cc3",
+    "docs/templates/targets/je3000c/05_operation_guide_placeholder.rst": "a63bd412bf45b7e65eef0e17882bcbe0218627f4cd4c64d6c8e68b5e72952529",
+    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "a37b8515f1c703f0793ddaa30b084979d63077ef482e6ff92ab73064f983db56",
 }
 
-# UPS carriers left for the operator: no print block for their language, not the
-# shared template (JE-500A's own page), another region's review line, or a review
-# page no output renders (JE-1000F/EU uk).
+# sha256 of the IDML extractor's blocks (tools.idml_rst_extract.extract_page, ManualIR
+# tags: latex, idml, region_eu, the model, the language) for each carrier on origin/main.
+MAIN_IDML_BLOCKS_SHA256 = {
+    "docs/_review/JE-1000F/EU/page/06_ups_mode.rst": "597c3c7894164d0b91ddb7c9196851fd15ff6cc57fe07f7dd7bd0cf6afd82952",
+    "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst": "a16367f5d4b537f71eca5d449b763e9b4667dbcd53088d458c46529c59ac2c6b",
+    "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst": "e5bb6b398032bcc845e28acd25425cb52d6afcfa0216591d8779c775535d623e",
+    "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "7b27bdd9edd802264eb2f200849d950f6a4fb76c30d9e9c5b279a4d97ba22258",
+    "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "c945f4b17e08674e568650d76bdf547ab5d248ff429decb34fbff0c3ee38a927",
+    "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "493ad48295c883a6acb12002884aa932cf6992b9820f4c5a70ef22f974b2fc6f",
+    "docs/templates/page_shared/de/06_ups_mode.rst": "b25ad2752367362d5466a51263e4c9e11b65f4ef6c508723c20abf81e6151337",
+    "docs/templates/page_shared/en/06_ups_mode.rst": "7712986924d2f69a151ead889a42fb59f3b1df5a08a9357d0239577179417436",
+    "docs/templates/page_shared/es/06_ups_mode.rst": "4be79cbe346545aac153db7acc61118e7e30a80c255275da1f59b83170ef0b2f",
+    "docs/templates/page_shared/fr/06_ups_mode.rst": "13036c2e7451a2aacdd2518b6efe806dbccd93e9db00e232d7610e8fcf4738a2",
+    "docs/templates/page_shared/it/06_ups_mode.rst": "a00fde95a395d9d9eb9fb9750967f5346d07d189e46701c10f4c3e0278127a3a",
+    "docs/templates/page_shared/uk/06_ups_mode.rst": "ca261161529b8b4e3dbd79e828cdcd82184f13dc124585fcf8f3bc109e6179e9",
+    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "b4680f2807d8ebfae1d10408ed3545bfe6fe270158985e74c97d1aafc0e81819",
+    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "8ed497f26759fbb8be558cbc8a7f047c0b155bad07f80153c4b591c56f32578a",
+    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "edf5ec8c3b389340312fa87c0c6ae277bef7a5e6db35a6b06cc57c98553939ae",
+    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "8c8e88d3d97cdb29e89ad7c291c66abc6873c4cf19ed34b1c8708d4cbcfe40a8",
+    "docs/templates/targets/je3000c/05_operation_guide_placeholder.rst": "6c8293688acebf52d6eea94d508ead01e52d8053025e0e9a0b5addb03816ab0d",
+    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "9b8822390a80e9153b36b6ee393d37a3edae99776db3b28d462e0f02bc70fc7b",
+}
+
+# UPS carriers left for the operator: no print block for their language (ko, pt-BR,
+# ja, zh), another region's review line (US, KR), or a review page no output renders
+# (JE-1000F/EU uk).
 UNTOUCHED_SHA256 = {
     "docs/templates/page_shared/ko/06_ups_mode.rst": "0fb720f9f4a37a3d6ed55fba53ffe7ead1d3aad7e4676c09b871299797cf0c8a",
     "docs/templates/page_shared/pt-BR/06_ups_mode.rst": "640c072659fdc20b24448cae4fbe9666b160ecae06f6963e26d3ce8a0269219e",
     "docs/templates/page_jp/06_ups_mode.rst": "6a27b689763361e948add7d0fe2564b7a68856f63aca054b43ab5a52671f4413",
     "docs/templates/page_zh/06_ups_mode.rst": "88ccfbf022124a2d37c883bb3106df6d457db16f69d20a8b3783f4f4b1f8c006",
-    "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "a940aa134298aef6b23828bbf73a508f69602af92af3f14def0bc218a7f7c138",
     "docs/_review/JE-1000F/US/page/06_ups_mode.rst": "eb87f4fa77ac5ab17ef230ca16569ddb9ca199eafeac76137e7d82677052dc53",
     "docs/_review/JE-1000F/US/page/p27_06_ups_mode.rst": "e9de192a5e93aec9df5c3e9312355908372150022b71cfe63b418418b638d73a",
     "docs/_review/JE-1000F/US/page/p43_06_ups_mode.rst": "3f26e6b0b126f73a3149d962e5ef04e719fa6fcb9d2aa942993f7413dfe5c43a",
@@ -180,9 +235,60 @@ UNTOUCHED_SHA256 = {
     "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5",
 }
 
+_ONLY = re.compile(r"\.\. only:: (not latex|latex)")
 
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def _rel(path: Path) -> str:
+    return path.relative_to(ROOT).as_posix()
+
+
+def new_texts(lang: str, shape: str) -> list[str]:
+    if shape == "energy":
+        return [PRINT[lang]["energy"]]
+    first, second, items, last = PRINT[lang]["ups"]
+    return [first, second, *items, last, PRINT[lang]["bullet"]]
+
+
+def screen_view(path: Path) -> str:
+    """The carrier as the Web and Word pipelines read it (Word's own only-tag set)."""
+    lang, _, model = EDITED[path]
+    tags = _build_word_only_tags(model=model, region="EU", lang=lang)
+    return _normalize_sphinx_only_blocks_for_docutils(path.read_text(encoding="utf-8"), active_tags=tags)
+
+
+def print_view(text: str) -> str:
+    """The branch the Sphinx LaTeX builder and the IDML extractor select.
+
+    Top-level ``.. only:: not latex`` blocks are dropped with the blank line that
+    separates them from what follows; ``.. only:: latex`` blocks are unwrapped.
+    """
+    lines = text.split("\n")
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        match = _ONLY.fullmatch(lines[i])
+        if not match:
+            out.append(lines[i])
+            i += 1
+            continue
+        j = i + 2
+        body = []
+        while j < len(lines) and (lines[j].startswith("   ") or (
+                not lines[j] and j + 1 < len(lines) and lines[j + 1].startswith("   "))):
+            body.append(lines[j])
+            j += 1
+        if match.group(1) == "latex":
+            out.extend(line[3:] if line else "" for line in body)
+        elif j < len(lines) and not lines[j]:
+            j += 1
+        i = j
+    return "\n".join(out)
+
+
+def idml_blocks(path: Path) -> list:
+    lang, _, model = EDITED[path]
+    tags = {"latex", "idml", "region_eu", "model_" + model.lower().replace("-", "_"), f"lang_{lang}"}
+    return extract_page(path, tags).blocks
 
 
 def callout_tables(text: str) -> list[tuple[int, str, str]]:
@@ -198,10 +304,26 @@ def callout_tables(text: str) -> list[tuple[int, str, str]]:
             if follower.strip() and not follower.startswith("     "):
                 break
             body.append(follower[7:] if follower.startswith("       ") else follower.strip())
-        cell = "\n".join(body)
-        cell = re.sub(r"^- ", "", cell)  # the cell marker of the second column
+        cell = re.sub(r"^- ", "", "\n".join(body))  # the second column's cell marker
         tables.append((index, match.group(1), cell.strip()))
     return tables
+
+
+def admonitions(text: str) -> list[tuple[str, str]]:
+    """(kind, body) of each top-level admonition directive, in order."""
+    lines = text.split("\n")
+    found = []
+    for index, line in enumerate(lines):
+        match = re.fullmatch(r"\.\. (warning|caution|note)::", line)
+        if not match:
+            continue
+        body = []
+        for follower in lines[index + 1:]:
+            if follower.strip() and not follower.startswith("   "):
+                break
+            body.append(follower[3:])
+        found.append((match.group(1), "\n".join(body).strip()))
+    return found
 
 
 def warning_cell(lang: str) -> str:
@@ -209,22 +331,32 @@ def warning_cell(lang: str) -> str:
     return "\n".join([first, "", second, "", *[f"- {item}" for item in items], "", last])
 
 
-def ups_blocks(lang: str) -> tuple[str, str]:
-    """The exact RST the change adds to a UPS page: the WARNING table and the bullet line."""
-    first, second, items, last = PRINT[lang]["ups"]
-    table = "\n".join([
-        ".. list-table::", "   :header-rows: 0", "   :widths: 12 88", "",
-        f"   * - **{PRINT[lang]['warning']}**", f"     - {first}", "", f"       {second}", "",
-        *[f"       - {item}" for item in items], "", f"       {last}", "", "",
-    ])
-    return table, f"       - {PRINT[lang]['bullet']}\n"
-
-
-def energy_block(lang: str) -> str:
-    return "\n".join([
-        ".. list-table::", "   :header-rows: 0", "   :widths: 12 88", "",
-        f"   * - **{PRINT[lang]['warning']}**", f"     - {PRINT[lang]['energy']}", "", "",
-    ])
+def sphinx_latex(sources: dict[str, str], out: Path) -> bytes:
+    """One Sphinx LaTeX build of ``sources`` with the repo's callout extension; the .tex bytes."""
+    src = out / "src"
+    src.mkdir(parents=True)
+    names, substitutions = [], set()
+    for index, (_, text) in enumerate(sorted(sources.items())):
+        names.append(f"p{index:02d}")
+        (src / f"{names[-1]}.rst").write_text(text, encoding="utf-8")
+        substitutions.update(re.findall(r"\|([A-Z][A-Z0-9_]+)\|", text))
+    (src / "index.rst").write_text(
+        "gate\n====\n\n.. toctree::\n\n" + "".join(f"   {name}\n" for name in names), encoding="utf-8")
+    epilog = "".join(f".. |{name}| replace:: {name}\n" for name in sorted(substitutions))
+    (src / "conf.py").write_text(
+        "import sys\n"
+        f"sys.path.insert(0, {str(LATEX_RENDERER)!r})\n"
+        "extensions = ['hb_latex_callouts']\n"
+        "project = 'gate'\n"
+        "latex_documents = [('index', 'gate.tex', 'gate', 'gate', 'manual')]\n"
+        f"rst_epilog = {epilog!r}\n",
+        encoding="utf-8",
+    )
+    result = subprocess.run([sys.executable, "-m", "sphinx", "-b", "latex", "-q", str(src), str(out / "latex")],
+                            check=False, capture_output=True, text=True)
+    if result.returncode:
+        raise AssertionError("Sphinx LaTeX build failed:\n" + result.stdout + result.stderr)
+    return (out / "latex" / "gate.tex").read_bytes()
 
 
 def ups_carriers_of_configured_targets() -> dict[Path, set[str]]:
@@ -256,17 +388,32 @@ def ups_carriers_of_configured_targets() -> dict[Path, set[str]]:
     return carriers
 
 
-class Je3000cEnergySavingWarningTests(unittest.TestCase):
-    def test_each_operation_template_sets_the_warning_right_after_the_note(self) -> None:
+class ScreenCopyTests(unittest.TestCase):
+    """What the Web and Word pipelines read: the new copy, placed as printed."""
+
+    def _assert_ups_additions(self, path: Path, lang: str) -> None:
+        text = screen_view(path)
+        tables = callout_tables(text)
+        self.assertEqual([PRINT[lang]["warning"], PRINT[lang]["caution"]], [label for _, label, _ in tables], path)
+        self.assertEqual(warning_cell(lang), tables[0][2], path)
+        bullets = [line[len("- "):] for line in tables[1][2].split("\n") if line.startswith("- ")]
+        self.assertEqual(4, len(bullets), path)
+        self.assertEqual(PRINT[lang]["bullet"], bullets[3], path)
+        lines = text.split("\n")
+        # after the figure and the UPS text, directly before the CAUTION
+        self.assertLess(lines.index(".. image:: asset:operation/ups_mode"), tables[0][0], path)
+        self.assertEqual(".. list-table::", lines[tables[1][0] - 4], path)
+        self.assertEqual(tables[0][0] + 11, tables[1][0] - 4, path)
+
+    def test_energy_warning_follows_the_note(self) -> None:
         for lang in LANGS:
             with self.subTest(lang=lang):
-                text = ENERGY_CARRIERS[lang].read_text(encoding="utf-8")
+                text = screen_view(ENERGY_CARRIERS[lang])
                 tables = callout_tables(text)
                 labels = [label for _, label, _ in tables]
                 note = labels.index(PRINT[lang]["note"])
                 self.assertEqual((PRINT[lang]["warning"], PRINT[lang]["energy"]), tables[note + 1][1:])
-                # still inside ENERGY SAVING MODE: nothing but blank lines, the NOTE
-                # and (fr) its stray empty line block lie between NOTE and WARNING.
+                # nothing but blank lines (and fr's stray empty line block) between NOTE and WARNING
                 between = text.split("\n")[tables[note][0] + 2:tables[note + 1][0] - 4]
                 self.assertTrue(all(not line.strip() or line.strip() == "|" for line in between), between)
                 self.assertEqual(1, text.count(PRINT[lang]["energy"]))
@@ -275,39 +422,29 @@ class Je3000cEnergySavingWarningTests(unittest.TestCase):
         for lang in LANGS:
             with self.subTest(lang=lang):
                 found = sorted(
-                    path.relative_to(ROOT).as_posix()
-                    for path in (ROOT / "docs").rglob("*.rst")
+                    _rel(path) for path in (ROOT / "docs").rglob("*.rst")
                     if "_build" not in path.parts and PRINT[lang]["energy"] in path.read_text(encoding="utf-8")
                 )
-                self.assertEqual([ENERGY_CARRIERS[lang].relative_to(ROOT).as_posix()], found)
+                self.assertEqual([_rel(ENERGY_CARRIERS[lang])], found)
 
-
-class SharedUpsAdditionTests(unittest.TestCase):
-    def _assert_ups_additions(self, path: Path, lang: str) -> None:
-        text = path.read_text(encoding="utf-8")
-        tables = callout_tables(text)
-        self.assertEqual([PRINT[lang]["warning"], PRINT[lang]["caution"]], [label for _, label, _ in tables], path)
-        self.assertEqual(warning_cell(lang), tables[0][2], path)
-        bullets = [line[len("- "):] for line in tables[1][2].split("\n") if line.startswith("- ")]
-        self.assertEqual(4, len(bullets), path)
-        self.assertEqual(PRINT[lang]["bullet"], bullets[3], path)
-        # the WARNING sits after the figure and the UPS text, directly before the CAUTION
-        lines = text.split("\n")
-        self.assertLess(lines.index(".. image:: asset:operation/ups_mode"), tables[0][0], path)
-        # label, 9 cell lines, one blank line, then the CAUTION's list-table directive
-        self.assertEqual(".. list-table::", lines[tables[1][0] - 4], path)
-        self.assertEqual(tables[0][0] + 11, tables[1][0] - 4, path)
-
-    def test_shared_templates_carry_the_warning_and_the_fourth_bullet(self) -> None:
+    def test_shared_templates_show_the_warning_and_the_fourth_bullet(self) -> None:
         for lang in LANGS:
             with self.subTest(lang=lang):
                 self._assert_ups_additions(UPS_TEMPLATES[lang], lang)
 
-    def test_je1000f_eu_review_pages_carry_the_same_additions(self) -> None:
+    def test_je1000f_eu_review_pages_show_the_same_additions(self) -> None:
         self.assertEqual(["en", "fr", "es", "de", "it"], list(JE1000F_EU_REVIEW_UPS))
         for lang, path in JE1000F_EU_REVIEW_UPS.items():
             with self.subTest(lang=lang):
                 self._assert_ups_additions(path, lang)
+
+    def test_je500a_page_shows_the_warning_and_the_fourth_bullet(self) -> None:
+        found = admonitions(screen_view(JE500A_UPS))
+        self.assertEqual(["warning", "caution"], [kind for kind, _ in found])
+        self.assertEqual(warning_cell("en"), found[0][1])
+        bullets = [line[len("- "):] for line in found[1][1].split("\n") if line.startswith("- ")]
+        self.assertEqual(4, len(bullets))
+        self.assertEqual(PRINT["en"]["bullet"], bullets[3])
 
     def test_every_configured_ups_target_reads_an_edited_template(self) -> None:
         carriers = ups_carriers_of_configured_targets()
@@ -317,67 +454,82 @@ class SharedUpsAdditionTests(unittest.TestCase):
                       "JE-1000F/AU", "JE-1000F/US"):
             self.assertTrue(any(reader.startswith(model + " ") for reader in readers), model)
         for path in carriers:
-            lang = path.parent.name
-            with self.subTest(carrier=path.relative_to(ROOT).as_posix()):
-                self._assert_ups_additions(path, lang)
+            with self.subTest(carrier=_rel(path)):
+                self._assert_ups_additions(path, path.parent.name)
+
+
+class PrintCopyTests(unittest.TestCase):
+    """What the LaTeX and IDML renderers read: exactly main's copy."""
+
+    def test_the_print_branch_is_mains_carrier(self) -> None:
+        self.assertEqual(set(MAIN_PRINT_VIEW_SHA256), {_rel(path) for path in EDITED})
+        for path in EDITED:
+            with self.subTest(carrier=_rel(path)):
+                view = print_view(path.read_text(encoding="utf-8"))
+                self.assertEqual(MAIN_PRINT_VIEW_SHA256[_rel(path)], hashlib.sha256(view.encode("utf-8")).hexdigest())
+
+    def test_idml_extraction_is_unchanged_from_main(self) -> None:
+        for path, (lang, shape, _) in EDITED.items():
+            with self.subTest(carrier=_rel(path)):
+                blocks = idml_blocks(path)
+                digest = hashlib.sha256(json.dumps(blocks, ensure_ascii=False).encode("utf-8")).hexdigest()
+                self.assertEqual(MAIN_IDML_BLOCKS_SHA256[_rel(path)], digest)
+                flat = json.dumps(blocks, ensure_ascii=False)
+                for text in new_texts(lang, "energy" if shape == "energy" else "ups"):
+                    self.assertNotIn(text, flat)
+
+    def test_latex_output_is_the_print_branch_output(self) -> None:
+        carriers = {_rel(path): path.read_text(encoding="utf-8") for path in EDITED}
+        with tempfile.TemporaryDirectory() as tmp:
+            branch = sphinx_latex(carriers, Path(tmp) / "branch")
+            printed = sphinx_latex({rel: print_view(text) for rel, text in carriers.items()}, Path(tmp) / "print")
+            self.assertEqual(printed, branch)
+            for path, (lang, shape, _) in EDITED.items():
+                for text in new_texts(lang, "energy" if shape == "energy" else "ups"):
+                    self.assertNotIn(text[:60].encode("utf-8"), branch)
+            # The check can fail: the screen branch forced into LaTeX does print the copy.
+            forced = sphinx_latex({rel: text.replace(".. only:: not latex", ".. only:: latex")
+                                   for rel, text in carriers.items()}, Path(tmp) / "forced")
+            self.assertIn(b"cardiac pacemaker (pacemaker implant recipients)", forced)
 
 
 class UntouchedCarrierTests(unittest.TestCase):
-    def test_carriers_without_a_print_block_stay_byte_identical(self) -> None:
+    def test_carriers_left_for_the_operator_stay_byte_identical(self) -> None:
         for relative, expected in UNTOUCHED_SHA256.items():
             with self.subTest(carrier=relative):
-                self.assertEqual(expected, _sha256(ROOT / relative))
-
-    def test_edited_carriers_differ_from_before_only_by_the_added_blocks(self) -> None:
-        for relative, expected in PRE_CHANGE_SHA256.items():
-            with self.subTest(carrier=relative):
-                text = (ROOT / relative).read_text(encoding="utf-8")
-                lang = next(
-                    (candidate for candidate, path in ENERGY_CARRIERS.items() if path == ROOT / relative), None
-                )
-                if lang is not None:
-                    removed = text.replace(energy_block(lang), "", 1)
-                else:
-                    lang = next(candidate for candidate in LANGS
-                                if ROOT / relative in (UPS_TEMPLATES[candidate], JE1000F_EU_REVIEW_UPS.get(candidate)))
-                    table, bullet = ups_blocks(lang)
-                    removed = text.replace(table, "", 1).replace(bullet, "", 1)
-                self.assertNotEqual(text, removed, "the added blocks are missing")
-                self.assertEqual(expected, hashlib.sha256(removed.encode("utf-8")).hexdigest())
+                self.assertEqual(expected, hashlib.sha256((ROOT / relative).read_bytes()).hexdigest())
 
 
 class HouseWordingTests(unittest.TestCase):
     """The print's typesetting defects must not come back."""
 
-    EDITED = (*ENERGY_CARRIERS.values(), *UPS_TEMPLATES.values(), *JE1000F_EU_REVIEW_UPS.values())
-
     def test_no_missing_space_after_outlet(self) -> None:
-        for path in self.EDITED:
-            with self.subTest(carrier=path.relative_to(ROOT).as_posix()):
+        for path in EDITED:
+            with self.subTest(carrier=_rel(path)):
                 self.assertNotIn("outlet.Do", path.read_text(encoding="utf-8"))
-        self.assertIn("wall outlet. Do not connect", UPS_TEMPLATES["en"].read_text(encoding="utf-8"))
+        for path in (UPS_TEMPLATES["en"], JE1000F_EU_REVIEW_UPS["en"], JE500A_UPS):
+            self.assertIn("wall outlet. Do not connect", screen_view(path), _rel(path))
 
     def test_labels_are_whole_words(self) -> None:
         split = re.compile(r"AVERTISSE(?!MENT)|AVERTISSEM(?!ENT)|ПОПЕРЕД(?!ЖЕННЯ)|ПОПЕРЕДЖЕ(?!ННЯ)")
-        for path in self.EDITED:
-            with self.subTest(carrier=path.relative_to(ROOT).as_posix()):
+        for path in EDITED:
+            with self.subTest(carrier=_rel(path)):
                 self.assertIsNone(split.search(path.read_text(encoding="utf-8")))
         for lang in ("fr", "uk"):
-            self.assertIn(f"   * - **{PRINT[lang]['warning']}**\n", UPS_TEMPLATES[lang].read_text(encoding="utf-8"))
-            self.assertIn(f"   * - **{PRINT[lang]['warning']}**\n", ENERGY_CARRIERS[lang].read_text(encoding="utf-8"))
+            self.assertIn(f"   * - **{PRINT[lang]['warning']}**\n", screen_view(UPS_TEMPLATES[lang]))
+            self.assertIn(f"   * - **{PRINT[lang]['warning']}**\n", screen_view(ENERGY_CARRIERS[lang]))
 
     def test_the_ukrainian_fourth_bullet_is_a_list_item(self) -> None:
-        text = UPS_TEMPLATES["uk"].read_text(encoding="utf-8")
-        lines = [line for line in text.split("\n") if "Функція UPS працює" in line]
+        lines = [line for line in screen_view(UPS_TEMPLATES["uk"]).split("\n") if "Функція UPS працює" in line]
         self.assertEqual([f"       - {PRINT['uk']['bullet']}"], lines)
 
     def test_no_print_bullet_glyph_is_copied(self) -> None:
-        for path in self.EDITED:
-            with self.subTest(carrier=path.relative_to(ROOT).as_posix()):
+        for path in EDITED:
+            with self.subTest(carrier=_rel(path)):
                 self.assertNotIn("●", path.read_text(encoding="utf-8"))
 
 
-def _build_je3000c_web(tmp: Path, lang: str) -> str:
+def _build_web(tmp: Path, *, model: str, lang: str, data_root: Path) -> str:
     fake_bin = tmp / "bin"
     fake_bin.mkdir(exist_ok=True)
     fake_pandoc = fake_bin / "pandoc"
@@ -400,16 +552,23 @@ def _build_je3000c_web(tmp: Path, lang: str) -> str:
         "AUTO_MANUAL_PRESENTATION_PROFILE": "web",
         "PATH": str(fake_bin) + os.pathsep + os.environ.get("PATH", ""),
     }
-    staging = tmp / f"staging-{lang}"
+    staging = tmp / f"staging-{model}-{lang}"
     result = subprocess.run(
         [sys.executable, str(ROOT / "build.py"), "md", "--config", str(ROOT / f"configs/config.eu-{lang}.yaml"),
-         "--model", "JE-3000C", "--region", "EU", "--lang", lang, "--data-root", str(JE3000C_DATA_ROOT),
+         "--model", model, "--region", "EU", "--lang", lang, "--data-root", str(data_root),
          "--staging-root", str(staging)],
         cwd=ROOT, env=env, check=False, capture_output=True, text=True,
     )
     if result.returncode:
-        raise AssertionError(f"JE-3000C/{lang} Web build failed:\n" + result.stdout + result.stderr)
-    return (staging / f"docs/_build/JE-3000C/EU/{lang}/md/manual_bundle.html").read_text(encoding="utf-8")
+        raise AssertionError(f"{model}/{lang} Web build failed:\n" + result.stdout + result.stderr)
+    return (staging / f"docs/_build/{model}/EU/{lang}/md/manual_bundle.html").read_text(encoding="utf-8")
+
+
+def _label(table) -> str:
+    cell = table.select_one("td.manual-callout-label")
+    for sizer in cell.select(".manual-callout-label-sizer"):
+        sizer.extract()
+    return cell.get_text(" ", strip=True)
 
 
 class Je3000cRenderedWarningTests(unittest.TestCase):
@@ -418,22 +577,12 @@ class Je3000cRenderedWarningTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls._tmp = tempfile.TemporaryDirectory()
-        cls.html = {lang: _build_je3000c_web(Path(cls._tmp.name), lang) for lang in LANGS}
+        cls.html = {lang: _build_web(Path(cls._tmp.name), model="JE-3000C", lang=lang, data_root=JE3000C_DATA_ROOT)
+                    for lang in LANGS}
 
     @classmethod
     def tearDownClass(cls) -> None:
         cls._tmp.cleanup()
-
-    @staticmethod
-    def _callouts(soup: BeautifulSoup) -> list:
-        return soup.select("table.manual-callout-table")
-
-    @staticmethod
-    def _label(table) -> str:
-        cell = table.select_one("td.manual-callout-label")
-        for sizer in cell.select(".manual-callout-label-sizer"):
-            sizer.extract()
-        return cell.get_text(" ", strip=True)
 
     def test_energy_warning_follows_the_energy_saving_panel(self) -> None:
         for lang in LANGS:
@@ -444,7 +593,7 @@ class Je3000cRenderedWarningTests(unittest.TestCase):
                 # the NOTE is printed in the panel and stays its alt text; the WARNING is live text
                 self.assertNotIn(PRINT[lang]["energy"], panel.get("alt", ""))
                 following = panel.find_next("table", class_="manual-callout-table")
-                self.assertEqual(PRINT[lang]["warning"], self._label(following))
+                self.assertEqual(PRINT[lang]["warning"], _label(following))
                 body = following.select_one("td.manual-callout-body").get_text(" ", strip=True)
                 self.assertEqual(PRINT[lang]["energy"], body)
                 self.assertEqual(1, " ".join(soup.get_text(" ").split()).count(PRINT[lang]["energy"]))
@@ -457,8 +606,8 @@ class Je3000cRenderedWarningTests(unittest.TestCase):
                 self.assertIsNotNone(panel)
                 warning = panel.find_next("table", class_="manual-callout-table")
                 caution = warning.find_next("table", class_="manual-callout-table")
-                self.assertEqual(PRINT[lang]["warning"], self._label(warning))
-                self.assertEqual(PRINT[lang]["caution"], self._label(caution))
+                self.assertEqual(PRINT[lang]["warning"], _label(warning))
+                self.assertEqual(PRINT[lang]["caution"], _label(caution))
                 first, second, items, last = PRINT[lang]["ups"]
                 body = warning.select_one("td.manual-callout-body")
                 self.assertEqual([first, second, last], [p.get_text(" ", strip=True) for p in body.find_all("p", recursive=False)])
@@ -466,6 +615,41 @@ class Je3000cRenderedWarningTests(unittest.TestCase):
                 bullets = [li.get_text(" ", strip=True) for li in caution.select("td.manual-callout-body li")]
                 self.assertEqual(4, len(bullets))
                 self.assertEqual(PRINT[lang]["bullet"], bullets[3])
+
+
+class Je500aRenderedWarningTests(unittest.TestCase):
+    """JE-500A/EU en, built from its frozen source, adds the UPS WARNING and the fourth bullet."""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.html = _build_web(Path(cls._tmp.name), model="JE-500A", lang="en", data_root=JE500A_DATA_ROOT)
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._tmp.cleanup()
+
+    def test_ups_warning_precedes_the_four_bullet_caution(self) -> None:
+        soup = BeautifulSoup(self.html, "html.parser")
+        heading = next(h for h in soup.find_all("h1") if h.get_text(" ", strip=True) == "UNINTERRUPTIBLE POWER SUPPLY (UPS)")
+        section = []
+        for sibling in heading.next_siblings:
+            if getattr(sibling, "name", None) == "h1":
+                break
+            section.append(sibling)
+        ups = BeautifulSoup("".join(str(node) for node in section), "html.parser")
+        warnings = ups.select(".admonition.warning")
+        cautions = ups.select(".admonition.caution")
+        self.assertEqual((1, 1), (len(warnings), len(cautions)))
+        first, second, items, last = PRINT["en"]["ups"]
+        paragraphs = [p.get_text(" ", strip=True) for p in warnings[0].find_all("p", recursive=False)
+                      if "admonition-title" not in (p.get("class") or [])]
+        self.assertEqual([first, second, last], paragraphs)
+        self.assertEqual(list(items), [li.get_text(" ", strip=True) for li in warnings[0].select("li")])
+        self.assertIs(warnings[0].find_next(class_="admonition"), cautions[0])
+        bullets = [li.get_text(" ", strip=True) for li in cautions[0].select("li")]
+        self.assertEqual(4, len(bullets))
+        self.assertEqual(PRINT["en"]["bullet"], bullets[3])
 
 
 if __name__ == "__main__":

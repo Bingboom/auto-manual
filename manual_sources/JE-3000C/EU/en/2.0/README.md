@@ -115,3 +115,8 @@ exception is the German front view above. The 07-31 print remains the authority
 in `source_manifest.json`, which now scopes it and records the 09-15 print under
 `authority.adopted_copy_revisions`. No file of `phase2/` and no recipe changes;
 see the intake review addendum of the same date.
+
+The three blocks show on the Web and in Word only, for now (operator ruling of
+the same date): each sits under `.. only:: not latex`, and the UPS pages keep
+their previous CAUTION under `.. only:: latex`. The PDF (LaTeX) and IDML output
+stays as it was until those renderers keep these callouts' paragraphs.

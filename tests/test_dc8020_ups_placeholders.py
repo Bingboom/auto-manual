@@ -25,10 +25,13 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # exactly those :alt: lines, nothing else.
 # The en/fr/es/de/it/uk UPS goldens moved again when the shared UPS template took
 # the UPS WARNING and the fourth CAUTION bullet of the JE-3000C EUUK
-# V2.0-2026-09-15 print for every model that uses it (operator ruling
-# 2026-09-27); the rendered diff is exactly those 16 added lines (the WARNING
-# table and the bullet), nothing removed. The ko and pt-BR goldens stay: the
-# print has no block for those languages.
+# V2.0-2026-09-15 print for every model that uses it (operator rulings
+# 2026-09-27), for the Web and Word only: a `.. only:: not latex` block holds the
+# WARNING and the four-bullet CAUTION, and main's CAUTION follows unchanged under
+# `.. only:: latex`. Dropping the `not latex` block and unwrapping the `latex`
+# one gives main's rendered bytes exactly
+# (tests/test_je3000c_0915_warnings.py pins that print branch). The ko and pt-BR
+# goldens stay: the print has no block for those languages.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -41,13 +44,13 @@ CHARGING_CASES = {
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "3d13bc49b053e1c5dcfaf189b390b7ea2b58dcb1c63cd8e9a189023589846199"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "28aa73ec449d806b030617ce0f482982cdc1a21528131fa58c09e851a9bfa108"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "4b43f1cf5cf3b6f384f4840f8cf50878becec2c1030dd90b56bf8142371d485c"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "e89a761c89ca06fe7b399fd678e6f61607a6a8617b4aa3d00b4440b8ecbb715b"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "ad49034bb2b63fe32a7a076898abcc23204d1c67f57c2f84e61a617d789b2c19"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "20251799018ab71b95be7452022dd26b08e37469726560b7849a7153af21a8b5"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "9dbd376205356dbb0f1b80a94a361583449ef830066d09d62a32dfb3a4e04c37"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "38f789385c8dcbf4652f132d788d8f343ae4fca72aea02099b9fd005aec740ff"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "8026136d09322dd9e7c6a7eadc2ec1aac039d94eae659e8cb1dd4a17b855b734"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "7ad045ad4eb93ce9b2d3f66d7035dc1abf8fbc89c74af8524502e5e022142f8e"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "060c7e6875f922a586a8e7c864e446149c8d8dc6e1445ef71fe1a5fb95545070"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "c783890af8f0e520f188584ee47956e4ddc28c9843e1039a8a554bcd4114d1a0"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
 

@@ -153,8 +153,8 @@
       "change": "The FR/ES/DE/IT blocks of the print set the footnotes above the ※ USB-IF trademark note (PDF pages 36, 53, 71 and 88); the EN block sets the ※ note first (page 19). The spec row of phase2/page_registry.csv now names docs/templates/spec_template_footnotes_first.rst, whose HTML branch renders the footnotes before the notes and whose LaTeX branch is byte-identical to spec_template.rst, so the PDF and IDML output is unchanged. The --source review build regenerates the ES/DE/IT spec pages through this template, so the review pages are not edited. EN and FR build review-asis from their reviewed pages, which this change does not touch; EN keeps the printed ※-first order."
     },
     {
-      "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages",
-      "change": "The five UPS review pages the EN/FR/ES/DE/IT Web routes render (page/06_ups_mode.rst and p24/p39/p54/p69) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator ruling of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79), with the house fixes 'outlet. Do' and whole-word labels. The UK page p84 keeps its wording, as for the 2026-09-27 alt-text change: this model ships no Ukrainian (data/model_languages.csv), so no output renders it. No Web composite governs the UPS page."
+      "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages (Web and Word only)",
+      "change": "The five UPS review pages the EN/FR/ES/DE/IT Web routes render (page/06_ups_mode.rst and p24/p39/p54/p69) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator rulings of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not; and, until the LaTeX and IDML renderers are fixed, only the Web and Word outputs show them. A `.. only:: not latex` block holds the WARNING and the four-bullet CAUTION; main's CAUTION follows unchanged under `.. only:: latex`, so the PDF and IDML read these pages exactly as before. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79), with the house fixes 'outlet. Do' and whole-word labels. The UK page p84 keeps its wording, as for the 2026-09-27 alt-text change: this model ships no Ukrainian (data/model_languages.csv), so no output renders it. No Web composite governs the UPS page."
     }
   ],
   "files": [
@@ -987,8 +987,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/06_ups_mode.rst",
-      "size": 2399,
-      "sha256": "02a68ef234a0a69a5c6a052248ab4abca617554b8fdbc8a897fbb6e5a6bac17d"
+      "size": 2979,
+      "sha256": "2a0ebfc341c02c673d2d68baa11d4478bc8f3474a0661943c036bb5aa15c7e48"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/08_charging_methods.rst",
@@ -1067,8 +1067,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst",
-      "size": 2929,
-      "sha256": "03280c208bc2481b2c9f4396edbf8e7066b657d2b676cf55628f561e693fe964"
+      "size": 3616,
+      "sha256": "804f1cb3006fc6e02faca79fbf5d24189f95f5e1109dd39113be70ec677e70c3"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p25_charging.rst",
@@ -1117,8 +1117,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst",
-      "size": 2812,
-      "sha256": "236fc12e3b2ca0104334b446606905c18bad39e8030ba3a0831105f9716c4a36"
+      "size": 3443,
+      "sha256": "ffba7a7316eeb4d59fea9a2f80fb594a716ca9d545922d49cc0dac5e6c06d6fc"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p40_charging.rst",
@@ -1167,8 +1167,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst",
-      "size": 2764,
-      "sha256": "81a3a35000176dcf66a3eb712daeba6b6cd2c2babd79236b0b52d939be2eb32d"
+      "size": 3404,
+      "sha256": "d8b3bd69d391d526fb01a50cd2ab72db064f8fdd060b909a5e5d56e1265357d8"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p55_charging.rst",
@@ -1217,8 +1217,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst",
-      "size": 2792,
-      "sha256": "db38f1287a4533f2ff66f337fdb998fd39858b47cf3987c1ade2b2b9bbe57231"
+      "size": 3423,
+      "sha256": "69d4e8b6165e3a9d52583869a436c7d79b28c99c70baa24e17b6959d27a55c79"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p70_charging.rst",

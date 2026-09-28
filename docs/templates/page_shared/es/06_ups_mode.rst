@@ -11,28 +11,42 @@ FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)
 | En modo UPS, la potencia máxima de salida de la unidad alcanza |UPS_BYPASS_OUTPUT_TEXT| antes de los cortes de energía. Como la carga y descarga simultáneas están habilitadas en modo bypass,
 | la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. only:: not latex
 
-   * - **ADVERTENCIA**
-     - No utilice este producto en aplicaciones como servidores de datos o dispositivos médicos, donde un fallo podría poner en peligro la vida o causar daños materiales significativos.
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
 
-       Para los siguientes equipos, una pérdida de suministro eléctrico durante el uso podría causar graves daños a las personas o a la propiedad:
+      * - **ADVERTENCIA**
+        - No utilice este producto en aplicaciones como servidores de datos o dispositivos médicos, donde un fallo podría poner en peligro la vida o causar daños materiales significativos.
 
-       - Dispositivos médicos y otros equipos estrechamente relacionados con la seguridad de las personas.
-       - Equipos críticos como infraestructuras sociales y servicios públicos.
-       - Equipos empresariales críticos para el negocio, etc.
+          Para los siguientes equipos, una pérdida de suministro eléctrico durante el uso podría causar graves daños a las personas o a la propiedad:
 
-       Las personas que lleven un marcapasos cardíaco (portadores de marcapasos implantado) no deben usar este producto.
+          - Dispositivos médicos y otros equipos estrechamente relacionados con la seguridad de las personas.
+          - Equipos críticos como infraestructuras sociales y servicios públicos.
+          - Equipos empresariales críticos para el negocio, etc.
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+          Las personas que lleven un marcapasos cardíaco (portadores de marcapasos implantado) no deben usar este producto.
 
-   * - **PRECAUCIÓN**
-     -
-       - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.
-       - Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
-       - No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.
-       - La función UPS solo funciona cuando una única unidad está conectada directamente a una toma de pared. No conecte varias estaciones de energía portátiles en serie (conexión en cascada). En una configuración en cascada, la función UPS no funcionará: es posible que la unidad no conmute durante un corte de suministro eléctrico, lo que provocaría que los dispositivos conectados se apaguen.
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **PRECAUCIÓN**
+        -
+          - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.
+          - Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
+          - No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.
+          - La función UPS solo funciona cuando una única unidad está conectada directamente a una toma de pared. No conecte varias estaciones de energía portátiles en serie (conexión en cascada). En una configuración en cascada, la función UPS no funcionará: es posible que la unidad no conmute durante un corte de suministro eléctrico, lo que provocaría que los dispositivos conectados se apaguen.
+
+.. only:: latex
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **PRECAUCIÓN**
+        -
+          - Este producto no admite conmutación de 0 ms. No lo conecte a equipos que requieran una fuente de alimentación con conmutación de 0 ms, como servidores de datos o estaciones de trabajo.
+          - Antes de usar, pruebe la compatibilidad con su dispositivo varias veces.
+          - No conectes cargas que excedan la potencia máxima de salida del producto. De lo contrario, se activará la protección contra sobrecarga.

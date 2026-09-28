@@ -200,3 +200,9 @@ labels. The UK page p84 keeps its wording, as it did for the alt-text change:
 this model ships no Ukrainian (`data/model_languages.csv`), so no output renders
 it. No composite governs the UPS page. `source_manifest.json` re-locks the five
 files and records the change.
+
+For now only the Web and Word outputs show the two blocks (operator ruling of
+the same date), until the LaTeX and IDML renderers keep these callouts'
+paragraphs. Each page holds them in a `.. only:: not latex` block, followed by
+the page's previous CAUTION, unchanged, under `.. only:: latex`. The PDF and IDML
+therefore read the page exactly as before.

@@ -86,12 +86,14 @@ Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC
      - Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Toute modification du mode doit être effectuée manuellement.
 | 
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. only:: not latex
 
-   * - **AVERTISSEMENT**
-     - Lorsque le mode d'économie d'énergie est activé, le produit coupe automatiquement la sortie CA si la consommation de l'appareil connecté reste faible pendant la durée définie. Lorsque vous alimentez des appareils nécessitant une alimentation continue, tels qu'un réfrigérateur, un routeur, une caméra de surveillance ou une pompe à air pour aquarium, il est recommandé de désactiver le mode d'économie d'énergie afin d'éviter qu'une coupure inattendue n'interrompe leur fonctionnement.
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **AVERTISSEMENT**
+        - Lorsque le mode d'économie d'énergie est activé, le produit coupe automatiquement la sortie CA si la consommation de l'appareil connecté reste faible pendant la durée définie. Lorsque vous alimentez des appareils nécessitant une alimentation continue, tels qu'un réfrigérateur, un routeur, une caméra de surveillance ou une pompe à air pour aquarium, il est recommandé de désactiver le mode d'économie d'énergie afin d'éviter qu'une coupure inattendue n'interrompe leur fonctionnement.
 
 .. hb-capability-begin: AC/DC输出记忆恢复
 

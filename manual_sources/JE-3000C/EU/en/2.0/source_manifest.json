@@ -14,7 +14,7 @@
     "source_node": "https://alidocs.dingtalk.com/i/nodes/a9E05BDRVQ6mQG3GhyyglLX9J63zgkYA",
     "requirement_record": "YndMj49yWjP03jNjCDojvAQdJ3pmz5aA/97v7518/FBHsOuFTMQ",
     "audit_record": "code-as-doc/reviews/je3000c_eu_en_web_intake_2026-09.md",
-    "scope": "The figures and all copy follow this V2.0-2026-07-31 print, and the asset_recipe and app_asset_recipe are hash-locked to it, except: the German front view, re-cut from V2.0-2026-09-15 (supplemental_asset_recipes), and the adopted_copy_revisions items.",
+    "scope": "The figures and all copy follow this V2.0-2026-07-31 print, and the asset_recipe and app_asset_recipe are hash-locked to it, except: the German front view, re-cut from V2.0-2026-09-15 (supplemental_asset_recipes), and the adopted_copy_revisions items on the Web and in Word. The PDF and IDML keep this print's copy.",
     "adopted_copy_revisions": [
       {
         "published_revision": "V2.0-2026-09-15",
@@ -22,6 +22,7 @@
         "published_pdf_sha256": "f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32",
         "source_location": "design share 设计规范/说明书汇总/便携主机/E3000/HTE156/欧英规 (not the DingTalk source node)",
         "ruling": "operator 2026-09-27: adopt only the new copy; the figures stay on V2.0-2026-07-31 (the 09-15 drawings carry nine defects), apart from the German front view re-cut the operator confirmed separately (#1308)",
+        "outputs": "Web and Word only, by operator ruling of 2026-09-27, until the LaTeX and IDML renderers keep these callouts' paragraphs: each block sits under `.. only:: not latex`, and the UPS pages keep their previous CAUTION under `.. only:: latex`, so the PDF (LaTeX) and IDML output is unchanged",
         "adopted": [
           {
             "item": "Energy Saving Mode WARNING below the energy-saving NOTE",

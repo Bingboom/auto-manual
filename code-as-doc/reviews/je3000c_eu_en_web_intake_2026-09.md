@@ -7,7 +7,7 @@
 - Source lock: 102 pages; SHA-256 `55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d`; English body on physical pages 6–21 and EU declaration on physical page 102.
 - Requirement record: Base `YndMj49yWjP03jNjCDojvAQdJ3pmz5aA`, table `97v7518`, record `FBHsOuFTMQ`; read only. It identifies HTE156 / E3000V2 / material `160102000382`, status `已定稿`, and the same formal source node.
 - No calibration or version comparison was performed. The current PDF governs visible copy, parameters, ordering, and illustrations.
-- Since 2026-09-27, three blocks of copy follow the V2.0-2026-09-15 revision instead; see [the addendum of that date](#2026-09-27-new-copy-from-the-2026-09-15-revision).
+- Since 2026-09-27, three blocks of copy follow the V2.0-2026-09-15 revision instead, on the Web and in Word only; see [the addendum of that date](#2026-09-27-new-copy-from-the-2026-09-15-revision).
 
 ## Structure and reuse boundaries
 
@@ -383,10 +383,18 @@ drawings carry nine defects. The one exception is the German front view, which
 #1308 re-cuts from 09-15 page 56 for its AC-Ausgangstaste callout (operator
 confirmed separately). The UPS additions go into the shared UPS template
 for every model that uses it, although the other models' prints lack them.
-The operator made that choice knowingly (「所有用这个模板的型号都加」).
+The operator made that choice knowingly (「所有用这个模板的型号都加」). Three
+follow-up rulings of the same day complete it:
+
+- 「先只进网页和 Word」: for now the new copy shows only on the Web and in Word.
+  The PDF (LaTeX) and IDML stay exactly as on main until those renderers keep
+  these callouts' paragraphs (a separate item).
+- 「也加上」: JE-500A's own English UPS page takes the same two UPS blocks.
+- 「先不加，等审核译文」: the ko, ja, zh and pt-BR UPS carriers stay as they are
+  until their translations are reviewed.
 
 **What changed.** Each language block of the print adds three items. The Web
-takes each one from its own block:
+and Word take each one from its own block:
 
 | Item | Carrier | PDF pages (en/fr/es/de/it/uk) |
 | --- | --- | --- |
@@ -403,6 +411,18 @@ takes each one from its own block:
   `manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json` re-locks them. Its
   uk page stays as it is: JE-1000F/EU ships no Ukrainian, so no output renders
   that page.
+- `docs/templates/page_je500a_eu-en/06_ups_mode.rst` takes the English UPS blocks
+  in that page's own admonition markup (`.. warning::`, `.. caution::`).
+
+**Output gate.** The repo's print/screen branch selection keeps the copy off the
+PDF and IDML, with no renderer change. `.. only:: not latex` bodies reach the
+Web and Word pipelines, whose only-tag set is `html` plus model, region and
+language; the Sphinx LaTeX builder and the IDML extractor (tags `latex`, `idml`)
+drop them and read `.. only:: latex` bodies instead. So:
+
+- the energy WARNING is one `not latex` block after the NOTE;
+- each UPS page holds a `not latex` block (the WARNING and the four-bullet
+  CAUTION), followed by its previous CAUTION, byte for byte, under `latex`.
 
 House fixes, not print defects (operator ruling of the same date):
 
@@ -422,17 +442,17 @@ Everything else, apostrophes included, is the print's text.
   - the de/it/uk family UPS wording.
 - The 09-15 back page (declaration of conformity, App download line). The
   German front-view callout is #1308's separate figure change.
-- The ko, pt-BR, ja and zh UPS carriers and the JE-500A English UPS page. The
-  print has no block for those languages, and JE-500A does not use the shared
-  template; they wait for an operator decision.
+- The ko, pt-BR, ja and zh UPS carriers: no print block; the translations
+  await review.
 - The JE-1000F/US and JE-3000C/KR review pages (the operator's review lines).
+- Every PDF (LaTeX) and IDML output.
 
 **Authority.** `source_manifest.json` keeps V2.0-2026-07-31 as the authority
 for the figures and all other content, because the web and App recipes are
 hash-locked to it. The German front view is the exception; its own recipe is
 pinned under `supplemental_asset_recipes`. The manifest records the 09-15
-print, the three adopted items and the house fixes under
-`authority.adopted_copy_revisions`. It also lists this revision's other
+print, the three adopted items, the Web + Word restriction and the house fixes
+under `authority.adopted_copy_revisions`. It also lists this revision's other
 adoptions: the Spanish PV value of 2026-09-25 and the German front view. No
 `phase2/` file and no recipe changes.
 
@@ -441,14 +461,27 @@ adoptions: the Spanish PV value of 2026-09-25 and the German front view. No
 - **Print check:** every added string is found in the text layer of its 09-15
   page, with line breaks joined. None of them occurs in the 07-31 print. The
   house fixes are the only exemptions.
-- **Trial Web builds** (default mode, frozen sources):
+- **Trial Web builds** (default mode, frozen sources, main `bd201fc2` against
+  this change):
   - Before the change, the six JE-3000C routes and the JE-1000H, JE-2000E,
-    JE-2000F, JE-3600A and JE-1000F routes equal their live Hello-Docs pages
-    once image `src` paths are normalized.
+    JE-2000F, JE-3600A, JE-1000F and JE-500A routes equal their live Hello-Docs
+    pages once image `src` paths are normalized. The one exception is JE-3000C
+    de, whose front view (#1308) is not yet published.
   - After it, every JE-3000C route adds 21 lines: the energy WARNING table, the
-    UPS WARNING table and the fourth bullet. Every other EU route adds 15 lines:
-    the two UPS blocks. Nothing is removed.
-  - JE-1000F/US and JE-500A are unchanged.
-- **Regression tests:** `tests/test_je3000c_0915_warnings.py` checks the
-  carriers, a Web build of each JE-3000C route, the untouched carriers and the
-  house fixes. Its tests of the additions fail on the previous tree.
+    UPS WARNING table and the fourth bullet. Every other EU route adds 15 lines
+    (the two UPS blocks), and JE-500A adds 16. Nothing is removed. JE-1000F/US
+    is unchanged.
+- **Word:** the JE-3000C .docx of all six languages gains the WARNING rows, and
+  its CAUTION row gains the fourth bullet.
+- **LaTeX:** every generated `.tex` is byte-identical to main's for the six
+  JE-3000C routes, JE-1000H de, JE-2000E uk and the merged JE-2000F/EU and
+  JE-1000F/EU books.
+- **IDML (JE-3000C en):** all 169 package entries match main's once the absolute
+  path of the build tree is normalized. The sidecars differ only in page-source
+  hashes and the reference PDF's creation timestamp.
+- **Regression tests:** `tests/test_je3000c_0915_warnings.py` checks the Web and
+  Word view of every carrier, and the print view against main. That print-view
+  check is pinned and uses the real IDML extractor and a Sphinx LaTeX build with
+  the repo's callout extension. It also checks a Web build of each JE-3000C
+  route and JE-500A, the untouched carriers and the house fixes. Its screen-side
+  tests fail on main, and its print-side tests fail on the ungated revision.
