@@ -120,18 +120,23 @@ replaces two placeholder durations with the published PDF values (EN `2 hours`
 / `12 hours`; DE `2 Stunden` / `12 Stunden`) for readability. The renderer
 extracts both steps in each figure, the AC/DC prerequisite once per figure,
 the main-power duration as a CSS clock plus live `3s`, and all four supporting
-lines in order. The fourth line and the IEC/EN/UL 62368-1 caution remain
-outside the three figures in the source fragment, without duplicate copy.
+lines in order inside the main-power figure. The neighboring IEC/EN/UL
+62368-1 caution appears once after the DC/USB figure in each delivered HTML
+preview and zero times inside the three figures.
 
 Review the [EN flow preview](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_en.html)
 and [DE flow preview](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_de.html).
-Headless Chromium screenshots are available for
+Auxiliary screenshots made with local headless Playwright Chromium are available
+for
 [EN desktop](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_en_desktop.png),
 [EN mobile](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_en_mobile.png),
 [DE desktop](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_de_desktop.png),
 and [DE mobile](../../data/asset_evidence/je2000f_eu_base_art/flow_preview_de_mobile.png).
-At 1280 px and 390 px, all three figures rendered and the page had no
-horizontal overflow. These are isolated layout proofs. They do not pass the
-formal full-target figure gate, review an entire manual page, or approve the
-candidate assets for production. Explicit visual approval remains required
-before registry enrollment or production binding.
+At 1280 px and 390 px, these three-figure screenshots had no horizontal
+overflow. They were captured before the neighboring caution was appended to
+the delivered HTML; they are auxiliary layout evidence, not the agreed CUA
+browser acceptance. CUA visual acceptance remains pending. The isolated HTML
+and screenshots do not pass the formal full-target figure gate, review an
+entire manual page, or approve the candidate assets for production. Explicit
+visual approval remains required before registry enrollment or production
+binding.
