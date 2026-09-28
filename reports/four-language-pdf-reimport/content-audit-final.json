@@ -1,0 +1,70 @@
+{
+  "candidate": "/tmp/four-native-complete-4",
+  "repository_copy": "/Users/pika/.codex/worktrees/four-language-ir/auto-manual2/manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-native-ir/four-language",
+  "source_manifest_sha256": "3c16f58fa673d90c38355afc49839f5230edacee5538906d5aa640725994e62a",
+  "checked_manifest_inputs": 175,
+  "repository_copy_files_byte_identical": 176,
+  "native_word_number_deltas_unchanged": true,
+  "languages": {
+    "uk": {
+      "html_sha256": "793d0e90c5461281f57736cb6efbc84722d0ef57d1002f7308b15eab2954bae1",
+      "ir_sha256": "8cbfbd5d75b4660eff7fe2cfc6c2db4d5cefdb089934ccf29bd885308525a67d",
+      "source_records_sha256": "d550990f620c590f35211fafe6123d8a9f86aa72bd050f553f0d2e8f176b9622",
+      "native_fields_reverified": 209,
+      "native_pages_reverified": 17,
+      "pages": 15,
+      "operation_components": 5,
+      "reference_components": 6,
+      "lcd_rows": 26,
+      "fault_rows": 11,
+      "operation_labels_verified": true,
+      "all_html_images_match_packaged_hashes": true,
+      "frozen_replay_text_matches_sphinx_html": true
+    },
+    "pt": {
+      "html_sha256": "31124bec661bf2f58d01c48dc6d93a6243f512f774461d6e06b87a43d8994d5c",
+      "ir_sha256": "9af311d1e1b9f182117a3625c9c0d51c26da51493d4d16ee7fb2bc2b550e3307",
+      "source_records_sha256": "184c40cea066d627d0e17958d7b20ce4e05481e1c089286e029329a76499edc8",
+      "native_fields_reverified": 209,
+      "native_pages_reverified": 17,
+      "pages": 15,
+      "operation_components": 5,
+      "reference_components": 6,
+      "lcd_rows": 26,
+      "fault_rows": 11,
+      "operation_labels_verified": true,
+      "all_html_images_match_packaged_hashes": true,
+      "frozen_replay_text_matches_sphinx_html": true
+    },
+    "nl": {
+      "html_sha256": "630ab453db3f1544372aa5ef0d99b7ba044de6124f2286199db9c74a0437f178",
+      "ir_sha256": "d9eed5f37ca3818acf5afbcb2183c501a45299991f362095ef4c80085caba550",
+      "source_records_sha256": "0e651274343f76540b2ef12ee1d86e61fee7ea9b7e3321ec865c66ee734a1aca",
+      "native_fields_reverified": 209,
+      "native_pages_reverified": 17,
+      "pages": 15,
+      "operation_components": 5,
+      "reference_components": 6,
+      "lcd_rows": 26,
+      "fault_rows": 11,
+      "operation_labels_verified": true,
+      "all_html_images_match_packaged_hashes": true,
+      "frozen_replay_text_matches_sphinx_html": true
+    },
+    "pl": {
+      "html_sha256": "f3ba2c5d6b10dbd94397e989ec4bf9cfaaf53659358cc1490116f2442a41c0de",
+      "ir_sha256": "2584ee2f74aced5956b10c433499c7c26eb60217c11dd23096c122ea051dd169",
+      "source_records_sha256": "f78a53b575e76f1c0db48092e49e3e048ac9b573ef67b0d8e477e53cadd7dcc4",
+      "native_fields_reverified": 209,
+      "native_pages_reverified": 17,
+      "pages": 15,
+      "operation_components": 5,
+      "reference_components": 6,
+      "lcd_rows": 26,
+      "fault_rows": 11,
+      "operation_labels_verified": true,
+      "all_html_images_match_packaged_hashes": true,
+      "frozen_replay_text_matches_sphinx_html": true
+    }
+  }
+}
