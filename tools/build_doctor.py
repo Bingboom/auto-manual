@@ -181,6 +181,7 @@ def collect_doctor_findings(
     which: Callable[[str], str | None] = shutil.which,
     collect_toolchain: Callable[[], dict[str, Any]] | None = None,
     collect_data_plane_findings: Callable[..., list[tuple[str, str, str]]] | None = None,
+    collect_environment_findings: Callable[[], list[tuple[str, str, str]]] | None = None,
 ) -> list[Any]:
     findings: list[Any] = []
     config_path = resolve_path_from_root(args.config)
@@ -232,6 +233,16 @@ def collect_doctor_findings(
             doctor_add(findings, "OK", area, ok_message)
         else:
             doctor_add(findings, "WARN", area, f"missing optional module '{module_name}': {detail}")
+
+    # Environment drift against the pinned runtime and requirements.lock:
+    # advisory only (OK/WARN), so a local mismatch is named once up front
+    # instead of surfacing later as scattered test/build failures.
+    if collect_environment_findings is None:
+        from tools.env_preflight import collect_environment_findings as default_collect_environment_findings
+
+        collect_environment_findings = default_collect_environment_findings
+    for level, area, message in collect_environment_findings():
+        doctor_add(findings, level, area, message)
 
     # Toolchain provenance (Milestone I3): informational, never blocking here —
     # the pdf/word-mode checks below still decide what is an ERROR. This block
