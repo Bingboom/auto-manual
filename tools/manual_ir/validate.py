@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Mapping
+from pathlib import PurePosixPath
 from typing import Any
 
 from tools.lang_registry import canonical_language
@@ -12,6 +14,58 @@ from .model import ManualIR, SUPPORTED_SCHEMA_VERSIONS, V2_SCHEMA_VERSION
 
 
 _NEUTRAL_PAGE_LANGUAGES = frozenset(("", "cover", "toc"))
+FINISHED_OVERVIEW_MODE = "finished-panel"
+_FINISHED_OVERVIEW_VIEWS = {"front", "right"}
+
+
+def finished_overview_views(
+    overview: Any, *, error_type: type[Exception] = ValueError,
+) -> dict[str, dict[str, str]]:
+    """Validate the frozen Web-only front/right binding without source files."""
+
+    if not isinstance(overview, Mapping):
+        return {}
+    mode = overview.get("presentation_mode")
+    if mode is None:
+        if "finished_views" in overview:
+            raise error_type("product_overview.finished_views requires presentation_mode")
+        return {}
+    if mode != FINISHED_OVERVIEW_MODE:
+        raise error_type(f"unsupported product_overview.presentation_mode {mode!r}")
+    patterns = overview.get("source_patterns")
+    if (
+        not isinstance(patterns, list) or not patterns
+        or any(not isinstance(pattern, str) or not pattern.strip() for pattern in patterns)
+    ):
+        raise error_type("finished Overview requires source_patterns")
+    raw = overview.get("finished_views")
+    if not isinstance(raw, list) or len(raw) != 2:
+        raise error_type("finished Overview needs exactly front and right views")
+    views: dict[str, dict[str, str]] = {}
+    for entry in raw:
+        if not isinstance(entry, Mapping) or set(entry) != {
+            "id", "image_key", "source_image", "web_replace_key",
+        }:
+            raise error_type("finished Overview view needs exact id/image/source/slot fields")
+        view_id = entry["id"]
+        if not isinstance(view_id, str) or view_id not in _FINISHED_OVERVIEW_VIEWS or view_id in views:
+            raise error_type("finished Overview needs unique front and right views")
+        expected_slot = f"product-overview.{view_id}"
+        if entry["web_replace_key"] != expected_slot:
+            raise error_type(f"finished Overview {view_id} must bind {expected_slot}")
+        image_key, source_image = entry["image_key"], entry["source_image"]
+        if (
+            not isinstance(image_key, str) or not image_key.strip()
+            or not isinstance(source_image, str) or not source_image.strip()
+            or PurePosixPath(source_image).name != source_image
+            or PurePosixPath(source_image).stem not in image_key
+        ):
+            raise error_type(f"finished Overview {view_id} image/source is invalid")
+        views[view_id] = dict(entry)
+    if set(views) != _FINISHED_OVERVIEW_VIEWS or len({v["image_key"] for v in views.values()}) != 2 \
+            or len({v["source_image"] for v in views.values()}) != 2:
+        raise error_type("finished Overview views must bind two distinct sources")
+    return views
 
 
 class ManualIRValidationError(ValueError):
@@ -299,10 +353,16 @@ def _payload_issues(raw: Any, *, require_zero_skipped_raw: bool = False) -> list
         if isinstance(web_contract, dict)
         else {}
     )
+    try:
+        finished_overview = finished_overview_views(overview_contract)
+    except ValueError as exc:
+        issues.append(f"metadata.web_contract.product_overview: {exc}")
+        finished_overview = {}
     requires_overview_instance = (
         requires_embedded_registry
         and isinstance(overview_contract, dict)
         and bool(overview_contract.get("source_patterns"))
+        and not finished_overview
         and any(
         isinstance(target, dict)
         and str(target.get("model") or "").casefold()

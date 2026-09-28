@@ -883,10 +883,48 @@ Web Publish / Read the Docs note:
   unknown mode, or incomplete anchors stops contract loading. Details and the
   measured anchors:
   [`je1000f_us_base_art_web.md`](dev/je1000f_us_base_art_web.md).
+  A second target uses this same explicit grant and frozen-art identity contract;
+  copying the US grant does not approve its sockets, artwork or coordinates.
+  For art stripped of fixed text containers, a `status-right` figure can declare
+  `base_art_layout: {art_sha256: <hash>, copy_layout: flow}`. This option rejects
+  fixed geometry keys and keeps prerequisite, steps and supporting copy in
+  normal flow: art and steps share a responsive row, while supporting copy grows
+  below it. At 760 px and below the row stacks. It reuses the existing Operation
+  ComponentSpec and does not change IDML or grant any target automatically.
+  For language-specific art/activation in one overlay, use
+  `base_art_layout_by_locale: {en: {art_sha256: <hash>, copy_layout: flow}, ...}`
+  instead of direct `presentation_mode` and `base_art_layout`. Only listed
+  locales opt in; other locales retain their existing final-figure path without
+  EN fallback. The map must fit the coverage locales and exact slot grants;
+  derived frozen coverage scope and selected ComponentSpec locale/hash are
+  checked again during replay. Missing/`und` page language fails for mapped
+  figures. Presentation JSON rejects duplicate keys with file/key diagnostics.
+  Flow counts nonempty direct source lines for steps and supporting copy, so
+  blank RST `|` spacing cannot consume a step or the supporting-line count.
+  Targets with approved complete Overview panels may explicitly select
+  `product_overview.presentation_mode: finished-panel`, with exactly two
+  `finished_views` bindings for front/right source keys, manifest source names
+  and stable coverage slots. The Web assembler uses the existing frozen
+  illustration manifest's replacement, covered-copy and hash checks before
+  either slot counts as finished. All Operation/Charging slots stay required;
+  IDML geometry is not inferred from finished Web art.
+  Operation panels with exact, copy-consuming finished manifest entries are
+  frozen before component discovery and retain their declared slots; locales
+  selecting live-copy base art must have no conflicting finished entry.
+  Exact manifest-backed Charging references use the same stable-slot carrier;
+  unbound references keep the existing component path.
+  Derive duration shorthand from the localized source instruction: the Web
+  renderer also recognizes German `Sekunden`, alongside the already supported
+  `3 s` form, without changing the visible instruction. Flow draws the existing
+  CSS clock beside the source-derived value, hidden from assistive technology
+  because the instruction already states it. The reuse boundary and
+  current verification are recorded in
+  [`web_base_art_reuse_validation.md`](dev/web_base_art_reuse_validation.md).
   Its 55 crop/page/content/source-fragment pins are recorded by
   `data/asset_recipes/manual_je1000f_eu_web_panels.json`; Italian is 11/11
   approved full panels. Text-free artwork with HTML/SVG labels or leaders is
-  debt for these slots in every locale and never counts as a final carrier.
+  debt for slots without an exact `base-art-live-copy` grant in every locale
+  and never counts as a final carrier for those ungranted slots.
   Optional `covered_annotations` entries bind a selector and exact normalized
   source text already covered by an illustration. Only unique unchanged matches
   are consumed; changed or ambiguous copy fails. Covered copy stays in image alt

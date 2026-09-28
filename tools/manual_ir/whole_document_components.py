@@ -30,6 +30,7 @@ from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation_html import parse_operation_components
 from tools.component_specs.overview_html import parse_overview_html
 from tools.component_specs.overview_instance import resolve_overview_instance
+from tools.web_finished_overview import finished_overview_views
 from tools.component_specs.registry import require_valid_component_spec
 from tools.component_specs.reference_figure_html import parse_reference_figure_html
 from tools.component_specs.warranty_html import parse_warranty_html
@@ -130,6 +131,8 @@ def discover_registered_components(
     composite_manifest: WebCompositeManifest | None = None,
     overview_instance: Mapping[str, object] | None = None,
     operation_panel_copy: Sequence[Mapping[str, Any]] = (),
+    finished_operation_slots: frozenset[str] = frozenset(),
+    finished_reference_slots: frozenset[str] = frozenset(),
 ) -> tuple[ComponentClaim, ...]:
     """Discover registered families in deterministic ownership order."""
 
@@ -220,10 +223,18 @@ def discover_registered_components(
         # forcing this five-panel shape would either reject valid pages or drop
         # copy for panels that do not exist on that product.
         if supports_figure_contract(source_path, dict(contract)):
+            component_config = {
+                **operation_config,
+                "figures": [
+                    figure for figure in operation_config.get("figures", [])
+                    if str(figure.get("web_replace_key") or "")
+                    not in finished_operation_slots
+                ],
+            }
             for spec, owned_nodes, artwork, discard_nodes in parse_operation_components(
                 soup,
                 source_path=source_path,
-                config=operation_config,
+                config=component_config,
                 language=language,
                 panel_copy=operation_panel_copy,
             ):
@@ -332,6 +343,8 @@ def discover_registered_components(
                 source_path, raw_reference.get("source_patterns", [])
             ):
                 continue
+            if str(raw_reference.get("web_replace_key") or "") in finished_reference_slots:
+                continue
             if (
                 raw_reference.get("presentation") == "shared-art-live-labels"
                 and raw_reference.get("asset_scope") == "shared"
@@ -399,6 +412,7 @@ def discover_registered_components(
         isinstance(overview_config, Mapping)
         and _matches_source(source_path, overview_config.get("source_patterns", []))
         and supports_figure_contract(source_path, dict(contract))
+        and not finished_overview_views(overview_config)
     ):
         instance = (
             dict(overview_instance)
@@ -455,7 +469,7 @@ def discover_registered_components(
     )
     # Inbox is shared semantic presentation, just like specifications and
     # callouts.  Its numbered-card layout does not depend on a target-specific
-    # figure or preface grant; every declared Inbox source pattern must embed
+        # figure or preface grant; every declared Inbox source pattern must embed
     # the same component before the whole-document IR is frozen.
     legacy_inbox = isinstance(inbox_config, Mapping) and _matches_source(
         source_path, inbox_config.get("source_patterns", [])

@@ -36,6 +36,96 @@ def _text(tag: object) -> str:
 
 
 class BaseArtOperationTests(unittest.TestCase):
+    def test_flow_copy_grows_in_source_order_without_art_anchors(self) -> None:
+        # Actual EU main-power DE step wording, plus deliberately long source
+        # copy. No line is dropped, duplicated, clipped or given a fixed box.
+        support = "Das Produkt schaltet sich nach 2 Stunden Inaktivität automatisch aus. " * 8
+        soup, figure, stage = _figure(
+            "status-right",
+            '<img class="hb-operation-art" src="new-art.png">'
+            '<div class="hb-operation-prerequisite" style="--hb-x:1%">'
+            '<p>Voraussetzung: Das Produkt ist eingeschaltet.</p></div>'
+            '<div class="line-block hb-operation-steps" style="--hb-x:74%">'
+            + _step("on", ("summary", "Ein: Einmal drücken."))
+            + _step("off", ("summary", "Aus: 7 s lang gedrückt halten."))
+            + '</div><div class="hb-operation-supporting-copy">'
+            f'<div class="line"><strong>Standard-Standby-Zeit:</strong> 2 Stunden.</div>'
+            f'<div class="line">{support}</div></div>',
+        )
+        arrange_base_art_operation(
+            soup, figure=figure, stage=stage,
+            spec={"id": "main-power", "layout": "status-right",
+                  "base_art_layout": {"art_sha256": "a" * 64, "copy_layout": "flow"}},
+            source_path=SOURCE, error_type=ValueError,
+        )
+        self.assertIn("hb-operation-copy-flow", figure["class"])
+        self.assertEqual(
+            ["hb-operation-prerequisite", "hb-operation-flow-row", "hb-operation-supporting-copy"],
+            [child["class"][0] for child in stage.children if getattr(child, "name", None)],
+        )
+        self.assertEqual(1, len(stage.select("img")))
+        self.assertEqual("", stage.img["alt"])
+        self.assertEqual(2, len(stage.select(".hb-operation-step")))
+        self.assertEqual(2, len(stage.select(".hb-operation-supporting-copy > .line")))
+        self.assertEqual(support, stage.select(".hb-operation-supporting-copy > .line")[1].get_text())
+        self.assertEqual("7s", _text(stage.select_one(".hb-operation-duration")))
+        self.assertEqual("true", stage.select_one(".hb-operation-duration")["aria-hidden"])
+        self.assertEqual("7 s lang gedrückt halten.", _text(stage.select(
+            ".hb-operation-step-instruction")[1]))
+        self.assertFalse(stage.select("[style]"))
+
+    def test_flow_replay_rejects_unknown_or_mixed_layout(self) -> None:
+        for extra in ({"copy_layout": "unknown"}, {"copy_layout": None},
+                      {"copy_layout": "flow", "duration_anchor": [50, 50]}):
+            with self.subTest(extra=extra):
+                soup, figure, stage = _figure(
+                    "status-right", '<img class="hb-operation-art" src="a.png">'
+                    '<div class="hb-operation-steps">'
+                    + _step("on", ("summary", "On: Press once.")) + '</div>',
+                )
+                with self.assertRaisesRegex(ValueError, "without fixed geometry"):
+                    arrange_base_art_operation(
+                        soup, figure=figure, stage=stage,
+                        spec={"id": "x", "layout": "status-right",
+                              "base_art_layout": {"art_sha256": "a" * 64, **extra}},
+                        source_path=SOURCE, error_type=ValueError,
+                    )
+
+    def test_german_source_duration_keeps_instruction_and_visual_shorthand(self) -> None:
+        # The EU German energy-saving source spells out Sekunden; main power
+        # uses 3 s. Both carriers must retain the source copy, deriving only the
+        # aria-hidden shorthand beside the clock or in the footer.
+        for action in (
+            "Halten Sie beide Tasten länger als 3 Sekunden gedrückt.",
+            "3 s lang gedrückt halten.",
+        ):
+            for variant, layout in (
+                ("footer-overlay", {"footer_x": 72}),
+                ("status-right", {
+                    "step_anchors": [[76.5, 34.17]], "step_width": 22.5,
+                    "duration_anchor": [81.4, 48.1],
+                }),
+            ):
+                with self.subTest(action=action, variant=variant):
+                    soup, figure, stage = _figure(
+                        variant,
+                        '<img class="hb-operation-art" src="a.png">'
+                        '<div class="line-block hb-operation-steps">'
+                        + _step("hold", ("summary", action)) + "</div>",
+                    )
+                    arrange_base_art_operation(
+                        soup, figure=figure, stage=stage,
+                        spec={"id": "hold", "layout": variant,
+                              "base_art_layout": {"art_sha256": "a" * 64, **layout}},
+                        source_path=SOURCE, error_type=ValueError,
+                    )
+                    self.assertEqual(action, _text(stage.select_one(
+                        ".hb-operation-step-instruction")))
+                    durations = stage.select(".hb-operation-duration")
+                    self.assertEqual(1, len(durations))
+                    self.assertEqual("3s", _text(durations[0]))
+                    self.assertEqual("true", durations[0]["aria-hidden"])
+
     def test_summary_steps_sit_on_their_anchors_beside_one_duration(self) -> None:
         soup, figure, stage = _figure(
             "status-right",

@@ -1,0 +1,211 @@
+# Base-art Web reuse: bounded flow option
+
+Date: 2026-09-27. Engineering baseline:
+`bd201fc237825acf49ea15471ca5c63bf3d90b85` (auto-manual main).
+
+## Scope and interface
+
+The existing US sample is six slots per language, not a whole-book conversion:
+`operation.main-power`, `operation.ac-output`, `operation.dc-usb-output`,
+`operation.energy-saving`, `operation.led-light`, and `reference.charging-car`
+in EN/FR/ES. Their art identities and original anchors are in
+[the US contract record](je1000f_us_base_art_web.md).
+
+A second target must keep the exact coverage grant and frozen-art hash checks.
+Neither an attachment filename nor the US sample approves another market's
+sockets, model drawing, source text, or language. The new option is Web-only;
+no neutral ComponentSpec schema, IDML, source table or target grant changes here.
+
+For the main-power, AC and DC/USB `status-right` figures, container-free art can
+use this existing mode with a bounded layout option:
+
+```json
+{
+  "layout": "status-right",
+  "presentation_mode": "base-art-live-copy",
+  "base_art_layout": {
+    "art_sha256": "<64 lowercase hex characters of the approved frozen art>",
+    "copy_layout": "flow"
+  }
+}
+```
+
+`copy_layout` accepts only `flow`, on `status-right`. The layout must contain
+exactly `art_sha256` and `copy_layout`: step anchors, prerequisite rectangles,
+widths, duration anchors and all other fixed geometry are rejected. Omitting
+`copy_layout` retains the existing anchored behavior. The exact
+`figure_coverage.slot_status_overrides` grant and `required_slots` remain
+mandatory; mismatching packaged art bytes still fail assembly/replay.
+
+When one target overlay contains different market artwork by language, use one
+exact activation map instead of the direct mode/layout fields:
+
+```json
+{
+  "layout": "status-right",
+  "base_art_layout_by_locale": {
+    "en": {"art_sha256": "<EN art SHA-256>", "copy_layout": "flow"},
+    "de": {"art_sha256": "<DE art SHA-256>", "copy_layout": "flow"}
+  }
+}
+```
+
+Each hash must be 64 lowercase hexadecimal characters. The nonempty map accepts
+canonical lowercase locale keys, rejects `und`, and cannot coexist with direct
+`presentation_mode` or `base_art_layout`. Entries accept exactly the two flow
+fields above. Map locales must be a subset of the overlay's coverage locales;
+the same exact slot grants remain required. An unlisted locale uses its existing
+finished-panel/composite path, without falling back to EN. Missing or `und` page
+language fails only for mapped figures. Legacy `composite_locales` is unchanged.
+
+The loader derives `slot_status_override_locales` from this map and freezes it
+in the coverage requirement; authors cannot provide that field. Runtime checks
+it against the activation map before applying locale-specific status grants.
+Selected Operation ComponentSpec metadata freezes `presentation_mode`, concrete
+`base_art_layout`, and `base_art_locale`; replay checks those against the frozen
+contract and page/component language. The selector copies each mapped figure
+without mutating the cached contract. Unmapped US contracts/specs keep their
+existing shape. All presentation JSON now rejects duplicate keys instead of
+silently overwriting them, reporting the file, loader field and duplicate key.
+
+The existing source fields remain authoritative:
+
+- `step_ids` identifies the ordered steps; each has one summary or a label and
+  instruction pair. No wording is copied into CSS or layout JSON.
+- `capture_prerequisite` captures the preceding source paragraph once.
+- `capture_following_lines` captures only the declared supporting lines. For
+  JE-1000F main power this is three; the following energy-saving line remains
+  outside the figure. Other targets must use their own actual source structure.
+  In flow mode, blank RST `|` lines inside that carrier are spacing rather than
+  steps/supporting copy. Both direct rendering and ComponentSpec replay count
+  nonempty direct lines; they do not scan across warnings or adjacent sections.
+  JE-2000F's real EN/DE templates require four main-power supporting lines.
+- Reading order is prerequisite, artwork/steps, supporting copy. Art and steps
+  share a grid row on desktop and stack at 760 px and below. Text height is
+  content-driven, without clipping, line clamps or an art-relative text box.
+- The flow art must exclude the old fixed text containers, step brackets and
+  clock. Preserve market-correct product details and necessary operation lines
+  through the target's extraction/review process.
+
+A target with already approved complete front/right Overview art can opt in to
+the separate Web `product_overview.presentation_mode: finished-panel` path:
+
+```json
+{"presentation_mode": "finished-panel", "finished_views": [
+  {"id": "front", "image_key": "overview/front_product",
+   "source_image": "front_product.jpg", "web_replace_key": "product-overview.front"},
+  {"id": "right", "image_key": "overview/right_side_ports",
+   "source_image": "right_side_ports.png", "web_replace_key": "product-overview.right"}
+]}
+```
+
+The two bindings must be exact and distinct. The source image is selected
+once, then its frozen illustration manifest must replace that source name,
+pass covered-annotation copy checks and match the approved bytes. Only then
+does the resulting finished image receive its stable Overview slot. Coverage
+still includes both Overview slots and all target Operation/Charging slots.
+Missing or ambiguous art, source-copy drift and hash drift fail assembly or
+cold replay. Other targets keep their geometry-backed Overview component;
+this Web option does not infer or alter IDML coordinates.
+
+For Operation slots on a figure-capable target, a same-language finished
+illustration manifest that names the exact source image and consumes its
+covered copy keeps that panel on its existing stable slot. The assembler
+verifies the covered copy before component discovery, so removed source nodes
+cannot later be claimed as editable copy. A missing finished binding retains
+the existing component path. A locale explicitly selecting
+`base-art-live-copy` must not also carry a copy-consuming finished manifest
+entry for the same image; that conflict fails closed.
+The same exact manifest binding routes the four Charging references to their
+existing stable slots. Covered annotations are consumed where the manifest
+declares them; panels without covered annotations keep their adjacent live
+source copy. Unbound references retain the existing component path.
+
+The existing CSS clock glyph is reused. Its shorthand is derived from each
+step's numeric seconds value, including German `Sekunden`; a `7 s` instruction
+produces `7s`, not `3s`. The original instruction remains unchanged, and the
+clock/value are `aria-hidden` to avoid reading the same duration twice.
+This is a bounded seconds recognizer, not a general time parser.
+
+The actual German energy-saving source says
+`Halten Sie beide Tasten länger als 3 Sekunden gedrückt.` Previously its footer
+lost the shorthand, while using the same wording with a duration anchor failed.
+The regression test reproduces both failures before the compatibility fix.
+Main-power's existing `3 s lang gedrückt halten.` already worked.
+
+## Current US publication audit
+
+GitHub API inspection pinned Hello-Docs main to
+`45a085eccf3d68dca27573c257eebfc3ffeeba65`. Its US publication metadata reports
+version 2.5, built 2026-09-24. Each locale's source Markdown contains exactly the
+six base-art figures above. The six unique art files were fetched by Git blob
+identity and their bytes rehashed against the full art SHA-256 in the frozen
+path; all six match the US record.
+
+| Locale | Frozen source Markdown SHA-256 |
+| --- | --- |
+| EN | `b623dee0d8d057f43c29be5768241ac17e30369ef0f9ceb43557e99ebb55075d` |
+| FR | `843efbe3b8c9ab24401c04760e8d046a43ce762acfae1c5ea2c0d7a634d1ebf8` |
+| ES | `9a8524bc97127d1c9b50ea82522ba54a3a8fe04067bf71890063e20dd7b203c6` |
+
+Operation and Charging fragments for all three US languages are byte-identical
+before/after this change (six pages, eighteen base-art figures), using the same
+review RST, composite fixture and Python environment on both sides.
+
+Earlier in this task, local Playwright sampled the live US pages at 1280 px and
+375 px. The first load missed some FR/ES assets/styles. One reload with image
+`decode()` yielded six nonbroken base-art images per locale at both widths and
+no document horizontal overflow; remaining failed requests were RTD adverts.
+Screenshots were retained as auxiliary evidence. These are existing US pages,
+not a deployment of the new flow option, and this was not CUA verification or
+whole-book visual acceptance. Subsequent CUA in-app and Chrome entry attempts
+each timed out; no further browser fallback was used. New flow layout visual
+acceptance remains separate from DOM/source-copy tests.
+
+## Verification and boundaries
+
+Validation uses an isolated Python 3.12 environment installed from the existing
+`requirements.lock`; no repository dependency pins or other worktree environment
+were modified. An initial run against the old shared virtualenv failed because
+it carried PyMuPDF 1.28.2 instead of the recipe pin 1.28.0, plus a flow-output
+smoke-test failure. All affected modules pass in the matched environment.
+
+The targeted suite covers flow layout rejection, German wording, source-value
+clock derivation, long supporting copy preserved once, component replay with
+residual lines, hash mismatches, exact locale activation and unchanged US output.
+Real EN/DE Operation templates exercise two steps in each pilot slot, four
+JE-2000F main-power supporting lines exactly once, and the adjacent IEC warning
+outside the figures in both direct rendering and component replay. JE-1000F
+review pages preserve three supporting lines inside and the fourth 12h remark
+outside, with each AC/DC prerequisite once. Disabling the new
+flow-only empty-line handling reproduces the missing-supporting-copy failure.
+The two-locale frozen-package test deletes source RST/assets before replay and
+forbids live contract/source projection reads; its colored images are synthetic
+hash-selection fixtures, not target artwork acceptance. Required gates are
+recorded with the PR; fixture validation does not approve target artwork.
+The final flow/locale implementation passes 143 targeted tests and the full 4,688-test
+suite (22 skips) in that locked environment. Ruff, maintainability guardrails
+and documentation links pass. Guardrails retain six existing stale baseline
+entries; no threshold or baseline was changed.
+EU FR/ES/IT/UK real Operation source fragments are also byte-identical with and
+without the EN/DE activation map on the legacy path. This comparison uses no
+composite-manifest fixture and does not establish published-art acceptance.
+The US build check reads the existing JE-1000F/US phase2 snapshot through
+`--data-root` and writes only isolated staging. Fourteen CSV hashes are retained;
+this is local snapshot validation, not a fresh live-Base read or write.
+
+Task evidence is retained under `.tmp/base-art-reuse/` in the A-line worktree:
+`discovery.md`, `us-parity.json`, `remote-audit.json`, `remote-art-hashes.json`,
+`snapshot-hashes.json`, browser logs/screenshots, and validation logs. These
+local artifacts are not published assets.
+
+`preview/index.html` is a self-contained local layout review with its candidate
+PNG beside it. It labels the EN JE-2000F candidate separately from the DE
+long-copy stress example, which deliberately borrows the EN art and is not a
+DE target proof. Source parameters remain placeholders; test-only additional
+text is marked. The preview has not passed browser visual acceptance.
+
+EU en/de target entries, candidate art approval and target visual acceptance
+belong to the separate target changes. JE-2000F candidate extraction is also
+separate. This shared change does not merge, publish, promote nine-language
+attachments, retire composites, or claim that either EU target is live.

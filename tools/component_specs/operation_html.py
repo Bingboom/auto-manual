@@ -8,6 +8,7 @@ from typing import Any, Mapping
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.operation import operation_component_spec
+from tools.web_base_art_locale import LOCALE_LAYOUTS, resolve_base_art_figure
 
 # Source `operation_panel_copy` blocks name the IDML panel layout; this maps a
 # Web figure variant to the panel whose copy it may carry and the copy field.
@@ -120,6 +121,8 @@ def parse_operation_components(
     for raw_figure in config.get("figures", []):
         if not isinstance(raw_figure, Mapping):
             raise ValueError(f"{source_path}: operation figure contract must be a mapping")
+        locale_bound = LOCALE_LAYOUTS in raw_figure
+        raw_figure = resolve_base_art_figure(raw_figure, language)
         operation_id = str(raw_figure.get("id") or "").strip()
         image_key = str(raw_figure.get("image_key") or "").strip()
         step_ids = [str(value) for value in raw_figure.get("step_ids", [])]
@@ -200,6 +203,12 @@ def parse_operation_components(
         figure_copy = base_art_panel_copy(
             panel_copy, figure=raw_figure, source_path=source_path,
         )
+        metadata = {"presentation_mode": presentation_mode} if presentation_mode else {}
+        if locale_bound and presentation_mode == _BASE_ART_LIVE_COPY:
+            metadata.update({
+                "base_art_layout": dict(raw_figure["base_art_layout"]),
+                "base_art_locale": language.strip().casefold(),
+            })
         spec = operation_component_spec(
             operation_id=operation_id,
             accessibility_label=str(image.get("alt") or operation_id),
@@ -212,9 +221,7 @@ def parse_operation_components(
             language=language,
             mode_label=figure_copy.get("mode_label", ""),
             sos_label=figure_copy.get("sos_label", ""),
-            metadata={"presentation_mode": presentation_mode}
-            if presentation_mode
-            else None,
+            metadata=metadata or None,
         )
         parsed.append(
             (spec, tuple(owned), image, tuple(supporting_lines[:supporting_count]))

@@ -224,7 +224,11 @@ empty-cell policies are recorded in
   - reads an Operation figure's presentation mode from that resolved contract and marks a `base-art-live-copy` Web figure (Operation or reference)
   - the IDML main-power panel reads the same mode, but only for an active component target ([`idml_component_targets.md`](idml_component_targets.md))
 - [`tools/web_base_art_operation.py`](../../tools/web_base_art_operation.py)
-  - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, or lays out a footer-panel card (lead, art, numbered steps); never measures the artwork
+  - places one base-art Operation figure's live copy on its declared `base_art_layout` anchors, in container-free responsive flow, or in a footer-panel card (lead, art, numbered steps); never measures the artwork
+- [`tools/web_base_art_locale.py`](../../tools/web_base_art_locale.py)
+  - validates the exact locale-to-flow-layout activation map, selects a copied figure without fallback/cache mutation, and derives its coverage locale scope
+- [`tools/web_finished_overview.py`](../../tools/web_finished_overview.py)
+  - selects original Overview source images and exact manifest-backed Operation/Charging panels, attaching stable slots only after approved replacement and any declared covered-copy validation; the frozen Overview binding shape is checked by `tools/manual_ir/validate.py` so isolated IR replay remains self-contained
 - [`tools/web_base_art_reference.py`](../../tools/web_base_art_reference.py)
   - places one base-art reference figure's captured source lines on the panel rectangles its `base_art_layout` declares, each line exactly once; never measures the artwork
 - [`tools/component_specs/operation_html.py`](../../tools/component_specs/operation_html.py) `base_art_panel_copy`

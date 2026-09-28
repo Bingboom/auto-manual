@@ -30,6 +30,8 @@ from tools.web_composite_presentation import (
 from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
 from tools.web_base_art_operation import BASE_ART_CLASS, arrange_base_art_operation
+from tools.web_base_art_locale import resolve_base_art_figure
+from tools.web_finished_overview import finished_overview_views
 from tools.web_base_art_reference import arrange_base_art_reference
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
@@ -312,6 +314,10 @@ def _transform_product_overview(
     contract: dict[str, Any],
     composites: WebCompositeContext,
 ) -> None:
+    if finished_overview_views(contract.get("product_overview")):
+        raise WebPresentationError(
+            f"{source_path}: finished Overview requires frozen Web illustration assembly"
+        )
     try:
         instance = resolve_overview_instance(
             model=composites.model,
@@ -463,6 +469,13 @@ def _transform_operation_figure(
     stage.append(image)
 
     step_ids = [str(step_id) for step_id in spec["step_ids"]]
+    flow_copy = spec.get("base_art_layout", {}).get("copy_layout") == "flow"
+    if flow_copy:
+        # RST blank | lines are spacing, not actions. Limit normalization to
+        # this opted-in carrier so legacy figure output stays byte-identical.
+        for line in steps.find_all(class_="line", recursive=False):
+            if not line.get_text(" ", strip=True):
+                line.decompose()
     steps_overlay = _extract_semantic_steps(
         soup,
         line_block=steps,
@@ -487,6 +500,8 @@ def _transform_operation_figure(
                 )
             supporting_line_block = candidate
             direct_lines = candidate.find_all(class_="line", recursive=False)
+        if flow_copy:
+            direct_lines = [line for line in direct_lines if line.get_text(" ", strip=True)]
         if len(direct_lines) < supporting_line_count:
             raise WebPresentationError(
                 f"{source_path}: operation {operation_id} has only {len(direct_lines)} "
@@ -884,6 +899,7 @@ def _transform_operations(
         )
     figures = operation_contract["figures"]
     for spec in figures if "HB-SPECIAL-OPERATION" not in resolved_component_ids else []:
+        spec = resolve_base_art_figure(spec, composites.language)
         image = next(
             (
                 candidate

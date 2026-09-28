@@ -189,7 +189,9 @@ def _frozen_source_asset(
     return {"path": relative, "sha256": digest}
 
 
-def _base_art_measured_sha256(contract: dict[str, Any], replace_key: str) -> str:
+def _base_art_measured_sha256(
+    contract: dict[str, Any], replace_key: str, locale: str,
+) -> str:
     """Return the art hash the figure's base-art anchors were measured on."""
 
     figures: list[Any] = []
@@ -205,7 +207,9 @@ def _base_art_measured_sha256(contract: dict[str, Any], replace_key: str) -> str
     ]
     if len(matches) != 1:
         raise ValueError(f"base-art Web figure {replace_key} has no unique contract entry")
-    layout = matches[0].get("base_art_layout")
+    from tools.web_base_art_locale import resolve_base_art_figure
+
+    layout = resolve_base_art_figure(matches[0], locale).get("base_art_layout")
     measured = str(layout.get("art_sha256") or "") if isinstance(layout, dict) else ""
     if not _SHA256_RE.fullmatch(measured):
         raise ValueError(f"base-art Web figure {replace_key} has no measured art hash")
@@ -412,6 +416,17 @@ def enforce_required_web_figure_coverage(
             )
         slot_status_overrides[slot] = {"base-art-live-copy"}
 
+    from tools.web_base_art_locale import base_art_slot_locales
+
+    scoped_locales = base_art_slot_locales(contract)
+    if requirement.get("slot_status_override_locales", {}) != scoped_locales:
+        raise ValueError("Web figure coverage frozen locale scope disagrees with activation")
+    if any(
+        slot not in slot_status_overrides or not set(scope).issubset(normalized_locales)
+        for slot, scope in scoped_locales.items()
+    ):
+        raise ValueError("Web figure coverage locale scope is outside the policy/grants")
+
     raw_debt = requirement.get("known_debt", [])
     if not isinstance(raw_debt, list):
         raise ValueError("Web figure coverage known_debt must be a list")
@@ -482,9 +497,10 @@ def enforce_required_web_figure_coverage(
                 continue
             status = str(matches[0].get("status") or "")
             registered = debt.get((locale, required_slot))
-            accepted_statuses = slot_status_overrides.get(
-                required_slot,
-                normalized_statuses,
+            accepted_statuses = (
+                normalized_statuses
+                if required_slot in scoped_locales and locale not in scoped_locales[required_slot]
+                else slot_status_overrides.get(required_slot, normalized_statuses)
             )
             if status in accepted_statuses:
                 if registered is not None:
@@ -588,7 +604,7 @@ def build_web_figure_coverage(
                         "base-art-live-copy Web figure must contain exactly one image"
                     )
                 slot["asset"] = _frozen_source_asset(figure_images[0], assets)
-                measured = _base_art_measured_sha256(contract, replace_key)
+                measured = _base_art_measured_sha256(contract, replace_key, locale)
                 if measured != slot["asset"]["sha256"]:
                     raise ValueError(
                         f"base-art layout for {replace_key} was measured on art "

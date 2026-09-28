@@ -240,6 +240,11 @@ Operation figures.
 
 ## 6. Open items
 
+The 2026-09-27 [reuse verification](web_base_art_reuse_validation.md) rechecked
+the six-slot US boundary against the current remote publication. New targets
+can select container-free art with normal-flow copy; US retains the anchored
+contract and is not migrated by that shared option.
+
 - The EN source alt text reads "… operation placeholder."; Web no longer exposes
   it, but the templates and review pages still carry it for other outputs.
 - The FR/ES Off instruction wraps to two lines above a clock placed for one EN

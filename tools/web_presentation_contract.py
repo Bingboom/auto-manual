@@ -10,6 +10,9 @@ from pathlib import Path
 import re
 from typing import Any
 
+from tools.web_base_art_locale import base_art_slot_locales
+from tools.web_finished_overview import finished_overview_views
+
 
 STACK_SCHEMA_VERSION = "web-manual-presentation-stack/v1"
 BASE_SCHEMA_VERSION = "web-manual-shared-base/v1"
@@ -79,10 +82,19 @@ def merge_contract_layers(base: Any, override: Any, *, field: str = "contract") 
     return deepcopy(override)
 
 
+def _unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        if key in result:
+            raise WebPresentationContractError(f"duplicate contract JSON key {key!r}")
+        result[key] = value
+    return result
+
+
 def _read_mapping(path: Path, *, field: str) -> dict[str, Any]:
     try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+        payload = json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=_unique_json_object)
+    except (OSError, json.JSONDecodeError, WebPresentationContractError) as exc:
         raise WebPresentationContractError(f"cannot load {field} {path}: {exc}") from exc
     if not isinstance(payload, dict):
         raise WebPresentationContractError(f"{field} must contain a JSON object: {path}")
@@ -268,21 +280,25 @@ def _derived_figure_slots(
     slots: list[str] = []
     overview = contract.get("product_overview")
     if isinstance(overview, Mapping) and overview.get("source_patterns"):
-        try:
-            instance = resolve_overview_instance(
-                model=target["model"],
-                region=target["region"],
-            )
-        except Exception as exc:
-            raise WebPresentationContractError(
-                "figure-capable target has no unambiguous Overview instance: "
-                f"{target['model']}/{target['region']}: {exc}"
-            ) from exc
-        for view in instance.get("views", []):
-            if isinstance(view, Mapping):
-                key = str(view.get("web_replace_key") or "").strip()
-                if key:
-                    slots.append(key)
+        finished = finished_overview_views(overview, error_type=WebPresentationContractError)
+        if finished:
+            slots.extend(view["web_replace_key"] for view in finished.values())
+        else:
+            try:
+                instance = resolve_overview_instance(
+                    model=target["model"],
+                    region=target["region"],
+                )
+            except Exception as exc:
+                raise WebPresentationContractError(
+                    "figure-capable target has no unambiguous Overview instance: "
+                    f"{target['model']}/{target['region']}: {exc}"
+                ) from exc
+            for view in instance.get("views", []):
+                if isinstance(view, Mapping):
+                    key = str(view.get("web_replace_key") or "").strip()
+                    if key:
+                        slots.append(key)
 
     operations = contract.get("operations")
     if isinstance(operations, Mapping):
@@ -318,6 +334,7 @@ def _derived_figure_slots(
 
 _BASE_ART_LAYOUT_KEYS = frozenset({
     "art_sha256",
+    "copy_layout",
     "step_anchors",
     "step_width",
     "duration_anchor",
@@ -364,6 +381,16 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
             f"{field}.base_art_layout.art_sha256 must name the measured art"
         )
     variant = str(figure.get("layout") or "")
+    if "copy_layout" in layout:
+        if layout["copy_layout"] != "flow" or variant != "status-right":
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.copy_layout only supports flow on status-right"
+            )
+        if set(layout) != {"art_sha256", "copy_layout"}:
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout flow cannot include fixed geometry"
+            )
+        return
     if variant == "status-right":
         anchors = layout.get("step_anchors")
         step_ids = figure.get("step_ids")
@@ -583,10 +610,18 @@ def _normalize_coverage_policy(
     prefix = f"target_overlays.{overlay['overlay_id']}.figure_coverage"
     coverage = overlay.get("figure_coverage")
     figures_enabled = bool(overlay["capabilities"]["figures"])
+    finished_overview = finished_overview_views(
+        resolved_contract.get("product_overview"), error_type=WebPresentationContractError,
+    )
+    if finished_overview and not figures_enabled:
+        raise WebPresentationContractError(f"{prefix}: finished Overview requires figures=true")
+    scoped_slot_locales = base_art_slot_locales(
+        resolved_contract, error_type=WebPresentationContractError,
+    )
     configured_base_art_slots = _base_art_live_copy_slots(
         resolved_contract,
         prefix=prefix,
-    )
+    ) | set(scoped_slot_locales)
     if not isinstance(coverage, Mapping):
         if figures_enabled:
             raise WebPresentationContractError(
@@ -603,6 +638,10 @@ def _normalize_coverage_policy(
         raise WebPresentationContractError(
             f"{prefix}.known_debt must live in the figure debt baseline"
         )
+    if "slot_status_override_locales" in coverage:
+        raise WebPresentationContractError(
+            f"{prefix}.slot_status_override_locales is derived, not configurable"
+        )
     policy_id = _non_empty(coverage.get("policy_id"), field=f"{prefix}.policy_id")
     locales = [
         locale.casefold()
@@ -610,6 +649,11 @@ def _normalize_coverage_policy(
     ]
     if len(locales) != len(set(locales)):
         raise WebPresentationContractError(f"{prefix}.locales contains duplicates")
+    for slot, scope in scoped_slot_locales.items():
+        if not set(scope).issubset(locales):
+            raise WebPresentationContractError(
+                f"{prefix}: {slot} base-art locales are outside coverage locales"
+            )
     required_slots = _string_list(
         coverage.get("required_slots"), field=f"{prefix}.required_slots"
     )
@@ -666,6 +710,8 @@ def _normalize_coverage_policy(
     }
     if slot_status_overrides:
         normalized["slot_status_overrides"] = slot_status_overrides
+    if scoped_slot_locales:
+        normalized["slot_status_override_locales"] = scoped_slot_locales
     return normalized
 
 

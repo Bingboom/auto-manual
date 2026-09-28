@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup, Tag
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation_adapters import web_operation_projection
 from tools.web_composite_presentation import WebCompositeContext
+from tools.web_base_art_locale import LOCALE_LAYOUTS, resolve_base_art_figure
 
 
 def render_operation_component(
@@ -21,6 +22,23 @@ def render_operation_component(
 ) -> str:
     """Render through the established transform so frozen hashes do not move."""
 
+    if LOCALE_LAYOUTS in presentation:
+        locale = str(composites.language or "").strip().casefold()
+        if locale != spec.language.strip().casefold():
+            raise ValueError(f"{spec.source_ref}: base-art page and component language disagree")
+        presentation = resolve_base_art_figure(presentation, locale)
+        expected = presentation.get("base_art_layout")
+        frozen = spec.metadata.get("base_art_layout")
+        frozen_locale = spec.metadata.get("base_art_locale")
+        if expected is not None:
+            if (
+                frozen != expected or frozen_locale != locale
+                or spec.metadata.get("presentation_mode") != "base-art-live-copy"
+            ):
+                raise ValueError(f"{spec.source_ref}: frozen base-art locale/layout disagrees")
+            presentation["base_art_layout"] = dict(frozen)
+        elif frozen is not None or frozen_locale is not None:
+            raise ValueError(f"{spec.source_ref}: unselected locale carries base-art metadata")
     projection = web_operation_projection(spec, presentation)
     soup = BeautifulSoup(carrier_html, "html.parser")
     # The flow carrier intentionally owns only the operation panel, while the
@@ -43,6 +61,8 @@ def render_operation_component(
             raise ValueError(f"{spec.source_ref}: operation carrier has no step block")
         step_line_count = sum(len(step["parts"]) for step in projection["steps"])
         carrier_lines = step_block.find_all(class_="line", recursive=False)
+        if presentation.get("base_art_layout", {}).get("copy_layout") == "flow":
+            carrier_lines = [line for line in carrier_lines if line.get_text(" ", strip=True)]
         if len(carrier_lines) < step_line_count:
             raise ValueError(
                 f"{spec.source_ref}: operation carrier has fewer lines than its steps"
