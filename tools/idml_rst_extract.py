@@ -14,6 +14,8 @@ Design decisions:
   signatures (\\safetywarning{...}, \\HBNoticeBlock{...}{...}{...} etc.) so
   designers get editable text instead of holes. Unknown raw content is
   counted and dropped (reported by the caller).
+- RST comments are dropped with their whole indented body, as docutils does;
+  a multi-line maintainer note must never reach the IDML stories as copy.
 - This is intentionally a small hand-rolled parser for the bundle's rst
   subset, not docutils: the bundle uses sphinx-only directives (only) and
   raw component calls that docutils would reject or bury.
@@ -143,6 +145,26 @@ def _is_signal_word_definition_table(rows: list[list[str]]) -> bool:
 
 
 _ENUMERATED_ITEM = re.compile(r"^\d{1,2}[.)]\s+\S")
+
+# An RST comment is explicit markup (``..`` then whitespace, or a bare ``..``)
+# that is not a footnote, citation, hyperlink target, substitution definition
+# or directive -- the same patterns docutils' ``Body.explicit_construct`` tries
+# before falling back to ``Body.comment``.
+_SIMPLENAME = r"(?:(?!_)\w)+(?:[-._+:](?:(?!_)\w)+)*"
+_EXPLICIT_MARKUP = re.compile(r"\.\.(?:[ \t]+|$)")
+_NOT_A_COMMENT = re.compile(
+    r"\.\.[ \t]+(?:"
+    rf"\[(?:[0-9]+|#(?:{_SIMPLENAME})?|\*|{_SIMPLENAME})\](?:[ \t]+|$)"  # footnote, citation
+    r"|_(?![ \t]|$)"  # hyperlink target, anonymous ``.. __:`` included
+    r"|\|(?![ \t]|$)"  # substitution definition
+    rf"|{_SIMPLENAME}[ \t]?::(?:[ \t]+|$)"  # directive
+    r")"
+)
+
+
+def _is_rst_comment(stripped: str) -> bool:
+    """True when a stripped line opens an RST comment."""
+    return bool(_EXPLICIT_MARKUP.match(stripped)) and not _NOT_A_COMMENT.match(stripped)
 
 
 # ---------------------------------------------------------------------------
@@ -304,6 +326,23 @@ def extract_page(path: Path, tags: set[str] | None = None) -> ExtractResult:
                 else:
                     result.skipped_raw += 1
             i = i2
+            continue
+
+        # RST comments. A comment's body is every following line that is blank
+        # or indented deeper than its ``..`` marker; it ends at the first
+        # non-blank line at or left of the marker (docutils ``Body.comment``).
+        # Skipping only the marker line let the indented body fall through to
+        # the paragraph branch and ship as body copy. A bare ``..`` followed by
+        # a blank line is an empty comment that ends there, so an indented
+        # block after it stays content (docutils' "tiny but practical wart").
+        if _is_rst_comment(stripped):
+            i += 1
+            if stripped != ".." or (i < n and lines[i].strip()):
+                while i < n and (
+                    not lines[i].strip()
+                    or len(lines[i]) - len(lines[i].lstrip()) > indent
+                ):
+                    i += 1
             continue
 
         # section titles (underline on the next line)
