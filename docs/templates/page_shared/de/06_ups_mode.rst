@@ -1,14 +1,28 @@
 UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
 =========================================
-| Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die |AC_POWER_BUTTON_LABEL|, um Ihre Geräte gleichzeitig zu versorgen.
-.. image:: asset:operation/ups_mode
-   :alt: Abbildung der UPS-Verbindung.
-   :width: 360px
+.. only:: not model_je_3000c
 
-| Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.
-| Bei einem plötzlichen Ausfall der Netzstromversorgung schaltet |PRODUCT_NAME| innerhalb von |UPS_TRANSFER_TIME| automatisch auf gespeicherte Energie um, damit Ihre Geräte weiterlaufen.
-| Im USV-Modus erreicht das Gerät vor Stromausfällen eine Spitzenleistung von |UPS_BYPASS_OUTPUT_TEXT|. Da im Bypass-Modus gleichzeitiges Laden und Entladen möglich ist,
-| liegt die tatsächliche Ausgangsleistung in diesem Modus unter der Nennleistung; bei Stromausfällen wird jedoch wieder die Nennleistung erreicht.
+   | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die |AC_POWER_BUTTON_LABEL|, um Ihre Geräte gleichzeitig zu versorgen.
+   .. image:: asset:operation/ups_mode
+      :alt: Abbildung der UPS-Verbindung.
+      :width: 360px
+
+   | Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.
+   | Bei einem plötzlichen Ausfall der Netzstromversorgung schaltet |PRODUCT_NAME| innerhalb von |UPS_TRANSFER_TIME| automatisch auf gespeicherte Energie um, damit Ihre Geräte weiterlaufen.
+   | Im USV-Modus erreicht das Gerät vor Stromausfällen eine Spitzenleistung von |UPS_BYPASS_OUTPUT_TEXT|. Da im Bypass-Modus gleichzeitiges Laden und Entladen möglich ist,
+   | liegt die tatsächliche Ausgangsleistung in diesem Modus unter der Nennleistung; bei Stromausfällen wird jedoch wieder die Nennleistung erreicht.
+
+.. only:: model_je_3000c
+
+   | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an, drücken Sie dann die |AC_POWER_BUTTON_LABEL|, und versorgen Sie gleichzeitig Ihre Geräte mit Strom.
+   | Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.
+   | Im Falle eines plötzlichen Stromausfalls schaltet der |PRODUCT_NAME| automatisch innerhalb von |UPS_TRANSFER_TIME| auf die gespeicherte Energie um, damit Ihre Geräte weiterhin betrieben werden können.
+   | Voraussetzung: Das Produkt ist eingeschaltet.
+   | Im USV-Modus erreicht das Gerät vor Stromausfällen eine Spitzenausgangsstromstärke von |UPS_BYPASS_OUTPUT_TEXT|. Da im Bypass-Modus gleichzeitiges Laden und Entladen möglich ist, liegt die tatsächliche Ausgangsleistung in diesem Modus unter der Nennleistung; bei Stromausfällen wird jedoch wieder die Nennleistung erreicht.
+
+   .. image:: asset:operation/ups_mode
+      :alt: Abbildung der UPS-Verbindung.
+      :width: 360px
 
 .. only:: not latex
 

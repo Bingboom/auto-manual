@@ -32,6 +32,14 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # one gives main's rendered bytes exactly
 # (tests/test_je3000c_0915_warnings.py pins that print branch). The ko and pt-BR
 # goldens stay: the print has no block for those languages.
+# The same six goldens moved once more for the JE-3000C/EU print-gap corrections
+# (operator ruling 「JE-3000C 旧差异按印刷对齐」, 2026-09-27): a
+# `.. only:: model_je_3000c` branch sets the UPS figure after all of the UPS text,
+# as the JE-3000C print does, and the fr/de/it/uk branches carry that print's
+# wording; every other model reads the unchanged text under
+# `.. only:: not model_je_3000c` (tests/test_je3000c_eu_print_gaps.py pins that
+# view to main's bytes). The fr/de/it/uk carriers therefore hold
+# |UPS_TRANSFER_TIME| twice, once per branch.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -44,15 +52,18 @@ CHARGING_CASES = {
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "e89a761c89ca06fe7b399fd678e6f61607a6a8617b4aa3d00b4440b8ecbb715b"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "ad49034bb2b63fe32a7a076898abcc23204d1c67f57c2f84e61a617d789b2c19"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "20251799018ab71b95be7452022dd26b08e37469726560b7849a7153af21a8b5"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "6b5b113e4b16fee5461b0069785c22788f18bd2c27c87812f02606666f252402"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "e1bceddd1ea668a41a40fb8b10f587a2417f2ed8284b757d350ebbd29a4a5517"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "1ac2a973efb80d9a54786e83c624e65bb3936a407a8229bc70996e6f0620d32c"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "7ad045ad4eb93ce9b2d3f66d7035dc1abf8fbc89c74af8524502e5e022142f8e"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "060c7e6875f922a586a8e7c864e446149c8d8dc6e1445ef71fe1a5fb95545070"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "c783890af8f0e520f188584ee47956e4ddc28c9843e1039a8a554bcd4114d1a0"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "b86e5263fd8e5b10d3c4a500a1a932a9c7ada4eaa5db527940e01dc354d6a775"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "217d146b467be72189ca0523c5d4bea74475562cc5512bc6cba355d0934e614a"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "e2d4b1e55bf495a29f4877dd805759f114128b7e8a27d987413705b0dcab48e5"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
+# Carriers whose `.. only:: model_je_3000c` branch rewords the UPS text: one
+# |UPS_TRANSFER_TIME| per branch.
+UPS_TRANSFER_TIME_COUNT = {"fr": 2, "de": 2, "it": 2, "uk": 2}
 
 
 class Dc8020UpsPlaceholderTests(unittest.TestCase):
@@ -119,7 +130,7 @@ class Dc8020UpsPlaceholderTests(unittest.TestCase):
                     lang=lang,
                 )
 
-                self.assertEqual(1, source.count("|UPS_TRANSFER_TIME|"))
+                self.assertEqual(UPS_TRANSFER_TIME_COUNT.get(lang, 1), source.count("|UPS_TRANSFER_TIME|"))
                 self.assertTrue("0 ms" in source or "0 мс" in source)
                 self.assertIn("UPS_TRANSFER_TIME", substitutions)
                 rendered = apply_rst_substitutions(

@@ -324,10 +324,11 @@
   "06_ups_mode.rst": [
    [
     "de",
+    "it"
+   ],
+   [
     "en",
-    "es",
-    "it",
-    "uk"
+    "es"
    ],
    [
     "ko",
@@ -335,6 +336,9 @@
    ],
    [
     "fr"
+   ],
+   [
+    "uk"
    ]
   ],
   "07_extra_battery.rst": [
