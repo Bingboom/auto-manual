@@ -14,7 +14,7 @@ _REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from tools import check_language_literal_ratchet
+from tools import check_complexity_ratchet, check_language_literal_ratchet
 from tools.utils.path_utils import PathSegments, renderer_contracts_of
 
 
@@ -359,6 +359,10 @@ def main(argv: list[str] | None = None) -> int:
     language_literals = check_language_literal_ratchet.check_repository(args.repo_root.resolve())
     if language_literals.exit_code:
         return language_literals.exit_code
+
+    complexity = check_complexity_ratchet.check_repository(args.repo_root.resolve())
+    if complexity.exit_code:
+        return complexity.exit_code
 
     print(
         f"[maintainability] Guardrails OK for {len(HOTSPOT_LINE_THRESHOLDS)} hotspot files."
