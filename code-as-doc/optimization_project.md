@@ -907,6 +907,36 @@ Exit criteria:
 - every PR row in the workstream ledger is marked complete with commit, PR,
   merge, and verification evidence.
 
+### Workstream Y: Code Quality And Iterability
+
+Status: proposed
+
+PR-level breakdown and the authoritative checklist:
+[`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
+(CQ-1 … CQ-7).
+
+Why now:
+
+- the 2026-09-28 full-repo assessment found that adding a model/region stays
+  cheap, but cross-cutting code changes are getting more expensive: a flat
+  `tools/` namespace (~330 top-level modules), tests coupled to facade module
+  paths (614 `patch` sites), and 31 functions with cyclomatic complexity ≥50;
+- the existing guardrails cap file length but not complexity, lint runs only
+  three ruff rules, and a few real defects (unclosed file handles, `B023`
+  loop-variable closures) already sit below that bar.
+
+Scope:
+
+- CQ-4 lint baseline and real-defect fixes first, then complexity ratchet
+  (CQ-3), test seams (CQ-2), logging/exception/subprocess contracts (CQ-5),
+  faster and environment-robust tests (CQ-6), document lifecycle (CQ-7), and
+  finally package migration of the prefix families (CQ-1);
+- every item follows the existing ratchet pattern (baseline, block new debt,
+  then pay down) and is behavior-preserving unless the item says otherwise.
+
+Exit criteria: the per-item acceptance lines in the plan are all met and each
+completed CQ item has a record in [`code_optimization_log.md`](code_optimization_log.md).
+
 ## 8. Recommended Order
 
 Re-evaluate this order whenever a workstream closes.

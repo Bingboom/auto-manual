@@ -81,6 +81,8 @@ Use these together; do not split operator guidance across older phase plans.
   - active optimization checklist
 - [`dev/style_component_contract_v2_plan.md`](dev/style_component_contract_v2_plan.md)
   - serial PR plan and completion ledger for the four-renderer style/component contract v2 workstream
+- [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
+  - Workstream Y checklist: lint baseline, complexity ratchet, test seams, logging contracts, test feedback, doc lifecycle, package layout
 
 ## 5. Historical Or Archived Docs
 
