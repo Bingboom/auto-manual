@@ -80,6 +80,11 @@ tools/document_link_queue.py	validate_queue_record_group	26
 tools/export_idml.py	main	68
 tools/feishu_record_transport.py	run_lark_cli_json	23
 tools/flow_dashboard.py	_metric_card_html	21
+tools/frozen_ai_document.py	ordered_pages	59
+tools/frozen_ai_source.py	FrozenBook.callouts	25
+tools/frozen_pdf_app.py	_control_labels	27
+tools/frozen_pdf_document.py	ordered_pages	43
+tools/frozen_pdf_source.py	PdfBook.__init__	27
 tools/gen_index_bundle_assets.py	rewrite_single_asset_path	21
 tools/gen_index_bundle_page_render.py	materialize_planned_page	25
 tools/gen_index_bundle_plan.py	plan_materialized_pages	29
