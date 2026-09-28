@@ -1,10 +1,12 @@
-"""Arrange a base-art operation figure: frozen artwork, live copy on declared anchors.
+"""Arrange frozen operation artwork with anchored or normal-flow live copy.
 
 Only figures whose target contract selects ``base-art-live-copy`` reach this
 module.  The artwork is never measured here: every anchor comes from the
 figure's ``base_art_layout``, and figure coverage binds that layout's
 ``art_sha256`` to the frozen asset, so a new art version cannot silently reuse
 coordinates measured on the old one.
+The opt-in ``copy_layout: flow`` instead requires container-free art and keeps
+all text in normal flow, retaining the same frozen-art identity gate.
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ _HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 # Compact duration token shown beside a clock, taken from the localized step
 # copy the same way the IDML operation panel derives its editable duration.
 _DURATION_RE = re.compile(
-    r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b",
+    r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|Sekunden|s)\b",
     re.IGNORECASE,
 )
 
@@ -176,6 +178,33 @@ def _duration_tag(soup: BeautifulSoup, token: str) -> Tag:
     return duration
 
 
+def _arrange_flow_operation(
+    soup: BeautifulSoup, *, figure: Tag, stage: Tag, image: Tag, steps: Tag,
+    prerequisite: Tag | None, supporting: Tag | None,
+) -> None:
+    """Reuse the captured copy in normal flow around container-free artwork."""
+
+    _add_class(figure, "hb-operation-copy-flow")
+    image["alt"] = ""
+    if steps.has_attr("style"):
+        del steps["style"]
+    step_tags = _mark_step_parts(soup, steps)
+    for step in step_tags:
+        match = _DURATION_RE.search(step.get_text(" ", strip=True))
+        if match is not None:
+            step.append(_duration_tag(soup, f"{match.group(1)}s"))
+    row = soup.new_tag("div", attrs={"class": "hb-operation-flow-row"})
+    row.append(image.extract())
+    row.append(steps.extract())
+    stage.insert(0, row)
+    if isinstance(prerequisite, Tag):
+        if prerequisite.has_attr("style"):
+            del prerequisite["style"]
+        row.insert_before(prerequisite.extract())
+    if isinstance(supporting, Tag):
+        row.insert_after(supporting.extract())
+
+
 def arrange_base_art_operation(
     soup: BeautifulSoup,
     *,
@@ -185,7 +214,7 @@ def arrange_base_art_operation(
     source_path: Path,
     error_type: type[Exception],
 ) -> None:
-    """Place live copy on the figure's declared anchors over its frozen art."""
+    """Arrange live copy using the figure's declared Web presentation."""
 
     operation_id = str(spec.get("id") or "")
     layout = spec.get("base_art_layout")
@@ -201,6 +230,20 @@ def arrange_base_art_operation(
         raise error_type(f"{source_path}: base-art operation {operation_id!r} has no steps")
     prerequisite = stage.find(class_="hb-operation-prerequisite", recursive=False)
     supporting = stage.find(class_="hb-operation-supporting-copy", recursive=False)
+    if "copy_layout" in layout:
+        if (
+            layout["copy_layout"] != "flow"
+            or spec.get("layout") != "status-right"
+            or set(layout) != {"art_sha256", "copy_layout"}
+        ):
+            raise error_type(
+                f"{source_path}: base-art flow requires status-right without fixed geometry"
+            )
+        _arrange_flow_operation(
+            soup, figure=figure, stage=stage, image=image, steps=steps,
+            prerequisite=prerequisite, supporting=supporting,
+        )
+        return
 
     # The live copy carries the instruction; like the approved composite it
     # replaces, the illustration itself is decorative for assistive technology.

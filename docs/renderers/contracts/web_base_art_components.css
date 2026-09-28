@@ -122,7 +122,8 @@
 }
 
 /* The same clock glyph the IDML panel places from icon_clock_3s.png. */
-.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration::before {
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration::before,
+.hb-operation-copy-flow .hb-operation-duration::before {
   content: "";
   flex: none;
   width: 1.45em;
@@ -295,6 +296,94 @@
 
 /* Narrow screens: the drawing scales below readable overlay sizes, so copy
    stacks under the art in source order instead of shrinking. */
+/* Opt-in for art without printed text containers. Copy grows in document
+   flow; no art-relative anchors or fixed text height apply to this carrier. */
+.hb-operation-copy-flow > .hb-operation-stage {
+  overflow: visible;
+}
+
+.hb-operation-copy-flow .hb-operation-flow-row {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
+.hb-operation-copy-flow .hb-operation-flow-row > .hb-operation-art {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+.hb-operation-copy-flow .hb-operation-steps {
+  position: static;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  min-width: 0;
+  min-height: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.hb-operation-copy-flow .hb-operation-step {
+  position: static;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.hb-operation-copy-flow .hb-operation-step-label {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-step-instruction {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-prerequisite {
+  position: static;
+  display: block;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 0.65rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: var(--hb-surface);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-supporting-copy {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.hb-operation-copy-flow .hb-operation-duration {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  margin-top: 0.4rem;
+  font-size: 0.88rem;
+  transform: none;
+}
+
 @media (max-width: 760px) {
   .hb-base-art-live-copy > .hb-operation-stage {
     display: block;
@@ -422,5 +511,20 @@
     width: fit-content;
     max-width: calc(100% - 1.3rem);
     padding: 0.15rem 0.7rem;
+  }
+
+  .hb-operation-copy-flow .hb-operation-flow-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hb-operation-copy-flow .hb-operation-prerequisite {
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.8rem;
+    background: var(--hb-surface);
+    font-size: 0.88rem;
   }
 }

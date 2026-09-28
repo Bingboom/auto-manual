@@ -325,6 +325,11 @@ class WebFigureCoverageTests(unittest.TestCase):
 
         # Anchors measured on one art version may not position another.
         figure = ir.metadata["web_contract"]["operations"]["figures"][0]
+        # Flow removes fixed anchors, never the frozen-art identity gate.
+        figure["base_art_layout"]["copy_layout"] = "flow"
+        self.assertEqual("base-art-live-copy", build_web_figure_coverage(
+            ir, (fragment,),
+        )["slots"][0]["status"])
         figure["base_art_layout"]["art_sha256"] = "d" * 64
         with self.assertRaisesRegex(ValueError, "was measured on art dddddddddddd"):
             build_web_figure_coverage(ir, (fragment,))

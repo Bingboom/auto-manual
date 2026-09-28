@@ -318,6 +318,7 @@ def _derived_figure_slots(
 
 _BASE_ART_LAYOUT_KEYS = frozenset({
     "art_sha256",
+    "copy_layout",
     "step_anchors",
     "step_width",
     "duration_anchor",
@@ -364,6 +365,16 @@ def _validate_base_art_layout(figure: Mapping[str, Any], *, field: str) -> None:
             f"{field}.base_art_layout.art_sha256 must name the measured art"
         )
     variant = str(figure.get("layout") or "")
+    if "copy_layout" in layout:
+        if layout["copy_layout"] != "flow" or variant != "status-right":
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout.copy_layout only supports flow on status-right"
+            )
+        if set(layout) != {"art_sha256", "copy_layout"}:
+            raise WebPresentationContractError(
+                f"{field}.base_art_layout flow cannot include fixed geometry"
+            )
+        return
     if variant == "status-right":
         anchors = layout.get("step_anchors")
         step_ids = figure.get("step_ids")

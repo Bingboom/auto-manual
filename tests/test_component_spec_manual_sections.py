@@ -241,6 +241,31 @@ class ManualSectionComponentSpecTests(unittest.TestCase):
             "Conserver cette explication",
             residual.get_text(" ", strip=True) if residual else "",
         )
+        # The same frozen semantic slots also replay with container-free art;
+        # only the Web presentation changes, not the supporting-copy carrier.
+        flow = render_operation_component(
+            spec, carrier,
+            source_path=Path("page/p26_05_operation_guide_placeholder.rst"),
+            presentation={
+                "id": "main-power", "image_key": "operation/main_power",
+                "layout": "status-right", "step_ids": ["on", "off"],
+                "capture_following_lines": 3,
+                "web_replace_key": "operation.main-power",
+                "presentation_mode": "base-art-live-copy",
+                "base_art_layout": {"art_sha256": "a" * 64, "copy_layout": "flow"},
+            },
+            composites=WebCompositeContext(
+                manifest=None, model="JE-1000F", region="EU", language="fr",
+                error_type=WebPresentationError,
+            ),
+        )
+        flow_soup = BeautifulSoup(flow, "html.parser")
+        self.assertIsNotNone(flow_soup.select_one(".hb-operation-copy-flow"))
+        self.assertEqual(3, len(flow_soup.select(".hb-operation-supporting-copy > .line")))
+        for copy in ("Temps de veille par défaut", "Arrêt automatique",
+                     "Réglable dans l'application Jackery", "Conserver cette explication"):
+            self.assertEqual(1, flow.count(copy))
+        self.assertEqual("3s", flow_soup.select_one(".hb-operation-duration").get_text())
 
     def test_lcd_mode_four_renderer_projections_keep_hybrid_table(self) -> None:
         groups = (

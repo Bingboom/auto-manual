@@ -651,6 +651,25 @@ class WebPresentationContractTests(unittest.TestCase):
                     load_web_manual_contract(entry, model="MODEL", region="REGION")
 
         paired = overlay(coverage=grant, base_art_layout=layout)
+        flow = {"art_sha256": "a" * 64, "copy_layout": "flow"}
+        with tempfile.TemporaryDirectory() as td:
+            entry = _write_layered_contract(Path(td), overlays=[overlay(
+                coverage=grant, base_art_layout=flow, capture_prerequisite=True,
+            )])
+            load_web_manual_contract(entry, model="MODEL", region="REGION")
+        for candidate, message in (
+            ({**flow, "copy_layout": "unknown"}, "copy_layout"),
+            ({**flow, "copy_layout": None}, "copy_layout"),
+            ({**flow, "art_sha256": "bad"}, "must name the measured art"),
+            ({**flow, "step_width": 20}, "fixed geometry"),
+            ({**flow, "prerequisite_rect": [1, 2, 40, 6]}, "fixed geometry"),
+        ):
+            with self.subTest(candidate=candidate), tempfile.TemporaryDirectory() as td:
+                entry = _write_layered_contract(Path(td), overlays=[overlay(
+                    coverage=grant, base_art_layout=candidate,
+                )])
+                with self.assertRaisesRegex(WebPresentationError, message):
+                    load_web_manual_contract(entry, model="MODEL", region="REGION")
         with tempfile.TemporaryDirectory() as td:
             entry = _write_layered_contract(Path(td), overlays=[paired])
             contract = load_web_manual_contract(entry, model="MODEL", region="REGION")

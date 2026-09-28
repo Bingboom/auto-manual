@@ -112,8 +112,8 @@ geometry and are not expected to be pixel- or pagination-identical.
 For JE-1000F, Overview, Operation and Charging use localized crops with their
 visible labels and leader lines intact—including Operation `On` / `Off`,
 prerequisites and action copy. Do not feed those slots textless exports. In every
-locale, including EU Italian, “textless base art + localized HTML/SVG text or
-leader lines” is `editable-fallback` debt; only locale-matched `finished-panel`
+locale, including EU Italian, ungranted “textless base art + localized HTML/SVG
+text or leader lines” is `editable-fallback` debt; only locale-matched `finished-panel`
 or `approved-composite` artwork can close it. EU Italian is currently 11/11
 approved full panels. The LCD screen-mode block is the exception: keep only the
 market-correct product/display artwork as an image and render its six-row
@@ -128,6 +128,17 @@ approving the textless AC candidate) stops the Web build until the anchors are
 re-measured and the hash updated; copy changes still go through the source
 templates. See
 [`je1000f_us_base_art_web.md`](../code-as-doc/dev/je1000f_us_base_art_web.md).
+New targets need their own source/market/language evidence and art hash before
+an exact slot can receive the same grant. Use measured anchors only when the
+approved art retains its text containers. For container-free art, the opt-in
+`base_art_layout.copy_layout: flow` keeps prerequisite, steps and supporting
+copy in responsive HTML without fixed text heights or positions. Do not mix
+that option with the old anchor fields or leave a printed clock in its art;
+the flow component draws its own source-derived clock marker. The shared renderer
+recognizes German `Sekunden` when deriving the small duration marker; the
+instruction remains the source's original text. This compatibility change
+does not grant any EU slot or mark a new manual as published. See the
+[reuse verification record](../code-as-doc/dev/web_base_art_reuse_validation.md).
 ---
 
 ## 1. Environment Setup
