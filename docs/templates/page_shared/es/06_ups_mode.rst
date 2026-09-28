@@ -1,23 +1,49 @@
 FUENTE DE ALIMENTACIÓN ININTERRUMPIDA (UPS)
 ===========================================
-| Conecte el producto a una toma de corriente con el cable de carga de CA, luego presione el botón de energía CA y alimente sus electrodomésticos al mismo tiempo.
+.. only:: not (model_je_1000h or model_je_3600a)
 
-.. only:: not model_je_3000c
+   | Conecte el producto a una toma de corriente con el cable de carga de CA, luego presione el botón de energía CA y alimente sus electrodomésticos al mismo tiempo.
+
+   .. only:: not model_je_3000c
+
+      .. image:: asset:operation/ups_mode
+         :alt: Diagrama de conexión UPS.
+         :width: 360px
+
+   | Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal.
+   | En caso de una pérdida repentina de energía de la red, |PRODUCT_NAME| cambiará automáticamente a la energía almacenada en menos de |UPS_TRANSFER_TIME| para mantener sus electrodomésticos en funcionamiento.
+   | En modo UPS, la potencia máxima de salida de la unidad alcanza |UPS_BYPASS_OUTPUT_TEXT| antes de los cortes de energía. Como la carga y descarga simultáneas están habilitadas en modo bypass,
+   | la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
+
+   .. only:: model_je_3000c
+
+      .. image:: asset:operation/ups_mode
+         :alt: Diagrama de conexión UPS.
+         :width: 360px
+
+.. only:: model_je_1000h
+
+   | Conecte el producto a una toma de corriente con el cable de carga de CA, luego presione el botón de energía CA y cargue sus electrodomésticos al mismo tiempo.
 
    .. image:: asset:operation/ups_mode
       :alt: Diagrama de conexión UPS.
       :width: 360px
 
-| Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal.
-| En caso de una pérdida repentina de energía de la red, |PRODUCT_NAME| cambiará automáticamente a la energía almacenada en menos de |UPS_TRANSFER_TIME| para mantener sus electrodomésticos en funcionamiento.
-| En modo UPS, la potencia máxima de salida de la unidad alcanza |UPS_BYPASS_OUTPUT_TEXT| antes de los cortes de energía. Como la carga y descarga simultáneas están habilitadas en modo bypass,
-| la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
+   | Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal.
+   | En caso de una pérdida repentina de energía de la red, el |PRODUCT_NAME| cambiará automáticamente a la energía almacenada en menos de |UPS_TRANSFER_TIME| para mantener sus electrodomésticos en funcionamiento.
+   | En modo UPS, la potencia máxima de salida de la unidad alcanza |UPS_BYPASS_OUTPUT_TEXT| antes de los cortes de energía. Como la carga y descarga simultáneas están habilitadas en el modo derivación, la potencia de salida real es menor que la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
 
-.. only:: model_je_3000c
+.. only:: model_je_3600a
+
+   | Conecte el producto a una toma de corriente con el cable de carga de CA, luego presione el botón de energía CA y cargue sus electrodomésticos al mismo tiempo.
 
    .. image:: asset:operation/ups_mode
       :alt: Diagrama de conexión UPS.
       :width: 360px
+
+   | Un sistema de alimentación ininterrumpida (UPS) es un tipo de sistema de energía continua que proporciona energía eléctrica de respaldo automática a una carga cuando falla la energía de la red principal.
+   | En caso de una pérdida repentina de energía de la red, |PRODUCT_NAME| cambiará automáticamente a la energía almacenada en menos de |UPS_TRANSFER_TIME| para mantener sus electrodomésticos en funcionamiento.
+   | En modo UPS, la potencia máxima de salida de la unidad alcanza |UPS_BYPASS_OUTPUT_TEXT| antes de los cortes de energía. Como la carga y descarga simultáneas están habilitadas en el modo derivación, la potencia de salida real es menor que la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.
 
 .. only:: not latex
 

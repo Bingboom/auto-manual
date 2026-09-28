@@ -372,7 +372,13 @@ class Je3600aEuSpanishAppPanelTests(unittest.TestCase):
         lines = [" ".join(node.get_text(" ", strip=True).split()) for node in soup.select(".line-block > .line")]
         self.assertNotIn("Vehículo", lines)
         self.assertFalse([line for line in lines if line.startswith("Un sistema de alimentación ininterrumpida")])
-        self.assertIn("la potencia de salida real es inferior a la potencia nominal en este modo, pero vuelve a la potencia nominal durante los cortes.", lines)
+        # The UPS copy outside the crop stays on the page. Since 2026-09-27 it is the
+        # print's one-line bypass sentence (tests/test_je1000h_je3600a_eu_ups_print.py),
+        # not the family text split over two lines.
+        self.assertIn("En modo UPS, la potencia máxima de salida de la unidad alcanza 10 A antes de los cortes de "
+                      "energía. Como la carga y descarga simultáneas están habilitadas en el modo derivación, la "
+                      "potencia de salida real es menor que la potencia nominal en este modo, pero vuelve a la "
+                      "potencia nominal durante los cortes.", lines)
 
     def test_ac_wall_sentence_once_and_no_emergency_charging(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")

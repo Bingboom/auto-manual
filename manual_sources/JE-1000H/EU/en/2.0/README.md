@@ -82,3 +82,30 @@ the footnotes above the ※ USB Type-C trademark note (PDF pages
 and the Word bundle, which takes its order from the HTML) puts the footnotes
 first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
 are unchanged. `source_manifest.json` re-locks the registry.
+
+UPS body follows the print (2026-09-27): by operator ruling of the same date
+(「JE-1000H/JE-3600A UPS 措辞按印刷（推荐）」), the UPS body of all six routes reads as
+each language block of this source's print (PDF pages 14–15/31–32/48–49/65–66/
+82–83/99–100):
+
+- the first sentence names the printed buttons (`AC 1/AC 2 output button`,
+  `bouton d'alimentation CA 1/CA 2`, `AC1- oder AC2-Taste`,
+  `pulsante di alimentazione CA1 o CA2`, `кнопку виходу AC 1/AC 2`; es already
+  named `botón de energía CA`), and de/it/uk take that sentence's printed wording;
+- the rest takes the print's wording: en `Uninterruptible Power Supply`,
+  `continuous`, `the Jackery Explorer 1000 Plus`, `…in this mode, but returns to
+  the rated…`; es `cargue`, `el Jackery…`, `en el modo derivación`, `menor que`;
+  fr `ASI`, `mode dérivation`; de `Spitzenausgangsstromstärke`, the printed 10 ms
+  sentence and `Voraussetzung: Das Produkt ist eingeschaltet.`; it
+  `Condizione: …` and its printed sentences; uk `ДБЖ` and its printed sentences;
+- the bypass sentence is one paragraph, as printed;
+- the peak output is the printed 7.83 A. The `ups_bypass_output` row of
+  `phase2/Spec_Master.csv` held 10 A; it now reads `7.83 A` (`7,83 A` in fr–uk),
+  the bypass current of this source's specification rows.
+
+The shared `docs/templates/page_shared/<lang>/06_ups_mode.rst` carries this text
+under `.. only:: model_je_1000h`, so no other model changes, and the figure stays
+after the first sentence, where the print sets it. Values keep the house format;
+the product name stays `|PRODUCT_NAME|` (the de/it blocks print the short
+`Explorer 1000 Plus`). The UPS heading (uk prints `(ДБЖ)`), the CAUTION and the
+2026-09-15 WARNING are unchanged. `source_manifest.json` re-locks the file.

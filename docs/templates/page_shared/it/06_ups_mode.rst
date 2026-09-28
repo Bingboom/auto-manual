@@ -1,6 +1,6 @@
 GRUPPO DI CONTINUITÀ (UPS)
 ==========================
-.. only:: not model_je_3000c
+.. only:: not (model_je_3000c or model_je_1000h)
 
    | Collega il prodotto a una presa a muro con il cavo di ricarica CA, quindi premi il |AC_POWER_BUTTON_LABEL_LOWER| e alimenta contemporaneamente i tuoi apparecchi.
    .. image:: asset:operation/ups_mode
@@ -23,6 +23,19 @@ GRUPPO DI CONTINUITÀ (UPS)
    .. image:: asset:operation/ups_mode
       :alt: Diagramma di connessione UPS.
       :width: 360px
+
+.. only:: model_je_1000h
+
+   | Collegare il prodotto a una presa a muro con il cavo di ricarica CA, quindi premere il pulsante di alimentazione CA1 o CA2 e alimentare contemporaneamente i propri dispositivi.
+
+   .. image:: asset:operation/ups_mode
+      :alt: Diagramma di connessione UPS.
+      :width: 360px
+
+   | Condizione: assicurarsi che il prodotto sia acceso.
+   | Un gruppo di continuità (UPS) è un tipo di sistema di alimentazione continua che fornisce automaticamente energia elettrica di backup a un carico quando l'alimentazione dalla rete elettrica viene a mancare.
+   | In caso di improvvisa interruzione della corrente di rete, |PRODUCT_NAME| passerà automaticamente all’energia immagazzinata entro |UPS_TRANSFER_TIME| per mantenere in funzione i dispositivi collegati.
+   | In modalità UPS, la potenza di picco dell'unità raggiunge i |UPS_BYPASS_OUTPUT_TEXT| prima dell'interruzione di corrente. Poiché la modalità Bypass consente la ricarica/scarica simultanea, la potenza di uscita effettiva è inferiore alla potenza di uscita nominale in questa modalità, ma torna alla potenza di uscita nominale durante le interruzioni di corrente.
 
 .. only:: not latex
 

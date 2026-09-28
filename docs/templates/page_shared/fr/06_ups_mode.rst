@@ -1,7 +1,7 @@
 ALIMENTATION SANS INTERRUPTION (ASI)
 ====================================
 
-.. only:: not model_je_3000c
+.. only:: not (model_je_3000c or model_je_1000h or model_je_3600a)
 
    | Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur le bouton d’alimentation CA pour alimenter vos appareils en même temps.
 
@@ -23,6 +23,30 @@ ALIMENTATION SANS INTERRUPTION (ASI)
    .. image:: asset:operation/ups_mode
       :alt: Schéma de connexion ASI.
       :width: 360px
+
+.. only:: model_je_1000h
+
+   | Connectez le produit à une prise murale à l’aide du câble de charge CA, puis appuyez sur le bouton d'alimentation CA 1/CA 2 pour alimenter vos appareils en même temps.
+
+   .. image:: asset:operation/ups_mode
+      :alt: Schéma de connexion ASI.
+      :width: 360px
+
+   | Une alimentation sans interruption (ASI) est un système d’alimentation continue qui fournit automatiquement une alimentation électrique de secours à une charge lorsque l’alimentation du réseau principal est interrompue.
+   | En cas de perte soudaine de l’alimentation du réseau, le |PRODUCT_NAME| basculera automatiquement sur l’alimentation stockée en moins de |UPS_TRANSFER_TIME| pour maintenir vos appareils en fonctionnement.
+   | En mode ASI, la puissance de crête de sortie de l’appareil atteint |UPS_BYPASS_OUTPUT_TEXT| avant les coupures de courant. Comme la charge et la décharge simultanées sont activées en mode dérivation, la puissance de sortie réelle est inférieure à la puissance nominale en mode dérivation, mais revient à la puissance nominale lors des coupures.
+
+.. only:: model_je_3600a
+
+   | Connectez le produit à une prise murale à l'aide du câble de charge CA, puis appuyez sur le bouton d’alimentation CA pour alimenter vos appareils en même temps.
+
+   .. image:: asset:operation/ups_mode
+      :alt: Schéma de connexion ASI.
+      :width: 360px
+
+   | Une alimentation sans coupure (UPS) est un système d'alimentation continue qui fournit automatiquement une alimentation électrique de secours à une charge lorsque l'alimentation du réseau principal est interrompue.
+   | En cas de perte soudaine de l'alimentation du réseau, le |PRODUCT_NAME| basculera automatiquement sur l'alimentation stockée en moins de |UPS_TRANSFER_TIME| pour maintenir vos appareils en fonctionnement.
+   | En mode UPS, la puissance de crête de sortie de l’appareil atteint |UPS_BYPASS_OUTPUT_TEXT| avant les coupures de courant. Comme la charge et la décharge simultanées sont activées en mode dérivation, la puissance de sortie réelle est inférieure à la puissance nominale en mode dérivation, mais revient à la puissance nominale lors des coupures.
 
 .. only:: not latex
 

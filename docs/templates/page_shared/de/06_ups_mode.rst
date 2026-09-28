@@ -1,6 +1,6 @@
 UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
 =========================================
-.. only:: not model_je_3000c
+.. only:: not (model_je_3000c or model_je_1000h)
 
    | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die |AC_POWER_BUTTON_LABEL|, um Ihre Geräte gleichzeitig zu versorgen.
    .. image:: asset:operation/ups_mode
@@ -23,6 +23,19 @@ UNTERBRECHUNGSFREIE STROMVERSORGUNG (UPS)
    .. image:: asset:operation/ups_mode
       :alt: Abbildung der UPS-Verbindung.
       :width: 360px
+
+.. only:: model_je_1000h
+
+   | Schließen Sie das Produkt mit dem AC-Ladekabel an eine Steckdose an und drücken Sie anschließend die AC1- oder AC2-Taste, um gleichzeitig Ihre Geräte mit Strom zu versorgen.
+
+   .. image:: asset:operation/ups_mode
+      :alt: Abbildung der UPS-Verbindung.
+      :width: 360px
+
+   | Eine unterbrechungsfreie Stromversorgung (UPS) ist ein kontinuierliches Stromversorgungssystem, das bei einem Ausfall der Netzstromversorgung automatisch Backup-Strom für angeschlossene Geräte bereitstellt.
+   | Im Falle eines plötzlichen Stromausfalls schaltet der |PRODUCT_NAME| automatisch innerhalb von |UPS_TRANSFER_TIME| auf die gespeicherte Energie um, damit Ihre Geräte weiterhin betrieben werden können.
+   | Voraussetzung: Das Produkt ist eingeschaltet.
+   | Im USV-Modus erreicht das Gerät vor Stromausfällen eine Spitzenausgangsstromstärke von |UPS_BYPASS_OUTPUT_TEXT|. Da im Bypass-Modus gleichzeitiges Laden und Entladen möglich ist, liegt die tatsächliche Ausgangsleistung in diesem Modus unter der Nennleistung; bei Stromausfällen wird jedoch wieder die Nennleistung erreicht.
 
 .. only:: not latex
 

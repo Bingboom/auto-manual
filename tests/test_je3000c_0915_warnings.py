@@ -182,6 +182,11 @@ EDITED[JE500A_UPS] = ("en", "admonitions", "JE-500A")
 # every output, the print one included. The 09-15 copy is still absent from the
 # print branch (the checks below), and every other model still reads main's UPS
 # text under `.. only:: not model_je_3000c`.
+# The six shared UPS templates moved once more on 2026-09-27 for the JE-1000H/EU and
+# JE-3600A/EU UPS wording (tests/test_je1000h_je3600a_eu_ups_print.py): each gains a
+# `.. only:: model_je_1000h` branch, and en/fr/es a `.. only:: model_je_3600a` one, which
+# every output reads, the print one included. Those branches carry no 09-15 copy, and
+# JE-3000C's IDML blocks (MAIN_IDML_BLOCKS_SHA256) are unchanged.
 MAIN_PRINT_VIEW_SHA256 = {
     "docs/_review/JE-1000F/EU/page/06_ups_mode.rst": "f4ad3c3009f2b9e980c6fa9bae6870c952b00a7ff10a06a8b88915dde599da39",
     "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst": "f5905e61ccfdf8d2086c1831c0c91e55b3f7046afff9729368f0a6ace641fa00",
@@ -189,12 +194,12 @@ MAIN_PRINT_VIEW_SHA256 = {
     "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8",
     "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe",
     "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "a940aa134298aef6b23828bbf73a508f69602af92af3f14def0bc218a7f7c138",
-    "docs/templates/page_shared/de/06_ups_mode.rst": "b2d0b4c122355a1586234df69d66be790cc3db99b59f715f8c579be28ab25e5b",
-    "docs/templates/page_shared/en/06_ups_mode.rst": "3f873ddc0aa14488bf1ecc94f8ebe9f03e840e0e315d6769d4ff4390932ff0ae",
-    "docs/templates/page_shared/es/06_ups_mode.rst": "0b399aae3dff661f6f35ba57554b4fb086a0492ac577cf17843885c0a6774267",
-    "docs/templates/page_shared/fr/06_ups_mode.rst": "7bcc7496ba80864c9f230483880c9507ee44394c27b8de5f780441ef3c0c0ff8",
-    "docs/templates/page_shared/it/06_ups_mode.rst": "2b5cedaa9b5fd1c5740699ff136fcb24fe34fc8a4c03b7b26d3211b48a74d902",
-    "docs/templates/page_shared/uk/06_ups_mode.rst": "61f39ee85f1cee748fcb98fcf70c52cdb0666abde276d9f997ca7a03b434ae6d",
+    "docs/templates/page_shared/de/06_ups_mode.rst": "46956898a7709e4b727d40ed572eaabafba99c4a5d17b16344add1ba55a5e3f0",
+    "docs/templates/page_shared/en/06_ups_mode.rst": "ce8216d803b6e37ceb475403e4879247d9d110bfab7e318a642b3dee412dd86f",
+    "docs/templates/page_shared/es/06_ups_mode.rst": "f1f8ed60a453873027f0b6705b9b84d268c7ad514f7cf34434e27f2368f1ab2b",
+    "docs/templates/page_shared/fr/06_ups_mode.rst": "b30925265372bbc68a63b828c8132d631f4fccc34e9683d617bfd7c8e5f50303",
+    "docs/templates/page_shared/it/06_ups_mode.rst": "08238197e6fc6d1484db1d23c70998962225d035b21a76f92622d9316aa65f14",
+    "docs/templates/page_shared/uk/06_ups_mode.rst": "34f214a2b61824f6b98914495550b527bef7d715bb26ffbaf93d01919cbc9c09",
     "docs/templates/targets/je3000c/05_operation_guide_de.rst": "b948416c1c2fa778b0967f71820b9f82a8f800e38cc395da384536dad22368b1",
     "docs/templates/targets/je3000c/05_operation_guide_es.rst": "3b4e9aec2cf195022fa41d3e38e47faeff22a5abfa7376c4c4fb650e6787878a",
     "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "5e29a3ba9951cfe535f0281393bdbb7b7013becf37ca083da80fca5505f5c6fa",

@@ -28,6 +28,8 @@ The UPS page is shared by every EU, US, AU and BP model that prints en/fr/es/de/
 it/uk, so the JE-3000C copy sits under ``.. only:: model_je_3000c`` and every
 other model reads main's text under ``.. only:: not model_je_3000c``: the
 IsolationTests pin that view to main's bytes and its IDML extraction to main's.
+Since 2026-09-27 JE-1000H/EU and JE-3600A/EU read their own print's branch as well
+(tests/test_je1000h_je3600a_eu_ups_print.py), and the family gate leaves them out.
 The model-scoped ``targets/je3000c`` operation templates carry gaps 1 and 2 as
 plain text; the English one is unchanged.
 
@@ -51,7 +53,7 @@ from bs4 import BeautifulSoup
 from tools.idml_rst_extract import extract_page
 from tools.utils.spec_master import resolve_template_substitutions_from_spec_master
 from tools.word_bundle_html import _normalize_sphinx_only_blocks_for_docutils
-from tools.word_bundle_html_only import _build_word_only_tags
+from tools.word_bundle_html_only import _build_word_only_tags, _evaluate_only_expression
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "docs" / "templates"
@@ -203,7 +205,8 @@ ENERGY_PRINT_DEFECTS = {"de": (" o USB-Ausgang", "USB-Ausgang ≤ 25 W"), "uk": 
 
 # Isolation pins, from origin/main 138c9654 (#1309): sha256 of each shared UPS
 # template with trailing whitespace stripped per line, and of its IDML
-# extraction for another model (JE-1000H/EU).
+# extraction for another model (JE-1000H/EU until 2026-09-27, when it and
+# JE-3600A/EU took their own print's branch; JE-2000E/EU since, same pins).
 MAIN_UPS_SHA256 = {
     "en": "049b6162f0a6fde75abc821c4d55947b485c55cb2f86f0927ed5f1855e64ae70",
     "fr": "cce52d4dd4e69c9f65613ff14c0f6f2c428fcc50cb7f0127fc890b2175f195bd",
@@ -243,18 +246,30 @@ def je3000c_view(path: Path, lang: str) -> str:
     return render(_normalize_sphinx_only_blocks_for_docutils(path.read_text(encoding="utf-8"), active_tags=tags), lang)
 
 
+# A model without its own UPS branch. Since 2026-09-27 JE-1000H and JE-3600A have one
+# too (tests/test_je1000h_je3600a_eu_ups_print.py), so JE-2000E stands in for them.
+OTHER_MODEL = "JE-2000E"
+OTHER_MODEL_TAGS = {"model_je_2000e"}
+
+
+def _is_model_gate(line: str) -> bool:
+    names = re.findall(r"[A-Za-z_]\w*", line[len(".. only:: "):]) if line.startswith(".. only:: ") else []
+    return bool(names) and all(name in ("not", "or", "and") or name.startswith("model_") for name in names)
+
+
 def other_model_view(text: str) -> str:
-    """``model_je_3000c`` false: drop its branch; unwrap the ``not model_je_3000c`` one."""
+    """Model gates resolved for a model without its own branch (nested ones too); unwrap or drop."""
     lines = text.split("\n")
     out: list[str] = []
     i = 0
     while i < len(lines):
-        if lines[i] in (".. only:: model_je_3000c", ".. only:: not model_je_3000c"):
+        if _is_model_gate(lines[i]):
             j = i + 1
             while j < len(lines) and (not lines[j].strip() or lines[j].startswith("   ")):
                 j += 1
-            if lines[i] == ".. only:: not model_je_3000c":
-                out.extend(line[3:] if line.startswith("   ") else line for line in lines[i + 2:j])
+            if _evaluate_only_expression(lines[i][len(".. only:: "):], OTHER_MODEL_TAGS):
+                body = "\n".join(line[3:] if line.startswith("   ") else line for line in lines[i + 2:j])
+                out.extend(other_model_view(body).split("\n"))
             i = j
             continue
         out.append(lines[i])
@@ -405,7 +420,7 @@ class UpsWordingTests(unittest.TestCase):
 
 
 class IsolationTests(unittest.TestCase):
-    """Every other model reads main's UPS template."""
+    """Every model without its own branch reads main's UPS template."""
 
     def test_other_models_read_mains_text(self) -> None:
         for lang in LANGS:
@@ -417,7 +432,7 @@ class IsolationTests(unittest.TestCase):
     def test_other_models_idml_extraction_is_mains(self) -> None:
         for lang in LANGS:
             with self.subTest(lang=lang):
-                blocks = idml_blocks(UPS[lang], "JE-1000H", lang)
+                blocks = idml_blocks(UPS[lang], OTHER_MODEL, lang)
                 digest = hashlib.sha256(json.dumps(blocks, ensure_ascii=False).encode("utf-8")).hexdigest()
                 self.assertEqual(MAIN_UPS_IDML_OTHER_MODEL_SHA256[lang], digest)
 
@@ -426,8 +441,11 @@ class IsolationTests(unittest.TestCase):
             with self.subTest(lang=lang):
                 lines = UPS[lang].read_text(encoding="utf-8").split("\n")
                 gates = [i for i, line in enumerate(lines) if "model_je_3000c" in line]
-                self.assertEqual([".. only:: not model_je_3000c", ".. only:: model_je_3000c"],
-                                 [lines[i] for i in gates])
+                # The family gate, then JE-3000C's branch. Since 2026-09-27 the family gate
+                # also leaves out JE-1000H/JE-3600A (en/es: an outer gate wraps both).
+                self.assertEqual(2, len(gates))
+                self.assertTrue(lines[gates[0]].lstrip().startswith(".. only:: not "), lines[gates[0]])
+                self.assertEqual(".. only:: model_je_3000c", lines[gates[1]].lstrip())
                 self.assertLess(max(gates), lines.index(".. only:: not latex"))
 
 

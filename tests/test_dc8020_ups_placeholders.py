@@ -40,6 +40,14 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # `.. only:: not model_je_3000c` (tests/test_je3000c_eu_print_gaps.py pins that
 # view to main's bytes). The fr/de/it/uk carriers therefore hold
 # |UPS_TRANSFER_TIME| twice, once per branch.
+# The same six goldens moved again for the JE-1000H/EU and JE-3600A/EU UPS wording
+# (operator ruling 「JE-1000H/JE-3600A UPS 措辞按印刷（推荐）」, 2026-09-27): each carrier
+# gains a `.. only:: model_je_1000h` branch, and en/fr/es a `.. only:: model_je_3600a`
+# one, with that model's print wording; the family gate excludes them (en/es wrap
+# main's text in `.. only:: not (model_je_1000h or model_je_3600a)`). Dropping the
+# two branches and restoring the gate gives main's carrier bytes exactly
+# (tests/test_je1000h_je3600a_eu_ups_print.py pins that), and JE-1000F reads the
+# family text as before. Each new branch holds one more |UPS_TRANSFER_TIME|.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -52,18 +60,18 @@ CHARGING_CASES = {
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "6b5b113e4b16fee5461b0069785c22788f18bd2c27c87812f02606666f252402"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "e1bceddd1ea668a41a40fb8b10f587a2417f2ed8284b757d350ebbd29a4a5517"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "1ac2a973efb80d9a54786e83c624e65bb3936a407a8229bc70996e6f0620d32c"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "ef92137164481becfe836498c3bda64bacb1be5d6df2beac7289a2eb804dbe93"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "ddf0a66300431d19edaa88ad3ebead2e201368f6ec7d88a413b4ef6dbd8c06ac"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "bc2750842a10ef8120fbb16109956c34528dbf3c8e437484a670be4674a96593"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "b86e5263fd8e5b10d3c4a500a1a932a9c7ada4eaa5db527940e01dc354d6a775"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "217d146b467be72189ca0523c5d4bea74475562cc5512bc6cba355d0934e614a"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "e2d4b1e55bf495a29f4877dd805759f114128b7e8a27d987413705b0dcab48e5"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "0d4b2ba40eaa76857db4781360fdd7d6eb1ba396b427d882c8ca980626886668"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "abd87972946e0e79c67b0877bfd01c7ae4a6a33fa71e162b7277452e0d4c1c05"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "0d2d390cea642d41a2685834b7988f204546318ec90aa876dc4363ed875ffcaf"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
-# Carriers whose `.. only:: model_je_3000c` branch rewords the UPS text: one
-# |UPS_TRANSFER_TIME| per branch.
-UPS_TRANSFER_TIME_COUNT = {"fr": 2, "de": 2, "it": 2, "uk": 2}
+# One |UPS_TRANSFER_TIME| per text branch: the family text (which en/es share with
+# JE-3000C), JE-3000C's own fr/de/it/uk wording, JE-1000H, and JE-3600A (en/fr/es).
+UPS_TRANSFER_TIME_COUNT = {"en": 3, "fr": 4, "es": 3, "de": 3, "it": 3, "uk": 3}
 
 
 class Dc8020UpsPlaceholderTests(unittest.TestCase):

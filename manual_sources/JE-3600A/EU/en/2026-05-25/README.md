@@ -74,3 +74,21 @@ EU frozen sources use for these rows:
 Each footnote still renders once, and values and labels are unchanged.
 `source_manifest.json` re-locks the file; see the intake review addendum of the
 same date.
+
+UPS body follows the print (2026-09-27): by operator ruling of the same date
+(「JE-1000H/JE-3600A UPS 措辞按印刷（推荐）」), the UPS text outside the figure follows
+each published block of this source's print (PDF pages 14/31/48):
+
+- es reads the printed `cargue` in the first sentence and `en el modo derivación`
+  and `menor que` in the bypass sentence;
+- fr reads the printed `mode dérivation` (twice) in the bypass sentence;
+- the en and es bypass sentence is one paragraph, as printed.
+
+Everything else already matched: the en sentences, the fr first sentence (only its
+apostrophes differ) and the 10 A / 10 ms values. The two sentences the print sets
+inside the UPS figure are unchanged: the crop prints them, and the page carries
+them only as the figure's alt text (covered annotations). The shared
+`docs/templates/page_shared/<lang>/06_ups_mode.rst` carries this text under
+`.. only:: model_je_3600a`, so no other model changes, and the figure stays after
+the first sentence. The de/it blocks have no route; their carriers keep the
+family text for this model. No file of `phase2/` and no figure changes.
