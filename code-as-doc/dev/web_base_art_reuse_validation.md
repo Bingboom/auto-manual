@@ -87,6 +87,40 @@ The existing source fields remain authoritative:
   clock. Preserve market-correct product details and necessary operation lines
   through the target's extraction/review process.
 
+A target with already approved complete front/right Overview art can opt in to
+the separate Web `product_overview.presentation_mode: finished-panel` path:
+
+```json
+{"presentation_mode": "finished-panel", "finished_views": [
+  {"id": "front", "image_key": "overview/front_product",
+   "source_image": "front_product.jpg", "web_replace_key": "product-overview.front"},
+  {"id": "right", "image_key": "overview/right_side_ports",
+   "source_image": "right_side_ports.png", "web_replace_key": "product-overview.right"}
+]}
+```
+
+The two bindings must be exact and distinct. The source image is selected
+once, then its frozen illustration manifest must replace that source name,
+pass covered-annotation copy checks and match the approved bytes. Only then
+does the resulting finished image receive its stable Overview slot. Coverage
+still includes both Overview slots and all target Operation/Charging slots.
+Missing or ambiguous art, source-copy drift and hash drift fail assembly or
+cold replay. Other targets keep their geometry-backed Overview component;
+this Web option does not infer or alter IDML coordinates.
+
+For Operation slots on a figure-capable target, a same-language finished
+illustration manifest that names the exact source image and consumes its
+covered copy keeps that panel on its existing stable slot. The assembler
+verifies the covered copy before component discovery, so removed source nodes
+cannot later be claimed as editable copy. A missing finished binding retains
+the existing component path. A locale explicitly selecting
+`base-art-live-copy` must not also carry a copy-consuming finished manifest
+entry for the same image; that conflict fails closed.
+The same exact manifest binding routes the four Charging references to their
+existing stable slots. Covered annotations are consumed where the manifest
+declares them; panels without covered annotations keep their adjacent live
+source copy. Unbound references retain the existing component path.
+
 The existing CSS clock glyph is reused. Its shorthand is derived from each
 step's numeric seconds value, including German `Sekunden`; a `7 s` instruction
 produces `7s`, not `3s`. The original instruction remains unchanged, and the

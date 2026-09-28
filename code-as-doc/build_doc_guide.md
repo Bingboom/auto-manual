@@ -901,6 +901,18 @@ Web Publish / Read the Docs note:
   figures. Presentation JSON rejects duplicate keys with file/key diagnostics.
   Flow counts nonempty direct source lines for steps and supporting copy, so
   blank RST `|` spacing cannot consume a step or the supporting-line count.
+  Targets with approved complete Overview panels may explicitly select
+  `product_overview.presentation_mode: finished-panel`, with exactly two
+  `finished_views` bindings for front/right source keys, manifest source names
+  and stable coverage slots. The Web assembler uses the existing frozen
+  illustration manifest's replacement, covered-copy and hash checks before
+  either slot counts as finished. All Operation/Charging slots stay required;
+  IDML geometry is not inferred from finished Web art.
+  Operation panels with exact, copy-consuming finished manifest entries are
+  frozen before component discovery and retain their declared slots; locales
+  selecting live-copy base art must have no conflicting finished entry.
+  Exact manifest-backed Charging references use the same stable-slot carrier;
+  unbound references keep the existing component path.
   Derive duration shorthand from the localized source instruction: the Web
   renderer also recognizes German `Sekunden`, alongside the already supported
   `3 s` form, without changing the visible instruction. Flow draws the existing

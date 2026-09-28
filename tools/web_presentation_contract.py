@@ -11,6 +11,7 @@ import re
 from typing import Any
 
 from tools.web_base_art_locale import base_art_slot_locales
+from tools.web_finished_overview import finished_overview_views
 
 
 STACK_SCHEMA_VERSION = "web-manual-presentation-stack/v1"
@@ -279,21 +280,25 @@ def _derived_figure_slots(
     slots: list[str] = []
     overview = contract.get("product_overview")
     if isinstance(overview, Mapping) and overview.get("source_patterns"):
-        try:
-            instance = resolve_overview_instance(
-                model=target["model"],
-                region=target["region"],
-            )
-        except Exception as exc:
-            raise WebPresentationContractError(
-                "figure-capable target has no unambiguous Overview instance: "
-                f"{target['model']}/{target['region']}: {exc}"
-            ) from exc
-        for view in instance.get("views", []):
-            if isinstance(view, Mapping):
-                key = str(view.get("web_replace_key") or "").strip()
-                if key:
-                    slots.append(key)
+        finished = finished_overview_views(overview, error_type=WebPresentationContractError)
+        if finished:
+            slots.extend(view["web_replace_key"] for view in finished.values())
+        else:
+            try:
+                instance = resolve_overview_instance(
+                    model=target["model"],
+                    region=target["region"],
+                )
+            except Exception as exc:
+                raise WebPresentationContractError(
+                    "figure-capable target has no unambiguous Overview instance: "
+                    f"{target['model']}/{target['region']}: {exc}"
+                ) from exc
+            for view in instance.get("views", []):
+                if isinstance(view, Mapping):
+                    key = str(view.get("web_replace_key") or "").strip()
+                    if key:
+                        slots.append(key)
 
     operations = contract.get("operations")
     if isinstance(operations, Mapping):
@@ -605,6 +610,11 @@ def _normalize_coverage_policy(
     prefix = f"target_overlays.{overlay['overlay_id']}.figure_coverage"
     coverage = overlay.get("figure_coverage")
     figures_enabled = bool(overlay["capabilities"]["figures"])
+    finished_overview = finished_overview_views(
+        resolved_contract.get("product_overview"), error_type=WebPresentationContractError,
+    )
+    if finished_overview and not figures_enabled:
+        raise WebPresentationContractError(f"{prefix}: finished Overview requires figures=true")
     scoped_slot_locales = base_art_slot_locales(
         resolved_contract, error_type=WebPresentationContractError,
     )

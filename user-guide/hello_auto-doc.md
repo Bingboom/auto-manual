@@ -145,6 +145,17 @@ fields. Unlisted languages retain their existing finished artwork and gates;
 there is no EN fallback. The map must stay inside the coverage locales and
 exact slot grants. Package replay verifies the selected language, frozen layout
 and art hash. Duplicate JSON keys and missing page languages fail explicitly.
+For already approved complete Overview front/right art, a figure-capable target
+can explicitly declare `product_overview.presentation_mode: finished-panel`
+and two `finished_views` source/manifest/slot bindings. The Web package accepts
+each slot only after the frozen illustration replacement, covered-copy check,
+provenance and image hash pass. This leaves the target's full figure coverage
+in force; an extraction candidate alone does not activate a slot.
+For Operation panels, a verified finished manifest consumes its approved
+source copy before component discovery and keeps the original figure slot.
+An explicitly activated live-copy locale rejects a conflicting finished entry.
+Manifest-backed Charging art likewise keeps its declared reference slot;
+adjacent copy remains live unless that manifest explicitly covers it.
 ---
 
 ## 1. Environment Setup

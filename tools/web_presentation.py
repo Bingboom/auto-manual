@@ -31,6 +31,7 @@ from tools.web_app_controls import transform_app_control
 from tools.web_app_download import transform_app_download
 from tools.web_base_art_operation import BASE_ART_CLASS, arrange_base_art_operation
 from tools.web_base_art_locale import resolve_base_art_figure
+from tools.web_finished_overview import finished_overview_views
 from tools.web_base_art_reference import arrange_base_art_reference
 from tools.web_fcc_component import transform_fcc
 from tools.web_inbox_component import transform_inbox
@@ -313,6 +314,10 @@ def _transform_product_overview(
     contract: dict[str, Any],
     composites: WebCompositeContext,
 ) -> None:
+    if finished_overview_views(contract.get("product_overview")):
+        raise WebPresentationError(
+            f"{source_path}: finished Overview requires frozen Web illustration assembly"
+        )
     try:
         instance = resolve_overview_instance(
             model=composites.model,

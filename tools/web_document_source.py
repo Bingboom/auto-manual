@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import hashlib
+import fnmatch
 from pathlib import Path
 import shutil
 from urllib.parse import unquote, urlparse
@@ -37,6 +38,13 @@ from tools.web_presentation import (
     normalize_web_source_fragment,
 )
 from tools.utils.path_utils import PathSegments
+from tools.web_finished_overview import (
+    bind_finished_images, bind_finished_operation_images,
+    bind_finished_reference_images, find_finished_operation_images,
+    find_finished_reference_images, find_source_images,
+    finished_overview_views,
+)
+from tools.web_composite_presentation import supports_figure_contract
 
 
 def operation_panel_copy(text, source_path, *, active_tags):
@@ -114,6 +122,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     component_registry = load_component_registry()
     manual_theme = load_manual_theme(component_registry=component_registry)
     overview_contract = contract.get("product_overview", {})
+    finished_overview = finished_overview_views(overview_contract)
     overview_instance = (
         resolve_overview_instance(
             model=materialized.model,
@@ -122,6 +131,7 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
         if contract.get("figure_targets")
         and isinstance(overview_contract, dict)
         and overview_contract.get("source_patterns")
+        and not finished_overview
         else None
     )
     # Replacements are keyed by (language, filename). A merged document repeats
@@ -273,6 +283,38 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
                     )
                 node.string.replace_with(correction["replacement"])
                 used_text_corrections.add(index)
+        operation_contract = contract.get("operations", {})
+        operation_images = {}
+        if (
+            isinstance(operation_contract, dict)
+            and supports_figure_contract(path, contract)
+            and any(
+                fnmatch.fnmatch(path.stem.casefold(), str(pattern).casefold())
+                for pattern in operation_contract.get("source_patterns", [])
+            )
+        ):
+            operation_images = find_finished_operation_images(
+                soup, operation_contract.get("figures", []), illustration_entries,
+                language=lang, source_path=path,
+            )
+            for image, source_name in operation_images.values():
+                apply_illustration_replacement(soup, image, source_name, lang)
+        reference_contract = contract.get("reference_figures", {})
+        reference_images = {}
+        if isinstance(reference_contract, dict) and supports_figure_contract(path, contract):
+            page_references = [
+                figure for figure in reference_contract.get("figures", [])
+                if isinstance(figure, dict) and any(
+                    fnmatch.fnmatch(path.stem.casefold(), str(pattern).casefold())
+                    for pattern in figure.get("source_patterns", [])
+                )
+            ]
+            reference_images = find_finished_reference_images(
+                soup, page_references, illustration_entries,
+                language=lang, source_path=path,
+            )
+            for image, source_name in reference_images.values():
+                apply_illustration_replacement(soup, image, source_name, lang)
         claims = discover_registered_components(
             soup,
             source_path=path,
@@ -290,11 +332,36 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             operation_panel_copy=operation_panel_copy(
                 text, path, active_tags=active_tags,
             ),
+            finished_operation_slots=frozenset(operation_images),
+            finished_reference_slots=frozenset(reference_images),
+        )
+        overview_images = (
+            find_source_images(soup, finished_overview, source_path=path)
+            if finished_overview and any(
+                fnmatch.fnmatch(path.stem.casefold(), str(pattern).casefold())
+                for pattern in overview_contract.get("source_patterns", [])
+            )
+            else {}
         )
         for image in soup.find_all("img"):
             name = Path(unquote(urlparse(str(image.get("src", ""))).path)).name
             if (lang, name) in replacements:
                 apply_illustration_replacement(soup, image, name, lang)
+        if overview_images:
+            bind_finished_images(
+                soup, overview_images, finished_overview, illustration_entries,
+                language=lang, source_path=path,
+            )
+        if operation_images:
+            bind_finished_operation_images(
+                soup, operation_images, illustration_entries,
+                language=lang, source_path=path,
+            )
+        if reference_images:
+            bind_finished_reference_images(
+                soup, reference_images, illustration_entries,
+                language=lang, source_path=path,
+            )
         def package_image(image) -> str:
             src = str(image.get("src", ""))
             if src.startswith("assets/ir/"):
