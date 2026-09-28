@@ -59,5 +59,12 @@ The renderer normalizes layout-only line breaks, reconnects the split
 recovers the vector `+` App button as selectable text, and removes literal
 backslash quoting around Dutch `"Jackery"`. It reconnects the Portuguese
 print-wrapped `continuamente` in the LCD mode table. The raw extraction files are
-retained unchanged. Deliberate source errata and the exact published decision
-must be listed in `source_manifest.json` before release.
+retained unchanged. The operator approved the Ukrainian USB-C sentence and
+Dutch AC labels on 2026-09-28. `source/errata.json` records physical/printed
+pages, original and corrected wording, evidence, the confirmation quote,
+source PR #1315 and publication version `git-20260927-c38415f5`.
+The original Dutch App crop remains in `figures/nl/p142_app_control.png`;
+`corrections/nl/p142_app_control_AC.png` is the separate corrected Web asset.
+Both hashes and the image correction evidence are retained. The source
+manifest inventories both raw and corrected inputs, and the final release
+receipt binds them to the remote engineering Git commit.

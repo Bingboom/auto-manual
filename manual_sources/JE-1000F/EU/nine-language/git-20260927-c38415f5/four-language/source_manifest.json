@@ -91,7 +91,7 @@
     },
     {
       "scope": "uk body page 99, USB-C warning",
-      "change": "Candidate source-erratum correction: replace one Polish sentence printed in the Ukrainian block with the existing Ukrainian translation from docs/templates/page_eu-uk/05_operation_guide_placeholder.rst; source extraction retained unchanged. Publication choice pending."
+      "change": "Approved source erratum JE1000F-EU-UK-099-USB-C: replace the printed Polish sentence with the existing verified Ukrainian wording; raw extraction retained unchanged. User confirmation 2026-09-28 is recorded in source/errata.json."
     },
     {
       "scope": "pt LCD operating-mode table",
@@ -114,13 +114,33 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3334,
-      "sha256": "1a46b82ae93bb894d66d2e29114172434c3aee8940c594d49678a3d90f34c156"
+      "size": 3843,
+      "sha256": "38fcba89b6fec14416ea3e8ec744d1a933328f01a55be60f0466718ed6082509"
     },
     {
       "path": "build_web.py",
-      "size": 24889,
-      "sha256": "725bc05c49e5ad8d26a7d80af5871a35396faf0425902dae734fa6e200aa2515"
+      "size": 25887,
+      "sha256": "9bbcb1d9c898f78b81745f6b1694b886e5afa03b330d4c84eeb1b169de6bb231"
+    },
+    {
+      "path": "corrections/nl/p142_app_control_AC.pdf",
+      "size": 466968,
+      "sha256": "8c09bbb98d39df865665b7ca27195a6e421591b83b27bec79a8593911291433a"
+    },
+    {
+      "path": "corrections/nl/p142_app_control_AC.png",
+      "size": 16902,
+      "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20"
+    },
+    {
+      "path": "corrections/nl/p142_app_control_DC_before_same_renderer.png",
+      "size": 16398,
+      "sha256": "e97ec03c80281a1bf51d3a6fd4fb1a6a52ccfe177afd1b24e12e3b4e58d622ad"
+    },
+    {
+      "path": "corrections/nl/p142_app_control_DC_to_AC_detail.png",
+      "size": 5504,
+      "sha256": "d9f65a0363ac068204ae9900a9a1db9bfc7701f7b62581c17e24fc5ba18bb46d"
     },
     {
       "path": "figures/nl/p127_symbol_chart.png",
@@ -688,6 +708,11 @@
       "sha256": "dadb1f293002145d20faf9737bf1d8a349b78164469349f4bd78b6a2d35bae0c"
     },
     {
+      "path": "source/errata.json",
+      "size": 4533,
+      "sha256": "297baab4baf45f3669bfb2d98ea39a01337be198781692398504599e6ae2f55d"
+    },
+    {
       "path": "source/figure_qa.json",
       "size": 37381,
       "sha256": "fda38b145ed3074bcba296ba812fb0bc2cb998a3e40cb3bafeca845ebf3ef307"
@@ -943,9 +968,9 @@
       "sha256": "da51a1c97c843c5251a8c597b75a0eb0cb69a5879a8677562f75725117dbb112"
     },
     {
-      "path": "web/JE-1000F/EU/nl/md/assets/p142_app_control.png",
-      "size": 16255,
-      "sha256": "ce50147f8e8d9c61f40a4dfc8ad3583c23faa712633cfcaf2e7b3ccdd7a6b9fa"
+      "path": "web/JE-1000F/EU/nl/md/assets/p142_app_control_AC.png",
+      "size": 16902,
+      "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20"
     },
     {
       "path": "web/JE-1000F/EU/nl/md/assets/p142_app_qr_and_badges.png",
@@ -969,8 +994,8 @@
     },
     {
       "path": "web/JE-1000F/EU/nl/md/manual_je1000f_eu_nl.md",
-      "size": 44104,
-      "sha256": "0ba367a91c8e7fb5cf5cf3f63188fdfe1e71f93959f574b811ef53eda8545761"
+      "size": 44107,
+      "sha256": "a2822f36fb4fe1256bd565bd6e479fdc72522ad15e4fd28120df5a5fb3146a4a"
     },
     {
       "path": "web/JE-1000F/EU/pl/md/_static/web_manual.css",
@@ -1451,6 +1476,26 @@
       "path": "web/JE-1000F/EU/uk/md/manual_je1000f_eu_uk.md",
       "size": 67560,
       "sha256": "4a0e80cc7b9445bb8a7fc7fedc5368dd7298253dcc73ceca12531f014bfec429"
+    }
+  ],
+  "errata": {
+    "path": "source/errata.json",
+    "sha256": "297baab4baf45f3669bfb2d98ea39a01337be198781692398504599e6ae2f55d",
+    "approval_date": "2026-09-28",
+    "source_pr": "https://github.com/Bingboom/auto-manual/pull/1315"
+  },
+  "asset_corrections": [
+    {
+      "erratum": "JE1000F-EU-NL-AC-LABEL",
+      "raw_source": {
+        "path": "figures/nl/p142_app_control.png",
+        "sha256": "ce50147f8e8d9c61f40a4dfc8ad3583c23faa712633cfcaf2e7b3ccdd7a6b9fa"
+      },
+      "corrected_web_asset": {
+        "path": "corrections/nl/p142_app_control_AC.png",
+        "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20",
+        "published_name": "p142_app_control_AC.png"
+      }
     }
   ]
 }

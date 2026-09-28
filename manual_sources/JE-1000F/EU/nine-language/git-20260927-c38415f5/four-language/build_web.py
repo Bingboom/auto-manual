@@ -2,7 +2,7 @@
 """Render the four new JE-1000F EU Web books from the frozen AI extraction.
 
 The direct source JSON and cropped figures are immutable release inputs. This
-script only formats that source; it does not translate or fill missing copy.
+script formats that source and applies the explicitly approved source errata.
 """
 
 from __future__ import annotations
@@ -26,6 +26,8 @@ APP = json.loads((HERE / "source/app_sections.json").read_text(encoding="utf-8")
 SYMBOLS = json.loads((HERE / "source/symbols.json").read_text(encoding="utf-8"))
 LCD = json.loads((HERE / "source/lcd_indicators.json").read_text(encoding="utf-8"))
 OPERATION_TABLES = json.loads((HERE / "source/operation_tables.json").read_text(encoding="utf-8"))
+ERRATA = json.loads((HERE / "source/errata.json").read_text(encoding="utf-8"))
+UK_ERRATUM, NL_ERRATUM = ERRATA["entries"]
 LANGUAGES = ("uk", "pt", "nl", "pl")
 SOURCE_SHA256 = "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2"
 PREFACE_BREAKS = {
@@ -35,8 +37,8 @@ PREFACE_BREAKS = {
     "pl": ("Zgodnie z przepisami", "Należy pamiętać", "* Obrazy"),
 }
 UK_SOURCE_CORRECTION = (
-    "Aby uzyskać maksymalną moc wyjściową, należy użyć kabla USB-C do USB-C 5 A (20 V DC / 5 A, 100 W).",
-    "Щоб отримати максимальну вихідну потужність, використовуйте кабель USB-C до USB-C 5 A (20 В DC/5 A, 100 Вт).",
+    UK_ERRATUM["source_text"],
+    UK_ERRATUM["corrected_text"],
 )
 
 
@@ -59,7 +61,8 @@ def png_dimensions(path: Path) -> tuple[int, int]:
 
 def figure_html(figure: dict, *, alt: str) -> str:
     name = Path(figure["path"]).name
-    width, height = png_dimensions(HERE / "figures" / figure["locale"] / name)
+    image_path = HERE / figure["web_asset_path"] if "web_asset_path" in figure else HERE / "figures" / figure["locale"] / name
+    width, height = png_dimensions(image_path)
     return (f'<figure><img src="assets/{name}" alt="{html.escape(alt)}" '
             f'width="{width}" height="{height}" loading="lazy" '
             'style="max-width:100%;height:auto"></figure>')
@@ -176,7 +179,15 @@ def operation_table_content(lang: str, part: str) -> list[str]:
         result.extend(f'<th scope="col">{html.escape(header["text"])}</th>' for header in record["headers"])
         result.append('</tr></thead><tbody>')
         for row in record["rows"]:
-            buttons = " + ".join(html.escape(button["text"]) for button in row["buttons"])
+            labels = []
+            for index, button in enumerate(row["buttons"]):
+                label = button["text"]
+                if lang == "nl" and label == NL_ERRATUM["source_text"]:
+                    if row["source_button_faces"][index] != "AC":
+                        raise ValueError("Dutch AC erratum no longer matches its source button")
+                    label = NL_ERRATUM["corrected_text"]
+                labels.append(html.escape(label))
+            buttons = " + ".join(labels)
             operation = row["operation"]["text"]
             operation = re.sub(r"^(\d+\s*\S+)\s+(.*)\s+\1$", r"\2 (\1)", operation)
             result.append(f'<tr><th scope="row">{buttons}</th><td>{html.escape(operation)}</td><td>{html.escape(row["function"]["text"])}</td></tr>')
@@ -332,6 +343,15 @@ def write_book(lang: str, output_root: Path) -> dict:
         original = HERE / "figures" / lang / Path(figure["path"]).name
         if hashlib.sha256(original.read_bytes()).hexdigest() != figure["sha256"]:
             raise ValueError(f"figure hash mismatch: {original}")
+        if lang == "nl" and figure["slug"] == "app_control":
+            if figure["sha256"] != NL_ERRATUM["raw_asset"]["sha256"]:
+                raise ValueError("Dutch AC erratum raw image changed")
+            correction = NL_ERRATUM["corrected_web_asset"]
+            original = HERE / correction["path"]
+            if hashlib.sha256(original.read_bytes()).hexdigest() != correction["sha256"]:
+                raise ValueError("Dutch AC erratum corrected image changed")
+            figure["web_asset_path"] = correction["path"]
+            figure["path"] = correction["published_name"]
         shutil.copy2(original, assets / original.name)
     for row in SYMBOLS["locales"][lang]["pictograms"]:
         original = HERE / "figures" / lang / Path(row["icon_path"]).name

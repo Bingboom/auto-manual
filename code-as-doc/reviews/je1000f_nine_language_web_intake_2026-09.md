@@ -58,14 +58,14 @@ hashes. A source-local adapter builds selectable MyST/HTML from direct AI text
 objects and geometry; the LCD, symbol, troubleshooting, specification,
 warranty, App and operating tables/lists are structured. The original nine-
 language shell remains excluded from release. The candidate contains only four
-new language targets. Its 268 input files are inventoried by SHA-256.
+new language targets. Its 273 input files are inventoried by SHA-256.
 
 | Language | Content | Figures | Local build | Browser | Publication |
 | --- | --- | --- | --- | --- | --- |
-| uk (Ukrainian) | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
-| pt | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
-| nl | 13 chapters, structured dense regions; source erratum choice pending | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
-| pl | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Provisional portal review passed; refresh pending | Not published |
+| uk (Ukrainian) | 13 chapters, structured dense regions; approved source erratum recorded | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Portal review passed; approved errata rechecked | Not published |
+| pt | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Portal review passed; approved errata rechecked | Not published |
+| nl | 13 chapters, structured dense regions; approved source erratum recorded | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Portal review passed; approved errata rechecked | Not published |
+| pl | 13 chapters, structured dense regions | 21 source-page crops + 7 icons; crop QA passed | Strict Sphinx passes; 28/28 image paths exist | Portal review passed; approved errata rechecked | Not published |
 
 Four-language candidate source: `manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language/web`; local served HTML:
 `/tmp/je1000f-four-candidate/html`. Each local page has a locale root HTML
@@ -76,6 +76,23 @@ against the final remote engineering commit after the source errata decisions;
 the Hello-Docs PR, merge, and RTD acceptance remain separate gates.
 
 ## Implementation phases
+
+### Confirmed source errata, 2026-09-28
+
+The operator approved the two source errata with “可以按这个处理 这个 错误会记录的吧？”.
+The next bounded change records them in `four-language/source/errata.json`:
+the Ukrainian USB-C sentence on physical page 99 uses the already verified
+Ukrainian template wording; Dutch AC labels on physical pages 135 and 142 are
+corrected using the original AC button faces and the reviewed image candidate.
+The raw extraction and `figures/nl/p142_app_control.png` stay immutable. A
+separate corrected image and its hash are used only by the Web renderer.
+
+Verification proceeds from exact source/hash assertions and generated-content
+comparisons to four strict Sphinx builds, the frozen-evidence focused tests,
+and the assembled portal browser review. MA-195 covers only #1315 and its
+four-language Hello-Docs publication. Final receipts bind the remote source
+commit and version `git-20260927-c38415f5`; all five existing source trees and
+all unrelated targets are compared before publication.
 
 1. **Baseline:** pin Hello-Docs main, the current publish manifest, and the
    five existing source inventories. Require a four-target additive diff.

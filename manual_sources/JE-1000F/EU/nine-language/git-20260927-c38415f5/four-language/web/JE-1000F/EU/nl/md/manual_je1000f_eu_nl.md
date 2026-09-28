@@ -345,9 +345,9 @@ Model: JE-1000F · hello.eu@jackery.com
 <th scope="col">BEDIENING</th>
 <th scope="col">Functie</th>
 </tr></thead><tbody>
-<tr><th scope="row">Aan/Uit-knop + Aan/uit-knop voor DC</th><td>3s Houd beide knoppen 3 seconden ingedrukt</td><td>De Energiebesparingsmodus in-/uitschakelen</td></tr>
+<tr><th scope="row">Aan/Uit-knop + Aan/uit-knop voor AC</th><td>3s Houd beide knoppen 3 seconden ingedrukt</td><td>De Energiebesparingsmodus in-/uitschakelen</td></tr>
 <tr><th scope="row">Aan/Uit-knop + Aan/uit-knop voor DC/USB</th><td>3s Houd beide knoppen 3 seconden ingedrukt</td><td>Reset wifi en Bluetooth</td></tr>
-<tr><th scope="row">Aan/uit-knop voor DC + Aan/uit-knop voor DC/USB</th><td>1 seconde Houd beide knoppen 1 seconde ingedrukt</td><td>Wifi en Bluetooth in-/uitschakelen</td></tr>
+<tr><th scope="row">Aan/uit-knop voor AC + Aan/uit-knop voor DC/USB</th><td>1 seconde Houd beide knoppen 1 seconde ingedrukt</td><td>Wifi en Bluetooth in-/uitschakelen</td></tr>
 <tr><th scope="row">Aan/Uit-knop + LED-lampknop</th><td>1 seconde Houd beide knoppen 1 seconde ingedrukt</td><td>De Noodoplaadmodus in-/uitschakelen</td></tr>
 </tbody></table></div>
 
@@ -563,7 +563,7 @@ Model: JE-1000F · hello.eu@jackery.com
 <p>2.1 Klik op de + -knop om uw apparaat toe te voegen;</p>
 <p>2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en Bluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de netwerkconﬁguratiemodus bevindt. Tik op de knop &#x27;Pictogram knippert&#x27; en geef de app toestemming om verbinding te maken met apparaten in de buurt en schakel de Bluetooth-machtigingen in.</p>
 <figure><img src="assets/p142_app_add_device.png" alt="APP INSTELLEN: app add device" width="513" height="456" loading="lazy" style="max-width:100%;height:auto"></figure>
-<figure><img src="assets/p142_app_control.png" alt="APP INSTELLEN: app control" width="906" height="198" loading="lazy" style="max-width:100%;height:auto"></figure>
+<figure><img src="assets/p142_app_control_AC.png" alt="APP INSTELLEN: app control" width="906" height="198" loading="lazy" style="max-width:100%;height:auto"></figure>
 <p>2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch verbinding met het apparaat via Bluetooth.</p>
 <h3>OPMERKING</h3>
 <p>Als tijdens het bindingsproces &quot;het apparaat is al gebonden&quot; wordt gemeld, kunnen de volgende twee methoden worden gebruikt voor de verbinding:</p>
