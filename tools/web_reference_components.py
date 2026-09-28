@@ -43,7 +43,7 @@ def prepare_reference_caption_data(
         for value in spec.get("caption_labels", [])
         if str(value).strip()
     ]
-    if label_block is None and not labels and not spec.get("captions_embedded"):
+    if label_block is None and not labels and not (spec.get("captions_embedded") or spec.get("caption_mode") == "none"):
         raise error_type(f"{source_path}: {reference_id} requires labels or embedded captions")
     return label_block, labels
 
