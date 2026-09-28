@@ -154,7 +154,7 @@
     },
     {
       "scope": "UPS WARNING and fourth UPS CAUTION bullet on the review pages",
-      "change": "The six UPS review pages (page/06_ups_mode.rst and p24/p39/p54/p69/p84 for fr/es/de/it/uk) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator ruling of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79/94-95), with the house fixes 'outlet. Do', whole-word labels and a real Ukrainian bullet. The UK page, which no published Web route reads, changes with the others so the merged book stays consistent. No Web composite governs the UPS page."
+      "change": "The five UPS review pages the EN/FR/ES/DE/IT Web routes render (page/06_ups_mode.rst and p24/p39/p54/p69) gain the UPS WARNING (data servers and medical devices; life-safety, infrastructure and business-critical equipment; pacemaker wearers) between the UPS text and the CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no cascade), as the shared docs/templates/page_shared/<lang>/06_ups_mode.rst templates now carry them. Operator ruling of 2026-09-27: every model that uses the shared UPS template carries these blocks, although this model's V2.0-2026-06-18 print does not. The wording is each language block of the JE-3000C EUUK V2.0-2026-09-15 print (sha256 f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32, PDF pages 14-15/30-31/46-47/62-63/78-79), with the house fixes 'outlet. Do' and whole-word labels. The UK page p84 keeps its wording, as for the 2026-09-27 alt-text change: this model ships no Ukrainian (data/model_languages.csv), so no output renders it. No Web composite governs the UPS page."
     }
   ],
   "files": [
@@ -1267,8 +1267,8 @@
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst",
-      "size": 4374,
-      "sha256": "fa5a9073f0a09cb07f8627b20a3fafb17a32926f5aaed842649cabdd7b65dc92"
+      "size": 2534,
+      "sha256": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5"
     },
     {
       "path": "docs/_review/JE-1000F/EU/page/p85_charging.rst",

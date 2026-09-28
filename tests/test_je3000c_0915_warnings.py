@@ -14,15 +14,16 @@ Each of the six language blocks adds three items:
 
 The two UPS items go into the shared ``docs/templates/page_shared/<lang>/06_ups_mode.rst``
 for every model that uses it (ruling 「所有用这个模板的型号都加」), and into the
-JE-1000F/EU review pages, which that model's Web routes render instead of the
-templates. House fixes, not print defects: en ``outlet. Do`` (printed
-``outlet.Do``), whole-word labels (the fr and uk labels print split across two
-lines) and a real list item for the uk bullet (printed without its glyph).
-Everything else is the print's text.
+en/fr/es/de/it JE-1000F/EU review pages, which that model's Web routes render
+instead of the templates. House fixes, not print defects: en ``outlet. Do``
+(printed ``outlet.Do``), whole-word labels (the fr and uk labels print split
+across two lines) and a real list item for the uk bullet (printed without its
+glyph). Everything else is the print's text.
 
 The UPS carriers of languages the print has no block for (ko, pt-BR, ja, zh),
 the JE-500A English UPS page and the US/KR review pages stay byte for byte:
-they await the operator's decision.
+they await the operator's decision. So does the JE-1000F/EU uk review page:
+that model ships no Ukrainian, so no output renders it.
 """
 
 from __future__ import annotations
@@ -135,10 +136,11 @@ ENERGY_CARRIERS = {
     for lang in LANGS
 }
 UPS_TEMPLATES = {lang: TEMPLATES / "page_shared" / lang / "06_ups_mode.rst" for lang in LANGS}
+# The pages JE-1000F/EU's en/fr/es/de/it Web routes render (it ships no uk).
 JE1000F_EU_REVIEW_UPS = {
     lang: ROOT / "docs/_review/JE-1000F/EU/page" / name
-    for lang, name in zip(LANGS, ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
-                                  "p54_06_ups_mode.rst", "p69_06_ups_mode.rst", "p84_06_ups_mode.rst"))
+    for lang, name in zip(LANGS[:5], ("06_ups_mode.rst", "p24_06_ups_mode.rst", "p39_06_ups_mode.rst",
+                                      "p54_06_ups_mode.rst", "p69_06_ups_mode.rst"))
 }
 
 # Each edited carrier before the change: removing the added blocks must give these bytes back.
@@ -160,11 +162,11 @@ PRE_CHANGE_SHA256 = {
     "docs/_review/JE-1000F/EU/page/p39_06_ups_mode.rst": "638697edc57cbbae91fed1b50b8ece7c2bbe076e8013a6654941a5d15ac44896",
     "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8",
     "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe",
-    "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5",
 }
 
-# UPS carriers left for the operator: no print block for their language, or not
-# the shared template (JE-500A's own page), or another region's review line.
+# UPS carriers left for the operator: no print block for their language, not the
+# shared template (JE-500A's own page), another region's review line, or a review
+# page no output renders (JE-1000F/EU uk).
 UNTOUCHED_SHA256 = {
     "docs/templates/page_shared/ko/06_ups_mode.rst": "0fb720f9f4a37a3d6ed55fba53ffe7ead1d3aad7e4676c09b871299797cf0c8a",
     "docs/templates/page_shared/pt-BR/06_ups_mode.rst": "640c072659fdc20b24448cae4fbe9666b160ecae06f6963e26d3ce8a0269219e",
@@ -175,6 +177,7 @@ UNTOUCHED_SHA256 = {
     "docs/_review/JE-1000F/US/page/p27_06_ups_mode.rst": "e9de192a5e93aec9df5c3e9312355908372150022b71cfe63b418418b638d73a",
     "docs/_review/JE-1000F/US/page/p43_06_ups_mode.rst": "3f26e6b0b126f73a3149d962e5ef04e719fa6fcb9d2aa942993f7413dfe5c43a",
     "docs/_review/JE-3000C/KR/ko/page/06_ups_mode.rst": "d36c2800ba5225650e0a7d63929869084e3607363cf819b80af6e4d849b117b2",
+    "docs/_review/JE-1000F/EU/page/p84_06_ups_mode.rst": "944bd8194857e03d14f96be112b18e9e4f9f7e4d66f180891a520ab73f2500e5",
 }
 
 
@@ -301,9 +304,10 @@ class SharedUpsAdditionTests(unittest.TestCase):
                 self._assert_ups_additions(UPS_TEMPLATES[lang], lang)
 
     def test_je1000f_eu_review_pages_carry_the_same_additions(self) -> None:
-        for lang in LANGS:
+        self.assertEqual(["en", "fr", "es", "de", "it"], list(JE1000F_EU_REVIEW_UPS))
+        for lang, path in JE1000F_EU_REVIEW_UPS.items():
             with self.subTest(lang=lang):
-                self._assert_ups_additions(JE1000F_EU_REVIEW_UPS[lang], lang)
+                self._assert_ups_additions(path, lang)
 
     def test_every_configured_ups_target_reads_an_edited_template(self) -> None:
         carriers = ups_carriers_of_configured_targets()
@@ -335,7 +339,7 @@ class UntouchedCarrierTests(unittest.TestCase):
                     removed = text.replace(energy_block(lang), "", 1)
                 else:
                     lang = next(candidate for candidate in LANGS
-                                if ROOT / relative in (UPS_TEMPLATES[candidate], JE1000F_EU_REVIEW_UPS[candidate]))
+                                if ROOT / relative in (UPS_TEMPLATES[candidate], JE1000F_EU_REVIEW_UPS.get(candidate)))
                     table, bullet = ups_blocks(lang)
                     removed = text.replace(table, "", 1).replace(bullet, "", 1)
                 self.assertNotEqual(text, removed, "the added blocks are missing")
@@ -363,10 +367,9 @@ class HouseWordingTests(unittest.TestCase):
             self.assertIn(f"   * - **{PRINT[lang]['warning']}**\n", ENERGY_CARRIERS[lang].read_text(encoding="utf-8"))
 
     def test_the_ukrainian_fourth_bullet_is_a_list_item(self) -> None:
-        for path in (UPS_TEMPLATES["uk"], JE1000F_EU_REVIEW_UPS["uk"]):
-            with self.subTest(carrier=path.relative_to(ROOT).as_posix()):
-                lines = [line for line in path.read_text(encoding="utf-8").split("\n") if "Функція UPS працює" in line]
-                self.assertEqual([f"       - {PRINT['uk']['bullet']}"], lines)
+        text = UPS_TEMPLATES["uk"].read_text(encoding="utf-8")
+        lines = [line for line in text.split("\n") if "Функція UPS працює" in line]
+        self.assertEqual([f"       - {PRINT['uk']['bullet']}"], lines)
 
     def test_no_print_bullet_glyph_is_copied(self) -> None:
         for path in self.EDITED:

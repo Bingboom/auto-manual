@@ -398,9 +398,11 @@ takes each one from its own block:
   WARNING is live text after the figure, as the print places it.
 - The UPS WARNING keeps the print's structure: two sentences, three bullets,
   the pacemaker sentence.
-- The JE-1000F/EU review pages, which that model's Web routes render instead of
-  the templates, take the same two UPS blocks. `manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json`
-  re-locks them.
+- The five JE-1000F/EU review pages that model's en/fr/es/de/it Web routes
+  render instead of the templates take the same two UPS blocks, and
+  `manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json` re-locks them. Its
+  uk page stays as it is: JE-1000F/EU ships no Ukrainian, so no output renders
+  that page.
 
 House fixes, not print defects (operator ruling of the same date):
 
