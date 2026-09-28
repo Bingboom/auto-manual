@@ -171,7 +171,12 @@ contracts. It rejects changed image or stylesheet bytes. The model, region,
 locale and manifest digest are bound together; this source-scoped locale
 support does not register phase2 columns or print templates.
 
-## Representation boundaries
+## Historical frozen-AI representation boundaries
+
+The bullets below describe the retained earlier `frozen_ai_web` intake, not the
+current `frozen_pdf_web` layout-fixes delivery described above. The current PDF
+route uses the four-column LCD icon component, split App components with live
+step captions, and finished composites only for the two approved Overview views.
 
 - Each book has 13 source chapters plus its introduction and EU declaration.
   Prose and the 26 numbered LCD explanations use neutral flow. The LCD source
