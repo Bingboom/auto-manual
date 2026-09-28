@@ -19,6 +19,7 @@ code-as-doc/dev/dev_log.md
 code-as-doc/dev/eu_pdf_style_iteration_plan.md
 code-as-doc/dev/eu_web_batch_integration_20260912.md
 code-as-doc/dev/external_table_contracts.md
+code-as-doc/dev/four_language_shared_ir_alignment.md
 code-as-doc/dev/git_branching_guide.md
 code-as-doc/dev/git_worktree_guide.md
 code-as-doc/dev/idml_candidate_promotion.md
