@@ -47,6 +47,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-192 | 按顺序：(a) PR（`fix/templates-ups-warning-0915`，**含本登记行**）按操作者 2026-09-27 的三项裁定调整 MA-191 (b)：新增的节能警告、UPS 警告与第 4 条注意事项先只进网页与 Word 输出，PDF/IDML 与 main 保持一致（排版渲染另立一项）；同样的 UPS 警告与注意事项也加到 JE-500A 自己的英文 UPS 页 `docs/templates/page_je500a_eu-en/06_ups_mode.rst`；韩/日/中/巴西葡语模板不动，等审核译文。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge；本窗口可把分支更新到最新 main（只合并 main，不改其内容）。(b) MA-191 (c) 的同一个 Hello-Docs 发布 PR 另加 JE-500A/EU 英 **2.0-20260927**，校验、页面变化归类与 RTD 核对同 MA-191 (c)。**不含**：渲染代码变更、韩/日/中/巴西葡语译文、其它区域评审页、Hello-Docs `review/*` 分支及其 PR、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「先只进网页和 Word（推荐）」「也加上（推荐）」「先不加，等审核译文（推荐）」2026-09-27 | (a)(b) 均完成即失效，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-191 | 按顺序：(a) 本 PR（`fix/web-je3000c-eu-de-front-0915`，**含本登记行，并把 MA-190 翻为已失效**）：JE-3000C/EU 德语产品总览正视图改用 V2.0-2026-09-15 印刷按原 07-31 框重裁的图（仅标签「Bouton d'alimentation CA」→「AC-Ausgangstaste」，候选图已由操作者确认）；新增补充配方，07-31 原配方与其余插图不变。(b) 模板线 PR（`fix/templates-ups-warning-0915`）：JE-3000C/EU 六语节能模式新增警告；共用 UPS 模板在所有使用它的型号中新增 UPS 警告与第 4 条注意事项（不串接），各语言按 09-15 印刷该语言块原文、印刷笔误按审核写法；JE-1000F/EU 评审页同步；JE-3000C 冻结源注明新增文字依据 09-15、插图与其余内容依据 07-31。(a)(b) 各自须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge；本窗口可把分支更新到最新 main（只合并 main，不改其内容）。(c) 两者都合入且镜像同步落地后，从新 main 按各型号冻结源（规定的来源模式）Git-only 构建受影响型号的欧规路由，进同一个 Hello-Docs 发布 PR：JE-1000F 五语 **2.7**、JE-1000H 六语 **2.0-20260927.2**、JE-2000E 六语 **2.10**、JE-2000F 六语 **2.6**、JE-3000C 六语 **2.9**、JE-3600A 英/西/法 **2026-05-25.9**（某型号最终没有页面变化则不发；若其它路由的页面也会变化，停下报告）；每页的每一处变化都须归入上述新增警告/注意事项与德语正视图，超出即停下报告；校验通过后合入（publish→main，不带 `--delete-branch`），并在 RTD 慢速核对。**不含**：美规/澳规/BP 等其它区域的评审页、Hello-Docs `review/*` 分支及其 PR、网页与两版印刷都不一致的旧差异（另立一项）、其它插图、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「只采纳新增文字（推荐）」「所有用这个模板的型号都加」「另立一项」「从 09-15 重新裁这一张」「确认，换上这张（推荐）」2026-09-27 | (a)(b)(c) 均完成即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
