@@ -23,6 +23,15 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # The en/de/it/uk charging and en/de/it UPS goldens moved when those figures'
 # alt text stopped calling the figure a placeholder; the rendered diff was
 # exactly those :alt: lines, nothing else.
+# The en/fr/es/de/it/uk UPS goldens moved again when the shared UPS template took
+# the UPS WARNING and the fourth CAUTION bullet of the JE-3000C EUUK
+# V2.0-2026-09-15 print for every model that uses it (operator rulings
+# 2026-09-27), for the Web and Word only: a `.. only:: not latex` block holds the
+# WARNING and the four-bullet CAUTION, and main's CAUTION follows unchanged under
+# `.. only:: latex`. Dropping the `not latex` block and unwrapping the `latex`
+# one gives main's rendered bytes exactly
+# (tests/test_je3000c_0915_warnings.py pins that print branch). The ko and pt-BR
+# goldens stay: the print has no block for those languages.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -35,13 +44,13 @@ CHARGING_CASES = {
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "0d284555c591744b31ab0ba85bb7234be4b99153b782821104746b929caef38d"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "7e86629d410104f7d8be9c07a7d0f9cb0345281d568307c1522f8d7ab0d1d4b8"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "5357dde7f545649c6c473c2dcb8e0931bfb881efa1a375f2690176d023caee10"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "e89a761c89ca06fe7b399fd678e6f61607a6a8617b4aa3d00b4440b8ecbb715b"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "ad49034bb2b63fe32a7a076898abcc23204d1c67f57c2f84e61a617d789b2c19"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "20251799018ab71b95be7452022dd26b08e37469726560b7849a7153af21a8b5"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "7d0e61ffc0fcc1a45e46d9f83a9daa2c58dde3c40d44cad36877811864c16c68"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "c1b9d1526394e4e382ad160903b5c2823c6c433e999097fadef61cdc16a1da9f"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "2691fe1006dbe89008d0596e556ef53805bbd0a49238930a5795f7d73e0850d6"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "7ad045ad4eb93ce9b2d3f66d7035dc1abf8fbc89c74af8524502e5e022142f8e"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "060c7e6875f922a586a8e7c864e446149c8d8dc6e1445ef71fe1a5fb95545070"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "c783890af8f0e520f188584ee47956e4ddc28c9843e1039a8a554bcd4114d1a0"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
 

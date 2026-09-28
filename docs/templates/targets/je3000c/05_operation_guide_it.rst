@@ -92,6 +92,15 @@ Quando si alimentano dispositivi a basso consumo (CA <= |ENERGY_SAVING_AC_THRESH
    * - **NOTA**
      - La Modalità risparmio energetico riprende il suo stato precedente dopo l'accensione. Per cambiare modalità è necessario un intervento manuale.
 
+.. only:: not latex
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **AVVERTENZA**
+        - Quando la Modalità di risparmio energetico è attiva, il prodotto disattiva automaticamente l'uscita CA se il consumo energetico del dispositivo collegato rimane basso per il periodo di tempo impostato. Quando si alimentano dispositivi che richiedono un'alimentazione continua, come frigoriferi, router, telecamere di sicurezza o pompe ad aria per acquari, si consiglia di disattivare la Modalità di risparmio energetico per evitare che un'interruzione imprevista ne comprometta il funzionamento.
+
 
 .. hb-capability-begin: AC/DC输出记忆恢复
 

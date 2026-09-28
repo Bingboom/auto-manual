@@ -4,7 +4,9 @@ This directory is the audited, target-scoped build input for the Git-only Web
 release of `JE-3000C / EU / en`, version `2.0`.
 
 - Authority: the current published `V2.0-2026-07-31` EUUK manual identified in
-  [`source_manifest.json`](source_manifest.json).
+  [`source_manifest.json`](source_manifest.json), for the figures and all
+  content except the German front view and three blocks of copy, which follow
+  its `V2.0-2026-09-15` revision (see the 2026-09-27 notes below).
 - Structured source: [`phase2/`](phase2) contains the target rows and shared
   dictionaries required to render the English manual.
 - Artwork: the deterministic extraction recipe is hash-locked through
@@ -96,3 +98,25 @@ pinned under `supplemental_asset_recipes` in `source_manifest.json`. The 07-31
 recipe and every other figure are unchanged. The printed
 `DC-12V-Ausgangstaste` label is still a print defect, so the page keeps its
 corrected callout table.
+
+New copy from the 2026-09-15 revision (2026-09-27): three blocks now follow each
+language block of the V2.0-2026-09-15 print (SHA-256 `f3264481…`), by operator
+ruling of the same date:
+
+- the Energy Saving Mode WARNING below the energy-saving NOTE, in this model's
+  own `docs/templates/targets/je3000c/05_operation_guide_*.rst`;
+- the UPS WARNING before the UPS CAUTION, and
+- a fourth UPS CAUTION bullet (one unit directly on a wall outlet, no cascade).
+
+The two UPS blocks sit in the shared `page_shared/<lang>/06_ups_mode.rst`, so
+every model that uses that template carries them. Figures and all other content
+stay on V2.0-2026-07-31, because the 09-15 drawings carry nine defects; the one
+exception is the German front view above. The 07-31 print remains the authority
+in `source_manifest.json`, which now scopes it and records the 09-15 print under
+`authority.adopted_copy_revisions`. No file of `phase2/` and no recipe changes;
+see the intake review addendum of the same date.
+
+The three blocks show on the Web and in Word only, for now (operator ruling of
+the same date): each sits under `.. only:: not latex`, and the UPS pages keep
+their previous CAUTION under `.. only:: latex`. The PDF (LaTeX) and IDML output
+stays as it was until those renderers keep these callouts' paragraphs.

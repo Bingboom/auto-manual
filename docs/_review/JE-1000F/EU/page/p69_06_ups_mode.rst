@@ -14,12 +14,42 @@ GRUPPO DI CONTINUITÀ (UPS)
 | In modalità UPS, la potenza di picco dell'unità raggiunge 1500 W prima dei interruzioni di corrente. Poiché in modalità bypass sono abilitati la carica e la scarica simultanee,
 | la potenza di uscita effettiva in questa modalità è inferiore alla potenza nominale, ma torna alla potenza nominale durante i interruzioni di corrente.
 
-.. list-table::
-   :header-rows: 0
-   :widths: 12 88
+.. only:: not latex
 
-   * - **ATTENZIONE**
-     -
-       - Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo ad apparecchiature che richiedono un'alimentazione con commutazione a 0 ms, come server di dati o workstation.
-       - Prima dell'uso, verifica più volte la compatibilità con il tuo dispositivo.
-       - Non collegare carichi che superano la potenza massima di uscita del prodotto. In caso contrario, verrà attivata la protezione da sovraccarico.
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **AVVERTENZA**
+        - Non utilizzare questo prodotto per applicazioni quali server di dati o dispositivi medici, in cui un malfunzionamento potrebbe mettere in pericolo la vita o causare ingenti danni materiali.
+
+          Per le seguenti apparecchiature, una perdita dell'alimentazione elettrica durante l'uso potrebbe causare gravi rischi per la sicurezza delle persone o gravi danni materiali:
+
+          - Dispositivi medici e altre apparecchiature strettamente correlate alla sicurezza della vita.
+          - Apparecchiature critiche, come infrastrutture sociali e servizi pubblici essenziali.
+          - Apparecchiature aziendali critiche, ecc.
+
+          Le persone portatrici di un pacemaker cardiaco (destinatari di un impianto di pacemaker) non devono utilizzare questo prodotto.
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENZIONE**
+        -
+          - Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo ad apparecchiature che richiedono un'alimentazione con commutazione a 0 ms, come server di dati o workstation.
+          - Prima dell'uso, verifica più volte la compatibilità con il tuo dispositivo.
+          - Non collegare carichi che superano la potenza massima di uscita del prodotto. In caso contrario, verrà attivata la protezione da sovraccarico.
+          - La funzione UPS è disponibile solo quando una singola unità è collegata direttamente a una presa a muro. Non collegare più power station portatili in serie (collegamento in cascata). In una configurazione in cascata la funzione UPS non funziona: l'unità potrebbe non commutare durante un'interruzione di corrente, causando lo spegnimento dei dispositivi collegati.
+
+.. only:: latex
+
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
+
+      * - **ATTENZIONE**
+        -
+          - Questo prodotto non supporta la commutazione a 0 ms. Non collegarlo ad apparecchiature che richiedono un'alimentazione con commutazione a 0 ms, come server di dati o workstation.
+          - Prima dell'uso, verifica più volte la compatibilità con il tuo dispositivo.
+          - Non collegare carichi che superano la potenza massima di uscita del prodotto. In caso contrario, verrà attivata la protezione da sovraccarico.
