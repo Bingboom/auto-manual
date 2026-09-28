@@ -891,6 +891,16 @@ Web Publish / Read the Docs note:
   normal flow: art and steps share a responsive row, while supporting copy grows
   below it. At 760 px and below the row stacks. It reuses the existing Operation
   ComponentSpec and does not change IDML or grant any target automatically.
+  For language-specific art/activation in one overlay, use
+  `base_art_layout_by_locale: {en: {art_sha256: <hash>, copy_layout: flow}, ...}`
+  instead of direct `presentation_mode` and `base_art_layout`. Only listed
+  locales opt in; other locales retain their existing final-figure path without
+  EN fallback. The map must fit the coverage locales and exact slot grants;
+  derived frozen coverage scope and selected ComponentSpec locale/hash are
+  checked again during replay. Missing/`und` page language fails for mapped
+  figures. Presentation JSON rejects duplicate keys with file/key diagnostics.
+  Flow counts nonempty direct source lines for steps and supporting copy, so
+  blank RST `|` spacing cannot consume a step or the supporting-line count.
   Derive duration shorthand from the localized source instruction: the Web
   renderer also recognizes German `Sekunden`, alongside the already supported
   `3 s` form, without changing the visible instruction. Flow draws the existing

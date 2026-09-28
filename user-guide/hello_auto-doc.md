@@ -139,6 +139,12 @@ recognizes German `Sekunden` when deriving the small duration marker; the
 instruction remains the source's original text. This compatibility change
 does not grant any EU slot or mark a new manual as published. See the
 [reuse verification record](../code-as-doc/dev/web_base_art_reuse_validation.md).
+If one overlay needs different art by language, declare the exact opt-in and
+hashes together in `base_art_layout_by_locale`, without direct mode/layout
+fields. Unlisted languages retain their existing finished artwork and gates;
+there is no EN fallback. The map must stay inside the coverage locales and
+exact slot grants. Package replay verifies the selected language, frozen layout
+and art hash. Duplicate JSON keys and missing page languages fail explicitly.
 ---
 
 ## 1. Environment Setup
