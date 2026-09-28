@@ -75,6 +75,15 @@ def add_web_language_navigation(
         raise WebLanguageNavigationError(
             "Web language navigation requires one fragment per document page"
         )
+    from tools.manual_ir.external_languages import frozen_language_issues
+
+    frozen_issues = frozen_language_issues(ir)
+    if frozen_issues is not None:
+        if frozen_issues:
+            raise WebLanguageNavigationError("; ".join(frozen_issues))
+        # One explicitly source-bound locale; the publication portal owns the
+        # cross-book selector. Do not register fictitious phase2 columns here.
+        return rendered
     specs = _declared_language_specs(ir)
     if len(specs) < 2:
         return rendered
