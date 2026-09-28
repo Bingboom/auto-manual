@@ -1,0 +1,95 @@
+{
+  "overlay_id": "je1000f-eu-v1",
+  "target": {
+    "model": "JE-1000F",
+    "region": "EU"
+  },
+  "skeleton_profile": "portable-power-station-v1",
+  "capabilities": {
+    "figures": true,
+    "legacy_target_components": false
+  },
+  "figure_coverage": {
+    "policy_id": "je1000f-eu-finished-figures-v1",
+    "locales": [
+      "en",
+      "fr",
+      "es",
+      "de",
+      "it"
+    ],
+    "required_slots": [
+      "product-overview.front",
+      "product-overview.right",
+      "operation.main-power",
+      "operation.ac-output",
+      "operation.dc-usb-output",
+      "operation.energy-saving",
+      "operation.led-light",
+      "reference.charging-ac-wall",
+      "reference.charging-solar-direct",
+      "reference.charging-solar-adapter",
+      "reference.charging-car"
+    ],
+    "allowed_statuses": [
+      "finished-panel",
+      "approved-composite"
+    ],
+    "slot_status_overrides": {
+      "operation.main-power": [
+        "base-art-live-copy"
+      ],
+      "operation.ac-output": [
+        "base-art-live-copy"
+      ],
+      "operation.dc-usb-output": [
+        "base-art-live-copy"
+      ]
+    }
+  },
+  "contract_overrides": {
+    "operations": {
+      "figures": [
+        {
+          "id": "main-power",
+          "base_art_layout_by_locale": {
+            "en": {
+              "art_sha256": "a94db05b2cccb32a68aef15a83aa1b0850d4be654ee97071eb1ddedccfe9b01e",
+              "copy_layout": "flow"
+            },
+            "de": {
+              "art_sha256": "477a0acebd7320f67945a7021f1304b4de957cf54e4bdba693b2cd4b4874802b",
+              "copy_layout": "flow"
+            }
+          }
+        },
+        {
+          "id": "ac-output",
+          "base_art_layout_by_locale": {
+            "en": {
+              "art_sha256": "42b3c81616e00de18fc4be2a08f9eb6ed1c9be9a214a01d3388d281c27caf677",
+              "copy_layout": "flow"
+            },
+            "de": {
+              "art_sha256": "ebfa352dcc8b89cec6c6b483ef3f12695e04336bbbc1c222a04d0f97bcf9c3a7",
+              "copy_layout": "flow"
+            }
+          }
+        },
+        {
+          "id": "dc-usb-output",
+          "base_art_layout_by_locale": {
+            "en": {
+              "art_sha256": "2bbdfd064ffbffaf79f642ad9f7940f9bea9640efb17ceab01d085e18d68fc7a",
+              "copy_layout": "flow"
+            },
+            "de": {
+              "art_sha256": "45d29667382a39696259df1547e963f5ebc11b642c32785bc46b312dc6152644",
+              "copy_layout": "flow"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

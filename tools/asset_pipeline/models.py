@@ -116,8 +116,9 @@ class TransformSpec:
     images: str | None = None
     graphics: str | None = None
     fill: None = None
-    # drop_leader_strokes only: per-master leader stroke widths. Omitted means
-    # the pipeline defaults (the JE-1000F US master's 1.821pt / 0.30pt).
+    # drop_leader_strokes only: per-master leader stroke widths. An optional
+    # bbox_pt limits suppression to whole paths inside a source-page region.
+    # Omitted values keep the original full-crop/default-width behavior.
     halo_width_pt: float | None = None
     line_width_pt: float | None = None
     width_tolerance_pt: float | None = None
