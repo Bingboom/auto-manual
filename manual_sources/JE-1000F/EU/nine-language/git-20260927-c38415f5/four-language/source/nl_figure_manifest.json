@@ -1,0 +1,386 @@
+{
+  "schema_version": "je1000f-figure-index/v1",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "locale": "nl",
+  "status": "same-relative-clip_trial; needs locale visual QA",
+  "figures": [
+    {
+      "locale": "nl",
+      "section_id": "symbols",
+      "physical_page": 127,
+      "relative_body_page": 1,
+      "slug": "symbol_chart",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p127_symbol_chart.png",
+      "sha256": "27d955b8fc0e1e3d323fac89cedc6c49ece4139b7bf26473627e0ebeede04111",
+      "clip_points": [
+        27.0,
+        360.0,
+        341.0,
+        481.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "symbol meanings and warning labels also in selectable HTML table",
+      "status": "crop boundary inspected; four semantic label/meaning rows extracted"
+    },
+    {
+      "locale": "nl",
+      "section_id": "symbols",
+      "physical_page": 128,
+      "relative_body_page": 2,
+      "slug": "symbol_pictograms",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_symbol_pictograms.png",
+      "sha256": "d834fff6ff2441ef3c3165efc5619f7a30c05cf3596f8db9aaeb455e183c0f56",
+      "clip_points": [
+        27.0,
+        27.0,
+        341.0,
+        177.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "seven pictograms and meanings also in selectable HTML table",
+      "status": "crop boundary inspected; seven pictogram meanings extracted"
+    },
+    {
+      "locale": "nl",
+      "section_id": "in_the_box",
+      "physical_page": 128,
+      "relative_body_page": 2,
+      "slug": "in_box_cards",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p128_in_box_cards.png",
+      "sha256": "4a6d8b2e0a8e45da54a7445f6a3fb343d134e9e20e7d71f1721de52935c097c4",
+      "clip_points": [
+        20.0,
+        180.0,
+        350.0,
+        445.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "product_overview",
+      "physical_page": 129,
+      "relative_body_page": 3,
+      "slug": "front_view",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p129_front_view.png",
+      "sha256": "59d1b235b64696402fd0ac2e4f813384daf70447826ac50d7c6bea511bfa1edf",
+      "clip_points": [
+        16.0,
+        60.0,
+        350.0,
+        310.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "product_overview",
+      "physical_page": 129,
+      "relative_body_page": 3,
+      "slug": "right_view",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p129_right_view.png",
+      "sha256": "ad4e1a4faf31a39a2de836ca6adfc0ca01e2cf9408df50ee9e8487cee1692654",
+      "clip_points": [
+        16.0,
+        310.0,
+        350.0,
+        500.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "lcd_display",
+      "physical_page": 130,
+      "relative_body_page": 4,
+      "slug": "lcd_display",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p130_lcd_display.png",
+      "sha256": "fabd419e7b8395c41224034675a07830c83fbbcfba0dffa37f87ded849478976",
+      "clip_points": [
+        25.0,
+        25.0,
+        345.0,
+        210.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 132,
+      "relative_body_page": 6,
+      "slug": "main_power",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p132_main_power.png",
+      "sha256": "b14348820841b6287a0a823fcf9818a0426486057886396c660a9822b79fa035",
+      "clip_points": [
+        23.0,
+        72.0,
+        337.0,
+        199.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 132,
+      "relative_body_page": 6,
+      "slug": "ac_output",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p132_ac_output.png",
+      "sha256": "e7651e41b791d1603eef8af3f5131a608965245bb1755fe9471e2780a7d408c2",
+      "clip_points": [
+        23.0,
+        275.0,
+        337.0,
+        498.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 133,
+      "relative_body_page": 7,
+      "slug": "dc_usb_output",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p133_dc_usb_output.png",
+      "sha256": "766f0f23fe936df147bdce2b0273797194509c80fd499443161a5eb6bd1c1987",
+      "clip_points": [
+        32.0,
+        44.0,
+        346.0,
+        231.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 134,
+      "relative_body_page": 8,
+      "slug": "energy_saving",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p134_energy_saving.png",
+      "sha256": "14c675dbb974bfa3effa3927c5493b146e947e3b71418a1edcc9aadff55da25e",
+      "clip_points": [
+        28.0,
+        30.0,
+        345.0,
+        145.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 134,
+      "relative_body_page": 8,
+      "slug": "led_light",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p134_led_light.png",
+      "sha256": "c812aa1afe48eae6506bbb10f23434a765eabe4d48f5a21bfafd48c72d8e27de",
+      "clip_points": [
+        27.0,
+        218.0,
+        345.0,
+        353.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "operations",
+      "physical_page": 134,
+      "relative_body_page": 8,
+      "slug": "lcd_mode_art",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p134_lcd_mode_art.png",
+      "sha256": "01290ba0c711b5edd4a66b4faadc694d12c13629c9d09a887bf674e230c594bb",
+      "clip_points": [
+        27.0,
+        368.0,
+        170.0,
+        480.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "ups",
+      "physical_page": 136,
+      "relative_body_page": 10,
+      "slug": "ups_connection",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p136_ups_connection.png",
+      "sha256": "61d1fb93dc8367612e726d70137d386193b5ee606f252316c176976ffa68f78e",
+      "clip_points": [
+        29.0,
+        37.0,
+        343.0,
+        212.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "charging",
+      "physical_page": 137,
+      "relative_body_page": 11,
+      "slug": "ac_wall_charging",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p137_ac_wall_charging.png",
+      "sha256": "372e5d5cee9f41608972b7a617a4c1db46bec94d4998648d461bfe4e4ce0a399",
+      "clip_points": [
+        26.0,
+        52.0,
+        340.0,
+        128.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "charging",
+      "physical_page": 137,
+      "relative_body_page": 11,
+      "slug": "solar_single",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p137_solar_single.png",
+      "sha256": "e6845301d09e97482209c694f560f69126e6963c90c8b6f437f353d33c855e9f",
+      "clip_points": [
+        24.0,
+        267.0,
+        338.0,
+        423.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "charging",
+      "physical_page": 138,
+      "relative_body_page": 12,
+      "slug": "solar_four",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p138_solar_four.png",
+      "sha256": "f2d5dab46f5a1b8d076304e28f8346cbee852395a05bc85665395e4973486574",
+      "clip_points": [
+        28.0,
+        36.0,
+        341.0,
+        180.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "charging",
+      "physical_page": 138,
+      "relative_body_page": 12,
+      "slug": "car_charging",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p138_car_charging.png",
+      "sha256": "e3a640bfe8d7d872bc7062ddc203c3ee08d09bf9cca7f9524cb0e63f76cafc0e",
+      "clip_points": [
+        27.0,
+        380.0,
+        339.0,
+        492.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "app_setup",
+      "physical_page": 142,
+      "relative_body_page": 16,
+      "slug": "app_qr_and_badges",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p142_app_qr_and_badges.png",
+      "sha256": "08edb54acf23e1643ef73807fb107826f13d933fa1b5bf2241349f1cfe5ec2dd",
+      "clip_points": [
+        46.0,
+        69.0,
+        250.0,
+        122.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "app_setup",
+      "physical_page": 142,
+      "relative_body_page": 16,
+      "slug": "app_add_device",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p142_app_add_device.png",
+      "sha256": "da51a1c97c843c5251a8c597b75a0eb0cb69a5879a8677562f75725117dbb112",
+      "clip_points": [
+        94.0,
+        221.0,
+        265.0,
+        373.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "app_setup",
+      "physical_page": 142,
+      "relative_body_page": 16,
+      "slug": "app_control",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p142_app_control.png",
+      "sha256": "ce50147f8e8d9c61f40a4dfc8ad3583c23faa712633cfcaf2e7b3ccdd7a6b9fa",
+      "clip_points": [
+        39.0,
+        390.0,
+        341.0,
+        456.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    },
+    {
+      "locale": "nl",
+      "section_id": "app_setup",
+      "physical_page": 143,
+      "relative_body_page": 17,
+      "slug": "app_pairing",
+      "path": "/tmp/je1000f-nine-language-intake/figures/nl/p143_app_pairing.png",
+      "sha256": "bd702fc97f062d5134e13d3fb96af8452e8e2fc942c298613374cbe493a6a3b3",
+      "clip_points": [
+        52.0,
+        130.0,
+        314.0,
+        278.0
+      ],
+      "image_origin": "exact locale-specific crop from verified AI/PDF master",
+      "embedded_text": "localized visual text must be separately represented in selectable HTML where semantically needed",
+      "status": "same-relative-clip_trial; needs locale visual QA"
+    }
+  ]
+}

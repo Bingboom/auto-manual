@@ -1,0 +1,2860 @@
+{
+  "schema_version": "je1000f-eu-four-locale-front-back/v1",
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "method": "direct AI text objects, no OCR or translation",
+  "shared": {
+    "cover": {
+      "physical_page": 1,
+      "text": "USER MANUAL\nJackery Explorer 1000 \nCONTACT US:\nhello.eu@jackery.com\nModel: JE-1000F\n",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            91.168,
+            360.173,
+            278.575,
+            395.38
+          ],
+          "text": "USER MANUAL\n"
+        },
+        {
+          "bbox": [
+            109.89,
+            392.094,
+            266.47,
+            410.296
+          ],
+          "text": "Jackery Explorer 1000 \n"
+        },
+        {
+          "bbox": [
+            29.596,
+            451.891,
+            86.242,
+            462.816
+          ],
+          "text": "CONTACT US:\n"
+        },
+        {
+          "bbox": [
+            64.405,
+            474.775,
+            328.859,
+            490.078
+          ],
+          "text": "hello.eu@jackery.com\nModel: JE-1000F\n"
+        }
+      ]
+    },
+    "eu_declaration": {
+      "physical_page": 161,
+      "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO.,LTD.\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park \nfactory, the east side of Huafan Road, Tongsheng Community, Dalang \nStreet, Longhua District, Shenzhen, Guangdong, China\nShenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 1000 with Bluetooth \nand Wi-Fi JE-1000F is in compliance with the essential requirements and other relevant provisions of \nthe Directive 2014/53/EU, 2011/65/EU+(EU)2015/863, The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\nsales@hello-tech.com\n+86 400 668 9293\nwww.hello-tech.com\n",
+      "blocks_visual_order": [
+        {
+          "bbox": [
+            66.107,
+            390.271,
+            344.642,
+            421.465
+          ],
+          "text": "Shenzhen Hello Tech Energy Co., Ltd. hereby declares that this: Jackery Explorer 1000 with Bluetooth \nand Wi-Fi JE-1000F is in compliance with the essential requirements and other relevant provisions of \nthe Directive 2014/53/EU, 2011/65/EU+(EU)2015/863, The full text of the EU declaration of conformity is \navailable at the following internet address: https://de.jackery.com/pages/user-guides\n"
+        },
+        {
+          "bbox": [
+            27.804,
+            447.008,
+            255.703,
+            484.551
+          ],
+          "text": "MANUFACTURER: SHENZHEN HELLO TECH ENERGY CO.,LTD.\nAddress: F2-3, Bldg. 7, Jiaanda Science and technology industrial park \nfactory, the east side of Huafan Road, Tongsheng Community, Dalang \nStreet, Longhua District, Shenzhen, Guangdong, China\n"
+        },
+        {
+          "bbox": [
+            37.276,
+            489.321,
+            260.883,
+            497.571
+          ],
+          "text": "sales@hello-tech.com\n+86 400 668 9293\nwww.hello-tech.com\n"
+        }
+      ]
+    }
+  },
+  "locales": {
+    "uk": {
+      "preface": {
+        "physical_page": 3,
+        "bbox": [
+          30,
+          344,
+          346,
+          488
+        ],
+        "text": "UA\nВітаємо вас з новим Jackery Explorer 1000. Будь ласка, уважно прочитайте це керівництво \nперед використанням продукту, особливо відповідні застереження для забезпечення \nправильного використання. Зберігайте це керівництво у доступному місці для подальшого \nвикористання.\nВідповідно до законів і нормативних актів, право остаточного тлумачення цього документа та \nвсіх пов’язаних документів цього продукту належить Компанії. Хоча було докладено всіх \nзусиль для забезпечення точності цього керівництва, Jackery не несе відповідальності за \nможливі помилки.\nЗверніть увагу, що у разі будь-яких оновлень, змін або припинення дії додаткові повідомлення \nне надаватимуться. Щоб отримати найновішу версію керівництв, відвідайте support.jack-\nery.com.\n* Зображення наведені лише для довідки. Будь ласка, орієнтуйтеся на фактичний продукт.\nВАЖЛИВО"
+      },
+      "toc_page": 6,
+      "toc_shared_page": {
+        "physical_page": 6,
+        "text": "86\nВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ\n95\nЗАРЯДЖАННЯ\nUA\nУкраїнська\n86-102\nЗНАЧЕННЯ СИМВОЛІВ\nКОМПЛЕКТАЦІЯ\nОГЛЯД ПРОДУКТУ\nРК-ДИСПЛЕЙ\nОПЕРАЦІЇ \nДЖЕРЕЛО БЕЗПЕРЕБІЙНОГО ЖИВЛЕННЯ (ДБЖ)\n86\n87\n88\n89\n91\n94\nЗБЕРІГАННЯ\nУСУНЕННЯ НЕСПРАВНОСТЕЙ\nТЕХНІЧНІ ХАРАКТЕРИСТИКИ\nГАРАНТІЯ\nНАЛАШТУВАННЯ ДОДАТКА\n98\n98\n99\n100\n101\n69\n69\n70\n71\n72\n74\n77\nPRECAUZIONI DI SICUREZZA\nSIGNIFICATO DEI SIMBOLI\nCONTENUTO DELLA CONFEZIONE\nPANORAMICA DEL PRODOTTO\nDISPLAY LCD\nOPERAZIONI\nGRUPPO DI CONTINUITA (UPS)\n78\n81\n81\n82\n83\n84\nIT\nItaliano\n69-85\nRICARICA\nCONSERVAZIONE\nRISOLUZIONE DEI PROBLEMI\nSPECIFICHE\nGARANZIA\nCONFIGURAZIONE DELL'APP\n52\n \n52\n53\n54\n55\n57\n60\nSICHERHEITSVORKEHRUNGEN BEI DER \nVERWENDUNG\nBEDEUTUNG DER SYMBOLE\nLIEFERUMFANG\nPRODUKTÜBERSICHT\nLCD-ANZEIGE\nGRUNDLEGENDE OPERATIONEN\nUNTERBRECHUNGSFREIE\nSTROMVERSORGUNG (UPS)\nLADEN\nLAGERUNG\nFEHLERSUCHE\nSPEZIFIKATIONEN\nGARANTIE\nAPP-EINSTELLUNG\n61\n64\n64\n65\n66\n67\nDE Deutsch\n52-68\n",
+        "blocks_visual_order": [
+          {
+            "bbox": [
+              33.239,
+              62.808,
+              336.339,
+              77.664
+            ],
+            "text": "DE Deutsch\n52-68\n"
+          },
+          {
+            "bbox": [
+              334.799,
+              86.842,
+              340.889,
+              95.242
+            ],
+            "text": "61\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              87.496,
+              209.212,
+              95.381
+            ],
+            "text": "LADEN\n"
+          },
+          {
+            "bbox": [
+              170.856,
+              88.043,
+              178.311,
+              96.443
+            ],
+            "text": "52\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              87.49,
+              143.971,
+              102.375
+            ],
+            "text": "SICHERHEITSVORKEHRUNGEN BEI DER \nVERWENDUNG\n"
+          },
+          {
+            "bbox": [
+              333.119,
+              100.842,
+              340.889,
+              109.242
+            ],
+            "text": "64\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              101.497,
+              223.037,
+              109.382
+            ],
+            "text": "LAGERUNG\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              108.491,
+              110.061,
+              116.376
+            ],
+            "text": "BEDEUTUNG DER SYMBOLE\n"
+          },
+          {
+            "bbox": [
+              333.119,
+              114.842,
+              340.889,
+              123.242
+            ],
+            "text": "64\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              115.498,
+              231.786,
+              123.383
+            ],
+            "text": "FEHLERSUCHE\n"
+          },
+          {
+            "bbox": [
+              170.856,
+              116.043,
+              178.311,
+              124.443
+            ],
+            "text": "52\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              122.492,
+              74.389,
+              130.377
+            ],
+            "text": "LIEFERUMFANG\n"
+          },
+          {
+            "bbox": [
+              333.399,
+              128.842,
+              340.889,
+              137.242
+            ],
+            "text": "65\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              129.499,
+              240.88,
+              137.384
+            ],
+            "text": "SPEZIFIKATIONEN\n"
+          },
+          {
+            "bbox": [
+              170.821,
+              130.043,
+              178.311,
+              138.443
+            ],
+            "text": "53\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              136.493,
+              91.887,
+              144.378
+            ],
+            "text": "PRODUKTÜBERSICHT\n"
+          },
+          {
+            "bbox": [
+              333.469,
+              142.842,
+              340.889,
+              151.242
+            ],
+            "text": "66\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              143.5,
+              219.735,
+              151.385
+            ],
+            "text": "GARANTIE\n"
+          },
+          {
+            "bbox": [
+              170.471,
+              144.043,
+              178.311,
+              152.443
+            ],
+            "text": "54\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              150.494,
+              70.43,
+              158.379
+            ],
+            "text": "LCD-ANZEIGE\n"
+          },
+          {
+            "bbox": [
+              333.749,
+              156.842,
+              340.889,
+              165.242
+            ],
+            "text": "67\n"
+          },
+          {
+            "bbox": [
+              189.341,
+              157.501,
+              244.832,
+              165.386
+            ],
+            "text": "APP-EINSTELLUNG\n"
+          },
+          {
+            "bbox": [
+              170.751,
+              158.043,
+              178.311,
+              166.443
+            ],
+            "text": "55\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              164.495,
+              123.802,
+              172.38
+            ],
+            "text": "GRUNDLEGENDE OPERATIONEN\n"
+          },
+          {
+            "bbox": [
+              171.101,
+              172.043,
+              178.311,
+              180.443
+            ],
+            "text": "57\n"
+          },
+          {
+            "bbox": [
+              28.85,
+              178.496,
+              110.964,
+              193.381
+            ],
+            "text": "UNTERBRECHUNGSFREIE\nSTROMVERSORGUNG (UPS)\n"
+          },
+          {
+            "bbox": [
+              170.191,
+              186.043,
+              178.311,
+              194.443
+            ],
+            "text": "60\n"
+          },
+          {
+            "bbox": [
+              33.757,
+              208.036,
+              335.582,
+              222.892
+            ],
+            "text": "IT\nItaliano\n69-85\n"
+          },
+          {
+            "bbox": [
+              169.939,
+              229.24,
+              177.359,
+              237.64
+            ],
+            "text": "69\n"
+          },
+          {
+            "bbox": [
+              332.67,
+              229.24,
+              339.936,
+              237.64
+            ],
+            "text": "78\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              229.887,
+              110.921,
+              237.772
+            ],
+            "text": "PRECAUZIONI DI SICUREZZA\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              229.887,
+              216.214,
+              237.772
+            ],
+            "text": "RICARICA\n"
+          },
+          {
+            "bbox": [
+              169.939,
+              243.24,
+              177.359,
+              251.64
+            ],
+            "text": "69\n"
+          },
+          {
+            "bbox": [
+              333.72,
+              243.24,
+              339.936,
+              251.64
+            ],
+            "text": "81\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              243.888,
+              104.427,
+              251.773
+            ],
+            "text": "SIGNIFICATO DEI SIMBOLI\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              243.888,
+              238.99,
+              251.773
+            ],
+            "text": "CONSERVAZIONE\n"
+          },
+          {
+            "bbox": [
+              169.519,
+              257.24,
+              177.359,
+              265.64
+            ],
+            "text": "70\n"
+          },
+          {
+            "bbox": [
+              333.72,
+              257.24,
+              339.936,
+              265.64
+            ],
+            "text": "81\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              257.889,
+              127.795,
+              265.774
+            ],
+            "text": "CONTENUTO DELLA CONFEZIONE\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              257.889,
+              270.522,
+              265.774
+            ],
+            "text": "RISOLUZIONE DEI PROBLEMI\n"
+          },
+          {
+            "bbox": [
+              171.549,
+              271.24,
+              177.359,
+              279.64
+            ],
+            "text": "71\n"
+          },
+          {
+            "bbox": [
+              332.425,
+              271.24,
+              339.936,
+              279.64
+            ],
+            "text": "82\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              271.89,
+              119.091,
+              279.775
+            ],
+            "text": "PANORAMICA DEL PRODOTTO\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              271.89,
+              222.136,
+              279.775
+            ],
+            "text": "SPECIFICHE\n"
+          },
+          {
+            "bbox": [
+              170.254,
+              285.24,
+              177.359,
+              293.64
+            ],
+            "text": "72\n"
+          },
+          {
+            "bbox": [
+              332.39,
+              285.24,
+              339.936,
+              293.64
+            ],
+            "text": "83\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              285.891,
+              67.28,
+              293.776
+            ],
+            "text": "DISPLAY LCD\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              285.891,
+              218.177,
+              293.776
+            ],
+            "text": "GARANZIA\n"
+          },
+          {
+            "bbox": [
+              169.869,
+              299.24,
+              177.359,
+              307.64
+            ],
+            "text": "74\n"
+          },
+          {
+            "bbox": [
+              332.04,
+              299.24,
+              339.936,
+              307.64
+            ],
+            "text": "84\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              299.892,
+              64.706,
+              307.777
+            ],
+            "text": "OPERAZIONI\n"
+          },
+          {
+            "bbox": [
+              187.146,
+              299.892,
+              271.204,
+              307.777
+            ],
+            "text": "CONFIGURAZIONE DELL'APP\n"
+          },
+          {
+            "bbox": [
+              170.499,
+              313.24,
+              177.359,
+              321.64
+            ],
+            "text": "77\n"
+          },
+          {
+            "bbox": [
+              27.896,
+              313.893,
+              118.22,
+              321.778
+            ],
+            "text": "GRUPPO DI CONTINUITA (UPS)\n"
+          },
+          {
+            "bbox": [
+              33.366,
+              357.741,
+              340.173,
+              372.597
+            ],
+            "text": "UA\nУкраїнська\n86-102\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              381.776,
+              341.016,
+              390.308
+            ],
+            "text": "86\nВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ\n95\nЗАРЯДЖАННЯ\n"
+          },
+          {
+            "bbox": [
+              169.493,
+              395.776,
+              177.039,
+              404.176
+            ],
+            "text": "86\n"
+          },
+          {
+            "bbox": [
+              332.77,
+              395.776,
+              340.315,
+              404.176
+            ],
+            "text": "98\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              396.423,
+              96.869,
+              404.308
+            ],
+            "text": "ЗНАЧЕННЯ СИМВОЛІВ\n"
+          },
+          {
+            "bbox": [
+              188.342,
+              396.423,
+              224.813,
+              404.308
+            ],
+            "text": "ЗБЕРІГАННЯ\n"
+          },
+          {
+            "bbox": [
+              171.068,
+              409.776,
+              178.334,
+              418.176
+            ],
+            "text": "87\n"
+          },
+          {
+            "bbox": [
+              332.77,
+              409.776,
+              340.315,
+              418.176
+            ],
+            "text": "98\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              410.424,
+              77.096,
+              418.309
+            ],
+            "text": "КОМПЛЕКТАЦІЯ\n"
+          },
+          {
+            "bbox": [
+              188.342,
+              410.424,
+              277.632,
+              418.309
+            ],
+            "text": "УСУНЕННЯ НЕСПРАВНОСТЕЙ\n"
+          },
+          {
+            "bbox": [
+              170.697,
+              423.776,
+              178.369,
+              432.176
+            ],
+            "text": "88\n"
+          },
+          {
+            "bbox": [
+              333.246,
+              423.776,
+              340.665,
+              432.176
+            ],
+            "text": "99\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              424.425,
+              84.714,
+              432.31
+            ],
+            "text": "ОГЛЯД ПРОДУКТУ\n"
+          },
+          {
+            "bbox": [
+              188.342,
+              424.425,
+              272.822,
+              432.31
+            ],
+            "text": "ТЕХНІЧНІ ХАРАКТЕРИСТИКИ\n"
+          },
+          {
+            "bbox": [
+              170.893,
+              437.776,
+              178.439,
+              446.176
+            ],
+            "text": "89\n"
+          },
+          {
+            "bbox": [
+              329.186,
+              437.776,
+              340.386,
+              446.176
+            ],
+            "text": "100\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              438.426,
+              70.342,
+              446.311
+            ],
+            "text": "РК-ДИСПЛЕЙ\n"
+          },
+          {
+            "bbox": [
+              188.342,
+              438.426,
+              217.202,
+              446.311
+            ],
+            "text": "ГАРАНТІЯ\n"
+          },
+          {
+            "bbox": [
+              172.279,
+              451.776,
+              178.369,
+              460.176
+            ],
+            "text": "91\n"
+          },
+          {
+            "bbox": [
+              331.146,
+              451.776,
+              340.316,
+              460.176
+            ],
+            "text": "101\n"
+          },
+          {
+            "bbox": [
+              28.976,
+              452.427,
+              59.182,
+              460.312
+            ],
+            "text": "ОПЕРАЦІЇ \n"
+          },
+          {
+            "bbox": [
+              188.342,
+              452.427,
+              271.574,
+              460.312
+            ],
+            "text": "НАЛАШТУВАННЯ ДОДАТКА\n"
+          },
+          {
+            "bbox": [
+              170.599,
+              465.776,
+              178.369,
+              474.176
+            ],
+            "text": "94\n"
+          },
+          {
+            "bbox": [
+              28.977,
+              466.423,
+              161.485,
+              474.308
+            ],
+            "text": "ДЖЕРЕЛО БЕЗПЕРЕБІЙНОГО ЖИВЛЕННЯ (ДБЖ)\n"
+          }
+        ]
+      }
+    },
+    "pt": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          30,
+          50,
+          347,
+          184
+        ],
+        "text": "PT\nParabéns pelo seu novo Jackery Explorer 1000. Leia este manual atentamente antes de usar o \nproduto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha \neste manual em um local acessível para consulta frequente.\nEm conformidade com leis e regulamentos, o direito de interpretação final deste documento e de \ntodos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido \nenvidados todos os esforços para garantir a precisão deste manual, a Jackery não assume \nnenhuma responsabilidade por quaisquer erros que possam ocorrer.\nObserve que não serão enviadas novas notificações em caso de atualização, revisão ou \nencerramento. Para obter a versão mais recente dos manuais do produto, visite \nsupport.jackery.com.\n* As imagens são apenas para referência. Consulte o produto real.\nIMPORTANTE"
+      },
+      "toc_page": 7,
+      "toc_shared_page": {
+        "physical_page": 7,
+        "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\nPT Português\n103-119\nSIGNIFICADO DOS SÍMBOLOS\nCONTEÚDO DA EMBALAGEM\nVISÃO GERAL DO PRODUTO\nDISPLAY LCD\nOPERAÇÕES \nFONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n103\n104\n105\n106\n108\n111\nARMAZENAMENTO\nSOLUÇÃO DE PROBLEMAS\nESPECIFICAÇÕES\nGARANTIA\nCONFIGURAÇÃO DO APLICATIVO\n115\n115\n116\n117\n118\n120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\nNL Nederlands\n120-136\nBETEKENIS VAN SYMBOLEN\nWAT ZIT ER IN DE DOOS\nPRODUCTOVERZICHT\nLCD-SCHERM\nHANDELINGEN \nONONDERBROKEN STROOMVOORZIENING (UPS)\n120\n121\n122\n123\n125\n128\nOPSLAG\nPROBLEEMOPLOSSING\nSPECIFICATIES\nGARANTIE\nAPP INSTELLEN\n132\n132\n133\n134\n135\n137\nWAŻNE INFORMACJE DOTYCZĄCE \nBEZPIECZEŃSTWA\n146\nŁADOWANIE\nPL\nPolski\n137-153\nZNACZENIE SYMBOLI\nZAWARTOŚĆ OPAKOWANIA\nWIDOK OGÓLNY PRODUKTU\nWYŚWIETLACZ LCD\nOBSŁUGA \nZASILACZ BEZPRZERWOWY (UPS)\n137\n138\n139\n140\n142\n145\nPRZECHOWYWANIE\nROZWIĄZYWANIE PROBLEMÓW\nDANE TECHNICZNE\nGWARANCJA\nKONFIGURACJA APLIKACJI\n149\n149\n150\n151\n152\n",
+        "blocks_visual_order": [
+          {
+            "bbox": [
+              33.785,
+              63.328,
+              342.402,
+              78.184
+            ],
+            "text": "PT Português\n103-119\n"
+          },
+          {
+            "bbox": [
+              29.542,
+              87.363,
+              341.435,
+              96.008
+            ],
+            "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\n"
+          },
+          {
+            "bbox": [
+              166.958,
+              101.363,
+              177.459,
+              109.763
+            ],
+            "text": "103\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              101.363,
+              340.735,
+              109.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              102.01,
+              118.394,
+              109.895
+            ],
+            "text": "SIGNIFICADO DOS SÍMBOLOS\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              102.01,
+              243.563,
+              109.895
+            ],
+            "text": "ARMAZENAMENTO\n"
+          },
+          {
+            "bbox": [
+              167.904,
+              115.363,
+              178.754,
+              123.763
+            ],
+            "text": "104\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              115.363,
+              340.735,
+              123.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              116.011,
+              115.007,
+              123.896
+            ],
+            "text": "CONTEÚDO DA EMBALAGEM\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              116.011,
+              267.502,
+              123.896
+            ],
+            "text": "SOLUÇÃO DE PROBLEMAS\n"
+          },
+          {
+            "bbox": [
+              168.219,
+              129.363,
+              178.789,
+              137.763
+            ],
+            "text": "105\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              129.363,
+              341.085,
+              137.763
+            ],
+            "text": "116\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              130.012,
+              113.441,
+              137.897
+            ],
+            "text": "VISÃO GERAL DO PRODUTO\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              130.012,
+              240.748,
+              137.897
+            ],
+            "text": "ESPECIFICAÇÕES\n"
+          },
+          {
+            "bbox": [
+              168.359,
+              143.363,
+              178.859,
+              151.763
+            ],
+            "text": "106\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              143.363,
+              340.805,
+              151.763
+            ],
+            "text": "117\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              144.013,
+              68.779,
+              151.898
+            ],
+            "text": "DISPLAY LCD\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              144.013,
+              219.89,
+              151.898
+            ],
+            "text": "GARANTIA\n"
+          },
+          {
+            "bbox": [
+              168.163,
+              157.363,
+              178.789,
+              165.763
+            ],
+            "text": "108\n"
+          },
+          {
+            "bbox": [
+              332.139,
+              157.363,
+              340.735,
+              165.763
+            ],
+            "text": "118\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              158.014,
+              68.857,
+              165.899
+            ],
+            "text": "OPERAÇÕES \n"
+          },
+          {
+            "bbox": [
+              188.761,
+              158.014,
+              289.03,
+              165.899
+            ],
+            "text": "CONFIGURAÇÃO DO APLICATIVO\n"
+          },
+          {
+            "bbox": [
+              171.648,
+              171.363,
+              178.789,
+              179.763
+            ],
+            "text": "111\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              172.01,
+              163.743,
+              179.895
+            ],
+            "text": "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n"
+          },
+          {
+            "bbox": [
+              32.762,
+              208.036,
+              342.675,
+              222.892
+            ],
+            "text": "NL Nederlands\n120-136\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              232.067,
+              340.412,
+              240.602
+            ],
+            "text": "120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\n"
+          },
+          {
+            "bbox": [
+              165.971,
+              246.07,
+              176.436,
+              254.47
+            ],
+            "text": "120\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              246.07,
+              339.712,
+              254.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              246.717,
+              108.817,
+              254.602
+            ],
+            "text": "BETEKENIS VAN SYMBOLEN\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              246.717,
+              213.004,
+              254.602
+            ],
+            "text": "OPSLAG\n"
+          },
+          {
+            "bbox": [
+              169.296,
+              260.07,
+              177.731,
+              268.47
+            ],
+            "text": "121\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              260.07,
+              339.712,
+              268.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              260.718,
+              99.528,
+              268.603
+            ],
+            "text": "WAT ZIT ER IN DE DOOS\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              260.718,
+              256.066,
+              268.603
+            ],
+            "text": "PROBLEEMOPLOSSING\n"
+          },
+          {
+            "bbox": [
+              168.036,
+              274.07,
+              177.766,
+              282.47
+            ],
+            "text": "122\n"
+          },
+          {
+            "bbox": [
+              330.262,
+              274.07,
+              340.062,
+              282.47
+            ],
+            "text": "133\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              274.719,
+              92.983,
+              282.604
+            ],
+            "text": "PRODUCTOVERZICHT\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              274.719,
+              231.366,
+              282.604
+            ],
+            "text": "SPECIFICATIES\n"
+          },
+          {
+            "bbox": [
+              168.071,
+              288.07,
+              177.836,
+              296.47
+            ],
+            "text": "123\n"
+          },
+          {
+            "bbox": [
+              329.632,
+              288.07,
+              339.782,
+              296.47
+            ],
+            "text": "134\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              288.72,
+              69.96,
+              296.605
+            ],
+            "text": "LCD-SCHERM\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              288.72,
+              218.132,
+              296.605
+            ],
+            "text": "GARANTIE\n"
+          },
+          {
+            "bbox": [
+              167.931,
+              302.07,
+              177.766,
+              310.47
+            ],
+            "text": "125\n"
+          },
+          {
+            "bbox": [
+              329.842,
+              302.07,
+              339.712,
+              310.47
+            ],
+            "text": "135\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              302.721,
+              73.216,
+              310.606
+            ],
+            "text": "HANDELINGEN \n"
+          },
+          {
+            "bbox": [
+              187.738,
+              302.721,
+              232.107,
+              310.606
+            ],
+            "text": "APP INSTELLEN\n"
+          },
+          {
+            "bbox": [
+              167.875,
+              316.07,
+              177.766,
+              324.47
+            ],
+            "text": "128\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              316.718,
+              156.752,
+              324.602
+            ],
+            "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n"
+          },
+          {
+            "bbox": [
+              33.901,
+              357.741,
+              342.635,
+              372.597
+            ],
+            "text": "PL\nPolski\n137-153\n"
+          },
+          {
+            "bbox": [
+              331.28,
+              380.984,
+              341.5,
+              389.384
+            ],
+            "text": "145\n"
+          },
+          {
+            "bbox": [
+              189.106,
+              381.634,
+              287.978,
+              389.518
+            ],
+            "text": "ZASILACZ BEZPRZERWOWY (UPS)\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              382.098,
+              134.077,
+              389.983
+            ],
+            "text": "WAŻNE INFORMACJE DOTYCZĄCE \n"
+          },
+          {
+            "bbox": [
+              169.451,
+              395.779,
+              178.971,
+              404.179
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              395.776,
+              341.551,
+              404.308
+            ],
+            "text": "BEZPIECZEŃSTWA\n146\nŁADOWANIE\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              409.776,
+              340.851,
+              418.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              410.423,
+              248.469,
+              418.308
+            ],
+            "text": "PRZECHOWYWANIE\n"
+          },
+          {
+            "bbox": [
+              168.054,
+              410.776,
+              177.574,
+              419.176
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              411.423,
+              91.093,
+              419.308
+            ],
+            "text": "ZNACZENIE SYMBOLI\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              423.776,
+              340.851,
+              432.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              424.424,
+              283.348,
+              432.309
+            ],
+            "text": "ROZWIĄZYWANIE PROBLEMÓW\n"
+          },
+          {
+            "bbox": [
+              168.943,
+              424.776,
+              178.869,
+              433.176
+            ],
+            "text": "138\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              425.424,
+              113.758,
+              433.309
+            ],
+            "text": "ZAWARTOŚĆ OPAKOWANIA\n"
+          },
+          {
+            "bbox": [
+              330.631,
+              437.776,
+              341.201,
+              446.176
+            ],
+            "text": "150\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              438.425,
+              245.401,
+              446.31
+            ],
+            "text": "DANE TECHNICZNE\n"
+          },
+          {
+            "bbox": [
+              169.104,
+              438.776,
+              178.904,
+              447.176
+            ],
+            "text": "139\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              439.425,
+              115.169,
+              447.31
+            ],
+            "text": "WIDOK OGÓLNY PRODUKTU\n"
+          },
+          {
+            "bbox": [
+              332.381,
+              451.776,
+              340.921,
+              460.176
+            ],
+            "text": "151\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              452.426,
+              229.846,
+              460.311
+            ],
+            "text": "GWARANCJA\n"
+          },
+          {
+            "bbox": [
+              168.124,
+              452.776,
+              178.974,
+              461.176
+            ],
+            "text": "140\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              453.426,
+              88.564,
+              461.311
+            ],
+            "text": "WYŚWIETLACZ LCD\n"
+          },
+          {
+            "bbox": [
+              331.016,
+              465.776,
+              340.851,
+              474.176
+            ],
+            "text": "152\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              466.427,
+              269.854,
+              474.312
+            ],
+            "text": "KONFIGURACJA APLIKACJI\n"
+          },
+          {
+            "bbox": [
+              168.789,
+              466.776,
+              178.904,
+              475.176
+            ],
+            "text": "142\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              467.427,
+              60.972,
+              475.312
+            ],
+            "text": "OBSŁUGA \n"
+          }
+        ]
+      }
+    },
+    "nl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          30,
+          194,
+          347,
+          319
+        ],
+        "text": "NL\nGefeliciteerd met uw nieuwe Jackery Explorer 1000. Lees deze handleiding goed door voordat u \nhet product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een correct \ngebruik te garanderen. Bewaar deze handleiding zodat u hem altijd bij de hand hebt.\nVolgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit \ndocument en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om \nde nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen \naansprakelijkheid voor eventuele fouten die kunnen voorkomen.\nHoud er rekening mee dat er geen verdere meldingen worden gegeven bij updates, revisies of \nbeëindiging. Bezoek support.jackery.com voor de nieuwste versie van de producthandleidingen.\n* De afbeeldingen zijn alleen voor referentiedoeleinden. Raadpleeg het werkelijke product.\nBELANGRIJK"
+      },
+      "toc_page": 7,
+      "toc_shared_page": {
+        "physical_page": 7,
+        "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\nPT Português\n103-119\nSIGNIFICADO DOS SÍMBOLOS\nCONTEÚDO DA EMBALAGEM\nVISÃO GERAL DO PRODUTO\nDISPLAY LCD\nOPERAÇÕES \nFONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n103\n104\n105\n106\n108\n111\nARMAZENAMENTO\nSOLUÇÃO DE PROBLEMAS\nESPECIFICAÇÕES\nGARANTIA\nCONFIGURAÇÃO DO APLICATIVO\n115\n115\n116\n117\n118\n120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\nNL Nederlands\n120-136\nBETEKENIS VAN SYMBOLEN\nWAT ZIT ER IN DE DOOS\nPRODUCTOVERZICHT\nLCD-SCHERM\nHANDELINGEN \nONONDERBROKEN STROOMVOORZIENING (UPS)\n120\n121\n122\n123\n125\n128\nOPSLAG\nPROBLEEMOPLOSSING\nSPECIFICATIES\nGARANTIE\nAPP INSTELLEN\n132\n132\n133\n134\n135\n137\nWAŻNE INFORMACJE DOTYCZĄCE \nBEZPIECZEŃSTWA\n146\nŁADOWANIE\nPL\nPolski\n137-153\nZNACZENIE SYMBOLI\nZAWARTOŚĆ OPAKOWANIA\nWIDOK OGÓLNY PRODUKTU\nWYŚWIETLACZ LCD\nOBSŁUGA \nZASILACZ BEZPRZERWOWY (UPS)\n137\n138\n139\n140\n142\n145\nPRZECHOWYWANIE\nROZWIĄZYWANIE PROBLEMÓW\nDANE TECHNICZNE\nGWARANCJA\nKONFIGURACJA APLIKACJI\n149\n149\n150\n151\n152\n",
+        "blocks_visual_order": [
+          {
+            "bbox": [
+              33.785,
+              63.328,
+              342.402,
+              78.184
+            ],
+            "text": "PT Português\n103-119\n"
+          },
+          {
+            "bbox": [
+              29.542,
+              87.363,
+              341.435,
+              96.008
+            ],
+            "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\n"
+          },
+          {
+            "bbox": [
+              166.958,
+              101.363,
+              177.459,
+              109.763
+            ],
+            "text": "103\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              101.363,
+              340.735,
+              109.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              102.01,
+              118.394,
+              109.895
+            ],
+            "text": "SIGNIFICADO DOS SÍMBOLOS\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              102.01,
+              243.563,
+              109.895
+            ],
+            "text": "ARMAZENAMENTO\n"
+          },
+          {
+            "bbox": [
+              167.904,
+              115.363,
+              178.754,
+              123.763
+            ],
+            "text": "104\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              115.363,
+              340.735,
+              123.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              116.011,
+              115.007,
+              123.896
+            ],
+            "text": "CONTEÚDO DA EMBALAGEM\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              116.011,
+              267.502,
+              123.896
+            ],
+            "text": "SOLUÇÃO DE PROBLEMAS\n"
+          },
+          {
+            "bbox": [
+              168.219,
+              129.363,
+              178.789,
+              137.763
+            ],
+            "text": "105\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              129.363,
+              341.085,
+              137.763
+            ],
+            "text": "116\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              130.012,
+              113.441,
+              137.897
+            ],
+            "text": "VISÃO GERAL DO PRODUTO\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              130.012,
+              240.748,
+              137.897
+            ],
+            "text": "ESPECIFICAÇÕES\n"
+          },
+          {
+            "bbox": [
+              168.359,
+              143.363,
+              178.859,
+              151.763
+            ],
+            "text": "106\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              143.363,
+              340.805,
+              151.763
+            ],
+            "text": "117\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              144.013,
+              68.779,
+              151.898
+            ],
+            "text": "DISPLAY LCD\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              144.013,
+              219.89,
+              151.898
+            ],
+            "text": "GARANTIA\n"
+          },
+          {
+            "bbox": [
+              168.163,
+              157.363,
+              178.789,
+              165.763
+            ],
+            "text": "108\n"
+          },
+          {
+            "bbox": [
+              332.139,
+              157.363,
+              340.735,
+              165.763
+            ],
+            "text": "118\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              158.014,
+              68.857,
+              165.899
+            ],
+            "text": "OPERAÇÕES \n"
+          },
+          {
+            "bbox": [
+              188.761,
+              158.014,
+              289.03,
+              165.899
+            ],
+            "text": "CONFIGURAÇÃO DO APLICATIVO\n"
+          },
+          {
+            "bbox": [
+              171.648,
+              171.363,
+              178.789,
+              179.763
+            ],
+            "text": "111\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              172.01,
+              163.743,
+              179.895
+            ],
+            "text": "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n"
+          },
+          {
+            "bbox": [
+              32.762,
+              208.036,
+              342.675,
+              222.892
+            ],
+            "text": "NL Nederlands\n120-136\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              232.067,
+              340.412,
+              240.602
+            ],
+            "text": "120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\n"
+          },
+          {
+            "bbox": [
+              165.971,
+              246.07,
+              176.436,
+              254.47
+            ],
+            "text": "120\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              246.07,
+              339.712,
+              254.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              246.717,
+              108.817,
+              254.602
+            ],
+            "text": "BETEKENIS VAN SYMBOLEN\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              246.717,
+              213.004,
+              254.602
+            ],
+            "text": "OPSLAG\n"
+          },
+          {
+            "bbox": [
+              169.296,
+              260.07,
+              177.731,
+              268.47
+            ],
+            "text": "121\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              260.07,
+              339.712,
+              268.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              260.718,
+              99.528,
+              268.603
+            ],
+            "text": "WAT ZIT ER IN DE DOOS\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              260.718,
+              256.066,
+              268.603
+            ],
+            "text": "PROBLEEMOPLOSSING\n"
+          },
+          {
+            "bbox": [
+              168.036,
+              274.07,
+              177.766,
+              282.47
+            ],
+            "text": "122\n"
+          },
+          {
+            "bbox": [
+              330.262,
+              274.07,
+              340.062,
+              282.47
+            ],
+            "text": "133\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              274.719,
+              92.983,
+              282.604
+            ],
+            "text": "PRODUCTOVERZICHT\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              274.719,
+              231.366,
+              282.604
+            ],
+            "text": "SPECIFICATIES\n"
+          },
+          {
+            "bbox": [
+              168.071,
+              288.07,
+              177.836,
+              296.47
+            ],
+            "text": "123\n"
+          },
+          {
+            "bbox": [
+              329.632,
+              288.07,
+              339.782,
+              296.47
+            ],
+            "text": "134\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              288.72,
+              69.96,
+              296.605
+            ],
+            "text": "LCD-SCHERM\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              288.72,
+              218.132,
+              296.605
+            ],
+            "text": "GARANTIE\n"
+          },
+          {
+            "bbox": [
+              167.931,
+              302.07,
+              177.766,
+              310.47
+            ],
+            "text": "125\n"
+          },
+          {
+            "bbox": [
+              329.842,
+              302.07,
+              339.712,
+              310.47
+            ],
+            "text": "135\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              302.721,
+              73.216,
+              310.606
+            ],
+            "text": "HANDELINGEN \n"
+          },
+          {
+            "bbox": [
+              187.738,
+              302.721,
+              232.107,
+              310.606
+            ],
+            "text": "APP INSTELLEN\n"
+          },
+          {
+            "bbox": [
+              167.875,
+              316.07,
+              177.766,
+              324.47
+            ],
+            "text": "128\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              316.718,
+              156.752,
+              324.602
+            ],
+            "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n"
+          },
+          {
+            "bbox": [
+              33.901,
+              357.741,
+              342.635,
+              372.597
+            ],
+            "text": "PL\nPolski\n137-153\n"
+          },
+          {
+            "bbox": [
+              331.28,
+              380.984,
+              341.5,
+              389.384
+            ],
+            "text": "145\n"
+          },
+          {
+            "bbox": [
+              189.106,
+              381.634,
+              287.978,
+              389.518
+            ],
+            "text": "ZASILACZ BEZPRZERWOWY (UPS)\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              382.098,
+              134.077,
+              389.983
+            ],
+            "text": "WAŻNE INFORMACJE DOTYCZĄCE \n"
+          },
+          {
+            "bbox": [
+              169.451,
+              395.779,
+              178.971,
+              404.179
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              395.776,
+              341.551,
+              404.308
+            ],
+            "text": "BEZPIECZEŃSTWA\n146\nŁADOWANIE\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              409.776,
+              340.851,
+              418.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              410.423,
+              248.469,
+              418.308
+            ],
+            "text": "PRZECHOWYWANIE\n"
+          },
+          {
+            "bbox": [
+              168.054,
+              410.776,
+              177.574,
+              419.176
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              411.423,
+              91.093,
+              419.308
+            ],
+            "text": "ZNACZENIE SYMBOLI\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              423.776,
+              340.851,
+              432.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              424.424,
+              283.348,
+              432.309
+            ],
+            "text": "ROZWIĄZYWANIE PROBLEMÓW\n"
+          },
+          {
+            "bbox": [
+              168.943,
+              424.776,
+              178.869,
+              433.176
+            ],
+            "text": "138\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              425.424,
+              113.758,
+              433.309
+            ],
+            "text": "ZAWARTOŚĆ OPAKOWANIA\n"
+          },
+          {
+            "bbox": [
+              330.631,
+              437.776,
+              341.201,
+              446.176
+            ],
+            "text": "150\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              438.425,
+              245.401,
+              446.31
+            ],
+            "text": "DANE TECHNICZNE\n"
+          },
+          {
+            "bbox": [
+              169.104,
+              438.776,
+              178.904,
+              447.176
+            ],
+            "text": "139\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              439.425,
+              115.169,
+              447.31
+            ],
+            "text": "WIDOK OGÓLNY PRODUKTU\n"
+          },
+          {
+            "bbox": [
+              332.381,
+              451.776,
+              340.921,
+              460.176
+            ],
+            "text": "151\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              452.426,
+              229.846,
+              460.311
+            ],
+            "text": "GWARANCJA\n"
+          },
+          {
+            "bbox": [
+              168.124,
+              452.776,
+              178.974,
+              461.176
+            ],
+            "text": "140\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              453.426,
+              88.564,
+              461.311
+            ],
+            "text": "WYŚWIETLACZ LCD\n"
+          },
+          {
+            "bbox": [
+              331.016,
+              465.776,
+              340.851,
+              474.176
+            ],
+            "text": "152\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              466.427,
+              269.854,
+              474.312
+            ],
+            "text": "KONFIGURACJA APLIKACJI\n"
+          },
+          {
+            "bbox": [
+              168.789,
+              466.776,
+              178.904,
+              475.176
+            ],
+            "text": "142\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              467.427,
+              60.972,
+              475.312
+            ],
+            "text": "OBSŁUGA \n"
+          }
+        ]
+      }
+    },
+    "pl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          30,
+          336,
+          347,
+          480
+        ],
+        "text": "PL\nGratulujemy zakupu nowego urządzenia Jackery Explorer 1000. Prosimy o dokładne przeczytanie \nniniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków ostrożności, \naby zapewnić prawidłowe użytkowanie. Niniejszą instrukcję należy przechowywać w dostępnym \nmiejscu, aby móc z niej korzystać w przyszłości.\nZgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich \ndokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, \naby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za \newentualne błędy.\nNależy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie \nbędą wysyłane żadne dodatkowe powiadomienia. Najnowszą wersję instrukcji obsługi produktu \nmożna znaleźć na stronie support.jackery.com.\n* Obrazy służą wyłącznie do celów poglądowych. Należy kierować się rzeczywistym produktem.\nWAŻNE"
+      },
+      "toc_page": 7,
+      "toc_shared_page": {
+        "physical_page": 7,
+        "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\nPT Português\n103-119\nSIGNIFICADO DOS SÍMBOLOS\nCONTEÚDO DA EMBALAGEM\nVISÃO GERAL DO PRODUTO\nDISPLAY LCD\nOPERAÇÕES \nFONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n103\n104\n105\n106\n108\n111\nARMAZENAMENTO\nSOLUÇÃO DE PROBLEMAS\nESPECIFICAÇÕES\nGARANTIA\nCONFIGURAÇÃO DO APLICATIVO\n115\n115\n116\n117\n118\n120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\nNL Nederlands\n120-136\nBETEKENIS VAN SYMBOLEN\nWAT ZIT ER IN DE DOOS\nPRODUCTOVERZICHT\nLCD-SCHERM\nHANDELINGEN \nONONDERBROKEN STROOMVOORZIENING (UPS)\n120\n121\n122\n123\n125\n128\nOPSLAG\nPROBLEEMOPLOSSING\nSPECIFICATIES\nGARANTIE\nAPP INSTELLEN\n132\n132\n133\n134\n135\n137\nWAŻNE INFORMACJE DOTYCZĄCE \nBEZPIECZEŃSTWA\n146\nŁADOWANIE\nPL\nPolski\n137-153\nZNACZENIE SYMBOLI\nZAWARTOŚĆ OPAKOWANIA\nWIDOK OGÓLNY PRODUKTU\nWYŚWIETLACZ LCD\nOBSŁUGA \nZASILACZ BEZPRZERWOWY (UPS)\n137\n138\n139\n140\n142\n145\nPRZECHOWYWANIE\nROZWIĄZYWANIE PROBLEMÓW\nDANE TECHNICZNE\nGWARANCJA\nKONFIGURACJA APLIKACJI\n149\n149\n150\n151\n152\n",
+        "blocks_visual_order": [
+          {
+            "bbox": [
+              33.785,
+              63.328,
+              342.402,
+              78.184
+            ],
+            "text": "PT Português\n103-119\n"
+          },
+          {
+            "bbox": [
+              29.542,
+              87.363,
+              341.435,
+              96.008
+            ],
+            "text": "103\nINFORMAÇÕES IMPORTANTES DE SEGURANÇA\n112\nCARREGANDO\n"
+          },
+          {
+            "bbox": [
+              166.958,
+              101.363,
+              177.459,
+              109.763
+            ],
+            "text": "103\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              101.363,
+              340.735,
+              109.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              102.01,
+              118.394,
+              109.895
+            ],
+            "text": "SIGNIFICADO DOS SÍMBOLOS\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              102.01,
+              243.563,
+              109.895
+            ],
+            "text": "ARMAZENAMENTO\n"
+          },
+          {
+            "bbox": [
+              167.904,
+              115.363,
+              178.754,
+              123.763
+            ],
+            "text": "104\n"
+          },
+          {
+            "bbox": [
+              332.195,
+              115.363,
+              340.735,
+              123.763
+            ],
+            "text": "115\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              116.011,
+              115.007,
+              123.896
+            ],
+            "text": "CONTEÚDO DA EMBALAGEM\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              116.011,
+              267.502,
+              123.896
+            ],
+            "text": "SOLUÇÃO DE PROBLEMAS\n"
+          },
+          {
+            "bbox": [
+              168.219,
+              129.363,
+              178.789,
+              137.763
+            ],
+            "text": "105\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              129.363,
+              341.085,
+              137.763
+            ],
+            "text": "116\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              130.012,
+              113.441,
+              137.897
+            ],
+            "text": "VISÃO GERAL DO PRODUTO\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              130.012,
+              240.748,
+              137.897
+            ],
+            "text": "ESPECIFICAÇÕES\n"
+          },
+          {
+            "bbox": [
+              168.359,
+              143.363,
+              178.859,
+              151.763
+            ],
+            "text": "106\n"
+          },
+          {
+            "bbox": [
+              332.615,
+              143.363,
+              340.805,
+              151.763
+            ],
+            "text": "117\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              144.013,
+              68.779,
+              151.898
+            ],
+            "text": "DISPLAY LCD\n"
+          },
+          {
+            "bbox": [
+              188.761,
+              144.013,
+              219.89,
+              151.898
+            ],
+            "text": "GARANTIA\n"
+          },
+          {
+            "bbox": [
+              168.163,
+              157.363,
+              178.789,
+              165.763
+            ],
+            "text": "108\n"
+          },
+          {
+            "bbox": [
+              332.139,
+              157.363,
+              340.735,
+              165.763
+            ],
+            "text": "118\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              158.014,
+              68.857,
+              165.899
+            ],
+            "text": "OPERAÇÕES \n"
+          },
+          {
+            "bbox": [
+              188.761,
+              158.014,
+              289.03,
+              165.899
+            ],
+            "text": "CONFIGURAÇÃO DO APLICATIVO\n"
+          },
+          {
+            "bbox": [
+              171.648,
+              171.363,
+              178.789,
+              179.763
+            ],
+            "text": "111\n"
+          },
+          {
+            "bbox": [
+              29.396,
+              172.01,
+              163.743,
+              179.895
+            ],
+            "text": "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)\n"
+          },
+          {
+            "bbox": [
+              32.762,
+              208.036,
+              342.675,
+              222.892
+            ],
+            "text": "NL Nederlands\n120-136\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              232.067,
+              340.412,
+              240.602
+            ],
+            "text": "120\nBELANGRIJKE VEILIGHEIDSINFORMATIE\n129\nOPLADEN\n"
+          },
+          {
+            "bbox": [
+              165.971,
+              246.07,
+              176.436,
+              254.47
+            ],
+            "text": "120\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              246.07,
+              339.712,
+              254.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              246.717,
+              108.817,
+              254.602
+            ],
+            "text": "BETEKENIS VAN SYMBOLEN\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              246.717,
+              213.004,
+              254.602
+            ],
+            "text": "OPSLAG\n"
+          },
+          {
+            "bbox": [
+              169.296,
+              260.07,
+              177.731,
+              268.47
+            ],
+            "text": "121\n"
+          },
+          {
+            "bbox": [
+              329.947,
+              260.07,
+              339.712,
+              268.47
+            ],
+            "text": "132\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              260.718,
+              99.528,
+              268.603
+            ],
+            "text": "WAT ZIT ER IN DE DOOS\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              260.718,
+              256.066,
+              268.603
+            ],
+            "text": "PROBLEEMOPLOSSING\n"
+          },
+          {
+            "bbox": [
+              168.036,
+              274.07,
+              177.766,
+              282.47
+            ],
+            "text": "122\n"
+          },
+          {
+            "bbox": [
+              330.262,
+              274.07,
+              340.062,
+              282.47
+            ],
+            "text": "133\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              274.719,
+              92.983,
+              282.604
+            ],
+            "text": "PRODUCTOVERZICHT\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              274.719,
+              231.366,
+              282.604
+            ],
+            "text": "SPECIFICATIES\n"
+          },
+          {
+            "bbox": [
+              168.071,
+              288.07,
+              177.836,
+              296.47
+            ],
+            "text": "123\n"
+          },
+          {
+            "bbox": [
+              329.632,
+              288.07,
+              339.782,
+              296.47
+            ],
+            "text": "134\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              288.72,
+              69.96,
+              296.605
+            ],
+            "text": "LCD-SCHERM\n"
+          },
+          {
+            "bbox": [
+              187.738,
+              288.72,
+              218.132,
+              296.605
+            ],
+            "text": "GARANTIE\n"
+          },
+          {
+            "bbox": [
+              167.931,
+              302.07,
+              177.766,
+              310.47
+            ],
+            "text": "125\n"
+          },
+          {
+            "bbox": [
+              329.842,
+              302.07,
+              339.712,
+              310.47
+            ],
+            "text": "135\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              302.721,
+              73.216,
+              310.606
+            ],
+            "text": "HANDELINGEN \n"
+          },
+          {
+            "bbox": [
+              187.738,
+              302.721,
+              232.107,
+              310.606
+            ],
+            "text": "APP INSTELLEN\n"
+          },
+          {
+            "bbox": [
+              167.875,
+              316.07,
+              177.766,
+              324.47
+            ],
+            "text": "128\n"
+          },
+          {
+            "bbox": [
+              28.373,
+              316.718,
+              156.752,
+              324.602
+            ],
+            "text": "ONONDERBROKEN STROOMVOORZIENING (UPS)\n"
+          },
+          {
+            "bbox": [
+              33.901,
+              357.741,
+              342.635,
+              372.597
+            ],
+            "text": "PL\nPolski\n137-153\n"
+          },
+          {
+            "bbox": [
+              331.28,
+              380.984,
+              341.5,
+              389.384
+            ],
+            "text": "145\n"
+          },
+          {
+            "bbox": [
+              189.106,
+              381.634,
+              287.978,
+              389.518
+            ],
+            "text": "ZASILACZ BEZPRZERWOWY (UPS)\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              382.098,
+              134.077,
+              389.983
+            ],
+            "text": "WAŻNE INFORMACJE DOTYCZĄCE \n"
+          },
+          {
+            "bbox": [
+              169.451,
+              395.779,
+              178.971,
+              404.179
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              395.776,
+              341.551,
+              404.308
+            ],
+            "text": "BEZPIECZEŃSTWA\n146\nŁADOWANIE\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              409.776,
+              340.851,
+              418.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              410.423,
+              248.469,
+              418.308
+            ],
+            "text": "PRZECHOWYWANIE\n"
+          },
+          {
+            "bbox": [
+              168.054,
+              410.776,
+              177.574,
+              419.176
+            ],
+            "text": "137\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              411.423,
+              91.093,
+              419.308
+            ],
+            "text": "ZNACZENIE SYMBOLI\n"
+          },
+          {
+            "bbox": [
+              330.701,
+              423.776,
+              340.851,
+              432.176
+            ],
+            "text": "149\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              424.424,
+              283.348,
+              432.309
+            ],
+            "text": "ROZWIĄZYWANIE PROBLEMÓW\n"
+          },
+          {
+            "bbox": [
+              168.943,
+              424.776,
+              178.869,
+              433.176
+            ],
+            "text": "138\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              425.424,
+              113.758,
+              433.309
+            ],
+            "text": "ZAWARTOŚĆ OPAKOWANIA\n"
+          },
+          {
+            "bbox": [
+              330.631,
+              437.776,
+              341.201,
+              446.176
+            ],
+            "text": "150\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              438.425,
+              245.401,
+              446.31
+            ],
+            "text": "DANE TECHNICZNE\n"
+          },
+          {
+            "bbox": [
+              169.104,
+              438.776,
+              178.904,
+              447.176
+            ],
+            "text": "139\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              439.425,
+              115.169,
+              447.31
+            ],
+            "text": "WIDOK OGÓLNY PRODUKTU\n"
+          },
+          {
+            "bbox": [
+              332.381,
+              451.776,
+              340.921,
+              460.176
+            ],
+            "text": "151\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              452.426,
+              229.846,
+              460.311
+            ],
+            "text": "GWARANCJA\n"
+          },
+          {
+            "bbox": [
+              168.124,
+              452.776,
+              178.974,
+              461.176
+            ],
+            "text": "140\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              453.426,
+              88.564,
+              461.311
+            ],
+            "text": "WYŚWIETLACZ LCD\n"
+          },
+          {
+            "bbox": [
+              331.016,
+              465.776,
+              340.851,
+              474.176
+            ],
+            "text": "152\n"
+          },
+          {
+            "bbox": [
+              188.877,
+              466.427,
+              269.854,
+              474.312
+            ],
+            "text": "KONFIGURACJA APLIKACJI\n"
+          },
+          {
+            "bbox": [
+              168.789,
+              466.776,
+              178.904,
+              475.176
+            ],
+            "text": "142\n"
+          },
+          {
+            "bbox": [
+              29.512,
+              467.427,
+              60.972,
+              475.312
+            ],
+            "text": "OBSŁUGA \n"
+          }
+        ]
+      }
+    }
+  }
+}

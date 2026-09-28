@@ -1,0 +1,1002 @@
+{
+  "source_sha256": "c38415f5c2d96832119105d963737a10901e470f70c5e7518ef6404f83625eb2",
+  "method": "Direct original AI text selected as complete lines by center within visually verified content regions; whitespace collapse only. Source diagram text stays in diagrams.",
+  "locales": {
+    "uk": {
+      "blocks": {
+        "title": {
+          "physical_page": 108,
+          "bbox": [
+            25,
+            28,
+            350,
+            48
+          ],
+          "raw_text": "НАЛАШТУВАННЯ ДОДАТКА",
+          "text": "НАЛАШТУВАННЯ ДОДАТКА"
+        },
+        "download_heading": {
+          "physical_page": 108,
+          "bbox": [
+            30,
+            49,
+            350,
+            66
+          ],
+          "raw_text": "1. Завантажте додаток і увійдіть",
+          "text": "1. Завантажте додаток і увійдіть"
+        },
+        "download_store": {
+          "physical_page": 108,
+          "bbox": [
+            40,
+            123,
+            181,
+            159
+          ],
+          "raw_text": "Знайдіть \"Jackery\" у Google Play \nабо App Store, щоб встановити \nдодаток. Після цього ви можете \nзареєструватися та увійти. ",
+          "text": "Знайдіть \"Jackery\" у Google Play або App Store, щоб встановити додаток. Після цього ви можете зареєструватися та увійти."
+        },
+        "download_qr": {
+          "physical_page": 108,
+          "bbox": [
+            190,
+            123,
+            350,
+            154
+          ],
+          "raw_text": "Або відскануйте QR-код \nнижче, щоб завантажити та \nвстановити додаток.",
+          "text": "Або відскануйте QR-код нижче, щоб завантажити та встановити додаток."
+        },
+        "add_heading": {
+          "physical_page": 108,
+          "bbox": [
+            30,
+            157,
+            350,
+            172
+          ],
+          "raw_text": "2. Додати пристрій",
+          "text": "2. Додати пристрій"
+        },
+        "step_2_1": {
+          "physical_page": 108,
+          "bbox": [
+            30,
+            171,
+            350,
+            183
+          ],
+          "raw_text": "2.1 Натисніть кнопку      , щоб додати свій пристрій;",
+          "text": "2.1 Натисніть кнопку , щоб додати свій пристрій;"
+        },
+        "step_2_2": {
+          "physical_page": 108,
+          "bbox": [
+            30,
+            182,
+            350,
+            220
+          ],
+          "raw_text": "2.2 Натисніть кнопку POWER, щоб увімкнути пристрій. Значки Wi-Fi та Bluetooth \nблиматимуть, що вказує на вхід у режим налаштування мережі. Торкніться кнопки \"Icon \nFlashed\" та дозвольте застосунку підключатися до найближчих пристроїв, а також \nнадайте доступ до Bluetooth.",
+          "text": "2.2 Натисніть кнопку POWER, щоб увімкнути пристрій. Значки Wi-Fi та Bluetooth блиматимуть, що вказує на вхід у режим налаштування мережі. Торкніться кнопки \"Icon Flashed\" та дозвольте застосунку підключатися до найближчих пристроїв, а також надайте доступ до Bluetooth."
+        },
+        "step_2_3": {
+          "physical_page": 108,
+          "bbox": [
+            30,
+            462,
+            350,
+            485
+          ],
+          "raw_text": "2.3 Після натискання на знайдену іконку пристрою додаток автоматично підключає пристрій \nчерез Bluetooth.",
+          "text": "2.3 Після натискання на знайдену іконку пристрою додаток автоматично підключає пристрій через Bluetooth."
+        },
+        "bound_note_label": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            28,
+            88,
+            75
+          ],
+          "raw_text": "ПРИМІТКА",
+          "text": "ПРИМІТКА"
+        },
+        "bound_note_body": {
+          "physical_page": 109,
+          "bbox": [
+            88,
+            28,
+            350,
+            75
+          ],
+          "raw_text": "Якщо під час процесу прив’язки з’являється повідомлення «пристрій уже прив’язаний», \nможна скористатися такими двома способами підключення:\n• Власник пристрою може поділитися цим пристроєм з іншими користувачами через \nдодаток.\n• Натисніть і утримуйте кнопку POWER і кнопку живлення DC/USB протягом 3 секунд, щоб \nскинути Wi-Fi і Bluetooth пристрою, а потім повторно прив’яжіть пристрій.",
+          "text": "Якщо під час процесу прив’язки з’являється повідомлення «пристрій уже прив’язаний», можна скористатися такими двома способами підключення: • Власник пристрою може поділитися цим пристроєм з іншими користувачами через додаток. • Натисніть і утримуйте кнопку POWER і кнопку живлення DC/USB протягом 3 секунд, щоб скинути Wi-Fi і Bluetooth пристрою, а потім повторно прив’яжіть пристрій."
+        },
+        "step_2_4": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            75,
+            350,
+            95
+          ],
+          "raw_text": "2.4 Після успішного підключення пристрою введіть пароль Wi-Fi і натисніть кнопку OK.",
+          "text": "2.4 Після успішного підключення пристрою введіть пароль Wi-Fi і натисніть кнопку OK."
+        },
+        "wifi_note_label": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            95,
+            89,
+            111
+          ],
+          "raw_text": "ПРИМІТКА",
+          "text": "ПРИМІТКА"
+        },
+        "wifi_note_body": {
+          "physical_page": 109,
+          "bbox": [
+            89,
+            95,
+            350,
+            111
+          ],
+          "raw_text": "Будь ласка, оберіть мережу Wi-Fi у діапазоні 2,4 ГГц. Пристрій не підтримує \nмережі Wi-Fi у діапазоні 5 ГГц.",
+          "text": "Будь ласка, оберіть мережу Wi-Fi у діапазоні 2,4 ГГц. Пристрій не підтримує мережі Wi-Fi у діапазоні 5 ГГц."
+        },
+        "step_2_5": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            112,
+            350,
+            131
+          ],
+          "raw_text": "2.5 Після успішного додавання пристрою до застосунку значок Wi-Fi на пристрої буде завжди \nувімкнений.",
+          "text": "2.5 Після успішного додавання пристрою до застосунку значок Wi-Fi на пристрої буде завжди увімкнений."
+        },
+        "screenshots_note": {
+          "physical_page": 109,
+          "bbox": [
+            40,
+            288,
+            350,
+            299
+          ],
+          "raw_text": "Наведені вище скріншоти призначені лише для довідки.",
+          "text": "Наведені вище скріншоти призначені лише для довідки."
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            300,
+            90,
+            324
+          ],
+          "raw_text": "УВАГА",
+          "text": "УВАГА"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 109,
+          "bbox": [
+            90,
+            300,
+            350,
+            324
+          ],
+          "raw_text": "Додаток Jackery може одночасно підключатися через Bluetooth лише до однієї \nелектростанції. Повернення до списку пристроїв автоматично відключає Bluetooth. \nНатисніть електростанцію у списку ще раз, щоб автоматично перепідключитися.",
+          "text": "Додаток Jackery може одночасно підключатися через Bluetooth лише до однієї електростанції. Повернення до списку пристроїв автоматично відключає Bluetooth. Натисніть електростанцію у списку ще раз, щоб автоматично перепідключитися."
+        },
+        "unbind": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            329,
+            350,
+            371
+          ],
+          "raw_text": "3. Відв’язати пристрій\nНатисніть значок Налаштування у верхньому правому куті головного інтерфейсу пристрою, \nщоб перейти на сторінку налаштувань, і натисніть кнопку Відв’язати внизу сторінки, щоб \nвідв’язати пристрій.",
+          "text": "3. Відв’язати пристрій Натисніть значок Налаштування у верхньому правому куті головного інтерфейсу пристрою, щоб перейти на сторінку налаштувань, і натисніть кнопку Відв’язати внизу сторінки, щоб відв’язати пристрій."
+        },
+        "notes_heading": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            370,
+            350,
+            384
+          ],
+          "raw_text": "4. ПРИМІТКИ",
+          "text": "4. ПРИМІТКИ"
+        },
+        "enable": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            384,
+            350,
+            431
+          ],
+          "raw_text": "4.1 Увімкнення Wi-Fi та Bluetooth:\n• Wi-Fi та Bluetooth автоматично вмикаються після ввімкнення пристрою, а значки Wi-Fi та \nBluetooth на екрані загоряються.\n• Одночасно утримуйте кнопку живлення DC/USB та кнопку живлення AC, доки на екрані \nне загоряться значки Wi-Fi та Bluetooth.",
+          "text": "4.1 Увімкнення Wi-Fi та Bluetooth: • Wi-Fi та Bluetooth автоматично вмикаються після ввімкнення пристрою, а значки Wi-Fi та Bluetooth на екрані загоряються. • Одночасно утримуйте кнопку живлення DC/USB та кнопку живлення AC, доки на екрані не загоряться значки Wi-Fi та Bluetooth."
+        },
+        "disable": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            431,
+            350,
+            460
+          ],
+          "raw_text": "4.2 Вимкнення Wi-Fi і Bluetooth\n• Одночасно утримуйте кнопку живлення DC/USB та кнопку живлення AC, доки значки \nWi-Fi та Bluetooth на екрані не згаснуть.",
+          "text": "4.2 Вимкнення Wi-Fi і Bluetooth • Одночасно утримуйте кнопку живлення DC/USB та кнопку живлення AC, доки значки Wi-Fi та Bluetooth на екрані не згаснуть."
+        },
+        "reset": {
+          "physical_page": 109,
+          "bbox": [
+            30,
+            460,
+            350,
+            498
+          ],
+          "raw_text": "4.3 Скидання Wi-Fi і Bluetooth\n• Одночасно утримуйте кнопку POWER та кнопку живлення DC/USB протягом 3 секунд, \nщоб скинути Wi-Fi та Bluetooth до заводських налаштувань. Підключений обліковий \nзапис застосунку буде відв'язано.",
+          "text": "4.3 Скидання Wi-Fi і Bluetooth • Одночасно утримуйте кнопку POWER та кнопку живлення DC/USB протягом 3 секунд, щоб скинути Wi-Fi та Bluetooth до заводських налаштувань. Підключений обліковий запис застосунку буде відв'язано."
+        }
+      },
+      "visual_recovery": {
+        "step_2_1": "The source has a circled + button between surrounding words; add a + span because the glyph is vector artwork and absent from the text layer."
+      }
+    },
+    "pt": {
+      "blocks": {
+        "title": {
+          "physical_page": 125,
+          "bbox": [
+            25,
+            28,
+            350,
+            48
+          ],
+          "raw_text": "CONFIGURAÇÃO DO APLICATIVO",
+          "text": "CONFIGURAÇÃO DO APLICATIVO"
+        },
+        "download_heading": {
+          "physical_page": 125,
+          "bbox": [
+            30,
+            49,
+            350,
+            66
+          ],
+          "raw_text": "1. Baixe o aplicativo e faça login",
+          "text": "1. Baixe o aplicativo e faça login"
+        },
+        "download_store": {
+          "physical_page": 125,
+          "bbox": [
+            40,
+            123,
+            181,
+            159
+          ],
+          "raw_text": "Pesquise por \"Jackery\" no Google \nPlay ou App Store para instalar o \naplicativo. Depois disso, você pode \nse registrar e fazer login. ",
+          "text": "Pesquise por \"Jackery\" no Google Play ou App Store para instalar o aplicativo. Depois disso, você pode se registrar e fazer login."
+        },
+        "download_qr": {
+          "physical_page": 125,
+          "bbox": [
+            190,
+            123,
+            350,
+            154
+          ],
+          "raw_text": "Como alternativa, escaneie o \ncódigo QR abaixo para \nbaixar e instalar o aplicativo.",
+          "text": "Como alternativa, escaneie o código QR abaixo para baixar e instalar o aplicativo."
+        },
+        "add_heading": {
+          "physical_page": 125,
+          "bbox": [
+            30,
+            157,
+            350,
+            172
+          ],
+          "raw_text": "2. Adicionar dispositivo",
+          "text": "2. Adicionar dispositivo"
+        },
+        "step_2_1": {
+          "physical_page": 125,
+          "bbox": [
+            30,
+            171,
+            350,
+            183
+          ],
+          "raw_text": "2.1 Clique no botão      para adicionar seu dispositivo;",
+          "text": "2.1 Clique no botão para adicionar seu dispositivo;"
+        },
+        "step_2_2": {
+          "physical_page": 125,
+          "bbox": [
+            30,
+            182,
+            350,
+            220
+          ],
+          "raw_text": "2.2 Pressione o botão POWER no dispositivo para ligá-lo, os ícones de Wi-Fi e Bluetooth no \ndispositivo piscarão, indicando que o dispositivo entrou no modo de conﬁguração de rede. \nToque no botão \"Ícone piscando\" e permita que o aplicativo se conecte a dispositivos \npróximos e habilite as permissões de Bluetooth.",
+          "text": "2.2 Pressione o botão POWER no dispositivo para ligá-lo, os ícones de Wi-Fi e Bluetooth no dispositivo piscarão, indicando que o dispositivo entrou no modo de conﬁguração de rede. Toque no botão \"Ícone piscando\" e permita que o aplicativo se conecte a dispositivos próximos e habilite as permissões de Bluetooth."
+        },
+        "step_2_3": {
+          "physical_page": 125,
+          "bbox": [
+            30,
+            462,
+            350,
+            485
+          ],
+          "raw_text": "2.3 Após tocar no ícone do dispositivo encontrado, o aplicativo conecta automaticamente o \ndispositivo via Bluetooth.",
+          "text": "2.3 Após tocar no ícone do dispositivo encontrado, o aplicativo conecta automaticamente o dispositivo via Bluetooth."
+        },
+        "bound_note_label": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            28,
+            88,
+            75
+          ],
+          "raw_text": "NOTA",
+          "text": "NOTA"
+        },
+        "bound_note_body": {
+          "physical_page": 126,
+          "bbox": [
+            88,
+            28,
+            350,
+            75
+          ],
+          "raw_text": "Se \"o dispositivo já foi vinculado\" for exibido durante o processo de vinculação, as duas \nformas a seguir poderão ser usadas para a conexão:\n• O proprietário do dispositivo compartilhará este dispositivo com outros usuários por meio \ndo aplicativo.\n• Pressione e segure os botões POWER e o botão POWER CC/USB por 3 segundos para \nredeﬁnir o Wi-Fi e o Bluetooth do dispositivo e, em seguida, vincule o dispositivo novamente.",
+          "text": "Se \"o dispositivo já foi vinculado\" for exibido durante o processo de vinculação, as duas formas a seguir poderão ser usadas para a conexão: • O proprietário do dispositivo compartilhará este dispositivo com outros usuários por meio do aplicativo. • Pressione e segure os botões POWER e o botão POWER CC/USB por 3 segundos para redeﬁnir o Wi-Fi e o Bluetooth do dispositivo e, em seguida, vincule o dispositivo novamente."
+        },
+        "step_2_4": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            75,
+            350,
+            95
+          ],
+          "raw_text": "2.4 Após o dispositivo ser conectado com sucesso, insira sua senha de Wi-Fi e toque no botão OK.",
+          "text": "2.4 Após o dispositivo ser conectado com sucesso, insira sua senha de Wi-Fi e toque no botão OK."
+        },
+        "wifi_note_label": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            95,
+            89,
+            111
+          ],
+          "raw_text": "NOTA",
+          "text": "NOTA"
+        },
+        "wifi_note_body": {
+          "physical_page": 126,
+          "bbox": [
+            89,
+            95,
+            350,
+            111
+          ],
+          "raw_text": "Selecione uma rede Wi-Fi na banda de 2,4 GHz. O dispositivo não suporta redes Wi-Fi na \nfaixa de 5 GHz.",
+          "text": "Selecione uma rede Wi-Fi na banda de 2,4 GHz. O dispositivo não suporta redes Wi-Fi na faixa de 5 GHz."
+        },
+        "step_2_5": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            112,
+            350,
+            131
+          ],
+          "raw_text": "2.5 Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo \nficará sempre aceso.",
+          "text": "2.5 Após o dispositivo ser adicionado com sucesso ao aplicativo, o ícone de Wi-Fi no dispositivo ficará sempre aceso."
+        },
+        "screenshots_note": {
+          "physical_page": 126,
+          "bbox": [
+            40,
+            288,
+            350,
+            299
+          ],
+          "raw_text": "As capturas de tela acima são apenas para referência.",
+          "text": "As capturas de tela acima são apenas para referência."
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            300,
+            90,
+            324
+          ],
+          "raw_text": "CUIDADO",
+          "text": "CUIDADO"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 126,
+          "bbox": [
+            90,
+            300,
+            350,
+            324
+          ],
+          "raw_text": "O aplicativo da Jackery pode se conectar a apenas uma estação de energia via Bluetooth \npor vez. Ao retornar à lista de dispositivos, o Bluetooth é desconectado automaticamente. \nToque novamente na estação de energia na lista para reconectar automaticamente.",
+          "text": "O aplicativo da Jackery pode se conectar a apenas uma estação de energia via Bluetooth por vez. Ao retornar à lista de dispositivos, o Bluetooth é desconectado automaticamente. Toque novamente na estação de energia na lista para reconectar automaticamente."
+        },
+        "unbind": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            329,
+            350,
+            371
+          ],
+          "raw_text": "3. Desvincular o dispositivo\nToque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo \npara acessar a página de conﬁgurações e clique no botão Desvincular na parte inferior da página \npara desvincular o dispositivo.",
+          "text": "3. Desvincular o dispositivo Toque no ícone de Conﬁgurações no canto superior direito da interface principal do dispositivo para acessar a página de conﬁgurações e clique no botão Desvincular na parte inferior da página para desvincular o dispositivo."
+        },
+        "notes_heading": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            370,
+            350,
+            384
+          ],
+          "raw_text": "4. Notas",
+          "text": "4. Notas"
+        },
+        "enable": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            384,
+            350,
+            431
+          ],
+          "raw_text": "4.1 Para ativar o Wi-Fi e o Bluetooth:\n• O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os \nícones de Wi-Fi e Bluetooth na tela acendem.\n• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela acendam.",
+          "text": "4.1 Para ativar o Wi-Fi e o Bluetooth: • O Wi-Fi e o Bluetooth são ativados automaticamente após o dispositivo ser ligado, e os ícones de Wi-Fi e Bluetooth na tela acendem. • Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA até que os ícones de Wi-Fi e Bluetooth na tela acendam."
+        },
+        "disable": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            431,
+            350,
+            460
+          ],
+          "raw_text": "4.2 Para desativar o Wi-Fi e o Bluetooth\n• Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA \naté que os ícones de Wi-Fi e Bluetooth na tela se apaguem.",
+          "text": "4.2 Para desativar o Wi-Fi e o Bluetooth • Mantenha pressionados simultaneamente o botão POWER CC/USB e o botão POWER CA até que os ícones de Wi-Fi e Bluetooth na tela se apaguem."
+        },
+        "reset": {
+          "physical_page": 126,
+          "bbox": [
+            30,
+            460,
+            350,
+            498
+          ],
+          "raw_text": "4.3 Para redeﬁnir o Wi-Fi e o Bluetooth\n• Mantenha pressionados simultaneamente o botão POWER e o botão POWER CC/USB por 3 \nsegundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do Bluetooth. A conta do \naplicativo conectada será desvinculada.",
+          "text": "4.3 Para redeﬁnir o Wi-Fi e o Bluetooth • Mantenha pressionados simultaneamente o botão POWER e o botão POWER CC/USB por 3 segundos para restaurar as conﬁgurações de fábrica do Wi-Fi e do Bluetooth. A conta do aplicativo conectada será desvinculada."
+        }
+      },
+      "visual_recovery": {
+        "step_2_1": "The source has a circled + button between surrounding words; add a + span because the glyph is vector artwork and absent from the text layer."
+      }
+    },
+    "nl": {
+      "blocks": {
+        "title": {
+          "physical_page": 142,
+          "bbox": [
+            25,
+            28,
+            350,
+            48
+          ],
+          "raw_text": "APP INSTELLEN",
+          "text": "APP INSTELLEN"
+        },
+        "download_heading": {
+          "physical_page": 142,
+          "bbox": [
+            30,
+            49,
+            350,
+            66
+          ],
+          "raw_text": "1. Download de app en log in",
+          "text": "1. Download de app en log in"
+        },
+        "download_store": {
+          "physical_page": 142,
+          "bbox": [
+            40,
+            123,
+            181,
+            159
+          ],
+          "raw_text": "Zoek naar \\\"Jackery\\\" in Google \nPlay of de App Store om de app te \ninstalleren. Daarna kunt u zich \nregistreren en inloggen. ",
+          "text": "Zoek naar \\\"Jackery\\\" in Google Play of de App Store om de app te installeren. Daarna kunt u zich registreren en inloggen."
+        },
+        "download_qr": {
+          "physical_page": 142,
+          "bbox": [
+            190,
+            123,
+            350,
+            154
+          ],
+          "raw_text": "Of scan de QR-code \nhieronder om de app te \ndownloaden en te installeren.",
+          "text": "Of scan de QR-code hieronder om de app te downloaden en te installeren."
+        },
+        "add_heading": {
+          "physical_page": 142,
+          "bbox": [
+            30,
+            157,
+            350,
+            172
+          ],
+          "raw_text": "2. Apparaat toevoegen",
+          "text": "2. Apparaat toevoegen"
+        },
+        "step_2_1": {
+          "physical_page": 142,
+          "bbox": [
+            30,
+            171,
+            350,
+            183
+          ],
+          "raw_text": "2.1 Klik op de      -knop om uw apparaat toe te voegen;",
+          "text": "2.1 Klik op de -knop om uw apparaat toe te voegen;"
+        },
+        "step_2_2": {
+          "physical_page": 142,
+          "bbox": [
+            30,
+            182,
+            350,
+            220
+          ],
+          "raw_text": "2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en \nBluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de \nnetwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app toestemming \nom verbinding te maken met apparaten in de buurt en schakel de Bluetooth-machtigingen in.",
+          "text": "2.2 Druk op de aan/uit-knop op het apparaat om het in te schakelen; de wiﬁ- en Bluetooth-pictogrammen op het apparaat knipperen om aan te geven dat het apparaat zich in de netwerkconﬁguratiemodus bevindt. Tik op de knop 'Pictogram knippert' en geef de app toestemming om verbinding te maken met apparaten in de buurt en schakel de Bluetooth-machtigingen in."
+        },
+        "step_2_3": {
+          "physical_page": 142,
+          "bbox": [
+            30,
+            462,
+            350,
+            485
+          ],
+          "raw_text": "2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch \nverbinding met het apparaat via Bluetooth.",
+          "text": "2.3 Nadat u op het pictogram van het gevonden apparaat hebt getikt, maakt de app automatisch verbinding met het apparaat via Bluetooth."
+        },
+        "bound_note_label": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            28,
+            92,
+            75
+          ],
+          "raw_text": "OPMERKING",
+          "text": "OPMERKING"
+        },
+        "bound_note_body": {
+          "physical_page": 143,
+          "bbox": [
+            92,
+            28,
+            350,
+            75
+          ],
+          "raw_text": "Als tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de volgende twee \nmethoden worden gebruikt voor de verbinding:\n• De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers.\n• Houd de AAN/UIT-knop en de DC/USB-knop 3 seconden ingedrukt om de wiﬁ en Bluetooth van het \napparaat te resetten en het apparaat vervolgens opnieuw te koppelen.",
+          "text": "Als tijdens het bindingsproces \"het apparaat is al gebonden\" wordt gemeld, kunnen de volgende twee methoden worden gebruikt voor de verbinding: • De eigenaar van het apparaat deelt dit apparaat via de app met andere gebruikers. • Houd de AAN/UIT-knop en de DC/USB-knop 3 seconden ingedrukt om de wiﬁ en Bluetooth van het apparaat te resetten en het apparaat vervolgens opnieuw te koppelen."
+        },
+        "step_2_4": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            75,
+            350,
+            95
+          ],
+          "raw_text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wifi-wachtwoord in en tikt u op de \nOK-knop.",
+          "text": "2.4 Nadat het apparaat succesvol is verbonden, voert u uw wifi-wachtwoord in en tikt u op de OK-knop."
+        },
+        "wifi_note_label": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            95,
+            89,
+            111
+          ],
+          "raw_text": "OPMERKING",
+          "text": "OPMERKING"
+        },
+        "wifi_note_body": {
+          "physical_page": 143,
+          "bbox": [
+            89,
+            95,
+            350,
+            111
+          ],
+          "raw_text": "Selecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen \nwiﬁ-netwerk in de 5 GHz-band.",
+          "text": "Selecteer een wiﬁ-netwerk in de 2,4 GHz-band. Het apparaat ondersteunt geen wiﬁ-netwerk in de 5 GHz-band."
+        },
+        "step_2_5": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            112,
+            350,
+            131
+          ],
+          "raw_text": "2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wifi-pictogram op het \napparaat altijd aan.",
+          "text": "2.5 Nadat het apparaat succesvol aan de app is toegevoegd, is het wifi-pictogram op het apparaat altijd aan."
+        },
+        "screenshots_note": {
+          "physical_page": 143,
+          "bbox": [
+            40,
+            288,
+            350,
+            299
+          ],
+          "raw_text": "De bovenstaande schermafbeeldingen zijn alleen ter referentie.",
+          "text": "De bovenstaande schermafbeeldingen zijn alleen ter referentie."
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            300,
+            90,
+            324
+          ],
+          "raw_text": "OPGELET",
+          "text": "OPGELET"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 143,
+          "bbox": [
+            90,
+            300,
+            350,
+            324
+          ],
+          "raw_text": "De Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer \nu terugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik \nopnieuw op het Powerstation in de lijst om automatisch opnieuw verbinding te maken.",
+          "text": "De Jackery-app kan via bluetooth slechts met één powerstation tegelijk verbinding maken. Wanneer u terugkeert naar de apparaatlijst, wordt de Bluetooth-verbinding automatisch verbroken. Tik opnieuw op het Powerstation in de lijst om automatisch opnieuw verbinding te maken."
+        },
+        "unbind": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            329,
+            350,
+            371
+          ],
+          "raw_text": "3. Apparaat ontkoppelen\nKlik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de \ninstellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te \nontkoppelen.",
+          "text": "3. Apparaat ontkoppelen Klik op het instellingenpictogram rechtsboven in het hoofdscherm van het apparaat om de instellingenpagina te openen en klik onderaan op de knop 'Ontkoppelen' om het apparaat te ontkoppelen."
+        },
+        "notes_heading": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            370,
+            350,
+            384
+          ],
+          "raw_text": "4. Opmerkingen",
+          "text": "4. Opmerkingen"
+        },
+        "enable": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            384,
+            350,
+            431
+          ],
+          "raw_text": "4.1 Wiﬁ en Bluetooth inschakelen:\n• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en \nlichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op.\n• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.",
+          "text": "4.1 Wiﬁ en Bluetooth inschakelen: • Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en lichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op. • Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten."
+        },
+        "disable": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            431,
+            350,
+            460
+          ],
+          "raw_text": "4.2 Wiﬁ en Bluetooth uitschakelen\n• Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt \ntotdat de wiﬁ- en Bluetooth-pictogrammen op het scherm uitgaan.",
+          "text": "4.2 Wiﬁ en Bluetooth uitschakelen • Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC tegelijkertijd ingedrukt totdat de wiﬁ- en Bluetooth-pictogrammen op het scherm uitgaan."
+        },
+        "reset": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            460,
+            350,
+            498
+          ],
+          "raw_text": "4.3 Wiﬁ en Bluetooth resetten\n• Houd de AAN/UIT-knop en de Aan/uit-knop voor DC/USB tegelijkertijd 3 seconden \ningedrukt om wiﬁ en Bluetooth te resetten naar de fabrieksinstellingen. Het gekoppelde \napp-account wordt ontkoppeld.",
+          "text": "4.3 Wiﬁ en Bluetooth resetten • Houd de AAN/UIT-knop en de Aan/uit-knop voor DC/USB tegelijkertijd 3 seconden ingedrukt om wiﬁ en Bluetooth te resetten naar de fabrieksinstellingen. Het gekoppelde app-account wordt ontkoppeld."
+        }
+      },
+      "visual_recovery": {
+        "step_2_1": "The source has a circled + button between surrounding words; add a + span because the glyph is vector artwork and absent from the text layer."
+      }
+    },
+    "pl": {
+      "blocks": {
+        "title": {
+          "physical_page": 159,
+          "bbox": [
+            25,
+            28,
+            350,
+            48
+          ],
+          "raw_text": "KONFIGURACJA APLIKACJI",
+          "text": "KONFIGURACJA APLIKACJI"
+        },
+        "download_heading": {
+          "physical_page": 159,
+          "bbox": [
+            30,
+            49,
+            350,
+            66
+          ],
+          "raw_text": "1. Pobierz aplikację i się zaloguj",
+          "text": "1. Pobierz aplikację i się zaloguj"
+        },
+        "download_store": {
+          "physical_page": 159,
+          "bbox": [
+            40,
+            123,
+            181,
+            159
+          ],
+          "raw_text": "Wyszukaj „Jackery” w Google Play lub \nApp Store, aby zainstalować aplikację. \nWówczas pojawi się możliwość \nzarejestrowania i zalogowania. ",
+          "text": "Wyszukaj „Jackery” w Google Play lub App Store, aby zainstalować aplikację. Wówczas pojawi się możliwość zarejestrowania i zalogowania."
+        },
+        "download_qr": {
+          "physical_page": 159,
+          "bbox": [
+            190,
+            123,
+            350,
+            154
+          ],
+          "raw_text": "Alternatywnie zeskanuj kod \nQR poniżej, aby pobrać i \nzainstalować aplikację.",
+          "text": "Alternatywnie zeskanuj kod QR poniżej, aby pobrać i zainstalować aplikację."
+        },
+        "add_heading": {
+          "physical_page": 159,
+          "bbox": [
+            30,
+            157,
+            350,
+            172
+          ],
+          "raw_text": "2. Dodaj urządzenie",
+          "text": "2. Dodaj urządzenie"
+        },
+        "step_2_1": {
+          "physical_page": 159,
+          "bbox": [
+            30,
+            171,
+            350,
+            183
+          ],
+          "raw_text": "2.1 Kliknij przycisk      , aby dodać urządzenie.",
+          "text": "2.1 Kliknij przycisk , aby dodać urządzenie."
+        },
+        "step_2_2": {
+          "physical_page": 159,
+          "bbox": [
+            30,
+            182,
+            350,
+            220
+          ],
+          "raw_text": "2.2 Naciśnij przycisk POWER na urządzeniu, aby je włączyć. Ikony Wi-Fi i Bluetooth na \nurządzeniu migają, wskazując, że urządzenie weszło w tryb konﬁguracji sieci. Naciśnij przycisk \n„Icon Flashed” potwierdzający, że ikona zamigała, i zezwól aplikacji na łączenie się z \npobliskimi urządzeniami oraz przyznaj jej uprawnienia Bluetooth.",
+          "text": "2.2 Naciśnij przycisk POWER na urządzeniu, aby je włączyć. Ikony Wi-Fi i Bluetooth na urządzeniu migają, wskazując, że urządzenie weszło w tryb konﬁguracji sieci. Naciśnij przycisk „Icon Flashed” potwierdzający, że ikona zamigała, i zezwól aplikacji na łączenie się z pobliskimi urządzeniami oraz przyznaj jej uprawnienia Bluetooth."
+        },
+        "step_2_3": {
+          "physical_page": 159,
+          "bbox": [
+            30,
+            462,
+            350,
+            485
+          ],
+          "raw_text": "2.3 Po dotknięciu ikony wyszukanego urządzenia aplikacja automatycznie łączy się z urządzeniem \nprzez Bluetooth.",
+          "text": "2.3 Po dotknięciu ikony wyszukanego urządzenia aplikacja automatycznie łączy się z urządzeniem przez Bluetooth."
+        },
+        "bound_note_label": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            28,
+            88,
+            75
+          ],
+          "raw_text": "Uwaga",
+          "text": "Uwaga"
+        },
+        "bound_note_body": {
+          "physical_page": 160,
+          "bbox": [
+            88,
+            28,
+            350,
+            75
+          ],
+          "raw_text": "Jeśli podczas parowania pojawi się komunikat „Urządzenie zostało już sparowane”, można \nskorzystać z następujących dwóch sposobów połączenia:\n• Właściciel urządzenia może udostępnić to urządzenie innym użytkownikom za pośrednictwem \naplikacji.\n• Można nacisnąć i przytrzymać przycisk POWER oraz przycisk zasilania DC/USB przez 3 sekundy, \naby zresetować Wi-Fi i Bluetooth urządzenia, a następnie ponownie sparować urządzenie.",
+          "text": "Jeśli podczas parowania pojawi się komunikat „Urządzenie zostało już sparowane”, można skorzystać z następujących dwóch sposobów połączenia: • Właściciel urządzenia może udostępnić to urządzenie innym użytkownikom za pośrednictwem aplikacji. • Można nacisnąć i przytrzymać przycisk POWER oraz przycisk zasilania DC/USB przez 3 sekundy, aby zresetować Wi-Fi i Bluetooth urządzenia, a następnie ponownie sparować urządzenie."
+        },
+        "step_2_4": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            75,
+            350,
+            95
+          ],
+          "raw_text": "2.4 Po pomyślnym podłączeniu urządzenia wprowadź hasło Wi-Fi i naciśnij przycisk OK.",
+          "text": "2.4 Po pomyślnym podłączeniu urządzenia wprowadź hasło Wi-Fi i naciśnij przycisk OK."
+        },
+        "wifi_note_label": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            95,
+            85,
+            111
+          ],
+          "raw_text": "Uwaga",
+          "text": "Uwaga"
+        },
+        "wifi_note_body": {
+          "physical_page": 160,
+          "bbox": [
+            85,
+            95,
+            350,
+            111
+          ],
+          "raw_text": "Wybierz sieć Wi-Fi w paśmie 2,4 GHz. Urządzenie nie obsługuje sieci Wi-Fi w paśmie 5 GHz.",
+          "text": "Wybierz sieć Wi-Fi w paśmie 2,4 GHz. Urządzenie nie obsługuje sieci Wi-Fi w paśmie 5 GHz."
+        },
+        "step_2_5": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            112,
+            350,
+            131
+          ],
+          "raw_text": "2.5 Po pomyślnym dodaniu urządzenia do aplikacji ikona Wi-Fi na urządzeniu będzie zawsze \nwłączona.",
+          "text": "2.5 Po pomyślnym dodaniu urządzenia do aplikacji ikona Wi-Fi na urządzeniu będzie zawsze włączona."
+        },
+        "screenshots_note": {
+          "physical_page": 160,
+          "bbox": [
+            40,
+            288,
+            350,
+            299
+          ],
+          "raw_text": "Powyższe zrzuty ekranu mają charakter wyłącznie poglądowy.",
+          "text": "Powyższe zrzuty ekranu mają charakter wyłącznie poglądowy."
+        },
+        "bluetooth_caution_label": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            300,
+            101,
+            324
+          ],
+          "raw_text": "PRZESTROGA",
+          "text": "PRZESTROGA"
+        },
+        "bluetooth_caution_body": {
+          "physical_page": 160,
+          "bbox": [
+            101,
+            300,
+            350,
+            324
+          ],
+          "raw_text": "Aplikacja Jackery może łączyć się jednocześnie tylko z jedną stacją zasilającą poprzez \nBluetooth. Powrót do listy urządzeń automatycznie rozłącza połączenie Bluetooth. Ponowne \nkliknięcie stacji zasilającej na liście spowoduje automatycznie ponowne połączenie.",
+          "text": "Aplikacja Jackery może łączyć się jednocześnie tylko z jedną stacją zasilającą poprzez Bluetooth. Powrót do listy urządzeń automatycznie rozłącza połączenie Bluetooth. Ponowne kliknięcie stacji zasilającej na liście spowoduje automatycznie ponowne połączenie."
+        },
+        "unbind": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            329,
+            350,
+            371
+          ],
+          "raw_text": "3. Usuń sparowane urządzenie\nKliknij ikonę ustawień w prawym górnym rogu głównego interfejsu urządzenia, aby przejść do strony \nustawień, a następnie kliknij przycisk Unbind (Usuń parowanie) u dołu strony, aby usunąć sparowane \nurządzenie.",
+          "text": "3. Usuń sparowane urządzenie Kliknij ikonę ustawień w prawym górnym rogu głównego interfejsu urządzenia, aby przejść do strony ustawień, a następnie kliknij przycisk Unbind (Usuń parowanie) u dołu strony, aby usunąć sparowane urządzenie."
+        },
+        "notes_heading": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            370,
+            350,
+            384
+          ],
+          "raw_text": "4. Uwagi",
+          "text": "4. Uwagi"
+        },
+        "enable": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            384,
+            350,
+            431
+          ],
+          "raw_text": "4.1 Włączanie Wi-Fi i Bluetooth:\n• Wi-Fi i Bluetooth włączają się automatycznie po uruchomieniu urządzenia, a ikony Wi-Fi i \nBluetooth na ekranie zaświecają się.\n• Przytrzymaj jednocześnie przycisk zasilania DC/USB + przycisk zasilania AC, aż ikony Wi-Fi i \nBluetooth na ekranie zaświecą się.",
+          "text": "4.1 Włączanie Wi-Fi i Bluetooth: • Wi-Fi i Bluetooth włączają się automatycznie po uruchomieniu urządzenia, a ikony Wi-Fi i Bluetooth na ekranie zaświecają się. • Przytrzymaj jednocześnie przycisk zasilania DC/USB + przycisk zasilania AC, aż ikony Wi-Fi i Bluetooth na ekranie zaświecą się."
+        },
+        "disable": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            431,
+            350,
+            460
+          ],
+          "raw_text": "4.2 Wyłączanie Wi-Fi i Bluetooth:\n• Przytrzymaj jednocześnie przycisk zasilania DC/USB + przycisk zasilania AC, aż ikony Wi-Fi i \nBluetooth na ekranie zgasną.",
+          "text": "4.2 Wyłączanie Wi-Fi i Bluetooth: • Przytrzymaj jednocześnie przycisk zasilania DC/USB + przycisk zasilania AC, aż ikony Wi-Fi i Bluetooth na ekranie zgasną."
+        },
+        "reset": {
+          "physical_page": 160,
+          "bbox": [
+            30,
+            460,
+            350,
+            498
+          ],
+          "raw_text": "4.3 Resetowanie Wi-Fi i Bluetooth:\n• Przytrzymaj jednocześnie przycisk POWER + przycisk zasilania DC/USB przez 3 sekundy, aby \nzresetować Wi-Fi i Bluetooth do ustawień fabrycznych. Parowanie z połączonym kontem w \naplikacji zostanie usunięte.",
+          "text": "4.3 Resetowanie Wi-Fi i Bluetooth: • Przytrzymaj jednocześnie przycisk POWER + przycisk zasilania DC/USB przez 3 sekundy, aby zresetować Wi-Fi i Bluetooth do ustawień fabrycznych. Parowanie z połączonym kontem w aplikacji zostanie usunięte."
+        }
+      },
+      "visual_recovery": {
+        "step_2_1": "The source has a circled + button between surrounding words; add a + span because the glyph is vector artwork and absent from the text layer."
+      }
+    }
+  }
+}

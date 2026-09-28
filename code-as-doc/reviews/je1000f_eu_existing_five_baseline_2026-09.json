@@ -1,0 +1,53 @@
+{
+  "schema_version": "je1000f-eu-existing-five-baseline/v1",
+  "hello_docs_main_sha": "6d71003a7fcc0b8852cda02880a592830cc3e763",
+  "publish_manifest_sha256": "1d3b188756dd742eca2e8fa1d5d76a9e65756670549bb7efc24dc3bd43a44f0c",
+  "inventory_hash_rule": "SHA-256 of UTF-8 sorted lines: path NUL size NUL sha256 LF",
+  "languages": {
+    "en": {
+      "version": "2.7",
+      "route": "JE-1000F/EU/en/md",
+      "manual": "manual_je1000f_eu_en.md",
+      "file_count": 126,
+      "size_bytes": 11813549,
+      "source_inventory_sha256": "59ac1523d78df5ede564692aa0a4301012198bc461c43c1aa9976f121eabaddf",
+      "language_scope": "single"
+    },
+    "fr": {
+      "version": "2.7",
+      "route": "JE-1000F/EU/fr/md",
+      "manual": "manual_je1000f_eu_fr.md",
+      "file_count": 126,
+      "size_bytes": 11855740,
+      "source_inventory_sha256": "8e417acc850d78a19d28df6a3a1da57a9789e717de209c8a2e3c909040e7f23b",
+      "language_scope": "single"
+    },
+    "es": {
+      "version": "2.7",
+      "route": "JE-1000F/EU/es/md",
+      "manual": "manual_je1000f_eu_es.md",
+      "file_count": 127,
+      "size_bytes": 11860207,
+      "source_inventory_sha256": "303496bf545af781b58df52fb6e0d6c13461e46e4c7ee96cbd529016f820744c",
+      "language_scope": "single"
+    },
+    "de": {
+      "version": "2.7",
+      "route": "JE-1000F/EU/de/md",
+      "manual": "manual_je1000f_eu_de.md",
+      "file_count": 127,
+      "size_bytes": 11878230,
+      "source_inventory_sha256": "2c1453d58d5843ac9193fd3e6b50e7d6699bab1f471419dea822d51f97c8c5e4",
+      "language_scope": "single"
+    },
+    "it": {
+      "version": "2.7",
+      "route": "JE-1000F/EU/it/md",
+      "manual": "manual_je1000f_eu_it.md",
+      "file_count": 127,
+      "size_bytes": 11856160,
+      "source_inventory_sha256": "d655cb5ca73cbde4fc5d699a4f17ec546fc0e76df555cff47f32028968c1a3aa",
+      "language_scope": "single"
+    }
+  }
+}

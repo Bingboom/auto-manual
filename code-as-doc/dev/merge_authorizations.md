@@ -47,6 +47,10 @@ partially green, never re-run checks blindly to "wash" a real failure.
 
 | ID | Scope | Grant | Expiry | Status |
 | --- | --- | --- | --- | --- |
+| MA-195 | 仅 auto-manual PR #1315（`feat/web-je1000f-eu-four-languages`，含本登记）及对应 Hello-Docs `publish → main` 四语内容发布 PR：新增 JE-1000F/EU `uk/pt/nl/pl` Git-only Web，记录并应用已确认的 UK physical99 波兰语 USB-C 句与 NL physical129/135/142 AC 标签勘误；原始 AI hash、提取及原图保留，发布版本 `git-20260927-c38415f5`。旧 `en/fr/es/de/it` v2.7 源树逐字节不变，其余目标不变。允许同步最新 main、处理本范围冲突；每个最终 head 全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决线程后 squash merge，随后核验 RTD 四语及旧五语。Hello-Docs 仅改 `docs/publish/**`，保留 persistent `publish` 分支。不含其它 PR、phase2/印刷产线、线上表写入、workflow、依赖、公开 CLI 或 schema 变更。 | 「已经有5语了呀 你现在 就是 要把新增的4语 上线到网页」及「可以按这个处理 这个 错误会记录的吧？」2026-09-28（确认两处勘误并保留记录） | 两项 PR 合入且四语 RTD 验收完成，或操作者撤销 | 生效（推送后生效） |
+
+| ID | Scope | Grant | Expiry | Status |
+| --- | --- | --- | --- | --- |
 | MA-194 | 按顺序：(a) PR（`fix/idml-rst-comment-leak`，**含本登记行，并把 MA-193 翻为已失效**）：修 `tools/idml_rst_extract.py`，按 RST 规则整段跳过注释块，多行注释的续行不再作为正文进入 IDML 提取（此前多处泄漏，如 #1297 的 140 W 注释出现在 JE-2000F 德语 IDML）；其它构造的提取不变，网页、LaTeX、Word 输出不变，不需要网页发布。须最终 head 包含最新 main、全部检查成功（含非必需项，pending 不算绿）、无 changes-requested 或未解决评审线程后 squash merge；本窗口可把分支更新到最新 main（只合并 main，不改其内容）。**不含**：模板改动、网页发布、Hello-Docs `review/*` 分支及其 PR、飞书写入、`.github/workflows/**`、依赖、公开 CLI 或 Base schema 变更。 | 「修」2026-09-27（IDML 多行注释泄漏） | (a) 合入即失效，或操作者撤销 | 生效（推送后生效） |
 
 | ID | Scope | Grant | Expiry | Status |
