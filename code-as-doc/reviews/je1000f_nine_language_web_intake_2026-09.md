@@ -58,7 +58,7 @@ hashes. A source-local adapter builds selectable MyST/HTML from direct AI text
 objects and geometry; the LCD, symbol, troubleshooting, specification,
 warranty, App and operating tables/lists are structured. The original nine-
 language shell remains excluded from release. The candidate contains only four
-new language targets. Its 273 input files are inventoried by SHA-256.
+new language targets. Its 276 input files are inventoried by SHA-256.
 
 | Language | Content | Figures | Local build | Browser | Publication |
 | --- | --- | --- | --- | --- | --- |
@@ -82,7 +82,7 @@ the Hello-Docs PR, merge, and RTD acceptance remain separate gates.
 The operator approved the two source errata with “可以按这个处理 这个 错误会记录的吧？”.
 The next bounded change records them in `four-language/source/errata.json`:
 the Ukrainian USB-C sentence on physical page 99 uses the already verified
-Ukrainian template wording; Dutch AC labels on physical pages 135 and 142 are
+Ukrainian template wording; Dutch AC labels on physical pages 129, 135 and 142 are
 corrected using the original AC button faces and the reviewed image candidate.
 The raw extraction and `figures/nl/p142_app_control.png` stay immutable. A
 separate corrected image and its hash are used only by the Web renderer.

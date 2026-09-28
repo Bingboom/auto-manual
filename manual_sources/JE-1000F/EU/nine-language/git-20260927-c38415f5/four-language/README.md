@@ -63,8 +63,9 @@ retained unchanged. The operator approved the Ukrainian USB-C sentence and
 Dutch AC labels on 2026-09-28. `source/errata.json` records physical/printed
 pages, original and corrected wording, evidence, the confirmation quote,
 source PR #1315 and publication version `git-20260927-c38415f5`.
-The original Dutch App crop remains in `figures/nl/p142_app_control.png`;
-`corrections/nl/p142_app_control_AC.png` is the separate corrected Web asset.
+The original Dutch front-view and App crops remain in `figures/nl/`;
+`corrections/nl/p129_front_view_AC.png` and
+`corrections/nl/p142_app_control_AC.png` are separate corrected Web assets.
 Both hashes and the image correction evidence are retained. The source
 manifest inventories both raw and corrected inputs, and the final release
 receipt binds them to the remote engineering Git commit.

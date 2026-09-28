@@ -343,10 +343,12 @@ def write_book(lang: str, output_root: Path) -> dict:
         original = HERE / "figures" / lang / Path(figure["path"]).name
         if hashlib.sha256(original.read_bytes()).hexdigest() != figure["sha256"]:
             raise ValueError(f"figure hash mismatch: {original}")
-        if lang == "nl" and figure["slug"] == "app_control":
-            if figure["sha256"] != NL_ERRATUM["raw_asset"]["sha256"]:
+        asset_erratum = next((item for item in NL_ERRATUM["asset_corrections"]
+                              if lang == "nl" and figure["slug"] == item["slug"]), None)
+        if asset_erratum is not None:
+            if figure["sha256"] != asset_erratum["raw_asset"]["sha256"]:
                 raise ValueError("Dutch AC erratum raw image changed")
-            correction = NL_ERRATUM["corrected_web_asset"]
+            correction = asset_erratum["corrected_web_asset"]
             original = HERE / correction["path"]
             if hashlib.sha256(original.read_bytes()).hexdigest() != correction["sha256"]:
                 raise ValueError("Dutch AC erratum corrected image changed")
@@ -462,7 +464,10 @@ def write_book(lang: str, output_root: Path) -> dict:
                 continue
             if section_id == "specifications" and number == source["tables"]["specifications"]["physical_page"]:
                 continue
-            body.extend(prose(block["text"], lang=lang))
+            text = block["text"]
+            if lang == "nl" and number == 129 and squash(text) == NL_ERRATUM["source_text"]:
+                text = NL_ERRATUM["corrected_text"]
+            body.extend(prose(text, lang=lang))
             body.append("")
         while figure_pos < len(page_figures):
             figure = page_figures[figure_pos]

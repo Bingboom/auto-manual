@@ -12,7 +12,7 @@
   "approval": {
     "date": "2026-09-28",
     "quote": "可以按这个处理 这个 错误会记录的吧？",
-    "scope": "The Ukrainian USB-C sentence and Dutch AC labels on physical pages 135 and 142."
+    "scope": "The Ukrainian USB-C sentence and Dutch AC-label error, including all three verified occurrences on physical pages 129, 135 and 142."
   },
   "source_pr": "https://github.com/Bingboom/auto-manual/pull/1315",
   "publication": {
@@ -45,16 +45,18 @@
       "id": "JE1000F-EU-NL-AC-LABEL",
       "locale": "nl",
       "physical_pages": [
+        129,
         135,
         142
       ],
       "printed_pages": [
+        122,
         128,
         135
       ],
       "source_text": "Aan/uit-knop voor DC",
       "corrected_text": "Aan/uit-knop voor AC",
-      "basis": "Physical page 135 shortcut rows 1 and 3 show AC button faces; physical page 142 points to the AC button. Other locales confirm the same AC control. DC/USB controls remain unchanged.",
+      "basis": "Physical page 129 front-view leader points to the AC button; page 135 shortcut rows 1 and 3 show AC button faces; page 142 points to the AC button. Other locales confirm the same AC control. DC/USB controls remain unchanged.",
       "raw_source": {
         "path": "source/operation_tables.json",
         "sha256": "f2e1f56478e4fdb7414c804edbf384b913ec2185c1c7ce90131487d02ed17acf"
@@ -69,36 +71,118 @@
           "button": 1
         }
       ],
-      "raw_asset": {
-        "path": "figures/nl/p142_app_control.png",
-        "sha256": "ce50147f8e8d9c61f40a4dfc8ad3583c23faa712633cfcaf2e7b3ccdd7a6b9fa"
-      },
-      "corrected_web_asset": {
-        "path": "corrections/nl/p142_app_control_AC.png",
-        "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20",
-        "published_name": "p142_app_control_AC.png"
-      },
-      "image_method": "Copied original AI PDF page 142 into a one-page PDF; removed only D and C glyphs at PDF-point bbox [291.80,437.94,300.63,445.16], preserving graphics; inserted AC using the source-embedded Gilroy-Regular CFF at original baseline, size 6, original dark-gray color; rendered original clip [39,390,341,456] at 3x.",
-      "pixel_change": "RGB byte comparison of the saved before/after PNGs: 666 pixels differ, bounding box [757,143,786,166) in the 906x198 crop, confined to the corrected AC label. The earlier candidate note reported 228 without a specified threshold; this measured count supersedes it.",
-      "evidence": [
+      "status": "approved",
+      "raw_sources": [
         {
-          "path": "corrections/nl/p142_app_control_AC.pdf",
-          "sha256": "8c09bbb98d39df865665b7ca27195a6e421591b83b27bec79a8593911291433a"
+          "path": "source/operation_tables.json",
+          "sha256": "f2e1f56478e4fdb7414c804edbf384b913ec2185c1c7ce90131487d02ed17acf"
         },
         {
-          "path": "corrections/nl/p142_app_control_AC.png",
-          "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20"
-        },
-        {
-          "path": "corrections/nl/p142_app_control_DC_before_same_renderer.png",
-          "sha256": "e97ec03c80281a1bf51d3a6fd4fb1a6a52ccfe177afd1b24e12e3b4e58d622ad"
-        },
-        {
-          "path": "corrections/nl/p142_app_control_DC_to_AC_detail.png",
-          "sha256": "d9f65a0363ac068204ae9900a9a1db9bfc7701f7b62581c17e24fc5ba18bb46d"
+          "path": "source/nl_direct_source.json",
+          "sha256": "472349d6c851733da4ffa843e56a41ede53a1a44af28fdee7603c3e0df4fe765"
         }
       ],
-      "status": "approved"
+      "overview_text_occurrence": {
+        "physical_page": 129,
+        "bbox": [
+          268.484,
+          176.053,
+          341.291,
+          184.719
+        ],
+        "match": "exact full label; DC/USB and DC input/port labels are unchanged"
+      },
+      "asset_corrections": [
+        {
+          "slug": "app_control",
+          "physical_page": 142,
+          "raw_asset": {
+            "path": "figures/nl/p142_app_control.png",
+            "sha256": "ce50147f8e8d9c61f40a4dfc8ad3583c23faa712633cfcaf2e7b3ccdd7a6b9fa"
+          },
+          "corrected_web_asset": {
+            "path": "corrections/nl/p142_app_control_AC.png",
+            "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20",
+            "published_name": "p142_app_control_AC.png"
+          },
+          "image_method": "Copied original AI PDF page 142 into a one-page PDF; removed only D and C glyphs at PDF-point bbox [291.80,437.94,300.63,445.16], preserving graphics; inserted AC using the source-embedded Gilroy-Regular CFF at original baseline, size 6, original dark-gray color; rendered original clip [39,390,341,456] at 3x.",
+          "pixel_change": "RGB byte comparison of the saved before/after PNGs: 666 pixels differ, bounding box [757,143,786,166) in the 906x198 crop, confined to the corrected AC label. The earlier candidate note reported 228 without a specified threshold; this measured count supersedes it.",
+          "evidence": [
+            {
+              "path": "corrections/nl/p142_app_control_AC.pdf",
+              "sha256": "8c09bbb98d39df865665b7ca27195a6e421591b83b27bec79a8593911291433a"
+            },
+            {
+              "path": "corrections/nl/p142_app_control_AC.png",
+              "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20"
+            },
+            {
+              "path": "corrections/nl/p142_app_control_DC_before_same_renderer.png",
+              "sha256": "e97ec03c80281a1bf51d3a6fd4fb1a6a52ccfe177afd1b24e12e3b4e58d622ad"
+            },
+            {
+              "path": "corrections/nl/p142_app_control_DC_to_AC_detail.png",
+              "sha256": "d9f65a0363ac068204ae9900a9a1db9bfc7701f7b62581c17e24fc5ba18bb46d"
+            }
+          ]
+        },
+        {
+          "slug": "front_view",
+          "physical_page": 129,
+          "raw_asset": {
+            "path": "figures/nl/p129_front_view.png",
+            "sha256": "59d1b235b64696402fd0ac2e4f813384daf70447826ac50d7c6bea511bfa1edf"
+          },
+          "corrected_web_asset": {
+            "path": "corrections/nl/p129_front_view_AC.png",
+            "sha256": "95bb08a6486409717d9ccea5dcaf1f3c54285ce881e70de2a0f6d700a3bdb7de",
+            "published_name": "p129_front_view_AC.png"
+          },
+          "image_method": "Copy physical page 129 into one-page PDF; redact only DC text glyphs in rectangle [331.20,176.05,341.32,184.72] preserving vector graphics and images; insert AC at original baseline using source embedded Gilroy-Bold, 7pt, RGB(64,64,65); render original crop [16,60,350,310] at 3x. Original AI and crop unchanged.",
+          "pixel_change": {
+            "comparison": "RGB exact inequality, same renderer",
+            "changed_pixels": 336,
+            "bbox_exclusive": [
+              945,
+              354,
+              976,
+              370
+            ],
+            "image_size": [
+              1002,
+              750
+            ]
+          },
+          "evidence": [
+            {
+              "path": "corrections/nl/p129_front_view_AC.png",
+              "sha256": "95bb08a6486409717d9ccea5dcaf1f3c54285ce881e70de2a0f6d700a3bdb7de"
+            },
+            {
+              "path": "corrections/nl/p129_front_view_AC.pdf",
+              "sha256": "868022a8c3d0f0a7544b3dd180428f85e489bf8cf464d5fa657ae6a1a26eca1d"
+            },
+            {
+              "path": "corrections/nl/p129_front_view_DC_before_same_renderer.png",
+              "sha256": "6ca83818c88b4392101122d7d345594927c83d1d9de46473f9c1c7860ee5538c"
+            }
+          ]
+        }
+      ],
+      "whole_book_residue_check": {
+        "source_body_pages": [
+          127,
+          143
+        ],
+        "exact_wrong_label_occurrences": {
+          "129": 1,
+          "135": 2,
+          "142": 1
+        },
+        "expected_web_text_remaining": 0,
+        "excluded_valid_label": "Aan/uit-knop voor DC/USB"
+      },
+      "discovery_note": "Physical page 129 was identified in the final whole-book residue review after the operator approved the Dutch AC/DC error type. It is an additional occurrence of that same error, handled under the existing type-level confirmation; the operator did not separately name page 129."
     }
   ]
 }

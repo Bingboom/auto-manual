@@ -114,7 +114,7 @@ Model: JE-1000F · hello.eu@jackery.com
 <span id="product_overview"></span>
 ## PRODUCTOVERZICHT
 
-<figure><img src="assets/p129_front_view.png" alt="PRODUCTOVERZICHT: front view" width="1002" height="750" loading="lazy" style="max-width:100%;height:auto"></figure>
+<figure><img src="assets/p129_front_view_AC.png" alt="PRODUCTOVERZICHT: front view" width="1002" height="750" loading="lazy" style="max-width:100%;height:auto"></figure>
 
 <h3>VOORAANZICHT</h3>
 
@@ -134,7 +134,7 @@ Model: JE-1000F · hello.eu@jackery.com
 
 <p>30 W Max, 5 V⎓3 A, 9 V⎓3 A, 12 V⎓2,5 A, 15 V⎓2 A, 20 V⎓1,5 A</p>
 
-<p>Aan/uit-knop voor DC</p>
+<p>Aan/uit-knop voor AC</p>
 
 <p>USB-C 100W-uitgang</p>
 

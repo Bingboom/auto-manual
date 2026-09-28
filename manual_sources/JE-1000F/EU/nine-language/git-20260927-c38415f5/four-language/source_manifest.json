@@ -114,13 +114,28 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 3843,
-      "sha256": "38fcba89b6fec14416ea3e8ec744d1a933328f01a55be60f0466718ed6082509"
+      "size": 3880,
+      "sha256": "4b1224c45e5da9f54ecb14fb357fc8cabaec4dac2131bfb59f7613c3ba462b19"
     },
     {
       "path": "build_web.py",
-      "size": 25887,
-      "sha256": "9bbcb1d9c898f78b81745f6b1694b886e5afa03b330d4c84eeb1b169de6bb231"
+      "size": 26207,
+      "sha256": "c5c5d7e0ad3eea49dcf2c8265d759a50a89d0d8875ab2c3c0ac6e92fd6187b2c"
+    },
+    {
+      "path": "corrections/nl/p129_front_view_AC.pdf",
+      "size": 81759,
+      "sha256": "868022a8c3d0f0a7544b3dd180428f85e489bf8cf464d5fa657ae6a1a26eca1d"
+    },
+    {
+      "path": "corrections/nl/p129_front_view_AC.png",
+      "size": 90868,
+      "sha256": "95bb08a6486409717d9ccea5dcaf1f3c54285ce881e70de2a0f6d700a3bdb7de"
+    },
+    {
+      "path": "corrections/nl/p129_front_view_DC_before_same_renderer.png",
+      "size": 90769,
+      "sha256": "6ca83818c88b4392101122d7d345594927c83d1d9de46473f9c1c7860ee5538c"
     },
     {
       "path": "corrections/nl/p142_app_control_AC.pdf",
@@ -709,8 +724,8 @@
     },
     {
       "path": "source/errata.json",
-      "size": 4533,
-      "sha256": "297baab4baf45f3669bfb2d98ea39a01337be198781692398504599e6ae2f55d"
+      "size": 7946,
+      "sha256": "fb2dfd2e178e2eee1036640d50d01329113388c32f8a29ee51630e247ee583dd"
     },
     {
       "path": "source/figure_qa.json",
@@ -893,9 +908,9 @@
       "sha256": "d834fff6ff2441ef3c3165efc5619f7a30c05cf3596f8db9aaeb455e183c0f56"
     },
     {
-      "path": "web/JE-1000F/EU/nl/md/assets/p129_front_view.png",
-      "size": 90498,
-      "sha256": "59d1b235b64696402fd0ac2e4f813384daf70447826ac50d7c6bea511bfa1edf"
+      "path": "web/JE-1000F/EU/nl/md/assets/p129_front_view_AC.png",
+      "size": 90868,
+      "sha256": "95bb08a6486409717d9ccea5dcaf1f3c54285ce881e70de2a0f6d700a3bdb7de"
     },
     {
       "path": "web/JE-1000F/EU/nl/md/assets/p129_right_view.png",
@@ -994,8 +1009,8 @@
     },
     {
       "path": "web/JE-1000F/EU/nl/md/manual_je1000f_eu_nl.md",
-      "size": 44107,
-      "sha256": "a2822f36fb4fe1256bd565bd6e479fdc72522ad15e4fd28120df5a5fb3146a4a"
+      "size": 44110,
+      "sha256": "2cecbda80c3b83c4c8e75bdb9b02267ff81f59853473bacd2ac6709e62a0b21a"
     },
     {
       "path": "web/JE-1000F/EU/pl/md/_static/web_manual.css",
@@ -1480,7 +1495,7 @@
   ],
   "errata": {
     "path": "source/errata.json",
-    "sha256": "297baab4baf45f3669bfb2d98ea39a01337be198781692398504599e6ae2f55d",
+    "sha256": "fb2dfd2e178e2eee1036640d50d01329113388c32f8a29ee51630e247ee583dd",
     "approval_date": "2026-09-28",
     "source_pr": "https://github.com/Bingboom/auto-manual/pull/1315"
   },
@@ -1495,6 +1510,18 @@
         "path": "corrections/nl/p142_app_control_AC.png",
         "sha256": "7a49cd9475de339f254ef95cd64f151bd51ae3651abfc1558fb9ab55348cfe20",
         "published_name": "p142_app_control_AC.png"
+      }
+    },
+    {
+      "erratum": "JE1000F-EU-NL-AC-LABEL",
+      "raw_source": {
+        "path": "figures/nl/p129_front_view.png",
+        "sha256": "59d1b235b64696402fd0ac2e4f813384daf70447826ac50d7c6bea511bfa1edf"
+      },
+      "corrected_web_asset": {
+        "path": "corrections/nl/p129_front_view_AC.png",
+        "sha256": "95bb08a6486409717d9ccea5dcaf1f3c54285ce881e70de2a0f6d700a3bdb7de",
+        "published_name": "p129_front_view_AC.png"
       }
     }
   ]
