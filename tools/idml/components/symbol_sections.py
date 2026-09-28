@@ -12,8 +12,6 @@ from pathlib import Path
 
 from ..page_objects import (
     frame_with_background,
-    h1_bar_h_pt,
-    h1_frame_opts,
     heading_bar_opts,
     heading_text,
     with_rounded_outer,

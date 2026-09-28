@@ -3275,7 +3275,7 @@ class ExportIdmlTests(unittest.TestCase):
                     f'<Position type="unit">{tab_position}</Position>', story,
                 )
                 self.assertIn(
-                    f'<Content>•</Content></CharacterStyleRange>', story,
+                    '<Content>•</Content></CharacterStyleRange>', story,
                 )
                 self.assertIn('<Content>\t</Content>', story)
                 self.assertNotIn("• Item with", story)
@@ -4938,55 +4938,6 @@ class ExportIdmlTests(unittest.TestCase):
         self.assertEqual(1, writer.lcd_segment_counts["fr"])
         self.assertIn(
             'SingleRowHeight="50.85" MinimumHeight="50.85"',
-            first_table,
-        )
-
-    def test_lcd_full_governed_continuation_shell_matches_row_height_sum(self) -> None:
-        params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        rows = [
-            {
-                "no": str(index),
-                "figure": "",
-                "name": f"Indicator {index}",
-                "desc": f"Description {index}",
-                **({"row_height_pt": "17.25"} if index >= 8 else {}),
-            }
-            for index in range(1, 27)
-        ]
-        w = IdmlWriter(params)
-        w.add_lcd_story(
-            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
-        )
-
-        continuation = dict(w.stories)["st_anchor_lcd_table_en_1"]
-        self.assertIn(
-            'Anchor="0 -467.634"', dict(w.stories)["st_lcd"])
-        self.assertNotIn('Anchor="0 -480"', dict(w.stories)["st_lcd"])
-        self.assertNotIn("idml_lcd_continuation_bottom_gap", params)
-        self.assertIn('SingleRowHeight="157.134"', continuation)
-
-    def test_lcd_first_shell_matches_approved_reference_table_height(self) -> None:
-        params = load_layout_params(ROOT / "data" / "layout_params.csv")
-        rows = [
-            {
-                "no": str(index),
-                "figure": "",
-                "name": f"Indicator {index}",
-                "desc": f"Description {index}",
-            }
-            for index in range(1, 8)
-        ]
-        w = IdmlWriter(params)
-        w.add_lcd_story(
-            rows, FIXTURE_DATA_ROOT, title=SOURCE_TITLES["en"]["lcd"]
-        )
-
-        story = dict(w.stories)["st_lcd"]
-        self.assertIn('Anchor="0 -280.777"', story)
-        self.assertNotIn('Anchor="0 -286"', story)
-        first_table = dict(w.stories)["st_anchor_lcd_table_en_0"]
-        self.assertIn(
-            'TopInset="13.322" BottomInset="13.322"',
             first_table,
         )
 

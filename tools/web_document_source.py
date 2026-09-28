@@ -26,7 +26,6 @@ from tools.manual_ir import (
     write_manual_ir,
 )
 from tools.manual_ir.document import validate_document
-from tools.manual_ir.flow import html_to_flow_nodes
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.manual_ir.whole_document_components import (
     discover_registered_components,
@@ -303,11 +302,11 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
             resolved = (
                 Path(unquote(parsed.path))
                 if parsed.scheme == "file"
-                else _resolve_fragment_asset_path(src, path)
+                else _resolve_fragment_asset_path(src, path)  # noqa: B023 -- invoked before the loop advances
             )
             if resolved is None or not resolved.is_file():
                 raise ValueError(
-                    f"{path}: document image is not a packaged local asset: {src}"
+                    f"{path}: document image is not a packaged local asset: {src}"  # noqa: B023 -- invoked before the loop advances
                 )
             packaged = package_asset(resolved)
             image["src"] = packaged

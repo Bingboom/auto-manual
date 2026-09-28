@@ -28,26 +28,24 @@ from pathlib import Path
 
 try:
     from tools.component_specs.adapters import idml_notice_payload_from_legacy
-    from tools.idml.data_components import is_data_plumbing, parse_data_component
-    from tools.idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
+    from tools.idml.extract_contract import EMITTED_COMPONENT_KINDS as EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS
     from tools.idml.latex_conditionals import active_lines
     from tools.idml.notice_labels import notice_label_variant
     from tools.idml.only_expr import matches_only_expr
     from tools.idml.semantic_containers import append_semantic_container
-    from tools.idml_rst_extract_latex import _detex, _extract_raw_latex
+    from tools.idml_rst_extract_latex import _detex as _detex, _extract_raw_latex
     from tools.idml_rst_tables import (
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,
     )
 except ModuleNotFoundError:  # direct tools/export_idml.py execution
     from component_specs.adapters import idml_notice_payload_from_legacy  # type: ignore
-    from idml.data_components import is_data_plumbing, parse_data_component  # type: ignore
-    from idml.extract_contract import Block, EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
+    from idml.extract_contract import EMITTED_COMPONENT_KINDS as EMITTED_COMPONENT_KINDS, ExtractResult, JSON_BLOCK_KINDS as _JSON_BLOCK_KINDS  # type: ignore
     from idml.latex_conditionals import active_lines  # type: ignore
     from idml.notice_labels import notice_label_variant  # type: ignore
     from idml.only_expr import matches_only_expr  # type: ignore
     from idml.semantic_containers import append_semantic_container  # type: ignore
-    from idml_rst_extract_latex import _detex, _extract_raw_latex  # type: ignore
+    from idml_rst_extract_latex import _detex as _detex, _extract_raw_latex  # type: ignore
     from idml_rst_tables import (  # type: ignore
         parse_grid_table as _parse_grid_table_impl,
         parse_list_table as _parse_list_table_impl,

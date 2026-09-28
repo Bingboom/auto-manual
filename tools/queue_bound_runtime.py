@@ -12,12 +12,10 @@ from tools.queue_build_execution import (  # noqa: E402
 )
 from tools.queue_runtime import (  # noqa: E402
     command_failure_message,
-    format_command,
     prepare_git_ref_worktree as _prepare_git_ref_worktree_impl,
     remove_worktree as _remove_worktree_impl,
     run_command as _run_command_impl,
     run_git as _run_git_impl,
-    slug_ref_token,
     worktree_dir_for_git_ref as _worktree_dir_for_git_ref_impl,
 )
 

@@ -10,7 +10,6 @@ the shared base value without any error.
 from __future__ import annotations
 
 import unittest
-from pathlib import Path
 
 import yaml
 

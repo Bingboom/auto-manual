@@ -8,7 +8,7 @@ import hashlib
 from http.client import IncompleteRead, RemoteDisconnected
 from html.parser import HTMLParser
 import json
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 import re
 from ssl import SSLEOFError
 from time import monotonic, sleep

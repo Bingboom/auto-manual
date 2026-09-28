@@ -24,8 +24,6 @@ Enhancements:
 from __future__ import annotations
 
 import csv
-import sys
-from pathlib import Path
 
 try:
     from tools.script_bootstrap import bootstrap_repo_root

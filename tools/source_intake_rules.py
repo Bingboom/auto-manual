@@ -20,10 +20,9 @@ from __future__ import annotations
 import re
 import unicodedata
 from collections import Counter
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any
 
-from tools.token_resolution_map import split_cells
 
 # Transform op vocabulary (the ``取值规则`` column of the rule table):
 OPS = frozenset({"passthrough", "default", "capacity", "weight", "dims_mm_to_cm",

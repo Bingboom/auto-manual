@@ -56,7 +56,7 @@ class CalloutLabelAlignmentTests(unittest.TestCase):
         aligned = align_callout_label_columns(page)
         self.assertIn(other, aligned)
         self.assertEqual([["A & B", "ПОПЕРЕДЖЕННЯ"]] * 2, _sizers(aligned))
-        self.assertIn(f'aria-hidden="true">A &amp; B</span>', aligned)
+        self.assertIn('aria-hidden="true">A &amp; B</span>', aligned)
 
 
 if __name__ == "__main__":

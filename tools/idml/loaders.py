@@ -18,6 +18,12 @@ from tools.utils.spec_footnotes import (
 )
 
 
+def _csv_rows(path: Path) -> list[dict[str, str]]:
+    """Read a UTF-8 CSV into memory, closing the file handle before returning."""
+    with path.open(encoding="utf-8") as fh:
+        return list(csv.DictReader(fh))
+
+
 def normalize_lang(lang: str | None) -> str:
     """Compatibility suffix API; canonical language identity stays in the registry."""
     suffixes = snapshot_language_suffixes(lang)
@@ -45,7 +51,7 @@ def load_footnote_markers(data_root: Path, model: str, region: str) -> dict[str,
     if not path.exists():
         return {}
     markers: dict[str, str] = {}
-    for r in csv.DictReader(path.open(encoding="utf-8")):
+    for r in _csv_rows(path):
         if not _target_matches(r, model, region):
             continue
         footnote_id = (r.get("Footnote_id") or "").strip()
@@ -60,7 +66,7 @@ def load_spec_sections(data_root: Path, model: str, region: str,
     doc_key = f"{model}_{region}"
     path = data_root / "Spec_Master.csv"
     rows = [
-        r for r in csv.DictReader(path.open(encoding="utf-8"))
+        r for r in _csv_rows(path)
         if r.get("document_key") == doc_key
         and r.get("Is_Latest") == "TRUE"
         and r.get("Page") == "specifications"
@@ -100,7 +106,7 @@ def load_lcd_rows(data_root: Path, model: str, lang: str = "en", region: str | N
     path = data_root / "lcd_icons_blocks.csv"
     subst = VariableSubstituter(data_root, model=model, lang=lang, region=region)
     out: list[dict] = []
-    for r in csv.DictReader(path.open(encoding="utf-8")):
+    for r in _csv_rows(path):
         if r.get("Is_latest") != "TRUE":
             continue
         models = [m.strip() for m in (r.get("Model") or "").split(",")]
@@ -131,7 +137,7 @@ def load_spec_annotations(data_root: Path, model: str, region: str,
         if not path.exists():
             continue
         rows: list[tuple[float, str]] = []
-        for r in csv.DictReader(path.open(encoding="utf-8")):
+        for r in _csv_rows(path):
             if r.get("Is_Latest") != "TRUE" or r.get("Enabled", "TRUE") == "FALSE":
                 continue
             models = [m.strip() for m in (r.get("Model") or "").split(",") if m.strip()]
@@ -258,7 +264,7 @@ def load_spec_title_map(data_root: Path, lang: str | None) -> dict[str, str]:
     if suffix == "en" or not path.exists():
         return {}
     out: dict[str, str] = {}
-    for r in csv.DictReader(path.open(encoding="utf-8")):
+    for r in _csv_rows(path):
         localized = (r.get(f"title_{suffix}") or "").strip()
         if localized:
             out[(r.get("title_en") or "").strip()] = localized

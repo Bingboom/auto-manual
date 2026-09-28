@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
-import shutil
+import shutil as shutil
 import sys
 from dataclasses import dataclass
 from functools import partial

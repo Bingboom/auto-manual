@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from xml.sax.saxutils import escape
 
 try:
     from tools.lcd_table_layout import split_lcd_table_rows
@@ -18,8 +17,8 @@ from .components.native_marker import (
     marker_replacements,
     portable_symbol_text,
 )
-from .params import IDPKG, component_param_pt, param_pt
-from .primitives import _ATTR_ENTITIES, spec_table
+from .params import component_param_pt, param_pt
+from .primitives import spec_table
 from .story_parts import add_story_parts
 from .source_copy import source_text
 from .spec_tables import measured_spec_table_height, spec_table_height

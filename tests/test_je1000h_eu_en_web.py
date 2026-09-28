@@ -522,7 +522,6 @@ class Je1000hEuUsbCCautionTests(unittest.TestCase):
     """
 
     def test_je1000h_branch_carries_the_printed_rating_and_others_keep_100w(self) -> None:
-        import re
 
         for lang in ("fr", "es", "de", "it", "uk"):
             text = (ROOT / f"docs/templates/page_eu-{lang}/05_operation_guide_placeholder.rst").read_text(encoding="utf-8")

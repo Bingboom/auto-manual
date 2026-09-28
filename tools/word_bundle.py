@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 try:
@@ -14,9 +13,9 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.word_bundle_common import derive_word_title, paths, resolve_bundle_targets, resolve_reference_doc
+from tools.word_bundle_common import derive_word_title as derive_word_title, paths, resolve_bundle_targets, resolve_reference_doc as resolve_reference_doc
 from tools.word_bundle_docx import export_word_from_bundle
-from tools.word_bundle_html import render_safety_word_html, render_spec_word_html
+from tools.word_bundle_html import render_safety_word_html as render_safety_word_html, render_spec_word_html as render_spec_word_html
 
 
 def main() -> None:

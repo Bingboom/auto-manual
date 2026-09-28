@@ -18,7 +18,7 @@ from tools.sync_data_config import (
     sync_phase2_cfg as _sync_phase2_cfg_impl,
 )
 from tools.sync_data import (
-    LarkCliSource,
+    LarkCliSource as LarkCliSource,
     _parse_json_payload as _sync_parse_json_payload,
 )
 

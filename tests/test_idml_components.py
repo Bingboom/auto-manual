@@ -99,7 +99,7 @@ class ComponentRegistryTests(unittest.TestCase):
         self.assertEqual(sorted(MINIMAL_SPECS), sorted(REGISTRY))
 
     def test_every_registered_kind_renders(self) -> None:
-        from tools.idml.components import RenderContext, render
+        from tools.idml.components import render
 
         ctx = _ctx()
         for kind, spec in MINIMAL_SPECS.items():

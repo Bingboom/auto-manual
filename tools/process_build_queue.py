@@ -4,10 +4,10 @@
 from __future__ import annotations
 
 import argparse
-import json
+import json as json
 import os
 import sys
-import time
+import time as time
 from datetime import datetime
 from functools import partial
 from pathlib import Path
@@ -57,9 +57,9 @@ from tools.queue_contract import (  # noqa: E402
     UPLOAD_DINGTALK_FIELD as _QC_UPLOAD_DINGTALK_FIELD,
     VERSION_FIELD as _QC_VERSION_FIELD,
     WORKFLOW_ACTION_FIELD as _QC_WORKFLOW_ACTION_FIELD,
-    DocumentLinkBinding,
+    DocumentLinkBinding as DocumentLinkBinding,
     QueueRecord,
-    WikiDestination,
+    WikiDestination as WikiDestination,
 )
 from tools.document_link_queue import (  # noqa: E402
     available_field_names as _available_field_names_impl,
@@ -68,10 +68,6 @@ from tools.document_link_queue import (  # noqa: E402
     scalar_text as _scalar_text_impl,
 )
 from tools.document_link_actions import (  # noqa: E402
-    DRAFT_PACKAGE_ACTION_LABEL,
-    PUBLISH_ACTION_LABEL,
-    WEB_PUBLISH_ACTION_LABEL,
-    best_effort_queue_workflow_action as _best_effort_queue_workflow_action,
     normalize_cli_queue_action as _normalize_cli_queue_action,
     normalize_doc_phase as _normalize_doc_phase,
     normalize_workflow_action as _normalize_workflow_action,
@@ -80,10 +76,9 @@ from tools.document_link_actions import (  # noqa: E402
     workflow_action_label as _workflow_action_label,
 )
 from tools.phase2_support import (  # noqa: E402
-    LarkCliSource,
-    cli_bin as _cli_bin,
+    LarkCliSource as LarkCliSource,
     load_config,
-    phase2_identity as _phase2_identity,
+    phase2_identity as _phase2_identity,  # noqa: F401 -- re-exported for callers and tests
 )
 from tools.process_build_queue_bootstrap import configure_queue_bound_providers  # noqa: E402
 from tools.process_build_queue_services import (  # noqa: E402
@@ -108,83 +103,58 @@ from tools.process_build_queue_services import (  # noqa: E402
     upload_word_to_drive as _upload_word_to_drive_service,
     wait_for_wiki_move_task as _wait_for_wiki_move_task_service,
 )
-from tools.queue_build_execution import BuiltDocumentOutputs  # noqa: E402
+from tools.queue_build_execution import BuiltDocumentOutputs as BuiltDocumentOutputs  # noqa: E402
 from tools.dingtalk.alidocs_session import (  # noqa: E402
-    load_session_config_for_operator_union_id,
-    upload_file_to_node,
+    load_session_config_for_operator_union_id as load_session_config_for_operator_union_id,
+    upload_file_to_node as upload_file_to_node,
 )
 from tools.queue_artifact_sink import (  # noqa: E402
-    ArtifactDestination,
-    ArtifactPublishResult,
+    ArtifactDestination as ArtifactDestination,
+    ArtifactPublishResult as ArtifactPublishResult,
     artifact_mirror_provider,
     collect_artifact_sink_preflight_errors,
 )
 from tools.queue_bound_outputs import (  # noqa: E402
-    publish_release_latest_dir_for_target as _publish_release_latest_dir_for_target,
-    publish_release_root_for_target as _publish_release_root_for_target,
-    publish_release_version_dir_for_target as _publish_release_version_dir_for_target,
-    repo_relative as _repo_relative,
-    resolve_docs_dir_for_config as _resolve_docs_dir_for_config,
-    resolve_html_output_dir_for_target,
-    resolve_md_output_path_for_target,
-    resolve_pdf_output_path_for_target,
-    resolve_word_output_path_for_target,
-    stage_draft_md_output_to_host_repo as _stage_draft_md_output_to_host_repo,
-    stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,
-    stage_publish_assets_to_host_repo as _stage_publish_assets_to_host_repo,
-    stage_web_publish_assets_to_host_repo as _stage_web_publish_assets_to_host_repo,
-    versioned_md_output_path as _versioned_md_output_path,
-    versioned_pdf_output_path as _versioned_pdf_output_path,
-    versioned_word_output_path as _versioned_word_output_path,
-    write_publish_release_metadata,
-    write_web_publish_metadata,
+    resolve_docs_dir_for_config as _resolve_docs_dir_for_config,  # noqa: F401 -- re-exported for callers and tests
+    resolve_html_output_dir_for_target as resolve_html_output_dir_for_target,
+    resolve_md_output_path_for_target as resolve_md_output_path_for_target,
+    resolve_pdf_output_path_for_target as resolve_pdf_output_path_for_target,
+    resolve_word_output_path_for_target as resolve_word_output_path_for_target,
+    stage_draft_md_output_to_host_repo as _stage_draft_md_output_to_host_repo,  # noqa: F401 -- re-exported for callers and tests
+    stage_draft_word_output_to_host_repo as _stage_draft_word_output_to_host_repo,  # noqa: F401 -- re-exported for callers and tests
+    stage_web_publish_assets_to_host_repo as _stage_web_publish_assets_to_host_repo,  # noqa: F401 -- re-exported for callers and tests
+    versioned_md_output_path as _versioned_md_output_path,  # noqa: F401 -- re-exported for callers and tests
+    versioned_pdf_output_path as _versioned_pdf_output_path,  # noqa: F401 -- re-exported for callers and tests
+    versioned_word_output_path as _versioned_word_output_path,  # noqa: F401 -- re-exported for callers and tests
+    write_publish_release_metadata as write_publish_release_metadata,
 )
 from tools.queue_bound_lark_ops import (  # noqa: E402
-    cli_relative_file_arg as _cli_relative_file_arg,
-    get_wiki_node,
-    run_lark_cli_json as _run_lark_cli_json,
+    get_wiki_node as get_wiki_node,
+    run_lark_cli_json as _run_lark_cli_json,  # noqa: F401 -- re-exported for callers and tests
 )
 from tools.queue_bound_binding import (  # noqa: E402
     collect_queue_preflight_errors as _collect_queue_preflight_errors_impl,
-    document_link_cfg as _document_link_cfg,
-    document_link_env_names as _document_link_env_names,
-    document_link_wiki_parent_token_env as _document_link_wiki_parent_token_env,
-    resolve_document_link_binding,
+    resolve_document_link_binding as resolve_document_link_binding,
 )
 from tools.queue_bound_runtime import (  # noqa: E402
-    build_py_sync_data_command as _bound_build_py_sync_data_command,
-    build_py_target_command as _bound_build_py_target_command,
-    prepare_git_ref_worktree as _prepare_git_ref_worktree,
-    remove_worktree as _remove_worktree,
-    run_command as _run_command,
-    run_git as _run_git,
-    worktree_dir_for_git_ref as _worktree_dir_for_git_ref,
-)
+    prepare_git_ref_worktree as _prepare_git_ref_worktree,  # noqa: F401 -- re-exported for callers and tests
+    remove_worktree as _remove_worktree,  # noqa: F401 -- re-exported for callers and tests
+    run_command as _run_command,  # noqa: F401 -- re-exported for callers and tests
+    )
 from tools.queue_bound_records import (  # noqa: E402
-    group_pending_queue_records,
-    is_immediate_trigger_enabled as _is_immediate_trigger_enabled,
-    is_trigger_requested as _is_trigger_requested,
-    parse_queue_records,
-    queue_group_dingtalk_target_node_url,
-    queue_group_force_phase2_refresh,
-    queue_group_upload_dingtalk,
-    pending_immediate_queue_records,
-    pending_queue_records,
-    queue_group_build_family,
-    queue_group_lang,
-    queue_group_operator_union_id,
-    queue_record_action_source,
-    queue_record_key,
-    queue_record_legacy_doc_phase,
-    queue_record_uses_legacy_doc_phase,
-    resolve_config_path_for_task,
-    resolve_queue_workflow_action,
-    resolve_target_for_record,
-    select_pending_queue_records,
-    validate_queue_record_group,
+    group_pending_queue_records as group_pending_queue_records,
+    pending_immediate_queue_records as pending_immediate_queue_records,
+    pending_queue_records as pending_queue_records,
+    queue_group_lang as queue_group_lang,
+    queue_record_key as queue_record_key,
+    queue_record_uses_legacy_doc_phase as queue_record_uses_legacy_doc_phase,
+    resolve_config_path_for_task as resolve_config_path_for_task,
+    resolve_queue_workflow_action as resolve_queue_workflow_action,
+    resolve_target_for_record as resolve_target_for_record,
+    select_pending_queue_records as select_pending_queue_records,
+    validate_queue_record_group as validate_queue_record_group,
 )
 from tools.queue_outputs import config_path_in_repo_root as _config_path_in_repo_root_impl  # noqa: E402
-from tools.queue_runtime import command_failure_message as _command_failure_message  # noqa: E402
 
 configure_queue_bound_providers(
     repo_root_provider=lambda: ROOT,

@@ -86,7 +86,9 @@ def load_manual_entries(repo_root: Path) -> dict[str, dict]:
     if not path.exists():
         return {}
     out: dict[str, dict] = {}
-    for row in csv.DictReader(path.open(encoding="utf-8")):
+    with path.open(encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    for row in rows:
         target = (row.get("target") or "").strip()
         if not target:
             continue

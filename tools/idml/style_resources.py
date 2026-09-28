@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 from .font_family import (
-    PRIMARY_FONT_FAMILY_TOKEN,
+    PRIMARY_FONT_FAMILY_TOKEN as PRIMARY_FONT_FAMILY_TOKEN,
     IdmlFontFamilyToken,
     font_family_tokens,
 )
