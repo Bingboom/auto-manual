@@ -21,7 +21,7 @@ _HEX_COLOR_RE = re.compile(r"#[0-9a-f]{6}")
 # Compact duration token shown beside a clock, taken from the localized step
 # copy the same way the IDML operation panel derives its editable duration.
 _DURATION_RE = re.compile(
-    r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|s)\b",
+    r"\b(\d+)\s*(?:seconds?|secondes?|segundos?|seconden|sekund(?:y|ę)?|секунд(?:и|у)?|s|с)\b",
     re.IGNORECASE,
 )
 

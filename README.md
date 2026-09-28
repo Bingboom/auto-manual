@@ -14,6 +14,7 @@ Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/w
 封存源辅助文件的复制边界见[构建指南](code-as-doc/build_doc_guide.md)。
 
 Web 发布产物可运行[本地只读检查](code-as-doc/dev/manual_operations_health_report.md)；本地通过不等于线上部署通过。
+JE-1000F/EU 新增四语按[原生 PDF 与共享 IR 接入](code-as-doc/dev/four_language_shared_ir_alignment.md)维护；原稿与勘误保留，正文、表格和图内标签使用网页组件。
 冻结目录也可运行[只读线上链接检查](code-as-doc/dev/manual_operations_online_health.md)，HTTP成功不等于版本验收。
 
 Web profile 配合显式 `--lang` 会冻结完整配置语言源，再将所选语言投影为
