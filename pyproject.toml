@@ -19,6 +19,10 @@ select = ["E722", "F", "B023"]
 [tool.ruff.lint.per-file-ignores]
 # Test helpers routinely build per-iteration closures that run immediately.
 "tests/**" = ["B023"]
+# The queue facade hands itself to helper modules via _service_module(), which
+# read its re-exported names dynamically; static unused-import analysis cannot
+# see those uses. Removing the forwarders is tracked as plan item CQ-2.4.
+"tools/process_build_queue.py" = ["F401"]
 
 [tool.mypy]
 python_version = "3.12"
