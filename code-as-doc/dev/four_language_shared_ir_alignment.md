@@ -1,5 +1,74 @@
 # Frozen four-language Web alignment
 
+## Current correction: native PDF re-intake
+
+The screenshot-based candidate described below was rejected during user review.
+Its earlier test/build results do **not** accept the corrected re-intake.
+The historical files and adapter remain immutable evidence, not the preferred
+content authoring path.
+
+The corrected path reads selectable text again from the supplied editable PDF.
+`frozen_pdf_intake` uses old JSON only as a coordinate/schema recipe. Missing
+DC glyphs are recovered by `frozen_pdf_glyphs` only when the verified original
+AI has exactly matching text except for the missing glyph; the original PDF
+text, location, AI digest and correction are retained. Approved source errata
+remain separate from extraction repair.
+
+`frozen_pdf_document` omits printed Contents. `frozen_pdf_media` and
+`frozen_pdf_app` map native labels and instructions to the existing Inbox,
+Overview, Operation and App ComponentSpecs. Symbol, specification, warranty,
+LCD and fault copy stays editable. Source regions are consumed once so a
+component does not repeat its text below a panel image. The existing public
+reference consumer now supports its registered explicit `caption_mode=none`;
+`live` still requires captions and `embedded` retains its previous behavior.
+
+The asset manifest contains target identity, a new immutable `technical_version`,
+the exact PDF `text_source` filename/SHA-256, and one path, full SHA-256 and
+`content_mode` per role. Allowed artwork modes are `textless`,
+`fixed-product-markings` and `app-ui`; printed body/table composites are
+rejected. Each role must still be visually checked against the original
+product: a registry's `ALL` label does not override visibly different sockets
+or engraved voltage. Any `pending` entry prevents output creation. Each geometry
+or erratum JSON actually read must match the historical manifest hash and size;
+old screenshot files are never opened for this verification.
+
+```bash
+python3 -m tools.frozen_pdf_web \
+  --pdf /path/to/editable-export.pdf \
+  --recipe-root manual_sources/JE-1000F/EU/nine-language/git-20260927-c38415f5/four-language \
+  --assets-manifest /path/to/verified-asset-bindings.json \
+  --language pl --output /tmp/fresh-pdf-pl/md
+```
+
+The verified AI original must be beside the PDF under the original filename.
+Use a new output directory. The command shares the existing assembler,
+stylesheet, Sphinx scaffold and cold replay; it adds no renderer. The source
+identity is `frozen-pdf-json`, bound to the same strict target/language/manifest
+checks as the historical external adapter. It does not register phase2 fields.
+
+Local acceptance now covers all four complete manuals: 836 positioned field
+hashes and 68 native body pages rechecked against the PDF, 26 LCD legend rows and
+11 fault rows per language, strict Sphinx builds, source/asset digests and cold
+public replay. The operation layout preserves localized mode, light and SOS
+labels. Its duration parser recognizes the supplied Dutch, Polish and Ukrainian
+second expressions alongside existing English/French/Portuguese copy.
+
+The independent graphics match the supplied two-BS1363-socket product. Reused
+symbols come from the live Symbols attachments; missing Operation, right-view,
+charging and App controls follow the native extraction recipes. The frozen Overview instance binds a matching front/right canvas and preserves
+all long native labels. Browser checks at 390, 768, 1024 and 1280 pixels found
+no callout collisions or clipping in any of the four languages. The App
+control canvas matches the existing shared label geometry; no locale CSS fork
+is added. These source-bound assets are frozen for this authorized release,
+not promoted into the live asset registry. Synthetic artwork remains test-only.
+
+The operator approved completing and publishing these four languages on
+2026-09-28; MA-196 records the scoped gate-on-green authorization. PR/RTD
+publication receipts remain separate from local acceptance. Detailed source
+checks are in `reports/four-language-pdf-reimport/content-audit.md`.
+
+## Historical candidate (superseded)
+
 ## Discovery and scope
 
 The approved JE-1000F/EU `uk`, `pt`, `nl`, and `pl` inputs are frozen in

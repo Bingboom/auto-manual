@@ -662,6 +662,11 @@ Word keeps compatibility wrappers, and the Web IR renderer imports the lightweig
 helper directly so cold replay never imports source-table readers.
 
 `frozen_ai_web` is the bounded alternate intake for approved frozen AI JSON.
+`frozen_pdf_web` reuses that assembler after `frozen_pdf_intake` reads native PDF text,
+`frozen_pdf_glyphs` verifies missing glyphs against the AI original, and
+`frozen_pdf_source` binds explicit asset hashes. `frozen_pdf_document`,
+`frozen_pdf_media` and `frozen_pdf_app` map source geometry to the existing shared
+components; no historical screenshots or body Contents enter that path.
 `frozen_ai_source` verifies source/assets and errata; `frozen_ai_document`
 orders source chapters; `frozen_ai_flow`, `frozen_ai_table_components` and
 `frozen_ai_media_components` map neutral prose and registered components.

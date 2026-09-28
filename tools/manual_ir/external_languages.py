@@ -14,7 +14,7 @@ def frozen_language_issues(ir: ManualIR) -> list[str] | None:
     digest. This permits an approved external locale without claiming that it
     has phase2 columns, print templates or a registered production target.
     """
-    if getattr(ir, "source", None) != "frozen-ai-json":
+    if getattr(ir, "source", None) not in {"frozen-ai-json", "frozen-pdf-json"}:
         return None
     manifest = ir.metadata.get("frozen_source_manifest")
     if not isinstance(manifest, dict):

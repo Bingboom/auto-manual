@@ -27,6 +27,7 @@ def _component_contract(payload: dict) -> dict:
         "id": payload["reference_id"],
         "image_key": payload["image_key"],
         "captions_embedded": payload["caption_mode"] == "embedded",
+        "caption_mode": payload["caption_mode"],
         "caption_layout": payload["caption_layout"],
         "web_replace_key": payload["web_replace_key"],
     }

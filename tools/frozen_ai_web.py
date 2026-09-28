@@ -62,9 +62,17 @@ def build_book(source_root: Path, output: Path, language: str):
         raise ValueError("output must not be inside the historical source")
     book = FrozenBook(source_root, output, language)
     title, pages = ordered_pages(book)
+    return assemble_book(book, title, pages)
+
+
+def assemble_book(book, title, pages):
+    """Assemble either positioned intake through the same frozen Web pipeline."""
+    output, language = book.output, book.language
     registry = load_component_registry()
     theme = load_manual_theme(component_registry=registry)
-    contract = load_web_manual_contract(model=book.target["model"], region=book.target["region"])
+    contract = getattr(book, "contract", None) or load_web_manual_contract(
+        model=book.target["model"], region=book.target["region"],
+    )
     filename = f"manual_{book.target['model'].replace('-', '').lower()}_{book.target['region'].lower()}_{language}.md"
     _write_myst_sphinx_scaffold(output / filename, title=title, presentation_profile="web")
     with (output / "conf.py").open("a", encoding="utf-8") as stream:
@@ -76,6 +84,7 @@ def build_book(source_root: Path, output: Path, language: str):
         "title": title, "markdown_filename": filename,
         "declared_languages": [language], "frozen_source_manifest": book.manifest,
         "source_errata": book.errata,
+        **({"pdf_intake_provenance": book.provenance} if hasattr(book, "provenance") else {}),
         "asset_sha256": book.hashes, "component_registry": registry,
         "component_registry_sha256": registry_sha256(registry),
         "manual_theme": theme, "manual_theme_sha256": theme_sha256(theme),
@@ -84,18 +93,20 @@ def build_book(source_root: Path, output: Path, language: str):
         "frozen_figure_inventory": [
             {"slug": figure["slug"], "section": figure["section_id"],
              "physical_page": figure["physical_page"], **book.art[figure["slug"]],
-             "presentation": "lcd-mode-artwork" if figure["slug"] == "lcd_mode_art" else "approved-composite"}
+             "presentation": figure.get("presentation") or (
+                 "lcd-mode-artwork" if figure["slug"] == "lcd_mode_art" else "approved-composite")}
             for figure in book.figures
         ],
         "component_inventory": {identity: sum(spec.component_id == identity for spec in specs)
                                 for identity in sorted({spec.component_id for spec in specs})},
     }
     if contract.get("figure_targets") and contract.get("product_overview", {}).get("source_patterns"):
-        overview = resolve_overview_instance(model=book.target["model"], region=book.target["region"])
+        overview = getattr(book, "overview_instance", None) or resolve_overview_instance(
+            model=book.target["model"], region=book.target["region"])
         metadata.update(overview_instance=overview, overview_instance_sha256=overview_instance_sha256(overview))
     source = ManualSource(
         model=book.target["model"], region=book.target["region"], language=language,
-        source="frozen-ai-json", bundle_root="frozen-source",
+        source=getattr(book, "source_kind", "frozen-ai-json"), bundle_root="frozen-source",
         bundle_sha256=value_sha256(book.manifest), snapshot_sha256=None,
         layout_params_sha256=value_sha256({"layout": "web"}),
         style_contract_sha256=value_sha256(contract), pages=pages,
@@ -108,7 +119,8 @@ def build_book(source_root: Path, output: Path, language: str):
     fragments = replay_package(output)
     # Bind coverage evidence to the actual public replay, not an assumed count.
     rendered = BeautifulSoup("".join(fragments), "html.parser")
-    if len(rendered.select(".hb-reference-figure")) != len(book.figures) - 1:
+    expected_references = getattr(book, "expected_reference_count", len(book.figures) - 1)
+    if len(rendered.select(".hb-reference-figure")) != expected_references:
         raise ValueError("source figure coverage disagrees with public replay")
     ir = replace(ir, metadata={**ir.metadata, "rendered_source_figure_count": len(book.figures)})
     write_manual_ir(ir, path)
