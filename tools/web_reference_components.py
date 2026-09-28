@@ -62,7 +62,7 @@ def append_reference_captions(
         attrs={
             "class": "hb-reference-caption-grid",
             "data-caption-layout": layout,
-            "data-caption-count": str(len(labels)),
+            "data-caption-count": str(len(labels)), "style": f"--hb-caption-count:{len(labels)}",
         },
     )
     for label in labels:

@@ -185,6 +185,9 @@ components:
       labels:
         required: false
         content_kinds: [ordered_labels]
+      step_captions:
+        required: false
+        content_kinds: [ordered_labels]
     asset_roles:
       source_art: {required: false, locale_policies: [exact]}
       store_art: {required: false, locale_policies: [shared]}

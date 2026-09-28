@@ -665,8 +665,11 @@ helper directly so cold replay never imports source-table readers.
 `frozen_pdf_web` reuses that assembler after `frozen_pdf_intake` reads native PDF text,
 `frozen_pdf_glyphs` verifies missing glyphs against the AI original, and
 `frozen_pdf_source` binds explicit asset hashes. `frozen_pdf_document`,
-`frozen_pdf_media`, `frozen_pdf_app` and `frozen_pdf_reference` map source geometry to the existing shared
-components; no historical screenshots or body Contents enter that path.
+`frozen_pdf_media`, `frozen_pdf_app`, `frozen_pdf_lcd`, `frozen_pdf_frontmatter`
+and `frozen_pdf_reference` map source geometry to the existing shared components.
+`frozen_pdf_finished_overview` binds only explicitly approved source-language
+front/right panels through the existing composite adapter while retaining IR
+callout semantics. Body/table screenshots and printed Contents stay excluded.
 `frozen_ai_source` verifies source/assets and errata; `frozen_ai_document`
 orders source chapters; `frozen_ai_flow`, `frozen_ai_table_components` and
 `frozen_ai_media_components` map neutral prose and registered components.

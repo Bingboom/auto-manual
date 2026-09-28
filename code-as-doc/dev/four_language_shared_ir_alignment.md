@@ -31,10 +31,19 @@ and builds the registered ReferenceFigure `base-art-live-copy` variant through
 the shared adapter. Missing/duplicate labels or a different artwork hash fail
 before output assets are copied. Desktop labels sit in the artwork's reserved
 space; narrow-screen labels remain inside the same gray panel, with the shared
-readable mobile layout. The immutable `git-20260928-c38415f5-figure-labels` package
-corrects these three figures in each of the four languages; all artwork bytes,
-body wording/order and shared CSS remain unchanged. Browser visual acceptance
-must be recorded separately from text/asset parity.
+readable mobile layout. The immutable `git-20260928-c38415f5-layout-fixes` package
+corrects these three figures in each of the four languages. Native chapter and
+subsection headings use the template H1/H2 scale; component-owned headings keep
+their contracts. Preface paragraphs and IMPORTANT label are separated, and the
+safety warning and eight precautions use the existing callout/list structure.
+Warranty scope copy retains its original bold emphasis and existing 3+2 cards.
+The LCD table uses HB-TABLE-LCD-ICON with 26 independent source-matched icons,
+including both printed rows numbered 22. App screenshots carry live step labels
+2.1–2.5. Dense front/right overview panels reuse the corresponding source-language
+finished artwork through the existing composite adapter, preserving semantic
+callout text in IR and the approved Dutch AC-label erratum. Other body text and
+tables remain native HTML. Old five-language presentation stays unchanged.
+Browser visual acceptance must be recorded separately from text/asset parity.
 
 The asset manifest contains target identity, a new immutable `technical_version`,
 the exact PDF `text_source` filename/SHA-256, and one path, full SHA-256 and

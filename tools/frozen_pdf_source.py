@@ -1,7 +1,8 @@
 """Fresh PDF intake bound to explicit, hash-verified shared artwork.
 
 The native PDF supplies every text field. Historical JSON supplies extraction
-geometry and approved errata only; historical screenshot files are never read.
+geometry and approved errata. Finished overview panels are opt-in, locale-bound
+and hash-verified; body and table screenshots remain forbidden.
 """
 from __future__ import annotations
 
@@ -14,12 +15,12 @@ import shutil
 from tools.component_specs.overview_instance import (
     overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
 )
-from tools.frozen_ai_flow import cell, node, scroll_table, text
 from tools.frozen_ai_source import FrozenBook
 from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
 from tools.frozen_pdf_glyphs import recover_pdf_glyphs
 from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
 from tools.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
+from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
 from tools.manual_ir.hashing import file_sha256, value_sha256
 from tools.web_presentation import load_web_manual_contract
 
@@ -106,7 +107,7 @@ class PdfBook(FrozenBook):
                         for figure in recipes if figure['slug'] in _REFERENCE_IDS]
         if len(self.figures) != len(_REFERENCE_IDS) or {f['slug'] for f in self.figures} != _REFERENCE_IDS:
             raise ValueError('source geometry must contain exactly the five required reference diagrams')
-        required = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, 'lcd.mode', 'lcd.map',
+        required = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, *LCD_ICON_ASSET_KEYS, 'lcd.mode', 'lcd.map',
                     *(f"symbol.{row['icon_id']}" for row in self.records['symbols']['pictograms']),
                     *(figure['asset_key'] for figure in bindings.get('figures', []))}
         missing = sorted(required - bindings['assets'].keys())
@@ -124,6 +125,8 @@ class PdfBook(FrozenBook):
         from tools.frozen_pdf_reference import bind_reference_labels
         bind_reference_labels(self, reference_bindings)
         self.overview_instance = _overview_binding(bindings, self.target)
+        from tools.frozen_pdf_finished_overview import bind_finished_overview
+        bind_finished_overview(self, bindings, assets_manifest)
         # Validate the whole binding before creating output or copying files.
         for key, record in self.assets.items():
             source = (assets_manifest.parent / record['path']).resolve()
@@ -133,7 +136,7 @@ class PdfBook(FrozenBook):
             self.hashes[record['asset_ref']] = record['sha256']
         self.contract = load_web_manual_contract(model=self.target['model'], region=self.target['region'])
         self.contract = deepcopy(bindings.get('web_contract', self.contract))
-        self.expected_reference_count = len(_REFERENCE_IDS) + 1  # LCD map; App result is a standalone UI image
+        self.expected_reference_count = len(_REFERENCE_IDS) + 2  # LCD map and live-caption App result
         for figure in self.figures:
             figure['presentation'] = 'textless-shared-art'
         self.art = {f['slug']: self.assets[f['asset_key']] for f in self.figures}
@@ -176,14 +179,17 @@ class PdfBook(FrozenBook):
                             f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}")
 
     def special(self, section):
+        if section == 'safety':
+            from tools.frozen_pdf_frontmatter import safety_flow
+            return safety_flow(self)
         if section == 'app_setup':
             return app_section(self, self.assets)
         if section == 'lcd_display':
             from tools.frozen_pdf_app import artwork_node
-            rows = [[cell(str(row['number']), header=True),
-                     node('table_cell', [node('strong', [text(row['label'])]),
-                                        node('line_break'), text(row['meaning'])], header=False)]
-                    for row in self.records['lcd_indicators']['rows']]
+            title = self.locale['titles'][self.index['section_ids'].index(section)]
             return [artwork_node(self.assets['lcd.map']['asset_ref'], 'lcd-map', self.language,
-                                 f'{self.language}/lcd-display'), scroll_table(rows)]
+                                 f'{self.language}/lcd-display'),
+                    *lcd_icon_flow(self.records['lcd_indicators'], assets=self.assets,
+                                   accessibility_label=title, source_ref=f'{self.language}/lcd-display#icons',
+                                   language=self.language)]
         return super().special(section)

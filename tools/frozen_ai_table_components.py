@@ -207,7 +207,7 @@ def warranty_flow(
     blocks = record["blocks"]
     lead = warranty_lead_component_spec(
         accessibility_label=blocks["title"]["text"],
-        lead_html=_paragraph(blocks["scope"]["text"])["html"],
+        lead_html=f'<p><strong>{escape(blocks["scope"]["text"])}</strong></p>',
         local_note_html=_paragraph(blocks["local_law_note"]["text"])["html"],
         source_ref=f"{source_ref}#lead", language=language,
     )

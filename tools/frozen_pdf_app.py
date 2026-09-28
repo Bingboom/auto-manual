@@ -1,7 +1,7 @@
 """Fresh PDF App copy bound to shared App components and independent assets."""
 from __future__ import annotations
 
-from collections.abc import Mapping
+from collections.abc import Mapping, Sequence
 from html import escape
 import re
 from typing import Any
@@ -25,7 +25,8 @@ APP_ASSET_KEYS = ("app.download", "app.store", "app.qr", "app.phone", "app.contr
 
 
 def artwork_node(asset_ref: str, reference_id: str, language: str, source_ref: str,
-                 *, accessibility_label: str | None = None) -> dict:
+                 *, accessibility_label: str | None = None,
+                 captions: Sequence[str] = ()) -> dict:
     """Bind governed standalone artwork with no invented composite/caption.
 
     The shared source-fragment hash normalizes image refs, so packaging may
@@ -40,15 +41,21 @@ def artwork_node(asset_ref: str, reference_id: str, language: str, source_ref: s
     image = BeautifulSoup(flow_nodes_to_html((carrier,)), "html.parser").img
     image["class"] = ["hb-reference-art"]
     semantic.append(image)
+    caption_labels = [str(value).strip() for value in captions]
+    if any(not value for value in caption_labels):
+        raise ValueError(f"{source_ref}: artwork captions cannot be empty")
     digest = reference_source_fragment_sha256(
         component={"id": reference_id, "image_key": reference_id, "captions_embedded": False},
-        semantic=semantic, caption_labels=[], composite_locale=None,
+        semantic=semantic, caption_labels=caption_labels, composite_locale=None,
     )
     spec = reference_figure_component_spec(
-        reference_id=reference_id, accessibility_label=label, caption_mode="none", captions=(),
+        reference_id=reference_id, accessibility_label=label,
+        caption_mode="live" if caption_labels else "none",
+        captions=tuple({"html": escape(value), "text": value} for value in caption_labels),
         adjacent_copy=None, source_art_ref=asset_ref, source_art_locale_policy="shared",
         source_fragment_sha256=digest, source_ref=source_ref, language=language,
         image_key=reference_id,
+        metadata={"captions_origin": "configured"} if caption_labels else None,
     )
     return component_flow_node(spec, carrier_flow=(carrier,), root=True)
 
@@ -108,6 +115,38 @@ def _control_labels(book: Any, page: int) -> list[dict]:
             for role, value in zip(roles, values, strict=True)]
 
 
+def _native_step_captions(
+    book: Any, blocks: Mapping, page: int, steps: Sequence[str]
+) -> list[dict[str, str]]:
+    """Verify a source-page number block against the existing App steps.
+
+    PDF text order is not visual order on the three-phone result page: its
+    single text block reads 2.5 / 2.3 / 2.4. The already identified step
+    records establish the left-to-right sequence after the number set is
+    confirmed against the native page block.
+    """
+    for number in steps:
+        key = "step_" + number.replace(".", "_")
+        step = blocks[key]
+        if not re.match(rf"^{re.escape(number)}(?=\s|$)", step["raw_text"].strip()):
+            raise ValueError(f"{book.language}: {key} does not start with {number}")
+    record = next(p for p in book.source["pages"] if p["physical_page"] == page)
+    matches = []
+    for block in record["blocks_visual_order"]:
+        lines = [line.strip() for line in block["text"].splitlines() if line.strip()]
+        if len(lines) == len(steps) and set(lines) == set(steps):
+            matches.append(block)
+    if len(matches) != 1:
+        raise ValueError(
+            f"{book.language}/pdf-page-{page}: expected one native number block "
+            f"with {list(steps)!r}; found {len(matches)}"
+        )
+    return [
+        {"role": "step-" + number.replace(".", "-"), "text": number, "html": number}
+        for number in steps
+    ]
+
+
 def _download(book: Any, blocks: Mapping, refs: Mapping[str, str], source_ref: str) -> dict:
     columns = [{"role": role, "text": _clean(book, blocks[f"download_{role}"]["raw_text"])}
                for role in ("store", "qr")]
@@ -141,11 +180,13 @@ def _plus(book: Any, raw: str, source_ref: str) -> dict:
 def _add_device(book: Any, blocks: Mapping, refs: Mapping[str, str], source_ref: str) -> dict:
     page = int(blocks["step_2_1"]["physical_page"])
     labels = _control_labels(book, page)
+    captions = _native_step_captions(book, blocks, page, ("2.1", "2.2"))
     title = _clean(book, blocks["add_heading"]["raw_text"])
     spec = app_add_device_component_spec(
         accessibility_label=title, reference_id="app-add-device", labels=labels,
         source_art_ref=refs["app.phone"], phone_art_ref=refs["app.phone"], control_art_ref=refs["app.control"],
         source_ref=source_ref + "#add-device", language=book.language,
+        step_captions=captions,
         metadata={"physical_page": page, "source_label_region": [25, 400, 345, 450]},
     )
     lines = [node("group", [text(label["text"])], role="container",
@@ -194,7 +235,16 @@ def app_section(book: Any, asset_refs: Mapping[str, Any]) -> list[dict]:
     add_prose("step_2_4")
     add_notice("wifi_note", "note")
     add_prose("step_2_5")
-    result.append(root(_image(refs["app.result"], _clean(book, blocks["screenshots_note"]["raw_text"]))))
+    result_page = int(blocks["step_2_5"]["physical_page"])
+    result_captions = _native_step_captions(
+        book, blocks, result_page, ("2.3", "2.4", "2.5")
+    )
+    result.append(artwork_node(
+        refs["app.result"], "app-connect-result", book.language,
+        source_ref + "#connect-result",
+        accessibility_label=_clean(book, blocks["screenshots_note"]["raw_text"]),
+        captions=[item["text"] for item in result_captions],
+    ))
     add_prose("screenshots_note")
     add_notice("bluetooth_caution", "caution")
     for key, level in (("unbind", 3), ("enable", 4), ("disable", 4), ("reset", 4)):

@@ -37,7 +37,7 @@ def fixture():
 class FrozenPdfReferenceTests(unittest.TestCase):
     def test_four_committed_books_replay_labels_without_reopening_pdf(self):
         source = (Path(__file__).resolve().parents[1] / 'manual_sources' / 'JE-1000F' /
-                  'EU/nine-language/git-20260928-c38415f5-figure-labels/four-language/web')
+                  'EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web')
         with TemporaryDirectory() as directory, patch('fitz.open', side_effect=AssertionError('PDF reopened')):
             for language in ('uk', 'pt', 'nl', 'pl'):
                 with self.subTest(language=language):
