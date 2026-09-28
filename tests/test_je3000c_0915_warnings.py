@@ -176,6 +176,12 @@ EDITED[JE500A_UPS] = ("en", "admonitions", "JE-500A")
 
 # sha256 of print_view() of each carrier on origin/main (bd201fc2). The UPS pages had
 # no only-blocks there, so for them this is main's file hash itself.
+# The six shared UPS templates and the five fr-uk JE-3000C operation carriers moved
+# on 2026-09-27 with the JE-3000C/EU print-gap corrections
+# (tests/test_je3000c_eu_print_gaps.py): those correct older copy and so reach
+# every output, the print one included. The 09-15 copy is still absent from the
+# print branch (the checks below), and every other model still reads main's UPS
+# text under `.. only:: not model_je_3000c`.
 MAIN_PRINT_VIEW_SHA256 = {
     "docs/_review/JE-1000F/EU/page/06_ups_mode.rst": "f4ad3c3009f2b9e980c6fa9bae6870c952b00a7ff10a06a8b88915dde599da39",
     "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst": "f5905e61ccfdf8d2086c1831c0c91e55b3f7046afff9729368f0a6ace641fa00",
@@ -183,22 +189,23 @@ MAIN_PRINT_VIEW_SHA256 = {
     "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "24fd46b5b5aad8d5bb43568ca20362471ff80ddfa734dffaf7b6af686b95d4c8",
     "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "57fc8674aa798430b0d295fd4d90d6a9eafcd1e3614f1d2b479e44de7de06cfe",
     "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "a940aa134298aef6b23828bbf73a508f69602af92af3f14def0bc218a7f7c138",
-    "docs/templates/page_shared/de/06_ups_mode.rst": "d948a4922603106bbe57ca270a268a25d8f96e4fb830eb16a850ea120c138479",
-    "docs/templates/page_shared/en/06_ups_mode.rst": "c26c7c9c3c255ef469da87deadf16a5e31d843aebaa88738490637dfa0edcb0e",
-    "docs/templates/page_shared/es/06_ups_mode.rst": "80e9f2310637c89760d1468385a2d2de3845e0eadfb2badad2ffdb7073b39509",
-    "docs/templates/page_shared/fr/06_ups_mode.rst": "1c7d193805ce2adf1ac0febeefd0e0e78464b511a669719d89ce8dfdb2a658e5",
-    "docs/templates/page_shared/it/06_ups_mode.rst": "6d6b074c0bfc328b83b72f26b64b1c011a4aac38fd744bc8cb00b98b4f3c3880",
-    "docs/templates/page_shared/uk/06_ups_mode.rst": "0761ccc0fa73b3029d22c5476ab14a500d80be252a18f9471235865c9252f799",
-    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "2832615fe0a948547ea98892001b1f2d4b71ec56a13134a66d6c583920842ee1",
-    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "d83e8b18e7912782dcbae810e6b5049dd683c58f54cf63814e0463d47d7e78f6",
-    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "683344546f3381a3decf664760c8d611e4624f06397c186c62fca6bf868e048e",
-    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "0f82b5f0714c8d8dfadf89de15b530f0a8cb6bb306e49389f8e44b1544ca7cc3",
+    "docs/templates/page_shared/de/06_ups_mode.rst": "b2d0b4c122355a1586234df69d66be790cc3db99b59f715f8c579be28ab25e5b",
+    "docs/templates/page_shared/en/06_ups_mode.rst": "3f873ddc0aa14488bf1ecc94f8ebe9f03e840e0e315d6769d4ff4390932ff0ae",
+    "docs/templates/page_shared/es/06_ups_mode.rst": "0b399aae3dff661f6f35ba57554b4fb086a0492ac577cf17843885c0a6774267",
+    "docs/templates/page_shared/fr/06_ups_mode.rst": "7bcc7496ba80864c9f230483880c9507ee44394c27b8de5f780441ef3c0c0ff8",
+    "docs/templates/page_shared/it/06_ups_mode.rst": "2b5cedaa9b5fd1c5740699ff136fcb24fe34fc8a4c03b7b26d3211b48a74d902",
+    "docs/templates/page_shared/uk/06_ups_mode.rst": "61f39ee85f1cee748fcb98fcf70c52cdb0666abde276d9f997ca7a03b434ae6d",
+    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "b948416c1c2fa778b0967f71820b9f82a8f800e38cc395da384536dad22368b1",
+    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "3b4e9aec2cf195022fa41d3e38e47faeff22a5abfa7376c4c4fb650e6787878a",
+    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "5e29a3ba9951cfe535f0281393bdbb7b7013becf37ca083da80fca5505f5c6fa",
+    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "8b5aa837431ee54a86a4a7efee2b7a4f35f737cdb4dc5a9e6e7941408d088106",
     "docs/templates/targets/je3000c/05_operation_guide_placeholder.rst": "a63bd412bf45b7e65eef0e17882bcbe0218627f4cd4c64d6c8e68b5e72952529",
-    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "a37b8515f1c703f0793ddaa30b084979d63077ef482e6ff92ab73064f983db56",
+    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "59fcbd705691af6ed6eb0d9f9118cf7c43b092b071d0bc471cfb1be9ed19bbf1",
 }
 
 # sha256 of the IDML extractor's blocks (tools.idml_rst_extract.extract_page, ManualIR
-# tags: latex, idml, region_eu, the model, the language) for each carrier on origin/main.
+# tags: latex, idml, region_eu, the model, the language) for each carrier on origin/main,
+# with the same eleven carriers moved by the 2026-09-27 print-gap corrections.
 MAIN_IDML_BLOCKS_SHA256 = {
     "docs/_review/JE-1000F/EU/page/06_ups_mode.rst": "597c3c7894164d0b91ddb7c9196851fd15ff6cc57fe07f7dd7bd0cf6afd82952",
     "docs/_review/JE-1000F/EU/page/p24_06_ups_mode.rst": "a16367f5d4b537f71eca5d449b763e9b4667dbcd53088d458c46529c59ac2c6b",
@@ -206,18 +213,18 @@ MAIN_IDML_BLOCKS_SHA256 = {
     "docs/_review/JE-1000F/EU/page/p54_06_ups_mode.rst": "7b27bdd9edd802264eb2f200849d950f6a4fb76c30d9e9c5b279a4d97ba22258",
     "docs/_review/JE-1000F/EU/page/p69_06_ups_mode.rst": "c945f4b17e08674e568650d76bdf547ab5d248ff429decb34fbff0c3ee38a927",
     "docs/templates/page_je500a_eu-en/06_ups_mode.rst": "493ad48295c883a6acb12002884aa932cf6992b9820f4c5a70ef22f974b2fc6f",
-    "docs/templates/page_shared/de/06_ups_mode.rst": "b25ad2752367362d5466a51263e4c9e11b65f4ef6c508723c20abf81e6151337",
-    "docs/templates/page_shared/en/06_ups_mode.rst": "7712986924d2f69a151ead889a42fb59f3b1df5a08a9357d0239577179417436",
-    "docs/templates/page_shared/es/06_ups_mode.rst": "4be79cbe346545aac153db7acc61118e7e30a80c255275da1f59b83170ef0b2f",
-    "docs/templates/page_shared/fr/06_ups_mode.rst": "13036c2e7451a2aacdd2518b6efe806dbccd93e9db00e232d7610e8fcf4738a2",
-    "docs/templates/page_shared/it/06_ups_mode.rst": "a00fde95a395d9d9eb9fb9750967f5346d07d189e46701c10f4c3e0278127a3a",
-    "docs/templates/page_shared/uk/06_ups_mode.rst": "ca261161529b8b4e3dbd79e828cdcd82184f13dc124585fcf8f3bc109e6179e9",
-    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "b4680f2807d8ebfae1d10408ed3545bfe6fe270158985e74c97d1aafc0e81819",
-    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "8ed497f26759fbb8be558cbc8a7f047c0b155bad07f80153c4b591c56f32578a",
-    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "edf5ec8c3b389340312fa87c0c6ae277bef7a5e6db35a6b06cc57c98553939ae",
-    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "8c8e88d3d97cdb29e89ad7c291c66abc6873c4cf19ed34b1c8708d4cbcfe40a8",
+    "docs/templates/page_shared/de/06_ups_mode.rst": "77746d4723dcd74109d173898a8d165683192c8cdb685c8e3fd00c3dbecf8373",
+    "docs/templates/page_shared/en/06_ups_mode.rst": "f4933b83b5db7e364fd89f05a56e75e135d33466a95b2dcedd0eae69bf51009a",
+    "docs/templates/page_shared/es/06_ups_mode.rst": "a4a01c4ee9dc0435e513bcc8373987b97b231ca3a389d2259cc5bbfa3e1a1d17",
+    "docs/templates/page_shared/fr/06_ups_mode.rst": "8910ac7b4ffa8c79a6903f50c9ab9700d11fb47056ff72669a98caf64ea055fc",
+    "docs/templates/page_shared/it/06_ups_mode.rst": "1e74ae19d0946e2a51c4f4639f7be8fdb9e8bfbbe97b34fb070e0c9baaf1032e",
+    "docs/templates/page_shared/uk/06_ups_mode.rst": "ef8ff37faf618c621cae378ac07a261db9481622764a97bb05505b6d85660196",
+    "docs/templates/targets/je3000c/05_operation_guide_de.rst": "ae2f29e1609b5d9a81b271e3d59c7797bd99015002fdcdb72df7434436762553",
+    "docs/templates/targets/je3000c/05_operation_guide_es.rst": "55c5178e5709c4dc69eb2cedc9ea19d6d95807c0b51053e9b766b9d975489b9f",
+    "docs/templates/targets/je3000c/05_operation_guide_fr.rst": "509177f678eaf3902df55297cd10eb6b44cff0046081c198c3f2894b11ab5304",
+    "docs/templates/targets/je3000c/05_operation_guide_it.rst": "53e7fbe4b030d359d30d3e20d9e6471779bd7f67953266df8ba90862128a6bc7",
     "docs/templates/targets/je3000c/05_operation_guide_placeholder.rst": "6c8293688acebf52d6eea94d508ead01e52d8053025e0e9a0b5addb03816ab0d",
-    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "9b8822390a80e9153b36b6ee393d37a3edae99776db3b28d462e0f02bc70fc7b",
+    "docs/templates/targets/je3000c/05_operation_guide_uk.rst": "7c333569ae8d4ee48359974fba14fa9d5ebee03f070ca3aad07a85f55d0160db",
 }
 
 # UPS carriers left for the operator: no print block for their language (ko, pt-BR,

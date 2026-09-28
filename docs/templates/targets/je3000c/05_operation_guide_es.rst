@@ -76,9 +76,9 @@ ENCENDER/APAGAR SALIDA CC 12V/USB
 MODO DE AHORRO DE ENERGÍA
 -------------------------
 
-Para desactivar el modo de ahorro de energía, mantenga pulsados simultáneamente el |AC_POWER_BUTTON_LABEL_LOWER| y el |MAIN_POWER_BUTTON_LABEL_LOWER| durante más de 3 segundos. Una vez desactivado el modo de ahorro de energía, el icono dejará de mostrarse en la pantalla LCD y el producto no apagará automáticamente la salida de CA o CC/USB.
+Para evitar el consumo innecesario de batería al olvidar apagar la salida, el producto activa por defecto el Modo de Ahorro de Energía. Cuando la salida de CA o CC/USB está encendida, el ícono del modo de Ahorro de Energía se mostrará en la pantalla LCD. Si no hay ningún dispositivo conectado o si el consumo del dispositivo conectado está por debajo de un cierto umbral (salida de CA de |ENERGY_SAVING_AC_THRESHOLD| o salida CC/USB de |ENERGY_SAVING_DC_THRESHOLD|) durante |ENERGY_SAVING_AUTO_OFF_DURATION|, el dispositivo apagará automáticamente todas las salidas. Configure la duración del modo de Ahorro de Energía en la aplicación Jackery.
 
-Cuando alimente dispositivos de baja potencia (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| o CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), desactive el modo de ahorro de energía para evitar que la salida se apague automáticamente durante el funcionamiento.
+Para desactivar el modo de ahorro de energía, presione y mantenga presionados el |AC_POWER_BUTTON_LABEL_LOWER| y el |MAIN_POWER_BUTTON_LABEL_LOWER| durante más de 3 segundos. El producto no apagará automáticamente la salida CA o CC.
 
 .. image:: asset:operation/energy_saving
    :alt: Operación del modo de ahorro de energía.
@@ -101,28 +101,6 @@ Cuando alimente dispositivos de baja potencia (CA ≤ |ENERGY_SAVING_AC_THRESHOL
 
       * - **ADVERTENCIA**
         - Cuando el modo de Ahorro de Energía está activado, el producto apaga automáticamente la salida de CA si el consumo del dispositivo conectado se mantiene bajo durante el período establecido. Al alimentar dispositivos que requieren suministro eléctrico continuo, como frigoríficos, routers, cámaras de seguridad o bombas de aire para acuarios, se recomienda desactivar el modo de Ahorro de Energía para evitar que una interrupción inesperada afecte a su funcionamiento.
-
-.. hb-capability-begin: AC/DC输出记忆恢复
-
-Función de reanudación de Salida de CA y CC
-----------------------------------------------
-
-La función de reanudación de salida de CA/CC está desactivada de forma predeterminada. Active esta función en la aplicación para que el dispositivo memorice el estado de salida de CA/CC y reanude automáticamente las salidas de CA y CC en las condiciones definidas.
-
-+------------------------------------------------------------------------+-----------------------------------------------------------+
-| Condiciones de reanudación automática                                  | Condiciones sin reanudación automática                    |
-+========================================================================+===========================================================+
-| Encendido/Reiniciar después de apagado o reinicio                      | Apagado manual de la salida (botón/App)                   |
-+------------------------------------------------------------------------+-----------------------------------------------------------+
-| SOC de la batería ≥ límite de descarga +10 % tras alcanzar el límite   | Apagado de salida en modo de ahorro de energía            |
-|                                                                        +-----------------------------------------------------------+
-|                                                                        | Apagado de salida activado por protección                 |
-+------------------------------------------------------------------------+-----------------------------------------------------------+
-| Actualización OTA completada                                           | Apagado de salida activado por temporizador de descarga   |
-+------------------------------------------------------------------------+-----------------------------------------------------------+
-
-.. hb-capability-end:
-
 
 PANTALLA LCD
 ------------
@@ -173,6 +151,27 @@ PANTALLA LCD
       \end{HBLcdModeTable}
 
 También puede configurar el modo de visualización de la pantalla en la aplicación Jackery.
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Función de reanudación de Salida de CA y CC
+----------------------------------------------
+
+Esta función memoriza el estado de la salida y reanuda automáticamente las salidas de CA y CC bajo condiciones definidas.
+
++----------------------------------------------------------------------------+-----------------------------------------------------------+
+| Condiciones de reanudación automática                                      | Condiciones sin reanudación automática                    |
++============================================================================+===========================================================+
+| Encendido/Reiniciar después de apagado o reinicio                          | Apagado manual de la salida (botón/App)                   |
++----------------------------------------------------------------------------+-----------------------------------------------------------+
+| SOC de la batería ≥ límite de descarga +10 % después de alcanzar el límite | Apagado de salida en modo de ahorro de energía            |
+|                                                                            +-----------------------------------------------------------+
+|                                                                            | Apagado de salida activado por protección                 |
++----------------------------------------------------------------------------+-----------------------------------------------------------+
+| Actualización OTA completada                                               | Apagado de salida activado por temporizador de descarga   |
++----------------------------------------------------------------------------+-----------------------------------------------------------+
+
+.. hb-capability-end:
 
 COMBINACIONES DE TECLAS
 -----------------------

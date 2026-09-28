@@ -120,3 +120,31 @@ The three blocks show on the Web and in Word only, for now (operator ruling of
 the same date): each sits under `.. only:: not latex`, and the UPS pages keep
 their previous CAUTION under `.. only:: latex`. The PDF (LaTeX) and IDML output
 stays as it was until those renderers keep these callouts' paragraphs.
+
+Older gaps against the print (2026-09-27): four places where the Web differed
+from both the V2.0-2026-07-31 print and its 09-15 revision now follow the print,
+by operator ruling of the same date (「JE-3000C 旧差异按印刷对齐」):
+
+- fr/es/de/it/uk Energy Saving Mode: the print's opening paragraph (on by
+  default, the LCD icon, the 25 W / 2 W threshold over 12 hours, the App
+  setting) and its disable sentence. They replace a reworded disable sentence and
+  low-power advice that no print carries (PDF pages 28–29/44–45/60–61/76–77/92–93).
+- fr/es/de/it/uk output-resume function: the print's sentence replaces the
+  unprinted claim that the function is off by default and must be enabled in the
+  App. The section now follows the LCD screen, as printed, and its table cells
+  follow the print (PDF pages 29/45/61/77/93).
+- UPS, all six languages: the figure follows all of the UPS text (PDF pages
+  14/30/46/62/78/94).
+- UPS text in fr/de/it/uk: this print's wording instead of the model family's.
+
+The first two edit this model's own
+`docs/templates/targets/je3000c/05_operation_guide_{fr,es,de,it,uk}.rst`; the
+English one already followed the print. The UPS page is shared, so the JE-3000C
+text and figure sit under `.. only:: model_je_3000c` in
+`page_shared/<lang>/06_ups_mode.rst`, and every other model keeps the previous
+text under `.. only:: not model_je_3000c`. These corrections reach every output
+(Web, Word, PDF and IDML); the 09-15 copy above stays Web and Word only. Values
+keep the house format, and print defects keep reviewed wording (the German `o`
+and 25 W USB limit, the Ukrainian `25 В`, the Italian block's stray German
+fragment). No file of `phase2/`, no recipe and no figure changes; see the
+intake review addendum of the same date.
