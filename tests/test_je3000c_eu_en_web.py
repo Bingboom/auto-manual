@@ -225,6 +225,22 @@ class Je3000cEuEnWebTests(unittest.TestCase):
         self.assertFalse(manifest["live_bitable_dependency"])
         self.assertEqual("V2.0-2026-07-31", manifest["authority"]["published_revision"])
         self.assertEqual("55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d", manifest["authority"]["published_pdf_sha256"])
+        # Since 2026-09-27 three blocks of copy follow the V2.0-2026-09-15 revision
+        # (operator ruling: new copy only). The 07-31 print stays the authority for
+        # the figures and everything else, so the web and App recipes stay locked to
+        # it; the one re-cut figure (de front view) has its own supplemental recipe.
+        (revision,) = manifest["authority"]["adopted_copy_revisions"]
+        self.assertEqual("V2.0-2026-09-15", revision["published_revision"])
+        self.assertEqual("f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32", revision["published_pdf_sha256"])
+        self.assertEqual(
+            [[13, 29, 45, 61, 77, 93], [14, 30, 46, 62, 78, 94], [15, 31, 47, 63, 79, 95]],
+            [item["pdf_physical_pages"] for item in revision["adopted"]],
+        )
+        for recipe in (WEB_RECIPE, APP_RECIPE):
+            self.assertEqual(
+                manifest["authority"]["published_pdf_sha256"],
+                json.loads(recipe.read_text(encoding="utf-8"))["source"]["expected_sha256"],
+            )
         for binding in ("asset_recipe", "app_asset_recipe", "web_illustration_manifest"):
             bound = manifest[binding]
             self.assertEqual(bound["sha256"], hashlib.sha256((ROOT / bound["path"]).read_bytes()).hexdigest())

@@ -74,9 +74,9 @@ DC 12V/USB-AUSGANG EIN/AUS
 ENERGIESPARMODUS
 ----------------
 
-Um den Energiesparmodus zu deaktivieren, halten Sie sowohl die AC-Einschalttaste als auch die Haupt-POWER-Taste länger als 3 Sekunden gedrückt. Sobald der Energiesparmodus deaktiviert ist, wird das Symbol nicht mehr auf dem LCD angezeigt, und das Produkt schaltet den AC- oder DC/USB-Ausgang nicht mehr automatisch aus.
+Um unnötigen Batterieverbrauch durch das Vergessen des Ausschaltens des Ausgangs zu verhindern, ist der Energiesparmodus standardmäßig aktiviert. Wenn kein Gerät angeschlossen ist oder der Stromverbrauch des angeschlossenen Geräts unter einem bestimmten Schwellenwert liegt (AC-Ausgang ≤ |ENERGY_SAVING_AC_THRESHOLD| oder USB-Ausgang ≤ |ENERGY_SAVING_DC_THRESHOLD|), werden alle Ausgänge nach |ENERGY_SAVING_AUTO_OFF_DURATION| automatisch abgeschaltet.
 
-Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_THRESHOLD| oder DC/USB <= |ENERGY_SAVING_DC_THRESHOLD|), deaktivieren Sie den Energiesparmodus, damit der Ausgang während des Betriebs nicht automatisch ausgeschaltet wird.
+Um den Energiesparmodus zu deaktivieren, halten Sie die AC-Stromtaste und die POWER-Taste gleichzeitig länger als 3 Sekunden gedrückt. Das Gerät schaltet den AC- oder DC-Ausgang nicht automatisch ab.
 
 .. image:: asset:operation/energy_saving
    :alt: Tastenbedienung des Energiesparmodus.
@@ -92,27 +92,14 @@ Wenn Sie Geräte mit geringem Stromverbrauch betreiben (AC <= |ENERGY_SAVING_AC_
    * - **HINWEIS**
      - Der Energiesparmodus kehrt nach dem Einschalten in seinen vorherigen Zustand zurück. Für einen Moduswechsel ist ein manuelles Umschalten erforderlich.
 
+.. only:: not latex
 
-.. hb-capability-begin: AC/DC输出记忆恢复
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
 
-Wiederaufnahmefunktion für AC- und DC-Ausgänge
-----------------------------------------------
-
-Die Wiederaufnahmefunktion für AC- und DC-Ausgänge ist standardmäßig deaktiviert. Aktivieren Sie diese Funktion in der Jackery-App, damit das Gerät den Status der AC- und DC-Ausgänge speichert und die AC- und DC-Ausgänge unter festgelegten Bedingungen automatisch wiederherstellt.
-
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
-+===================================================================+=============================================================+
-| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
-|                                                                   +-------------------------------------------------------------+
-|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
-+-------------------------------------------------------------------+-------------------------------------------------------------+
-
-.. hb-capability-end:
+      * - **WARNUNG**
+        - Wenn der Energiesparmodus aktiviert ist, schaltet das Produkt den AC-Ausgang automatisch ab, wenn die Leistungsaufnahme des angeschlossenen Geräts über den eingestellten Zeitraum hinweg niedrig bleibt. Bei der Stromversorgung von Geräten, die eine kontinuierliche Stromversorgung benötigen, z. B. Kühlschränken, Routern, Überwachungskameras oder Aquarium-Luftpumpen, wird empfohlen, den Energiesparmodus auszuschalten, damit der Betrieb der Geräte nicht durch eine unerwartete Stromunterbrechung beeinträchtigt wird.
 
 
 LCD-ANZEIGE
@@ -164,6 +151,27 @@ LCD-ANZEIGE
       \end{HBLcdModeTable}
 
 Sie können den Bildschirm-Anzeigemodus auch in der Jackery-App einstellen.
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Wiederaufnahmefunktion für AC- und DC-Ausgänge
+----------------------------------------------
+
+Diese Funktion speichert den Ausgangszustand und stellt die AC- und DC-Ausgänge unter bestimmten Bedingungen automatisch wieder her.
+
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Bedingungen für automatische Wiederherstellung                    | Bedingungen ohne automatische Wiederherstellung             |
++===================================================================+=============================================================+
+| Einschalten/Neustart nach Abschalten oder Neustart                | Manuelles Ausschalten der Ausgänge (Taste/App)              |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| Batterie-SOC ≥ Entladegrenze +10% nach Erreichen der Grenze       | Ausgang im Energiesparmodus deaktiviert                     |
+|                                                                   +-------------------------------------------------------------+
+|                                                                   | Schutzbedingter Ausgang deaktiviert                         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+| OTA-Update abgeschlossen                                          | Durch Entlade-Timer gesteuerter Ausgang deaktiviert         |
++-------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
 
 TASTENKOMBINATION
 -----------------

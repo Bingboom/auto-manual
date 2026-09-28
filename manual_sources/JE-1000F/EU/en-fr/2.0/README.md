@@ -184,3 +184,25 @@ through this template, so the review pages are not edited. EN and FR build
 `review-asis` from their reviewed pages, which this change does not touch; EN
 keeps the printed ※-first order. `source_manifest.json` re-locks the registry
 and records the change.
+
+UPS warning (2026-09-27): the five UPS review pages that the Web routes render
+(`page/06_ups_mode.rst` for en and `p24`/`p39`/`p54`/`p69` for fr/es/de/it) gain
+a UPS WARNING (data servers and medical devices; life-safety, infrastructure and
+business-critical equipment; pacemaker wearers) between the UPS text and the
+CAUTION, and a fourth CAUTION bullet (one unit directly on a wall outlet, no
+cascade). The shared `docs/templates/page_shared/<lang>/06_ups_mode.rst`
+templates carry the same two blocks. The operator ruled on 2026-09-27 that
+every model using the shared UPS template carries them, although this model's
+V2.0-2026-06-18 print does not. The wording is each language block of the
+JE-3000C EUUK V2.0-2026-09-15 print (PDF pages 14-15, 30-31, 46-47, 62-63,
+78-79). House fixes: `outlet. Do` for the printed `outlet.Do`, and whole-word
+labels. The UK page p84 keeps its wording, as it did for the alt-text change:
+this model ships no Ukrainian (`data/model_languages.csv`), so no output renders
+it. No composite governs the UPS page. `source_manifest.json` re-locks the five
+files and records the change.
+
+For now only the Web and Word outputs show the two blocks (operator ruling of
+the same date), until the LaTeX and IDML renderers keep these callouts'
+paragraphs. Each page holds them in a `.. only:: not latex` block, followed by
+the page's previous CAUTION, unchanged, under `.. only:: latex`. The PDF and IDML
+therefore read the page exactly as before.

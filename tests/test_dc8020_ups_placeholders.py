@@ -23,6 +23,23 @@ LONG_TAIL_SPEC_MASTER = ROOT / "tests" / "fixtures" / "pv_input_range" / "Spec_M
 # The en/de/it/uk charging and en/de/it UPS goldens moved when those figures'
 # alt text stopped calling the figure a placeholder; the rendered diff was
 # exactly those :alt: lines, nothing else.
+# The en/fr/es/de/it/uk UPS goldens moved again when the shared UPS template took
+# the UPS WARNING and the fourth CAUTION bullet of the JE-3000C EUUK
+# V2.0-2026-09-15 print for every model that uses it (operator rulings
+# 2026-09-27), for the Web and Word only: a `.. only:: not latex` block holds the
+# WARNING and the four-bullet CAUTION, and main's CAUTION follows unchanged under
+# `.. only:: latex`. Dropping the `not latex` block and unwrapping the `latex`
+# one gives main's rendered bytes exactly
+# (tests/test_je3000c_0915_warnings.py pins that print branch). The ko and pt-BR
+# goldens stay: the print has no block for those languages.
+# The same six goldens moved once more for the JE-3000C/EU print-gap corrections
+# (operator ruling 「JE-3000C 旧差异按印刷对齐」, 2026-09-27): a
+# `.. only:: model_je_3000c` branch sets the UPS figure after all of the UPS text,
+# as the JE-3000C print does, and the fr/de/it/uk branches carry that print's
+# wording; every other model reads the unchanged text under
+# `.. only:: not model_je_3000c` (tests/test_je3000c_eu_print_gaps.py pins that
+# view to main's bytes). The fr/de/it/uk carriers therefore hold
+# |UPS_TRANSFER_TIME| twice, once per branch.
 CHARGING_CASES = {
     "en": (SPEC_MASTER, "JE-1000F", "US", "e1a8849432196fef888b16d1fd289a13920e79a05632dd005a2cfc44c7f007f5"),
     "fr": (SPEC_MASTER, "JE-1000F", "US", "a7753076fbe10257c7dc5ecf7fb9095bcc920afb137b02fb8542fe0ab4e01a52"),
@@ -35,15 +52,18 @@ CHARGING_CASES = {
 }
 
 UPS_CASES = {
-    "en": (SPEC_MASTER, "JE-1000F", "US", "0d284555c591744b31ab0ba85bb7234be4b99153b782821104746b929caef38d"),
-    "fr": (SPEC_MASTER, "JE-1000F", "US", "7e86629d410104f7d8be9c07a7d0f9cb0345281d568307c1522f8d7ab0d1d4b8"),
-    "es": (SPEC_MASTER, "JE-1000F", "US", "5357dde7f545649c6c473c2dcb8e0931bfb881efa1a375f2690176d023caee10"),
+    "en": (SPEC_MASTER, "JE-1000F", "US", "6b5b113e4b16fee5461b0069785c22788f18bd2c27c87812f02606666f252402"),
+    "fr": (SPEC_MASTER, "JE-1000F", "US", "e1bceddd1ea668a41a40fb8b10f587a2417f2ed8284b757d350ebbd29a4a5517"),
+    "es": (SPEC_MASTER, "JE-1000F", "US", "1ac2a973efb80d9a54786e83c624e65bb3936a407a8229bc70996e6f0620d32c"),
     "pt-BR": (LONG_TAIL_SPEC_MASTER, "JE-1500D", "pt-BR", "f56a0f8826321887c66267462fae53c0121623224826af2090bea548d69f8b27"),
-    "de": (SPEC_MASTER, "JE-1000F", "EU", "7d0e61ffc0fcc1a45e46d9f83a9daa2c58dde3c40d44cad36877811864c16c68"),
-    "it": (SPEC_MASTER, "JE-1000F", "EU", "c1b9d1526394e4e382ad160903b5c2823c6c433e999097fadef61cdc16a1da9f"),
-    "uk": (SPEC_MASTER, "JE-1000F", "EU", "2691fe1006dbe89008d0596e556ef53805bbd0a49238930a5795f7d73e0850d6"),
+    "de": (SPEC_MASTER, "JE-1000F", "EU", "b86e5263fd8e5b10d3c4a500a1a932a9c7ada4eaa5db527940e01dc354d6a775"),
+    "it": (SPEC_MASTER, "JE-1000F", "EU", "217d146b467be72189ca0523c5d4bea74475562cc5512bc6cba355d0934e614a"),
+    "uk": (SPEC_MASTER, "JE-1000F", "EU", "e2d4b1e55bf495a29f4877dd805759f114128b7e8a27d987413705b0dcab48e5"),
     "ko": (LONG_TAIL_SPEC_MASTER, "JE-1000F", "KR", "82bd0c003e01800f9a67ce244f443cec8537924184ee282572b7e64776f14c2a"),
 }
+# Carriers whose `.. only:: model_je_3000c` branch rewords the UPS text: one
+# |UPS_TRANSFER_TIME| per branch.
+UPS_TRANSFER_TIME_COUNT = {"fr": 2, "de": 2, "it": 2, "uk": 2}
 
 
 class Dc8020UpsPlaceholderTests(unittest.TestCase):
@@ -110,7 +130,7 @@ class Dc8020UpsPlaceholderTests(unittest.TestCase):
                     lang=lang,
                 )
 
-                self.assertEqual(1, source.count("|UPS_TRANSFER_TIME|"))
+                self.assertEqual(UPS_TRANSFER_TIME_COUNT.get(lang, 1), source.count("|UPS_TRANSFER_TIME|"))
                 self.assertTrue("0 ms" in source or "0 мс" in source)
                 self.assertIn("UPS_TRANSFER_TIME", substitutions)
                 rendered = apply_rst_substitutions(

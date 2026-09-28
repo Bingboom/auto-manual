@@ -7,6 +7,7 @@
 - Source lock: 102 pages; SHA-256 `55fee5a2f7538e58ebce17fc2bcfe3b0e4a8959233251961f6122ef7f420602d`; English body on physical pages 6–21 and EU declaration on physical page 102.
 - Requirement record: Base `YndMj49yWjP03jNjCDojvAQdJ3pmz5aA`, table `97v7518`, record `FBHsOuFTMQ`; read only. It identifies HTE156 / E3000V2 / material `160102000382`, status `已定稿`, and the same formal source node.
 - No calibration or version comparison was performed. The current PDF governs visible copy, parameters, ordering, and illustrations.
+- Since 2026-09-27, three blocks of copy follow the V2.0-2026-09-15 revision instead, on the Web and in Word only; see [the addendum of that date](#2026-09-27-new-copy-from-the-2026-09-15-revision).
 
 ## Structure and reuse boundaries
 
@@ -371,3 +372,201 @@ This is a note only; nothing from that revision changes here.
   also changes its table's `aria-label`.
 - **Regression tests:** `tests/test_je3000c_eu_spec_print.py` renders the six
   tables from the frozen source. Five of its six tests fail on the previous files.
+
+## 2026-09-27 New copy from the 2026-09-15 revision
+
+**Ruling.** On 2026-09-27 the operator adopted only the new copy of the
+V2.0-2026-09-15 print (SHA-256
+`f3264481b3b9e79526ee7e58bcc7ea9f79ea0aa807620e51bae87000c0af1e32`, design
+share). The figures stay on the V2.0-2026-07-31 crops, because the 09-15
+drawings carry nine defects. The one exception is the German front view, which
+#1308 re-cuts from 09-15 page 56 for its AC-Ausgangstaste callout (operator
+confirmed separately). The UPS additions go into the shared UPS template
+for every model that uses it, although the other models' prints lack them.
+The operator made that choice knowingly (「所有用这个模板的型号都加」). Three
+follow-up rulings of the same day complete it:
+
+- 「先只进网页和 Word」: for now the new copy shows only on the Web and in Word.
+  The PDF (LaTeX) and IDML stay exactly as on main until those renderers keep
+  these callouts' paragraphs (a separate item).
+- 「也加上」: JE-500A's own English UPS page takes the same two UPS blocks.
+- 「先不加，等审核译文」: the ko, ja, zh and pt-BR UPS carriers stay as they are
+  until their translations are reviewed.
+
+**What changed.** Each language block of the print adds three items. The Web
+and Word take each one from its own block:
+
+| Item | Carrier | PDF pages (en/fr/es/de/it/uk) |
+| --- | --- | --- |
+| Energy Saving Mode WARNING below the energy-saving NOTE | `docs/templates/targets/je3000c/05_operation_guide_*.rst` (JE-3000C only) | 13/29/45/61/77/93 |
+| UPS WARNING between the UPS text and the CAUTION | `docs/templates/page_shared/<lang>/06_ups_mode.rst` | 14/30/46/62/78/94 |
+| Fourth UPS CAUTION bullet: one unit directly on a wall outlet, no cascade | the same | 15/31/47/63/79/95 |
+
+- The energy-saving panel keeps the 07-31 crop, which holds the NOTE; the
+  WARNING is live text after the figure, as the print places it.
+- The UPS WARNING keeps the print's structure: two sentences, three bullets,
+  the pacemaker sentence.
+- The five JE-1000F/EU review pages that model's en/fr/es/de/it Web routes
+  render instead of the templates take the same two UPS blocks, and
+  `manual_sources/JE-1000F/EU/en-fr/2.0/source_manifest.json` re-locks them. Its
+  uk page stays as it is: JE-1000F/EU ships no Ukrainian, so no output renders
+  that page.
+- `docs/templates/page_je500a_eu-en/06_ups_mode.rst` takes the English UPS blocks
+  in that page's own admonition markup (`.. warning::`, `.. caution::`).
+
+**Output gate.** The repo's print/screen branch selection keeps the copy off the
+PDF and IDML, with no renderer change. `.. only:: not latex` bodies reach the
+Web and Word pipelines, whose only-tag set is `html` plus model, region and
+language; the Sphinx LaTeX builder and the IDML extractor (tags `latex`, `idml`)
+drop them and read `.. only:: latex` bodies instead. So:
+
+- the energy WARNING is one `not latex` block after the NOTE;
+- each UPS page holds a `not latex` block (the WARNING and the four-bullet
+  CAUTION), followed by its previous CAUTION, byte for byte, under `latex`.
+
+House fixes, not print defects (operator ruling of the same date):
+
+- the English bullet reads `outlet. Do` (printed `outlet.Do`);
+- the fr and uk labels are set as whole words (printed `AVERTISSE`/`MENT`,
+  `AVERTISSEM`/`ENT`, `ПОПЕРЕД`/`ЖЕННЯ`, `ПОПЕРЕДЖЕ`/`ННЯ`);
+- the Ukrainian bullet, printed without its glyph, is a list item.
+
+Everything else, apostrophes included, is the print's text.
+
+**Not changed:**
+
+- The older Web-vs-print gaps were a separate item (since corrected, see
+  [the next addendum](#2026-09-27-older-gaps-follow-the-print)):
+  - the fr–uk energy-saving opening paragraph;
+  - the fr–uk "resume disabled by default" sentence;
+  - the UPS figure position;
+  - the de/it/uk family UPS wording.
+- The 09-15 back page (declaration of conformity, App download line). The
+  German front-view callout is #1308's separate figure change.
+- The ko, pt-BR, ja and zh UPS carriers: no print block; the translations
+  await review.
+- The JE-1000F/US and JE-3000C/KR review pages (the operator's review lines).
+- Every PDF (LaTeX) and IDML output.
+
+**Authority.** `source_manifest.json` keeps V2.0-2026-07-31 as the authority
+for the figures and all other content, because the web and App recipes are
+hash-locked to it. The German front view is the exception; its own recipe is
+pinned under `supplemental_asset_recipes`. The manifest records the 09-15
+print, the three adopted items, the Web + Word restriction and the house fixes
+under `authority.adopted_copy_revisions`. It also lists this revision's other
+adoptions: the Spanish PV value of 2026-09-25 and the German front view. No
+`phase2/` file and no recipe changes.
+
+**Verification:**
+
+- **Print check:** every added string is found in the text layer of its 09-15
+  page, with line breaks joined. None of them occurs in the 07-31 print. The
+  house fixes are the only exemptions.
+- **Trial Web builds** (default mode, frozen sources, main `bd201fc2` against
+  this change):
+  - Before the change, the six JE-3000C routes and the JE-1000H, JE-2000E,
+    JE-2000F, JE-3600A, JE-1000F and JE-500A routes equal their live Hello-Docs
+    pages once image `src` paths are normalized. The one exception is JE-3000C
+    de, whose front view (#1308) is not yet published.
+  - After it, every JE-3000C route adds 21 lines: the energy WARNING table, the
+    UPS WARNING table and the fourth bullet. Every other EU route adds 15 lines
+    (the two UPS blocks), and JE-500A adds 16. Nothing is removed. JE-1000F/US
+    is unchanged.
+- **Word:** the JE-3000C .docx of all six languages gains the WARNING rows, and
+  its CAUTION row gains the fourth bullet.
+- **LaTeX:** every generated `.tex` is byte-identical to main's for the six
+  JE-3000C routes, JE-1000H de, JE-2000E uk and the merged JE-2000F/EU and
+  JE-1000F/EU books.
+- **IDML (JE-3000C en):** all 169 package entries match main's once the absolute
+  path of the build tree is normalized. The sidecars differ only in page-source
+  hashes and the reference PDF's creation timestamp.
+- **Regression tests:** `tests/test_je3000c_0915_warnings.py` checks the Web and
+  Word view of every carrier, and the print view against main. That print-view
+  check is pinned and uses the real IDML extractor and a Sphinx LaTeX build with
+  the repo's callout extension. It also checks a Web build of each JE-3000C
+  route and JE-500A, the untouched carriers and the house fixes. Its screen-side
+  tests fail on main, and its print-side tests fail on the ungated revision.
+
+## 2026-09-27 Older gaps follow the print
+
+**Ruling.** On 2026-09-27 the operator chose 「JE-3000C 旧差异按印刷对齐」: where the
+live JE-3000C/EU Web differs from both the V2.0-2026-07-31 print (the authority)
+and its V2.0-2026-09-15 revision, the Web follows the print. A read-only
+inventory listed 27 such places; four gaps are corrected here. Both prints read
+the same on every item below: the text layers of the two prints match line for
+line, and only the reflow moves them.
+
+**What changed.**
+
+| Gap | Languages | Before | After (the print) | PDF pages | Carrier |
+| --- | --- | --- | --- | --- | --- |
+| Energy Saving Mode | fr, es, de, it, uk | a reworded disable sentence, then low-power advice that no print carries | the opening paragraph (on by default, the LCD icon, the 25 W / 2 W threshold over 12 hours, the App setting), then the disable sentence | 28–29, 44–45, 60–61, 76–77, 92–93 | `docs/templates/targets/je3000c/05_operation_guide_<lang>.rst` |
+| Output-resume function | fr, es, de, it, uk | "off by default, enable it in the App", set before the LCD screen | "This function memorizes the output status…", after the LCD screen; table cells as printed | 29, 45, 61, 77, 93 | the same |
+| UPS figure | all six | after the first sentence | after all of the UPS text | 14, 30, 46, 62, 78, 94 | `docs/templates/page_shared/<lang>/06_ups_mode.rst`, JE-3000C branch |
+| UPS text | fr, de, it, uk | the model family's wording | this print's wording | 30, 62, 78, 94 | the same |
+
+- **Resume table cells:**
+  - fr `+10 % une fois la limite atteinte` → `+10 % après avoir atteint la limite`;
+  - es `tras alcanzar` → `después de alcanzar`;
+  - it `SOC batteria … al raggiungimento del limite` → `SOC della batteria … dopo aver raggiunto il limite`;
+  - uk: six cells take the printed wording (`кнопка/додаток`, `Рівень заряду батареї ≥ межа розряду`, `Вимкнення виходу …`, `Завершено OTA-оновлення`).
+  - de only differs in the spacing of `+ 10 %`, a formatting difference, so it keeps its cells.
+- **UPS text:**
+  - fr takes `ASI` and `mode dérivation`, both twice;
+  - de takes `Spitzenausgangsstromstärke`, the printed 10 ms sentence and the printed `Voraussetzung: Das Produkt ist eingeschaltet.` line in its printed place (the JE-1000H/EU print sets it there too);
+  - it takes its printed sentences, including `Condizione: assicurarsi che il prodotto sia acceso.`;
+  - uk takes `ДБЖ` and its printed sentences.
+- **Line splits:** each sentence is one line, as printed. The family text split the bypass sentence over two lines, and the Web showed those as two paragraphs.
+
+**House format and print defects:**
+
+- **Values** come from the frozen source in the house format (`25 W`, `12 A`, `10 мс`).
+- **Print defects keep reviewed wording:**
+  - The German threshold prints `(AC-Ausgang ≤ 25 W o USB-Ausgang ≤ 25 W)`. It reads `oder` and the source's 2 W.
+  - The Ukrainian threshold prints `25 В` (volts). It reads `25 Вт`.
+  - The Italian block glues a stray German fragment (`Modus unter der Nennleistung; …`) to its 10 ms sentence. It is not copied.
+- **The product name** stays `|PRODUCT_NAME|`: the de and it blocks print the short `Explorer 3000`, and the page reads `Jackery Explorer 3000`.
+- **Button names** are the printed ones (for example the German `AC-Stromtaste` in the disable sentence).
+- **Apostrophes are as printed**, as in the 09-15 addendum.
+
+**Isolation.**
+
+- **Model-scoped templates.** The operation templates under `targets/je3000c/` serve only JE-3000C. The English one is unchanged.
+- **The shared UPS page** serves JE-1000H/EU, JE-2000E/EU, JE-2000F/EU and JE-3600A/EU, and the US/AU/BP lines for en/fr/es:
+  - `.. only:: model_je_3000c` holds the JE-3000C text and figure.
+  - `.. only:: not model_je_3000c` holds main's text, byte for byte. In es, only a whitespace-only line differs.
+  - en and es move only the figure; their text stays shared.
+  - The `.. only:: not latex` / `.. only:: latex` blocks of the 09-15 addendum are untouched and follow the gate.
+- **Same gate in every output.** The Web and Word (`model_…` tags from `tools.word_bundle_html_only`), Sphinx LaTeX (`-t model_…`) and IDML (`tools.manual_ir.prepared_rst`) all set the model tag. The corrections therefore reach all four JE-3000C outputs, and no other model's.
+
+**Not changed (for a later decision):**
+
+- **Headings:**
+  - The de and uk resume headings print `WIEDERHERSTELLUNGSFUNKTION…` and `…ВИХОДУ AC ТА DC`. The capability gate `data/capability_page_rules.csv` (AC/DC输出记忆恢复, section regex) matches the Web wording `Wiederaufnahmefunktion` and `відновлення виходів`, so changing them needs the gate regex widened first.
+  - The it energy heading prints `MODALITÀ DI RISPARMIO ENERGETICO`. The energy panel's covered annotation keys on the section id `modalita-risparmio-energetico`.
+  - The uk UPS heading prints `(ДБЖ)`.
+- **UPS text:**
+  - The UPS CAUTION bullets are the family wording in fr, es, de, it and uk. The printed first bullet ("an uninterruptible power supply") reads as a mistranslation of "0 ms switching".
+  - The en and es UPS text: the inventory did not list it, but it differs from both prints too. en: `AC output button`, `Uninterruptible Power Supply`, `continuous`, `the Jackery Explorer 3000`, `…in this mode, but returns to the rated…`. es: `cargue`, `el Jackery Explorer 3000`, `en el modo derivación`, `menor que`. The split bypass sentence also stays.
+- **The DoC** (fr–uk carry none).
+- **The LCD-section headings** (de, it, uk print other wording).
+
+**Other models (follow-ups, not changed).** None of the other EU prints sets the UPS figure after all of the UPS text: JE-1000H, JE-2000E, JE-2000F, JE-3600A and JE-1000F all place it after the first sentence, as the Web does. The UPS text, though, follows the JE-3000C print's wording in these prints, and so differs from their Web:
+
+- JE-1000H/EU V2.0-2026-08-03, all six blocks. PDF pages 14–15, 31–32, 48–49, 65–66, 82–83 and 99–100; de 66 prints the same `Voraussetzung` line.
+- JE-3600A/EU 2026-05-25, es/de/it. PDF pages 48, 65 and 82.
+
+JE-2000E and JE-2000F print the family wording.
+
+**Verification:**
+
+- **Print check:** a different extraction from the one that wrote it (page text, not spans). All 78 strings the new test pins are on their pages of both prints once unit spacing is normalized. The listed defect and product-name substitutions are the only exemptions. None of the 15 removed Web fragments is on either print.
+- **Trial Web builds** (default mode, frozen source):
+  - Before the change, the six routes equal the live Hello-Docs pages (main 39d53424) once image `src` paths are normalized.
+  - After it, every changed line is one of the four gaps. en only moves its four UPS lines above the figure. Besides the moved resume section and UPS figure, the new lines are es 4 (the two energy paragraphs, the resume sentence, one cell), fr 8, de 7, it 9 and uk 13; uk also loses the second half of its split bypass sentence.
+- **Isolation:**
+  - The Web pages of JE-1000H/EU (all six languages), JE-2000F/EU fr/de and JE-1000F/EU es (`--source review`) are byte-identical to main's build. JE-1000F es reads its review page, not the template.
+  - Their packages differ only in `manual.ir.json`'s bundle and page-source hashes.
+  - The LaTeX `.tex` of JE-1000H/EU in all six languages is byte-identical to main's once the build path is normalized. So is the JE-1000H de `.docx`, apart from `docProps/core.xml`.
+- **Other outputs:** the JE-3000C en/de/uk `.tex` and the de `.docx` carry exactly the corrections.
+- **Regression tests:** `tests/test_je3000c_eu_print_gaps.py` covers the four gaps per language, a Web build of each route and the isolation pins. On the previous tree 13 of its 16 tests fail (75 subtests); the English-unchanged guard and the two isolation guards pass. The UPS goldens (`tests/test_dc8020_ups_placeholders.py`), the 09-15 print-view pins (`tests/test_je3000c_0915_warnings.py`) and the 06_ups_mode parity grouping move with the reason recorded in each.

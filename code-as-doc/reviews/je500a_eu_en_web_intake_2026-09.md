@@ -126,3 +126,38 @@ tests do not prove visual parity or a deployed release.
 | Static checks | Ruff, maintainability guardrails, documentation links (178 files / 1,753 links / zero broken), gitleaks, and Git diff check passed |
 | CI target observation | 22 pass / 9 baseline skips / 2 pre-existing observed failures; JE-500A is an expected frozen-source skip in shared fixtures |
 | Independent package | `JE-500A-EU-en-web.zip`, SHA-256 `50546896420bde2feb1caafa46c7a893ee86b11daf5e04b14cdbeb4a7147f6c8` |
+
+## 2026-09-27 UPS warning from the JE-3000C 2026-09-15 print
+
+**Ruling.** On 2026-09-27 the operator ruled that JE-500A's own English UPS page
+takes the UPS WARNING and the fourth UPS CAUTION bullet that the shared UPS
+template gained from the JE-3000C EUUK V2.0-2026-09-15 print (「也加上」). The
+operator also ruled that, for now, they show only on the Web and in Word (「先只进网页和
+Word」). This model's own V2.0-2026-06-09 print does not carry them.
+
+**What changed.** `docs/templates/page_je500a_eu-en/06_ups_mode.rst`:
+
+- a `.. warning::` admonition before the CAUTION, carrying the JE-3000C English
+  block's text (PDF page 14): two sentences, three bullets, the pacemaker
+  sentence;
+- the CAUTION gains a fourth bullet (PDF page 15), with `outlet. Do` for the
+  printed `outlet.Do`.
+
+The page's own admonition markup is kept (its CAUTION was already an admonition,
+rendered `Caution!`).
+
+**Output gate.** The WARNING and the four-bullet CAUTION sit under `.. only:: not
+latex`; the previous three-bullet CAUTION follows, byte for byte, under `.. only::
+latex`. The Web and Word pipelines read the first block. The Sphinx LaTeX
+builder and the IDML extractor read the second, so a PDF or IDML of this page
+stays as before.
+
+**Verification.**
+
+- **Trial Web build:** the frozen-source build (command in
+  `manual_sources/JE-500A/EU/en/2.0/README.md`) equals the live Hello-Docs page
+  before the change. After it, the page adds exactly 16 lines: the `Warning`
+  admonition and the fourth bullet. Nothing is removed.
+- **Regression tests:** `tests/test_je3000c_0915_warnings.py` checks this page's
+  Web/Word view, its print view against main, and a Web build. The existing
+  `tests/test_je500a_eu_en_web.py` still passes.

@@ -68,9 +68,9 @@ SORTIE CC 12V/USB MARCHE/ARRÊT
 MODE D'ÉCONOMIE D'ÉNERGIE
 -------------------------
 
-Pour désactiver le mode d'économie d'énergie, appuyez simultanément sur le |AC_POWER_BUTTON_LABEL_LOWER| et sur le |MAIN_POWER_BUTTON_LABEL_LOWER| pendant plus de 3 secondes. Une fois le mode d'économie d'énergie désactivé, l'icône ne s'affichera plus sur l'écran LCD et le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
+Pour éviter une consommation inutile de la batterie due à l’oubli de désactiver la sortie, le produit active par défaut le Mode d’Économie d’Énergie. Lorsque la sortie CA ou CC/USB est activée, l'icône du mode Économie d'énergie s'affichera sur l'écran LCD. Si aucun appareil n’est connecté ou si la consommation de l’appareil connecté est inférieure à un certain seuil (Sortie CA de |ENERGY_SAVING_AC_THRESHOLD| ou sortie CC/USB de |ENERGY_SAVING_DC_THRESHOLD|) pendant |ENERGY_SAVING_AUTO_OFF_DURATION|, l’appareil désactivera automatiquement toutes les sorties. Veuillez configurer la durée du mode Économie d'énergie dans l'application Jackery.
 
-Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC_THRESHOLD| ou CC/USB ≤ |ENERGY_SAVING_DC_THRESHOLD|), désactivez le mode d'économie d'énergie afin d'éviter l'arrêt automatique de la sortie pendant le fonctionnement.
+Pour désactiver le mode d'économie d'énergie, appuyez et maintenez enfoncé à la fois le |AC_POWER_BUTTON_LABEL_LOWER| et le |MAIN_POWER_BUTTON_LABEL_LOWER| pendant plus de 3 secondes. Le produit n'éteindra pas automatiquement la sortie CA ou CC/USB.
 
 .. image:: asset:operation/energy_saving
    :alt: Fonction du mode d'économie d'énergie.
@@ -86,27 +86,14 @@ Lors de l'alimentation d'appareils à faible puissance (CA ≤ |ENERGY_SAVING_AC
      - Le mode d'économie d'énergie reprend l'état précédent après l'allumage. Toute modification du mode doit être effectuée manuellement.
 | 
 
-.. hb-capability-begin: AC/DC输出记忆恢复
+.. only:: not latex
 
-Fonction de reprise de Sortie CA et CC
----------------------------------------
+   .. list-table::
+      :header-rows: 0
+      :widths: 12 88
 
-La fonction de reprise de la sortie CA/CC est désactivée par défaut. Activez cette fonction dans l’application afin que l’appareil mémorise l’état de sortie CA/CC et reprenne automatiquement les sorties CA et CC dans les conditions définies.
-
-+---------------------------------------------------------------------------+-------------------------------------------------------------+
-| Conditions de reprise automatique                                         | Conditions sans reprise automatique                         |
-+===========================================================================+=============================================================+
-| Mise sous tension/redémarrage après arrêt ou redémarrage                  | Sortie désactivée manuellement (bouton/App)                 |
-+---------------------------------------------------------------------------+-------------------------------------------------------------+
-| SOC de la batterie ≥ limite de décharge +10 % une fois la limite atteinte | Sortie désactivée en mode économie d’énergie                |
-|                                                                           +-------------------------------------------------------------+
-|                                                                           | Sortie désactivée suite à un déclenchement de protection    |
-+---------------------------------------------------------------------------+-------------------------------------------------------------+
-| Mise à niveau OTA terminée                                                | Sortie désactivée par le minuteur de décharge               |
-+---------------------------------------------------------------------------+-------------------------------------------------------------+
-
-.. hb-capability-end:
-
+      * - **AVERTISSEMENT**
+        - Lorsque le mode d'économie d'énergie est activé, le produit coupe automatiquement la sortie CA si la consommation de l'appareil connecté reste faible pendant la durée définie. Lorsque vous alimentez des appareils nécessitant une alimentation continue, tels qu'un réfrigérateur, un routeur, une caméra de surveillance ou une pompe à air pour aquarium, il est recommandé de désactiver le mode d'économie d'énergie afin d'éviter qu'une coupure inattendue n'interrompe leur fonctionnement.
 
 AFFICHAGE LCD
 -------------
@@ -157,6 +144,27 @@ AFFICHAGE LCD
       \end{HBLcdModeTable}
 
 Vous pouvez également définir le mode d'affichage de l'écran dans l'application Jackery.
+
+.. hb-capability-begin: AC/DC输出记忆恢复
+
+Fonction de reprise de Sortie CA et CC
+---------------------------------------
+
+Cette fonction mémorise l’état de la sortie et reprend automatiquement les sorties CA et CC sous certaines conditions définies.
+
++-----------------------------------------------------------------------------+-------------------------------------------------------------+
+| Conditions de reprise automatique                                           | Conditions sans reprise automatique                         |
++=============================================================================+=============================================================+
+| Mise sous tension/redémarrage après arrêt ou redémarrage                    | Sortie désactivée manuellement (bouton/App)                 |
++-----------------------------------------------------------------------------+-------------------------------------------------------------+
+| SOC de la batterie ≥ limite de décharge +10 % après avoir atteint la limite | Sortie désactivée en mode économie d’énergie                |
+|                                                                             +-------------------------------------------------------------+
+|                                                                             | Sortie désactivée suite à un déclenchement de protection    |
++-----------------------------------------------------------------------------+-------------------------------------------------------------+
+| Mise à niveau OTA terminée                                                  | Sortie désactivée par le minuteur de décharge               |
++-----------------------------------------------------------------------------+-------------------------------------------------------------+
+
+.. hb-capability-end:
 
 FONCTIONNEMENT DES BOUTONS
 --------------------------
