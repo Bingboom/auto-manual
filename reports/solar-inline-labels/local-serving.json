@@ -1,0 +1,46 @@
+[
+  {
+    "url": "http://127.0.0.1:18856/uk/manual_je1000f_eu_uk.html",
+    "http_status": 200,
+    "live_labels": [
+      "SolarSaga 200 × 2",
+      "SolarSaga 100 Air × 4",
+      "Автомобіль"
+    ],
+    "labels_inside_panel": true,
+    "standalone_label_paragraphs": 0
+  },
+  {
+    "url": "http://127.0.0.1:18856/pt/manual_je1000f_eu_pt.html",
+    "http_status": 200,
+    "live_labels": [
+      "SolarSaga 200 × 2",
+      "SolarSaga 100 Air × 4",
+      "Veículo"
+    ],
+    "labels_inside_panel": true,
+    "standalone_label_paragraphs": 0
+  },
+  {
+    "url": "http://127.0.0.1:18856/nl/manual_je1000f_eu_nl.html",
+    "http_status": 200,
+    "live_labels": [
+      "SolarSaga 200 × 2",
+      "SolarSaga 100 Air × 4",
+      "Voertuig"
+    ],
+    "labels_inside_panel": true,
+    "standalone_label_paragraphs": 0
+  },
+  {
+    "url": "http://127.0.0.1:18856/pl/manual_je1000f_eu_pl.html",
+    "http_status": 200,
+    "live_labels": [
+      "SolarSaga 200 × 2",
+      "SolarSaga 100 Air × 4",
+      "Pojazd"
+    ],
+    "labels_inside_panel": true,
+    "standalone_label_paragraphs": 0
+  }
+]

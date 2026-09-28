@@ -22,6 +22,20 @@ component does not repeat its text below a panel image. The existing public
 reference consumer now supports its registered explicit `caption_mode=none`;
 `live` still requires captions and `embedded` retains its previous behavior.
 
+Charging labels such as `SolarSaga 200 × 2` and `SolarSaga 100 Air × 4`, plus the localized vehicle label,
+are figure content, not following prose. A figure binding may declare exact
+`live_labels` (a common list or an exact locale-to-list mapping) and the existing `base_art_layout` (art SHA-256, panel tone and
+percentage label rectangles). `frozen_pdf_reference` requires each label to
+match exactly one native PDF block inside that figure, consumes that block once,
+and builds the registered ReferenceFigure `base-art-live-copy` variant through
+the shared adapter. Missing/duplicate labels or a different artwork hash fail
+before output assets are copied. Desktop labels sit in the artwork's reserved
+space; narrow-screen labels remain inside the same gray panel, with the shared
+readable mobile layout. The immutable `git-20260928-c38415f5-figure-labels` package
+corrects these three figures in each of the four languages; all artwork bytes,
+body wording/order and shared CSS remain unchanged. Browser visual acceptance
+must be recorded separately from text/asset parity.
+
 The asset manifest contains target identity, a new immutable `technical_version`,
 the exact PDF `text_source` filename/SHA-256, and one path, full SHA-256 and
 `content_mode` per role. Allowed artwork modes are `textless`,

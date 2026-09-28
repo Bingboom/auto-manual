@@ -121,6 +121,8 @@ class PdfBook(FrozenBook):
                 raise ValueError(f'body text or table image is forbidden: {key}')
             destination = f"assets/{record['sha256'][:12]}_{source.name}"
             self.assets[key] = {**record, 'asset_ref': destination}
+        from tools.frozen_pdf_reference import bind_reference_labels
+        bind_reference_labels(self, reference_bindings)
         self.overview_instance = _overview_binding(bindings, self.target)
         # Validate the whole binding before creating output or copying files.
         for key, record in self.assets.items():
@@ -159,13 +161,17 @@ class PdfBook(FrozenBook):
         return operation_panels(self, self.assets)
 
     def consumed_media_regions(self):
-        return consumed_media_regions(self)
+        from tools.frozen_pdf_reference import reference_label_regions
+        return [*consumed_media_regions(self), *reference_label_regions(self.figures)]
 
     def figure(self, figure):
         # Shared reference adapter never marks newly bound art an approved
         # composite and never embeds printed captions in the bitmap.
         from tools.frozen_pdf_app import artwork_node
         asset = self.assets[figure['asset_key']]
+        if figure.get('live_captions'):
+            from tools.frozen_pdf_reference import labeled_artwork_node
+            return labeled_artwork_node(figure, asset['asset_ref'], self.language)
         return artwork_node(asset['asset_ref'], figure['slug'], self.language,
                             f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}")
 

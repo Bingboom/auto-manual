@@ -1,0 +1,1835 @@
+{
+  "schema_version": "frozen-pdf-artwork-bindings/v1",
+  "target": {
+    "model": "JE-1000F",
+    "region": "EU"
+  },
+  "assets": {
+    "inbox.main": {
+      "path": "artwork/1bf7bbbd178e_1bf7bbbd178e_main_unit1_je1000f_eu_en.png",
+      "sha256": "1bf7bbbd178ee212414bfb070d89eee8e384e9d1c20652f1a379bdb536e2e4b4",
+      "content_mode": "fixed-product-markings",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "overview.front": {
+      "path": "artwork/58138a11bdcb_58138a11bdcb_overview-front.png",
+      "sha256": "58138a11bdcb513337870c37bd0b661c43c7f391565797cad45463ffe2d01895",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native overview canvas from physical PDF page 146; source-coordinate crop and paired leader suppression; hash-pinned extraction recipe"
+    },
+    "inbox.cable": {
+      "path": "artwork/287650f3a89a_287650f3a89a_ac_charging_cable.png",
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
+      "content_mode": "textless",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "inbox.manual": {
+      "path": "artwork/87ac44e52863_87ac44e52863_manual_icon1.png",
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+      "content_mode": "textless",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "lcd.map": {
+      "path": "artwork/f82efe218bc0_f82efe218bc0_lcd_map.png",
+      "sha256": "f82efe218bc0b63cb953aced0c85f7c9553935e68d5cf70a3577df9212f550ce",
+      "content_mode": "fixed-product-markings",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "lcd.mode": {
+      "path": "artwork/f9ed0c8d1dc1_f9ed0c8d1dc1_op_lcd_mode_je1000f_eu_en.png",
+      "sha256": "f9ed0c8d1dc17b00daad2ba6a13053a2b45527527b15c41d83d353df890740bb",
+      "content_mode": "fixed-product-markings",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "operation.led-light": {
+      "path": "artwork/bd1e161e7734_bd1e161e7734_op_led_light_je1000f_eu_en.png",
+      "sha256": "bd1e161e77343ed2e9cd99ea4ccdea96f4caa184102714f4ea48135583ea04b2",
+      "content_mode": "fixed-product-markings",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "reference.ups": {
+      "path": "artwork/9aa0c1668423_9aa0c1668423_op_ups_mode_je1000f_eu_en.png",
+      "sha256": "9aa0c1668423a77e9c63fd3d4731d38420fc2283bec8fda769269fa081a72da0",
+      "content_mode": "fixed-product-markings",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "app.store": {
+      "path": "artwork/1c7bfea9e26b_1c7bfea9e26b_app_store_badges.png",
+      "sha256": "1c7bfea9e26bbb00aff9c48d34a7742cd15ff3f0d998f32486c7248a19c9b84d",
+      "content_mode": "app-ui",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "app.qr": {
+      "path": "artwork/5f2a58121306_5f2a58121306_app_download_qr.png",
+      "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+      "content_mode": "app-ui",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "app.download": {
+      "path": "artwork/5f2a58121306_5f2a58121306_app_download_qr.png",
+      "sha256": "5f2a58121306f87b6a627309f264ada87ac4778b3338cfc464ff656013ac3c65",
+      "content_mode": "app-ui",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "app.phone": {
+      "path": "artwork/02f840f1341d_02f840f1341d_add_device_je1000f_eu.png",
+      "sha256": "02f840f1341d94d08478c84ea4ae88280ef2806d618484596885efbe4debafe0",
+      "content_mode": "app-ui",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "app.result": {
+      "path": "artwork/23cde742b301_23cde742b301_connect_result_je1000f_eu.png",
+      "sha256": "23cde742b3012b96fce07f9efe3475ee2e75230f2b2d39311291a33d4cf51f69",
+      "content_mode": "app-ui",
+      "origin": "existing repository governed asset; verified against supplied native PDF 2026-09-28"
+    },
+    "symbol.general_warning": {
+      "path": "artwork/6749bd38fdd0_6749bd38fdd0_warning_triangle.png",
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "warning_triangle"
+    },
+    "symbol.read_manual": {
+      "path": "artwork/89dae4b809de_89dae4b809de_read_manual.png",
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "read_manual"
+    },
+    "symbol.do_not_disassemble": {
+      "path": "artwork/76085a1e7008_76085a1e7008_do_not_dismantle.png",
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "do_not_dismantle"
+    },
+    "symbol.keep_away_from_fire": {
+      "path": "artwork/a8a846e9767a_a8a846e9767a_no_open_flame.png",
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "no_open_flame"
+    },
+    "symbol.keep_away_from_children": {
+      "path": "artwork/114690be6f4d_114690be6f4d_keep_away_from_children.png",
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "keep_away_from_children"
+    },
+    "symbol.lithium_battery": {
+      "path": "artwork/2a61fc0919cf_2a61fc0919cf_li_ion.png",
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot",
+      "live_symbol_id": "li_ion"
+    },
+    "symbol.separate_collection": {
+      "path": "artwork/7e4de290ea13_7e4de290ea13_weee.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "content_mode": "textless",
+      "origin": "prod Symbols attachment read-only snapshot; source p145 matches crossed bin with lower bar",
+      "live_symbol_id": "weee"
+    },
+    "operation.main-power": {
+      "path": "artwork/401376e7e34a_401376e7e34a_main-power.png",
+      "sha256": "401376e7e34a5aee30352e7a351998c0acf0dfdf6c8e817bc849914db88cfbda",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF physical page 149; governed extraction recipe data/asset_recipes/manual_je1000f_eu_four_native_operations.json; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "operation.ac-output": {
+      "path": "artwork/c15858544727_c15858544727_ac-output.png",
+      "sha256": "c1585854472793648b149b4989391de27a3ea460482d286583277df451862895",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF physical page 149; governed extraction recipe data/asset_recipes/manual_je1000f_eu_four_native_operations.json; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "operation.dc-usb-output": {
+      "path": "artwork/0b0fe146874a_0b0fe146874a_dc-usb-output.png",
+      "sha256": "0b0fe146874a37caced9288228328c4931859e12b27a56ec9896881c4c8a6698",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF physical page 150; governed extraction recipe data/asset_recipes/manual_je1000f_eu_four_native_operations.json; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "operation.energy-saving": {
+      "path": "artwork/d042326898a2_d042326898a2_energy-saving.png",
+      "sha256": "d042326898a2450ebee6e356886e7403fe0a33b6a2d4a12266454205093a1218",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF physical page 151; governed extraction recipe data/asset_recipes/manual_je1000f_eu_four_native_operations.json; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "overview.right": {
+      "path": "artwork/d64001a4609c_d64001a4609c_overview-right.png",
+      "sha256": "d64001a4609cb82a03e7cb551a9a6c52adcc6b9a7b7cdb247d9ccd8d06aa8509",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native overview canvas from physical PDF page 146; source-coordinate crop and paired leader suppression; hash-pinned extraction recipe"
+    },
+    "app.control": {
+      "path": "artwork/3bafcc34c487_3bafcc34c487_app.control.png",
+      "sha256": "3bafcc34c487826771aec91e5d8ad3246bf8ee1bde8aa3ee46ff0e483d077c2c",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF independent graphic; data/asset_recipes/manual_je1000f_eu_four_native_references.json; physical pages 146,154,155,159; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469; canvas measured against shared App CSS 1203x265"
+    },
+    "reference.ac-wall": {
+      "path": "artwork/3bd7d59dde7d_3bd7d59dde7d_reference.ac-wall.png",
+      "sha256": "3bd7d59dde7d8fa343a01d14f6291d1fd46c0acc9adc4fd3ea3a616d52c0a062",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF independent graphic; data/asset_recipes/manual_je1000f_eu_four_native_references.json; physical pages 146,154,155,159; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "reference.solar-single": {
+      "path": "artwork/7f14d14b1364_7f14d14b1364_solar-single.png",
+      "sha256": "7f14d14b136430e54003e4624bbfe7c1aaaac6a9622ae422e515275ebaef6e33",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF independent graphic; data/asset_recipes/manual_je1000f_eu_four_native_references.json; physical pages 146,154,155,159; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "reference.solar-four": {
+      "path": "artwork/82c9cafc5d55_82c9cafc5d55_solar-four.png",
+      "sha256": "82c9cafc5d553d37c0e17944ad730f27e830ae525a5896df2eb509b0cc3cd00e",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF independent graphic; data/asset_recipes/manual_je1000f_eu_four_native_references.json; physical pages 146,154,155,159; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    },
+    "reference.car-charging": {
+      "path": "artwork/b276ee48728d_b276ee48728d_car-charging.png",
+      "sha256": "b276ee48728db4e72e21d7fde456e91017e3e4f5335209b1d5476f6c7af1f0f4",
+      "content_mode": "fixed-product-markings",
+      "origin": "Native PDF independent graphic; data/asset_recipes/manual_je1000f_eu_four_native_references.json; physical pages 146,154,155,159; source SHA256 39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+    }
+  },
+  "pending": {},
+  "technical_version": "git-20260928-c38415f5-figure-labels",
+  "web_contract": {
+    "profiles": {
+      "document": {
+        "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+      },
+      "web": {
+        "entry_source_pattern": "00_preface*",
+        "excluded_source_patterns": [
+          "cover*",
+          "00_toc*",
+          "99_back_cover*"
+        ]
+      }
+    },
+    "figure_coverage": {
+      "requirements": [
+        {
+          "target": {
+            "model": "JE-1000F",
+            "region": "EU"
+          },
+          "policy_id": "je1000f-eu-finished-figures-v1",
+          "locales": [
+            "en",
+            "fr",
+            "es",
+            "de",
+            "it"
+          ],
+          "required_slots": [
+            "product-overview.front",
+            "product-overview.right",
+            "operation.main-power",
+            "operation.ac-output",
+            "operation.dc-usb-output",
+            "operation.energy-saving",
+            "operation.led-light",
+            "reference.charging-ac-wall",
+            "reference.charging-solar-direct",
+            "reference.charging-solar-adapter",
+            "reference.charging-car"
+          ],
+          "allowed_statuses": [
+            "finished-panel",
+            "approved-composite"
+          ],
+          "known_debt": []
+        }
+      ]
+    },
+    "preface": {
+      "source_patterns": [
+        "00_preface*"
+      ],
+      "targets": []
+    },
+    "fcc": {
+      "source_patterns": [
+        "*01_fcc"
+      ],
+      "mark_asset_ref": "mark/fcc",
+      "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+      "right_column_markers": [
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "en",
+          "marker": "If this equipment does cause harmful interference"
+        },
+        {
+          "source_patterns": [
+            "p22_01_fcc"
+          ],
+          "language": "fr",
+          "marker": "Si cet équipement trouble la réception"
+        },
+        {
+          "source_patterns": [
+            "p38_01_fcc"
+          ],
+          "language": "es",
+          "marker": "Si este aparato causa interferencias dañinas"
+        },
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "pt-BR",
+          "marker": "Se este equipamento causar interferência prejudicial"
+        }
+      ]
+    },
+    "meaning_symbols": {
+      "source_patterns": [
+        "symbols_*"
+      ],
+      "signal_row_count": 4
+    },
+    "troubleshooting_table": {
+      "source_patterns": [
+        "troubleshooting_*"
+      ]
+    },
+    "specifications": {
+      "source_patterns": [
+        "spec_*"
+      ],
+      "section_count": 4,
+      "circled_reference_count": 2
+    },
+    "warranty": {
+      "source_patterns": [
+        "*11_warranty"
+      ],
+      "section_count": 6,
+      "period_years": [
+        "3",
+        "2"
+      ]
+    },
+    "in_the_box": {
+      "semantic_source_patterns": [
+        "box_contents_*"
+      ],
+      "source_patterns": [
+        "*02_whats_in_the_box"
+      ]
+    },
+    "product_overview": {
+      "source_patterns": [
+        "*03_product_overview_placeholder"
+      ]
+    },
+    "operations": {
+      "source_patterns": [
+        "*05_operation_guide_placeholder",
+        "*05_operation_guide_je2000e"
+      ],
+      "auto_resume_table": {
+        "body_rows": 4
+      },
+      "key_combination_table": {
+        "minimum_body_rows": 3
+      },
+      "lcd_mode_table": {
+        "image_key": "operation/lcd_mode",
+        "body_rows": 6
+      },
+      "figures": [
+        {
+          "id": "main-power",
+          "image_key": "operation/main_power",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            74.5,
+            18.0,
+            19.0,
+            31.0
+          ],
+          "capture_prerequisite": false,
+          "capture_following_lines": 3,
+          "web_replace_key": "operation.main-power",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "step_anchors": [
+              [
+                77.03,
+                17.34
+              ],
+              [
+                77.03,
+                44.18
+              ]
+            ],
+            "step_width": 22.5,
+            "duration_anchor": [
+              81.49,
+              64.08
+            ],
+            "art_sha256": "401376e7e34a5aee30352e7a351998c0acf0dfdf6c8e817bc849914db88cfbda"
+          }
+        },
+        {
+          "id": "ac-output",
+          "image_key": "operation/ac_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            78.0,
+            21.0,
+            19.5,
+            28.0
+          ],
+          "prerequisite_rect": [
+            1.5,
+            1.5,
+            45.0,
+            8.5
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.ac-output",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "step_anchors": [
+              [
+                84.21,
+                28.81
+              ],
+              [
+                84.21,
+                40.87
+              ]
+            ],
+            "step_width": 15.29,
+            "prerequisite_rect": [
+              0.334,
+              0.414,
+              52.719,
+              7.322
+            ],
+            "prerequisite_max_width": 57.0,
+            "prerequisite_fill": "#f7f7f8",
+            "art_sha256": "c1585854472793648b149b4989391de27a3ea460482d286583277df451862895"
+          }
+        },
+        {
+          "id": "dc-usb-output",
+          "image_key": "operation/dc_usb_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            79.0,
+            16.0,
+            19.0,
+            26.0
+          ],
+          "prerequisite_rect": [
+            1.5,
+            1.5,
+            46.0,
+            8.5
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.dc-usb-output",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "step_anchors": [
+              [
+                87.0,
+                19.7
+              ],
+              [
+                87.0,
+                31.26
+              ]
+            ],
+            "step_width": 12.5,
+            "prerequisite_rect": [
+              0.563,
+              1.074,
+              54.398,
+              7.87
+            ],
+            "prerequisite_max_width": 58.0,
+            "prerequisite_fill": "#e6e7e8",
+            "art_sha256": "0b0fe146874a37caced9288228328c4931859e12b27a56ec9896881c4c8a6698"
+          }
+        },
+        {
+          "id": "energy-saving",
+          "image_key": "operation/energy_saving",
+          "layout": "footer-overlay",
+          "step_ids": [
+            "toggle"
+          ],
+          "steps_rect": [
+            55.0,
+            75.0,
+            40.0,
+            18.0
+          ],
+          "capture_prerequisite": false,
+          "web_replace_key": "operation.energy-saving",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "footer_x": 72.0,
+            "art_sha256": "d042326898a2450ebee6e356886e7403fe0a33b6a2d4a12266454205093a1218"
+          }
+        },
+        {
+          "id": "led-light",
+          "image_key": "operation/led_light",
+          "layout": "footer-panel",
+          "step_ids": [
+            "light",
+            "sos",
+            "off"
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.led-light",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_width": 56.8,
+            "step_markers": [
+              "bulb-lit",
+              "sos",
+              "bulb-off"
+            ],
+            "art_sha256": "bd1e161e77343ed2e9cd99ea4ccdea96f4caa184102714f4ea48135583ea04b2"
+          }
+        }
+      ]
+    },
+    "app_download": {
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "image_key": "app/download",
+      "artwork": {
+        "store": "docs/renderers/contracts/assets/app/app_store_badges.png",
+        "qr": "docs/renderers/contracts/assets/app/app_download_qr.png"
+      }
+    },
+    "app_inline_controls": {
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "add_device_paragraph_prefix": "2.1",
+      "button_terms": [
+        "button",
+        "bouton",
+        "botón"
+      ],
+      "accessible_label": "Add device"
+    },
+    "reference_figures": {
+      "source_patterns": [
+        "*charging",
+        "*08_charging_methods",
+        "*12_app_setup_placeholder"
+      ],
+      "figures": [
+        {
+          "id": "app-add-device",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/add_device",
+          "capture_following_lines": 3,
+          "presentation": "shared-art-live-labels",
+          "captions_embedded": true,
+          "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+          "label_roles": [
+            "main-power",
+            "dc-usb",
+            "ac-power"
+          ],
+          "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+          "asset_scope": "shared"
+        },
+        {
+          "id": "charging-ac-wall",
+          "source_patterns": [
+            "*charging"
+          ],
+          "image_key": "charging/ac_wall",
+          "capture_adjacent_paragraph": true,
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-ac-wall",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-solar-direct",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/solar_direct",
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-solar-direct",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-solar-adapter",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/solar_adapter",
+          "captions_embedded": true,
+          "web_replace_key": "reference.charging-solar-adapter",
+          "composite_locales": [
+            {
+              "locale": "en"
+            },
+            {
+              "locale": "fr"
+            },
+            {
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "charging-car",
+          "source_patterns": [
+            "*08_charging_methods"
+          ],
+          "image_key": "charging/car_charge",
+          "capture_following_lines": 2,
+          "web_replace_key": "reference.charging-car",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "08_charging_methods"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p29_08_charging_methods"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p45_08_charging_methods"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "app-connect-result",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/connect_result",
+          "captions_embedded": true,
+          "web_replace_key": "reference.app-connect-result",
+          "composite_locale": "shared",
+          "asset_scope": "shared"
+        }
+      ]
+    },
+    "schema_version": "web-manual-presentation/v2",
+    "figure_targets": [
+      {
+        "model": "JE-1000F",
+        "region": "EU"
+      }
+    ],
+    "presentation_layers": {
+      "base": "shared-manual-semantics-v1",
+      "skeleton_profile": "portable-power-station-v1",
+      "target_overlay": "je1000f-eu-v1"
+    }
+  },
+  "text_source": {
+    "filename": "HTE153-nine-language-native-text-check.pdf",
+    "sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
+  },
+  "figures": [
+    {
+      "slug": "ups_connection",
+      "asset_key": "reference.ups"
+    },
+    {
+      "slug": "ac_wall_charging",
+      "asset_key": "reference.ac-wall"
+    },
+    {
+      "slug": "solar_single",
+      "asset_key": "reference.solar-single",
+      "live_labels": [
+        "SolarSaga 200 × 2"
+      ],
+      "base_art_layout": {
+        "art_sha256": "7f14d14b136430e54003e4624bbfe7c1aaaac6a9622ae422e515275ebaef6e33",
+        "panel_top": 0,
+        "panel_fill": "#ebecec",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              73.49,
+              89.23,
+              25,
+              5.5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "solar_four",
+      "asset_key": "reference.solar-four",
+      "live_labels": [
+        "SolarSaga 100 Air × 4"
+      ],
+      "base_art_layout": {
+        "art_sha256": "82c9cafc5d553d37c0e17944ad730f27e830ae525a5896df2eb509b0cc3cd00e",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              70.41,
+              89.83,
+              28,
+              6
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "slug": "car_charging",
+      "asset_key": "reference.car-charging",
+      "live_labels": {
+        "uk": [
+          "Автомобіль"
+        ],
+        "pt": [
+          "Veículo"
+        ],
+        "nl": [
+          "Voertuig"
+        ],
+        "pl": [
+          "Pojazd"
+        ]
+      },
+      "base_art_layout": {
+        "art_sha256": "b276ee48728db4e72e21d7fde456e91017e3e4f5335209b1d5476f6c7af1f0f4",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              72.31,
+              18.77,
+              25,
+              8
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "overview_instance": {
+    "component_id": "HB-SPECIAL-OVERVIEW",
+    "target": {
+      "model": "JE-1000F",
+      "region": "EU"
+    },
+    "source_patterns": [
+      "*03_product_overview_placeholder"
+    ],
+    "page": {
+      "title_frame": [
+        29.505,
+        28.035,
+        311.91,
+        20.065
+      ]
+    },
+    "views": [
+      {
+        "id": "front",
+        "asset_role": "front_art",
+        "image_key": "overview/front_product",
+        "web_replace_key": "product-overview.front",
+        "composite_locales": [
+          {
+            "locale": "en"
+          },
+          {
+            "locale": "fr"
+          },
+          {
+            "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
+          }
+        ],
+        "web": {
+          "aspect_ratio": 0.8342105263157895,
+          "decorative_leaders": [
+            [
+              [
+                58.06849,
+                68.40454789473684
+              ],
+              [
+                58.06849,
+                56.079814078947365
+              ]
+            ]
+          ]
+        },
+        "idml": {
+          "art_rect": [
+            28,
+            0,
+            317,
+            380
+          ],
+          "heading_text_y": 69.832,
+          "heading_bullet_rect": [
+            30.425,
+            69.991,
+            7.067,
+            7.068
+          ]
+        },
+        "callouts": [
+          {
+            "id": "power",
+            "source_slot": "front.left.0",
+            "web": {
+              "rect": [
+                0.52829,
+                2.1052631578947367,
+                23.5,
+                8.947368421052632
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.5247651590533813,
+                  10.0
+                ],
+                [
+                  40.59290359448936,
+                  10.0
+                ],
+                [
+                  40.59290359448936,
+                  42.47854935495477
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                106.22,
+                76.0,
+                14.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  31.489,
+                  114.185
+                ],
+                [
+                  158.505,
+                  114.185
+                ],
+                [
+                  158.505,
+                  161.418
+                ]
+              ]
+            }
+          },
+          {
+            "id": "lcd",
+            "source_slot": "front.right.0",
+            "web": {
+              "rect": [
+                75.76529,
+                2.1052631578947367,
+                22.471,
+                8.421052631578947
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.42977914900433,
+                  9.473684210526317
+                ],
+                [
+                  50.464165624383874,
+                  9.473684210526317
+                ],
+                [
+                  50.464165624383874,
+                  42.54249974300987
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                270.0,
+                106.32,
+                71.232,
+                14.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  341.847,
+                  114.186
+                ],
+                [
+                  189.796,
+                  114.186
+                ],
+                [
+                  189.796,
+                  161.661
+                ]
+              ]
+            }
+          },
+          {
+            "id": "dc12",
+            "source_slot": "front.left.1",
+            "web": {
+              "rect": [
+                0.52829,
+                14.473684210526317,
+                23.5,
+                11.052631578947368
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.5248578188923255,
+                  24.47368421052632
+                ],
+                [
+                  35.526749764331136,
+                  24.47368421052632
+                ],
+                [
+                  35.526749764331136,
+                  41.91397415964227
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                129.93,
+                76.0,
+                26.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  31.489,
+                  146.871
+                ],
+                [
+                  141.445,
+                  146.871
+                ],
+                [
+                  141.445,
+                  164.866
+                ]
+              ]
+            }
+          },
+          {
+            "id": "led_button",
+            "source_slot": "front.right.1",
+            "web": {
+              "rect": [
+                75.5,
+                14.473684210526317,
+                23.115,
+                11.052631578947368
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.42987541896687,
+                  24.47368421052632
+                ],
+                [
+                  58.466471482526615,
+                  24.47368421052632
+                ],
+                [
+                  58.466471482526615,
+                  42.21505416067023
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                268.0,
+                129.38,
+                73.273,
+                17.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  341.848,
+                  139.52
+                ],
+                [
+                  215.164,
+                  139.52
+                ],
+                [
+                  215.164,
+                  160.417
+                ]
+              ]
+            }
+          },
+          {
+            "id": "usb_c_30",
+            "source_slot": "front.left.2",
+            "web": {
+              "rect": [
+                0.52829,
+                28.421052631578945,
+                23.5,
+                16.57894736842105
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.5248578188923255,
+                  43.94736842105263
+                ],
+                [
+                  29.069336130039925,
+                  43.94736842105263
+                ],
+                [
+                  29.069336130039925,
+                  50.3769964920847
+                ],
+                [
+                  33.861452698331526,
+                  50.3769964920847
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                159.27,
+                76.0,
+                24.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  31.489,
+                  181.322
+                ],
+                [
+                  121.975,
+                  181.322
+                ],
+                [
+                  121.975,
+                  191.433
+                ],
+                [
+                  137.166,
+                  191.433
+                ]
+              ]
+            }
+          },
+          {
+            "id": "led",
+            "source_slot": "front.right.2",
+            "web": {
+              "rect": [
+                77.65729,
+                27.631578947368425,
+                21.068,
+                10.526315789473683
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.8133475607502,
+                  37.10526315789473
+                ],
+                [
+                  66.37012951005521,
+                  37.10526315789473
+                ],
+                [
+                  66.37012951005521,
+                  44.21694303813734
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                276.0,
+                159.02,
+                66.786,
+                14.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  343.063,
+                  168.024
+                ],
+                [
+                  240.218,
+                  168.024
+                ]
+              ]
+            }
+          },
+          {
+            "id": "usb_c_100",
+            "source_slot": "front.left.3",
+            "web": {
+              "rect": [
+                0.52829,
+                46.31578947368421,
+                23.5,
+                16.57894736842105
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.9103468163908468,
+                  61.84210526315789
+                ],
+                [
+                  32.77028562142646,
+                  61.84210526315789
+                ],
+                [
+                  32.77028562142646,
+                  52.45457297877262
+                ],
+                [
+                  33.77722610810578,
+                  52.45457297877262
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                185.38,
+                76.0,
+                39.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  32.711,
+                  206.567
+                ],
+                [
+                  133.707,
+                  206.567
+                ],
+                [
+                  133.707,
+                  199.327
+                ],
+                [
+                  136.899,
+                  199.327
+                ]
+              ]
+            }
+          },
+          {
+            "id": "ac_power",
+            "source_slot": "front.right.3",
+            "web": {
+              "rect": [
+                75.5,
+                41.05263157894737,
+                23.5,
+                13.157894736842104
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.26747761915911,
+                  53.1578947368421
+                ],
+                [
+                  46.41794872584779,
+                  53.1578947368421
+                ],
+                [
+                  46.41794872584779,
+                  51.827505011307565
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                264.0,
+                180.44,
+                76.854,
+                25.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  341.333,
+                  189.037
+                ],
+                [
+                  176.97,
+                  189.037
+                ],
+                [
+                  176.97,
+                  196.944
+                ]
+              ]
+            }
+          },
+          {
+            "id": "usb_a",
+            "source_slot": "front.left.4",
+            "web": {
+              "rect": [
+                0.52829,
+                64.21052631578948,
+                23.5,
+                15.263157894736842
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.5484884845721609,
+                  78.42105263157896
+                ],
+                [
+                  35.21126347009316,
+                  78.42105263157896
+                ],
+                [
+                  35.21126347009316,
+                  56.62942183645148
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                227.01,
+                76.0,
+                34.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  31.564,
+                  247.15
+                ],
+                [
+                  141.445,
+                  247.15
+                ],
+                [
+                  141.445,
+                  215.192
+                ]
+              ]
+            }
+          },
+          {
+            "id": "ac_output",
+            "source_slot": "front.right.4",
+            "web": {
+              "rect": [
+                77.02729,
+                55.78947368421052,
+                21.09,
+                22.105263157894736
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.42987541896687,
+                  76.84210526315789
+                ],
+                [
+                  62.257322678430604,
+                  76.84210526315789
+                ],
+                [
+                  62.257322678430604,
+                  56.082261738024265
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                274.0,
+                205.26,
+                66.854,
+                28.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  341.848,
+                  229.197
+                ],
+                [
+                  227.181,
+                  229.197
+                ],
+                [
+                  227.181,
+                  213.113
+                ]
+              ],
+              "anchor": "above-leader"
+            }
+          },
+          {
+            "id": "dc_usb",
+            "source_slot": "front.left.5",
+            "web": {
+              "rect": [
+                0.52829,
+                81.05263157894737,
+                23.5,
+                8.421052631578947
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.6503469184370071,
+                  88.42105263157895
+                ],
+                [
+                  40.28977836344144,
+                  88.42105263157895
+                ],
+                [
+                  40.28977836344144,
+                  54.50647454512747
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                31.5,
+                267.93,
+                76.0,
+                18.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  31.887,
+                  279.076
+                ],
+                [
+                  157.544,
+                  279.076
+                ],
+                [
+                  157.544,
+                  207.125
+                ]
+              ],
+              "anchor": "above-leader"
+            }
+          },
+          {
+            "id": "total",
+            "source_slot": "front.total.0",
+            "web": {
+              "rect": [
+                75.5,
+                81.05263157894737,
+                23.5,
+                16.315789473684212
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.8133475607502,
+                  96.31578947368422
+                ],
+                [
+                  68.23700625061613,
+                  96.31578947368422
+                ],
+                [
+                  68.23700625061613,
+                  72.93779072008635
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                246.0,
+                259.45,
+                94.854,
+                29.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  343.063,
+                  277.164
+                ],
+                [
+                  246.136,
+                  277.164
+                ]
+              ],
+              "anchor": "above-leader"
+            }
+          }
+        ]
+      },
+      {
+        "id": "right",
+        "asset_role": "right_art",
+        "image_key": "overview/right_side_ports",
+        "web_replace_key": "product-overview.right",
+        "composite_locales": [
+          {
+            "locale": "en"
+          },
+          {
+            "locale": "fr"
+          },
+          {
+            "locale": "es"
+          },
+          {
+            "locale": "de"
+          },
+          {
+            "locale": "it"
+          }
+        ],
+        "web": {
+          "aspect_ratio": 2.0063694267515926,
+          "decorative_leaders": []
+        },
+        "idml": {
+          "art_rect": [
+            30,
+            335,
+            315,
+            157
+          ],
+          "heading_text_y": 317.009,
+          "heading_bullet_rect": [
+            30.425,
+            317.336,
+            7.067,
+            7.068
+          ]
+        },
+        "callouts": [
+          {
+            "id": "handle",
+            "source_slot": "right.sequence.0",
+            "web": {
+              "rect": [
+                0.84963,
+                3.35,
+                34.921,
+                8.917
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  0.83698,
+                  9.83381
+                ],
+                [
+                  54.46587,
+                  9.83381
+                ],
+                [
+                  54.46587,
+                  18.30769
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                34.5,
+                340.26,
+                87.0,
+                14.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  34.461,
+                  350.439
+                ],
+                [
+                  203.393,
+                  350.439
+                ],
+                [
+                  203.393,
+                  363.743
+                ]
+              ]
+            }
+          },
+          {
+            "id": "dc_input",
+            "source_slot": "right.sequence.2",
+            "web": {
+              "rect": [
+                1.06163,
+                22.045,
+                28.571,
+                25.478
+              ],
+              "align": "left",
+              "leader": [
+                [
+                  43.17276,
+                  41.98892
+                ],
+                [
+                  0.83689,
+                  41.98892
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                35.17,
+                369.61,
+                87.0,
+                40.0
+              ],
+              "align": "LeftAlign",
+              "leader": [
+                [
+                  34.461,
+                  400.923
+                ],
+                [
+                  167.819,
+                  400.923
+                ]
+              ],
+              "anchor": "above-leader"
+            }
+          },
+          {
+            "id": "ac_input",
+            "source_slot": "right.sequence.1",
+            "web": {
+              "rect": [
+                76.88063,
+                29.745,
+                20.984,
+                17.834
+              ],
+              "align": "right",
+              "leader": [
+                [
+                  98.23358,
+                  40.48279
+                ],
+                [
+                  56.29454,
+                  40.48279
+                ]
+              ]
+            },
+            "idml": {
+              "rect": [
+                262.0,
+                381.7,
+                78.099,
+                28.0
+              ],
+              "align": "RightAlign",
+              "leader": [
+                [
+                  341.261,
+                  398.558
+                ],
+                [
+                  209.153,
+                  398.558
+                ]
+              ],
+              "anchor": "above-leader"
+            }
+          }
+        ]
+      }
+    ],
+    "idml_leader_order": [
+      "front.power",
+      "front.lcd",
+      "front.dc12",
+      "front.led_button",
+      "front.usb_c_30",
+      "front.usb_c_100",
+      "front.usb_a",
+      "front.dc_usb",
+      "front.led",
+      "front.ac_power",
+      "front.ac_output",
+      "front.total",
+      "right.handle",
+      "right.dc_input",
+      "right.ac_input",
+      "decorative.total_connector"
+    ],
+    "idml_decorative_leaders": [
+      {
+        "id": "total_connector",
+        "points": [
+          [
+            213.902,
+            213.103
+          ],
+          [
+            213.902,
+            260.327
+          ]
+        ],
+        "stroke_weight": 0.6
+      }
+    ],
+    "instance_id": "je1000f-eu-four-native-overview-v2"
+  },
+  "overview_instance_sha256": "af6066dd5a2dd0a0ac7cf0f241b3d526194a251450e4ae253c3d54d0909f14e8"
+}
