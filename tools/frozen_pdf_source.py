@@ -1,0 +1,183 @@
+"""Fresh PDF intake bound to explicit, hash-verified shared artwork.
+
+The native PDF supplies every text field. Historical JSON supplies extraction
+geometry and approved errata only; historical screenshot files are never read.
+"""
+from __future__ import annotations
+
+from copy import deepcopy
+import json
+import re
+from pathlib import Path
+import shutil
+
+from tools.component_specs.overview_instance import (
+    overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
+)
+from tools.frozen_ai_flow import cell, node, scroll_table, text
+from tools.frozen_ai_source import FrozenBook
+from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
+from tools.frozen_pdf_glyphs import recover_pdf_glyphs
+from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
+from tools.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
+from tools.manual_ir.hashing import file_sha256, value_sha256
+from tools.web_presentation import load_web_manual_contract
+
+
+_REFERENCE_IDS = {'ups_connection', 'ac_wall_charging', 'solar_single', 'solar_four', 'car_charging'}
+
+
+def _repair_label_wrapping(data, language):
+    # Exact native extraction whitespace only. These are formatting repairs,
+    # distinct from approved edits to the author's wording.
+    fixes = {
+        'uk': {'Режим енергозбережен ня акумулятора': 'Режим енергозбереження акумулятора'},
+        'nl': {'Zonne-energie- oplaadindicator': 'Zonne-energie-oplaadindicator',
+               'Batterijbespar ingsmodus': 'Batterijbesparingsmodus',
+               'Batterijstroom -indicator': 'Batterijstroom-indicator',
+               'Energiebespa ringsmodus': 'Energiebesparingsmodus'},
+    }
+    for row in data['records']['lcd_indicators']['rows']:
+        before = row['label']
+        after = fixes.get(language, {}).get(before)
+        if after:
+            row['label'] = after
+            data['provenance']['corrections_applied'].append({
+                'field': f"lcd/{row['number']}/label", 'physical_page': row['physical_page'],
+                'bbox': row['label_bbox'], 'before': before, 'after': after,
+                'reason': 'Join native PDF word fragments separated by print line wrapping',
+            })
+
+
+def _overview_binding(bindings: dict, target: dict) -> dict:
+    """Resolve only this frozen source's optional artwork-coordinate override."""
+    model, region = target['model'], target['region']
+    if 'overview_instance' not in bindings:
+        if 'overview_instance_sha256' in bindings:
+            raise ValueError('overview instance hash has no bound instance')
+        return resolve_overview_instance(model=model, region=region)
+    instance = deepcopy(bindings['overview_instance'])
+    issues = validate_resolved_overview_instance(instance)
+    if issues:
+        raise ValueError('invalid frozen overview instance: ' + '; '.join(issues))
+    if instance['target'] != {'model': model, 'region': region}:
+        raise ValueError('frozen overview instance target disagrees with PDF')
+    if bindings.get('overview_instance_sha256') != overview_instance_sha256(instance):
+        raise ValueError('frozen overview instance SHA-256 mismatch')
+    return instance
+
+
+class PdfBook(FrozenBook):
+    """Use the shared semantic table helpers with a fresh source and asset map."""
+
+    source_kind = "frozen-pdf-json"
+
+    def __init__(self, pdf_path: Path, recipe_root: Path, assets_manifest: Path,
+                 output: Path, language: str):
+        self.source_root, self.output, self.language = recipe_root.resolve(), output.resolve(), language
+        original = self.read('source_manifest.json')
+        self.target = deepcopy(original['target'])
+        self.errata = self.read('source/errata.json')
+        bindings = json.loads(assets_manifest.read_text(encoding='utf-8'))
+        text_source = {'filename': pdf_path.name, 'sha256': file_sha256(pdf_path)}
+        if bindings.get('text_source') != text_source:
+            raise ValueError('artwork manifest text_source disagrees with PDF identity')
+        data = load_pdf_book(pdf_path, language, recipe_root)
+        ai = pdf_path.parent / original['original_source']['filename']
+        data = recover_pdf_glyphs(data, ai)
+        _repair_label_wrapping(data, language)
+        for key in ('source', 'index', 'locale', 'records', 'front_back', 'provenance'):
+            setattr(self, key, data[key])
+        if bindings['target'] != {key: self.target[key] for key in ('model', 'region')}:
+            raise ValueError('artwork target disagrees with PDF')
+        version = bindings.get('technical_version', '')
+        if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', version) or version == self.target['technical_version']:
+            raise ValueError('fresh PDF artwork requires a new immutable technical_version')
+        self.target['technical_version'] = version
+        if bindings.get('pending'):
+            raise ValueError('artwork remains pending: ' + ', '.join(bindings['pending']))
+        recipes = self.read(f'source/{language}_figure_manifest.json')['figures']
+        reference_bindings = {figure['slug']: figure for figure in bindings.get('figures', [])}
+        if len(reference_bindings) != len(bindings.get('figures', [])) or set(reference_bindings) != _REFERENCE_IDS:
+            raise ValueError('governed reference artwork must cover UPS and all four charging diagrams')
+        self.figures = [{**{key: figure[key] for key in ('slug', 'section_id', 'physical_page', 'clip_points')},
+                         'asset_key': reference_bindings[figure['slug']]['asset_key'],
+                         'presentation': 'textless-shared-art'}
+                        for figure in recipes if figure['slug'] in _REFERENCE_IDS]
+        if len(self.figures) != len(_REFERENCE_IDS) or {f['slug'] for f in self.figures} != _REFERENCE_IDS:
+            raise ValueError('source geometry must contain exactly the five required reference diagrams')
+        required = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, 'lcd.mode', 'lcd.map',
+                    *(f"symbol.{row['icon_id']}" for row in self.records['symbols']['pictograms']),
+                    *(figure['asset_key'] for figure in bindings.get('figures', []))}
+        missing = sorted(required - bindings['assets'].keys())
+        if missing:
+            raise ValueError('missing governed artwork: ' + ', '.join(missing))
+        self.hashes, self.assets = {}, {}
+        for key, record in bindings['assets'].items():
+            source = (assets_manifest.parent / record['path']).resolve()
+            if file_sha256(source) != record['sha256']:
+                raise ValueError(f'governed artwork changed: {key}')
+            if record['content_mode'] not in {'textless', 'fixed-product-markings', 'app-ui'}:
+                raise ValueError(f'body text or table image is forbidden: {key}')
+            destination = f"assets/{record['sha256'][:12]}_{source.name}"
+            self.assets[key] = {**record, 'asset_ref': destination}
+        self.overview_instance = _overview_binding(bindings, self.target)
+        # Validate the whole binding before creating output or copying files.
+        for key, record in self.assets.items():
+            source = (assets_manifest.parent / record['path']).resolve()
+            destination = output / record['asset_ref']
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source, destination)
+            self.hashes[record['asset_ref']] = record['sha256']
+        self.contract = load_web_manual_contract(model=self.target['model'], region=self.target['region'])
+        self.contract = deepcopy(bindings.get('web_contract', self.contract))
+        self.expected_reference_count = len(_REFERENCE_IDS) + 1  # LCD map; App result is a standalone UI image
+        for figure in self.figures:
+            figure['presentation'] = 'textless-shared-art'
+        self.art = {f['slug']: self.assets[f['asset_key']] for f in self.figures}
+        self.art['lcd_mode_art'] = self.assets['lcd.mode']
+        self.icon_refs = [self.assets[f"symbol.{row['icon_id']}"]['asset_ref']
+                          for row in self.records['symbols']['pictograms']]
+        self.manifest = {
+            'schema_version': 'auto-manual-frozen-web-source/v1', 'target': self.target,
+            'original_source': original['original_source'], 'text_source': self.provenance['pdf'],
+            'intake_method': 'fresh-native-pdf-text',
+            'geometry_recipe_sha256': file_sha256(recipe_root / 'source_manifest.json'),
+            'source_records_sha256': value_sha256(data),
+            'artwork_manifest_sha256': file_sha256(assets_manifest),
+        }
+
+    def read(self, path):
+        if path == 'source_manifest.json':
+            return super().read(path)
+        return read_recipe_json(self.source_root, path)
+
+    def media_section(self, section):
+        return media_section(self, section, self.assets)
+
+    def operation_panels(self):
+        return operation_panels(self, self.assets)
+
+    def consumed_media_regions(self):
+        return consumed_media_regions(self)
+
+    def figure(self, figure):
+        # Shared reference adapter never marks newly bound art an approved
+        # composite and never embeds printed captions in the bitmap.
+        from tools.frozen_pdf_app import artwork_node
+        asset = self.assets[figure['asset_key']]
+        return artwork_node(asset['asset_ref'], figure['slug'], self.language,
+                            f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}")
+
+    def special(self, section):
+        if section == 'app_setup':
+            return app_section(self, self.assets)
+        if section == 'lcd_display':
+            from tools.frozen_pdf_app import artwork_node
+            rows = [[cell(str(row['number']), header=True),
+                     node('table_cell', [node('strong', [text(row['label'])]),
+                                        node('line_break'), text(row['meaning'])], header=False)]
+                    for row in self.records['lcd_indicators']['rows']]
+            return [artwork_node(self.assets['lcd.map']['asset_ref'], 'lcd-map', self.language,
+                                 f'{self.language}/lcd-display'), scroll_table(rows)]
+        return super().special(section)

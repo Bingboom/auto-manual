@@ -122,6 +122,12 @@ def _structure_issues(raw: Any) -> list[str]:
 def unknown_language_issues(ir: ManualIR) -> list[str]:
     """Return unregistered Manual IR language tokens with their source location."""
 
+    from .external_languages import frozen_language_issues
+
+    external_issues = frozen_language_issues(ir)
+    if external_issues is not None:
+        return external_issues
+
     issues: list[str] = []
     manual_language = str(ir.language or "").strip()
     if (

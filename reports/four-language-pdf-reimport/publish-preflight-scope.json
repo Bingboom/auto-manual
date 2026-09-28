@@ -1,0 +1,29 @@
+{
+  "base_commit": "170ae3cbcff876b5e5ba9b90744fdb300d1d9500",
+  "base_tree": "50d562b028b752b119bd4ad0ceb2297d11b3ead4",
+  "candidate_root": "/private/tmp/four-native-publish-preflight",
+  "candidate_manifest_sha256": "1287293204b1e95499f3979b02bdc52d457c95424c7e33f86b4e76c20ead18bf",
+  "before_targets": 58,
+  "after_targets": 58,
+  "unchanged_target_metadata": 54,
+  "unchanged_non_target_publish_files": 3751,
+  "manifest_files_verified": 3940,
+  "pooled_references_verified": 2136,
+  "reviewed_aggregate_changes": [
+    "web/index.md",
+    "web/manual_je1000f_eu_nl.md",
+    "web/manual_je1000f_eu_pl.md",
+    "web/manual_je1000f_eu_pt.md",
+    "web/manual_je1000f_eu_uk.md"
+  ],
+  "old_five_version": "2.7",
+  "replaced_targets": [
+    "JE-1000F/EU/nl",
+    "JE-1000F/EU/pl",
+    "JE-1000F/EU/pt",
+    "JE-1000F/EU/uk"
+  ],
+  "new_version": "git-20260928-c38415f5-native-ir",
+  "scope": "complete publish overlay only; full commit scope still required",
+  "all_checks_passed": true
+}
