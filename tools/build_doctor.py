@@ -160,6 +160,23 @@ def resolve_reference_doc_status(
     return finding_cls("ERROR", "word.reference_doc", f"not found: {path}")
 
 
+def _add_environment_findings(
+    findings: list[Any],
+    doctor_add: Callable[[list[Any], str, str, str], None],
+    collector: Callable[[], list[tuple[str, str, str]]] | None,
+) -> None:
+    """Add drift against the pinned runtime and requirements.lock.
+
+    Advisory only (OK/WARN): a local mismatch is named once up front instead
+    of surfacing later as scattered test/build failures.
+    """
+
+    if collector is None:
+        from tools.env_preflight import collect_environment_findings as collector
+    for level, area, message in collector():
+        doctor_add(findings, level, area, message)
+
+
 def collect_doctor_findings(
     args: argparse.Namespace,
     *,
@@ -234,15 +251,7 @@ def collect_doctor_findings(
         else:
             doctor_add(findings, "WARN", area, f"missing optional module '{module_name}': {detail}")
 
-    # Environment drift against the pinned runtime and requirements.lock:
-    # advisory only (OK/WARN), so a local mismatch is named once up front
-    # instead of surfacing later as scattered test/build failures.
-    if collect_environment_findings is None:
-        from tools.env_preflight import collect_environment_findings as default_collect_environment_findings
-
-        collect_environment_findings = default_collect_environment_findings
-    for level, area, message in collect_environment_findings():
-        doctor_add(findings, level, area, message)
+    _add_environment_findings(findings, doctor_add, collect_environment_findings)
 
     # Toolchain provenance (Milestone I3): informational, never blocking here —
     # the pdf/word-mode checks below still decide what is an ERROR. This block
