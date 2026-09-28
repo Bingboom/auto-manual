@@ -318,6 +318,14 @@ create synthetic queue rows or write `HTML_link`.
    actual page at desktop and mobile widths for image URLs and page overflow.
    When the target uses public IR or packaged assets, retain cold-replay and
    asset-tamper evidence as applicable.
+   For an already frozen external manual whose new Web languages are absent
+   from the phase2 build target, keep the existing target `build.py check` as a
+   repository regression gate. Render the designated source through a
+   source-local, hash-checked MyST adapter and state in `source_manifest.json`
+   that the `build.py` result does not validate those new language bodies.
+   Verify those bodies against their source pages, figures and structured
+   tables, then run the same strict Sphinx and browser gates. This exception
+   does not register a new phase2 or print target.
 3. Put the verified MyST and verification HTML in an isolated release root.
    Write a real `auto-manual-web-publish/v1` record at
    `<model>/<region>/<lang>/latest/web/publish_meta.json`. Its
