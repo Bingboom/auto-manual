@@ -22,6 +22,29 @@ component does not repeat its text below a panel image. The existing public
 reference consumer now supports its registered explicit `caption_mode=none`;
 `live` still requires captions and `embedded` retains its previous behavior.
 
+Charging labels such as `SolarSaga 200 × 2` and `SolarSaga 100 Air × 4`, plus the localized vehicle label,
+are figure content, not following prose. A figure binding may declare exact
+`live_labels` (a common list or an exact locale-to-list mapping) and the existing `base_art_layout` (art SHA-256, panel tone and
+percentage label rectangles). `frozen_pdf_reference` requires each label to
+match exactly one native PDF block inside that figure, consumes that block once,
+and builds the registered ReferenceFigure `base-art-live-copy` variant through
+the shared adapter. Missing/duplicate labels or a different artwork hash fail
+before output assets are copied. Desktop labels sit in the artwork's reserved
+space; narrow-screen labels remain inside the same gray panel, with the shared
+readable mobile layout. The immutable `git-20260928-c38415f5-layout-fixes` package
+corrects these three figures in each of the four languages. Native chapter and
+subsection headings use the template H1/H2 scale; component-owned headings keep
+their contracts. Preface paragraphs and IMPORTANT label are separated, and the
+safety warning and eight precautions use the existing callout/list structure.
+Warranty scope copy retains its original bold emphasis and existing 3+2 cards.
+The LCD table uses HB-TABLE-LCD-ICON with 26 independent source-matched icons,
+including both printed rows numbered 22. App screenshots carry live step labels
+2.1–2.5. Dense front/right overview panels reuse the corresponding source-language
+finished artwork through the existing composite adapter, preserving semantic
+callout text in IR and the approved Dutch AC-label erratum. Other body text and
+tables remain native HTML. Old five-language presentation stays unchanged.
+Browser visual acceptance must be recorded separately from text/asset parity.
+
 The asset manifest contains target identity, a new immutable `technical_version`,
 the exact PDF `text_source` filename/SHA-256, and one path, full SHA-256 and
 `content_mode` per role. Allowed artwork modes are `textless`,
@@ -148,7 +171,12 @@ contracts. It rejects changed image or stylesheet bytes. The model, region,
 locale and manifest digest are bound together; this source-scoped locale
 support does not register phase2 columns or print templates.
 
-## Representation boundaries
+## Historical frozen-AI representation boundaries
+
+The bullets below describe the retained earlier `frozen_ai_web` intake, not the
+current `frozen_pdf_web` layout-fixes delivery described above. The current PDF
+route uses the four-column LCD icon component, split App components with live
+step captions, and finished composites only for the two approved Overview views.
 
 - Each book has 13 source chapters plus its introduction and EU declaration.
   Prose and the 26 numbered LCD explanations use neutral flow. The LCD source

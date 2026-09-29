@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from tools.frozen_ai_web import replay_package
 from tools.frozen_pdf_app import APP_ASSET_KEYS
 from tools.frozen_pdf_media import MEDIA_ASSET_KEYS
+from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS
 from tools.frozen_pdf_web import build_pdf_book
 from tools.frozen_pdf_source import PdfBook, _overview_binding
 from tools.component_specs.overview_instance import resolve_overview_instance, overview_instance_sha256
@@ -30,7 +31,7 @@ class FreshPdfWebTests(unittest.TestCase):
         # One existing icon is sufficient to test asset transport and rendering.
         # These deliberately synthetic bindings are NEVER candidate/acceptance art.
         art = ROOT / 'docs/renderers/contracts/assets/app/app_download_qr.png'
-        keys = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, 'lcd.mode', 'lcd.map'}
+        keys = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, *LCD_ICON_ASSET_KEYS, 'lcd.mode', 'lcd.map'}
         reference_ids = ('ups_connection', 'ac_wall_charging', 'solar_single', 'solar_four', 'car_charging')
         keys.update('reference.' + slug for slug in reference_ids)
         records = json.loads((RECIPE / 'source/symbols.json').read_text())['locales']['pl']
@@ -105,6 +106,14 @@ class FreshPdfWebTests(unittest.TestCase):
                     self.assertNotIn('\ufffd', soup.get_text())
                     self.assertNotIn('\x1f', soup.get_text())
                     self.assertEqual(5, len(soup.select('.hb-operation-figure')))
+                    self.assertEqual(7, len(soup.select('.hb-reference-figure')))
+                    lcd = soup.select_one('.hb-lcd-table-composition .hb-lcd-icon-table')
+                    self.assertIsNotNone(lcd)
+                    self.assertEqual(26, len(lcd.select('tbody tr')))
+                    self.assertTrue(all(len(row.find_all('td', recursive=False)) == 4
+                                        for row in lcd.select('tbody tr')))
+                    self.assertEqual(26, len(lcd.select('.hb-lcd-icon-art')))
+
                     self.assertEqual('--hb-aspect-ratio:1.5', soup.select_one('.hb-annotated-stage')['style'])
                     specs = component_specs_in_flow([b.payload for p in ir.pages for b in p.blocks])
                     self.assertFalse(any(spec.variant == 'approved-composite' for spec in specs))

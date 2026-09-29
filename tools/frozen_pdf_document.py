@@ -11,7 +11,8 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
-from tools.frozen_ai_flow import heading, paragraph, prose, root, squash
+from tools.frozen_ai_flow import heading, prose, root, squash
+from tools.frozen_pdf_frontmatter import preface_flow, strong_paragraph, template_heading_levels
 from tools.frozen_ai_table_components import (
     specification_flow, symbol_pictogram_flow, troubleshooting_flow,
 )
@@ -24,6 +25,22 @@ _SECTIONS = (
     "operations", "ups", "charging", "storage", "troubleshooting",
     "specifications", "warranty", "app_setup",
 )
+
+_EMERGENCY_CHARGING_LABELS = {
+    "uk": "Режим аварійного заряджання",
+    "pt": "Modo de carregamento de emergência",
+    "nl": "Noodoplaadmodus",
+    "pl": "Tryb ładowania awaryjnego",
+}
+
+
+def _body_prose(value, section, language):
+    # The Ukrainian PDF joins this bold lead and its body in one text block;
+    # the other three PDFs give it a separate block. Preserve both shapes.
+    label = _EMERGENCY_CHARGING_LABELS.get(language)
+    if section == "charging" and label and (value == label or value.startswith(label + " ")):
+        return [strong_paragraph(label), *prose(value[len(label):].strip())]
+    return prose(value)
 
 
 def _key(value):
@@ -39,20 +56,17 @@ def _page(book, identity, nodes):
         page_id=identity, source_ref=f"{book.language}/{identity}",
         source_path=str(path), language=book.language,
         source_sha256=book.source["source_sha256"],
-        blocks=tuple(("flow", root(item)) for item in nodes),
+        blocks=tuple(("flow", root(template_heading_levels(item))) for item in nodes),
     )
 
 
 def _introduction(book):
     preface = book.front_back["locales"][book.language]["preface"]["text"]
-    preface = re.sub(r"^(?:UA|PT|NL|PL)\s*\n", "", preface)
-    preface = re.sub(r"\nВАЖЛИВО\s*$", "", preface)
     product = book.source["tables"]["specifications"]["groups"]["general"][0]["value"]
     title = f"{product} — {book.locale['label']}"
-    # Contents belongs to site navigation. No printed TOC or synthetic link
-    # list is included in this body, and no front-matter page is used as art.
-    return title, [heading(title, level=1), *[paragraph(book.correct(squash(chunk)))
-                   for chunk in re.split(r"\n\s*\n", preface) if squash(chunk)]]
+    # Product identity remains document metadata, as on the template route.
+    # The body opens with the source IMPORTANT label and separated paragraphs.
+    return title, preface_flow(preface, book.correct)
 
 
 def _owns(region, page, bbox, section):
@@ -93,6 +107,8 @@ def _table_events(book, starts):
 
 def _structured_region(book, section, number, bbox):
     y = bbox[1]
+    if section == "safety" and getattr(book, "source_kind", None) == "frozen-pdf-json":
+        return True
     if section in {"lcd_display", "app_setup", "warranty", "specifications"}:
         return True
     if section == "troubleshooting":
@@ -193,7 +209,7 @@ def ordered_pages(book) -> tuple[str, tuple[SourcePage, ...]]:
         if notice is not None:
             body.append(notice)
         elif not consumed:
-            body.extend(prose(book.correct(squash(block["text"]))))
+            body.extend(_body_prose(book.correct(squash(block["text"])), section, book.language))
     if headings_seen != set(_SECTIONS):
         raise ValueError("incomplete PDF chapter heading coverage")
     pages.append(_page(book, starts[chapter][2], body))
