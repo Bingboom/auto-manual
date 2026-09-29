@@ -145,6 +145,7 @@ code-as-doc/reviews/jbp3600a-overview-lcd-20260916.md
 code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md
 code-as-doc/reviews/jbp3600a_eu_en_web_production_readiness_2026-09.md
 code-as-doc/reviews/je1000f_eu_lcd_status_2026-09.md
+code-as-doc/reviews/je1000f_eu_overview_headings_2026-09.md
 code-as-doc/reviews/je1000f_jp_native_overflow_2026-09.md
 code-as-doc/reviews/je1000f_nine_language_web_intake_2026-09.md
 code-as-doc/reviews/je1000f_us_fcc_overview_lcd_pr5_plan_2026-07-26.md
