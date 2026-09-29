@@ -11,7 +11,8 @@ from __future__ import annotations
 from pathlib import Path
 import re
 
-from tools.frozen_ai_flow import heading, paragraph, prose, root, squash
+from tools.frozen_ai_flow import heading, prose, root, squash
+from tools.frozen_pdf_frontmatter import preface_flow, template_heading_levels
 from tools.frozen_ai_table_components import (
     specification_flow, symbol_pictogram_flow, troubleshooting_flow,
 )
@@ -39,20 +40,17 @@ def _page(book, identity, nodes):
         page_id=identity, source_ref=f"{book.language}/{identity}",
         source_path=str(path), language=book.language,
         source_sha256=book.source["source_sha256"],
-        blocks=tuple(("flow", root(item)) for item in nodes),
+        blocks=tuple(("flow", root(template_heading_levels(item))) for item in nodes),
     )
 
 
 def _introduction(book):
     preface = book.front_back["locales"][book.language]["preface"]["text"]
-    preface = re.sub(r"^(?:UA|PT|NL|PL)\s*\n", "", preface)
-    preface = re.sub(r"\nВАЖЛИВО\s*$", "", preface)
     product = book.source["tables"]["specifications"]["groups"]["general"][0]["value"]
     title = f"{product} — {book.locale['label']}"
-    # Contents belongs to site navigation. No printed TOC or synthetic link
-    # list is included in this body, and no front-matter page is used as art.
-    return title, [heading(title, level=1), *[paragraph(book.correct(squash(chunk)))
-                   for chunk in re.split(r"\n\s*\n", preface) if squash(chunk)]]
+    # Product identity remains document metadata, as on the template route.
+    # The body opens with the source IMPORTANT label and separated paragraphs.
+    return title, preface_flow(preface, book.correct)
 
 
 def _owns(region, page, bbox, section):
@@ -93,6 +91,8 @@ def _table_events(book, starts):
 
 def _structured_region(book, section, number, bbox):
     y = bbox[1]
+    if section == "safety" and getattr(book, "source_kind", None) == "frozen-pdf-json":
+        return True
     if section in {"lcd_display", "app_setup", "warranty", "specifications"}:
         return True
     if section == "troubleshooting":
