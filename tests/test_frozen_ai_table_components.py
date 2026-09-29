@@ -10,6 +10,7 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.component_specs.registry import load_component_registry, registry_sha256
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.frozen_ai_table_components import (
     lcd_mode_flow,
@@ -26,6 +27,7 @@ from tools.manual_ir import (
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.hashing import value_sha256
 from tools.web_document_ir import render_document_fragments
+from tools.web_manual_table_components import render_manual_table_component
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -37,6 +39,21 @@ def _read(name):
 
 
 class FrozenAITableComponentTests(unittest.TestCase):
+    def test_troubleshooting_numbered_steps_break_without_splitting_decimals(self):
+        for value, breaks in (
+            ("1. Wait for AC. 2. Keep 0.66 ft (20 cm). 3. Restart <unit> & check.", 2),
+            ("1. Check 60 V. 2. Unplug. 3. Wait. 4. Disconnect. 5. Restart.", 4),
+            ("Keep 0.66 ft (20 cm).", 0),
+            ("1. Nonsequential reference. 3. Ordinary continuation.", 0),
+        ):
+            with self.subTest(value=value):
+                nodes = troubleshooting_flow({"rows": [{"code": "F6", "action": value}]},
+                                             headings=("Code", "Action"), source_ref="test", language="pl")
+                spec = ComponentSpec.from_dict(nodes[0]["component_spec"])
+                soup = BeautifulSoup(render_manual_table_component(spec), "html.parser")
+                self.assertEqual(breaks, len(soup.select("br")))
+                self.assertIn(value, soup.get_text(" ", strip=True))
+
     def _nodes(self, language):
         symbols = _read("symbols")["locales"][language]
         operation = _read("operation_tables")["locales"][language]["lcd_mode"]

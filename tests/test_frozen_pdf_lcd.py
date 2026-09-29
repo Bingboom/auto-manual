@@ -23,12 +23,51 @@ def _assets():
     return {key: {"asset_ref": f"assets/{key}.png"} for key in LCD_ICON_ASSET_KEYS}
 
 
-def _flow(record=None, assets=None):
+def _flow(record=None, assets=None, language="uk"):
     return lcd_icon_flow(record or _record(), assets=assets or _assets(),
-                         accessibility_label="Native LCD", language="uk", source_ref="uk/lcd#icons")
+                         accessibility_label="Native LCD", language=language, source_ref="native/lcd#icons")
 
 
 class FrozenPdfLcdTests(unittest.TestCase):
+    def test_status_lines_are_bold_in_each_native_locale_and_preserve_copy(self):
+        labels = {"pl": ("Wł.", "Miga", "Wył."), "uk": ("Увімкнення", "Блимає", "Вимкнення"),
+                  "pt": ("Ligado", "Pisca", "Desligado"), "nl": ("Aan", "Knipperend", "Uit")}
+        for language, words in labels.items():
+            with self.subTest(language=language):
+                record = _record()
+                value = " ".join(f"{word}: Wi-Fi <5% & Bluetooth." for word in words)
+                record["rows"][0]["meaning"] = value
+                spec = ComponentSpec.from_dict(_flow(record, language=language)[0]["component_spec"])
+                cell = BeautifulSoup(render_manual_table_component(spec), "html.parser").select_one(
+                    ".hb-lcd-icon-table tbody tr").find_all("td")[3]
+                self.assertEqual([word + ":" for word in words], [b.text for b in cell.select("strong")])
+                self.assertEqual(2, len(cell.select("br")))
+                self.assertEqual(value, " ".join(cell.get_text(" ").split()))
+                self.assertEqual(value, record["rows"][0]["meaning"])
+
+    def test_intro_notes_and_print_wraps_keep_semantic_structure(self):
+        record = _record()
+        value = ("AC/DC: Wł.: Tryb działa przy 230 V & 50 Hz. Wył.: Tryb wyłączony. "
+                 "Tę funkcję można włączyć w aplikacji. Ustawienie jest zapamiętywane.")
+        record["rows"][0]["meaning"] = value
+        spec = ComponentSpec.from_dict(_flow(record, language="pl")[0]["component_spec"])
+        cell = BeautifulSoup(render_manual_table_component(spec), "html.parser").select_one(
+            ".hb-lcd-icon-table tbody tr").find_all("td")[3]
+        self.assertEqual(4, len(cell.select("br")))
+        self.assertEqual(["Wł.:", "Wył.:"], [b.text for b in cell.select("strong")])
+        self.assertEqual(value, " ".join(cell.get_text(" ").split()))
+
+    def test_status_punctuation_is_preserved_and_substrings_are_not_labels(self):
+        record = _record()
+        value = "Aan\u202f: <ready>. Uit： & idle. Vooraan: ordinary prose."
+        record["rows"][0]["meaning"] = value
+        spec = ComponentSpec.from_dict(_flow(record, language="nl")[0]["component_spec"])
+        cell = BeautifulSoup(render_manual_table_component(spec), "html.parser").select_one(
+            ".hb-lcd-icon-table tbody tr").find_all("td")[3]
+        self.assertEqual(["Aan\u202f:", "Uit："], [b.text for b in cell.select("strong")])
+        self.assertEqual(1, len(cell.select("br")))
+        self.assertEqual(" ".join(value.split()), " ".join(cell.get_text(" ").split()))
+
     def test_shared_component_renders_four_columns_without_rewriting_copy(self):
         record = _record()
         original = deepcopy(record)

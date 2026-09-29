@@ -1913,3 +1913,5 @@ RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生�
 [目录构建校验](../code-as-doc/dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
 
 四语原生网页的标题、前言分段、安全警告框与质保卡片沿用英文版公共组件。LCD 显示序号、图标、名称和说明四列；App 截图下保留 2.1–2.5 编号。标注线密集的产品前/右视图使用对应语言成品图，正文和表格仍可选择、搜索。
+
+Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
