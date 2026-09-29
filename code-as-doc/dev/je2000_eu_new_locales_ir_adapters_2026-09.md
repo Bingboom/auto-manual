@@ -63,6 +63,13 @@ The App label record accepts the existing three-control sequence or E's
 four-control sequence, with positions derived from source bboxes and the
 bound control-art crop.
 
+Operation label anchors must be derived from each model/language's bound
+art crop. The existing `base-art-live-copy` presentation separates the art
+canvas from supporting paragraphs, so paragraph height cannot shift labels
+relative to leader lines. Preserve complete circles, leaders and prerequisite
+pills in the crop; titles stay outside artwork. Reusing another target's
+percentage rectangles is not a substitute for checking native coordinates.
+
 `pending_source_review` in the frozen IR metadata marks a review candidate,
 including E's visibly marked preview preface. The Web release-evidence seal
 reads the built IR sidecar and rejects any nonempty pending list or explicit

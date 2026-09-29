@@ -131,7 +131,7 @@
       "status": "quarantine"
     },
     "operation.main-power": {
-      "path": "artwork/pt/operation-main-power.png",
+      "path": "artwork/pt/operation-main-power-geometry-v2.png",
       "sha256": "dcca0a9897595b019e29a4799ea453af44c7c419fa424a3910a244b7d68fa1de",
       "content_mode": "fixed-product-markings",
       "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
@@ -183,20 +183,33 @@
           "images": "preserve",
           "graphics": "remove_if_touched",
           "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            340.5,
+            180,
+            341,
+            181
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
         }
-      ]
+      ],
+      "extraction_recipe": "extraction_recipes/je2000e_eu_pt_operation_geometry_v2.json"
     },
     "operation.ac-output": {
-      "path": "artwork/pt/operation-ac-output.png",
-      "sha256": "abe04f7b830e871e7e5b99662ca001a94e5e49679bf550f18e6e84d31da2342e",
+      "path": "artwork/pt/operation-ac-output-geometry-v2.png",
+      "sha256": "68d53403f232c5e0b9d41dce15ba440238241a6522ea2baadbb03abfa07620ec",
       "content_mode": "fixed-product-markings",
       "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
       "source_page": 128,
       "clip_points": [
-        28,
-        281,
-        341,
-        495
+        27,
+        274,
+        342,
+        497
       ],
       "transform": "redact_text_preserve_graphics",
       "status": "quarantine",
@@ -204,10 +217,10 @@
         {
           "op": "crop",
           "bbox_pt": [
-            28,
-            281,
-            341,
-            495
+            27,
+            274,
+            342,
+            497
           ]
         },
         {
@@ -215,20 +228,33 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            50,
+            315,
+            51,
+            316
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
         }
-      ]
+      ],
+      "extraction_recipe": "extraction_recipes/je2000e_eu_pt_operation_geometry_v2.json"
     },
     "operation.dc-usb-output": {
-      "path": "artwork/pt/operation-dc-usb-output.png",
-      "sha256": "297101f06409904a64bd2d2b6118c4b0d67fdb0f46bd919fd2bd40616e5b34aa",
+      "path": "artwork/pt/operation-dc-usb-output-geometry-v2.png",
+      "sha256": "597a1844d5fdebaa7098a5ab92d3431f78a034435cc7441b51a4e44631bea252",
       "content_mode": "fixed-product-markings",
       "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
       "source_page": 129,
       "clip_points": [
         28,
-        48,
-        341,
-        273
+        46,
+        343,
+        275
       ],
       "transform": "redact_text_preserve_graphics",
       "status": "quarantine",
@@ -237,9 +263,9 @@
           "op": "crop",
           "bbox_pt": [
             28,
-            48,
-            341,
-            273
+            46,
+            343,
+            275
           ]
         },
         {
@@ -248,11 +274,12 @@
           "graphics": "preserve",
           "fill": null
         }
-      ]
+      ],
+      "extraction_recipe": "extraction_recipes/je2000e_eu_pt_operation_geometry_v2.json"
     },
     "operation.energy-saving": {
-      "path": "artwork/pt/operation-energy-saving.png",
-      "sha256": "da87998c3c92fa517878f21f9812b717731ff62771b9cf684a0a8f7eb267fd4f",
+      "path": "artwork/pt/operation-energy-saving-geometry-v2.png",
+      "sha256": "02ed1281d5a46120bd06a2bc529d0174cd8808a13e3dd9d9644e0145c6485769",
       "content_mode": "fixed-product-markings",
       "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
       "source_page": 130,
@@ -260,25 +287,61 @@
         44,
         122,
         328,
-        203
+        207
       ],
       "transform": "redact_text_preserve_graphics",
-      "status": "quarantine"
+      "status": "quarantine",
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            44,
+            122,
+            328,
+            207
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000e_eu_pt_operation_geometry_v2.json"
     },
     "operation.led-light": {
-      "path": "artwork/pt/operation-led-light.png",
-      "sha256": "3c2df830b1bd473eaf58f2262d4f888780c95dc37c4791f80de01094eca40c5f",
+      "path": "artwork/pt/operation-led-light-geometry-v2.png",
+      "sha256": "6f30193776171f7253ca99be6e83f06c1d6926636bfdc443c9ca635152beb5dd",
       "content_mode": "fixed-product-markings",
       "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
       "source_page": 130,
       "clip_points": [
         40,
         398,
-        252,
+        210,
         484
       ],
       "transform": "redact_text_preserve_graphics",
-      "status": "quarantine"
+      "status": "quarantine",
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            398,
+            210,
+            484
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000e_eu_pt_operation_geometry_v2.json"
     },
     "app.download": {
       "path": "artwork/pt/app-download.png",
@@ -1076,16 +1139,29 @@
             "on",
             "off"
           ],
-          "steps_rect": [
-            73.5,
-            8,
-            26,
-            43
-          ],
           "capture_prerequisite": false,
-          "capture_following_lines": 3,
+          "capture_following_lines": 4,
           "web_replace_key": "operation.main-power",
-          "composite_locales": []
+          "composite_locales": [],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "dcca0a9897595b019e29a4799ea453af44c7c419fa424a3910a244b7d68fa1de",
+            "step_anchors": [
+              [
+                72.9384,
+                11.4151
+              ],
+              [
+                72.9384,
+                32.0167
+              ]
+            ],
+            "step_width": 26.5616,
+            "duration_anchor": [
+              78.9584,
+              48.7617
+            ]
+          }
         },
         {
           "id": "ac-output",
@@ -1095,22 +1171,33 @@
             "on",
             "off"
           ],
-          "steps_rect": [
-            80,
-            29,
-            19.5,
-            32
-          ],
-          "prerequisite_rect": [
-            1.5,
-            1.5,
-            45.0,
-            8.5
-          ],
           "capture_prerequisite": true,
           "web_replace_key": "operation.ac-output",
           "composite_locales": [],
-          "capture_following_lines": 1
+          "capture_following_lines": 1,
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "68d53403f232c5e0b9d41dce15ba440238241a6522ea2baadbb03abfa07620ec",
+            "step_anchors": [
+              [
+                80.0675,
+                36.08
+              ],
+              [
+                80.0675,
+                47.7459
+              ]
+            ],
+            "step_width": 19.4325,
+            "prerequisite_rect": [
+              4.133,
+              4.2052,
+              38.8933,
+              6.1404
+            ],
+            "prerequisite_max_width": 42.8933,
+            "prerequisite_fill": "#ebebec"
+          }
         },
         {
           "id": "dc-usb-output",
@@ -1120,21 +1207,32 @@
             "on",
             "off"
           ],
-          "steps_rect": [
-            83,
-            11,
-            16.5,
-            30
-          ],
-          "prerequisite_rect": [
-            1.5,
-            1.5,
-            46.0,
-            8.5
-          ],
           "capture_prerequisite": true,
           "web_replace_key": "operation.dc-usb-output",
-          "composite_locales": []
+          "composite_locales": [],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "597a1844d5fdebaa7098a5ab92d3431f78a034435cc7441b51a4e44631bea252",
+            "step_anchors": [
+              [
+                81.9171,
+                18.5985
+              ],
+              [
+                81.9171,
+                29.7631
+              ]
+            ],
+            "step_width": 17.5829,
+            "prerequisite_rect": [
+              3.7856,
+              5.288,
+              41.7622,
+              5.9795
+            ],
+            "prerequisite_max_width": 45.7622,
+            "prerequisite_fill": "#ebebec"
+          }
         },
         {
           "id": "energy-saving",
@@ -1143,15 +1241,14 @@
           "step_ids": [
             "toggle"
           ],
-          "steps_rect": [
-            55.0,
-            75.0,
-            40.0,
-            18.0
-          ],
           "capture_prerequisite": false,
           "web_replace_key": "operation.energy-saving",
-          "composite_locales": []
+          "composite_locales": [],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "02ed1281d5a46120bd06a2bc529d0174cd8808a13e3dd9d9644e0145c6485769",
+            "footer_x": 59.8592
+          }
         },
         {
           "id": "led-light",
@@ -1164,7 +1261,17 @@
           ],
           "capture_prerequisite": true,
           "web_replace_key": "operation.led-light",
-          "composite_locales": []
+          "composite_locales": [],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "6f30193776171f7253ca99be6e83f06c1d6926636bfdc443c9ca635152beb5dd",
+            "art_width": 56.5,
+            "step_markers": [
+              "bulb-lit",
+              "sos",
+              "bulb-off"
+            ]
+          }
         }
       ]
     },

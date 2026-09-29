@@ -93,9 +93,42 @@ pending markers; they do not imply PR merge or RTD publication authorization.
 The updated six-book native builds, strict Sphinx builds and cold replays
 passed. The F source-local Web review records the three corrected nameplates,
 four Dutch AC labels, one heading per Overview view and the repaired Dutch
-DC symbol. The operator-installed Segoe UI Symbol U+23D3 glyph replaces only
+DC symbol. The operator-installed Segoe UI Symbol U+2393 glyph replaces only
 the missing character, retaining native geometry and source-frame evidence.
 All six frontmatter legal subjects are `Jackery`; E Dutch App markup and
 review-preface banners are absent. The revised suite passed 4,840 tests
 (22 skipped), with Ruff, maintainability, document gates and the isolated US
 baseline build green. No RTD publication or merge is claimed.
+
+## Operation-panel geometry follow-up
+
+The first Web preview reused operation rectangles from a different crop. Its
+ordinary stage also included supporting paragraphs, so percentage positioning
+shifted when those paragraphs wrapped. The follow-up selects the existing
+`base-art-live-copy` component for the five operation panels in each new
+locale. Per-model original artwork supplies each bracket, circle, prerequisite
+pill and clock; crop-specific anchors are bound to the actual artwork SHA.
+F's DC/USB circle and energy-saving product top are restored from the original
+PDF paths. E retains its own product, AC1/AC2 and expansion hardware.
+
+Main-power source ownership now includes the original frame's 12-hour note,
+which previously appeared as a separate paragraph outside the card. Four
+native blocks preserve the standby heading, body, App note and 12-hour note;
+the shared base-art main-power style bolds the heading. E Dutch LED's first
+instruction now includes the native third line, `te schakelen.`, by extending
+only that field's extraction rectangle. No translated copy is invented.
+
+This follow-up changes target recipes/assets and one scoped CSS rule, with
+no new Python renderer, public interface or dependency. The earlier full
+4,840-test result covers the unchanged Python implementation; the existing
+12 base-art component tests pass for the selected presentation mode. Fresh
+six-book build, cold-replay and browser receipts are recorded separately from
+PR merge and RTD publication.
+
+The final follow-up passed six strict Sphinx/native builds and six PDF-free
+byte-identical cold replays. Browser checks at 859px and 390px verified all
+30 operation figures with no panel overflow or broken operation art. Each
+main-power card owns exactly four support blocks, a bold first line and one
+12-hour note. Desktop screenshots confirmed native leader alignment; the
+Dutch mobile preview confirmed steps stack below the art. The six previews
+share a stable local entry; these checks do not claim RTD publication.

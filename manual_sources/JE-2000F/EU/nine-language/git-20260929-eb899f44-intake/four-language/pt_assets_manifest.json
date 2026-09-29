@@ -64,8 +64,8 @@
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
     },
     "operation.main-power": {
-      "path": "artwork/pt/operation-main-power.png",
-      "sha256": "5094d1bd55fe496e11cbb8db267aeae9d9add186794119dea8bf84c359de9d79",
+      "path": "artwork/pt/operation-main-power-geometry-v2.png",
+      "sha256": "8003f5bf02faec702f34d4827fe88710624f893ef3c5ef4d10511101b96c36b2",
       "content_mode": "fixed-product-markings",
       "locale": "pt",
       "target": {
@@ -77,7 +77,7 @@
         35,
         75,
         345,
-        193
+        164
       ],
       "transforms": [
         {
@@ -86,7 +86,7 @@
             35,
             75,
             345,
-            193
+            164
           ]
         },
         {
@@ -118,37 +118,17 @@
           "images": "preserve",
           "graphics": "remove_if_touched",
           "fill": null
-        },
-        {
-          "op": "redact_text_region",
-          "bbox_pt": [
-            269,
-            131,
-            271,
-            133
-          ],
-          "images": "preserve",
-          "graphics": "remove_if_touched",
-          "fill": null
-        },
-        {
-          "op": "redact_text_region",
-          "bbox_pt": [
-            251,
-            90,
-            253,
-            91
-          ],
-          "images": "preserve",
-          "graphics": "remove_if_touched",
-          "fill": null
         }
       ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_native.json"
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "supersedes": {
+        "path": "artwork/pt/operation-main-power.png",
+        "sha256": "5094d1bd55fe496e11cbb8db267aeae9d9add186794119dea8bf84c359de9d79"
+      }
     },
     "operation.ac-output": {
-      "path": "artwork/pt/operation-ac-output.png",
-      "sha256": "762c1c0b23f7625d63932dacff95ea41dc35ac2e620425199aa7b86e5c614a60",
+      "path": "artwork/pt/operation-ac-output-geometry-v2.png",
+      "sha256": "785adfbd8fc4b999f7a7f5e8155a115540b4446b0bee0992c6a5d094a9d244f5",
       "content_mode": "fixed-product-markings",
       "locale": "pt",
       "target": {
@@ -157,8 +137,8 @@
       },
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "clip_points": [
-        35,
-        287,
+        33,
+        264,
         337,
         475
       ],
@@ -166,8 +146,8 @@
         {
           "op": "crop",
           "bbox_pt": [
-            35,
-            287,
+            33,
+            264,
             337,
             475
           ]
@@ -179,11 +159,15 @@
           "fill": null
         }
       ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_native.json"
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "supersedes": {
+        "path": "artwork/pt/operation-ac-output.png",
+        "sha256": "762c1c0b23f7625d63932dacff95ea41dc35ac2e620425199aa7b86e5c614a60"
+      }
     },
     "operation.dc-usb-output": {
-      "path": "artwork/pt/operation-dc-usb-output.png",
-      "sha256": "5d07f1e2a0cb858049eef22cfa75bf524832dba39241c586e9b8dfa7be2848a5",
+      "path": "artwork/pt/operation-dc-usb-output-geometry-v2.png",
+      "sha256": "404088c6a9d1482f684671a4ce4057820fb01ef3b8ee73a142d13027e1fb2eac",
       "content_mode": "fixed-product-markings",
       "locale": "pt",
       "target": {
@@ -192,19 +176,19 @@
       },
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "clip_points": [
-        35,
-        63,
+        33,
+        48,
         337,
-        211
+        209
       ],
       "transforms": [
         {
           "op": "crop",
           "bbox_pt": [
-            35,
-            63,
+            33,
+            48,
             337,
-            211
+            209
           ]
         },
         {
@@ -214,11 +198,15 @@
           "fill": null
         }
       ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_native.json"
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "supersedes": {
+        "path": "artwork/pt/operation-dc-usb-output.png",
+        "sha256": "5d07f1e2a0cb858049eef22cfa75bf524832dba39241c586e9b8dfa7be2848a5"
+      }
     },
     "operation.energy-saving": {
-      "path": "artwork/pt/operation-energy-saving.png",
-      "sha256": "730b035b87108145794f6764ddde2d28ac706c874d67e924661467f1ade30539",
+      "path": "artwork/pt/operation-energy-saving-geometry-v2.png",
+      "sha256": "cda223b100cfed6a652cb68ba15cb7f23be3a52eb22b301951c2e5d2ab10132e",
       "content_mode": "fixed-product-markings",
       "locale": "pt",
       "target": {
@@ -228,18 +216,18 @@
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "clip_points": [
         35,
-        380,
+        373,
         337,
-        475
+        455
       ],
       "transforms": [
         {
           "op": "crop",
           "bbox_pt": [
             35,
-            380,
+            373,
             337,
-            475
+            455
           ]
         },
         {
@@ -247,13 +235,29 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            225.6,
+            446,
+            226.5,
+            447
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
         }
       ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_native.json"
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "supersedes": {
+        "path": "artwork/pt/operation-energy-saving.png",
+        "sha256": "730b035b87108145794f6764ddde2d28ac706c874d67e924661467f1ade30539"
+      }
     },
     "operation.led-light": {
-      "path": "artwork/pt/operation-led-light.png",
-      "sha256": "899a3f46b2159944d3dfc0f0c983141fe1a0e9bcc857a47028c1e78bc544e828",
+      "path": "artwork/pt/operation-led-light-geometry-v2.png",
+      "sha256": "a416242e7231c56704dfe0cf68b16e9d882ed9736fc7936a731136d40ec06f4f",
       "content_mode": "fixed-product-markings",
       "locale": "pt",
       "target": {
@@ -264,8 +268,8 @@
       "clip_points": [
         35,
         397,
-        337,
-        492
+        220,
+        489
       ],
       "transforms": [
         {
@@ -273,8 +277,8 @@
           "bbox_pt": [
             35,
             397,
-            337,
-            492
+            220,
+            489
           ]
         },
         {
@@ -282,9 +286,25 @@
           "images": "preserve",
           "graphics": "preserve",
           "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            220,
+            410,
+            253,
+            488
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
         }
       ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_native.json"
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "supersedes": {
+        "path": "artwork/pt/operation-led-light.png",
+        "sha256": "899a3f46b2159944d3dfc0f0c983141fe1a0e9bcc857a47028c1e78bc544e828"
+      }
     },
     "app.download": {
       "path": "figures/pt/p131_app_qr_and_badges.png",
@@ -1129,7 +1149,7 @@
             31.0
           ],
           "capture_prerequisite": false,
-          "capture_following_lines": 1,
+          "capture_following_lines": 4,
           "web_replace_key": "operation.main-power",
           "composite_locales": [
             {
@@ -1156,7 +1176,26 @@
             {
               "locale": "it"
             }
-          ]
+          ],
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "8003f5bf02faec702f34d4827fe88710624f893ef3c5ef4d10511101b96c36b2",
+            "step_anchors": [
+              [
+                74.0268,
+                16.1326
+              ],
+              [
+                73.9332,
+                46.1607
+              ]
+            ],
+            "step_width": 24,
+            "duration_anchor": [
+              78.391,
+              64.9371
+            ]
+          }
         },
         {
           "id": "ac-output",
@@ -1206,7 +1245,29 @@
               "locale": "it"
             }
           ],
-          "capture_following_lines": 0
+          "capture_following_lines": 0,
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "785adfbd8fc4b999f7a7f5e8155a115540b4446b0bee0992c6a5d094a9d244f5",
+            "step_anchors": [
+              [
+                82.5859,
+                22.4896
+              ],
+              [
+                82.4905,
+                33.1773
+              ]
+            ],
+            "step_width": 17,
+            "prerequisite_rect": [
+              0.3672,
+              1.1033,
+              43.472,
+              6.4896
+            ],
+            "prerequisite_fill": "#f7f7f8"
+          }
         },
         {
           "id": "dc-usb-output",
@@ -1256,7 +1317,29 @@
               "locale": "it"
             }
           ],
-          "capture_following_lines": 0
+          "capture_following_lines": 0,
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "404088c6a9d1482f684671a4ce4057820fb01ef3b8ee73a142d13027e1fb2eac",
+            "step_anchors": [
+              [
+                85.8645,
+                14.1143
+              ],
+              [
+                85.7766,
+                26.6099
+              ]
+            ],
+            "step_width": 13.7,
+            "prerequisite_rect": [
+              0.821,
+              1.1936,
+              44.0951,
+              8.5043
+            ],
+            "prerequisite_fill": "#e6e7e8"
+          }
         },
         {
           "id": "energy-saving",
@@ -1299,7 +1382,12 @@
               "locale": "it"
             }
           ],
-          "capture_following_lines": 0
+          "capture_following_lines": 0,
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "cda223b100cfed6a652cb68ba15cb7f23be3a52eb22b301951c2e5d2ab10132e",
+            "footer_x": 69.6921
+          }
         },
         {
           "id": "led-light",
@@ -1338,7 +1426,17 @@
               "locale": "it"
             }
           ],
-          "capture_following_lines": 0
+          "capture_following_lines": 0,
+          "presentation_mode": "base-art-live-copy",
+          "base_art_layout": {
+            "art_sha256": "a416242e7231c56704dfe0cf68b16e9d882ed9736fc7936a731136d40ec06f4f",
+            "art_width": 62,
+            "step_markers": [
+              "bulb-lit",
+              "sos",
+              "bulb-off"
+            ]
+          }
         }
       ]
     },

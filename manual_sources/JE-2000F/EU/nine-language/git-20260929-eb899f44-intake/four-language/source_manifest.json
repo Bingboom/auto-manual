@@ -57,7 +57,7 @@
     {
       "path": "approved/glyph-recovery/audit.json",
       "size": 3204,
-      "sha256": "e4f6dd077ddec0e0f2978df29df2f8d89d2e8baa9c2eba7dbb2f7989fe67f253"
+      "sha256": "b83416ed86e045ad81413a701938342dac90b4857b85d89370a099f5800809d3"
     },
     {
       "path": "approved/glyph-recovery/nl-p136-after-12x.png",
@@ -130,6 +130,16 @@
       "sha256": "bbfd27da8457189dc0efc6f6eac5e6e1ac11620ff194ac1f6de95a5bdeaefc00"
     },
     {
+      "path": "artwork/nl/operation-ac-output-geometry-v2.pdf",
+      "size": 78227,
+      "sha256": "886d9d156d6b10fd083cbd6c1aa70a165f8d08d12b00d4df4cd34c4bb5bf88be"
+    },
+    {
+      "path": "artwork/nl/operation-ac-output-geometry-v2.png",
+      "size": 52640,
+      "sha256": "6bafdd3a9f9df66ef56d76191e35b9688e8e97f602a2154f630a6ea946d78d7c"
+    },
+    {
       "path": "artwork/nl/operation-ac-output.pdf",
       "size": 78298,
       "sha256": "dde5de1c23212ac57adbd10132c2414f980240d75319a339f5c12635b929eefb"
@@ -138,6 +148,16 @@
       "path": "artwork/nl/operation-ac-output.png",
       "size": 51537,
       "sha256": "fcf7d885f247b7ad6417a869ba2675133b1d0252028cf0f0df4f375b648ce32e"
+    },
+    {
+      "path": "artwork/nl/operation-dc-usb-output-geometry-v2.pdf",
+      "size": 97787,
+      "sha256": "d165aac87a1eab841fb002b0db2e09673cb5e4e044294482952d82bacb11b309"
+    },
+    {
+      "path": "artwork/nl/operation-dc-usb-output-geometry-v2.png",
+      "size": 57088,
+      "sha256": "4e30a7129daded263cf580d421e8ef41d5e96eab9ce701596b831427cfd0da35"
     },
     {
       "path": "artwork/nl/operation-dc-usb-output.pdf",
@@ -150,6 +170,16 @@
       "sha256": "1d3a942a851a87c7a88c70c8053717bda87bf406cd8420f938de38aa090480ee"
     },
     {
+      "path": "artwork/nl/operation-energy-saving-geometry-v2.pdf",
+      "size": 74698,
+      "sha256": "21b3f53762137bf14697693b1e0b77ac6b68457d4212f1a31bdcea267f049251"
+    },
+    {
+      "path": "artwork/nl/operation-energy-saving-geometry-v2.png",
+      "size": 38452,
+      "sha256": "f92b727d8a70d64e56298af3c1759eac375b0ad66dbe3625bf2ff7dd9029de6b"
+    },
+    {
       "path": "artwork/nl/operation-energy-saving.pdf",
       "size": 74785,
       "sha256": "d4846a1de1f8fe8db9e61e922c84696641fe582e8ad60574efc134ce284d155a"
@@ -160,6 +190,16 @@
       "sha256": "12c0b0c67a19cdd7c36507925047571175a857480b6e599a39401ee403c23832"
     },
     {
+      "path": "artwork/nl/operation-led-light-geometry-v2.pdf",
+      "size": 81769,
+      "sha256": "7415e7abdb84cc00da9bdb71ea061e1de4c0bba2edee8a0ca4e3a8156e5d3f42"
+    },
+    {
+      "path": "artwork/nl/operation-led-light-geometry-v2.png",
+      "size": 34394,
+      "sha256": "b688edc6129a2373143a5790e11bc01c02dc0e78ac521f93645c7421c1817cee"
+    },
+    {
       "path": "artwork/nl/operation-led-light.pdf",
       "size": 82606,
       "sha256": "4bfe691d31696ad5e0fdd84c11d1b57b37009869efc5112fa95d9f4b0e496267"
@@ -168,6 +208,16 @@
       "path": "artwork/nl/operation-led-light.png",
       "size": 42576,
       "sha256": "2028f917750c4bffb30a79ecf7a5acf184748ff270d0389fb015815cceddf436"
+    },
+    {
+      "path": "artwork/nl/operation-main-power-geometry-v2.pdf",
+      "size": 77985,
+      "sha256": "707c9f22f977cb9b5293970dc00bd6f94e22aabc32f209106bf449e1cc9545e8"
+    },
+    {
+      "path": "artwork/nl/operation-main-power-geometry-v2.png",
+      "size": 37616,
+      "sha256": "a210e855db007daebc4e6ee7a1327a7572faf71b58d9c30799aba8827b372ab2"
     },
     {
       "path": "artwork/nl/operation-main-power.pdf",
@@ -260,6 +310,16 @@
       "sha256": "29fd90fdeddb4086abe9d2132e188d46cb56d7760a939c23a1a6454ca03588ad"
     },
     {
+      "path": "artwork/pl/operation-ac-output-geometry-v2.pdf",
+      "size": 78218,
+      "sha256": "ab83ff9c8a9943c659f336bdbb87751b541de1459a234319c7b97e75487bd378"
+    },
+    {
+      "path": "artwork/pl/operation-ac-output-geometry-v2.png",
+      "size": 52927,
+      "sha256": "4cc273350725c8fd8c86a762d9182f6f5b20ccbbc269e74d3c6e7b42e37e9bee"
+    },
+    {
       "path": "artwork/pl/operation-ac-output.pdf",
       "size": 78329,
       "sha256": "06d72d43af412866df9846423806e3bbff2ce6e03670b6b97762e1e21a3482f8"
@@ -268,6 +328,16 @@
       "path": "artwork/pl/operation-ac-output.png",
       "size": 51808,
       "sha256": "142c3ccf43053ca9123106e42dd49db2a81306cca49abec8d98c5db4a972d2e2"
+    },
+    {
+      "path": "artwork/pl/operation-dc-usb-output-geometry-v2.pdf",
+      "size": 98063,
+      "sha256": "617485f9baaa4527af1386e22088da39b45e52765f82ab9c932c254d25ed7d2d"
+    },
+    {
+      "path": "artwork/pl/operation-dc-usb-output-geometry-v2.png",
+      "size": 57013,
+      "sha256": "1011ac47b8742bbf023809b1dc0bc8f91232b9e5d57ad94992f4e579b8070720"
     },
     {
       "path": "artwork/pl/operation-dc-usb-output.pdf",
@@ -280,6 +350,16 @@
       "sha256": "70d111b356ca2b5da89ead10d6f9f78062cd95492b9d764d0248625f6adbdf75"
     },
     {
+      "path": "artwork/pl/operation-energy-saving-geometry-v2.pdf",
+      "size": 75499,
+      "sha256": "cc05ca61cd65d64cb51a634fd0f5fb9c50557140ada8249b78621e994451f49a"
+    },
+    {
+      "path": "artwork/pl/operation-energy-saving-geometry-v2.png",
+      "size": 38434,
+      "sha256": "fcca6ba0f606290c2a361bc33f5bd5c5d84a46606d230494782449792e77901d"
+    },
+    {
       "path": "artwork/pl/operation-energy-saving.pdf",
       "size": 75590,
       "sha256": "7c0e3f64014cac8dc48d38da111b213c998f7176bd5f55987dd1c24bf0081f2f"
@@ -290,6 +370,16 @@
       "sha256": "120525a7c8322fda07274e9858aed09a6d852906fb03824744122035d2146198"
     },
     {
+      "path": "artwork/pl/operation-led-light-geometry-v2.pdf",
+      "size": 82119,
+      "sha256": "038fdf08bfc06ef3ddf98e86d904c48f8bf014208522530ef3634efbc06a19d5"
+    },
+    {
+      "path": "artwork/pl/operation-led-light-geometry-v2.png",
+      "size": 34453,
+      "sha256": "be11625d32dec37ce37a16297c46ee2238ee274e3b9900de962ff9a8fc222b07"
+    },
+    {
       "path": "artwork/pl/operation-led-light.pdf",
       "size": 82869,
       "sha256": "d947bcab5496d93bfb2285984bcd9807daebba0aa1f0f814b6973df28631c506"
@@ -298,6 +388,16 @@
       "path": "artwork/pl/operation-led-light.png",
       "size": 42634,
       "sha256": "c49b62087cd91a6969f74a4c09e2417a0af20a4e2eab7c6b6883381d4e4e8ae4"
+    },
+    {
+      "path": "artwork/pl/operation-main-power-geometry-v2.pdf",
+      "size": 78004,
+      "sha256": "9ef9bc0acbc124e1687be15224d3a1b94f5cd950670cd260d4324fc6b8b7c397"
+    },
+    {
+      "path": "artwork/pl/operation-main-power-geometry-v2.png",
+      "size": 37606,
+      "sha256": "7963f6ec89f5c0c70277ddafc9839c3ae8a6537995ee5b7821b33eacaa8ab421"
     },
     {
       "path": "artwork/pl/operation-main-power.pdf",
@@ -370,6 +470,16 @@
       "sha256": "b04860fab4eb8227d5037f3c025b36e85ada42d2a290096ca897984346a951fe"
     },
     {
+      "path": "artwork/pt/operation-ac-output-geometry-v2.pdf",
+      "size": 78270,
+      "sha256": "385b8fcd854bab5a49bf382c1c98455d6af97430883324a154d13f70a24dc9a3"
+    },
+    {
+      "path": "artwork/pt/operation-ac-output-geometry-v2.png",
+      "size": 52670,
+      "sha256": "785adfbd8fc4b999f7a7f5e8155a115540b4446b0bee0992c6a5d094a9d244f5"
+    },
+    {
       "path": "artwork/pt/operation-ac-output.pdf",
       "size": 78351,
       "sha256": "6873c5c77cdd74ddf3c2f46a0a62a957f9bcd4399d2b47cdc620e8b9b76f92e6"
@@ -378,6 +488,16 @@
       "path": "artwork/pt/operation-ac-output.png",
       "size": 51563,
       "sha256": "762c1c0b23f7625d63932dacff95ea41dc35ac2e620425199aa7b86e5c614a60"
+    },
+    {
+      "path": "artwork/pt/operation-dc-usb-output-geometry-v2.pdf",
+      "size": 97730,
+      "sha256": "15f12e8e47049daa1038807ce97943f584668939db8134cc0d283fa1cc377935"
+    },
+    {
+      "path": "artwork/pt/operation-dc-usb-output-geometry-v2.png",
+      "size": 57005,
+      "sha256": "404088c6a9d1482f684671a4ce4057820fb01ef3b8ee73a142d13027e1fb2eac"
     },
     {
       "path": "artwork/pt/operation-dc-usb-output.pdf",
@@ -390,6 +510,16 @@
       "sha256": "5d07f1e2a0cb858049eef22cfa75bf524832dba39241c586e9b8dfa7be2848a5"
     },
     {
+      "path": "artwork/pt/operation-energy-saving-geometry-v2.pdf",
+      "size": 74999,
+      "sha256": "cf8f35bf9254c44cca5ceabbf6cd45b2a2a1935705af782330350370fb918f8d"
+    },
+    {
+      "path": "artwork/pt/operation-energy-saving-geometry-v2.png",
+      "size": 38467,
+      "sha256": "cda223b100cfed6a652cb68ba15cb7f23be3a52eb22b301951c2e5d2ab10132e"
+    },
+    {
       "path": "artwork/pt/operation-energy-saving.pdf",
       "size": 75049,
       "sha256": "71fdcb2acc5fb1745aa9060fa4159cfb6906a06378468c438842d50ccd526a3e"
@@ -400,6 +530,16 @@
       "sha256": "730b035b87108145794f6764ddde2d28ac706c874d67e924661467f1ade30539"
     },
     {
+      "path": "artwork/pt/operation-led-light-geometry-v2.pdf",
+      "size": 81765,
+      "sha256": "67937ad29546a7a9e57d258e57bab982ec38975e31ceafcbe6fede2c545080b9"
+    },
+    {
+      "path": "artwork/pt/operation-led-light-geometry-v2.png",
+      "size": 34364,
+      "sha256": "a416242e7231c56704dfe0cf68b16e9d882ed9736fc7936a731136d40ec06f4f"
+    },
+    {
       "path": "artwork/pt/operation-led-light.pdf",
       "size": 82547,
       "sha256": "c594b2af41adf8a54cdebafd79e880b4f25db48351fee65d1d84920d3b21b8d2"
@@ -408,6 +548,16 @@
       "path": "artwork/pt/operation-led-light.png",
       "size": 42554,
       "sha256": "899a3f46b2159944d3dfc0f0c983141fe1a0e9bcc857a47028c1e78bc544e828"
+    },
+    {
+      "path": "artwork/pt/operation-main-power-geometry-v2.pdf",
+      "size": 78033,
+      "sha256": "d69ffc4ad214b796287d1ff08ecc94fd6de69f6ccc7561b67bc117886463bbad"
+    },
+    {
+      "path": "artwork/pt/operation-main-power-geometry-v2.png",
+      "size": 37604,
+      "sha256": "8003f5bf02faec702f34d4827fe88710624f893ef3c5ef4d10511101b96c36b2"
     },
     {
       "path": "artwork/pt/operation-main-power.pdf",
@@ -570,6 +720,11 @@
       "sha256": "590f26558781bff30c8bc20563081b7957aa88b4a1b324b2a4d28bed7c8426e0"
     },
     {
+      "path": "extraction_recipes/je2000f_eu_nl_operation_geometry_v2.json",
+      "size": 67619,
+      "sha256": "8a0e7806c13f3c296d0158c61d98d3a3e354ff110d7205528836b9a944703dda"
+    },
+    {
       "path": "extraction_recipes/je2000f_eu_pl_approved_errata.json",
       "size": 2665,
       "sha256": "3d12c711c84c625d814074a782322a7688b1c875cb86d48f9d9a74020b055c30"
@@ -580,6 +735,11 @@
       "sha256": "465304ad1561b8dcbacff1c916059985dd008f59fd559f77220dadb2453de02f"
     },
     {
+      "path": "extraction_recipes/je2000f_eu_pl_operation_geometry_v2.json",
+      "size": 67619,
+      "sha256": "e1f5fe53eddbca1fd3a7a7258463e532e60ae41ae169889674b20d735dc5df08"
+    },
+    {
       "path": "extraction_recipes/je2000f_eu_pt_approved_errata.json",
       "size": 2665,
       "sha256": "7c9d8f81e394a812d5873d45475a365d34c653957d763a70e46f06ac8538e532"
@@ -588,6 +748,11 @@
       "path": "extraction_recipes/je2000f_eu_pt_native.json",
       "size": 74374,
       "sha256": "c4c50ede2bc3666def4eb6b74a4f6fd90dae2f5883def36f5958c373e87df0af"
+    },
+    {
+      "path": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
+      "size": 67619,
+      "sha256": "c8d442b0959f6c8698fd93b43c53c8b23721cebd464e8a7bb916aa4241d07d53"
     },
     {
       "path": "figures/nl/p135_icon_battery_separate_collection.png",
@@ -1921,18 +2086,18 @@
     },
     {
       "path": "nl_assets_manifest.json",
-      "size": 49705,
-      "sha256": "c83bbeb4636c20c0237fa196876664b653adbf1369695914ec8ac72a4230984c"
+      "size": 53003,
+      "sha256": "95c9b671c2ee84198fad20b82e085f54d5e26a0b0111e66078da38d467d5ab25"
     },
     {
       "path": "pl_assets_manifest.json",
-      "size": 49067,
-      "sha256": "8dc144aad90e90c246ae0a0d0333cda47647e9c018f68f95d9d7edd91f6d101e"
+      "size": 52366,
+      "sha256": "476ecd7d050869bcae20b2f7e52be9cc0bd9214f298c6d5633339a0973c7abad"
     },
     {
       "path": "pt_assets_manifest.json",
-      "size": 49065,
-      "sha256": "a4d364163c3ffa69f9bec2a3e03331cb72005d4d5bb028c6c489d071df9477b9"
+      "size": 52364,
+      "sha256": "4139c4ce622dfe2b297856e3d6fd72bf673f9cadd3e68360542c7f23246b86a5"
     },
     {
       "path": "source/app_sections.json",
@@ -1952,7 +2117,7 @@
     {
       "path": "source/glyph_recoveries.json",
       "size": 5036,
-      "sha256": "f689a61802096579217686775194c305aeccc26bd3e646754af04d0dff454ac3"
+      "sha256": "2424483e3b8831504973aa2b62af253598b62f61450bf5848ce1beb3fde39bfb"
     },
     {
       "path": "source/lcd_indicators.json",
@@ -2007,7 +2172,7 @@
     {
       "path": "source/qa/approved_web_review.json",
       "size": 954,
-      "sha256": "7933a12594539e53509695b3ef8967a28f59bd7a8e36f3ebebbf972d79d255c0"
+      "sha256": "41bd6d967390fecef972319ecc2ba7ac1ea013c73d2a771e8688ee19233dac7c"
     },
     {
       "path": "source/qa/build_validation.json",
@@ -2018,6 +2183,11 @@
       "path": "source/qa/native_geometry_coverage.json",
       "size": 1389,
       "sha256": "3f22b0c879f4644da88b9669c0aef8fd563517b795e352db4739f7cbfafac00e"
+    },
+    {
+      "path": "source/qa/operation_geometry_v2.json",
+      "size": 9193,
+      "sha256": "815d32388077e0ade9056772fdb7634848625308affde4745521b8bbbadac5a4"
     },
     {
       "path": "source/qa/troubleshooting_row_coverage.json",
@@ -2041,8 +2211,8 @@
     },
     {
       "path": "source/target_layout.json",
-      "size": 112022,
-      "sha256": "f570c090d1a839da632c2c8714499e2633445d062dd07a5354e4e112a7f3b984"
+      "size": 113303,
+      "sha256": "7aa8101ffeb013969e360bce32bf18ce00e9936c6a430a074e2d7bcd1180e9e7"
     },
     {
       "path": "source/uk_direct_source.json",

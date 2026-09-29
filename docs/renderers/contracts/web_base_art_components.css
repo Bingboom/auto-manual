@@ -70,6 +70,12 @@
   line-height: 1.1;
 }
 
+/* The first standby line is the native lead; later lines are body and note. */
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy > .line:first-child {
+  font-weight: 700;
+}
+
 .hb-base-art-live-copy .hb-operation-prerequisite {
   position: absolute;
   top: var(--hb-y);
