@@ -149,7 +149,8 @@ def _overview(book: Any, assets: Mapping[str, Any]) -> dict:
         rows = [[_cell([paragraph(item["label"]), *[paragraph(v) for v in item["body"]]])]
                 for item in callouts]
         caption_node = node("heading", [text(caption)], level=2)
-        if getattr(book, "overview_finished_panels", {}):
+        panel = getattr(book, "overview_finished_panels", {}).get(view_id, {})
+        if panel.get("captions_embedded") is True:
             caption_node["presentation"] = {"html": {"attributes": {"hidden": "", "style": "display:none"}}}
         carriers.append(node("section", [caption_node, _image(ref, caption), table(rows)]))
     spec = overview_component_spec(

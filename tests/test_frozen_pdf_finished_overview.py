@@ -94,6 +94,20 @@ class FinishedOverviewTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'requires front and right'):
                 bind_finished_overview(book, bad, root/'manifest.json')
 
+    def test_heading_placement_must_be_explicit_and_accepts_native_text(self):
+        with TemporaryDirectory() as td:
+            root = Path(td)
+            book, bindings = self._fixture(root)
+            record = bindings['overview_finished_panels']['pl']['front']
+            for invalid in (None, "false", 0):
+                record['captions_embedded'] = invalid
+                with self.assertRaisesRegex(ValueError, 'declare whether view headings'):
+                    bind_finished_overview(book, bindings, root/'manifest.json')
+            record['captions_embedded'] = False
+            bind_finished_overview(book, bindings, root/'manifest.json')
+            self.assertIs(False, book.overview_finished_panels['front']['captions_embedded'])
+            self.assertIs(True, book.overview_finished_panels['right']['captions_embedded'])
+
     def test_tampered_unselected_locale_is_rejected(self):
         with TemporaryDirectory() as td:
             root = Path(td)
