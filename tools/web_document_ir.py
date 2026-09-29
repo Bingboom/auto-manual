@@ -81,7 +81,7 @@ def _render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str
         if not asset.is_relative_to(root) or not asset.is_file() or file_sha256(asset) != expected:
             raise ValueError(f"document asset missing or changed: {relative}")
     composites = WebCompositeManifest(tuple(
-        WebCompositeEntry.from_payload({**entry, "path": str(root / entry["path"])}, source=root)
+        WebCompositeEntry.from_payload({**entry, "path": (root / entry["path"]).resolve().as_uri()}, source=root)
         for entry in ir.metadata["composites"]
     ), source=root)
     paths = get_paths()

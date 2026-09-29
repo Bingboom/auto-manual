@@ -222,6 +222,7 @@ def app_add_device_component_spec(
     control_art_ref: str,
     source_ref: str,
     language: str,
+    step_captions: Sequence[Mapping[str, Any]] | None = None,
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
@@ -241,13 +242,21 @@ def app_add_device_component_spec(
         raise ComponentSpecError(
             f"{APP_COMPONENT_ID}: add-device requires three unique label roles"
         )
+    slots = [
+        ComponentSlot("accessibility_label", "inline_text", label),
+        ComponentSlot("reference_id", "inline_text", normalized_id),
+        ComponentSlot("labels", "ordered_labels", normalized_labels),
+    ]
+    if step_captions is not None:
+        captions = _normalized_rich_items(
+            step_captions,
+            owner=f"{APP_COMPONENT_ID}.add-device.step-captions",
+            roles=("step-2-1", "step-2-2"),
+        )
+        slots.append(ComponentSlot("step_captions", "ordered_labels", captions))
     return _base(
         variant="add-device",
-        slots=(
-            ComponentSlot("accessibility_label", "inline_text", label),
-            ComponentSlot("reference_id", "inline_text", normalized_id),
-            ComponentSlot("labels", "ordered_labels", normalized_labels),
-        ),
+        slots=tuple(slots),
         assets=(
             ComponentAsset("source_art", refs[0], "exact"),
             ComponentAsset("phone_art", refs[1], "shared"),
@@ -283,6 +292,11 @@ def _validate_variant_shape(spec: ComponentSpec) -> None:
             {"source_art", "phone_art", "control_art"},
         ),
     }[spec.variant]
+    if spec.variant == "add-device" and "step_captions" in slots:
+        expected = (expected[0] | {"step_captions"}, expected[1])
+        captions = spec.slot("step_captions").content
+        if [item.get("role") for item in captions] != ["step-2-1", "step-2-2"]:
+            raise ComponentSpecError("add-device step captions require 2.1 then 2.2")
     if (slots, assets) != expected:
         raise ComponentSpecError(
             f"{APP_COMPONENT_ID}.{spec.variant}: slots/assets do not match the variant"
@@ -305,6 +319,8 @@ def app_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
     else:
         payload["reference_id"] = str(spec.slot("reference_id").content)
         payload["labels"] = deepcopy(spec.slot("labels").content)
+        if "step_captions" in {slot.role for slot in spec.slots}:
+            payload["step_captions"] = deepcopy(spec.slot("step_captions").content)
         payload["source_art"] = spec.assets[0].asset_ref
         payload["phone_art"] = spec.assets[1].asset_ref
         payload["control_art"] = spec.assets[2].asset_ref

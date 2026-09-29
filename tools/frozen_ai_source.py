@@ -9,7 +9,7 @@ import shutil
 from tools.frozen_ai_flow import callout, cell, heading, is_heading, node, paragraph, prose, scroll_table, squash, text
 from tools.frozen_ai_media_components import app_nodes, figure_node
 from tools.frozen_ai_table_components import (
-    lcd_mode_flow, symbol_signal_flow, warranty_flow,
+    auto_resume_flow, lcd_mode_flow, symbol_signal_flow, warranty_flow,
 )
 from tools.manual_ir.hashing import file_sha256
 
@@ -159,9 +159,8 @@ class FrozenBook:
         result = [heading(squash(record["heading"]["text"]))]
         if part == "restore":
             result.append(paragraph(squash(record["intro"]["text"])))
-            for column in record["columns"]:
-                result.extend([heading(squash(column["heading"]["text"]), level=4),
-                               node("list", [node("list_item", [text(squash(v["text"]))]) for v in column["items"]], ordered=False)])
+            result.extend(auto_resume_flow(record, language=self.language,
+                                           source_ref=f"{self.language}/operations/restore"))
         else:
             rows = [[cell(squash(h["text"]), header=True) for h in record["headers"]]]
             for row in record["rows"]:
