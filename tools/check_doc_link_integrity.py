@@ -20,6 +20,11 @@ from pathlib import Path
 from typing import Iterable, Sequence
 from urllib.parse import unquote
 
+try:
+    from tools import check_doc_lifecycle
+except ImportError:  # pragma: no cover - direct `python tools/...` execution
+    import check_doc_lifecycle  # type: ignore[no-redef]
+
 
 DEFAULT_ROOTS = ("code-as-doc", "user-guide")
 
@@ -196,6 +201,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"[doc-links] Checked {len(checked_files)} markdown file(s) "
         f"({skipped_count} archived skipped), {total_links} link(s), 0 broken."
     )
+    if not args.roots:
+        # Same docs gate, second rule: plan/review docs declare a lifecycle Status.
+        return check_doc_lifecycle.check_repository(repo_root).exit_code
     return 0
 
 

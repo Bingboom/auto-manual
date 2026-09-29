@@ -1,6 +1,6 @@
 # Documentation Maintenance Policy
 
-Updated: 2026-03-15
+Updated: 2026-09-28
 
 This file defines how documentation must be maintained together with code and data changes.
 The goal is simple:
@@ -150,6 +150,13 @@ If a workflow changes for reviewers or document editors, update [`user-guide/`](
 Rule 5:
 Do not treat generated runtime output as the authoring source unless the current workflow explicitly says so.
 In the current system, `_review` is the authoring surface after review starts.
+
+Rule 6:
+Every plan, discovery, review, or runbook doc under [`dev/`](dev) or [`reviews/`](reviews) starts with a lifecycle line in its first 15 lines:
+`Status: <proposed | active | done | archived | superseded-by <link>>`, optionally followed by `· Owner: … · Created: YYYY-MM-DD`.
+Update the keyword when the doc's state changes (for example `active` → `done`).
+`python tools/check_doc_link_integrity.py` enforces this for new docs via [`../tools/check_doc_lifecycle.py`](../tools/check_doc_lifecycle.py);
+docs that predate the rule are listed in [`../data/doc_lifecycle_baseline.txt`](../data/doc_lifecycle_baseline.txt) until they are fixed — then remove them with `python tools/check_doc_lifecycle.py update`.
 
 ## 5. Minimal Verification Before Commit
 
