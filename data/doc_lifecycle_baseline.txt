@@ -175,3 +175,5 @@ code-as-doc/reviews/release_layout_signals_discovery_2026-07-31.md
 code-as-doc/reviews/review_branch_propagation_discovery_2026-07-31.md
 code-as-doc/reviews/skeleton_library_post_s6_coverage_2026-08.md
 code-as-doc/reviews/workstream_w_closeout_2026-07-31.md
+code-as-doc/reviews/je1000f_eu_auto_resume_2026-09.md
+code-as-doc/reviews/je1000f_eu_ac_wall_complete_2026-09.md

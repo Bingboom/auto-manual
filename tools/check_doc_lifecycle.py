@@ -8,8 +8,8 @@ first ``HEADER_LINES`` lines, a line such as::
 
     Status: active · Owner: ... · Created: 2026-09-28
 
-whose first word is one of ``STATUS_KEYWORDS`` (``superseded`` may be written
-``superseded-by <link>``).  Leading ``>``, ``**`` and backticks are tolerated.
+whose first word is one of ``STATUS_KEYWORDS``. ``superseded-by`` must name
+a replacement link.  Leading ``>``, ``**`` and backticks are tolerated.
 
 Docs that predate the rule are listed in the reviewed baseline and exempt until
 they are fixed; a fixed or deleted doc shows up as stale and can be dropped::
@@ -31,7 +31,7 @@ DEFAULT_BASELINE = REPO_ROOT / "data" / "doc_lifecycle_baseline.txt"
 DOC_ROOTS = ("code-as-doc/dev", "code-as-doc/reviews")
 NAVIGATION_FILES = {"README.md", "AGENTS.md", "CLAUDE.md"}
 HEADER_LINES = 15
-STATUS_KEYWORDS = ("proposed", "active", "done", "archived", "superseded")
+STATUS_KEYWORDS = ("proposed", "active", "done", "archived", "superseded-by")
 
 _STATUS_RE = re.compile(r"^\s*>?\s*\**Status\**\s*[:：]\s*[*`\s]*([A-Za-z][\w-]*)", re.IGNORECASE)
 
@@ -64,7 +64,16 @@ def is_compliant(text: str) -> bool:
     keyword = status_keyword(text)
     if keyword is None:
         return False
-    return keyword in STATUS_KEYWORDS or keyword.startswith("superseded-")
+    if keyword not in STATUS_KEYWORDS:
+        return False
+    if keyword != "superseded-by":
+        return True
+    for line in text.splitlines()[:HEADER_LINES]:
+        match = _STATUS_RE.match(line)
+        if match:
+            replacement = line[match.end():].strip(" *`")
+            return bool(re.search(r"\[[^\]\n]+\]\([^\s)]+\)|<https?://[^>\s]+>|https?://\S+", replacement))
+    return False
 
 
 def iter_lifecycle_docs(repo_root: Path) -> Iterable[Path]:

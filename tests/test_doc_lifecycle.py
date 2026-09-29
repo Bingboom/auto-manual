@@ -19,6 +19,16 @@ class StatusParsingTest(unittest.TestCase):
             with self.subTest(header=header):
                 self.assertTrue(lifecycle.is_compliant(f"# Title\n\n{header}\n"))
 
+    def test_superseded_requires_exact_keyword_and_replacement_link(self) -> None:
+        for header in (
+            "Status: superseded", "Status: superseded-garbage",
+            "Status: superseded-by", "Status: superseded-by later",
+            "Status: superseded-by [empty]()",
+        ):
+            with self.subTest(header=header):
+                self.assertFalse(lifecycle.is_compliant(header))
+        self.assertTrue(lifecycle.is_compliant("Status: superseded-by [new](new.md)"))
+
     def test_rejects_missing_late_or_free_form_status(self) -> None:
         late = "# Title\n" + "\n" * lifecycle.HEADER_LINES + "Status: active\n"
         for text in ("# Title\n\nNo status here\n", late, "# Title\nStatus: complete\n"):
