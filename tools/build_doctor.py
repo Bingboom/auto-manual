@@ -160,6 +160,23 @@ def resolve_reference_doc_status(
     return finding_cls("ERROR", "word.reference_doc", f"not found: {path}")
 
 
+def _add_environment_findings(
+    findings: list[Any],
+    doctor_add: Callable[[list[Any], str, str, str], None],
+    collector: Callable[[], list[tuple[str, str, str]]] | None,
+) -> None:
+    """Add drift against the pinned runtime and requirements.lock.
+
+    Advisory only (OK/WARN): a local mismatch is named once up front instead
+    of surfacing later as scattered test/build failures.
+    """
+
+    if collector is None:
+        from tools.env_preflight import collect_environment_findings as collector
+    for level, area, message in collector():
+        doctor_add(findings, level, area, message)
+
+
 def collect_doctor_findings(
     args: argparse.Namespace,
     *,
@@ -181,6 +198,7 @@ def collect_doctor_findings(
     which: Callable[[str], str | None] = shutil.which,
     collect_toolchain: Callable[[], dict[str, Any]] | None = None,
     collect_data_plane_findings: Callable[..., list[tuple[str, str, str]]] | None = None,
+    collect_environment_findings: Callable[[], list[tuple[str, str, str]]] | None = None,
 ) -> list[Any]:
     findings: list[Any] = []
     config_path = resolve_path_from_root(args.config)
@@ -232,6 +250,8 @@ def collect_doctor_findings(
             doctor_add(findings, "OK", area, ok_message)
         else:
             doctor_add(findings, "WARN", area, f"missing optional module '{module_name}': {detail}")
+
+    _add_environment_findings(findings, doctor_add, collect_environment_findings)
 
     # Toolchain provenance (Milestone I3): informational, never blocking here —
     # the pdf/word-mode checks below still decide what is an ERROR. This block
