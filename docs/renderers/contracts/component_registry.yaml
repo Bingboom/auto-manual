@@ -234,6 +234,21 @@ components:
       idml: {capability: projection-only, key: idml_reference_figure}
       word: {capability: projection-only, key: word_reference_figure}
 
+  HB-TABLE-AUTO-RESUME:
+    style_id: HB-TABLE-AUTO-RESUME
+    source_kinds: [table_auto_resume]
+    variants: [two-column-middle-span]
+    slots:
+      headers: {required: true, content_kinds: [ordered_headers]}
+      conditions: {required: true, content_kinds: [ordered_columns]}
+    asset_roles: {}
+    token_roles: [component.table.auto-resume]
+    adapters:
+      web: {capability: rendered, key: hb_auto_resume}
+      latex: {capability: projection-only, key: hb_latex_auto_resume}
+      idml: {capability: projection-only, key: idml_auto_resume}
+      word: {capability: projection-only, key: word_auto_resume}
+
   HB-TABLE-LCD-MODE:
     style_id: HB-TABLE-LCD-MODE
     source_kinds: [table_lcd_mode]
