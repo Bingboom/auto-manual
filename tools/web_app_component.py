@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.app_adapters import web_app_projection
 from tools.component_specs.model import ComponentSpec
+from tools.web_reference_components import append_reference_captions
 
 
 def _normalized(value: str) -> str:
@@ -138,7 +139,7 @@ def _render_add_device(spec: ComponentSpec, carrier_html: str) -> str:
         attrs={
             "class": "hb-app-add-device-composition",
             "data-reference-id": payload["reference_id"],
-            "data-step-captions": "embedded",
+            "data-step-captions": "live" if payload.get("step_captions") else "embedded",
             "data-component-id": spec.component_id,
         },
     )
@@ -149,6 +150,13 @@ def _render_add_device(spec: ComponentSpec, carrier_html: str) -> str:
     phone_stage = soup.new_tag("div", attrs={"class": "hb-app-add-device-phone-stage"})
     phone_stage.append(image.extract())
     figure.append(phone_stage)
+    if captions := payload.get("step_captions"):
+        append_reference_captions(
+            soup, figure, labels=[str(item["text"]) for item in captions]
+        )
+        # Match the 44rem screenshot stage instead of the wider reading column.
+        caption = figure.find("figcaption", recursive=False)
+        caption["style"] = str(caption["style"]) + ";width:min(100%,44rem)"
     control_panel = soup.new_tag("div", attrs={"class": "hb-app-add-device-control-panel"})
     control_panel.append(
         soup.new_tag(

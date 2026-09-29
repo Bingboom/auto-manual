@@ -1,0 +1,10 @@
+{
+  "port": 18858,
+  "root": "/tmp/layout-complete/html",
+  "pages": {
+    "uk": "http://127.0.0.1:18858/uk/manual_je1000f_eu_uk.html",
+    "pt": "http://127.0.0.1:18858/pt/manual_je1000f_eu_pt.html",
+    "nl": "http://127.0.0.1:18858/nl/manual_je1000f_eu_nl.html",
+    "pl": "http://127.0.0.1:18858/pl/manual_je1000f_eu_pl.html"
+  }
+}
