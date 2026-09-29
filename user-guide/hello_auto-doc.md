@@ -42,7 +42,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
 已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
 
-JE-1000F/EU 新增四语从提供的可编辑 PDF 重新读取文字，以原 AI 核对缺字，保留已批准勘误。维护时通过[共享 IR 接入工具](../code-as-doc/dev/four_language_shared_ir_alignment.md)生成新候选包，采用英文网页的公共包装清单、总览、操作、App 和表格组件；正文不放印刷目录或表格截图。配图须匹配原稿中的型号、插座和参数，资产清单未解决的项会阻止生成候选；历史 `build_web.py` 和截图保留作追溯证据。该步骤生成本地候选，尚需工程 PR、发布 PR 和 RTD 验收，不会自动发布，也不等于完成飞书语料入库或印刷产线注册。
+JE-1000F/EU 新增四语从提供的可编辑 PDF 重新读取文字，以原 AI 核对缺字，保留已批准勘误。维护时通过[共享 IR 接入工具](../code-as-doc/dev/four_language_shared_ir_alignment.md)生成新候选包，采用英文网页的公共包装清单、总览、操作、App 和表格组件；正文不放印刷目录或表格截图。太阳能接线图中的型号/数量标注和车充图中的车辆标注保持为图框内可选中的文字，不能作为图外正文；桌面按原稿留白定位，窄屏在同一灰色图框内保持可读。配图须匹配原稿中的型号、插座和参数，资产清单未解决的项会阻止生成候选；历史 `build_web.py` 和截图保留作追溯证据。该步骤生成本地候选，尚需工程 PR、发布 PR 和 RTD 验收，不会自动发布，也不等于完成飞书语料入库或印刷产线注册。
 Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
 缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
 旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
@@ -1915,3 +1915,15 @@ OpenClaw 负责入库后的分析；分析结果先供人工审核。未验证�
 RTD 生成整站时会在本轮构建内复用已校验的目录，避免每生成一页都重复扫描
 所有说明书；下次构建仍重新校验，说明书内容与发布检查保持不变。见
 [目录构建校验](../code-as-doc/dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
+
+四语原生网页的标题、前言分段、安全警告框与质保卡片沿用英文版公共组件。LCD 显示序号、图标、名称和说明四列；App 截图下保留 2.1–2.5 编号。标注线密集的产品前/右视图使用对应语言成品图，正文和表格仍可选择、搜索。
+
+Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
+
+产品前／右视图的小标题使用图片外的原生网页文字。四语成品图只保留插图、参数与标注线；冻结绑定 `overview_finished_panels` 的 `captions_embedded: false` 恢复可见标题，旧版 `true` 仍隐藏重复标题。导出时按源 PDF 坐标排除标题，保留来源哈希及已批准勘误，不改写历史冻结版本。
+
+自动恢复条件使用共享 `HB-TABLE-AUTO-RESUME`：两列表头，左侧 3 条、右侧 4 条，中间左格跨两行。四语原生 PDF 录入通过 ComponentSpec 调用既有 Web 表格渲染器；标题和引言在表外，条件为可选文字，不以列表或截图替代。新版本保留全部图片及已审勘误。
+
+交流充电图的源稿裁区必须包含完整外框和左右下圆角。说明文字继续作为网页正文；移除图内重复说明时只剥离文字，不删除背景、产品线条或边框。四语共用图修复须一起重建并核对其余图文不变。
+
+太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
