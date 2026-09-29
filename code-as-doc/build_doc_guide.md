@@ -2304,3 +2304,5 @@ RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生�
 [目录构建校验](dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
 
 四语原生 PDF 导入按模板的 H1/H2 层级投影章节和子标题；前言提示与段落、安全警告框、LCD 四列图标表、质保卡片及 App 步骤编号均通过共享 IR/ComponentSpec 渲染。密集引线的产品前/右视图复用对应语言成品图，同时保留 IR 语义文案、来源和哈希；正文和表格继续使用原生 HTML。
+
+Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Plain source descriptions, governed icons and historical frozen versions remain unchanged.
