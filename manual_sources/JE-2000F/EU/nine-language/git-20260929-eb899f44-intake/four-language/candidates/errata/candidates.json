@@ -1,6 +1,6 @@
 {
   "source": "HTE154-EU-9国语言-0924.ai",
-  "status": "operator review required",
+  "status": "operator-approved; applied assets tracked in approved/errata/approval_audit.json",
   "native_method": "PDF-native character redaction + embedded original font insertion; no generated technical artwork; source AI untouched",
   "evidence": {
     "nameplate": "Same source overview external AC callouts and specifications p129,147,165:220–240V~50Hz10A. Old approved six-language PDF EN p8 has the same wrong100–120V15A miniature label, so cannot substitute it as correct authority.",
@@ -10,7 +10,7 @@
     {
       "locale": "pt",
       "physical_page": 118,
-      "status": "candidate only; not approved or bound to output",
+      "status": "operator-approved; original candidate evidence preserved",
       "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "candidate_pdf": "pt-p118-candidate.pdf",
       "candidate_pdf_sha256": "b9d0df36883ff95594c65d0c21435559c13a605863223498910d4db5720fe46a",
@@ -87,7 +87,7 @@
     {
       "locale": "nl",
       "physical_page": 136,
-      "status": "candidate only; not approved or bound to output",
+      "status": "operator-approved; original candidate evidence preserved",
       "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "candidate_pdf": "nl-p136-candidate.pdf",
       "candidate_pdf_sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9",
@@ -193,7 +193,7 @@
     {
       "locale": "pl",
       "physical_page": 154,
-      "status": "candidate only; not approved or bound to output",
+      "status": "operator-approved; original candidate evidence preserved",
       "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "candidate_pdf": "pl-p154-candidate.pdf",
       "candidate_pdf_sha256": "ead0c993d315aadf90560718dd1d63ebf0b58bae1381fd3a155e5d5e9bfac215",
@@ -270,7 +270,7 @@
     {
       "locale": "nl",
       "physical_page": 142,
-      "status": "candidate only; not approved or bound to output",
+      "status": "operator-approved; original candidate evidence preserved",
       "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "candidate_pdf": "nl-p142-candidate.pdf",
       "candidate_pdf_sha256": "027d7e842c8d5a105cf9cf578220d4a9832ff4ac88f773883116a724ca2ab330",
@@ -340,7 +340,7 @@
     {
       "locale": "nl",
       "physical_page": 149,
-      "status": "candidate only; not approved or bound to output",
+      "status": "operator-approved; original candidate evidence preserved",
       "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
       "candidate_pdf": "nl-p149-candidate.pdf",
       "candidate_pdf_sha256": "48e5114ee80cf4257f2b5f9ece7923a232ebc25cd2fc5d27353a5e2033b1e53d",

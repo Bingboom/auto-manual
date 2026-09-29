@@ -71,6 +71,13 @@ the candidate. Approved source packages with an empty list and existing
 projection releases continue through the same seal. This gate does not
 substitute for source approval, PR review, or browser acceptance.
 
+A reused preface can transition to `operator-approved` only with a dated
+operator instruction on its hash-pinned binding and approval on every
+paragraph. Approved paragraphs retain their original source provenance and
+render without the review banner. Missing approval or unknown status is
+rejected. Corrected finished-figure semantic copy applies the same exact-text
+errata as visible text, so accessibility content does not retain old labels.
+
 ## Implementation and acceptance order
 
 1. Define and validate the target-layout recipe with exact source/target

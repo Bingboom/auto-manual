@@ -3,12 +3,11 @@
   "results": [
     {
       "language": "pl",
-      "iteration": 13,
+      "iteration": 15,
       "chapters": 15,
       "strict_sphinx": "passed",
       "publication_eligible": false,
       "pending_source_review": [
-        "F-RIGHT-NAMEPLATE",
         "visual-parity-review"
       ],
       "car_charging_heading": [
@@ -57,19 +56,16 @@
           "Naciśnij i przytrzymaj oba przyciski przez ponad 3 sekundy."
         ]
       },
-      "candidate_path": "/tmp/je2000f-intake/pl-candidate13",
-      "html_path": "/tmp/je2000f-intake/pl-html13/manual_je2000f_eu_pl.html",
-      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
-      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+      "candidate_path": "/tmp/je2000f-intake/pl-candidate15",
+      "html_path": "/tmp/je2000f-intake/pl-html15/manual_je2000f_eu_pl.html"
     },
     {
       "language": "pt",
-      "iteration": 13,
+      "iteration": 15,
       "chapters": 15,
       "strict_sphinx": "passed",
       "publication_eligible": false,
       "pending_source_review": [
-        "F-RIGHT-NAMEPLATE",
         "visual-parity-review"
       ],
       "car_charging_heading": [
@@ -118,20 +114,16 @@
           "Pressione e segure ambos os botões por mais de 3 segundos."
         ]
       },
-      "candidate_path": "/tmp/je2000f-intake/pt-candidate13",
-      "html_path": "/tmp/je2000f-intake/pt-html13/manual_je2000f_eu_pt.html",
-      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
-      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+      "candidate_path": "/tmp/je2000f-intake/pt-candidate15",
+      "html_path": "/tmp/je2000f-intake/pt-html15/manual_je2000f_eu_pt.html"
     },
     {
       "language": "nl",
-      "iteration": 13,
+      "iteration": 15,
       "chapters": 15,
       "strict_sphinx": "passed",
       "publication_eligible": false,
       "pending_source_review": [
-        "F-NL-AC-LABEL",
-        "F-RIGHT-NAMEPLATE",
         "visual-parity-review"
       ],
       "car_charging_heading": [
@@ -180,10 +172,8 @@
           "Houd beide knoppen langer dan 3 seconden ingedrukt."
         ]
       },
-      "candidate_path": "/tmp/je2000f-intake/nl-candidate13",
-      "html_path": "/tmp/je2000f-intake/nl-html13/manual_je2000f_eu_nl.html",
-      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
-      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+      "candidate_path": "/tmp/je2000f-intake/nl-candidate15",
+      "html_path": "/tmp/je2000f-intake/nl-html15/manual_je2000f_eu_nl.html"
     }
   ]
 }

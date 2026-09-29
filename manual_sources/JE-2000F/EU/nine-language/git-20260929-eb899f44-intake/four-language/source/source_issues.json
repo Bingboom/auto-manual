@@ -1,6 +1,6 @@
 {
   "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
-  "status": "needs_operator_review",
+  "status": "approved corrections applied; remaining review issues retained",
   "issues": [
     {
       "id": "F-RIGHT-NAMEPLATE",
@@ -14,7 +14,9 @@
         136,
         154
       ],
-      "description": "Internal tiny nameplate says 100–120 V /15 A; external EU callout and source specifications say 220–240 V /50 Hz /10 A. Preserve raw source; correction candidate pending."
+      "description": "Internal tiny nameplate says 100–120 V /15 A; external EU callout and source specifications say 220–240 V /50 Hz /10 A. Preserve raw source; correction candidate pending.",
+      "status": "operator-approved-and-applied",
+      "evidence": "../approved/errata/approval_audit.json"
     },
     {
       "id": "F-NL-AC-LABEL",
@@ -24,7 +26,9 @@
         142,
         149
       ],
-      "description": "AC power button source label says DC. Existing JE1000F authorization does not cover this model."
+      "description": "AC power button source label says DC. Existing JE1000F authorization does not cover this model.",
+      "status": "operator-approved-and-applied",
+      "evidence": "../approved/errata/approval_audit.json"
     },
     {
       "id": "F-UK-WARRANTY-OUTLINED",

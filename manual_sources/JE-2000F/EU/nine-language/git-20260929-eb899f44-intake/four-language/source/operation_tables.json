@@ -396,7 +396,8 @@
                   85
                 ],
                 "raw_text": "Główny przycisk zasilania",
-                "text": "Główny przycisk zasilania"
+                "text": "Główny przycisk zasilania",
+                "selection": "lines"
               },
               {
                 "physical_page": 160,
@@ -407,7 +408,8 @@
                   85
                 ],
                 "raw_text": "Przycisk zasilania AC",
-                "text": "Przycisk zasilania AC"
+                "text": "Przycisk zasilania AC",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -448,7 +450,8 @@
                   119
                 ],
                 "raw_text": "Główny przycisk zasilania",
-                "text": "Główny przycisk zasilania"
+                "text": "Główny przycisk zasilania",
+                "selection": "lines"
               },
               {
                 "physical_page": 160,
@@ -459,7 +462,8 @@
                   119
                 ],
                 "raw_text": "Przycisk zasilania DC/USB",
-                "text": "Przycisk zasilania DC/USB"
+                "text": "Przycisk zasilania DC/USB",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -500,7 +504,8 @@
                   154
                 ],
                 "raw_text": "Przycisk zasilania DC/USB",
-                "text": "Przycisk zasilania DC/USB"
+                "text": "Przycisk zasilania DC/USB",
+                "selection": "lines"
               },
               {
                 "physical_page": 160,
@@ -511,7 +516,8 @@
                   154
                 ],
                 "raw_text": "Przycisk zasilania AC",
-                "text": "Przycisk zasilania AC"
+                "text": "Przycisk zasilania AC",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -552,7 +558,8 @@
                   188
                 ],
                 "raw_text": "Główny przycisk zasilania",
-                "text": "Główny przycisk zasilania"
+                "text": "Główny przycisk zasilania",
+                "selection": "lines"
               },
               {
                 "physical_page": 160,
@@ -563,7 +570,8 @@
                   188
                 ],
                 "raw_text": "Przycisk lampy LED",
-                "text": "Przycisk lampy LED"
+                "text": "Przycisk lampy LED",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -990,7 +998,8 @@
                   85
                 ],
                 "raw_text": "Botão Power Principal",
-                "text": "Botão Power Principal"
+                "text": "Botão Power Principal",
+                "selection": "lines"
               },
               {
                 "physical_page": 124,
@@ -1001,7 +1010,8 @@
                   85
                 ],
                 "raw_text": "Botão Power CA",
-                "text": "Botão Power CA"
+                "text": "Botão Power CA",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1042,7 +1052,8 @@
                   119
                 ],
                 "raw_text": "Botão Power Principal",
-                "text": "Botão Power Principal"
+                "text": "Botão Power Principal",
+                "selection": "lines"
               },
               {
                 "physical_page": 124,
@@ -1053,7 +1064,8 @@
                   119
                 ],
                 "raw_text": "Botão de energia CC/USB",
-                "text": "Botão de energia CC/USB"
+                "text": "Botão de energia CC/USB",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1094,7 +1106,8 @@
                   154
                 ],
                 "raw_text": "Botão de energia CC/USB",
-                "text": "Botão de energia CC/USB"
+                "text": "Botão de energia CC/USB",
+                "selection": "lines"
               },
               {
                 "physical_page": 124,
@@ -1105,7 +1118,8 @@
                   154
                 ],
                 "raw_text": "Botão Power CA\nB",
-                "text": "Botão Power CA B"
+                "text": "Botão Power CA B",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1146,7 +1160,8 @@
                   188
                 ],
                 "raw_text": "Botão Power Principal",
-                "text": "Botão Power Principal"
+                "text": "Botão Power Principal",
+                "selection": "lines"
               },
               {
                 "physical_page": 124,
@@ -1157,7 +1172,8 @@
                   188
                 ],
                 "raw_text": "Botão da luz LED",
-                "text": "Botão da luz LED"
+                "text": "Botão da luz LED",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1584,7 +1600,8 @@
                   85
                 ],
                 "raw_text": "Hoofd AAN/UIT-knop",
-                "text": "Hoofd AAN/UIT-knop"
+                "text": "Hoofd AAN/UIT-knop",
+                "selection": "lines"
               },
               {
                 "physical_page": 142,
@@ -1595,7 +1612,8 @@
                   85
                 ],
                 "raw_text": "Aan/uit-knop voor DC",
-                "text": "Aan/uit-knop voor DC"
+                "text": "Aan/uit-knop voor DC",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1636,7 +1654,8 @@
                   119
                 ],
                 "raw_text": "Hoofd AAN/UIT-knop\nAa",
-                "text": "Hoofd AAN/UIT-knop Aa"
+                "text": "Hoofd AAN/UIT-knop Aa",
+                "selection": "lines"
               },
               {
                 "physical_page": 142,
@@ -1647,7 +1666,8 @@
                   119
                 ],
                 "raw_text": "an/uit-knop voor DC/USB",
-                "text": "an/uit-knop voor DC/USB"
+                "text": "an/uit-knop voor DC/USB",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1688,7 +1708,8 @@
                   154
                 ],
                 "raw_text": "Aan/uit-knop voor DC/USB",
-                "text": "Aan/uit-knop voor DC/USB"
+                "text": "Aan/uit-knop voor DC/USB",
+                "selection": "lines"
               },
               {
                 "physical_page": 142,
@@ -1699,7 +1720,8 @@
                   154
                 ],
                 "raw_text": "Aan/uit-knop voor DC\nB",
-                "text": "Aan/uit-knop voor DC B"
+                "text": "Aan/uit-knop voor DC B",
+                "selection": "lines"
               }
             ],
             "operation": {
@@ -1740,7 +1762,8 @@
                   188
                 ],
                 "raw_text": "Hoofd AAN/UIT-knop",
-                "text": "Hoofd AAN/UIT-knop"
+                "text": "Hoofd AAN/UIT-knop",
+                "selection": "lines"
               },
               {
                 "physical_page": 142,
@@ -1751,7 +1774,8 @@
                   188
                 ],
                 "raw_text": "LED-lampknop",
-                "text": "LED-lampknop"
+                "text": "LED-lampknop",
+                "selection": "lines"
               }
             ],
             "operation": {

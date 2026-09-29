@@ -1,6 +1,77 @@
 {
   "schema_version": "source-errata/v1",
-  "status": "candidate-only; no approved corrections",
-  "errata": [],
-  "entries": []
+  "status": "approved-and-applied",
+  "entries": [
+    {
+      "id": "F-NL-AC-LABEL",
+      "locale": "nl",
+      "physical_pages": [
+        136,
+        142,
+        149
+      ],
+      "source_text": "Aan/uit-knop voor DC",
+      "corrected_text": "Aan/uit-knop voor AC",
+      "approval": "explicit user authorization in current chat",
+      "evidence": "approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-RIGHT-NAMEPLATE-PT",
+      "locale": "pt",
+      "physical_pages": [
+        118
+      ],
+      "source_text": "CA 100 V-120 V 15 A máx.",
+      "corrected_text": "CA 220 V-240 V 10 A máx.",
+      "approval": "explicit user authorization in current chat",
+      "evidence": "approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-RIGHT-NAMEPLATE-NL",
+      "locale": "nl",
+      "physical_pages": [
+        136
+      ],
+      "source_text": "AC 100 V-120 V, 15 A max.",
+      "corrected_text": "AC 220 V-240 V, 10 A max.",
+      "approval": "explicit user authorization in current chat",
+      "evidence": "approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-RIGHT-NAMEPLATE-PL",
+      "locale": "pl",
+      "physical_pages": [
+        154
+      ],
+      "source_text": "AC 100 V – 120 V, maks. 15 AWEJŚCIE DC (8020)",
+      "corrected_text": "AC 220 V – 240 V, maks. 10 AWEJŚCIE DC (8020)",
+      "approval": "explicit user authorization in current chat",
+      "evidence": "approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-EU-LEGAL-SUBJECT-pl",
+      "locale": "pl",
+      "source_text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery Inc. nie ponosi odpowiedzialności za ewentualne błędy.",
+      "corrected_text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za ewentualne błędy.",
+      "reason": "Operator specified EU legal subject Jackery on 2026-09-29; preserve original extracted text.",
+      "operator_instruction": "欧规法律主体用 Jackery"
+    },
+    {
+      "id": "F-EU-LEGAL-SUBJECT-pt",
+      "locale": "pt",
+      "source_text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora todos os esforços tenham sido feitos para garantir a precisão deste manual, a Jackery Inc. não assume responsabilidade por quaisquer erros que possam aparecer.",
+      "corrected_text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora todos os esforços tenham sido feitos para garantir a precisão deste manual, a Jackery não assume responsabilidade por quaisquer erros que possam aparecer.",
+      "reason": "Operator specified EU legal subject Jackery on 2026-09-29; preserve original extracted text.",
+      "operator_instruction": "欧规法律主体用 Jackery"
+    },
+    {
+      "id": "F-EU-LEGAL-SUBJECT-nl",
+      "locale": "nl",
+      "source_text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel al het mogelijke is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery Inc. geen verantwoordelijkheid voor eventuele fouten die kunnen optreden.",
+      "corrected_text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel al het mogelijke is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen verantwoordelijkheid voor eventuele fouten die kunnen optreden.",
+      "reason": "Operator specified EU legal subject Jackery on 2026-09-29; preserve original extracted text.",
+      "operator_instruction": "欧规法律主体用 Jackery"
+    }
+  ],
+  "errata": []
 }

@@ -1401,7 +1401,12 @@
       },
       "preface_candidate": {
         "path": "source/preface_candidates.json",
-        "status": "preview-only-pending-review"
+        "status": "operator-approved",
+        "approval": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       "table_headers": {
         "symbols": [
@@ -2959,7 +2964,12 @@
       },
       "preface_candidate": {
         "path": "source/preface_candidates.json",
-        "status": "preview-only-pending-review"
+        "status": "operator-approved",
+        "approval": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       "table_headers": {
         "symbols": [
@@ -4517,7 +4527,12 @@
       },
       "preface_candidate": {
         "path": "source/preface_candidates.json",
-        "status": "preview-only-pending-review"
+        "status": "operator-approved",
+        "approval": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       "table_headers": {
         "symbols": [
@@ -4623,10 +4638,7 @@
         ],
         "expected_precautions": 8
       },
-      "pending_source_review": [
-        "preface",
-        "nl-app-import-markup"
-      ],
+      "pending_source_review": [],
       "reference_consumed_regions": [
         {
           "slug": "ups_connection",

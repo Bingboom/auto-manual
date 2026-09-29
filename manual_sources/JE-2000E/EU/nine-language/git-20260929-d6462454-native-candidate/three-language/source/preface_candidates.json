@@ -6,7 +6,7 @@
         "paragraph": 1,
         "text": "Parabéns pelo seu novo Jackery Explorer 2000 Plus. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.",
         "source_text": "Parabéns pelo seu novo Jackery Explorer 1000. Leia este manual atentamente antes de usar o produto, especialmente as precauções relevantes, para garantir o uso adequado. Mantenha este manual em um local acessível para consulta frequente.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pt.json",
         "source_json_sha256": "abb0a189fbe3056a123dfe88a92558658e7ed518323a3bc124fb056c557ab5a7",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -16,13 +16,18 @@
             "before": "Jackery Explorer 1000",
             "after": "Jackery Explorer 2000 Plus"
           }
-        ]
+        ],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 2,
         "text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
         "source_text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pt.json",
         "source_json_sha256": "abb0a189fbe3056a123dfe88a92558658e7ed518323a3bc124fb056c557ab5a7",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -31,31 +36,40 @@
         "operator_decision": {
           "date": "2026-09-29",
           "instruction": "欧规法律主体用 Jackery",
-          "legal_subject": "Jackery",
-          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
         }
       },
       {
         "paragraph": 3,
         "text": "Observe que não serão enviadas novas notificações em caso de atualização, revisão ou encerramento. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
         "source_text": "Observe que não serão enviadas novas notificações em caso de atualização, revisão ou encerramento. Para obter a versão mais recente dos manuais do produto, visite support.jackery.com.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pt.json",
         "source_json_sha256": "abb0a189fbe3056a123dfe88a92558658e7ed518323a3bc124fb056c557ab5a7",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 4,
         "text": "* As imagens são apenas para referência. Consulte o produto real.",
         "source_text": "* As imagens são apenas para referência. Consulte o produto real.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pt.json",
         "source_json_sha256": "abb0a189fbe3056a123dfe88a92558658e7ed518323a3bc124fb056c557ab5a7",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       }
     ]
   },
@@ -66,7 +80,7 @@
         "paragraph": 1,
         "text": "Gefeliciteerd met uw nieuwe Jackery Explorer 2000 Plus. Lees deze handleiding goed door voordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een correct gebruik te garanderen. Bewaar deze handleiding zodat u hem altijd bij de hand hebt.",
         "source_text": "Gefeliciteerd met uw nieuwe Jackery Explorer 1000. Lees deze handleiding goed door voordat u het product gebruikt. Neem vooral de relevante voorzorgsmaatregelen door om een correct gebruik te garanderen. Bewaar deze handleiding zodat u hem altijd bij de hand hebt.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/nl.json",
         "source_json_sha256": "ad2c3851591cfb429043b3ecdc603e79747aea806fcc47785e9c5f5e67f71d59",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -76,13 +90,18 @@
             "before": "Jackery Explorer 1000",
             "after": "Jackery Explorer 2000 Plus"
           }
-        ]
+        ],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 2,
         "text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
         "source_text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/nl.json",
         "source_json_sha256": "ad2c3851591cfb429043b3ecdc603e79747aea806fcc47785e9c5f5e67f71d59",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -91,31 +110,40 @@
         "operator_decision": {
           "date": "2026-09-29",
           "instruction": "欧规法律主体用 Jackery",
-          "legal_subject": "Jackery",
-          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
         }
       },
       {
         "paragraph": 3,
         "text": "Houd er rekening mee dat er geen verdere meldingen worden gegeven bij updates, revisies of beëindiging. Bezoek support.jackery.com voor de nieuwste versie van de producthandleidingen.",
         "source_text": "Houd er rekening mee dat er geen verdere meldingen worden gegeven bij updates, revisies of beëindiging. Bezoek support.jackery.com voor de nieuwste versie van de producthandleidingen.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/nl.json",
         "source_json_sha256": "ad2c3851591cfb429043b3ecdc603e79747aea806fcc47785e9c5f5e67f71d59",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 4,
         "text": "* De afbeeldingen zijn alleen voor referentiedoeleinden. Raadpleeg het werkelijke product.",
         "source_text": "* De afbeeldingen zijn alleen voor referentiedoeleinden. Raadpleeg het werkelijke product.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/nl.json",
         "source_json_sha256": "ad2c3851591cfb429043b3ecdc603e79747aea806fcc47785e9c5f5e67f71d59",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       }
     ]
   },
@@ -126,7 +154,7 @@
         "paragraph": 1,
         "text": "Gratulujemy zakupu nowego urządzenia Jackery Explorer 2000 Plus. Prosimy o dokładne przeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków ostrożności, aby zapewnić prawidłowe użytkowanie. Niniejszą instrukcję należy przechowywać w dostępnym miejscu, aby móc z niej korzystać w przyszłości.",
         "source_text": "Gratulujemy zakupu nowego urządzenia Jackery Explorer 1000. Prosimy o dokładne przeczytanie niniejszej instrukcji przed użyciem produktu, ze szczególnym uwzględnieniem środków ostrożności, aby zapewnić prawidłowe użytkowanie. Niniejszą instrukcję należy przechowywać w dostępnym miejscu, aby móc z niej korzystać w przyszłości.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pl.json",
         "source_json_sha256": "d29166e3f63879f82baa95d48146225ba282491ba0fe68a4d6df3bc26fc18d1e",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -136,13 +164,18 @@
             "before": "Jackery Explorer 1000",
             "after": "Jackery Explorer 2000 Plus"
           }
-        ]
+        ],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 2,
         "text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za ewentualne błędy.",
         "source_text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za ewentualne błędy.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pl.json",
         "source_json_sha256": "d29166e3f63879f82baa95d48146225ba282491ba0fe68a4d6df3bc26fc18d1e",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
@@ -151,31 +184,40 @@
         "operator_decision": {
           "date": "2026-09-29",
           "instruction": "欧规法律主体用 Jackery",
-          "legal_subject": "Jackery",
-          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
         }
       },
       {
         "paragraph": 3,
         "text": "Należy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie będą wysyłane żadne dodatkowe powiadomienia. Najnowszą wersję instrukcji obsługi produktu można znaleźć na stronie support.jackery.com.",
         "source_text": "Należy pamiętać, że w przypadku jakichkolwiek aktualizacji, zmian lub zakończenia publikacji nie będą wysyłane żadne dodatkowe powiadomienia. Najnowszą wersję instrukcji obsługi produktu można znaleźć na stronie support.jackery.com.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pl.json",
         "source_json_sha256": "d29166e3f63879f82baa95d48146225ba282491ba0fe68a4d6df3bc26fc18d1e",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       },
       {
         "paragraph": 4,
         "text": "* Obrazy służą wyłącznie do celów poglądowych. Należy kierować się rzeczywistym produktem.",
         "source_text": "* Obrazy służą wyłącznie do celów poglądowych. Należy kierować się rzeczywistym produktem.",
-        "status": "shared-copy-candidate",
+        "status": "operator-approved",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pl.json",
         "source_json_sha256": "d29166e3f63879f82baa95d48146225ba282491ba0fe68a4d6df3bc26fc18d1e",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": []
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "scope": "Accept the proposed reused three-language prefaces with legal subject Jackery, in response to review decision 2."
+        }
       }
     ]
   }

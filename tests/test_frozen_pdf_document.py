@@ -6,7 +6,7 @@ import unittest
 
 from tools.frozen_ai_flow import flow_text, paragraph
 from tools.frozen_ai_source import FrozenBook
-from tools.frozen_pdf_document import _SECTIONS, _body_prose, _reference_nodes, ordered_pages
+from tools.frozen_pdf_document import _SECTIONS, _body_prose, _introduction, _reference_nodes, ordered_pages
 from tools.manual_ir.flow import validate_flow_node
 from tools.web_composite_presentation import supports_figure_contract
 
@@ -72,6 +72,19 @@ def _book():
 
 
 class FrozenPDFDocumentTests(unittest.TestCase):
+    def test_approved_preface_omits_review_marker_while_preview_keeps_it(self):
+        book = _book()
+        candidate = {"heading": "IMPORTANT", "paragraphs": [{"text": "Reused legal copy."}]}
+        preface = book.front_back["locales"]["nl"]["preface"]
+        preface.update(status="preview-only-pending-review", candidate=candidate)
+        _, preview = _introduction(book)
+        self.assertIn("REVIEW CANDIDATE", " ".join(flow_text(node) for node in preview))
+        preface["status"] = "operator-approved"
+        preface["approval"] = {"date": "2026-09-29", "instruction": "Use Jackery",
+                               "scope": "JE-2000E EU NL preface"}
+        _, approved = _introduction(book)
+        self.assertEqual("IMPORTANT Reused legal copy.", " ".join(flow_text(node) for node in approved))
+
     def test_explicit_notice_regions_join_split_native_body_blocks(self):
         book = object.__new__(FrozenBook)
         book.language = "pl"

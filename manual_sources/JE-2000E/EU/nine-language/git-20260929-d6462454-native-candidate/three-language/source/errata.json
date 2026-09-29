@@ -24,6 +24,21 @@
         "frame_index": 494,
         "native_text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@jackery.com w celu przedłużenia standardowego okresu gwarancji."
       }
+    },
+    {
+      "id": "nl-app-import-markup",
+      "locale": "nl",
+      "source_text": "• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en lichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op. • Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC1 tegelijkertijd ingedrukt totdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.<g id=\"1\">",
+      "corrected_text": "• Nadat het apparaat is ingeschakeld, worden wiﬁ en Bluetooth automatisch ingeschakeld en lichten de wiﬁ- en Bluetooth-pictogrammen op het scherm op. • Houd de Aan/uit-knop voor DC/USB en de Aan/uit-knop voor AC1 tegelijkertijd ingedrukt totdat de wiﬁ- en Bluetooth-pictogrammen op het scherm oplichten.",
+      "physical_page": 159,
+      "bbox": [
+        25,
+        374,
+        349,
+        424
+      ],
+      "reason": "Remove literal imported formatting marker only; operator explicitly approved 2026-09-29. Original native source text is preserved.",
+      "operator_instruction": "删除 E 荷兰语正文残留的 <g id=\"1\"> 排版标记。"
     }
   ]
 }

@@ -18,7 +18,7 @@
     "physical_page_count": 179
   },
   "validation_boundary": {
-    "status": "candidate only; missing original preface and source errata need review; no publication or existing-six replacement"
+    "status": "Source decisions approved 2026-09-29; publication still requires build, PR and release verification; existing six-language sources unchanged."
   },
   "inputs": [
     {
@@ -28,13 +28,13 @@
     },
     {
       "path": "source/candidate_review_ledger.json",
-      "size": 5701,
-      "sha256": "a1cf83977989796346784d74aabc61d947c903f28e334d7bb8f6b49c0d634fa2"
+      "size": 5966,
+      "sha256": "947701a2aeac0fb36e644489f77a579ebae557ba733541c66fef71530dfc7bb7"
     },
     {
       "path": "source/errata.json",
-      "size": 1450,
-      "sha256": "de393848fc14d8454b720cb454674f156e14d4b5641fda9843229f4aae7b3f44"
+      "size": 2560,
+      "sha256": "79267c6a4689faf3d321f485dffd25b132d75037cd116df10854c1af00ec56e9"
     },
     {
       "path": "source/front_back_source.json",
@@ -78,8 +78,8 @@
     },
     {
       "path": "source/preface_candidates.json",
-      "size": 12911,
-      "sha256": "cfdedb3ef77213d4e1c950eb81b33ec87b553190fc6053899616121c36115871"
+      "size": 15251,
+      "sha256": "bfff26eb7b6b21cf0fb2f247985a51963ea47fdade1ff1b19e557b9c587d9ed4"
     },
     {
       "path": "source/pt_direct_source.json",
@@ -113,8 +113,8 @@
     },
     {
       "path": "source/target_layout.json",
-      "size": 102616,
-      "sha256": "2d0e5d8f468120d96440e83c34773629de3ed77b2387f73d957a0f70714dc647"
+      "size": 103300,
+      "sha256": "97b709f9bacd8eb9b9a3b60c99167dfa8e590913766fcdccec664f98a8a98a46"
     },
     {
       "path": "source/uk_comparison_scope.json",

@@ -269,7 +269,9 @@ def _front_back(reader, recipe, language, pdf_hash, candidate=None):
         if candidate is None:
             raise ValueError(f"{language}: preface is missing from the source; source recovery requires approval")
         preface_record = {"physical_page": preface["physical_page"], "bbox": list(preface["bbox"]),
-                          "status": "preview-only-pending-review", "candidate": candidate}
+                          "status": candidate["status"], "candidate": candidate["content"]}
+        if candidate.get("approval"):
+            preface_record["approval"] = candidate["approval"]
     else:
         preface_record = {"physical_page": preface["physical_page"], "bbox": list(preface["bbox"]),
                           "text": reader.box(preface["physical_page"], preface["bbox"], "preface")}
@@ -426,15 +428,27 @@ def _preface_candidate(recipe_root, manifest, layout, language):
     binding = (layout or {}).get("preface_candidate")
     if not binding:
         return None
-    if binding.get("status") != "preview-only-pending-review":
-        raise ValueError("preface candidate is not marked pending review")
+    status = binding.get("status")
+    if status not in {"preview-only-pending-review", "operator-approved"}:
+        raise ValueError("preface candidate has no supported review status")
     candidate = read_recipe_json(recipe_root, binding["path"], manifest)[language]
-    if (not candidate.get("heading") or not candidate.get("paragraphs") or
-            any(not row.get("text") or row.get("status") not in
-                {"shared-copy-candidate", "pending-legal-subject-review"}
-                for row in candidate["paragraphs"])):
-        raise ValueError("incomplete pending preface candidate")
-    return candidate
+    if not candidate.get("heading") or not candidate.get("paragraphs") or any(
+            not row.get("text") for row in candidate["paragraphs"]):
+        raise ValueError("incomplete preface candidate")
+    if status == "preview-only-pending-review":
+        if any(row.get("status") not in {"shared-copy-candidate", "pending-legal-subject-review"}
+               for row in candidate["paragraphs"]):
+            raise ValueError("pending preface paragraph has unsupported status")
+        return {"status": status, "content": candidate}
+    approval = binding.get("approval")
+    if (not isinstance(approval, dict) or
+            not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(approval.get("date", ""))) or
+            not all(str(approval.get(key, "")).strip() for key in ("instruction", "scope"))):
+        raise ValueError("approved preface requires dated operator decision")
+    if any(row.get("status") != "operator-approved" or row.get("operator_decision") != approval
+           for row in candidate["paragraphs"]):
+        raise ValueError("approved preface paragraphs disagree with operator decision")
+    return {"status": status, "approval": approval, "content": candidate}
 
 
 def _warranty_years(records):
@@ -514,7 +528,7 @@ def load_pdf_book(pdf_path: Path, language: str, recipe_root: Path) -> dict:
                       "unresolved_text": reader.unresolved,
                       "corrections_applied": [], "image_extraction_performed": False}
         pending = list((layout or {}).get("pending_source_review", []))
-        if preface_candidate:
+        if preface_candidate and preface_candidate["status"] == "preview-only-pending-review":
             pending.append("preface")
         if pending:
             provenance["pending_source_review"] = sorted(set(pending))

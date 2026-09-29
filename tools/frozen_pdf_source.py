@@ -227,9 +227,9 @@ class PdfBook(FrozenBook):
         if figure['section_id'] == 'product_overview' and self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures':
             view = figure['slug'].removeprefix('overview_').removesuffix('_view')
             record = self.records['media']['overview']['views'][view]
-            semantic_copy = ' '.join([record['caption'], *(
-                value['text'] for value in record['callouts'].values())])
-            accessibility_label = record['caption']
+            semantic_copy = ' '.join([self.correct(record['caption']), *(
+                self.correct(value['text']) for value in record['callouts'].values())])
+            accessibility_label = self.correct(record['caption'])
         else:
             accessibility_label = None
         return artwork_node(asset['asset_ref'], figure['slug'], self.language,

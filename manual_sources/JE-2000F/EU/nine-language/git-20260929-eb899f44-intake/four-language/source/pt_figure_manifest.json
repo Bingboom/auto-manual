@@ -19,8 +19,8 @@
     {
       "slug": "right_view",
       "section_id": "product_overview",
-      "path": "figures/pt/p118_right_view.png",
-      "sha256": "e42a77f5ffba6ce2e84188ba52db07deaf131a34530a3ac30f9586a1b0738811",
+      "path": "artwork/pt/overview-right-approved.png",
+      "sha256": "9073495153430cc6c43051f8a010729e27c2b722b66303893542f21633ea454b",
       "clip_points": [
         20,
         332,
@@ -28,7 +28,7 @@
         497
       ],
       "physical_page": 118,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "native source artwork with operator-approved character errata"
     },
     {
       "slug": "lcd_display",

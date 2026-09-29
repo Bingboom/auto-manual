@@ -5,8 +5,8 @@
     {
       "slug": "front_view",
       "section_id": "product_overview",
-      "path": "figures/nl/p136_front_view.png",
-      "sha256": "958e672c19c97c912a0b7fa010b7784da3343564a7991ca80673ddc15aaf53a4",
+      "path": "artwork/nl/overview-front-dc-glyph.png",
+      "sha256": "76709a587df0363ed7a4a4522977953f95e83edbfbe44305bbf9ff662ddd1756",
       "clip_points": [
         20,
         85,
@@ -14,13 +14,13 @@
         312
       ],
       "physical_page": 136,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "approved AC label and native DC glyph font recovery"
     },
     {
       "slug": "right_view",
       "section_id": "product_overview",
-      "path": "figures/nl/p136_right_view.png",
-      "sha256": "c46e2e275560f2a23e4653445fb319d2d24b56113fe4cb098176dc8e9a390170",
+      "path": "artwork/nl/overview-right-approved.png",
+      "sha256": "ca42758ae993299999c3a96329ebb6845f0a403451cd6941f77eb9ef28d6ef67",
       "clip_points": [
         20,
         332,
@@ -28,7 +28,7 @@
         497
       ],
       "physical_page": 136,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "native source artwork with operator-approved character errata"
     },
     {
       "slug": "lcd_display",

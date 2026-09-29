@@ -1,0 +1,67 @@
+{
+  "scope": "native missing-glyph repair; original AI untouched; no generated artwork",
+  "items": [
+    {
+      "locale": "nl",
+      "physical_page": 136,
+      "native_frame_id": 893,
+      "source_base": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/nine-language/git-20260929-eb899f44-intake/four-language/approved/errata/nl-p136-approved.pdf",
+      "source_base_sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9",
+      "original_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "before": "\u0000 missing glyph",
+      "after": "⎓",
+      "bbox": [
+        37.41330337524414,
+        126.0860824584961,
+        42.41330337524414,
+        131.88108825683594
+      ],
+      "original_font": "AdobeSongStd-Light",
+      "font_size": 5.0,
+      "recovery_font": {
+        "family": "Segoe UI Symbol Regular",
+        "path": "/Users/pika/Library/Fonts/SegoeUISymbol.ttf",
+        "sha256": "53020949de0e6f6d7a69e8d67bd766cc9c868640552f2c069d646896966e8d4b",
+        "unicode": "U+23D3",
+        "glyph_name": "uni23D3"
+      },
+      "corrected_pdf": "approved/glyph-recovery/nl-p136-dc-glyph.pdf",
+      "corrected_pdf_sha256": "4e2e6102adb596fefbf10bda8c66e6e812c7be73176000bf7e808b66de195fc9",
+      "drawing_paths_unchanged": 397,
+      "pair": "approved/glyph-recovery/nl-p136-before-after.png",
+      "web_scope": "NL front-view binding replacement",
+      "source_identity_note": "Based on hash-pinned approved/errata/nl-p136-approved.pdf derived from original AI. Independent of the later externally changed temporary AI file."
+    },
+    {
+      "locale": "pt",
+      "physical_page": 129,
+      "native_frame_id": 1006,
+      "source_base": "/tmp/je2000f-eu-nine-languages.ai",
+      "source_base_sha256": "46992093f2612986e9a20b505a9ad0cbfa767b441538c387fa3fdd5429272b3c",
+      "original_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "before": "\u0000 missing glyph",
+      "after": "⎓",
+      "bbox": [
+        143.07357788085938,
+        349.29949951171875,
+        149.07357788085938,
+        356.25347900390625
+      ],
+      "original_font": "AdobeSongStd-Light",
+      "font_size": 6.0,
+      "recovery_font": {
+        "family": "Segoe UI Symbol Regular",
+        "path": "/Users/pika/Library/Fonts/SegoeUISymbol.ttf",
+        "sha256": "53020949de0e6f6d7a69e8d67bd766cc9c868640552f2c069d646896966e8d4b",
+        "unicode": "U+23D3",
+        "glyph_name": "uni23D3"
+      },
+      "corrected_pdf": "approved/glyph-recovery/pt-p129-dc-glyph.pdf",
+      "corrected_pdf_sha256": "1310ab13c2a01eead129afb1a9f2c4e1d6598b1c6c7fb68b08d47997b5a50a45",
+      "drawing_paths_unchanged": 30,
+      "pair": "approved/glyph-recovery/pt-p129-before-after.png",
+      "web_scope": "native specification-table evidence only; existing HTML ⎓ already correct, no table bitmap bound",
+      "source_identity_note": "Temporary AI path changed externally to source_base_sha256 before this repair. PT derivative is supplemental evidence from that changed file; not bound to Web. Original-source replay requires restored original hash."
+    }
+  ]
+}

@@ -71,6 +71,10 @@ def _introduction(book):
         return title, [strong_paragraph("[REVIEW CANDIDATE — preface pending approval]"),
                        strong_paragraph(candidate["heading"]),
                        *[paragraph(item["text"]) for item in candidate["paragraphs"]]]
+    if preface.get("status") == "operator-approved":
+        candidate = preface["candidate"]
+        return title, [strong_paragraph(candidate["heading"]),
+                       *[paragraph(item["text"]) for item in candidate["paragraphs"]]]
     return title, preface_flow(preface["text"], book.correct)
 
 

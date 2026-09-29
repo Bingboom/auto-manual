@@ -28,7 +28,9 @@ its own control panel, source-specific charging diagrams and warnings.
 
 ## Candidate checks
 
-The integrated candidates in `/tmp/je2000-new-locales/final-candidates-v3`
+The integrated candidates (final approved F in
+`/tmp/je2000-new-locales/approved-corrections-v4`, E in
+`/tmp/je2000-new-locales/approved-corrections-v3`)
 passed public frozen-PDF CLI intake and strict Sphinx. Each was copied to a
 fresh location and replayed with PDF access forbidden; all six Markdown
 outputs were byte-identical before and after replay.
@@ -56,7 +58,7 @@ standby copy, warranty cards, App numbers below screenshots and model-specific
 App controls. Desktop and 390-pixel mobile views have no document-wide
 horizontal overflow; wide tables remain locally scrollable.
 
-After alignment with main `bf5d46ee`, the full unit suite passed 4,836 tests
+After alignment with main `bf5d46ee`, the full unit suite passed 4,840 tests
 (22 skipped). The 105 intake-focused tests and 50 publication/evidence tests
 passed, as did Ruff, maintainability/complexity guardrails and documentation
 links/lifecycle checks. Complexity allowances were only reduced or removed.
@@ -68,26 +70,32 @@ alignment; their Markdown was byte-identical to the browser-reviewed outputs.
 Test and integrated-build receipts remain under `/tmp/je2000-new-locales` for
 this workstation.
 
-## Decisions required before publication
+## Operator source decisions — 2026-09-29
 
-1. **F source errata:** EU miniature nameplates in three new locales say
-   100–120 V / 15 A while the source's external labels/specifications say
-   220–240 V / 10 A. Dutch AC-button text also says DC in four places.
-   Before/after candidates are under the F package's `candidates/errata`;
-   none is applied to released content.
-2. **E prefaces:** the new source omits pt/nl/pl prefaces. The candidate
-   reuses reviewed same-English-source translations, substitutes the product
-   name and uses the operator-confirmed EU legal subject `Jackery`
-   (2026-09-29). Approval of the complete reused prefaces remains pending;
-   these are visibly marked as pending review.
-3. **E Dutch imported markup:** the printed App instruction includes a
-   literal `<g id="1">` suffix. The candidate preserves it pending an
-   explicit source-cleanup decision. Quote escaping is normalized by the
-   existing App display rules; the original evidence remains unchanged.
+1. **F source errata approved:** change the miniature EU AC-input nameplates
+   from 100–120 V / 15 A to 220–240 V / 10 A in pt/nl/pl, and correct four
+   Dutch AC-button references from DC to AC. Same-page external callouts and
+   native specification tables provide the electrical evidence. Original
+   AI bytes and uncorrected text remain retained for comparison.
+2. **E reused prefaces:** use the proposed source-provenanced pt/nl/pl copy
+   with product name Explorer 2000 Plus and the operator-specified legal
+   subject `Jackery`. Approval records accompany the locale bindings and
+   individual paragraphs; no legal-subject substitution to `Jackery Inc.`
+   remains in output.
+3. **E Dutch App markup:** remove the literal `<g id="1">` suffix through an
+   exact-text erratum. Native source evidence remains unchanged.
 
-All six IR packages have `publication_eligible: false` and nonempty pending
-review metadata. The release-evidence boundary rejects actual pending F and
-E candidates. Both Git-only frozen evidence sealing and independent receipt
-verification enforce the guard, with direct negative tests; approved-empty
-and legacy metadata-free cases retain support.
-No RTD publication or merge authorization is claimed by this report.
+Pending and unknown source-approval states continue to block release evidence.
+Both Git-only frozen evidence sealing and independent receipt verification
+apply that guard. Approved source decisions remove only their corresponding
+pending markers; they do not imply PR merge or RTD publication authorization.
+
+The updated six-book native builds, strict Sphinx builds and cold replays
+passed. The F source-local Web review records the three corrected nameplates,
+four Dutch AC labels, one heading per Overview view and the repaired Dutch
+DC symbol. The operator-installed Segoe UI Symbol U+23D3 glyph replaces only
+the missing character, retaining native geometry and source-frame evidence.
+All six frontmatter legal subjects are `Jackery`; E Dutch App markup and
+review-preface banners are absent. The revised suite passed 4,840 tests
+(22 skipped), with Ruff, maintainability, document gates and the isolated US
+baseline build green. No RTD publication or merge is claimed.

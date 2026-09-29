@@ -3,7 +3,7 @@
     "model": "JE-2000F",
     "region": "EU"
   },
-  "technical_version": "git-20260929-eb899f44-candidate1",
+  "technical_version": "git-20260929-eb899f44-approved-errata",
   "text_source": {
     "filename": "je2000f-eu-nine-languages.ai",
     "sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
@@ -22,15 +22,24 @@
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
     },
     "overview.right": {
-      "path": "figures/pt/p118_right_view.png",
-      "sha256": "e42a77f5ffba6ce2e84188ba52db07deaf131a34530a3ac30f9586a1b0738811",
+      "path": "artwork/pt/overview-right-approved.png",
+      "sha256": "9073495153430cc6c43051f8a010729e27c2b722b66303893542f21633ea454b",
       "content_mode": "source-finished-panel",
       "locale": "pt",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "approved_errata_source": {
+        "path": "approved/errata/pt-p118-approved.pdf",
+        "sha256": "b9d0df36883ff95594c65d0c21435559c13a605863223498910d4db5720fe46a"
+      },
+      "supersedes": {
+        "path": "figures/pt/p118_right_view.png",
+        "sha256": "e42a77f5ffba6ce2e84188ba52db07deaf131a34530a3ac30f9586a1b0738811"
+      },
+      "extraction_recipe": "extraction_recipes/je2000f_eu_pt_approved_errata.json"
     },
     "lcd.map": {
       "path": "figures/pt/p119_lcd_display.png",

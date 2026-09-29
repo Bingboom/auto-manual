@@ -14,7 +14,7 @@ Fourteen chapters include battery expansion. LCD contains 27 semantic rows (the 
 
 ## Candidate boundary
 
-The new-language prefaces are missing from AI p4. `source/preface_candidates.json` proposes separately provenanced shared paragraphs, with the EU legal subject **Jackery**, explicitly confirmed by the operator on 2026-09-29. Approval of the complete reused prefaces remains pending A local preview may visibly mark these as pending; no approved source or publication claim is permitted. `source/candidate_review_ledger.json` preserves other source defects and geometry decisions. `source/uk_comparison_scope.json` records inherited approved fixes and the unresolved outlined-text comparison.
+The new-language prefaces are missing from AI p4. `source/preface_candidates.json` retains the separately provenanced shared paragraphs, accepted with the EU legal subject **Jackery** by the operator on 2026-09-29. The Dutch literal App import marker was also approved for removal and is corrected through an exact-text erratum. `source/candidate_review_ledger.json` records both decisions while original native text remains unchanged. `source/uk_comparison_scope.json` records the unresolved revised-Ukrainian comparison.
 
 Run the existing shared `tools.frozen_pdf_web` entrypoint with this directory as `--recipe-root`, the exact AI as `--pdf`, the locale's artwork binding, and a fresh external output directory. This package must not add a per-model renderer or rewrite the old six routes. Public renderer, source coverage and visual checks must pass before any release decision.
 
@@ -24,4 +24,4 @@ The public `python3 -m tools.frozen_pdf_web` CLI and Sphinx HTML build are exerc
 
 The native long-line triage checks PL 412 / PT 402 / NL 388 lines. The intentionally excluded 8 / 8 / 6 lines are only tiny repeated product-engraving AC/DC text inside diagrams. This check excludes short and outlined text, and is not a substitute for browser visual review. The Polish operation layout was browser reviewed by the coordinating task; PT/NL and mobile review remain part of that task's final acceptance. No old six-language route was modified by this source-local package.
 
-The missing-preface banner and `publication_eligible: false` are intentional. Dutch literal App import markup remains explicitly pending review. This is not a release approval or a publication artifact.
+Approved prefaces render without the candidate banner. Source approval does not represent PR merge or RTD publication; these remain separately verified release steps.

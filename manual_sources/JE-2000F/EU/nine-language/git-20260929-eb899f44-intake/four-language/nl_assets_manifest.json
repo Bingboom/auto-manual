@@ -3,7 +3,7 @@
     "model": "JE-2000F",
     "region": "EU"
   },
-  "technical_version": "git-20260929-eb899f44-candidate1",
+  "technical_version": "git-20260929-eb899f44-approved-errata",
   "text_source": {
     "filename": "je2000f-eu-nine-languages.ai",
     "sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
@@ -11,26 +11,48 @@
   "pending": [],
   "assets": {
     "overview.front": {
-      "path": "figures/nl/p136_front_view.png",
-      "sha256": "958e672c19c97c912a0b7fa010b7784da3343564a7991ca80673ddc15aaf53a4",
+      "path": "artwork/nl/overview-front-dc-glyph.png",
+      "sha256": "76709a587df0363ed7a4a4522977953f95e83edbfbe44305bbf9ff662ddd1756",
       "content_mode": "source-finished-panel",
       "locale": "nl",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "approved_errata_source": {
+        "path": "approved/errata/nl-p136-approved.pdf",
+        "sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9"
+      },
+      "supersedes": {
+        "path": "artwork/nl/overview-front-approved.png",
+        "sha256": "6f70257f7fd336c847393165d7f86a2096404c47e9b9095819890e228bd8e4e8"
+      },
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_dc_glyph.json",
+      "glyph_recovery_source": {
+        "path": "approved/glyph-recovery/nl-p136-dc-glyph.pdf",
+        "sha256": "4e2e6102adb596fefbf10bda8c66e6e812c7be73176000bf7e808b66de195fc9"
+      }
     },
     "overview.right": {
-      "path": "figures/nl/p136_right_view.png",
-      "sha256": "c46e2e275560f2a23e4653445fb319d2d24b56113fe4cb098176dc8e9a390170",
+      "path": "artwork/nl/overview-right-approved.png",
+      "sha256": "ca42758ae993299999c3a96329ebb6845f0a403451cd6941f77eb9ef28d6ef67",
       "content_mode": "source-finished-panel",
       "locale": "nl",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "approved_errata_source": {
+        "path": "approved/errata/nl-p136-approved.pdf",
+        "sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9"
+      },
+      "supersedes": {
+        "path": "figures/nl/p136_right_view.png",
+        "sha256": "c46e2e275560f2a23e4653445fb319d2d24b56113fe4cb098176dc8e9a390170"
+      },
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_approved_errata.json"
     },
     "lcd.map": {
       "path": "figures/nl/p137_lcd_display.png",

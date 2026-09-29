@@ -881,13 +881,13 @@
           "consume_bboxes": [
             [
               20,
-              85,
+              60,
               350,
-              312
+              310
             ],
             [
               20,
-              332,
+              310,
               350,
               497
             ]
@@ -1259,10 +1259,7 @@
         350,
         493
       ],
-      "pending_source_review": [
-        "F-RIGHT-NAMEPLATE",
-        "visual-parity-review"
-      ],
+      "pending_source_review": [],
       "native_body_headings": [
         {
           "section_id": "charging",
@@ -2154,13 +2151,13 @@
           "consume_bboxes": [
             [
               20,
-              85,
+              60,
               350,
-              312
+              310
             ],
             [
               20,
-              332,
+              310,
               350,
               497
             ]
@@ -2571,10 +2568,7 @@
         ],
         "expected_precautions": 8
       },
-      "pending_source_review": [
-        "F-RIGHT-NAMEPLATE",
-        "visual-parity-review"
-      ],
+      "pending_source_review": [],
       "native_body_headings": [
         {
           "section_id": "charging",
@@ -3466,13 +3460,13 @@
           "consume_bboxes": [
             [
               20,
-              85,
+              60,
               350,
-              312
+              310
             ],
             [
               20,
-              332,
+              310,
               350,
               497
             ]
@@ -3844,11 +3838,7 @@
         350,
         493
       ],
-      "pending_source_review": [
-        "F-RIGHT-NAMEPLATE",
-        "visual-parity-review",
-        "F-NL-AC-LABEL"
-      ],
+      "pending_source_review": [],
       "reference_captions": [
         {
           "slug": "solar_single",
