@@ -26,8 +26,8 @@ def bind_finished_overview(book, bindings: dict, manifest: Path) -> None:
             source = (manifest.parent / record["path"]).resolve()
             if file_sha256(source) != record["sha256"]:
                 raise ValueError(f"finished Overview artwork changed: {language}/{view}")
-            if record.get("captions_embedded") is not True:
-                raise ValueError("finished Overview must include its original captions")
+            if not isinstance(record.get("captions_embedded"), bool):
+                raise ValueError("finished Overview must declare whether view headings are embedded")
             if record.get("source_ai_sha256") != book.read("source_manifest.json")["original_source"]["sha256"]:
                 raise ValueError("finished Overview source identity disagrees with intake")
             if language != book.language:
