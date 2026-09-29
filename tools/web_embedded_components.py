@@ -5,6 +5,8 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Mapping
 
+from tools.component_specs.auto_resume import COMPONENT_ID as AUTO_RESUME_ID
+from tools.web_auto_resume_component import render_auto_resume_component
 from tools.component_specs.fcc import COMPONENT_ID as FCC_ID
 from tools.component_specs.app import APP_COMPONENT_ID
 from tools.component_specs.inbox import COMPONENT_ID as INBOX_ID
@@ -73,6 +75,8 @@ def render_embedded_web_component(
     """Dispatch one validated component without a source-projector round trip."""
 
     spec = component_spec_from_flow_node(node)
+    if spec.component_id == AUTO_RESUME_ID:
+        return render_auto_resume_component(spec)
     if spec.component_id == CALLOUT_ID:
         return render_callout_component(spec, _carrier_html(node))
     if spec.component_id == SPEC_ID:

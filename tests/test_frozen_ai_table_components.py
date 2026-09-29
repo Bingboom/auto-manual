@@ -39,6 +39,47 @@ def _read(name):
 
 
 class FrozenAITableComponentTests(unittest.TestCase):
+    def test_auto_resume_four_languages_survive_source_free_public_replay(self):
+        from tools.frozen_ai_source import FrozenBook
+        from tools.frozen_ai_flow import root
+        from tools.component_specs.auto_resume import auto_resume_projection
+        for language in ("uk", "pt", "nl", "pl"):
+            with self.subTest(language=language):
+                record = _read("operation_tables")["locales"][language]["restore"]
+                book = object.__new__(FrozenBook)
+                book.language = language
+                book.records = {"operation_tables": {"restore": record}}
+                nodes = [root(n) for n in book.operation("restore")]
+                soup = self._roundtrip(nodes, language)
+                table = soup.select_one("figure.hb-auto-resume-composition > table.hb-auto-resume-table")
+                self.assertIsNotNone(table)
+                self.assertFalse(soup.select("ul, ol, img"))
+                self.assertEqual(record["heading"]["text"], soup.select_one("h3").get_text())
+                self.assertEqual(record["intro"]["text"], soup.select_one("p").get_text())
+                self.assertEqual([c["heading"]["text"] for c in record["columns"]],
+                                 [c.get_text() for c in table.select("thead th")])
+                rows = table.select("tbody tr")
+                self.assertEqual([2, 2, 1, 2], [len(r.select("td")) for r in rows])
+                self.assertEqual("2", rows[1].select_one("td")["rowspan"])
+                for column, role in zip(record["columns"], ("left", "right")):
+                    expected = [v["text"] for v in column["items"]]
+                    self.assertEqual(expected, [c.get_text() for c in table.select(f"tbody .hb-auto-resume-{role}")])
+                spec = ComponentSpec.from_dict(nodes[-1]["component_spec"])
+                for renderer in ("web", "latex", "idml", "word"):
+                    self.assertEqual([len(c) for c in auto_resume_projection(spec, renderer)["conditions"]], [3, 4])
+
+    def test_auto_resume_rejects_changed_geometry_and_escapes_copy(self):
+        from tools.frozen_ai_table_components import auto_resume_flow
+        record = deepcopy(_read("operation_tables")["locales"]["pl"]["restore"])
+        record["columns"][0]["items"][0]["text"] = "SOC < 10% & <script>"
+        nodes = auto_resume_flow(record, source_ref="restore", language="pl")
+        soup = self._roundtrip(nodes, "pl")
+        self.assertIn("SOC < 10% & <script>", soup.get_text())
+        self.assertIsNone(soup.find("script"))
+        record["columns"][1]["items"].pop()
+        with self.assertRaisesRegex(ValueError, "3/4 conditions"):
+            auto_resume_flow(record, source_ref="restore", language="pl")
+
     def test_troubleshooting_numbered_steps_break_without_splitting_decimals(self):
         for value, breaks in (
             ("1. Wait for AC. 2. Keep 0.66 ft (20 cm). 3. Restart <unit> & check.", 2),
