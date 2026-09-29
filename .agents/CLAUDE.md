@@ -5,6 +5,7 @@
 ## Map
 
 - `skills/*/SKILL.md`: local skill instructions.
+- `skills/README.md`: full skill index; root `AGENTS.md` §7 keeps one registration line per skill, so update both when adding a skill.
 - `skills/*/agents/openai.yaml`: agent bindings for skills that need them.
 - `skills/*/scripts/`: helper scripts owned by the skill.
 - `skills/*/references/`: supporting references loaded only when the skill calls for them.
