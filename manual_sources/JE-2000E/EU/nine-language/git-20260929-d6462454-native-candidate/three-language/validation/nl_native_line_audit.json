@@ -1,0 +1,78 @@
+{
+  "html": "/tmp/je2000e-intake/nl-web-11-html/manual_je2000e_eu_nl.html",
+  "source": "/tmp/je2000-new-locales/HTE152-EU-9国语言-0924.ai",
+  "pages": [
+    141,
+    159
+  ],
+  "checked_long_lines": 388,
+  "potential_missing_lines": [
+    {
+      "page": 143,
+      "bbox": [
+        266.6484069824219,
+        431.9631042480469,
+        292.39044189453125,
+        433.41094970703125
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 151,
+      "bbox": [
+        235.39549255371094,
+        272.46221923828125,
+        245.18556213378906,
+        273.5823059082031
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 153,
+      "bbox": [
+        136.4315948486328,
+        247.49151611328125,
+        145.17364501953125,
+        248.61160278320312
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 153,
+      "bbox": [
+        179.14210510253906,
+        223.9508514404297,
+        206.02566528320312,
+        226.9173583984375
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 154,
+      "bbox": [
+        127.53810119628906,
+        91.15362548828125,
+        136.2801513671875,
+        92.27371215820312
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    },
+    {
+      "page": 154,
+      "bbox": [
+        120.61129760742188,
+        351.6701965332031,
+        130.00006103515625,
+        352.8725280761719
+      ],
+      "text": "AC 220 V-240 V 10 A MAX          DC(8020) INGANG",
+      "disposition": "Tiny repeated fixed product-engraving AC/DC marking inside a governed diagram, excluded from native body prose; full specification values remain in native table/Overview."
+    }
+  ],
+  "scope": "Triage only: excludes short or outlined text, allows hidden semantic carriers; does not prove visual parity."
+}

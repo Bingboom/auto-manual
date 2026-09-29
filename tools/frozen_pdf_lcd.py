@@ -70,16 +70,21 @@ def _description_pair(value: str, language: str) -> dict[str, str]:
 def lcd_icon_flow(
     record: Mapping[str, Any], *, assets: Mapping[str, Mapping[str, Any]],
     accessibility_label: str, source_ref: str, language: str,
+    row_bindings: tuple[tuple[int, str], ...] | None = None,
 ) -> list[dict[str, Any]]:
-    """Keep the source's 26 ordered rows and bind each semantic icon explicitly."""
+    """Keep the source's ordered rows and bind each semantic icon explicitly."""
     rows = record["rows"]
-    if [row["number"] for row in rows] != [number for number, _ in _LCD_ROWS]:
-        raise ValueError("LCD icon rows must cover 1-25 with both numbered-22 entries")
+    target_specific = row_bindings is not None
+    row_bindings = row_bindings or _LCD_ROWS
+    if [row["number"] for row in rows] != [number for number, _ in row_bindings]:
+        raise ValueError("LCD icon rows disagree with target source bindings" if target_specific
+                         else "LCD icon rows must cover 1-25 in native order")
     positions = [(row["physical_page"], row["label_bbox"][1]) for row in rows]
     if positions != sorted(set(positions)):
         raise ValueError("LCD icon rows must retain native PDF visual order")
     values, refs, provenance = [], [], []
-    for index, (row, key) in enumerate(zip(rows, LCD_ICON_ASSET_KEYS, strict=True)):
+    keys = tuple(f"lcd.icon.{identity}" for _, identity in row_bindings)
+    for index, (row, key) in enumerate(zip(rows, keys, strict=True)):
         ref = str(assets.get(key, {}).get("asset_ref") or "").strip()
         if not ref:
             raise ValueError(f"missing governed LCD icon: {key}")

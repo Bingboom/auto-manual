@@ -1,0 +1,130 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU",
+    "languages": [
+      "pl",
+      "pt",
+      "nl"
+    ],
+    "technical_version": "git-20260929-d6462454-geometry",
+    "printed_manual_version": null
+  },
+  "original_source": {
+    "filename": "HTE152-EU-9国语言-0924.ai",
+    "sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+    "size_bytes": 48125378,
+    "physical_page_count": 179
+  },
+  "validation_boundary": {
+    "status": "candidate only; missing original preface and source errata need review; no publication or existing-six replacement"
+  },
+  "inputs": [
+    {
+      "path": "source/app_sections.json",
+      "size": 32049,
+      "sha256": "ea004cf2965efd67bdb35c9579c9629e0b675d3bc6f03fc15cb0e9e057cd8add"
+    },
+    {
+      "path": "source/candidate_review_ledger.json",
+      "size": 5438,
+      "sha256": "e96ce0a59dcb959989a04b263c720359fe2a6f97f11be7ece9950aca9ed207ee"
+    },
+    {
+      "path": "source/errata.json",
+      "size": 1450,
+      "sha256": "de393848fc14d8454b720cb454674f156e14d4b5641fda9843229f4aae7b3f44"
+    },
+    {
+      "path": "source/front_back_source.json",
+      "size": 1071,
+      "sha256": "7d5a3e1566c969744dca74d66bd5dbdf09f30bebee03daa373412b54d6a25661"
+    },
+    {
+      "path": "source/glyph_recoveries.json",
+      "size": 331,
+      "sha256": "e030d6afd963441eeb8af1167357b0e1021c68d19d212cf04557d8fc966c9634"
+    },
+    {
+      "path": "source/lcd_indicators.json",
+      "size": 57405,
+      "sha256": "34ad2b61b454adde43a922774003666bc5c8cbee8de5b2c8e64dd444600edf31"
+    },
+    {
+      "path": "source/nl_direct_source.json",
+      "size": 169031,
+      "sha256": "9a8405709718608f843993944ad3804da17bd625cb37b6014fe3f0a350772021"
+    },
+    {
+      "path": "source/nl_figure_manifest.json",
+      "size": 1805,
+      "sha256": "9bced2d9caad3a803934b7e497fe6570856e09e53e8eea42720c1102a05bcfd7"
+    },
+    {
+      "path": "source/operation_tables.json",
+      "size": 55893,
+      "sha256": "f78051403fecaedc4ffe2beb132656fd02c3b4fd0df1c09b07e4a3bbf8e929ac"
+    },
+    {
+      "path": "source/pl_direct_source.json",
+      "size": 174075,
+      "sha256": "de72f8bc5bc277003690f54eec87e433a14531e488c1f5948974a3d6bba7f270"
+    },
+    {
+      "path": "source/pl_figure_manifest.json",
+      "size": 1805,
+      "sha256": "7ec213670381228842aaeb944855ca5634f3039081257924f1d8f2780cfd712d"
+    },
+    {
+      "path": "source/preface_candidates.json",
+      "size": 12449,
+      "sha256": "b9f95e6a9bd1c368aa49ca55e0e5c099f1228c74cd4c4fab2eac2caab94f2b7e"
+    },
+    {
+      "path": "source/pt_direct_source.json",
+      "size": 169242,
+      "sha256": "da5b2fb6d01792a6c21f5914cfd1807627919b217cce2c6743e918c219070143"
+    },
+    {
+      "path": "source/pt_figure_manifest.json",
+      "size": 1805,
+      "sha256": "e2ce7d7acf61350deff857a3815c36886485697ab8a4e8d517c12cb38fde3330"
+    },
+    {
+      "path": "source/published_six_baseline.json",
+      "size": 1666,
+      "sha256": "11271655cce026d770bd6adcb81f2b381b7167b2e576403f5909b559252f5997"
+    },
+    {
+      "path": "source/section_index.json",
+      "size": 2173,
+      "sha256": "89e942efe7354833dac3993f849a54f1168af2c3c24cc3c2980ba3b703ec7f28"
+    },
+    {
+      "path": "source/source_receipt.json",
+      "size": 580,
+      "sha256": "9dd0e0d397227fdb917a96caa40785b57c66cd12212e9de7bf88430793ceef47"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 13748,
+      "sha256": "302c2870e0b363d09053ded0e3b7760f55f088210c54223393e9357e8b3ebe67"
+    },
+    {
+      "path": "source/target_layout.json",
+      "size": 102616,
+      "sha256": "2d0e5d8f468120d96440e83c34773629de3ed77b2387f73d957a0f70714dc647"
+    },
+    {
+      "path": "source/uk_comparison_scope.json",
+      "size": 1029,
+      "sha256": "7003e10c671ddf34f1dd3f11dce3c799742cf6fae9630acb8b166c6a1979cbee"
+    },
+    {
+      "path": "source/warranty_columns.json",
+      "size": 28883,
+      "sha256": "0c27a9ebab7a847923182c8f8603410d876ac973992d684260c3da272b0bb398"
+    }
+  ]
+}

@@ -1,0 +1,4825 @@
+{
+  "schema_version": "frozen-pdf-target-layout/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU"
+  },
+  "section_ids": [
+    "safety",
+    "symbols",
+    "in_the_box",
+    "product_overview",
+    "lcd_display",
+    "operations",
+    "ups",
+    "extra_battery",
+    "charging",
+    "storage",
+    "troubleshooting",
+    "specifications",
+    "warranty",
+    "app_setup"
+  ],
+  "direct_source_schema": "je2000e-eu-native-source/v1",
+  "lcd_rows": [
+    {
+      "number": 1,
+      "icon_id": "wifi"
+    },
+    {
+      "number": 2,
+      "icon_id": "bluetooth"
+    },
+    {
+      "number": 3,
+      "icon_id": "quiet-charging"
+    },
+    {
+      "number": 4,
+      "icon_id": "charging-plan"
+    },
+    {
+      "number": 5,
+      "icon_id": "self-powered"
+    },
+    {
+      "number": 6,
+      "icon_id": "tou"
+    },
+    {
+      "number": 7,
+      "icon_id": "ups"
+    },
+    {
+      "number": 8,
+      "icon_id": "ac-power"
+    },
+    {
+      "number": 9,
+      "icon_id": "output-voltage-frequency"
+    },
+    {
+      "number": 10,
+      "icon_id": "input-power"
+    },
+    {
+      "number": 11,
+      "icon_id": "remaining-charge-time"
+    },
+    {
+      "number": 12,
+      "icon_id": "ac-wall-charging"
+    },
+    {
+      "number": 13,
+      "icon_id": "car-charging"
+    },
+    {
+      "number": 14,
+      "icon_id": "solar-charging"
+    },
+    {
+      "number": 15,
+      "icon_id": "battery-saving"
+    },
+    {
+      "number": 16,
+      "icon_id": "charging-power-limit"
+    },
+    {
+      "number": 17,
+      "icon_id": "battery-power"
+    },
+    {
+      "number": 18,
+      "icon_id": "low-battery"
+    },
+    {
+      "number": 19,
+      "icon_id": "remaining-battery-percentage"
+    },
+    {
+      "number": 20,
+      "icon_id": "discharge-timer"
+    },
+    {
+      "number": 21,
+      "icon_id": "connected-batteries"
+    },
+    {
+      "number": 22,
+      "icon_id": "energy-saving"
+    },
+    {
+      "number": 23,
+      "icon_id": "high-temperature"
+    },
+    {
+      "number": 23,
+      "icon_id": "low-temperature"
+    },
+    {
+      "number": 24,
+      "icon_id": "fault-code"
+    },
+    {
+      "number": 25,
+      "icon_id": "output-power"
+    },
+    {
+      "number": 26,
+      "icon_id": "remaining-discharge-time"
+    }
+  ],
+  "locales": {
+    "pl": {
+      "chapter_heading_bboxes": {
+        "safety": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "symbols": [
+          25,
+          345,
+          350,
+          367
+        ],
+        "in_the_box": [
+          25,
+          248,
+          350,
+          270
+        ],
+        "product_overview": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "lcd_display": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "operations": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "ups": [
+          25,
+          161,
+          350,
+          183
+        ],
+        "extra_battery": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "charging": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "storage": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "troubleshooting": [
+          25,
+          149,
+          350,
+          171
+        ],
+        "specifications": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "warranty": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "app_setup": [
+          25,
+          27,
+          350,
+          50
+        ]
+      },
+      "specifications": {
+        "cells": {
+          "general": [
+            {
+              "label_bbox": [
+                28,
+                74.05,
+                134,
+                87.24
+              ],
+              "value_bbox": [
+                135,
+                74.05,
+                349,
+                87.24
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                87.24,
+                134,
+                100.8
+              ],
+              "value_bbox": [
+                135,
+                87.24,
+                349,
+                100.8
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                100.8,
+                134,
+                113.72
+              ],
+              "value_bbox": [
+                135,
+                100.8,
+                349,
+                113.72
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                113.72,
+                134,
+                126.01
+              ],
+              "value_bbox": [
+                135,
+                113.72,
+                349,
+                126.01
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                126.01,
+                134,
+                139.27
+              ],
+              "value_bbox": [
+                135,
+                126.01,
+                349,
+                139.27
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                139.27,
+                134,
+                152.75
+              ],
+              "value_bbox": [
+                135,
+                139.27,
+                349,
+                152.75
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                152.75,
+                134,
+                165.58
+              ],
+              "value_bbox": [
+                135,
+                152.75,
+                349,
+                165.58
+              ]
+            }
+          ],
+          "inputs": [
+            {
+              "label_bbox": [
+                28,
+                201.5,
+                134,
+                228.63
+              ],
+              "value_bbox": [
+                135,
+                201.5,
+                349,
+                228.63
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                228.63,
+                134,
+                254.04
+              ],
+              "value_bbox": [
+                135,
+                228.63,
+                349,
+                254.04
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                254.04,
+                134,
+                270.5
+              ],
+              "value_bbox": [
+                135,
+                254.04,
+                349,
+                270.5
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "label_bbox": [
+                28,
+                303.55,
+                134,
+                330.34
+              ],
+              "value_bbox": [
+                135,
+                303.55,
+                349,
+                330.34
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                330.34,
+                134,
+                343.21
+              ],
+              "value_bbox": [
+                135,
+                330.34,
+                349,
+                343.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                343.21,
+                134,
+                356.21
+              ],
+              "value_bbox": [
+                135,
+                343.21,
+                349,
+                356.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                356.21,
+                134,
+                369.52
+              ],
+              "value_bbox": [
+                135,
+                356.21,
+                349,
+                369.52
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                369.52,
+                134,
+                382.16
+              ],
+              "value_bbox": [
+                135,
+                369.52,
+                349,
+                382.16
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                382.16,
+                134,
+                395.65
+              ],
+              "value_bbox": [
+                135,
+                382.16,
+                349,
+                395.65
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                395.65,
+                134,
+                411
+              ],
+              "value_bbox": [
+                135,
+                395.65,
+                349,
+                411
+              ]
+            }
+          ],
+          "operating_temperature": [
+            {
+              "label_bbox": [
+                28,
+                441.67,
+                134,
+                455.3
+              ],
+              "value_bbox": [
+                135,
+                441.67,
+                349,
+                455.3
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                455.3,
+                134,
+                468.05
+              ],
+              "value_bbox": [
+                135,
+                455.3,
+                349,
+                468.05
+              ]
+            }
+          ]
+        },
+        "selection": "lines"
+      },
+      "troubleshooting": {
+        "cells": [
+          {
+            "code_bbox": [
+              28,
+              215.62,
+              73,
+              232.48
+            ],
+            "action_bbox": [
+              75,
+              215.62,
+              349,
+              232.48
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              232.48,
+              73,
+              249.26
+            ],
+            "action_bbox": [
+              75,
+              232.48,
+              349,
+              249.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              249.26,
+              73,
+              266.26
+            ],
+            "action_bbox": [
+              75,
+              249.26,
+              349,
+              266.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              266.26,
+              73,
+              282.68
+            ],
+            "action_bbox": [
+              75,
+              266.26,
+              349,
+              282.68
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              282.68,
+              73,
+              298.98
+            ],
+            "action_bbox": [
+              75,
+              282.68,
+              349,
+              298.98
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              298.98,
+              73,
+              314.76
+            ],
+            "action_bbox": [
+              75,
+              298.98,
+              349,
+              314.76
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              314.76,
+              73,
+              387.07
+            ],
+            "action_bbox": [
+              75,
+              314.76,
+              349,
+              387.07
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              387.07,
+              73,
+              421.52
+            ],
+            "action_bbox": [
+              75,
+              387.07,
+              349,
+              421.52
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              421.52,
+              73,
+              436.38
+            ],
+            "action_bbox": [
+              75,
+              421.52,
+              349,
+              436.38
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              436.38,
+              73,
+              450.35
+            ],
+            "action_bbox": [
+              75,
+              436.38,
+              349,
+              450.35
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              450.35,
+              73,
+              477.02
+            ],
+            "action_bbox": [
+              75,
+              450.35,
+              349,
+              477.02
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              477.02,
+              73,
+              492.64
+            ],
+            "action_bbox": [
+              75,
+              477.02,
+              349,
+              492.64
+            ]
+          }
+        ],
+        "codes": [
+          "F0",
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8",
+          "F9",
+          "FC",
+          "FE"
+        ],
+        "selection": "lines"
+      },
+      "symbol_layout": {
+        "rows": [
+          [
+            392,
+            416
+          ],
+          [
+            417,
+            442
+          ],
+          [
+            443,
+            469
+          ],
+          [
+            470,
+            491
+          ]
+        ],
+        "columns": {
+          "label": [
+            32,
+            105
+          ],
+          "meaning": [
+            108,
+            349
+          ]
+        }
+      },
+      "app": {
+        "control_labels": [
+          {
+            "role": "main-power",
+            "page": 177,
+            "bbox": [
+              30,
+              366,
+              80,
+              392
+            ]
+          },
+          {
+            "role": "dc-usb",
+            "page": 177,
+            "bbox": [
+              30,
+              395,
+              80,
+              421
+            ]
+          },
+          {
+            "role": "ac-power-1",
+            "page": 177,
+            "bbox": [
+              280,
+              378,
+              349,
+              395
+            ]
+          },
+          {
+            "role": "ac-power-2",
+            "page": 177,
+            "bbox": [
+              280,
+              395,
+              349,
+              413
+            ]
+          }
+        ]
+      },
+      "media": {
+        "inbox": {
+          "title_bbox": [
+            25,
+            248,
+            349,
+            270
+          ],
+          "consume_bbox": [
+            25,
+            280,
+            349,
+            492
+          ],
+          "cards": [
+            {
+              "id": "main",
+              "label_bbox": [
+                30,
+                404,
+                139,
+                430
+              ]
+            },
+            {
+              "id": "cable",
+              "label_bbox": [
+                140,
+                404,
+                243,
+                430
+              ]
+            },
+            {
+              "id": "manual",
+              "label_bbox": [
+                245,
+                404,
+                349,
+                430
+              ]
+            }
+          ],
+          "tip": {
+            "label_bbox": [
+              25,
+              460,
+              84,
+              490
+            ],
+            "body_bbox": [
+              84,
+              460,
+              349,
+              490
+            ]
+          }
+        },
+        "overview": {
+          "title_bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "consume_bboxes": [
+            [
+              25,
+              55,
+              350,
+              500
+            ]
+          ],
+          "views": {
+            "front": {
+              "caption_bbox": [
+                25,
+                55,
+                349,
+                73
+              ],
+              "callouts": {
+                "power": {
+                  "bbox": [
+                    27,
+                    75,
+                    125,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "lcd": {
+                  "bbox": [
+                    300,
+                    74,
+                    348,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "dc12": {
+                  "bbox": [
+                    27,
+                    108,
+                    127,
+                    131
+                  ],
+                  "label_only": false
+                },
+                "dc_usb": {
+                  "bbox": [
+                    27,
+                    134,
+                    127,
+                    150
+                  ],
+                  "label_only": true
+                },
+                "usb_c_30": {
+                  "bbox": [
+                    27,
+                    151,
+                    130,
+                    180
+                  ],
+                  "label_only": false
+                },
+                "usb_a": {
+                  "bbox": [
+                    27,
+                    181,
+                    130,
+                    208
+                  ],
+                  "label_only": false
+                },
+                "usb_c_140": {
+                  "bbox": [
+                    27,
+                    208,
+                    131,
+                    237
+                  ],
+                  "label_only": false
+                },
+                "led_button": {
+                  "bbox": [
+                    265,
+                    90,
+                    348,
+                    105
+                  ],
+                  "label_only": true
+                },
+                "led": {
+                  "bbox": [
+                    295,
+                    113,
+                    348,
+                    129
+                  ],
+                  "label_only": true
+                },
+                "ac_power_1": {
+                  "bbox": [
+                    265,
+                    130,
+                    348,
+                    145
+                  ],
+                  "label_only": true
+                },
+                "ac_power_2": {
+                  "bbox": [
+                    265,
+                    147,
+                    348,
+                    163
+                  ],
+                  "label_only": true
+                },
+                "ac_output": {
+                  "bbox": [
+                    260,
+                    170,
+                    348,
+                    204
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "right": {
+              "caption_bbox": [
+                25,
+                369,
+                349,
+                387
+              ],
+              "callouts": {
+                "dc_input": {
+                  "bbox": [
+                    27,
+                    394,
+                    226,
+                    425
+                  ],
+                  "label_only": false
+                },
+                "ac_input": {
+                  "bbox": [
+                    27,
+                    450,
+                    130,
+                    474
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "left": {
+              "caption_bbox": [
+                25,
+                248,
+                349,
+                265
+              ],
+              "callouts": {
+                "handle": {
+                  "bbox": [
+                    27,
+                    265,
+                    130,
+                    279
+                  ],
+                  "label_only": true
+                },
+                "expansion": {
+                  "bbox": [
+                    27,
+                    309,
+                    132,
+                    332
+                  ],
+                  "label_only": false
+                }
+              }
+            }
+          },
+          "presentation": "reference-figures"
+        },
+        "operation_panels": [
+          {
+            "id": "main-power",
+            "physical_page": 166,
+            "bbox": [
+              27,
+              74,
+              345,
+              203
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        82,
+                        344,
+                        97
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        97,
+                        344,
+                        110
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        110,
+                        344,
+                        123
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        123,
+                        344,
+                        132
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  167,
+                  163,
+                  342,
+                  172
+                ],
+                [
+                  167,
+                  172,
+                  342,
+                  193
+                ],
+                [
+                  167,
+                  193,
+                  342,
+                  202
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "ac-output",
+            "physical_page": 166,
+            "bbox": [
+              27,
+              281,
+              345,
+              495
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        344,
+                        343,
+                        359
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        359,
+                        343,
+                        370
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        371,
+                        343,
+                        385
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        385,
+                        343,
+                        399
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                281,
+                340,
+                300
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  43,
+                  308,
+                  341,
+                  331
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "dc-usb-output",
+            "physical_page": 167,
+            "bbox": [
+              27,
+              48,
+              345,
+              273
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        79,
+                        343,
+                        93
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        93,
+                        343,
+                        105
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        105,
+                        343,
+                        119
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        119,
+                        343,
+                        131
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                55,
+                341,
+                72
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "energy-saving",
+            "physical_page": 168,
+            "bbox": [
+              27,
+              120,
+              345,
+              231
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "toggle",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        162,
+                        172,
+                        342,
+                        186
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        158,
+                        220,
+                        342,
+                        231
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "mode_label_bbox": [
+                211,
+                204,
+                300,
+                220
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "led-light",
+            "physical_page": 168,
+            "bbox": [
+              27,
+              357,
+              345,
+              494
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "light",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        403,
+                        343,
+                        423
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "sos",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        432,
+                        343,
+                        452
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        457,
+                        343,
+                        487
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                43,
+                359,
+                342,
+                382
+              ],
+              "sos_label_bbox": [
+                232,
+                434,
+                252,
+                450
+              ],
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "structured_regions": {
+        "symbols": [
+          {
+            "physical_page": 160,
+            "bbox": [
+              25,
+              367,
+              349,
+              493
+            ]
+          },
+          {
+            "physical_page": 161,
+            "bbox": [
+              25,
+              25,
+              349,
+              220
+            ]
+          }
+        ],
+        "troubleshooting": [
+          {
+            "physical_page": 174,
+            "bbox": [
+              25,
+              198,
+              349,
+              497
+            ]
+          }
+        ]
+      },
+      "preface_candidate": {
+        "path": "source/preface_candidates.json",
+        "status": "preview-only-pending-review"
+      },
+      "table_headers": {
+        "symbols": [
+          [
+            32,
+            375,
+            106,
+            392
+          ],
+          [
+            108,
+            375,
+            349,
+            392
+          ]
+        ],
+        "troubleshooting": [
+          [
+            28,
+            198,
+            73,
+            215
+          ],
+          [
+            75,
+            198,
+            349,
+            215
+          ]
+        ],
+        "specifications": [
+          [
+            25,
+            55,
+            350,
+            72
+          ],
+          [
+            25,
+            183,
+            350,
+            199
+          ],
+          [
+            25,
+            285,
+            350,
+            301
+          ],
+          [
+            25,
+            423,
+            350,
+            439
+          ]
+        ]
+      },
+      "specification_footnotes_bbox": [
+        25,
+        470,
+        350,
+        501
+      ],
+      "table_event_y": {
+        "troubleshooting": 198
+      },
+      "safety": {
+        "warning_bbox": [
+          55,
+          68,
+          138,
+          88
+        ],
+        "lead_bbox": [
+          143,
+          65,
+          349,
+          90
+        ],
+        "intro_bbox": [
+          25,
+          96,
+          349,
+          115
+        ],
+        "precautions_bbox": [
+          25,
+          114,
+          349,
+          267
+        ],
+        "maintenance_heading_bbox": [
+          25,
+          270,
+          349,
+          288
+        ],
+        "maintenance_body_bbox": [
+          25,
+          290,
+          349,
+          329
+        ],
+        "expected_precautions": 8
+      },
+      "reference_consumed_regions": [
+        {
+          "slug": "ups_connection",
+          "section_id": "ups",
+          "physical_page": 170,
+          "bbox": [
+            27,
+            210,
+            342,
+            337
+          ]
+        },
+        {
+          "slug": "ac_wall_charging",
+          "section_id": "charging",
+          "physical_page": 172,
+          "bbox": [
+            30,
+            199,
+            343,
+            296
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "section_id": "charging",
+          "physical_page": 173,
+          "bbox": [
+            28,
+            25,
+            342,
+            166
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "section_id": "charging",
+          "physical_page": 173,
+          "bbox": [
+            28,
+            306,
+            341,
+            435
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "section_id": "extra_battery",
+          "physical_page": 171,
+          "bbox": [
+            28,
+            99,
+            344,
+            305
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "section_id": "extra_battery",
+          "physical_page": 171,
+          "bbox": [
+            28,
+            424,
+            344,
+            498
+          ]
+        }
+      ],
+      "reference_captions": [
+        {
+          "slug": "ac_wall_charging",
+          "physical_page": 172,
+          "labels": [
+            {
+              "bbox": [
+                180.819,
+                273.467,
+                329.454,
+                289.065
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "physical_page": 173,
+          "labels": [
+            {
+              "bbox": [
+                272.861,
+                88.303,
+                323.768,
+                95.903
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "physical_page": 173,
+          "labels": [
+            {
+              "bbox": [
+                245.375,
+                310.049,
+                269.106,
+                318.849
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                184.949,
+                406.357,
+                328.107,
+                412.757
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "physical_page": 171,
+          "labels": [
+            {
+              "bbox": [
+                167.657,
+                284.503,
+                185.883,
+                290.903
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "physical_page": 171,
+          "labels": [
+            {
+              "bbox": [
+                51.151,
+                483.949,
+                253.427,
+                490.349
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                305.817,
+                454.779,
+                339.322,
+                467.789
+              ],
+              "selection": "lines"
+            }
+          ]
+        }
+      ],
+      "callout_regions": [
+        {
+          "physical_page": 173,
+          "label_bbox": [
+            32.007,
+            190.904,
+            81.574,
+            200.956
+          ],
+          "body_bboxes": [
+            [
+              85,
+              170,
+              341,
+              225
+            ]
+          ]
+        }
+      ]
+    },
+    "pt": {
+      "chapter_heading_bboxes": {
+        "safety": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "symbols": [
+          25,
+          345,
+          350,
+          367
+        ],
+        "in_the_box": [
+          25,
+          248,
+          350,
+          270
+        ],
+        "product_overview": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "lcd_display": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "operations": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "ups": [
+          25,
+          161,
+          350,
+          183
+        ],
+        "extra_battery": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "charging": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "storage": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "troubleshooting": [
+          25,
+          149,
+          350,
+          171
+        ],
+        "specifications": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "warranty": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "app_setup": [
+          25,
+          27,
+          350,
+          50
+        ]
+      },
+      "specifications": {
+        "cells": {
+          "general": [
+            {
+              "label_bbox": [
+                28,
+                74.05,
+                134,
+                87.24
+              ],
+              "value_bbox": [
+                135,
+                74.05,
+                349,
+                87.24
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                87.24,
+                134,
+                100.8
+              ],
+              "value_bbox": [
+                135,
+                87.24,
+                349,
+                100.8
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                100.8,
+                134,
+                113.72
+              ],
+              "value_bbox": [
+                135,
+                100.8,
+                349,
+                113.72
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                113.72,
+                134,
+                126.01
+              ],
+              "value_bbox": [
+                135,
+                113.72,
+                349,
+                126.01
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                126.01,
+                134,
+                139.27
+              ],
+              "value_bbox": [
+                135,
+                126.01,
+                349,
+                139.27
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                139.27,
+                134,
+                152.75
+              ],
+              "value_bbox": [
+                135,
+                139.27,
+                349,
+                152.75
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                152.75,
+                134,
+                165.58
+              ],
+              "value_bbox": [
+                135,
+                152.75,
+                349,
+                165.58
+              ]
+            }
+          ],
+          "inputs": [
+            {
+              "label_bbox": [
+                28,
+                201.5,
+                134,
+                228.63
+              ],
+              "value_bbox": [
+                135,
+                201.5,
+                349,
+                228.63
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                228.63,
+                134,
+                254.04
+              ],
+              "value_bbox": [
+                135,
+                228.63,
+                349,
+                254.04
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                254.04,
+                134,
+                270.5
+              ],
+              "value_bbox": [
+                135,
+                254.04,
+                349,
+                270.5
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "label_bbox": [
+                28,
+                303.55,
+                134,
+                330.34
+              ],
+              "value_bbox": [
+                135,
+                303.55,
+                349,
+                330.34
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                330.34,
+                134,
+                343.21
+              ],
+              "value_bbox": [
+                135,
+                330.34,
+                349,
+                343.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                343.21,
+                134,
+                356.21
+              ],
+              "value_bbox": [
+                135,
+                343.21,
+                349,
+                356.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                356.21,
+                134,
+                369.52
+              ],
+              "value_bbox": [
+                135,
+                356.21,
+                349,
+                369.52
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                369.52,
+                134,
+                382.16
+              ],
+              "value_bbox": [
+                135,
+                369.52,
+                349,
+                382.16
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                382.16,
+                134,
+                395.65
+              ],
+              "value_bbox": [
+                135,
+                382.16,
+                349,
+                395.65
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                395.65,
+                134,
+                411
+              ],
+              "value_bbox": [
+                135,
+                395.65,
+                349,
+                411
+              ]
+            }
+          ],
+          "operating_temperature": [
+            {
+              "label_bbox": [
+                28,
+                441.67,
+                134,
+                455.3
+              ],
+              "value_bbox": [
+                135,
+                441.67,
+                349,
+                455.3
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                455.3,
+                134,
+                468.05
+              ],
+              "value_bbox": [
+                135,
+                455.3,
+                349,
+                468.05
+              ]
+            }
+          ]
+        },
+        "selection": "lines"
+      },
+      "troubleshooting": {
+        "cells": [
+          {
+            "code_bbox": [
+              28,
+              215.62,
+              73,
+              232.48
+            ],
+            "action_bbox": [
+              75,
+              215.62,
+              349,
+              232.48
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              232.48,
+              73,
+              249.26
+            ],
+            "action_bbox": [
+              75,
+              232.48,
+              349,
+              249.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              249.26,
+              73,
+              266.26
+            ],
+            "action_bbox": [
+              75,
+              249.26,
+              349,
+              266.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              266.26,
+              73,
+              282.68
+            ],
+            "action_bbox": [
+              75,
+              266.26,
+              349,
+              282.68
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              282.68,
+              73,
+              298.98
+            ],
+            "action_bbox": [
+              75,
+              282.68,
+              349,
+              298.98
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              298.98,
+              73,
+              314.76
+            ],
+            "action_bbox": [
+              75,
+              298.98,
+              349,
+              314.76
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              314.76,
+              73,
+              387.07
+            ],
+            "action_bbox": [
+              75,
+              314.76,
+              349,
+              387.07
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              387.07,
+              73,
+              421.52
+            ],
+            "action_bbox": [
+              75,
+              387.07,
+              349,
+              421.52
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              421.52,
+              73,
+              436.38
+            ],
+            "action_bbox": [
+              75,
+              421.52,
+              349,
+              436.38
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              436.38,
+              73,
+              450.35
+            ],
+            "action_bbox": [
+              75,
+              436.38,
+              349,
+              450.35
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              450.35,
+              73,
+              477.02
+            ],
+            "action_bbox": [
+              75,
+              450.35,
+              349,
+              477.02
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              477.02,
+              73,
+              492.64
+            ],
+            "action_bbox": [
+              75,
+              477.02,
+              349,
+              492.64
+            ]
+          }
+        ],
+        "codes": [
+          "F0",
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8",
+          "F9",
+          "FC",
+          "FE"
+        ],
+        "selection": "lines"
+      },
+      "symbol_layout": {
+        "rows": [
+          [
+            392,
+            416
+          ],
+          [
+            417,
+            442
+          ],
+          [
+            443,
+            469
+          ],
+          [
+            470,
+            491
+          ]
+        ],
+        "columns": {
+          "label": [
+            32,
+            105
+          ],
+          "meaning": [
+            108,
+            349
+          ]
+        }
+      },
+      "app": {
+        "control_labels": [
+          {
+            "role": "main-power",
+            "page": 139,
+            "bbox": [
+              30,
+              366,
+              80,
+              392
+            ]
+          },
+          {
+            "role": "dc-usb",
+            "page": 139,
+            "bbox": [
+              30,
+              395,
+              80,
+              421
+            ]
+          },
+          {
+            "role": "ac-power-1",
+            "page": 139,
+            "bbox": [
+              280,
+              378,
+              349,
+              395
+            ]
+          },
+          {
+            "role": "ac-power-2",
+            "page": 139,
+            "bbox": [
+              280,
+              395,
+              349,
+              413
+            ]
+          }
+        ]
+      },
+      "media": {
+        "inbox": {
+          "title_bbox": [
+            25,
+            248,
+            349,
+            270
+          ],
+          "consume_bbox": [
+            25,
+            280,
+            349,
+            492
+          ],
+          "cards": [
+            {
+              "id": "main",
+              "label_bbox": [
+                30,
+                404,
+                139,
+                430
+              ]
+            },
+            {
+              "id": "cable",
+              "label_bbox": [
+                140,
+                404,
+                243,
+                430
+              ]
+            },
+            {
+              "id": "manual",
+              "label_bbox": [
+                245,
+                404,
+                349,
+                430
+              ]
+            }
+          ],
+          "tip": {
+            "label_bbox": [
+              25,
+              460,
+              84,
+              490
+            ],
+            "body_bbox": [
+              84,
+              460,
+              349,
+              490
+            ]
+          }
+        },
+        "overview": {
+          "title_bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "consume_bboxes": [
+            [
+              25,
+              55,
+              350,
+              500
+            ]
+          ],
+          "views": {
+            "front": {
+              "caption_bbox": [
+                25,
+                55,
+                349,
+                73
+              ],
+              "callouts": {
+                "power": {
+                  "bbox": [
+                    27,
+                    75,
+                    125,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "lcd": {
+                  "bbox": [
+                    300,
+                    74,
+                    348,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "dc12": {
+                  "bbox": [
+                    27,
+                    108,
+                    127,
+                    131
+                  ],
+                  "label_only": false
+                },
+                "dc_usb": {
+                  "bbox": [
+                    27,
+                    134,
+                    127,
+                    150
+                  ],
+                  "label_only": true
+                },
+                "usb_c_30": {
+                  "bbox": [
+                    27,
+                    151,
+                    130,
+                    180
+                  ],
+                  "label_only": false
+                },
+                "usb_a": {
+                  "bbox": [
+                    27,
+                    181,
+                    130,
+                    208
+                  ],
+                  "label_only": false
+                },
+                "usb_c_140": {
+                  "bbox": [
+                    27,
+                    208,
+                    131,
+                    237
+                  ],
+                  "label_only": false
+                },
+                "led_button": {
+                  "bbox": [
+                    265,
+                    90,
+                    348,
+                    105
+                  ],
+                  "label_only": true
+                },
+                "led": {
+                  "bbox": [
+                    295,
+                    113,
+                    348,
+                    129
+                  ],
+                  "label_only": true
+                },
+                "ac_power_1": {
+                  "bbox": [
+                    265,
+                    130,
+                    348,
+                    145
+                  ],
+                  "label_only": true
+                },
+                "ac_power_2": {
+                  "bbox": [
+                    265,
+                    147,
+                    348,
+                    163
+                  ],
+                  "label_only": true
+                },
+                "ac_output": {
+                  "bbox": [
+                    260,
+                    170,
+                    348,
+                    204
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "right": {
+              "caption_bbox": [
+                25,
+                369,
+                349,
+                387
+              ],
+              "callouts": {
+                "dc_input": {
+                  "bbox": [
+                    27,
+                    394,
+                    226,
+                    425
+                  ],
+                  "label_only": false
+                },
+                "ac_input": {
+                  "bbox": [
+                    27,
+                    450,
+                    130,
+                    474
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "left": {
+              "caption_bbox": [
+                25,
+                248,
+                349,
+                265
+              ],
+              "callouts": {
+                "handle": {
+                  "bbox": [
+                    27,
+                    265,
+                    130,
+                    279
+                  ],
+                  "label_only": true
+                },
+                "expansion": {
+                  "bbox": [
+                    27,
+                    309,
+                    132,
+                    332
+                  ],
+                  "label_only": false
+                }
+              }
+            }
+          },
+          "presentation": "reference-figures"
+        },
+        "operation_panels": [
+          {
+            "id": "main-power",
+            "physical_page": 128,
+            "bbox": [
+              27,
+              74,
+              345,
+              203
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        82,
+                        344,
+                        97
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        97,
+                        344,
+                        110
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        110,
+                        344,
+                        123
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        123,
+                        344,
+                        132
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  168,
+                  167,
+                  343,
+                  175
+                ],
+                [
+                  168,
+                  175,
+                  343,
+                  189
+                ],
+                [
+                  168,
+                  189,
+                  343,
+                  197
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "ac-output",
+            "physical_page": 128,
+            "bbox": [
+              27,
+              281,
+              345,
+              495
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        344,
+                        343,
+                        359
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        359,
+                        343,
+                        370
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        371,
+                        343,
+                        385
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        385,
+                        343,
+                        399
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                281,
+                340,
+                300
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  43,
+                  308,
+                  341,
+                  331
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "dc-usb-output",
+            "physical_page": 129,
+            "bbox": [
+              27,
+              48,
+              345,
+              273
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        79,
+                        343,
+                        93
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        93,
+                        343,
+                        105
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        105,
+                        343,
+                        119
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        119,
+                        343,
+                        131
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                55,
+                341,
+                72
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "energy-saving",
+            "physical_page": 130,
+            "bbox": [
+              27,
+              120,
+              345,
+              231
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "toggle",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        162,
+                        172,
+                        342,
+                        186
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        158,
+                        220,
+                        342,
+                        231
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "mode_label_bbox": [
+                211,
+                204,
+                300,
+                220
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "led-light",
+            "physical_page": 130,
+            "bbox": [
+              27,
+              357,
+              345,
+              494
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "light",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        403,
+                        343,
+                        423
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "sos",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        432,
+                        343,
+                        452
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        457,
+                        343,
+                        487
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                43,
+                359,
+                342,
+                382
+              ],
+              "sos_label_bbox": [
+                232,
+                434,
+                252,
+                450
+              ],
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "structured_regions": {
+        "symbols": [
+          {
+            "physical_page": 122,
+            "bbox": [
+              25,
+              367,
+              349,
+              493
+            ]
+          },
+          {
+            "physical_page": 123,
+            "bbox": [
+              25,
+              25,
+              349,
+              220
+            ]
+          }
+        ],
+        "troubleshooting": [
+          {
+            "physical_page": 136,
+            "bbox": [
+              25,
+              198,
+              349,
+              497
+            ]
+          }
+        ]
+      },
+      "preface_candidate": {
+        "path": "source/preface_candidates.json",
+        "status": "preview-only-pending-review"
+      },
+      "table_headers": {
+        "symbols": [
+          [
+            32,
+            375,
+            106,
+            392
+          ],
+          [
+            108,
+            375,
+            349,
+            392
+          ]
+        ],
+        "troubleshooting": [
+          [
+            28,
+            198,
+            73,
+            215
+          ],
+          [
+            75,
+            198,
+            349,
+            215
+          ]
+        ],
+        "specifications": [
+          [
+            25,
+            55,
+            350,
+            72
+          ],
+          [
+            25,
+            183,
+            350,
+            199
+          ],
+          [
+            25,
+            285,
+            350,
+            301
+          ],
+          [
+            25,
+            423,
+            350,
+            439
+          ]
+        ]
+      },
+      "specification_footnotes_bbox": [
+        25,
+        470,
+        350,
+        501
+      ],
+      "table_event_y": {
+        "troubleshooting": 198
+      },
+      "safety": {
+        "warning_bbox": [
+          55,
+          68,
+          130,
+          88
+        ],
+        "lead_bbox": [
+          131,
+          65,
+          349,
+          90
+        ],
+        "intro_bbox": [
+          25,
+          96,
+          349,
+          115
+        ],
+        "precautions_bbox": [
+          25,
+          114,
+          349,
+          267
+        ],
+        "maintenance_heading_bbox": [
+          25,
+          270,
+          349,
+          288
+        ],
+        "maintenance_body_bbox": [
+          25,
+          290,
+          349,
+          329
+        ],
+        "expected_precautions": 8
+      },
+      "reference_consumed_regions": [
+        {
+          "slug": "ups_connection",
+          "section_id": "ups",
+          "physical_page": 132,
+          "bbox": [
+            27,
+            210,
+            342,
+            337
+          ]
+        },
+        {
+          "slug": "ac_wall_charging",
+          "section_id": "charging",
+          "physical_page": 134,
+          "bbox": [
+            30,
+            199,
+            343,
+            296
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "section_id": "charging",
+          "physical_page": 135,
+          "bbox": [
+            28,
+            25,
+            342,
+            166
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "section_id": "charging",
+          "physical_page": 135,
+          "bbox": [
+            28,
+            306,
+            341,
+            435
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "section_id": "extra_battery",
+          "physical_page": 133,
+          "bbox": [
+            28,
+            99,
+            344,
+            305
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "section_id": "extra_battery",
+          "physical_page": 133,
+          "bbox": [
+            28,
+            424,
+            344,
+            498
+          ]
+        }
+      ],
+      "reference_captions": [
+        {
+          "slug": "ac_wall_charging",
+          "physical_page": 134,
+          "labels": [
+            {
+              "bbox": [
+                192.819,
+                271.467,
+                308.815,
+                295.062
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "physical_page": 135,
+          "labels": [
+            {
+              "bbox": [
+                272.861,
+                88.302,
+                323.768,
+                95.902
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "physical_page": 135,
+          "labels": [
+            {
+              "bbox": [
+                245.375,
+                310.049,
+                270.345,
+                318.849
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                184.949,
+                406.356,
+                328.602,
+                412.756
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "physical_page": 133,
+          "labels": [
+            {
+              "bbox": [
+                167.657,
+                284.502,
+                185.883,
+                290.902
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "physical_page": 133,
+          "labels": [
+            {
+              "bbox": [
+                51.153,
+                483.949,
+                254.843,
+                490.349
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                302.599,
+                455.299,
+                339.092,
+                466.692
+              ],
+              "selection": "lines"
+            }
+          ]
+        }
+      ],
+      "callout_regions": [
+        {
+          "physical_page": 135,
+          "label_bbox": [
+            36.754,
+            190.905,
+            72.825,
+            200.957
+          ],
+          "body_bboxes": [
+            [
+              85,
+              170,
+              341,
+              225
+            ]
+          ]
+        }
+      ]
+    },
+    "nl": {
+      "chapter_heading_bboxes": {
+        "safety": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "symbols": [
+          25,
+          345,
+          350,
+          367
+        ],
+        "in_the_box": [
+          25,
+          248,
+          350,
+          270
+        ],
+        "product_overview": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "lcd_display": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "operations": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "ups": [
+          25,
+          161,
+          350,
+          183
+        ],
+        "extra_battery": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "charging": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "storage": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "troubleshooting": [
+          25,
+          149,
+          350,
+          171
+        ],
+        "specifications": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "warranty": [
+          25,
+          27,
+          350,
+          50
+        ],
+        "app_setup": [
+          25,
+          27,
+          350,
+          50
+        ]
+      },
+      "specifications": {
+        "cells": {
+          "general": [
+            {
+              "label_bbox": [
+                28,
+                74.05,
+                134,
+                87.24
+              ],
+              "value_bbox": [
+                135,
+                74.05,
+                349,
+                87.24
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                87.24,
+                134,
+                100.8
+              ],
+              "value_bbox": [
+                135,
+                87.24,
+                349,
+                100.8
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                100.8,
+                134,
+                113.72
+              ],
+              "value_bbox": [
+                135,
+                100.8,
+                349,
+                113.72
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                113.72,
+                134,
+                126.01
+              ],
+              "value_bbox": [
+                135,
+                113.72,
+                349,
+                126.01
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                126.01,
+                134,
+                139.27
+              ],
+              "value_bbox": [
+                135,
+                126.01,
+                349,
+                139.27
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                139.27,
+                134,
+                152.75
+              ],
+              "value_bbox": [
+                135,
+                139.27,
+                349,
+                152.75
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                152.75,
+                134,
+                165.58
+              ],
+              "value_bbox": [
+                135,
+                152.75,
+                349,
+                165.58
+              ]
+            }
+          ],
+          "inputs": [
+            {
+              "label_bbox": [
+                28,
+                201.5,
+                134,
+                228.63
+              ],
+              "value_bbox": [
+                135,
+                201.5,
+                349,
+                228.63
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                228,
+                134,
+                241
+              ],
+              "value_bbox": [
+                135,
+                228.63,
+                349,
+                254.04
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                241,
+                134,
+                253
+              ],
+              "value_bbox": [
+                135,
+                254.04,
+                349,
+                270.5
+              ]
+            }
+          ],
+          "outputs": [
+            {
+              "label_bbox": [
+                28,
+                303.55,
+                134,
+                330.34
+              ],
+              "value_bbox": [
+                135,
+                303.55,
+                349,
+                330.34
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                330.34,
+                134,
+                343.21
+              ],
+              "value_bbox": [
+                135,
+                330.34,
+                349,
+                343.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                343.21,
+                134,
+                356.21
+              ],
+              "value_bbox": [
+                135,
+                343.21,
+                349,
+                356.21
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                356.21,
+                134,
+                369.52
+              ],
+              "value_bbox": [
+                135,
+                356.21,
+                349,
+                369.52
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                369.52,
+                134,
+                382.16
+              ],
+              "value_bbox": [
+                135,
+                369.52,
+                349,
+                382.16
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                382.16,
+                134,
+                395.65
+              ],
+              "value_bbox": [
+                135,
+                382.16,
+                349,
+                395.65
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                395.65,
+                134,
+                411
+              ],
+              "value_bbox": [
+                135,
+                395.65,
+                349,
+                411
+              ]
+            }
+          ],
+          "operating_temperature": [
+            {
+              "label_bbox": [
+                28,
+                441.67,
+                134,
+                455.3
+              ],
+              "value_bbox": [
+                135,
+                441.67,
+                349,
+                455.3
+              ]
+            },
+            {
+              "label_bbox": [
+                28,
+                455.3,
+                134,
+                468.05
+              ],
+              "value_bbox": [
+                135,
+                455.3,
+                349,
+                468.05
+              ]
+            }
+          ]
+        },
+        "selection": "lines"
+      },
+      "troubleshooting": {
+        "cells": [
+          {
+            "code_bbox": [
+              28,
+              215.62,
+              73,
+              232.48
+            ],
+            "action_bbox": [
+              75,
+              215.62,
+              349,
+              232.48
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              232.48,
+              73,
+              249.26
+            ],
+            "action_bbox": [
+              75,
+              232.48,
+              349,
+              249.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              249.26,
+              73,
+              266.26
+            ],
+            "action_bbox": [
+              75,
+              249.26,
+              349,
+              266.26
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              266.26,
+              73,
+              282.68
+            ],
+            "action_bbox": [
+              75,
+              266.26,
+              349,
+              282.68
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              282.68,
+              73,
+              298.98
+            ],
+            "action_bbox": [
+              75,
+              282.68,
+              349,
+              298.98
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              298.98,
+              73,
+              314.76
+            ],
+            "action_bbox": [
+              75,
+              298.98,
+              349,
+              314.76
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              314.76,
+              73,
+              387.07
+            ],
+            "action_bbox": [
+              75,
+              314.76,
+              349,
+              387.07
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              387.07,
+              73,
+              421.52
+            ],
+            "action_bbox": [
+              75,
+              387.07,
+              349,
+              421.52
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              421.52,
+              73,
+              436.38
+            ],
+            "action_bbox": [
+              75,
+              421.52,
+              349,
+              436.38
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              436.38,
+              73,
+              450.35
+            ],
+            "action_bbox": [
+              75,
+              436.38,
+              349,
+              450.35
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              450.35,
+              73,
+              477.02
+            ],
+            "action_bbox": [
+              75,
+              450.35,
+              349,
+              477.02
+            ]
+          },
+          {
+            "code_bbox": [
+              28,
+              477.02,
+              73,
+              492.64
+            ],
+            "action_bbox": [
+              75,
+              477.02,
+              349,
+              492.64
+            ]
+          }
+        ],
+        "codes": [
+          "F0",
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "F5",
+          "F6",
+          "F7",
+          "F8",
+          "F9",
+          "FC",
+          "FE"
+        ],
+        "selection": "lines"
+      },
+      "symbol_layout": {
+        "rows": [
+          [
+            392,
+            416
+          ],
+          [
+            417,
+            442
+          ],
+          [
+            443,
+            469
+          ],
+          [
+            470,
+            491
+          ]
+        ],
+        "columns": {
+          "label": [
+            32,
+            105
+          ],
+          "meaning": [
+            108,
+            349
+          ]
+        }
+      },
+      "app": {
+        "control_labels": [
+          {
+            "role": "main-power",
+            "page": 158,
+            "bbox": [
+              30,
+              366,
+              80,
+              392
+            ]
+          },
+          {
+            "role": "dc-usb",
+            "page": 158,
+            "bbox": [
+              30,
+              395,
+              80,
+              421
+            ]
+          },
+          {
+            "role": "ac-power-1",
+            "page": 158,
+            "bbox": [
+              280,
+              378,
+              349,
+              395
+            ]
+          },
+          {
+            "role": "ac-power-2",
+            "page": 158,
+            "bbox": [
+              280,
+              395,
+              349,
+              413
+            ]
+          }
+        ]
+      },
+      "media": {
+        "inbox": {
+          "title_bbox": [
+            25,
+            248,
+            349,
+            270
+          ],
+          "consume_bbox": [
+            25,
+            280,
+            349,
+            492
+          ],
+          "cards": [
+            {
+              "id": "main",
+              "label_bbox": [
+                30,
+                404,
+                139,
+                430
+              ]
+            },
+            {
+              "id": "cable",
+              "label_bbox": [
+                140,
+                404,
+                243,
+                430
+              ]
+            },
+            {
+              "id": "manual",
+              "label_bbox": [
+                245,
+                404,
+                349,
+                430
+              ]
+            }
+          ],
+          "tip": {
+            "label_bbox": [
+              25,
+              460,
+              84,
+              490
+            ],
+            "body_bbox": [
+              84,
+              460,
+              349,
+              490
+            ]
+          }
+        },
+        "overview": {
+          "title_bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "consume_bboxes": [
+            [
+              25,
+              55,
+              350,
+              500
+            ]
+          ],
+          "views": {
+            "front": {
+              "caption_bbox": [
+                25,
+                55,
+                349,
+                73
+              ],
+              "callouts": {
+                "power": {
+                  "bbox": [
+                    27,
+                    75,
+                    125,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "lcd": {
+                  "bbox": [
+                    300,
+                    74,
+                    348,
+                    90
+                  ],
+                  "label_only": true
+                },
+                "dc12": {
+                  "bbox": [
+                    27,
+                    108,
+                    127,
+                    131
+                  ],
+                  "label_only": false
+                },
+                "dc_usb": {
+                  "bbox": [
+                    27,
+                    134,
+                    127,
+                    150
+                  ],
+                  "label_only": true
+                },
+                "usb_c_30": {
+                  "bbox": [
+                    27,
+                    151,
+                    130,
+                    180
+                  ],
+                  "label_only": false
+                },
+                "usb_a": {
+                  "bbox": [
+                    27,
+                    181,
+                    130,
+                    208
+                  ],
+                  "label_only": false
+                },
+                "usb_c_140": {
+                  "bbox": [
+                    27,
+                    208,
+                    131,
+                    237
+                  ],
+                  "label_only": false
+                },
+                "led_button": {
+                  "bbox": [
+                    265,
+                    90,
+                    348,
+                    105
+                  ],
+                  "label_only": true
+                },
+                "led": {
+                  "bbox": [
+                    295,
+                    113,
+                    348,
+                    129
+                  ],
+                  "label_only": true
+                },
+                "ac_power_1": {
+                  "bbox": [
+                    265,
+                    130,
+                    348,
+                    145
+                  ],
+                  "label_only": true
+                },
+                "ac_power_2": {
+                  "bbox": [
+                    265,
+                    147,
+                    348,
+                    163
+                  ],
+                  "label_only": true
+                },
+                "ac_output": {
+                  "bbox": [
+                    260,
+                    170,
+                    348,
+                    204
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "right": {
+              "caption_bbox": [
+                25,
+                369,
+                349,
+                387
+              ],
+              "callouts": {
+                "dc_input": {
+                  "bbox": [
+                    27,
+                    394,
+                    226,
+                    425
+                  ],
+                  "label_only": false
+                },
+                "ac_input": {
+                  "bbox": [
+                    27,
+                    450,
+                    130,
+                    474
+                  ],
+                  "label_only": false
+                }
+              }
+            },
+            "left": {
+              "caption_bbox": [
+                25,
+                248,
+                349,
+                265
+              ],
+              "callouts": {
+                "handle": {
+                  "bbox": [
+                    27,
+                    265,
+                    130,
+                    279
+                  ],
+                  "label_only": true
+                },
+                "expansion": {
+                  "bbox": [
+                    27,
+                    309,
+                    132,
+                    332
+                  ],
+                  "label_only": false
+                }
+              }
+            }
+          },
+          "presentation": "reference-figures"
+        },
+        "operation_panels": [
+          {
+            "id": "main-power",
+            "physical_page": 147,
+            "bbox": [
+              27,
+              74,
+              345,
+              203
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        82,
+                        344,
+                        97
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        97,
+                        344,
+                        110
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        257,
+                        110,
+                        344,
+                        123
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        257,
+                        123,
+                        344,
+                        132
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  166,
+                  167,
+                  343,
+                  174
+                ],
+                [
+                  166,
+                  174,
+                  343,
+                  192
+                ],
+                [
+                  166,
+                  192,
+                  343,
+                  199
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "ac-output",
+            "physical_page": 147,
+            "bbox": [
+              27,
+              281,
+              345,
+              495
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        344,
+                        343,
+                        359
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        359,
+                        343,
+                        370
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        280,
+                        371,
+                        343,
+                        385
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        280,
+                        385,
+                        343,
+                        399
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                281,
+                340,
+                300
+              ],
+              "supporting_copy_bboxes": [
+                [
+                  43,
+                  308,
+                  341,
+                  331
+                ]
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "dc-usb-output",
+            "physical_page": 148,
+            "bbox": [
+              27,
+              48,
+              345,
+              273
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "on",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        79,
+                        343,
+                        93
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        93,
+                        343,
+                        105
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        288,
+                        105,
+                        343,
+                        119
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        288,
+                        119,
+                        343,
+                        131
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                40,
+                55,
+                341,
+                72
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "energy-saving",
+            "physical_page": 149,
+            "bbox": [
+              27,
+              120,
+              345,
+              231
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "toggle",
+                  "parts": [
+                    {
+                      "role": "label",
+                      "bbox": [
+                        162,
+                        172,
+                        342,
+                        186
+                      ],
+                      "selection": "lines"
+                    },
+                    {
+                      "role": "instruction",
+                      "bbox": [
+                        158,
+                        220,
+                        342,
+                        231
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "mode_label_bbox": [
+                211,
+                204,
+                300,
+                220
+              ],
+              "selection": "lines"
+            }
+          },
+          {
+            "id": "led-light",
+            "physical_page": 149,
+            "bbox": [
+              27,
+              357,
+              345,
+              494
+            ],
+            "copy": {
+              "steps": [
+                {
+                  "id": "light",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        403,
+                        343,
+                        423
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "sos",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        432,
+                        343,
+                        452
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                },
+                {
+                  "id": "off",
+                  "parts": [
+                    {
+                      "role": "summary",
+                      "bbox": [
+                        253,
+                        457,
+                        343,
+                        487
+                      ],
+                      "selection": "lines"
+                    }
+                  ]
+                }
+              ],
+              "prerequisite_bbox": [
+                43,
+                359,
+                342,
+                382
+              ],
+              "sos_label_bbox": [
+                232,
+                434,
+                252,
+                450
+              ],
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "structured_regions": {
+        "symbols": [
+          {
+            "physical_page": 141,
+            "bbox": [
+              25,
+              367,
+              349,
+              493
+            ]
+          },
+          {
+            "physical_page": 142,
+            "bbox": [
+              25,
+              25,
+              349,
+              220
+            ]
+          }
+        ],
+        "troubleshooting": [
+          {
+            "physical_page": 155,
+            "bbox": [
+              25,
+              198,
+              349,
+              497
+            ]
+          }
+        ]
+      },
+      "preface_candidate": {
+        "path": "source/preface_candidates.json",
+        "status": "preview-only-pending-review"
+      },
+      "table_headers": {
+        "symbols": [
+          [
+            32,
+            375,
+            106,
+            392
+          ],
+          [
+            108,
+            375,
+            349,
+            392
+          ]
+        ],
+        "troubleshooting": [
+          [
+            28,
+            198,
+            73,
+            215
+          ],
+          [
+            75,
+            198,
+            349,
+            215
+          ]
+        ],
+        "specifications": [
+          [
+            25,
+            55,
+            350,
+            72
+          ],
+          [
+            25,
+            183,
+            350,
+            199
+          ],
+          [
+            25,
+            285,
+            350,
+            301
+          ],
+          [
+            25,
+            423,
+            350,
+            439
+          ]
+        ]
+      },
+      "specification_footnotes_bbox": [
+        25,
+        470,
+        350,
+        501
+      ],
+      "table_event_y": {
+        "troubleshooting": 198
+      },
+      "safety": {
+        "warning_bbox": [
+          55,
+          68,
+          130,
+          88
+        ],
+        "lead_bbox": [
+          131,
+          65,
+          349,
+          90
+        ],
+        "intro_bbox": [
+          25,
+          96,
+          349,
+          115
+        ],
+        "precautions_bbox": [
+          25,
+          114,
+          349,
+          273
+        ],
+        "maintenance_heading_bbox": [
+          25,
+          280,
+          349,
+          298
+        ],
+        "maintenance_body_bbox": [
+          25,
+          301,
+          351,
+          337
+        ],
+        "expected_precautions": 8
+      },
+      "pending_source_review": [
+        "preface",
+        "nl-app-import-markup"
+      ],
+      "reference_consumed_regions": [
+        {
+          "slug": "ups_connection",
+          "section_id": "ups",
+          "physical_page": 151,
+          "bbox": [
+            27,
+            210,
+            342,
+            337
+          ]
+        },
+        {
+          "slug": "ac_wall_charging",
+          "section_id": "charging",
+          "physical_page": 153,
+          "bbox": [
+            30,
+            199,
+            343,
+            296
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "section_id": "charging",
+          "physical_page": 154,
+          "bbox": [
+            28,
+            25,
+            342,
+            166
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "section_id": "charging",
+          "physical_page": 154,
+          "bbox": [
+            28,
+            306,
+            341,
+            435
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "section_id": "extra_battery",
+          "physical_page": 152,
+          "bbox": [
+            28,
+            99,
+            344,
+            305
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "section_id": "extra_battery",
+          "physical_page": 152,
+          "bbox": [
+            28,
+            424,
+            344,
+            498
+          ]
+        }
+      ],
+      "reference_captions": [
+        {
+          "slug": "ac_wall_charging",
+          "physical_page": 153,
+          "labels": [
+            {
+              "bbox": [
+                178.949,
+                273.467,
+                329.204,
+                289.065
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "solar_four",
+          "physical_page": 154,
+          "labels": [
+            {
+              "bbox": [
+                272.861,
+                88.303,
+                323.768,
+                95.903
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "car_charging",
+          "physical_page": 154,
+          "labels": [
+            {
+              "bbox": [
+                245.375,
+                310.049,
+                274.384,
+                318.849
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                184.949,
+                405.397,
+                326.232,
+                412.997
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_connection",
+          "physical_page": 152,
+          "labels": [
+            {
+              "bbox": [
+                168.282,
+                284.503,
+                185.258,
+                290.903
+              ],
+              "selection": "lines"
+            }
+          ]
+        },
+        {
+          "slug": "battery_kit",
+          "physical_page": 152,
+          "labels": [
+            {
+              "bbox": [
+                51.151,
+                483.949,
+                259.381,
+                490.349
+              ],
+              "selection": "lines"
+            },
+            {
+              "bbox": [
+                305.818,
+                453.749,
+                340.678,
+                468.912
+              ],
+              "selection": "lines"
+            }
+          ]
+        }
+      ],
+      "callout_regions": [
+        {
+          "physical_page": 154,
+          "label_bbox": [
+            37.771,
+            190.903,
+            71.809,
+            200.955
+          ],
+          "body_bboxes": [
+            [
+              85,
+              170,
+              341,
+              225
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "reference_ids": [
+    "ups_connection",
+    "ac_wall_charging",
+    "solar_four",
+    "car_charging",
+    "battery_connection",
+    "battery_kit",
+    "overview_front",
+    "overview_left",
+    "overview_right"
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "source": "HTE154-EU-9国语言-0924.ai",
+  "status": "operator review required",
+  "native_method": "PDF-native character redaction + embedded original font insertion; no generated technical artwork; source AI untouched",
+  "evidence": {
+    "nameplate": "Same source overview external AC callouts and specifications p129,147,165:220–240V~50Hz10A. Old approved six-language PDF EN p8 has the same wrong100–120V15A miniature label, so cannot substitute it as correct authority.",
+    "nl_ac_label": "Callout arrow reaches AC button; fixed product AC marking and native AC output section identify that button. Change DC to AC in p136, both applicable rows of p142 and p149."
+  },
+  "items": [
+    {
+      "locale": "pt",
+      "physical_page": 118,
+      "status": "candidate only; not approved or bound to output",
+      "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "candidate_pdf": "pt-p118-candidate.pdf",
+      "candidate_pdf_sha256": "b9d0df36883ff95594c65d0c21435559c13a605863223498910d4db5720fe46a",
+      "edits": [
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            172.19363403320312,
+            396.7722473144531,
+            174.46133422851562,
+            398.527099609375
+          ],
+          "origin": [
+            172.19363403320312,
+            398.1683044433594
+          ],
+          "before": "100",
+          "after": "220",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "CA 100 V-120 V 15 A máx."
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            176.32684326171875,
+            396.7722473144531,
+            178.44625854492188,
+            398.527099609375
+          ],
+          "origin": [
+            176.32684326171875,
+            398.1683044433594
+          ],
+          "before": "120",
+          "after": "240",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "CA 100 V-120 V 15 A máx."
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            179.9283905029297,
+            396.7722473144531,
+            181.19337463378906,
+            398.527099609375
+          ],
+          "origin": [
+            179.9283905029297,
+            398.1683044433594
+          ],
+          "before": "15",
+          "after": "10",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "CA 100 V-120 V 15 A máx."
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "nameplate",
+          "bbox": [
+            166,
+            392,
+            203,
+            411
+          ],
+          "before": "pt-p118-nameplate-before.png",
+          "candidate": "pt-p118-nameplate-candidate.png"
+        }
+      ]
+    },
+    {
+      "locale": "nl",
+      "physical_page": 136,
+      "status": "candidate only; not approved or bound to output",
+      "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "candidate_pdf": "nl-p136-candidate.pdf",
+      "candidate_pdf_sha256": "a7153178bf7745c88ae287494342278c5b0ec5a3806178050762e98ec540b6b9",
+      "edits": [
+        {
+          "id": "F-NL-AC-LABEL",
+          "bbox": [
+            327.78265380859375,
+            253.1223907470703,
+            337.85565185546875,
+            261.78839111328125
+          ],
+          "origin": [
+            327.78265380859375,
+            259.9473876953125
+          ],
+          "before": "DC",
+          "after": "AC",
+          "font": "Repair28",
+          "size": 7.0,
+          "source_span": "Aan/uit-knop voor DC"
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            172.1945037841797,
+            396.771728515625,
+            174.4622039794922,
+            398.5265808105469
+          ],
+          "origin": [
+            172.1945037841797,
+            398.16778564453125
+          ],
+          "before": "100",
+          "after": "220",
+          "font": "Repair24",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V-120 V, 15 A max."
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            176.3277130126953,
+            396.771728515625,
+            178.44712829589844,
+            398.5265808105469
+          ],
+          "origin": [
+            176.3277130126953,
+            398.16778564453125
+          ],
+          "before": "120",
+          "after": "240",
+          "font": "Repair24",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V-120 V, 15 A max."
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            180.2598419189453,
+            396.771728515625,
+            181.52569580078125,
+            398.5265808105469
+          ],
+          "origin": [
+            180.2598419189453,
+            398.16778564453125
+          ],
+          "before": "15",
+          "after": "10",
+          "font": "Repair24",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V-120 V, 15 A max."
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "nameplate",
+          "bbox": [
+            166,
+            392,
+            203,
+            411
+          ],
+          "before": "nl-p136-nameplate-before.png",
+          "candidate": "nl-p136-nameplate-candidate.png"
+        },
+        {
+          "id": "ac-label",
+          "bbox": [
+            252,
+            247,
+            344,
+            269
+          ],
+          "before": "nl-p136-ac-label-before.png",
+          "candidate": "nl-p136-ac-label-candidate.png"
+        }
+      ]
+    },
+    {
+      "locale": "pl",
+      "physical_page": 154,
+      "status": "candidate only; not approved or bound to output",
+      "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "candidate_pdf": "pl-p154-candidate.pdf",
+      "candidate_pdf_sha256": "ead0c993d315aadf90560718dd1d63ebf0b58bae1381fd3a155e5d5e9bfac215",
+      "edits": [
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            172.1945037841797,
+            396.771728515625,
+            174.4622039794922,
+            398.5265808105469
+          ],
+          "origin": [
+            172.1945037841797,
+            398.16778564453125
+          ],
+          "before": "100",
+          "after": "220",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V – 120 V, maks. 15 AWEJŚCIE DC (8020)"
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            177.18272399902344,
+            396.771728515625,
+            179.30213928222656,
+            398.5265808105469
+          ],
+          "origin": [
+            177.18272399902344,
+            398.16778564453125
+          ],
+          "before": "120",
+          "after": "240",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V – 120 V, maks. 15 AWEJŚCIE DC (8020)"
+        },
+        {
+          "id": "F-RIGHT-NAMEPLATE",
+          "bbox": [
+            185.15707397460938,
+            396.771728515625,
+            186.42221069335938,
+            398.5265808105469
+          ],
+          "origin": [
+            185.15707397460938,
+            398.16778564453125
+          ],
+          "before": "15",
+          "after": "10",
+          "font": "Repair17",
+          "size": 1.4466999769210815,
+          "source_span": "AC 100 V – 120 V, maks. 15 AWEJŚCIE DC (8020)"
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "nameplate",
+          "bbox": [
+            166,
+            392,
+            203,
+            411
+          ],
+          "before": "pl-p154-nameplate-before.png",
+          "candidate": "pl-p154-nameplate-candidate.png"
+        }
+      ]
+    },
+    {
+      "locale": "nl",
+      "physical_page": 142,
+      "status": "candidate only; not approved or bound to output",
+      "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "candidate_pdf": "nl-p142-candidate.pdf",
+      "candidate_pdf_sha256": "027d7e842c8d5a105cf9cf578220d4a9832ff4ac88f773883116a724ca2ab330",
+      "edits": [
+        {
+          "id": "F-NL-AC-LABEL",
+          "bbox": [
+            143.27232360839844,
+            145.9611053466797,
+            150.5973358154297,
+            151.9611053466797
+          ],
+          "origin": [
+            143.27232360839844,
+            150.7611083984375
+          ],
+          "before": "DC",
+          "after": "AC",
+          "font": "Repair6",
+          "size": 5.0,
+          "source_span": "Aan/uit-knop voor DC"
+        },
+        {
+          "id": "F-NL-AC-LABEL",
+          "bbox": [
+            143.27232360839844,
+            76.25599670410156,
+            150.5973358154297,
+            82.25599670410156
+          ],
+          "origin": [
+            143.27232360839844,
+            81.05599975585938
+          ],
+          "before": "DC",
+          "after": "AC",
+          "font": "Repair6",
+          "size": 5.0,
+          "source_span": "Aan/uit-knop voor DC"
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "ac-shortcut-1",
+          "bbox": [
+            95,
+            69,
+            157,
+            86
+          ],
+          "before": "nl-p142-ac-shortcut-1-before.png",
+          "candidate": "nl-p142-ac-shortcut-1-candidate.png"
+        },
+        {
+          "id": "ac-shortcut-3",
+          "bbox": [
+            95,
+            140,
+            157,
+            157
+          ],
+          "before": "nl-p142-ac-shortcut-3-before.png",
+          "candidate": "nl-p142-ac-shortcut-3-candidate.png"
+        }
+      ]
+    },
+    {
+      "locale": "nl",
+      "physical_page": 149,
+      "status": "candidate only; not approved or bound to output",
+      "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "candidate_pdf": "nl-p149-candidate.pdf",
+      "candidate_pdf_sha256": "48e5114ee80cf4257f2b5f9ece7923a232ebc25cd2fc5d27353a5e2033b1e53d",
+      "edits": [
+        {
+          "id": "F-NL-AC-LABEL",
+          "bbox": [
+            323.4082336425781,
+            433.92437744140625,
+            330.92559814453125,
+            441.1243896484375
+          ],
+          "origin": [
+            323.4082336425781,
+            439.68438720703125
+          ],
+          "before": "DC",
+          "after": "AC",
+          "font": "Repair6",
+          "size": 5.548675537109375,
+          "source_span": "Aan/uit-knop voor DC"
+        }
+      ],
+      "comparisons": [
+        {
+          "id": "ac-app",
+          "bbox": [
+            274,
+            427,
+            337,
+            448
+          ],
+          "before": "nl-p149-ac-app-before.png",
+          "candidate": "nl-p149-ac-app-candidate.png"
+        }
+      ]
+    }
+  ]
+}

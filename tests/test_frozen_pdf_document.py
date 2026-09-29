@@ -5,7 +5,8 @@ from types import SimpleNamespace
 import unittest
 
 from tools.frozen_ai_flow import flow_text, paragraph
-from tools.frozen_pdf_document import _SECTIONS, _body_prose, ordered_pages
+from tools.frozen_ai_source import FrozenBook
+from tools.frozen_pdf_document import _SECTIONS, _body_prose, _reference_nodes, ordered_pages
 from tools.manual_ir.flow import validate_flow_node
 from tools.web_composite_presentation import supports_figure_contract
 
@@ -71,6 +72,63 @@ def _book():
 
 
 class FrozenPDFDocumentTests(unittest.TestCase):
+    def test_explicit_notice_regions_join_split_native_body_blocks(self):
+        book = object.__new__(FrozenBook)
+        book.language = "pl"
+        book.correct = lambda value: value
+        book.records = {"symbols": {"rows": [{"label": name} for name in
+                                           ("OSTRZEŻENIE", "PRZESTROGA", "Uwaga", "WSKAZÓWKA")]}}
+        book.target_layout = {"callout_regions": [{
+            "physical_page": 173, "label_bbox": [25, 190, 100, 202],
+            "body_bboxes": [[110, 170, 350, 181], [110, 181, 350, 225]],
+        }]}
+        blocks = [_block("First warning sentence.", 173, 120),
+                  _block("Second warning sentence.", 182, 120),
+                  _block("PRZESTROGA", 191, 30)]
+        notices, consumed = book.callouts(blocks, 173)
+        self.assertEqual({0, 1, 2}, consumed)
+        self.assertEqual(1, len(notices))
+        body = next(slot["content"] for slot in notices[0]["component_spec"]["slots"]
+                    if slot["role"] == "body")
+        self.assertEqual(1, body.count("First warning sentence."))
+        self.assertEqual(1, body.count("Second warning sentence."))
+
+    def test_reference_overview_uses_native_view_caption_before_figure(self):
+        book = _book()
+        book.target_layout = {"media": {"overview": {"presentation": "reference-figures"}}}
+        book.records["media"] = {"overview": {"views": {"front": {"caption": "Widok z przodu"}}}}
+        figure = {"section_id": "product_overview", "slug": "overview_front_view"}
+        nodes = _reference_nodes(book, figure)
+        self.assertEqual(["Widok z przodu", "Textless reference overview_front_view"],
+                         [flow_text(value) for value in nodes])
+        self.assertEqual("heading", nodes[0]["kind"])
+        self.assertEqual(3, nodes[0]["level"])
+        book.records["media"]["overview"]["views"]["front"]["caption"] = " "
+        with self.assertRaisesRegex(ValueError, "native Overview view caption is empty"):
+            _reference_nodes(book, figure)
+
+    def test_native_heading_splits_only_recorded_merged_source_block(self):
+        book = _book()
+        charging_number = next(number for number, _, section in book.starts() if section == "charging")
+        charging_page = next(page for page in book.source["pages"]
+                             if page["physical_page"] == charging_number)
+        merged = {"bbox": [28, 316, 338, 351],
+                  "text": "CHARGING VIA CAR OUTLET\nConnect the cable to the car outlet."}
+        charging_page["blocks_visual_order"].append(merged)
+        book.records["native_body_headings"] = {"rows": [{
+            "section_id": "charging", "physical_page": charging_number,
+            "block_bbox": merged["bbox"], "heading": "CHARGING VIA CAR OUTLET", "level": 3,
+        }]}
+        _, pages = ordered_pages(book)
+        charging = next(page for page in pages if page.page_id == "charging")
+        texts = [flow_text(block) for _, block in charging.blocks]
+        self.assertEqual(1, texts.count("CHARGING VIA CAR OUTLET"))
+        self.assertEqual(1, texts.count("Connect the cable to the car outlet."))
+        book.records["native_body_headings"]["rows"][0]["heading"] = "Changed heading"
+        with self.assertRaisesRegex(ValueError, "native heading no longer starts"):
+            ordered_pages(book)
+
+
     def test_emergency_charging_lead_is_bold_without_changing_body_copy(self):
         labels = {"uk": "Режим аварійного заряджання", "pt": "Modo de carregamento de emergência",
                   "nl": "Noodoplaadmodus", "pl": "Tryb ładowania awaryjnego"}

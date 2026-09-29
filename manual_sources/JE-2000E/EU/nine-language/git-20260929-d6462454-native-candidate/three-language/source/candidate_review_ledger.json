@@ -1,0 +1,125 @@
+{
+  "schema_version": "manual-native-intake-candidate-ledger/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU"
+  },
+  "publication_allowed": false,
+  "entries": [
+    {
+      "id": "missing-new-prefaces",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "physical_page": 4,
+      "status": "pending-review",
+      "finding": "Page duplicates DE/IT/UK prefaces. New locale prefaces are absent. Candidate paragraphs retain separate JE1000F source provenance; legal Jackery Inc. substitution needs review.",
+      "candidate_file": "source/preface_candidates.json"
+    },
+    {
+      "id": "nl-expansion-label-position",
+      "locale": "nl",
+      "physical_page": 156,
+      "status": "source-geometry-mapped",
+      "finding": "Native 1 × DC-uitbreidingspoort label is printed at y241.8–250.2 inside preceding DC8020 cell. Bind this unchanged native label to its own 75A input row with explicit independent label_bbox; do not duplicate it into DC8020 label.",
+      "source_bbox": [
+        31.9,
+        241.8,
+        110.3,
+        250.2
+      ]
+    },
+    {
+      "id": "nl-app-import-markup",
+      "locale": "nl",
+      "physical_pages": [
+        158,
+        159
+      ],
+      "status": "pending-errata-review",
+      "finding": "Literal escaped Jackery quote and <g id=\"1\"> markup appear in source text. Retain raw source evidence; exact cleanup must be recorded."
+    },
+    {
+      "id": "pt-back-cover-marker",
+      "locale": "pt",
+      "physical_page": 140,
+      "status": "production-marker-outside-body",
+      "finding": "Native production marker 封底背面 is wholly above 25pt body boundary on p140. Retain raw direct source evidence; exclude from rendered manual body and verify no output residue.",
+      "source_bbox": [
+        150.288101,
+        -3.005322,
+        240.044083,
+        23.001476
+      ]
+    },
+    {
+      "id": "pt-operation-state-labels",
+      "locale": "pt",
+      "physical_pages": [
+        128,
+        129
+      ],
+      "status": "preserved-source",
+      "finding": "Printed ON / Apagado labels retained as native source copy; no silent retranslation."
+    },
+    {
+      "id": "ac-outlet-prose-tension",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "status": "preserved-source",
+      "finding": "Operation text describes two independent pairs of AC outlets; specifications declare three outputs. Preserve source statements and do not infer a fourth outlet."
+    },
+    {
+      "id": "lcd-shared-temperature-number",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "status": "explicit-semantic-mapping",
+      "finding": "27 semantic rows; shared printed number 23 for high and low temperature. Connected batteries is row21. Diagram x8 is not expansion capacity; actual limit is five packs."
+    },
+    {
+      "id": "native-artwork-crop-qa",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "status": "source-local-crop-corrected",
+      "finding": "QR uses native image bounds with margin [199,67,250,119]; phone screenshots use [110,209,251,339] preserving full images while excluding step captions; App control gray panel uses [28,350,341,433]. Main-power supporting-copy gray panel and pointer removed with native graphics remove_if_touched at [175,180,176,181] and [182,160,183,161], preserving product and hand; selectable support text remains in operation recipe. Overview left/right panels extended to y371/y499 to retain full product lower contours while excluding view headings and page numbers. App result crops exclude step captions and retain the full source-clipped phone screenshots: PL/PT [44,80,320,238], NL [44,89,320,247]. Operation main-power crop widens to x341; AC/DC include the full prerequisite region for existing normal live-copy renderer."
+    },
+    {
+      "id": "native-renderer-copy-binding",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "status": "source-local-geometry-verified",
+      "finding": "Use the existing normal operation renderer with source-local figure_targets and no presentation_mode. Main-power 3-paragraph standby copy and AC 2-pair prose are native component slots. Overview captions are native headings; the 3 annotated panels retain hidden semantic callouts. Six reference diagram regions consume all embedded native figure text; declared >=4pt annotation lines remain live captions, while sub-2pt fixed product engravings are excluded from body flow. Explicit solar callout region groups both native body blocks."
+    },
+    {
+      "id": "native-operation-table-lines",
+      "locales": [
+        "pl",
+        "pt",
+        "nl"
+      ],
+      "status": "majority-line-selection",
+      "finding": "Operation table cells and On/Off instruction parts use native line-majority selection, preventing partial adjacent labels at cell edges. Troubleshooting cells declare the same line selector, including NL F8/F9 boundary."
+    },
+    {
+      "id": "pl-warranty-email-native-frame-recovery",
+      "locale": "pl",
+      "physical_page": 176,
+      "status": "native-layout-recovery",
+      "finding": "PDF line-end hyphen yields hello.eu@- jackery.com; original read-only Illustrator frame494 contains hello.eu@jackery.com. Exact whole-block source erratum restores native email with the frame file hash and AI hash. PT/NL native emails are already intact."
+    }
+  ]
+}

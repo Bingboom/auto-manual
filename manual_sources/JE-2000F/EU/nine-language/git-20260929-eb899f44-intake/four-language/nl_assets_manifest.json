@@ -1,0 +1,1385 @@
+{
+  "target": {
+    "model": "JE-2000F",
+    "region": "EU"
+  },
+  "technical_version": "git-20260929-eb899f44-candidate1",
+  "text_source": {
+    "filename": "je2000f-eu-nine-languages.ai",
+    "sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+  },
+  "pending": [],
+  "assets": {
+    "overview.front": {
+      "path": "figures/nl/p136_front_view.png",
+      "sha256": "958e672c19c97c912a0b7fa010b7784da3343564a7991ca80673ddc15aaf53a4",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "overview.right": {
+      "path": "figures/nl/p136_right_view.png",
+      "sha256": "c46e2e275560f2a23e4653445fb319d2d24b56113fe4cb098176dc8e9a390170",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "lcd.map": {
+      "path": "figures/nl/p137_lcd_display.png",
+      "sha256": "5577802589c0725f4d8f19840d97bbfe84e9196cef3fbfa4ad1f273f6751b774",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "lcd.mode": {
+      "path": "figures/nl/p141_lcd_mode_art.png",
+      "sha256": "d0947306e4b4fd4f071f937480f4fc2f37bb5c4e0c179f70ca58fc6666c3eeb8",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "operation.main-power": {
+      "path": "artwork/nl/operation-main-power.png",
+      "sha256": "32a5cbc875cb7ffce6fb4f0f201cd2816122062ef94105194580008a6b534bb5",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        75,
+        345,
+        193
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            75,
+            345,
+            193
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            160,
+            176,
+            161,
+            177
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            182,
+            139,
+            183,
+            140
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            269,
+            131,
+            271,
+            133
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            251,
+            90,
+            253,
+            91
+          ],
+          "images": "preserve",
+          "graphics": "remove_if_touched",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "operation.ac-output": {
+      "path": "artwork/nl/operation-ac-output.png",
+      "sha256": "fcf7d885f247b7ad6417a869ba2675133b1d0252028cf0f0df4f375b648ce32e",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        287,
+        337,
+        475
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            287,
+            337,
+            475
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "operation.dc-usb-output": {
+      "path": "artwork/nl/operation-dc-usb-output.png",
+      "sha256": "1d3a942a851a87c7a88c70c8053717bda87bf406cd8420f938de38aa090480ee",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        63,
+        337,
+        211
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            63,
+            337,
+            211
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "operation.energy-saving": {
+      "path": "artwork/nl/operation-energy-saving.png",
+      "sha256": "12c0b0c67a19cdd7c36507925047571175a857480b6e599a39401ee403c23832",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        380,
+        337,
+        475
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            380,
+            337,
+            475
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "operation.led-light": {
+      "path": "artwork/nl/operation-led-light.png",
+      "sha256": "2028f917750c4bffb30a79ecf7a5acf184748ff270d0389fb015815cceddf436",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        397,
+        337,
+        492
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            397,
+            337,
+            492
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "app.download": {
+      "path": "figures/nl/p149_app_qr_and_badges.png",
+      "sha256": "37a8cbb38296ee73ed5cae856652f9f8727de4a4b0b3623fa2f7bb0de15781f5",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "app.phone": {
+      "path": "artwork/nl/app-phone.png",
+      "sha256": "a9c6dc9112c7bde9454d4163da5e69ff0533286a34576993793948ee74f85463",
+      "content_mode": "app-ui",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        90,
+        225,
+        271,
+        378
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            90,
+            225,
+            271,
+            378
+          ]
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "app.control": {
+      "path": "artwork/nl/app-control.png",
+      "sha256": "527e8c590931fe1b6e42cf31f3ccebc70a199efdacfe868d472bd51d4b96421f",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        35,
+        396,
+        337,
+        464
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            35,
+            396,
+            337,
+            464
+          ]
+        },
+        {
+          "op": "redact_text",
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "app.result": {
+      "path": "artwork/nl/app-result.png",
+      "sha256": "bbfd27da8457189dc0efc6f6eac5e6e1ac11620ff194ac1f6de95a5bdeaefc00",
+      "content_mode": "app-ui",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        40,
+        140,
+        332,
+        289
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            40,
+            140,
+            332,
+            289
+          ]
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "inbox.main": {
+      "path": "figures/nl/p135_inbox-main.png",
+      "sha256": "b072e823617c21ee8b3a0f111e195fb4184bee777a59c8ab3166ab81c4939e0c",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "inbox.cable": {
+      "path": "figures/nl/p135_inbox-cable.png",
+      "sha256": "db4ec109c73b571c5e489f944e9f1446b72348363d1a481a7ae2ad90ee08bc30",
+      "content_mode": "textless",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "inbox.manual": {
+      "path": "figures/nl/p135_inbox-manual.png",
+      "sha256": "1d35bf87e8adb8800843e21ea0a290d27285c19174ec692748200ce6d8fc3bdb",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "app.store": {
+      "path": "figures/nl/p149_app-store.png",
+      "sha256": "9f983f1577fce4711348bc16321d0928cfe8fc4b40077ea79ccf67fd6e18625a",
+      "content_mode": "app-ui",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "app.qr": {
+      "path": "figures/nl/p149_app-qr.png",
+      "sha256": "18aa7ea899c14797d99dd5772e3b1f5adf49d0c38a4bce1787c62f9c9113d82f",
+      "content_mode": "app-ui",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "lcd.icon.wifi": {
+      "path": "figures/shared/lcd_icons/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.bluetooth": {
+      "path": "figures/shared/lcd_icons/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/2_Bluetooth_HVgvbJhq5o4EDKxhm7McCF4FnjB.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.quiet-charging": {
+      "path": "figures/shared/lcd_icons/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_WLkMbiHS1oGsOtxUCp7cRhFAn1g.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.charging-plan": {
+      "path": "figures/shared/lcd_icons/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/4_Charging_Plan_M96RbyZQxoGjRRxQHsuczeIln1b.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.self-powered": {
+      "path": "figures/shared/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/5_Self-powered_Mode_FYTnb9vttoexjbxVMchcJaobnCg.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.tou": {
+      "path": "figures/shared/lcd_icons/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/6_TOU_Mode_BjEkbz0rFo6Bw4xiwNpcod9qnnc.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.ups": {
+      "path": "figures/shared/lcd_icons/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/7_UPS_Lgdgb8pvvoGwaLxSf8ec2QeHn3c.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.ac-power": {
+      "path": "figures/shared/lcd_icons/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_HFPSbvWBgosvCux69jMcuWe6nnh.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.output-voltage-frequency": {
+      "path": "figures/shared/lcd_icons/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_Jh3JbmBDBoKlmOxaRJDcIMJAn6b.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.input-power": {
+      "path": "figures/shared/lcd_icons/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/10_Input_Power_LOAZbnxfqoHFwIxx2Myc532jnzb.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.remaining-charge-time": {
+      "path": "figures/shared/lcd_icons/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_KIWHbHFOvotGuBxJsxlcunSDnPf.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.ac-wall-charging": {
+      "path": "figures/shared/lcd_icons/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_ZpOmbCjx8oYUTVxyl4JcvcTanPe.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.car-charging": {
+      "path": "figures/shared/lcd_icons/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_DLkibYaP1ot6d5x1S0jcUr1knlb.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.solar-charging": {
+      "path": "figures/shared/lcd_icons/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_RgAUbPXNWoRxiHxKNgkc2gqDnEb.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.battery-saving": {
+      "path": "figures/shared/lcd_icons/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_ClYfbtOGSoK5q2xySXCcgehVn8f.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.charging-power-limit": {
+      "path": "figures/shared/lcd_icons/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_VLf2bJfrkoCL0CxJoMNcL5ZxnCt.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.battery-power": {
+      "path": "figures/shared/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_VLufb9exvoVLfgxz47pcfnRGnaf.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.low-battery": {
+      "path": "figures/shared/lcd_icons/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_KDk9bhs8poHUBdx96PLckPganhd.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.remaining-battery-percentage": {
+      "path": "figures/shared/lcd_icons/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_VkJcbUDbUoYC1hxrU6rc168OnJe.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.discharge-timer": {
+      "path": "figures/shared/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/20_Discharge_Timer_DHPMbkjSWoiuALxJyJ8cWyQOn0e.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.energy-saving": {
+      "path": "figures/shared/lcd_icons/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_O4Jdb5pUQoCBAqx0sfQcm9Nbntd.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.high-temperature": {
+      "path": "figures/shared/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_UmkEbOgCKoKyxoxDSINcfO6LnQd.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.low-temperature": {
+      "path": "figures/shared/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_JDMEbD96noSbyWxbOnVcgip1nab.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.fault-code": {
+      "path": "figures/shared/lcd_icons/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/25_Fault_code_Oz87bX3BGo8H7Zxe0XvcTd7FnJL.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.output-power": {
+      "path": "figures/shared/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/26_Output_Power_PviebR618oofvKxcKVRcHLlInqd.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "lcd.icon.remaining-discharge-time": {
+      "path": "figures/shared/lcd_icons/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "/Users/pika/.codex/worktrees/four-language-evidence/auto-manual2/manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_JEpobf59DoBV4dxWlnxcNtIinke.png",
+      "source_kind": "existing same-model committed native LCD icon attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.general_warning": {
+      "path": "figures/shared/symbols/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "sha256": "6749bd38fdd0b85af591d65d0d81ae591590aa5c35c7b0f72767057a953c5c67",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/1_warning_triangle_HO7FbxcSnonkYBxBvslc8RpdnIe.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.read_manual": {
+      "path": "figures/shared/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "sha256": "89dae4b809de62e67e42949d33826c6e05b147b57e94b3e9c42f4bfff9af591a",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/2_read_manual_MAQxbZ9MooQjaaxqb6qctq6Sncg.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.do_not_disassemble": {
+      "path": "figures/shared/symbols/7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "sha256": "76085a1e70083ecdcecb41bf2591353c3bced2b9385662329ab3a76c48446b7b",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/7_do_not_dismantle_EesAbUpXdo6eJIxkBL5c8yp7nPd.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.keep_away_from_fire": {
+      "path": "figures/shared/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "sha256": "a8a846e9767ac618760e6a9ac65d826fb2c092ad7450014fa30ae0894746450a",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/8_no_open_flame_E9gXbvgbaoiigFxd11rcHuY8nab.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.keep_away_from_children": {
+      "path": "figures/shared/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "sha256": "114690be6f4d77ceaebe2ed44641ba2735873d3d6415ae04738dc241392096b7",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/9_keep_away_from_children_XErWbsrH9o3xllxqHj9cktZAnnh.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.lithium_battery": {
+      "path": "figures/shared/symbols/10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "sha256": "2a61fc0919cfeca43a4dd3e9bcf3a4310314d7543f77e6af9c10f1717360eea7",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/10_li_ion_HpN6bpoYHohujqxLgYKcazSin0k.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.battery_separate_collection": {
+      "path": "figures/shared/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png",
+      "sha256": "236891c20611070753633c7c9286982284851c6df78137cfc5bc26922c6528b6",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/12_weee2_EccQbCmImosxoPxWSuOcPinpn9e.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "symbol.weee": {
+      "path": "figures/shared/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "sha256": "7e4de290ea13b86bd50fbb209b4510116116d4fb403b7ef4f83cf1c1db873989",
+      "content_mode": "textless",
+      "source_target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_path": "manual_sources/JE-2000F/EU/en/2.0/phase2/_attachments/symbols/11_weee_WGswbCb5zoaeDSxlHvyc5rFXn7g.png",
+      "source_kind": "existing same-model committed clean symbol attachment; semantic identity matched by name",
+      "locale_policy": "shared"
+    },
+    "reference.ups_connection": {
+      "path": "figures/nl/p142_ups_connection.png",
+      "sha256": "92c65c7d67554a0cdf192215eff102e47de9d9a4dbfdcb546a42a57a1fdaeb2b",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "reference.ac_wall_charging": {
+      "path": "figures/nl/p144_ac_wall_charging.png",
+      "sha256": "46a995285260ff2ab2c17798e0cd8562ceb2d2b6a2b1a76fa4fec13b9e53e099",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    },
+    "reference.solar_single": {
+      "path": "artwork/nl/solar_single.png",
+      "sha256": "a65f4ee2e2332f79a3cc5f8fab5ce3fff11255d287d4bcce4b96e770e7a47148",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        25,
+        384,
+        345,
+        497
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25,
+            384,
+            345,
+            497
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            275.08721923828125,
+            485.0452880859375,
+            325.2052001953125,
+            492.24530029296875
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "reference.solar_four": {
+      "path": "artwork/nl/solar_four.png",
+      "sha256": "6d04a15133624235da14d2ce0925f847b50f3aeacfe372a52926173e8a75e2d2",
+      "content_mode": "fixed-product-markings",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+      "clip_points": [
+        25,
+        24,
+        345,
+        176
+      ],
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            25,
+            24,
+            345,
+            176
+          ]
+        },
+        {
+          "op": "redact_text_region",
+          "bbox_pt": [
+            263.8905944824219,
+            158.01670837402344,
+            321.62860107421875,
+            165.21670532226562
+          ],
+          "images": "preserve",
+          "graphics": "preserve",
+          "fill": null
+        }
+      ],
+      "extraction_recipe": "extraction_recipes/je2000f_eu_nl_native.json"
+    },
+    "reference.car_charging": {
+      "path": "figures/nl/p145_car_charging.png",
+      "sha256": "328b3fe5fe77f997232ed48dca34ac06699a745632a0963752df73049a53f919",
+      "content_mode": "source-finished-panel",
+      "locale": "nl",
+      "target": {
+        "model": "JE-2000F",
+        "region": "EU"
+      },
+      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+    }
+  },
+  "figures": [
+    {
+      "slug": "ups_connection",
+      "asset_key": "reference.ups_connection"
+    },
+    {
+      "slug": "ac_wall_charging",
+      "asset_key": "reference.ac_wall_charging"
+    },
+    {
+      "slug": "solar_single",
+      "asset_key": "reference.solar_single"
+    },
+    {
+      "slug": "solar_four",
+      "asset_key": "reference.solar_four"
+    },
+    {
+      "slug": "car_charging",
+      "asset_key": "reference.car_charging"
+    },
+    {
+      "slug": "front_view",
+      "asset_key": "overview.front"
+    },
+    {
+      "slug": "right_view",
+      "asset_key": "overview.right"
+    }
+  ],
+  "web_contract": {
+    "profiles": {
+      "document": {
+        "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+      },
+      "web": {
+        "entry_source_pattern": "00_preface*",
+        "excluded_source_patterns": [
+          "cover*",
+          "00_toc*",
+          "99_back_cover*"
+        ]
+      }
+    },
+    "figure_coverage": {
+      "requirements": []
+    },
+    "preface": {
+      "source_patterns": [
+        "00_preface*"
+      ],
+      "targets": []
+    },
+    "fcc": {
+      "source_patterns": [
+        "*01_fcc"
+      ],
+      "mark_asset_ref": "mark/fcc",
+      "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+      "right_column_markers": [
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "en",
+          "marker": "If this equipment does cause harmful interference"
+        },
+        {
+          "source_patterns": [
+            "p22_01_fcc"
+          ],
+          "language": "fr",
+          "marker": "Si cet équipement trouble la réception"
+        },
+        {
+          "source_patterns": [
+            "p38_01_fcc"
+          ],
+          "language": "es",
+          "marker": "Si este aparato causa interferencias dañinas"
+        },
+        {
+          "source_patterns": [
+            "01_fcc"
+          ],
+          "language": "pt-BR",
+          "marker": "Se este equipamento causar interferência prejudicial"
+        }
+      ]
+    },
+    "meaning_symbols": {
+      "source_patterns": [
+        "symbols_*"
+      ],
+      "signal_row_count": 4
+    },
+    "troubleshooting_table": {
+      "source_patterns": [
+        "troubleshooting_*"
+      ]
+    },
+    "specifications": {
+      "source_patterns": [
+        "spec_*"
+      ],
+      "section_count": 4,
+      "circled_reference_count": 2
+    },
+    "warranty": {
+      "source_patterns": [
+        "*11_warranty"
+      ],
+      "section_count": 6,
+      "period_years": [
+        "3",
+        "2"
+      ]
+    },
+    "in_the_box": {
+      "semantic_source_patterns": [
+        "box_contents_*"
+      ],
+      "source_patterns": [
+        "*02_whats_in_the_box"
+      ]
+    },
+    "product_overview": {
+      "source_patterns": []
+    },
+    "operations": {
+      "source_patterns": [
+        "*05_operation_guide_placeholder",
+        "*05_operation_guide_je2000e"
+      ],
+      "auto_resume_table": {
+        "body_rows": 4
+      },
+      "key_combination_table": {
+        "minimum_body_rows": 3
+      },
+      "lcd_mode_table": {
+        "image_key": "operation/lcd_mode",
+        "body_rows": 6
+      },
+      "figures": [
+        {
+          "id": "main-power",
+          "image_key": "operation/main_power",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            74.5,
+            18.0,
+            19.0,
+            31.0
+          ],
+          "capture_prerequisite": false,
+          "capture_following_lines": 1,
+          "web_replace_key": "operation.main-power",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ]
+        },
+        {
+          "id": "ac-output",
+          "image_key": "operation/ac_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            78.0,
+            21.0,
+            19.5,
+            28.0
+          ],
+          "prerequisite_rect": [
+            1.5,
+            1.5,
+            45.0,
+            8.5
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.ac-output",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "capture_following_lines": 0
+        },
+        {
+          "id": "dc-usb-output",
+          "image_key": "operation/dc_usb_output",
+          "layout": "status-right",
+          "step_ids": [
+            "on",
+            "off"
+          ],
+          "steps_rect": [
+            79.0,
+            16.0,
+            19.0,
+            26.0
+          ],
+          "prerequisite_rect": [
+            1.5,
+            1.5,
+            46.0,
+            8.5
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.dc-usb-output",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "capture_following_lines": 0
+        },
+        {
+          "id": "energy-saving",
+          "image_key": "operation/energy_saving",
+          "layout": "footer-overlay",
+          "step_ids": [
+            "toggle"
+          ],
+          "steps_rect": [
+            55.0,
+            75.0,
+            40.0,
+            18.0
+          ],
+          "capture_prerequisite": false,
+          "web_replace_key": "operation.energy-saving",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "capture_following_lines": 0
+        },
+        {
+          "id": "led-light",
+          "image_key": "operation/led_light",
+          "layout": "footer-panel",
+          "step_ids": [
+            "light",
+            "sos",
+            "off"
+          ],
+          "capture_prerequisite": true,
+          "web_replace_key": "operation.led-light",
+          "composite_locales": [
+            {
+              "source_patterns": [
+                "05_operation_guide_placeholder"
+              ],
+              "locale": "en"
+            },
+            {
+              "source_patterns": [
+                "p26_05_operation_guide_placeholder"
+              ],
+              "locale": "fr"
+            },
+            {
+              "source_patterns": [
+                "p42_05_operation_guide_placeholder"
+              ],
+              "locale": "es"
+            },
+            {
+              "locale": "de"
+            },
+            {
+              "locale": "it"
+            }
+          ],
+          "capture_following_lines": 0
+        }
+      ]
+    },
+    "app_download": {
+      "source_patterns": []
+    },
+    "app_inline_controls": {
+      "source_patterns": []
+    },
+    "reference_figures": {
+      "source_patterns": [
+        "*12_app_setup_placeholder"
+      ],
+      "figures": [
+        {
+          "id": "app-add-device",
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "image_key": "app/add_device",
+          "capture_following_lines": 3,
+          "presentation": "shared-art-live-labels",
+          "captions_embedded": true,
+          "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+          "label_roles": [
+            "main-power",
+            "dc-usb",
+            "ac-power"
+          ],
+          "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+          "asset_scope": "shared"
+        }
+      ]
+    },
+    "schema_version": "web-manual-presentation/v2",
+    "figure_targets": [
+      {
+        "model": "JE-2000F",
+        "region": "EU"
+      }
+    ],
+    "presentation_layers": {
+      "base": "shared-manual-semantics-v1",
+      "skeleton_profile": null,
+      "target_overlay": null
+    }
+  },
+  "candidate_limitations": [
+    "Source finished panels retain embedded labels; final visual duplicate-text review is pending.",
+    "Source errata remain unapproved and are not applied.",
+    "App extra page duplicate source remains retained."
+  ]
+}

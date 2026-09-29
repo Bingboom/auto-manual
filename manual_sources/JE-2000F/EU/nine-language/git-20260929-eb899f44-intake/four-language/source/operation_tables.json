@@ -1,0 +1,2380 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "native AI PDF-compatible text and source-local geometry; no OCR",
+  "locales": {
+    "pl": {
+      "lcd_mode": {
+        "physical_page": 159,
+        "source_region": [
+          180,
+          140,
+          332,
+          240
+        ],
+        "modes": [
+          {
+            "physical_page": 159,
+            "bbox": [
+              181,
+              141,
+              220,
+              191
+            ],
+            "raw_text": "Zaświeca się \nna krótką \nchwilę",
+            "text": "Zaświeca się na krótką chwilę"
+          },
+          {
+            "physical_page": 159,
+            "bbox": [
+              181,
+              191,
+              220,
+              239
+            ],
+            "raw_text": "Świeci ciągle \n(w stanie \nładowania lub \nrozładowania)",
+            "text": "Świeci ciągle (w stanie ładowania lub rozładowania)"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                141,
+                252,
+                156
+              ],
+              "raw_text": "Włączanie",
+              "text": "Włączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                141,
+                333,
+                156
+              ],
+              "raw_text": "Naciśnij główny przycisk zasilania, gdy \nprodukt się ładuje.",
+              "text": "Naciśnij główny przycisk zasilania, gdy produkt się ładuje."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                156,
+                252,
+                168
+              ],
+              "raw_text": "Wyłączanie",
+              "text": "Wyłączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                156,
+                333,
+                168
+              ],
+              "raw_text": "Naciśnij główny przycisk zasilania.",
+              "text": "Naciśnij główny przycisk zasilania."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                168,
+                252,
+                191
+              ],
+              "raw_text": "Automatyczne \nwyłączanie",
+              "text": "Automatyczne wyłączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                168,
+                333,
+                191
+              ],
+              "raw_text": "Ekran LCD wyłącza się automatycznie i \nprzechodzi w tryb uśpienia po 2 \nminutach bezczynności.",
+              "text": "Ekran LCD wyłącza się automatycznie i przechodzi w tryb uśpienia po 2 minutach bezczynności."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                191,
+                252,
+                209
+              ],
+              "raw_text": "Włączanie",
+              "text": "Włączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                191,
+                333,
+                209
+              ],
+              "raw_text": "Naciśnij dwukrotnie główny przycisk \nPOWER, gdy produkt jest włączony.",
+              "text": "Naciśnij dwukrotnie główny przycisk POWER, gdy produkt jest włączony."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                209,
+                252,
+                222
+              ],
+              "raw_text": "Wyłączanie",
+              "text": "Wyłączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                209,
+                333,
+                222
+              ],
+              "raw_text": "Naciśnij główny przycisk zasilania.",
+              "text": "Naciśnij główny przycisk zasilania."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 159,
+              "bbox": [
+                220,
+                222,
+                252,
+                239
+              ],
+              "raw_text": "Automatyczne \nwyłączanie",
+              "text": "Automatyczne wyłączanie"
+            },
+            "instruction": {
+              "physical_page": 159,
+              "bbox": [
+                252,
+                222,
+                333,
+                239
+              ],
+              "raw_text": "Ekran LCD wyłącza się automatycznie \npo 2 godzinach bezczynności.",
+              "text": "Ekran LCD wyłącza się automatycznie po 2 godzinach bezczynności."
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 159,
+        "source_region": [
+          25,
+          25,
+          349,
+          118
+        ],
+        "heading": {
+          "physical_page": 159,
+          "bbox": [
+            25,
+            26,
+            350,
+            38.3
+          ],
+          "raw_text": "FUNKCJA AUTOMATYCZNEGO WZNAWIANIA WYJŚĆ AC I DC\nFunkcja automatycznego wznawiania wyjść AC/DC jest domyślnie wyłączona. Włącz tę funkcję w aplikacji, aby",
+          "text": "FUNKCJA AUTOMATYCZNEGO WZNAWIANIA WYJŚĆ AC I DC Funkcja automatycznego wznawiania wyjść AC/DC jest domyślnie wyłączona. Włącz tę funkcję w aplikacji, aby",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 159,
+          "bbox": [
+            25,
+            37.5,
+            350,
+            61
+          ],
+          "raw_text": "Funkcja automatycznego wznawiania wyjść AC/DC jest domyślnie wyłączona. Włącz tę funkcję w aplikacji, aby \nurządzenie zapamiętywało stan wyjść AC/DC i automatycznie wznawiało wyjścia AC i DC w określonych \nwarunkach.",
+          "text": "Funkcja automatycznego wznawiania wyjść AC/DC jest domyślnie wyłączona. Włącz tę funkcję w aplikacji, aby urządzenie zapamiętywało stan wyjść AC/DC i automatycznie wznawiało wyjścia AC i DC w określonych warunkach.",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 159,
+              "bbox": [
+                30,
+                60,
+                208,
+                70
+              ],
+              "raw_text": "Warunki automatycznego wznawiania",
+              "text": "Warunki automatycznego wznawiania"
+            },
+            "items": [
+              {
+                "physical_page": 159,
+                "bbox": [
+                  30,
+                  71,
+                  208,
+                  81
+                ],
+                "raw_text": "Włączanie/ponowne uruchamianie po wyłączeniu lub restarcie",
+                "text": "Włączanie/ponowne uruchamianie po wyłączeniu lub restarcie"
+              },
+              {
+                "physical_page": 159,
+                "bbox": [
+                  30,
+                  82,
+                  208,
+                  101
+                ],
+                "raw_text": "Poziom naładowania baterii (SOC) ≥ limit rozładowania +10% po \nosiągnięciu limitu",
+                "text": "Poziom naładowania baterii (SOC) ≥ limit rozładowania +10% po osiągnięciu limitu"
+              },
+              {
+                "physical_page": 159,
+                "bbox": [
+                  30,
+                  106,
+                  208,
+                  117
+                ],
+                "raw_text": "Zakończenie aktualizacji oprogramowania układowego",
+                "text": "Zakończenie aktualizacji oprogramowania układowego"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 159,
+              "bbox": [
+                209,
+                60,
+                345,
+                70
+              ],
+              "raw_text": "Warunki braku automatycznego wznawiania",
+              "text": "Warunki braku automatycznego wznawiania"
+            },
+            "items": [
+              {
+                "physical_page": 159,
+                "bbox": [
+                  209,
+                  71,
+                  345,
+                  81
+                ],
+                "raw_text": "Ręczne wyłączenie wyjścia (przyciskiem lub w aplikacji)",
+                "text": "Ręczne wyłączenie wyjścia (przyciskiem lub w aplikacji)"
+              },
+              {
+                "physical_page": 159,
+                "bbox": [
+                  209,
+                  82,
+                  345,
+                  93
+                ],
+                "raw_text": "Wyłączenie wyjścia przez tryb oszczędzania energii",
+                "text": "Wyłączenie wyjścia przez tryb oszczędzania energii"
+              },
+              {
+                "physical_page": 159,
+                "bbox": [
+                  209,
+                  94,
+                  345,
+                  105
+                ],
+                "raw_text": "Wyłączenie wyjścia w wyniku zadziałania zabezpieczenia",
+                "text": "Wyłączenie wyjścia w wyniku zadziałania zabezpieczenia"
+              },
+              {
+                "physical_page": 159,
+                "bbox": [
+                  209,
+                  106,
+                  345,
+                  117
+                ],
+                "raw_text": "Wyłączenie wyjścia przez licznik czasu rozładowania",
+                "text": "Wyłączenie wyjścia przez licznik czasu rozładowania"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 160,
+        "source_region": [
+          25,
+          25,
+          350,
+          190
+        ],
+        "heading": {
+          "physical_page": 160,
+          "bbox": [
+            25,
+            24,
+            350,
+            39
+          ],
+          "raw_text": "KOMBINACJE KLAWISZY",
+          "text": "KOMBINACJE KLAWISZY"
+        },
+        "headers": [
+          {
+            "physical_page": 160,
+            "bbox": [
+              30,
+              39,
+              157,
+              52
+            ],
+            "raw_text": "Przyciski",
+            "text": "Przyciski"
+          },
+          {
+            "physical_page": 160,
+            "bbox": [
+              158,
+              39,
+              249,
+              52
+            ],
+            "raw_text": "Czynność",
+            "text": "Czynność"
+          },
+          {
+            "physical_page": 160,
+            "bbox": [
+              249,
+              39,
+              345,
+              52
+            ],
+            "raw_text": "Funkcja",
+            "text": "Funkcja"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 160,
+                "bbox": [
+                  30,
+                  72,
+                  94.2,
+                  85
+                ],
+                "raw_text": "Główny przycisk zasilania",
+                "text": "Główny przycisk zasilania"
+              },
+              {
+                "physical_page": 160,
+                "bbox": [
+                  94.2,
+                  72,
+                  157,
+                  85
+                ],
+                "raw_text": "Przycisk zasilania AC",
+                "text": "Przycisk zasilania AC"
+              }
+            ],
+            "operation": {
+              "physical_page": 160,
+              "bbox": [
+                158,
+                52,
+                248,
+                87
+              ],
+              "raw_text": "3 s\nNaciśnij i przytrzymaj oba \nprzyciski przez 3 s.",
+              "text": "3 s Naciśnij i przytrzymaj oba przyciski przez 3 s."
+            },
+            "function": {
+              "physical_page": 160,
+              "bbox": [
+                249,
+                52,
+                345,
+                87
+              ],
+              "raw_text": "Włączanie/wyłączanie trybu \noszczędzania energii",
+              "text": "Włączanie/wyłączanie trybu oszczędzania energii"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 160,
+                "bbox": [
+                  30,
+                  106,
+                  94.2,
+                  119
+                ],
+                "raw_text": "Główny przycisk zasilania",
+                "text": "Główny przycisk zasilania"
+              },
+              {
+                "physical_page": 160,
+                "bbox": [
+                  94.2,
+                  106,
+                  157,
+                  119
+                ],
+                "raw_text": "Przycisk zasilania DC/USB",
+                "text": "Przycisk zasilania DC/USB"
+              }
+            ],
+            "operation": {
+              "physical_page": 160,
+              "bbox": [
+                158,
+                87,
+                248,
+                121
+              ],
+              "raw_text": "3 s\nNaciśnij i przytrzymaj oba \nprzyciski przez 3 s.",
+              "text": "3 s Naciśnij i przytrzymaj oba przyciski przez 3 s."
+            },
+            "function": {
+              "physical_page": 160,
+              "bbox": [
+                249,
+                87,
+                345,
+                121
+              ],
+              "raw_text": "Resetowanie Wi-Fi i Bluetooth",
+              "text": "Resetowanie Wi-Fi i Bluetooth"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 160,
+                "bbox": [
+                  30,
+                  141,
+                  94.2,
+                  154
+                ],
+                "raw_text": "Przycisk zasilania DC/USB",
+                "text": "Przycisk zasilania DC/USB"
+              },
+              {
+                "physical_page": 160,
+                "bbox": [
+                  94.2,
+                  141,
+                  157,
+                  154
+                ],
+                "raw_text": "Przycisk zasilania AC",
+                "text": "Przycisk zasilania AC"
+              }
+            ],
+            "operation": {
+              "physical_page": 160,
+              "bbox": [
+                158,
+                121,
+                248,
+                156
+              ],
+              "raw_text": "1 s\nNaciśnij i przytrzymaj oba \nprzyciski przez 1 s.",
+              "text": "1 s Naciśnij i przytrzymaj oba przyciski przez 1 s."
+            },
+            "function": {
+              "physical_page": 160,
+              "bbox": [
+                249,
+                121,
+                345,
+                156
+              ],
+              "raw_text": "Włączanie/wyłączanie \nWi-Fi i Bluetooth",
+              "text": "Włączanie/wyłączanie Wi-Fi i Bluetooth"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 160,
+                "bbox": [
+                  30,
+                  175,
+                  94.2,
+                  188
+                ],
+                "raw_text": "Główny przycisk zasilania",
+                "text": "Główny przycisk zasilania"
+              },
+              {
+                "physical_page": 160,
+                "bbox": [
+                  94.2,
+                  175,
+                  157,
+                  188
+                ],
+                "raw_text": "Przycisk lampy LED",
+                "text": "Przycisk lampy LED"
+              }
+            ],
+            "operation": {
+              "physical_page": 160,
+              "bbox": [
+                158,
+                156,
+                248,
+                190
+              ],
+              "raw_text": "1 s\nNaciśnij i przytrzymaj oba \nprzyciski przez 1 s.",
+              "text": "1 s Naciśnij i przytrzymaj oba przyciski przez 1 s."
+            },
+            "function": {
+              "physical_page": 160,
+              "bbox": [
+                249,
+                156,
+                345,
+                190
+              ],
+              "raw_text": "Włączanie/wyłączanie trybu \nładowania awaryjnego",
+              "text": "Włączanie/wyłączanie trybu ładowania awaryjnego"
+            },
+            "source_button_faces": [
+              "POWER",
+              "LIGHT"
+            ]
+          }
+        ]
+      }
+    },
+    "pt": {
+      "lcd_mode": {
+        "physical_page": 123,
+        "source_region": [
+          180,
+          140,
+          332,
+          240
+        ],
+        "modes": [
+          {
+            "physical_page": 123,
+            "bbox": [
+              181,
+              141,
+              220,
+              191
+            ],
+            "raw_text": "Aceso Brevemente",
+            "text": "Aceso Brevemente"
+          },
+          {
+            "physical_page": 123,
+            "bbox": [
+              181,
+              191,
+              220,
+              239
+            ],
+            "raw_text": "Aceso \ncontinuamente (em \nestado de carga ou \ndescarga)",
+            "text": "Aceso continuamente (em estado de carga ou descarga)"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                141,
+                252,
+                156
+              ],
+              "raw_text": "Ligar",
+              "text": "Ligar"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                141,
+                333,
+                156
+              ],
+              "raw_text": "Pressione o Botão de Energia Principal \nou quando o produto estiver \ncarregando.",
+              "text": "Pressione o Botão de Energia Principal ou quando o produto estiver carregando."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                156,
+                252,
+                168
+              ],
+              "raw_text": "Desligar",
+              "text": "Desligar"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                156,
+                333,
+                168
+              ],
+              "raw_text": "carregando.\nPressione o Botão de Energia Principal.",
+              "text": "carregando. Pressione o Botão de Energia Principal."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                168,
+                252,
+                191
+              ],
+              "raw_text": "Desligamento \nautomático",
+              "text": "Desligamento automático"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                168,
+                333,
+                191
+              ],
+              "raw_text": "O LCD desliga automaticamente e \nentra no modo de suspensão após 2 \nminutos de inatividade.",
+              "text": "O LCD desliga automaticamente e entra no modo de suspensão após 2 minutos de inatividade."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                191,
+                252,
+                209
+              ],
+              "raw_text": "Ligar",
+              "text": "Ligar"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                191,
+                333,
+                209
+              ],
+              "raw_text": "Pressione duas vezes o botão POWER \nprincipal quando o produto estiver \nligado.",
+              "text": "Pressione duas vezes o botão POWER principal quando o produto estiver ligado."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                209,
+                252,
+                222
+              ],
+              "raw_text": "Desligar",
+              "text": "Desligar"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                209,
+                333,
+                222
+              ],
+              "raw_text": "Pressione o Botão de Energia Principal.",
+              "text": "Pressione o Botão de Energia Principal."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 123,
+              "bbox": [
+                220,
+                222,
+                252,
+                239
+              ],
+              "raw_text": "Desligamento \nautomático",
+              "text": "Desligamento automático"
+            },
+            "instruction": {
+              "physical_page": 123,
+              "bbox": [
+                252,
+                222,
+                333,
+                239
+              ],
+              "raw_text": "O LCD desliga automaticamente após \n2 horas de inatividade.",
+              "text": "O LCD desliga automaticamente após 2 horas de inatividade."
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 123,
+        "source_region": [
+          25,
+          25,
+          349,
+          118
+        ],
+        "heading": {
+          "physical_page": 123,
+          "bbox": [
+            25,
+            26,
+            350,
+            38.3
+          ],
+          "raw_text": "FUNÇÃO DE RETOMADA DAS SAÍDAS CA E CC\nA Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir",
+          "text": "FUNÇÃO DE RETOMADA DAS SAÍDAS CA E CC A Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 123,
+          "bbox": [
+            25,
+            37.5,
+            350,
+            61
+          ],
+          "raw_text": "A Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir \nque o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições \ndefinidas.",
+          "text": "A Função de Retomada da Saída CA/CC é desativada por padrão. Ative essa função no aplicativo para permitir que o dispositivo memorize o status da saída CA/CC e retome automaticamente as saídas CA e CC em condições definidas.",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 123,
+              "bbox": [
+                30,
+                60,
+                208,
+                70
+              ],
+              "raw_text": "Condições de retomada automática",
+              "text": "Condições de retomada automática"
+            },
+            "items": [
+              {
+                "physical_page": 123,
+                "bbox": [
+                  30,
+                  71,
+                  208,
+                  81
+                ],
+                "raw_text": "Ligar/reiniciar após desligamento ou reinício",
+                "text": "Ligar/reiniciar após desligamento ou reinício"
+              },
+              {
+                "physical_page": 123,
+                "bbox": [
+                  30,
+                  82,
+                  208,
+                  101
+                ],
+                "raw_text": "SOC da bateria ≥ limite de descarga + 10% após atingir o limite",
+                "text": "SOC da bateria ≥ limite de descarga + 10% após atingir o limite"
+              },
+              {
+                "physical_page": 123,
+                "bbox": [
+                  30,
+                  106,
+                  208,
+                  117
+                ],
+                "raw_text": "Atualização OTA concluída",
+                "text": "Atualização OTA concluída"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 123,
+              "bbox": [
+                209,
+                60,
+                345,
+                70
+              ],
+              "raw_text": "Condições de não retomada automática",
+              "text": "Condições de não retomada automática"
+            },
+            "items": [
+              {
+                "physical_page": 123,
+                "bbox": [
+                  209,
+                  71,
+                  345,
+                  81
+                ],
+                "raw_text": "Desligamento manual da saída (botão/App)",
+                "text": "Desligamento manual da saída (botão/App)"
+              },
+              {
+                "physical_page": 123,
+                "bbox": [
+                  209,
+                  82,
+                  345,
+                  93
+                ],
+                "raw_text": "Desligamento da saída no modo de economia \nde energia",
+                "text": "Desligamento da saída no modo de economia de energia"
+              },
+              {
+                "physical_page": 123,
+                "bbox": [
+                  209,
+                  94,
+                  345,
+                  105
+                ],
+                "raw_text": "Desligamento da saída acionado pela proteção",
+                "text": "Desligamento da saída acionado pela proteção"
+              },
+              {
+                "physical_page": 123,
+                "bbox": [
+                  209,
+                  106,
+                  345,
+                  117
+                ],
+                "raw_text": "Desligamento da saída acionado pelo temporizador \nde descarga",
+                "text": "Desligamento da saída acionado pelo temporizador de descarga"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 124,
+        "source_region": [
+          25,
+          25,
+          350,
+          190
+        ],
+        "heading": {
+          "physical_page": 124,
+          "bbox": [
+            25,
+            24,
+            350,
+            39
+          ],
+          "raw_text": "COMBINAÇÕES DE TECLAS",
+          "text": "COMBINAÇÕES DE TECLAS"
+        },
+        "headers": [
+          {
+            "physical_page": 124,
+            "bbox": [
+              30,
+              39,
+              157,
+              52
+            ],
+            "raw_text": "Botões",
+            "text": "Botões"
+          },
+          {
+            "physical_page": 124,
+            "bbox": [
+              158,
+              39,
+              249,
+              52
+            ],
+            "raw_text": "Operação",
+            "text": "Operação"
+          },
+          {
+            "physical_page": 124,
+            "bbox": [
+              249,
+              39,
+              345,
+              52
+            ],
+            "raw_text": "Função",
+            "text": "Função"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 124,
+                "bbox": [
+                  30,
+                  72,
+                  94.2,
+                  85
+                ],
+                "raw_text": "Botão Power Principal",
+                "text": "Botão Power Principal"
+              },
+              {
+                "physical_page": 124,
+                "bbox": [
+                  94.2,
+                  72,
+                  157,
+                  85
+                ],
+                "raw_text": "Botão Power CA",
+                "text": "Botão Power CA"
+              }
+            ],
+            "operation": {
+              "physical_page": 124,
+              "bbox": [
+                158,
+                52,
+                248,
+                87
+              ],
+              "raw_text": "3s\nPressione e segure ambos por 3 s",
+              "text": "3s Pressione e segure ambos por 3 s"
+            },
+            "function": {
+              "physical_page": 124,
+              "bbox": [
+                249,
+                52,
+                345,
+                87
+              ],
+              "raw_text": "Ligar/Desligar o Modo de \nEconomia de Energia",
+              "text": "Ligar/Desligar o Modo de Economia de Energia"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 124,
+                "bbox": [
+                  30,
+                  106,
+                  94.2,
+                  119
+                ],
+                "raw_text": "Botão Power Principal",
+                "text": "Botão Power Principal"
+              },
+              {
+                "physical_page": 124,
+                "bbox": [
+                  94.2,
+                  106,
+                  157,
+                  119
+                ],
+                "raw_text": "Botão de energia CC/USB",
+                "text": "Botão de energia CC/USB"
+              }
+            ],
+            "operation": {
+              "physical_page": 124,
+              "bbox": [
+                158,
+                87,
+                248,
+                121
+              ],
+              "raw_text": "3s\nPressione e segure ambos por 3 s",
+              "text": "3s Pressione e segure ambos por 3 s"
+            },
+            "function": {
+              "physical_page": 124,
+              "bbox": [
+                249,
+                87,
+                345,
+                121
+              ],
+              "raw_text": "Redefinir o Wi-Fi e o Bluetooth",
+              "text": "Redefinir o Wi-Fi e o Bluetooth"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 124,
+                "bbox": [
+                  30,
+                  141,
+                  94.2,
+                  154
+                ],
+                "raw_text": "Botão de energia CC/USB",
+                "text": "Botão de energia CC/USB"
+              },
+              {
+                "physical_page": 124,
+                "bbox": [
+                  94.2,
+                  141,
+                  157,
+                  154
+                ],
+                "raw_text": "Botão Power CA\nB",
+                "text": "Botão Power CA B"
+              }
+            ],
+            "operation": {
+              "physical_page": 124,
+              "bbox": [
+                158,
+                121,
+                248,
+                156
+              ],
+              "raw_text": "1 s\nPressione e segure ambos por 1 s",
+              "text": "1 s Pressione e segure ambos por 1 s"
+            },
+            "function": {
+              "physical_page": 124,
+              "bbox": [
+                249,
+                121,
+                345,
+                156
+              ],
+              "raw_text": "Ativar/desativar \nWi-Fi e Bluetooth",
+              "text": "Ativar/desativar Wi-Fi e Bluetooth"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 124,
+                "bbox": [
+                  30,
+                  175,
+                  94.2,
+                  188
+                ],
+                "raw_text": "Botão Power Principal",
+                "text": "Botão Power Principal"
+              },
+              {
+                "physical_page": 124,
+                "bbox": [
+                  94.2,
+                  175,
+                  157,
+                  188
+                ],
+                "raw_text": "Botão da luz LED",
+                "text": "Botão da luz LED"
+              }
+            ],
+            "operation": {
+              "physical_page": 124,
+              "bbox": [
+                158,
+                156,
+                248,
+                190
+              ],
+              "raw_text": "1 s\nPressione e segure ambos por 1 s",
+              "text": "1 s Pressione e segure ambos por 1 s"
+            },
+            "function": {
+              "physical_page": 124,
+              "bbox": [
+                249,
+                156,
+                345,
+                190
+              ],
+              "raw_text": "Ligar/desligar o Modo de \ncarregamento de \nemergência",
+              "text": "Ligar/desligar o Modo de carregamento de emergência"
+            },
+            "source_button_faces": [
+              "POWER",
+              "LIGHT"
+            ]
+          }
+        ]
+      }
+    },
+    "nl": {
+      "lcd_mode": {
+        "physical_page": 141,
+        "source_region": [
+          180,
+          140,
+          332,
+          240
+        ],
+        "modes": [
+          {
+            "physical_page": 141,
+            "bbox": [
+              181,
+              141,
+              220,
+              191
+            ],
+            "raw_text": "Kort inschakelen",
+            "text": "Kort inschakelen"
+          },
+          {
+            "physical_page": 141,
+            "bbox": [
+              181,
+              191,
+              220,
+              239
+            ],
+            "raw_text": "Continu \nnschakelen \nbij laden of \nontladen)",
+            "text": "Continu nschakelen bij laden of ontladen)"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                141,
+                252,
+                156
+              ],
+              "raw_text": "Inschakelen",
+              "text": "Inschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                141,
+                333,
+                156
+              ],
+              "raw_text": "Druk op de hoofd AAN/UIT-knop of \nwanneer het product oplaadt.",
+              "text": "Druk op de hoofd AAN/UIT-knop of wanneer het product oplaadt."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                156,
+                252,
+                168
+              ],
+              "raw_text": "Uitschakelen",
+              "text": "Uitschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                156,
+                333,
+                168
+              ],
+              "raw_text": "Druk op de hoofd AAN/UIT-knop.",
+              "text": "Druk op de hoofd AAN/UIT-knop."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                168,
+                252,
+                191
+              ],
+              "raw_text": "Automatisch \nuitschakelen",
+              "text": "Automatisch uitschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                168,
+                333,
+                191
+              ],
+              "raw_text": "Het LCD-scherm schakelt automatisch \nuit en gaat in slaapstand na 2 minuten \ninactiviteit.",
+              "text": "Het LCD-scherm schakelt automatisch uit en gaat in slaapstand na 2 minuten inactiviteit."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                191,
+                252,
+                209
+              ],
+              "raw_text": "Inschakelen",
+              "text": "Inschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                191,
+                333,
+                209
+              ],
+              "raw_text": "Druk tweemaal op de AAN/UIT-knop \nwanneer het product is ingeschakeld.",
+              "text": "Druk tweemaal op de AAN/UIT-knop wanneer het product is ingeschakeld."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                209,
+                252,
+                222
+              ],
+              "raw_text": "Uitschakelen",
+              "text": "Uitschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                209,
+                333,
+                222
+              ],
+              "raw_text": "Druk op de hoofd AAN/UIT-knop.",
+              "text": "Druk op de hoofd AAN/UIT-knop."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 141,
+              "bbox": [
+                220,
+                222,
+                252,
+                239
+              ],
+              "raw_text": "Automatisch \nuitschakelen",
+              "text": "Automatisch uitschakelen"
+            },
+            "instruction": {
+              "physical_page": 141,
+              "bbox": [
+                252,
+                222,
+                333,
+                239
+              ],
+              "raw_text": "Het LCD-scherm schakelt automatisch \nuit na 2 uur inactiviteit.",
+              "text": "Het LCD-scherm schakelt automatisch uit na 2 uur inactiviteit."
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 141,
+        "source_region": [
+          25,
+          25,
+          349,
+          118
+        ],
+        "heading": {
+          "physical_page": 141,
+          "bbox": [
+            25,
+            26,
+            350,
+            38.3
+          ],
+          "raw_text": "HERVATTINGSFUNCTIE VOOR AC- EN DC-UITGANGEN\nDe functie voor hervatting van AC/DC-uitgang is standaard uitgeschakeld. Schakel deze functie in de app in om",
+          "text": "HERVATTINGSFUNCTIE VOOR AC- EN DC-UITGANGEN De functie voor hervatting van AC/DC-uitgang is standaard uitgeschakeld. Schakel deze functie in de app in om",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 141,
+          "bbox": [
+            25,
+            37.5,
+            350,
+            61
+          ],
+          "raw_text": "De functie voor hervatting van AC/DC-uitgang is standaard uitgeschakeld. Schakel deze functie in de app in om \nhet apparaat in staat te stellen de AC/DC-uitgangsstatus te onthouden en automatisch de AC- en DC-uitgangen \nte hervatten onder bepaalde voorwaarden.",
+          "text": "De functie voor hervatting van AC/DC-uitgang is standaard uitgeschakeld. Schakel deze functie in de app in om het apparaat in staat te stellen de AC/DC-uitgangsstatus te onthouden en automatisch de AC- en DC-uitgangen te hervatten onder bepaalde voorwaarden.",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 141,
+              "bbox": [
+                30,
+                60,
+                208,
+                70
+              ],
+              "raw_text": "Voorwaarden voor automatisch hervatten",
+              "text": "Voorwaarden voor automatisch hervatten"
+            },
+            "items": [
+              {
+                "physical_page": 141,
+                "bbox": [
+                  30,
+                  71,
+                  208,
+                  81
+                ],
+                "raw_text": "Inschakelen/herstarten na uitschakelen of herstarten",
+                "text": "Inschakelen/herstarten na uitschakelen of herstarten"
+              },
+              {
+                "physical_page": 141,
+                "bbox": [
+                  30,
+                  82,
+                  208,
+                  101
+                ],
+                "raw_text": "Batterij-SOC ≥ ontlaadlimiet +10% na het bereiken van de limiet",
+                "text": "Batterij-SOC ≥ ontlaadlimiet +10% na het bereiken van de limiet"
+              },
+              {
+                "physical_page": 141,
+                "bbox": [
+                  30,
+                  106,
+                  208,
+                  117
+                ],
+                "raw_text": "OTA-upgrade voltooid",
+                "text": "OTA-upgrade voltooid"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 141,
+              "bbox": [
+                209,
+                60,
+                345,
+                70
+              ],
+              "raw_text": "Voorwaarden voor niet-automatisch hervatten",
+              "text": "Voorwaarden voor niet-automatisch hervatten"
+            },
+            "items": [
+              {
+                "physical_page": 141,
+                "bbox": [
+                  209,
+                  71,
+                  345,
+                  81
+                ],
+                "raw_text": "Handmatige uitvoer uitschakelen (knop/App)",
+                "text": "Handmatige uitvoer uitschakelen (knop/App)"
+              },
+              {
+                "physical_page": 141,
+                "bbox": [
+                  209,
+                  82,
+                  345,
+                  93
+                ],
+                "raw_text": "Uitschakeling van de uitgang door Energiebesparingsmodus",
+                "text": "Uitschakeling van de uitgang door Energiebesparingsmodus"
+              },
+              {
+                "physical_page": 141,
+                "bbox": [
+                  209,
+                  94,
+                  345,
+                  105
+                ],
+                "raw_text": "Uitschakeling van de uitgang door geactiveerde beveiliging",
+                "text": "Uitschakeling van de uitgang door geactiveerde beveiliging"
+              },
+              {
+                "physical_page": 141,
+                "bbox": [
+                  209,
+                  106,
+                  345,
+                  117
+                ],
+                "raw_text": "Uitschakeling van de uitgang door de ontladingstimer",
+                "text": "Uitschakeling van de uitgang door de ontladingstimer"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 142,
+        "source_region": [
+          25,
+          25,
+          350,
+          190
+        ],
+        "heading": {
+          "physical_page": 142,
+          "bbox": [
+            25,
+            24,
+            350,
+            39
+          ],
+          "raw_text": "TOETSCOMBINATIES",
+          "text": "TOETSCOMBINATIES"
+        },
+        "headers": [
+          {
+            "physical_page": 142,
+            "bbox": [
+              30,
+              39,
+              157,
+              52
+            ],
+            "raw_text": "Knoppen",
+            "text": "Knoppen"
+          },
+          {
+            "physical_page": 142,
+            "bbox": [
+              158,
+              39,
+              249,
+              52
+            ],
+            "raw_text": "BEDIENING",
+            "text": "BEDIENING"
+          },
+          {
+            "physical_page": 142,
+            "bbox": [
+              249,
+              39,
+              345,
+              52
+            ],
+            "raw_text": "Functie",
+            "text": "Functie"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 142,
+                "bbox": [
+                  30,
+                  72,
+                  94.2,
+                  85
+                ],
+                "raw_text": "Hoofd AAN/UIT-knop",
+                "text": "Hoofd AAN/UIT-knop"
+              },
+              {
+                "physical_page": 142,
+                "bbox": [
+                  94.2,
+                  72,
+                  157,
+                  85
+                ],
+                "raw_text": "Aan/uit-knop voor DC",
+                "text": "Aan/uit-knop voor DC"
+              }
+            ],
+            "operation": {
+              "physical_page": 142,
+              "bbox": [
+                158,
+                52,
+                248,
+                87
+              ],
+              "raw_text": "3s\nHoud beide knoppen 3 \nseconden ingedrukt",
+              "text": "3s Houd beide knoppen 3 seconden ingedrukt"
+            },
+            "function": {
+              "physical_page": 142,
+              "bbox": [
+                249,
+                52,
+                345,
+                87
+              ],
+              "raw_text": "De Energiebesparingsmodus \nin-/uitschakelen",
+              "text": "De Energiebesparingsmodus in-/uitschakelen"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 142,
+                "bbox": [
+                  30,
+                  106,
+                  94.2,
+                  119
+                ],
+                "raw_text": "Hoofd AAN/UIT-knop\nAa",
+                "text": "Hoofd AAN/UIT-knop Aa"
+              },
+              {
+                "physical_page": 142,
+                "bbox": [
+                  94.2,
+                  106,
+                  157,
+                  119
+                ],
+                "raw_text": "an/uit-knop voor DC/USB",
+                "text": "an/uit-knop voor DC/USB"
+              }
+            ],
+            "operation": {
+              "physical_page": 142,
+              "bbox": [
+                158,
+                87,
+                248,
+                121
+              ],
+              "raw_text": "3s\nHoud beide knoppen 3 \nseconden ingedrukt",
+              "text": "3s Houd beide knoppen 3 seconden ingedrukt"
+            },
+            "function": {
+              "physical_page": 142,
+              "bbox": [
+                249,
+                87,
+                345,
+                121
+              ],
+              "raw_text": "Reset wifi en Bluetooth",
+              "text": "Reset wifi en Bluetooth"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 142,
+                "bbox": [
+                  30,
+                  141,
+                  94.2,
+                  154
+                ],
+                "raw_text": "Aan/uit-knop voor DC/USB",
+                "text": "Aan/uit-knop voor DC/USB"
+              },
+              {
+                "physical_page": 142,
+                "bbox": [
+                  94.2,
+                  141,
+                  157,
+                  154
+                ],
+                "raw_text": "Aan/uit-knop voor DC\nB",
+                "text": "Aan/uit-knop voor DC B"
+              }
+            ],
+            "operation": {
+              "physical_page": 142,
+              "bbox": [
+                158,
+                121,
+                248,
+                156
+              ],
+              "raw_text": "1 seconde\nHoud beide knoppen 1 \nseconde ingedrukt",
+              "text": "1 seconde Houd beide knoppen 1 seconde ingedrukt"
+            },
+            "function": {
+              "physical_page": 142,
+              "bbox": [
+                249,
+                121,
+                345,
+                156
+              ],
+              "raw_text": "Wifi en Bluetooth in- \nof uitschakelen",
+              "text": "Wifi en Bluetooth in- of uitschakelen"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 142,
+                "bbox": [
+                  30,
+                  175,
+                  94.2,
+                  188
+                ],
+                "raw_text": "Hoofd AAN/UIT-knop",
+                "text": "Hoofd AAN/UIT-knop"
+              },
+              {
+                "physical_page": 142,
+                "bbox": [
+                  94.2,
+                  175,
+                  157,
+                  188
+                ],
+                "raw_text": "LED-lampknop",
+                "text": "LED-lampknop"
+              }
+            ],
+            "operation": {
+              "physical_page": 142,
+              "bbox": [
+                158,
+                156,
+                248,
+                190
+              ],
+              "raw_text": "1 seconde\nHoud beide knoppen 1 \nseconde ingedrukt",
+              "text": "1 seconde Houd beide knoppen 1 seconde ingedrukt"
+            },
+            "function": {
+              "physical_page": 142,
+              "bbox": [
+                249,
+                156,
+                345,
+                190
+              ],
+              "raw_text": "De Noodoplaadmodus \nin-/uitschakelen",
+              "text": "De Noodoplaadmodus in-/uitschakelen"
+            },
+            "source_button_faces": [
+              "POWER",
+              "LIGHT"
+            ]
+          }
+        ]
+      }
+    },
+    "uk": {
+      "lcd_mode": {
+        "physical_page": 105,
+        "source_region": [
+          180,
+          140,
+          332,
+          240
+        ],
+        "modes": [
+          {
+            "physical_page": 105,
+            "bbox": [
+              181,
+              141,
+              220,
+              191
+            ],
+            "raw_text": "Короткочасне \nувімкнення\nВ\nА\nн\nУ",
+            "text": "Короткочасне увімкнення В А н У"
+          },
+          {
+            "physical_page": 105,
+            "bbox": [
+              181,
+              191,
+              220,
+              239
+            ],
+            "raw_text": "Постійно \nувімкнено (під \nчас \nзаряджання \nабо \nрозряджання)\nВ\nА\nн\nУ",
+            "text": "Постійно увімкнено (під час заряджання або розряджання) В А н У"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                141,
+                252,
+                156
+              ],
+              "raw_text": "Увімкнути",
+              "text": "Увімкнути"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                141,
+                333,
+                156
+              ],
+              "raw_text": "Натисніть кнопку POWER або \nколи пристрій заряджається.",
+              "text": "Натисніть кнопку POWER або коли пристрій заряджається."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                156,
+                252,
+                168
+              ],
+              "raw_text": "Вимкнут",
+              "text": "Вимкнут"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                156,
+                333,
+                168
+              ],
+              "raw_text": "коли пристрій заряджається.\nНатисніть кнопку POWER.",
+              "text": "коли пристрій заряджається. Натисніть кнопку POWER."
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                168,
+                252,
+                191
+              ],
+              "raw_text": "Вимкнут\nАвтовимкне\nння",
+              "text": "Вимкнут Автовимкне ння"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                168,
+                333,
+                191
+              ],
+              "raw_text": "Натисніть кнопку POWER.\nLCD автоматично вимикається та \nпереходить у режим сну після 2 \nхвилин бездіяльності.",
+              "text": "Натисніть кнопку POWER. LCD автоматично вимикається та переходить у режим сну після 2 хвилин бездіяльності."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                191,
+                252,
+                209
+              ],
+              "raw_text": "Увімкнути",
+              "text": "Увімкнути"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                191,
+                333,
+                209
+              ],
+              "raw_text": "Натисніть кнопку POWER двічі, \nколи пристрій увімкнено.",
+              "text": "Натисніть кнопку POWER двічі, коли пристрій увімкнено."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                209,
+                252,
+                222
+              ],
+              "raw_text": "Вимкнути",
+              "text": "Вимкнути"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                209,
+                333,
+                222
+              ],
+              "raw_text": "Натисніть кнопку POWER.",
+              "text": "Натисніть кнопку POWER."
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 105,
+              "bbox": [
+                220,
+                222,
+                252,
+                239
+              ],
+              "raw_text": "Автовимкне\nння",
+              "text": "Автовимкне ння"
+            },
+            "instruction": {
+              "physical_page": 105,
+              "bbox": [
+                252,
+                222,
+                333,
+                239
+              ],
+              "raw_text": "LCD автоматично вимикається \nпісля 2 годин бездіяльності.",
+              "text": "LCD автоматично вимикається після 2 годин бездіяльності."
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 105,
+        "source_region": [
+          25,
+          25,
+          349,
+          118
+        ],
+        "heading": {
+          "physical_page": 105,
+          "bbox": [
+            25,
+            25,
+            349,
+            39
+          ],
+          "raw_text": "ФУНКЦІЯ ВІДНОВЛЕННЯ ВИХОДІВ AC І DC\nФункцію відновлення виходів AC і DC за замовчуванням вимкнено. Увімкніть цю функцію в Додатку Jackery,",
+          "text": "ФУНКЦІЯ ВІДНОВЛЕННЯ ВИХОДІВ AC І DC Функцію відновлення виходів AC і DC за замовчуванням вимкнено. Увімкніть цю функцію в Додатку Jackery,"
+        },
+        "intro": {
+          "physical_page": 105,
+          "bbox": [
+            25,
+            39,
+            349,
+            61
+          ],
+          "raw_text": "Функцію відновлення виходів AC і DC за замовчуванням вимкнено. Увімкніть цю функцію в Додатку Jackery, \nщоб пристрій запам’ятовував стан виходів AC/DC та автоматично відновлював виходи AC і DC за \nвизначених умов.",
+          "text": "Функцію відновлення виходів AC і DC за замовчуванням вимкнено. Увімкніть цю функцію в Додатку Jackery, щоб пристрій запам’ятовував стан виходів AC/DC та автоматично відновлював виходи AC і DC за визначених умов."
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 105,
+              "bbox": [
+                30,
+                60,
+                208,
+                70
+              ],
+              "raw_text": "Умови автоматичного відновлення\nУмови без",
+              "text": "Умови автоматичного відновлення Умови без"
+            },
+            "items": [
+              {
+                "physical_page": 105,
+                "bbox": [
+                  30,
+                  71,
+                  208,
+                  81
+                ],
+                "raw_text": "Увімкнення/перезапуск після вимкнення \nабо перезапуску\nРучне вим",
+                "text": "Увімкнення/перезапуск після вимкнення або перезапуску Ручне вим"
+              },
+              {
+                "physical_page": 105,
+                "bbox": [
+                  30,
+                  82,
+                  208,
+                  101
+                ],
+                "raw_text": "або перезапуску\nSOC батареї ≥ ліміт розряджання +10% \nпісля досягнення ліміту\nРучне вим\nВихід вимк",
+                "text": "або перезапуску SOC батареї ≥ ліміт розряджання +10% після досягнення ліміту Ручне вим Вихід вимк"
+              },
+              {
+                "physical_page": 105,
+                "bbox": [
+                  30,
+                  106,
+                  208,
+                  117
+                ],
+                "raw_text": "після досягнення ліміту\nОновлення OTA завершено\nВихід вимк\nВихід вимк",
+                "text": "після досягнення ліміту Оновлення OTA завершено Вихід вимк Вихід вимк"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 105,
+              "bbox": [
+                209,
+                60,
+                345,
+                70
+              ],
+              "raw_text": "автоматичного відновлення",
+              "text": "автоматичного відновлення"
+            },
+            "items": [
+              {
+                "physical_page": 105,
+                "bbox": [
+                  209,
+                  71,
+                  345,
+                  81
+                ],
+                "raw_text": "кнення виходу (кнопкою/у Додатку)",
+                "text": "кнення виходу (кнопкою/у Додатку)"
+              },
+              {
+                "physical_page": 105,
+                "bbox": [
+                  209,
+                  82,
+                  345,
+                  93
+                ],
+                "raw_text": "кнення виходу (кнопкою/у Додатку)\nкнено в режимі енергозбереження",
+                "text": "кнення виходу (кнопкою/у Додатку) кнено в режимі енергозбереження"
+              },
+              {
+                "physical_page": 105,
+                "bbox": [
+                  209,
+                  94,
+                  345,
+                  105
+                ],
+                "raw_text": "кнено в режимі енергозбереження\nкнено через спрацювання захисту",
+                "text": "кнено в режимі енергозбереження кнено через спрацювання захисту"
+              },
+              {
+                "physical_page": 105,
+                "bbox": [
+                  209,
+                  106,
+                  345,
+                  117
+                ],
+                "raw_text": "кнено через спрацювання захисту\nкнено таймером розряджання",
+                "text": "кнено через спрацювання захисту кнено таймером розряджання"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 106,
+        "source_region": [
+          25,
+          25,
+          350,
+          190
+        ],
+        "heading": {
+          "physical_page": 106,
+          "bbox": [
+            25,
+            24,
+            350,
+            39
+          ],
+          "raw_text": "Коли режим енергозбереження ввімкнено, виріб автоматично вимикає вихід",
+          "text": "Коли режим енергозбереження ввімкнено, виріб автоматично вимикає вихід"
+        },
+        "headers": [
+          {
+            "physical_page": 106,
+            "bbox": [
+              30,
+              39,
+              157,
+              52
+            ],
+            "raw_text": "Коли режим енергозбе\nзмінного струму, якщо \nзалишається низьким п",
+            "text": "Коли режим енергозбе змінного струму, якщо залишається низьким п"
+          },
+          {
+            "physical_page": 106,
+            "bbox": [
+              158,
+              39,
+              249,
+              52
+            ],
+            "raw_text": "ереження ввімкнено, виріб авто\nенергоспоживання підключен\nпротягом заданого часу. Під ч",
+            "text": "ереження ввімкнено, виріб авто енергоспоживання підключен протягом заданого часу. Під ч"
+          },
+          {
+            "physical_page": 106,
+            "bbox": [
+              249,
+              39,
+              345,
+              52
+            ],
+            "raw_text": "оматично вимикає вихід \nного пристрою \nчас живлення пристроїв, що",
+            "text": "оматично вимикає вихід ного пристрою час живлення пристроїв, що"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 106,
+                "bbox": [
+                  30,
+                  72,
+                  94.2,
+                  85
+                ],
+                "raw_text": "ма\nак\nЖЕННЯ",
+                "text": "ма ак ЖЕННЯ"
+              },
+              {
+                "physical_page": 106,
+                "bbox": [
+                  94.2,
+                  72,
+                  157,
+                  85
+                ],
+                "raw_text": "аршрутизаторів, кам\nкваріумів, рекоменду",
+                "text": "аршрутизаторів, кам кваріумів, рекоменду"
+              }
+            ],
+            "operation": {
+              "physical_page": 106,
+              "bbox": [
+                158,
+                52,
+                248,
+                87
+              ],
+              "raw_text": "протягом заданого часу. Під ч\nвного електроживлення, напр\nер відеоспостереження або п\nується вимкнути режим енерго\nлення не вплинуло на роботу",
+              "text": "протягом заданого часу. Під ч вного електроживлення, напр ер відеоспостереження або п ується вимкнути режим енерго лення не вплинуло на роботу"
+            },
+            "function": {
+              "physical_page": 106,
+              "bbox": [
+                249,
+                52,
+                345,
+                87
+              ],
+              "raw_text": "час живлення пристроїв, що \nриклад холодильників, \nповітряних насосів для \nозбереження, щоб \nу пристроїв.",
+              "text": "час живлення пристроїв, що риклад холодильників, повітряних насосів для озбереження, щоб у пристроїв."
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 106,
+                "bbox": [
+                  30,
+                  106,
+                  94.2,
+                  119
+                ],
+                "raw_text": "КОМБІНАЦІЯ К",
+                "text": "КОМБІНАЦІЯ К"
+              },
+              {
+                "physical_page": 106,
+                "bbox": [
+                  94.2,
+                  106,
+                  157,
+                  119
+                ],
+                "raw_text": "КНОПОК",
+                "text": "КНОПОК"
+              }
+            ],
+            "operation": {
+              "physical_page": 106,
+              "bbox": [
+                158,
+                87,
+                248,
+                121
+              ],
+              "raw_text": "лення не вплинуло на роботу",
+              "text": "лення не вплинуло на роботу"
+            },
+            "function": {
+              "physical_page": 106,
+              "bbox": [
+                249,
+                87,
+                345,
+                121
+              ],
+              "raw_text": "у пристроїв.",
+              "text": "у пристроїв."
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 106,
+                "bbox": [
+                  30,
+                  141,
+                  94.2,
+                  154
+                ],
+                "raw_text": "Кнопки",
+                "text": "Кнопки"
+              },
+              {
+                "physical_page": 106,
+                "bbox": [
+                  94.2,
+                  141,
+                  157,
+                  154
+                ],
+                "raw_text": "",
+                "text": ""
+              }
+            ],
+            "operation": {
+              "physical_page": 106,
+              "bbox": [
+                158,
+                121,
+                248,
+                156
+              ],
+              "raw_text": "3 s\nДія",
+              "text": "3 s Дія"
+            },
+            "function": {
+              "physical_page": 106,
+              "bbox": [
+                249,
+                121,
+                345,
+                156
+              ],
+              "raw_text": "Увімк./вимк. режим \nФункція",
+              "text": "Увімк./вимк. режим Функція"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 106,
+                "bbox": [
+                  30,
+                  175,
+                  94.2,
+                  188
+                ],
+                "raw_text": "",
+                "text": ""
+              },
+              {
+                "physical_page": 106,
+                "bbox": [
+                  94.2,
+                  175,
+                  157,
+                  188
+                ],
+                "raw_text": "",
+                "text": ""
+              }
+            ],
+            "operation": {
+              "physical_page": 106,
+              "bbox": [
+                158,
+                156,
+                248,
+                190
+              ],
+              "raw_text": "3 s\nНатисніть і утримуйте обидві \nпротягом 3 с\n3s",
+              "text": "3 s Натисніть і утримуйте обидві протягом 3 с 3s"
+            },
+            "function": {
+              "physical_page": 106,
+              "bbox": [
+                249,
+                156,
+                345,
+                190
+              ],
+              "raw_text": "Увімк./вимк. режим \nенергозбереження\nСкинути Wi-Fi та Bluetooth",
+              "text": "Увімк./вимк. режим енергозбереження Скинути Wi-Fi та Bluetooth"
+            },
+            "source_button_faces": [
+              "POWER",
+              "LIGHT"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

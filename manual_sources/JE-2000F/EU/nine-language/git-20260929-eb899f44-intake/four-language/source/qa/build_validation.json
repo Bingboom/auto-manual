@@ -1,0 +1,189 @@
+{
+  "scope": "fresh native-PDF source intake and strict Sphinx; browser acceptance tracked separately",
+  "results": [
+    {
+      "language": "pl",
+      "iteration": 13,
+      "chapters": 15,
+      "strict_sphinx": "passed",
+      "publication_eligible": false,
+      "pending_source_review": [
+        "F-RIGHT-NAMEPLATE",
+        "visual-parity-review"
+      ],
+      "car_charging_heading": [
+        "ŁADOWANIE ZA POMOCĄ ŁADOWARKI SAMOCHODOWEJ (SPRZEDAWANEJ ODDZIELNIE) ¶"
+      ],
+      "solar_live_caption_counts": {
+        "SolarSaga 200 × 2": 1,
+        "SolarSaga 100 Air × 4": 1
+      },
+      "operation_steps": {
+        "operation.main-power.on": [
+          "Wł.",
+          "Naciśnij raz"
+        ],
+        "operation.main-power.off": [
+          "Wył.",
+          "Naciśnij i przytrzymaj przez 3 s"
+        ],
+        "operation.ac-output.on": [
+          "Wł.",
+          "Naciśnij raz"
+        ],
+        "operation.ac-output.off": [
+          "Wył.",
+          "Naciśnij raz"
+        ],
+        "operation.dc-usb-output.on": [
+          "Wł.",
+          "Naciśnij raz"
+        ],
+        "operation.dc-usb-output.off": [
+          "Wył.",
+          "Naciśnij raz"
+        ],
+        "operation.led-light.light": [
+          "Naciśnij przycisk LED LIGHT raz, aby włączyć światło."
+        ],
+        "operation.led-light.sos": [
+          "Naciśnij go ponownie, aby przełączyć na tryb SOS."
+        ],
+        "operation.led-light.off": [
+          "Naciśnij go po raz trzeci, aby wyłączyć światło."
+        ],
+        "operation.energy-saving.toggle": [
+          "Wł./wył.",
+          "Naciśnij i przytrzymaj oba przyciski przez ponad 3 sekundy."
+        ]
+      },
+      "candidate_path": "/tmp/je2000f-intake/pl-candidate13",
+      "html_path": "/tmp/je2000f-intake/pl-html13/manual_je2000f_eu_pl.html",
+      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
+      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+    },
+    {
+      "language": "pt",
+      "iteration": 13,
+      "chapters": 15,
+      "strict_sphinx": "passed",
+      "publication_eligible": false,
+      "pending_source_review": [
+        "F-RIGHT-NAMEPLATE",
+        "visual-parity-review"
+      ],
+      "car_charging_heading": [
+        "CARREGAMENTO COM CARREGADOR VEICULAR (VENDIDO SEPARADAMENTE) ¶"
+      ],
+      "solar_live_caption_counts": {
+        "SolarSaga 200 × 2": 1,
+        "SolarSaga 100 Air × 4": 1
+      },
+      "operation_steps": {
+        "operation.main-power.on": [
+          "ON",
+          "Pressione uma vez"
+        ],
+        "operation.main-power.off": [
+          "Apagado",
+          "Pressione e segure por 3 s"
+        ],
+        "operation.ac-output.on": [
+          "ON",
+          "Pressione uma vez"
+        ],
+        "operation.ac-output.off": [
+          "Apagado",
+          "Pressione uma vez"
+        ],
+        "operation.dc-usb-output.on": [
+          "ON",
+          "Pressione uma vez"
+        ],
+        "operation.dc-usb-output.off": [
+          "Apagado",
+          "Pressione uma vez"
+        ],
+        "operation.led-light.light": [
+          "Pressione o botão da luz LED uma vez para ligar a luz."
+        ],
+        "operation.led-light.sos": [
+          "Pressione novamente para alternar para o modo SOS."
+        ],
+        "operation.led-light.off": [
+          "Pressione uma terceira vez para desligar a luz."
+        ],
+        "operation.energy-saving.toggle": [
+          "Ligar/Desligar",
+          "Pressione e segure ambos os botões por mais de 3 segundos."
+        ]
+      },
+      "candidate_path": "/tmp/je2000f-intake/pt-candidate13",
+      "html_path": "/tmp/je2000f-intake/pt-html13/manual_je2000f_eu_pt.html",
+      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
+      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+    },
+    {
+      "language": "nl",
+      "iteration": 13,
+      "chapters": 15,
+      "strict_sphinx": "passed",
+      "publication_eligible": false,
+      "pending_source_review": [
+        "F-NL-AC-LABEL",
+        "F-RIGHT-NAMEPLATE",
+        "visual-parity-review"
+      ],
+      "car_charging_heading": [
+        "OPLADEN VIA EEN AUTO-OPLADER (AFZONDERLIJK VERKRIJGBAAR) ¶"
+      ],
+      "solar_live_caption_counts": {
+        "SolarSaga 200 × 2": 1,
+        "SolarSaga 100 Air × 4": 1
+      },
+      "operation_steps": {
+        "operation.main-power.on": [
+          "Aan",
+          "Druk één keer"
+        ],
+        "operation.main-power.off": [
+          "Uit",
+          "Houd 3 seconden ingedrukt."
+        ],
+        "operation.ac-output.on": [
+          "Aan",
+          "Druk één keer"
+        ],
+        "operation.ac-output.off": [
+          "Uit",
+          "Druk één keer"
+        ],
+        "operation.dc-usb-output.on": [
+          "Aan",
+          "Druk één keer"
+        ],
+        "operation.dc-usb-output.off": [
+          "Uit",
+          "Druk één keer"
+        ],
+        "operation.led-light.light": [
+          "Druk één keer op de LED-lampknop om het licht in te schakelen."
+        ],
+        "operation.led-light.sos": [
+          "Druk nogmaals om naar de SOS-modus te schakelen."
+        ],
+        "operation.led-light.off": [
+          "Druk een derde keer om het licht uit te schakelen."
+        ],
+        "operation.energy-saving.toggle": [
+          "Aan/Uit",
+          "Houd beide knoppen langer dan 3 seconden ingedrukt."
+        ]
+      },
+      "candidate_path": "/tmp/je2000f-intake/nl-candidate13",
+      "html_path": "/tmp/je2000f-intake/nl-html13/manual_je2000f_eu_nl.html",
+      "standby_native_text_parity": "exact after whitespace and fi ligature normalization",
+      "troubleshooting_action_geometry": "left boundary 68 pt, safely right of error-code column"
+    }
+  ]
+}

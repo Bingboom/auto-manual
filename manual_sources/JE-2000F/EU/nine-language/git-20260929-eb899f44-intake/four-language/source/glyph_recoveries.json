@@ -1,0 +1,72 @@
+{
+  "schema_version": "frozen-pdf-glyph-recoveries/v1",
+  "target": {
+    "model": "JE-2000F",
+    "region": "EU"
+  },
+  "native_frames_sha256": "98ccd3fef579fa28245147af919cceefdf8e35a70f86f5343c83c1c7977fed20",
+  "locales": {
+    "pl": [],
+    "pt": [
+      {
+        "field": "specifications/outputs/5/value",
+        "physical_page": 129,
+        "bbox": [
+          130,
+          345,
+          346,
+          361
+        ],
+        "before": "12 V\u000010 A máx.",
+        "after": "12 V⎓10 A máx.",
+        "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+        "frame_id": 1006
+      },
+      {
+        "field": "pages/129/blocks_visual_order/31/text",
+        "physical_page": 129,
+        "bbox": [
+          132.736,
+          348.969,
+          175.018,
+          356.253
+        ],
+        "before": "12 V\u000010 A máx.\n",
+        "after": "12 V⎓10 A máx.\n",
+        "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+        "frame_id": 1006
+      }
+    ],
+    "nl": [
+      {
+        "field": "media/overview/front/dc12",
+        "physical_page": 136,
+        "bbox": [
+          25,
+          111,
+          115,
+          139
+        ],
+        "before": "12 V�10 A max. DC 12 V-poort",
+        "after": "12 V⎓10 A max. DC 12 V-poort",
+        "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+        "frame_id": 893
+      },
+      {
+        "field": "pages/136/blocks_visual_order/6/text",
+        "physical_page": 136,
+        "bbox": [
+          28.798,
+          125.811,
+          64.033,
+          131.881
+        ],
+        "before": "12 V\u000010 A max.\n",
+        "after": "12 V⎓10 A max.\n",
+        "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+        "frame_id": 893
+      }
+    ],
+    "uk": []
+  }
+}

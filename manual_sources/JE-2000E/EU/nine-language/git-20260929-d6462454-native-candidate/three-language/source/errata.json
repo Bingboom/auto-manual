@@ -1,0 +1,29 @@
+{
+  "schema_version": "auto-manual-source-errata/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU"
+  },
+  "entries": [
+    {
+      "id": "pl-warranty-email-native-frame-recovery",
+      "locale": "pl",
+      "source_text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@- jackery.com w celu przedłużenia standardowego okresu gwarancji.",
+      "corrected_text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@jackery.com w celu przedłużenia standardowego okresu gwarancji.",
+      "reason": "Recover native Illustrator frame494 email lost to PDF line-end hyphenation; wording unchanged.",
+      "physical_page": 176,
+      "bbox": [
+        215,
+        214,
+        349,
+        260
+      ],
+      "evidence": {
+        "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+        "native_frames_sha256": "be06f85d741e66124a85f11c938a6213002851b8ea72c88ab410400bb44b2763",
+        "frame_index": 494,
+        "native_text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@jackery.com w celu przedłużenia standardowego okresu gwarancji."
+      }
+    }
+  ]
+}
