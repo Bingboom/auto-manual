@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from html import escape
+import re
 from typing import Any
 
 from tools.component_specs.lcd_mode import lcd_mode_component_spec
@@ -34,6 +35,17 @@ def _pair(key: str, text: str) -> dict[str, str]:
 
 def _headers(headings: Sequence[str]) -> list[dict[str, str]]:
     return [_pair("content", heading) for heading in headings]
+
+
+def _measures_pair(value: str) -> dict[str, str]:
+    """Separate a complete numbered sequence, never decimal measurements."""
+    starts = list(re.finditer(r"(?<!\S)(\d+)\.\s+", value))
+    if (len(starts) < 2 or starts[0].start() != 0
+            or [int(m[1]) for m in starts] != list(range(1, len(starts) + 1))):
+        return _pair("measures", value)
+    offsets = [m.start() for m in starts] + [len(value)]
+    parts = [value[a:b].rstrip() for a, b in zip(offsets, offsets[1:])]
+    return {"measures_text": value, "measures_html": "<br />".join(escape(p) for p in parts)}
 
 
 def _text(text: str) -> dict[str, Any]:
@@ -95,7 +107,7 @@ def troubleshooting_flow(
     """Map the selected troubleshooting table without rewriting its measures."""
     spec = troubleshooting_component_spec(
         headers=_headers(headings),
-        rows=[{**_pair("code", row["code"]), **_pair("measures", row["action"])}
+        rows=[{**_pair("code", row["code"]), **_measures_pair(row["action"])}
               for row in record["rows"]],
         source_ref=source_ref, language=language,
     )
@@ -207,7 +219,7 @@ def warranty_flow(
     blocks = record["blocks"]
     lead = warranty_lead_component_spec(
         accessibility_label=blocks["title"]["text"],
-        lead_html=_paragraph(blocks["scope"]["text"])["html"],
+        lead_html=f'<p><strong>{escape(blocks["scope"]["text"])}</strong></p>',
         local_note_html=_paragraph(blocks["local_law_note"]["text"])["html"],
         source_ref=f"{source_ref}#lead", language=language,
     )

@@ -998,13 +998,13 @@ def _transform_reference_figure(
             source_path=source_path,
             error_type=WebPresentationError,
         )
+    figure.append(semantic)
     append_reference_captions(
         soup,
         figure,
         labels=caption_labels,
         layout=str(spec.get("caption_layout", "equal")),
     )
-    figure.append(semantic)
 
 
 def _transform_reference_figures(

@@ -41,7 +41,7 @@ def replay_package(package: Path) -> tuple[str, ...]:
     for fragment in fragments:
         soup = BeautifulSoup(fragment, "html.parser")
         for item in soup.contents:
-            if isinstance(item, Tag) and item.name in {"h1", "h2", "h3", "h4"} and not item.get("class"):
+            if isinstance(item, Tag) and item.name in {"h1", "h2", "h3", "h4"} and not item.get("class") and not item.has_attr("hidden"):
                 if item.get("id"):
                     # Sphinx normalizes underscores in explicit MyST labels;
                     # source chapter links must retain their exact IR anchors.
@@ -78,6 +78,8 @@ def assemble_book(book, title, pages):
     with (output / "conf.py").open("a", encoding="utf-8") as stream:
         stream.write(f"language = {language!r}\n")
     specs = component_specs_in_flow([payload for page in pages for _, payload in page.blocks])
+    from tools.frozen_pdf_finished_overview import finished_overview_composites
+    composites = finished_overview_composites(book, pages)
     metadata = {
         "projection": "whole-document-components/v1",
         "web_source_normalization": "preface-auto-resume/v1",
@@ -88,7 +90,7 @@ def assemble_book(book, title, pages):
         "asset_sha256": book.hashes, "component_registry": registry,
         "component_registry_sha256": registry_sha256(registry),
         "manual_theme": theme, "manual_theme_sha256": theme_sha256(theme),
-        "web_contract": contract, "composites": [], "page_declarations": {},
+        "web_contract": contract, "composites": composites, "page_declarations": {},
         "frozen_stylesheet_sha256": file_sha256(output / "_static" / "web_manual.css"),
         "frozen_figure_inventory": [
             {"slug": figure["slug"], "section": figure["section_id"],
