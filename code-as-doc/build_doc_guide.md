@@ -2305,3 +2305,13 @@ RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生�
 [目录构建校验](dev/rtd_manual_portal.md#catalog-validation-during-a-build)。
 
 四语原生 PDF 导入按模板的 H1/H2 层级投影章节和子标题；前言提示与段落、安全警告框、LCD 四列图标表、质保卡片及 App 步骤编号均通过共享 IR/ComponentSpec 渲染。密集引线的产品前/右视图复用对应语言成品图，同时保留 IR 语义文案、来源和哈希；正文和表格继续使用原生 HTML。
+
+Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
+
+产品前／右视图的小标题使用图片外的原生网页文字。四语成品图只保留插图、参数与标注线；冻结绑定 `overview_finished_panels` 的 `captions_embedded: false` 恢复可见标题，旧版 `true` 仍隐藏重复标题。导出时按源 PDF 坐标排除标题，保留来源哈希及已批准勘误，不改写历史冻结版本。
+
+自动恢复条件使用共享 `HB-TABLE-AUTO-RESUME`：两列表头，左侧 3 条、右侧 4 条，中间左格跨两行。四语原生 PDF 录入通过 ComponentSpec 调用既有 Web 表格渲染器；标题和引言在表外，条件为可选文字，不以列表或截图替代。新版本保留全部图片及已审勘误。
+
+交流充电图的源稿裁区必须包含完整外框和左右下圆角。说明文字继续作为网页正文；移除图内重复说明时只剥离文字，不删除背景、产品线条或边框。四语共用图修复须一起重建并核对其余图文不变。
+
+太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。

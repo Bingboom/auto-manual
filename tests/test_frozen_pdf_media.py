@@ -126,6 +126,22 @@ class FrozenPDFMediaTests(unittest.TestCase):
         self.assertEqual(original, self.book.source)
         self.assertFalse(soup.find("table"))
 
+    def test_finished_panel_heading_visibility_is_per_view(self):
+        for embedded in (False, True):
+            with self.subTest(captions_embedded=embedded):
+                self.book.overview_finished_panels = {
+                    "front": {"captions_embedded": embedded},
+                    "right": {"captions_embedded": not embedded},
+                }
+                payload = media_section(self.book, "product_overview", self.assets)[0]
+                soup = _render(self.book, payload)
+                headings = soup.select("h2")
+                self.assertEqual(2, len(headings))
+                self.assertEqual([embedded, not embedded],
+                                 [h.has_attr("hidden") for h in headings])
+                self.assertTrue(all(h.get_text(strip=True) for h in headings))
+                self.assertEqual(15, len(soup.select(".hb-figure-callout")))
+
     def test_operations_replay_five_real_components_and_leave_body_regions(self):
         events = operation_panels(self.book, self.assets)
         self.assertEqual(5, len(events))

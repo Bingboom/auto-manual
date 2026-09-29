@@ -12,7 +12,7 @@ from pathlib import Path
 import re
 
 from tools.frozen_ai_flow import heading, prose, root, squash
-from tools.frozen_pdf_frontmatter import preface_flow, template_heading_levels
+from tools.frozen_pdf_frontmatter import preface_flow, strong_paragraph, template_heading_levels
 from tools.frozen_ai_table_components import (
     specification_flow, symbol_pictogram_flow, troubleshooting_flow,
 )
@@ -25,6 +25,22 @@ _SECTIONS = (
     "operations", "ups", "charging", "storage", "troubleshooting",
     "specifications", "warranty", "app_setup",
 )
+
+_EMERGENCY_CHARGING_LABELS = {
+    "uk": "Режим аварійного заряджання",
+    "pt": "Modo de carregamento de emergência",
+    "nl": "Noodoplaadmodus",
+    "pl": "Tryb ładowania awaryjnego",
+}
+
+
+def _body_prose(value, section, language):
+    # The Ukrainian PDF joins this bold lead and its body in one text block;
+    # the other three PDFs give it a separate block. Preserve both shapes.
+    label = _EMERGENCY_CHARGING_LABELS.get(language)
+    if section == "charging" and label and (value == label or value.startswith(label + " ")):
+        return [strong_paragraph(label), *prose(value[len(label):].strip())]
+    return prose(value)
 
 
 def _key(value):
@@ -193,7 +209,7 @@ def ordered_pages(book) -> tuple[str, tuple[SourcePage, ...]]:
         if notice is not None:
             body.append(notice)
         elif not consumed:
-            body.extend(prose(book.correct(squash(block["text"]))))
+            body.extend(_body_prose(book.correct(squash(block["text"])), section, book.language))
     if headings_seen != set(_SECTIONS):
         raise ValueError("incomplete PDF chapter heading coverage")
     pages.append(_page(book, starts[chapter][2], body))

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from html import escape
+import re
 from typing import Any
 
 from tools.component_specs.manual_tables import lcd_icon_component_spec
@@ -28,9 +29,42 @@ _LCD_ROWS = (
 )
 LCD_ICON_ASSET_KEYS = tuple(f"lcd.icon.{identity}" for _, identity in _LCD_ROWS)
 
+# Verified native PDF paragraph starts. Match source copy, never translate it
+# or turn every print-wrapped line into a hard Web break. Other locales keep
+# their existing plain description until their source structure is verified.
+_DESCRIPTION_STARTS = {
+    "pl": (("Wł.", "Miga", "Wył."), (
+        "Tę funkcję", "Ustawienie", "Gdy ta funkcja")),
+    "uk": (("Увімкнення", "Блимає", "Вимкнення"), (
+        "Увімкніть/вимкніть цю функцію", "Налаштування", "Коли ця функція")),
+    "pt": (("Ligado", "Pisca", "Desligado"), (
+        "Ative/desative este recurso", "A configuração", "Quando esse recurso")),
+    "nl": (("Aan", "Knipperend", "Uit"), (
+        "Schakel deze functie", "De instelling", "Wanneer deze functie")),
+}
+
 
 def _pair(role: str, value: str) -> dict[str, str]:
     return {f"{role}_text": value, f"{role}_html": f"<p>{escape(value)}</p>"}
+
+
+def _description_pair(value: str, language: str) -> dict[str, str]:
+    labels, notes = _DESCRIPTION_STARTS.get(language, ((), ()))
+    if not labels:
+        return _pair("description", value)
+    status = "(?:" + "|".join(re.escape(label) for label in labels) + r")[\s\u00a0]*[:：]"
+    boundary = status + "|" + "|".join(re.escape(note) + r"\b" for note in notes)
+    parts = re.split(r"\s+(?=" + boundary + ")", value)
+    lines = []
+    for part in parts:
+        match = re.match(status, part)
+        if match:
+            lines.append(f"<strong>{escape(match[0])}</strong>{escape(part[match.end():])}")
+        else:
+            lines.append(escape(part))
+    # One paragraph with explicit semantic lines uses the public LCD table's
+    # existing spacing; description_text remains the exact native source.
+    return {"description_text": value, "description_html": "<p>" + "<br />".join(lines) + "</p>"}
 
 
 def lcd_icon_flow(
@@ -52,7 +86,7 @@ def lcd_icon_flow(
         refs.append(ref)
         values.append({
             **_pair("number", str(row["number"])),
-            **_pair("name", row["label"]), **_pair("description", row["meaning"]),
+            **_pair("name", row["label"]), **_description_pair(row["meaning"], language),
             "asset_index": index, "icon_alt": row["label"],
         })
         provenance.append({

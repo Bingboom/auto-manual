@@ -106,6 +106,9 @@ class FrozenPDFAppTests(unittest.TestCase):
             ["2.3", "2.4", "2.5"],
             [span.text for span in soup.select('[data-reference-id="app-connect-result"] .hb-reference-caption')],
         )
+        result_figure = soup.select_one('[data-reference-id="app-connect-result"]')
+        self.assertEqual("figcaption", result_figure.find_all(recursive=False)[-1].name)
+        self.assertIsNotNone(result_figure.figcaption.find_previous_sibling().find("img"))
         visible = soup.get_text(" ", strip=True)
         self.assertNotIn('\\"', visible)
         for key, block in self.book.records["app_sections"]["blocks"].items():
