@@ -77,8 +77,9 @@ this workstation.
    none is applied to released content.
 2. **E prefaces:** the new source omits pt/nl/pl prefaces. The candidate
    reuses reviewed same-English-source translations, substitutes the product
-   name and follows E English's legal subject `Jackery Inc.`. These are
-   visibly marked as pending review.
+   name and uses the operator-confirmed EU legal subject `Jackery`
+   (2026-09-29). Approval of the complete reused prefaces remains pending;
+   these are visibly marked as pending review.
 3. **E Dutch imported markup:** the printed App instruction includes a
    literal `<g id="1">` suffix. The candidate preserves it pending an
    explicit source-cleanup decision. Quote escaping is normalized by the

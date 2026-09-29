@@ -15,8 +15,14 @@
       ],
       "physical_page": 4,
       "status": "pending-review",
-      "finding": "Page duplicates DE/IT/UK prefaces. New locale prefaces are absent. Candidate paragraphs retain separate JE1000F source provenance; legal Jackery Inc. substitution needs review.",
-      "candidate_file": "source/preface_candidates.json"
+      "finding": "Page duplicates DE/IT/UK prefaces. New locale prefaces are absent. Candidate paragraphs retain separate JE1000F source provenance. Operator confirmed the EU legal subject as Jackery on 2026-09-29; complete reused prefaces remain pending review.",
+      "candidate_file": "source/preface_candidates.json",
+      "legal_subject_decision": {
+        "value": "Jackery",
+        "status": "operator-approved",
+        "date": "2026-09-29",
+        "instruction": "欧规法律主体用 Jackery"
+      }
     },
     {
       "id": "nl-expansion-label-position",

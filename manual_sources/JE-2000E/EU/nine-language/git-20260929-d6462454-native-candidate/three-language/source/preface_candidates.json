@@ -20,19 +20,20 @@
       },
       {
         "paragraph": 2,
-        "text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery Inc. não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
+        "text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
         "source_text": "Em conformidade com leis e regulamentos, o direito de interpretação final deste documento e de todos os documentos relacionados a este produto pertence à Empresa. Embora tenham sido envidados todos os esforços para garantir a precisão deste manual, a Jackery não assume nenhuma responsabilidade por quaisquer erros que possam ocorrer.",
-        "status": "pending-legal-subject-review",
+        "status": "shared-copy-candidate",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pt.json",
         "source_json_sha256": "abb0a189fbe3056a123dfe88a92558658e7ed518323a3bc124fb056c557ab5a7",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": [
-          {
-            "before": "Jackery",
-            "after": "Jackery Inc."
-          }
-        ]
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "legal_subject": "Jackery",
+          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+        }
       },
       {
         "paragraph": 3,
@@ -79,19 +80,20 @@
       },
       {
         "paragraph": 2,
-        "text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery Inc. geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
+        "text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
         "source_text": "Volgens de wet en regels heeft het bedrijf het laatste woord over de interpretatie van dit document en alle andere documenten die bij dit product horen. Hoewel alle moeite is gedaan om de nauwkeurigheid van deze handleiding te waarborgen, aanvaardt Jackery geen aansprakelijkheid voor eventuele fouten die kunnen voorkomen.",
-        "status": "pending-legal-subject-review",
+        "status": "shared-copy-candidate",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/nl.json",
         "source_json_sha256": "ad2c3851591cfb429043b3ecdc603e79747aea806fcc47785e9c5f5e67f71d59",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": [
-          {
-            "before": "Jackery",
-            "after": "Jackery Inc."
-          }
-        ]
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "legal_subject": "Jackery",
+          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+        }
       },
       {
         "paragraph": 3,
@@ -138,19 +140,20 @@
       },
       {
         "paragraph": 2,
-        "text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery Inc. nie ponosi odpowiedzialności za ewentualne błędy.",
+        "text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za ewentualne błędy.",
         "source_text": "Zgodnie z przepisami prawo ostatecznej interpretacji niniejszego dokumentu oraz wszystkich dokumentów związanych z tym produktem przysługuje firmie. Chociaż dołożono wszelkich starań, aby niniejsza instrukcja była dokładna, firma Jackery nie ponosi odpowiedzialności za ewentualne błędy.",
-        "status": "pending-legal-subject-review",
+        "status": "shared-copy-candidate",
         "source_path": "manual_sources/JE-1000F/EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/source/pl.json",
         "source_json_sha256": "d29166e3f63879f82baa95d48146225ba282491ba0fe68a4d6df3bc26fc18d1e",
         "source_pdf_sha256": "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469",
         "source_pdf_page": 4,
-        "changes": [
-          {
-            "before": "Jackery",
-            "after": "Jackery Inc."
-          }
-        ]
+        "changes": [],
+        "operator_decision": {
+          "date": "2026-09-29",
+          "instruction": "欧规法律主体用 Jackery",
+          "legal_subject": "Jackery",
+          "scope": "Legal subject only; approval of the complete reused preface remains pending."
+        }
       },
       {
         "paragraph": 3,

@@ -28,8 +28,8 @@
     },
     {
       "path": "source/candidate_review_ledger.json",
-      "size": 5438,
-      "sha256": "e96ce0a59dcb959989a04b263c720359fe2a6f97f11be7ece9950aca9ed207ee"
+      "size": 5701,
+      "sha256": "a1cf83977989796346784d74aabc61d947c903f28e334d7bb8f6b49c0d634fa2"
     },
     {
       "path": "source/errata.json",
@@ -78,8 +78,8 @@
     },
     {
       "path": "source/preface_candidates.json",
-      "size": 12449,
-      "sha256": "b9f95e6a9bd1c368aa49ca55e0e5c099f1228c74cd4c4fab2eac2caab94f2b7e"
+      "size": 12911,
+      "sha256": "cfdedb3ef77213d4e1c950eb81b33ec87b553190fc6053899616121c36115871"
     },
     {
       "path": "source/pt_direct_source.json",

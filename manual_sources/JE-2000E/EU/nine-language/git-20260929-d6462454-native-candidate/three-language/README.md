@@ -14,7 +14,7 @@ Fourteen chapters include battery expansion. LCD contains 27 semantic rows (the 
 
 ## Candidate boundary
 
-The new-language prefaces are missing from AI p4. `source/preface_candidates.json` proposes separately provenanced shared paragraphs, including a **pending legal-subject review** for Jackery Inc. A local preview may visibly mark these as pending; no approved source or publication claim is permitted. `source/candidate_review_ledger.json` preserves other source defects and geometry decisions. `source/uk_comparison_scope.json` records inherited approved fixes and the unresolved outlined-text comparison.
+The new-language prefaces are missing from AI p4. `source/preface_candidates.json` proposes separately provenanced shared paragraphs, with the EU legal subject **Jackery**, explicitly confirmed by the operator on 2026-09-29. Approval of the complete reused prefaces remains pending A local preview may visibly mark these as pending; no approved source or publication claim is permitted. `source/candidate_review_ledger.json` preserves other source defects and geometry decisions. `source/uk_comparison_scope.json` records inherited approved fixes and the unresolved outlined-text comparison.
 
 Run the existing shared `tools.frozen_pdf_web` entrypoint with this directory as `--recipe-root`, the exact AI as `--pdf`, the locale's artwork binding, and a fresh external output directory. This package must not add a per-model renderer or rewrite the old six routes. Public renderer, source coverage and visual checks must pass before any release decision.
 
