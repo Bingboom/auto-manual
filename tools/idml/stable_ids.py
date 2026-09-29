@@ -12,7 +12,7 @@ def apply_stable_labels(xml: str) -> str:
     for element in _LABELED_ELEMENTS:
         pattern = re.compile(rf"<{element} Self=\"([^\"]+)\"(?![^>]*\bLabel=)")
         xml = pattern.sub(
-            lambda match: f'<{element} Self="{match.group(1)}" Label="hb:self={match.group(1)}"',
+            lambda match: f'<{element} Self="{match.group(1)}" Label="hb:self={match.group(1)}"',  # noqa: B023 -- invoked before the loop advances
             xml,
         )
     return xml

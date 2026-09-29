@@ -10,7 +10,6 @@ from .character_metrics import (
     signal_label_metrics,
     with_character_metrics,
 )
-from .layout_est import est_table_height
 from .inline_text import character_ranges
 from .params import (
     IDPKG,

@@ -125,7 +125,6 @@ class SyncMirrorTests(unittest.TestCase):
         self.assertNotIn("MC_TEST_PRESENT_BASE", message)
 
     def test_fetch_and_result_shape(self) -> None:
-        import os
         import tempfile
 
         with tempfile.TemporaryDirectory() as tmp:

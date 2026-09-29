@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import argparse
 import importlib.util
 import os
 import shutil
@@ -99,8 +98,7 @@ from tools.build_docs_sphinx import (
 from tools.build_docs_shared import (
     BODY_SWITCHER_CLASS,
     MANUAL_META_FILE_NAME,
-    SWITCHER_BLOCK_END,
-    SWITCHER_BLOCK_START,
+    SWITCHER_BLOCK_START as SWITCHER_BLOCK_START,
     VALID_FORMATS,
     VALID_PDF_MODES,
     VALID_SOURCE_MODES,

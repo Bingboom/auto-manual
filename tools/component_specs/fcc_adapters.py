@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from copy import deepcopy
 from typing import Any
 
 from tools.component_specs.fcc import (

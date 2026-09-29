@@ -126,11 +126,11 @@ def _rewrite_references(output_dir: Path, *, pooled_for: dict[Path, Path]) -> in
         start = markdown_path.parent.as_posix()
 
         def pooled_target(raw: str) -> str | None:
-            resolved = _referenced_path(raw, markdown_path=markdown_path)
+            resolved = _referenced_path(raw, markdown_path=markdown_path)  # noqa: B023 -- invoked before the loop advances
             pooled = pooled_for.get(resolved) if resolved is not None else None
             if pooled is None:
                 return None
-            return _rewrite_suffix(raw, posixpath.relpath(pooled.as_posix(), start=start))
+            return _rewrite_suffix(raw, posixpath.relpath(pooled.as_posix(), start=start))  # noqa: B023 -- invoked before the loop advances
 
         def replace_html(match: re.Match[str]) -> str:
             nonlocal rewritten

@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
-from collections import Counter
 import csv
 from pathlib import Path
 import re
@@ -16,7 +15,6 @@ from tools.utils.spec_master_shared import (
     _LEGACY_PAGE_VALUE_BINDINGS,
     _LEGACY_PAGE_VALUE_KEYS_BY_SIGNATURE,
     _SECTION_NORMALIZATION_RULES,
-    _SECTION_ORDER_BY_SECTION,
     _SLOT_KEY_VALUE_ALIASES,
     _SOURCE_COLUMN_NAMES,
     _SOURCE_LANGUAGE_NORMALIZATION,

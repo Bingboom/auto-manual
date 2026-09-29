@@ -343,7 +343,7 @@ def main() -> int:
         role = role_by_path[page]
         render_delta = target_renderer.render(
             page,
-            get_page_cursor=lambda: page_cursor,
+            get_page_cursor=lambda: page_cursor,  # noqa: B023 -- reads the live cursor on purpose
             flush_prose_flow=flush_prose_flow,
             flush_pending_fcc=flush_pending_fcc,
             flush_pending_prefix=flush_pending_prefix,

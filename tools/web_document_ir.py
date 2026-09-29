@@ -116,10 +116,10 @@ def _render_document_fragments(ir: ManualIR, *, package_root: Path) -> tuple[str
                 ),
                 component_renderer=lambda node: render_embedded_web_component(
                     node,
-                    source_path=Path(page.source_path),
+                    source_path=Path(page.source_path),  # noqa: B023 -- invoked before the loop advances
                     model=ir.model,
                     region=ir.region,
-                    language=page.language,
+                    language=page.language,  # noqa: B023 -- invoked before the loop advances
                     composite_manifest=composites,
                     contract=ir.metadata["web_contract"],
                     overview_instance=(

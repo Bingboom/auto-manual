@@ -5,7 +5,6 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable
 
 from tools.build_docs import (
     build_root_for_target,

@@ -23,7 +23,7 @@ from .latex_page_plan import (
     write_page_plan,
 )
 from .data_components import parse_data_component
-from .component_targets import ComponentTarget, resolve_component_target
+from .component_targets import ComponentTarget, resolve_component_target as resolve_component_target
 from .composition_plan import is_explicit_assembly_plan
 from .lcd_reference_profile import apply_lcd_reference_profile
 from .reference_layout_plan import load_approved_reference_plan

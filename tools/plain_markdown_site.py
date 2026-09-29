@@ -218,7 +218,7 @@ def download_remote_images(
             staged = fetch(url)
             if not staged:
                 return match.group(0)
-            return f"{prefix}{posixpath.relpath(staged, start=start)}"
+            return f"{prefix}{posixpath.relpath(staged, start=start)}"  # noqa: B023 -- invoked before the loop advances
 
         rewritten = _MD_IMAGE_RE.sub(replace, text)
         rewritten = _HTML_IMAGE_RE.sub(replace, rewritten)
@@ -264,7 +264,7 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
             if "://" in ref or ref.startswith(("data:", "/", "#")):
                 return None
             decoded = unquote(ref)
-            candidate = (markdown_path.parent / decoded).resolve(strict=False)
+            candidate = (markdown_path.parent / decoded).resolve(strict=False)  # noqa: B023 -- invoked before the loop advances
             if candidate.is_file():
                 try:
                     return candidate.relative_to(staged_dir.resolve(strict=False))
@@ -280,7 +280,7 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
                 return match.group(0)
             if not _is_ascii_path(target.as_posix()):
                 target = _ascii_asset_copy(staged_dir, target)
-            repointed = posixpath.relpath(target.as_posix(), start=start)
+            repointed = posixpath.relpath(target.as_posix(), start=start)  # noqa: B023 -- invoked before the loop advances
             if repointed == ref:
                 return match.group(0)
             rewrites += 1
@@ -291,13 +291,13 @@ def normalize_image_refs(staged_dir: Path, *, log=print) -> int:
             prefix, ref = match.group(1), match.group(2)
             if "://" in ref or ref.startswith(("data:", "/", "#")):
                 return match.group(0)
-            if (markdown_path.parent / unquote(ref)).resolve(strict=False).is_file():
+            if (markdown_path.parent / unquote(ref)).resolve(strict=False).is_file():  # noqa: B023 -- invoked before the loop advances
                 return match.group(0)
             target = index.get(Path(unquote(ref)).name)
             if target is None:
                 return match.group(0)
             rewrites += 1
-            return f"{prefix}{posixpath.relpath(target.as_posix(), start=start)}"
+            return f"{prefix}{posixpath.relpath(target.as_posix(), start=start)}"  # noqa: B023 -- invoked before the loop advances
 
         rewritten = _MD_IMAGE_RE.sub(replace_markdown, text)
         rewritten = _HTML_IMAGE_RE.sub(replace_html, rewritten)

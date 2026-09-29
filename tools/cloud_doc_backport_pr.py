@@ -8,7 +8,6 @@ open_backport_pr_from_manifest. Imports leaf modules; re-exported.
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 import shlex
 import subprocess
 from pathlib import Path

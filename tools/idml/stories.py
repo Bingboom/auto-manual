@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from . import components as _components, page_objects as _po, prose_flow as _flow
-from .data_stories import add_lcd_story, add_spec_story, add_symbols_story, add_trouble_story
+from .data_stories import add_lcd_story as add_lcd_story, add_spec_story as add_spec_story, add_symbols_story as add_symbols_story, add_trouble_story as add_trouble_story
 from .params import param_pt
 from .prose_paragraph import build_text_paragraph
 from .character_metrics import with_character_baseline_shift
@@ -12,7 +12,7 @@ from .story_rhythm import apply_default_h2_rhythm, operation_key_visual_raise
 from .story_estimates import StoryHeight, paragraph_estimate
 from .operation_stack import OperationStorySpacing
 from .story_parts import add_story_parts as _add_story_parts
-from .story_parts import add_text_story
+from .story_parts import add_text_story as add_text_story
 from .story_semantics import image_role, require_all_image_roles, story_language
 
 def add_prose_story(writer, sid: str, title: str, blocks: list[tuple[str, str]],

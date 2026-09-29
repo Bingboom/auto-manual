@@ -14,7 +14,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
 
-from tools.build_docs import BuildTarget, load_config, resolve_build_targets  # noqa: E402
+from tools.build_docs import BuildTarget, load_config as load_config, resolve_build_targets  # noqa: E402
 from tools.config_pages import GeneratedPage  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
@@ -23,7 +23,6 @@ from tools.utils.path_utils import Paths  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
     model_value_matches_target,
-    normalize_source_lang,
     read_spec_master_rows,
     region_value_matches_target,
     source_language_for_row,

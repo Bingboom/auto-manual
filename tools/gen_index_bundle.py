@@ -4,9 +4,7 @@
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
-import sys
 from pathlib import Path
 
 try:
@@ -88,7 +86,7 @@ from tools.gen_index_bundle_paths import (
     latex_cover_block,
     latex_overview_block,
     load_config,
-    read_included_page_paths,
+    read_included_page_paths as read_included_page_paths,
     resolve_build_model,
     resolve_build_region,
     resolve_csv_rst_path as _resolve_csv_rst_path,

@@ -11,7 +11,6 @@ from tools.ci_check_targets import (
     CheckTarget,
     CommandResult,
     build_report,
-    build_check_command,
     discover_targets,
     evaluate_targets,
     fixture_document_keys,

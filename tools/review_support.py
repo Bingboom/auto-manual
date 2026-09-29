@@ -223,7 +223,7 @@ def _shared_review_page_path_pairs(
         target_name = _normalized_materialized_page_name(planned.file_name)
         target_source = _source_file(planned)
         shared_name = _claim(
-            lambda record: record["lang"] == target_lang and record["name"] == target_name
+            lambda record: record["lang"] == target_lang and record["name"] == target_name  # noqa: B023 -- invoked before the loop advances
         )
         if shared_name is None and target_source:
             # A shared page (e.g. the trilingual preface) is declared once in
@@ -232,7 +232,7 @@ def _shared_review_page_path_pairs(
             # language. Pair them by identical source file + page name so the
             # review overlay still maps the shared review copy.
             shared_name = _claim(
-                lambda record: record["source"] == target_source and record["name"] == target_name
+                lambda record: record["source"] == target_source and record["name"] == target_name  # noqa: B023 -- invoked before the loop advances
             )
         if shared_name is None:
             continue

@@ -54,11 +54,8 @@ from tools.queue_freshness import (
 from tools.process_review_start_queue import (
     INITIAL_RESULT_FIELD,
     LANG_FIELD,
-    PR_URL_FIELD,
     REMARKS_FIELD,
     REVIEW_START_ACTION_LABEL,
-    REVIEW_STATUS_FIELD,
-    REVIEW_TRIGGER_FIELD,
     collect_review_start_preflight_errors,
     normalize_review_start_action,
     parse_review_start_records,
@@ -167,7 +164,6 @@ _MODEL_TOKEN_RE = re.compile(r"^(?=.*\d)[A-Za-z0-9]+(?:-[A-Za-z0-9]+)+$")
 _REGION_TOKEN_RE = re.compile(r"^[A-Za-z]{2,3}(?:-[A-Za-z]{2,3})?$")
 _BUILD_FAMILY_TOKEN_RE = re.compile(r"^[a-z]{2,}(?:-[a-z][a-z0-9]*)+$")
 from tools.queue_query_languages import (
-    LANG_ALIASES as _LANG_ALIASES,
     LANG_CODES as _LANG_CODES,
     LANG_NAME_PATTERN as _LANG_NAME_PATTERN,
     SUPPORTED_LANGS as _SUPPORTED_LANGS,

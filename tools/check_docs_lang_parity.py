@@ -81,7 +81,9 @@ def load_known_exceptions(data_dir: Path) -> set[tuple[str, str, str, str]]:
     if not path.exists():
         return set()
     out: set[tuple[str, str, str, str]] = set()
-    for row in csv.DictReader(path.open(encoding="utf-8")):
+    with path.open(encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    for row in rows:
         key = tuple((row.get(field) or "").strip()
                     for field in ("model", "region", "code", "page"))
         if all(key):

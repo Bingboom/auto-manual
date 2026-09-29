@@ -18,37 +18,15 @@ ROOT = bootstrap_repo_root(__file__, parent_count=1)
 from tools.build_paths import review_root_for_config as _review_root_for_config, version_tracking_root as _version_tracking_root  # noqa: E402
 from tools.utils.path_utils import PathSegments  # noqa: E402
 from tools.diff_report_fields import (  # noqa: E402
-    collect_field_diff_rows,
-    collect_page_diff_rows,
-    derive_lang_from_page_key,
-    load_config,
-    resolve_data_path,
-    resolve_spec_paths,
+    collect_field_diff_rows as collect_field_diff_rows,
+    load_config as load_config,
+    resolve_spec_paths as resolve_spec_paths,
 )
 from tools.diff_report_git import (  # noqa: E402
     build_report_base_name,
     collect_diff_rows,
     detect_initial_baseline,
-    extract_bundle_fields,
-    git_show_text,
-    git_tree_has_entries,
-    parse_name_status,
-    parse_numstat,
-    pathspec_from_root,
-    run_git,
-    sanitize_token,
 )
-from tools.diff_report_models import (  # noqa: E402
-    DiffRow,
-    FieldDiffRow,
-    FieldEntry,
-    GeneratedReports,
-    PageDiffRow,
-    PlaceholderValueSource,
-    ResolvedFieldEntry,
-    SpecFieldSource,
-)
-from tools.diff_report_render import write_csv_report, write_html_report, write_index_report  # noqa: E402
 from tools.diff_report_reports import generate_diff_report  # noqa: E402
 
 

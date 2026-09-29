@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
-from typing import Any, Callable
+from typing import Callable
 
 
 def normalize_cli_build_queue_action(workflow_action: str | None = None, doc_phase: str | None = None) -> str | None:

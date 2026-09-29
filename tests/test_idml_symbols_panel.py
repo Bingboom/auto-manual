@@ -9,7 +9,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from tools.export_idml import IdmlWriter, load_layout_params
-from tools.idml import page03, shared_page, symbols_page
+from tools.idml import shared_page, symbols_page
 from tools.idml.components.symbols_panel import SymbolsPanel, SymbolsPanelData
 from tools.idml.components.symbol_sections import SignalWordsPanel, SymbolIconsPanel
 from tools.idml.components.symbols_panel_metrics import distribute_compact_row_slack

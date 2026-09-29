@@ -5,7 +5,7 @@ from .loaders import normalize_lang
 from .params import IDPKG, param_pt, param_text
 from .app_text_styles import paragraph_styles as app_paragraph_styles
 from .paragraph_style_attrs import contract_paragraph_attrs
-from .style_resources import PRIMARY_FONT_FAMILY_TOKEN, fonts_xml, graphic_xml, preferences_xml
+from .style_resources import PRIMARY_FONT_FAMILY_TOKEN, fonts_xml as fonts_xml, graphic_xml as graphic_xml, preferences_xml as preferences_xml
 from .style_names import paragraph_style_name, paragraph_style_ref
 
 
@@ -182,8 +182,8 @@ def styles_xml(
             + (f'      <Leading type="unit">{leading:g}</Leading>\n'
                if kind != "figure" else
                '      <Leading type="enum">Auto</Leading>\n') +
-            f'    </Properties>\n'
-            f'  </ParagraphStyle>'
+            '    </Properties>\n'
+            '  </ParagraphStyle>'
         )
     return (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'

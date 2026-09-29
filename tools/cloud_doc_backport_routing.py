@@ -8,7 +8,6 @@ cloud_doc_backport.
 """
 from __future__ import annotations
 
-import difflib
 import hashlib
 import json
 import re

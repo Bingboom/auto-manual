@@ -13,7 +13,7 @@ from tools.lang_registry import canonical_language
 
 from .params import IDPKG, MIMETYPE
 from .stable_ids import apply_stable_labels
-from .story_frames import add_lcd_story_frames, add_story_frames
+from .story_frames import add_lcd_story_frames as add_lcd_story_frames, add_story_frames as add_story_frames
 from .components.native_marker import bind_reference_mark_ids
 
 

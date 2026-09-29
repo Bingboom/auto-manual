@@ -8,9 +8,8 @@ import os
 import shlex
 import shutil
 import subprocess
-import sys
 import tempfile
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -54,13 +53,12 @@ from tools.sync_data_models import (  # noqa: E402
     TABLE_SCHEMAS,
     RecordSource,
     TableBinding,
-    TableSchema,
     TableSyncResult,
 )
 from tools.sync_data_records import (  # noqa: E402
     _csv_text,
     _dict_rows_csv_text,
-    _normalized_cell,
+    _normalized_cell as _normalized_cell,
     _read_existing_mapping_rows,
     _sha256_file,
     _sha256_text,
