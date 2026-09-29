@@ -140,6 +140,8 @@ class FrozenAITableComponentTests(unittest.TestCase):
                         continue
                     for part in block["text"].split("•"):
                         self.assertIn(part.strip(), text)
+                self.assertEqual(warranty["blocks"]["scope"]["text"],
+                                 soup.select_one(".hb-warranty-intro-panel strong").get_text())
                 self.assertEqual(["3", "2"], [node.get_text() for node in soup.select(".hb-warranty-year-badge")])
                 for prefix, card in zip(("standard", "extension"), soup.select(".hb-warranty-period-item"), strict=True):
                     label, unit, number = [part.strip() for part in warranty["blocks"][f"{prefix}_heading"]["raw_text"].splitlines() if part.strip()]

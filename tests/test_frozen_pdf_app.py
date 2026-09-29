@@ -42,12 +42,22 @@ def _fixture():
         {"bbox": [59, 426, 113, 434], "text": "Aan/uit-knop voor"},
         {"bbox": [87, 435, 111, 443], "text": "DC/USB"},
         {"bbox": [278, 429, 318, 445], "text": "Aan/uit-knop\nvoor DC"},
+        {"bbox": [128, 380, 234, 387], "text": "2.1\n2.2"},
     ]
+    blocks = {
+        key: {"raw_text": value, "text": " ".join(value.split()), "physical_page": 142}
+        for key, value in copy.items()
+    }
+    for key in ("step_2_4", "step_2_5", "screenshots_note"):
+        blocks[key]["physical_page"] = 143
     return SimpleNamespace(
-        language="nl", records={"app_sections": {"blocks": {
-            key: {"raw_text": value, "text": " ".join(value.split()), "physical_page": 142}
-            for key, value in copy.items()}}},
-        source={"pages": [{"physical_page": 142, "blocks_visual_order": labels}]},
+        language="nl", records={"app_sections": {"blocks": blocks}},
+        source={"pages": [
+            {"physical_page": 142, "blocks_visual_order": labels},
+            {"physical_page": 143, "blocks_visual_order": [
+                {"bbox": [80, 281, 283, 288], "text": "2.5\n2.3\n2.4"},
+            ]},
+        ]},
         correct=lambda value: "Aan/uit-knop voor AC" if value == "Aan/uit-knop voor DC" else value,
     )
 
@@ -87,6 +97,15 @@ class FrozenPDFAppTests(unittest.TestCase):
         self.assertEqual(self.assets["app.phone"], soup.select_one(".hb-app-add-device-phone-art")["src"])
         self.assertEqual(self.assets["app.control"], soup.select_one(".hb-app-add-device-control-art")["src"])
         self.assertEqual(1, len(soup.find_all("img", src=self.assets["app.result"])))
+        self.assertEqual("live", soup.select_one(".hb-app-add-device-composition")["data-step-captions"])
+        self.assertEqual(
+            ["2.1", "2.2"],
+            [span.text for span in soup.select(".hb-app-add-device-composition .hb-reference-caption")],
+        )
+        self.assertEqual(
+            ["2.3", "2.4", "2.5"],
+            [span.text for span in soup.select('[data-reference-id="app-connect-result"] .hb-reference-caption')],
+        )
         visible = soup.get_text(" ", strip=True)
         self.assertNotIn('\\"', visible)
         for key, block in self.book.records["app_sections"]["blocks"].items():
@@ -102,6 +121,7 @@ class FrozenPDFAppTests(unittest.TestCase):
         self.book.source["pages"][0]["blocks_visual_order"] = [
             {"bbox": [42, 411, 90, 418], "text": "Przycisk zasilania"},
             {"bbox": [41, 428, 335, 437], "text": "Przycisk zasilania DC/USB\nPrzycisk zasilania AC\n"},
+            {"bbox": [128, 380, 234, 387], "text": "2.1\n2.2"},
         ]
         soup = _render(self.book, app_section(self.book, self.assets))
         self.assertEqual("Przycisk zasilania DC/USB", soup.select_one(".hb-app-add-device-live-label-dc-usb").text)
@@ -114,6 +134,11 @@ class FrozenPDFAppTests(unittest.TestCase):
         self.assets["app.qr"] = "assets/qr.png"
         self.book.records["app_sections"]["blocks"]["step_2_1"]["raw_text"] = "No vector gap"
         with self.assertRaisesRegex(ValueError, "vector-control gap is ambiguous"):
+            app_section(self.book, self.assets)
+
+    def test_missing_native_step_numbers_fail_closed(self):
+        self.book.source["pages"][1]["blocks_visual_order"] = []
+        with self.assertRaisesRegex(ValueError, "expected one native number block"):
             app_section(self.book, self.assets)
 
     @unittest.skipUnless(PDF.is_file(), "native intake PDF is not available")
@@ -135,6 +160,14 @@ class FrozenPDFAppTests(unittest.TestCase):
                     expected = re.sub(r'\\+"', '"', " ".join(raw.replace("•", " ").split()))
                     self.assertEqual(1, visible.count(expected), key)
                 self.assertEqual(3, len(soup.select(".hb-app-add-device-live-label")))
+                self.assertEqual(
+                    ["2.1", "2.2"],
+                    [span.text for span in soup.select(".hb-app-add-device-composition .hb-reference-caption")],
+                )
+                self.assertEqual(
+                    ["2.3", "2.4", "2.5"],
+                    [span.text for span in soup.select('[data-reference-id="app-connect-result"] .hb-reference-caption')],
+                )
 
 
 if __name__ == "__main__":

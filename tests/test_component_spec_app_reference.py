@@ -163,6 +163,32 @@ class AppReferenceComponentSpecTests(unittest.TestCase):
                 self.assertTrue(latex_app_projection(spec)["adapter"])
                 self.assertTrue(idml_app_payload(spec)["kind"])
                 self.assertTrue(word_app_projection(spec)["editable"])
+        # Legacy five-language App art already contains the step numbers.
+        self.assertNotIn("step_captions", web_app_projection(add_device))
+        native_step_spec = app_add_device_component_spec(
+            accessibility_label="Add-device steps",
+            reference_id="app-add-device",
+            labels=(
+                {"role": "main-power", "html": "POWER", "text": "POWER"},
+                {"role": "dc-usb", "html": "DC / USB", "text": "DC / USB"},
+                {"role": "ac-power", "html": "AC", "text": "AC"},
+            ),
+            step_captions=(
+                {"role": "step-2-1", "html": "2.1", "text": "2.1"},
+                {"role": "step-2-2", "html": "2.2", "text": "2.2"},
+            ),
+            source_art_ref="source.png",
+            phone_art_ref="phones.png",
+            control_art_ref="controls.png",
+            source_ref="app.rst#native-add-device",
+            language="pl",
+            registry=registry,
+            theme=theme,
+        )
+        self.assertEqual(
+            ["2.1", "2.2"],
+            [item["text"] for item in web_app_projection(native_step_spec)["step_captions"]],
+        )
 
         reference = reference_figure_component_spec(
             reference_id="charging-car",
