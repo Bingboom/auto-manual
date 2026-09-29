@@ -13,6 +13,7 @@ from html import escape
 import re
 from typing import Any
 
+from tools.component_specs.auto_resume import auto_resume_component_spec
 from tools.component_specs.lcd_mode import lcd_mode_component_spec
 from tools.component_specs.manual_tables import (
     symbol_icon_component_spec,
@@ -155,6 +156,19 @@ def specification_flow(
     return nodes
 
 
+def auto_resume_flow(
+    record: Mapping[str, Any], *, source_ref: str, language: str,
+) -> list[dict[str, Any]]:
+    """Retain the source's two columns and merged middle condition."""
+    columns = record["columns"]
+    spec = auto_resume_component_spec(
+        headers=[column["heading"]["text"] for column in columns],
+        conditions=[[item["text"] for item in column["items"]] for column in columns],
+        source_ref=source_ref, language=language,
+    )
+    return [component_flow_node(spec, root=True)]
+
+
 def lcd_mode_flow(
     record: Mapping[str, Any], *, artwork_ref: str, accessibility_label: str,
     source_ref: str, language: str,
@@ -247,5 +261,5 @@ def warranty_flow(
 
 __all__ = [
     "symbol_signal_flow", "symbol_pictogram_flow", "troubleshooting_flow",
-    "specification_flow", "lcd_mode_flow", "warranty_flow",
+    "specification_flow", "auto_resume_flow", "lcd_mode_flow", "warranty_flow",
 ]
