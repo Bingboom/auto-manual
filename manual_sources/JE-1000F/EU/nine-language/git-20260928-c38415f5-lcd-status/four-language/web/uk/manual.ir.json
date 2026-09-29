@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "b8a3c48f927a35de00a2f4be031877da653d6035a74ca22e8ac1622e8b1899ff",
-  "content_sha256": "3c748a599a33d1954a988e51877b0545a30273668e159f7468588cadda661602",
+  "content_sha256": "f43f6bd50e2711bdf92109158dbb4889f77a6c602f46e695f29909ce34aadacb",
   "language": "uk",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -121,7 +121,7 @@
       "assets/f9ed0c8d1dc1_f9ed0c8d1dc1_f9ed0c8d1dc1_op_lcd_mode_je1000f_eu_en.png": "f9ed0c8d1dc17b00daad2ba6a13053a2b45527527b15c41d83d353df890740bb",
       "assets/fc4cc02b42ef_fc4cc02b42ef_fc4cc02b42ef_1_Wi-Fi_KCcAbdDk7o4RjKx82micuKJ5nyf.png": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
     },
-    "block_count": 137,
+    "block_count": 138,
     "component_inventory": {
       "HB-CALLOUT-STRIP": 14,
       "HB-SPECIAL-APP": 3,
@@ -12232,13 +12232,18 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0009",
-          "content_sha256": "ab5397b6a606ffaa499377288adda203efe4f8d44c74c8032340ff42855bc2b5",
+          "content_sha256": "d426ced81160b8c7d8bc8f5d3dea8ced37c351a87157ddc4cc89423d1f70347b",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Режим аварійного заряджання У цьому режимі ви можете швидко зарядити портативну станцію живлення за допомогою заряджання від мережі змінного струму. Цю функцію аварійного заряджання можна активувати або деактивувати через Jackery App. В аварійному режимі заряджання круглий індикатор стану заряду (SOC) блиматиме швидше. * Щоб максимально продовжити термін служби батареї, найкраще заряджати на звичайній швидкості. Використовуйте режим аварійного заряджання лише за потреби. Не рекомендується для регулярного тривалого використання."
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Режим аварійного заряджання"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -12249,6 +12254,23 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0010",
+          "content_sha256": "1159536429fcc3cfe0dedc0bd30ab6f7e0e382249e8da65c6910dcb016ae0e6c",
+          "kind": "flow",
+          "payload": {
+            "children": [
+              {
+                "kind": "text",
+                "text": "У цьому режимі ви можете швидко зарядити портативну станцію живлення за допомогою заряджання від мережі змінного струму. Цю функцію аварійного заряджання можна активувати або деактивувати через Jackery App. В аварійному режимі заряджання круглий індикатор стану заряду (SOC) блиматиме швидше. * Щоб максимально продовжити термін служби батареї, найкраще заряджати на звичайній швидкості. Використовуйте режим аварійного заряджання лише за потреби. Не рекомендується для регулярного тривалого використання."
+              }
+            ],
+            "kind": "paragraph",
+            "schema_version": "manual-flow/v2"
+          },
+          "source_ref": "uk/charging#block-10"
+        },
+        {
+          "asset_refs": [],
+          "block_id": "charging:block-0011",
           "content_sha256": "b2f591716b291ee27ba16c9b54cc8671a38df7eee8e7f1ade9dc84d6f2903e27",
           "kind": "flow",
           "payload": {
@@ -12262,11 +12284,11 @@
             "level": 2,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-10"
+          "source_ref": "uk/charging#block-11"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0011",
+          "block_id": "charging:block-0012",
           "content_sha256": "b46e09c8743216014dd52e9ba187254c4704c2d98620e5d024eca08fec3c69a5",
           "kind": "flow",
           "payload": {
@@ -12279,13 +12301,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-11"
+          "source_ref": "uk/charging#block-12"
         },
         {
           "asset_refs": [
             "assets/7f14d14b1364_7f14d14b1364_7f14d14b1364_solar-single.png"
           ],
-          "block_id": "charging:block-0012",
+          "block_id": "charging:block-0013",
           "content_sha256": "b31f7fd372840b2b4d0d31e87092f85cb31fc0978ef560f778f812677ab4f154",
           "kind": "flow",
           "payload": {
@@ -12404,11 +12426,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-12"
+          "source_ref": "uk/charging#block-13"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0013",
+          "block_id": "charging:block-0014",
           "content_sha256": "3d783d7c2ee8ab832d0d3c6c42f52172406bcfbaef65b3ac641bf6db24e309d9",
           "kind": "flow",
           "payload": {
@@ -12421,13 +12443,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-13"
+          "source_ref": "uk/charging#block-14"
         },
         {
           "asset_refs": [
             "assets/82c9cafc5d55_82c9cafc5d55_82c9cafc5d55_solar-four.png"
           ],
-          "block_id": "charging:block-0014",
+          "block_id": "charging:block-0015",
           "content_sha256": "b0e593a3672df95f5c065543fef2652353c06cf256aeb5e1713c06ad70cf5adb",
           "kind": "flow",
           "payload": {
@@ -12546,11 +12568,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-14"
+          "source_ref": "uk/charging#block-15"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0015",
+          "block_id": "charging:block-0016",
           "content_sha256": "7ce1037bba6223aeaee410f6695b692b61de057e5f6c99499c9f5f70be3feab6",
           "kind": "flow",
           "payload": {
@@ -12644,11 +12666,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-15"
+          "source_ref": "uk/charging#block-16"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0016",
+          "block_id": "charging:block-0017",
           "content_sha256": "c0d767c1620c336e8cb4351de142f90f1968585b60afb630973efcb97b1d7cc1",
           "kind": "flow",
           "payload": {
@@ -12774,11 +12796,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-16"
+          "source_ref": "uk/charging#block-17"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0017",
+          "block_id": "charging:block-0018",
           "content_sha256": "e13d94d784437bca826820b7bed7f5533d94e450fd647f7ff8894cf56fe6bf69",
           "kind": "flow",
           "payload": {
@@ -12791,11 +12813,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-17"
+          "source_ref": "uk/charging#block-18"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0018",
+          "block_id": "charging:block-0019",
           "content_sha256": "ec501aa385c89d5f689ad5da9a8316375e6df5210ee4b53d3df554d4b2b62aa3",
           "kind": "flow",
           "payload": {
@@ -12808,11 +12830,11 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-18"
+          "source_ref": "uk/charging#block-19"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0019",
+          "block_id": "charging:block-0020",
           "content_sha256": "0be9f9e573b44faa5fd1aad8ea414061599fc42327607f99bb9d4dd6c247e1ac",
           "kind": "flow",
           "payload": {
@@ -12825,13 +12847,13 @@
             "kind": "paragraph",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-19"
+          "source_ref": "uk/charging#block-20"
         },
         {
           "asset_refs": [
             "assets/b276ee48728d_b276ee48728d_b276ee48728d_car-charging.png"
           ],
-          "block_id": "charging:block-0020",
+          "block_id": "charging:block-0021",
           "content_sha256": "7b185a86e3bd2b558fb19b19519d536aee70ebc498f9cb8213bc51b70cfc164e",
           "kind": "flow",
           "payload": {
@@ -12950,11 +12972,11 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-20"
+          "source_ref": "uk/charging#block-21"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0021",
+          "block_id": "charging:block-0022",
           "content_sha256": "7bb011ffa314f50dcb731f850a1d15bf54fe2a25498d381dd05cf603ec20a93b",
           "kind": "flow",
           "payload": {
@@ -12973,11 +12995,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-21"
+          "source_ref": "uk/charging#block-22"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0022",
+          "block_id": "charging:block-0023",
           "content_sha256": "ab75b9057579ea89212a1f47d56b117fb145366b8fe4cd23c188450a11c946c7",
           "kind": "flow",
           "payload": {
@@ -12996,11 +13018,11 @@
             "ordered": false,
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-22"
+          "source_ref": "uk/charging#block-23"
         },
         {
           "asset_refs": [],
-          "block_id": "charging:block-0023",
+          "block_id": "charging:block-0024",
           "content_sha256": "e3c3f21ce1e61d29e5fd335eb4d336e7c1abfbf7004bfac3462ff5e49ba91d6a",
           "kind": "flow",
           "payload": {
@@ -13134,7 +13156,7 @@
             "kind": "component",
             "schema_version": "manual-flow/v2"
           },
-          "source_ref": "uk/charging#block-23"
+          "source_ref": "uk/charging#block-24"
         }
       ],
       "language": "uk",
@@ -13317,7 +13339,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "025ebf9aee332057401426b83f58a4ce15b1792aadd32dca8f10eefcc97891b9",
+          "content_sha256": "6bebf99cc3d3ca145fe25c34e9393bafa5b823b91a6f99f926d74dc368b38762",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -13382,13 +13404,13 @@
                     {
                       "code_html": "F6",
                       "code_text": "F6",
-                      "measures_html": "1. Зачекайте, поки мережа нормалізується, перш ніж заряджати виріб через розетку змінного струму. 2. Перевірте, чи не заблоковані вентиляційні отвори для подачі та витяжки повітря; забезпечте зазор 0,66 фута (20 см) з обох боків виробу. 3. Розмістіть продукт у місці, яке не піддається прямому сонячному світлу або високим температурам навколишнього середовища. 4. Від&#x27;єднайте всі навантаження від виробу. Залиште продукт у стані спокою та зачекайте, поки несправність зникне. 5. Перезапустіть продукт.",
+                      "measures_html": "1. Зачекайте, поки мережа нормалізується, перш ніж заряджати виріб через розетку змінного струму.<br />2. Перевірте, чи не заблоковані вентиляційні отвори для подачі та витяжки повітря; забезпечте зазор 0,66 фута (20 см) з обох боків виробу.<br />3. Розмістіть продукт у місці, яке не піддається прямому сонячному світлу або високим температурам навколишнього середовища.<br />4. Від&#x27;єднайте всі навантаження від виробу. Залиште продукт у стані спокою та зачекайте, поки несправність зникне.<br />5. Перезапустіть продукт.",
                       "measures_text": "1. Зачекайте, поки мережа нормалізується, перш ніж заряджати виріб через розетку змінного струму. 2. Перевірте, чи не заблоковані вентиляційні отвори для подачі та витяжки повітря; забезпечте зазор 0,66 фута (20 см) з обох боків виробу. 3. Розмістіть продукт у місці, яке не піддається прямому сонячному світлу або високим температурам навколишнього середовища. 4. Від'єднайте всі навантаження від виробу. Залиште продукт у стані спокою та зачекайте, поки несправність зникне. 5. Перезапустіть продукт."
                     },
                     {
                       "code_html": "F7",
                       "code_text": "F7",
-                      "measures_html": "1. Від&#x27;єднайте всі входи постійного струму від продукту. 2. Якщо ви заряджаєте виріб за допомогою сонячної панелі, перевірте напругу холостого ходу (VOC) підключеної сонячної панелі. Продукт дозволяє максимальну вхідну напругу постійного струму 60 В. 3. Перезапустіть продукт і залиште його в режимі очікування. Зачекайте, поки несправність не зникне.",
+                      "measures_html": "1. Від&#x27;єднайте всі входи постійного струму від продукту.<br />2. Якщо ви заряджаєте виріб за допомогою сонячної панелі, перевірте напругу холостого ходу (VOC) підключеної сонячної панелі. Продукт дозволяє максимальну вхідну напругу постійного струму 60 В.<br />3. Перезапустіть продукт і залиште його в режимі очікування. Зачекайте, поки несправність не зникне.",
                       "measures_text": "1. Від'єднайте всі входи постійного струму від продукту. 2. Якщо ви заряджаєте виріб за допомогою сонячної панелі, перевірте напругу холостого ходу (VOC) підключеної сонячної панелі. Продукт дозволяє максимальну вхідну напругу постійного струму 60 В. 3. Перезапустіть продукт і залиште його в режимі очікування. Зачекайте, поки несправність не зникне."
                     },
                     {

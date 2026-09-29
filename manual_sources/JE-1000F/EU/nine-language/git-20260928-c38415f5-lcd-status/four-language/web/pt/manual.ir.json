@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "b967dc58898efacd5dd03df9a9444a483cf26124d95974cf0a5d5251b38e324c",
-  "content_sha256": "a513f95ace9b1f580d4f8db38e6dd2b80cfb66ee4c8f09d51c96bccf283b2a00",
+  "content_sha256": "a9024e23968ef06198f30d0bd32c4593577f6460a47597ee30abad98c7f37b04",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12219,13 +12219,18 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0009",
-          "content_sha256": "82be60b89cb691ad7f60b2ad65a8b539cdac67b514b005e060bdccf41972544b",
+          "content_sha256": "3ad3b4a078283af67e417c7c33ac1eccb9a645c8e3beb04815e95a9f3e5f583f",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Modo de carregamento de emergência"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Modo de carregamento de emergência"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -13303,7 +13308,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "468da551cc0f185f6da6c1523a154d3fe815dbb63c696c381d0ff56dcb898699",
+          "content_sha256": "9ed69abb6581019515471fb353ff075f21654baa5cfec07247d7b3f19aecf1cd",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -13368,13 +13373,13 @@
                     {
                       "code_html": "F6",
                       "code_text": "F6",
-                      "measures_html": "1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada CA. 2. Verifique se as aberturas de entrada e saída de ar estão bloqueadas; certifique-se de manter uma distância de 0,66 ft (20 cm) em ambos os lados do produto. 3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas temperaturas ambientais. 4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça. 5. Reinicie o produto.",
+                      "measures_html": "1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada CA.<br />2. Verifique se as aberturas de entrada e saída de ar estão bloqueadas; certifique-se de manter uma distância de 0,66 ft (20 cm) em ambos os lados do produto.<br />3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas temperaturas ambientais.<br />4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça.<br />5. Reinicie o produto.",
                       "measures_text": "1. Aguarde a normalização da rede elétrica antes de carregar o produto por meio de uma tomada CA. 2. Verifique se as aberturas de entrada e saída de ar estão bloqueadas; certifique-se de manter uma distância de 0,66 ft (20 cm) em ambos os lados do produto. 3. Coloque o produto em um local que não esteja exposto à luz solar direta ou a altas temperaturas ambientais. 4. Desconecte todas as cargas do produto. Mantenha o produto ocioso e aguarde até que a falha desapareça. 5. Reinicie o produto."
                     },
                     {
                       "code_html": "F7",
                       "code_text": "F7",
-                      "measures_html": "1. Remova todas as entradas CC do produto. 2. Se você carregar o produto com um painel solar, verifique a tensão de circuito aberto (VOC) do painel solar conectado. O produto permite uma tensão máxima de entrada CC de 60 V. 3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça.",
+                      "measures_html": "1. Remova todas as entradas CC do produto.<br />2. Se você carregar o produto com um painel solar, verifique a tensão de circuito aberto (VOC) do painel solar conectado. O produto permite uma tensão máxima de entrada CC de 60 V.<br />3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça.",
                       "measures_text": "1. Remova todas as entradas CC do produto. 2. Se você carregar o produto com um painel solar, verifique a tensão de circuito aberto (VOC) do painel solar conectado. O produto permite uma tensão máxima de entrada CC de 60 V. 3. Reinicie o produto e mantenha-o inativo. Aguarde até que a falha desapareça."
                     },
                     {

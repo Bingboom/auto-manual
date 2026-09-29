@@ -1,6 +1,6 @@
 # JE-1000F EU native Web source (uk / pt / nl / pl)
 
-Version: git-20260928-c38415f5-lcd-status. This restores semantic LCD status lines and bold labels while preserving native heading levels, preface paragraphs, safety warnings,
+Version: git-20260928-c38415f5-lcd-status. This restores LCD status lines, bold status/emergency-charging labels, numbered troubleshooting steps and consistent below-image App captions while preserving native heading levels, preface paragraphs, safety warnings,
 LCD icons, App step numbers, warranty cards and charging labels with shared
 components. Dense overview diagrams reuse the corresponding-language source
 finished panels, retaining semantic copy in IR and approved Dutch AC errata.

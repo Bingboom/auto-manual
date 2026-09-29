@@ -17,3 +17,9 @@ Four strict Sphinx builds pass. Each book has 26 LCD rows, 23 bold status prefix
 All four browser pages at 390 px have document width 390 px, 23 status labels at font weight 700 and three separate Wi-Fi lines. No CSS changes. Full RTD portal preflight succeeds; four-target publication scope audit preserves 54 other targets and old five-language version 2.7.
 
 Full regression: Ran 4803 tests in 696.030s; OK (22 skipped). Ruff, maintainability guardrails, documentation links and US fixture build check all pass.
+
+## Additional operator feedback before release
+
+Emergency-charging lead must be bold (all four PDF headings verified; Ukrainian title shares a block with body). F6/F7 numbered troubleshooting steps need separate lines, without splitting decimal measurements. App 2.3/2.4/2.5 captions must follow the image as 2.1/2.2 already do. Add source-adapter formatting and correct shared reference semantic/caption DOM order; preserve CSS and all image bytes. Expand parity exclusions only to these three approved structures; repeat relevant/full validation before updating #1324.
+
+Expanded validation: four strict builds and exact cold replay pass. All four original source JSON files, full body words and image bytes remain identical. Full DOM differs only in LCD descriptions, F6/F7 measure cells, the emergency-charging lead and App result caption order (intertag whitespace ignored). Native PDF pages 103/120/137/154 all explicitly use Gilroy-Bold for the emergency lead. Polish browser verifies weight 700, F6 five lines/F7 three lines, and captions geometrically below the image.

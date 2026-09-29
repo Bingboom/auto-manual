@@ -5,7 +5,7 @@ from types import SimpleNamespace
 import unittest
 
 from tools.frozen_ai_flow import flow_text, paragraph
-from tools.frozen_pdf_document import _SECTIONS, ordered_pages
+from tools.frozen_pdf_document import _SECTIONS, _body_prose, ordered_pages
 from tools.manual_ir.flow import validate_flow_node
 from tools.web_composite_presentation import supports_figure_contract
 
@@ -71,6 +71,17 @@ def _book():
 
 
 class FrozenPDFDocumentTests(unittest.TestCase):
+    def test_emergency_charging_lead_is_bold_without_changing_body_copy(self):
+        labels = {"uk": "Режим аварійного заряджання", "pt": "Modo de carregamento de emergência",
+                  "nl": "Noodoplaadmodus", "pl": "Tryb ładowania awaryjnego"}
+        for language, label in labels.items():
+            for suffix in ("", " Native body & source caution."):
+                with self.subTest(language=language, suffix=suffix):
+                    nodes = _body_prose(label + suffix, "charging", language)
+                    self.assertEqual("strong", nodes[0]["children"][0]["kind"])
+                    self.assertEqual(label + suffix, " ".join(flow_text(n) for n in nodes))
+                    self.assertEqual("text", _body_prose(label, "operations", language)[0]["children"][0]["kind"])
+
     def test_complete_order_no_contents_and_exact_media_consumption(self):
         book = _book()
         before = deepcopy(book.source)

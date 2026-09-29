@@ -58,7 +58,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "1e70564f1d73805b5d8a8a785708251b63d2de7946d45e4ac9a7beebf8b60085",
-  "content_sha256": "6941dec25d17bbcfd2a78d22d24f6c84403cd783311c3656010c21f5a064ea82",
+  "content_sha256": "c20e546c89f4e03ed347fe93f8eacc172f0382877c6d6f66c24d563bc6378469",
   "language": "nl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -12300,13 +12300,18 @@
         {
           "asset_refs": [],
           "block_id": "charging:block-0009",
-          "content_sha256": "bfe1203e674eca2225fffc17f6f6117d6409ceaec5873184ce5e6f45790964ab",
+          "content_sha256": "2f3c806e0dfdcfb6eaa7f4f4ef8f1ca9e9dbb0d3a6c7f9e221d89fd612e7e7c4",
           "kind": "flow",
           "payload": {
             "children": [
               {
-                "kind": "text",
-                "text": "Noodoplaadmodus"
+                "children": [
+                  {
+                    "kind": "text",
+                    "text": "Noodoplaadmodus"
+                  }
+                ],
+                "kind": "strong"
               }
             ],
             "kind": "paragraph",
@@ -13339,7 +13344,7 @@
         {
           "asset_refs": [],
           "block_id": "troubleshooting:block-0003",
-          "content_sha256": "7f4cdcd4cfcbf02793d06a8bbdce2011ae6183da33568dfde7a699bff8fc283e",
+          "content_sha256": "c749d4f1e75016a06dde8ffc6ffc6dea90e1377548a9a2164a734db92fdcaa15",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -13404,13 +13409,13 @@
                     {
                       "code_html": "F6",
                       "code_text": "F6",
-                      "measures_html": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt. 2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte aan beide zijden van het product. 3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge omgevingstemperaturen. 4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt. 5. Herstart het product.",
+                      "measures_html": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt.<br />2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte aan beide zijden van het product.<br />3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge omgevingstemperaturen.<br />4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt.<br />5. Herstart het product.",
                       "measures_text": "1. Wacht tot het net genormaliseerd is voordat u het product via een AC-stopcontact oplaadt. 2. Controleer of de luchtinlaat- en uitlaatopeningen geblokkeerd zijn; zorg voor 0,66 ft (20 cm) ruimte aan beide zijden van het product. 3. Plaats het product op een locatie die niet wordt blootgesteld aan direct zonlicht of hoge omgevingstemperaturen. 4. Koppel alle belastingen van het product los. Laat het product inactief en wacht tot de fout verdwijnt. 5. Herstart het product."
                     },
                     {
                       "code_html": "F7",
                       "code_text": "F7",
-                      "measures_html": "1. Koppel alle DC-ingangen los van het product. 2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het aangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe. 3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.",
+                      "measures_html": "1. Koppel alle DC-ingangen los van het product.<br />2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het aangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe.<br />3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt.",
                       "measures_text": "1. Koppel alle DC-ingangen los van het product. 2. Als u het product via een zonnepaneel oplaadt, controleer dan de open-klemspanning (VOC) van het aangesloten zonnepaneel. Het product staat een maximale DC-ingangsspanning van 60 V toe. 3. Start het product opnieuw op en houd het inactief. Wacht tot de fout verdwijnt."
                     },
                     {
