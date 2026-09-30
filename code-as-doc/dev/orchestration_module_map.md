@@ -689,6 +689,9 @@ Word keeps compatibility wrappers, and the Web IR renderer imports the lightweig
 helper directly so cold replay never imports source-table readers.
 
 `frozen_ai_web` is the bounded alternate intake for approved frozen AI JSON.
+`frozen_web_component_coverage` owns native-import semantic coverage admission;
+assembly, cold PDF replay and release-evidence checks call the same policy.
+It inspects actual component bindings rather than trusting inventory metadata.
 `frozen_pdf_web` reuses that assembler after `frozen_pdf_intake` reads native PDF text,
 `frozen_pdf_glyphs` verifies missing glyphs against the AI original, and
 `frozen_pdf_source` binds explicit asset hashes. `frozen_pdf_document`,
@@ -706,3 +709,5 @@ not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
 
 - `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
+
+`component_specs/operation_tables_html` binds explicitly normalized RST auto-resume and key-combination tables to the shared ComponentSpec registry. `manual_ir/whole_document_components` owns their flow claims; the target presentation contract owns chapter applicability.

@@ -375,7 +375,13 @@ class Je2000eEuEnWebTests(unittest.TestCase):
     def test_web_output_is_target_isolated_and_complete(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(18, len(self.ir.pages))
-        self.assertEqual(19, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(20, len(soup.select(".manual-finished-illustration")))
+        # The shared LCD component must retain its original approved artwork's
+        # provenance instead of silently losing it during semantic conversion.
+        lcd_art = soup.select_one(".hb-lcd-mode-composition img.manual-finished-illustration")
+        self.assertEqual("assets/je2000e_eu_en/operation_lcd.png", lcd_art["data-web-finished-panel-path"])
+        self.assertEqual(hashlib.sha256((ROOT / "docs/renderers/web" / lcd_art["data-web-finished-panel-path"]).read_bytes()).hexdigest(),
+                         lcd_art["data-web-finished-panel-sha256"])
         kit = soup.select_one('img[data-web-finished-panel-path="assets/je2000e_eu_en/battery_pack_kit.png"]')
         self.assertEqual("Jackery Battery Pack 2000, Expansion Cable, User Manual (sold separately)", kit["alt"])
         self.assertEqual([], [table for table in soup.find_all("table") if "Expansion Cable" in table.get_text()])
@@ -605,10 +611,10 @@ class Je2000eEuGermanAppPanelTests(unittest.TestCase):
     def test_every_figure_is_the_german_print_block(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         paths = [image["data-web-finished-panel-path"] for image in soup.select("img.manual-finished-illustration")]
-        self.assertEqual(19, len(paths))
-        # The LCD-mode crop sits inside the LCD-mode component, as on English.
+        self.assertEqual(20, len(paths))
+        # The LCD-mode crop retains its provenance inside the shared component.
         self.assertEqual(
-            sorted(f"assets/je2000e_eu_de/{name}.png" for name in BLOCK_CROPS if name != "operation_lcd"),
+            sorted(f"assets/je2000e_eu_de/{name}.png" for name in BLOCK_CROPS),
             sorted(path for path in paths if "/app_" not in path),
         )
         self.assertEqual(set(), page_image_digests(self.html) & shared_art_digests())

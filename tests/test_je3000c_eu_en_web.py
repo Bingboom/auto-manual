@@ -284,7 +284,11 @@ class Je3000cEuEnWebTests(unittest.TestCase):
     def test_web_output_uses_semantic_tables_and_current_target_only(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         self.assertEqual(17, len(self.ir.pages))
-        self.assertEqual(17, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(18, len(soup.select(".manual-finished-illustration")))
+        lcd_art = soup.select_one(".hb-lcd-mode-composition img.manual-finished-illustration")
+        self.assertEqual("assets/je3000c_eu_en/operation_lcd.png", lcd_art["data-web-finished-panel-path"])
+        self.assertEqual(hashlib.sha256((ROOT / "docs/renderers/web" / lcd_art["data-web-finished-panel-path"]).read_bytes()).hexdigest(),
+                         lcd_art["data-web-finished-panel-sha256"])
         coverage = self.ir.metadata["web_figure_coverage"]["summary"]
         self.assertEqual(10, coverage["total"])
         self.assertEqual(0, coverage["by_status"]["missing"])

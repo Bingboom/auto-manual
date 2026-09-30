@@ -13,7 +13,7 @@ def _append_html(soup: BeautifulSoup, cell: Tag, value: str) -> None:
         cell.append(node.extract())
 
 
-def render_lcd_mode_component(spec: ComponentSpec) -> str:
+def render_lcd_mode_component(spec: ComponentSpec, carrier_html: str = "") -> str:
     projection = web_lcd_mode_projection(spec)
     soup = BeautifulSoup("", "html.parser")
     figure = soup.new_tag(
@@ -35,6 +35,17 @@ def render_lcd_mode_component(spec: ComponentSpec) -> str:
             },
         )
     )
+    if carrier_html:
+        images = BeautifulSoup(carrier_html, "html.parser").find_all("img")
+        if len(images) != 1 or str(images[0].get("src")) != projection["artwork_ref"]:
+            raise ValueError(f"{spec.source_ref}: LCD carrier artwork disagrees with component")
+        source = images[0]
+        artwork = art_panel.find("img")
+        if "manual-finished-illustration" in source.get("class", []):
+            artwork["class"] = ["hb-lcd-mode-art", "manual-finished-illustration"]
+        for attribute in ("data-web-finished-panel-path", "data-web-finished-panel-sha256", "data-reference-id"):
+            if attribute in source.attrs:
+                artwork[attribute] = source[attribute]
     table_panel = soup.new_tag(
         "div", attrs={"class": projection["table_panel_class"]}
     )

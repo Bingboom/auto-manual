@@ -564,6 +564,50 @@
         "legacy_target_components": false
       },
       "contract_overrides": {}
+    },
+    {
+      "overlay_id": "je3000c-eu-shared-tables-v1",
+      "target": {
+        "model": "JE-3000C",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "operations": {
+          "source_patterns": [
+            "*05_operation_guide_placeholder",
+            "*05_operation_guide_de",
+            "*05_operation_guide_es",
+            "*05_operation_guide_fr",
+            "*05_operation_guide_it",
+            "*05_operation_guide_uk"
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "je1000h-eu-shared-tables-v1",
+      "target": {
+        "model": "JE-1000H",
+        "region": "EU"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "operations": {
+          "source_patterns": [
+            "*05_operation_guide_placeholder",
+            "*05_operation_guide"
+          ]
+        }
+      }
     }
   ]
 }
