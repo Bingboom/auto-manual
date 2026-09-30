@@ -28,7 +28,7 @@ any build output:
   shadowed duplicate tests in `tests/test_export_idml.py` run again.
 - #1318: per-function complexity ratchet; `data/complexity_baseline.tsv`
   held 262 functions above 20 at merge.
-- #1319 and #BANNER_PR: `env.python` / `env.lock` drift is reported by
+- #1319 and #1329: `env.python` / `env.lock` drift is reported by
   `build.py doctor`, standalone, and once at the start of each test run.
 - #1320: plan and review docs declare a lifecycle `Status:`; 174 pre-rule
   docs are baselined.
