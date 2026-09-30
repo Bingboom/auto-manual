@@ -21,8 +21,10 @@ so each line keeps its stream::
     log.info(f"[review-start] {command}")
     err.error(f"[review-start] FAILURE {key}: {exc}")
 
-Output relayed verbatim from a child process is not a log record and stays a
-plain ``print``.
+Two kinds of output are not log records and stay a plain ``print``: output
+relayed verbatim from a child process, and a command's result (the rows,
+report or ``--json`` payload a caller reads from stdout), which must appear at
+every log level.
 """
 
 from __future__ import annotations
