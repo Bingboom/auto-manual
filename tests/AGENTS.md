@@ -15,6 +15,7 @@
 
 - Prefer targeted unittest modules while developing, then run the broader suite when shared tooling changes.
 - Add regression tests beside the behavior under test.
+- Patch the name where the code under test looks it up, not a re-export on a facade module (`tools.build_docs`, `tools.process_build_queue`, `tools.process_review_start_queue`, `tools.cloud_doc_backport`). Pass external boundaries (lark-cli, git, subprocess, clock, network) in as parameters where the code offers them. `python3 tools/check_facade_patch_ratchet.py check` (part of the maintainability guardrails) fails on new or grown facade patches.
 - Keep generated verification artifacts out of tests unless they are explicit fixtures.
 
 ## Validation
