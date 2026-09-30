@@ -51,6 +51,7 @@ def run_git(
         cwd=repo_root,
         text=True,
         capture_output=capture_output,
+        check=False,
     )
     if check and completed.returncode != 0:
         message = (completed.stderr or completed.stdout or "").strip()

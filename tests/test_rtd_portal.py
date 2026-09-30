@@ -119,6 +119,7 @@ class RtdPortalTests(unittest.TestCase):
             result = subprocess.run(
                 [sys.executable, "-m", "sphinx", "-q", "-b", "html", *flags, str(root), str(self.root / name)],
                 cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
+                check=False,
             )
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         after = {p.relative_to(root): hashlib.sha256(p.read_bytes()).hexdigest()

@@ -175,6 +175,7 @@ class DeploymentReceiptTests(unittest.TestCase):
             [sys.executable, "-m", "sphinx", "-q", "-W", "-b", "html",
              str(self.web), str(built)],
             cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True,
+            check=False,
         )
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(before, receipt.source_fingerprint(self.web))

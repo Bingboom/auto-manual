@@ -131,6 +131,7 @@ def lark_dump(base_token: str, table_id: str) -> list[dict[str, object]]:
             ],
             capture_output=True,
             text=True,
+            check=False,
         )
         data = json.loads(proc.stdout)["data"]
         for rid, vals in zip(data["record_id_list"], data["data"]):

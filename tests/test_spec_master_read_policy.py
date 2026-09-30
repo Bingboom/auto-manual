@@ -179,7 +179,7 @@ assert first_text({'Value_fr': ' texte '}, localized_columns(('Value',), ('fr',)
 assert not any(name.startswith(('tools.utils.spec_master', 'tools.localized_copy',
                                 'tools.lang_registry', 'tools.idml')) for name in sys.modules)
 """
-        result = subprocess.run([sys.executable, "-c", code], cwd=ROOT, text=True, capture_output=True)
+        result = subprocess.run([sys.executable, "-c", code], cwd=ROOT, text=True, capture_output=True, check=False)
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
     def test_public_reader_import_orders_in_fresh_interpreters(self) -> None:
@@ -206,5 +206,5 @@ assert loaders.load_spec_sections(fixtures, 'JE-1000F', 'JP', 'ja')[0]['rows'][2
         for order in permutations(modules):
             with self.subTest(order=order):
                 result = subprocess.run([sys.executable, "-c", code, *order], cwd=ROOT,
-                                        text=True, capture_output=True)
+                                        text=True, capture_output=True, check=False)
                 self.assertEqual(0, result.returncode, result.stdout + result.stderr)

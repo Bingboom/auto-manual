@@ -167,6 +167,9 @@ web、IDML、队列、回写这几块目前最大的代码面。
 - [ ] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
   `check=`）；`B905`（45，给 `zip` 加 `strict=`）要先确认每处长度确实应该相等，再决定是否启用。
   每条规则要么清零后加入 `select`，要么用 `per-file-ignores` 记录基线后加入。
+  - [x] `B904`、`PLW1510` 清零并加入 `select`（2026-09-30）。实际扫描范围含 `tests/`、`scripts/`，
+    共 5 处 `B904`、39 处 `PLW1510`；所有调用都按原行为显式写 `check=False`（默认值不变，零行为变化）。
+  - [ ] `B905` 待逐处确认长度后再决定。
 - [ ] **CQ-4.5 扩大 mypy 严格范围。** 在 `pyproject.toml` 为 `tools.manual_ir.*`、
   `tools.component_specs.*`、`tools.csv_pages.*` 逐个增加严格 override。**CI 命令目前固定为
   `python -m mypy tools/utils`，扩大检查路径需要改 workflow，须操作者确认。**

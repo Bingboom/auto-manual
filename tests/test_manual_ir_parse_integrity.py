@@ -32,7 +32,7 @@ class ManualIRParseIntegrityTests(unittest.TestCase):
                 sys.executable, '-m', 'tools.manual_ir_cli', '--bundle-root', str(bundle),
                 '--model', 'TEST', '--region', 'JP', '--lang', 'ja', '--strict',
                 '--out', str(output),
-            ], cwd=ROOT, capture_output=True, text=True, timeout=20)
+            ], cwd=ROOT, capture_output=True, text=True, timeout=20, check=False)
             self.assertNotEqual(0, run.returncode, run.stdout + run.stderr)
             self.assertNotIn('Traceback', run.stdout + run.stderr)
             self.assertEqual(b'preserve existing output', output.read_bytes())

@@ -81,7 +81,7 @@ class MystCalloutIRTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)
             source, command = self._stage(root)
-            result = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            result = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
             irs = [read_manual_ir(p) for p in sorted(source.glob('captured-*.json'))]
             self.assertEqual(2, len(irs))
@@ -106,7 +106,7 @@ class MystCalloutIRTests(unittest.TestCase):
             root = Path(td)
             source, command = self._stage(root)
             (source / 'corrupt').touch()
-            result = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            result = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertNotEqual(0, result.returncode)
             self.assertIn('Manual IR', result.stdout + result.stderr)
 
@@ -143,7 +143,7 @@ class MystCalloutIRTests(unittest.TestCase):
             (source / 'index.md').write_text(
                 '# Manual\n\n```{callout} WARNING\n\n| A | B |\n| --- | --- |\n| One | Two |\n```\n'
             )
-            result = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            result = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertNotEqual(0, result.returncode)
             self.assertIn('index:3', result.stdout + result.stderr)
             self.assertIn('callout requires one row', result.stdout + result.stderr)
@@ -153,7 +153,7 @@ class MystCalloutIRTests(unittest.TestCase):
             root = Path(td)
             source, command = self._stage(root)
             command[command.index('html')] = 'text'
-            result = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            result = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
             self.assertIn('Keep', (root / 'html/index.txt').read_text())
             self.assertEqual([], list(source.glob('captured-*.json')))

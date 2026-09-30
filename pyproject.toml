@@ -11,10 +11,12 @@ extend-exclude = [
 
 [tool.ruff.lint]
 # F covers F401/F811/F821/F841 etc.; B023 flags closures that capture a loop
-# variable. Audited false positives carry an inline `# noqa: B023 -- <reason>`;
+# variable; B904 keeps the exception chain when re-raising inside `except`;
+# PLW1510 makes every subprocess.run state whether a non-zero exit raises.
+# Audited B023 false positives carry an inline `# noqa: B023 -- <reason>`;
 # intentional re-exports use the redundant-alias form (`name as name`).
 # Plan: code-as-doc/dev/code_quality_iterability_plan.md (CQ-4).
-select = ["E722", "F", "B023"]
+select = ["E722", "F", "B023", "B904", "PLW1510"]
 
 [tool.ruff.lint.per-file-ignores]
 # Test helpers routinely build per-iteration closures that run immediately.
