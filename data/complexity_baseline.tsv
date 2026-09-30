@@ -57,7 +57,7 @@ tools/component_specs/reference_figure_html.py	parse_reference_figure_html	46
 tools/component_specs/registry.py	validate_component_registry	51
 tools/component_specs/registry.py	validate_component_spec	39
 tools/component_specs/theme.py	validate_manual_theme	45
-tools/component_specs/warranty_html.py	parse_warranty_html	21
+tools/component_specs/warranty_html.py	parse_warranty_html	16
 tools/config_pages.py	parse_config_pages	87
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_footnote_rows	25
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_note_rows	23

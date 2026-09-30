@@ -5,6 +5,7 @@ GENERAL INFO
 ------------
 
 .. list-table::
+   :class: hb-source-specification
    :header-rows: 0
    :widths: 34 66
 
@@ -25,6 +26,7 @@ INPUT PORTS
 -----------
 
 .. list-table::
+   :class: hb-source-specification
    :header-rows: 0
    :widths: 34 66
 
@@ -39,6 +41,7 @@ OUTPUT PORTS
 ------------
 
 .. list-table::
+   :class: hb-source-specification
    :header-rows: 0
    :widths: 34 66
 
@@ -51,6 +54,7 @@ TOTAL OUTPUT
 ------------
 
 .. list-table::
+   :class: hb-source-specification
    :header-rows: 0
    :widths: 50 50
 
@@ -65,6 +69,7 @@ ENVIRONMENTAL OPERATING TEMPERATURE
 -----------------------------------
 
 .. list-table::
+   :class: hb-source-specification
    :header-rows: 0
    :widths: 50 50
 

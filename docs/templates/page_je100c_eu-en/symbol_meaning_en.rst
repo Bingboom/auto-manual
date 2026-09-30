@@ -2,6 +2,7 @@ MEANING OF SYMBOLS
 ==================
 
 .. list-table::
+   :class: hb-source-signals
    :header-rows: 1
    :widths: 20 80
 
@@ -17,6 +18,7 @@ MEANING OF SYMBOLS
      - Supplements the important information or operation tips in the text.
 
 .. list-table::
+   :class: hb-source-symbol-meanings
    :header-rows: 0
    :widths: 50 50
 

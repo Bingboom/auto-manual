@@ -25,6 +25,7 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "web": frozenset(
         {
             "manual_callout_table",
+            "web_reference_table",
             "hb_spec_table",
             "hb_fcc",
             "hb_inbox",
@@ -47,6 +48,7 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "latex": frozenset(
         {
             "hb_latex_callout",
+            "latex_reference_table",
             "hb_latex_spec_table",
             "hb_latex_fcc",
             "hb_latex_inbox",
@@ -69,6 +71,7 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "idml": frozenset(
         {
             "idml_notice",
+            "idml_reference_table",
             "idml_spec_table",
             "idml_fcc",
             "idml_inbox",
@@ -91,6 +94,7 @@ REGISTERED_ADAPTER_KEYS: dict[str, frozenset[str]] = {
     "word": frozenset(
         {
             "word_manual_callout_table",
+            "word_reference_table",
             "word_spec_table",
             "word_fcc",
             "word_inbox",

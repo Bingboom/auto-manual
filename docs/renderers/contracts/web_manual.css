@@ -1745,3 +1745,46 @@ body {
 }
 #furo-main-content table.lcd-text-only col:nth-child(3) { width: 35% !important; }
 #furo-main-content table.lcd-text-only col:nth-child(4) { width: 65% !important; }
+
+/* Source-authored text references share the same manual table tokens. */
+.hb-reference-composition {
+  max-width: var(--hb-component-band-max);
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--hb-line);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-paper);
+}
+.hb-reference-composition .hb-reference-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: var(--hb-text);
+}
+.hb-reference-table th,
+.hb-reference-table td {
+  padding: 0.7rem 0.85rem;
+  vertical-align: top;
+  border: 1px solid var(--hb-line-soft);
+  overflow-wrap: anywhere;
+}
+.hb-reference-table thead th {
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  text-align: left;
+  font-weight: 700;
+}
+.hb-reference-table p:last-child { margin-bottom: 0; }
+.hb-reference-lcd-legend td:first-child,
+.hb-reference-lcd-legend th:first-child { width: 9%; text-align: center; }
+.hb-reference-lcd-legend td:nth-child(2),
+.hb-reference-lcd-legend th:nth-child(2) { width: 27%; }
+.hb-reference-lcd-actions td:first-child,
+.hb-reference-lcd-actions th:first-child { width: 27%; }
+.hb-reference-lcd-actions td:nth-child(2),
+.hb-reference-lcd-actions th:nth-child(2) { width: 18%; }
+.hb-reference-symbol-meanings td { width: 50%; }
+@media (max-width: 42rem) {
+  .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
+}

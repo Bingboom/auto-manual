@@ -425,7 +425,7 @@ def build_word_bundle_html(
                 (materialized.page_dir / planned.file_name).resolve(): planned.page.page
                 for planned in planned_pages
                 if isinstance(planned.page, CsvPage)
-                and planned.page.page in {"troubleshooting", "lcd_icons"}
+                and planned.page.page in {"troubleshooting", "lcd_icons", "symbols"}
             }
         page_paths = [path for path in page_paths if should_include_web_page(path)]
         entry_source_patterns = cfg.get("build", {}).get(

@@ -18,6 +18,10 @@ from tools.component_specs.app_html import (
     parse_app_download_html,
     parse_app_inline_control_html,
 )
+from tools.component_specs.authored_tables_html import (
+    normalize_declared_specifications,
+    parse_authored_tables,
+)
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
 from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
@@ -128,6 +132,16 @@ def _claim_operation_tables(soup, source_path, language, claimed, claims):
         claims.append(claim)
 
 
+def _authored_claims(soup, source_path, language, claimed):
+    claims = []
+    normalize_declared_specifications(soup, source_path)
+    for spec, table in parse_authored_tables(soup, source_path=source_path, language=language):
+        claim = ComponentClaim(spec=spec, owned_nodes=(table,))
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+    return claims
+
+
 def discover_registered_components(
     soup: BeautifulSoup,
     *,
@@ -145,6 +159,8 @@ def discover_registered_components(
 
     claims: list[ComponentClaim] = []
     claimed: set[int] = set()
+
+    claims.extend(_authored_claims(soup, source_path, language, claimed))
 
     lcd_icon_table = soup.select_one("table.hb-lcd-icon-table")
     lcd_text_only = soup.select_one("table.lcd-text-only")

@@ -356,7 +356,7 @@
         "warranty": {
           "source_patterns": [
             "*11_warranty",
-            "warranty_en",
+            "warranty_*",
             "eu_warranty"
           ]
         }
