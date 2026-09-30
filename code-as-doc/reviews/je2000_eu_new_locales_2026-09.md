@@ -140,3 +140,9 @@ widths the bubble expands to the content width, while the note stays separate.
 The CSS requires exactly four blocks, preserving older three-block cards.
 Six rebuilt books and PDF-free replays passed; browser measurements confirmed
 separate backgrounds and positive gaps at 859px and 390px, with no overflow.
+
+AC and DC/USB prerequisite pills now use one shared CSS token
+(`--hb-prerequisite-surface: #e6e7e8`) in desktop and narrow layouts, matching
+the common darker source pill selected by the operator. The native F source used different grayscale
+fills on p139 and p140; the live rounded HTML pill normalizes that presentation
+while preserving source artwork, native coordinates and searchable copy.

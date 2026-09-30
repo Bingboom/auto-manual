@@ -4,6 +4,10 @@
    Every rule is scoped to .hb-base-art-live-copy, so other figures and the
    approved composites keep their existing presentation. */
 
+.hb-base-art-live-copy {
+  --hb-prerequisite-surface: #e6e7e8;
+}
+
 .hb-base-art-live-copy > .hb-operation-stage {
   container-type: inline-size;
 }
@@ -15,8 +19,8 @@
   position: relative;
 }
 
-/* The art already draws the brackets, pills and clock the copy belongs to, so
-   overlays are transparent: nothing may cover a line of the drawing. */
+/* Step overlays stay transparent so native brackets and leaders remain
+   visible. Prerequisite pills use their own rounded surface rule below. */
 .hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
   position: absolute;
   inset: 0;
@@ -144,6 +148,8 @@
   padding: 0;
 }
 
+/* Native AC/DC artwork can use different grays for the same prerequisite
+   role. Match the common darker source pill with one token at both breakpoints. */
 .hb-base-art-live-copy .hb-operation-prerequisite {
   position: absolute;
   top: var(--hb-y);
@@ -156,8 +162,8 @@
   padding: 0 0 0 1.9cqw;
   overflow: visible;
   border: 0;
-  border-radius: 0;
-  background: none;
+  border-radius: 999px;
+  background: var(--hb-prerequisite-surface);
   font-size: 1.85cqw;
   font-weight: 700;
   line-height: 1.1;
@@ -424,10 +430,8 @@
     font-size: 0.88rem;
   }
 
-  /* The prerequisite stays on the art's own pill, but readable: it may grow
-     into the blank area the contract declares safe (--hb-max-width) and fills
-     with the pill tone the contract measured from that art (--hb-fill), so the
-     drawn pill never shows as an empty box. */
+  /* Keep the prerequisite on its native pill coordinates. It may grow into
+     the declared safe area, using the same shared tone as desktop pills. */
   .hb-base-art-live-copy .hb-operation-prerequisite {
     width: max-content;
     min-width: var(--hb-width);
@@ -436,7 +440,7 @@
     min-height: var(--hb-height);
     padding: 0.28rem 0.7rem;
     border-radius: 999px;
-    background: var(--hb-fill);
+    background: var(--hb-prerequisite-surface);
     font-size: 0.78rem;
     white-space: normal;
   }
