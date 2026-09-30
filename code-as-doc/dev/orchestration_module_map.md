@@ -713,3 +713,7 @@ Prepared Web admission: `tools/web_component_admission.py` owns fresh-publicatio
 - `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
 
 `component_specs/operation_tables_html` binds explicitly normalized RST auto-resume and key-combination tables to the shared ComponentSpec registry. `manual_ir/whole_document_components` owns their flow claims; the target presentation contract owns chapter applicability.
+
+`tools/component_specs/plain_inventory.py` owns recognition of complete, text-only packing inventories and their `HB-TABLE-REFERENCE/plain-inventory` spec. Word reuses the same source-shape check; whole-document Web IR claims the table and preserves sibling notes. Illustrated Inbox parsing remains strict.
+
+`component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.

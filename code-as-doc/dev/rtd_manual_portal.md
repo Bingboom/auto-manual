@@ -3,8 +3,12 @@
 ## Discovery and implementation plan
 
 Operator accepted the local card/search design and requested RTD implementation,
-with **EU temporarily the default**, on 2026-09-12. Region options remain
-US / EU / UK. EU and UK share existing EU publications; no UK copy is created.
+with **EU temporarily the default**, on 2026-09-12. The current region options
+are US / EU / UK / CN / JP. CN and JP retain independent market bindings;
+EU and UK share existing EU publications, and EU remains the default.
+Chinese (`zh`, 简体中文) and Japanese (`ja`, 日本語) labels are registered for
+verified publications. Registering these labels does not publish a manual or
+create a language URL; unavailable editions remain disabled.
 
 Verified baseline: engineering main `ff5e3556`; RTD listens to Hello-Docs/main
 and renders frozen `docs/publish/web` with Sphinx/Furo. The frozen config does
@@ -36,7 +40,8 @@ unconfigured cards remain model-only.
 
 The root template keeps an EthicalAds placement for RTD. No CSS hides platform
 advertisements. Other markets remain accessible in an all-publications fallback
-even though the primary dropdown is limited to US/EU/UK.
+for markets outside the primary US/EU/UK/CN/JP dropdown. The footer derives
+its market list from the same settings, and CN/JP display their own market notes.
 
 ## Catalog validation during a build
 

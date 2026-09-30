@@ -12,6 +12,7 @@ from tools.component_specs.app import (
     app_inline_control_component_spec,
     resolve_app_control_label_roles,
 )
+from tools.component_specs.app_label_source import app_label_boundaries
 from tools.manual_ir.web_app_download import load_web_download_source
 from tools.utils.path_utils import repo_root
 
@@ -153,7 +154,7 @@ def parse_app_add_device_html(
             f"found {len(images)}"
         )
     image = images[0]
-    label_block = _next_tag(image)
+    label_block, owned_nodes = app_label_boundaries(soup, image, config)
     if not isinstance(label_block, Tag) or "line-block" not in label_block.get(
         "class", []
     ):
@@ -192,7 +193,7 @@ def parse_app_add_device_html(
     )
     return (
         spec,
-        (image, label_block),
+        owned_nodes,
         (("source_art", image),),
         (
             (

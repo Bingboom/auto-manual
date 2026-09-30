@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import tempfile
+from types import SimpleNamespace
 import unittest
 
 from bs4 import BeautifulSoup
@@ -93,6 +94,48 @@ class PlainInventoryDocumentTests(unittest.TestCase):
         for paragraph in paragraphs:
             self.assertIn(paragraph, soup.get_text(" ", strip=True))
         self.assertIn(paragraphs[-1], soup.select_one("strong").get_text())
+
+
+    def test_web_plain_inventory_freezes_shared_table_and_preserves_notes(self) -> None:
+        from tools.word_bundle_html import build_word_bundle_html
+        from tools.manual_ir import read_manual_ir
+        from tools.web_document_ir import render_document_fragments
+
+        source = ROOT / "docs/templates/page_jp/02_whats_in_the_box.rst"
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            page = root / source.name
+            page.write_text(source.read_text(encoding="utf-8"), encoding="utf-8")
+            bundle = SimpleNamespace(
+                bundle_dir=root, page_dir=root, page_paths=(page,), title="同梱品",
+                reference_doc=None, model="JE-1000F", region="JP", lang="ja", languages=("ja",),
+            )
+            package = root / "package"
+            build_word_bundle_html({}, "JE-1000F", "JP", materialized_bundle=bundle,
+                                   output_dir=package, presentation_profile="web")
+            ir = read_manual_ir(package / "manual.ir.json")
+            fragments = render_document_fragments(ir, package_root=package)
+            html = "".join(fragments)
+            self.assertIn("HB-TABLE-REFERENCE", html)
+            self.assertIn("plain-inventory", html)
+            soup = BeautifulSoup(html, "html.parser")
+            self.assertEqual([c.get_text(strip=True) for c in soup.select("td")],
+                             ["本体", "AC充電ケーブル", "取扱説明書一式"])
+            self.assertEqual(len(soup.select("img")), 0)
+            for line in source.read_text(encoding="utf-8").splitlines():
+                if line.startswith(("※", "**")):
+                    self.assertIn(line.strip("*"), soup.get_text())
+
+    def test_web_plain_inventory_does_not_accept_missing_card_images(self) -> None:
+        from tools.manual_ir.whole_document_components import discover_registered_components
+        for suffix, cells in (("<table><tr><td>TIP</td><td>Body</td></tr></table>", ["Unit", "Cable", "Manual"]),
+                              ("", ["<img src='unit.png'>Unit", "Cable", "Manual"]),
+                              ("", ["Unit", "Cable", ""])):
+            markup = "<h1>Inventory</h1><table><tr>" + "".join(f"<td>{c}</td>" for c in cells) + "</tr></table>" + suffix
+            with self.subTest(cells=cells, suffix=suffix), self.assertRaises(ValueError):
+                discover_registered_components(BeautifulSoup(markup, "html.parser"),
+                    source_path=Path("box_contents_ja.rst"), model="OTHER-BP", region="JP",
+                    language="ja", contract=load_web_manual_contract(model="OTHER-BP", region="JP"))
 
     def test_illustrated_inbox_still_requires_tip(self) -> None:
         fragment = '<h1>Inventory</h1><table><tr>' + ''.join(

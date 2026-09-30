@@ -43,9 +43,9 @@ class RtdPortalTests(unittest.TestCase):
 
     def test_default_and_shared_binding(self):
         self.assertEqual(self.settings["default_region"], "EU")
-        self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK"])
+        self.assertEqual(list(self.settings["regions"]), ["US", "EU", "UK", "CN", "JP"])
         self.assertEqual(self.settings["regions"]["EU"], self.settings["regions"]["UK"])
-        self.assertEqual(len(self.settings["languages"]), 12)
+        self.assertEqual(len(self.settings["languages"]), 14)
 
     def test_catalog_uses_frozen_links_and_local_product_images(self):
         root = self.assemble()
@@ -160,6 +160,9 @@ class RtdPortalTests(unittest.TestCase):
         self.assertIn('data-default-region="EU"', page)
         self.assertIn('value="EU" data-binding="EU" selected', page)
         self.assertIn('value="UK" data-binding="EU"', page)
+        self.assertIn('value="CN" data-binding="CN"', page)
+        self.assertIn('value="JP" data-binding="JP"', page)
+        self.assertIn('US · EU · UK · CN · JP', page)
         self.assertIn('id="ethical-ad-placement"', page)
         self.assertIn("按目录查看全部说明书", page)
         self.assertIn("说明书资料库", page)

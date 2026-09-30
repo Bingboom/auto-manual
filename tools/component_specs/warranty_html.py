@@ -53,7 +53,7 @@ def _period(cell: Tag, *, source_path: Path) -> dict[str, str]:
 def _blocks(nodes: list[Tag], *, source_path: Path) -> list[dict[str, object]]:
     blocks: list[dict[str, object]] = []
     for node in nodes:
-        if node.name == "p":
+        if node.name == "p" or (node.name == "div" and "line-block" in node.get("class", [])):
             blocks.append(
                 {
                     "kind": "paragraph",
@@ -166,8 +166,9 @@ def parse_warranty_html(
                 tuple(content),
             )
         )
-    if period_count != 1:
-        raise ValueError(f"{source_path}: expected one warranty years component")
+    expected_period_count = int(bool(expected_years))
+    if period_count != expected_period_count:
+        raise ValueError(f"{source_path}: expected {expected_period_count} warranty years component(s)")
     return tuple(claims)
 
 
