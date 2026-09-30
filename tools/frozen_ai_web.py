@@ -17,6 +17,7 @@ from tools.component_specs.overview_instance import overview_instance_sha256, re
 from tools.component_specs.theme import load_manual_theme, theme_sha256
 from tools.frozen_ai_document import ordered_pages
 from tools.frozen_ai_source import FrozenBook
+from tools.frozen_web_component_coverage import require_frozen_component_coverage
 from tools.manual_ir import V2_SCHEMA_VERSION, build_manual_ir_from_source, read_manual_ir, write_manual_ir
 from tools.manual_ir.components import component_specs_in_flow
 from tools.manual_ir.document import validate_document
@@ -31,6 +32,11 @@ from tools.web_presentation import load_web_manual_contract
 def replay_package(package: Path) -> tuple[str, ...]:
     """Replay frozen IR and images; never read extraction files or old HTML."""
     ir = read_manual_ir(package / PathSegments.MANUAL_IR_JSON)
+    # Older immutable packages remain replayable for historical comparison.
+    # Every new native import gets this report at assembly; every publication
+    # is checked independently of its presence by release evidence admission.
+    if "shared_component_coverage" in ir.metadata:
+        require_frozen_component_coverage(ir.to_dict())
     css = package / "_static" / "web_manual.css"
     if file_sha256(css) != ir.metadata["frozen_stylesheet_sha256"]:
         raise ValueError("frozen Web stylesheet changed")
@@ -119,6 +125,9 @@ def assemble_book(book, title, pages):
     )
     ir = build_manual_ir_from_source(source)
     validate_document(ir)
+    if ir.source == "frozen-pdf-json":
+        coverage = require_frozen_component_coverage(ir.to_dict())
+        ir = replace(ir, metadata={**ir.metadata, "shared_component_coverage": coverage})
     path = output / PathSegments.MANUAL_IR_JSON
     write_manual_ir(ir, path)
     fragments = replay_package(output)

@@ -689,6 +689,9 @@ Word keeps compatibility wrappers, and the Web IR renderer imports the lightweig
 helper directly so cold replay never imports source-table readers.
 
 `frozen_ai_web` is the bounded alternate intake for approved frozen AI JSON.
+`frozen_web_component_coverage` owns native-import semantic coverage admission;
+assembly, cold PDF replay and release-evidence checks call the same policy.
+It inspects actual component bindings rather than trusting inventory metadata.
 `frozen_pdf_web` reuses that assembler after `frozen_pdf_intake` reads native PDF text,
 `frozen_pdf_glyphs` verifies missing glyphs against the AI original, and
 `frozen_pdf_source` binds explicit asset hashes. `frozen_pdf_document`,

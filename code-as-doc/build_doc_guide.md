@@ -2322,3 +2322,5 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
 
 按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
+
+新增语言的原生便携手册须通过[共享组件准入](dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)：按稳定章节 ID 检查 LCD、自动恢复、组合键、规格、质保、App 等组件的实际绑定，不能只凭 `manual-ir/v2` 或组件数量声明认定复用完成。新 PDF 导入、冷重放、发布封存和发布证据核验会阻止漏绑定及组件外的普通表格/图片。构建生成的 `shared_component_coverage` 记录覆盖情况；已发布冻结版需逐语迁移并重新发布才能更新样式。
