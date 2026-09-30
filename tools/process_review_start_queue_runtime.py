@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import json
 import re
-import sys
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
+
+from tools.utils.log import get_logger
+
+_LOG = get_logger("review-start")
+_ERR = get_logger("review-start", stream="stderr")
 
 FAILURE_SUMMARY_PATH_ENV = "AUTO_MANUAL_FAILURE_SUMMARY_PATH"
 
@@ -58,7 +62,7 @@ def _clear_failure_summary(*, root: Path, environ: dict[str, str]) -> None:
         if path.exists():
             path.unlink()
     except OSError as exc:
-        print(f"[review-start] Unable to clear failure summary {path}: {exc}", file=sys.stderr)
+        _ERR.warning(f"[review-start] Unable to clear failure summary {path}: {exc}")
 
 
 def _write_failure_summary(*, root: Path, environ: dict[str, str], payload: dict[str, Any]) -> None:
@@ -69,7 +73,7 @@ def _write_failure_summary(*, root: Path, environ: dict[str, str], payload: dict
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     except OSError as exc:
-        print(f"[review-start] Unable to write failure summary {path}: {exc}", file=sys.stderr)
+        _ERR.warning(f"[review-start] Unable to write failure summary {path}: {exc}")
 
 
 def _normalized_review_status(value: Any) -> str:
@@ -135,7 +139,7 @@ def process_review_start_queue(
         if record_id:
             existing_record = _find_record_by_id(deps.parse_records_fn(raw_records), record_id)
             if existing_record is not None and _is_completed_review_start_record(existing_record):
-                print(
+                _LOG.info(
                     "[review-start] Targeted review-start row is already in review; "
                     f"record_id={record_id} git_ref={getattr(existing_record, 'git_ref', '')}. "
                     "Treating duplicate dispatch as success."
@@ -154,12 +158,11 @@ def process_review_start_queue(
                     ],
                 ),
             )
-            print(
-                f"[review-start] No pending review-start task found for record_id={record_id}.",
-                file=sys.stderr,
+            _ERR.error(
+                f"[review-start] No pending review-start task found for record_id={record_id}."
             )
             return 1
-        print("[review-start] No pending review-start tasks found.")
+        _LOG.info("[review-start] No pending review-start tasks found.")
         return 0
     pending_groups = deps.group_records_fn(pending_records)
 
@@ -177,7 +180,7 @@ def process_review_start_queue(
                 lang=group_lang,
                 build_family=group_build_family,
             )
-            print(
+            _LOG.info(
                 f"[review-start] {deps.review_action_label} DRY-RUN "
                 + json.dumps(
                     {
@@ -201,7 +204,7 @@ def process_review_start_queue(
             )
         return 0
 
-    print(f"[review-start] Syncing latest phase2 snapshot before {deps.review_action_label.lower()}.")
+    _LOG.info(f"[review-start] Syncing latest phase2 snapshot before {deps.review_action_label.lower()}.")
     try:
         deps.sync_snapshot_before_fn(config_path=config_path, data_root=snapshot_data_root)
     except Exception as exc:
@@ -265,7 +268,7 @@ def process_review_start_queue(
                     record=success_fields,
                 )
             processed += 1
-            print(
+            _LOG.info(
                 f"[review-start] {deps.review_action_label} updated {deps.record_key_fn(record)}: "
                 f"family={group_build_family or 'legacy'} git_ref={branch_name} pr_url={pr_url} rows={len(group)}"
             )
@@ -282,10 +285,9 @@ def process_review_start_queue(
                     lang=group_lang,
                 )
             )
-            print(
+            _ERR.error(
                 f"[review-start] {deps.review_action_label} FAILURE {deps.record_key_fn(record)} "
-                f"family={deps.group_build_family_fn(group) or 'legacy'}: {exc}",
-                file=sys.stderr,
+                f"family={deps.group_build_family_fn(group) or 'legacy'}: {exc}"
             )
 
     if failure_summaries:
@@ -298,7 +300,7 @@ def process_review_start_queue(
             ),
         )
 
-    print(
+    _LOG.info(
         f"[review-start] {deps.review_action_label} summary: "
         f"processed={processed} blocked={blocked} failed={len(failures)}"
     )

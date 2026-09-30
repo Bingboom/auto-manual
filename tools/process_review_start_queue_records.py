@@ -2,13 +2,15 @@ from __future__ import annotations
 
 import json
 import re
-import sys
 from dataclasses import dataclass
 from typing import Any, Callable
 
 from tools.document_link_queue import looks_like_explicit_document_key
 from tools.review_branch_resolver import parse_document_id
 from tools.language_aliases import normalize_language
+from tools.utils.log import get_logger
+
+_ERR = get_logger("review-start", stream="stderr")
 
 DOCUMENT_ID_FIELD = "Document_ID"
 DOCUMENT_KEY_FIELD = "Document_Key"
@@ -194,10 +196,9 @@ def generate_review_branch_name(record: ReviewStartRecord) -> str:
         if existing and (existing == canonical or existing.startswith(f"{canonical}-")):
             return existing
         if existing:  # non-empty AND non-canonical -> self-heal
-            print(
+            _ERR.warning(
                 f"[review-start] WARNING healing non-canonical branch name {existing!r} -> "
-                f"{canonical!r}; the old branch's PR (if any) is NOT reused.",
-                file=sys.stderr,
+                f"{canonical!r}; the old branch's PR (if any) is NOT reused."
             )
         return canonical
     # Document_ID yields no model+region: keep an existing ref, else a sanitized slug.
