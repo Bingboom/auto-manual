@@ -1,6 +1,6 @@
 # EU LCD fallback source audit — 2026-09-30
 
-Status: active
+Status: active — 13-table audit complete; asset remediation tracked separately.
 
 This read-only audit covers the 13 text-only LCD tables identified in the
 published EU inventory. It does not approve new illustrations, modify live
@@ -25,13 +25,16 @@ alongside it:
 
 | Indicator | Live table number | Frozen table number | Approved overview callout |
 | --- | ---: | ---: | ---: |
+| Low battery | 19 | 18 | 18 |
+| Remaining battery percentage | 18 | 19 | 19 |
 | High temperature | 23 | 23 | 23 |
 | Low temperature | 24 | 23 | 23 (shared temperature callout) |
 | Fault code | 25 | 24 | 24 |
 | Output power | 26 | 25 | 25 |
 | Remaining discharge time | 27 | 26 | 26 |
 
-Earlier callouts 1–22 align semantically. The committed
+Live rows 18/19 also swap Low Battery and Remaining Battery Percentage. The
+committed
 `manual_sources/JE-1000H/EU/en/2.0/phase2/lcd_icons_blocks.csv` already corrects
 this numbering and agrees with the approved overview. The mismatch is between
 the live table and the frozen publication source, not between the published
@@ -65,3 +68,16 @@ Receipts and decoded files are retained locally in
 `/tmp/eu-shared-rollout/lcd-audit/`, including `JE-1000H-downloaded.json`,
 `JE-1000H-contact.png`, `live-fields.json`, `live-asset-definitions-lcd.json`
 and `live-asset-exports-lcd.json`. These are audit evidence, not release inputs.
+
+
+## Follow-up state — PR #1343
+
+The original 13-table audit is complete; it does not mean 13 icon catalogs need
+identical repairs. The 14-manual rollout in Hello-Docs #157 left the audited
+LCD source debt intact. JE-1000H's six-locale repair is now proposed separately
+in [#1343](https://github.com/Bingboom/auto-manual/pull/1343): existing attachment
+bytes are bound by indicator name and the original callout numbers are retained.
+The Connected Batteries image is still the original 43 × 34 px asset, explicitly
+reported as resolution debt; this follow-up does not claim the audit's quality
+recommendation is resolved. Local layout approval and merge/publication approval
+remain separate. JBP-2000B, JBP-3600A and JE-3600A dispositions above remain open.

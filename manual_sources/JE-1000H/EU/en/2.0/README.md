@@ -82,3 +82,17 @@ the footnotes above the ※ USB Type-C trademark note (PDF pages
 and the Word bundle, which takes its order from the HTML) puts the footnotes
 first. Its LaTeX branch is identical to `spec_template.rst`, so the PDF and IDML
 are unchanged. `source_manifest.json` re-locks the registry.
+
+LCD shared-component repair (2026-09-30): the 27 blank Figure references now
+bind existing business-plane LCD attachments, shared by all six locale builds.
+`lcd_icon_provenance.json` records each live record ID, attachment content hash and
+indicator-to-approved-callout mapping. No translated copy, overview artwork or
+numbering was changed. The existing `HB-TABLE-LCD-ICON` renderer preserves
+source line blocks and bold status prefixes. The fresh-release contract now
+requires this component for all six LCD chapters; their old text-only debt is
+removed. Connected Batteries retains its existing 43 × 34 px source image as
+explicit quality debt; no invented or newly cropped icon is approved here.
+
+German status emphasis retains the authored `Blinkt:` wording. The target's
+status dictionary includes it alongside `Blinken`, without rewriting the
+released descriptions or changing the live translation-memory table.
