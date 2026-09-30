@@ -5,6 +5,9 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from tools.queue_transitions import has_active_queue_claim
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
 
 
 @dataclass(frozen=True)
@@ -128,9 +131,9 @@ def load_pending_queue_state(
 
 def print_no_pending_message(*, immediate_only: bool) -> None:
     if immediate_only:
-        print("[build-queue] No pending immediate build tasks found.")
+        _LOG.info("[build-queue] No pending immediate build tasks found.")
     else:
-        print("[build-queue] No pending build tasks found.")
+        _LOG.info("[build-queue] No pending build tasks found.")
 
 
 def resolve_and_report_wiki_destination(
@@ -149,12 +152,12 @@ def resolve_and_report_wiki_destination(
     )
     if hasattr(destination, "provider") and hasattr(destination, "details"):
         label = str(getattr(destination, "label", "") or "Artifact destination").strip()
-        print(
+        _LOG.info(
             f"[build-queue] {label} "
             + json.dumps(getattr(destination, "details"), ensure_ascii=False)
         )
         return destination
-    print(
+    _LOG.info(
         "[build-queue] Wiki destination "
         + json.dumps(
             {

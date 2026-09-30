@@ -14,6 +14,9 @@ from tools.queue_transitions import (
     has_active_queue_claim,
     queue_claim_is_owned,
 )
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
 
 
 @dataclass(frozen=True)
@@ -176,12 +179,12 @@ def process_queue_record_group(
             claim_token=claim_token,
         )
         if not claim_attempt.acquired:
-            print(
+            _LOG.info(
                 f"[build-queue] Skipping {group_key} ({row_count} row(s)); {claim_attempt.reason}."
             )
             return QueueGroupProcessingResult(processed_rows=0)
         claim_owned = True
-        print(
+        _LOG.info(
             f"[build-queue] Acquired queue claim for {group_key} ({row_count} row(s)): "
             f"expires_at={claim_expires_at.isoformat(timespec='seconds')}"
         )
@@ -210,7 +213,7 @@ def process_queue_record_group(
                         binding=binding,
                         target_node_url=dingtalk_target_node_url,
                     )
-                    print(
+                    _LOG.info(
                         f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) "
                         f"with row target {dingtalk_target_node_url}."
                     )
@@ -220,9 +223,9 @@ def process_queue_record_group(
                             "DingTalk target node URL is required: provide row DingTalk_target_node_url "
                             "or configure DINGTALK_DOCS_TARGET_NODE_URL for the remote worker"
                         )
-                    print(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+                    _LOG.info(f"[build-queue] Using DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
             else:
-                print(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")
+                _LOG.info(f"[build-queue] Skipping DingTalk upload for {group_key} ({row_count} row(s)); using Feishu/wiki upload.")
                 effective_artifact_destination = resolve_lark_wiki_destination(
                     cli_bin=cli_bin,
                     identity=identity,
@@ -230,7 +233,7 @@ def process_queue_record_group(
                 )
         elif primary_provider == "lark_drive" and mirror_provider == "dingtalk_alidocs_session":
             if has_upload_dingtalk_field and not upload_dingtalk:
-                print(f"[build-queue] Skipping DingTalk sync for {group_key} ({row_count} row(s)); using Feishu/wiki only.")
+                _LOG.info(f"[build-queue] Skipping DingTalk sync for {group_key} ({row_count} row(s)); using Feishu/wiki only.")
                 deferred_status_notes = ("dingtalk_sync=skipped",)
             else:
                 try:
@@ -239,13 +242,13 @@ def process_queue_record_group(
                             cfg=cfg,
                             target_node_url=dingtalk_target_node_url,
                         )
-                        print(
+                        _LOG.info(
                             f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) "
                             f"with row target {dingtalk_target_node_url}."
                         )
                     else:
                         dingtalk_mirror_destination = resolve_dingtalk_mirror_destination(cfg=cfg)
-                        print(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
+                        _LOG.info(f"[build-queue] Syncing DingTalk upload for {group_key} ({row_count} row(s)) with default target.")
                     ensure_dingtalk_session_ready(
                         cfg=cfg,
                         operator_union_id=dingtalk_operator_union_id,
@@ -285,7 +288,7 @@ def process_queue_record_group(
                 "so the worker can fetch the review branch"
             )
         if refresh_phase2:
-            print(
+            _LOG.info(
                 f"[build-queue] Syncing latest phase2 snapshot before {group_key} ({row_count} row(s))."
             )
             try:
@@ -489,7 +492,7 @@ def process_queue_record_group(
                 document_link_url=document_link_url,
                 queue_record_ids=tuple(group_record.record_id for group_record in group),
             )
-        print(
+        _LOG.info(
             f"[build-queue] {workflow_action_label(effective_doc_phase) or 'Updated'} "
             f"{group_key} ({row_count} row(s)): "
             f"{artifact_output_path or md_output_path}"

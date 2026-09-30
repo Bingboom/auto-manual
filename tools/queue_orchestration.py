@@ -2,6 +2,10 @@ from __future__ import annotations
 
 from typing import Any, Callable
 
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
+
 
 def sync_phase2_snapshot_once(
     sync_phase2_snapshot_before_queue: Callable[..., None],
@@ -214,7 +218,7 @@ def process_build_queue(
         if result.failure_message:
             failures.append(result.failure_message)
 
-    print(f"[build-queue] Summary: processed={processed} failed={len(failures)}")
+    _LOG.info(f"[build-queue] Summary: processed={processed} failed={len(failures)}")
     for failure in failures:
         print(f"[build-queue] FAILURE {failure}", file=stderr)
     return 1 if failures else 0
