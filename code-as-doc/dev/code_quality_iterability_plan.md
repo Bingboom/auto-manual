@@ -235,9 +235,12 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
   （doctor 与独立命令：#1319，2026-09-29；测试开头提示：#1329，2026-09-30）
 - [ ] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
   并从 `requirements.lock` 安装依赖；在 [`../../ONBOARDING.md`](../../ONBOARDING.md) 加入这一步。
-- [ ] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
+- [x] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
   （例如统一的 `slow` 基类或装饰器）；新增 `make test-fast`，本地只跑快速层。CI 的全量
   `python -m unittest` 不变。
+  （2026-09-30；按模块而不是逐个测试标记：`tests/slow_modules.txt` 列出 27 个实测慢测试合计 ≥4s 的模块，
+  `python -m tests.run_fast`（`make test-fast`）把其余模块分批放到并行进程里跑，只用标准库。
+  实测（4 CPU，Python 3.12 + lock）：单进程全量 879s；并行全量 251s；快速层 4435 个测试 171s）
 - [ ] **CQ-6.4 并行执行。** 评估两种方案：`pytest` + `pytest-xdist`（兼容 unittest 写法，
   但属于新增依赖，**需操作者确认**），或按模块在 CI 中分片（改 workflow，**需操作者确认**）。
   先用数据说明收益，再决定。

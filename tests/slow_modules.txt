@@ -1,0 +1,32 @@
+# Test modules the local fast tier (python -m tests.run_fast) skips.
+# One module per line; the number is its measured slow-test time in seconds
+# (python -m unittest --durations, Python 3.12 + requirements.lock, 2026-09-30).
+# CI always runs every module: python -m unittest. Core queue tests
+# (test_process_build_queue) stay in the fast tier even though they cross 4s.
+test_web_presentation                              # 21.6s
+test_idml_rst_comments                             # 21.4s
+test_export_idml_golden                            # 18.7s
+test_frozen_ai_table_components                    # 17.9s
+test_je3000c_0915_warnings                         # 15.7s
+test_rtd_feedback                                  # 13.7s
+test_component_spec_manual_sections                # 11.8s
+test_authored_table_components                     # 11.7s
+test_frozen_ai_media_components                    # 11.5s
+test_plain_markdown_site                           # 9.0s
+test_export_idml                                   # 8.5s
+test_export_idml_cli                               # 7.9s
+test_web_inbox_ir                                  # 7.7s
+test_frozen_pdf_app                                # 7.0s
+test_spec_master_read_policy                       # 6.4s
+test_component_spec_app_reference                  # 6.1s
+test_idml_measured_spec_panels                     # 5.7s
+test_spec_notes_order                              # 5.7s
+test_product_voc                                   # 5.5s
+test_publication_withdrawal                        # 5.2s
+test_manual_ir                                     # 5.1s
+test_web_fcc_ir                                    # 4.8s
+test_frozen_pdf_document                           # 4.8s
+test_web_callout_ir                                # 4.6s
+test_web_frozen_source_evidence                    # 4.3s
+test_rtd_system_workspace                          # 4.3s
+test_myst_callout_ir                               # 4.0s

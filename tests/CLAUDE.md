@@ -23,5 +23,6 @@
 - One module: `python3 -m unittest tests.test_<name>`
 - Several modules: `python3 -m unittest tests.test_config_loader tests.test_validate_config`
 - Full suite: `python3 -m unittest`
+- Local fast tier: `python3 -m tests.run_fast` (or `make test-fast`) runs every module except `tests/slow_modules.txt` in parallel processes (`-j N`, `--all` adds the slow modules). It is for iteration only; CI and pre-PR validation stay `python3 -m unittest`.
 - Node UI tests, when a portal script or a `*.test.mjs` file changes: `node --test tests/*.test.mjs`
 - Lint when tests or Python implementation changed: `python3 -m ruff check build.py integrations tools tests scripts`
