@@ -85,7 +85,7 @@ are unchanged. `source_manifest.json` re-locks the registry.
 
 LCD shared-component repair (2026-09-30): the 27 blank Figure references now
 bind existing business-plane LCD attachments, shared by all six locale builds.
-`lcd_icon_provenance.json` records each live record/file token, exact bytes and
+`lcd_icon_provenance.json` records each live record ID/attachment-token hash, exact bytes and
 indicator-to-approved-callout mapping. No translated copy, overview artwork or
 numbering was changed. The existing `HB-TABLE-LCD-ICON` renderer preserves
 source line blocks and bold status prefixes. The fresh-release contract now
