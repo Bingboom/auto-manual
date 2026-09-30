@@ -203,8 +203,11 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
-- [ ] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
+- [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
+  （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给
+  目标脚本的 `parse_args`，`listen-message-control` 交给 Node 的 `parseLocalListenerArgs`；另有一条覆盖检查，
+  `build.py` 新增 `*_command` 而没有契约用例时失败）
 
 **验收。** 队列与回写路径 `print` 清零；`except Exception` 数量下降 ≥50%，其余全部带分类注释；
 CQ-5.4 的测试覆盖 `build.py` 里所有子进程命令构造器。
