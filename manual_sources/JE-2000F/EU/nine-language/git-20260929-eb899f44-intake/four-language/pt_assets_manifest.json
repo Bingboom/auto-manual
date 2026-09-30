@@ -54,7 +54,7 @@
     },
     "lcd.mode": {
       "path": "figures/pt/p123_lcd_mode_art.png",
-      "sha256": "730ec9e80b4348776d38b6fd965b5c7444a8467d1313f454b8adbfd7ad3c00ba",
+      "sha256": "bedf5f6bb06e02f39b55b201287971a232f549c8199fa0294e442931352ab64e",
       "content_mode": "source-finished-panel",
       "locale": "pt",
       "target": {

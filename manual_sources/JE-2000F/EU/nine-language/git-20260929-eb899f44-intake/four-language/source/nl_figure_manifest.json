@@ -188,15 +188,15 @@
       "slug": "lcd_mode_art",
       "section_id": "operations",
       "path": "figures/nl/p141_lcd_mode_art.png",
-      "sha256": "d0947306e4b4fd4f071f937480f4fc2f37bb5c4e0c179f70ca58fc6666c3eeb8",
+      "sha256": "6110b5b23e5bdcabc3d810005c9d447fa2dffc19c2d6845b1814e874434d211c",
       "clip_points": [
-        25,
-        141,
-        179,
+        35,
+        144,
+        165,
         239
       ],
       "physical_page": 141,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "source artwork; crop excludes outer frame and neighboring table border; native product, hand and POWER callout verified at 12x"
     },
     {
       "slug": "in_box_cards",

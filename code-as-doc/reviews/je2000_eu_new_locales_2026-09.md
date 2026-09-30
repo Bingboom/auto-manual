@@ -146,3 +146,8 @@ AC and DC/USB prerequisite pills now use one shared CSS token
 the common darker source pill selected by the operator. The native F source used different grayscale
 fills on p139 and p140; the live rounded HTML pill normalizes that presentation
 while preserving source artwork, native coordinates and searchable copy.
+
+F LCD-mode artwork crops for pt/nl/pl now exclude the source outer-frame
+and adjacent table strokes. The tighter source-PDF crop retains the full
+product, hand and POWER callout (12x visual check); the live HTML table and
+outer card border remain unchanged. E uses separate clean artwork.

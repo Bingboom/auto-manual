@@ -188,15 +188,15 @@
       "slug": "lcd_mode_art",
       "section_id": "operations",
       "path": "figures/pl/p159_lcd_mode_art.png",
-      "sha256": "2682c516f7709f7c6a0bf1c5247d7e8f39cfc0f862198cc3cb51a98e385afd1c",
+      "sha256": "c2e2726d5b67d9e79107372099a15ef0123a715dbe0de687bdae87dbb90f03da",
       "clip_points": [
-        25,
-        141,
-        179,
+        35,
+        144,
+        165,
         239
       ],
       "physical_page": 159,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "source artwork; crop excludes outer frame and neighboring table border; native product, hand and POWER callout verified at 12x"
     },
     {
       "slug": "in_box_cards",

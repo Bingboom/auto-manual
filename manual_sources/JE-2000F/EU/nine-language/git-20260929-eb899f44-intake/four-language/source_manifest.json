@@ -986,8 +986,8 @@
     },
     {
       "path": "figures/nl/p141_lcd_mode_art.png",
-      "size": 28650,
-      "sha256": "d0947306e4b4fd4f071f937480f4fc2f37bb5c4e0c179f70ca58fc6666c3eeb8"
+      "size": 27649,
+      "sha256": "6110b5b23e5bdcabc3d810005c9d447fa2dffc19c2d6845b1814e874434d211c"
     },
     {
       "path": "figures/nl/p142_ups_connection.png",
@@ -1276,8 +1276,8 @@
     },
     {
       "path": "figures/pl/p159_lcd_mode_art.png",
-      "size": 28609,
-      "sha256": "2682c516f7709f7c6a0bf1c5247d7e8f39cfc0f862198cc3cb51a98e385afd1c"
+      "size": 27623,
+      "sha256": "c2e2726d5b67d9e79107372099a15ef0123a715dbe0de687bdae87dbb90f03da"
     },
     {
       "path": "figures/pl/p160_ups_connection.png",
@@ -1566,8 +1566,8 @@
     },
     {
       "path": "figures/pt/p123_lcd_mode_art.png",
-      "size": 28708,
-      "sha256": "730ec9e80b4348776d38b6fd965b5c7444a8467d1313f454b8adbfd7ad3c00ba"
+      "size": 27707,
+      "sha256": "bedf5f6bb06e02f39b55b201287971a232f549c8199fa0294e442931352ab64e"
     },
     {
       "path": "figures/pt/p124_ups_connection.png",
@@ -2087,17 +2087,17 @@
     {
       "path": "nl_assets_manifest.json",
       "size": 53003,
-      "sha256": "95c9b671c2ee84198fad20b82e085f54d5e26a0b0111e66078da38d467d5ab25"
+      "sha256": "6f67c2a8fdde69a7828d1e59a1ac146c4818fba2156d126f411349956658c776"
     },
     {
       "path": "pl_assets_manifest.json",
       "size": 52366,
-      "sha256": "476ecd7d050869bcae20b2f7e52be9cc0bd9214f298c6d5633339a0973c7abad"
+      "sha256": "3a6ec2b04ac6189dc23bc871eb5356a424da819ae7817e04e895ea1f043e7d9d"
     },
     {
       "path": "pt_assets_manifest.json",
       "size": 52364,
-      "sha256": "4139c4ce622dfe2b297856e3d6fd72bf673f9cadd3e68360542c7f23246b86a5"
+      "sha256": "ffc3aa8ed2589fbba313c6609d1e88f82228c0481846307d0ee0d5f76936d486"
     },
     {
       "path": "source/app_sections.json",
@@ -2131,8 +2131,8 @@
     },
     {
       "path": "source/nl_figure_manifest.json",
-      "size": 8049,
-      "sha256": "93c30d61a74dcc64b011a9669da17f7eb8b676a7fdfff02b9f2949f07b811ba9"
+      "size": 8095,
+      "sha256": "f8ace3d9a790635e12ca9744a755086be284306715927a747dac2bbdc20a4784"
     },
     {
       "path": "source/operation_tables.json",
@@ -2146,8 +2146,8 @@
     },
     {
       "path": "source/pl_figure_manifest.json",
-      "size": 8070,
-      "sha256": "f7c7b8042e5e0d3528cbd6e58cae097198f20b9ad96c38371589ea408114aa61"
+      "size": 8116,
+      "sha256": "dd9e3435b7bcd16d2cd2bbbe2e90ce5ac0d66ab1162c17da31811c911618e44a"
     },
     {
       "path": "source/print_duplicate_ledger.json",
@@ -2161,8 +2161,8 @@
     },
     {
       "path": "source/pt_figure_manifest.json",
-      "size": 8070,
-      "sha256": "acc2121f24553727b024f382d9e6b67b97d50dc485e83c569f4ba10c6f95f636"
+      "size": 8116,
+      "sha256": "e8b116a7d76f737da04e3f7365ba9e0d5f6e82ddb16ae05024228df13b5c9760"
     },
     {
       "path": "source/qa/approved_errata_validation.json",
