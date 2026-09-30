@@ -44,6 +44,7 @@ from tools.web_manual_table_components import render_manual_table_component
 from tools.web_operation_component import render_operation_component
 from tools.web_overview_component import render_overview_component
 from tools.web_reference_figure_component import render_reference_figure_component
+from tools.web_reference_table_component import render_reference_table_component
 from tools.web_presentation import WebPresentationError
 from tools.web_spec_component import render_specification_component
 from tools.web_warranty_component import render_warranty_component
@@ -78,7 +79,8 @@ def render_embedded_web_component(
 
     spec = component_spec_from_flow_node(node)
     table_renderers = {AUTO_RESUME_ID: render_auto_resume_component,
-                       KEY_COMBINATIONS_ID: render_key_combinations_component}
+                       KEY_COMBINATIONS_ID: render_key_combinations_component,
+                       "HB-TABLE-REFERENCE": render_reference_table_component}
     if spec.component_id in table_renderers:
         return table_renderers[spec.component_id](spec)
     if spec.component_id == CALLOUT_ID:

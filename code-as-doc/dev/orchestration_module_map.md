@@ -704,3 +704,5 @@ They use the same assembler and public `web_document_ir` consumer. The
 source-scoped locale validator is `manual_ir.external_languages`; it does
 not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
+
+- `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.

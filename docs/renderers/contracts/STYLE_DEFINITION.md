@@ -286,6 +286,7 @@ registry。第 1–3 页和封底的 page-role scoped fallback 由上面的批�
 | 自动恢复对比表 | `HB-TABLE-AUTO-RESUME` | `` ```{comparison} `` | `.hb-auto-resume-composition` | `HBAutoResumeTable` @ `components_data_tables` | 同上 | 经 HTML 转换 | aligned |
 | 按键组合表 | `HB-TABLE-KEY-COMBINATIONS` | 流水线 | `.manual-table` | `HBKeyCombinationTable` | `HB Data Header` / `HB Data Body`（可移动文本框） | 经 HTML 转换 | **aligned** |
 | 故障排查表 | `HB-TABLE-TROUBLESHOOTING` | `` ```{troubleshooting} `` | `.hb-troubleshooting-composition` | `HBTroubleshootingTable` | `正文表格` + `HB Rounded Table Outer`（关闭自动缩放） | 经 HTML 转换 | aligned |
+| 纯文字参考表 | `HB-TABLE-REFERENCE` | RST 显式语义声明 | `.hb-reference-composition` | 仅语义投影 | 仅语义投影 | 仅语义投影 | Web rendered；其余 projection-only |
 | 通用表 | 无专属 ID | pipe 表 / `` ```{manual-table} `` | `.manual-table` | 走 `HB-TYPE-BODY` 排版 | `正文表格` | 表样式 `tableHeader`（单行且 ≥3 列时 `TableGrid`） | — |
 
 IDML 的普通内容流采用三组可复用默认节奏：H2 上/下间距、普通图上/下间距、普通表上/下间距，分别由 `idml_title_l2_space_*`、`idml_figure_space_*`、`idml_data_table_space_*` 控制。当前 H2→图的组合净距为 5.67pt + 2.83pt，图→普通表为 4.25pt + 5.67pt。Operations、App、Charging、Product Overview、UPS、Troubleshooting 和 Specifications 等批准组件已有更具体 token 时覆盖这些默认值，不叠加逐页补丁。Charging 的图→带尾部胶囊标题属于完整组合内部过渡：只消费 `idml_charging_figure_space_after` 与 `idml_charging_headingpill_space_before`，不能再叠普通图后距与普通 H2 前距。该标题行的横向几何也归共享 `HeadingPill` 所有：标题列和胶囊列按 Gilroy Bold 字面宽度收紧，组件用 10.9pt 定义标题末字到胶囊首字的可见间距；页面编排器只能放置整行，不能把胶囊右对齐或重新分配两列宽度。
@@ -1263,3 +1264,29 @@ plain-Markdown 的三处实现缺口已经关闭：单元格支持确定性的 `
 
 仓库内新链接、代码注释和测试应直接指向本文。`STYLE_DEBT.md` 是旧快照，不再作为
 当前文档提交；未完成项直接维护在 `manual_style.yaml`，执行证据放历史状态文档。
+
+### Authored text references (`HB-TABLE-REFERENCE`)
+
+The shared Web component preserves source-authored text tables that do not have
+per-row icon assets. RST declares `hb-source-lcd-legend` (number/name/description),
+`hb-source-lcd-actions` (mode/action/result), `hb-source-lcd-actions-compact`
+(function/description), or `hb-source-symbol-meanings` (two headerless columns).
+The source adapter preserves ordered rich-text cells and deliberately blank
+callout numbers. It rejects conflicting declarations, unexpected columns,
+headers, spans, nested tables and image cells. It never infers meaning from a
+localized heading or adds replacement icon assets.
+
+ComponentSpec owns the variant, accessible label, headers and rows. The Web
+renderer owns `.hb-reference-composition` / `.hb-reference-table`; dark header,
+paper, border and radius use the common manual CSS tokens. LCD artwork remains
+an independently governed source image. LaTeX/IDML/Word adapters expose semantic
+projections only; this addition does not claim new layout parity for those
+renderers. The existing `HB-TABLE-LCD-ICON/icon-catalog` still requires one
+approved icon per row.
+
+`hb-source-specification` declares a headerless label/value table immediately
+after its authored H2; it reuses `HB-TABLE-SPEC`. `hb-source-signals` reuses
+`HB-TABLE-SYMBOL-SIGNAL`, and `hb-troubleshooting-table` reuses the existing
+troubleshooting component. These declarations belong in source RST, not
+hand-edited generated HTML. The CSV assembly plan also passes the semantic
+`symbols` page role even when a slot renames the generated filename.
