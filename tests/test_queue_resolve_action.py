@@ -1,10 +1,15 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
+import io
 import json
 import unittest
+from pathlib import Path
+from unittest import mock
 
 from tools import queue_query, queue_resolve_action
+from tools.utils import log
 
 
 def _draft_row(record_id: str = "rec_draft", *, git_ref: str = "codex/review-id-recvfw0zg4pzxs") -> queue_query.QueueQueryRow:
@@ -199,6 +204,26 @@ class TestQueueResolveAction(unittest.TestCase):
         }
         payload.update(overrides)
         return argparse.Namespace(**payload)
+
+    def test_run_prints_json_result_even_when_log_level_hides_info(self) -> None:
+        # The resolution is the command's result, not a log line: it must reach
+        # stdout whatever AUTO_MANUAL_LOG_LEVEL filters.
+        previous = log.configure()
+        self.addCleanup(log.configure, previous)
+        log.configure("ERROR")
+        stdout = io.StringIO()
+        with (
+            mock.patch.object(queue_resolve_action, "load_config", return_value={}),
+            mock.patch.object(queue_resolve_action, "collect_queue_query_rows", return_value=[_draft_row()]),
+            contextlib.redirect_stdout(stdout),
+        ):
+            queue_resolve_action.run_queue_resolve_action(
+                self._args(document_id="JE-1000F_US_en_0.3", json=True),
+                config_path=Path("unused.yaml"),
+            )
+
+        payload = json.loads(stdout.getvalue())
+        self.assertEqual("query_status", payload["action_name"])
 
     def test_resolve_queue_action_should_resolve_query_status_when_no_write_action_is_requested(self) -> None:
         resolution = queue_resolve_action.resolve_queue_action(
