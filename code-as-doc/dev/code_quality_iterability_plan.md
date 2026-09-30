@@ -87,13 +87,18 @@ web、IDML、队列、回写这几块目前最大的代码面。
 **目标。** 测试替换的是"被测代码实际查找的名字"或显式注入的依赖；门面只保留真正的公开 API，
 并用 `__all__` 声明。
 
-- [ ] **CQ-2.1 写下测试约定。** 在 [`../../tests/CLAUDE.md`](../../tests/CLAUDE.md)、
+- [x] **CQ-2.1 写下测试约定。** 在 [`../../tests/CLAUDE.md`](../../tests/CLAUDE.md)、
   [`../../tests/AGENTS.md`](../../tests/AGENTS.md) 和 [`code_review_checklist.md`](code_review_checklist.md)
   中写明：新测试不得 patch 门面的再导出名；外部边界（lark-cli、git、subprocess、时钟、网络）
   通过依赖参数注入。
-- [ ] **CQ-2.2 门面 patch 棘轮。** 在 guardrails 中统计测试对门面模块（`build_docs`、
+  （2026-09-30，与 CQ-2.2 同一 PR）
+- [x] **CQ-2.2 门面 patch 棘轮。** 在 guardrails 中统计测试对门面模块（`build_docs`、
   `process_build_queue`、`process_review_start_queue`、`cloud_doc_backport`）的 patch 次数，
   以当前值为基线，只减不增。
+  （2026-09-30；`tools/check_facade_patch_ratchet.py` + `data/facade_patch_baseline.tsv`，已接入
+  `check_maintainability_guardrails.py`。基线：7 个测试文件共 363 处，其中
+  `test_process_build_queue.py` 203 处、`test_process_review_start_queue.py` 87 处；
+  统计 `patch.object` / `patch.multiple`（按 import 别名解析）和 `patch("tools.<门面>.<名字>")`）
 - [ ] **CQ-2.3 为队列处理器引入依赖对象。** 为 `process_build_queue` /
   `process_review_start_queue` 引入一个小的 `QueueDeps` dataclass（外部客户端、git 执行器、
   时钟），默认值为真实实现；按测试文件逐个迁移。每个 PR 迁一个测试文件，不改运行行为。
