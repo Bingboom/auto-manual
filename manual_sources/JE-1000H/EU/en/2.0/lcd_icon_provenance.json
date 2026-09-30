@@ -22,8 +22,7 @@
       "dimensions": [
         84,
         60
-      ],
-      "file_token_sha256": "697d885e8e9b3fb58a361063a7a6d2246f5c6a1feaf5adfb5933d0a8768331e7"
+      ]
     },
     {
       "indicator": "Bluetooth",
@@ -35,8 +34,7 @@
       "dimensions": [
         72,
         84
-      ],
-      "file_token_sha256": "7acb8b2bfbd51cb88e45034158cb53826d299b49f2c3d2e25df3474ac09015e5"
+      ]
     },
     {
       "indicator": "Quiet Charging Mode",
@@ -48,8 +46,7 @@
       "dimensions": [
         76,
         76
-      ],
-      "file_token_sha256": "6c5015d3dbfde4a049c58c4e1c86948f4608d88dbe26cc5fab2289205b4dec90"
+      ]
     },
     {
       "indicator": "Charging Plan",
@@ -61,8 +58,7 @@
       "dimensions": [
         79,
         84
-      ],
-      "file_token_sha256": "1f2786077196e1f5a148657dd3bed1e61f94cbf18fafec2cfd1206c93d0642d7"
+      ]
     },
     {
       "indicator": "Self-powered Mode",
@@ -74,8 +70,7 @@
       "dimensions": [
         90,
         83
-      ],
-      "file_token_sha256": "f0fe58d9412f6f9892665976e6678946854bfd0c109b62188313acdd423c273f"
+      ]
     },
     {
       "indicator": "TOU Mode",
@@ -87,8 +82,7 @@
       "dimensions": [
         122,
         80
-      ],
-      "file_token_sha256": "ad40c333a45dbdaf86765c7d9c3c5f7c2b2a1a6295be8f635bf27ef734455944"
+      ]
     },
     {
       "indicator": "UPS",
@@ -100,8 +94,7 @@
       "dimensions": [
         116,
         77
-      ],
-      "file_token_sha256": "30d6806eb95c005f4e4fc49cba7287a00386ed765ca4e2d3994e2fc349107853"
+      ]
     },
     {
       "indicator": "AC Power Indicator",
@@ -113,8 +106,7 @@
       "dimensions": [
         114,
         94
-      ],
-      "file_token_sha256": "d870efb57e3cdd080ccf2e2ed17277ad8c004e91a46dbcb4debb28e00464dbe5"
+      ]
     },
     {
       "indicator": "Output Voltage and Frequency",
@@ -126,8 +118,7 @@
       "dimensions": [
         253,
         38
-      ],
-      "file_token_sha256": "1fc2b5ce425174c5ba44cf752689cf7d02e59d2b47de3ec072ef0e426f14b50a"
+      ]
     },
     {
       "indicator": "Input Power",
@@ -139,8 +130,7 @@
       "dimensions": [
         215,
         105
-      ],
-      "file_token_sha256": "62e45f40117026ed94af9baf93ae06ece827c5014095bb57e3f933fda0d6cbbd"
+      ]
     },
     {
       "indicator": "Remaining Charge Time",
@@ -152,8 +142,7 @@
       "dimensions": [
         163,
         67
-      ],
-      "file_token_sha256": "83b4459cd0776f548a6ae0241e71b39c1a54cf43d5ae2563161ac8f9f1a68fe5"
+      ]
     },
     {
       "indicator": "AC Wall Charging Indicator",
@@ -165,8 +154,7 @@
       "dimensions": [
         74,
         85
-      ],
-      "file_token_sha256": "f02c49982eec786ca16e487f0a612de1a725d8323aec69e9866a507b3a84f146"
+      ]
     },
     {
       "indicator": "Car Charging Indicator",
@@ -178,8 +166,7 @@
       "dimensions": [
         68,
         85
-      ],
-      "file_token_sha256": "c677e129e6b0b1aac05de6c5dd6b729acabff245f10ba968af05e06e07b4b479"
+      ]
     },
     {
       "indicator": "Solar Charging Indicator",
@@ -191,8 +178,7 @@
       "dimensions": [
         83,
         82
-      ],
-      "file_token_sha256": "4e464b136feac60eb5e1a655aba460ce030f9390aec3f5d3a05c3d4d6f9d4920"
+      ]
     },
     {
       "indicator": "Battery Saving Mode",
@@ -204,8 +190,7 @@
       "dimensions": [
         74,
         81
-      ],
-      "file_token_sha256": "7fab0d59d4f5ff67feb3f468e0782f52100c57556a3700182d72c8486ab01e8a"
+      ]
     },
     {
       "indicator": "Charging Power Limit",
@@ -217,8 +202,7 @@
       "dimensions": [
         82,
         78
-      ],
-      "file_token_sha256": "7ba04dfd21c49fe6a8fafc77aa3e41a9dc2063d29d54dad6a0514002145af013"
+      ]
     },
     {
       "indicator": "Battery Power Indicator",
@@ -230,8 +214,7 @@
       "dimensions": [
         145,
         145
-      ],
-      "file_token_sha256": "e971d17a3ee1d1c6e750f598f2abcb9e323a07a5d9194c223d04edd81e8a7be4"
+      ]
     },
     {
       "indicator": "Low Battery Indicator",
@@ -243,8 +226,7 @@
       "dimensions": [
         98,
         52
-      ],
-      "file_token_sha256": "5106ea0cc11b0bc59c408f00fe863d14e2008a051ba4080260a6eccc697bd387"
+      ]
     },
     {
       "indicator": "Remaining Battery Percentage",
@@ -256,8 +238,7 @@
       "dimensions": [
         206,
         95
-      ],
-      "file_token_sha256": "2e09b84cea032637a21977ff69a85e5cf6437e4522f0da94153eea1921243f43"
+      ]
     },
     {
       "indicator": "Discharge Timer",
@@ -269,8 +250,7 @@
       "dimensions": [
         93,
         107
-      ],
-      "file_token_sha256": "ef0d0288f137eeff4b75bd2d163a0896618b6ae9fc1673d05415dec3ed35b378"
+      ]
     },
     {
       "indicator": "Connected Batteries",
@@ -282,8 +262,7 @@
       "dimensions": [
         43,
         34
-      ],
-      "file_token_sha256": "04003ac424b11ef41f01c44753359d390f0909b89f17d908b0cbf68d388ddab3"
+      ]
     },
     {
       "indicator": "Energy Saving Mode",
@@ -295,8 +274,7 @@
       "dimensions": [
         110,
         69
-      ],
-      "file_token_sha256": "9f020f4f9ddef795a1f99b381beedc90620591aea07375650c260d6de5f5adc0"
+      ]
     },
     {
       "indicator": "High Temperature Indicator",
@@ -308,8 +286,7 @@
       "dimensions": [
         51,
         81
-      ],
-      "file_token_sha256": "2921e16e8020a5e514701026c557589fbbcac8759e075b6d7573600ebae9afa6"
+      ]
     },
     {
       "indicator": "Low Temperature Indicator",
@@ -321,8 +298,7 @@
       "dimensions": [
         51,
         80
-      ],
-      "file_token_sha256": "2e0629a24e7f69a9f08ba6db0a3320b195f7948efbef8e0101c0a82c2911e476"
+      ]
     },
     {
       "indicator": "Fault code",
@@ -334,8 +310,7 @@
       "dimensions": [
         130,
         119
-      ],
-      "file_token_sha256": "7045cb94427193abc10b730e4a322eda33a2e73494f168ba3fe6e346f3a922e2"
+      ]
     },
     {
       "indicator": "Output Power",
@@ -347,8 +322,7 @@
       "dimensions": [
         245,
         119
-      ],
-      "file_token_sha256": "8114cfacf32c8530d5535d8b04533c89b8dc58b0c79d67a0fdb47f7b38c79876"
+      ]
     },
     {
       "indicator": "Remaining Discharge Time",
@@ -360,9 +334,8 @@
       "dimensions": [
         236,
         71
-      ],
-      "file_token_sha256": "52dcbb03df2b921e819e24e9309454de05a76584231993fc6f1ac14cddd6f830"
+      ]
     }
   ],
-  "attachment_identity_note": "Record IDs permit live lookup; file_token_sha256 verifies attachment identity without storing raw attachment tokens. Original audit retained locally."
+  "attachment_identity_note": "Record IDs permit live lookup; sha256 verifies attachment bytes. Raw attachment identifiers are retained only in the local audit."
 }

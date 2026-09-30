@@ -25,13 +25,16 @@ alongside it:
 
 | Indicator | Live table number | Frozen table number | Approved overview callout |
 | --- | ---: | ---: | ---: |
+| Low battery | 19 | 18 | 18 |
+| Remaining battery percentage | 18 | 19 | 19 |
 | High temperature | 23 | 23 | 23 |
 | Low temperature | 24 | 23 | 23 (shared temperature callout) |
 | Fault code | 25 | 24 | 24 |
 | Output power | 26 | 25 | 25 |
 | Remaining discharge time | 27 | 26 | 26 |
 
-Earlier callouts 1–22 align semantically. The committed
+Live rows 18/19 also swap Low Battery and Remaining Battery Percentage. The
+committed
 `manual_sources/JE-1000H/EU/en/2.0/phase2/lcd_icons_blocks.csv` already corrects
 this numbering and agrees with the approved overview. The mismatch is between
 the live table and the frozen publication source, not between the published

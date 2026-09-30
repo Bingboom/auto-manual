@@ -107,8 +107,8 @@
     },
     {
       "path": "lcd_icon_provenance.json",
-      "size": 12919,
-      "sha256": "7947ec93ca88da2868b7f87e19bd19ed52892c77e1e8005ea767357f2fb78925"
+      "size": 10334,
+      "sha256": "e9a592b91eebdd1a47dd69d23aee6981425d4850c27a43f19538cc2f27292e81"
     },
     {
       "path": "phase2/_attachments/lcd_icons/01_wifi.png",
@@ -246,7 +246,7 @@
       "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "0134e6d9ac9ec934df6221e94433f07a0b4cb6a037197be4bd17c41202a24ddb",
+  "files_inventory_sha256": "9cf5bfa3acca843a32cd31805216bca93b135eacf28b6b54a3353e87e2a222ea",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
