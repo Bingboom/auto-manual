@@ -1463,18 +1463,18 @@
     },
     {
       "path": "artwork_bindings.json",
-      "size": 45676,
-      "sha256": "f31bf6fafbfa5b38ebcec15a1ce73751c06f9a052be45ad11c6093c74fa80477"
+      "size": 45732,
+      "sha256": "b1b377324daa8c730b3dd48e92301e71d601d13c7a03f597ea37893fe945ec45"
     },
     {
       "path": "artwork_bindings.nl.json",
-      "size": 45676,
-      "sha256": "a6ca2c82f0a15a69c56ed4eec9220e74e58c371b09b66a8aef9e0f01ad3a9a50"
+      "size": 45732,
+      "sha256": "a92a6e02d08bdfed0c7f0294034b37180d4304fb3d2475ae78f97d1109cacda9"
     },
     {
       "path": "artwork_bindings.pt.json",
-      "size": 45674,
-      "sha256": "a2157e5dcc07673c399434aa03a0f374c9d234b7f464e8af55a728ea2b932023"
+      "size": 45730,
+      "sha256": "de10b7af3b346b9631b0b46ca877dc77038cf850b40b66d6501185e2f152f212"
     },
     {
       "path": "extraction_recipes/je2000e_eu_nl_native.json",

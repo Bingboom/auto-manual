@@ -1,0 +1,38 @@
+{
+  "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+  "verified": [
+    {
+      "record_id": "recvuCHOujnTWI",
+      "field": "export_file",
+      "value": [
+        {
+          "file_token": "YDGubLtjIobbnbxp2kWc6a9anBf",
+          "name": "weee2.png",
+          "size": 19806
+        }
+      ]
+    },
+    {
+      "record_id": "rec277z0GFV87J",
+      "field": "Figure",
+      "value": [
+        {
+          "file_token": "PKq6baCTao2trtxKH9qcoMLAnhr",
+          "name": "weee2.png",
+          "size": 19806
+        }
+      ]
+    },
+    {
+      "record_id": "recvuCHHTVB8zL",
+      "field": "preview",
+      "value": [
+        {
+          "file_token": "XRShb6rU1oqDAfx3Dunc4cKln9c",
+          "name": "weee2.png",
+          "size": 19806
+        }
+      ]
+    }
+  ]
+}

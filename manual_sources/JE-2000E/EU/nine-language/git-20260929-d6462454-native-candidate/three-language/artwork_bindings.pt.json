@@ -717,19 +717,13 @@
       "status": "quarantine"
     },
     "symbol.battery_disposal": {
-      "path": "artwork/pt/symbol-battery_disposal.png",
-      "sha256": "78cd3fc6474421208580670ee023eafa686f499eb62fca056ad216b45e096618",
-      "content_mode": "fixed-product-markings",
-      "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
-      "source_page": 123,
-      "clip_points": [
-        188,
-        60,
-        224,
-        133
-      ],
-      "transform": "crop_only",
-      "status": "quarantine"
+      "path": "../../../../../../docs/templates/word_template/common_assets/symbols/weee2.png",
+      "sha256": "cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45",
+      "content_mode": "textless",
+      "shared_asset_id": "symbols/weee2",
+      "locale_policy": "shared",
+      "source_kind": "operator-approved shared Symbols attachment; original vector paths rendered with transparency",
+      "source_provenance": "manual_sources/shared/symbols/weee2/20260929/candidate-provenance.json"
     },
     "symbol.weee": {
       "path": "artwork/pt/symbol-weee.png",

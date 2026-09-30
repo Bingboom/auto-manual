@@ -174,3 +174,26 @@ found 20 errors and two failures from a modified local JE-1000F AI fixture;
 all 34 tests in the affected modules passed with a separately downloaded,
 hash-verified original (c38415f5...), preserving the existing local files.
 The isolated US build check, lint, documentation links and guardrails passed.
+
+
+## Shared battery symbol source replacement (2026-09-29)
+
+The shared `symbols/weee2` export and live Symbols `weee2` record both carried
+an 81 x 69 raster with an opaque white rectangle. The operator approved the
+native-vector comparison and replacement on 2026-09-29. The canonical PNG is
+now 492 x 519 RGBA, with transparent surroundings; the lower-bar `symbols/weee`
+asset is unchanged. F/E pt/nl/pl all bind the same canonical source file,
+rather than copying the symbol separately for each product or locale.
+
+Both live attachments were downloaded after replacement and are byte-identical
+to the canonical PNG (SHA-256 `cf04ff00bdeb8de5971a55e5d8be6ef91e1a4ddad479f817f0c535914a392d45`).
+Readback confirms one nonempty file token in `recvuCHOujnTWI/export_file`,
+`rec277z0GFV87J/Figure`, and gallery `recvuCHHTVB8zL/preview`; the export hash is
+updated. Retained native vectors, extraction coordinates and readback receipts
+are in `manual_sources/shared/symbols/weee2/20260929/`.
+
+Validation: six strict Sphinx builds and byte-identical PDF-free cold replays;
+all six resolved assets match the shared source; native-line findings are
+unchanged; 25 asset-registry/charging regression tests pass. Browser F/NL
+loads the 492 x 519 image without the white box. Existing frozen published
+releases are unchanged until regenerated and republished.
