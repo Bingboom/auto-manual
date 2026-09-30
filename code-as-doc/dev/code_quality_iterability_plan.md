@@ -61,7 +61,7 @@ web、IDML、队列、回写这几块目前最大的代码面。
   和 [`orchestration_module_map.md`](orchestration_module_map.md)，写入当前真实领域
   （build / check / queue / backport / web / rtd / word / idml / manual_ir / component_specs /
   asset）及每个领域的目标子包名。只改文档（与 CQ-7.4 同一个 PR）。
-  （#DOCS_PR，2026-09-30；目标子包提案见 `code_style_guide.md` §2.16）
+  （#1331，2026-09-30；目标子包提案见 `code_style_guide.md` §2.16）
 - [ ] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
   顶层 `.py` 数量与 `script_bootstrap`/`sys.path.insert` 使用数量只减不增；新增顶层模块需要在
   允许清单里写明理由。
@@ -236,7 +236,7 @@ CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。
   文档。第一步只标状态、不移动文件；如需移动到 `code-as-doc/archive/`，**另开 PR 并经操作者确认**
   （由链接检查保证没有断链）。
 - [x] **CQ-7.4 刷新边界文档。** 更新 `code_style_guide.md` §2 与 `orchestration_module_map.md`
-  （与 CQ-1.1 同一个 PR）。（#DOCS_PR，2026-09-30；同时补登 phase 1 新增的三个辅助模块）
+  （与 CQ-1.1 同一个 PR）。（#1331，2026-09-30；同时补登 phase 1 新增的三个辅助模块）
 - [ ] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
   [`../code_optimization_log.md`](../code_optimization_log.md)，§4 只保留指针；目标 ≤600 行。
 - [x] **CQ-7.6 精简 `AGENTS.md` §7。** 把每个技能的长描述移到技能索引，§7 只保留一行名称和

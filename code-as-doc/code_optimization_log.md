@@ -34,7 +34,7 @@ any build output:
   docs are baselined.
 - #1321: `AGENTS.md` §7 skill prose moved to `.agents/skills/README.md`
   (26 KB → 20 KB loaded into every agent session).
-- #DOCS_PR: module boundaries refreshed, with a proposed subpackage per
+- #1331: module boundaries refreshed, with a proposed subpackage per
   domain for the CQ-1 migration.
 
 Phase 2 (test seams, logging and subprocess contracts, validator rewrites)
