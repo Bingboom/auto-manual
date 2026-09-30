@@ -77,7 +77,7 @@ def _ledger_ingest_best_effort(
             skip_row_keys=set(summary.get("row_keys") or ()),
         )
     except Exception as exc:  # noqa: BLE001 - ledger is observability, not the job
-        print(f"cloud-doc-backport: revision-ledger ingest skipped: {exc}", file=sys.stderr)
+        _ERR.warning(f"cloud-doc-backport: revision-ledger ingest skipped: {exc}")
 from tools.cloud_doc_backport_pr import (  # noqa: E402,F401
     _compare_url,
     _default_backport_branch_name,
@@ -227,6 +227,9 @@ from tools.cloud_doc_backport_render import (  # noqa: E402,F401
     markdown_template_sync_proposal_report,
     markdown_review_run_report,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("cloud-doc-backport", stream="stderr")
 
 
 
@@ -255,7 +258,7 @@ def _run_resolve_review_branch(args: argparse.Namespace) -> int:
     try:
         result = match_review_branch(args.cloud_doc, _fetch_build_table_records(args.lark_cli, args.identity))
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     if result is None:
         print(json.dumps({"resolved": False, "cloud_doc": args.cloud_doc}, ensure_ascii=False))
@@ -268,7 +271,7 @@ def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
     try:
         branches = list_in_review_branches(_fetch_build_table_records(args.lark_cli, args.identity))
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     results: list[dict[str, Any]] = []
     for branch in branches:
@@ -285,7 +288,7 @@ def _run_sync_review_worktrees(args: argparse.Namespace) -> int:
             print(f"WORKTREE {branch['git_ref']} -> {path}")
         except (OSError, RuntimeError) as exc:
             results.append({**branch, "error": str(exc)})
-            print(f"cloud-doc-backport: worktree for {branch['git_ref']} failed: {exc}", file=sys.stderr)
+            _ERR.error(f"cloud-doc-backport: worktree for {branch['git_ref']} failed: {exc}")
     print(json.dumps({"in_review": len(branches), "ensured": sum(1 for r in results if "worktree" in r)}, ensure_ascii=False))
     return 0 if branches and all("worktree" in r for r in results) else (0 if not branches else 1)
 
@@ -469,11 +472,10 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         explicit_siblings = bool(getattr(args, "sibling", None))
         args.sibling = _resolve_review_branch_siblings(args)
         if args.sibling and not explicit_siblings:
-            print(
+            _ERR.info(
                 f"[backport] F3 family-scope: {len(args.sibling)} shared template(s) "
                 f"(page_shared/{args.lang}) — a shared-prose delta routes to Class T "
-                f"(template-sync proposal), not the _review write",
-                file=sys.stderr,
+                f"(template-sync proposal), not the _review write"
             )
         baseline_text = None
         # baseline_from_seed marks the on-branch .backport/ seed — a locally advanceable
@@ -529,7 +531,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         fixture = out_dir / "cloud_doc_fetched.md"
         fixture.write_text(fetch_doc_text(args.cloud_doc, lark_cli=args.lark_cli), encoding="utf-8")
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     print(f"BRANCH {git_ref}  WORKTREE {worktree}  PAGES {len(source_rels)}")
     changed_rels: list[str] = []
@@ -562,7 +564,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True, check=False)
         if proc.returncode not in (0, 1):  # run-review returns 1 on a FAIL result
             failed = True
-            print(f"  ERROR {source_rel} (rc {proc.returncode})", file=sys.stderr)
+            _ERR.error(f"  ERROR {source_rel} (rc {proc.returncode})")
             continue
         # rc 1 covers two FAIL shapes: residual pending deltas (partial apply — still
         # push what landed cleanly) and a rebuild+rediff gate failure (the apply
@@ -570,10 +572,9 @@ def _run_review_branch(args: argparse.Namespace) -> int:
         # baseline path's refusal).
         if args.write and proc.returncode == 1 and not _page_gate_passed(page_out):
             failed = True
-            print(
+            _ERR.error(
                 f"  GATE FAIL {source_rel}: the apply changed more than the intended "
-                "deltas — page excluded from the backport PR; inspect the worktree.",
-                file=sys.stderr,
+                "deltas — page excluded from the backport PR; inspect the worktree."
             )
             continue
         deltas = _diff_delta_count(page_out)
@@ -589,7 +590,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
                 changed_rels=changed_rels, git_bin=args.git_bin, remote=args.remote,
             )
         except (OSError, RuntimeError) as exc:
-            print(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}", file=sys.stderr)
+            _ERR.error(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}")
             return 2
     print(json.dumps(
         {"git_ref": git_ref, "worktree": worktree, "pages": len(source_rels),
@@ -690,7 +691,7 @@ def _run_review_branch_baseline(
             family_index=_family_index_from_args(args),
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     written = write_reports(report, out_dir)
     # Emit the actionable Class D / Class T artifacts (parity with the per-page run-review
@@ -763,11 +764,10 @@ def _run_review_branch_baseline(
                     plan_pages.setdefault(str(op["delta_hash"]), []).append(page)
         cross_page_ambiguous = {h for h, hits in plan_pages.items() if len(hits) > 1}
         if cross_page_ambiguous:
-            print(
+            _ERR.warning(
                 f"  SKIP {len(cross_page_ambiguous)} delta(s): old text applies cleanly in "
                 "more than one _review page (cross-page ambiguous) — route manually to the "
-                "intended page.",
-                file=sys.stderr,
+                "intended page."
             )
         for page in bundle_pages:
             page_deltas = [
@@ -806,10 +806,9 @@ def _run_review_branch_baseline(
                     print(f"  APPLIED (Class R) {page.name}  [rebuild+rediff gate OK]")
                 else:
                     gate_passed = False
-                    print(
+                    _ERR.error(
                         f"  GATE FAIL {page.name}: the apply changed more than the intended "
-                        f"deltas (unexpected={gate['unexpected']} missing={gate['missing']})",
-                        file=sys.stderr,
+                        f"deltas (unexpected={gate['unexpected']} missing={gate['missing']})"
                     )
         if not changed_rels:
             print("NOTE: no review-prose delta matched a _review page uniquely (nothing written; handle manually if needed).")
@@ -846,10 +845,9 @@ def _run_review_branch_baseline(
     pushed = False
     backport_pr_url = ""
     if args.write and args.push and changed_rels and not gate_passed:
-        print(
+        _ERR.error(
             "cloud-doc-backport: rebuild+rediff gate FAILED — refusing to push the backport "
-            "PR (the apply changed more than the intended Class R deltas). Inspect the worktree.",
-            file=sys.stderr,
+            "PR (the apply changed more than the intended Class R deltas). Inspect the worktree."
         )
     elif args.write and args.push and changed_rels:
         try:
@@ -858,7 +856,7 @@ def _run_review_branch_baseline(
                 changed_rels=changed_rels, git_bin=args.git_bin, remote=args.remote,
             )
         except (OSError, RuntimeError) as exc:
-            print(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}", file=sys.stderr)
+            _ERR.error(f"cloud-doc-backport: backport PR into {git_ref} failed: {exc}")
             return 2
     print(json.dumps(
         {"git_ref": git_ref, "worktree": worktree, "mode": "baseline-diff",

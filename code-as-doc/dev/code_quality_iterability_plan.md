@@ -192,7 +192,7 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   （#1330，2026-09-30；消息原样输出，级别和输出流由调用处选择：`get_logger(name)` 写 stdout，
   `get_logger(name, stream="stderr")` 对应原来的 `print(..., file=sys.stderr)`；输出流在写入时才查找，
   `redirect_stdout` 照常捕获）
-- [ ] **CQ-5.2 先迁移无人值守路径。** `process_build_queue`、`queue_*`、`cloud_doc_backport_*`
+- [x] **CQ-5.2 先迁移无人值守路径。** `process_build_queue`、`queue_*`、`cloud_doc_backport_*`
   的 `print` 改用 `log`；每个 PR 迁一族，输出文本逐字不变。
   进度：review-start 队列（`process_review_start_queue*.py`，12 处；2 处转发 git 原始输出的保留 `print`）
   随 CQ-5.1 一起迁移（#1330）。
@@ -200,9 +200,12 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   10 个文件 28 处，组件名 `build-queue`，#1334，2026-09-30）；保留 `print` 的：转发子进程原始输出的 2 处、
   写入调用方注入的 `stderr` 参数的 5 处、经门面 `module.sys.stderr` 输出的 1 处。
   随后修正：命令结果（`queue query` / `queue execute` / `queue resolve-action` 的行、报告或
-  `--json` 输出）不是日志，改回 `print`，否则把 `AUTO_MANUAL_LOG_LEVEL` 调到 `WARNING` 以上会吞掉结果。
+  `--json` 输出）不是日志，改回 `print`（#1335），否则把 `AUTO_MANUAL_LOG_LEVEL` 调到 `WARNING` 以上会吞掉结果。
   迁移规则：只迁移进度/诊断行，命令结果和转发的子进程输出保留 `print`。
-  下一族：`cloud_doc_backport_*`。
+  回写（`cloud_doc_backport_commands.py`、`cloud_doc_backport_orchestration.py`，组件名
+  `cloud-doc-backport`，#1337，2026-09-30）：只迁移 stderr 上的 21 处诊断行（报错、GATE FAIL、跳过提示）；
+  stdout 上的 `WROTE`/`BRANCH`/`APPLIED`/JSON 汇总是命令结果，PR 创建失败时的手工操作指引
+  （`PR_CREATE_FAILED`…`PR_BODY`）也是结果，均保留 `print`。
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
