@@ -266,7 +266,11 @@ class Je2000fEuEnWebTests(unittest.TestCase):
                 if slot["status"] == "editable-fallback"
             ],
         )
-        self.assertEqual(15, len(soup.select(".manual-finished-illustration")))
+        self.assertEqual(16, len(soup.select(".manual-finished-illustration")))
+        lcd_art = soup.select_one(".hb-lcd-mode-composition img.manual-finished-illustration")
+        self.assertEqual("assets/je2000f_eu_en/operation_lcd.png", lcd_art["data-web-finished-panel-path"])
+        self.assertEqual(hashlib.sha256((ROOT / "docs/renderers/web" / lcd_art["data-web-finished-panel-path"]).read_bytes()).hexdigest(),
+                         lcd_art["data-web-finished-panel-sha256"])
         self.assertEqual(17, len(self.ir.pages))
         for expected in (
             "4000 cycles to 70%+ capacity",

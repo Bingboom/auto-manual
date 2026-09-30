@@ -1937,3 +1937,5 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
 
 Charging reference diagrams reuse the shared live-label component: captions occur once and note pills use HTML/CSS over artwork without baked text or white pills. Other portable power stations may reuse the component with their own verified device/interface artwork. See [the JE-2000 intake and regression record](../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md).
+
+旧 RST 手册的共享样式也须核验实际章节绑定。JE-3000C 欧规五语与 JE-1000H 欧规英语的操作表沿用同一组自动恢复、LCD 模式和组合键组件，原文和图片保持源稿所有权。代码修复不自动改变已发布冻结版本：需重新构建、核验并发布。进度与剩余范围见 [EU shared-component rollout](../code-as-doc/dev/eu_shared_component_rollout_2026-09.md)。

@@ -2322,3 +2322,5 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
 
 按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
+
+JE-3000C/EU 本地化操作章节与 JE-1000H/EU 英语章节通过现有目标展示 overlay 绑定共享操作表。自动恢复和组合键在 RST 导入时也生成 ComponentSpec，与 LCD 模式一起进入整本 IR；这不授予其它操作成品图的重排权限。存量发布迁移顺序与验收边界见 [EU shared-component rollout](dev/eu_shared_component_rollout_2026-09.md)。

@@ -28,6 +28,7 @@ from tools.component_specs.manual_table_html import (
 )
 from tools.component_specs.model import ComponentSpec
 from tools.component_specs.operation_html import parse_operation_components
+from tools.component_specs.operation_tables_html import parse_operation_tables_html
 from tools.component_specs.overview_html import parse_overview_html
 from tools.component_specs.overview_instance import resolve_overview_instance
 from tools.component_specs.registry import require_valid_component_spec
@@ -116,6 +117,15 @@ def _claim_nodes(
             )
         claimed.add(id(node))
         claimed.update(id(descendant) for descendant in node.find_all(True))
+
+
+def _claim_operation_tables(soup, source_path, language, claimed, claims):
+    for spec, boundary in parse_operation_tables_html(
+        soup, source_path=source_path, language=language,
+    ):
+        claim = ComponentClaim(spec=spec, owned_nodes=(boundary,))
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
 
 
 def discover_registered_components(
@@ -214,6 +224,7 @@ def discover_registered_components(
     if isinstance(operation_config, Mapping) and _matches_source(
         source_path, operation_config.get("source_patterns", [])
     ):
+        _claim_operation_tables(soup, source_path, language, claimed, claims)
         # The current operation presentation contract describes the approved
         # JE-1000F figure skeleton. Other skeletons retain their operation copy
         # as neutral flow until a matching presentation overlay is declared;

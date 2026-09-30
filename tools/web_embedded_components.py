@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Mapping
 
 from tools.component_specs.auto_resume import COMPONENT_ID as AUTO_RESUME_ID
+from tools.component_specs.model import ComponentSpec
 from tools.web_auto_resume_component import render_auto_resume_component
 from tools.component_specs.key_combinations import COMPONENT_ID as KEY_COMBINATIONS_ID
 from tools.web_key_combinations_component import render_key_combinations_component
@@ -63,6 +64,17 @@ def _carrier_html(node: Mapping[str, object]) -> str:
     return flow_nodes_to_html(roots)
 
 
+def _render_embedded_table(spec: ComponentSpec, node: Mapping[str, object]) -> str:
+    if spec.component_id == AUTO_RESUME_ID:
+        return render_auto_resume_component(spec)
+    renderers = {
+        KEY_COMBINATIONS_ID: render_key_combinations_component,
+        LCD_MODE_COMPONENT_ID: render_lcd_mode_component,
+    }
+    carrier = _carrier_html(node) if node.get("carrier_flow") else ""
+    return renderers[spec.component_id](spec, carrier)
+
+
 def render_embedded_web_component(
     node: Mapping[str, object],
     *,
@@ -77,10 +89,8 @@ def render_embedded_web_component(
     """Dispatch one validated component without a source-projector round trip."""
 
     spec = component_spec_from_flow_node(node)
-    table_renderers = {AUTO_RESUME_ID: render_auto_resume_component,
-                       KEY_COMBINATIONS_ID: render_key_combinations_component}
-    if spec.component_id in table_renderers:
-        return table_renderers[spec.component_id](spec)
+    if spec.component_id in {AUTO_RESUME_ID, KEY_COMBINATIONS_ID, LCD_MODE_COMPONENT_ID}:
+        return _render_embedded_table(spec, node)
     if spec.component_id == CALLOUT_ID:
         return render_callout_component(spec, _carrier_html(node))
     if spec.component_id == SPEC_ID:
@@ -115,8 +125,6 @@ def render_embedded_web_component(
             instance=instance,
             composites=context,
         )
-    if spec.component_id == LCD_MODE_COMPONENT_ID:
-        return render_lcd_mode_component(spec)
     if spec.component_id in {
         LCD_ICON_COMPONENT_ID,
         TROUBLESHOOTING_COMPONENT_ID,
