@@ -20,6 +20,9 @@ from tools.queue_query import (
     should_apply_latest_per_document_key,
 )
 from tools.review_branch_resolver import parse_document_id
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
 
 _CONTROL_LAYER_CLI = (
     "node",
@@ -628,7 +631,7 @@ def run_queue_execute_batch(
             continue
         for index, _row in entries:
             _mark_dispatched(results[index], payload, batch=True)
-    print(render_queue_execute_batch_result(results, as_json=bool(getattr(resolved_args, "json", False))))
+    _LOG.info(render_queue_execute_batch_result(results, as_json=bool(getattr(resolved_args, "json", False))))
 
 
 def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root: Path) -> None:
@@ -646,7 +649,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
     ensure_publish_confirmation(resolved_args, row)
     dispatch_command = dispatch_command_for_row(row)
     if is_completed_start_review_row(row):
-        print(render_queue_execute_result(row, as_json=bool(getattr(resolved_args, "json", False))))
+        _LOG.info(render_queue_execute_result(row, as_json=bool(getattr(resolved_args, "json", False))))
         return
     ensure_start_review_dispatchable(row)
     asset_preflight = _asset_preflight_for_row(row, repo_root=repo_root)
@@ -703,7 +706,7 @@ def run_queue_execute(args: argparse.Namespace, *, config_path: Path, repo_root:
                 dispatch_payload=dispatch_payload,
             )
         )
-    print(
+    _LOG.info(
         render_queue_execute_result(
             refreshed_row,
             as_json=bool(getattr(resolved_args, "json", False)),

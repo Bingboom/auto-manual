@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import sys
 import time
 from datetime import datetime
 from pathlib import Path
@@ -50,6 +49,9 @@ from tools.queue_writeback import (
     build_started_fields as _build_started_fields_impl,
     build_success_fields as _build_success_fields_impl,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("build-queue", stream="stderr")
 
 
 def upload_word_to_drive(module: Any, *, cli_bin: str, word_output_path: Path, identity: str) -> tuple[str, str]:
@@ -343,9 +345,8 @@ def publish_word_artifact(
         recovered_message = str(exc).strip()
         if "permission denied" not in recovered_message.lower():
             raise ArtifactPublishError(recovered_message, latest_link_url=drive_url) from exc
-        print(
-            f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}",
-            file=sys.stderr,
+        _ERR.warning(
+            f"[build-queue] WARNING wiki attach failed; using Drive link {drive_url}"
         )
         result = ArtifactPublishResult(
             provider="lark_drive",

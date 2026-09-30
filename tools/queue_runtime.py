@@ -10,6 +10,11 @@ import time
 from pathlib import Path
 from typing import Callable, Mapping
 
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
+_ERR = get_logger("build-queue", stream="stderr")
+
 
 def slug_ref_token(value: str) -> str:
     text = re.sub(r"[^a-z0-9]+", "-", value.strip().lower()).strip("-")
@@ -68,7 +73,7 @@ def run_command(
     env: Mapping[str, str] | None = None,
     command_failure_message: Callable[[list[str], str, str, int], str] = command_failure_message,
 ) -> None:
-    print(f"{prefix} {format_command(cmd)}")
+    _LOG.info(f"{prefix} {format_command(cmd)}")
     proc = subprocess.run(
         cmd,
         cwd=str(cwd),
@@ -172,7 +177,7 @@ def prepare_git_ref_worktree(
                 if attempt > len(delays) or not _is_retryable_fetch_error(str(exc)):
                     raise
                 delay = delays[attempt - 1]
-                print(
+                _LOG.warning(
                     f"[build-queue] WARNING git fetch failed; retrying in {delay:.1f}s "
                     f"({attempt}/{len(delays) + 1})..."
                 )
@@ -186,9 +191,8 @@ def prepare_git_ref_worktree(
     local_branch_ref = f"refs/heads/{branch_name}"
     if prefer_local and git_ref_exists(repo_root=repo_root, ref=local_branch_ref):
         source_ref = branch_name
-        print(
-            f"[build-queue] Using local Git_ref branch {branch_name}",
-            file=sys.stderr,
+        _ERR.info(
+            f"[build-queue] Using local Git_ref branch {branch_name}"
         )
     else:
         try:
@@ -196,16 +200,14 @@ def prepare_git_ref_worktree(
             _run_git_fetch(_fetch_args(f"refs/heads/{branch_name}:refs/remotes/origin/{branch_name}"))
         except RuntimeError:
             if git_ref_exists(repo_root=repo_root, ref=cached_remote_ref):
-                print(
-                    f"[build-queue] WARNING git fetch failed; reusing cached remote ref origin/{branch_name}",
-                    file=sys.stderr,
+                _ERR.warning(
+                    f"[build-queue] WARNING git fetch failed; reusing cached remote ref origin/{branch_name}"
                 )
             else:
                 raise
         if not prefer_local:
-            print(
-                f"[build-queue] Using remote Git_ref {source_ref}",
-                file=sys.stderr,
+            _ERR.info(
+                f"[build-queue] Using remote Git_ref {source_ref}"
             )
     worktree = worktree_dir_for_git_ref(repo_root=repo_root, git_ref=branch_name)
     remove_worktree(repo_root=repo_root, path=worktree)

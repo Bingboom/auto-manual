@@ -4,6 +4,10 @@ import json
 from pathlib import Path
 from typing import Any, Callable
 
+from tools.utils.log import get_logger
+
+_LOG = get_logger("build-queue")
+
 
 def print_dry_run_groups(
     *,
@@ -36,7 +40,7 @@ def print_dry_run_groups(
             build_family=group_build_family,
             workflow_action=effective_doc_phase,
         )
-        print(
+        _LOG.info(
             "[build-queue] DRY-RUN "
             + json.dumps(
                 {

@@ -196,6 +196,10 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   的 `print` 改用 `log`；每个 PR 迁一族，输出文本逐字不变。
   进度：review-start 队列（`process_review_start_queue*.py`，12 处；2 处转发 git 原始输出的保留 `print`）
   随 CQ-5.1 一起迁移（#1330）。
+  构建队列（`process_build_queue_main.py`、`process_build_queue_services.py`、`queue_*.py`，
+  10 个文件 28 处，组件名 `build-queue`，2026-09-30）；保留 `print` 的：转发子进程原始输出的 2 处、
+  写入调用方注入的 `stderr` 参数的 5 处、经门面 `module.sys.stderr` 输出的 1 处。
+  下一族：`cloud_doc_backport_*`。
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
