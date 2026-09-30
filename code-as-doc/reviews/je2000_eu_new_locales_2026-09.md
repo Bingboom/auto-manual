@@ -132,3 +132,11 @@ main-power card owns exactly four support blocks, a bold first line and one
 12-hour note. Desktop screenshots confirmed native leader alignment; the
 Dutch mobile preview confirmed steps stack below the art. The six previews
 share a stable local entry; these checks do not claim RTD publication.
+
+The four-block main-power layout keeps the first three standby blocks in an
+independent rounded bubble on the right, with the fourth (12-hour) note on
+white beneath it, separated by whitespace inside the outer card. At narrow
+widths the bubble expands to the content width, while the note stays separate.
+The CSS requires exactly four blocks, preserving older three-block cards.
+Six rebuilt books and PDF-free replays passed; browser measurements confirmed
+separate backgrounds and positive gaps at 859px and 390px, with no overflow.
