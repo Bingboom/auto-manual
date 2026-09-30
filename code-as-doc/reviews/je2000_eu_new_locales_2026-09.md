@@ -197,3 +197,20 @@ all six resolved assets match the shared source; native-line findings are
 unchanged; 25 asset-registry/charging regression tests pass. Browser F/NL
 loads the 492 x 519 image without the white box. Existing frozen published
 releases are unchanged until regenerated and republished.
+
+## Publication authorization and frozen source
+
+The operator authorized RTD publication on 2026-09-29; MA-202 covers #1328
+and the ensuing six-route Hello-Docs publish PR. The release source packages
+are `git-20260929-eb899f44-native-web/three-language` for F and
+`git-20260929-d6462454-native-web/three-language` for E. Each retains
+self-contained pt/nl/pl IR, MyST, governed images and an input hash inventory.
+After incorporating main 7142b644, all six strict builds and PDF-free cold
+replays passed and remained byte-identical to the approved v17 IR and MyST.
+The US regression check, Ruff, maintainability and document gates passed.
+
+Secret-scan flagged three Feishu attachment resource identifiers in the new
+shared-symbol readback receipt. The public receipt now retains their SHA-256,
+nonempty attachment verification, record/field identity, size and content hash;
+full readbacks remain in the local audit bundle. The scanner rules are
+unchanged and the complete local scan passes.

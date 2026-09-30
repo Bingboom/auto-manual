@@ -1,6 +1,6 @@
 # 代码质量与可迭代性优化方案（Workstream Y）
 
-Status: proposed · Owner: 夏冰 · Created: 2026-09-28
+Status: active · Owner: 夏冰 · Created: 2026-09-28 · Updated: 2026-09-30
 
 本文件是 [`../optimization_project.md`](../optimization_project.md) Workstream Y 的
 PR 级拆分和唯一勾选台账。它把 2026-09-28 全仓代码质量评估发现的 7 个问题
@@ -57,10 +57,11 @@ web、IDML、队列、回写这几块目前最大的代码面。
 **目标。** 领域代码位于真实子包中；新代码不再加入 `tools/` 顶层；入口统一为
 `python -m tools.<pkg>.<module>`；启动代码数量只减不增。
 
-- [ ] **CQ-1.1 边界文档先行。** 更新 [`../code_style_guide.md`](../code_style_guide.md) §2
+- [x] **CQ-1.1 边界文档先行。** 更新 [`../code_style_guide.md`](../code_style_guide.md) §2
   和 [`orchestration_module_map.md`](orchestration_module_map.md)，写入当前真实领域
   （build / check / queue / backport / web / rtd / word / idml / manual_ir / component_specs /
   asset）及每个领域的目标子包名。只改文档（与 CQ-7.4 同一个 PR）。
+  （#1331，2026-09-30；目标子包提案见 `code_style_guide.md` §2.16）
 - [ ] **CQ-1.2 顶层模块棘轮。** 在 `check_maintainability_guardrails.py` 中增加：`tools/`
   顶层 `.py` 数量与 `script_bootstrap`/`sys.path.insert` 使用数量只减不增；新增顶层模块需要在
   允许清单里写明理由。
@@ -111,9 +112,11 @@ web、IDML、队列、回写这几块目前最大的代码面。
 
 **目标。** 新函数 CC 不超过 20；存量函数只降不升；CC≥50 的函数减到 10 个以内。
 
-- [ ] **CQ-3.1 复杂度棘轮。** 用 CI 已安装的 ruff（`--select C901 --output-format json`，
+- [x] **CQ-3.1 复杂度棘轮。** 用 CI 已安装的 ruff（`--select C901 --output-format json`，
   `max-complexity = 20`）生成基线文件，以 `文件 + 函数名 → 当前复杂度` 为键。guardrails
   拦截"新增超限函数"和"存量函数复杂度上升"；复杂度下降时要求在同一个 PR 里刷新基线。
+  （#1318，2026-09-29；实现改用标准库 `ast` 计算，结果与 radon 一致，不依赖 ruff 的 JSON 输出，
+  基线在 `data/complexity_baseline.tsv`，由 `check_maintainability_guardrails.py` 执行）
 - [ ] **CQ-3.2 头部校验函数改成规则表**（每个函数一个 PR，改之前先补特征测试，
   固定现有错误信息列表；改后错误文本逐字不变）：
   - [ ] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
@@ -140,19 +143,22 @@ web、IDML、队列、回写这几块目前最大的代码面。
 
 **目标。** CI 的 ruff 规则集包含 `F`（全部）、`B023`、`B904`、`PLW1510`；mypy 严格模式覆盖更多子包。
 
-- [ ] **CQ-4.1 修复 7 处未关闭的文件句柄**（改用 `with path.open(...) as fh:`）：
+- [x] **CQ-4.1 修复 7 处未关闭的文件句柄**（改用 `with path.open(...) as fh:`）：
   - `tools/idml/loaders.py:48`、`:63`、`:103`、`:134`、`:261`
   - `tools/check_docs_lang_parity.py:84`
   - `tools/printed_url_inventory.py:89`
 
-  验收：相关测试不再出现 `ResourceWarning`。
-- [ ] **CQ-4.2 逐个审查 26 处 `B023`**（`plain_markdown_site.py` 5、`diff_report_fields_rows.py` 5、
+  验收：相关测试不再出现 `ResourceWarning`。（#1322，2026-09-29）
+- [x] **CQ-4.2 逐个审查 26 处 `B023`**（`plain_markdown_site.py` 5、`diff_report_fields_rows.py` 5、
   `review_support.py` 4、`web_document_source.py` 2、`web_document_ir.py` 2、
   `readthedocs_source.py` 2、`publish_asset_pool.py` 2，另外 4 个文件各 1 处）。真实缺陷用默认参数
   绑定修复并补测试；确认无害的写明 `# noqa: B023` 和理由。完成后把 `B023` 加入 `select`。
-- [ ] **CQ-4.3 处理 `F401`。** 门面的有意再导出改成显式形式（写入 `__all__`，或用
+  （#1322，2026-09-29；`tools/` 下 24 处逐个核对均为误报，已逐处注明理由；`tests/**` 按文件豁免 `B023`）
+- [x] **CQ-4.3 处理 `F401`。** 门面的有意再导出改成显式形式（写入 `__all__`，或用
   `import x as x`）；其余用 `ruff --fix` 清理。完成后把整个 `F` 规则族加入 `select`。
   与 CQ-2.4 协调：两边都会碰门面文件，同一个门面只在一个 PR 里改。
+  （#1322，2026-09-29；`tools/process_build_queue.py` 通过 `_service_module()` 被辅助模块在运行时
+  读取，静态分析看不到，暂按文件豁免 `F401`，留到 CQ-2.4 删除转发时处理）
 - [ ] **CQ-4.4 小批量补齐高价值规则。** `B904`（4）、`PLW1510`（8，`subprocess.run` 显式传
   `check=`）；`B905`（45，给 `zip` 加 `strict=`）要先确认每处长度确实应该相等，再决定是否启用。
   每条规则要么清零后加入 `select`，要么用 `per-file-ignores` 记录基线后加入。
@@ -172,11 +178,16 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 **目标。** 输出格式不变，但能按级别过滤、能统一重定向；每处宽泛的异常捕获都有明确分类；
 `build.py` 构造的每条子命令都有测试证明被调用脚本能解析。
 
-- [ ] **CQ-5.1 引入日志工具模块。** 新增 `tools/utils/log.py`，对 `logging` 做一层很薄的封装，
+- [x] **CQ-5.1 引入日志工具模块。** 新增 `tools/utils/log.py`，对 `logging` 做一层很薄的封装，
   沿用现有的 `[prefix] LEVEL message` 格式（现有依赖 stdout 断言的测试保持通过）；
   支持通过 `AUTO_MANUAL_LOG_LEVEL` 设置级别。纳入 mypy 严格范围（`tools.utils.*`）。
+  （#1330，2026-09-30；消息原样输出，级别和输出流由调用处选择：`get_logger(name)` 写 stdout，
+  `get_logger(name, stream="stderr")` 对应原来的 `print(..., file=sys.stderr)`；输出流在写入时才查找，
+  `redirect_stdout` 照常捕获）
 - [ ] **CQ-5.2 先迁移无人值守路径。** `process_build_queue`、`queue_*`、`cloud_doc_backport_*`
   的 `print` 改用 `log`；每个 PR 迁一族，输出文本逐字不变。
+  进度：review-start 队列（`process_review_start_queue*.py`，12 处；2 处转发 git 原始输出的保留 `print`）
+  随 CQ-5.1 一起迁移（#1330）。
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
@@ -194,10 +205,13 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
 
 **目标。** 环境不符时先给出一条清晰的诊断；本地有一个 3 分钟以内的快速测试层；CI 仍然跑全量。
 
-- [ ] **CQ-6.1 环境预检。** 在 `build.py doctor`（[`../../tools/build_doctor.py`](../../tools/build_doctor.py)）
+- [x] **CQ-6.1 环境预检。** 在 `build.py doctor`（[`../../tools/build_doctor.py`](../../tools/build_doctor.py)）
   中增加检查：Python 版本，以及 `requirements.lock` 中对精确版本敏感的包（PyMuPDF 等）。
-  依赖精确版本的测试模块在 `setUpModule` 中调用同一个检查，环境不符时给出一条环境错误，
-  而不是一批分散的失败。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
+  每次 `python -m unittest` 开始时（`tests/__init__.py`）打印同一份检查的 `WARN` 行，
+  先说明环境差异，再出现那批分散的失败；环境与 CI 一致时不输出，`AUTO_MANUAL_ENV_PREFLIGHT=0`
+  可关闭。原计划在 `setUpModule` 里报一条环境错误，但那样会把同一模块里本可通过的测试也变成
+  错误，所以改为开头提示，不改变任何测试结果。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
+  （doctor 与独立命令：#1319，2026-09-29；测试开头提示：#1329，2026-09-30）
 - [ ] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
   并从 `requirements.lock` 安装依赖；在 [`../../ONBOARDING.md`](../../ONBOARDING.md) 加入这一步。
 - [ ] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
@@ -220,20 +234,21 @@ CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。
 
 **目标。** 每篇计划/调研文档都有状态；已完成的文档可以一眼识别；入口文档保持精简。
 
-- [ ] **CQ-7.1 生命周期约定。** 在 [`../code-as-doc.md`](../code-as-doc.md) 中规定：`dev/` 与
+- [x] **CQ-7.1 生命周期约定。** 在 [`../code-as-doc.md`](../code-as-doc.md) 中规定：`dev/` 与
   `reviews/` 下的计划/调研文档首部必须有
-  `Status: proposed | active | done | archived | superseded-by <link>`。
-- [ ] **CQ-7.2 状态检查棘轮。** 扩展 [`../../tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
+  `Status: proposed | active | done | archived | superseded-by <link>`。（#1320，2026-09-29）
+- [x] **CQ-7.2 状态检查棘轮。** 扩展 [`../../tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
   或新增一个检查：以当前缺少状态行的文档为基线，新文档必须带状态行。
+  （#1320，2026-09-29；评审中收紧：`superseded-by` 必须带替代文档的链接）
 - [ ] **CQ-7.3 补状态并建索引。** 为存量文档补状态行，在 [`../README.md`](../README.md) §5 列出已归档
   文档。第一步只标状态、不移动文件；如需移动到 `code-as-doc/archive/`，**另开 PR 并经操作者确认**
   （由链接检查保证没有断链）。
-- [ ] **CQ-7.4 刷新边界文档。** 更新 `code_style_guide.md` §2 与 `orchestration_module_map.md`
-  （与 CQ-1.1 同一个 PR）。
+- [x] **CQ-7.4 刷新边界文档。** 更新 `code_style_guide.md` §2 与 `orchestration_module_map.md`
+  （与 CQ-1.1 同一个 PR）。（#1331，2026-09-30；同时补登 phase 1 新增的三个辅助模块）
 - [ ] **CQ-7.5 精简路线图。** 把 `optimization_project.md` §4 "Recently Completed" 迁到
   [`../code_optimization_log.md`](../code_optimization_log.md)，§4 只保留指针；目标 ≤600 行。
-- [ ] **CQ-7.6 精简 `AGENTS.md` §7。** 把每个技能的长描述移到技能索引，§7 只保留一行名称和
-  触发条件。**修改 `AGENTS.md` 需要走 `config-review` 技能，并经操作者确认。**
+- [x] **CQ-7.6 精简 `AGENTS.md` §7。** 把每个技能的长描述移到技能索引，§7 只保留一行名称和
+  触发条件。**修改 `AGENTS.md` 需要走 `config-review` 技能，并经操作者确认。**（#1321，2026-09-29）
 
 **验收。** `dev/` 与 `reviews/` 下的文档 100% 带状态行，并由 CI 检查；`optimization_project.md`
 ≤600 行；`AGENTS.md` 的行数下降，且原有规则一条不少。

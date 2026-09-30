@@ -6,9 +6,10 @@
       "field": "export_file",
       "value": [
         {
-          "file_token": "YDGubLtjIobbnbxp2kWc6a9anBf",
           "name": "weee2.png",
-          "size": 19806
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "18a2c510d12786ce71357c2e7024582e50f6c29fbfe85401ca6c5218a31a60d4"
         }
       ]
     },
@@ -17,9 +18,10 @@
       "field": "Figure",
       "value": [
         {
-          "file_token": "PKq6baCTao2trtxKH9qcoMLAnhr",
           "name": "weee2.png",
-          "size": 19806
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "c30edafa3add300a27aeb3a4a4d6da5ec97198bbdeeefb128f90940b4851af63"
         }
       ]
     },
@@ -28,9 +30,10 @@
       "field": "preview",
       "value": [
         {
-          "file_token": "XRShb6rU1oqDAfx3Dunc4cKln9c",
           "name": "weee2.png",
-          "size": 19806
+          "size": 19806,
+          "attachment_present": true,
+          "attachment_identifier_sha256": "f0495f559783bbaecf979ec783508e725c49b678d3aa28c8f74d3140df8a22fa"
         }
       ]
     }

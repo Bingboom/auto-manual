@@ -170,8 +170,10 @@ manifest embeds the same record under a `toolchain` key — a published PDF can
 always name the environment that produced it. `doctor` also reports drift
 against the pinned runtime (`env.python`, from `pyproject.toml`) and
 `requirements.lock` (`env.lock`) as advisory `WARN` rows; run
-`python tools/env_preflight.py` for the same report without a config, e.g.
-before a local full test run.
+`python tools/env_preflight.py` for the same report without a config. A local
+`python -m unittest` run prints the `WARN` rows once before the first test,
+so environment-only failures are named up front; it is silent when the
+environment matches CI and `AUTO_MANUAL_ENV_PREFLIGHT=0` turns it off.
 
 For fixed-layout PDF work, edit the shared LaTeX component or its
 data/layout_params.csv values instead of drawing borders directly in page

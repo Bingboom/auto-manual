@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import os
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 from tools import env_preflight
@@ -47,11 +49,18 @@ class EnvPreflightTest(unittest.TestCase):
         self.assertTrue(any("pip install -r requirements.lock" in message for message in messages))
 
     def test_long_lists_are_truncated(self) -> None:
-        names = [f"pkg{index}" for index in range(12)]
+        names = [f"pkg{index:02d}" for index in range(env_preflight.MAX_LISTED + 4)]
         root = self._repo(lock="".join(f"{name}==1.0\n" for name in names))
         findings = self._findings(root, {})
         missing = next(message for _, _, message in findings if "not installed" in message)
         self.assertIn("+4 more", missing)
+
+    def test_lists_sort_case_insensitively(self) -> None:
+        root = self._repo(lock="PyYAML==6.0.3\ncertifi==1\npymupdf==1.28.0\n")
+        findings = self._findings(root, {"PyYAML": "6.0.1", "certifi": "2", "pymupdf": "1.28.2"})
+        drifted = next(message for _, _, message in findings if "differ from" in message)
+        self.assertIn("certifi 2 (lock 1), pymupdf 1.28.2 (lock 1.28.0), PyYAML 6.0.1", drifted)
+
 
     def test_missing_pins_warn_instead_of_crashing(self) -> None:
         root = self._repo(lock="", python_pin=None)
@@ -61,6 +70,35 @@ class EnvPreflightTest(unittest.TestCase):
     def test_lock_names_are_normalized(self) -> None:
         root = self._repo(lock="Foo_Bar==1.0\n")
         self.assertEqual({"foo-bar": ("Foo_Bar", "1.0")}, env_preflight.load_lock_pins(root))
+
+
+class TestRunBannerTest(unittest.TestCase):
+    """``tests/__init__.py`` names environment drift once per test run."""
+
+    def test_prints_only_warn_rows(self) -> None:
+        import io
+        import tests
+
+        stream = io.StringIO()
+        rows = [("OK", "env.python", "fine"), ("WARN", "env.lock", "pymupdf differs")]
+        with mock.patch.dict(os.environ, {tests.ENV_PREFLIGHT_SWITCH: ""}):
+            printed = tests._report_environment_drift(collect=lambda: rows, stream=stream)
+        self.assertEqual(1, printed)
+        self.assertEqual("[env-preflight] WARN env.lock: pymupdf differs\n", stream.getvalue())
+
+    def test_switch_off_and_collector_errors_stay_silent(self) -> None:
+        import io
+        import tests
+
+        def broken() -> list[tuple[str, str, str]]:
+            raise RuntimeError("no metadata")
+
+        stream = io.StringIO()
+        with mock.patch.dict(os.environ, {tests.ENV_PREFLIGHT_SWITCH: "0"}):
+            self.assertEqual(0, tests._report_environment_drift(collect=lambda: [("WARN", "a", "b")], stream=stream))
+        with mock.patch.dict(os.environ, {tests.ENV_PREFLIGHT_SWITCH: ""}):
+            self.assertEqual(0, tests._report_environment_drift(collect=broken, stream=stream))
+        self.assertEqual("", stream.getvalue())
 
 
 if __name__ == "__main__":
