@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "coordinate_contract": {
+    "page_numbering": "pdf-1-based",
+    "bbox_units": "pt",
+    "bbox_origin": "top-left",
+    "bbox_space": "source-page"
+  },
+  "normalization": {
+    "engine": "pymupdf",
+    "validated_version": "1.28.0",
+    "validated_mupdf_version": "1.29.0",
+    "pdf_save": {
+      "garbage": 4,
+      "clean": true,
+      "deflate": true,
+      "no_new_id": true
+    },
+    "forbidden_pdf_markers": [
+      "AIPrivateData",
+      "PieceInfo",
+      "AIMetaData"
+    ],
+    "max_render_pixels": 40000000
+  },
+  "source": {
+    "source_key": "approved/errata/pl-p154",
+    "expected_sha256": "ead0c993d315aadf90560718dd1d63ebf0b58bae1381fd3a155e5d5e9bfac215",
+    "expected_page_count": 1
+  },
+  "archive": {
+    "pages": {
+      "first": 1,
+      "last": 1
+    },
+    "pdf": {
+      "path_pattern": "archive/pages/page-{page:04d}.pdf"
+    },
+    "previews": {
+      "path_pattern": "archive/previews/page-{page:04d}.png",
+      "default_scale": 0.25,
+      "page_scale": {}
+    }
+  },
+  "page_catalog": [
+    {
+      "page": 1,
+      "page_key": "native_source_001",
+      "role": "manual_page",
+      "locale": "mul",
+      "build_eligible": false,
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "source archive only; regional and localized content is not promoted"
+        ]
+      },
+      "risk_tags": []
+    }
+  ],
+  "assets": [
+    {
+      "asset_key": "overview.right",
+      "page": 1,
+      "build_eligible": false,
+      "scope": {
+        "models": [
+          "JE-2000F"
+        ],
+        "regions": [
+          "EU"
+        ],
+        "locales": [
+          "pl"
+        ]
+      },
+      "text_policy": "fixed-product-markings",
+      "visual_review_required": true,
+      "transforms": [
+        {
+          "op": "crop",
+          "bbox_pt": [
+            20,
+            332,
+            350,
+            497
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "format": "pdf",
+          "path": "artwork/pl/overview-right-approved.pdf",
+          "expected_sha256": "d2ea478d3ac6e7c4b42d32d901720f7d2af13ae519e069298452e5bd54d419bb"
+        },
+        {
+          "format": "png",
+          "path": "artwork/pl/overview-right-approved.png",
+          "scale": 3,
+          "expected_sha256": "2dc67f362d1e76fe3a2c6dc862ce0483a15f87ad6334c04b3662cf39480fd941"
+        }
+      ],
+      "gate": {
+        "status": "quarantine",
+        "reasons": [
+          "Errata approved; source-package publication and final visual gate remain separate"
+        ]
+      },
+      "risk_tags": [
+        "model-specific",
+        "region-specific"
+      ]
+    }
+  ]
+}

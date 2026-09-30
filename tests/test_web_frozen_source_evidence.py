@@ -6,6 +6,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from tools.web_frozen_source_evidence import (
     SOURCE_SCHEMA, seal_frozen_web_evidence, verify_release_evidence,
@@ -64,6 +65,22 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         (stored / 'publish_meta.json').write_text('{}')
         self.receipt = stored / 'evidence' / self.receipt.name
         self.assertEqual(self.verify(markdown_dir=stored, html_dir=None, stored=True).language, 'nl')
+
+    def test_pending_manual_ir_is_rejected_by_frozen_seal_and_verify(self):
+        (self.md / 'manual.ir.json').write_text(json.dumps({'metadata': {
+            'publication_eligible': False, 'pending_source_review': ['preface'],
+        }}))
+        self.payload['inputs'] = list(_file_inventory(self.source, excluded_roots=(self.manifest,)))
+        self.manifest.write_text(json.dumps(self.payload))
+        with self.assertRaisesRegex(RuntimeError, 'pending source review'):
+            self.seal()
+        self.assertFalse((self.root / 'evidence').exists())
+        # Verify independently refuses a self-consistent receipt whose source
+        # inventory happens to include an unapproved manual IR.
+        with patch('tools.web_frozen_source_evidence.require_publishable_manual_ir'):
+            self.seal()
+        with self.assertRaisesRegex(RuntimeError, 'pending source review'):
+            self.verify()
 
     def test_wrong_language_or_release_rejected(self):
         self.seal()

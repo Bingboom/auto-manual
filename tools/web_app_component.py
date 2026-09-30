@@ -179,6 +179,14 @@ def _render_add_device(spec: ComponentSpec, carrier_html: str) -> str:
                 f"hb-app-add-device-live-label-{label['role']}",
             ]
         }
+        position = spec.metadata.get("control_label_positions", {}).get(label["role"])
+        if position is not None:
+            if (not isinstance(position, (list, tuple)) or len(position) != 3 or
+                    any(not isinstance(value, (int, float)) or not 0 <= value <= 100
+                        for value in position)):
+                raise ValueError(f"{spec.source_ref}: invalid App control source position")
+            top, left, width = position
+            line["style"] = f"top:{top}%;left:{left}%;width:{width}%"
         control_panel.append(line)
     figure.append(control_panel)
     return str(figure)

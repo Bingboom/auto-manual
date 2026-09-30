@@ -103,22 +103,29 @@ def _source_ref(book: Any, page: int, component: str) -> str:
 
 def _inbox(book: Any, assets: Mapping[str, Any]) -> dict:
     page = _page(book, "in_the_box")
-    title = _copy(book, page, (25, 230, 350, 270))
+    native = getattr(book, "records", {}).get("media", {}).get("inbox")
+    title = native["title"] if native else _copy(book, page, (25, 230, 350, 270))
     cards = []
-    for key, left, right in (("main", 25, 135), ("cable", 135, 245), ("manual", 245, 350)):
-        label = _copy(book, page, (left, 390, right, 425))
+    source_cards = ([(card["id"], card["label"]) for card in native["cards"]] if native else
+                    [(key, _copy(book, page, (left, 390, right, 425)))
+                     for key, left, right in (("main", 25, 135), ("cable", 135, 245), ("manual", 245, 350))])
+    for key, label in source_cards:
         cards.append({"image_ref": _asset(assets, f"inbox.{key}"), "label": label, "alt": label})
-    tip_blocks = _blocks(book, page, (25, 450, 350, 490))
-    if len(tip_blocks) == 1:
-        tip_label, tip_body = tip_blocks[0]["text"].strip().split("\n", 1)
+    if native:
+        tip_label, tip_body = native["tip"]["label"], native["tip"]["body"]
     else:
-        tip_label = " ".join(b["text"] for b in tip_blocks if b["bbox"][0] < 80)
-        tip_body = " ".join(b["text"] for b in tip_blocks if b["bbox"][0] >= 80)
+        tip_blocks = _blocks(book, page, (25, 450, 350, 490))
+        if len(tip_blocks) == 1:
+            tip_label, tip_body = tip_blocks[0]["text"].strip().split("\n", 1)
+        else:
+            tip_label = " ".join(b["text"] for b in tip_blocks if b["bbox"][0] < 80)
+            tip_body = " ".join(b["text"] for b in tip_blocks if b["bbox"][0] >= 80)
     tip_label, tip_body = _clean(book, tip_label), _clean(book, tip_body)
     spec = inbox_component_spec(
         accessibility_label=title, cards=cards, tip_label=tip_label, tip_body=tip_body,
         language=book.language, source_ref=_source_ref(book, page, "inbox"),
-        metadata={"physical_page": page, "source_region": [25, 280, 350, 490]},
+        metadata={"physical_page": page, "source_region": (book.target_layout.get("media", {}).get("inbox", {}).get("consume_bbox")
+                  if getattr(book, "target_layout", None) else None) or [25, 280, 350, 490]},
     )
     card_table = table([[_cell([_image(c["image_ref"], c["alt"]), paragraph(c["label"])]) for c in cards]])
     tip_table = table([[_cell([paragraph(tip_label)]), _cell([paragraph(tip_body)])]])
@@ -127,18 +134,24 @@ def _inbox(book: Any, assets: Mapping[str, Any]) -> dict:
 
 def _overview(book: Any, assets: Mapping[str, Any]) -> dict:
     page = _page(book, "product_overview")
-    title = _copy(book, page, (25, 25, 350, 55))
+    native = getattr(book, "records", {}).get("media", {}).get("overview")
+    title = native["title"] if native else _copy(book, page, (25, 25, 350, 55))
     views, carriers = [], []
     for geometry in book.overview_instance["views"]:
         view_id = geometry["id"]
         caption_box = (25, 60, 350, 90) if view_id == "front" else (25, 310, 350, 330)
-        caption = _copy(book, page, caption_box)
+        caption = native["views"][view_id]["caption"] if native else _copy(book, page, caption_box)
         callouts = []
         for binding in geometry["callouts"]:
             callout_id = binding["id"]
-            *box, label_only = _CALLOUTS[view_id][callout_id]
-            blocks = _blocks(book, page, tuple(box))
-            values = [_clean(book, block["text"]) for block in blocks]
+            if native:
+                item = native["views"][view_id]["callouts"][callout_id]
+                label_only = item["label_only"]
+                values = [line.strip() for line in item["text"].splitlines() if line.strip()]
+            else:
+                *box, label_only = _CALLOUTS[view_id][callout_id]
+                blocks = _blocks(book, page, tuple(box))
+                values = [_clean(book, block["text"]) for block in blocks]
             label, body = (" ".join(values), []) if label_only else (values[0], values[1:])
             if not label_only and not body:
                 raise ValueError(f"{book.language}: overview {callout_id} lost its PDF specification")
@@ -156,7 +169,8 @@ def _overview(book: Any, assets: Mapping[str, Any]) -> dict:
     spec = overview_component_spec(
         accessibility_label=title, views=views, geometry_ref=book.overview_instance["instance_id"],
         source_ref=_source_ref(book, page, "overview"), language=book.language,
-        metadata={"physical_page": page, "source_region": [25, 60, 350, 420]},
+        metadata={"physical_page": page, "source_region": (book.target_layout.get("media", {}).get("overview", {}).get("consume_bbox")
+                  if getattr(book, "target_layout", None) else None) or [25, 60, 350, 420]},
     )
     return component_flow_node(spec, carrier_flow=carriers, root=True)
 
@@ -178,6 +192,20 @@ def media_section(book: Any, section: str, asset_refs: Mapping[str, Any]) -> lis
 def consumed_media_regions(book: Any) -> list[dict]:
     """Return the exact PDF regions owned by this adapter (headings excluded)."""
     start = _page(book, "operations")
+    layout = getattr(book, "target_layout", None) or {}
+    media = layout.get("media", {})
+    if media:
+        regions = []
+        for section, key in (("in_the_box", "inbox"), ("product_overview", "overview")):
+            recipe = media[key]
+            for bbox in recipe.get("consume_bboxes", [recipe.get("consume_bbox")]):
+                if bbox is None:
+                    raise ValueError(f"{key}: missing consumed source region")
+                regions.append({"section": section, "physical_page": _page(book, section),
+                                "consume_bbox": bbox})
+        return regions + [{"section": "operations", "operation_id": panel["id"],
+              "physical_page": panel.get("physical_page", start + panel.get("page_offset", 0)),
+              "consume_bbox": panel["bbox"]} for panel in media.get("operation_panels", [])]
     return [
         {"section": "in_the_box", "physical_page": _page(book, "in_the_box"),
          "consume_bbox": [25, 280, 350, 490]},
@@ -262,9 +290,15 @@ def operation_panels(book: Any, asset_refs: Mapping[str, Any]) -> list[dict]:
     start = _page(book, "operations")
     presentations = {p["id"]: p for p in book.contract["operations"]["figures"]}
     events = []
-    for identity, offset, box in _PANELS:
-        page, presentation = start + offset, presentations[identity]
-        copy = _panel_copy(book, identity, page)
+    layout = getattr(book, "target_layout", None) or {}
+    panels = layout.get("media", {}).get("operation_panels")
+    placements = ([(p["id"], p.get("physical_page", start + p.get("page_offset", 0)), p["bbox"])
+                   for p in panels] if panels is not None else
+                  [(identity, start + offset, box) for identity, offset, box in _PANELS])
+    for identity, page, box in placements:
+        presentation = presentations[identity]
+        native = getattr(book, "records", {}).get("media", {}).get("operation_panels", {}).get(identity)
+        copy = _native_panel_copy(native) if native else _panel_copy(book, identity, page)
         ref = _asset(asset_refs, f"operation.{identity}")
         prerequisite = copy["prerequisite"]
         supporting = copy["supporting_copy"]
@@ -292,6 +326,14 @@ def operation_panels(book: Any, asset_refs: Mapping[str, Any]) -> list[dict]:
         events.append({"physical_page": page, "y": box[1], "consume_bbox": list(box),
                        "node": component_flow_node(spec, carrier_flow=carrier, root=True)})
     return events
+
+
+def _native_panel_copy(native: Mapping[str, Any]) -> dict[str, Any]:
+    return {**native, "steps": [
+        {"id": step["id"], "parts": [
+            {**part, "html": f"<strong>{escape(part['text'])}</strong>" if part["role"] == "label"
+             else escape(part["text"])} for part in step["parts"]]}
+        for step in native["steps"]]}
 
 
 __all__ = ["MEDIA_ASSET_KEYS", "consumed_media_regions", "media_section", "operation_panels"]

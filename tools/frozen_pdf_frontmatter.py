@@ -16,6 +16,8 @@ def preface_flow(raw, correct):
     lines = [line.strip() for line in raw.splitlines() if line.strip()]
     if lines and re.fullmatch(r'[A-Z]{2}', lines[0]):
         lines.pop(0)
+    if lines and re.fullmatch(r'[A-Z]{2}', lines[-1]):
+        lines.pop()
     label = lines.pop() if lines and is_heading(lines[-1]) else None
     paragraphs, pending = [], []
     for line in lines:
@@ -86,3 +88,17 @@ def safety_flow(book):
     return [notice,
             strong_paragraph(lead), node('list', items, ordered=False),
             heading(body[split], level=2), *[paragraph(v) for v in body[split + 1:]]]
+
+
+def positioned_safety_flow(book):
+    """Use a target's native positioned safety leaves when PDF blocks merge bullets."""
+    record = book.records['safety']
+    notice = callout(record['warning'], [strong_paragraph(record['lead'])],
+                     variant='warning', language=book.language,
+                     source_ref=f'{book.language}/safety#native-warning')
+    items = [node('list_item', [paragraph(book.correct(value))])
+             for value in record['precautions']]
+    return [notice, paragraph(book.correct(record['intro'])),
+            node('list', items, ordered=False),
+            heading(record['maintenance_heading'], level=2),
+            paragraph(book.correct(record['maintenance_body']))]

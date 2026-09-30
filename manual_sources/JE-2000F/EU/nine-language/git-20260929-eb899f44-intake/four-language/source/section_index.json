@@ -1,0 +1,113 @@
+{
+  "schema_version": "je2000f-nine-language-section-index/v1",
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "section_ids": [
+    "safety",
+    "symbols",
+    "in_the_box",
+    "product_overview",
+    "lcd_display",
+    "operations",
+    "ups",
+    "charging",
+    "storage",
+    "troubleshooting",
+    "specifications",
+    "warranty",
+    "app_setup"
+  ],
+  "languages": {
+    "pl": {
+      "physical_pages": [
+        152,
+        169
+      ],
+      "titles": [
+        "WAŻNE INFORMACJE DOTYCZĄCE BEZPIECZEŃSTWA",
+        "ZNACZENIE SYMBOLI",
+        "ZAWARTOŚĆ OPAKOWANIA",
+        "WIDOK OGÓLNY PRODUKTU",
+        "WYŚWIETLACZ LCD",
+        "OBSŁUGA",
+        "ZASILACZ BEZPRZERWOWY (UPS)",
+        "ŁADOWANIE",
+        "PRZECHOWYWANIE",
+        "ROZWIĄZYWANIE PROBLEMÓW",
+        "DANE TECHNICZNE",
+        "GWARANCJA",
+        "KONFIGURACJA APLIKACJI"
+      ],
+      "label": "Polski"
+    },
+    "pt": {
+      "physical_pages": [
+        116,
+        133
+      ],
+      "titles": [
+        "INFORMAÇÕES IMPORTANTES DE SEGURANÇA",
+        "SIGNIFICADO DOS SÍMBOLOS",
+        "CONTEÚDO DA EMBALAGEM",
+        "VISÃO GERAL DO PRODUTO",
+        "DISPLAY LCD",
+        "OPERAÇÕES",
+        "FONTE DE ALIMENTAÇÃO ININTERRUPTA (UPS)",
+        "CARREGANDO",
+        "ARMAZENAMENTO",
+        "SOLUÇÃO DE PROBLEMAS",
+        "ESPECIFICAÇÕES",
+        "GARANTIA",
+        "CONFIGURAÇÃO DO APLICATIVO"
+      ],
+      "label": "Português"
+    },
+    "nl": {
+      "physical_pages": [
+        134,
+        151
+      ],
+      "titles": [
+        "BELANGRIJKE VEILIGHEIDSINFORMATIE",
+        "BETEKENIS VAN SYMBOLEN",
+        "WAT ZIT ER IN DE DOOS",
+        "PRODUCTOVERZICHT",
+        "LCD-SCHERM",
+        "HANDELINGEN",
+        "ONONDERBROKEN STROOMVOORZIENING (UPS)",
+        "OPLADEN",
+        "OPSLAG",
+        "PROBLEEMOPLOSSING",
+        "SPECIFICATIES",
+        "GARANTIE",
+        "APP INSTELLEN"
+      ],
+      "label": "Nederlands"
+    },
+    "uk": {
+      "physical_pages": [
+        98,
+        115
+      ],
+      "titles": [
+        "ВАЖЛИВА ІНФОРМАЦІЯ З БЕЗПЕКИ",
+        "ЗНАЧЕННЯ СИМВОЛІВ",
+        "ЩО В КОРОБЦІ",
+        "ОГЛЯД ПРОДУКТУ",
+        "ЕКРАН LCD",
+        "ОПЕРАЦІЇ",
+        "ДЖЕРЕЛО БЕЗПЕРЕБІЙНОГО ЖИВЛЕННЯ (UPS)",
+        "ЗАРЯДЖАННЯ",
+        "ЗБЕРІГАННЯ",
+        "УСУНЕННЯ НЕСПРАВНОСТЕЙ",
+        "СПЕЦИФІКАЦІЇ",
+        "ГАРАНТІЯ",
+        "НАЛАШТУВАННЯ ДОДАТКА"
+      ],
+      "label": "Українська"
+    }
+  },
+  "shared_physical_pages": {
+    "cover": 1,
+    "declaration": 170
+  }
+}

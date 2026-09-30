@@ -25,6 +25,7 @@ from tools.web_language_release_evidence import (
     _safe_relative,
     _sha256,
     _validated_inventory,
+    require_publishable_manual_ir,
     verify_release_evidence as verify_projection_evidence,
 )
 
@@ -96,6 +97,7 @@ def _verify_images(root: Path) -> None:
 def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
                             language: str, markdown_dir: Path, markdown_name: str,
                             html_dir: Path, evidence_dir: Path, git_ref: str) -> Path:
+    require_publishable_manual_ir(markdown_dir)
     manifest = _load_object(source_manifest_path, label="frozen Web source")
     target, inputs, root = _source(manifest, source_manifest_path, language)
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
@@ -138,6 +140,7 @@ def _verify_frozen(receipt_path: Path, payload: dict, *, expected_sha256: str | 
                    stored: bool = False) -> VerifiedLanguageReleaseEvidence:
     if receipt_path.name != RECEIPT_FILENAME or (not stored and html_dir is None):
         raise RuntimeError("frozen Web evidence requires canonical receipt and fresh HTML")
+    require_publishable_manual_ir(markdown_dir)
     digest = _sha256(receipt_path)
     if expected_sha256 is not None and digest != _required_sha(expected_sha256, field="receipt_sha256", source=receipt_path):
         raise RuntimeError("frozen Web evidence SHA-256 mismatch")

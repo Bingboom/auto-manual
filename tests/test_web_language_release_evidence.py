@@ -22,6 +22,35 @@ def _sha256(path: Path) -> str:
 
 
 class WebLanguageReleaseEvidenceTests(unittest.TestCase):
+    def test_pending_frozen_manual_cannot_seal_release_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            manifest = self._projection(root)
+            md, html = self._outputs(root)
+            ir = md / "manual.ir.json"
+            ir.write_text(json.dumps({"metadata": {
+                "publication_eligible": False,
+                "pending_source_review": ["preface", "rating-plate"],
+            }}), encoding="utf-8")
+            evidence_dir = root / "web" / "evidence"
+            with self.assertRaisesRegex(RuntimeError, "pending source review"):
+                seal_release_evidence(
+                    captures=self._captures(manifest), markdown_dir=md,
+                    markdown_name="manual.md", html_dir=html,
+                    evidence_dir=evidence_dir, version="2.0", git_ref="review/MODEL-US",
+                )
+            self.assertFalse(evidence_dir.exists())
+            ir.write_text(json.dumps({"metadata": {
+                "publication_eligible": True,
+                "pending_source_review": [],
+            }}), encoding="utf-8")
+            receipt = seal_release_evidence(
+                captures=self._captures(manifest), markdown_dir=md,
+                markdown_name="manual.md", html_dir=html,
+                evidence_dir=evidence_dir, version="2.0", git_ref="review/MODEL-US",
+            )
+            self.assertTrue(receipt.is_file())
+
     def _projection(self, root: Path) -> Path:
         bundle = root / "rst"
         page = bundle / "page" / "manual_en.rst"

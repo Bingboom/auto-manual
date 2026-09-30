@@ -1,0 +1,179 @@
+{
+  "schema_version": "manual-native-candidate-validation/v1",
+  "target": {
+    "model": "JE-2000E",
+    "region": "EU",
+    "locales": [
+      "pl",
+      "pt",
+      "nl"
+    ]
+  },
+  "status": "local-candidate-shared-cli-and-sphinx-pass",
+  "publication_eligible": false,
+  "source_manifest_sha256": "f2ed9e2f6153e970d7c1eb8910de7f06728bc3d6a2dfc63b47e4133f78d9d993",
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+  "locales": {
+    "pl": {
+      "public_cli": "pass",
+      "sphinx_html": "pass",
+      "native_body_pages": 19,
+      "source_chapters": 14,
+      "ir_pages": 16,
+      "safety_precautions": 8,
+      "lcd_rows": 27,
+      "fault_rows": 12,
+      "app_control_labels": 4,
+      "main_power_supporting_copy": [
+        "Domyślny czas czuwania: 2 godziny",
+        "Produkt wyłączy się automatycznie, jeśli przez 2 godziny nie będzie ładowany, ani nie będą do niego podłączone żadne urządzenia odbiorcze.",
+        "*Czas czuwania można ustawić w aplikacji Jackery."
+      ],
+      "fault_f8": "F8 Skontaktuj się z działem obsługi klienta Jackery.",
+      "pending_source_review": [
+        "preface"
+      ],
+      "artwork_asset_count": 63,
+      "artwork_manifest_sha256": "117b0f2d308366732b88bb1ef26f7b30955a2a9b238b74f3de9a92e6b7af6be4",
+      "native_long_lines_checked": 412,
+      "classified_tiny_engraving_exclusions": 8,
+      "unclassified_long_line_omissions": 0,
+      "output_paths": {
+        "bundle": "/tmp/je2000e-intake/pl-web-11",
+        "html": "/tmp/je2000e-intake/pl-web-11-html/manual_je2000e_eu_pl.html"
+      },
+      "outputs_sha256": {
+        "manual.ir.json": "67191318b0a23b4c9245e98d6d7cc549bfb5ce489a1b55052b13758078c62b9c",
+        "markdown": "216031e3f9ae36e676affc0118b55a715c049f61957173660399cba946163943",
+        "html": "ee902b2565c399c5a59ad78fec7ab0a9cec6729d223a6e9824f66d45e14c1d43"
+      },
+      "component_inventory": {
+        "HB-CALLOUT-STRIP": 14,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    },
+    "pt": {
+      "public_cli": "pass",
+      "sphinx_html": "pass",
+      "native_body_pages": 19,
+      "source_chapters": 14,
+      "ir_pages": 16,
+      "safety_precautions": 8,
+      "lcd_rows": 27,
+      "fault_rows": 12,
+      "app_control_labels": 4,
+      "main_power_supporting_copy": [
+        "Tempo de espera padrão: 2 horas",
+        "O produto será desligado automaticamente após 2 horas de inatividade, sem carregamento nem descarregamento.",
+        "O tempo de espera pode ser deﬁnido no aplicativo da Jackery."
+      ],
+      "fault_f8": "F8 Entre em contato com o Suporte ao Cliente da Jackery.",
+      "pending_source_review": [
+        "preface"
+      ],
+      "artwork_asset_count": 63,
+      "artwork_manifest_sha256": "2f095f8a143c882315028d1fa01bbf7aa0f7259331f78e33fd20466a5f011514",
+      "native_long_lines_checked": 402,
+      "classified_tiny_engraving_exclusions": 8,
+      "unclassified_long_line_omissions": 0,
+      "output_paths": {
+        "bundle": "/tmp/je2000e-intake/pt-web-11",
+        "html": "/tmp/je2000e-intake/pt-web-11-html/manual_je2000e_eu_pt.html"
+      },
+      "outputs_sha256": {
+        "manual.ir.json": "e45d23c634c796b1e12dabdbab19a3306e21afca64bb5e406219206910acf2bc",
+        "markdown": "29bbc545a11db563d413ef2685c8366a4a64990cdf6f2bd3e05e7476711925dd",
+        "html": "7a8ed76b8f2a0627a733ad8d98ffa44dddb452f3c690c5b122f10125abe2eb7e"
+      },
+      "component_inventory": {
+        "HB-CALLOUT-STRIP": 14,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    },
+    "nl": {
+      "public_cli": "pass",
+      "sphinx_html": "pass",
+      "native_body_pages": 19,
+      "source_chapters": 14,
+      "ir_pages": 16,
+      "safety_precautions": 8,
+      "lcd_rows": 27,
+      "fault_rows": 12,
+      "app_control_labels": 4,
+      "main_power_supporting_copy": [
+        "Standaard stand-bymodustijd: 2 uur",
+        "Het product wordt na 2 uur inactiviteit automatisch uitgeschakeld, zonder dat er wordt opgeladen of ontladen.",
+        "*De stand-bymodustijd kan worden ingesteld in de Jackery-app."
+      ],
+      "fault_f8": "F8 Neem contact op met de Jackery-klantenondersteuning.",
+      "pending_source_review": [
+        "nl-app-import-markup",
+        "preface"
+      ],
+      "artwork_asset_count": 63,
+      "artwork_manifest_sha256": "af73acbc970bd1ef925369ea4c6c3b0dfcd2fcb7d29973295af0557369633e42",
+      "native_long_lines_checked": 388,
+      "classified_tiny_engraving_exclusions": 6,
+      "unclassified_long_line_omissions": 0,
+      "output_paths": {
+        "bundle": "/tmp/je2000e-intake/nl-web-11",
+        "html": "/tmp/je2000e-intake/nl-web-11-html/manual_je2000e_eu_nl.html"
+      },
+      "outputs_sha256": {
+        "manual.ir.json": "0000b06aa4440c2c6921d5a09ee5aebe7da09fee69d2f1f3a0c14e458a66637f",
+        "markdown": "dfefde71a0ca1390763818bcae8863ea00a566e5b9c919f9e7c80e927009bf96",
+        "html": "f4ceb550d27ee69e9f564208247b04cdb1e044094a23eee3e5472b30d273d56f"
+      },
+      "component_inventory": {
+        "HB-CALLOUT-STRIP": 14,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      }
+    }
+  },
+  "limits": [
+    "Prefaces pending explicit approval, with visible review banner and publication_eligible:false.",
+    "Dutch literal App import markup preserved pending review.",
+    "Parent verified PL normal operation layout; PT/NL and mobile browser acceptance remain coordinated separately.",
+    "Native long-line triage excludes short and outlined text and allows hidden semantic carriers.",
+    "Existing six-language release and Ukrainian comparison have no writes from this package."
+  ]
+}

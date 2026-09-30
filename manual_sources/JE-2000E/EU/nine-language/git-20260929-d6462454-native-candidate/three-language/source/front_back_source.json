@@ -1,0 +1,55 @@
+{
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+  "shared": {
+    "cover": {
+      "physical_page": 1
+    },
+    "eu_declaration": {
+      "physical_page": 179
+    }
+  },
+  "locales": {
+    "pl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          28,
+          335,
+          349,
+          486
+        ],
+        "status": "missing-in-source",
+        "candidate_file": "source/preface_candidates.json"
+      },
+      "toc_page": 7
+    },
+    "pt": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          28,
+          50,
+          349,
+          184
+        ],
+        "status": "missing-in-source",
+        "candidate_file": "source/preface_candidates.json"
+      },
+      "toc_page": 7
+    },
+    "nl": {
+      "preface": {
+        "physical_page": 4,
+        "bbox": [
+          28,
+          194,
+          349,
+          324
+        ],
+        "status": "missing-in-source",
+        "candidate_file": "source/preface_candidates.json"
+      },
+      "toc_page": 7
+    }
+  }
+}

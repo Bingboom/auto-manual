@@ -1,0 +1,1910 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "method": "native AI PDF-compatible text and source-local geometry; no OCR",
+  "locales": {
+    "pl": {
+      "pages": [
+        155,
+        156
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            239,
+            159,
+            263.543
+          ],
+          "meaning_bbox": [
+            160,
+            239,
+            345,
+            263.543
+          ],
+          "label": "Wi-Fi",
+          "meaning": "Wł.: Połączono z Wi-Fi. Miga: Gotowość do połączenia z Wi-Fi. Wył.: Rozłączono z Wi-Fi."
+        },
+        {
+          "number": 2,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            263.543,
+            159,
+            285.293
+          ],
+          "meaning_bbox": [
+            160,
+            263.543,
+            345,
+            285.293
+          ],
+          "label": "Bluetooth",
+          "meaning": "Wł.: Połączono z Bluetooth. Miga: Gotowość do połączenia z Bluetooth. Wył.: Rozłączono z Bluetooth."
+        },
+        {
+          "number": 3,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            285.293,
+            159,
+            328.384
+          ],
+          "meaning_bbox": [
+            160,
+            285.293,
+            345,
+            328.384
+          ],
+          "label": "Tryb cichego ładowania",
+          "meaning": "Wł.: Hałas podczas ładowania jest znacznie zminimalizowany, przy czym moc ładowania jest zmniejszona, a prędkość ładowania maleje. Wył.: Tryb cichego ładowania jest wyłączony. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 4,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            328.384,
+            159,
+            372.177
+          ],
+          "meaning_bbox": [
+            160,
+            328.384,
+            345,
+            372.177
+          ],
+          "label": "Plan ładowania",
+          "meaning": "Dostosowuje czas ładowania urządzenia Jackery Explorer 2000. W sytuacjach, gdy ceny energii elektrycznej są zmienne, pozwala planować ładowanie w godzinach szczytu i poza szczytem, co obniża koszty energii elektrycznej. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 5,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            372.177,
+            159,
+            423.177
+          ],
+          "meaning_bbox": [
+            160,
+            372.177,
+            345,
+            423.177
+          ],
+          "label": "Tryb samozasilania",
+          "meaning": "Maksymalizuje wykorzystanie energii słonecznej i zmniejsza zależność od energii elektrycznej z sieci, dając pierwszeństwo zmagazynowanej energii słonecznej, co obniża koszty energii elektrycznej. Stacja zasilająca musi być jednocześnie podłączona do paneli słonecznych i sieci energetycznej, a moc urządzeń odbiorczych jest ograniczona przez moc obejściową. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 6,
+          "physical_page": 155,
+          "label_bbox": [
+            83,
+            423.177,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            423.177,
+            345,
+            497
+          ],
+          "label": "Tryb taryfy czasowej (TOU)",
+          "meaning": "Wł.: Tryb taryfy czasowej (TOU) jest włączony (domyślna rezerwa – stan naładowania SOC: 60%). W okresach szczytu produkt priorytetowo rozładowuje akumulator, aby obniżyć szczytowe koszty energii elektrycznej, gdy poziom naładowania przekracza rezerwę SOC. W okresach poza szczytem produkt ładuje akumulator z sieci, aby spłaszczyć szczyty i wypełnić dołki. Wył.: Tryb taryfy czasowej (TOU) jest wyłączony. Produkt nie stosuje strategii taryfy czasowej i działa zgodnie z domyślną logiką zasilania i ładowania. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 7,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            28,
+            159,
+            77.298
+          ],
+          "meaning_bbox": [
+            160,
+            28,
+            345,
+            77.298
+          ],
+          "label": "UPS",
+          "meaning": "Wł.: Produkt działa w trybie obejściowym. Urządzenia odbiorcze podłączone do portów AC pobierają energię z sieci zamiast ze stacji zasilającej. W przypadku nagłej awarii sieci produkt automatycznie przełącza się na zasilanie bateryjne w ciągu 10 ms. Wył.: Produkt nie pracuje w trybie obejściowym. Urządzenia odbiorcze podłączone do portów AC są zasilane z wewnętrznej baterii stacji zasilającej."
+        },
+        {
+          "number": 8,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            77.298,
+            159,
+            92.909
+          ],
+          "meaning_bbox": [
+            160,
+            77.298,
+            345,
+            92.909
+          ],
+          "label": "Wskaźnik zasilania AC",
+          "meaning": "Wyjście AC (czysta sinusoida) jest włączone."
+        },
+        {
+          "number": 9,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            92.909,
+            159,
+            113.203
+          ],
+          "meaning_bbox": [
+            160,
+            92.909,
+            345,
+            113.203
+          ],
+          "label": "Napięcie wyjściowe i częstotliwość",
+          "meaning": "Gdy wyjście AC jest włączone, wyświetla wartości wyjściowe napięcia i częstotliwości."
+        },
+        {
+          "number": 10,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            113.203,
+            159,
+            130.474
+          ],
+          "meaning_bbox": [
+            160,
+            113.203,
+            345,
+            130.474
+          ],
+          "label": "Moc wejściowa",
+          "meaning": "Wyświetla moc wejściową w watach."
+        },
+        {
+          "number": 11,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            130.474,
+            159,
+            148.686
+          ],
+          "meaning_bbox": [
+            160,
+            130.474,
+            345,
+            148.686
+          ],
+          "label": "Pozostały czas ładowania",
+          "meaning": "Wyświetla pozostały czas ładowania."
+        },
+        {
+          "number": 12,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            148.686,
+            159,
+            167.894
+          ],
+          "meaning_bbox": [
+            160,
+            148.686,
+            345,
+            167.894
+          ],
+          "label": "Wskaźnik ładowania z sieci AC",
+          "meaning": "Produkt jest ładowany przez wejście AC z sieci elektrycznej."
+        },
+        {
+          "number": 13,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            167.894,
+            159,
+            185.52
+          ],
+          "meaning_bbox": [
+            160,
+            167.894,
+            345,
+            185.52
+          ],
+          "label": "Wskaźnik ładowania z gniazda samochodowego",
+          "meaning": "Produkt jest ładowany przez wejście DC (DC8020) przy użyciu zasilania DC 12 V (z ładowarki samochodowej)."
+        },
+        {
+          "number": 14,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            185.52,
+            159,
+            203.743
+          ],
+          "meaning_bbox": [
+            160,
+            185.52,
+            345,
+            203.743
+          ],
+          "label": "Wskaźnik ładowania z paneli słonecznych",
+          "meaning": "Produkt jest ładowany przez wejście DC (DC8020) za pomocą paneli słonecznych."
+        },
+        {
+          "number": 15,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            203.743,
+            159,
+            249.368
+          ],
+          "meaning_bbox": [
+            160,
+            203.743,
+            345,
+            249.368
+          ],
+          "label": "Tryb oszczędzania baterii",
+          "meaning": "Wł.: Ogranicza maksymalną użyteczną pojemność baterii, aby przedłużyć jej żywotność. Wył.: Tryb oszczędzania baterii jest wyłączony. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia. Gdy ta funkcja jest włączona, produkt od czasu do czasu wykonuje pełny cykl ładowania i rozładowania, aby skalibrować stan naładowania (SOC)."
+        },
+        {
+          "number": 16,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            249.368,
+            159,
+            271.311
+          ],
+          "meaning_bbox": [
+            160,
+            249.368,
+            345,
+            271.311
+          ],
+          "label": "Limit mocy ładowania",
+          "meaning": "Wł.: Limit mocy ładowania jest włączony w aplikacji Jackery. Wył.: Limit mocy ładowania jest wyłączony w aplikacji Jackery. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 17,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            271.311,
+            159,
+            294.702
+          ],
+          "meaning_bbox": [
+            160,
+            271.311,
+            345,
+            294.702
+          ],
+          "label": "Wskaźnik poziomu baterii",
+          "meaning": "W trakcie ładowania produktu pomarańczowy pierścień wokół wartości procentowej baterii będzie się zapalał sekwencyjnie. Podczas ładowania innych urządzeń pomarańczowy pierścień będzie stale zaświecony."
+        },
+        {
+          "number": 18,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            294.702,
+            159,
+            319.419
+          ],
+          "meaning_bbox": [
+            160,
+            294.702,
+            345,
+            319.419
+          ],
+          "label": "Wskaźnik niskiego poziomu baterii",
+          "meaning": "Wł.: Poziom naładowania baterii jest niższy niż 20%. Miga: Poziom naładowania baterii jest niższy niż 5%. Wył.: Poziom naładowania baterii wynosi ponad 20% lub produkt jest ładowany."
+        },
+        {
+          "number": 19,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            319.419,
+            159,
+            339.032
+          ],
+          "meaning_bbox": [
+            160,
+            319.419,
+            345,
+            339.032
+          ],
+          "label": "Pozostały procent baterii",
+          "meaning": "Wyświetla pozostały procent baterii."
+        },
+        {
+          "number": 20,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            339.032,
+            159,
+            366.345
+          ],
+          "meaning_bbox": [
+            160,
+            339.032,
+            345,
+            366.345
+          ],
+          "label": "Licznik czasu rozładowania",
+          "meaning": "Wł.: Ustawiono licznik czasu rozładowania. Wył.: Nie ustawiono licznika czasu rozładowania. Tę funkcję można włączyć lub wyłączyć w aplikacji Jackery. Ustawienie nie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 21,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            366.345,
+            159,
+            399.965
+          ],
+          "meaning_bbox": [
+            160,
+            366.345,
+            345,
+            399.965
+          ],
+          "label": "Tryb oszczędzania energii",
+          "meaning": "Gdy wyjście AC lub DC zostanie włączone przez naciśnięcie przycisku zasilania AC lub DC/USB: Wł.: Tryb oszczędzania energii jest włączony. Wył.: Tryb oszczędzania energii jest wyłączony. Ustawienie jest zapamiętywane po wyłączeniu urządzenia."
+        },
+        {
+          "number": 22,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            399.965,
+            159,
+            421.627
+          ],
+          "meaning_bbox": [
+            160,
+            399.965,
+            345,
+            421.627
+          ],
+          "label": "Wskaźnik wysokiej temperatury",
+          "meaning": "Zadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "number": 22,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            421.627,
+            159,
+            443.187
+          ],
+          "meaning_bbox": [
+            160,
+            421.627,
+            345,
+            443.187
+          ],
+          "label": "Wskaźnik niskiej temperatury",
+          "meaning": "Zadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "number": 23,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            443.187,
+            159,
+            460.194
+          ],
+          "meaning_bbox": [
+            160,
+            443.187,
+            345,
+            460.194
+          ],
+          "label": "Kod błędu",
+          "meaning": "Wystąpił błąd produktu. Szczegóły można znaleźć w sekcji Rozwiązywanie problemów."
+        },
+        {
+          "number": 24,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            460.194,
+            159,
+            478.777
+          ],
+          "meaning_bbox": [
+            160,
+            460.194,
+            345,
+            478.777
+          ],
+          "label": "Moc wyjściowa",
+          "meaning": "Wyświetla moc wyjściową w watach."
+        },
+        {
+          "number": 25,
+          "physical_page": 156,
+          "label_bbox": [
+            83,
+            478.777,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            478.777,
+            345,
+            497
+          ],
+          "label": "Pozostały czas zasilania urządzeń odbiorczych",
+          "meaning": "Wyświetla pozostały czas do rozładowania."
+        }
+      ]
+    },
+    "pt": {
+      "pages": [
+        119,
+        120
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            239,
+            159,
+            263.543
+          ],
+          "meaning_bbox": [
+            160,
+            239,
+            345,
+            263.543
+          ],
+          "label": "Wi-Fi",
+          "meaning": "Ligado: Wi-Fi conectado. Pisca: Pronto para conectar ao Wi-Fi. Desligado: Wi-Fi desconectado."
+        },
+        {
+          "number": 2,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            263.543,
+            159,
+            285.293
+          ],
+          "meaning_bbox": [
+            160,
+            263.543,
+            345,
+            285.293
+          ],
+          "label": "Bluetooth",
+          "meaning": "Ligado: Bluetooth conectado. Pisca: Pronto para conectar ao Bluetooth. Desligado: Bluetooth desconectado."
+        },
+        {
+          "number": 3,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            285.293,
+            159,
+            328.384
+          ],
+          "meaning_bbox": [
+            160,
+            285.293,
+            345,
+            328.384
+          ],
+          "label": "Modo de carregamento silencioso",
+          "meaning": "Ligado: O ruído durante o carregamento é significativamente reduzido, enquanto a potência de carregamento é menor e a velocidade de carregamento diminui. Desligado: Modo de carregamento silencioso desativado. Ative/desative este recurso no aplicativo da Jackery. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 4,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            328.384,
+            159,
+            372.177
+          ],
+          "meaning_bbox": [
+            160,
+            328.384,
+            345,
+            372.177
+          ],
+          "label": "Plano de carregamento",
+          "meaning": "Personaliza o tempo de carregamento do Jackery Explorer 2000. Adequado para situações com tarifas de energia elétrica variáveis, permite programar o carregamento de acordo com os horários de pico e fora de pico, reduzindo os custos com energia elétrica. Ative/desative este recurso no aplicativo da Jackery. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 5,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            372.177,
+            159,
+            423.177
+          ],
+          "meaning_bbox": [
+            160,
+            372.177,
+            345,
+            423.177
+          ],
+          "label": "Modo de autoalimentação",
+          "meaning": "Maximiza o uso da energia solar e reduz a dependência da rede elétrica ao priorizar a energia solar armazenada, reduzindo os custos de energia. A estação de energia deve estar conectada simultaneamente aos painéis solares e à rede; a potência da carga é limitada pela potência de bypass. Ative/desative este recurso no aplicativo da Jackery. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 6,
+          "physical_page": 119,
+          "label_bbox": [
+            83,
+            423.177,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            423.177,
+            345,
+            497
+          ],
+          "label": "Modo TOU",
+          "meaning": "Ligado: O modo TOU está ativado (SOC de reserva padrão: 60%). Durante os horários de pico, o produto prioriza a descarga da bateria para reduzir os custos de energia quando a energia armazenada excede o SOC de reserva. Durante os horários fora de pico, o produto carrega a bateria a partir da rede elétrica para reduzir o consumo nos horários de pico e aproveitar os períodos de menor demanda. Desligado: O modo TOU está desabilitado. O produto não segue a estratégia de TOU (tarifa por tempo de uso) e opera de acordo com a lógica padrão de fornecimento de energia e carregamento. Ative/desative este recurso no aplicativo da Jackery. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 7,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            28,
+            159,
+            77.298
+          ],
+          "meaning_bbox": [
+            160,
+            28,
+            345,
+            77.298
+          ],
+          "label": "UPS",
+          "meaning": "Ligado: O produto está operando no modo de bypass. As cargas conectadas às portas CA consomem energia da rede em vez da estação de energia. Se a rede elétrica falhar repentinamente, o produto alterna automaticamente para a energia da bateria em 10 ms. Desligado: O produto não está no Modo de bypass. As cargas conectadas às portas CA são alimentadas pela bateria interna da estação de energia."
+        },
+        {
+          "number": 8,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            77.298,
+            159,
+            92.909
+          ],
+          "meaning_bbox": [
+            160,
+            77.298,
+            345,
+            92.909
+          ],
+          "label": "Indicador de energia AC",
+          "meaning": "A saída CA (onda senoidal pura) está ligada."
+        },
+        {
+          "number": 9,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            92.909,
+            159,
+            113.203
+          ],
+          "meaning_bbox": [
+            160,
+            92.909,
+            345,
+            113.203
+          ],
+          "label": "Tensão e Frequência de Saída",
+          "meaning": "Exibe a tensão e a frequência de saída quando a saída CA está ligada."
+        },
+        {
+          "number": 10,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            113.203,
+            159,
+            130.474
+          ],
+          "meaning_bbox": [
+            160,
+            113.203,
+            345,
+            130.474
+          ],
+          "label": "Potência de entrada",
+          "meaning": "Exibe a potência de entrada em watts."
+        },
+        {
+          "number": 11,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            130.474,
+            159,
+            148.686
+          ],
+          "meaning_bbox": [
+            160,
+            130.474,
+            345,
+            148.686
+          ],
+          "label": "Tempo de carregamento restante",
+          "meaning": "Exibe o tempo de carregamento restante."
+        },
+        {
+          "number": 12,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            148.686,
+            159,
+            167.894
+          ],
+          "meaning_bbox": [
+            160,
+            148.686,
+            345,
+            167.894
+          ],
+          "label": "Indicador de carregamento via tomada CA",
+          "meaning": "O produto é carregado pela Entrada CA usando energia da rede."
+        },
+        {
+          "number": 13,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            167.894,
+            159,
+            185.52
+          ],
+          "meaning_bbox": [
+            160,
+            167.894,
+            345,
+            185.52
+          ],
+          "label": "Indicador de carregamento veicular",
+          "meaning": "O produto é carregado pela Entrada CC (DC8020) usando CC 12 V (carregamento veicular)."
+        },
+        {
+          "number": 14,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            185.52,
+            159,
+            203.743
+          ],
+          "meaning_bbox": [
+            160,
+            185.52,
+            345,
+            203.743
+          ],
+          "label": "Indicador de carregamento solar",
+          "meaning": "O produto é carregado pela Entrada CC (DC8020) usando painel(is) solar(es)."
+        },
+        {
+          "number": 15,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            203.743,
+            159,
+            249.368
+          ],
+          "meaning_bbox": [
+            160,
+            203.743,
+            345,
+            249.368
+          ],
+          "label": "Modo de economia de bateria",
+          "meaning": "Ligado: Limita a capacidade máxima utilizável da bateria para prolongar sua vida útil. Desligado: Modo de economia de bateria desativado. Ative/desative este recurso no aplicativo da Jackery. A configuração é mantida quando o dispositivo é desligado. Quando esse recurso está ativado, o produto ocasionalmente realiza um ciclo completo de carga e descarga para calibrar o SOC."
+        },
+        {
+          "number": 16,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            249.368,
+            159,
+            271.311
+          ],
+          "meaning_bbox": [
+            160,
+            249.368,
+            345,
+            271.311
+          ],
+          "label": "Limite de potência de carregamento",
+          "meaning": "Ligado: O limite de potência de carregamento está ativado no aplicativo Jackery. Desligado: O limite de potência de carregamento está desativado no aplicativo Jackery. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 17,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            271.311,
+            159,
+            294.702
+          ],
+          "meaning_bbox": [
+            160,
+            271.311,
+            345,
+            294.702
+          ],
+          "label": "Indicador de energia da bateria",
+          "meaning": "Quando o produto estiver sendo carregado, o círculo laranja ao redor da porcentagem da bateria acenderá em sequência. Ao carregar outros dispositivos, o círculo laranja permanece aceso."
+        },
+        {
+          "number": 18,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            294.702,
+            159,
+            319.419
+          ],
+          "meaning_bbox": [
+            160,
+            294.702,
+            345,
+            319.419
+          ],
+          "label": "Indicador de bateria fraca",
+          "meaning": "Ligado: O nível da bateria está abaixo de 20%. Pisca: O nível da bateria está abaixo de 5%. Desligado: O nível da bateria está acima de 20% ou o produto está carregando."
+        },
+        {
+          "number": 19,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            319.419,
+            159,
+            339.032
+          ],
+          "meaning_bbox": [
+            160,
+            319.419,
+            345,
+            339.032
+          ],
+          "label": "Porcentagem de bateria restante",
+          "meaning": "Exibe a porcentagem de bateria restante."
+        },
+        {
+          "number": 20,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            339.032,
+            159,
+            366.345
+          ],
+          "meaning_bbox": [
+            160,
+            339.032,
+            345,
+            366.345
+          ],
+          "label": "Temporizador de descarga",
+          "meaning": "Ligado: Um temporizador de descarga está definido. Desligado: Nenhum temporizador de descarga está definido. Ative/desative este recurso no aplicativo da Jackery. A configuração não é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 21,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            366.345,
+            159,
+            399.965
+          ],
+          "meaning_bbox": [
+            160,
+            366.345,
+            345,
+            399.965
+          ],
+          "label": "Modo de economia de energia",
+          "meaning": "Quando a saída CA ou CC for ativada pressionando o botão POWER CA ou o botão POWER CC/USB: Ligado: O Modo de economia de energia está ativado. Desligado: O Modo de economia de energia está desativado. A configuração é mantida quando o dispositivo é desligado."
+        },
+        {
+          "number": 22,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            399.965,
+            159,
+            421.627
+          ],
+          "meaning_bbox": [
+            160,
+            399.965,
+            345,
+            421.627
+          ],
+          "label": "Indicador de alta temperatura",
+          "meaning": "A proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "number": 22,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            421.627,
+            159,
+            443.187
+          ],
+          "meaning_bbox": [
+            160,
+            421.627,
+            345,
+            443.187
+          ],
+          "label": "Indicador de temperatura baixa",
+          "meaning": "A proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "number": 23,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            443.187,
+            159,
+            460.194
+          ],
+          "meaning_bbox": [
+            160,
+            443.187,
+            345,
+            460.194
+          ],
+          "label": "Código de falha",
+          "meaning": "Ocorreu um erro no produto. Consulte a seção de Solução de problemas para obter detalhes."
+        },
+        {
+          "number": 24,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            460.194,
+            159,
+            478.777
+          ],
+          "meaning_bbox": [
+            160,
+            460.194,
+            345,
+            478.777
+          ],
+          "label": "Potência de saída",
+          "meaning": "Exibe a potência de saída em watts."
+        },
+        {
+          "number": 25,
+          "physical_page": 120,
+          "label_bbox": [
+            83,
+            478.777,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            478.777,
+            345,
+            497
+          ],
+          "label": "Tempo de descarga restante",
+          "meaning": "Exibe o tempo de descarga restante."
+        }
+      ]
+    },
+    "nl": {
+      "pages": [
+        137,
+        138
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            239,
+            159,
+            263.543
+          ],
+          "meaning_bbox": [
+            160,
+            239,
+            345,
+            263.543
+          ],
+          "label": "Wifi",
+          "meaning": "Aan: Wifi is verbonden. Knipperend: Klaar om met wifi te verbinden. Uit: Wifi is niet verbonden."
+        },
+        {
+          "number": 2,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            263.543,
+            159,
+            285.293
+          ],
+          "meaning_bbox": [
+            160,
+            263.543,
+            345,
+            285.293
+          ],
+          "label": "Bluetooth",
+          "meaning": "Aan: Bluetooth is verbonden. Knipperend: Klaar om met Bluetooth te verbinden. Uit: Bluetooth is niet verbonden."
+        },
+        {
+          "number": 3,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            285.293,
+            159,
+            328.384
+          ],
+          "meaning_bbox": [
+            160,
+            285.293,
+            345,
+            328.384
+          ],
+          "label": "Stille oplaadmodus",
+          "meaning": "Aan: Het geluid tijdens het opladen wordt aanzienlijk verminderd, terwijl het oplaadvermogen wordt verlaagd en de oplaadsnelheid afneemt. Uit: De stille oplaadmodus is uitgeschakeld. Schakel deze functie in of uit in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 4,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            328.384,
+            159,
+            372.177
+          ],
+          "meaning_bbox": [
+            160,
+            328.384,
+            345,
+            372.177
+          ],
+          "label": "Oplaadplan",
+          "meaning": "Hiermee wordt de oplaadtijd van de Jackery Explorer 2000 aangepast. Geschikt voor situaties met fluctuerende elektriciteitsprijzen en maakt het mogelijk om oplaadplannen te maken op basis van piek- en daluren, waardoor de elektriciteitskosten worden verlaagd. Schakel deze functie in of uit in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 5,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            372.177,
+            159,
+            423.177
+          ],
+          "meaning_bbox": [
+            160,
+            372.177,
+            345,
+            423.177
+          ],
+          "label": "Zelfvoorzienende modus",
+          "meaning": "Maximaliseert het gebruik van zonne-energie en vermindert de afhankelijkheid van het net door opgeslagen zonne-energie voorrang te geven, waardoor de elektriciteitskosten dalen. Het powerstation moet tegelijkertijd op zowel zonnepanelen als op het net worden aangesloten, waarbij het belastingsvermogen wordt beperkt door het bypass-vermogen. Schakel deze functie in of uit in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 6,
+          "physical_page": 137,
+          "label_bbox": [
+            83,
+            423.177,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            423.177,
+            345,
+            497
+          ],
+          "label": "TOU-modus",
+          "meaning": "Aan: De TOU-modus is ingeschakeld (standaard back-up SOC: 60%). Tijdens piekperiodes geeft het product prioriteit aan het ontladen van de batterij om piekstroomkosten te verlagen wanneer de opgeslagen energie de back-up SOC overschrijdt. Tijdens dalperiodes laadt het product de batterij op vanuit het net om piekshaving en dalvulling te bereiken. Uit: De TOU-modus is uitgeschakeld. Het product volgt de gebruiksduurstrategie (TOU) niet en werkt volgens de standaardlogica voor stroomvoorziening en opladen. Schakel deze functie in of uit in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 7,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            28,
+            159,
+            77.298
+          ],
+          "meaning_bbox": [
+            160,
+            28,
+            345,
+            77.298
+          ],
+          "label": "UPS",
+          "meaning": "Aan: Het product werkt in de bypassmodus. De belastingen die zijn aangesloten op de AC-poorten verbruiken stroom van het net in plaats van van het powerstation. Als het net plotseling uitvalt, schakelt het product automatisch binnen 10 ms over op de batterijstroom. Uit: Het product is niet in de bypassmodus. De belastingen die zijn aangesloten op de AC-poorten worden gevoed door de interne batterij van het powerstation."
+        },
+        {
+          "number": 8,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            77.298,
+            159,
+            92.909
+          ],
+          "meaning_bbox": [
+            160,
+            77.298,
+            345,
+            92.909
+          ],
+          "label": "Indicator voor AC-voeding",
+          "meaning": "De AC-uitgang (zuivere sinusgolf) is ingeschakeld."
+        },
+        {
+          "number": 9,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            92.909,
+            159,
+            113.203
+          ],
+          "meaning_bbox": [
+            160,
+            92.909,
+            345,
+            113.203
+          ],
+          "label": "Uitgangsspanning en -frequentie",
+          "meaning": "Geeft de uitgangsspanning en -frequentie weer wanneer de AC-uitgang is ingeschakeld."
+        },
+        {
+          "number": 10,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            113.203,
+            159,
+            130.474
+          ],
+          "meaning_bbox": [
+            160,
+            113.203,
+            345,
+            130.474
+          ],
+          "label": "Invoervermogen",
+          "meaning": "Toont het ingangsvermogen in watt."
+        },
+        {
+          "number": 11,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            130.474,
+            159,
+            148.686
+          ],
+          "meaning_bbox": [
+            160,
+            130.474,
+            345,
+            148.686
+          ],
+          "label": "Resterende oplaadtijd",
+          "meaning": "Toont de resterende oplaadtijd."
+        },
+        {
+          "number": 12,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            148.686,
+            159,
+            167.894
+          ],
+          "meaning_bbox": [
+            160,
+            148.686,
+            345,
+            167.894
+          ],
+          "label": "Indicator voor opladen via een AC-stopcontact",
+          "meaning": "Het product wordt opgeladen via de AC-ingang met stroomnet."
+        },
+        {
+          "number": 13,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            167.894,
+            159,
+            185.52
+          ],
+          "meaning_bbox": [
+            160,
+            167.894,
+            345,
+            185.52
+          ],
+          "label": "Indicator voor opladen via de auto",
+          "meaning": "Het product wordt opgeladen via de DC-ingang (DC8020) met DC 12 V (auto-opladen)."
+        },
+        {
+          "number": 14,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            185.52,
+            159,
+            203.743
+          ],
+          "meaning_bbox": [
+            160,
+            185.52,
+            345,
+            203.743
+          ],
+          "label": "Zonne-energie-opla adindicator",
+          "meaning": "Het product wordt opgeladen via de DC-ingang (DC8020) met zonnepanelen."
+        },
+        {
+          "number": 15,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            203.743,
+            159,
+            249.368
+          ],
+          "meaning_bbox": [
+            160,
+            203.743,
+            345,
+            249.368
+          ],
+          "label": "Batterijbesparingsmodus",
+          "meaning": "Aan: Het maximale laadvermogen is ingeschakeld in de Jackery-app. Aan: Beperkt de maximaal bruikbare batterijcapaciteit om de levensduur van de batterij te verlengen. Uit: De Batterijbesparingsmodus is uitgeschakeld. Schakel deze functie in of uit in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld. Wanneer deze functie is ingeschakeld, voert het product af en toe een volledige laad- en ontlaadcyclus uit om de SOC te kalibreren."
+        },
+        {
+          "number": 16,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            249.368,
+            159,
+            271.311
+          ],
+          "meaning_bbox": [
+            160,
+            249.368,
+            345,
+            271.311
+          ],
+          "label": "Maximale laadvermogen",
+          "meaning": "Aan: Het maximale laadvermogen is ingeschakeld in de Jackery-app. Uit: Het maximale laadvermogen is uitgeschakeld in de Jackery-app. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 17,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            271.311,
+            159,
+            294.702
+          ],
+          "meaning_bbox": [
+            160,
+            271.311,
+            345,
+            294.702
+          ],
+          "label": "Batterijstroom-indicator",
+          "meaning": "Wanneer het product wordt opgeladen, licht de oranje cirkel rond het batterijpercentage geleidelijk op. Wanneer u andere apparaten van stroom voorziet, blijft de oranje cirkel branden."
+        },
+        {
+          "number": 18,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            294.702,
+            159,
+            319.419
+          ],
+          "meaning_bbox": [
+            160,
+            294.702,
+            345,
+            319.419
+          ],
+          "label": "Indicator voor laag batterijniveau",
+          "meaning": "Aan: Het batterijniveau is lager dan 20%. Knipperend: Het batterijniveau is lager dan 5%. Uit: Het batterijniveau is hoger dan 20% of het product wordt opgeladen."
+        },
+        {
+          "number": 19,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            319.419,
+            159,
+            339.032
+          ],
+          "meaning_bbox": [
+            160,
+            319.419,
+            345,
+            339.032
+          ],
+          "label": "Resterend batterijpercentage",
+          "meaning": "Geeft het resterende batterijpercentage weer."
+        },
+        {
+          "number": 20,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            339.032,
+            159,
+            366.345
+          ],
+          "meaning_bbox": [
+            160,
+            339.032,
+            345,
+            366.345
+          ],
+          "label": "Ontladingstimer",
+          "meaning": "Aan: Er is een ontladingstimer ingesteld. Uit: Er is geen ontladingstimer ingesteld. Schakel deze functie in of uit in de Jackery-app. De instelling blijft niet behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 21,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            366.345,
+            159,
+            399.965
+          ],
+          "meaning_bbox": [
+            160,
+            366.345,
+            345,
+            399.965
+          ],
+          "label": "Energiebesparingsmodus",
+          "meaning": "Wanneer de AC- of DC-uitgang wordt ingeschakeld door op de Aan/uit-knop voor AC of DC/USB te drukken: Aan: De Energiebesparingsmodus is ingeschakeld. Uit: De Energiebesparingsmodus is uitgeschakeld. De instelling blijft behouden wanneer het apparaat wordt uitgeschakeld."
+        },
+        {
+          "number": 22,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            399.965,
+            159,
+            421.627
+          ],
+          "meaning_bbox": [
+            160,
+            399.965,
+            345,
+            421.627
+          ],
+          "label": "Indicator voor hoge temperatuur",
+          "meaning": "De beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "number": 22,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            421.627,
+            159,
+            443.187
+          ],
+          "meaning_bbox": [
+            160,
+            421.627,
+            345,
+            443.187
+          ],
+          "label": "Indicator voor lage temperatuur",
+          "meaning": "De beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "number": 23,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            443.187,
+            159,
+            460.194
+          ],
+          "meaning_bbox": [
+            160,
+            443.187,
+            345,
+            460.194
+          ],
+          "label": "Foutcode",
+          "meaning": "Er is een productfout opgetreden. Raadpleeg voor details de sectie Probleemoplossing."
+        },
+        {
+          "number": 24,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            460.194,
+            159,
+            478.777
+          ],
+          "meaning_bbox": [
+            160,
+            460.194,
+            345,
+            478.777
+          ],
+          "label": "Uitgangsvermogen",
+          "meaning": "Geeft het uitgangsvermogen in watt weer."
+        },
+        {
+          "number": 25,
+          "physical_page": 138,
+          "label_bbox": [
+            83,
+            478.777,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            478.777,
+            345,
+            497
+          ],
+          "label": "Resterende ontlaadtijd",
+          "meaning": "Geeft de resterende ontlaadtijd weer."
+        }
+      ]
+    },
+    "uk": {
+      "pages": [
+        101,
+        102
+      ],
+      "rows": [
+        {
+          "number": 1,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            239,
+            159,
+            263.543
+          ],
+          "meaning_bbox": [
+            160,
+            239,
+            345,
+            263.543
+          ],
+          "label": "Wi-Fi Ув Бл Ви Ув",
+          "meaning": "вімкнено: Wi-Fi підключено. лимає: Готово до підключення до Wi-Fi. имкнено: Wi-Fi відключено. вімкнено: Bluetooth підключено."
+        },
+        {
+          "number": 2,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            263.543,
+            159,
+            285.293
+          ],
+          "meaning_bbox": [
+            160,
+            263.543,
+            345,
+            285.293
+          ],
+          "label": "Bluetooth Ув Бл Ви",
+          "meaning": "вімкнено: Bluetooth підключено. лимає: Готово до підключення до Bluetooth. имкнено: Bluetooth відключено."
+        },
+        {
+          "number": 3,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            285.293,
+            159,
+            328.384
+          ],
+          "meaning_bbox": [
+            160,
+            285.293,
+            345,
+            328.384
+          ],
+          "label": "Тихий режим заряджання Н Ув во ш Ви Ув Н",
+          "meaning": "алаштовує час заряджання Jackery Explorer 2000. Підходить для вімкнено: Рівень шуму під час заряджання значно зменшується, одночас знижується потужність заряджання і сповільнюється видкість заряджання. имкнено: Тихий режим заряджання вимкнено. вімкніть/вимкніть цю функцію в Jackery App. алаштування зберігається після вимкнення пристрою."
+        },
+        {
+          "number": 4,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            328.384,
+            159,
+            372.177
+          ],
+          "meaning_bbox": [
+            160,
+            328.384,
+            345,
+            372.177
+          ],
+          "label": "План заряджання Н ум пл ви Ув зб М",
+          "meaning": "алаштовує час заряджання Jackery Explorer 2000. Підходить для мов із коливаннями цін на електроенергію; дозволяє створювати лани заряджання на основі пікових і непікових періодів, зменшуючи итрати на електроенергію. вімкніть/вимкніть цю функцію в Jackery App. Налаштування берігається після вимкнення пристрою. аксимізує використання сонячної енергії та зменшує залежність від"
+        },
+        {
+          "number": 5,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            372.177,
+            159,
+            423.177
+          ],
+          "meaning_bbox": [
+            160,
+            372.177,
+            345,
+            423.177
+          ],
+          "label": "Автономний режим М ел зн од ць по Ув зб",
+          "meaning": "аксимізує використання сонячної енергії та зменшує залежність від лектромережі, віддаючи пріоритет накопиченій сонячній енергії, що нижує витрати на електроенергію. Електростанцію необхідно дночасно підключити до сонячних панелей і електромережі, при ьому потужність навантаження обмежується байпасною отужністю. вімкніть/вимкніть цю функцію в Jackery App. Налаштування берігається після вимкнення пристрою."
+        },
+        {
+          "number": 6,
+          "physical_page": 101,
+          "label_bbox": [
+            83,
+            423.177,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            423.177,
+            345,
+            497
+          ],
+          "label": "Режим TOU Ув У зм пе ба Ви TO за Ув зб",
+          "meaning": "вімкнено: Режим TOU увімкнено (стандартний резервний SOC: 60%). пікові періоди продукт надає пріоритет розряджанню батареї для меншення витрат на електроенергію, коли накопичена енергія еревищує резервний SOC. У непікові періоди продукт заряджає атарею від електромережі для зрізання піків і заповнення провалів. имкнено: Режим TOU вимкнено. Продукт не дотримується стратегії OU (time of use) і працює за стандартною логікою живлення та аряджання. вімкніть/вимкніть цю функцію в Jackery App. Налаштування берігається після вимкнення пристрою."
+        },
+        {
+          "number": 7,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            28,
+            159,
+            77.298
+          ],
+          "meaning_bbox": [
+            160,
+            28,
+            345,
+            77.298
+          ],
+          "label": "UPS",
+          "meaning": "Увімкнено: У режимі байпасу навантаження, підключені до портів змінного струму, живляться від електромережі, а не від електростанції. У разі раптового збою електромережі продукт автоматично перемикається на живлення від батареї протягом 10 мс. Вимкнено: Продукт не перебуває в режимі байпасу. Навантаження, підключені до портів змінного струму, живляться від внутрішньої батареї електростанції."
+        },
+        {
+          "number": 8,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            77.298,
+            159,
+            92.909
+          ],
+          "meaning_bbox": [
+            160,
+            77.298,
+            345,
+            92.909
+          ],
+          "label": "Індикатор живлення змінного струму",
+          "meaning": "батареї електростанції. Вихід змінного струму (чиста синусоїда) увімкнено."
+        },
+        {
+          "number": 9,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            92.909,
+            159,
+            113.203
+          ],
+          "meaning_bbox": [
+            160,
+            92.909,
+            345,
+            113.203
+          ],
+          "label": "змінного струму Вихідна напруга та частота",
+          "meaning": "Відображає вихідну напругу та частоту, коли вихід змінного струму увімкнено."
+        },
+        {
+          "number": 10,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            113.203,
+            159,
+            130.474
+          ],
+          "meaning_bbox": [
+            160,
+            113.203,
+            345,
+            130.474
+          ],
+          "label": "Вхідна потужність Час, що залишився",
+          "meaning": "Відображає вхідну потужність у ватах."
+        },
+        {
+          "number": 11,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            130.474,
+            159,
+            148.686
+          ],
+          "meaning_bbox": [
+            160,
+            130.474,
+            345,
+            148.686
+          ],
+          "label": "Час, що залишився до повного заряджання",
+          "meaning": "Відображає залишковий час заряджання."
+        },
+        {
+          "number": 12,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            148.686,
+            159,
+            167.894
+          ],
+          "meaning_bbox": [
+            160,
+            148.686,
+            345,
+            167.894
+          ],
+          "label": "заряджання Індикатор заряджання від мережі змінного струму",
+          "meaning": "Пристрій заряджається через вхід змінного струму від електромережі."
+        },
+        {
+          "number": 13,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            167.894,
+            159,
+            185.52
+          ],
+          "meaning_bbox": [
+            160,
+            167.894,
+            345,
+            185.52
+          ],
+          "label": "змінного струму Індикатор заряджання від автомобіля",
+          "meaning": "Пристрій заряджається через вхід постійного струму (DC8020) із використанням 12 В постійного струму (автомобільне заряджання)."
+        },
+        {
+          "number": 14,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            185.52,
+            159,
+            203.743
+          ],
+          "meaning_bbox": [
+            160,
+            185.52,
+            345,
+            203.743
+          ],
+          "label": "від автомобіля Індикатор заряджання від сонячної панелі",
+          "meaning": "використанням 12 В постійного струму (автомобільне заряджання). Пристрій заряджається через вхід постійного струму (DC8020) із використанням сонячної(-их) панелі(-ей)."
+        },
+        {
+          "number": 15,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            203.743,
+            159,
+            249.368
+          ],
+          "meaning_bbox": [
+            160,
+            203.743,
+            345,
+            249.368
+          ],
+          "label": "Режим енергозбереження акумулятора від сонячної панелі",
+          "meaning": "Увімкнено: Режим енергозбереження акумулятора увімкнено. Обмеження заряджання та розряджання застосовуються, щоб подовжити термін служби акумулятора. Вимкнено: Режим енергозбереження акумулятора вимкнено. Увімкніть/вимкніть цю функцію в Jackery App. Налаштування зберігається після вимкнення пристрою. Коли цю функцію увімкнено, продукт періодично виконує повний цикл заряджання та розряджання для калібрування SOC."
+        },
+        {
+          "number": 16,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            249.368,
+            159,
+            271.311
+          ],
+          "meaning_bbox": [
+            160,
+            249.368,
+            345,
+            271.311
+          ],
+          "label": "Обмеження потужності заряджання",
+          "meaning": "Увімкнено: Обмеження потужності заряджання активовано в Jackery App. Вимкнено: Обмеження потужності заряджання вимкнено в Jackery App. цикл заряджання та розряджання для калібрування SOC."
+        },
+        {
+          "number": 17,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            271.311,
+            159,
+            294.702
+          ],
+          "meaning_bbox": [
+            160,
+            271.311,
+            345,
+            294.702
+          ],
+          "label": "Індикатор заряду акумулятора потужності заряджання",
+          "meaning": "Коли пристрій заряджається, помаранчеве коло навколо відсотка заряду акумулятора почергово засвічуватиметься. Під час заряджання інших пристроїв помаранчеве коло світитиметься Вимкнено: Обмеження потужності заряджання вимкнено в Jackery App. Налаштування зберігається після вимкнення пристрою."
+        },
+        {
+          "number": 18,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            294.702,
+            159,
+            319.419
+          ],
+          "meaning_bbox": [
+            160,
+            294.702,
+            345,
+            319.419
+          ],
+          "label": "акумулятора Індикатор низького рівня зарядубатареї",
+          "meaning": "заряджання інших пристроїв помаранчеве коло світитиметься постійно. Увімкнено: Рівень заряду батареї нижче 20%. Блимає: Рівень заряду батареї нижче 5%. Вимкнено: Рівень заряду батареї не нижче 20% або пристрій"
+        },
+        {
+          "number": 19,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            319.419,
+            159,
+            339.032
+          ],
+          "meaning_bbox": [
+            160,
+            319.419,
+            345,
+            339.032
+          ],
+          "label": "Залишковий відсоток рівня зарядубатареї",
+          "meaning": "Блимає: Рівень заряду батареї нижче 5%. Вимкнено: Рівень заряду батареї не нижче 20% або пристрій заряджається. Відображає залишковий відсоток заряду акумулятора."
+        },
+        {
+          "number": 20,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            339.032,
+            159,
+            366.345
+          ],
+          "meaning_bbox": [
+            160,
+            339.032,
+            345,
+            366.345
+          ],
+          "label": "Залишковий відсоток заряду акумулятора Таймер розряджання",
+          "meaning": "Увімкнено: Таймер розряджання встановлено. Вимкнено: Таймер розряджання не встановлено. Увімкніть/вимкніть цю функцію в Jackery App. Налаштування не Відображає залишковий відсоток заряду акумулятора."
+        },
+        {
+          "number": 21,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            366.345,
+            159,
+            399.965
+          ],
+          "meaning_bbox": [
+            160,
+            366.345,
+            345,
+            399.965
+          ],
+          "label": "РЕЖИМ ЕНЕРГОЗБЕРЕЖЕННЯ розряджання",
+          "meaning": "Коли вихід AC або DC/USB увімкнено натисканням відповідної кнопки AC або DC/USB: Увімкнено: режим енергозбереження увімкнено. Вимкнено: режим енергозбереження вимкнено. Налаштування зберігається після вимкнення пристрою. Увімкніть/вимкніть цю функцію в Jackery App. Налаштування не зберігається після вимкнення пристрою."
+        },
+        {
+          "number": 22,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            399.965,
+            159,
+            421.627
+          ],
+          "meaning_bbox": [
+            160,
+            399.965,
+            345,
+            421.627
+          ],
+          "label": "Індикатор високої температури",
+          "meaning": "Налаштування зберігається після вимкнення пристрою. Активовано захист від високої температури. Продукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону."
+        },
+        {
+          "number": 22,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            421.627,
+            159,
+            443.187
+          ],
+          "meaning_bbox": [
+            160,
+            421.627,
+            345,
+            443.187
+          ],
+          "label": "температури Індикатор низької температури",
+          "meaning": "нормального робочого діапазону. Активовано захист від низької температури. Продукт може припинити роботу, доки його температура не повернеться до нормального робочого діапазону."
+        },
+        {
+          "number": 23,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            443.187,
+            159,
+            460.194
+          ],
+          "meaning_bbox": [
+            160,
+            443.187,
+            345,
+            460.194
+          ],
+          "label": "Код помилки температури",
+          "meaning": "Виникла помилка продукту. Будь ласка, зверніться до розділу «Усунення несправностей» для отримання детальної інформації. повернеться до нормального робочого діапазону."
+        },
+        {
+          "number": 24,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            460.194,
+            159,
+            478.777
+          ],
+          "meaning_bbox": [
+            160,
+            460.194,
+            345,
+            478.777
+          ],
+          "label": "Вихідна потужність",
+          "meaning": "«Усунення несправностей» для отримання детальної інформації. Відображає вихідну потужність у ватах."
+        },
+        {
+          "number": 25,
+          "physical_page": 102,
+          "label_bbox": [
+            83,
+            478.777,
+            159,
+            497
+          ],
+          "meaning_bbox": [
+            160,
+            478.777,
+            345,
+            497
+          ],
+          "label": "Час, що залишився до розряджання",
+          "meaning": "Відображає залишковий час розряджання."
+        }
+      ]
+    }
+  }
+}

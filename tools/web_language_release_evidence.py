@@ -26,6 +26,20 @@ _INCLUDE_RE = re.compile(
 )
 
 
+def require_publishable_manual_ir(markdown_dir: Path) -> None:
+    """Reject a frozen manual candidate with unresolved source review at seal."""
+    ir_path = Path(markdown_dir) / PathSegments.MANUAL_IR_JSON
+    if not ir_path.is_file():
+        return  # Existing projection releases do not carry a manual IR sidecar.
+    payload = _load_object(ir_path, label="manual IR")
+    metadata = payload.get("metadata")
+    if not isinstance(metadata, dict):
+        return  # Historical projection sidecars predate source-review metadata.
+    pending = metadata.get("pending_source_review", [])
+    if pending or metadata.get("publication_eligible") is False:
+        raise RuntimeError(f"manual IR has pending source review: {pending}")
+
+
 @dataclass(frozen=True)
 class ProjectionCapture:
     action: str
@@ -312,6 +326,7 @@ def seal_release_evidence(
 ) -> Path:
     if not version.strip() or not git_ref.strip():
         raise RuntimeError("Web language release evidence requires version and git_ref")
+    require_publishable_manual_ir(markdown_dir)
     checked = require_consistent_captures(captures)
     final = checked[-1]
     recaptured = capture_projection(

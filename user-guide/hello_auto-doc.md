@@ -43,6 +43,8 @@ Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，�
 已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
 
 JE-1000F/EU 新增四语从提供的可编辑 PDF 重新读取文字，以原 AI 核对缺字，保留已批准勘误。维护时通过[共享 IR 接入工具](../code-as-doc/dev/four_language_shared_ir_alignment.md)生成新候选包，采用英文网页的公共包装清单、总览、操作、App 和表格组件；正文不放印刷目录或表格截图。太阳能接线图中的型号/数量标注和车充图中的车辆标注保持为图框内可选中的文字，不能作为图外正文；桌面按原稿留白定位，窄屏在同一灰色图框内保持可读。配图须匹配原稿中的型号、插座和参数，资产清单未解决的项会阻止生成候选；历史 `build_web.py` 和截图保留作追溯证据。该步骤生成本地候选，尚需工程 PR、发布 PR 和 RTD 验收，不会自动发布，也不等于完成飞书语料入库或印刷产线注册。
+
+JE-2000F/E 与上述候选共用 `manual-ir/v2`、ComponentSpec 和 Web 渲染器；各型号、语种的章节、图文、表格和 App 控件位置由[目标本地布局与原稿证据](../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md)绑定。候选 `manual.ir.json` 若记录未完成的 `pending_source_review`，Web 发布证据封装会拒绝它；待原稿勘误获批并清空待审项后才能进入正式发布。复用前言须在绑定及每段文字中保留操作人批准记录，获批后重建才会去掉待审提示；这不等同于 PR 合入或 RTD 上线。 操作图的文字锚点须对照各型号、语种自身原稿校准，并核验引线、圆圈和前提提示框完整；图下说明不能影响图内文字定位。
 Git-only [撤回与恢复](../code-as-doc/dev/web_publication_withdrawal.md) 必须指定型号/市场/语言/版本、原因、负责人和恢复快照；
 缺少输入不会删除已发布手册，已撤回版本不能由普通发布重试重新进入目录。操作先验证本地候选，再走发布 PR 和实际部署回执。
 旧记录的语言字段不等于正文单语；门户分组已有工程支持，真实多语上线仍须完成内容与 RTD 验收。
@@ -103,8 +105,8 @@ editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
-historical `manual-ir/v1` packages remain replayable. Sixteen ComponentSpec types
-are embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
+historical `manual-ir/v1` packages remain replayable. Eighteen ComponentSpec types
+are embedded, including Operation, Auto Resume, Key Combinations, LCD Mode, the three Warranty shapes, LCD
 Icons, Troubleshooting, both Symbols tables, App and governed Reference Figures.
 The package freezes the component registry, theme, target presentation contract
 and resolved Overview instance; cold replay does not read RST/CSV or rerun the
@@ -1346,7 +1348,7 @@ App and governed Reference Figure
 instances are written once into ordered `manual-ir/v2` flow
 and replayed from those embedded specs. Their source projectors run only while
 assembling a new package; opening or publishing the frozen package does not
-reparse RST/CSV or rediscover those sixteen component types from HTML. Historical
+reparse RST/CSV or rediscover those eighteen component types from HTML. Historical
 packages remain supported. German `JAHRE` and Italian `ANNI` use the same
 component-owned 3/2 numeric badge adapter; compact Korean `3년` / `2년` headings
 are parsed by that same language-neutral warranty component. Operation instances
@@ -1930,3 +1932,7 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 交流充电图的源稿裁区必须包含完整外框和左右下圆角。说明文字继续作为网页正文；移除图内重复说明时只剥离文字，不删除背景、产品线条或边框。四语共用图修复须一起重建并核对其余图文不变。
 
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
+
+按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
+
+Charging reference diagrams reuse the shared live-label component: captions occur once and note pills use HTML/CSS over artwork without baked text or white pills. Other portable power stations may reuse the component with their own verified device/interface artwork. See [the JE-2000 intake and regression record](../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md).
