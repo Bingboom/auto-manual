@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-07-21
+Updated: 2026-09-30
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -15,6 +15,30 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-09-30: Workstream Y phase 1 — lint, complexity and doc-lifecycle gates
+
+Phase 1 of the [code quality and iterability plan](dev/code_quality_iterability_plan.md)
+turned the 2026-09-28 assessment into CI-enforced ratchets without changing
+any build output:
+
+- #1322: closed seven leaking CSV handles (test `ResourceWarning`s 54 → 0),
+  audited all 24 `B023` sites, removed dead imports while keeping facade
+  re-exports explicit, and widened ruff from three rules to `F` + `B023`. Two
+  shadowed duplicate tests in `tests/test_export_idml.py` run again.
+- #1318: per-function complexity ratchet; `data/complexity_baseline.tsv`
+  held 262 functions above 20 at merge.
+- #1319 and #BANNER_PR: `env.python` / `env.lock` drift is reported by
+  `build.py doctor`, standalone, and once at the start of each test run.
+- #1320: plan and review docs declare a lifecycle `Status:`; 174 pre-rule
+  docs are baselined.
+- #1321: `AGENTS.md` §7 skill prose moved to `.agents/skills/README.md`
+  (26 KB → 20 KB loaded into every agent session).
+- #DOCS_PR: module boundaries refreshed, with a proposed subpackage per
+  domain for the CQ-1 migration.
+
+Phase 2 (test seams, logging and subprocess contracts, validator rewrites)
+continues in the plan.
 
 ## 2026-09-13: Strict receipt transport through the production CDN
 

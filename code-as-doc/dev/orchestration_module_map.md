@@ -1,6 +1,6 @@
 # Orchestration Module Map
 
-Updated: 2026-08-24
+Updated: 2026-09-30
 
 This file records the current module boundaries for the repo's main workflow entrypoints.
 Use it as the living map for "where should this logic go?" after the build, quality, release, and queue decomposition waves.
@@ -148,6 +148,9 @@ analytics is configured; unknown alias shapes pass through unchanged.
   - environment and dependency diagnostics
   - doctor target/pdf/reference-doc resolution
   - doctor finding collection
+- [`tools/env_preflight.py`](../../tools/env_preflight.py)
+  - advisory `env.python` / `env.lock` rows: running Python versus the `pyproject.toml` pin, installed packages versus `requirements.lock`
+  - shared by `build.py doctor`, its own CLI, and the one-line-per-drift banner that `tests/__init__.py` prints before a test run; `OK`/`WARN` only, never blocking
 - [`tools/asset_commands.py`](../../tools/asset_commands.py)
   - single `build.py` command facade for `asset-check` and `asset-intake`
   - fail-closed validation of the public AI-intake argument contract
@@ -373,6 +376,20 @@ Quality and release logic should follow concern-specific modules instead of drif
   - review-manifest target resolution, seed/current manifest applicability,
     derivative mapping, and exact-or-abstain `merge_params` safety proof
   - no branch mutation, sync, PR creation, or propagation apply surface
+
+### Maintainability Guardrails
+
+- [`tools/check_maintainability_guardrails.py`](../../tools/check_maintainability_guardrails.py)
+  - hotspot line caps, target-scoped IDML predicates, shared-Web target literals
+  - runs the two ratchets below; each fails only on new or grown debt
+- [`tools/check_language_literal_ratchet.py`](../../tools/check_language_literal_ratchet.py)
+  - hand-written language tables against `data/language_literal_baseline.txt`
+- [`tools/check_complexity_ratchet.py`](../../tools/check_complexity_ratchet.py)
+  - stdlib per-function cyclomatic complexity against `data/complexity_baseline.tsv`: new functions stay at 20 or below, recorded ones may not grow, a lower value must be written back
+- [`tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
+  - relative links under `code-as-doc/` and `user-guide/`; with the default roots it also runs the lifecycle check
+- [`tools/check_doc_lifecycle.py`](../../tools/check_doc_lifecycle.py)
+  - plan/review docs under `code-as-doc/dev/` and `code-as-doc/reviews/` declare `Status:`; pre-rule docs are listed in `data/doc_lifecycle_baseline.txt`
 
 ### Review Preview Packaging
 
@@ -640,6 +657,11 @@ These areas still deserve follow-up only when a concrete hotspot reappears:
 - [`tools/gen_index_bundle.py`](../../tools/gen_index_bundle.py)
 
 Keep future extraction notes here once those boundaries stabilize again.
+
+Package-level moves (prefix families into real subpackages) are planned in
+[Workstream Y CQ-1](code_quality_iterability_plan.md); the proposed package
+per domain is in [`code_style_guide.md`](../code_style_guide.md) §2.16. Update
+this map in the same PR that moves a family.
 
 ### Whole-document Web boundary
 
