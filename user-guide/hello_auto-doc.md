@@ -141,6 +141,21 @@ Before running any build, review, check, or publish command, prepare the local e
 
 ### 1.1 Python Environment
 
+The quickest way to get the environment CI uses is the setup script. It finds the
+Python version pinned in `pyproject.toml`, builds `.venv` from it, installs
+`requirements.lock`, and runs `python tools/env_preflight.py --strict`, which exits
+non-zero while anything still differs from CI:
+
+```bash
+scripts/setup_dev_env.sh                 # macOS / Linux; --python BIN, --venv DIR, --recreate
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_dev_env.ps1   # -Python, -Venv, -Recreate
+```
+
+To set it up by hand instead:
+
 Windows PowerShell:
 
 ```powershell
@@ -170,7 +185,8 @@ manifest embeds the same record under a `toolchain` key — a published PDF can
 always name the environment that produced it. `doctor` also reports drift
 against the pinned runtime (`env.python`, from `pyproject.toml`) and
 `requirements.lock` (`env.lock`) as advisory `WARN` rows; run
-`python tools/env_preflight.py` for the same report without a config. A local
+`python tools/env_preflight.py` for the same report without a config (`--strict`
+exits 1 on any `WARN`). A local
 `python -m unittest` run prints the `WARN` rows once before the first test,
 so environment-only failures are named up front; it is silent when the
 environment matches CI and `AUTO_MANUAL_ENV_PREFLIGHT=0` turns it off.

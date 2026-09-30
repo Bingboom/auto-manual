@@ -101,5 +101,23 @@ class TestRunBannerTest(unittest.TestCase):
         self.assertEqual("", stream.getvalue())
 
 
+
+class MainExitCodeTest(unittest.TestCase):
+    """``--strict`` turns any WARN into exit 1 for the dev-env setup scripts."""
+
+    def _main(self, rows: list[tuple[str, str, str]], *argv: str) -> int:
+        import contextlib
+        import io
+
+        with mock.patch.object(env_preflight, "collect_environment_findings", return_value=rows), contextlib.redirect_stdout(io.StringIO()):
+            return env_preflight.main(list(argv))
+
+    def test_default_never_fails(self) -> None:
+        self.assertEqual(0, self._main([("WARN", "env.lock", "drift")]))
+
+    def test_strict_fails_only_on_warn(self) -> None:
+        self.assertEqual(1, self._main([("OK", "env.python", "ok"), ("WARN", "env.lock", "drift")], "--strict"))
+        self.assertEqual(0, self._main([("OK", "env.python", "ok"), ("OK", "env.lock", "ok")], "--strict"))
+
 if __name__ == "__main__":
     unittest.main()

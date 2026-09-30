@@ -66,7 +66,7 @@ python tools/flow_dashboard.py report     # 双面仪表（系统健康 + 产出
 
 依次完成，只许看仓库内文档：
 
-1. **环境**：clone → `python -m venv .venv && pip install -r requirements.txt` → `build.py doctor` 全绿（或明确知道缺什么、为什么不影响下一步）
+1. **环境**：clone → `scripts/setup_dev_env.sh`（Windows：`scripts/setup_dev_env.ps1`；按 `pyproject.toml` 锁定的 Python 建 `.venv` 并装 `requirements.lock`，最后跑 `tools/env_preflight.py --strict`）→ `build.py doctor` 全绿（或明确知道缺什么、为什么不影响下一步）
 2. **构建**：用 fixtures 数据跑一次 `build.py check`（US/JE-1000F）到 `[check] OK`
 3. **读懂一条产线**：说出 JE-1000F US 的 config → manifest → 模板目录 → 构建产物 的对应关系
 4. **回写一轮（沙盘）**：读 `closed_loop_ops_guide.md` §1–§4，说出评审者在云文档改了一个规格值后，改动经过哪些节点回到源表、基线如何前移
