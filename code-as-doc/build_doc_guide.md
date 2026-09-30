@@ -971,6 +971,7 @@ approval rules remain unchanged.
 - Semantic `<sub>` and `<sup>` elements are protected and restored through the same checked Pandoc boundary. Scientific notation such as `V<sub>oc</sub>` and specification references such as `<sup>①</sup>` therefore remain real, themeable HTML in EN/FR/ES instead of surfacing Pandoc's inline Markdown notation as literal text.
 - Web Publish runs [`../tools/readthedocs_source.py`](../tools/readthedocs_source.py) indirectly through the publish-branch assembler, producing one link-only root index, collision-checked root alias pages named from each manual stem, and mirrored image assets under `docs/publish/web/_static/manual-assets/`. Each alias forwards relatively to the nested canonical page so the same frozen source works with or without RTD's `/en/latest` prefix.
 - do not point RTD at the repo-root [`../docs/`](../docs) tree; `docs/publish/web/` is the frozen Sphinx source, while `docs/publish/sources/web/` retains each target's original MyST bundle
+- The manual-center selector includes US/EU/UK/CN/JP with independent CN/JP bindings and `zh`/`ja` labels; only verified frozen language links are enabled. EU remains the default. For the existing whole-book `cn-zh` / `jp-ja` queue families, leave `Lang` blank: their configured language is already fixed, and they do not use language-scoped output paths.
 - RTD is the Web Publish presentation surface; it is not the release authority for formal IDML, LaTeX, PDF, DOCX or print Markdown outputs
 
 ### 3.7 Publish a Final Word Release
@@ -2338,3 +2339,7 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 改为要求真实 LCD 组件；缺图不能再静默退回纯文字。素材记录见
 [`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
 连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。
+
+日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
+
+JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。

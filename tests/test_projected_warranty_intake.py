@@ -45,6 +45,31 @@ class ProjectedWarrantyIntakeTests(unittest.TestCase):
                 self.assertEqual(str(paragraphs[-1]), lead.spec.slot("local_note").content)
                 self.assertEqual(4 if language == "fr" else 2, len(paragraphs))
 
+    def test_jp_authored_warranty_keeps_all_seven_sections_and_line_breaks(self):
+        from tools.web_warranty_component import render_warranty_component
+        path = ROOT / "docs/templates/page_jp/11_warranty.rst"
+        html = _rewrite_word_friendly_fragment(
+            _publish_rst_fragment_to_html(path.read_text(), path, active_tags={"region_jp"}), lang="ja",
+        )
+        soup = BeautifulSoup(html, "html.parser")
+        claims = discover_registered_components(
+            soup, source_path=path, model="JE-1000F", region="JP", language="ja",
+            contract=load_web_manual_contract(model="JE-1000F", region="JP"),
+        )
+        self.assertEqual(8, len(claims))
+        self.assertEqual(7, sum(c.spec.component_id == "HB-WARRANTY-SECTION" for c in claims))
+        self.assertFalse(any(c.spec.component_id == "HB-WARRANTY-YEARS" for c in claims))
+        for claim in claims:
+            before = BeautifulSoup("".join(str(n) for n in claim.owned_nodes), "html.parser")
+            after = BeautifulSoup(render_warranty_component(claim.spec), "html.parser")
+            self.assertEqual(before.get_text(" ", strip=True), after.get_text(" ", strip=True))
+            self.assertEqual(len(before.select(".line")), len(after.select(".line")))
+        for value in ("3年間", "1年間", "2年間", "050-3198-9007"):
+            self.assertIn(value, html)
+        with self.assertRaisesRegex(ValueError, "warranty years component"):
+            parse_warranty_html(soup, source_path=path, expected_sections=7,
+                                expected_years=["3", "2"], language="ja")
+
     def test_rejects_lead_interleaved_with_sections_or_foreign_blocks(self):
         for mutation in ("interleave", "foreign"):
             with self.subTest(mutation=mutation):

@@ -30,6 +30,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 
 手册中心会将同型号/市场的多语发布分组为一张卡；旧出版物的单语身份未验证不等于没有该语言，参见[语言切换规则](../code-as-doc/dev/rtd_locale_navigation.md)。
 未发布语言禁用；旧混语手册保留“当前发布版”，不标成已经完成的单语翻译。
+手册中心支持 US/EU/UK/CN/JP 区域筛选，默认仍为 EU；中规、日规独立筛选，中文和日文分别显示“简体中文”“日本語”。只有冻结清单中已经发布且具有相应身份凭据的语言页面才能启用。现有 `cn-zh` / `jp-ja` 整本家族的 Web Publish 任务应将 `Lang` 留空，由家族固定为中文／日文；不要套用欧规单语家族的显式 `Lang` 填法。
 
 知识库侧栏的“系统建设”页（`/workspace/system/`）先列“当前重点”：先完成网页发布与维护闭环；语料复用与 SSOT 同期支撑，再做 IR 代表试点、骨架与覆盖扩展，多 Agent 按需后置。每条线的数字取自发布清单、语料快照和骨架定义，进度取自执行台账。下面先看阶段门验收，再看语言资产、能力地图和生产流程连接。各项状态写在 `tools/rtd_portal_assets/system_workspace.yaml`，每条都要附证据；当前重点由操作者决定，改动时一并更新。修改该文件走 auto-manual PR，提交前运行 `python tools/rtd_system_workspace.py check`。页面公开可见，只写可公开的内容。页内“语言资产”块只展示翻译记忆库的汇总计数，不含语料原文；每月运行 `python tools/rtd_system_workspace.py corpus-export`（只读取线上语料库）刷新快照，再提交 PR。快照会保留往月的汇总数，页面显示与上期的对比。图中各语言的百分比是语料库句对覆盖（该语言有译文的句对占记忆库全部句对的比例），不是说明书翻译完成率。页内“技能与钩子”列出 Agent 可调用的技能和自动运行的钩子，未登记的技能和没有测试的钩子会标出来；新增技能时记得在 AGENTS.md（Codex）或 `.claude/skills/README.md`（Claude）登记。页面底部的“数据来源”表列出每类数字以哪里为准、多少天算过期、取不到时显示什么，这些统一登记在 `tools/rtd_portal_assets/source_registry.yaml`；新增数据来源或改过期天数，只改这一个文件。规则见[系统建设页](../code-as-doc/dev/rtd_manual_portal.md#system-workspace-page)。
 
@@ -1957,3 +1958,7 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 改为要求真实 LCD 组件；缺图不能再静默退回纯文字。素材记录见
 [`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
 连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。
+
+日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
+
+JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。

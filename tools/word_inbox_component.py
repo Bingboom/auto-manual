@@ -5,27 +5,12 @@ import fnmatch
 from pathlib import Path
 from typing import Any, Mapping
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
 
 from tools.component_specs.inbox import COMPONENT_ID
 from tools.component_specs.inbox_adapters import word_inbox_projection
 from tools.component_specs.inbox_html import parse_inbox_html
-
-
-def _is_plain_inventory(soup: BeautifulSoup) -> bool:
-    """A text-only inventory has no illustrated-card or adjacent tip semantics."""
-    heading = soup.find("h1")
-    table = heading.find_next_sibling() if isinstance(heading, Tag) else None
-    if not isinstance(table, Tag) or table.name != "table" or table.find("img"):
-        return False
-    rows = table.find_all("tr")
-    cells = rows[0].find_all(["td", "th"], recursive=False) if len(rows) == 1 else []
-    following = table.find_next_sibling()
-    return (
-        len(cells) == 3
-        and all(cell.get_text(" ", strip=True) for cell in cells)
-        and (following is None or following.name != "table")
-    )
+from tools.component_specs.plain_inventory import is_plain_inventory
 
 
 def transform_word_inbox_html(
@@ -40,7 +25,7 @@ def transform_word_inbox_html(
     if not any(fnmatch.fnmatch(source_path.stem.lower(), pattern) for pattern in patterns):
         return html_fragment
     soup = BeautifulSoup(html_fragment, "html.parser")
-    if _is_plain_inventory(soup):
+    if is_plain_inventory(soup):
         return html_fragment
     source = parse_inbox_html(
         soup,

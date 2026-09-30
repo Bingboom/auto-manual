@@ -16,9 +16,13 @@ function render() {
     if (!card.hidden) count += 1;
   });
   $('#market-title').textContent = query ? `搜索结果 · ${selected.value}` : `${selected.value} 区域`;
-  $('#market-note').textContent = selected.value === 'US'
-    ? '美规说明书资料。'
-    : '欧规和英规共用 EUUK 版本。';
+  const marketNotes = {
+    US: '美规说明书资料。',
+    EU: '欧规和英规共用 EUUK 版本。',
+    CN: '中规说明书资料。',
+    JP: '日规说明书资料。',
+  };
+  $('#market-note').textContent = marketNotes[selected.dataset.binding] || `${selected.value} 区域说明书资料。`;
   $('#count').textContent = `${count} 份说明书`;
   $('#products').classList.toggle('single', count === 1);
   $('#empty').hidden = count !== 0;

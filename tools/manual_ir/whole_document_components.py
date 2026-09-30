@@ -24,6 +24,7 @@ from tools.component_specs.authored_tables_html import (
 )
 from tools.component_specs.fcc_html import parse_fcc_html
 from tools.component_specs.inbox_html import parse_inbox_html
+from tools.component_specs.plain_inventory import is_plain_inventory, plain_inventory_spec
 from tools.component_specs.lcd_mode_html import parse_lcd_mode_html
 from tools.component_specs.manual_table_html import (
     parse_lcd_icon_html,
@@ -140,6 +141,50 @@ def _authored_claims(soup, source_path, language, claimed):
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
     return claims
+
+
+def _claim_inbox(soup, source_path, language, contract, claimed, claims):
+    inbox_config = contract["in_the_box"]
+    semantic_inbox = isinstance(inbox_config, Mapping) and _matches_source(
+        source_path, inbox_config.get("semantic_source_patterns", [])
+    )
+    # Inbox is shared semantic presentation, just like specifications and
+    # callouts.  Its numbered-card layout does not depend on a target-specific
+    # figure or preface grant; every declared Inbox source pattern must embed
+    # the same component before the whole-document IR is frozen.
+    legacy_inbox = isinstance(inbox_config, Mapping) and _matches_source(
+        source_path, inbox_config.get("source_patterns", [])
+    )
+    if (semantic_inbox or legacy_inbox) and is_plain_inventory(soup):
+        claim = ComponentClaim(
+            spec=plain_inventory_spec(soup, source_path=source_path, language=language),
+            owned_nodes=(soup.find("h1").find_next_sibling(),),
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+    elif semantic_inbox or legacy_inbox:
+        parsed = parse_inbox_html(
+            soup,
+            source_path=source_path,
+            language=language,
+            error_type=ValueError,
+            require_tip=False,
+        )
+        images = parsed.inbox_table.select("img[src]")
+        claim = ComponentClaim(
+            spec=parsed.spec,
+            owned_nodes=tuple(
+                node
+                for node in (parsed.inbox_table, parsed.tip_table)
+                if node is not None
+            ),
+            asset_tags=tuple(
+                (asset.role, image)
+                for asset, image in zip(parsed.spec.assets, images, strict=True)
+            ),
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
 
 
 def discover_registered_components(
@@ -476,40 +521,7 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
-    inbox_config = contract["in_the_box"]
-    semantic_inbox = isinstance(inbox_config, Mapping) and _matches_source(
-        source_path, inbox_config.get("semantic_source_patterns", [])
-    )
-    # Inbox is shared semantic presentation, just like specifications and
-    # callouts.  Its numbered-card layout does not depend on a target-specific
-    # figure or preface grant; every declared Inbox source pattern must embed
-    # the same component before the whole-document IR is frozen.
-    legacy_inbox = isinstance(inbox_config, Mapping) and _matches_source(
-        source_path, inbox_config.get("source_patterns", [])
-    )
-    if semantic_inbox or legacy_inbox:
-        parsed = parse_inbox_html(
-            soup,
-            source_path=source_path,
-            language=language,
-            error_type=ValueError,
-            require_tip=False,
-        )
-        images = parsed.inbox_table.select("img[src]")
-        claim = ComponentClaim(
-            spec=parsed.spec,
-            owned_nodes=tuple(
-                node
-                for node in (parsed.inbox_table, parsed.tip_table)
-                if node is not None
-            ),
-            asset_tags=tuple(
-                (asset.role, image)
-                for asset, image in zip(parsed.spec.assets, images, strict=True)
-            ),
-        )
-        _claim_nodes(claim, claimed=claimed, source_path=source_path)
-        claims.append(claim)
+    _claim_inbox(soup, source_path, language, contract, claimed, claims)
 
     specification_index = 0
     for heading in list(soup.select("h2.hb-spec-section")):
