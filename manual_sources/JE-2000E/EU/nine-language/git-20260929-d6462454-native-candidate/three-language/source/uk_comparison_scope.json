@@ -1,0 +1,28 @@
+{
+  "schema_version": "manual-native-comparison-scope/v1",
+  "locale": "uk",
+  "status": "comparison-only-no-intake-no-publication",
+  "protected_baseline": "source/published_six_baseline.json",
+  "known_new_source_regressions": [
+    {
+      "page": 120,
+      "field": "App AC2 control",
+      "finding": "Source still duplicates AC1; retain existing approved AC2 correction."
+    },
+    {
+      "page": 118,
+      "field": "DC8020 input label",
+      "finding": "Source still mislabels DC8020 as AC input; retain existing approved DC8020 correction."
+    },
+    {
+      "page": 114,
+      "field": "vent-clearance diagram",
+      "finding": "Spanish ≥ 0,66 pies (200 mm) remains."
+    }
+  ],
+  "unresolved_comparison": [
+    "PS3/vehicle warnings p110 are outlined in PDF and absent from native Illustrator frames.",
+    "Four battery expansion warnings p114 are outlined in PDF and absent from native Illustrator frames."
+  ],
+  "frame_evidence_sha256": "ca3bb79681579d77bb7e2e1e365672209187183cb955aaf7a2c2b8e6b750628b"
+}

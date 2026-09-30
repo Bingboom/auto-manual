@@ -799,9 +799,10 @@ Web Publish / Read the Docs note:
   images; optional `presentation.html.attributes` retains only Web hints needed
   for output parity. Callout, Spec, FCC, Inbox, Overview, the five governed
   Operation panels on targets admitted by `figure_targets`,
-  the hybrid LCD Mode table, Warranty Lead/Section/Years, the LCD icon table,
+  the Auto Resume and Key Combinations tables, the hybrid LCD Mode table,
+  Warranty Lead/Section/Years, the LCD icon table,
   Troubleshooting table, signal-word table, two-panel symbol-icon table, App,
-  and governed Reference Figures are embedded as sixteen validated
+  and governed Reference Figures are embedded as eighteen validated
   ComponentSpec types at their original flow positions. Their Web adapters
   dispatch from the IR instead of rediscovering those semantics from DOM;
   all component/carrier images join the ordered packaged-asset SHA-256 gate.
@@ -986,6 +987,7 @@ Outputs:
 - queue-driven print Publish: staged DOCX/PDF/Markdown under [`../reports/releases/<model>/<region>/<lang>/versions/<version>/`](../reports/releases), with Markdown sidecars such as `assets/`, `conf.py`, and `index.md` preserved when present
 - queue-driven Web Publish: staged MyST plus verification HTML under `reports/releases/<model>/<region>/<lang>/versions/<version>/web/`, then frozen Sphinx candidate under `Hello-Docs/publish:docs/publish/` and a scope-guarded PR into `Hello-Docs/main`
 - Git-only external Web source: freeze its source/input hash inventory and one real single-language receipt per locale before the same `docs/publish/**` assembly. The existing `build.py check` is a regression gate when the external languages are absent from phase2. For JE-1000F/EU four-language re-intake, use the [native-PDF shared-IR adapter](dev/four_language_shared_ir_alignment.md): fresh editable PDF text plus exact AI glyph recovery and hash-bound governed assets → `manual-ir/v2` → registered ComponentSpecs and neutral flow → the public Web consumer. Printed Contents and table/panel screenshots are not body content. Diagram labels use declared live-label bindings to stay inside their shared ReferenceFigure panel; they must not fall through as separate body paragraphs. Pending asset bindings block candidate generation; the historical screenshot adapter remains for audit replay only. Verify content parity, strict Sphinx and browser layout before the [Git-only Web transaction](dev/web_publish_pipeline.md#22-git-only-transaction).
+- JE-2000F/EU and JE-2000E/EU native intake use the same pipeline with [hash-pinned target geometry](dev/je2000_eu_new_locales_ir_adapters_2026-09.md). A preview may carry pending source decisions, but release evidence refuses an adjacent `manual.ir.json` with `publication_eligible: false` or nonempty `pending_source_review`; resolve and record the source decisions before rebuilding a publishable package. Reused prefaces require dated operator approval on both the pinned binding and every paragraph before the review banner and pending marker can be removed. Operation diagrams use their own hash-bound crop coordinates and the existing live-copy art canvas; verify leader alignment and complete illustration boundaries for each target. Charging diagrams must also inherit the reference live-label bindings: captions are consumed once, and note pills are HTML/CSS over artwork without baked text or white pills. This shared presentation is available to other portable power stations while device/interface art remains model-bound.
 - release manifest: [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases) by default, or `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled
 
 ## 4. Output Layout
@@ -2317,3 +2319,5 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 交流充电图的源稿裁区必须包含完整外框和左右下圆角。说明文字继续作为网页正文；移除图内重复说明时只剥离文字，不删除背景、产品线条或边框。四语共用图修复须一起重建并核对其余图文不变。
 
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
+
+按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。

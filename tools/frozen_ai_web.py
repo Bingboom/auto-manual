@@ -84,6 +84,8 @@ def assemble_book(book, title, pages):
         "projection": "whole-document-components/v1",
         "web_source_normalization": "preface-auto-resume/v1",
         "title": title, "markdown_filename": filename,
+        "publication_eligible": not bool(getattr(book, "provenance", {}).get("pending_source_review")),
+        "pending_source_review": getattr(book, "provenance", {}).get("pending_source_review", []),
         "declared_languages": [language], "frozen_source_manifest": book.manifest,
         "source_errata": book.errata,
         **({"pdf_intake_provenance": book.provenance} if hasattr(book, "provenance") else {}),
@@ -102,7 +104,8 @@ def assemble_book(book, title, pages):
         "component_inventory": {identity: sum(spec.component_id == identity for spec in specs)
                                 for identity in sorted({spec.component_id for spec in specs})},
     }
-    if contract.get("figure_targets") and contract.get("product_overview", {}).get("source_patterns"):
+    reference_overview = (getattr(book, "target_layout", None) or {}).get("media", {}).get("overview", {}).get("presentation") == "reference-figures"
+    if not reference_overview and contract.get("figure_targets") and contract.get("product_overview", {}).get("source_patterns"):
         overview = getattr(book, "overview_instance", None) or resolve_overview_instance(
             model=book.target["model"], region=book.target["region"])
         metadata.update(overview_instance=overview, overview_instance_sha256=overview_instance_sha256(overview))

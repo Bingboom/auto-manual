@@ -238,9 +238,11 @@ def app_add_device_component_spec(
         labels,
         owner=f"{APP_COMPONENT_ID}.add-device",
     )
-    if len(normalized_labels) != 3 or len({item["role"] for item in normalized_labels}) != 3:
+    roles = [item["role"] for item in normalized_labels]
+    if not ((len(roles) == 3 and len(set(roles)) == 3)
+            or roles == ["main-power", "dc-usb", "ac-power-1", "ac-power-2"]):
         raise ComponentSpecError(
-            f"{APP_COMPONENT_ID}: add-device requires three unique label roles"
+            f"{APP_COMPONENT_ID}: add-device control roles are incomplete"
         )
     slots = [
         ComponentSlot("accessibility_label", "inline_text", label),

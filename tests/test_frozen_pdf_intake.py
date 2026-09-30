@@ -7,7 +7,10 @@ from unittest.mock import patch
 
 import fitz
 
-from tools.frozen_pdf_intake import _PDFReader, _chapter_titles, _page_record, load_pdf_book, read_recipe_json
+from tools.frozen_pdf_intake import (
+    _PDFReader, _chapter_titles, _front_back, _page_record, _preface_candidate,
+    load_pdf_book, read_recipe_json,
+)
 from tools.manual_ir.hashing import file_sha256
 
 
@@ -18,6 +21,55 @@ PDF_SHA = "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
 
 
 class FreshPDFGeometryTests(unittest.TestCase):
+    def test_preface_approval_requires_matching_dated_operator_decision(self):
+        approval = {"date": "2026-09-29", "instruction": "Use Jackery",
+                    "scope": "JE-2000E EU NL preface"}
+        candidate = {"heading": "IMPORTANT", "paragraphs": [
+            {"text": "Approved copy.", "status": "operator-approved",
+             "operator_decision": approval},
+        ]}
+        binding = {"path": "source/preface_candidates.json", "status": "operator-approved",
+                   "approval": approval}
+        with patch("tools.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
+            accepted = _preface_candidate(Path("unused"), {}, {"preface_candidate": binding}, "nl")
+            self.assertEqual({"status": "operator-approved", "approval": approval,
+                              "content": candidate}, accepted)
+            for changed in ({"approval": None},
+                            {"approval": {**approval, "scope": " "}},
+                            {"approval": {**approval, "date": "undated"}}):
+                with self.subTest(changed=changed), self.assertRaisesRegex(
+                        ValueError, "dated operator decision"):
+                    _preface_candidate(Path("unused"), {},
+                                       {"preface_candidate": {**binding, **changed}}, "nl")
+            with self.assertRaisesRegex(ValueError, "disagree with operator decision"):
+                _preface_candidate(Path("unused"), {}, {"preface_candidate": {
+                    **binding, "approval": {**approval, "scope": "Other target"}}}, "nl")
+
+    def test_pending_preface_keeps_review_status_and_approved_preface_keeps_provenance(self):
+        candidate = {"heading": "IMPORTANT", "paragraphs": [
+            {"text": "Reused copy.", "status": "shared-copy-candidate"},
+        ]}
+        binding = {"path": "source/preface_candidates.json",
+                   "status": "preview-only-pending-review"}
+        with patch("tools.frozen_pdf_intake.read_recipe_json", return_value={"nl": candidate}):
+            preview = _preface_candidate(Path("unused"), {}, {"preface_candidate": binding}, "nl")
+        self.assertEqual("preview-only-pending-review", preview["status"])
+        recipe = {"shared": {}, "locales": {"nl": {"preface": {
+            "status": "missing-in-source", "physical_page": 1, "bbox": [1, 2, 3, 4]},
+            "toc_page": 1}}}
+        reader = type("Reader", (), {"document": [object()]})()
+        with patch("tools.frozen_pdf_intake._page_record", return_value={}):
+            pending = _front_back(reader, recipe, "nl", "a" * 64, preview)
+            self.assertEqual("preview-only-pending-review",
+                             pending["locales"]["nl"]["preface"]["status"])
+            self.assertNotIn("approval", pending["locales"]["nl"]["preface"])
+            approval = {"date": "2026-09-29", "instruction": "Use Jackery",
+                        "scope": "JE-2000E EU NL preface"}
+            approved = _front_back(reader, recipe, "nl", "a" * 64, {
+                "status": "operator-approved", "content": candidate, "approval": approval})
+        self.assertEqual(approval, approved["locales"]["nl"]["preface"]["approval"])
+        self.assertEqual(candidate, approved["locales"]["nl"]["preface"]["candidate"])
+
     def test_recipe_reader_rejects_unpinned_or_changed_bytes(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

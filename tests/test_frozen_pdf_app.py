@@ -130,6 +130,30 @@ class FrozenPDFAppTests(unittest.TestCase):
         self.assertEqual("Przycisk zasilania DC/USB", soup.select_one(".hb-app-add-device-live-label-dc-usb").text)
         self.assertEqual("Przycisk zasilania AC", soup.select_one(".hb-app-add-device-live-label-ac-power").text)
 
+    def test_four_native_app_controls_keep_distinct_roles_and_source_positions(self):
+        labels = [
+            ("main-power", "POWER", [40, 410, 90, 425]),
+            ("dc-usb", "DC/USB", [90, 430, 145, 445]),
+            ("ac-power-1", "AC1", [190, 430, 230, 445]),
+            ("ac-power-2", "AC2", [260, 430, 300, 445]),
+        ]
+        self.book.records["app_control_labels"] = {"rows": [
+            {"role": role, "text": label, "physical_page": 142, "bbox": bbox}
+            for role, label, bbox in labels
+        ]}
+        self.book.assets = {"app.control": {"clip_points": [25, 400, 345, 455]}}
+        nodes = app_section(self.book, self.assets)
+        spec = next(spec for spec in component_specs_in_flow(nodes)
+                    if spec.component_id == "HB-SPECIAL-APP" and spec.variant == "add-device")
+        self.assertEqual([role for role, _, _ in labels],
+                         [item["role"] for item in spec.slot("labels").content])
+        positions = spec.metadata["control_label_positions"]
+        self.assertEqual(set(positions), {role for role, _, _ in labels})
+        self.assertLess(positions["ac-power-1"][1], positions["ac-power-2"][1])
+        soup = _render(self.book, nodes)
+        self.assertEqual([label for _, label, _ in labels],
+                         [item.get_text(strip=True) for item in soup.select(".hb-app-add-device-live-label")])
+
     def test_missing_assets_or_ambiguous_source_fail_without_guessing(self):
         del self.assets["app.qr"]
         with self.assertRaises(KeyError):
