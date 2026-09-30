@@ -199,7 +199,10 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
   构建队列（`process_build_queue_main.py`、`process_build_queue_services.py`、`queue_*.py`，
   10 个文件 28 处，组件名 `build-queue`，2026-09-30）；保留 `print` 的：转发子进程原始输出的 2 处、
   写入调用方注入的 `stderr` 参数的 5 处、经门面 `module.sys.stderr` 输出的 1 处。
-  下一族：`cloud_doc_backport_*`。
+  回写（`cloud_doc_backport_commands.py`、`cloud_doc_backport_orchestration.py`，组件名
+  `cloud-doc-backport`，2026-09-30）：只迁移 stderr 上的 21 处诊断行（报错、GATE FAIL、跳过提示）；
+  stdout 上的 `WROTE`/`BRANCH`/`APPLIED`/JSON 汇总是命令结果，PR 创建失败时的手工操作指引
+  （`PR_CREATE_FAILED`…`PR_BODY`）也是结果，均保留 `print`。
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。

@@ -175,6 +175,9 @@ from tools.cloud_doc_backport_render import (  # noqa: E402,F401
     markdown_template_sync_proposal_report,
     markdown_review_run_report,
 )
+from tools.utils.log import get_logger
+
+_ERR = get_logger("cloud-doc-backport", stream="stderr")
 
 
 
@@ -200,7 +203,7 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
         if section_title is None and source_path is not None and not args.no_auto_section:
             section_title, section_inferred_from = _auto_section_for_source(source_path, _read_text(source_path))
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     try:
         report = build_report(
@@ -219,7 +222,7 @@ def _run_diff(args: argparse.Namespace, raw_argv: list[str]) -> int:
             family_index=_family_index_from_args(args),
         )
     except RuntimeError as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     written = write_reports(report, out_dir)
     print(f"WROTE {written['json']}")
@@ -248,7 +251,7 @@ def _run_apply(
             command=["tools/cloud_doc_backport.py", *raw_argv],
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     out_dir = Path(args.out) if args.out else report_path.parent
     written = write_apply_report(apply_report, out_dir)
@@ -275,7 +278,7 @@ def _run_verify_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
             command=["tools/cloud_doc_backport.py", *raw_argv],
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     out_dir = Path(args.out) if args.out else report_path.parent
     written = write_verify_report(verify_report, out_dir)
@@ -389,7 +392,7 @@ def _run_review(args: argparse.Namespace, raw_argv: list[str]) -> int:
             command=command,
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
 
     run_written = write_review_run_report(run_report, out_dir)
@@ -412,7 +415,7 @@ def _run_open_pr(args: argparse.Namespace) -> int:
             gh_bin=str(args.gh_bin or "gh").strip() or "gh",
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True))
@@ -464,7 +467,7 @@ def _run_apply_source_table(args: argparse.Namespace, raw_argv: list[str]) -> in
             write=bool(args.tm_write),
         )
     except (OSError, RuntimeError) as exc:
-        print(f"cloud-doc-backport: {exc}", file=sys.stderr)
+        _ERR.error(f"cloud-doc-backport: {exc}")
         return 2
     report = {
         **apply_result,
