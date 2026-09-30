@@ -22,7 +22,13 @@ def payload(**updates):
             "website": "", **updates}
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class ProductVocTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_endpoint_is_opt_in_and_https_only(self):
         self.assertEqual("", normalize_endpoint(None))
         self.assertEqual("", normalize_endpoint(""))

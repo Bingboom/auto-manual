@@ -708,6 +708,8 @@ source-scoped locale validator is `manual_ir.external_languages`; it does
 not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
 
+Prepared Web admission: `tools/web_component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).
+
 - `tools/component_specs/authored_tables_html.py`: explicit authored-table admission and specification heading normalization; no filename/model guessing. `reference_table.py` owns text-reference semantics; `tools/web_reference_table_component.py` owns its Web projection. CSV page roles enter through `word_bundle_html.py`; projected warranty leads preserve their ordered paragraph prefix.
 
 `component_specs/operation_tables_html` binds explicitly normalized RST auto-resume and key-combination tables to the shared ComponentSpec registry. `manual_ir/whole_document_components` owns their flow claims; the target presentation contract owns chapter applicability.

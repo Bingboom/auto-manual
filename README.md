@@ -96,4 +96,6 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
 
+Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
+
 旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。

@@ -9,6 +9,7 @@ import unittest
 from tools import publish_branch_assembly, queue_outputs, release_contract
 from tools.web_language_release_evidence import RECEIPT_FILENAME, capture_projection
 from tests.web_language_evidence_fixture import write_projection_fixture
+from tests.prepared_admission_fixture import install_prepared_admission_fixture
 
 
 class WebLanguageReleaseIntegrationTests(unittest.TestCase):
@@ -63,6 +64,7 @@ class WebLanguageReleaseIntegrationTests(unittest.TestCase):
                 root, releases_root
             )
 
+            install_prepared_admission_fixture(self, built_md.parent, model="MODEL", language="fr")
             staged_md, staged_html = queue_outputs.stage_web_publish_assets_to_host_repo(
                 built_md_output_path=built_md,
                 built_html_dir=built_html,

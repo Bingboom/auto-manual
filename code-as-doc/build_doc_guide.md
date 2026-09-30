@@ -2323,6 +2323,10 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 
 按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
 
+## Prepared EU Web component admission
+
+Fresh EU/UK Web staging and sealing require a valid IR sidecar and the reviewed chapter/variant policy. Existing immutable evidence remains replayable. See [admission and bounded migration debt](dev/prepared_component_admission.md) before onboarding or rebuilding a legacy target.
+
 Authored Web tables declare their semantic role in source RST; the shared adapter preserves rich cells and blank LCD callouts. CSV symbols use the assembly plan role instead of filename guessing. See [authored text references](../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference).
 
 JE-3000C/EU 本地化操作章节与 JE-1000H/EU 英语章节通过现有目标展示 overlay 绑定共享操作表。自动恢复和组合键在 RST 导入时也生成 ComponentSpec，与 LCD 模式一起进入整本 IR；这不授予其它操作成品图的重排权限。存量发布迁移顺序与验收边界见 [EU shared-component rollout](dev/eu_shared_component_rollout_2026-09.md)。

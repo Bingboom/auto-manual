@@ -1938,6 +1938,10 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 
 Charging reference diagrams reuse the shared live-label component: captions occur once and note pills use HTML/CSS over artwork without baked text or white pills. Other portable power stations may reuse the component with their own verified device/interface artwork. See [the JE-2000 intake and regression record](../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md).
 
+## 欧规网页共享组件防回退
+
+新发布的欧规／英规候选包必须携带 IR，并符合已登记的章节、共享组件及变体要求。删除组件、旁车文件或扩大遗留例外会阻止发布。新增型号／语言要先登记适用章节；历史 App 整图和 LCD 降级不会算作已复用。历史发布仍可回放，详见[共享组件准入与迁移](../code-as-doc/dev/prepared_component_admission.md)。
+
 维护旧版网页表格时，在源 RST 中声明共享表格类型，重新构建整本；不要直接修改生成 HTML。纯文字 LCD 说明保留原编号（包括空编号），不自动补图标。多语质保开场可有多段，顺序和段落边界必须保留。定义见 [共享样式](../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
 
 旧 RST 手册的共享样式也须核验实际章节绑定。JE-3000C 欧规五语与 JE-1000H 欧规英语的操作表沿用同一组自动恢复、LCD 模式和组合键组件，原文和图片保持源稿所有权。代码修复不自动改变已发布冻结版本：需重新构建、核验并发布。进度与剩余范围见 [EU shared-component rollout](../code-as-doc/dev/eu_shared_component_rollout_2026-09.md)。

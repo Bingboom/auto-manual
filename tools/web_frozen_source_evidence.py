@@ -13,6 +13,7 @@ import shutil
 from typing import Any
 from urllib.parse import unquote, urlsplit
 
+from tools.web_component_admission import require_fresh_component_admission
 from tools.utils.path_utils import PathSegments
 from tools.web_language_release_evidence import (
     RECEIPT_FILENAME,
@@ -100,6 +101,9 @@ def seal_frozen_web_evidence(*, source_manifest_path: Path, source_root: Path,
     require_publishable_manual_ir(markdown_dir)
     manifest = _load_object(source_manifest_path, label="frozen Web source")
     target, inputs, root = _source(manifest, source_manifest_path, language)
+    require_fresh_component_admission(
+        markdown_dir, model=target["model"], region=target["region"], language=language,
+    )
     actual = _file_inventory(source_root, excluded_roots=(source_manifest_path,))
     if actual != inputs:
         raise RuntimeError("frozen Web source input files differ from manifest")
@@ -141,6 +145,9 @@ def _verify_frozen(receipt_path: Path, payload: dict, *, expected_sha256: str | 
     if receipt_path.name != RECEIPT_FILENAME or (not stored and html_dir is None):
         raise RuntimeError("frozen Web evidence requires canonical receipt and fresh HTML")
     require_publishable_manual_ir(markdown_dir)
+    require_fresh_component_admission(
+        markdown_dir, model=model, region=region, language=language, stored=stored,
+    )
     digest = _sha256(receipt_path)
     if expected_sha256 is not None and digest != _required_sha(expected_sha256, field="receipt_sha256", source=receipt_path):
         raise RuntimeError("frozen Web evidence SHA-256 mismatch")

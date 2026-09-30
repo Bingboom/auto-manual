@@ -8,6 +8,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+from tests.prepared_admission_fixture import install_prepared_admission_fixture
+
 from tools.web_frozen_source_evidence import (
     SOURCE_SCHEMA, seal_frozen_web_evidence, verify_release_evidence,
 )
@@ -20,7 +22,7 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
         self.source = self.root / 'source'
-        self.md = self.source / 'web' / 'nl'
+        self.md = self.source / 'web' / 'fr'
         self.md.mkdir(parents=True)
         (self.md / 'manual.md').write_text('# Handleiding\n<img src="assets/diagram.png">\n')
         (self.md / 'assets').mkdir()
@@ -29,13 +31,14 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         (self.md / 'index.md').write_text('# Index\n\n```{toctree}\nmanual\n```\n')
         self.html = self.root / 'html'
         self.html.mkdir()
-        (self.html / 'index.html').write_text('<html lang="nl">Handleiding</html>')
+        (self.html / 'index.html').write_text('<html lang="fr">Handleiding</html>')
+        install_prepared_admission_fixture(self, self.md, model="MODEL", language="fr")
         self.manifest = self.source / 'source_manifest.json'
         self.payload = {
             'schema_version': SOURCE_SCHEMA,
-            'target': {'model': 'MODEL', 'region': 'EU', 'languages': ['nl'], 'technical_version': 'git-source'},
+            'target': {'model': 'MODEL', 'region': 'EU', 'languages': ['fr'], 'technical_version': 'git-source'},
             'original_source': {'filename': 'source.ai', 'sha256': 'a' * 64},
-            'web_roots': {'nl': 'web/nl'},
+            'web_roots': {'fr': 'web/fr'},
             'inputs': list(_file_inventory(self.source)),
         }
         self.manifest.write_text(json.dumps(self.payload))
@@ -43,14 +46,14 @@ class FrozenWebEvidenceTests(unittest.TestCase):
     def seal(self):
         self.receipt = seal_frozen_web_evidence(
             source_manifest_path=self.manifest, source_root=self.source,
-            language='nl', markdown_dir=self.md, markdown_name='manual.md',
+            language='fr', markdown_dir=self.md, markdown_name='manual.md',
             html_dir=self.html, evidence_dir=self.root / 'evidence', git_ref='abc123',
         )
         return self.receipt
 
     def verify(self, **changes):
         args = dict(expected_sha256=hashlib.sha256(self.receipt.read_bytes()).hexdigest(),
-                    model='MODEL', region='EU', language='nl', version='git-source',
+                    model='MODEL', region='EU', language='fr', version='git-source',
                     git_ref='abc123', markdown_dir=self.md, markdown_name='manual.md',
                     html_dir=self.html)
         args.update(changes)
@@ -58,13 +61,13 @@ class FrozenWebEvidenceTests(unittest.TestCase):
 
     def test_exact_frozen_source_and_stored_copy_verify(self):
         self.seal()
-        self.assertEqual(self.verify().language, 'nl')
+        self.assertEqual(self.verify().language, 'fr')
         stored = self.root / 'stored'
         shutil.copytree(self.md, stored)
         shutil.copytree(self.receipt.parent, stored / 'evidence')
         (stored / 'publish_meta.json').write_text('{}')
         self.receipt = stored / 'evidence' / self.receipt.name
-        self.assertEqual(self.verify(markdown_dir=stored, html_dir=None, stored=True).language, 'nl')
+        self.assertEqual(self.verify(markdown_dir=stored, html_dir=None, stored=True).language, 'fr')
 
     def test_pending_manual_ir_is_rejected_by_frozen_seal_and_verify(self):
         (self.md / 'manual.ir.json').write_text(json.dumps({'metadata': {
@@ -77,7 +80,8 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         self.assertFalse((self.root / 'evidence').exists())
         # Verify independently refuses a self-consistent receipt whose source
         # inventory happens to include an unapproved manual IR.
-        with patch('tools.web_frozen_source_evidence.require_publishable_manual_ir'):
+        with (patch('tools.web_frozen_source_evidence.require_publishable_manual_ir'),
+              patch('tools.web_frozen_source_evidence.require_fresh_component_admission')):
             self.seal()
         with self.assertRaisesRegex(RuntimeError, 'pending source review'):
             self.verify()
@@ -116,7 +120,7 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             self.seal()
         (self.md / 'escape').unlink()
-        self.payload['web_roots']['nl'] = '../escape'
+        self.payload['web_roots']['fr'] = '../escape'
         self.manifest.write_text(json.dumps(self.payload))
         with self.assertRaisesRegex(RuntimeError, 'unsafe'):
             self.seal()
@@ -136,19 +140,19 @@ class FrozenWebEvidenceTests(unittest.TestCase):
     def test_real_assembler_preserves_single_locale_evidence(self):
         from tools.publish_branch_assembly import assemble_web_publish_branch
         releases = self.root / 'reports' / 'releases'
-        web = releases / 'MODEL' / 'EU' / 'nl' / 'versions' / 'git-source' / 'web'
+        web = releases / 'MODEL' / 'EU' / 'fr' / 'versions' / 'git-source' / 'web'
         shutil.copytree(self.md, web / 'md')
         shutil.copytree(self.html, web / 'html')
         receipt = seal_frozen_web_evidence(
             source_manifest_path=self.manifest, source_root=self.source,
-            language='nl', markdown_dir=web / 'md', markdown_name='manual.md',
+            language='fr', markdown_dir=web / 'md', markdown_name='manual.md',
             html_dir=web / 'html', evidence_dir=web / 'evidence', git_ref='abc123',
         )
-        meta = releases / 'MODEL' / 'EU' / 'nl' / 'latest' / 'web' / 'publish_meta.json'
+        meta = releases / 'MODEL' / 'EU' / 'fr' / 'latest' / 'web' / 'publish_meta.json'
         meta.parent.mkdir(parents=True)
         meta.write_text(json.dumps({
             'schema_version': 'auto-manual-web-publish/v1',
-            'model': 'MODEL', 'region': 'EU', 'lang': 'nl', 'version': 'git-source',
+            'model': 'MODEL', 'region': 'EU', 'lang': 'fr', 'version': 'git-source',
             'git_ref': 'abc123', 'built_at': '2026-09-28T00:00:00Z',
             'md_output_path': str(web / 'md' / 'manual.md'), 'html_dir': str(web / 'html'),
             'language_scope': 'single', 'legacy_default': True,
@@ -158,9 +162,15 @@ class FrozenWebEvidenceTests(unittest.TestCase):
         output = self.root / 'candidate' / 'docs' / 'publish'
         assemble_web_publish_branch(repo_root=self.root, releases_root=releases,
                                     output_dir=output, title='Manuals')
-        stored = output / 'sources' / 'web' / 'MODEL' / 'EU' / 'nl' / 'md'
+        stored = output / 'sources' / 'web' / 'MODEL' / 'EU' / 'fr' / 'md'
         self.assertEqual(json.loads((stored / 'publish_meta.json').read_text())['language_scope'], 'single')
         self.assertTrue((stored / 'evidence' / 'frozen_source_manifest.json').is_file())
         # Reassembling reads and validates the stored evidence, not only fresh inputs.
         assemble_web_publish_branch(repo_root=self.root, releases_root=releases,
                                     output_dir=output, title='Manuals')
+
+    def test_fresh_frozen_seal_rejects_missing_ir(self):
+        (self.md / "manual.ir.json").unlink()
+        with self.assertRaisesRegex(RuntimeError, "requires a real manual IR"):
+            self.seal()
+        self.assertFalse((self.root / "evidence").exists())

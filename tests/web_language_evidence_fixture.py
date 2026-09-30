@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import shutil
 import tempfile
+from unittest.mock import patch
 
 from tools.web_language_release_evidence import capture_projection, seal_release_evidence
 
@@ -89,3 +90,16 @@ def seal_language_evidence_fixture(
             shutil.copytree(seal_dir, evidence_dir)
             receipt = evidence_dir / receipt.name
     return receipt, _sha256(receipt)
+
+
+def isolate_shared_component_admission(test):
+    """Keep synthetic portal/envelope tests independent of IR applicability.
+
+    These tests exercise publication catalogs, withdrawal, analytics and
+    byte-level evidence, using deliberately minimal source documents. Actual
+    component admission is covered by test_web_component_admission and the
+    real-IR evidence/integration tests; do not use this helper in those tests.
+    Pending source review and all existing receipt checks stay active.
+    """
+    for consumer in ("web_language_release_evidence", "web_frozen_source_evidence"):
+        test.enterContext(patch(f"tools.{consumer}.require_fresh_component_admission"))
