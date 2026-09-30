@@ -22,6 +22,7 @@ def run_git(repo_root: Path, *args: str) -> str:
         cwd=repo_root,
         text=True,
         capture_output=True,
+        check=False,
     )
     if completed.returncode != 0:
         message = (completed.stderr or completed.stdout or "").strip()

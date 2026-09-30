@@ -277,6 +277,7 @@ class RealSphinxTests(unittest.TestCase):
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
                      "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
+                    check=False,
                 )
                 self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 page = (base / name / "workspace" / "deliverables" / "index.html").read_text(encoding="utf-8")

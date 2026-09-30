@@ -74,7 +74,7 @@ def collect_pin_drift(repo_root: Path) -> list[tuple[str, str, str, str]]:
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, ValueError) as exc:
-            raise RuntimeError(f"{path}: unreadable reference-layout contract: {exc}")
+            raise RuntimeError(f"{path}: unreadable reference-layout contract: {exc}") from exc
         identity = payload.get("source_identity")
         if payload.get("schema_version") == "approved-reference-layout-plan/v2":
             identity = (payload.get("identity") or {}).get("style")

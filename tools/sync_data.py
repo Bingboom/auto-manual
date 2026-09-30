@@ -187,11 +187,11 @@ def _parse_json_payload(raw: str) -> dict[str, Any]:
         raise RuntimeError("Lark CLI returned empty output")
     try:
         payload = json.loads(text)
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as exc:
         start = min((idx for idx in (text.find("{"), text.find("[")) if idx != -1), default=-1)
         end = max(text.rfind("}"), text.rfind("]"))
         if start == -1 or end < start:
-            raise RuntimeError("Lark CLI output is not valid JSON")
+            raise RuntimeError("Lark CLI output is not valid JSON") from exc
         payload = json.loads(text[start : end + 1])
     if not isinstance(payload, dict):
         raise RuntimeError("Lark CLI JSON payload must be an object")

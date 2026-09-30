@@ -76,7 +76,7 @@ class ManualIRSourceTests(unittest.TestCase):
             assert not any(name.startswith(("tools.idml", "idml")) for name in sys.modules)
         ''')
         result = subprocess.run([sys.executable, "-c", script], cwd=ROOT,
-                                capture_output=True, text=True)
+                                capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stdout + result.stderr)
 
     def test_source_payload_identity_hash_and_asset_order_without_file_reads(self) -> None:

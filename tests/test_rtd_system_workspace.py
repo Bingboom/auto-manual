@@ -704,6 +704,7 @@ class ShippedSystemWorkspaceTests(unittest.TestCase):
                     [sys.executable, "-m", "sphinx", "-q", "-b", "html",
                      "-D", "extensions=myst_parser,tools.rtd_portal", str(web), str(base / name)],
                     cwd=REPO, capture_output=True, text=True,
+                    check=False,
                 )
 
             result = build("good")

@@ -171,11 +171,11 @@ def _parse_lark_json_payload(text: str) -> dict[str, Any]:
     text = text.strip()
     try:
         payload = json.loads(text)
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as exc:
         start = min((idx for idx in (text.find("{"), text.find("[")) if idx != -1), default=-1)
         end = max(text.rfind("}"), text.rfind("]"))
         if start < 0 or end < start:
-            raise RuntimeError(f"lark-cli returned non-JSON output: {text}")
+            raise RuntimeError(f"lark-cli returned non-JSON output: {text}") from exc
         payload = json.loads(text[start : end + 1])
     if isinstance(payload, dict) and payload.get("ok") is False:
         raise RuntimeError(json.dumps(payload.get("error") or payload, ensure_ascii=False))

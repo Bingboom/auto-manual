@@ -26,7 +26,7 @@ BUNDLE_FIXTURE = ROOT / "tests" / "fixtures" / "idml_bundle"
 
 def _run(*argv: str) -> subprocess.CompletedProcess:
     cmd = [sys.executable, str(ROOT / "tools" / "export_idml.py"), *argv]
-    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
+    return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, check=False)
 
 
 # `--mode flow` derives its own output directory from (model, region, lang) --

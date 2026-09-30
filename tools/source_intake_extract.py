@@ -93,7 +93,7 @@ def pdf_to_text(path: str) -> str:
 
     if not shutil.which("pdftotext"):
         raise RuntimeError("pdftotext not found (install poppler) to read PDF spec sheets")
-    proc = subprocess.run(["pdftotext", "-layout", path, "-"], capture_output=True, text=True)
+    proc = subprocess.run(["pdftotext", "-layout", path, "-"], capture_output=True, text=True, check=False)
     text = proc.stdout or ""
     if not text.strip():
         raise RuntimeError(

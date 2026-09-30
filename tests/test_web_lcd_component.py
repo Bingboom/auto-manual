@@ -129,7 +129,7 @@ class WebLcdTests(unittest.TestCase):
             env = dict(os.environ)
             env.pop('PYTHONPATH', None)
             cmd = [sys.executable, '-I', '-m', 'sphinx', '-W', '-b', 'html', str(staged), str(root / 'html')]
-            built = subprocess.run(cmd, cwd=root, env=env, text=True, capture_output=True)
+            built = subprocess.run(cmd, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertEqual(built.returncode, 0, built.stdout + built.stderr)
             soup = BeautifulSoup((root / 'html/index.html').read_text(), 'html.parser')
             table = soup.select_one('figure.hb-lcd-table-composition')
@@ -139,7 +139,7 @@ class WebLcdTests(unittest.TestCase):
             self.assertEqual(len(table.select('.line')), 2)
             self.assertEqual(table.strong.text, 'Connected')
             (staged / 'index.md').write_text(source.replace('Disconnected.\n', 'Disconnected. | Extra\n'))
-            bad = subprocess.run(cmd, cwd=root, env=env, text=True, capture_output=True)
+            bad = subprocess.run(cmd, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertNotEqual(bad.returncode, 0)
             self.assertIn('requires four cells', bad.stdout + bad.stderr)
 

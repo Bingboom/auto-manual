@@ -59,6 +59,7 @@ def _run(cmd: Sequence[str], *, cwd: Path | None = None, timeout: int = 60) -> t
         capture_output=True,
         text=True,
         timeout=timeout,
+        check=False,
     )
     return completed.returncode, completed.stdout.strip(), completed.stderr.strip()
 
