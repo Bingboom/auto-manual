@@ -517,6 +517,9 @@ Quality and release logic should follow concern-specific modules instead of drif
   - `sync` (M2): idempotent machine-column upsert of the ops catalog sheet 「说明书目录」 from `publish_manifest.json` keyed by (model, region, lang); human columns are never written on existing rows; dry-run by default, `--write` applies per row with same-row readback and per-row failure isolation
   - `reconcile` (M1): read-only manifest ↔ ops sheet ↔ `Document_link.HTML_link` three-face cross-check; differences classified against the committed whitelist `data/ops_catalog_reconcile_whitelist.json` (new diff → exit 1, known diff → listed, exit 0)
   - contract in [`web_publish_pipeline.md`](web_publish_pipeline.md) §2.3
+- [`tools/utils/log.py`](../../tools/utils/log.py)
+  - console lines for unattended queue runs: `get_logger(name)` / `get_logger(name, stream="stderr")` write each message verbatim to the stream current at emit time, filtered by `AUTO_MANUAL_LOG_LEVEL`
+  - migrated so far: the review-start queue (`tools/process_review_start_queue*.py`); output relayed from child processes stays a plain `print`
 
 ## 6. Cloud-Doc Backport Modules
 

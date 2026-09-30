@@ -172,11 +172,16 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 **目标。** 输出格式不变，但能按级别过滤、能统一重定向；每处宽泛的异常捕获都有明确分类；
 `build.py` 构造的每条子命令都有测试证明被调用脚本能解析。
 
-- [ ] **CQ-5.1 引入日志工具模块。** 新增 `tools/utils/log.py`，对 `logging` 做一层很薄的封装，
+- [x] **CQ-5.1 引入日志工具模块。** 新增 `tools/utils/log.py`，对 `logging` 做一层很薄的封装，
   沿用现有的 `[prefix] LEVEL message` 格式（现有依赖 stdout 断言的测试保持通过）；
   支持通过 `AUTO_MANUAL_LOG_LEVEL` 设置级别。纳入 mypy 严格范围（`tools.utils.*`）。
+  （#LOG_PR，2026-09-30；消息原样输出，级别和输出流由调用处选择：`get_logger(name)` 写 stdout，
+  `get_logger(name, stream="stderr")` 对应原来的 `print(..., file=sys.stderr)`；输出流在写入时才查找，
+  `redirect_stdout` 照常捕获）
 - [ ] **CQ-5.2 先迁移无人值守路径。** `process_build_queue`、`queue_*`、`cloud_doc_backport_*`
   的 `print` 改用 `log`；每个 PR 迁一族，输出文本逐字不变。
+  进度：review-start 队列（`process_review_start_queue*.py`，12 处；2 处转发 git 原始输出的保留 `print`）
+  随 CQ-5.1 一起迁移（#LOG_PR）。
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。

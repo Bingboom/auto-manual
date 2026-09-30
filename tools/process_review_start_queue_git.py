@@ -14,6 +14,9 @@ from urllib import request as urllib_request
 from tools.review_support import review_dir_for_target
 from tools.utils.path_utils import PathSegments
 from tools.utils.targets import resolve_output_lang
+from tools.utils.log import get_logger
+
+_LOG = get_logger("review-start")
 
 
 def format_command(cmd: list[str]) -> str:
@@ -22,7 +25,7 @@ def format_command(cmd: list[str]) -> str:
 
 def run_command(cmd: list[str], *, root: Path, cwd: Path | None = None) -> str:
     resolved_cwd = cwd or root
-    print(f"[review-start] {format_command(cmd)}")
+    _LOG.info(f"[review-start] {format_command(cmd)}")
     proc = subprocess.run(
         cmd,
         cwd=str(resolved_cwd),
