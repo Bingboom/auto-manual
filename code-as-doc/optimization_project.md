@@ -909,7 +909,7 @@ Exit criteria:
 
 ### Workstream Y: Code Quality And Iterability
 
-Status: proposed
+Status: active — phase 1 done (#1318–#1322 plus follow-ups, 2026-09-29/30); phase 2 (test seams, logging and subprocess contracts, validator rewrites) next
 
 PR-level breakdown and the authoritative checklist:
 [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
