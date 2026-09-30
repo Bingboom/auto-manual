@@ -2332,3 +2332,9 @@ Authored Web tables declare their semantic role in source RST; the shared adapte
 JE-3000C/EU 本地化操作章节与 JE-1000H/EU 英语章节通过现有目标展示 overlay 绑定共享操作表。自动恢复和组合键在 RST 导入时也生成 ComponentSpec，与 LCD 模式一起进入整本 IR；这不授予其它操作成品图的重排权限。存量发布迁移顺序与验收边界见 [EU shared-component rollout](dev/eu_shared_component_rollout_2026-09.md)。
 
 新增语言的原生便携手册须通过[共享组件准入](dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)：按稳定章节 ID 检查 LCD、自动恢复、组合键、规格、质保、App 等组件的实际绑定，不能只凭 `manual-ir/v2` 或组件数量声明认定复用完成。新 PDF 导入、冷重放、发布封存和发布证据核验会阻止漏绑定及组件外的普通表格/图片。构建生成的 `shared_component_coverage` 记录覆盖情况；已发布冻结版需逐语迁移并重新发布才能更新样式。
+
+JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引用，并通过
+`HB-TABLE-LCD-ICON` 保留编号、状态分行和加粗。发布门禁已取消六个纯文字表例外，
+改为要求真实 LCD 组件；缺图不能再静默退回纯文字。素材记录见
+[`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
+连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。

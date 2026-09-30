@@ -1951,3 +1951,9 @@ Charging reference diagrams reuse the shared live-label component: captions occu
 新增原生 PDF 语言沿用同一组共享组件；译文、型号参数和对应地区的图片由源稿决定，表格、质保卡片、操作区和 App 的版式由共享组件负责。现在导入/冷重放与发布封存会检查章节所需组件是否真的存在。报错 `shared component coverage failed` 时，根据提示的章节和组件 ID 补绑定，不能用普通表格或截图绕过。密集标注整图保留已批准的引用图方式。
 
 共享代码更新后，旧的冻结手册不会自动迁移。每次修复需列出受影响语言、生成新冻结版本、检查桌面/手机并重新发布；验收应打开正式 RTD 路由。检查通过表示组件覆盖完整，仍需核验译文、参数、地区图片和实际版面。技术边界见[共享组件准入](../code-as-doc/dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)。
+
+JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引用，并通过
+`HB-TABLE-LCD-ICON` 保留编号、状态分行和加粗。发布门禁已取消六个纯文字表例外，
+改为要求真实 LCD 组件；缺图不能再静默退回纯文字。素材记录见
+[`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
+连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。
