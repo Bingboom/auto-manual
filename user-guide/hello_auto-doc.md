@@ -1939,3 +1939,9 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 Charging reference diagrams reuse the shared live-label component: captions occur once and note pills use HTML/CSS over artwork without baked text or white pills. Other portable power stations may reuse the component with their own verified device/interface artwork. See [the JE-2000 intake and regression record](../code-as-doc/dev/je2000_eu_new_locales_ir_adapters_2026-09.md).
 
 旧 RST 手册的共享样式也须核验实际章节绑定。JE-3000C 欧规五语与 JE-1000H 欧规英语的操作表沿用同一组自动恢复、LCD 模式和组合键组件，原文和图片保持源稿所有权。代码修复不自动改变已发布冻结版本：需重新构建、核验并发布。进度与剩余范围见 [EU shared-component rollout](../code-as-doc/dev/eu_shared_component_rollout_2026-09.md)。
+
+### 新增语言的共享样式检查
+
+新增原生 PDF 语言沿用同一组共享组件；译文、型号参数和对应地区的图片由源稿决定，表格、质保卡片、操作区和 App 的版式由共享组件负责。现在导入/冷重放与发布封存会检查章节所需组件是否真的存在。报错 `shared component coverage failed` 时，根据提示的章节和组件 ID 补绑定，不能用普通表格或截图绕过。密集标注整图保留已批准的引用图方式。
+
+共享代码更新后，旧的冻结手册不会自动迁移。每次修复需列出受影响语言、生成新冻结版本、检查桌面/手机并重新发布；验收应打开正式 RTD 路由。检查通过表示组件覆盖完整，仍需核验译文、参数、地区图片和实际版面。技术边界见[共享组件准入](../code-as-doc/dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)。
