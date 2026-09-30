@@ -169,9 +169,6 @@ from tools.queue_query_languages import (
     SUPPORTED_LANGS as _SUPPORTED_LANGS,
     canonical_query_lang as _canonical_query_lang,
 )
-from tools.utils.log import get_logger
-
-_LOG = get_logger("build-queue")
 
 _MARKET_ALIASES = {
     "欧规": "EU",
@@ -1185,7 +1182,7 @@ def run_queue_query(args: argparse.Namespace, *, config_path=None) -> None:
     cfg = load_config(config_path or Path(getattr(args, "config", "")))
     rows = collect_queue_query_rows(cfg, queue_scope=resolved_args.queue_scope)
     query_result = query_queue_rows(resolved_args, rows)
-    _LOG.info(render_queue_query_rows(query_result.rows, as_json=resolved_args.json, query_result=query_result))
+    print(render_queue_query_rows(query_result.rows, as_json=resolved_args.json, query_result=query_result))
 
 
 if __name__ == "__main__":

@@ -14,9 +14,6 @@ from tools.queue_query import (
     filter_queue_query_rows,
 )
 from tools.queue_delivery import queue_delivery_contract_for_row, serialize_queue_row
-from tools.utils.log import get_logger
-
-_LOG = get_logger("build-queue")
 
 
 _STATUS_QUERY_RE = (
@@ -574,7 +571,7 @@ def run_queue_resolve_action(args: argparse.Namespace, *, config_path) -> None:
     cfg = load_config(config_path)
     rows = collect_queue_query_rows(cfg, queue_scope=getattr(args, "queue_scope", "all"))
     resolution = resolve_queue_action(args, rows)
-    _LOG.info(render_queue_action_resolution(resolution, as_json=bool(getattr(args, "json", False))))
+    print(render_queue_action_resolution(resolution, as_json=bool(getattr(args, "json", False))))
 
 
 if __name__ == "__main__":
