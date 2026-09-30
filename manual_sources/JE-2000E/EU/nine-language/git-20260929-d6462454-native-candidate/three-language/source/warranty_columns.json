@@ -1,0 +1,621 @@
+{
+  "schema_version": "frozen-pdf-positioned-source/v1",
+  "source_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
+  "locales": {
+    "pl": {
+      "physical_page": 176,
+      "standard_years": 3,
+      "extension_years": 2,
+      "blocks": {
+        "title": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "raw_text": "GWARANCJA",
+          "text": "GWARANCJA"
+        },
+        "scope": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            54,
+            349,
+            81
+          ],
+          "raw_text": "Niniejsza gwarancja dotyczy wyłącznie klientów, którzy dokonali zakupu na oficjalnej stronie Jackery, na \nplatformach zewnętrznych marki Jackery lub u lokalnych autoryzowanych sprzedawców.",
+          "text": "Niniejsza gwarancja dotyczy wyłącznie klientów, którzy dokonali zakupu na oficjalnej stronie Jackery, na platformach zewnętrznych marki Jackery lub u lokalnych autoryzowanych sprzedawców."
+        },
+        "local_law_note": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            81,
+            349,
+            98
+          ],
+          "raw_text": "*Okres i szczegóły gwarancji mogą się różnić w zależności od lokalnych przepisów prawa, regulacji oraz \nautoryzowanych sprzedawców.",
+          "text": "*Okres i szczegóły gwarancji mogą się różnić w zależności od lokalnych przepisów prawa, regulacji oraz autoryzowanych sprzedawców."
+        },
+        "limited_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            98,
+            349,
+            112
+          ],
+          "raw_text": "Ograniczona gwarancja",
+          "text": "Ograniczona gwarancja"
+        },
+        "limited_body": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            112,
+            349,
+            161
+          ],
+          "raw_text": "Jackery gwarantuje pierwotnemu nabywcy konsumenckiemu, że produkt Jackery będzie wolny od wad \nwykonania i materiałowych przy normalnym użytkowaniu konsumenckim w odpowiednim okresie \ngwarancyjnym określonym w sekcji „Okres gwarancji” poniżej, z zastrzeżeniem wyłączeń określonych poniżej.\nNiniejsze oświadczenie gwarancyjne określa wszystkie i jedyne zobowiązania gwarancyjne Jackery. Nie \nprzyjmujemy ani nie upoważniamy żadnej osoby do przyjmowania w naszym imieniu jakiejkolwiek innej \nodpowiedzialności w związku ze sprzedażą naszych produktów.",
+          "text": "Jackery gwarantuje pierwotnemu nabywcy konsumenckiemu, że produkt Jackery będzie wolny od wad wykonania i materiałowych przy normalnym użytkowaniu konsumenckim w odpowiednim okresie gwarancyjnym określonym w sekcji „Okres gwarancji” poniżej, z zastrzeżeniem wyłączeń określonych poniżej. Niniejsze oświadczenie gwarancyjne określa wszystkie i jedyne zobowiązania gwarancyjne Jackery. Nie przyjmujemy ani nie upoważniamy żadnej osoby do przyjmowania w naszym imieniu jakiejkolwiek innej odpowiedzialności w związku ze sprzedażą naszych produktów."
+        },
+        "period_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            168,
+            349,
+            183
+          ],
+          "raw_text": "Okres gwarancji",
+          "text": "Okres gwarancji"
+        },
+        "standard_heading": {
+          "physical_page": 176,
+          "bbox": [
+            30,
+            183,
+            214,
+            214
+          ],
+          "raw_text": "3  \n LATA\n Gwarancja standardowa",
+          "text": "3 LATA Gwarancja standardowa"
+        },
+        "standard_body": {
+          "physical_page": 176,
+          "bbox": [
+            30,
+            214,
+            214,
+            260
+          ],
+          "raw_text": "Standardowy okres gwarancji dla urządzenia Jackery Explorer \n2000 Plus wynosi 36 miesięcy. W każdym przypadku okres \ngwarancji liczony jest od daty zakupu przez pierwotnego \nnabywcę konsumenckiego. W celu ustalenia daty rozpoczęcia \nokresu gwarancyjnego wymagany jest paragon lub inny \nwiarygodny dowód zakupu od pierwszego nabywcy.",
+          "text": "Standardowy okres gwarancji dla urządzenia Jackery Explorer 2000 Plus wynosi 36 miesięcy. W każdym przypadku okres gwarancji liczony jest od daty zakupu przez pierwotnego nabywcę konsumenckiego. W celu ustalenia daty rozpoczęcia okresu gwarancyjnego wymagany jest paragon lub inny wiarygodny dowód zakupu od pierwszego nabywcy."
+        },
+        "extension_heading": {
+          "physical_page": 176,
+          "bbox": [
+            215,
+            183,
+            349,
+            214
+          ],
+          "raw_text": "2  \n LATA\nPrzedłużona gwarancja",
+          "text": "2 LATA Przedłużona gwarancja"
+        },
+        "extension_body": {
+          "physical_page": 176,
+          "bbox": [
+            215,
+            214,
+            349,
+            260
+          ],
+          "raw_text": "Aby aktywować przedłużenie gwarancji, \nnależy zarejestrować produkt online lub \nskontaktować się z naszym zespołem \nobsługi klienta pod adresem hello.eu@-\njackery.com w celu przedłużenia \nstandardowego okresu gwarancji.",
+          "text": "Aby aktywować przedłużenie gwarancji, należy zarejestrować produkt online lub skontaktować się z naszym zespołem obsługi klienta pod adresem hello.eu@- jackery.com w celu przedłużenia standardowego okresu gwarancji."
+        },
+        "exchange_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            267,
+            349,
+            284
+          ],
+          "raw_text": "Wymiana",
+          "text": "Wymiana"
+        },
+        "exchange_body": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            284,
+            349,
+            311
+          ],
+          "raw_text": "Jackery wymieni na swój koszt każdy produkt Jackery, który nie będzie działać w odpowiednim okresie \ngwarancyjnym z powodu wady wykonania lub materiałowej. Produkt zastępczy przejmuje pozostały okres \ngwarancji pierwotnego produktu.",
+          "text": "Jackery wymieni na swój koszt każdy produkt Jackery, który nie będzie działać w odpowiednim okresie gwarancyjnym z powodu wady wykonania lub materiałowej. Produkt zastępczy przejmuje pozostały okres gwarancji pierwotnego produktu."
+        },
+        "buyer_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            320,
+            349,
+            337
+          ],
+          "raw_text": "Ograniczenie do pierwotnego nabywcy konsumenckiego",
+          "text": "Ograniczenie do pierwotnego nabywcy konsumenckiego"
+        },
+        "buyer_body": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            337,
+            349,
+            359
+          ],
+          "raw_text": "Gwarancja na produkt Jackery jest ograniczona do pierwotnego nabywcy konsumenckiego i nie podlega \nprzeniesieniu na żadnego kolejnego właściciela.",
+          "text": "Gwarancja na produkt Jackery jest ograniczona do pierwotnego nabywcy konsumenckiego i nie podlega przeniesieniu na żadnego kolejnego właściciela."
+        },
+        "exclusions_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            366,
+            349,
+            382
+          ],
+          "raw_text": "Wyłączenia",
+          "text": "Wyłączenia"
+        },
+        "exclusions_body": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            382,
+            349,
+            454
+          ],
+          "raw_text": "Gwarancja Jackery nie obejmuje:\n• Jakiegokolwiek produktu, który był niewłaściwie użytkowany, używany niezgodnie z przeznaczeniem, \nmodyfikowany, uszkodzony w wyniku wypadku lub używany do celów innych niż normalne użytkowanie \nkonsumenckie zgodnie z aktualną dokumentacją produktową Jackery.\n• Prób naprawy podejmowanych przez osoby inne niż autoryzowany serwis.\n• Jakiegokolwiek produktu zakupionego za pośrednictwem internetowego serwisu aukcyjnego.\n• Gwarancja Jackery nie obejmuje ogniwa baterii, chyba że ogniwo zostanie w pełni naładowane przez \nużytkownika w ciągu siedmiu dni od zakupu produktu oraz co najmniej raz na 6 miesięcy w późniejszym \nokresie.",
+          "text": "Gwarancja Jackery nie obejmuje: • Jakiegokolwiek produktu, który był niewłaściwie użytkowany, używany niezgodnie z przeznaczeniem, modyfikowany, uszkodzony w wyniku wypadku lub używany do celów innych niż normalne użytkowanie konsumenckie zgodnie z aktualną dokumentacją produktową Jackery. • Prób naprawy podejmowanych przez osoby inne niż autoryzowany serwis. • Jakiegokolwiek produktu zakupionego za pośrednictwem internetowego serwisu aukcyjnego. • Gwarancja Jackery nie obejmuje ogniwa baterii, chyba że ogniwo zostanie w pełni naładowane przez użytkownika w ciągu siedmiu dni od zakupu produktu oraz co najmniej raz na 6 miesięcy w późniejszym okresie."
+        },
+        "interpretation_heading": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            459,
+            349,
+            476
+          ],
+          "raw_text": "Prawo do interpretacji",
+          "text": "Prawo do interpretacji"
+        },
+        "interpretation_body": {
+          "physical_page": 176,
+          "bbox": [
+            25,
+            476,
+            349,
+            496
+          ],
+          "raw_text": "Jackery zastrzega sobie prawo do ostatecznej interpretacji powyższej polityki posprzedażowej.",
+          "text": "Jackery zastrzega sobie prawo do ostatecznej interpretacji powyższej polityki posprzedażowej."
+        }
+      }
+    },
+    "pt": {
+      "physical_page": 138,
+      "standard_years": 3,
+      "extension_years": 2,
+      "blocks": {
+        "title": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "raw_text": "GARANTIA",
+          "text": "GARANTIA"
+        },
+        "scope": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            54,
+            349,
+            81
+          ],
+          "raw_text": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em \nplataformas de terceiros da marca Jackery ou com revendedores locais autorizados.",
+          "text": "Esta garantia aplica-se somente a clientes que compram no site oficial da Jackery, em plataformas de terceiros da marca Jackery ou com revendedores locais autorizados."
+        },
+        "local_law_note": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            81,
+            349,
+            98
+          ],
+          "raw_text": "*O período e os detalhes da garantia podem variar de acordo com as leis, regulamentações locais e \nrevendedores autorizados.",
+          "text": "*O período e os detalhes da garantia podem variar de acordo com as leis, regulamentações locais e revendedores autorizados."
+        },
+        "limited_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            98,
+            349,
+            112
+          ],
+          "raw_text": "Garantia Limitada",
+          "text": "Garantia Limitada"
+        },
+        "limited_body": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            112,
+            349,
+            161
+          ],
+          "raw_text": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de \nfabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado \nna seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo.\nEsta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não \nassumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra \nresponsabilidade relacionada à venda de nossos produtos.",
+          "text": "A Jackery garante ao comprador consumidor original que o produto Jackery estará livre de defeitos de fabricação e material sob uso normal do consumidor durante o período de garantia aplicável identificado na seção \"Período de Garantia\" abaixo, sujeito às exclusões estabelecidas abaixo. Esta declaração de garantia estabelece a obrigação de garantia total e exclusiva da Jackery. Não assumiremos, nem autorizaremos qualquer pessoa a assumir em nosso nome, qualquer outra responsabilidade relacionada à venda de nossos produtos."
+        },
+        "period_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            168,
+            349,
+            183
+          ],
+          "raw_text": "Período de Garantia",
+          "text": "Período de Garantia"
+        },
+        "standard_heading": {
+          "physical_page": 138,
+          "bbox": [
+            30,
+            183,
+            214,
+            214
+          ],
+          "raw_text": "3  \n ANOS\n Garantia Padrão",
+          "text": "3 ANOS Garantia Padrão"
+        },
+        "standard_body": {
+          "physical_page": 138,
+          "bbox": [
+            30,
+            214,
+            214,
+            260
+          ],
+          "raw_text": "O período de garantia padrão do Jackery Explorer 2000 Plus \né de 36 meses. Em todos os casos, o período de garantia é \ncontado a partir da data de compra pelo comprador \nconsumidor original. O comprovante de compra do primeiro \ncomprador consumidor, ou outra prova documental razoável, \né necessário para estabelecer a data de início do período de \ngarantia.",
+          "text": "O período de garantia padrão do Jackery Explorer 2000 Plus é de 36 meses. Em todos os casos, o período de garantia é contado a partir da data de compra pelo comprador consumidor original. O comprovante de compra do primeiro comprador consumidor, ou outra prova documental razoável, é necessário para estabelecer a data de início do período de garantia."
+        },
+        "extension_heading": {
+          "physical_page": 138,
+          "bbox": [
+            215,
+            183,
+            349,
+            214
+          ],
+          "raw_text": "2  \n ANOS\nGarantia Estendida",
+          "text": "2 ANOS Garantia Estendida"
+        },
+        "extension_body": {
+          "physical_page": 138,
+          "bbox": [
+            215,
+            214,
+            349,
+            260
+          ],
+          "raw_text": "Para ativar a extensão da garantia, você \ndeve registrar seu produto online ou \nentrar em contato com nossa equipe de \natendimento ao cliente em \nhello.eu@jackery.com para estender o \nperíodo de garantia padrão.",
+          "text": "Para ativar a extensão da garantia, você deve registrar seu produto online ou entrar em contato com nossa equipe de atendimento ao cliente em hello.eu@jackery.com para estender o período de garantia padrão."
+        },
+        "exchange_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            267,
+            349,
+            284
+          ],
+          "raw_text": "Troca",
+          "text": "Troca"
+        },
+        "exchange_body": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            284,
+            349,
+            311
+          ],
+          "raw_text": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de \nfuncionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. \nUm produto substituto assume a garantia restante do produto original.",
+          "text": "A Jackery substituirá, às suas próprias custas, qualquer produto Jackery que apresente falha de funcionamento durante o período de garantia aplicável devido a defeito de fabricação ou de material. Um produto substituto assume a garantia restante do produto original."
+        },
+        "buyer_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            320,
+            349,
+            337
+          ],
+          "raw_text": "Limitado ao comprador consumidor original",
+          "text": "Limitado ao comprador consumidor original"
+        },
+        "buyer_body": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            337,
+            349,
+            359
+          ],
+          "raw_text": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a \nqualquer proprietário subsequente.",
+          "text": "A garantia dos produtos Jackery é limitada ao comprador consumidor original e não é transferível a qualquer proprietário subsequente."
+        },
+        "exclusions_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            366,
+            349,
+            382
+          ],
+          "raw_text": "Exclusões",
+          "text": "Exclusões"
+        },
+        "exclusions_body": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            382,
+            349,
+            454
+          ],
+          "raw_text": "A garantia da Jackery não se aplica a:\n• Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, \nmodificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal \ndo consumidor, conforme autorizado na documentação atual do produto da Jackery.\n• Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada.\n• Qualquer produto adquirido por meio de leilão online.\n• A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada \npor você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a \ncada 6 meses.",
+          "text": "A garantia da Jackery não se aplica a: • Qualquer produto que tenha sido utilizado de forma inadequada, submetido a uso abusivo, modificado, danificado acidentalmente ou usado para qualquer finalidade que não seja o uso normal do consumidor, conforme autorizado na documentação atual do produto da Jackery. • Tentativa de reparo por qualquer pessoa que não seja uma assistência autorizada. • Qualquer produto adquirido por meio de leilão online. • A garantia da Jackery não se aplica à célula da bateria, a menos que ela seja totalmente carregada por você dentro de sete dias após a compra do produto e, posteriormente, pelo menos uma vez a cada 6 meses."
+        },
+        "interpretation_heading": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            459,
+            349,
+            476
+          ],
+          "raw_text": "Direitos de interpretação",
+          "text": "Direitos de interpretação"
+        },
+        "interpretation_body": {
+          "physical_page": 138,
+          "bbox": [
+            25,
+            476,
+            349,
+            496
+          ],
+          "raw_text": "A Jackery reserva-se o direito de interpretação final da política de pós-venda acima.",
+          "text": "A Jackery reserva-se o direito de interpretação final da política de pós-venda acima."
+        }
+      }
+    },
+    "nl": {
+      "physical_page": 157,
+      "standard_years": 3,
+      "extension_years": 2,
+      "blocks": {
+        "title": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            27,
+            349,
+            50
+          ],
+          "raw_text": "GARANTIE",
+          "text": "GARANTIE"
+        },
+        "scope": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            54,
+            349,
+            81
+          ],
+          "raw_text": "Deze garantie geldt alleen voor klanten die aankopen bij de officiële Jackery-website, \nJackery-merkplatformen van derden of lokale erkende dealers.",
+          "text": "Deze garantie geldt alleen voor klanten die aankopen bij de officiële Jackery-website, Jackery-merkplatformen van derden of lokale erkende dealers."
+        },
+        "local_law_note": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            81,
+            349,
+            98
+          ],
+          "raw_text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers.",
+          "text": "*De garantieperiode en details kunnen variëren volgens lokale wetten, voorschriften en erkende dealers."
+        },
+        "limited_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            98,
+            349,
+            112
+          ],
+          "raw_text": "Beperkte garantie",
+          "text": "Beperkte garantie"
+        },
+        "limited_body": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            112,
+            349,
+            161
+          ],
+          "raw_text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en materiaalfouten \nbij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de sectie 'Garantieperiode' \nhieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen.\nIn deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij aanvaarden \ngeen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakelijkheid te aanvaarden in \nverband met de verkoop van onze producten.",
+          "text": "Jackery garandeert aan de oorspronkelijke consument-koper dat het Jackery-product vrij is van fabricage- en materiaalfouten bij normaal consumentengebruik gedurende de toepasselijke garantieperiode, zoals vermeld in de sectie 'Garantieperiode' hieronder, onder voorbehoud van de hieronder uiteengezette uitsluitingen. In deze garantieverklaring worden de volledige en uitsluitende garantieverplichtingen van Jackery uiteengezet. Wij aanvaarden geen andere aansprakelijkheid, noch machtigen wij iemand om namens ons enige andere aansprakelijkheid te aanvaarden in verband met de verkoop van onze producten."
+        },
+        "period_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            168,
+            349,
+            183
+          ],
+          "raw_text": "Garantieperiode",
+          "text": "Garantieperiode"
+        },
+        "standard_heading": {
+          "physical_page": 157,
+          "bbox": [
+            30,
+            183,
+            214,
+            214
+          ],
+          "raw_text": "3  \n JAAR\n Standaardgarantie",
+          "text": "3 JAAR Standaardgarantie"
+        },
+        "standard_body": {
+          "physical_page": 157,
+          "bbox": [
+            30,
+            214,
+            214,
+            260
+          ],
+          "raw_text": "De standaard garantieperiode voor de Jackery Explorer 2000 \nPlus is 36 maanden. In alle gevallen gaat de garantieperiode \nin op de datum van aankoop door de oorspronkelijke \nconsument-koper. Het aankoopbewijs van de eerste \nconsument-koper, of ander redelijk documentair bewijs, is \nvereist om de startdatum van de garantieperiode vast te \nstellen.",
+          "text": "De standaard garantieperiode voor de Jackery Explorer 2000 Plus is 36 maanden. In alle gevallen gaat de garantieperiode in op de datum van aankoop door de oorspronkelijke consument-koper. Het aankoopbewijs van de eerste consument-koper, of ander redelijk documentair bewijs, is vereist om de startdatum van de garantieperiode vast te stellen."
+        },
+        "extension_heading": {
+          "physical_page": 157,
+          "bbox": [
+            215,
+            183,
+            349,
+            214
+          ],
+          "raw_text": "2  \n JAAR\nVerlengde garantie",
+          "text": "2 JAAR Verlengde garantie"
+        },
+        "extension_body": {
+          "physical_page": 157,
+          "bbox": [
+            215,
+            214,
+            349,
+            260
+          ],
+          "raw_text": "Om de garantieverlenging te activeren, \nmoet u uw product online registreren of \ncontact opnemen met onze klantenser-\nvice via hello.eu@jackery.com om de \nstandaardgarantieperiode te verlengen.",
+          "text": "Om de garantieverlenging te activeren, moet u uw product online registreren of contact opnemen met onze klantenser- vice via hello.eu@jackery.com om de standaardgarantieperiode te verlengen."
+        },
+        "exchange_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            267,
+            349,
+            284
+          ],
+          "raw_text": "Ruilen",
+          "text": "Ruilen"
+        },
+        "exchange_body": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            284,
+            349,
+            311
+          ],
+          "raw_text": "Jackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke \ngarantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend \nproduct neemt de resterende garantie van het originele product over.",
+          "text": "Jackery vervangt (op kosten van Jackery) elk Jackery-product dat gedurende de toepasselijke garantieperiode niet functioneert als gevolg van een fabricage- of materiaalfout. Een vervangend product neemt de resterende garantie van het originele product over."
+        },
+        "buyer_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            320,
+            349,
+            337
+          ],
+          "raw_text": "Beperkt tot de oorspronkelijke koper",
+          "text": "Beperkt tot de oorspronkelijke koper"
+        },
+        "buyer_body": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            337,
+            349,
+            359
+          ],
+          "raw_text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet \noverdraagbaar aan een volgende eigenaar.",
+          "text": "De garantie op Jackery's product is beperkt tot de oorspronkelijke consument-koper en is niet overdraagbaar aan een volgende eigenaar."
+        },
+        "exclusions_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            366,
+            349,
+            382
+          ],
+          "raw_text": "Uitsluitingen",
+          "text": "Uitsluitingen"
+        },
+        "exclusions_body": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            382,
+            349,
+            454
+          ],
+          "raw_text": "De garantie van Jackery is niet van toepassing op:\n• Elk product met onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal \nconsumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery.\n• Een poging tot reparatie door iemand anders dan een erkend servicecentrum.\n• Elk product dat via een online veilinghuis is gekocht.\n• De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven \ndagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden.",
+          "text": "De garantie van Jackery is niet van toepassing op: • Elk product met onjuist gebruik, misbruik, wijziging, ongeluksschade of gebruik anders dan normaal consumentengebruik, zoals toegestaan in de huidige productliteratuur van Jackery. • Een poging tot reparatie door iemand anders dan een erkend servicecentrum. • Elk product dat via een online veilinghuis is gekocht. • De garantie van Jackery is niet van toepassing op de batterijcel, tenzij u de batterijcel binnen zeven dagen na aankoop van het product volledig oplaadt en daarna ten minste één keer per zes maanden."
+        },
+        "interpretation_heading": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            459,
+            349,
+            476
+          ],
+          "raw_text": "Interpretatierechten",
+          "text": "Interpretatierechten"
+        },
+        "interpretation_body": {
+          "physical_page": 157,
+          "bbox": [
+            25,
+            476,
+            349,
+            496
+          ],
+          "raw_text": "Jackery behoudt zich het recht voor om het bovenstaande beleid voor service na verkoop definitief te \ninterpreteren.",
+          "text": "Jackery behoudt zich het recht voor om het bovenstaande beleid voor service na verkoop definitief te interpreteren."
+        }
+      }
+    }
+  }
+}

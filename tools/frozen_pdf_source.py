@@ -17,7 +17,7 @@ from tools.component_specs.overview_instance import (
 )
 from tools.frozen_ai_source import FrozenBook
 from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
-from tools.frozen_pdf_glyphs import recover_pdf_glyphs
+from tools.frozen_pdf_glyphs import recover_pdf_glyphs, recover_recorded_glyphs
 from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
 from tools.frozen_pdf_media import MEDIA_ASSET_KEYS, consumed_media_regions, media_section, operation_panels
 from tools.frozen_pdf_lcd import LCD_ICON_ASSET_KEYS, lcd_icon_flow
@@ -68,6 +68,53 @@ def _overview_binding(bindings: dict, target: dict) -> dict:
     return instance
 
 
+def _recover_source_data(book, data, pdf_path, original, language):
+    ai = pdf_path.parent / original['original_source']['filename']
+    if not book.target_layout:
+        return recover_pdf_glyphs(data, ai)
+    recovery_path = 'source/glyph_recoveries.json'
+    if any(entry['path'] == recovery_path for entry in original['inputs']):
+        ledger = book.read(recovery_path)
+        if ledger.get('target') != {key: book.target[key] for key in ('model', 'region')}:
+            raise ValueError('native glyph recovery target disagrees with source')
+        return recover_recorded_glyphs(data, ledger, language)
+    if any(character in str(data) for character in ('\x00', '\x1f', '\ufffd')):
+        raise ValueError('unresolved native glyph requires target-local recovery evidence')
+    return data
+
+
+def _bind_source_figures(book, bindings, language, reference_ids):
+    recipes = book.read(f'source/{language}_figure_manifest.json')['figures']
+    selected = bindings.get('figures', [])
+    reference_bindings = {figure['slug']: figure for figure in selected}
+    if len(reference_bindings) != len(selected) or set(reference_bindings) != reference_ids:
+        raise ValueError('governed reference artwork must cover UPS and all four charging diagrams')
+    book.figures = [{**{key: figure[key] for key in ('slug', 'section_id', 'physical_page', 'clip_points')},
+                     'asset_key': reference_bindings[figure['slug']]['asset_key'],
+                     'presentation': 'textless-shared-art'}
+                    for figure in recipes if figure['slug'] in reference_ids]
+    if len(book.figures) != len(reference_ids) or {f['slug'] for f in book.figures} != reference_ids:
+        raise ValueError('source geometry must contain exactly the five required reference diagrams')
+    return reference_bindings
+
+
+def _required_asset_keys(book, bindings):
+    media_keys = book.target_layout.get('media_asset_keys', MEDIA_ASSET_KEYS)
+    lcd_rows = book.target_layout.get('lcd_rows')
+    lcd_keys = ([f"lcd.icon.{row['icon_id']}" for row in lcd_rows] if lcd_rows else
+                book.target_layout.get('lcd_icon_asset_keys', LCD_ICON_ASSET_KEYS))
+    return {*APP_ASSET_KEYS, *media_keys, *lcd_keys, 'lcd.mode', 'lcd.map',
+            *(f"symbol.{row['icon_id']}" for row in book.records['symbols']['pictograms']),
+            *(figure['asset_key'] for figure in bindings.get('figures', []))}
+
+
+def _allowed_asset_modes(layout):
+    modes = {'textless', 'fixed-product-markings', 'app-ui'}
+    if layout.get('allow_source_finished_panels'):
+        modes.add('source-finished-panel')
+    return modes
+
+
 class PdfBook(FrozenBook):
     """Use the shared semantic table helpers with a fresh source and asset map."""
 
@@ -84,8 +131,8 @@ class PdfBook(FrozenBook):
         if bindings.get('text_source') != text_source:
             raise ValueError('artwork manifest text_source disagrees with PDF identity')
         data = load_pdf_book(pdf_path, language, recipe_root)
-        ai = pdf_path.parent / original['original_source']['filename']
-        data = recover_pdf_glyphs(data, ai)
+        self.target_layout = data.get('target_layout') or {}
+        data = _recover_source_data(self, data, pdf_path, original, language)
         _repair_label_wrapping(data, language)
         for key in ('source', 'index', 'locale', 'records', 'front_back', 'provenance'):
             setattr(self, key, data[key])
@@ -97,19 +144,9 @@ class PdfBook(FrozenBook):
         self.target['technical_version'] = version
         if bindings.get('pending'):
             raise ValueError('artwork remains pending: ' + ', '.join(bindings['pending']))
-        recipes = self.read(f'source/{language}_figure_manifest.json')['figures']
-        reference_bindings = {figure['slug']: figure for figure in bindings.get('figures', [])}
-        if len(reference_bindings) != len(bindings.get('figures', [])) or set(reference_bindings) != _REFERENCE_IDS:
-            raise ValueError('governed reference artwork must cover UPS and all four charging diagrams')
-        self.figures = [{**{key: figure[key] for key in ('slug', 'section_id', 'physical_page', 'clip_points')},
-                         'asset_key': reference_bindings[figure['slug']]['asset_key'],
-                         'presentation': 'textless-shared-art'}
-                        for figure in recipes if figure['slug'] in _REFERENCE_IDS]
-        if len(self.figures) != len(_REFERENCE_IDS) or {f['slug'] for f in self.figures} != _REFERENCE_IDS:
-            raise ValueError('source geometry must contain exactly the five required reference diagrams')
-        required = {*APP_ASSET_KEYS, *MEDIA_ASSET_KEYS, *LCD_ICON_ASSET_KEYS, 'lcd.mode', 'lcd.map',
-                    *(f"symbol.{row['icon_id']}" for row in self.records['symbols']['pictograms']),
-                    *(figure['asset_key'] for figure in bindings.get('figures', []))}
+        reference_ids = set(self.target_layout.get('reference_ids', _REFERENCE_IDS))
+        reference_bindings = _bind_source_figures(self, bindings, language, reference_ids)
+        required = _required_asset_keys(self, bindings)
         missing = sorted(required - bindings['assets'].keys())
         if missing:
             raise ValueError('missing governed artwork: ' + ', '.join(missing))
@@ -118,13 +155,14 @@ class PdfBook(FrozenBook):
             source = (assets_manifest.parent / record['path']).resolve()
             if file_sha256(source) != record['sha256']:
                 raise ValueError(f'governed artwork changed: {key}')
-            if record['content_mode'] not in {'textless', 'fixed-product-markings', 'app-ui'}:
+            if record['content_mode'] not in _allowed_asset_modes(self.target_layout):
                 raise ValueError(f'body text or table image is forbidden: {key}')
             destination = f"assets/{record['sha256'][:12]}_{source.name}"
             self.assets[key] = {**record, 'asset_ref': destination}
         from tools.frozen_pdf_reference import bind_reference_labels
         bind_reference_labels(self, reference_bindings)
-        self.overview_instance = _overview_binding(bindings, self.target)
+        reference_overview = self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures'
+        self.overview_instance = None if reference_overview else _overview_binding(bindings, self.target)
         from tools.frozen_pdf_finished_overview import bind_finished_overview
         bind_finished_overview(self, bindings, assets_manifest)
         # Validate the whole binding before creating output or copying files.
@@ -136,7 +174,7 @@ class PdfBook(FrozenBook):
             self.hashes[record['asset_ref']] = record['sha256']
         self.contract = load_web_manual_contract(model=self.target['model'], region=self.target['region'])
         self.contract = deepcopy(bindings.get('web_contract', self.contract))
-        self.expected_reference_count = len(_REFERENCE_IDS) + 2  # LCD map and live-caption App result
+        self.expected_reference_count = len(reference_ids) + 2  # LCD map and live-caption App result
         for figure in self.figures:
             figure['presentation'] = 'textless-shared-art'
         self.art = {f['slug']: self.assets[f['asset_key']] for f in self.figures}
@@ -158,6 +196,9 @@ class PdfBook(FrozenBook):
         return read_recipe_json(self.source_root, path)
 
     def media_section(self, section):
+        if (section == 'product_overview' and
+                self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures'):
+            return []
         return media_section(self, section, self.assets)
 
     def operation_panels(self):
@@ -175,13 +216,30 @@ class PdfBook(FrozenBook):
         if figure.get('live_captions'):
             from tools.frozen_pdf_reference import labeled_artwork_node
             return labeled_artwork_node(figure, asset['asset_ref'], self.language)
+        source_captions = self.records.get('reference_captions', {}).get(figure['slug'])
+        if source_captions:
+            if source_captions['physical_page'] != figure['physical_page']:
+                raise ValueError(f"{figure['slug']}: native caption page changed")
+            return artwork_node(asset['asset_ref'], figure['slug'], self.language,
+                                f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
+                                captions=[item['text'] for item in source_captions['labels']])
+        semantic_copy = ''
+        if figure['section_id'] == 'product_overview' and self.target_layout.get('media', {}).get('overview', {}).get('presentation') == 'reference-figures':
+            view = figure['slug'].removeprefix('overview_').removesuffix('_view')
+            record = self.records['media']['overview']['views'][view]
+            semantic_copy = ' '.join([self.correct(record['caption']), *(
+                self.correct(value['text']) for value in record['callouts'].values())])
+            accessibility_label = self.correct(record['caption'])
+        else:
+            accessibility_label = None
         return artwork_node(asset['asset_ref'], figure['slug'], self.language,
-                            f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}")
+                            f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
+                            accessibility_label=accessibility_label, semantic_copy=semantic_copy)
 
     def special(self, section):
         if section == 'safety':
-            from tools.frozen_pdf_frontmatter import safety_flow
-            return safety_flow(self)
+            from tools.frozen_pdf_frontmatter import positioned_safety_flow, safety_flow
+            return positioned_safety_flow(self) if 'safety' in self.records else safety_flow(self)
         if section == 'app_setup':
             return app_section(self, self.assets)
         if section == 'lcd_display':
@@ -191,5 +249,7 @@ class PdfBook(FrozenBook):
                                  f'{self.language}/lcd-display'),
                     *lcd_icon_flow(self.records['lcd_indicators'], assets=self.assets,
                                    accessibility_label=title, source_ref=f'{self.language}/lcd-display#icons',
-                                   language=self.language)]
+                                   language=self.language,
+                                   row_bindings=tuple((row['number'], row['icon_id']) for row in self.target_layout['lcd_rows'])
+                                   if 'lcd_rows' in self.target_layout else None)]
         return super().special(section)

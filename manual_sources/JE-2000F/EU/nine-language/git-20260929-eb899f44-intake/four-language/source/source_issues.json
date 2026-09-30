@@ -1,0 +1,77 @@
+{
+  "source_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
+  "status": "approved corrections applied; remaining review issues retained",
+  "issues": [
+    {
+      "id": "F-RIGHT-NAMEPLATE",
+      "locales": [
+        "pt",
+        "nl",
+        "pl"
+      ],
+      "pages": [
+        118,
+        136,
+        154
+      ],
+      "description": "Internal tiny nameplate says 100–120 V /15 A; external EU callout and source specifications say 220–240 V /50 Hz /10 A. Preserve raw source; correction candidate pending.",
+      "status": "operator-approved-and-applied",
+      "evidence": "../approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-NL-AC-LABEL",
+      "locale": "nl",
+      "pages": [
+        136,
+        142,
+        149
+      ],
+      "description": "AC power button source label says DC. Existing JE1000F authorization does not cover this model.",
+      "status": "operator-approved-and-applied",
+      "evidence": "../approved/errata/approval_audit.json"
+    },
+    {
+      "id": "F-UK-WARRANTY-OUTLINED",
+      "locale": "uk",
+      "page": 112,
+      "description": "Exclusions body is vector outlines; absent from PDF text and Illustrator native text frames. UK is audit only; preserve current published version."
+    },
+    {
+      "id": "F-GLYPH-NUL",
+      "locales": [
+        "pt",
+        "nl"
+      ],
+      "pages": [
+        129,
+        136
+      ],
+      "description": "Native text contains NUL in DC specifications. No invented recovery.",
+      "status": "native-glyph-recovery-verified",
+      "evidence": "glyph_recoveries.json"
+    },
+    {
+      "id": "F-APP-DUPLICATE",
+      "locales": [
+        "pl",
+        "pt",
+        "nl",
+        "uk"
+      ],
+      "description": "Third App page repeats second-page unbind/Wi-Fi notes with wording differences. Both raw pages retained; semantic inclusion requires source choice.",
+      "status": "source-duplicate-mapped",
+      "evidence": "print_duplicate_ledger.json"
+    },
+    {
+      "id": "F-PL-UPS-DUPLICATE",
+      "locale": "pl",
+      "pages": [
+        160,
+        161
+      ],
+      "description": "UPS definitions/cautions repeat with wording changes; both raw pages retained.",
+      "status": "source-duplicate-mapped",
+      "evidence": "print_duplicate_ledger.json"
+    }
+  ]
+}

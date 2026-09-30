@@ -10,10 +10,12 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 
 from tools.frozen_ai_web import replay_package
+from tools.frozen_pdf_source import PdfBook
 from tools.frozen_pdf_reference import (
     bind_reference_labels, labeled_artwork_node, reference_label_regions,
 )
 from tools.manual_ir.flow import flow_nodes_to_html
+from tools.manual_ir.components import component_specs_in_flow
 from tools.web_embedded_components import render_embedded_web_component
 
 
@@ -35,6 +37,36 @@ def fixture():
 
 
 class FrozenPdfReferenceTests(unittest.TestCase):
+    def test_overview_semantic_copy_applies_approved_erratum_without_mutating_native_source(self):
+        book = object.__new__(PdfBook)
+        book.language = 'nl'
+        book.assets = {'front': {'asset_ref': 'assets/front.png'}}
+        book.target_layout = {'media': {'overview': {'presentation': 'reference-figures'}}}
+        book.records = {'media': {'overview': {'views': {'front': {
+            'caption': 'Vooraanzicht', 'callouts': {
+                'dc_button': {'text': 'Aan/uit-knop voor DC'},
+                'handle': {'text': 'Handgreep'},
+            },
+        }}}}}
+        native_records = deepcopy(book.records)
+        book.correct = lambda value: value.replace('Aan/uit-knop voor DC', 'Aan/uit-knop voor AC')
+        figure = {'asset_key': 'front', 'slug': 'overview_front_view',
+                  'section_id': 'product_overview', 'physical_page': 4}
+
+        node = book.figure(figure)
+        spec, = component_specs_in_flow((node,))
+        adjacent = next(slot for slot in spec.slots if slot.role == 'adjacent_copy')
+        self.assertEqual('Vooraanzicht Aan/uit-knop voor AC Handgreep', adjacent.content['text'])
+        html = flow_nodes_to_html((node,), component_renderer=lambda component:
+            render_embedded_web_component(
+                component, source_path=Path('overview.rst'), model='JE-2000E',
+                region='EU', language='nl', composite_manifest=None, contract={}))
+        soup = BeautifulSoup(html, 'html.parser')
+        self.assertEqual(1, soup.get_text().count('Aan/uit-knop voor AC'))
+        self.assertNotIn('Aan/uit-knop voor DC', html)
+        self.assertNotIn('dc_button', html)
+        self.assertEqual(native_records, book.records)
+
     def test_four_committed_books_replay_labels_without_reopening_pdf(self):
         source = (Path(__file__).resolve().parents[1] / 'manual_sources' / 'JE-1000F' /
                   'EU/nine-language/git-20260928-c38415f5-layout-fixes/four-language/web')

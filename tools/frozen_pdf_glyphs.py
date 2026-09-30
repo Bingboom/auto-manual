@@ -16,6 +16,7 @@ from tools.manual_ir.hashing import file_sha256
 
 
 _PDF_MISSING = ("\ufffd", "\x1f")
+_RECORDED_MISSING = (*_PDF_MISSING, "\x00")
 _AI_GLYPH = "⎓"
 
 
@@ -138,4 +139,57 @@ def recover_pdf_glyphs(book_data: Mapping[str, Any], ai_path: Path) -> dict[str,
     return book
 
 
-__all__ = ["recover_pdf_glyphs"]
+def _recorded_glyph_target(book: dict[str, Any], field: str) -> tuple[dict, str, dict | None]:
+    parts = field.split("/")
+    if parts[0] == "specifications" and len(parts) == 4:
+        _, group, index, key = parts
+        return book["source"]["tables"]["specifications"]["groups"][group][int(index)], key, None
+    if parts[0] == "media" and len(parts) == 4 and parts[1] == "overview":
+        _, _, view, callout = parts
+        return book["records"]["media"]["overview"]["views"][view]["callouts"][callout], "text", None
+    if parts[0] == "pages" and len(parts) == 5 and parts[2] == "blocks_visual_order":
+        target = next(page for page in book["source"]["pages"]
+                      if page["physical_page"] == int(parts[1]))["blocks_visual_order"][int(parts[3])]
+        return target, parts[4], {"physical_page": int(parts[1]), "bbox": target["bbox"]}
+    raise ValueError(f"{field}: unsupported native glyph field")
+
+
+def _apply_recorded_glyph(book: dict[str, Any], entry: Mapping[str, Any], spans: dict) -> None:
+    field = entry["field"]
+    target, key, location = _recorded_glyph_target(book, field)
+    before, after = target[key], entry["after"]
+    span = location or spans.get(field)
+    if (before != entry["before"] or not span or
+            span["physical_page"] != entry["physical_page"] or
+            span["bbox"] != entry["bbox"]):
+        raise ValueError(f"{field}: native glyph source location changed")
+    if (not any(character in before for character in _RECORDED_MISSING)
+            or after != "".join("⎓" if c in _RECORDED_MISSING else c for c in before)):
+        raise ValueError(f"{field}: recovery changes more than missing DC glyphs")
+    target[key] = after
+    book["provenance"]["corrections_applied"].append({
+        **entry, "reason": "Same-position native Illustrator frame recovered DC glyph",
+    })
+
+
+def recover_recorded_glyphs(book_data: Mapping[str, Any], ledger: Mapping[str, Any],
+                            language: str) -> dict[str, Any]:
+    """Apply only hash-pinned, field/rectangle-exact native Illustrator repairs."""
+    book = deepcopy(dict(book_data))
+    provenance = book["provenance"]
+    ai_sha256 = provenance["ai"]["sha256"]
+    entries = ledger.get("locales", {}).get(language, [])
+    if ledger.get("schema_version") != "frozen-pdf-glyph-recoveries/v1":
+        raise ValueError("invalid native glyph recovery ledger")
+    spans = {item["field"]: item for item in provenance["text_spans"]}
+    seen = set()
+    for entry in entries:
+        field = entry["field"]
+        if field in seen or entry.get("source_ai_sha256") != ai_sha256 or not entry.get("frame_id"):
+            raise ValueError(f"{field}: duplicate or unverified native glyph evidence")
+        seen.add(field)
+        _apply_recorded_glyph(book, entry, spans)
+    return book
+
+
+__all__ = ["recover_pdf_glyphs", "recover_recorded_glyphs"]

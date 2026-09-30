@@ -74,6 +74,9 @@ component_roles:
   component.table.auto-resume:
     component_ids: [HB-TABLE-AUTO-RESUME]
     theme_roles: [surface.paper, surface.muted, border.strong, radius.panel, type.table.label, type.table.value, width.component-band]
+  component.table.key-combinations:
+    component_ids: [HB-TABLE-KEY-COMBINATIONS]
+    theme_roles: [surface.paper, surface.muted, border.strong, radius.panel, type.table.label, type.table.value, width.component-band]
   component.table.lcd-mode:
     component_ids: [HB-TABLE-LCD-MODE]
     theme_roles:

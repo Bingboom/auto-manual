@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 import re
 import shutil
@@ -12,10 +13,108 @@ from tools.frozen_ai_table_components import (
     auto_resume_flow, lcd_mode_flow, symbol_signal_flow, warranty_flow,
 )
 from tools.manual_ir.hashing import file_sha256
+from tools.manual_ir.components import component_flow_node
+from tools.component_specs.key_combinations import key_combinations_component_spec
 
 
 def _key(value):
     return re.sub(r"\W+", "", squash(value), flags=re.UNICODE).casefold()
+
+
+def _positioned_headers(book, kind, boxes):
+    number = (book.records["symbols"]["physical_page"] if kind == "symbols" else
+              book.source["tables"][kind]["physical_page"])
+    blocks = book.page(number)["blocks_visual_order"]
+    values = []
+    for bbox in boxes:
+        selected = [squash(block["text"]) for block in blocks
+                    if bbox[0] <= block["bbox"][0] < bbox[2]
+                    and bbox[1] <= block["bbox"][1] < bbox[3]]
+        if not selected:
+            raise ValueError(f"{kind}: header source rectangle is empty")
+        values.append(" ".join(selected))
+    return values
+
+
+def _in_box(block, bbox):
+    x, y = block["bbox"][:2]
+    return bbox[0] <= x < bbox[2] and bbox[1] <= y < bbox[3]
+
+
+def _positioned_callouts(book, blocks, number, labels):
+    result, consumed = {}, set()
+    for recipe in (getattr(book, "target_layout", None) or {}).get("callout_regions", []):
+        if recipe["physical_page"] != number:
+            continue
+        label_indexes = [i for i, block in enumerate(blocks)
+                         if _in_box(block, recipe["label_bbox"])]
+        if len(label_indexes) != 1:
+            raise ValueError(f"page {number}: native notice label is not unique")
+        label_index = label_indexes[0]
+        label = squash(blocks[label_index]["text"])
+        if label.casefold() not in labels:
+            raise ValueError(f"page {number}: native notice label is unknown")
+        body_indexes = []
+        for bbox in recipe["body_bboxes"]:
+            matched = [i for i, block in enumerate(blocks)
+                       if i != label_index and _in_box(block, bbox)]
+            if not matched:
+                raise ValueError(f"page {number}: native notice body rectangle is empty")
+            body_indexes.extend(matched)
+        indexes = {label_index, *body_indexes}
+        if len(indexes) != 1 + len(body_indexes) or indexes & consumed:
+            raise ValueError(f"page {number}: native notice regions overlap")
+        body = [node for i in sorted(body_indexes)
+                for node in prose(book.correct(squash(blocks[i]["text"]))) ]
+        result[min(indexes)] = callout(label, body, variant=labels[label.casefold()],
+                                       language=book.language,
+                                       source_ref=f"{book.language}/page-{number}/notice-{label_index}")
+        consumed.update(indexes)
+    return result, consumed
+
+
+def _adjacent_notice_candidates(blocks, index, consumed):
+    label = blocks[index]
+    _, y0, x1, y1 = label["bbox"]
+    candidates = [(j, b) for j, b in enumerate(blocks) if j != index and j not in consumed
+                  and b["bbox"][0] >= x1 + 2 and b["bbox"][1] <= y1 + 2
+                  and b["bbox"][3] >= y0 - 2]
+    if not candidates:
+        return []
+    last = max(b["bbox"][3] for _, b in candidates)
+    for j, block in enumerate(blocks):
+        if j not in consumed and j not in {k for k, _ in candidates} and block["bbox"][0] >= x1 + 2 and 0 <= block["bbox"][1] - last <= 4:
+            candidates.append((j, block))
+            last = block["bbox"][3]
+    return candidates
+
+
+def _inferred_callouts(book, blocks, number, labels, result, consumed):
+    for index, label in enumerate(blocks):
+        if index in consumed:
+            continue
+        value = squash(label["text"])
+        lines = [line.strip() for line in label["text"].splitlines() if line.strip()]
+        if len(lines) > 1 and lines[-1].casefold() in labels:
+            notice = lines[-1]
+            body = prose(book.correct(squash("\n".join(lines[:-1]))))
+            result[index] = callout(notice, body, variant=labels[notice.casefold()], language=book.language,
+                                    source_ref=f"{book.language}/page-{number}/notice-{index}")
+            consumed.add(index)
+            continue
+        if value.casefold() not in labels or label["bbox"][0] > 90:
+            continue
+        candidates = _adjacent_notice_candidates(blocks, index, consumed)
+        if not candidates:
+            continue
+        indexes = {index, *(j for j, _ in candidates)}
+        if indexes & consumed:
+            raise ValueError(f"overlapping notice source on page {number}")
+        body = [n for _, b in sorted(candidates) for n in prose(book.correct(squash(b["text"])))]
+        result[min(indexes)] = callout(value, body, variant=labels[value.casefold()], language=book.language,
+                                       source_ref=f"{book.language}/page-{number}/notice-{index}")
+        consumed.update(indexes)
+    return result, consumed
 
 
 class FrozenBook:
@@ -103,6 +202,12 @@ class FrozenBook:
         return starts
 
     def headers(self, kind):
+        extracted = self.source.get("table_headers", {}).get(kind)
+        if extracted:
+            return list(extracted)
+        boxes = (getattr(self, "target_layout", None) or {}).get("table_headers", {}).get(kind)
+        if boxes:
+            return _positioned_headers(self, kind, boxes)
         if kind == "symbols":
             number = self.records["symbols"]["physical_page"]
             return next([squash(s) for s in b["text"].splitlines()]
@@ -117,6 +222,21 @@ class FrozenBook:
 
     def footnotes(self):
         page = self.page(self.source["tables"]["specifications"]["physical_page"])
+        bbox = (getattr(self, "target_layout", None) or {}).get("specification_footnotes_bbox")
+        if bbox:
+            blocks = sorted((b for b in page["blocks_visual_order"]
+                             if bbox[0] <= b["bbox"][0] < bbox[2]
+                             and bbox[1] <= b["bbox"][1] < bbox[3]),
+                            key=lambda b: (b["bbox"][1], b["bbox"][0]))
+            if not blocks:
+                raise ValueError("specification footnotes rectangle is empty")
+            notes = [squash(b["text"]) for b in blocks]
+            if notes and notes[0].startswith("※") and re.search(r"\s®\s®$", notes[0]):
+                value = re.sub(r"\s®\s®$", "", notes[0])
+                if value.count("USB Type-C") != 1 or value.count("USB-C") != 1:
+                    raise ValueError("ambiguous native USB trademark glyph positions")
+                notes[0] = value.replace("USB Type-C", "USB Type-C®", 1).replace("USB-C", "USB-C®", 1)
+            return [paragraph(value) for value in notes]
         blocks = sorted((b for b in page["blocks_visual_order"] if 420 <= b["bbox"][1] < 490),
                         key=lambda b: (b["bbox"][1], b["bbox"][0]))
         notes = []
@@ -137,7 +257,11 @@ class FrozenBook:
             return symbol_signal_flow(self.records["symbols"], headings=self.headers("symbols"),
                                       accessibility_label=title, **args)
         if section == "warranty":
-            return warranty_flow(self.records["warranty_columns"], **args)
+            record = deepcopy(self.records["warranty_columns"])
+            for block in record["blocks"].values():
+                if "text" in block:
+                    block["text"] = self.correct(block["text"])
+            return warranty_flow(record, **args)
         if section == "app_setup":
             return list(app_nodes(self.records["app_sections"], self.art, **args))
         if section == "lcd_display":
@@ -162,47 +286,19 @@ class FrozenBook:
             result.extend(auto_resume_flow(record, language=self.language,
                                            source_ref=f"{self.language}/operations/restore"))
         else:
-            rows = [[cell(squash(h["text"]), header=True) for h in record["headers"]]]
+            rows = []
             for row in record["rows"]:
                 buttons = " + ".join(self.correct(squash(b["text"])) for b in row["buttons"])
-                rows.append([cell(buttons, header=True), cell(squash(row["operation"]["text"])), cell(squash(row["function"]["text"]))])
-            result.append(scroll_table(rows))
+                rows.append([buttons, squash(row["operation"]["text"]), squash(row["function"]["text"])])
+            spec = key_combinations_component_spec(
+                headers=[squash(h["text"]) for h in record["headers"]], rows=rows,
+                source_ref=f"{self.language}/operations/shortcuts", language=self.language,
+            )
+            result.append(component_flow_node(spec, root=True))
         return result
 
     def callouts(self, blocks, number):
         """Bind left-hand notice labels to their adjacent source body rectangles."""
         labels = {row["label"].casefold(): variant for row, variant in zip(self.records["symbols"]["rows"], ("warning", "caution", "note", "tip"))}
-        result, consumed = {}, set()
-        for i, label in enumerate(blocks):
-            value = squash(label["text"])
-            lines = [line.strip() for line in label["text"].splitlines() if line.strip()]
-            if len(lines) > 1 and lines[-1].casefold() in labels:
-                # Some original PDF text blocks already bind a body and its
-                # trailing notice label. No geometric inference is needed.
-                notice = lines[-1]
-                body = prose(self.correct(squash("\n".join(lines[:-1]))))
-                result[i] = callout(notice, body, variant=labels[notice.casefold()], language=self.language,
-                                    source_ref=f"{self.language}/page-{number}/notice-{i}")
-                consumed.add(i)
-                continue
-            if value.casefold() not in labels or label["bbox"][0] > 90:
-                continue
-            x0, y0, x1, y1 = label["bbox"]
-            candidates = [(j, b) for j, b in enumerate(blocks) if j != i and b["bbox"][0] >= x1 + 2
-                          and b["bbox"][1] <= y1 + 2 and b["bbox"][3] >= y0 - 2]
-            if not candidates:
-                continue
-            # Several bullet paragraphs can share one vertically centred label.
-            last = max(b["bbox"][3] for _, b in candidates)
-            for j, b in enumerate(blocks):
-                if j not in {k for k, _ in candidates} and b["bbox"][0] >= x1 + 2 and 0 <= b["bbox"][1] - last <= 4:
-                    candidates.append((j, b))
-                    last = b["bbox"][3]
-            indexes = {i, *(j for j, _ in candidates)}
-            if indexes & consumed:
-                raise ValueError(f"overlapping notice source on page {number}")
-            body = [n for _, b in sorted(candidates) for n in prose(self.correct(squash(b["text"])))]
-            result[min(indexes)] = callout(value, body, variant=labels[value.casefold()], language=self.language,
-                                           source_ref=f"{self.language}/page-{number}/notice-{i}")
-            consumed.update(indexes)
-        return result, consumed
+        result, consumed = _positioned_callouts(self, blocks, number, labels)
+        return _inferred_callouts(self, blocks, number, labels, result, consumed)

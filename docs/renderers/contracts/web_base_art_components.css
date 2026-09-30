@@ -4,6 +4,10 @@
    Every rule is scoped to .hb-base-art-live-copy, so other figures and the
    approved composites keep their existing presentation. */
 
+.hb-base-art-live-copy {
+  --hb-prerequisite-surface: #e6e7e8;
+}
+
 .hb-base-art-live-copy > .hb-operation-stage {
   container-type: inline-size;
 }
@@ -15,8 +19,8 @@
   position: relative;
 }
 
-/* The art already draws the brackets, pills and clock the copy belongs to, so
-   overlays are transparent: nothing may cover a line of the drawing. */
+/* Step overlays stay transparent so native brackets and leaders remain
+   visible. Prerequisite pills use their own rounded surface rule below. */
 .hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
   position: absolute;
   inset: 0;
@@ -70,6 +74,82 @@
   line-height: 1.1;
 }
 
+/* The first standby line is the native lead; later lines are body and note. */
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy > .line:first-child {
+  font-weight: 700;
+}
+
+/* Four native main-power blocks: standby lead/body/App note share a
+   right-hand bubble; the final energy-saving note stays on white below it.
+   A four-block guard leaves older three-line standby cards unchanged. */
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40% minmax(0, 1fr);
+  margin-top: -5cqw;
+  padding: 0 3cqw 3cqw;
+  background: transparent;
+  font-size: 1.95cqw;
+  line-height: 1.25;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1 / 4;
+  border-radius: 2.4cqw;
+  background: var(--hb-surface);
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::after {
+  content: "";
+  position: absolute;
+  top: -1.4cqw;
+  left: 45%;
+  border-right: 1.5cqw solid transparent;
+  border-bottom: 1.5cqw solid var(--hb-surface);
+  border-left: 1.5cqw solid transparent;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line {
+  z-index: 1;
+  grid-column: 2;
+  margin: 0;
+  padding: 0 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:first-child {
+  grid-row: 1;
+  padding-top: 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:nth-child(2) {
+  grid-row: 2;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:nth-child(3) {
+  grid-row: 3;
+  padding-bottom: 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin-top: 4cqw;
+  padding: 0;
+}
+
+/* Native AC/DC artwork can use different grays for the same prerequisite
+   role. Match the common darker source pill with one token at both breakpoints. */
 .hb-base-art-live-copy .hb-operation-prerequisite {
   position: absolute;
   top: var(--hb-y);
@@ -82,8 +162,8 @@
   padding: 0 0 0 1.9cqw;
   overflow: visible;
   border: 0;
-  border-radius: 0;
-  background: none;
+  border-radius: 999px;
+  background: var(--hb-prerequisite-surface);
   font-size: 1.85cqw;
   font-weight: 700;
   line-height: 1.1;
@@ -296,6 +376,31 @@
 /* Narrow screens: the drawing scales below readable overlay sizes, so copy
    stacks under the art in source order instead of shrinking. */
 @media (max-width: 760px) {
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 0.75rem;
+    padding: 0 0.75rem 0.85rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::before,
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line {
+    grid-column: 1;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::after {
+    display: none;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child {
+    margin-top: 1.1rem;
+  }
+
   .hb-base-art-live-copy > .hb-operation-stage {
     display: block;
   }
@@ -325,10 +430,8 @@
     font-size: 0.88rem;
   }
 
-  /* The prerequisite stays on the art's own pill, but readable: it may grow
-     into the blank area the contract declares safe (--hb-max-width) and fills
-     with the pill tone the contract measured from that art (--hb-fill), so the
-     drawn pill never shows as an empty box. */
+  /* Keep the prerequisite on its native pill coordinates. It may grow into
+     the declared safe area, using the same shared tone as desktop pills. */
   .hb-base-art-live-copy .hb-operation-prerequisite {
     width: max-content;
     min-width: var(--hb-width);
@@ -337,7 +440,7 @@
     min-height: var(--hb-height);
     padding: 0.28rem 0.7rem;
     border-radius: 999px;
-    background: var(--hb-fill);
+    background: var(--hb-prerequisite-surface);
     font-size: 0.78rem;
     white-space: normal;
   }

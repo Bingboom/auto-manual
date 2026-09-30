@@ -20,6 +20,7 @@ from tools.web_language_release_evidence import (
     RECEIPT_FILENAME,
     ProjectionCapture,
     require_consistent_captures,
+    require_publishable_manual_ir,
     seal_release_evidence,
     verify_release_evidence,
 )
@@ -31,7 +32,7 @@ def _stage_markdown_source_sidecars(*, built_md_output_path: Path, staged_md_out
     source_assets_dir = source_dir / "assets"
     if source_assets_dir.exists() and source_assets_dir.is_dir():
         shutil.copytree(source_assets_dir, staged_dir / "assets", dirs_exist_ok=True)
-    for source_name in ("conf.py", "index.md"):
+    for source_name in ("conf.py", "index.md", PathSegments.MANUAL_IR_JSON):
         source_path = source_dir / source_name
         if source_path.exists() and source_path.is_file():
             target_path = staged_dir / source_name
@@ -629,6 +630,7 @@ def stage_web_publish_assets_to_host_repo(
         built_md_output_path=built_md_output_path,
         built_html_dir=built_html_dir,
     )
+    require_publishable_manual_ir(built_md_output_path.parent)
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,

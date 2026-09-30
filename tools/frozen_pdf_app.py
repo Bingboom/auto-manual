@@ -26,7 +26,7 @@ APP_ASSET_KEYS = ("app.download", "app.store", "app.qr", "app.phone", "app.contr
 
 def artwork_node(asset_ref: str, reference_id: str, language: str, source_ref: str,
                  *, accessibility_label: str | None = None,
-                 captions: Sequence[str] = ()) -> dict:
+                 captions: Sequence[str] = (), semantic_copy: str = "") -> dict:
     """Bind governed standalone artwork with no invented composite/caption.
 
     The shared source-fragment hash normalizes image refs, so packaging may
@@ -35,29 +35,39 @@ def artwork_node(asset_ref: str, reference_id: str, language: str, source_ref: s
     """
     label = accessibility_label or reference_id
     carrier = root(_image(asset_ref, label))
+    copy_node = (root(node("paragraph", [text(semantic_copy)],
+                      presentation={"html": {"attributes": {"style":
+                          "position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"}}}))
+                 if semantic_copy else None)
     soup = BeautifulSoup("", "html.parser")
     semantic = soup.new_tag("div", attrs={"class": "hb-reference-semantic",
                                           "data-reference-id": f"{reference_id}.semantic"})
     image = BeautifulSoup(flow_nodes_to_html((carrier,)), "html.parser").img
     image["class"] = ["hb-reference-art"]
     semantic.append(image)
+    if copy_node is not None:
+        paragraph = BeautifulSoup(flow_nodes_to_html((copy_node,)), "html.parser").p
+        semantic.append(paragraph)
     caption_labels = [str(value).strip() for value in captions]
     if any(not value for value in caption_labels):
         raise ValueError(f"{source_ref}: artwork captions cannot be empty")
     digest = reference_source_fragment_sha256(
-        component={"id": reference_id, "image_key": reference_id, "captions_embedded": False},
+        component={"id": reference_id, "image_key": reference_id, "captions_embedded": False,
+                   **({"capture_adjacent_paragraph": True} if semantic_copy else {})},
         semantic=semantic, caption_labels=caption_labels, composite_locale=None,
     )
     spec = reference_figure_component_spec(
         reference_id=reference_id, accessibility_label=label,
         caption_mode="live" if caption_labels else "none",
         captions=tuple({"html": escape(value), "text": value} for value in caption_labels),
-        adjacent_copy=None, source_art_ref=asset_ref, source_art_locale_policy="shared",
+        adjacent_copy={"position": "after", "html": escape(semantic_copy), "text": semantic_copy}
+        if semantic_copy else None,
+        source_art_ref=asset_ref, source_art_locale_policy="shared",
         source_fragment_sha256=digest, source_ref=source_ref, language=language,
         image_key=reference_id,
         metadata={"captions_origin": "configured"} if caption_labels else None,
     )
-    return component_flow_node(spec, carrier_flow=(carrier,), root=True)
+    return component_flow_node(spec, carrier_flow=(carrier, copy_node) if copy_node else (carrier,), root=True)
 
 
 def _clean(book: Any, value: str) -> str:
@@ -86,8 +96,26 @@ def _prose(book: Any, raw: str) -> list[dict]:
     return body
 
 
+def _positioned_control_labels(book: Any, page: int, native: list[dict]) -> list[dict]:
+    if any(item["physical_page"] != page for item in native):
+        raise ValueError(f"{book.language}: App control source page changed")
+    roles = [item["role"] for item in native]
+    if roles not in (["main-power", "dc-usb", "ac-power"],
+                     ["main-power", "dc-usb", "ac-power-1", "ac-power-2"]):
+        raise ValueError(f"{book.language}: unexpected App control roles")
+    return [{"role": item["role"], "text": _clean(book, item["text"]),
+             "html": escape(_clean(book, item["text"]))} for item in native]
+
+
 def _control_labels(book: Any, page: int) -> list[dict]:
-    """Recover only the three native labels, including merged PDF columns."""
+    """Recover the target's native control labels in source order."""
+    native = getattr(book, "records", {}).get("app_control_labels", {}).get("rows")
+    if native:
+        return _positioned_control_labels(book, page, native)
+    return _legacy_control_labels(book, page)
+
+
+def _legacy_control_labels(book: Any, page: int) -> list[dict]:
     record = next(p for p in book.source["pages"] if p["physical_page"] == page)
     blocks = [b for b in record["blocks_visual_order"] if 400 <= b["bbox"][1] < 450]
     blocks.sort(key=lambda b: (b["bbox"][1], b["bbox"][0]))
@@ -95,17 +123,7 @@ def _control_labels(book: Any, page: int) -> list[dict]:
     lower = [b for b in blocks if b["bbox"][1] >= 425]
     if not main or not lower:
         raise ValueError(f"{book.language}: PDF App control labels are incomplete")
-    merged = [b for b in lower if b["bbox"][0] < 150 and b["bbox"][2] > 250]
-    if merged:
-        if len(merged) != 1 or len(lower) != 1:
-            raise ValueError(f"{book.language}: merged App control columns are ambiguous")
-        labels = [line for line in merged[0]["text"].splitlines() if line.strip()]
-        if len(labels) != 2:
-            raise ValueError(f"{book.language}: merged App control needs two complete labels")
-        dc, ac = labels
-    else:
-        dc = " ".join(b["text"] for b in lower if b["bbox"][0] < 150)
-        ac = " ".join(b["text"] for b in lower if b["bbox"][0] >= 250)
+    dc, ac = _legacy_lower_controls(book, lower)
     values = [_clean(book, " ".join(main)), _clean(book, dc), _clean(book, ac)]
     if not all(values):
         raise ValueError(f"{book.language}: PDF App control label is empty")
@@ -113,6 +131,19 @@ def _control_labels(book: Any, page: int) -> list[dict]:
                                            owner=f"{book.language}/pdf-page-{page}/App")
     return [{"role": role, "text": value, "html": escape(value)}
             for role, value in zip(roles, values, strict=True)]
+
+
+def _legacy_lower_controls(book: Any, lower: list[dict]) -> tuple[str, str]:
+    merged = [b for b in lower if b["bbox"][0] < 150 and b["bbox"][2] > 250]
+    if not merged:
+        return (" ".join(b["text"] for b in lower if b["bbox"][0] < 150),
+                " ".join(b["text"] for b in lower if b["bbox"][0] >= 250))
+    if len(merged) != 1 or len(lower) != 1:
+        raise ValueError(f"{book.language}: merged App control columns are ambiguous")
+    labels = [line for line in merged[0]["text"].splitlines() if line.strip()]
+    if len(labels) != 2:
+        raise ValueError(f"{book.language}: merged App control needs two complete labels")
+    return labels[0], labels[1]
 
 
 def _native_step_captions(
@@ -180,6 +211,19 @@ def _plus(book: Any, raw: str, source_ref: str) -> dict:
 def _add_device(book: Any, blocks: Mapping, refs: Mapping[str, str], source_ref: str) -> dict:
     page = int(blocks["step_2_1"]["physical_page"])
     labels = _control_labels(book, page)
+    positions = {}
+    native = getattr(book, "records", {}).get("app_control_labels", {}).get("rows")
+    if native:
+        clip = book.assets["app.control"].get("clip_points")
+        if not clip or clip[2] <= clip[0] or clip[3] <= clip[1]:
+            raise ValueError(f"{book.language}: App control artwork lacks source clip geometry")
+        for item in native:
+            x0, y0, x1, y1 = item["bbox"]
+            positions[item["role"]] = [
+                round((y0 + y1 - 2 * clip[1]) / (2 * (clip[3] - clip[1])) * 100, 3),
+                round((x0 - clip[0]) / (clip[2] - clip[0]) * 100, 3),
+                round((x1 - x0) / (clip[2] - clip[0]) * 100, 3),
+            ]
     captions = _native_step_captions(book, blocks, page, ("2.1", "2.2"))
     title = _clean(book, blocks["add_heading"]["raw_text"])
     spec = app_add_device_component_spec(
@@ -187,7 +231,8 @@ def _add_device(book: Any, blocks: Mapping, refs: Mapping[str, str], source_ref:
         source_art_ref=refs["app.phone"], phone_art_ref=refs["app.phone"], control_art_ref=refs["app.control"],
         source_ref=source_ref + "#add-device", language=book.language,
         step_captions=captions,
-        metadata={"physical_page": page, "source_label_region": [25, 400, 345, 450]},
+        metadata={"physical_page": page, "source_label_region": [25, 400, 345, 450],
+                  **({"control_label_positions": positions} if positions else {})},
     )
     lines = [node("group", [text(label["text"])], role="container",
                   presentation={"html": {"attributes": {"class": "line"}}}) for label in labels]

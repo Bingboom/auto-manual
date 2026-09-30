@@ -39,6 +39,45 @@ def _read(name):
 
 
 class FrozenAITableComponentTests(unittest.TestCase):
+    def test_key_combinations_share_english_table_in_source_free_replay(self):
+        from tools.frozen_ai_source import FrozenBook
+        from tools.component_specs.key_combinations import key_combinations_projection
+        for language in ("pl", "pt", "nl"):
+            with self.subTest(language=language):
+                record = _read("operation_tables")["locales"][language]["shortcuts"]
+                book = object.__new__(FrozenBook)
+                book.language = language
+                book.errata = {"entries": []}
+                book.records = {"operation_tables": {"shortcuts": record}}
+                from tools.frozen_ai_flow import root
+                nodes = [root(n) for n in book.operation("shortcuts")]
+                soup = self._roundtrip(nodes, language)
+                table = soup.select_one("figure.hb-key-combination-composition > table.hb-key-combination-table")
+                self.assertIsNotNone(table)
+                self.assertEqual(3, len(table.select("thead th")))
+                self.assertEqual(len(record["rows"]) * 3, len(table.select("tbody td")))
+                self.assertFalse(table.select("tbody th"))
+                self.assertEqual(["hb-key-col-buttons", "hb-key-col-operation", "hb-key-col-function"],
+                                 [col["class"][0] for col in table.select("col")])
+                self.assertEqual([row["operation"]["text"] for row in record["rows"]],
+                                 [c.get_text() for c in table.select("tbody .hb-key-operation")])
+                spec = ComponentSpec.from_dict(nodes[-1]["component_spec"])
+                for renderer in ("web", "latex", "idml", "word"):
+                    self.assertEqual(len(record["rows"]), len(key_combinations_projection(spec, renderer)["rows"]))
+
+    def test_key_combinations_validate_shape_and_escape_native_copy(self):
+        from tools.component_specs.key_combinations import key_combinations_component_spec
+        from tools.web_key_combinations_component import render_key_combinations_component
+        args = dict(headers=["Buttons", "Operation", "Function"],
+                    rows=[["POWER + AC", "Hold <3s> & wait", "<script>alert(1)</script>"]] * 3,
+                    source_ref="operations", language="en")
+        soup = BeautifulSoup(render_key_combinations_component(key_combinations_component_spec(**args)), "html.parser")
+        self.assertIsNone(soup.find("script"))
+        self.assertIn("Hold <3s> & wait", soup.get_text())
+        args["rows"] = [["one", "two"]] * 3
+        with self.assertRaisesRegex(ValueError, "three-column"):
+            key_combinations_component_spec(**args)
+
     def test_auto_resume_four_languages_survive_source_free_public_replay(self):
         from tools.frozen_ai_source import FrozenBook
         from tools.frozen_ai_flow import root
