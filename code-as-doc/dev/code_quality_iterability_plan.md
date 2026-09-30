@@ -194,10 +194,13 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
 
 **目标。** 环境不符时先给出一条清晰的诊断；本地有一个 3 分钟以内的快速测试层；CI 仍然跑全量。
 
-- [ ] **CQ-6.1 环境预检。** 在 `build.py doctor`（[`../../tools/build_doctor.py`](../../tools/build_doctor.py)）
+- [x] **CQ-6.1 环境预检。** 在 `build.py doctor`（[`../../tools/build_doctor.py`](../../tools/build_doctor.py)）
   中增加检查：Python 版本，以及 `requirements.lock` 中对精确版本敏感的包（PyMuPDF 等）。
-  依赖精确版本的测试模块在 `setUpModule` 中调用同一个检查，环境不符时给出一条环境错误，
-  而不是一批分散的失败。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
+  每次 `python -m unittest` 开始时（`tests/__init__.py`）打印同一份检查的 `WARN` 行，
+  先说明环境差异，再出现那批分散的失败；环境与 CI 一致时不输出，`AUTO_MANUAL_ENV_PREFLIGHT=0`
+  可关闭。原计划在 `setUpModule` 里报一条环境错误，但那样会把同一模块里本可通过的测试也变成
+  错误，所以改为开头提示，不改变任何测试结果。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
+  （doctor 与独立命令：#1319，2026-09-29；测试开头提示：#1329，2026-09-30）
 - [ ] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
   并从 `requirements.lock` 安装依赖；在 [`../../ONBOARDING.md`](../../ONBOARDING.md) 加入这一步。
 - [ ] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记

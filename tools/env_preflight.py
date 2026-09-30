@@ -25,7 +25,7 @@ from typing import Callable
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LOCK_FILE = "requirements.lock"
 PYPROJECT_FILE = "pyproject.toml"
-MAX_LISTED = 8
+MAX_LISTED = 20
 
 Finding = tuple[str, str, str]
 
@@ -114,9 +114,9 @@ def collect_environment_findings(
     if not missing and not drifted:
         findings.append(("OK", "env.lock", f"all {len(pins)} pinned packages match {LOCK_FILE}"))
     if missing:
-        findings.append(("WARN", "env.lock", f"{len(missing)} pinned package(s) not installed: {_listed(sorted(missing))}"))
+        findings.append(("WARN", "env.lock", f"{len(missing)} pinned package(s) not installed: {_listed(sorted(missing, key=str.casefold))}"))
     if drifted:
-        findings.append(("WARN", "env.lock", f"{len(drifted)} package(s) differ from {LOCK_FILE}: {_listed(sorted(drifted))}"))
+        findings.append(("WARN", "env.lock", f"{len(drifted)} package(s) differ from {LOCK_FILE}: {_listed(sorted(drifted, key=str.casefold))}"))
     if missing or drifted:
         findings.append((
             "WARN",
