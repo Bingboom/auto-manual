@@ -12,6 +12,7 @@ from typing import Any, Iterable
 
 from tools.lang_registry import canonical_language
 from tools.safe_copy import assert_source_tree_no_symlinks
+from tools.web_component_admission import require_fresh_component_admission
 from tools.utils.path_utils import PathSegments
 
 
@@ -329,6 +330,9 @@ def seal_release_evidence(
     require_publishable_manual_ir(markdown_dir)
     checked = require_consistent_captures(captures)
     final = checked[-1]
+    require_fresh_component_admission(
+        markdown_dir, model=final.model, region=final.region, language=final.language,
+    )
     recaptured = capture_projection(
         final.manifest_path,
         action="html",
@@ -521,6 +525,10 @@ def verify_release_evidence(
         raise RuntimeError(f"Web language release HTML digest mismatch: {receipt_path}")
     if html_dir is not None and _file_inventory(html_dir) != recorded_html:
         raise RuntimeError(f"Web language release HTML files differ from evidence: {html_dir}")
+    require_publishable_manual_ir(markdown_dir)
+    require_fresh_component_admission(
+        markdown_dir, model=model, region=region, language=language, stored=stored,
+    )
     return VerifiedLanguageReleaseEvidence(
         path=receipt_path,
         sha256=receipt_sha256,

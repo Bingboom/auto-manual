@@ -13,7 +13,13 @@ _BASE = "https://ht-doc.readthedocs.io"
 _TARGET = "JE-TEST/EU/fr/md/manual.html"
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdAliasEntryTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_alias_targets_map_stems_to_nested_urls(self) -> None:
         products = [{"publications": [{"url": _TARGET}, {"url": "JE-TEST/EU/md/manual_legacy.html"}]}]
         self.assertEqual(

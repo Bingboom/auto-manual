@@ -11,8 +11,12 @@ from tools.rtd_portal import ASSETS, catalog
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class PublicationCatalogTests(unittest.TestCase):
     def setUp(self):
+        isolate_shared_component_admission(self)
         self.temp = TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)

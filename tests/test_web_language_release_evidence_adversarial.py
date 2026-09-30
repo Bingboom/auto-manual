@@ -6,6 +6,9 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
+
+from tests.prepared_admission_fixture import install_prepared_admission_fixture
 
 from tools.web_language_release_evidence import (
     capture_projection,
@@ -47,6 +50,7 @@ class LanguageEvidenceAdversarialTests(unittest.TestCase):
         (self.md / "a" / "x.png").write_bytes(b"image")
         (self.md / "a.png").write_bytes(b"other image")
         (self.html / "index.html").write_text("<html>Manual</html>")
+        install_prepared_admission_fixture(self, self.md, model="JE-TEST", language="en")
 
     def captures(self):
         return [capture_projection(
@@ -130,3 +134,18 @@ class LanguageEvidenceAdversarialTests(unittest.TestCase):
         (stored.parent / "rogue.md").write_text("Untracked shipped content")
         with self.assertRaises(RuntimeError):
             self.verify(stored, html_dir=None, stored=True)
+
+    def test_fresh_seal_rejects_deleted_ir_before_creating_evidence(self):
+        (self.md / "manual.ir.json").unlink()
+        with self.assertRaisesRegex(RuntimeError, "requires a real manual IR"):
+            self.seal()
+        self.assertFalse((self.root / "evidence").exists())
+
+    def test_historical_receipt_without_ir_replays_but_cannot_be_republished(self):
+        (self.md / "manual.ir.json").unlink()
+        # Produce the historical envelope with the old admission boundary.
+        with patch("tools.web_language_release_evidence.require_fresh_component_admission"):
+            receipt = self.seal()
+        self.verify(receipt, stored=True, html_dir=None)
+        with self.assertRaisesRegex(RuntimeError, "requires a real manual IR"):
+            self.verify(receipt)

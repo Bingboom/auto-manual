@@ -12,7 +12,13 @@ from tools.rtd_feedback import context_text, manual_feedback_markup, normalize_c
 from tests.web_language_evidence_fixture import seal_language_evidence_fixture
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdFeedbackTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_empty_channels_disable_markup(self) -> None:
         self.assertEqual([], normalize_channels([]))
         self.assertEqual("", manual_feedback_markup(channels=[], context="context"))

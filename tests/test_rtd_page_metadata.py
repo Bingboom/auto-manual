@@ -13,7 +13,13 @@ from tools.rtd_page_metadata import (
 _BASE = "https://ht-doc.readthedocs.io"
 
 
+from tests.web_language_evidence_fixture import isolate_shared_component_admission
+
+
 class RtdPageMetadataTests(unittest.TestCase):
+    def setUp(self):
+        isolate_shared_component_admission(self)
+
     def test_missing_or_blank_base_url_disables_absolute_tags(self) -> None:
         self.assertEqual("", normalize_site_base_url(None))
         self.assertEqual("", normalize_site_base_url("  "))

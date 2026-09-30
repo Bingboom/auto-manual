@@ -704,3 +704,5 @@ They use the same assembler and public `web_document_ir` consumer. The
 source-scoped locale validator is `manual_ir.external_languages`; it does
 not expand phase2 or print language registration. See the
 [four-language alignment](four_language_shared_ir_alignment.md).
+
+Prepared Web admission: `tools/web_component_admission.py` owns fresh-publication checks; `tools/prepared_component_policy.py` loads reviewed chapter applicability and existing capability data; `tools/prepared_component_coverage.py` audits actual flow nodes and bounded debt. See [contract and maintenance](prepared_component_admission.md).

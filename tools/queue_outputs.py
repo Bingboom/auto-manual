@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from tools.language_aliases import normalize_language
+from tools.web_component_admission import require_fresh_component_admission
 from tools.utils.path_utils import (
     PathSegments,
     docs_build_dir_of,
@@ -631,6 +632,9 @@ def stage_web_publish_assets_to_host_repo(
         built_html_dir=built_html_dir,
     )
     require_publishable_manual_ir(built_md_output_path.parent)
+    require_fresh_component_admission(
+        built_md_output_path.parent, model=model, region=region, language=target_lang,
+    )
     version_dir = publish_release_version_dir_for_target(
         config_path=host_config_path,
         model=model,

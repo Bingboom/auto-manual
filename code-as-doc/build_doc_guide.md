@@ -2322,3 +2322,7 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
 
 按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。
+
+## Prepared EU Web component admission
+
+Fresh EU/UK Web staging and sealing require a valid IR sidecar and the reviewed chapter/variant policy. Existing immutable evidence remains replayable. See [admission and bounded migration debt](dev/prepared_component_admission.md) before onboarding or rebuilding a legacy target.
