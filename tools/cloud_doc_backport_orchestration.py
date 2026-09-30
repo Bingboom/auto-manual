@@ -559,7 +559,7 @@ def _run_review_branch(args: argparse.Namespace) -> int:
             review_cmd += ["--sibling", sibling_rel]
         if args.write:
             review_cmd.append("--write")
-        proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True)
+        proc = subprocess.run(review_cmd, cwd=str(get_paths().root), capture_output=True, text=True, check=False)
         if proc.returncode not in (0, 1):  # run-review returns 1 on a FAIL result
             failed = True
             print(f"  ERROR {source_rel} (rc {proc.returncode})", file=sys.stderr)

@@ -150,7 +150,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             env = dict(os.environ)
             env.pop('PYTHONPATH', None)
             command = [sys.executable, '-I', '-m', 'sphinx', '-W', '-b', 'html', str(staged), str(root / 'html')]
-            built = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True)
+            built = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertEqual(0, built.returncode, built.stdout + built.stderr)
             markdown = BeautifulSoup((root / 'html/index.html').read_text(), 'html.parser').select_one('figure.hb-troubleshooting-composition')
             rst = _convert_rst_fragment_to_html(
@@ -172,7 +172,7 @@ class WebTroubleshootingTests(unittest.TestCase):
             self.assertEqual('0', markdown['tabindex'])
             # The standalone extension must reject malformed declared rows too.
             (staged / 'index.md').write_text('# Bad\n\n```{troubleshooting}\nE42 | Fix | Extra\n```\n')
-            bad = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True)
+            bad = subprocess.run(command, cwd=root, env=env, text=True, capture_output=True, check=False)
             self.assertNotEqual(0, bad.returncode)
             self.assertIn('requires two unspanned cells', bad.stdout + bad.stderr)
 

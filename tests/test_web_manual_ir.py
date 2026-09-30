@@ -185,7 +185,8 @@ class WebManualIRTests(unittest.TestCase):
             assert soup.select_one('figure.hb-spec-table-composition')
         """)
         result = subprocess.run(
-            [sys.executable, "-c", script], capture_output=True, text=True
+            [sys.executable, "-c", script], capture_output=True, text=True,
+            check=False,
         )
         self.assertEqual(0, result.returncode, result.stderr)
 

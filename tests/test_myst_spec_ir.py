@@ -134,7 +134,7 @@ spec_ir.build_manual_ir_from_source = capture
                 str(source),
                 str(root / "html"),
             ]
-            result = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            result = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertEqual(0, result.returncode, result.stdout + result.stderr)
             ir = read_manual_ir(source / "captured.json")
             self.assertEqual("web-specifications", ir.metadata["projection"])
@@ -151,7 +151,7 @@ spec_ir.build_manual_ir_from_source = capture
                 stream.write(
                     "\nspec_ir.build_manual_ir_from_source = lambda source: replace(original_assemble(source), content_sha256='0' * 64)\n"
                 )
-            rejected = subprocess.run(command, cwd=root, text=True, capture_output=True)
+            rejected = subprocess.run(command, cwd=root, text=True, capture_output=True, check=False)
             self.assertNotEqual(0, rejected.returncode)
             self.assertIn("Manual IR", rejected.stdout + rejected.stderr)
 

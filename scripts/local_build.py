@@ -71,7 +71,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
 
     print(f"[local-build] {' '.join(command)}")
-    completed = subprocess.run(command, cwd=str(ROOT))
+    completed = subprocess.run(command, cwd=str(ROOT), check=False)
     return completed.returncode
 
 

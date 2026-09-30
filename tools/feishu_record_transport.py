@@ -139,12 +139,12 @@ def run_lark_cli_json(
         elif format_command is not None:
             print(f"[build-queue] {format_command(cmd)}")
         run_kwargs: dict[str, Any] = {
-            "cwd": str(repo_root), "check": False, "capture_output": True,
+            "cwd": str(repo_root), "capture_output": True,
             "text": True, "encoding": "utf-8",
         }
         if environment is not None:
             run_kwargs["env"] = dict(environment)
-        process = subprocess.run(cmd, **run_kwargs)
+        process = subprocess.run(cmd, check=False, **run_kwargs)
         stdout, stderr = process.stdout or "", process.stderr or ""
         rate_limited = _is_rate_limited(None, stdout, stderr)
         payload: dict[str, Any] | None = None

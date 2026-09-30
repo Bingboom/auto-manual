@@ -168,6 +168,7 @@ class RtdFeedbackTests(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, "-m", "sphinx", "-q", "-b", "html", str(source), str(output)],
             cwd=Path(__file__).parents[1], capture_output=True, text=True,
+            check=False,
         )
         if result.returncode:
             raise AssertionError(result.stdout + result.stderr)

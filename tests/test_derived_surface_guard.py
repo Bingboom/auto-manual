@@ -23,7 +23,7 @@ def git(repo: Path, *args: str) -> None:
 def run_hook(payload: object, *, project_dir: Path) -> subprocess.CompletedProcess[str]:
     env = dict(os.environ, CLAUDE_PROJECT_DIR=str(project_dir))
     data = payload if isinstance(payload, str) else json.dumps(payload)
-    return subprocess.run([sys.executable, str(HOOK)], input=data, capture_output=True, text=True, env=env)
+    return subprocess.run([sys.executable, str(HOOK)], input=data, capture_output=True, text=True, env=env, check=False)
 
 
 def bash(command: str, cwd: Path) -> dict:

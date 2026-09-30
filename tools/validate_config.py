@@ -81,8 +81,8 @@ def _non_empty_str(value: Any) -> bool:
 def load_yaml(path: Path) -> dict:
     try:
         import yaml
-    except ImportError:
-        raise RuntimeError("PyYAML not installed. Run: pip install pyyaml")
+    except ImportError as exc:
+        raise RuntimeError("PyYAML not installed. Run: pip install pyyaml") from exc
 
     # -------------------------------
     # YAML loader that rejects duplicate keys

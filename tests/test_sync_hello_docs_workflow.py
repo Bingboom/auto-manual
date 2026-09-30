@@ -69,6 +69,7 @@ class SyncHelloDocsWorkflowTests(unittest.TestCase):
                 return subprocess.run(
                     ["bash", "-e", "-o", "pipefail", "-c", self.command],
                     cwd=root, env=env, capture_output=True, text=True,
+                    check=False,
                 )
 
             result = sync()

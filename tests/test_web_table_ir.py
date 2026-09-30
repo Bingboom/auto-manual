@@ -236,6 +236,7 @@ assert 'hb-lcd-table-composition' in ''.join(render_web_table_ir(read_manual_ir(
                 cwd=root,
                 capture_output=True,
                 text=True,
+                check=False,
             )
             self.assertEqual(0, result.returncode, result.stderr)
 

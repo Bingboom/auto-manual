@@ -128,7 +128,7 @@ class PublicationCatalogTests(unittest.TestCase):
         index.write_text(index.read_text() + "\n\n```{toctree}\n\nJE-TEST/EU/en/md/manual_en\nJE-TEST/EU/fr/md/manual_fr\n```\n")
         before = {p: p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
         output = self.base / "html"
-        proc = subprocess.run([sys.executable, "-m", "sphinx", "-q", "-b", "html", str(self.root), str(output)], capture_output=True, text=True)
+        proc = subprocess.run([sys.executable, "-m", "sphinx", "-q", "-b", "html", str(self.root), str(output)], capture_output=True, text=True, check=False)
         self.assertEqual(0, proc.returncode, proc.stdout + proc.stderr)
         home = (output / "index.html").read_text()
         self.assertEqual(home.count('class="card"'), 1)
