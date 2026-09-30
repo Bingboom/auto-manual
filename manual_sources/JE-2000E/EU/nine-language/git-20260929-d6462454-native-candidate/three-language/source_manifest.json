@@ -1548,8 +1548,8 @@
     },
     {
       "path": "source/operation_tables.json",
-      "size": 55893,
-      "sha256": "f78051403fecaedc4ffe2beb132656fd02c3b4fd0df1c09b07e4a3bbf8e929ac"
+      "size": 55773,
+      "sha256": "c5c0572ec25f493dc5fc5dd1027b8c0e0ebe4dfaff4e7b044ca8048bd80aac64"
     },
     {
       "path": "source/pl_direct_source.json",

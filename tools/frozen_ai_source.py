@@ -13,6 +13,8 @@ from tools.frozen_ai_table_components import (
     auto_resume_flow, lcd_mode_flow, symbol_signal_flow, warranty_flow,
 )
 from tools.manual_ir.hashing import file_sha256
+from tools.manual_ir.components import component_flow_node
+from tools.component_specs.key_combinations import key_combinations_component_spec
 
 
 def _key(value):
@@ -284,11 +286,15 @@ class FrozenBook:
             result.extend(auto_resume_flow(record, language=self.language,
                                            source_ref=f"{self.language}/operations/restore"))
         else:
-            rows = [[cell(squash(h["text"]), header=True) for h in record["headers"]]]
+            rows = []
             for row in record["rows"]:
                 buttons = " + ".join(self.correct(squash(b["text"])) for b in row["buttons"])
-                rows.append([cell(buttons, header=True), cell(squash(row["operation"]["text"])), cell(squash(row["function"]["text"]))])
-            result.append(scroll_table(rows))
+                rows.append([buttons, squash(row["operation"]["text"]), squash(row["function"]["text"])])
+            spec = key_combinations_component_spec(
+                headers=[squash(h["text"]) for h in record["headers"]], rows=rows,
+                source_ref=f"{self.language}/operations/shortcuts", language=self.language,
+            )
+            result.append(component_flow_node(spec, root=True))
         return result
 
     def callouts(self, blocks, number):

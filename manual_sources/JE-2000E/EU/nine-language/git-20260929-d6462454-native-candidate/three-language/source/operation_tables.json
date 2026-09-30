@@ -443,12 +443,12 @@
               "physical_page": 169,
               "bbox": [
                 157,
-                286.11,
+                310.998,
                 246,
                 327.48
               ],
-              "raw_text": "3 s\nNaciśnij i przytrzymaj \noba przyciski przez 3 s.",
-              "text": "3 s Naciśnij i przytrzymaj oba przyciski przez 3 s.",
+              "raw_text": "Naciśnij i przytrzymaj\noba przyciski przez 3 s.",
+              "text": "Naciśnij i przytrzymaj oba przyciski przez 3 s.",
               "selection": "lines"
             },
             "function": {
@@ -499,12 +499,12 @@
               "physical_page": 169,
               "bbox": [
                 157,
-                327.48,
+                351.802,
                 246,
                 368.86
               ],
-              "raw_text": "3 s\nNaciśnij i przytrzymaj \noba przyciski przez 3 s.",
-              "text": "3 s Naciśnij i przytrzymaj oba przyciski przez 3 s.",
+              "raw_text": "Naciśnij i przytrzymaj\noba przyciski przez 3 s.",
+              "text": "Naciśnij i przytrzymaj oba przyciski przez 3 s.",
               "selection": "lines"
             },
             "function": {
@@ -555,12 +555,12 @@
               "physical_page": 169,
               "bbox": [
                 157,
-                368.86,
+                393.126,
                 246,
                 411.25
               ],
-              "raw_text": "1 s\nNaciśnij i przytrzymaj \noba przyciski przez 1 s.",
-              "text": "1 s Naciśnij i przytrzymaj oba przyciski przez 1 s.",
+              "raw_text": "Naciśnij i przytrzymaj\noba przyciski przez 1 s.",
+              "text": "Naciśnij i przytrzymaj oba przyciski przez 1 s.",
               "selection": "lines"
             },
             "function": {
@@ -611,12 +611,12 @@
               "physical_page": 169,
               "bbox": [
                 157,
-                411.25,
+                436.814,
                 246,
                 455.17
               ],
-              "raw_text": "1 s\nNaciśnij i przytrzymaj \noba przyciski przez 1 s.",
-              "text": "1 s Naciśnij i przytrzymaj oba przyciski przez 1 s.",
+              "raw_text": "Naciśnij i przytrzymaj\noba przyciski przez 1 s.",
+              "text": "Naciśnij i przytrzymaj oba przyciski przez 1 s.",
               "selection": "lines"
             },
             "function": {
@@ -1080,12 +1080,12 @@
               "physical_page": 131,
               "bbox": [
                 157,
-                286.11,
+                311.481,
                 246,
                 327.48
               ],
-              "raw_text": "3s\nPressione e segure ambos por 3 s",
-              "text": "3s Pressione e segure ambos por 3 s",
+              "raw_text": "Pressione e segure ambos por 3 s",
+              "text": "Pressione e segure ambos por 3 s",
               "selection": "lines"
             },
             "function": {
@@ -1136,12 +1136,12 @@
               "physical_page": 131,
               "bbox": [
                 157,
-                327.48,
+                352.286,
                 246,
                 368.86
               ],
-              "raw_text": "3s\nPressione e segure ambos por 3 s",
-              "text": "3s Pressione e segure ambos por 3 s",
+              "raw_text": "Pressione e segure ambos por 3 s",
+              "text": "Pressione e segure ambos por 3 s",
               "selection": "lines"
             },
             "function": {
@@ -1192,12 +1192,12 @@
               "physical_page": 131,
               "bbox": [
                 157,
-                368.86,
+                393.604,
                 246,
                 411.25
               ],
-              "raw_text": "1 s\nPressione e segure ambos por 1 s",
-              "text": "1 s Pressione e segure ambos por 1 s",
+              "raw_text": "Pressione e segure ambos por 1 s",
+              "text": "Pressione e segure ambos por 1 s",
               "selection": "lines"
             },
             "function": {
@@ -1248,12 +1248,12 @@
               "physical_page": 131,
               "bbox": [
                 157,
-                411.25,
+                437.293,
                 246,
                 455.17
               ],
-              "raw_text": "1 s\nPressione e segure ambos por 1 s",
-              "text": "1 s Pressione e segure ambos por 1 s",
+              "raw_text": "Pressione e segure ambos por 1 s",
+              "text": "Pressione e segure ambos por 1 s",
               "selection": "lines"
             },
             "function": {
@@ -1717,12 +1717,12 @@
               "physical_page": 150,
               "bbox": [
                 157,
-                286.11,
+                310.998,
                 246,
                 327.48
               ],
-              "raw_text": "3s\nHoud beide knoppen 3 \nseconden ingedrukt",
-              "text": "3s Houd beide knoppen 3 seconden ingedrukt",
+              "raw_text": "Houd beide knoppen 3\nseconden ingedrukt",
+              "text": "Houd beide knoppen 3 seconden ingedrukt",
               "selection": "lines"
             },
             "function": {
@@ -1773,12 +1773,12 @@
               "physical_page": 150,
               "bbox": [
                 157,
-                327.48,
+                351.802,
                 246,
                 368.86
               ],
-              "raw_text": "3s\nHoud beide knoppen 3 \nseconden ingedrukt",
-              "text": "3s Houd beide knoppen 3 seconden ingedrukt",
+              "raw_text": "Houd beide knoppen 3\nseconden ingedrukt",
+              "text": "Houd beide knoppen 3 seconden ingedrukt",
               "selection": "lines"
             },
             "function": {
@@ -1829,12 +1829,12 @@
               "physical_page": 150,
               "bbox": [
                 157,
-                368.86,
+                393.126,
                 246,
                 411.25
               ],
-              "raw_text": "1 seconde\nHoud beide knoppen 1 \nseconde ingedrukt",
-              "text": "1 seconde Houd beide knoppen 1 seconde ingedrukt",
+              "raw_text": "Houd beide knoppen 1\nseconde ingedrukt",
+              "text": "Houd beide knoppen 1 seconde ingedrukt",
               "selection": "lines"
             },
             "function": {
@@ -1885,12 +1885,12 @@
               "physical_page": 150,
               "bbox": [
                 157,
-                411.25,
+                436.814,
                 246,
                 455.17
               ],
-              "raw_text": "1 seconde\nHoud beide knoppen 1 \nseconde ingedrukt",
-              "text": "1 seconde Houd beide knoppen 1 seconde ingedrukt",
+              "raw_text": "Houd beide knoppen 1\nseconde ingedrukt",
+              "text": "Houd beide knoppen 1 seconde ingedrukt",
               "selection": "lines"
             },
             "function": {

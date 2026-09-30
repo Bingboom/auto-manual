@@ -105,8 +105,8 @@ editable fallbacks and missing artwork are reviewable without inspecting two
 manifest formats separately. The local fixture preview is not a published or
 content-approved manual; source/PDF differences are tracked in that record.
 New whole-document Web packages use `manual-ir/v2` neutral flow/rich-text nodes;
-historical `manual-ir/v1` packages remain replayable. Sixteen ComponentSpec types
-are embedded, including Operation, LCD Mode, the three Warranty shapes, LCD
+historical `manual-ir/v1` packages remain replayable. Eighteen ComponentSpec types
+are embedded, including Operation, Auto Resume, Key Combinations, LCD Mode, the three Warranty shapes, LCD
 Icons, Troubleshooting, both Symbols tables, App and governed Reference Figures.
 The package freezes the component registry, theme, target presentation contract
 and resolved Overview instance; cold replay does not read RST/CSV or rerun the
@@ -1346,7 +1346,7 @@ App and governed Reference Figure
 instances are written once into ordered `manual-ir/v2` flow
 and replayed from those embedded specs. Their source projectors run only while
 assembling a new package; opening or publishing the frozen package does not
-reparse RST/CSV or rediscover those sixteen component types from HTML. Historical
+reparse RST/CSV or rediscover those eighteen component types from HTML. Historical
 packages remain supported. German `JAHRE` and Italian `ANNI` use the same
 component-owned 3/2 numeric badge adapter; compact Korean `3년` / `2년` headings
 are parsed by that same language-neutral warranty component. Operation instances
@@ -1930,3 +1930,5 @@ Native PDF LCD intake preserves semantic status lines and bold status prefixes i
 交流充电图的源稿裁区必须包含完整外框和左右下圆角。说明文字继续作为网页正文；移除图内重复说明时只剥离文字，不删除背景、产品线条或边框。四语共用图修复须一起重建并核对其余图文不变。
 
 太阳能接线图若自带外框和留白，外层底色须与留白对齐，避免生成双重灰边。太阳能板可复用，整张主机接线图仍须核对型号与插座／接口版本；不能仅按语言一致就跨地区替换。
+
+按键组合表由共享 `HB-TABLE-KEY-COMBINATIONS` 承载三列表头和操作行，通过 `manual-ir/v2` 的 ComponentSpec 直接复用英文 Web 表格渲染：深色圆角边框、40/25/35 列宽、首列灰底及正文常规字重。原生 PDF 的操作文案取文字区域，排除时钟图旁重复的时长标记；不改动句内时长或功能内容。

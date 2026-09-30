@@ -249,6 +249,21 @@ components:
       idml: {capability: projection-only, key: idml_auto_resume}
       word: {capability: projection-only, key: word_auto_resume}
 
+  HB-TABLE-KEY-COMBINATIONS:
+    style_id: HB-TABLE-KEY-COMBINATIONS
+    source_kinds: [table_key_combinations]
+    variants: [three-column]
+    slots:
+      headers: {required: true, content_kinds: [ordered_headers]}
+      rows: {required: true, content_kinds: [ordered_rows]}
+    asset_roles: {}
+    token_roles: [component.table.key-combinations]
+    adapters:
+      web: {capability: rendered, key: hb_key_combinations}
+      latex: {capability: projection-only, key: hb_latex_key_combinations}
+      idml: {capability: projection-only, key: idml_key_combinations}
+      word: {capability: projection-only, key: word_key_combinations}
+
   HB-TABLE-LCD-MODE:
     style_id: HB-TABLE-LCD-MODE
     source_kinds: [table_lcd_mode]

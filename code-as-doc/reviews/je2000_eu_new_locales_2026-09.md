@@ -159,3 +159,18 @@ There is one canonical repository source for each image; frozen build outputs
 copy those hash-verified bytes for self-contained replay. Native per-language
 crops remain source evidence but are no longer used by these two slots.
 Model-specific main-unit art, localized labels and HTML numbering stay intact.
+
+Key combinations now use the shared `HB-TABLE-KEY-COMBINATIONS` ComponentSpec
+and the existing English HTML transformer/CSS. Body cells remain regular-weight
+text with 40/25/35 columns and the governed rounded frame. F/E pt/nl/pl native
+operation text rectangles exclude the separate clock duration labels; the
+complete instruction retains its duration. Auto-resume already uses its shared
+component and remains unchanged.
+
+Validation: six strict HTML builds and byte-identical PDF-free replays passed;
+browser comparisons matched the English table frame, fill, proportions and
+body weight. New component/roundtrip tests passed. The 4,842-test full run
+found 20 errors and two failures from a modified local JE-1000F AI fixture;
+all 34 tests in the affected modules passed with a separately downloaded,
+hash-verified original (c38415f5...), preserving the existing local files.
+The isolated US build check, lint, documentation links and guardrails passed.
