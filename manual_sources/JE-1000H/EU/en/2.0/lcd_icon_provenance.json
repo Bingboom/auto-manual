@@ -1,0 +1,367 @@
+{
+  "source": "business-plane LCD icons",
+  "base": "LD3lb4G1ua4GOVs1vxAc9W2enje",
+  "table": "tblW5fCuJ6YdAcND",
+  "mapping": "indicator identity; preserve approved frozen numbering",
+  "known_quality_debt": {
+    "indicator": "Connected Batteries",
+    "dimensions": [
+      43,
+      34
+    ],
+    "note": "Existing source reused byte-for-byte, no enlarged or fabricated replacement approved."
+  },
+  "icons": [
+    {
+      "indicator": "Wi-Fi",
+      "approved_callout": "1",
+      "live_row_number": 1,
+      "record_id": "recvhBxMIMvx5r",
+      "file_token": "KCcAbdDk7o4RjKx82micuKJ5nyf",
+      "path": "phase2/_attachments/lcd_icons/01_wifi.png",
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc",
+      "dimensions": [
+        84,
+        60
+      ]
+    },
+    {
+      "indicator": "Bluetooth",
+      "approved_callout": "2",
+      "live_row_number": 2,
+      "record_id": "recvhBxMIMwY4F",
+      "file_token": "HVgvbJhq5o4EDKxhm7McCF4FnjB",
+      "path": "phase2/_attachments/lcd_icons/02_bluetooth.png",
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361",
+      "dimensions": [
+        72,
+        84
+      ]
+    },
+    {
+      "indicator": "Quiet Charging Mode",
+      "approved_callout": "3",
+      "live_row_number": 3,
+      "record_id": "recvhBxMIMsWoY",
+      "file_token": "WLkMbiHS1oGsOtxUCp7cRhFAn1g",
+      "path": "phase2/_attachments/lcd_icons/03_quiet_charging_mode.png",
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d",
+      "dimensions": [
+        76,
+        76
+      ]
+    },
+    {
+      "indicator": "Charging Plan",
+      "approved_callout": "4",
+      "live_row_number": 4,
+      "record_id": "recvhBxMIMFPLf",
+      "file_token": "M96RbyZQxoGjRRxQHsuczeIln1b",
+      "path": "phase2/_attachments/lcd_icons/04_charging_plan.png",
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d",
+      "dimensions": [
+        79,
+        84
+      ]
+    },
+    {
+      "indicator": "Self-powered Mode",
+      "approved_callout": "5",
+      "live_row_number": 5,
+      "record_id": "recvhBxNA2P5xy",
+      "file_token": "FYTnb9vttoexjbxVMchcJaobnCg",
+      "path": "phase2/_attachments/lcd_icons/05_self_powered_mode.png",
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783",
+      "dimensions": [
+        90,
+        83
+      ]
+    },
+    {
+      "indicator": "TOU Mode",
+      "approved_callout": "6",
+      "live_row_number": 6,
+      "record_id": "recvhBxNA2BbYd",
+      "file_token": "BjEkbz0rFo6Bw4xiwNpcod9qnnc",
+      "path": "phase2/_attachments/lcd_icons/06_tou_mode.png",
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af",
+      "dimensions": [
+        122,
+        80
+      ]
+    },
+    {
+      "indicator": "UPS",
+      "approved_callout": "7",
+      "live_row_number": 7,
+      "record_id": "recvhBxNA2PTb2",
+      "file_token": "Lgdgb8pvvoGwaLxSf8ec2QeHn3c",
+      "path": "phase2/_attachments/lcd_icons/07_ups.png",
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc",
+      "dimensions": [
+        116,
+        77
+      ]
+    },
+    {
+      "indicator": "AC Power Indicator",
+      "approved_callout": "8",
+      "live_row_number": 8,
+      "record_id": "recvhBxNA2ijlN",
+      "file_token": "HFPSbvWBgosvCux69jMcuWe6nnh",
+      "path": "phase2/_attachments/lcd_icons/08_ac_power_indicator.png",
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538",
+      "dimensions": [
+        114,
+        94
+      ]
+    },
+    {
+      "indicator": "Output Voltage and Frequency",
+      "approved_callout": "9",
+      "live_row_number": 9,
+      "record_id": "recvhBxNA20H3d",
+      "file_token": "Jh3JbmBDBoKlmOxaRJDcIMJAn6b",
+      "path": "phase2/_attachments/lcd_icons/09_output_voltage_and_frequency.png",
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df",
+      "dimensions": [
+        253,
+        38
+      ]
+    },
+    {
+      "indicator": "Input Power",
+      "approved_callout": "10",
+      "live_row_number": 10,
+      "record_id": "recvhBxNA2CYjR",
+      "file_token": "LOAZbnxfqoHFwIxx2Myc532jnzb",
+      "path": "phase2/_attachments/lcd_icons/10_input_power.png",
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b",
+      "dimensions": [
+        215,
+        105
+      ]
+    },
+    {
+      "indicator": "Remaining Charge Time",
+      "approved_callout": "11",
+      "live_row_number": 11,
+      "record_id": "recvhBxNA2r0u7",
+      "file_token": "KIWHbHFOvotGuBxJsxlcunSDnPf",
+      "path": "phase2/_attachments/lcd_icons/11_remaining_charge_time.png",
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb",
+      "dimensions": [
+        163,
+        67
+      ]
+    },
+    {
+      "indicator": "AC Wall Charging Indicator",
+      "approved_callout": "12",
+      "live_row_number": 12,
+      "record_id": "recvhBxNA2Y2s0",
+      "file_token": "ZpOmbCjx8oYUTVxyl4JcvcTanPe",
+      "path": "phase2/_attachments/lcd_icons/12_ac_wall_charging_indicator.png",
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c",
+      "dimensions": [
+        74,
+        85
+      ]
+    },
+    {
+      "indicator": "Car Charging Indicator",
+      "approved_callout": "13",
+      "live_row_number": 13,
+      "record_id": "recvhBxNA2WNYW",
+      "file_token": "DLkibYaP1ot6d5x1S0jcUr1knlb",
+      "path": "phase2/_attachments/lcd_icons/13_car_charging_indicator.png",
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64",
+      "dimensions": [
+        68,
+        85
+      ]
+    },
+    {
+      "indicator": "Solar Charging Indicator",
+      "approved_callout": "14",
+      "live_row_number": 14,
+      "record_id": "recvhBxNA2opHH",
+      "file_token": "RgAUbPXNWoRxiHxKNgkc2gqDnEb",
+      "path": "phase2/_attachments/lcd_icons/14_solar_charging_indicator.png",
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4",
+      "dimensions": [
+        83,
+        82
+      ]
+    },
+    {
+      "indicator": "Battery Saving Mode",
+      "approved_callout": "15",
+      "live_row_number": 15,
+      "record_id": "recvhBxNA2sZXg",
+      "file_token": "ClYfbtOGSoK5q2xySXCcgehVn8f",
+      "path": "phase2/_attachments/lcd_icons/15_battery_saving_mode.png",
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a",
+      "dimensions": [
+        74,
+        81
+      ]
+    },
+    {
+      "indicator": "Charging Power Limit",
+      "approved_callout": "16",
+      "live_row_number": 16,
+      "record_id": "recvhBxNA2h5G2",
+      "file_token": "VLf2bJfrkoCL0CxJoMNcL5ZxnCt",
+      "path": "phase2/_attachments/lcd_icons/16_charging_power_limit.png",
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad",
+      "dimensions": [
+        82,
+        78
+      ]
+    },
+    {
+      "indicator": "Battery Power Indicator",
+      "approved_callout": "17",
+      "live_row_number": 17,
+      "record_id": "recvhBxNA27gHe",
+      "file_token": "VLufb9exvoVLfgxz47pcfnRGnaf",
+      "path": "phase2/_attachments/lcd_icons/17_battery_power_indicator.png",
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f",
+      "dimensions": [
+        145,
+        145
+      ]
+    },
+    {
+      "indicator": "Low Battery Indicator",
+      "approved_callout": "18",
+      "live_row_number": 19,
+      "record_id": "recvhBxNA2eFdi",
+      "file_token": "KDk9bhs8poHUBdx96PLckPganhd",
+      "path": "phase2/_attachments/lcd_icons/18_low_battery_indicator.png",
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889",
+      "dimensions": [
+        98,
+        52
+      ]
+    },
+    {
+      "indicator": "Remaining Battery Percentage",
+      "approved_callout": "19",
+      "live_row_number": 18,
+      "record_id": "recvhBxNA2ppFP",
+      "file_token": "VkJcbUDbUoYC1hxrU6rc168OnJe",
+      "path": "phase2/_attachments/lcd_icons/19_remaining_battery_percentage.png",
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10",
+      "dimensions": [
+        206,
+        95
+      ]
+    },
+    {
+      "indicator": "Discharge Timer",
+      "approved_callout": "20",
+      "live_row_number": 20,
+      "record_id": "recvhBxNA2ZYWB",
+      "file_token": "DHPMbkjSWoiuALxJyJ8cWyQOn0e",
+      "path": "phase2/_attachments/lcd_icons/20_discharge_timer.png",
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723",
+      "dimensions": [
+        93,
+        107
+      ]
+    },
+    {
+      "indicator": "Connected Batteries",
+      "approved_callout": "21",
+      "live_row_number": 21,
+      "record_id": "recvhBxNA2mSiw",
+      "file_token": "ZeHlbv3HEoRcq2xIXacchUcTndg",
+      "path": "phase2/_attachments/lcd_icons/image.png",
+      "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7",
+      "dimensions": [
+        43,
+        34
+      ]
+    },
+    {
+      "indicator": "Energy Saving Mode",
+      "approved_callout": "22",
+      "live_row_number": 22,
+      "record_id": "recvhBxNA2GbJe",
+      "file_token": "O4Jdb5pUQoCBAqx0sfQcm9Nbntd",
+      "path": "phase2/_attachments/lcd_icons/22_energy_saving_mode.png",
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222",
+      "dimensions": [
+        110,
+        69
+      ]
+    },
+    {
+      "indicator": "High Temperature Indicator",
+      "approved_callout": "23",
+      "live_row_number": 23,
+      "record_id": "recvhBxNA2m3Ad",
+      "file_token": "UmkEbOgCKoKyxoxDSINcfO6LnQd",
+      "path": "phase2/_attachments/lcd_icons/23_high_temperature_indicator.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5",
+      "dimensions": [
+        51,
+        81
+      ]
+    },
+    {
+      "indicator": "Low Temperature Indicator",
+      "approved_callout": "23",
+      "live_row_number": 24,
+      "record_id": "recvhBxNA2vtqy",
+      "file_token": "JDMEbD96noSbyWxbOnVcgip1nab",
+      "path": "phase2/_attachments/lcd_icons/24_low_temperature_indicator.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a",
+      "dimensions": [
+        51,
+        80
+      ]
+    },
+    {
+      "indicator": "Fault code",
+      "approved_callout": "24",
+      "live_row_number": 25,
+      "record_id": "recvhBxNA2oAqM",
+      "file_token": "Oz87bX3BGo8H7Zxe0XvcTd7FnJL",
+      "path": "phase2/_attachments/lcd_icons/25_fault_code.png",
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579",
+      "dimensions": [
+        130,
+        119
+      ]
+    },
+    {
+      "indicator": "Output Power",
+      "approved_callout": "25",
+      "live_row_number": 26,
+      "record_id": "recvhBxNA2iilV",
+      "file_token": "PviebR618oofvKxcKVRcHLlInqd",
+      "path": "phase2/_attachments/lcd_icons/26_output_power.png",
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d",
+      "dimensions": [
+        245,
+        119
+      ]
+    },
+    {
+      "indicator": "Remaining Discharge Time",
+      "approved_callout": "26",
+      "live_row_number": 27,
+      "record_id": "recvhBxNA2cwB1",
+      "file_token": "JEpobf59DoBV4dxWlnxcNtIinke",
+      "path": "phase2/_attachments/lcd_icons/27_remaining_discharge_time.png",
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab",
+      "dimensions": [
+        236,
+        71
+      ]
+    }
+  ]
+}

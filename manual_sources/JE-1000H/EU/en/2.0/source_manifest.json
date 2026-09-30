@@ -57,8 +57,8 @@
     },
     {
       "path": "phase2/Status_Words.csv",
-      "size": 309,
-      "sha256": "2b7137ba193ba282cd1d9a1824a2b23099b397730c4329861a47a123f79fd2c0"
+      "size": 332,
+      "sha256": "1ecc3d5689abcdda6ae39b5daa8ba89a84a52c4a3b7b9b2e4f1920a50e59a0d3"
     },
     {
       "path": "phase2/Variable_Defaults.csv",
@@ -72,8 +72,8 @@
     },
     {
       "path": "phase2/lcd_icons_blocks.csv",
-      "size": 37520,
-      "sha256": "3035e1d76285e49b0759e1b3edefbc65ae13d134f6ac0049730ec0743d184b5e"
+      "size": 39120,
+      "sha256": "2551bcf2388e35a002a93a0a0098926b7a52a95bb700779745b9ca9542448a33"
     },
     {
       "path": "phase2/page_registry.csv",
@@ -104,9 +104,149 @@
       "path": "phase2/web_composite_manifest.json",
       "size": 60,
       "sha256": "c9d8a882f6e00ad00b3a76697d6f1ea1257cabbf374e1d5c2c824e88e2ef32c4"
+    },
+    {
+      "path": "lcd_icon_provenance.json",
+      "size": 11548,
+      "sha256": "6f1067b247632df83b2db04dfcbb1d8e59cfb9c5516053549888a708428d3db6"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/01_wifi.png",
+      "size": 1814,
+      "sha256": "fc4cc02b42efc31a32429ada2b78c4480a2fcbca647406da29b2ce75a8a8c1dc"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/02_bluetooth.png",
+      "size": 2023,
+      "sha256": "7e1392ba6a45e66a2e7367ae5df737ccc41ad2de46c4ac7d6baf062ff63bb361"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/03_quiet_charging_mode.png",
+      "size": 1414,
+      "sha256": "7f743182c0509307793dde001356fff5c3d20dd32b09105b6a1d467af7e7f66d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/04_charging_plan.png",
+      "size": 2759,
+      "sha256": "71017f43bab44852d5586d1d4f996f3c52d8451bceaa9249e29864652c2f537d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/05_self_powered_mode.png",
+      "size": 3466,
+      "sha256": "73225cf9faa868bbe937df298d55a696828a4156f40e90da5c2a7f0011f0b783"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/06_tou_mode.png",
+      "size": 2712,
+      "sha256": "f4cdcb5511058eaaf1879a69a429317dd3d98325dd5e19f5dd95b06ea2c965af"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/07_ups.png",
+      "size": 2868,
+      "sha256": "e422a56922eb749ae90802fd964cb451a08d833658c1849abe10a63c60b173cc"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/08_ac_power_indicator.png",
+      "size": 3962,
+      "sha256": "8be87c5a084994e3b4b6ddff46ce0296207a5c49c732f8ed13adfbcb28a36538"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/09_output_voltage_and_frequency.png",
+      "size": 3553,
+      "sha256": "7623ef10e229bcfe66c872f3733d26b86c97d703ed30012188a88bb4a168e6df"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/10_input_power.png",
+      "size": 4730,
+      "sha256": "d5100a538e964da13e04241a98134e6aeaa36af8991aceeecac3c5d063b6968b"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/11_remaining_charge_time.png",
+      "size": 1974,
+      "sha256": "cfb69b1ffc0b30c51216fb6b1e00e35b412dd0148b6999d3d40ac90fbfe108cb"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/12_ac_wall_charging_indicator.png",
+      "size": 2223,
+      "sha256": "28f3cad42ae32e9e895abfd7cdb16a21b99dfa822c57d542f0e3f59a4b452c6c"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/13_car_charging_indicator.png",
+      "size": 1599,
+      "sha256": "eed3299c3f6a15766e433ebbae7a40af8939e6d32489a0aa33a37fe902232a64"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/14_solar_charging_indicator.png",
+      "size": 3059,
+      "sha256": "91cec82eeaa553477868d38789d68a4937cb11c5c4d794de74db1edddb3aeea4"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/15_battery_saving_mode.png",
+      "size": 1481,
+      "sha256": "e32e6ae96321aa47b39c0c65a18a59da6c90cf87a0d7c8d61556ead273789c3a"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/16_charging_power_limit.png",
+      "size": 2772,
+      "sha256": "21b5f19ca9a6e39d8bd515128297cc1b99e43fd263e39ffba4fdf102d50a4bad"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/17_battery_power_indicator.png",
+      "size": 4879,
+      "sha256": "85921a9ad7fbfa58f98ee7bb0dc904377f31fe3dbface4083d2493144b05362f"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/18_low_battery_indicator.png",
+      "size": 1293,
+      "sha256": "c7862a87e742d6927b4e1d63a8d0ccb09fbcf980ae662ff94b9134e256e56889"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/19_remaining_battery_percentage.png",
+      "size": 3712,
+      "sha256": "747147be99d76bb486c858aeca2289d7d05ad3be1f1ea1f0825f54cb29b7fd10"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/20_discharge_timer.png",
+      "size": 3194,
+      "sha256": "6aab9a14900a08fcd8f8261e6e36fbb9a1220eb931df94ebd149b23930063723"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/22_energy_saving_mode.png",
+      "size": 2056,
+      "sha256": "c4b830c769a3de7f9effaee82466752f5706a0741ba29675cce45633c1cd8222"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/23_high_temperature_indicator.png",
+      "size": 2248,
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/24_low_temperature_indicator.png",
+      "size": 2206,
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/25_fault_code.png",
+      "size": 3966,
+      "sha256": "ce913ebfc7750764f4206250f5e21aa09bd1cfc074bdee5b0484d61610f1b579"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/26_output_power.png",
+      "size": 6085,
+      "sha256": "58c1d3604ca7b9774b069c6928775a13465ccb9477f477e9e4d4b30e7f75b88d"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/27_remaining_discharge_time.png",
+      "size": 2496,
+      "sha256": "9b148ea95d3a3450591c7220908b0913048f2cdea1e61d200534181c52b47cab"
+    },
+    {
+      "path": "phase2/_attachments/lcd_icons/image.png",
+      "size": 1581,
+      "sha256": "b4744a483fa95db386bbb269f277a53f678279c7eda8f8cbf24a78f2b426f2a7"
     }
   ],
-  "files_inventory_sha256": "83dbe37af644644f60241e8c65b556cefb7dbab37e666828c3d56bb7744ace0b",
+  "files_inventory_sha256": "9aafc31c1c7c8044c391e7d41c2e5a0b632082dbb4e665a319bb3556dac547e6",
   "live_bitable_dependency": false,
   "checkout_contract": {
     "path": "phase2/.gitattributes",
