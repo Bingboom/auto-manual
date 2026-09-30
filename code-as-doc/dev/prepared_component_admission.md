@@ -1,7 +1,10 @@
 # Prepared-document shared-component admission
 
-Status: active. Composed local acceptance passed on September 30, 2026;
-merge and publication remain pending. The combined suite ran 4,928 tests
+Status: active. Admission merged in #1342 on September 30, 2026; the scoped
+14-manual rollout is published and verified (see the
+[release acceptance](eu_shared_component_rollout_2026-09.md#published-acceptance--2026-09-30)).
+The additional six-locale JE-1000H LCD repair remains PR #1343, not published.
+The combined pre-merge suite ran 4,928 tests
 with no failures or errors (19 skipped). The 51 prepared and 10 native packages
 passed fresh admission; all 958 component/chapter removal mutations were
 rejected. A real App artwork tamper with recomputed candidate hashes was also
@@ -43,8 +46,8 @@ not inherit portable-host AC/App requirements.
 
 Native `frozen-ai-json` / `frozen-pdf-json` inputs retain the native admission
 owned by PR #1339. The prepared enrollment assumes the repairs in PR #1340 and
-PR #1341. These changes must be composed and validated before activation;
-merging the prepared gate before its dependencies can block publication.
+PR #1341. These changes were composed and validated before activation, then merged in
+dependency order. Future changes must preserve that composed validation.
 
 ## Historical replay versus a new publication
 
@@ -82,7 +85,8 @@ JA-CC30A warranty chapter exception; the remaining 49 have individual bindings:
 
 These are **local rebuild counts**, not a revised online defect count. The
 online audit found 13 LCD fallbacks; the composed rebuild labels two additional
-JBP-2000B locales as text-only. No online publication changed. Likewise the six
+JBP-2000B locales as text-only. Those classification counts describe the pre-publication audit; the subsequent
+14-manual publication is recorded above. Likewise the six
 radio tables here must not replace the older DOM audit's five-table exclusion
 without checking the deployed outputs.
 
