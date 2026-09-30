@@ -133,6 +133,19 @@ class Je1000hEuEnWebTests(unittest.TestCase):
                                sort_keys=True, separators=(",", ":")).encode()
         self.assertEqual(manifest["files_inventory_sha256"], hashlib.sha256(inventory).hexdigest())
 
+    def test_german_authored_blinkt_status_is_bold_without_rewriting_copy(self) -> None:
+        from tools.csv_pages.renderers_lcd_icons import _format_description_line, _status_labels
+
+        labels = _status_labels(
+            {"lcd_status_words_csv": str(FORMAL_DATA_ROOT / "Status_Words.csv")}, lang="de",
+        )
+        self.assertIn("Blinkt", labels)
+        self.assertIn("Blinken", labels)
+        self.assertEqual(
+            "**Blinkt:** Bereit für die WLAN-Verbindung.",
+            _format_description_line("Blinkt: Bereit für die WLAN-Verbindung.", status_labels=labels),
+        )
+
     def test_ac_total_output_and_footnote_match_released_pdf(self) -> None:
         soup = BeautifulSoup(self.html, "html.parser")
         labels = {cell.get_text("", strip=True): cell.parent
@@ -160,9 +173,17 @@ class Je1000hEuEnWebTests(unittest.TestCase):
         self.assertEqual(0, coverage["summary"]["by_status"]["missing"])
         self.assertEqual(21, len(soup.select(".manual-finished-illustration")))
         self.assertEqual(18, len(self.ir.pages))
-        lcd = soup.select_one("table.lcd-text-only")
+        lcd = soup.select_one('[data-component-id="HB-TABLE-LCD-ICON"]')
         self.assertIsNotNone(lcd)
         self.assertEqual(27, len(lcd.select("tbody > tr")))
+        self.assertEqual(27, len(lcd.select("img.hb-lcd-icon-art")))
+        self.assertEqual([], soup.select("table.lcd-text-only"))
+        self.assertEqual(
+            ["On:", "Blink:", "Off:"],
+            [n.get_text() for n in lcd.select("tr")[0].select(".line > strong")],
+        )
+        numbers = [n.get_text(strip=True) for n in lcd.select(".hb-lcd-number")]
+        self.assertEqual([str(i) for i in range(1, 24)] + ["23", "24", "25", "26"], numbers)
         self.assertIsNotNone(soup.select_one('[data-web-finished-panel-path$="/lcd_map.png"]'))
         self.assertEqual([], soup.select("#front-view > table"))
         self.assertEqual([], soup.select("#left-and-right-side-view > table"))

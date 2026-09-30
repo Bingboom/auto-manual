@@ -1,6 +1,6 @@
 # EU shared-component rollout
 
-Status: active
+Status: active — original rollout accepted on 2026-09-30; LCD follow-up is PR #1343.
 
 The published EU audit found 74 ordinary table blocks without their dedicated
 shared component and 13 LCD text-only fallbacks across 24 language manuals.
@@ -12,9 +12,9 @@ approved finished panels are not automatically migration defects.
 
 | Phase | Scope | Acceptance | Status |
 | --- | --- | --- | --- |
-| 1 | JE-3000C de/es/fr/it/uk: LCD mode, auto-resume, key combinations; JE-1000H en: the same three tables | All 18 actual blocks use ComponentSpec; full copy/assets and other chapters unchanged; strict Web build, desktop/mobile and RTD verification | Implementation and local verification passed; PR preparation; not published |
-| 2 | JBP-2000B multilingual symbols/warranty; JE-100C, JE-300D, JE-500A general tables | Source-preserving bindings and target-appropriate variants; independent audit of the 13 LCD asset fallbacks | Pending |
-| 3 | Existing RST/projection admission, followed by old App/finished-panel migration | Capability and present-chapter requirements; explicit approved-art exceptions; no blanket portable-manual checklist for accessories | Pending |
+| 1 | JE-3000C de/es/fr/it/uk: LCD mode, auto-resume, key combinations; JE-1000H en: the same three tables | All 18 actual blocks use ComponentSpec; full copy/assets and other chapters unchanged; strict Web build, desktop/mobile and RTD verification | Merged in #1340; six target routes published and verified |
+| 2 | JBP-2000B multilingual symbols/warranty; JE-100C, JE-300D, JE-500A general tables | Source-preserving bindings and target-appropriate variants; independent audit of the 13 LCD asset fallbacks | Merged in #1341; eight target routes published and verified; 13-table source audit recorded |
+| 3 | Existing RST/projection admission, followed by old App/finished-panel migration | Capability and present-chapter requirements; explicit approved-art exceptions; no blanket portable-manual checklist for accessories | Admission merged in #1342; App/finished-panel migration sequence documented, execution deferred |
 
 ## Phase 1 cause and repair
 
@@ -104,3 +104,39 @@ Historical immutable publications remain untouched. Source-code completion,
 PR merge, immutable release creation and RTD acceptance are separate milestones.
 The native-import-only admission work in PR #1339 does not cover all existing
 RST/projection publications; phase 3 must close that separate boundary.
+
+
+## Published acceptance — 2026-09-30
+
+Engineering PRs [#1339](https://github.com/Bingboom/auto-manual/pull/1339),
+[#1340](https://github.com/Bingboom/auto-manual/pull/1340),
+[#1341](https://github.com/Bingboom/auto-manual/pull/1341) and
+[#1342](https://github.com/Bingboom/auto-manual/pull/1342) were merged in order.
+The final engineering main is `24f51176daa3e7a9369ce86e2c9ee4d8319b568e`.
+[Hello-Docs #157](https://github.com/Bingboom/Hello-Docs/pull/157) published the
+14 scoped manuals at main `335446d39242bf6cbc6b8cfeb57dd0f0c11fac07`.
+[RTD latest build 34853738](https://app.readthedocs.org/projects/ht-doc/builds/34853738/)
+succeeded at that exact commit; the persistent publish branch was retained.
+
+Acceptance covered all 14 live bodies/component sequences and image references,
+217 unique images (bytes or decoded pixels when CDN encoding differed), shared
+CSS and legacy aliases. All 28 live desktop/mobile cases passed with no manual
+image decode failures or horizontal overflow after bounded network retries.
+All 4,672 publication inventory files were verified; the other 50 target source
+and assembled-route subtrees stayed byte-identical. The 60 converted raw table
+blocks comprise 18 operation tables, 14 JBP-2000B blocks, and 28 smaller-product
+tables. Warranty component counts are separate from these raw-table counts.
+Local receipts are retained under `/tmp/eu-shared-rollout/release-final/`,
+including `acceptance.json`, `live-verification.json`, `live-qa/qa.json`,
+`converted-table-counts.json` and `preservation.json`.
+
+The admission corpus acceptance covered 51 prepared and 10 native packages,
+958 rejected component/chapter-removal mutations, and a real App artwork change
+that remained rejected after candidate hashes were recomputed. See the
+[prepared admission contract](prepared_component_admission.md) for applicability,
+explicit debt and the next representative App/finished-panel migrations.
+
+This release did not repair the audited JE-1000H LCD icon table. Follow-up
+[#1343](https://github.com/Bingboom/auto-manual/pull/1343) binds the existing
+attachments for all six locales and removes their text-only exceptions; its
+local previews and tests do not constitute merge or RTD publication acceptance.

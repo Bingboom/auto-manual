@@ -16,6 +16,19 @@ For current rules, see:
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
 
+## 2026-09-30: Shared-component admission and 14-manual rollout
+
+PRs #1339–#1342 added native and prepared RST/projection admission, repaired
+18 operation tables plus JBP-2000B symbols/warranty and smaller-product general
+tables, and recorded the separate 13-table LCD asset audit. All 14 scoped manuals
+were published through Hello-Docs #157; RTD latest build 34853738, 14 live page
+comparisons, 217 image checks and 28 desktop/mobile cases passed. Other 50
+publication targets remained unchanged. The original rollout is accepted;
+JE-1000H's additional LCD icon repair in #1343 remains a separate unpublished
+follow-up. The 27 legacy App chapters and their finished-panel migration order
+are documented, not represented as already migrated. Detailed evidence and
+release identities: [rollout acceptance](dev/eu_shared_component_rollout_2026-09.md#published-acceptance--2026-09-30).
+
 ## 2026-09-30: Workstream Y phase 1 — lint, complexity and doc-lifecycle gates
 
 Phase 1 of the [code quality and iterability plan](dev/code_quality_iterability_plan.md)

@@ -1507,15 +1507,9 @@
         },
         "lcd_icons_de.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "a3101ed3ff54d57d55b069ba19c1009feb67fd5289aabbfe04c567bc7c46eb72",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide_placeholder.rst": {
           "slot": "05_operation_guide",
@@ -1647,15 +1641,9 @@
         },
         "lcd_icons_en.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "898978dae84202418e75d2a306e0d838c33f22bd1c61074a0a1d35fbbd8c9798",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide.rst": {
           "slot": "05_operation_guide",
@@ -1795,15 +1783,9 @@
         },
         "lcd_icons_es.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "1a9a7c45e90652cd8843eb0a0177344fc06c3e1d0c4a1c05abb06f4e542985d4",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide_placeholder.rst": {
           "slot": "05_operation_guide",
@@ -1931,15 +1913,9 @@
         },
         "lcd_icons_fr.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "5b1708fe07eec5cc95f2b9401af4d0adfb543eecc7bf34bcfbce5d850d7575c5",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide_placeholder.rst": {
           "slot": "05_operation_guide",
@@ -2067,15 +2043,9 @@
         },
         "lcd_icons_it.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "1ada282ab7153a33deebf290b184ee72c002dbee529f1e27130474f536e20d12",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide_placeholder.rst": {
           "slot": "05_operation_guide",
@@ -2203,15 +2173,9 @@
         },
         "lcd_icons_uk.rst": {
           "slot": "lcd_icons",
-          "components": {},
-          "debt": [
-            {
-              "location": "3",
-              "kind": "table",
-              "sha256": "ca684fd545bdcb8b767c3f0d3bf4047b7e7e3735cbd47309049c3330c9458132",
-              "category": "lcd-source-review"
-            }
-          ]
+          "components": {
+            "HB-TABLE-LCD-ICON/icon-catalog": 1
+          }
         },
         "05_operation_guide_placeholder.rst": {
           "slot": "05_operation_guide",
