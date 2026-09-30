@@ -151,3 +151,11 @@ F LCD-mode artwork crops for pt/nl/pl now exclude the source outer-frame
 and adjacent table strokes. The tighter source-PDF crop retains the full
 product, hand and POWER callout (12x visual check); the live HTML table and
 outer card border remain unchanged. E uses separate clean artwork.
+
+In-box AC cable and manual pictogram bindings for F/E pt/nl/pl now directly
+reference the existing `in_the_box/ac_charging_cable` and
+`in_the_box/manual_icon1` common assets (the same hashes used by JE-1000F).
+There is one canonical repository source for each image; frozen build outputs
+copy those hash-verified bytes for self-contained replay. Native per-language
+crops remain source evidence but are no longer used by these two slots.
+Model-specific main-unit art, localized labels and HTML numbering stay intact.

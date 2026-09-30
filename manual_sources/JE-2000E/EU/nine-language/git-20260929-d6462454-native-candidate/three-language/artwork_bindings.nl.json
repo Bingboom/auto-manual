@@ -26,34 +26,20 @@
       "status": "quarantine"
     },
     "inbox.cable": {
-      "path": "artwork/nl/inbox-cable.png",
-      "sha256": "bd61484178bdbc40350186d112409fe608f5cbc44d8e62e394a99f7f522e57e9",
-      "content_mode": "fixed-product-markings",
-      "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
-      "source_page": 142,
-      "clip_points": [
-        171,
-        313,
-        231,
-        402
-      ],
-      "transform": "crop_only",
-      "status": "quarantine"
+      "path": "../../../../../../docs/templates/word_template/common_assets/in_the_box/ac_charging_cable.png",
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
+      "content_mode": "textless",
+      "shared_asset_id": "in_the_box/ac_charging_cable",
+      "origin": "Existing governed common asset (data/asset_registry.csv), also used by JE-1000F. Direct shared-source reference; not a per-language PDF crop.",
+      "source_path": "docs/templates/word_template/common_assets/in_the_box/ac_charging_cable.png"
     },
     "inbox.manual": {
-      "path": "artwork/nl/inbox-manual.png",
-      "sha256": "c7c136334d21a644cd7f1d6311efd9e9c77998ebbaf5c4392b17a89d965b0aa5",
-      "content_mode": "fixed-product-markings",
-      "source_ai_sha256": "d64624547e3b88fd1d8c3ea78f9e446f07e2364b148b707eb0d97ba4c24415de",
-      "source_page": 142,
-      "clip_points": [
-        266,
-        313,
-        322,
-        402
-      ],
-      "transform": "crop_only",
-      "status": "quarantine"
+      "path": "../../../../../../docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+      "content_mode": "textless",
+      "shared_asset_id": "in_the_box/manual_icon1",
+      "origin": "Existing governed common asset (data/asset_registry.csv), also used by JE-1000F. Direct shared-source reference; not a per-language PDF crop.",
+      "source_path": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png"
     },
     "lcd.map": {
       "path": "artwork/nl/lcd-map.png",

@@ -422,26 +422,20 @@
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
     },
     "inbox.cable": {
-      "path": "figures/pl/p153_inbox-cable.png",
-      "sha256": "ab290e817e6ca92ed334e7549d0545a18a6365c026b45acac15b14c47d763481",
+      "path": "../../../../../../docs/templates/word_template/common_assets/in_the_box/ac_charging_cable.png",
+      "sha256": "287650f3a89ae520e32f0d75df8401151b808004ee50075b96aff70af04ca4ef",
       "content_mode": "textless",
-      "locale": "pl",
-      "target": {
-        "model": "JE-2000F",
-        "region": "EU"
-      },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "shared_asset_id": "in_the_box/ac_charging_cable",
+      "origin": "Existing governed common asset (data/asset_registry.csv), also used by JE-1000F. Direct shared-source reference; not a per-language PDF crop.",
+      "source_path": "docs/templates/word_template/common_assets/in_the_box/ac_charging_cable.png"
     },
     "inbox.manual": {
-      "path": "figures/pl/p153_inbox-manual.png",
-      "sha256": "fa38734ebbbaf6310828d8a78ffd3708e9dce3d2da1b449e38d01423451bdcb6",
-      "content_mode": "fixed-product-markings",
-      "locale": "pl",
-      "target": {
-        "model": "JE-2000F",
-        "region": "EU"
-      },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "path": "../../../../../../docs/templates/word_template/common_assets/in_the_box/manual_icon1.png",
+      "sha256": "87ac44e52863324b761a672089e6b0497e40fdf48432f698fccf30508060c60a",
+      "content_mode": "textless",
+      "shared_asset_id": "in_the_box/manual_icon1",
+      "origin": "Existing governed common asset (data/asset_registry.csv), also used by JE-1000F. Direct shared-source reference; not a per-language PDF crop.",
+      "source_path": "docs/templates/word_template/common_assets/in_the_box/manual_icon1.png"
     },
     "app.store": {
       "path": "figures/pl/p167_app-store.png",
