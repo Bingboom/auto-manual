@@ -1,0 +1,49 @@
+{
+  "previous_source": {
+    "path": "manual_sources/JE-1000F/EU/nine-language/git-20260929-c38415f5-ac-wall-complete/four-language",
+    "sha256": "97fdefe5d750c6a3b2f945ea9012eee66c8cb658ea35582935471750deac056c"
+  },
+  "component_id": "HB-TABLE-KEY-COMBINATIONS",
+  "locales": [
+    {
+      "language": "uk",
+      "rows": 4,
+      "whole_book_text_equal": true,
+      "other_html_equal": true,
+      "other_ir_equal": true,
+      "assets_equal": true,
+      "cold_replay_equal": true,
+      "strict_sphinx": "passed"
+    },
+    {
+      "language": "pt",
+      "rows": 4,
+      "whole_book_text_equal": true,
+      "other_html_equal": true,
+      "other_ir_equal": true,
+      "assets_equal": true,
+      "cold_replay_equal": true,
+      "strict_sphinx": "passed"
+    },
+    {
+      "language": "nl",
+      "rows": 4,
+      "whole_book_text_equal": true,
+      "other_html_equal": true,
+      "other_ir_equal": true,
+      "assets_equal": true,
+      "cold_replay_equal": true,
+      "strict_sphinx": "passed"
+    },
+    {
+      "language": "pl",
+      "rows": 4,
+      "whole_book_text_equal": true,
+      "other_html_equal": true,
+      "other_ir_equal": true,
+      "assets_equal": true,
+      "cold_replay_equal": true,
+      "strict_sphinx": "passed"
+    }
+  ]
+}
