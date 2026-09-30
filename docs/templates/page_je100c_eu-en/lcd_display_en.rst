@@ -9,6 +9,7 @@ INTERFACE 1
    :width: 72%
 
 .. list-table::
+   :class: hb-source-lcd-legend
    :header-rows: 1
    :widths: 8 27 65
 
@@ -63,6 +64,7 @@ INTERFACE 2
    :width: 88%
 
 .. list-table::
+   :class: hb-source-lcd-legend
    :header-rows: 1
    :widths: 8 27 65
 
@@ -87,6 +89,7 @@ INTERFACE 3
    :width: 64%
 
 .. list-table::
+   :class: hb-source-lcd-legend
    :header-rows: 1
    :widths: 8 27 65
 

@@ -37,6 +37,7 @@ LCD SCREEN
    :width: 38%
 
 .. list-table::
+   :class: hb-source-lcd-actions-compact
    :header-rows: 1
    :widths: 30 70
 

@@ -28,11 +28,20 @@ _INCLUDE_RE = re.compile(
 
 
 def require_publishable_manual_ir(markdown_dir: Path) -> None:
-    """Reject a frozen manual candidate with unresolved source review at seal."""
+    """Reject unresolved review or missing native shared components at seal."""
     ir_path = Path(markdown_dir) / PathSegments.MANUAL_IR_JSON
     if not ir_path.is_file():
         return  # Existing projection releases do not carry a manual IR sidecar.
     payload = _load_object(ir_path, label="manual IR")
+    from tools.frozen_web_component_coverage import NATIVE_SOURCES, require_frozen_component_coverage
+
+    if payload.get("source") in NATIVE_SOURCES:
+        from tools.manual_ir import read_manual_ir
+
+        try:
+            require_frozen_component_coverage(read_manual_ir(ir_path).to_dict())
+        except ValueError as exc:
+            raise RuntimeError(str(exc)) from exc
     metadata = payload.get("metadata")
     if not isinstance(metadata, dict):
         return  # Historical projection sidecars predate source-review metadata.

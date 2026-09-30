@@ -118,6 +118,19 @@ class WebTableIRTests(unittest.TestCase):
             pages = root / "page"
             pages.mkdir()
             (pages / "icon.png").write_bytes(b"frozen test icon")
+            from tests.test_component_spec_manual_tables import _symbols_html
+
+            symbols = _symbols_html(left=1, right=1)
+            signals = BeautifulSoup(symbols, "html.parser")
+            signal_body = signals.select_one("table tbody")
+            for label in ("CAUTION", "TIP"):
+                row = BeautifulSoup(
+                    f"<tr><td>{label}</td><td>Keep source wording.</td></tr>",
+                    "html.parser",
+                ).tr
+                signal_body.append(row)
+            for name in ("left-0.png", "right-0.png"):
+                (pages / name).write_bytes(b"frozen symbol fixture")
             fixtures = [
                 ("status_legend", "lcd_icons", lcd_table(False)),
                 (
@@ -125,6 +138,7 @@ class WebTableIRTests(unittest.TestCase):
                     "troubleshooting",
                     source_table(declared=False, head=False),
                 ),
+                ("safety_legend", "symbols", str(signals)),
             ]
             for slot, _, markup in fixtures:
                 (pages / f"{slot}.rst").write_text(
@@ -174,7 +188,8 @@ class WebTableIRTests(unittest.TestCase):
                 read_manual_ir(root / "web" / "manual.ir.json")
             )
             self.assertEqual(
-                ["HB-TABLE-LCD-ICON", "HB-TABLE-TROUBLESHOOTING"],
+                ["HB-TABLE-LCD-ICON", "HB-TABLE-TROUBLESHOOTING",
+                 "HB-TABLE-SYMBOL-SIGNAL", "HB-TABLE-SYMBOL-ICON"],
                 [spec.component_id for spec in specs],
             )
             soup = BeautifulSoup(output.read_text(), "html.parser")

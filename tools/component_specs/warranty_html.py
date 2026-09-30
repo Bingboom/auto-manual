@@ -76,6 +76,24 @@ def _blocks(nodes: list[Tag], *, source_path: Path) -> list[dict[str, object]]:
     return blocks
 
 
+def _lead_nodes(soup: BeautifulSoup, source_path: Path):
+    heading = soup.find("h1", recursive=False)
+    paragraphs = [
+        node for node in soup.find_all("p", recursive=False) if isinstance(node, Tag)
+    ]
+    sections = [
+        node for node in soup.find_all("section", recursive=False) if isinstance(node, Tag)
+    ]
+    if not isinstance(heading, Tag) or len(paragraphs) < 2:
+        raise ValueError(f"{source_path}: warranty lead structure changed")
+    root_nodes = [node for node in soup.children if isinstance(node, Tag)]
+    # A lead can contain several authored paragraphs. Only the contiguous
+    # prefix between H1 and the sections belongs to it; the last is the note.
+    if root_nodes != [heading, *paragraphs, *sections]:
+        raise ValueError(f"{source_path}: warranty lead paragraphs must precede sections")
+    return heading, paragraphs, sections
+
+
 def parse_warranty_html(
     soup: BeautifulSoup,
     *,
@@ -84,15 +102,7 @@ def parse_warranty_html(
     expected_years: list[str],
     language: str,
 ) -> tuple[tuple[object, tuple[Tag, ...]], ...]:
-    heading = soup.find("h1", recursive=False)
-    paragraphs = [
-        node for node in soup.find_all("p", recursive=False) if isinstance(node, Tag)
-    ]
-    sections = [
-        node for node in soup.find_all("section", recursive=False) if isinstance(node, Tag)
-    ]
-    if not isinstance(heading, Tag) or len(paragraphs) != 2:
-        raise ValueError(f"{source_path}: warranty lead structure changed")
+    heading, paragraphs, sections = _lead_nodes(soup, source_path)
     if len(sections) != expected_sections:
         raise ValueError(
             f"{source_path}: expected {expected_sections} warranty sections; "
@@ -102,12 +112,12 @@ def parse_warranty_html(
         (
             warranty_lead_component_spec(
                 accessibility_label=heading.get_text(" ", strip=True),
-                lead_html=str(paragraphs[0]),
-                local_note_html=str(paragraphs[1]),
+                lead_html="\n".join(str(node) for node in paragraphs[:-1]),
+                local_note_html=str(paragraphs[-1]),
                 source_ref=f"{source_path}#warranty-lead",
                 language=language,
             ),
-            (paragraphs[0], paragraphs[1]),
+            tuple(paragraphs),
         )
     ]
     period_count = 0
