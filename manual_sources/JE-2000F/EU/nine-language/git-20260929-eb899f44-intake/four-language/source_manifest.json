@@ -600,6 +600,21 @@
       "sha256": "e2ebb3b9a7cc2f92724be1dcfc792a6be8976009d0622fc95b75682bae093271"
     },
     {
+      "path": "artwork/shared/english-charging_car.png",
+      "size": 426950,
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca"
+    },
+    {
+      "path": "artwork/shared/english-charging_solar_adapter.png",
+      "size": 1143091,
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142"
+    },
+    {
+      "path": "artwork/shared/english-charging_solar_direct.png",
+      "size": 569506,
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2"
+    },
+    {
       "path": "candidates/errata/candidates.json",
       "size": 11022,
       "sha256": "eee1c0080b015b44f7cb08842606784fde9032c259e957beb6962f64aa9399da"
@@ -753,6 +768,11 @@
       "path": "extraction_recipes/je2000f_eu_pt_operation_geometry_v2.json",
       "size": 67619,
       "sha256": "c8d442b0959f6c8698fd93b43c53c8b23721cebd464e8a7bb916aa4241d07d53"
+    },
+    {
+      "path": "extraction_recipes/je2000f_eu_shared_english_charging.json",
+      "size": 30350,
+      "sha256": "5996a9f9870967c50992f5dc058da8976614f9ade1003d549a3458c5f112c4f0"
     },
     {
       "path": "figures/nl/p135_icon_battery_separate_collection.png",
@@ -2086,18 +2106,18 @@
     },
     {
       "path": "nl_assets_manifest.json",
-      "size": 53343,
-      "sha256": "d7fb54a0f6360fc977ee5328c681ec5c29df0ea8fd4e4a3c67f61c550d2d6115"
+      "size": 54648,
+      "sha256": "c11b3c4ca014a5faa6cefa6761f2e0700d1ca31e2e35bfd1f160632fd827c7f4"
     },
     {
       "path": "pl_assets_manifest.json",
-      "size": 52706,
-      "sha256": "52c870a19770bb8c351d9ed4d0569637948cb7fe8497abf536c7cb60f41c3c5c"
+      "size": 54023,
+      "sha256": "ad7acdbf3804ff819d2e700ee675aba35b6db31363bcc8485c5afe3f7e189f80"
     },
     {
       "path": "pt_assets_manifest.json",
-      "size": 52704,
-      "sha256": "f2a3cf473fc3cabe9c550f2de99946f0976cee693b75f101d219523ab93baac7"
+      "size": 54022,
+      "sha256": "1c3413bc5a4f18cdb2a278bf76341c15a6c77773867c5f61cf1b14186ab65506"
     },
     {
       "path": "source/app_sections.json",
@@ -2131,8 +2151,8 @@
     },
     {
       "path": "source/nl_figure_manifest.json",
-      "size": 8095,
-      "sha256": "f8ace3d9a790635e12ca9744a755086be284306715927a747dac2bbdc20a4784"
+      "size": 8066,
+      "sha256": "fb5ede53548720ffd8e556d0f946bafdfa354384517c343eef7a6e31ada8e1ae"
     },
     {
       "path": "source/operation_tables.json",
@@ -2146,8 +2166,8 @@
     },
     {
       "path": "source/pl_figure_manifest.json",
-      "size": 8116,
-      "sha256": "dd9e3435b7bcd16d2cd2bbbe2e90ce5ac0d66ab1162c17da31811c911618e44a"
+      "size": 8087,
+      "sha256": "3727416dcfedf02cb9cbee5bf7311502b865c3b5a4ec9c1fb1becf92b6e48e44"
     },
     {
       "path": "source/print_duplicate_ledger.json",
@@ -2161,8 +2181,8 @@
     },
     {
       "path": "source/pt_figure_manifest.json",
-      "size": 8116,
-      "sha256": "e8b116a7d76f737da04e3f7365ba9e0d5f6e82ddb16ae05024228df13b5c9760"
+      "size": 8087,
+      "sha256": "1d5b6bd9daeeefbe2b054004975c95b613704f043084e824966e7a209cccadb6"
     },
     {
       "path": "source/qa/approved_errata_validation.json",

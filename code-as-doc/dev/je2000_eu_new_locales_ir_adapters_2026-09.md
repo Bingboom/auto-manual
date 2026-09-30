@@ -108,3 +108,40 @@ F has three wrong EU right-view nameplates, Dutch AC-button labels, two null
 glyphs, and UK warranty text missing from native extraction. E has outlined
 or missing text and multiple product-specific structures. These require
 explicit source evidence and approved corrections, not silent fallbacks.
+
+
+## Charging-label regression and English artwork reuse (2026-09-29)
+
+The JE-1000F fix (`4e413875`) already supplied the shared live-label binder.
+JE-2000F's initial intake (`0e3bb672`) omitted `live_labels` and
+`base_art_layout` from all three charging-figure bindings. Solar captions
+were consequently emitted by both the reference-caption adapter and the
+body stream; car artwork still contained its localized vehicle label.
+This persisted through the preview revisions: it was an onboarding omission,
+not a later renderer rollback. The earlier regression test exercised only
+the JE-1000F frozen books.
+
+F pt/nl/pl now share three bases derived from the approved same-model English
+PDF (SHA-256 `6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d`).
+The full-frame English crops preserve both magnifier circles and the correct
+2-panel/4-panel arrangements. The corrective source-package recipe removes
+native labels with graphics preserved; the car note's white pill is removed
+using an equally sized, empty native background region. The existing English
+assets and approved recipe are unchanged. Locale text is extracted from each
+locale's original source and consumed exactly once by the shared
+`HB-SPECIAL-REFERENCE-FIGURE` base-art/live-copy component.
+
+The car note is an HTML span; its white fill, padding, rounded corners and
+wrapping come from `.hb-reference-live-pill`. This component is model-neutral
+and can serve other portable power stations. Each model still binds its own
+verified device/interface artwork; sharing the component never authorizes
+substituting another model's product diagram. On narrow screens the note
+moves below the art without leaving a baked empty white pill behind.
+
+Validation: all six F/E pt/nl/pl strict Sphinx builds and PDF-free byte-identical
+replays passed; native-line audit findings are unchanged from the preceding
+build. F's three locales have one DOM occurrence per solar label and no
+separate caption paragraph. E's sources/artwork are unchanged in this fix.
+`tests/test_je2000f_charging_bindings.py` exercises the committed source
+bindings through the shared renderer, asserts same-model shared asset paths,
+and rejects a baked car-note pill or residual text in the empty artwork region.

@@ -75,8 +75,8 @@
     {
       "slug": "solar_single",
       "section_id": "charging",
-      "path": "artwork/nl/solar_single.png",
-      "sha256": "a65f4ee2e2332f79a3cc5f8fab5ce3fff11255d287d4bcce4b96e770e7a47148",
+      "path": "artwork/shared/english-charging_solar_direct.png",
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2",
       "clip_points": [
         25,
         384,
@@ -84,13 +84,13 @@
         497
       ],
       "physical_page": 144,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "shared English artwork; native locale text bound once"
     },
     {
       "slug": "solar_four",
       "section_id": "charging",
-      "path": "artwork/nl/solar_four.png",
-      "sha256": "6d04a15133624235da14d2ce0925f847b50f3aeacfe372a52926173e8a75e2d2",
+      "path": "artwork/shared/english-charging_solar_adapter.png",
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142",
       "clip_points": [
         25,
         24,
@@ -98,21 +98,21 @@
         176
       ],
       "physical_page": 145,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "shared English artwork; native locale text bound once"
     },
     {
       "slug": "car_charging",
       "section_id": "charging",
-      "path": "figures/nl/p145_car_charging.png",
-      "sha256": "328b3fe5fe77f997232ed48dca34ac06699a745632a0963752df73049a53f919",
+      "path": "artwork/shared/english-charging_car.png",
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
       "clip_points": [
         25,
-        377,
+        351,
         345,
         497
       ],
       "physical_page": 145,
-      "status": "candidate source artwork; native copy is separately extracted; visual QA pending"
+      "status": "shared English artwork; native locale text bound once"
     },
     {
       "slug": "main_power",

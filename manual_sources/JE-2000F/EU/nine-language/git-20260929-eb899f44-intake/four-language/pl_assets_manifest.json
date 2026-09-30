@@ -890,97 +890,49 @@
       "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
     },
     "reference.solar_single": {
-      "path": "artwork/pl/solar_single.png",
-      "sha256": "4360f4341ce2794e0c33584e112c1d411fa71d036c980bd79bd2c388e9d01bb1",
+      "path": "artwork/shared/english-charging_solar_direct.png",
+      "sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2",
       "content_mode": "fixed-product-markings",
-      "locale": "pl",
+      "locale_policy": "shared",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
-      "clip_points": [
-        25,
-        384,
-        345,
-        497
-      ],
-      "transforms": [
-        {
-          "op": "crop",
-          "bbox_pt": [
-            25,
-            384,
-            345,
-            497
-          ]
-        },
-        {
-          "op": "redact_text_region",
-          "bbox_pt": [
-            275.08721923828125,
-            485.0452880859375,
-            325.2052001953125,
-            492.24530029296875
-          ],
-          "images": "preserve",
-          "graphics": "preserve",
-          "fill": null
-        }
-      ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pl_native.json"
+      "source_kind": "same-model approved English native artwork; text removed with graphics preserved",
+      "source_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+      "source_page": 15,
+      "extraction_recipe": "extraction_recipes/je2000f_eu_shared_english_charging.json",
+      "english_original_asset": "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_solar_direct.png"
     },
     "reference.solar_four": {
-      "path": "artwork/pl/solar_four.png",
-      "sha256": "66ba2de6e335704002c6783b36f413d40daf148c96bea87c12a37ea099def45d",
+      "path": "artwork/shared/english-charging_solar_adapter.png",
+      "sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142",
       "content_mode": "fixed-product-markings",
-      "locale": "pl",
+      "locale_policy": "shared",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6",
-      "clip_points": [
-        25,
-        24,
-        345,
-        176
-      ],
-      "transforms": [
-        {
-          "op": "crop",
-          "bbox_pt": [
-            25,
-            24,
-            345,
-            176
-          ]
-        },
-        {
-          "op": "redact_text_region",
-          "bbox_pt": [
-            263.8916015625,
-            158.01670837402344,
-            321.6296081542969,
-            165.21670532226562
-          ],
-          "images": "preserve",
-          "graphics": "preserve",
-          "fill": null
-        }
-      ],
-      "extraction_recipe": "extraction_recipes/je2000f_eu_pl_native.json"
+      "source_kind": "same-model approved English native artwork; text removed with graphics preserved",
+      "source_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+      "source_page": 16,
+      "extraction_recipe": "extraction_recipes/je2000f_eu_shared_english_charging.json",
+      "english_original_asset": "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_solar_adapter.png"
     },
     "reference.car_charging": {
-      "path": "figures/pl/p163_car_charging.png",
-      "sha256": "19be3982a842add4b5f97ed42b4f05cac2b9c11cb1158c673c69273ea6e10bb8",
-      "content_mode": "source-finished-panel",
-      "locale": "pl",
+      "path": "artwork/shared/english-charging_car.png",
+      "sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
+      "content_mode": "fixed-product-markings",
+      "locale_policy": "shared",
       "target": {
         "model": "JE-2000F",
         "region": "EU"
       },
-      "source_ai_sha256": "eb899f4407517869e1a0405ce2b2ed6daa76196f23197ad03fb0e295d39d84e6"
+      "source_kind": "same-model approved English native artwork; text removed with graphics preserved",
+      "source_sha256": "6b4af85236ccfee0f4d24ad55ee8b24684d023982b5da216023d4f716f183f3d",
+      "source_page": 16,
+      "extraction_recipe": "extraction_recipes/je2000f_eu_shared_english_charging.json",
+      "english_original_asset": "docs/renderers/web/assets/je2000f_eu_en_full_frames/charging_car.png"
     }
   },
   "figures": [
@@ -994,15 +946,83 @@
     },
     {
       "slug": "solar_single",
-      "asset_key": "reference.solar_single"
+      "asset_key": "reference.solar_single",
+      "live_labels": [
+        "SolarSaga 200 × 2"
+      ],
+      "base_art_layout": {
+        "art_sha256": "a2c8d8807acf70cf206a6039634a6c01b1444ed3b1133c1fa8f21c0b384e4cd2",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              77,
+              89,
+              23,
+              7
+            ]
+          }
+        ]
+      }
     },
     {
       "slug": "solar_four",
-      "asset_key": "reference.solar_four"
+      "asset_key": "reference.solar_four",
+      "live_labels": [
+        "SolarSaga 100 Air × 4"
+      ],
+      "base_art_layout": {
+        "art_sha256": "9d50533db979af1d7d7de3b21df464fe139521714af7cd6aa22fb4a1c2e52142",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              75,
+              89,
+              23,
+              7
+            ]
+          }
+        ]
+      }
     },
     {
       "slug": "car_charging",
-      "asset_key": "reference.car_charging"
+      "asset_key": "reference.car_charging",
+      "live_labels": [
+        "* Przewód samochodowy do ładowania jest sprzedawany osobno.",
+        "Pojazd"
+      ],
+      "base_art_layout": {
+        "art_sha256": "f2f97ff0a870bae605f7569da2f6a06c47d74815b308f9040557e27b153c5fca",
+        "panel_top": 0,
+        "panel_fill": "#f2f3f3",
+        "labels": [
+          {
+            "line": 0,
+            "rect": [
+              52,
+              4,
+              45,
+              10
+            ],
+            "fill": "#ffffff"
+          },
+          {
+            "line": 1,
+            "rect": [
+              73,
+              32,
+              22,
+              8
+            ]
+          }
+        ]
+      }
     },
     {
       "slug": "front_view",
