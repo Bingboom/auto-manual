@@ -59,7 +59,6 @@ tools/component_specs/registry.py	validate_component_spec	39
 tools/component_specs/theme.py	validate_manual_theme	45
 tools/config_pages.py	_parse_generated_page	27
 tools/config_pages.py	_parse_page_options	23
-tools/config_pages.py	parse_config_pages	41
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_footnote_rows	25
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_note_rows	23
 tools/csv_pages/builder.py	CsvPageBuilder.build	35
