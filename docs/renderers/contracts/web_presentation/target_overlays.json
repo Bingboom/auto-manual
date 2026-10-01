@@ -172,11 +172,20 @@
               "base_art_layout": {
                 "art_sha256": "74004806e6c0996fb77b2260c046e055194855a96bed97c519bb58c292e3b5e2",
                 "step_anchors": [
-                  [76.5, 15.42],
-                  [76.5, 34.17]
+                  [
+                    76.5,
+                    15.42
+                  ],
+                  [
+                    76.5,
+                    34.17
+                  ]
                 ],
                 "step_width": 22.5,
-                "duration_anchor": [81.4, 48.1]
+                "duration_anchor": [
+                  81.4,
+                  48.1
+                ]
               }
             },
             {
@@ -185,11 +194,22 @@
               "base_art_layout": {
                 "art_sha256": "43a46a51a98773dd307ff35dd1ac684790109b2b8c437f87ceacbc3636bc1d75",
                 "step_anchors": [
-                  [84.0, 26.51],
-                  [84.0, 36.98]
+                  [
+                    84.0,
+                    26.51
+                  ],
+                  [
+                    84.0,
+                    36.98
+                  ]
                 ],
                 "step_width": 15.5,
-                "prerequisite_rect": [1.14, 1.98, 42.83, 6.05],
+                "prerequisite_rect": [
+                  1.14,
+                  1.98,
+                  42.83,
+                  6.05
+                ],
                 "prerequisite_max_width": 55.0,
                 "prerequisite_fill": "#f8f8f8"
               }
@@ -200,11 +220,22 @@
               "base_art_layout": {
                 "art_sha256": "c46c92d6ee991a400208635802b5d2682f215cacaa748a3ca73068fdb18cdec3",
                 "step_anchors": [
-                  [86.0, 20.28],
-                  [86.0, 31.69]
+                  [
+                    86.0,
+                    20.28
+                  ],
+                  [
+                    86.0,
+                    31.69
+                  ]
                 ],
                 "step_width": 13.5,
-                "prerequisite_rect": [1.63, 2.68, 43.49, 7.32],
+                "prerequisite_rect": [
+                  1.63,
+                  2.68,
+                  43.49,
+                  7.32
+                ],
                 "prerequisite_max_width": 55.0,
                 "prerequisite_fill": "#e8e8e8"
               }
@@ -223,7 +254,11 @@
               "base_art_layout": {
                 "art_sha256": "483c0dcfcfd6c0f8c460a32d9e320f07c3b7571cc1af80b1ac9d5b8f235430cc",
                 "art_width": 56.8,
-                "step_markers": ["bulb-lit", "sos", "bulb-off"]
+                "step_markers": [
+                  "bulb-lit",
+                  "sos",
+                  "bulb-off"
+                ]
               }
             }
           ]
@@ -240,11 +275,21 @@
                 "labels": [
                   {
                     "line": 0,
-                    "rect": [64.0, 30.6, 18.0, 8.96]
+                    "rect": [
+                      64.0,
+                      30.6,
+                      18.0,
+                      8.96
+                    ]
                   },
                   {
                     "line": 1,
-                    "rect": [55.0, 3.73, 42.12, 11.19],
+                    "rect": [
+                      55.0,
+                      3.73,
+                      42.12,
+                      11.19
+                    ],
                     "fill": "#ffffff"
                   }
                 ]
@@ -605,6 +650,50 @@
           "source_patterns": [
             "*05_operation_guide_placeholder",
             "*05_operation_guide"
+          ]
+        }
+      }
+    },
+    {
+      "overlay_id": "je1000f-jp-v1",
+      "target": {
+        "model": "JE-1000F",
+        "region": "JP"
+      },
+      "skeleton_profile": "portable-power-station-v1",
+      "capabilities": {
+        "figures": false,
+        "legacy_target_components": false
+      },
+      "contract_overrides": {
+        "warranty": {
+          "section_count": 7,
+          "period_years": []
+        },
+        "reference_figures": {
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ],
+          "figures": [
+            {
+              "id": "app-add-device",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ],
+              "image_key": "app/add_device",
+              "capture_following_lines": 3,
+              "presentation": "shared-art-live-labels",
+              "captions_embedded": true,
+              "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+              "label_roles": [
+                "main-power",
+                "dc-usb",
+                "ac-power"
+              ],
+              "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+              "asset_scope": "shared",
+              "control_image_key": "overview/front_controls"
+            }
           ]
         }
       }

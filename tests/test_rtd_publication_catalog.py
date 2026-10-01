@@ -25,8 +25,8 @@ class PublicationCatalogTests(unittest.TestCase):
         self.settings = json.loads((ASSETS / "settings.json").read_text())
         self.links = []
 
-    def publication(self, language="en", *, default=True, scope="single", model="JE-TEST"):
-        route = f"{model}/EU/{language}/md"
+    def publication(self, language="en", *, default=True, scope="single", model="JE-TEST", region="EU"):
+        route = f"{model}/{region}/{language}/md"
         manual = f"manual_{language}.md"
         page = self.root / route / manual
         page.parent.mkdir(parents=True)
@@ -37,8 +37,8 @@ class PublicationCatalogTests(unittest.TestCase):
         metadata.parent.mkdir(parents=True)
         (metadata.parent / manual).write_bytes(page.read_bytes())
         payload = {"schema_version": "auto-manual-web-publish-target/v2", "model": model,
-                   "region": "EU", "lang": language, "route": route, "manual": manual,
-                   "version": "1.0", "git_ref": f"review/{model}-EU", "legacy_default": default,
+                   "region": region, "lang": language, "route": route, "manual": manual,
+                   "version": "1.0", "git_ref": f"review/{model}-{region}", "legacy_default": default,
                    "language_scope": scope}
         if scope == "single":
             html = self.base / "verification-html" / model / language
@@ -50,10 +50,10 @@ class PublicationCatalogTests(unittest.TestCase):
                 html_dir=html,
                 evidence_dir=metadata.parent / "evidence",
                 model=model,
-                region="EU",
+                region=region,
                 language=language,
                 version="1.0",
-                git_ref=f"review/{model}-EU",
+                git_ref=f"review/{model}-{region}",
             )
             payload.update(
                 language_projection_evidence_path="evidence/" + receipt.name,
@@ -70,8 +70,19 @@ class PublicationCatalogTests(unittest.TestCase):
         self.assertEqual(cards[0]["edition"], "EUUK")
         available = [o["code"] for o in cards[0]["language_options"] if o["url"]]
         self.assertEqual(available, ["en", "fr"])
-        self.assertEqual(len(cards[0]["language_options"]), 12)
+        self.assertEqual(len(cards[0]["language_options"]), 14)
         self.assertEqual(cards[0]["language_options"][-1]["unavailable_reason"], "Not yet published")
+
+    def test_cn_and_jp_publications_keep_market_and_language_identity(self):
+        self.publication("zh", region="CN")
+        self.publication("ja", region="JP")
+        cards = {card["region"]: card for card in catalog(self.root, self.settings)}
+        self.assertEqual(set(cards), {"CN", "JP"})
+        for region, language, label in (("CN", "zh", "简体中文"), ("JP", "ja", "日本語")):
+            with self.subTest(region=region):
+                available = [option for option in cards[region]["language_options"] if option["url"]]
+                self.assertEqual([(option["code"], option["label"]) for option in available], [(language, label)])
+                self.assertIn(f"/{region}/{language}/", available[0]["url"])
 
     def test_legacy_scope_does_not_count_as_english_only(self):
         self.publication(scope="legacy_unspecified")

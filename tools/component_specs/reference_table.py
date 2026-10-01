@@ -11,7 +11,7 @@ from tools.component_specs.theme import require_component_theme_roles
 
 COMPONENT_ID = "HB-TABLE-REFERENCE"
 # Variant semantics, not language/model heuristics, determine table geometry.
-VARIANTS = {"lcd-legend": (3, True), "lcd-actions": (3, True), "lcd-actions-compact": (2, True), "symbol-meanings": (2, False)}
+VARIANTS = {"lcd-legend": (3, True), "lcd-actions": (3, True), "lcd-actions-compact": (2, True), "symbol-meanings": (2, False), "plain-inventory": (3, False)}
 
 
 def _cells(cells: Sequence[Mapping[str, str]], columns: int) -> list[dict[str, str]]:
@@ -36,6 +36,9 @@ def reference_table_component_spec(
         raise ComponentSpecError(f"{COMPONENT_ID}: label, rows and variant header policy required")
     normalized_headers = _cells(headers, columns) if has_headers else []
     normalized_rows = [_cells(row, columns) for row in rows]
+    if variant == "plain-inventory" and (len(normalized_rows) != 1 or
+            any(not cell["text"].strip() for cell in normalized_rows[0])):
+        raise ComponentSpecError(f"{COMPONENT_ID}: plain inventory requires three nonempty items")
     if any(not any(cell["text"].strip() for cell in row) for row in normalized_rows):
         raise ComponentSpecError(f"{COMPONENT_ID}: empty rows are not meaningful")
     spec = ComponentSpec(

@@ -233,8 +233,10 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
   可关闭。原计划在 `setUpModule` 里报一条环境错误，但那样会把同一模块里本可通过的测试也变成
   错误，所以改为开头提示，不改变任何测试结果。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
   （doctor 与独立命令：#1319，2026-09-29；测试开头提示：#1329，2026-09-30）
-- [ ] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
+- [x] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
   并从 `requirements.lock` 安装依赖；在 [`../../ONBOARDING.md`](../../ONBOARDING.md) 加入这一步。
+  （#1344，2026-09-30；Python 版本读自 `pyproject.toml` 的 pin，装完跑新增的 `tools/env_preflight.py --strict`，
+  有任何 `WARN` 即退出码 1。在本容器实测：Python 3.12 + lock 的新 `.venv` 报告全部 `OK`）
 - [x] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
   （例如统一的 `slow` 基类或装饰器）；新增 `make test-fast`，本地只跑快速层。CI 的全量
   `python -m unittest` 不变。
