@@ -177,6 +177,13 @@ analytics is configured; unknown alias shapes pass through unchanged.
 
 ## 3. Build Bundle And Export Modules
 
+- [`tools/export_idml.py`](../../tools/export_idml.py): parses the unchanged CLI and
+  dispatches check, flow and production/both modes; production preparation,
+  page routing and prose composition remain local stages.
+- [`tools/idml/export_commands.py`](../../tools/idml/export_commands.py): owns
+  flow-only output/IR-sidecar ordering, post-production flow/handoff output and
+  final production result reporting, using writers injected by the entrypoint.
+
 [`tools/utils/csv_fields.py`](../../tools/utils/csv_fields.py) owns the pure
 column spelling, header presence and cell text selection primitives. It has
 no business-reader or language-registry imports.

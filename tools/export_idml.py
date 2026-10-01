@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import re
 import sys
+from argparse import Namespace
 from pathlib import Path
 
 try:
@@ -60,6 +61,7 @@ except ImportError:  # pragma: no cover - direct script execution fallback
     from idml.writer import IdmlWriter  # type: ignore
 
 ROOT = bootstrap_repo_root(__file__, parent_count=1)
+from tools.idml import export_commands as _export_commands
 from tools.idml import ir_sidecar as _ir_sidecar
 from tools.idml import ir_projection as _ir_projection
 
@@ -138,18 +140,16 @@ def main() -> int:
         default_bundle_root(args.model, args.region, args.lang))
 
     if args.mode == "flow":
-        flow = _flow_idml.write_flow_outputs(
-            root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
-            bundle_root=bundle_root, layout_params_csv=layout_params_csv,
-            layout_param_overlays=layout_param_overlays, build_command=sys.argv)
-        _ir_sidecar.emit_manual_ir_sidecar(
-            root=ROOT, bundle_root=bundle_root, out_dir=flow.idml.parent,
-            model=args.model, region=args.region, lang=args.lang, data_root=data_root,
-            category=args.category,
-            layout_params_csv=layout_params_csv,
-            layout_param_overlays=layout_param_overlays)
-        print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
-        return 0
+        return _export_commands.run_flow(
+            args, root=ROOT, data_root=data_root, bundle_root=bundle_root,
+            layout_params_csv=layout_params_csv, layout_param_overlays=layout_param_overlays,
+            build_command=sys.argv, flow_writer=_flow_idml.write_flow_outputs,
+            emit_sidecar=_ir_sidecar.emit_manual_ir_sidecar)
+    return _cmd_production(args, data_root, bundle_root, layout_params_csv, layout_param_overlays)
+
+
+def _cmd_production(args: Namespace, data_root: Path, bundle_root: Path,
+                    layout_params_csv: Path, layout_param_overlays: tuple[Path, ...]) -> int:
     params = load_layout_params(layout_params_csv, layout_param_overlays)
     try:
         manual_ir = _ir_projection.build_same_source_ir(
@@ -339,7 +339,142 @@ def main() -> int:
         lcd_rows=lcd_rows, trouble_rows=trouble_rows,
         symbol_data_for=symbol_data_for, slug_stem=slug_stem, component_target=component_target,
     )
-    for page in ordered:
+    def render_prose_page(page: Path, role: _page_roles.PageRole) -> None:
+        nonlocal page_cursor, prose_pages, skipped_raw, pending_symbol_overflow
+        nonlocal pending_prefix_blocks, pending_fcc_blocks, pending_fcc_title
+        res = projected_by_path[page]
+        skipped_raw += res.skipped_raw
+        blocks = _prose_flow.align_operation_tail(list(res.blocks), page_plan, page.stem)
+        blocks = _prose_flow.align_charging_car_page(blocks, page_plan, page.stem)
+        blocks = target_renderer.prepare_page_blocks(page, blocks)
+        if role is _page_roles.PageRole.PRODUCT_OVERVIEW and _ir_projection.uses_native_overview_page(
+            manual_ir, page, bundle_root, approved_reference=approved_reference,
+            component_target=component_target,
+        ):
+            flush_prose_flow()
+            toc.note_h1s(blocks, page_cursor)
+            _overview.add_product_overview_page(
+                w, "st_overview_" + slug_stem(page.stem), blocks, bundle_root, page_cursor)
+            page_cursor += 1
+            prose_pages += 1
+            return
+        if pending_prefix_blocks and role is _page_roles.PageRole.MAINTENANCE:
+            flush_prose_flow()
+            lang = page_lang(page)
+            symbol_data = symbol_data_for(lang)
+            if symbol_data is None:
+                flush_pending_fcc()
+                blocks = pending_prefix_blocks + blocks
+                pending_prefix_blocks = []
+            else:
+                sym_signals = list(symbol_data.signals)
+                sym_icons = list(symbol_data.icons)
+                sid = "st_safety_symbols_" + slug_stem(page.stem)
+                toc.note(symbol_data.title, page_cursor, lang)
+                _, pending_symbol_overflow = w.add_safety_symbols_page(
+                    sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
+                    bundle_root, page_cursor, lang,
+                    title=symbol_data.title,
+                    signal_headers=symbol_data.signal_headers,
+                    icon_headers=symbol_data.icon_headers)
+                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
+                pending_prefix_blocks = []
+                page_cursor += 1
+                prose_pages += 1
+                return
+        if pending_fcc_blocks and role is _page_roles.PageRole.INBOX:
+            flush_prose_flow()
+            sid = "st_fcc_inbox_" + slug_stem(page.stem)
+            lang = page_lang(page)
+            toc.note_h1s(blocks, page_cursor)
+            w.add_fcc_inbox_page(
+                sid,
+                pending_fcc_blocks,
+                blocks,
+                bundle_root,
+                page_cursor,
+                symbol_overflow=pending_symbol_overflow,
+                lang=lang,
+                reference_profile=(
+                    (((page_plan or {}).get("idml_contract") or {})
+                     .get("editable_components", {}))
+                    .get("inbox_cards")
+                ),
+            )
+            pending_fcc_blocks = []
+            pending_fcc_title = ""
+            pending_symbol_overflow = None
+            page_cursor += 1
+            prose_pages += 1
+            return
+        flush_pending_fcc()
+        if role is _page_roles.PageRole.FCC:
+            flush_prose_flow()
+            flush_pending_prefix()
+            if blocks:
+                pending_fcc_blocks = blocks
+                pending_fcc_title = page.stem
+            return
+        if role is _page_roles.PageRole.SYMBOLS:
+            flush_prose_flow()
+            symbol_key = (
+                f"symbols:{page_lang(page)}" if target_assembly else "symbols"
+            )
+            if symbol_key in emitted:
+                return
+            lang = page_lang(page)
+            symbol_data = symbol_data_for(lang)
+            if pending_prefix_blocks and symbol_data is not None:
+                sym_signals = list(symbol_data.signals)
+                sym_icons = list(symbol_data.icons)
+                sid = "st_safety_symbols_" + slug_stem(page.stem)
+                toc.note(symbol_data.title, page_cursor, lang)
+                _, pending_symbol_overflow = w.add_safety_symbols_page(
+                    sid, pending_prefix_blocks, [], sym_signals, sym_icons,
+                    bundle_root, page_cursor, lang,
+                    title=symbol_data.title,
+                    signal_headers=symbol_data.signal_headers,
+                    icon_headers=symbol_data.icon_headers)
+                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
+                pending_prefix_blocks = []
+                page_cursor += 1
+                prose_pages += 1
+                return
+            emit_data_page("symbols", lang)
+            return
+        if pending_prefix_blocks:
+            blocks = pending_prefix_blocks + blocks
+            pending_prefix_blocks = []
+        if not blocks:
+            return
+        if (
+            _prose_flow.warranty_starts_new_flow(page_plan)
+            and role is _page_roles.PageRole.WARRANTY
+        ):
+            flush_prose_flow()
+            toc.stem_langs[page.stem] = page_lang(page)
+            emit_prose_story("st_" + slug_stem(page.stem), page.stem, blocks)
+            return
+        if role is _page_roles.PageRole.SAFETY and res.twocol:
+            flush_prose_flow()
+            blocks, pending_prefix_blocks = split_safety_first_page(blocks)
+            sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+            toc.lang = page_lang(page)
+            toc.note_h1s(blocks, page_cursor)
+            w.add_safety_page(sid, page.stem, blocks, bundle_root, page_cursor)
+            page_cursor += 1
+            prose_pages += 1
+            return
+        sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
+        if res.twocol:
+            flush_prose_flow()
+            emit_prose_story(sid, page.stem, blocks, columns=2)
+        else:
+            toc.stem_langs[page.stem] = page_lang(page)
+            prose_flow.add(page.stem, blocks)
+
+    def render_page(page: Path) -> None:
+        nonlocal page_cursor, prose_pages, skipped_raw
         role = role_by_path[page]
         render_delta = target_renderer.render(
             page,
@@ -352,13 +487,13 @@ def main() -> int:
             skipped_raw += render_delta.skipped_raw
             page_cursor += render_delta.page_count
             prose_pages += render_delta.page_count
-            continue
+            return
         symbol_key = (
             f"symbols:{page_lang(page)}" if target_assembly else "symbols"
         )
         if role is _page_roles.PageRole.SYMBOLS and symbol_key in emitted \
                 and not pending_prefix_blocks and not pending_fcc_blocks:
-            continue
+            return
         toc.lang = page_lang(page)
         placed_asset = _placed.placed_asset_for(
             page.stem, toc.lang, ROOT / "docs", model=w.model,
@@ -370,7 +505,7 @@ def main() -> int:
             _placed.add_placed_pdf_page(w, "st_placed_" + slug_stem(page.stem), placed_asset, page_cursor)
             page_cursor += 1
             prose_pages += 1
-            continue
+            return
         matched = data_roles.get(role)
         if matched:
             if matched == "trouble":
@@ -396,139 +531,13 @@ def main() -> int:
                         page_plan,
                         page.stem,
                     ))
-                    continue
+                    return
             emit_data_page(matched, page_lang(page))
-            continue
-        res = projected_by_path[page]
-        skipped_raw += res.skipped_raw
-        blocks = _prose_flow.align_operation_tail(list(res.blocks), page_plan, page.stem)
-        blocks = _prose_flow.align_charging_car_page(blocks, page_plan, page.stem)
-        blocks = target_renderer.prepare_page_blocks(page, blocks)
-        if role is _page_roles.PageRole.PRODUCT_OVERVIEW and _ir_projection.uses_native_overview_page(
-            manual_ir, page, bundle_root, approved_reference=approved_reference,
-            component_target=component_target,
-        ):
-            flush_prose_flow()
-            toc.note_h1s(blocks, page_cursor)
-            _overview.add_product_overview_page(
-                w, "st_overview_" + slug_stem(page.stem), blocks, bundle_root, page_cursor)
-            page_cursor += 1
-            prose_pages += 1
-            continue
-        if pending_prefix_blocks and role is _page_roles.PageRole.MAINTENANCE:
-            flush_prose_flow()
-            lang = page_lang(page)
-            symbol_data = symbol_data_for(lang)
-            if symbol_data is None:
-                flush_pending_fcc()
-                blocks = pending_prefix_blocks + blocks
-                pending_prefix_blocks = []
-            else:
-                sym_signals = list(symbol_data.signals)
-                sym_icons = list(symbol_data.icons)
-                sid = "st_safety_symbols_" + slug_stem(page.stem)
-                toc.note(symbol_data.title, page_cursor, lang)
-                _, pending_symbol_overflow = w.add_safety_symbols_page(
-                    sid, pending_prefix_blocks, blocks, sym_signals, sym_icons,
-                    bundle_root, page_cursor, lang,
-                    title=symbol_data.title,
-                    signal_headers=symbol_data.signal_headers,
-                    icon_headers=symbol_data.icon_headers)
-                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
-                pending_prefix_blocks = []
-                page_cursor += 1
-                prose_pages += 1
-                continue
-        if pending_fcc_blocks and role is _page_roles.PageRole.INBOX:
-            flush_prose_flow()
-            sid = "st_fcc_inbox_" + slug_stem(page.stem)
-            lang = page_lang(page)
-            toc.note_h1s(blocks, page_cursor)
-            w.add_fcc_inbox_page(
-                sid,
-                pending_fcc_blocks,
-                blocks,
-                bundle_root,
-                page_cursor,
-                symbol_overflow=pending_symbol_overflow,
-                lang=lang,
-                reference_profile=(
-                    (((page_plan or {}).get("idml_contract") or {})
-                     .get("editable_components", {}))
-                    .get("inbox_cards")
-                ),
-            )
-            pending_fcc_blocks = []
-            pending_fcc_title = ""
-            pending_symbol_overflow = None
-            page_cursor += 1
-            prose_pages += 1
-            continue
-        flush_pending_fcc()
-        if role is _page_roles.PageRole.FCC:
-            flush_prose_flow()
-            flush_pending_prefix()
-            if blocks:
-                pending_fcc_blocks = blocks
-                pending_fcc_title = page.stem
-            continue
-        if role is _page_roles.PageRole.SYMBOLS:
-            flush_prose_flow()
-            symbol_key = (
-                f"symbols:{page_lang(page)}" if target_assembly else "symbols"
-            )
-            if symbol_key in emitted:
-                continue
-            lang = page_lang(page)
-            symbol_data = symbol_data_for(lang)
-            if pending_prefix_blocks and symbol_data is not None:
-                sym_signals = list(symbol_data.signals)
-                sym_icons = list(symbol_data.icons)
-                sid = "st_safety_symbols_" + slug_stem(page.stem)
-                toc.note(symbol_data.title, page_cursor, lang)
-                _, pending_symbol_overflow = w.add_safety_symbols_page(
-                    sid, pending_prefix_blocks, [], sym_signals, sym_icons,
-                    bundle_root, page_cursor, lang,
-                    title=symbol_data.title,
-                    signal_headers=symbol_data.signal_headers,
-                    icon_headers=symbol_data.icon_headers)
-                emitted.add(f"symbols:{lang}" if target_assembly else "symbols")
-                pending_prefix_blocks = []
-                page_cursor += 1
-                prose_pages += 1
-                continue
-            emit_data_page("symbols", lang)
-            continue
-        if pending_prefix_blocks:
-            blocks = pending_prefix_blocks + blocks
-            pending_prefix_blocks = []
-        if not blocks:
-            continue
-        if (
-            _prose_flow.warranty_starts_new_flow(page_plan)
-            and role is _page_roles.PageRole.WARRANTY
-        ):
-            flush_prose_flow()
-            toc.stem_langs[page.stem] = page_lang(page)
-            emit_prose_story("st_" + slug_stem(page.stem), page.stem, blocks)
-            continue
-        if role is _page_roles.PageRole.SAFETY and res.twocol:
-            flush_prose_flow()
-            blocks, pending_prefix_blocks = split_safety_first_page(blocks)
-            sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
-            toc.lang = page_lang(page)
-            toc.note_h1s(blocks, page_cursor)
-            w.add_safety_page(sid, page.stem, blocks, bundle_root, page_cursor)
-            page_cursor += 1
-            prose_pages += 1
-            continue
-        sid = "st_" + re.sub(r"[^a-z0-9]+", "_", page.stem.lower()).strip("_")
-        if res.twocol:
-            flush_prose_flow()
-            emit_prose_story(sid, page.stem, blocks, columns=2)
-        else:
-            toc.stem_langs[page.stem] = page_lang(page)
-            prose_flow.add(page.stem, blocks)
+            return
+        render_prose_page(page, role)
+
+    for page in ordered:
+        render_page(page)
 
     coverage_warning = _page_roles.assembly_coverage_warning(coverage_assignments)
     if coverage_warning:
@@ -579,25 +588,16 @@ def main() -> int:
     for i in issues:
         print(f"[export-idml] SELF-CHECK FAIL: {i}")
     if args.mode == "both":
-        flow = _flow_idml.write_flow_outputs(
-            root=ROOT, model=args.model, region=args.region, lang=args.lang, data_root=data_root,
-            bundle_root=bundle_root, layout_params_csv=layout_params_csv,
-            layout_param_overlays=layout_param_overlays, build_command=sys.argv)
-        print(f"[export-idml] FLOW OK: {flow.markdown} | FLOW IDML OK: {flow.idml}")
-        handoff = _design_handoff.write_handoff_package(
-            root=ROOT, model=args.model, region=args.region, lang=args.lang,
-            data_root=data_root, bundle_root=bundle_root,
-            production_idml=out, flow=flow, build_command=sys.argv)
-        print(f"[export-idml] HANDOFF OK: {handoff.root}")
+        _export_commands.write_combined_outputs(
+            args, root=ROOT, data_root=data_root, bundle_root=bundle_root,
+            layout_params_csv=layout_params_csv, layout_param_overlays=layout_param_overlays,
+            build_command=sys.argv, flow_writer=_flow_idml.write_flow_outputs,
+            out=out, write_handoff=_design_handoff.write_handoff_package)
     if args.template:
         _template_merge.bake_beside(out, args.template, check_idml)
-    n_rows = sum(len(s["rows"]) for s in sections)
-    print(f"[export-idml] {'OK' if not issues else 'WROTE WITH ISSUES'}: {out}")
-    story_emitter.report_spans()
-    print(f"[export-idml] stories={len(w.stories)} spreads={len(w.spreads)} "
-          f"prose pages={prose_pages} skipped raw blocks={skipped_raw} | "
-          f"spec rows={n_rows} lcd rows={len(lcd_rows)} trouble rows={len(trouble_rows)}")
-    return 1 if issues else 0
+    return _export_commands.report_production(
+        out, issues, w, story_emitter, sections, lcd_rows, trouble_rows,
+        prose_pages=prose_pages, skipped_raw=skipped_raw)
 
 
 if __name__ == "__main__":

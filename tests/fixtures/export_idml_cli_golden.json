@@ -1,0 +1,1040 @@
+{
+  "help": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "usage: export_idml.py [-h] [--model MODEL] [--region REGION] [--lang LANG]\n                      [--category CATEGORY] [--data-root DATA_ROOT]\n                      [--out OUT] [--bundle-root BUNDLE_ROOT]\n                      [--mode {production,flow,both}] [--check CHECK]\n                      [--template TEMPLATE] [--assembly-plan ASSEMBLY_PLAN]\n                      [--layout-params-csv LAYOUT_PARAMS_CSV]\n                      [--layout-params-overlay LAYOUT_PARAMS_OVERLAY]\n\nIDML exporter — route B of the InDesign handoff plan. Produces an editable\n.idml package from the same prepared-bundle IR as LaTeX, so designers can\nfine-tune pipeline output instead of retouching PDFs. Usage: python\ntools/export_idml.py --model JE-1000F --region US [--lang en] [--data-root\ndata/phase2] [--out docs/_build/.../manual.idml] python tools/export_idml.py\n--check <file.idml> # structural validation\n\noptions:\n  -h, --help            show this help message and exit\n  --model MODEL         product model registered in the build target\n  --region REGION\n  --lang LANG\n  --category CATEGORY   product line, from build.skeleton_family; carriers\n                        branch on it as '.. only:: category_<value>'. Left\n                        unset a carrier's category branch is simply absent, so\n                        build.py always passes the configured value.\n  --data-root DATA_ROOT\n  --out OUT\n  --bundle-root BUNDLE_ROOT\n                        Prepared rst bundle dir (default:\n                        docs/_build/<model>/<region>/<lang>/rst); prose pages\n                        are skipped if absent\n  --mode {production,flow,both}, --idml-mode {production,flow,both}\n                        IDML export mode; production preserves historical\n                        behavior.\n  --check CHECK         validate an existing .idml and exit\n  --template TEMPLATE   bake production idml into this template .idml (pre-\n                        styled)\n  --assembly-plan ASSEMBLY_PLAN\n                        configured candidate target assembly JSON; approved\n                        reference contracts still take precedence\n  --layout-params-csv LAYOUT_PARAMS_CSV\n                        baseline layout-token CSV selected by the build config\n  --layout-params-overlay LAYOUT_PARAMS_OVERLAY\n                        additive IDML composition-token CSV; may be repeated\n",
+    "stderr": "",
+    "events": []
+  },
+  "missing-model": {
+    "exit": 2,
+    "exception": null,
+    "stdout": "",
+    "stderr": "usage: export_idml.py [-h] [--model MODEL] [--region REGION] [--lang LANG]\n                      [--category CATEGORY] [--data-root DATA_ROOT]\n                      [--out OUT] [--bundle-root BUNDLE_ROOT]\n                      [--mode {production,flow,both}] [--check CHECK]\n                      [--template TEMPLATE] [--assembly-plan ASSEMBLY_PLAN]\n                      [--layout-params-csv LAYOUT_PARAMS_CSV]\n                      [--layout-params-overlay LAYOUT_PARAMS_OVERLAY]\nexport_idml.py: error: the following arguments are required: --model\n",
+    "events": []
+  },
+  "invalid-mode": {
+    "exit": 2,
+    "exception": null,
+    "stdout": "",
+    "stderr": "usage: export_idml.py [-h] [--model MODEL] [--region REGION] [--lang LANG]\n                      [--category CATEGORY] [--data-root DATA_ROOT]\n                      [--out OUT] [--bundle-root BUNDLE_ROOT]\n                      [--mode {production,flow,both}] [--check CHECK]\n                      [--template TEMPLATE] [--assembly-plan ASSEMBLY_PLAN]\n                      [--layout-params-csv LAYOUT_PARAMS_CSV]\n                      [--layout-params-overlay LAYOUT_PARAMS_OVERLAY]\nexport_idml.py: error: argument --mode/--idml-mode: invalid choice: 'pages' (choose from production, flow, both)\n",
+    "events": []
+  },
+  "check-success-without-model": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[idml-check] OK\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "check-only",
+        "path": "sample.idml"
+      }
+    ]
+  },
+  "check-failure-before-export": {
+    "exit": 1,
+    "exception": null,
+    "stdout": "[idml-check] FAIL: frozen issue\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "check-only",
+        "path": "bad.idml"
+      }
+    ]
+  },
+  "production-default": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] OK: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "production-explicit": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] OK: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "flow": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] FLOW OK: <ROOT>/fixture-output/flow/manual.flow.md | FLOW IDML OK: <ROOT>/fixture-output/flow/manual.flow.idml\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--mode",
+            "flow"
+          ]
+        }
+      },
+      {
+        "boundary": "flow-ir",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "out_dir": "<ROOT>/fixture-output/flow",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      }
+    ]
+  },
+  "flow-alias": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] FLOW OK: <ROOT>/fixture-output/flow/manual.flow.md | FLOW IDML OK: <ROOT>/fixture-output/flow/manual.flow.idml\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--idml-mode",
+            "flow"
+          ]
+        }
+      },
+      {
+        "boundary": "flow-ir",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "out_dir": "<ROOT>/fixture-output/flow",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      }
+    ]
+  },
+  "both": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] FLOW OK: <ROOT>/fixture-output/flow/manual.flow.md | FLOW IDML OK: <ROOT>/fixture-output/flow/manual.flow.idml\n[export-idml] HANDOFF OK: <ROOT>/fixture-output\n[export-idml] OK: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--mode",
+            "both"
+          ]
+        }
+      },
+      {
+        "boundary": "handoff"
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "both-template-self-check-issues": {
+    "exit": 1,
+    "exception": null,
+    "stdout": "[export-idml] SELF-CHECK FAIL: first issue\n[export-idml] SELF-CHECK FAIL: second issue\n[export-idml] FLOW OK: <ROOT>/fixture-output/flow/manual.flow.md | FLOW IDML OK: <ROOT>/fixture-output/flow/manual.flow.idml\n[export-idml] HANDOFF OK: <ROOT>/fixture-output\n[export-idml] WROTE WITH ISSUES: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--mode",
+            "both",
+            "--template",
+            "template.idml"
+          ]
+        }
+      },
+      {
+        "boundary": "handoff"
+      },
+      {
+        "boundary": "template"
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "production-template": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] OK: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "template"
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "preparation-error": {
+    "exit": 1,
+    "exception": null,
+    "stdout": "[export-idml] ERROR: same-source IDML preparation failed: frozen preparation failure\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "debug",
+        "args": [
+          "<ROOT>",
+          "<ROOT>/fixture-bundle"
+        ],
+        "kwargs": {
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION"
+        }
+      }
+    ]
+  },
+  "coverage-warning": {
+    "exit": 0,
+    "exception": null,
+    "stdout": "[export-idml] WARNING: frozen coverage\n[export-idml] OK: <ROOT>/fixture-output/production.idml\n[export-idml] stories=0 spreads=0 prose pages=0 skipped raw blocks=0 | spec rows=0 lcd rows=0 trouble rows=0\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "report-spans"
+      }
+    ]
+  },
+  "page-count-error": {
+    "exit": 1,
+    "exception": null,
+    "stdout": "",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      }
+    ]
+  },
+  "unconsumed-symbol-overflow": {
+    "exit": 1,
+    "exception": null,
+    "stdout": "[export-idml] ERROR: symbol continuation was not consumed by a following FCC page\n",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      }
+    ]
+  },
+  "flow-error-propagates": {
+    "exit": null,
+    "exception": "ValueError: frozen boundary failure",
+    "stdout": "",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--mode",
+            "flow"
+          ]
+        }
+      }
+    ]
+  },
+  "both-flow-error-after-production": {
+    "exit": null,
+    "exception": "ValueError: frozen boundary failure",
+    "stdout": "",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "flow",
+        "args": [],
+        "kwargs": {
+          "root": "<ROOT>",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": [],
+          "build_command": [
+            "export_idml.py",
+            "--model",
+            "TEST-MODEL",
+            "--region",
+            "TEST-REGION",
+            "--lang",
+            "en",
+            "--bundle-root",
+            "<ROOT>/fixture-bundle",
+            "--out",
+            "<ROOT>/fixture-output/production.idml",
+            "--mode",
+            "both"
+          ]
+        }
+      }
+    ]
+  },
+  "template-error-propagates": {
+    "exit": null,
+    "exception": "ValueError: frozen boundary failure",
+    "stdout": "",
+    "stderr": "",
+    "events": [
+      {
+        "boundary": "load-layout",
+        "args": [
+          "<ROOT>/data/layout_params.csv",
+          []
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "prepare-ir",
+        "kwargs": {
+          "root": "<ROOT>",
+          "bundle_root": "<ROOT>/fixture-bundle",
+          "model": "TEST-MODEL",
+          "region": "TEST-REGION",
+          "lang": "en",
+          "data_root": "<ROOT>/data/phase2",
+          "category": null,
+          "layout_params_csv": "<ROOT>/data/layout_params.csv",
+          "layout_param_overlays": []
+        }
+      },
+      {
+        "boundary": "component-target"
+      },
+      {
+        "boundary": "reference-plan"
+      },
+      {
+        "boundary": "project-pages"
+      },
+      {
+        "boundary": "toc-source"
+      },
+      {
+        "boundary": "folio"
+      },
+      {
+        "boundary": "page-count"
+      },
+      {
+        "boundary": "emit-plan"
+      },
+      {
+        "boundary": "production-ir"
+      },
+      {
+        "boundary": "write-production",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "fonts",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "self-check",
+        "args": [
+          "<ROOT>/fixture-output/production.idml"
+        ],
+        "kwargs": {}
+      },
+      {
+        "boundary": "template"
+      }
+    ]
+  }
+}

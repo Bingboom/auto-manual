@@ -77,7 +77,8 @@ tools/diff_report_render.py	write_html_report	22
 tools/diff_report_reports.py	generate_diff_report	26
 tools/document_link_queue.py	select_pending_queue_records	25
 tools/document_link_queue.py	validate_queue_record_group	26
-tools/export_idml.py	main	68
+tools/export_idml.py	_cmd_production	23
+tools/export_idml.py	_cmd_production.render_prose_page	26
 tools/feishu_record_transport.py	run_lark_cli_json	23
 tools/flow_dashboard.py	_metric_card_html	21
 tools/frozen_ai_document.py	ordered_pages	59
