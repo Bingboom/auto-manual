@@ -102,7 +102,8 @@ def lcd_icon_flow(
     spec = lcd_icon_component_spec(
         accessibility_label=accessibility_label, rows=values, icon_refs=refs,
         source_ref=source_ref, language=language, icon_locale_policy="shared",
-        metadata={"source_kind": "native-pdf-lcd-copy", "source_rows": provenance},
+        metadata={"source_kind": "native-pdf-lcd-copy", "source_rows": provenance,
+                  "number_cell_layout": "span-adjacent-equal"},
     )
     return [component_flow_node(spec, root=True)]
 

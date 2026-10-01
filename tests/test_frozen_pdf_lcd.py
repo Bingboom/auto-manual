@@ -78,15 +78,20 @@ class FrozenPdfLcdTests(unittest.TestCase):
         self.assertEqual(26, len(rows))
         for index, (source, row) in enumerate(zip(record["rows"], rows, strict=True)):
             cells = row.find_all("td", recursive=False)
-            self.assertEqual(4, len(cells))
-            self.assertEqual(str(source["number"]), cells[0].get_text())
-            self.assertEqual(_assets()[LCD_ICON_ASSET_KEYS[index]]["asset_ref"], cells[1].img["src"])
-            self.assertEqual(source["label"], cells[2].get_text())
-            self.assertEqual(source["meaning"], cells[3].get_text())
+            self.assertEqual(3 if index == 22 else 4, len(cells))
+            number = row.select_one('.hb-lcd-number')
+            if index == 22:
+                self.assertIsNone(number)
+            else:
+                self.assertEqual(str(source["number"]), number.get_text())
+            self.assertEqual(_assets()[LCD_ICON_ASSET_KEYS[index]]["asset_ref"],
+                             row.select_one('.hb-lcd-icon img')["src"])
+            self.assertEqual(source["label"], row.select_one('.hb-lcd-name').get_text())
+            self.assertEqual(source["meaning"], row.select_one('.hb-lcd-description').get_text())
         self.assertEqual(original, record)
         self.assertIn("high-temperature", rows[21].img["src"])
         self.assertIn("low-temperature", rows[22].img["src"])
-        self.assertEqual(["22", "22"], [rows[i].select_one('.hb-lcd-number').get_text() for i in (21, 22)])
+        self.assertEqual("2", rows[21].select_one('.hb-lcd-number')["rowspan"])
 
     def test_missing_or_reordered_rows_do_not_silently_choose_different_icons(self):
         record = _record()
