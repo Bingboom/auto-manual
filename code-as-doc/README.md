@@ -83,6 +83,8 @@ Use these together; do not split operator guidance across older phase plans.
   - serial PR plan and completion ledger for the four-renderer style/component contract v2 workstream
 - [`dev/code_quality_iterability_plan.md`](dev/code_quality_iterability_plan.md)
   - Workstream Y checklist: lint baseline, complexity ratchet, test seams, logging contracts, test feedback, doc lifecycle, package layout
+- [`dev/workstream_y_parallel_lanes.md`](dev/workstream_y_parallel_lanes.md)
+  - Workstream Y remaining items split into eight non-overlapping lanes for parallel agents
 
 ## 5. Historical Or Archived Docs
 
