@@ -1,0 +1,11 @@
+[language-literal] stale-baseline tools/idml/loaders.py	dict	jp,pt-BR,uk,zh	855fb99be85153ca
+[language-literal] stale-baseline tools/idml/loaders.py	tuple	br,pt-BR	2c1238232e5d6cb8
+[language-literal] stale-baseline tools/idml/loaders.py	tuple	ja,jp	ec18e4dd0701f0f4
+[language-literal] stale-baseline tools/idml/loaders.py	tuple	uk,ukr	c1324a3d4902f55e
+[language-literal] stale-baseline tools/utils/spec_master_lookup.py	list	br,pt-BR,pt-br,pt_BR,pt_br	ec6eea741244cd24
+[language-literal] stale-baseline tools/utils/spec_master_lookup.py	set	br,pt-br,pt_br	527f3c004b071054
+[language-literal] 0 new, 60 known, 6 stale, 67 current
+[complexity] 0 new, 0 grown, 0 improved, 0 stale, 260 baselined
+[facade-patch] 0 new, 0 grown, 0 improved, 0 stale, 363 baselined patches in 7 files
+[broad-except] 0 new, 0 grown, 0 improved, 0 stale, 89 baselined handlers in 56 files
+[maintainability] Guardrails OK for 62 hotspot files.

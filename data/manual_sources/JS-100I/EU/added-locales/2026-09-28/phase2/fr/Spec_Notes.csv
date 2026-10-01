@@ -1,0 +1,3 @@
+Note_id,Region,Model,Source_lang,Is_Latest,Page,Note_order,Text_fr,Enabled
+note1,EU,JS-100I,fr,TRUE,specifications,2,"* STC (conditions d’essai standard, 1000 W/m2, 25 °C, AM 1,5)",TRUE
+note2,EU,JS-100I,fr,TRUE,specifications,3,"* BNPI (Irradiance nominale bifaciale, avant 1000 W/m2, arrière 135 W/m2, 25 °C, AM 1,5) Dépliez le support et placez-le sur une surface plane. La charge supportée théorique est de 1600 Pa, et le facteur de sécurité est de 1,5.",TRUE

@@ -1,0 +1,114 @@
+[
+  {
+    "lang": "fr",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "es",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "de",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "it",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "uk",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "Світлодіод",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "pt",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "nl",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  },
+  {
+    "lang": "pl",
+    "checked_copy_fields": 81,
+    "missing": [],
+    "spec_rows": 21,
+    "tables": 3,
+    "images": 22,
+    "ir_pages": 9,
+    "normalized_device_labels": [
+      "USB-C",
+      "LED",
+      "USB-A"
+    ]
+  }
+]

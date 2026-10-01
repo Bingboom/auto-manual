@@ -1,0 +1,73 @@
+{
+  "pt": {
+    "chapters": 15,
+    "components": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 9,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "publication_eligible": true,
+    "pending_source_review": []
+  },
+  "nl": {
+    "chapters": 15,
+    "components": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 9,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "publication_eligible": false,
+    "pending_source_review": [
+      "Operator decision pending: source pp127-128 AC/DC button labels and p132 car dual-port 16A versus native English/PT/PL 8A."
+    ]
+  },
+  "pl": {
+    "chapters": 15,
+    "components": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 3,
+      "HB-SPECIAL-REFERENCE-FIGURE": 9,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "publication_eligible": true,
+    "pending_source_review": []
+  }
+}

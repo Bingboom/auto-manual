@@ -23,8 +23,9 @@ def _language_suffix_map(table_name: str, prefix: str) -> dict[str, str]:
     values: dict[str, str] = {}
     for spec in lang_registry.LANGUAGE_REGISTRY:
         suffix = _column_suffix(spec, table_name, prefix)
-        if suffix is not None:
-            values[spec.code] = suffix
+        # Offline output languages may supply local snapshot columns without
+        # adding those fields to the live synchronization schema.
+        values[spec.code] = suffix or spec.code
     return values
 
 

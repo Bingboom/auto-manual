@@ -24,6 +24,21 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 
 本节收拢历次发布改动累积下来的现行约定。单个型号的一次性修复记录不进本节，放文末的型号专项或 [`code-as-doc/reviews/`](../code-as-doc/reviews)。
 
+### 网页配图先复用，再提取
+
+每次网页化先盘点目标已有素材、同型号同区域其他语言素材与共享附件，核对图中
+型号、接口、参数、App 界面和语言。内容一致就直接复用；只有外部文字变化时，
+复用底图并调整原生标签。新增语言或新 PDF 不构成重裁理由。
+
+确实缺图、清晰度不足或图形有差异时，先在目标审查记录填写
+[选材记录表](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)，
+说明查过什么以及为何不能复用，再提取。完整大图保留灰底、圆角、外框和引线；
+App 截图保留手机顶部状态栏及四边。透明底要求只用于 LCD／状态图标、独立按钮符号等小图，
+不按显示尺寸判断；完整大图缩小显示也不去底。
+
+交付时核对实际绑定文件的来源与哈希，并检查桌面、手机中的裁切、标签位置及重复
+编号。上述是执行和审查顺序，尚不代表构建程序会自动发现裁切或去底错误。
+
 ### 单语身份、语言切换与手册中心
 
 单语网页顶部通过语言切换栏显示当前语言，正文开头重复的独立语言名称不再显示；冻结源文件不变。
@@ -43,6 +58,8 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 ### 发布候选、撤回与恢复
 
 Web 发布候选按型号/市场/语言隔离，并保留旧链接重定向，见[契约](../code-as-doc/dev/web_locale_publication_identity.md)。
+冻结发布源同时保留独立源包与整站组装副本，源清单容量上限为 640 MiB；网页输出及线上取回仍限 512 MiB，单文件 32 MiB、文件数 10,000 和哈希校验不变。
+
 已有外部原稿的 Git-only 新语种网页发布，也要把每种语言标为 `single`，用冻结源清单与实际 Git 提交、MyST、图片和验证 HTML 生成[单语发布凭据](../code-as-doc/dev/web_publish_pipeline.md#22-git-only-transaction)；现有 `build.py check` 只作旧构建目标的回归检查，不代表验证了这些新语正文。
 
 JE-1000F/EU 新增四语从提供的可编辑 PDF 重新读取文字，以原 AI 核对缺字，保留已批准勘误。维护时通过[共享 IR 接入工具](../code-as-doc/dev/four_language_shared_ir_alignment.md)生成新候选包，采用英文网页的公共包装清单、总览、操作、App 和表格组件；正文不放印刷目录或表格截图。太阳能接线图中的型号/数量标注和车充图中的车辆标注保持为图框内可选中的文字，不能作为图外正文；桌面按原稿留白定位，窄屏在同一灰色图框内保持可读。配图须匹配原稿中的型号、插座和参数，资产清单未解决的项会阻止生成候选；历史 `build_web.py` 和截图保留作追溯证据。该步骤生成本地候选，尚需工程 PR、发布 PR 和 RTD 验收，不会自动发布，也不等于完成飞书语料入库或印刷产线注册。
@@ -655,6 +672,8 @@ GitHub note:
 - the same guard applies a per-function complexity ratchet (`data/complexity_baseline.tsv`): new functions stay at complexity 20 or below, recorded ones may only get simpler, and a simplification is locked in by rerunning `python tools/check_complexity_ratchet.py update`
 - the same guard counts test patches on facade modules (`data/facade_patch_baseline.tsv`): tests should patch the module that looks a name up, so the count may only fall; a drop is locked in with `python tools/check_facade_patch_ratchet.py update`
 - the same guard counts broad exception handlers (`except Exception` / `except BaseException`, `data/broad_except_baseline.tsv`): new code catches the specific exception, so the count may only fall; a drop is locked in with `python tools/check_broad_except_ratchet.py update`
+- it also counts `zip()` calls without `strict=` (`data/zip_strict_baseline.tsv`): pass `strict=True`, or `strict=False` with a comment when truncation is intended; lock a drop in with `python tools/check_zip_strict_ratchet.py update`
+- CI's `type-check` job counts untyped-def mypy errors in `tools/manual_ir`, `tools/component_specs` and `tools/csv_pages` (`data/mypy_untyped_baseline.tsv`); annotate new functions there, and after fixing errors run `python tools/check_mypy_ratchet.py update` (with `mypy==2.3.1` installed)
 - `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `build.py check` also renders every prepared FCC page with the target language in both document and web profiles. A missing FCC opening line block, an unregistered localized right-column marker, or a runtime filename remap that loses language context now fails during `check`, before Word generation.
 - `build.py check` also enforces capability -> chapter consistency: [`../data/model_capabilities.csv`](../data/model_capabilities.csv) mirrors the 文档构建表 feature checkboxes (refreshed by `sync-data` when `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` is set — it is a tracked file like `page_registry.csv`, so the git diff is the review surface for capability changes; duplicate build-table rows collapse to one mirror row), and [`../data/capability_page_rules.csv`](../data/capability_page_rules.csv) maps each capability to a required/forbidden bundle page or in-page section regex. A target with `UPS功能=TRUE` must carry `06_ups_mode`; one with `加电包扩容=FALSE` must not carry an extra-battery page. Targets without a capability row emit a non-blocking `CAPABILITY_ROW_MISSING` warning unless listed in [`../data/capability_known_missing.csv`](../data/capability_known_missing.csv); capability page selection remains fail-open. Each rule's enforcement is toggled per direction in the rules CSV (`required_when_true` / `forbidden_when_false`), so noisy rules stay recorded but inert until their wording is unified. The Feishu 文档构建 base carries a mirror rules table for visibility; the repo CSVs are the consumed source.
@@ -1269,6 +1288,7 @@ Config scope rule:
 - [`configs/config.eu.yaml`](../configs/config.eu.yaml): shared EU merged template-family config using [`docs/manifests/manual_eu.yaml`](../docs/manifests/manual_eu.yaml)
 - [`configs/config.eu-en.yaml`](../configs/config.eu-en.yaml), [`configs/config.eu-fr.yaml`](../configs/config.eu-fr.yaml), [`configs/config.eu-es.yaml`](../configs/config.eu-es.yaml), [`configs/config.eu-de.yaml`](../configs/config.eu-de.yaml), [`configs/config.eu-it.yaml`](../configs/config.eu-it.yaml), and [`configs/config.eu-uk.yaml`](../configs/config.eu-uk.yaml): explicit EU single-language configs using [`../docs/manifests/manual_eu-en.yaml`](../docs/manifests/manual_eu-en.yaml) plus the corresponding [`../docs/manifests/manual_eu-single-*.yaml`](../docs/manifests) stacks
 - [`configs/config.solar-eu-en.yaml`](../configs/config.solar-eu-en.yaml): exact `JS-100I / EU / en` and `JS-40C / EU / en` Web entrypoint using the reusable [`Solar@INTL` skeleton](../docs/manifests/skeletons/solar-intl/blueprint.yaml). JS-100I uses five Inbox cards plus unfolding/folding; JS-40C uses seven Inbox cards plus Solar Panel Storage. Both use frozen phase2 specifications and target-bound English figures; this config is not a fallback for portable-power-station targets.
+- [`configs/config.solar-eu-multilingual.yaml`](../configs/config.solar-eu-multilingual.yaml): JS-100I / EU 的 `fr/es/de/it/uk/pt/nl/pl` Git 源候选；逐语指定 `--lang` 和匹配的 `added-locales/2026-09-28/phase2/<lang>` 数据目录。沿用太阳能板 RST/CSV、manual-ir/v2 和共用 Web 组件。英语保留原结构数据，操作图拆分为原生透明插图并配可选中文本，手机参数表在容器内换行。荷兰语 `OPMERKING`、波兰语 `Uwaga` 以原文进入共用提示条；各语言发布前必须通过组件适用性及保修原文哈希检查。[来源、勘误与本地验收](../code-as-doc/reviews/js100i_eu_nine_language_2026-09.md) 不代表已发布、已写 Base 或已晋升插图资产。
 - [`configs/config.us-en.yaml`](../configs/config.us-en.yaml), [`configs/config.us-es.yaml`](../configs/config.us-es.yaml), [`configs/config.us-fr.yaml`](../configs/config.us-fr.yaml), and [`configs/config.pt-br.yaml`](../configs/config.pt-br.yaml) now inherit their shared single-language US defaults from [`../configs/config-bases/us-single-language-base.yaml`](../configs/config-bases/us-single-language-base.yaml); keep common single-language build defaults there and keep language-specific page order in [`../docs/manifests/manual_us-single-en.yaml`](../docs/manifests/manual_us-single-en.yaml), [`../docs/manifests/manual_us-single-es.yaml`](../docs/manifests/manual_us-single-es.yaml), [`../docs/manifests/manual_us-single-fr.yaml`](../docs/manifests/manual_us-single-fr.yaml), and [`../docs/manifests/manual_pt-br.yaml`](../docs/manifests/manual_pt-br.yaml)
 - [`configs/config.us-en.yaml`](../configs/config.us-en.yaml) additionally sets `md_output` so its Markdown / Web artefact stays `manual_je1000f_us`, the stem the published `JE-1000F/US/en/md/` page already uses; its Word and PDF artefacts keep the inherited `_en` suffix, and `config.us-fr.yaml` / `config.us-es.yaml` keep the inherited `_fr` / `_es` suffix on every artefact. See [`code-as-doc/dev/web_publish_locale_queue.md`](../code-as-doc/dev/web_publish_locale_queue.md) for why a published locale route cannot be renamed
 - the current maintained baseline target is `JE-1000F` across these active config families, including `JE-1000F / US`, `JE-1000F / EU`, and `JE-1000F / JP`
@@ -1973,6 +1993,8 @@ Charging reference diagrams reuse the shared live-label component: captions occu
 
 ## 欧规网页共享组件防回退
 
+新型号、地区或语言录入也遵循同一套[图文分工规则](../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：文字和承载它的灰/白框用 HTML/CSS；底图保留完整主机、线缆、放大圆和实际外框。密集引线概览图、App 界面、二维码及产品铭刻按各自例外保留。四语已有测试不替代中规等新入口的组件绑定、哈希和桌面/窄屏验收。
+
 新发布的欧规／英规候选包必须携带 IR，并符合已登记的章节、共享组件及变体要求。删除组件、旁车文件或扩大遗留例外会阻止发布。新增型号／语言要先登记适用章节；历史 App 整图和 LCD 降级不会算作已复用。历史发布仍可回放，详见[共享组件准入与迁移](../code-as-doc/dev/prepared_component_admission.md)。
 
 维护旧版网页表格时，在源 RST 中声明共享表格类型，重新构建整本；不要直接修改生成 HTML。纯文字 LCD 说明保留原编号（包括空编号），不自动补图标。多语质保开场可有多段，顺序和段落边界必须保留。定义见 [共享样式](../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
@@ -1983,6 +2005,14 @@ Charging reference diagrams reuse the shared live-label component: captions occu
 
 新增原生 PDF 语言沿用同一组共享组件；译文、型号参数和对应地区的图片由源稿决定，表格、质保卡片、操作区和 App 的版式由共享组件负责。现在导入/冷重放与发布封存会检查章节所需组件是否真的存在。报错 `shared component coverage failed` 时，根据提示的章节和组件 ID 补绑定，不能用普通表格或截图绕过。密集标注整图保留已批准的引用图方式。
 
+验收新增语言时，逐语检查图内提示框是否遮住按钮圆图或引线，以及手机换行后是否越界。节能图只应有一个时钟，源稿 App 步骤编号若仅在截图下出现，应保留这一结构。修复提取范围和图文绑定后生成新的候选预览；既有语言的冻结版本保持不变。
+
+指定沿用源稿完整配件排版时，应保留虚线框、配件标题与“单独销售”徽标的相对位置，
+不能把徽标文字当成第四个普通标题。对应语言成品参考图保留图内文字，另提供检索和
+读屏文本，不重复显示图外标题；该排图内文字需回源稿修改，不是独立 HTML 文字框。
+充电、UPS、扩容等完整大图也应保留原稿灰底、白色说明区和圆角边框；透明底规则
+仅用于 LCD／状态图标、独立按钮符号等小图，不用于完整面板。
+
 共享代码更新后，旧的冻结手册不会自动迁移。每次修复需列出受影响语言、生成新冻结版本、检查桌面/手机并重新发布；验收应打开正式 RTD 路由。检查通过表示组件覆盖完整，仍需核验译文、参数、地区图片和实际版面。技术边界见[共享组件准入](../code-as-doc/dev/web_publish_pipeline.md#native-multilingual-shared-component-admission)。
 
 JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引用，并通过
@@ -1991,8 +2021,24 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 [`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
 连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。
 
+新原生 PDF 的 LCD 表对相邻同编号条目（如高温／低温）保留两条独立图标、名称和说明，但编号只显示一次并跨行居中。该布局由冻结 ComponentSpec 的 `number_cell_layout: span-adjacent-equal` 声明；未声明的历史冻结版本维持原样，编号不跨非相邻行合并。
+
 日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
 
 JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。
 
-通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
+
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
+JE-2000F/CN 沿用 `configs/config.zh.yaml` 中规共享配置与现有审核源；预览、发布按审核稿原样构建。
+
+新增 JE-3000C/EU 葡语、荷语、波语沿用现有六语网页的公共 IR 和组件。
+图中标签从各语原稿的坐标范围读取，保持可选文字；同一个 PDF 文本块里的多个标签
+也分别绑定，避免漏用共享图文组件。安全提示的标签在原生读取顺序首尾均能识别，
+正文只显示一次。技术事实矛盾记录为待确认，预览可以打开，但发布封存会阻止该语种。
+范围、来源和验收见[三语录入记录](../reports/je3000c-eu-three-language/README.md)。
+
+### 原生 PDF 的已确认勘误
+
+原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。

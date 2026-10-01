@@ -1,5 +1,7 @@
 # REV-01：HT-Manuals / HT-Doc 两个 RTD 项目同一时点快照
 
+Status: done
+
 - 抓取窗口（UTC）：**2026-09-19T03:10:01Z ～ 2026-09-19T03:16:43Z**（约 7 分钟，视为同一时点）
 - 全程只读：仅 RTD 公共 API v3（无登录）、公网 HTTPS GET、`gh api` 只读端点。原始响应存于 `raw/`；逐条抓取时间见 `raw/fetch_log.txt` 与 `raw/probe_log.csv`。
 - 本轮未触碰：飞书表、RTD 后台、git 写操作、仓库工作区。

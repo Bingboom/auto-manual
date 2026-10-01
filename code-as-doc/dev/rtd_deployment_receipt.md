@@ -1,5 +1,7 @@
 # Frozen Git deployment receipt
 
+Status: active
+
 A successful HTML build of `docs/publish/web` with `tools.rtd_portal` emits
 `manual-deployment.json` in its HTML output. The adjacent
 `docs/publish/publish_manifest.json` is required. Ordinary source directories,
@@ -108,7 +110,9 @@ it as `throttled` and exits 75 (sysexits `EX_TEMPFAIL`), reserving exit 1 for
 real mismatches; a mismatch anywhere in the catalog outranks throttling in the
 overall verdict.
 
-Limits: 10,000 files, 32 MiB per file, 512 MiB per source/output inventory and
+Frozen source includes self-contained release packages and the assembled Web tree. Its separate storage budget accommodates both copies without changing the served-output or network verification budget. The 69-target catalog with the approved JE-1000H EU pt/nl/pl additions occupies 539,363,038 bytes (514.4 MiB); original assets stay byte-identical.
+
+Limits: 10,000 files, 32 MiB per file, 640 MiB per frozen-source inventory, 512 MiB per served-output inventory and
 per verification traversal. Each network request has an I/O timeout of at most
 15 seconds. A file read has at most three attempts and a 45-second elapsed budget,
 checked before requests and before/after each bounded read; an already blocking

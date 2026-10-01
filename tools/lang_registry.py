@@ -36,6 +36,9 @@ class LanguageSpec:
     native_name: str
     template_directory: str
     separator: str
+    # Offline Git-source output languages do not imply a live table migration.
+    # Enable sync only when the corresponding source columns are onboarded.
+    sync_enabled: bool = True
 
     def columns_for_table(self, table_name: str) -> tuple[str, ...]:
         """Return the language columns for ``table_name``."""
@@ -290,6 +293,28 @@ LANGUAGE_REGISTRY = (
         template_directory="page_shared/ko",
         separator=": ",
     ),
+    *(
+        LanguageSpec(
+            code=code,
+            aliases=(code,),
+            column_suffixes=(code,),
+            table_columns=(),
+            tm_column=code,
+            localized_copy_column=f"text_{code}",
+            status_word_column=code,
+            spec_title_column=None,
+            display_name=display_name,
+            native_name=native_name,
+            template_directory=f"page_solar/{code}",
+            separator=": ",
+            sync_enabled=False,
+        )
+        for code, display_name, native_name in (
+            ("pt", "Portuguese", "Português"),
+            ("nl", "Dutch", "Nederlands"),
+            ("pl", "Polish", "Polski"),
+        )
+    ),
 )
 
 
@@ -393,12 +418,18 @@ TABLE_LANGUAGE_ORDER = {
 }
 
 
+def sync_language_specs() -> tuple[LanguageSpec, ...]:
+    """Languages whose columns are enabled for source-table synchronization."""
+
+    return tuple(spec for spec in LANGUAGE_REGISTRY if spec.sync_enabled)
+
+
 def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
     """Return registered languages in the target table's legacy order."""
 
     codes = TABLE_LANGUAGE_ORDER.get(table_name)
     if codes is None:
-        return LANGUAGE_REGISTRY
+        return sync_language_specs()
     # Preserve the historical order for languages already shipped, then append
     # any newly registered language automatically. A new registry row must not
     # require a second edit to this compatibility-order table.
@@ -409,7 +440,7 @@ def _table_specs_in_schema_order(table_name: str) -> tuple[LanguageSpec, ...]:
         if code in seen:
             continue
         spec = LANGUAGE_BY_CODE.get(code)
-        if spec is None:
+        if spec is None or not spec.sync_enabled:
             continue
         seen.add(code)
         ordered.append(spec)

@@ -59,7 +59,6 @@ tools/component_specs/registry.py	validate_component_spec	39
 tools/component_specs/theme.py	validate_manual_theme	45
 tools/config_pages.py	_parse_generated_page	27
 tools/config_pages.py	_parse_page_options	23
-tools/config_pages.py	parse_config_pages	41
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_footnote_rows	25
 tools/csv_pages/builder.py	CsvPageBuilder._normalize_spec_note_rows	23
 tools/csv_pages/builder.py	CsvPageBuilder.build	35
@@ -83,7 +82,7 @@ tools/feishu_record_transport.py	run_lark_cli_json	23
 tools/flow_dashboard.py	_metric_card_html	21
 tools/frozen_ai_document.py	ordered_pages	59
 tools/frozen_pdf_document.py	ordered_pages	28
-tools/frozen_pdf_reference.py	bind_reference_labels	22
+tools/frozen_pdf_reference.py	bind_reference_labels	6
 tools/gen_index_bundle_assets.py	rewrite_single_asset_path	21
 tools/gen_index_bundle_page_render.py	materialize_planned_page	25
 tools/gen_index_bundle_plan.py	plan_materialized_pages	29
@@ -165,7 +164,7 @@ tools/manual_ir/web_app_download.py	_download_payload	22
 tools/manual_ir/web_callouts.py	decode_callout_payload	31
 tools/manual_ir/web_symbols.py	decode_pair_table	35
 tools/manual_ir/web_symbols.py	decode_signal_table	45
-tools/manual_ir/whole_document_components.py	discover_registered_components	67
+tools/manual_ir/whole_document_components.py	discover_registered_components	63
 tools/manual_ir/whole_document_components.py	embed_component_claims	21
 tools/manual_operations_health.py	build_health_report	33
 tools/page_plan/model.py	PagePlan.physical_pages	21
@@ -242,7 +241,7 @@ tools/validate_config.py	_validate_sync	42
 tools/web_base_art_operation.py	arrange_base_art_operation	35
 tools/web_composite_presentation.py	WebCompositeContext.resolve_locale	23
 tools/web_document_ir.py	_render_document_fragments	22
-tools/web_document_source.py	load_web_document	72
+tools/web_document_source.py	load_web_document	68
 tools/web_embedded_components.py	render_embedded_web_component	22
 tools/web_figure_coverage.py	build_web_figure_coverage	45
 tools/web_figure_coverage.py	enforce_required_web_figure_coverage	79

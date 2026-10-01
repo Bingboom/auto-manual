@@ -1,5 +1,7 @@
 # RTD manual-center entrance
 
+Status: active
+
 ## Discovery and implementation plan
 
 Operator accepted the local card/search design and requested RTD implementation,

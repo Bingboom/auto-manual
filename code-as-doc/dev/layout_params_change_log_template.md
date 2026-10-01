@@ -1,5 +1,7 @@
 # Layout Params Change Log Template
 
+Status: active
+
 Updated: 2026-03-12
 
 Use this template to record each meaningful [`data/layout_params.csv`](../../data/layout_params.csv) adjustment.

@@ -10,6 +10,7 @@ Auto-Manual 将飞书结构化数据、RST 模板、翻译记忆和受控资产�
 手册中心按冻结发布记录提供[独立语言切换](code-as-doc/dev/rtd_locale_navigation.md)，区分已验证单语与语言身份待核验的旧出版物。
 
 Web 发布身份与旧链接兼容规则见[locale 发布契约](code-as-doc/dev/web_locale_publication_identity.md)。
+说明书网页化先按[素材复用与背景规则](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)盘点已有素材，确认不能复用后再提取。
 Git-only 显式撤回、恢复与独立回执见[操作说明](code-as-doc/dev/web_publication_withdrawal.md)。
 封存源辅助文件的复制边界见[构建指南](code-as-doc/build_doc_guide.md)。
 
@@ -85,7 +86,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 最短上手示例 | [`user-guide/quick_start_guide.md`](user-guide/quick_start_guide.md) |
 | 公共 IR 的调用方与迁移边界 | [`Shared-source plan`](code-as-doc/dev/latex_indesign_same_source_plan.md) |
 | 整本 IR → Web 收口与加电包日语验收 | [`执行目标与证据`](code-as-doc/dev/ir_document_closeout.md) |
-| JS-100I 欧规英语 Web 目标与验收 | [`目标实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) |
+| JS-100I 欧规 Web 目标与九语候选验收 | [`英语实现记录`](code-as-doc/dev/js100i_eu_en_web_acceptance.md) · [`九语候选记录`](code-as-doc/reviews/js100i_eu_nine_language_2026-09.md) |
 | JBP-3600A / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/jbp3600a_eu_en_web_intake_2026-09.md) |
 | JE-2000F / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000f_eu_en_web_intake_2026-09.md) |
 | JE-2000E / EU / en Web 工程接入 | [`来源映射与验收记录`](code-as-doc/reviews/je2000e_eu_en_web_intake_2026-09.md) |
@@ -98,5 +99,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 README 只保留路线图、视频位和最短入口；详细机制由上表中的权威文档维护。
 
 Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
+
+中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide.md)。
 
 旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。

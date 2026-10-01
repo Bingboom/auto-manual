@@ -1,0 +1,1624 @@
+{
+  "locales": {
+    "pt": {
+      "lcd_mode": {
+        "physical_page": 111,
+        "source_region": [
+          35,
+          285,
+          334,
+          350
+        ],
+        "modes": [
+          {
+            "physical_page": 111,
+            "bbox": [
+              37,
+              288.1,
+              95,
+              318.64
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 111,
+            "bbox": [
+              37,
+              318.64,
+              95,
+              349.58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                288.1,
+                122,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                288.1,
+                334,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                298.35,
+                122,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                298.35,
+                334,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                307.66,
+                122,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                307.66,
+                334,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                318.64,
+                122,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                318.64,
+                334,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                328.07,
+                122,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                328.07,
+                334,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 111,
+              "bbox": [
+                95,
+                337.38,
+                122,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 111,
+              "bbox": [
+                122,
+                337.38,
+                334,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 111,
+        "source_region": [
+          25,
+          381,
+          344,
+          486
+        ],
+        "heading": {
+          "physical_page": 111,
+          "bbox": [
+            30,
+            381,
+            345,
+            395
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 111,
+          "bbox": [
+            25,
+            395,
+            345,
+            416
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 111,
+              "bbox": [
+                29,
+                419,
+                209,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 111,
+                "bbox": [
+                  29,
+                  432,
+                  209,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 111,
+                "bbox": [
+                  29,
+                  445,
+                  209,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 111,
+                "bbox": [
+                  29,
+                  469,
+                  209,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 111,
+              "bbox": [
+                210,
+                419,
+                341,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 111,
+                "bbox": [
+                  210,
+                  432,
+                  341,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 111,
+                "bbox": [
+                  210,
+                  445,
+                  341,
+                  459
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 111,
+                "bbox": [
+                  210,
+                  459,
+                  341,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 111,
+                "bbox": [
+                  210,
+                  469,
+                  341,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 112,
+        "source_region": [
+          25,
+          24,
+          345,
+          185
+        ],
+        "heading": {
+          "physical_page": 112,
+          "bbox": [
+            30,
+            24,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "headers": [
+          {
+            "physical_page": 112,
+            "bbox": [
+              30,
+              43,
+              156,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 112,
+            "bbox": [
+              156,
+              43,
+              234,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 112,
+            "bbox": [
+              234,
+              43,
+              343,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 112,
+                "bbox": [
+                  29,
+                  58.64,
+                  95,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 112,
+                "bbox": [
+                  95,
+                  58.64,
+                  154,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 112,
+              "bbox": [
+                156,
+                58.64,
+                234,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 112,
+              "bbox": [
+                234,
+                58.64,
+                342,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 112,
+                "bbox": [
+                  29,
+                  100.02,
+                  95,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 112,
+                "bbox": [
+                  95,
+                  100.02,
+                  154,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 112,
+              "bbox": [
+                156,
+                100.02,
+                234,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 112,
+              "bbox": [
+                234,
+                100.02,
+                342,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 112,
+                "bbox": [
+                  29,
+                  141.39,
+                  95,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 112,
+                "bbox": [
+                  95,
+                  141.39,
+                  154,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 112,
+              "bbox": [
+                156,
+                141.39,
+                234,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 112,
+              "bbox": [
+                234,
+                141.39,
+                342,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          }
+        ]
+      }
+    },
+    "nl": {
+      "lcd_mode": {
+        "physical_page": 127,
+        "source_region": [
+          35,
+          285,
+          334,
+          350
+        ],
+        "modes": [
+          {
+            "physical_page": 127,
+            "bbox": [
+              37,
+              288.1,
+              95,
+              318.64
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 127,
+            "bbox": [
+              37,
+              318.64,
+              95,
+              349.58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                288.1,
+                122,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                288.1,
+                334,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                298.35,
+                122,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                298.35,
+                334,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                307.66,
+                122,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                307.66,
+                334,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                318.64,
+                122,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                318.64,
+                334,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                328.07,
+                122,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                328.07,
+                334,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 127,
+              "bbox": [
+                95,
+                337.38,
+                122,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 127,
+              "bbox": [
+                122,
+                337.38,
+                334,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 127,
+        "source_region": [
+          25,
+          381,
+          344,
+          486
+        ],
+        "heading": {
+          "physical_page": 127,
+          "bbox": [
+            30,
+            381,
+            345,
+            395
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 127,
+          "bbox": [
+            25,
+            395,
+            345,
+            416
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 127,
+              "bbox": [
+                29,
+                419,
+                209,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 127,
+                "bbox": [
+                  29,
+                  432,
+                  209,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 127,
+                "bbox": [
+                  29,
+                  445,
+                  209,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 127,
+                "bbox": [
+                  29,
+                  469,
+                  209,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 127,
+              "bbox": [
+                210,
+                419,
+                341,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 127,
+                "bbox": [
+                  210,
+                  432,
+                  341,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 127,
+                "bbox": [
+                  210,
+                  445,
+                  341,
+                  459
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 127,
+                "bbox": [
+                  210,
+                  459,
+                  341,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 127,
+                "bbox": [
+                  210,
+                  469,
+                  341,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 128,
+        "source_region": [
+          25,
+          24,
+          345,
+          185
+        ],
+        "heading": {
+          "physical_page": 128,
+          "bbox": [
+            30,
+            24,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "headers": [
+          {
+            "physical_page": 128,
+            "bbox": [
+              30,
+              43,
+              156,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 128,
+            "bbox": [
+              156,
+              43,
+              234,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 128,
+            "bbox": [
+              234,
+              43,
+              343,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 128,
+                "bbox": [
+                  29,
+                  58.64,
+                  95,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 128,
+                "bbox": [
+                  95,
+                  58.64,
+                  154,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 128,
+              "bbox": [
+                156,
+                58.64,
+                234,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 128,
+              "bbox": [
+                234,
+                58.64,
+                342,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 128,
+                "bbox": [
+                  29,
+                  100.02,
+                  95,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 128,
+                "bbox": [
+                  95,
+                  100.02,
+                  154,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 128,
+              "bbox": [
+                156,
+                100.02,
+                234,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 128,
+              "bbox": [
+                234,
+                100.02,
+                342,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 128,
+                "bbox": [
+                  29,
+                  141.39,
+                  95,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 128,
+                "bbox": [
+                  95,
+                  141.39,
+                  154,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 128,
+              "bbox": [
+                156,
+                141.39,
+                234,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 128,
+              "bbox": [
+                234,
+                141.39,
+                342,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          }
+        ]
+      }
+    },
+    "pl": {
+      "lcd_mode": {
+        "physical_page": 143,
+        "source_region": [
+          35,
+          285,
+          334,
+          350
+        ],
+        "modes": [
+          {
+            "physical_page": 143,
+            "bbox": [
+              37,
+              288.1,
+              95,
+              318.64
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 143,
+            "bbox": [
+              37,
+              318.64,
+              95,
+              349.58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                288.1,
+                122,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                288.1,
+                334,
+                298.35
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                298.35,
+                122,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                298.35,
+                334,
+                307.66
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 0,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                307.66,
+                122,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                307.66,
+                334,
+                318.64
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                318.64,
+                122,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                318.64,
+                334,
+                328.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                328.07,
+                122,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                328.07,
+                334,
+                337.38
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          },
+          {
+            "mode_index": 1,
+            "action": {
+              "physical_page": 143,
+              "bbox": [
+                95,
+                337.38,
+                122,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "instruction": {
+              "physical_page": 143,
+              "bbox": [
+                122,
+                337.38,
+                334,
+                349.58
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            }
+          }
+        ]
+      },
+      "restore": {
+        "physical_page": 143,
+        "source_region": [
+          25,
+          381,
+          344,
+          486
+        ],
+        "heading": {
+          "physical_page": 143,
+          "bbox": [
+            30,
+            381,
+            345,
+            395
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "intro": {
+          "physical_page": 143,
+          "bbox": [
+            25,
+            395,
+            345,
+            416
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "columns": [
+          {
+            "heading": {
+              "physical_page": 143,
+              "bbox": [
+                29,
+                419,
+                209,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 143,
+                "bbox": [
+                  29,
+                  432,
+                  209,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 143,
+                "bbox": [
+                  29,
+                  445,
+                  209,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 143,
+                "bbox": [
+                  29,
+                  469,
+                  209,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          },
+          {
+            "heading": {
+              "physical_page": 143,
+              "bbox": [
+                210,
+                419,
+                341,
+                432
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "items": [
+              {
+                "physical_page": 143,
+                "bbox": [
+                  210,
+                  432,
+                  341,
+                  445
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 143,
+                "bbox": [
+                  210,
+                  445,
+                  341,
+                  459
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 143,
+                "bbox": [
+                  210,
+                  459,
+                  341,
+                  469
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 143,
+                "bbox": [
+                  210,
+                  469,
+                  341,
+                  484
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ]
+          }
+        ]
+      },
+      "shortcuts": {
+        "physical_page": 144,
+        "source_region": [
+          25,
+          24,
+          345,
+          185
+        ],
+        "heading": {
+          "physical_page": 144,
+          "bbox": [
+            30,
+            24,
+            345,
+            41
+          ],
+          "text": "native PDF geometry; reread at build",
+          "selection": "lines"
+        },
+        "headers": [
+          {
+            "physical_page": 144,
+            "bbox": [
+              30,
+              43,
+              156,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 144,
+            "bbox": [
+              156,
+              43,
+              234,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          },
+          {
+            "physical_page": 144,
+            "bbox": [
+              234,
+              43,
+              343,
+              58
+            ],
+            "text": "native PDF geometry; reread at build",
+            "selection": "lines"
+          }
+        ],
+        "rows": [
+          {
+            "buttons": [
+              {
+                "physical_page": 144,
+                "bbox": [
+                  29,
+                  58.64,
+                  95,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 144,
+                "bbox": [
+                  95,
+                  58.64,
+                  154,
+                  100.02
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 144,
+              "bbox": [
+                156,
+                58.64,
+                234,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 144,
+              "bbox": [
+                234,
+                58.64,
+                342,
+                100.02
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "AC"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 144,
+                "bbox": [
+                  29,
+                  100.02,
+                  95,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 144,
+                "bbox": [
+                  95,
+                  100.02,
+                  154,
+                  141.39
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 144,
+              "bbox": [
+                156,
+                100.02,
+                234,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 144,
+              "bbox": [
+                234,
+                100.02,
+                342,
+                141.39
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "POWER",
+              "DC/USB"
+            ]
+          },
+          {
+            "buttons": [
+              {
+                "physical_page": 144,
+                "bbox": [
+                  29,
+                  141.39,
+                  95,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              },
+              {
+                "physical_page": 144,
+                "bbox": [
+                  95,
+                  141.39,
+                  154,
+                  183.07
+                ],
+                "text": "native PDF geometry; reread at build",
+                "selection": "lines"
+              }
+            ],
+            "operation": {
+              "physical_page": 144,
+              "bbox": [
+                156,
+                141.39,
+                234,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "function": {
+              "physical_page": 144,
+              "bbox": [
+                234,
+                141.39,
+                342,
+                183.07
+              ],
+              "text": "native PDF geometry; reread at build",
+              "selection": "lines"
+            },
+            "source_button_faces": [
+              "DC/USB",
+              "AC"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

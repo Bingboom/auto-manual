@@ -1,6 +1,6 @@
 # Approved-PDF InDesign Replica Plan
 
-Status: in progress
+Status: active · Recorded detail: in progress
 
 Target: `JE-1000F / US / en+fr+es`
 

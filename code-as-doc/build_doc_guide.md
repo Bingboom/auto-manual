@@ -29,7 +29,7 @@ Exact frozen-source/served-asset identity can be checked with the
 [Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
 existing frozen Sphinx portal build. Reads use an internal unique cache probe and
 bounded retries for incomplete transport; served source and asset hashes remain
-exact. This check performs no link writeback.
+exact. Frozen-source inventory has a separate 640 MiB storage budget; served output and fetched-byte budgets remain 512 MiB. This check performs no link writeback.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete
@@ -457,6 +457,8 @@ GitHub validation note:
 - the maintainability gate also includes `python tools/check_complexity_ratchet.py check`: `data/complexity_baseline.tsv` records every function above complexity 20; a new function may not exceed 20, a recorded one may not grow, and a lower value must be written back with `python tools/check_complexity_ratchet.py update` in the same PR
 - the maintainability gate also includes `python tools/check_facade_patch_ratchet.py check`: `data/facade_patch_baseline.tsv` records, per test file, how often tests patch names on the facade modules (`build_docs`, `process_build_queue`, `process_review_start_queue`, `cloud_doc_backport`); a new test file may not patch a facade, a recorded count may not grow, and a lower count must be written back with `python tools/check_facade_patch_ratchet.py update`
 - the maintainability gate also includes `python tools/check_broad_except_ratchet.py check`: `data/broad_except_baseline.tsv` records, per source file in `build.py`, `tools/`, `scripts/` and `integrations/`, how many `except Exception` / `except BaseException` handlers it has; a new file may not add one, a recorded count may not grow, and a lower count must be written back with `python tools/check_broad_except_ratchet.py update`
+- the maintainability gate also includes `python tools/check_zip_strict_ratchet.py check`: `data/zip_strict_baseline.tsv` records, per file in the ruff lint scope, how many `zip()` calls lack `strict=` (ruff `B905`); same rules, write a drop back with `python tools/check_zip_strict_ratchet.py update`
+- the `type-check` CI job (mypy pinned to 2.3.1) also runs `python tools/check_mypy_ratchet.py check`: `data/mypy_untyped_baseline.tsv` records, per file in `tools/manual_ir`, `tools/component_specs` and `tools/csv_pages`, how many `mypy --disallow-untyped-defs` errors it has; same rules, write a drop back with `python tools/check_mypy_ratchet.py update` (needs `pip install mypy==2.3.1`, which `requirements.lock` does not include)
 - `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
 - `build.py check` preflights every prepared FCC page through the document and web renderer profiles with the resolved target language. FCC language coverage is derived from manifest entries in tests, so a new FCC locale must add its governed right-column marker and keep the required opening line-block structure before it can pass validation.
 - pull requests run the required merge-gating checks
@@ -797,6 +799,14 @@ Packaging rule:
 
 Web Publish / Read the Docs note:
 
+- Before selecting or extracting artwork, follow the shared
+  [Web artwork reuse order](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+  Inventory existing target/shared assets and record each reuse decision in the
+  target review record before any PDF/AI crop. Matching assets retain their bytes
+  and source hash; language-only label changes reuse the base art. Complete
+  panels retain backgrounds/frames, and App screenshots retain complete phone
+  bounds. The selection record is a procedural review prerequisite, not a new
+  automated build check. Validate actual bound assets at desktop/mobile widths.
 - Web-profile bundle export reads prepared pages once and writes
   `manual-ir/v2` / `whole-document-components/v1` beside the Markdown. Its ordered
   flow/rich-text nodes carry neutral headings, prose, lists, tables, links and
@@ -993,6 +1003,7 @@ Outputs:
 - queue-driven Web Publish: staged MyST plus verification HTML under `reports/releases/<model>/<region>/<lang>/versions/<version>/web/`, then frozen Sphinx candidate under `Hello-Docs/publish:docs/publish/` and a scope-guarded PR into `Hello-Docs/main`
 - Git-only external Web source: freeze its source/input hash inventory and one real single-language receipt per locale before the same `docs/publish/**` assembly. The existing `build.py check` is a regression gate when the external languages are absent from phase2. For JE-1000F/EU four-language re-intake, use the [native-PDF shared-IR adapter](dev/four_language_shared_ir_alignment.md): fresh editable PDF text plus exact AI glyph recovery and hash-bound governed assets → `manual-ir/v2` → registered ComponentSpecs and neutral flow → the public Web consumer. Printed Contents and table/panel screenshots are not body content. Diagram labels use declared live-label bindings to stay inside their shared ReferenceFigure panel; they must not fall through as separate body paragraphs. Pending asset bindings block candidate generation; the historical screenshot adapter remains for audit replay only. Verify content parity, strict Sphinx and browser layout before the [Git-only Web transaction](dev/web_publish_pipeline.md#22-git-only-transaction).
 - JE-2000F/EU and JE-2000E/EU native intake use the same pipeline with [hash-pinned target geometry](dev/je2000_eu_new_locales_ir_adapters_2026-09.md). A preview may carry pending source decisions, but release evidence refuses an adjacent `manual.ir.json` with `publication_eligible: false` or nonempty `pending_source_review`; resolve and record the source decisions before rebuilding a publishable package. Reused prefaces require dated operator approval on both the pinned binding and every paragraph before the review banner and pending marker can be removed. Operation diagrams use their own hash-bound crop coordinates and the existing live-copy art canvas; verify leader alignment and complete illustration boundaries for each target. Charging diagrams must also inherit the reference live-label bindings: captions are consumed once, and note pills are HTML/CSS over artwork without baked text or white pills. This shared presentation is available to other portable power stations while device/interface art remains model-bound.
+- Native PDF figure bindings may select `native_captions: true` when one PDF text block combines several spatial labels. The adapter rereads the hash-pinned caption rectangles from the declared physical page, rejects empty/duplicate/out-of-figure labels and artwork hash drift, and passes each label once to the existing ReferenceFigure live-copy renderer. It cannot be combined with exact-string `live_labels`. Merged safety notices recognize a known label at either end of a native block; the body remains one shared callout. JE-3000C/EU pt/nl/pl use this path; their source decisions and validation are in the [intake report](../reports/je3000c-eu-three-language/README.md).
 - release manifest: [`reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv`](../reports/releases) by default, or `<staging-root>/reports/releases/<model>/<region>/<lang>/manifests/<timestamp>.json|csv` when staging is enabled
 
 ## 4. Output Layout
@@ -1121,6 +1132,35 @@ release still goes through the generated Hello-Docs `docs/publish/**`-only PR
 and RTD verification. Do not publish an unidentified fixture or write the
 mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
+
+JS-100I EU adds a Git-only eight-language candidate through
+`configs/config.solar-eu-multilingual.yaml`, the same Solar@INTL skeleton and
+RST/CSV → `build.py md` → manual-ir/v2 → shared Web/Sphinx chain. Pair
+`--lang <language>` with
+`--data-root data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/<language>`;
+`Source_lang` is source metadata, not a Spec_Master row filter. The eight
+snapshots preserve the native source's 21 rows and localized notes independently.
+The language registry recognizes `pt`, `nl`, and `pl` with `sync_enabled=False`,
+so offline output does not add live synchronization columns or conflate `pt`
+with `pt-BR`. A single-language Web projection consumes only that language's
+illustration binding from the family map and fails if it is missing.
+
+English retains its existing structured facts and approved Inbox/product-view
+assets. Operation figures use 16 shared native derivatives with selectable
+captions; narrow two-column specifications wrap within their container. The
+old approved recipe is immutable. The new strict recipe and separate native
+SVG/Chromium export receipt record backdrop removal and exact PNG hashes.
+Source errata, reproduction commands and local nine-language browser evidence
+are in the [review record](reviews/js100i_eu_nine_language_2026-09.md).
+MA-217 authorizes this candidate's Git-only publication after all checks pass;
+Base writes and asset promotion remain excluded. Fresh publication requires
+the eight locale enrollments in `prepared_component_admission.json`. Dutch
+`OPMERKING` and Polish `Uwaga` retain their native labels in shared note strips.
+Source-authored warranty/legal chapters remain exact, hash-pinned migration
+debt, rather than claiming shared warranty-component coverage. The 24 new
+drawings have pixel-identical lossless WebP delivery companions; their PNG
+masters remain unchanged. See the snapshot reproduction instructions for the
+encoding receipt and compact-JSON step before release sealing.
 
 `JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
 through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
@@ -2321,6 +2361,16 @@ RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生�
 
 四语原生 PDF 导入按模板的 H1/H2 层级投影章节和子标题；前言提示与段落、安全警告框、LCD 四列图标表、质保卡片及 App 步骤编号均通过共享 IR/ComponentSpec 渲染。密集引线的产品前/右视图复用对应语言成品图，同时保留 IR 语义文案、来源和哈希；正文和表格继续使用原生 HTML。
 
+新增语言继续复用上述管线。LCD 行可显式选择多数行重叠提取，App 可显式声明编号只在截图下出现的步骤；默认行为不变，仍校验原稿编号。文字提取框不能直接当作网页提示框宽度，须逐语言检查遮图和手机换行；节能操作组件自带时钟时，底图不得重复保留。字段说明见[原生适配契约](dev/je2000_eu_new_locales_ir_adapters_2026-09.md)。
+
+经指定保留完整原稿样式的大图面板可使用目标已启用的 `source-finished-panel`，
+并明确绑定 `captions_embedded: true`、`language`、原稿页码和素材哈希。未声明时仍保留
+原有图外标题。原生提取的标题保留为检索/读屏文本，
+不再另绘等宽标题列；语言或页码不匹配会阻止构建。此方式保留图内文字，
+不提供图内逐项 HTML 编辑，也不替代普通无字插图、正文或表格的原生 HTML。
+大图面板只按完整边界裁取，灰底、白色说明区、圆角框及徽标随原稿保留，不能套用
+独立图标去底规则；见[大图与独立插图的边界](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
 Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
 
 产品前／右视图的小标题使用图片外的原生网页文字。四语成品图只保留插图、参数与标注线；冻结绑定 `overview_finished_panels` 的 `captions_embedded: false` 恢复可见标题，旧版 `true` 仍隐藏重复标题。导出时按源 PDF 坐标排除标题，保留来源哈希及已批准勘误，不改写历史冻结版本。
@@ -2349,8 +2399,22 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 [`lcd_icon_provenance.json`](../manual_sources/JE-1000H/EU/en/2.0/lcd_icon_provenance.json)。
 连接电池包的现有小图仍是清晰度待办，未重新裁图或变更线上源表。
 
+新原生 PDF 的 LCD 表对相邻同编号条目（如高温／低温）保留两条独立图标、名称和说明，但编号只显示一次并跨行居中。该布局由冻结 ComponentSpec 的 `number_cell_layout: span-adjacent-equal` 声明；未声明的历史冻结版本维持原样，编号不跨非相邻行合并。
+
 日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
 
 JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。
 
-通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
+
+原生 PDF 录入和审核 RST 的 Web Publish 共用[图文分工规则](../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：普通说明文字与文字框由共享 HTML/CSS 承载，保留实际插图边界，密集引线图按已批准例外处理。新目标必须登记组件和底图哈希并独立验收，不能把四语测试通过当作中规验收。显式 `base-art-live-copy` 绑定复用 ReferenceFigure 适配器，不需要启用该目标不适用的整套 legacy figure 布局。
+
+App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
+
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
+中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。
+
+### 原生 PDF 的已确认勘误
+
+原生语言导入的 `source/errata.json` 可为已确认条目登记 `native_bindings`：源哈希、确认记录、来源页码、精确字段路径以及修改前后全文。适配器在共享组件构造前应用，原始提取证据保留；原文或来源不匹配即失败。文字勘误涉及带标注的概览图时，须同时修正图内文字并重锁资产哈希；清空待确认状态不能代替实际修正。

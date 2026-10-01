@@ -18,7 +18,7 @@ from tools.component_specs.theme import load_manual_theme, require_component_the
 
 
 APP_COMPONENT_ID = "HB-SPECIAL-APP"
-APP_VARIANTS = frozenset({"download", "inline-control", "add-device"})
+APP_VARIANTS = frozenset({"download", "download-qr-only", "inline-control", "add-device"})
 _DOWNLOAD_ROLES = ("store", "qr")
 _CONTROL_LABEL_TOKEN_RE = re.compile(r"[a-z0-9]+")
 
@@ -212,6 +212,22 @@ def app_inline_control_component_spec(
     )
 
 
+def app_qr_download_component_spec(
+    *, label: str, paragraph: Mapping[str, Any], image_ref: str,
+    source_ref: str, language: str,
+) -> ComponentSpec:
+    """A source that supplies one QR and copy, without store-badge artwork."""
+    if not label or not image_ref or not paragraph.get("text") or not paragraph.get("html"):
+        raise ComponentSpecError("App QR download requires source copy and artwork")
+    return _base(
+        variant="download-qr-only",
+        slots=(ComponentSlot("accessibility_label", "inline_text", label),
+               ComponentSlot("paragraph", "rich_text", dict(paragraph))),
+        assets=(ComponentAsset("source_art", image_ref, "exact"),),
+        source_ref=source_ref, language=language, metadata=None, registry=None, theme=None,
+    )
+
+
 def app_add_device_component_spec(
     *,
     accessibility_label: str,
@@ -223,6 +239,7 @@ def app_add_device_component_spec(
     source_ref: str,
     language: str,
     step_captions: Sequence[Mapping[str, Any]] | None = None,
+    interstitial_note: Mapping[str, Any] | None = None,
     metadata: Mapping[str, Any] | None = None,
     registry: Mapping[str, Any] | None = None,
     theme: Mapping[str, Any] | None = None,
@@ -256,6 +273,10 @@ def app_add_device_component_spec(
             roles=("step-2-1", "step-2-2"),
         )
         slots.append(ComponentSlot("step_captions", "ordered_labels", captions))
+    if interstitial_note is not None:
+        if not interstitial_note.get("html") or not interstitial_note.get("text"):
+            raise ComponentSpecError("add-device interstitial note requires rich copy")
+        slots.append(ComponentSlot("interstitial_note", "rich_text", dict(interstitial_note)))
     return _base(
         variant="add-device",
         slots=tuple(slots),
@@ -281,6 +302,7 @@ def _validate_variant_shape(spec: ComponentSpec) -> None:
         raise ComponentSpecError(f"unsupported App component {spec.component_id}/{spec.variant}")
     slots, assets = _roles(spec)
     expected = {
+        "download-qr-only": ({"accessibility_label", "paragraph"}, {"source_art"}),
         "download": (
             {"accessibility_label", "columns"},
             {"source_art", "store_art", "qr_art"},
@@ -299,6 +321,8 @@ def _validate_variant_shape(spec: ComponentSpec) -> None:
         captions = spec.slot("step_captions").content
         if [item.get("role") for item in captions] != ["step-2-1", "step-2-2"]:
             raise ComponentSpecError("add-device step captions require 2.1 then 2.2")
+    if spec.variant == "add-device" and "interstitial_note" in slots:
+        expected = (expected[0] | {"interstitial_note"}, expected[1])
     if (slots, assets) != expected:
         raise ComponentSpecError(
             f"{APP_COMPONENT_ID}.{spec.variant}: slots/assets do not match the variant"
@@ -316,13 +340,17 @@ def app_semantic_projection(spec: ComponentSpec) -> dict[str, Any]:
         payload["source_art"] = spec.assets[0].asset_ref
         payload["store_art"] = spec.assets[1].asset_ref
         payload["qr_art"] = spec.assets[2].asset_ref
-    elif spec.variant == "inline-control":
+    elif spec.variant in {"inline-control", "download-qr-only"}:
         payload["paragraph"] = deepcopy(spec.slot("paragraph").content)
+        if spec.variant == "download-qr-only":
+            payload["source_art"] = spec.assets[0].asset_ref
     else:
         payload["reference_id"] = str(spec.slot("reference_id").content)
         payload["labels"] = deepcopy(spec.slot("labels").content)
         if "step_captions" in {slot.role for slot in spec.slots}:
             payload["step_captions"] = deepcopy(spec.slot("step_captions").content)
+        if "interstitial_note" in {slot.role for slot in spec.slots}:
+            payload["interstitial_note"] = deepcopy(spec.slot("interstitial_note").content)
         payload["source_art"] = spec.assets[0].asset_ref
         payload["phone_art"] = spec.assets[1].asset_ref
         payload["control_art"] = spec.assets[2].asset_ref
@@ -335,6 +363,7 @@ __all__ = [
     "app_add_device_component_spec",
     "app_download_component_spec",
     "app_inline_control_component_spec",
+    "app_qr_download_component_spec",
     "app_semantic_projection",
     "resolve_app_control_label_role",
     "resolve_app_control_label_roles",

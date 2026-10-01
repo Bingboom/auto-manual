@@ -1,5 +1,7 @@
 # Closed-Loop Status And Gaps
 
+Status: active
+
 Updated: 2026-06-28
 
 Inventory of the system's loops (source↔output, dev↔prod), what is closed, and the

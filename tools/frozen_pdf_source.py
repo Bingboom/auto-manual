@@ -1,7 +1,7 @@
 """Fresh PDF intake bound to explicit, hash-verified shared artwork.
 
 The native PDF supplies every text field. Historical JSON supplies extraction
-geometry and approved errata. Finished overview panels are opt-in, locale-bound
+geometry and approved errata. Finished figure panels are opt-in, locale-bound
 and hash-verified; body and table screenshots remain forbidden.
 """
 from __future__ import annotations
@@ -16,6 +16,7 @@ from tools.component_specs.overview_instance import (
     overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
 )
 from tools.frozen_ai_source import FrozenBook
+from tools.frozen_pdf_errata import apply_native_errata
 from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
 from tools.frozen_pdf_glyphs import recover_pdf_glyphs, recover_recorded_glyphs
 from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
@@ -133,6 +134,7 @@ class PdfBook(FrozenBook):
         data = load_pdf_book(pdf_path, language, recipe_root)
         self.target_layout = data.get('target_layout') or {}
         data = _recover_source_data(self, data, pdf_path, original, language)
+        data = apply_native_errata(data, self.errata, language, text_source['sha256'])
         _repair_label_wrapping(data, language)
         for key in ('source', 'index', 'locale', 'records', 'front_back', 'provenance'):
             setattr(self, key, data[key])
@@ -209,8 +211,8 @@ class PdfBook(FrozenBook):
         return [*consumed_media_regions(self), *reference_label_regions(self.figures)]
 
     def figure(self, figure):
-        # Shared reference adapter never marks newly bound art an approved
-        # composite and never embeds printed captions in the bitmap.
+        # A local source panel is not an approved composite. Its embedded
+        # captions retain native semantic copy without a duplicate visible row.
         from tools.frozen_pdf_app import artwork_node
         asset = self.assets[figure['asset_key']]
         if figure.get('live_captions'):
@@ -220,6 +222,10 @@ class PdfBook(FrozenBook):
         if source_captions:
             if source_captions['physical_page'] != figure['physical_page']:
                 raise ValueError(f"{figure['slug']}: native caption page changed")
+            if (asset.get('content_mode') == 'source-finished-panel' and
+                    asset.get('captions_embedded') is True):
+                from tools.frozen_pdf_reference import finished_artwork_node
+                return finished_artwork_node(figure, asset, source_captions, self.language)
             return artwork_node(asset['asset_ref'], figure['slug'], self.language,
                                 f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
                                 captions=[item['text'] for item in source_captions['labels']])

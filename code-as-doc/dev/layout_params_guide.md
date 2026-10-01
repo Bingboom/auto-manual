@@ -1,5 +1,7 @@
 # Layout Params Guide
 
+Status: active
+
 Updated: 2026-09-04
 
 This file explains how [`data/layout_params.csv`](../../data/layout_params.csv) is used today.

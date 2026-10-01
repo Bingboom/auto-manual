@@ -256,7 +256,8 @@ def _lcd(reader, recipe):
     for index, row in enumerate(recipe["rows"]):
         item = {key: row[key] for key in ("number", "physical_page", "label_bbox", "meaning_bbox")}
         for key in ("label", "meaning"):
-            item[key] = _clean(reader.box(row["physical_page"], row[f"{key}_bbox"], f"lcd/{index}/{key}"))
+            extract = reader.lines if row.get("selection") == "lines" else reader.box
+            item[key] = _clean(extract(row["physical_page"], row[f"{key}_bbox"], f"lcd/{index}/{key}"))
         item["raw_label"] = item["label"]
         rows.append(item)
     return {"pages": list(recipe["pages"]), "rows": rows}

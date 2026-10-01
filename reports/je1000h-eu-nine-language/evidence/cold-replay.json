@@ -1,0 +1,20 @@
+{
+  "read_guard": "Python audit hook rejects original .ai or any recipe-root file after package copy",
+  "languages": {
+    "pt": {
+      "before": "a6589c621bf83194dac430bf43ab1a4a184481cc69a36726c06c58c6f936f00b",
+      "after": "a6589c621bf83194dac430bf43ab1a4a184481cc69a36726c06c58c6f936f00b",
+      "identical": true
+    },
+    "nl": {
+      "before": "402df2619696ba71225fc2c3ee112065a8e4cbbecdeb56a0fd0cca397c0ea976",
+      "after": "402df2619696ba71225fc2c3ee112065a8e4cbbecdeb56a0fd0cca397c0ea976",
+      "identical": true
+    },
+    "pl": {
+      "before": "6012a50c190d70548a655cf7f3b1c6374ad7f634226ff18396cf1fa3d62d0f94",
+      "after": "6012a50c190d70548a655cf7f3b1c6374ad7f634226ff18396cf1fa3d62d0f94",
+      "identical": true
+    }
+  }
+}

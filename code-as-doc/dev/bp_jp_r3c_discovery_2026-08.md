@@ -1,5 +1,7 @@
 # BP@JP R3c target discovery (JBP-2000B_JP)
 
+Status: done
+
 Date: 2026-08-31
 
 ## Outcome boundary

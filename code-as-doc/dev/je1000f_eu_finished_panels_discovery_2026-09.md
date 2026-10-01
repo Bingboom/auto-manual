@@ -1,5 +1,7 @@
 # JE-1000F/EU 含文字完整面板资产收口（5B）
 
+Status: done
+
 日期：2026-09-05
 
 源文件：`Jackery Explorer 1000 User Manual (JE-1000F) V2.0 EU-UK-2026-06-18.pdf`

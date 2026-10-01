@@ -1,0 +1,29 @@
+[
+  {
+    "language": "pt",
+    "only_energy_figure_changed": true,
+    "other_main_html_identical": true,
+    "all_previous_energy_text_preserved": true,
+    "extra_clock_or_footer": false,
+    "shared_css_identical": true,
+    "main_without_energy_sha256": "db90a6c2e2d3186bb44f3f8a744c17b5787816e54acd92bf7a59e0ca9a35582a"
+  },
+  {
+    "language": "nl",
+    "only_energy_figure_changed": true,
+    "other_main_html_identical": true,
+    "all_previous_energy_text_preserved": true,
+    "extra_clock_or_footer": false,
+    "shared_css_identical": true,
+    "main_without_energy_sha256": "982b9aa8b3f34efddc210107fe4fd2ea6fd9cb35a78e7de206c2b8630c5f9aa4"
+  },
+  {
+    "language": "pl",
+    "only_energy_figure_changed": true,
+    "other_main_html_identical": true,
+    "all_previous_energy_text_preserved": true,
+    "extra_clock_or_footer": false,
+    "shared_css_identical": true,
+    "main_without_energy_sha256": "473e3f2036a9cac23b1d844c7d5f06b70c2dfd12c1de3f9549a579ced4ae3bbc"
+  }
+]

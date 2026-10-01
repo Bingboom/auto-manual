@@ -1,5 +1,7 @@
 # EU English Web batch integration — 2026-09-12
 
+Status: active
+
 ## Discovery
 
 The independent-manual scope is 21 targets: 12 already merged and nine implemented in PRs #1091–#1099. PR #1100 contains subsequent JE-3000C illustration corrections. Combination projects are excluded. Latest inspected main is `d1eeb282`. GitHub permits squash merges only. Each source PR has passing checks before integration; this does not prove the combined tree or publication.

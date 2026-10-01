@@ -1,5 +1,7 @@
 # 参考版式重绑 + finalize + parity Runbook（JE-1000F US）
 
+Status: active
+
 Registered: 2026-07-27
 
 ## 0. 为什么有这份文件

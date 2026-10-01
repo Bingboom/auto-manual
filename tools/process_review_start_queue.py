@@ -454,6 +454,38 @@ def start_review_for_record(
     )
 
 
+def default_review_start_deps() -> ReviewStartRuntimeDeps:
+    """Resolve existing runtime dependencies at each default invocation."""
+    return ReviewStartRuntimeDeps(
+        root=ROOT,
+        review_action_label=REVIEW_START_ACTION_LABEL,
+        cli_bin_fn=_cli_bin,
+        phase2_identity_fn=_phase2_identity,
+        source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
+        collect_preflight_errors_fn=collect_review_start_preflight_errors,
+        resolve_binding_fn=resolve_review_init_binding,
+        parse_records_fn=parse_review_start_records,
+        select_pending_records_fn=select_pending_review_start_records,
+        group_records_fn=group_review_start_records,
+        validate_group_fn=validate_review_start_group,
+        resolve_target_fn=resolve_target_for_review_start,
+        group_lang_fn=review_start_group_lang,
+        group_build_family_fn=review_start_group_build_family,
+        resolve_config_path_fn=_resolve_review_start_config_path,
+        record_key_fn=review_start_record_key,
+        generate_branch_name_fn=generate_review_branch_name,
+        sync_snapshot_before_fn=sync_phase2_snapshot_before_review_start,
+        run_git_fn=_run_git,
+        build_success_fields_fn=build_review_start_success_fields,
+        start_review_for_record_fn=start_review_for_record,
+        build_preflight_failure_summary_fn=build_review_start_preflight_failure_summary,
+        build_no_pending_failure_summary_fn=build_review_start_no_pending_failure_summary,
+        build_failure_summary_fn=build_review_start_failure_summary,
+        build_failure_report_fn=build_review_start_failure_report,
+        environ=os.environ,
+    )
+
+
 def process_review_start_queue(
     *,
     cfg: dict[str, Any],
@@ -462,6 +494,7 @@ def process_review_start_queue(
     dry_run: bool,
     record_id: str | None = None,
     record_ids: tuple[str, ...] = (),
+    deps: ReviewStartRuntimeDeps | None = None,
 ) -> int:
     return _process_review_start_queue_impl(
         cfg=cfg,
@@ -470,34 +503,7 @@ def process_review_start_queue(
         dry_run=dry_run,
         record_id=record_id,
         record_ids=record_ids,
-        deps=ReviewStartRuntimeDeps(
-            root=ROOT,
-            review_action_label=REVIEW_START_ACTION_LABEL,
-            cli_bin_fn=_cli_bin,
-            phase2_identity_fn=_phase2_identity,
-            source_factory=lambda *, cli_bin, identity: LarkCliSource(cli_bin=cli_bin, identity=identity),
-            collect_preflight_errors_fn=collect_review_start_preflight_errors,
-            resolve_binding_fn=resolve_review_init_binding,
-            parse_records_fn=parse_review_start_records,
-            select_pending_records_fn=select_pending_review_start_records,
-            group_records_fn=group_review_start_records,
-            validate_group_fn=validate_review_start_group,
-            resolve_target_fn=resolve_target_for_review_start,
-            group_lang_fn=review_start_group_lang,
-            group_build_family_fn=review_start_group_build_family,
-            resolve_config_path_fn=_resolve_review_start_config_path,
-            record_key_fn=review_start_record_key,
-            generate_branch_name_fn=generate_review_branch_name,
-            sync_snapshot_before_fn=sync_phase2_snapshot_before_review_start,
-            run_git_fn=_run_git,
-            build_success_fields_fn=build_review_start_success_fields,
-            start_review_for_record_fn=start_review_for_record,
-            build_preflight_failure_summary_fn=build_review_start_preflight_failure_summary,
-            build_no_pending_failure_summary_fn=build_review_start_no_pending_failure_summary,
-            build_failure_summary_fn=build_review_start_failure_summary,
-            build_failure_report_fn=build_review_start_failure_report,
-            environ=os.environ,
-        ),
+        deps=default_review_start_deps() if deps is None else deps,
     )
 
 

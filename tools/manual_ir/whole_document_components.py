@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 import fnmatch
 from pathlib import Path
-from typing import Any, Callable, Mapping, Sequence
+from typing import Any, Callable, Iterable, Iterator, Mapping, Sequence, TypeGuard
 
 from bs4 import BeautifulSoup, Comment, Tag
 
@@ -68,9 +68,37 @@ class ComponentClaim:
     consume_interstitial: bool = False
 
 
+def _reference_bindings(
+    references: Iterable[object], *, source_path: Path, supports_figures: bool,
+) -> Iterator[Mapping[str, Any]]:
+    """Select explicit base-art bindings without granting all legacy layouts."""
+    for reference in references:
+        if not isinstance(reference, Mapping) or not _matches_source(
+            source_path, reference.get("source_patterns", [])
+        ):
+            continue
+        if not (supports_figures or reference.get("presentation_mode") == "base-art-live-copy"
+                or _matches_source(source_path, reference.get("semantic_source_patterns", []))):
+            continue
+        if (reference.get("presentation") == "shared-art-live-labels"
+                and reference.get("asset_scope") == "shared"):
+            continue  # The shared App adapter already owns this carrier.
+        yield reference
+
+
 def _matches_source(source_path: Path, patterns: Sequence[str]) -> bool:
     stem = source_path.stem.casefold()
     return any(fnmatch.fnmatch(stem, str(pattern).casefold()) for pattern in patterns)
+
+
+def _matches_app_download(
+    app_download: object, *, source_path: Path, supports_figures: bool,
+) -> TypeGuard[Mapping[str, Any]]:
+    return (
+        isinstance(app_download, Mapping)
+        and (supports_figures or app_download.get("presentation") == "qr-only")
+        and _matches_source(source_path, app_download.get("source_patterns", []))
+    )
 
 
 def _matches_asset_source(source: str, image_key: str) -> bool:
@@ -185,6 +213,26 @@ def _claim_inbox(soup, source_path, language, contract, claimed, claims):
         )
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
+
+
+def _claim_lcd_mode(
+    soup: BeautifulSoup, source_path: Path, language: str,
+    lcd_config: Mapping[str, Any], claimed: set[int], claims: list[ComponentClaim],
+) -> None:
+    lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
+        soup,
+        source_path=source_path,
+        image_key=str(lcd_config["image_key"]),
+        expected_body_rows=int(lcd_config["body_rows"]),
+        language=language,
+    )
+    lcd_claim = ComponentClaim(
+        spec=lcd_spec,
+        owned_nodes=(lcd_table,),
+        asset_tags=(("artwork", lcd_artwork),) if lcd_spec.assets else (),
+    )
+    _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
+    claims.append(lcd_claim)
 
 
 def discover_registered_components(
@@ -309,20 +357,7 @@ def discover_registered_components(
                 claims.append(claim)
         lcd_config = operation_config.get("lcd_mode_table")
         if isinstance(lcd_config, Mapping):
-            lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
-                soup,
-                source_path=source_path,
-                image_key=str(lcd_config["image_key"]),
-                expected_body_rows=int(lcd_config["body_rows"]),
-                language=language,
-            )
-            lcd_claim = ComponentClaim(
-                spec=lcd_spec,
-                owned_nodes=(lcd_table,),
-                asset_tags=(("artwork", lcd_artwork),),
-            )
-            _claim_nodes(lcd_claim, claimed=claimed, source_path=source_path)
-            claims.append(lcd_claim)
+            _claim_lcd_mode(soup, source_path, language, lcd_config, claimed, claims)
 
     reference_config = contract["reference_figures"]
     supports_figures = supports_figure_contract(source_path, dict(contract))
@@ -356,18 +391,66 @@ def discover_registered_components(
         _claim_nodes(claim, claimed=claimed, source_path=source_path)
         claims.append(claim)
 
-    if supports_figures:
-        app_download = contract["app_download"]
-        if isinstance(app_download, Mapping) and _matches_source(
-            source_path, app_download.get("source_patterns", [])
-        ):
-            spec, owned, asset_tags, asset_paths = parse_app_download_html(
+    app_download = contract["app_download"]
+    if _matches_app_download(app_download, source_path=source_path, supports_figures=supports_figures):
+        spec, owned, asset_tags, asset_paths = parse_app_download_html(
+            soup,
+            source_path=source_path,
+            config=app_download,
+            language=language,
+            model=model,
+            region=region,
+        )
+        claim = ComponentClaim(
+            spec=spec,
+            owned_nodes=owned,
+            asset_tags=asset_tags,
+            asset_paths=asset_paths,
+        )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
+    app_inline = contract["app_inline_controls"]
+    if isinstance(app_inline, Mapping) and (
+        (supports_figures and _matches_source(source_path, app_inline.get("source_patterns", [])))
+        or _matches_source(source_path, app_inline.get("semantic_source_patterns", []))
+    ):
+        spec, owned = parse_app_inline_control_html(
+            soup, source_path=source_path, config=app_inline, language=language,
+        )
+        claim = ComponentClaim(spec=spec, owned_nodes=owned)
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
+
+    reference_context = WebCompositeContext(
+        composite_manifest,
+        model,
+        region,
+        language,
+        ValueError,
+    )
+    for raw_reference in _reference_bindings(
+        reference_config.get("figures", []), source_path=source_path,
+        supports_figures=supports_figures,
+    ):
+        image_key = str(raw_reference.get("image_key") or "")
+        images = [
+            image
+            for image in soup.find_all("img")
+            if _matches_asset_source(str(image.get("src") or ""), image_key)
+        ]
+        if len(images) != 1:
+            raise ValueError(
+                f"{source_path}: reference {raw_reference.get('id')!r} needs one "
+                f"governed image; found {len(images)}"
+            )
+        image = images[0]
+        if raw_reference.get("presentation") == "shared-art-live-labels":
+            spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
                 soup,
                 source_path=source_path,
-                config=app_download,
+                config=raw_reference,
                 language=language,
-                model=model,
-                region=region,
             )
             claim = ComponentClaim(
                 spec=spec,
@@ -375,96 +458,37 @@ def discover_registered_components(
                 asset_tags=asset_tags,
                 asset_paths=asset_paths,
             )
-            _claim_nodes(claim, claimed=claimed, source_path=source_path)
-            claims.append(claim)
-
-        app_inline = contract["app_inline_controls"]
-        if isinstance(app_inline, Mapping) and _matches_source(
-            source_path, app_inline.get("source_patterns", [])
-        ):
-            spec, owned = parse_app_inline_control_html(
+        else:
+            reference = dict(raw_reference)
+            entry = reference_context.resolve_entry(reference, source_path)
+            approved_path = None
+            if entry is not None and composite_manifest is not None:
+                raw_path = Path(entry.path)
+                approved_path = (
+                    raw_path
+                    if raw_path.is_absolute()
+                    else composite_manifest.source.parent / raw_path
+                )
+            spec, owned, asset_tags, frozen_assets = parse_reference_figure_html(
                 soup,
+                image=image,
+                config=reference,
                 source_path=source_path,
-                config=app_inline,
                 language=language,
+                composite_locale=reference_context.resolve_locale(
+                    reference, source_path
+                ),
+                approved_entry=entry,
+                approved_path=approved_path,
             )
-            claim = ComponentClaim(spec=spec, owned_nodes=owned)
-            _claim_nodes(claim, claimed=claimed, source_path=source_path)
-            claims.append(claim)
-
-        reference_context = WebCompositeContext(
-            composite_manifest,
-            model,
-            region,
-            language,
-            ValueError,
-        )
-        for raw_reference in reference_config.get("figures", []):
-            if not isinstance(raw_reference, Mapping) or not _matches_source(
-                source_path, raw_reference.get("source_patterns", [])
-            ):
-                continue
-            if (
-                raw_reference.get("presentation") == "shared-art-live-labels"
-                and raw_reference.get("asset_scope") == "shared"
-            ):
-                continue
-            image_key = str(raw_reference.get("image_key") or "")
-            images = [
-                image
-                for image in soup.find_all("img")
-                if _matches_asset_source(str(image.get("src") or ""), image_key)
-            ]
-            if len(images) != 1:
-                raise ValueError(
-                    f"{source_path}: reference {raw_reference.get('id')!r} needs one "
-                    f"governed image; found {len(images)}"
-                )
-            image = images[0]
-            if raw_reference.get("presentation") == "shared-art-live-labels":
-                spec, owned, asset_tags, asset_paths = parse_app_add_device_html(
-                    soup,
-                    source_path=source_path,
-                    config=raw_reference,
-                    language=language,
-                )
-                claim = ComponentClaim(
-                    spec=spec,
-                    owned_nodes=owned,
-                    asset_tags=asset_tags,
-                    asset_paths=asset_paths,
-                )
-            else:
-                reference = dict(raw_reference)
-                entry = reference_context.resolve_entry(reference, source_path)
-                approved_path = None
-                if entry is not None and composite_manifest is not None:
-                    raw_path = Path(entry.path)
-                    approved_path = (
-                        raw_path
-                        if raw_path.is_absolute()
-                        else composite_manifest.source.parent / raw_path
-                    )
-                spec, owned, asset_tags, frozen_assets = parse_reference_figure_html(
-                    soup,
-                    image=image,
-                    config=reference,
-                    source_path=source_path,
-                    language=language,
-                    composite_locale=reference_context.resolve_locale(
-                        reference, source_path
-                    ),
-                    approved_entry=entry,
-                    approved_path=approved_path,
-                )
-                claim = ComponentClaim(
-                    spec=spec,
-                    owned_nodes=owned,
-                    asset_tags=asset_tags,
-                    frozen_asset_paths=frozen_assets,
-                )
-            _claim_nodes(claim, claimed=claimed, source_path=source_path)
-            claims.append(claim)
+            claim = ComponentClaim(
+                spec=spec,
+                owned_nodes=owned,
+                asset_tags=asset_tags,
+                frozen_asset_paths=frozen_assets,
+            )
+        _claim_nodes(claim, claimed=claimed, source_path=source_path)
+        claims.append(claim)
 
     overview_config = contract["product_overview"]
     if (

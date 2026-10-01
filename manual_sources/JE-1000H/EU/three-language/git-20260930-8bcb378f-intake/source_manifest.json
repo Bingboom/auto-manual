@@ -1,0 +1,112 @@
+{
+  "schema_version": "auto-manual-frozen-web-source/v1",
+  "target": {
+    "model": "JE-1000H",
+    "region": "EU",
+    "languages": [
+      "pt",
+      "nl",
+      "pl"
+    ],
+    "technical_version": "git-20260930-8bcb378f-intake",
+    "printed_manual_version": "JAK-UM-V1.0"
+  },
+  "original_source": {
+    "filename": "HTE159-EU-9国说明书-0928(1).ai",
+    "sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+    "size_bytes": 70646547,
+    "physical_page_count": 161
+  },
+  "inputs": [
+    {
+      "path": "source/app_sections.json",
+      "size": 17137,
+      "sha256": "fb276b03ff099aee2fa34d93b3896bba624b742db625156fa56ea511c33d1d68"
+    },
+    {
+      "path": "source/errata.json",
+      "size": 97,
+      "sha256": "d93b3a361fb1a63a80741334a90b34724e6846eb3442429513fcf32f1c4c4c59"
+    },
+    {
+      "path": "source/front_back_source.json",
+      "size": 774,
+      "sha256": "4ef89d98510785aadc244aa1a87b60f5dfe02ba85cefd5eaa538553c0b9aabff"
+    },
+    {
+      "path": "source/glyph_recoveries.json",
+      "size": 2216,
+      "sha256": "60b897e8519b0302f2bc48df59b15e2020546d5245df61d8df28d4580552841f"
+    },
+    {
+      "path": "source/lcd_indicators.json",
+      "size": 27496,
+      "sha256": "a528aaaf61188a31a293f61517be5424ceae4372a136ceb1304f25e656d1364f"
+    },
+    {
+      "path": "source/nl_direct_source.json",
+      "size": 2789,
+      "sha256": "a268ae211ddab8789a0c50673d6dab2299f0bd8e69aea61a998de1eccbb54484"
+    },
+    {
+      "path": "source/nl_figure_manifest.json",
+      "size": 1974,
+      "sha256": "4a8495301d8e3e555c2f03eb6001f7cecf688b8dacb9115df9a5587e4befbdd2"
+    },
+    {
+      "path": "source/nl_native_inventory.json",
+      "size": 132242,
+      "sha256": "a4e110ae461afcd51e228d169da561c9aab98060acf181bba468299acdd73615"
+    },
+    {
+      "path": "source/operation_tables.json",
+      "size": 45179,
+      "sha256": "92d14a8d956ab80817b14b0d939fa81401205cbcde47bf04d03be242d9bab477"
+    },
+    {
+      "path": "source/pl_direct_source.json",
+      "size": 2789,
+      "sha256": "02509411d354864f1e9b1f646b853430b7a28a2aa03c7d9ed8f1cc4ab7aabfef"
+    },
+    {
+      "path": "source/pl_figure_manifest.json",
+      "size": 1974,
+      "sha256": "987f7309e96c9c7d6de8e7dad3d907890737f702c6ab41972800d02692ddbff7"
+    },
+    {
+      "path": "source/pl_native_inventory.json",
+      "size": 138482,
+      "sha256": "b5a4a104e566583feb74f5df800cd4887b2bfcf4acecd72f50eda98991657554"
+    },
+    {
+      "path": "source/pt_direct_source.json",
+      "size": 2789,
+      "sha256": "942f60484335fabea70a3c2cb721069888b190005c023fe8d13076c37a8ba858"
+    },
+    {
+      "path": "source/pt_figure_manifest.json",
+      "size": 1974,
+      "sha256": "79c7d7f8294805ed539c7cb1e4854e8fa44f43683af4128b0b8317907262a86a"
+    },
+    {
+      "path": "source/pt_native_inventory.json",
+      "size": 132424,
+      "sha256": "2c0f44936820af111ff5f30357ad35952cf250b8230c36d97e8d051a05821893"
+    },
+    {
+      "path": "source/symbols.json",
+      "size": 6076,
+      "sha256": "6f7910aac59e04d0b0a665383bbd37abcf07942cae256e8a63852584270eae27"
+    },
+    {
+      "path": "source/target_layout.json",
+      "size": 140110,
+      "sha256": "0a84b397474d62f1dc3b1aa05e7499291009067413481abff4207c997d8c8027"
+    },
+    {
+      "path": "source/warranty_columns.json",
+      "size": 14131,
+      "sha256": "c2cd56e704090f4224b6776be548eb4b0325e2ff6bd67b13037a70a93cfb29cd"
+    }
+  ]
+}

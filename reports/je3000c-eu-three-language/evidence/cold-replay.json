@@ -1,0 +1,17 @@
+{
+  "pt": {
+    "sha256": "a8ae231fa99596f33341d2afbe0d31047f70a760f116d1687bd31bc632c5015b",
+    "replay_sha256": "a8ae231fa99596f33341d2afbe0d31047f70a760f116d1687bd31bc632c5015b",
+    "identical": true
+  },
+  "nl": {
+    "sha256": "cbc78b843036dc6f9b2cd7eb63177b9dde88bd261c7be632ea200c7961081b19",
+    "replay_sha256": "cbc78b843036dc6f9b2cd7eb63177b9dde88bd261c7be632ea200c7961081b19",
+    "identical": true
+  },
+  "pl": {
+    "sha256": "9fe61245cbf5f568722014d671d8db25e7802856afa8697370afbdbdd473597f",
+    "replay_sha256": "9fe61245cbf5f568722014d671d8db25e7802856afa8697370afbdbdd473597f",
+    "identical": true
+  }
+}
