@@ -1,5 +1,5 @@
 {
-  "base_commit": "db96f5e0a4e869f91f12af06d5117c7702ead26e",
+  "base_commit": "a6cd745f3428bd5b9d430bc0b32cce426577e1ed",
   "full_suite": {
     "passed": true,
     "tests": 4995,
@@ -40,5 +40,13 @@
   "composed_lcd_native_reference": {
     "passed": true,
     "tests": 43
+  },
+  "composed_config_native_reference": {
+    "passed": true,
+    "tests": 36
+  },
+  "previous_head_ci": {
+    "head": "61c063286b49df4ecd73018e03d72f2bb88e6d9b",
+    "all_checks_passed": 18
   }
 }

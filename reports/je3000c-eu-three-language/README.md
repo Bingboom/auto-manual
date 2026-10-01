@@ -116,3 +116,8 @@ were rebuilt from their original intake so high/low temperature remain
 separate rows with the shared number spanning both. Source text, artwork and
 Dutch publication eligibility are unchanged. Strict builds and cold replay
 passed again; composed LCD/native/reference tests cover this integration.
+
+The final pre-merge main readback then advanced to `a6cd745f` (typed config
+parser dispatch). Its separate complexity-baseline removal was retained.
+36 config/native/reference tests, lint, guardrails and both build.py checks
+passed again. No manual source or artwork changed in this second integration.
