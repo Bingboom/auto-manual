@@ -68,6 +68,7 @@ manifest 中新增 FCC 语言但未补齐渲染契约时会直接失败。
 | 手册中心首页与目录缩略图替换 | [`RTD manual center`](code-as-doc/dev/rtd_manual_portal.md) |
 | Web 发布：队列与 Git-only 输入、冻结快照、RTD 和本地版本封存 | [`Web 发布与原生多语共享组件准入`](code-as-doc/dev/web_publish_pipeline.md)；[`欧规共享组件存量迁移`](code-as-doc/dev/eu_shared_component_rollout_2026-09.md)；[`OPS-04a 封存契约`](code-as-doc/dev/ops_04a_web_version_seal.md)；[`RTD 部署回执与严格读取`](code-as-doc/dev/rtd_deployment_receipt.md) |
 | RTD 手册中心：US/EU/UK/CN/JP 地区筛选、发布链接与构建排查 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md) |
+| 现有钉钉机器人查询已发布欧规产品信息 | [`欧规说明书查询与启用`](code-as-doc/dev/eu_manual_query.md) |
 | RTD 知识库与工作资料入口（内容存于 Hello-Docs） | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#personal-workspace-entry) |
 | RTD 系统建设页：当前重点、能力、证据与阶段进度 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#system-workspace-page) |
 | RTD 交付物页：各型号网页手册、印刷交付包与 Word 云文档的链接汇总 | [`code-as-doc/dev/rtd_manual_portal.md`](code-as-doc/dev/rtd_manual_portal.md#deliverables-page) |

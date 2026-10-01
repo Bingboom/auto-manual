@@ -2282,6 +2282,12 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 回执封存执行；无需单独启动后端。维护入口及检索范围见
 [RTD Manual Center](dev/rtd_manual_portal.md)。
 
+冻结 `publish/web` 的成功 HTML 构建还会导出全部欧规说明书的
+`manual-knowledge.json`，并由同轮 `manual-deployment.json` 封存其哈希。
+导出按章节保留表格坐标、步骤和警告，去除样式及导航；现有 BlockClaw 插件通过
+`manual_search` / `manual_section` 只读查询，引用原文并绑定同一发布快照。
+启用配置、更新与撤下行为及图片文字边界见[欧规说明书查询](dev/eu_manual_query.md)。
+
 同一个构建还会生成 `/workspace/` 个人内容入口，并从 Hello-Docs 的
 `docs/knowledge/ai-share/` 读取分享包，复制到
 `/ai-share/`。说明书中心与 AI 分享保持为两个独立界面，入口页只负责在两者之间
