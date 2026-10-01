@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "source_recipe": "data/asset_recipes/manual_je1000f_us_master.json",
+  "transformation": "Select complete button vector paths inside the approved crop; omit the source page and table backdrop. Preserve the circular button face, switch, indicator dot and outlined product markings.",
+  "background": "transparent outside the circular button face",
+  "assets": [
+    {
+      "semantic_key": "button/power",
+      "asset": "power.svg",
+      "source": "docs/renderers/latex/assets/button_power.pdf",
+      "source_sha256": "80615c7fed8867b2190c629c76829fed8660ff0b3cc1671d0263355b45da0555",
+      "sha256": "457285c35d6deb52a01bf2e86a430cdbbd1553299a6eac652a372427bfa6c2ed",
+      "path_count": 8,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings"
+    },
+    {
+      "semantic_key": "button/ac",
+      "asset": "ac.svg",
+      "source": "docs/renderers/latex/assets/button_ac.pdf",
+      "source_sha256": "7d05327114394f47133a310dd6efb6278802c5e05aced6553e87553bc54bfde2",
+      "sha256": "74bcd0bb2a825ff4d7831dbdb368f4d13cdf5cf1d741e349f8bc649ee1898839",
+      "path_count": 5,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings"
+    },
+    {
+      "semantic_key": "button/dc_usb",
+      "asset": "dc_usb.svg",
+      "source": "docs/renderers/latex/assets/button_dc_usb.pdf",
+      "source_sha256": "87dcc54d611424a3228e70b85d81411299eeb247644c528fdb05d97969aa85b9",
+      "sha256": "3355388bad2221362a63dfad0c04fb9c15f521866166144cd3a644bde14e5864",
+      "path_count": 9,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings"
+    },
+    {
+      "semantic_key": "button/led",
+      "asset": "led.svg",
+      "source": "docs/renderers/latex/assets/button_led.pdf",
+      "source_sha256": "b20f5428f8ac59d00ec78f12a4a3be43e3a30b61a62de0faf8f46f540c37ee2a",
+      "sha256": "9bfcc75dae807c470b6a6647de0112a986804e82abfede0c93cc2b100dcd3268",
+      "path_count": 8,
+      "scope": {
+        "models": [
+          "ALL"
+        ],
+        "regions": [
+          "ALL"
+        ],
+        "locales": [
+          "und"
+        ]
+      },
+      "text_policy": "fixed-product-markings"
+    }
+  ]
+}
