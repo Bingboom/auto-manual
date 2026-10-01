@@ -232,7 +232,10 @@ tools/utils/spec_master_repairs.py	repair_known_spec_master_values	35
 tools/utils/spec_master_row_helpers.py	_row_matches_target	34
 tools/utils/spec_master_row_helpers.py	collect_matching_footnote_rows	27
 tools/utils/targets.py	config_uses_token_in_pages	22
-tools/validate_config.py	validate	138
+tools/validate_config.py	_validate_build	25
+tools/validate_config.py	_validate_pages	31
+tools/validate_config.py	_validate_paths	37
+tools/validate_config.py	_validate_sync	42
 tools/web_base_art_operation.py	arrange_base_art_operation	35
 tools/web_composite_presentation.py	WebCompositeContext.resolve_locale	23
 tools/web_document_ir.py	_render_document_fragments	22
