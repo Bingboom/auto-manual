@@ -1,5 +1,7 @@
 # Frozen Git deployment receipt
 
+Status: active
+
 A successful HTML build of `docs/publish/web` with `tools.rtd_portal` emits
 `manual-deployment.json` in its HTML output. The adjacent
 `docs/publish/publish_manifest.json` is required. Ordinary source directories,

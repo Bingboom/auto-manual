@@ -14,6 +14,9 @@ import unittest
 from bs4 import BeautifulSoup
 
 from tools.manual_ir import read_manual_ir
+from tools.prepared_component_coverage import audit_prepared_component_coverage
+from tools.prepared_component_policy import resolve_prepared_component_policy
+from tools.web_component_admission import require_fresh_component_admission
 from tools.web_document_ir import render_document_fragments
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,6 +88,21 @@ class SolarJs100iEuLocalesTest(unittest.TestCase):
                     # Retain both the source error and its visible connector correction.
                     self.assertIn('USB-C', soup.get_text())
                     self.assertTrue(source['device_port_labels'])
+                    admission = require_fresh_component_admission(
+                        package, model='JS-100I', region='EU', language=lang,
+                    )
+                    self.assertEqual(admission['issues'], [])
+                    self.assertEqual(len(admission['legacy_debt']), 1)
+                    self.assertEqual(admission['legacy_debt'][0]['category'], 'warranty-intake')
+                    # The source-authored warranty is exact bounded debt, not a
+                    # blanket permission to publish changed legal copy.
+                    raw = ir.to_dict()
+                    warranty = next(p for p in raw['pages'] if p['page_id'] == f'warranty_{lang}.rst')
+                    warranty['blocks'] = []
+                    policy = resolve_prepared_component_policy(
+                        model='JS-100I', region='EU', language=lang,
+                    )
+                    self.assertTrue(audit_prepared_component_coverage(raw, policy)['issues'])
 
 
 if __name__ == '__main__':

@@ -1,5 +1,7 @@
 # Git Branching Guide
 
+Status: active
+
 Updated: 2026-04-21
 
 Use this file for the current Git branching, pull request, merge, tag, and GitHub branch protection rules for this repo.

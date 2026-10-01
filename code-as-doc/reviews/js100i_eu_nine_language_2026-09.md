@@ -201,3 +201,12 @@ The release retains the documented native-copy decisions and source errata.
 Online acceptance will be recorded against the final source commit and the
 Hello-Docs/Read the Docs deployment; local browser evidence alone does not
 confirm publication.
+
+The fresh-publication component gate additionally requires an explicit target
+enrollment. All eight new locales are now reviewed against the nine solar
+assembly slots: five-card Inbox, three vertical specification tables, and the
+two native note strips are required. Like the existing English solar policy,
+the source-authored warranty/legal chapter is recorded as bounded
+`warranty-intake` debt with an exact per-language chapter hash; this does not
+claim a shared warranty component. Missing pages/components or any warranty
+copy change must fail admission. All existing target policies are unchanged.

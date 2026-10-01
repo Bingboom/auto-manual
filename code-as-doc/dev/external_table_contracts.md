@@ -1,5 +1,7 @@
 # External Table Contracts
 
+Status: active
+
 Updated: 2026-06-29
 
 This file records the first repo-owned contract for external Feishu/Lark Base tables.

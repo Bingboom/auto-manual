@@ -7,7 +7,7 @@ rich-text/print/Word migration. The [bounded execution record](ir_document_close
 is the current acceptance ledger, including JBP-2000B JP finished PDF artwork.
 
 
-Status: implemented and verified on JE-1000F US
+Status: active · Recorded detail: implemented and verified on JE-1000F US
 
 Branch: `feat/latex-indesign-same-source`
 

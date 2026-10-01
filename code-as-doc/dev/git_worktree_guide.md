@@ -1,5 +1,7 @@
 # Git Worktree Guide
 
+Status: active
+
 Updated: 2026-04-21
 
 Use this file for the current local `git worktree` workflow in this repo.

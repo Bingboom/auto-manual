@@ -1,5 +1,7 @@
 # Product improvement suggestions
 
+Status: active
+
 ## Scope and current release gate
 
 Operator scope (2026-09-19): collect **product improvement suggestions** into

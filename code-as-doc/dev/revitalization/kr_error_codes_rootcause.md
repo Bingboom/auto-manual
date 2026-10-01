@@ -1,5 +1,7 @@
 # 根因报告：JE-2000E-KR 2026-09-05 re-seed 只生成 FC 一个错误码
 
+Status: done
+
 - 核查时间（UTC）：2026-09-19T08:51:26Z（活表读取时刻，见 `live_read_utc.txt`）
 - 全程只读：lark-cli 仅 `+record-list` / `+field-list`（profile `cli_aaa0db0d4b39dcca`，identity=user 唐夏冰）；git 仅 `git show` / `log` / `ls-remote`（主 checkout 未动，Hello-Docs 证据取自本 scratchpad 既有 blobless clone `rev_wave1/rev04/Hello-Docs`）。
 - 原始证据文件：`live_troubleshooting_raw.json`（活表原样）、`live_troubleshooting_records.json`（字段对齐+record_id）。

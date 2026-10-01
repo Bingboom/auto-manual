@@ -12,7 +12,7 @@ from tools.utils.path_utils import get_paths
 class PreparedPolicyTests(unittest.TestCase):
     def test_all_reviewed_targets_resolve_against_capability_ssot(self):
         contract = json.loads((get_paths().renderer_contracts_dir / POLICY_FILENAME).read_text())
-        self.assertEqual(len(contract["targets"]), 51)
+        self.assertEqual(len(contract["targets"]), 59)
         for key in contract["targets"]:
             model, region, language = key.split("/")
             with self.subTest(target=key):

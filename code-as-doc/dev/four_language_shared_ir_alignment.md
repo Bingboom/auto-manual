@@ -1,5 +1,7 @@
 # Frozen four-language Web alignment
 
+Status: active
+
 Shared intake rules for subsequent models, regions and reviewed RST sources
 live in [STYLE_DEFINITION §5](../../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工).
 This report's EU package tests are evidence for those packages, not acceptance

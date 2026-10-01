@@ -1,6 +1,6 @@
 {
   "schema_version": "prepared-component-admission/v1",
-  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh",
+  "review_basis": "EU corpus review 2026-09-30; phase 1/2 composed source; no automatic baseline refresh; JS-100I EU eight native locales reviewed 2026-10-01 under MA-216: nine solar pages, Inbox/spec/note bindings, exact source-authored warranty chapters",
   "debt_reasons": {
     "diagram-labels": "Source illustration labels; not an operation UI table. Preserve complete labels until the annotated-figure adapter owns this layout.",
     "regulatory-radio": "Regulatory radio-frequency declaration; not an LCD or operation table. Preserve exact source rows.",
@@ -5306,6 +5306,470 @@
             "HB-WARRANTY-SECTION/rounded-card": 2
           },
           "chapter": "warranty"
+        }
+      }
+    },
+    "JS-100I/EU/fr": {
+      "pages": {
+        "safety_tips_fr.rst": {
+          "slot": "safety_tips_fr",
+          "components": {}
+        },
+        "box_contents_fr.rst": {
+          "slot": "box_contents_fr",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_fr.rst": {
+          "slot": "product_views_fr",
+          "components": {}
+        },
+        "unfolding_fr.rst": {
+          "slot": "unfolding_fr",
+          "components": {}
+        },
+        "folding_fr.rst": {
+          "slot": "folding_fr",
+          "components": {}
+        },
+        "charging_connections_fr.rst": {
+          "slot": "charging_connections_fr",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_fr.rst": {
+          "slot": "angle_and_device_fr",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_fr.rst": {
+          "slot": "specifications_fr",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_fr.rst": {
+          "slot": "warranty_fr",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "66c4a63de5764e68a5e0fa9eb6a89eda5670b978a8e637d81505cbbe187ea66d",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/es": {
+      "pages": {
+        "safety_tips_es.rst": {
+          "slot": "safety_tips_es",
+          "components": {}
+        },
+        "box_contents_es.rst": {
+          "slot": "box_contents_es",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_es.rst": {
+          "slot": "product_views_es",
+          "components": {}
+        },
+        "unfolding_es.rst": {
+          "slot": "unfolding_es",
+          "components": {}
+        },
+        "folding_es.rst": {
+          "slot": "folding_es",
+          "components": {}
+        },
+        "charging_connections_es.rst": {
+          "slot": "charging_connections_es",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_es.rst": {
+          "slot": "angle_and_device_es",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_es.rst": {
+          "slot": "specifications_es",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_es.rst": {
+          "slot": "warranty_es",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "4af7146de739d937eed92045279c75e187ab0d56c510a2b952e591ea3d6eedf1",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/de": {
+      "pages": {
+        "safety_tips_de.rst": {
+          "slot": "safety_tips_de",
+          "components": {}
+        },
+        "box_contents_de.rst": {
+          "slot": "box_contents_de",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_de.rst": {
+          "slot": "product_views_de",
+          "components": {}
+        },
+        "unfolding_de.rst": {
+          "slot": "unfolding_de",
+          "components": {}
+        },
+        "folding_de.rst": {
+          "slot": "folding_de",
+          "components": {}
+        },
+        "charging_connections_de.rst": {
+          "slot": "charging_connections_de",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_de.rst": {
+          "slot": "angle_and_device_de",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_de.rst": {
+          "slot": "specifications_de",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_de.rst": {
+          "slot": "warranty_de",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "5765b17073e16cdff2511441aba98685052d3b26227384a0f6f6df3f93dbdbcb",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/it": {
+      "pages": {
+        "safety_tips_it.rst": {
+          "slot": "safety_tips_it",
+          "components": {}
+        },
+        "box_contents_it.rst": {
+          "slot": "box_contents_it",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_it.rst": {
+          "slot": "product_views_it",
+          "components": {}
+        },
+        "unfolding_it.rst": {
+          "slot": "unfolding_it",
+          "components": {}
+        },
+        "folding_it.rst": {
+          "slot": "folding_it",
+          "components": {}
+        },
+        "charging_connections_it.rst": {
+          "slot": "charging_connections_it",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_it.rst": {
+          "slot": "angle_and_device_it",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_it.rst": {
+          "slot": "specifications_it",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_it.rst": {
+          "slot": "warranty_it",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "417b6fb7ce521daaaf7f700800d74aabc10a0774b432bf4fe05206d817ce88ad",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/uk": {
+      "pages": {
+        "safety_tips_uk.rst": {
+          "slot": "safety_tips_uk",
+          "components": {}
+        },
+        "box_contents_uk.rst": {
+          "slot": "box_contents_uk",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_uk.rst": {
+          "slot": "product_views_uk",
+          "components": {}
+        },
+        "unfolding_uk.rst": {
+          "slot": "unfolding_uk",
+          "components": {}
+        },
+        "folding_uk.rst": {
+          "slot": "folding_uk",
+          "components": {}
+        },
+        "charging_connections_uk.rst": {
+          "slot": "charging_connections_uk",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_uk.rst": {
+          "slot": "angle_and_device_uk",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_uk.rst": {
+          "slot": "specifications_uk",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_uk.rst": {
+          "slot": "warranty_uk",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "3079f476764f3a4dd188feefd8a222407904dae1269766541cfc6eb9e9da45e1",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/pt": {
+      "pages": {
+        "safety_tips_pt.rst": {
+          "slot": "safety_tips_pt",
+          "components": {}
+        },
+        "box_contents_pt.rst": {
+          "slot": "box_contents_pt",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_pt.rst": {
+          "slot": "product_views_pt",
+          "components": {}
+        },
+        "unfolding_pt.rst": {
+          "slot": "unfolding_pt",
+          "components": {}
+        },
+        "folding_pt.rst": {
+          "slot": "folding_pt",
+          "components": {}
+        },
+        "charging_connections_pt.rst": {
+          "slot": "charging_connections_pt",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_pt.rst": {
+          "slot": "angle_and_device_pt",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_pt.rst": {
+          "slot": "specifications_pt",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_pt.rst": {
+          "slot": "warranty_pt",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "62bd1680e1740141dabf81b0849056547902f20c4748da00ef4bacf25a0e5253",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/nl": {
+      "pages": {
+        "safety_tips_nl.rst": {
+          "slot": "safety_tips_nl",
+          "components": {}
+        },
+        "box_contents_nl.rst": {
+          "slot": "box_contents_nl",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_nl.rst": {
+          "slot": "product_views_nl",
+          "components": {}
+        },
+        "unfolding_nl.rst": {
+          "slot": "unfolding_nl",
+          "components": {}
+        },
+        "folding_nl.rst": {
+          "slot": "folding_nl",
+          "components": {}
+        },
+        "charging_connections_nl.rst": {
+          "slot": "charging_connections_nl",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_nl.rst": {
+          "slot": "angle_and_device_nl",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_nl.rst": {
+          "slot": "specifications_nl",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_nl.rst": {
+          "slot": "warranty_nl",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "dd3de3fa3d2e7cc23feb05d5989251ba8f7e59de42d26f49917154ec69621b7d",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
+        }
+      }
+    },
+    "JS-100I/EU/pl": {
+      "pages": {
+        "safety_tips_pl.rst": {
+          "slot": "safety_tips_pl",
+          "components": {}
+        },
+        "box_contents_pl.rst": {
+          "slot": "box_contents_pl",
+          "components": {
+            "HB-SPECIAL-INBOX/responsive-card-grid": 1
+          }
+        },
+        "product_views_pl.rst": {
+          "slot": "product_views_pl",
+          "components": {}
+        },
+        "unfolding_pl.rst": {
+          "slot": "unfolding_pl",
+          "components": {}
+        },
+        "folding_pl.rst": {
+          "slot": "folding_pl",
+          "components": {}
+        },
+        "charging_connections_pl.rst": {
+          "slot": "charging_connections_pl",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "angle_and_device_pl.rst": {
+          "slot": "angle_and_device_pl",
+          "components": {
+            "HB-CALLOUT-STRIP/note": 1
+          }
+        },
+        "specifications_pl.rst": {
+          "slot": "specifications_pl",
+          "components": {
+            "HB-TABLE-SPEC/vertical": 3
+          }
+        },
+        "warranty_pl.rst": {
+          "slot": "warranty_pl",
+          "components": {},
+          "chapter": "warranty",
+          "debt": [
+            {
+              "location": "",
+              "kind": "chapter",
+              "sha256": "1c88e390b3b32d40933095911b2183fa4f02accce38bd70d93113a8a121390bc",
+              "category": "warranty-intake",
+              "asset_sha256": {}
+            }
+          ]
         }
       }
     }

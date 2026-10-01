@@ -98,6 +98,8 @@ These files are kept for traceability, not as the current source of truth.
   - archived machine bring-up and parity record
 - [`code_optimization_log.md`](code_optimization_log.md)
   - historical maintenance milestones
+- [`dev/content_assembly_pilot_plan.md`](dev/content_assembly_pilot_plan.md)
+  - archived assembly pilot, rolled back on 2026-05-30
 - [`dev/dev_log.md`](dev/dev_log.md)
   - development log
 - [`tests/test_report-260301.md`](tests/test_report-260301.md)

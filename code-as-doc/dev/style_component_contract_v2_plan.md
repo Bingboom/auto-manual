@@ -2,7 +2,7 @@
 
 Date: 2026-08-07
 
-Status: PR 0–9 complete; post-merge main, mirror, and RTD accepted
+Status: done · PR 0–9 complete; post-merge main, mirror, and RTD accepted
 
 Owner: renderer contract maintainers
 Canonical style definition: [`STYLE_DEFINITION.md`](../../docs/renderers/contracts/STYLE_DEFINITION.md)

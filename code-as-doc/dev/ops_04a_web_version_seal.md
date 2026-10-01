@@ -1,5 +1,7 @@
 # OPS-04a Local Web Version Seal
 
+Status: active
+
 ## Scope
 
 OPS-04a hardens the local `Web Publish` queue path. It does not change CI

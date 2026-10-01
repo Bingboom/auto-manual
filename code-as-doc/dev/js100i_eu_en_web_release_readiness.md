@@ -1,6 +1,6 @@
 # JS-100I EU English Web release readiness — 2026-09-06
 
-Status: Git-traceable V2.0 Web package built and accepted locally from final
+Status: active · Recorded detail: Git-traceable V2.0 Web package built and accepted locally from final
 engineering main. It is ready for the shared Hello-Docs `docs/publish/**`
 candidate. No online Base write, queue dispatch, Hello-Docs engineering edit,
 or production publication occurred in this target task.

@@ -1,5 +1,7 @@
 # REV-05 现有能力矩阵：命令 / 调度 / 归档 / 目录同步
 
+Status: done
+
 - 台账项：REV-05（`code-as-doc/dev/manual_revitalization_execution.md` 第 48 行，PR #1188 分支 `docs/manual-revitalization-plan`）
 - 口径时点：**2026-09-19T03:10:08Z – 2026-09-19T03:17:23Z（UTC）**，全部数据在此窗口内抓取
 - 基线 ref：`origin/main` = **58767931ba8f8b5d35fff2a725febce8fba66c28**（`revert(web): withdraw the sideload conveyor lane (#1186)`，2026-09-17 03:50:34 -0700）

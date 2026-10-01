@@ -1141,7 +1141,12 @@ old approved recipe is immutable. The new strict recipe and separate native
 SVG/Chromium export receipt record backdrop removal and exact PNG hashes.
 Source errata, reproduction commands and local nine-language browser evidence
 are in the [review record](reviews/js100i_eu_nine_language_2026-09.md).
-This candidate has no publication, Base-write or asset-promotion authority.
+MA-216 authorizes this candidate's Git-only publication after all checks pass;
+Base writes and asset promotion remain excluded. Fresh publication requires
+the eight locale enrollments in `prepared_component_admission.json`. Dutch
+`OPMERKING` and Polish `Uwaga` retain their native labels in shared note strips.
+Source-authored warranty/legal chapters remain exact, hash-pinned migration
+debt, rather than claiming shared warranty-component coverage.
 
 `JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
 through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
