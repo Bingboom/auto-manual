@@ -32,6 +32,7 @@ from tools.release_reproducibility import (  # noqa: E402
 )
 from tools.release_snapshot import verify_frozen_release_snapshot  # noqa: E402
 from tools.toolchain_provenance import collect_toolchain  # noqa: E402
+from tools.utils.log import get_logger  # noqa: E402
 from tools.utils.path_utils import (  # noqa: E402
     release_rebuild_verification_of,
     release_snapshot_identity_of,
@@ -40,6 +41,7 @@ from tools.utils.path_utils import (  # noqa: E402
 _FULL_GIT_SHA_RE = re.compile(r"^[0-9a-f]{40}$")
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _ARTIFACT_KEYS = ("word_output", "md_output", "pdf_output")
+err = get_logger("release-rebuild", stream="stderr")
 
 
 @dataclass(frozen=True)
@@ -524,7 +526,7 @@ def main(argv: list[str] | None = None) -> int:
             report_path=Path(args.report) if args.report else None,
         )
     except RuntimeError as exc:
-        print(f"[release-rebuild] ERROR: {exc}", file=sys.stderr)
+        err.error(f"[release-rebuild] ERROR: {exc}")
         return 1
     print(f"[release-rebuild] byte-equivalence verified: {report_path}")
     return 0
