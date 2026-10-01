@@ -1,0 +1,4131 @@
+{
+  "fixture-v1": {
+    "model": "JE-1000F",
+    "region": "US",
+    "language": "en",
+    "source": "review",
+    "bundle_root": "/workspace/scratch/8e1275195f8a/workstream-y/A2/tests/fixtures/idml_bundle",
+    "bundle_sha256": "ae787cf32ecf2373154e7d555381345bb40d5ab7953281cc3ce75bf424788ae1",
+    "snapshot_sha256": "000bf75bc45bc0891c0b5086ece429a466ac4906be62a1920dba132f4474d669",
+    "layout_params_sha256": "9781ef9eec94bd356fd862b231e57d04d2e56f0cd03016d78d85412e7312515b",
+    "style_contract_sha256": "29d27cc71e5387a8c0ebf7a76584f63806350aaa5f8f3cbc51ad669a33697145",
+    "content_sha256": "0cb3f8a47e53d8dbdc1a36cd563c68da10505d57a1d06c4a9623abecfc6500bc",
+    "pages": [
+      {
+        "page_id": "page-0001-00_preface",
+        "source_ref": "page/00_preface.rst",
+        "source_path": "page/00_preface.rst",
+        "language": "en",
+        "source_sha256": "96fd21d8d672c72ae8ae21e7919b65751a9a06cf57c1e18331e7849ebae1feb4",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0001-00_preface:block-0001",
+            "source_ref": "page/00_preface.rst#block-1",
+            "kind": "h1",
+            "payload": "PREFACE",
+            "content_sha256": "81fd6c9a538a023db1fe446ff9d0c29ab929f94c14a13ca8669189f0e27e04ac",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0001-00_preface:block-0002",
+            "source_ref": "page/00_preface.rst#block-2",
+            "kind": "body",
+            "payload": "Thank you for choosing the Jackery Explorer 1000 v2 portable power station.",
+            "content_sha256": "0bcbc63d30c374012c84ac956ef880d9472e8c42204a7e52db1ab94bb248bf1f",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0001-00_preface:block-0003",
+            "source_ref": "page/00_preface.rst#block-3",
+            "kind": "body",
+            "payload": "Please read this manual **carefully** before use and keep it for future reference.",
+            "content_sha256": "3bc9ad55bf6daeca27e68a3721a9ad2a5d19e3063330783151f44326360fa2d4",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0002-safety_en",
+        "source_ref": "page/safety_en.rst",
+        "source_path": "page/safety_en.rst",
+        "language": "en",
+        "source_sha256": "4f37f36653df9a694cf7e3cb0e8a378fe05c6056846dafa9462d509b43de7979",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0002-safety_en:block-0001",
+            "source_ref": "page/safety_en.rst#block-1",
+            "kind": "h1",
+            "payload": "IMPORTANT SAFETY INFORMATION",
+            "content_sha256": "f2f4b599ef09e90b2c21c085693d33d7944c377ee34cb57c83a280e1bc90bfe8",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0002",
+            "source_ref": "page/safety_en.rst#block-2",
+            "kind": "component",
+            "payload": {
+              "kind": "safetywarning",
+              "texts": [
+                "INSTRUCTIONS PERTAINING TO RISK OF FIRE, ELECTRIC SHOCK, OR INJURY TO PERSONS"
+              ]
+            },
+            "content_sha256": "d9cae2c5f63a0736fcf9214873bfc3a393a2e4c11ddf837d3e68a51a3983d431",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0003",
+            "source_ref": "page/safety_en.rst#block-3",
+            "kind": "layout",
+            "payload": "twocol_start",
+            "content_sha256": "25918936f41bedfde0969181a449a8004a24088a5fa7fcdd1f38e4cae5bb9639",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0004",
+            "source_ref": "page/safety_en.rst#block-4",
+            "kind": "component",
+            "payload": {
+              "kind": "warninglead",
+              "label": "WARNING",
+              "texts": [
+                "Always follow these basic precautions when using this product."
+              ]
+            },
+            "content_sha256": "1c57368c10170b81613cadd4f2bc364f854a6b67980ec14bc5f14ce3614291b6",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0005",
+            "source_ref": "page/safety_en.rst#block-5",
+            "kind": "list",
+            "payload": "• Read all the instructions before using the product.",
+            "content_sha256": "3447e403a7ede0c3dee967111d392d4ce211b2abcac16f4c2048cb4e7d41ea1b",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0006",
+            "source_ref": "page/safety_en.rst#block-6",
+            "kind": "list",
+            "payload": "• Do not allow children to play on the product.",
+            "content_sha256": "98d7cb519032ae9816a40848e79f8fc5e42c9ae2dd0877f7c07e7afaa68ec62c",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0007",
+            "source_ref": "page/safety_en.rst#block-7",
+            "kind": "list",
+            "payload": "• Stop using the product immediately if it has been physically damaged or modified.",
+            "content_sha256": "61153326a281fd7a4958c3d236522469e0c9e85beeacf363367bf4c6e3d7faea",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0008",
+            "source_ref": "page/safety_en.rst#block-8",
+            "kind": "layout",
+            "payload": "twocol_end",
+            "content_sha256": "17bdd98b0c339dde78157a91b827aabf7dbcfcede23e1a15a30eed63207d5df7",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0009",
+            "source_ref": "page/safety_en.rst#block-9",
+            "kind": "h2",
+            "payload": "OPERATING INSTRUCTIONS",
+            "content_sha256": "11d1efd69e0b15644104a7efdd2cc2db6d562e167953ac4bd20d52315b24fd53",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0010",
+            "source_ref": "page/safety_en.rst#block-10",
+            "kind": "layout",
+            "payload": "twocol_start",
+            "content_sha256": "25918936f41bedfde0969181a449a8004a24088a5fa7fcdd1f38e4cae5bb9639",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0011",
+            "source_ref": "page/safety_en.rst#block-11",
+            "kind": "safetylead",
+            "payload": "SAVE THESE INSTRUCTIONS",
+            "content_sha256": "e3bf9e580419c1d99e3973b61266189bfa659e9c4f52e4136c4974c728244628",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0012",
+            "source_ref": "page/safety_en.rst#block-12",
+            "kind": "list",
+            "payload": "• Stop using the product immediately if it shows signs of damage.",
+            "content_sha256": "7f2314f98ae7c85879ecd6b370fe064b7482ab708f04c459e0dd4708165161dd",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0013",
+            "source_ref": "page/safety_en.rst#block-13",
+            "kind": "list",
+            "payload": "• Do not charge the battery in extremely hot or cold environments and strictly adhere to the specified operating temperature ranges:",
+            "content_sha256": "db52f04ad3be18da1c3376b318b8e903a46dc23bfa822767a224877815834a40",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0014",
+            "source_ref": "page/safety_en.rst#block-14",
+            "kind": "sublist",
+            "payload": "– Charging temperature: 0°C to 40°C (32°F to 104°F)",
+            "content_sha256": "41326ade2defa8365fda5cc75d20d2b344e4419657546ec31f837e9bdbe7e5db",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0015",
+            "source_ref": "page/safety_en.rst#block-15",
+            "kind": "sublist",
+            "payload": "– Discharging temperature: -10°C to 40°C (14°F to 104°F)",
+            "content_sha256": "46722639df90f4065d2a977f476e6edebf487a3abad5386c36fb6667c16a9d57",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0016",
+            "source_ref": "page/safety_en.rst#block-16",
+            "kind": "list",
+            "payload": "• Unplug the power cord from a power outlet during a storm.",
+            "content_sha256": "82cb8d902a5ac422028aaf9d07896227d0797ead4fac5e10e5eca1850732a2a2",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0017",
+            "source_ref": "page/safety_en.rst#block-17",
+            "kind": "layout",
+            "payload": "twocol_end",
+            "content_sha256": "17bdd98b0c339dde78157a91b827aabf7dbcfcede23e1a15a30eed63207d5df7",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0018",
+            "source_ref": "page/safety_en.rst#block-18",
+            "kind": "component",
+            "payload": {
+              "kind": "safetywarning",
+              "texts": [
+                "Improper connection of the equipment grounding conductor is able to result in a risk of electric shock. Check with a qualified electrician if you are in doubt."
+              ],
+              "label": "WARNING"
+            },
+            "content_sha256": "6d737fbd5fa068f07ba7a7c0d4effa93220aeb996589e1ae46fd1d840825ebf6",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0002-safety_en:block-0019",
+            "source_ref": "page/safety_en.rst#block-19",
+            "kind": "component",
+            "payload": {
+              "kind": "warnbox",
+              "label": "DANGER",
+              "texts": [
+                "This device is intended for indoor use only.",
+                "※ This device is not waterproof or dustproof. Keep away from rain and humid environments during use."
+              ]
+            },
+            "content_sha256": "37adbdd66974f51062529beb6257ab77e24d96ee58ece81c3d263fb0f66e7dad",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0003-20_01_user_maintenance_instructions",
+        "source_ref": "page/20_01_user_maintenance_instructions.rst",
+        "source_path": "page/20_01_user_maintenance_instructions.rst",
+        "language": "en",
+        "source_sha256": "bdfe866dcffec47a264775522aa3aae08eabb69dfc6358888e22506f5b3312b3",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0003-20_01_user_maintenance_instructions:block-0001",
+            "source_ref": "page/20_01_user_maintenance_instructions.rst#block-1",
+            "kind": "h1",
+            "payload": "USER MAINTENANCE INSTRUCTIONS",
+            "content_sha256": "493237b9d6ae3ccc602caedea340d74c3fe5ee31df6019990f5bb82c3d135b73",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0003-20_01_user_maintenance_instructions:block-0002",
+            "source_ref": "page/20_01_user_maintenance_instructions.rst#block-2",
+            "kind": "body",
+            "payload": "During the lifecycle of energy storage products, always keep the unit dry and store it in a cool, ventilated place.",
+            "content_sha256": "512603327863bdacec1db08520ea3aa33401fbe71b6e8ce5caaf1ae9b51ccdb6",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0003-20_01_user_maintenance_instructions:block-0003",
+            "source_ref": "page/20_01_user_maintenance_instructions.rst#block-3",
+            "kind": "body",
+            "payload": "Charge the battery to around 60% before long-term storage and recharge it at least once every three months.",
+            "content_sha256": "3b84c38817d7ef9feddb1d70620926a02606eba97ad6a33e5780c3113fa7efb0",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0004-symbols_en",
+        "source_ref": "page/symbols_en.rst",
+        "source_path": "page/symbols_en.rst",
+        "language": "en",
+        "source_sha256": "641c2b2461149a3423e726958ddf1d01201aefb2bc1c56bfb349a3ea30a2d673",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0004-symbols_en:block-0001",
+            "source_ref": "page/symbols_en.rst#block-1",
+            "kind": "h1",
+            "payload": "MEANING OF SYMBOLS",
+            "content_sha256": "812a5f8907eef0d28edbbdd8a4a6e0d9e767ed03a3c8797a61a731897d680574",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0004-symbols_en:block-0002",
+            "source_ref": "page/symbols_en.rst#block-2",
+            "kind": "data",
+            "payload": {
+              "kind": "symbol_signals",
+              "headers": [
+                "Symbol",
+                "Meaning"
+              ],
+              "rows": [
+                {
+                  "signal_key": "warning",
+                  "figure": "warning_triangle.png",
+                  "label": "WARNING",
+                  "text": "Hazardous practices that may result in severe injury, death, and/or property damage."
+                },
+                {
+                  "signal_key": "caution",
+                  "figure": "warning_triangle.png",
+                  "label": "CAUTION",
+                  "text": "Hazardous practices that may result in personal injury and/or property damage."
+                },
+                {
+                  "signal_key": "note",
+                  "figure": "mandatory.png",
+                  "label": "NOTE",
+                  "text": "Hazardous practices that may result in equipment damage, data loss, performance deterioration, or unanticipated results."
+                },
+                {
+                  "signal_key": "tips",
+                  "figure": "mandatory.png",
+                  "label": "TIP",
+                  "text": "Supplements the important information or operation tips in the text."
+                }
+              ]
+            },
+            "content_sha256": "bf060f85e0d0dc398069fcf298e9cef73f62bd01c26edcdc79f2c8f0c30b6572",
+            "asset_refs": [
+              "warning_triangle.png",
+              "mandatory.png"
+            ]
+          },
+          {
+            "block_id": "page-0004-symbols_en:block-0003",
+            "source_ref": "page/symbols_en.rst#block-3",
+            "kind": "data",
+            "payload": {
+              "kind": "symbol_icons",
+              "headers": [
+                "Symbol",
+                "Meaning"
+              ],
+              "rows": []
+            },
+            "content_sha256": "13888630df6ed2f6b9dabeeb7d69de84ce0b7a16fae0643f0f3e1ada4d3f369f",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0005-p22_01_fcc",
+        "source_ref": "page/p22_01_fcc.rst",
+        "source_path": "page/p22_01_fcc.rst",
+        "language": "en",
+        "source_sha256": "fbcf366243ade2811ca732a28df112ad0ad70d7dea8aa51d4fff9027e6a6730a",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0005-p22_01_fcc:block-0001",
+            "source_ref": "page/p22_01_fcc.rst#block-1",
+            "kind": "component",
+            "payload": {
+              "kind": "fcc",
+              "texts": [
+                "This device complies with Part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received.",
+                "NOTE: This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to Part 15 of the FCC Rules. Any changes or modifications not expressly approved could void the user's authority to operate the equipment."
+              ]
+            },
+            "content_sha256": "e0d9c347b29e94f469e3d39a2b57f7de37edc2ba6dfc56162208fecb048c1adb",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0006-p23_02_whats_in_the_box",
+        "source_ref": "page/p23_02_whats_in_the_box.rst",
+        "source_path": "page/p23_02_whats_in_the_box.rst",
+        "language": "en",
+        "source_sha256": "d9935962c479d78db15e6514bec548fd70c17f778816e24f97136d0a1865e0b1",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0006-p23_02_whats_in_the_box:block-0001",
+            "source_ref": "page/p23_02_whats_in_the_box.rst#block-1",
+            "kind": "h1",
+            "payload": "WHAT'S IN THE BOX",
+            "content_sha256": "8b7de7d2ddae6c9d54ac2560ae8c25e715e4aa455bf9e112f0a388e4e78f8af9",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0006-p23_02_whats_in_the_box:block-0002",
+            "source_ref": "page/p23_02_whats_in_the_box.rst#block-2",
+            "kind": "component",
+            "payload": {
+              "kind": "inbox",
+              "items": [
+                {
+                  "img": "main_unit1.png",
+                  "label": "Jackery Explorer 1000 v2"
+                },
+                {
+                  "img": "ac_charging_cable.png",
+                  "label": "AC Charging Cable"
+                },
+                {
+                  "img": "manual_icon1.png",
+                  "label": "User Manual"
+                }
+              ]
+            },
+            "content_sha256": "3fa115e518f9918ef30ea7292feba9c2199fdb1bf7ab944a1cdff6ecf0c00eda",
+            "asset_refs": [
+              "main_unit1.png",
+              "ac_charging_cable.png",
+              "manual_icon1.png"
+            ]
+          },
+          {
+            "block_id": "page-0006-p23_02_whats_in_the_box:block-0003",
+            "source_ref": "page/p23_02_whats_in_the_box.rst#block-3",
+            "kind": "component",
+            "payload": {
+              "kind": "notice",
+              "label": "TIP",
+              "variant": "tip",
+              "texts": [
+                "The car charging cable is sold separately on our official website. For assistance, contact Jackery Customer Support."
+              ]
+            },
+            "content_sha256": "b2eb321c970f4797657d83d5ac59a19d09901d2ecba810dcd83156027adc6cc3",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0007-05_operation_guide",
+        "source_ref": "page/05_operation_guide.rst",
+        "source_path": "page/05_operation_guide.rst",
+        "language": "en",
+        "source_sha256": "7abcd507e26796138d572226489ebfc95ca0ac2aaa2b9fac609ce40ae1a92dfa",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0007-05_operation_guide:block-0001",
+            "source_ref": "page/05_operation_guide.rst#block-1",
+            "kind": "h1",
+            "payload": "OPERATION GUIDE",
+            "content_sha256": "e774a34ed0546d107e2eaf7bd1ecf37c219772579dcddc51af73769d8724bae4",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0002",
+            "source_ref": "page/05_operation_guide.rst#block-2",
+            "kind": "h2",
+            "payload": "BUTTONS & KEY COMBINATIONS",
+            "content_sha256": "fd6897522a1d3fc43cc0947817e337e92431f27729031aa9384bf19f7163c2ec",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0003",
+            "source_ref": "page/05_operation_guide.rst#block-3",
+            "kind": "body",
+            "payload": "Press the DISPLAY button to wake the screen. Hold it for two seconds to turn the unit off.",
+            "content_sha256": "e4de917ff0445043b7bc2dd842cd3f1a4cc756cf9125ec97b91350b6752e924a",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0004",
+            "source_ref": "page/05_operation_guide.rst#block-4",
+            "kind": "table",
+            "payload": [
+              [
+                "Button",
+                "Short Press",
+                "Long Press"
+              ],
+              [
+                "DISPLAY",
+                "Wake the LCD screen",
+                "Power off the unit"
+              ],
+              [
+                "AC",
+                "Toggle AC output",
+                "Enable quiet charging"
+              ]
+            ],
+            "content_sha256": "cf62dd2505c4c93ee1e5a887a79bef8dfda674d1d8629e84ed2d873d94db1257",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0005",
+            "source_ref": "page/05_operation_guide.rst#block-5",
+            "kind": "component",
+            "payload": {
+              "kind": "notice",
+              "label": "NOTE",
+              "variant": "note",
+              "texts": [
+                "The AC output turns off automatically after 12 hours without load. Rated power* values are measured at 25°C."
+              ]
+            },
+            "content_sha256": "d6f49b11816eed9151c88f2780bca8edf237ded7a528c5b58d234b8e21ae4aea",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0006",
+            "source_ref": "page/05_operation_guide.rst#block-6",
+            "kind": "h2",
+            "payload": "SCREEN MODES",
+            "content_sha256": "4e76588bc4ac46720216d941f510ae87266c6df6992d5df4f64dec15934fcb1f",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0007",
+            "source_ref": "page/05_operation_guide.rst#block-7",
+            "kind": "component",
+            "payload": {
+              "kind": "lcdmode",
+              "img": "lcd_overview.png",
+              "groups": [
+                {
+                  "state": "Power Saving On",
+                  "actions": [
+                    [
+                      "Short press DISPLAY",
+                      "Wake the screen"
+                    ],
+                    [
+                      "Hold DISPLAY 2s",
+                      "Power off"
+                    ],
+                    [
+                      "Double press",
+                      "Cycle brightness"
+                    ]
+                  ]
+                },
+                {
+                  "state": "Power Saving Off",
+                  "actions": [
+                    [
+                      "Short press DISPLAY",
+                      "Cycle info panes"
+                    ],
+                    [
+                      "Hold DISPLAY 2s",
+                      "Power off"
+                    ],
+                    [
+                      "Double press",
+                      "Lock buttons"
+                    ]
+                  ]
+                }
+              ]
+            },
+            "content_sha256": "0704a686d021d1f3b8e8d07517595ab243c72ca85f60ec0d9a49dd159004d39d",
+            "asset_refs": [
+              "lcd_overview.png"
+            ]
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0008",
+            "source_ref": "page/05_operation_guide.rst#block-8",
+            "kind": "list",
+            "payload": "• Keep the vents uncovered while any output is active.",
+            "content_sha256": "fdff8492ab1f955f838c212cc5c51e0db96002e07dcb5a46c467021c2fe69af2",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0007-05_operation_guide:block-0009",
+            "source_ref": "page/05_operation_guide.rst#block-9",
+            "kind": "list",
+            "payload": "• Charge the unit to 60% before storing it for more than one month.",
+            "content_sha256": "47445af215a55c539d3e8f4680129ddedd7a7babd1314037f0dd0b84d52901e6",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0008-lcd_icons_en",
+        "source_ref": "page/lcd_icons_en.rst",
+        "source_path": "page/lcd_icons_en.rst",
+        "language": "en",
+        "source_sha256": "79a7a889d1cfe8901544304d9b388375621e19fe00d16fcad8b4eadc980f64ef",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0008-lcd_icons_en:block-0001",
+            "source_ref": "page/lcd_icons_en.rst#block-1",
+            "kind": "h1",
+            "payload": "LCD DISPLAY",
+            "content_sha256": "c9a91cf4c65162b639a44abc3a4d86b1e9de08d9aab2729b75be521886ca3ffa",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0008-lcd_icons_en:block-0002",
+            "source_ref": "page/lcd_icons_en.rst#block-2",
+            "kind": "data",
+            "payload": {
+              "kind": "lcd_icons",
+              "rows": [
+                {
+                  "no": "①",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+                  "name": "Wi-Fi",
+                  "desc": "On: Wi-Fi connected.\nBlink: Ready to connect to Wi-Fi.\nOff: Wi-Fi disconnected."
+                },
+                {
+                  "no": "②",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+                  "name": "Bluetooth",
+                  "desc": "On: Bluetooth connected.\nBlink: Ready to connect to Bluetooth.\nOff:  Bluetooth disconnected."
+                },
+                {
+                  "no": "③",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+                  "name": "Quiet Charging Mode",
+                  "desc": "On: The noise during charging is significantly minimized, while the charging power is reduced and the charging speed slows down.\nOff: Quiet Charging Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+                },
+                {
+                  "no": "④",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+                  "name": "Charging Plan",
+                  "desc": "Customizes the charging time of the Jackery Explorer 1000. Suitable for situations with fluctuating electricity prices, it allows for charging plans based on peak and off-peak electricity times, reducing electricity costs.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+                },
+                {
+                  "no": "⑤",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+                  "name": "Self-powered Mode",
+                  "desc": "Maximizes the use of solar energy and reduces reliance on grid electricity by prioritizing stored solar energy, reducing electricity costs. The power station must be connected to both solar panels and the grid simultaneously, with the load power limited by bypass power.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+                },
+                {
+                  "no": "⑥",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+                  "name": "TOU Mode",
+                  "desc": "On: TOU mode is enabled (default backup SOC: 60%). During peak periods, the product prioritizes discharging the battery to reduce peak electricity costs when the stored energy exceeds the backup SOC. During off peak periods, the product charges the battery from the grid to achieve peak shaving and valley filling.\nOff: TOU mode is disabled. The product does not follow the TOU (time of use) strategy and operates according to the default power supply and charging logic.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off."
+                },
+                {
+                  "no": "⑦",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+                  "name": "UPS",
+                  "desc": "On: The product is operating in bypass mode. Loads connected to the AC ports consume power from the grid instead of the power station. If the grid suddenly fails, the product automatically switches to its battery power within 10 ms.\nOff: The product is not in bypass mode. Loads connected to the AC ports are powered by the internal battery of the power station."
+                },
+                {
+                  "no": "⑧",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+                  "name": "AC Power Indicator",
+                  "desc": "The AC output (pure sine wave) is on."
+                },
+                {
+                  "no": "⑨",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+                  "name": "Output Voltage and Frequency",
+                  "desc": "Displays the output voltage and frequency when the AC output is turned on."
+                },
+                {
+                  "no": "⑩",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+                  "name": "Input Power",
+                  "desc": "Displays the input power in watts."
+                },
+                {
+                  "no": "⑪",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+                  "name": "Remaining Charge Time",
+                  "desc": "Displays the remaining charging time."
+                },
+                {
+                  "no": "⑫",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+                  "name": "AC Wall Charging Indicator",
+                  "desc": "The product is charged via the AC Input using grid power."
+                },
+                {
+                  "no": "⑬",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+                  "name": "Car Charging Indicator",
+                  "desc": "The product is charged via the DC Input (DC8020) using DC 12V (car charging)."
+                },
+                {
+                  "no": "⑭",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+                  "name": "Solar Charging Indicator",
+                  "desc": "The product is charged via the DC Input (DC8020) using solar panel(s)."
+                },
+                {
+                  "no": "⑮",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+                  "name": "Battery Saving Mode",
+                  "desc": "On: Battery Saving Mode is enabled. Charge and discharge limits are applied to help extend battery lifespan.\nOff: Battery Saving Mode is disabled.\nEnable/disable this feature in the Jackery App. The setting is retained when the device is powered off.\nWhen this feature is enabled, the product occasionally performs a full charge and discharge cycle to calibrate the SOC."
+                },
+                {
+                  "no": "⑯",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+                  "name": "Charging Power Limit",
+                  "desc": "On: Charging Power limit is enabled in the Jackery App.\nOff: Charging Power limit is disabled in the Jackery App.\nThe setting is retained when the device is powered off."
+                },
+                {
+                  "no": "⑰",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png",
+                  "name": "Battery Power Indicator",
+                  "desc": "When the product is being charged, the orange circle around the battery percentage will light up in sequence. When charging other devices, the orange circle will stay on."
+                },
+                {
+                  "no": "⑱",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+                  "name": "Remaining Battery Percentage",
+                  "desc": "Displays the remaining battery percentage."
+                },
+                {
+                  "no": "⑲",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+                  "name": "Low Battery Indicator",
+                  "desc": "On: The battery level is below 20%.\nBlink: The battery level is below 5%.\nOff: The battery level is not below 20% or the product is charging."
+                },
+                {
+                  "no": "⑳",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+                  "name": "Discharge Timer",
+                  "desc": "On: A discharge timer is set.\nOff: No discharge timer is set.\nEnable/disable this feature in the Jackery App. The setting is not retained when the device is powered off."
+                },
+                {
+                  "no": "㉑",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+                  "name": "Energy Saving Mode",
+                  "desc": "When the AC or DC output is turned on by pressing the AC or DC/USB power button:\nOn: Energy Saving Mode is enabled.\nOff: Energy Saving Mode is disabled.\nThe setting is retained when the device is powered off."
+                },
+                {
+                  "no": "㉒",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png",
+                  "name": "High Temperature Indicator",
+                  "desc": "High temperature protection is triggered. The product may stop functioning until its temperature returns to the normal operating range."
+                },
+                {
+                  "no": "㉓",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png",
+                  "name": "Low Temperature Indicator",
+                  "desc": "Low temperature protection is triggered.\nThe product may stop functioning until its temperature returns to the normal operating range."
+                },
+                {
+                  "no": "㉔",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+                  "name": "Fault code",
+                  "desc": "A product error has occurred. Please refer to the Troubleshooting section for details."
+                },
+                {
+                  "no": "㉕",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png",
+                  "name": "Output Power",
+                  "desc": "Displays the output power in watts."
+                },
+                {
+                  "no": "㉖",
+                  "figure": "tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png",
+                  "name": "Remaining Discharge Time",
+                  "desc": "Displays the remaining discharging time."
+                }
+              ]
+            },
+            "content_sha256": "78277cb461d1d40dc69d48602a0423736fc1c57fc844a491ced097307aa84513",
+            "asset_refs": [
+              "tests/fixtures/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png",
+              "tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png"
+            ]
+          }
+        ]
+      },
+      {
+        "page_id": "page-0009-troubleshooting_en",
+        "source_ref": "page/troubleshooting_en.rst",
+        "source_path": "page/troubleshooting_en.rst",
+        "language": "en",
+        "source_sha256": "7f550927976f30bf140957b4c00f2c0857d1ea05a2cd686ecf51110d15ca88e9",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0009-troubleshooting_en:block-0001",
+            "source_ref": "page/troubleshooting_en.rst#block-1",
+            "kind": "h1",
+            "payload": "TROUBLESHOOTING",
+            "content_sha256": "2a3a0589f44d78526b56032978de5d9658ffe73515deba783a33511d956c5b9b",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0009-troubleshooting_en:block-0002",
+            "source_ref": "page/troubleshooting_en.rst#block-2",
+            "kind": "data",
+            "payload": {
+              "kind": "trouble_rows",
+              "rows": [
+                [
+                  "F0",
+                  "Restart the product."
+                ],
+                [
+                  "F1",
+                  "Restart the product."
+                ],
+                [
+                  "F2",
+                  "Restart the product."
+                ],
+                [
+                  "F3",
+                  "Restart the product."
+                ],
+                [
+                  "F4",
+                  "Connect the product to loads to discharge its battery until the fault disappears."
+                ],
+                [
+                  "F5",
+                  "Charge the product via solar panels or an AC wall outlet until the fault disappears."
+                ],
+                [
+                  "F6",
+                  "1. Wait for the grid to normalize before charging the product via an AC wall outlet.\n2. Check whether the air intake and exhaust vents are blocked; ensure 0.66 ft (20 cm) clearance on both sides of the product.\n3. Place the product in a location that is not exposed to direct sunlight or high environmental temperatures.\n4. Disconnect all loads from the product. Keep the product idle and wait until the fault disappears.\n5. Restart the product."
+                ],
+                [
+                  "F7",
+                  "1. Remove all DC inputs from the product.\n2. Check the open-circuit voltage (Voc) of the connected solar panels. The product allows a maximum DC input voltage of 60V.\n3. Restart the product and keep it idle. Wait until the fault disappears."
+                ],
+                [
+                  "F8",
+                  "Contact Jackery Customer Support."
+                ],
+                [
+                  "F9",
+                  "Remove the load connected to the USB ports of the product. Wait until the fault disappears."
+                ],
+                [
+                  "FE",
+                  "Contact Jackery Customer Support."
+                ]
+              ]
+            },
+            "content_sha256": "943e6f61a3696bf7edf4732670e89cf9066f9e45cb44aa663426cba8b5df9708",
+            "asset_refs": []
+          }
+        ]
+      },
+      {
+        "page_id": "page-0010-spec_en",
+        "source_ref": "page/spec_en.rst",
+        "source_path": "page/spec_en.rst",
+        "language": "en",
+        "source_sha256": "6a1261bd7e1d0c5d3058888fccd97ff9c116fb5038bfe8ebe4b625b47c627818",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "page-0010-spec_en:block-0001",
+            "source_ref": "page/spec_en.rst#block-1",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_start",
+              "title": "SPECIFICATIONS"
+            },
+            "content_sha256": "fd7b4c0019d19a8c3221de823af9e882d82fa60d4997e8dddabb83f1e12e6497",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0010-spec_en:block-0002",
+            "source_ref": "page/spec_en.rst#block-2",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_section",
+              "title": "GENERAL INFO",
+              "rows": [
+                [
+                  "Product Name",
+                  "Jackery Explorer 1000"
+                ],
+                [
+                  "Model No.",
+                  "JE-1000F / JE-1000F-SG"
+                ],
+                [
+                  "Capacity",
+                  "1024 Wh (20 Ah/51.2 V DC)"
+                ],
+                [
+                  "Cell Chemistry",
+                  "LiFePO₄"
+                ],
+                [
+                  "Weight",
+                  "About 23.4 lbs/10.6 kg"
+                ],
+                [
+                  "Dimensions",
+                  "12.4 x 7.9 x 9.2 in / 31.4 x 20.1 x 23.4 cm"
+                ],
+                [
+                  "Cycle Life",
+                  "6000 cycles to 70%+ capacity"
+                ]
+              ]
+            },
+            "content_sha256": "cb4c9b0c978ae8fc9776eac34bae7028b2805e90a9aea3959c5b16b91df6aa83",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0010-spec_en:block-0003",
+            "source_ref": "page/spec_en.rst#block-3",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_section",
+              "title": "INPUT PORTS",
+              "rows": [
+                [
+                  "1 × AC Input",
+                  "Charge Mode: 100V-120V~60Hz, 15A Max\nBypass Mode①: 100V-120V~60Hz, 12A Max"
+                ],
+                [
+                  "2 × DC8020 Ports",
+                  "11V-16V⎓8A Max, Double to 8A Max\n16V-60V⎓12A, Double to 21A / 400W Max"
+                ]
+              ]
+            },
+            "content_sha256": "bb4ca6498cad4c184a47f3ccf8ec485cbdc695250bb56fa666b07406698425dc",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0010-spec_en:block-0004",
+            "source_ref": "page/spec_en.rst#block-4",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_section",
+              "title": "OUTPUT PORTS",
+              "rows": [
+                [
+                  "3 × AC",
+                  "120 V~ 60 Hz, 12.5 A max., 1500 W Rated per port, 1500 W in Total, 3000 W Surge Peak"
+                ],
+                [
+                  "AC Output in Bypass Mode",
+                  "120 V~, 60 Hz, 13.2 A max."
+                ],
+                [
+                  "2 × USB-C",
+                  "30W Max, 5V⎓3A, 9V⎓3A, 12V⎓2.5A, 15V⎓2A, 20V⎓1.5A\n100W Max, 5V⎓3A, 9V⎓3A, 12V⎓3A, 15V⎓3A, 20V⎓5A\nUSB-C 100W output disabled (-4°F to 14°F / -20°C to -10°C)"
+                ],
+                [
+                  "1 × USB-A",
+                  "18W Max, 5-6V⎓3A, 6-9V⎓2A, 9-12V⎓1.5A"
+                ],
+                [
+                  "1 × DC 12V Port",
+                  "12 V⎓10 A Max"
+                ]
+              ]
+            },
+            "content_sha256": "1fe840329f8bd28d96c080dae0d2019f54c2b37122ce6151521015cae69d57ee",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0010-spec_en:block-0005",
+            "source_ref": "page/spec_en.rst#block-5",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_section",
+              "title": "ENVIRONMENTAL OPERATING TEMPERATURE",
+              "rows": [
+                [
+                  "Charging Temperature",
+                  "14°F to 113°F / -10°C to 45°C"
+                ],
+                [
+                  "Discharging Temperature",
+                  "14°F to 113°F / -10°C to 45°C"
+                ]
+              ]
+            },
+            "content_sha256": "fada243b0222ca1a35300999d6d00d035bead2413a12bccf3168e7666cbcf0e6",
+            "asset_refs": []
+          },
+          {
+            "block_id": "page-0010-spec_en:block-0006",
+            "source_ref": "page/spec_en.rst#block-6",
+            "kind": "data",
+            "payload": {
+              "kind": "spec_annotations",
+              "texts": [
+                "① The product can charge the battery from the AC wall outlet while delivering power through the AC output ports.",
+                "※ USB Type-C® and USB-C® are registered trademarks of USB Implementers Forum."
+              ]
+            },
+            "content_sha256": "7dd271867a3855f388f9a6a42224c9023ee231ca1661b9248b2be70c7e60f368",
+            "asset_refs": []
+          }
+        ]
+      }
+    ],
+    "asset_refs": [
+      "warning_triangle.png",
+      "mandatory.png",
+      "main_unit1.png",
+      "ac_charging_cable.png",
+      "manual_icon1.png",
+      "lcd_overview.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/1_Wi-Fi_WuAbbIls6okb8pxBe5RcObWUnNd.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/2_Bluetooth_EaovbGeSmoIldpxVoWrcVankn5d.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/3_Quiet_Charging_Mode_IRdmbJVhco57yOx8m0pcdgkXnbe.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/4_Charging_Plan_PBCtblGMaoHz4fx08tRcoXUJnIf.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/5_Self-powered_Mode_VLkXbWOFpoMJYsxWp0xcXkkpn1g.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/6_TOU_Mode_BLMAblms7oeDxUxsFb9cgzXvnId.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/7_UPS_JMnybDJHdoLbjExEMbGcfAkznQh.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/8_AC_Power_Indicator_IqesbVEWTo0ANfxDkoDcLP6jnSc.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/9_Output_Voltage_and_Frequency_XtL4bA80pogLmOx7VJ3ca5fEnl8.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/10_Input_Power_BiBvbNteAoNsHqxoMICc11cjnHc.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/11_Remaining_Charge_Time_VeBobGZMDoYpBuxLRcFcti9cnlc.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/12_AC_Wall_Charging_Indicator_OG9ebaP1HoaLvZxbGEAcIXkPnkb.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/13_Car_Charging_Indicator_WgbebOblvoTtesxjb9ec8CkUnyg.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/14_Solar_Charging_Indicator_ZMSkb6bWWoKo8WxhBk0cZN5Lnpg.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/15_Battery_Saving_Mode_QIQlbf95uoUmsFxyEQuc1zxkn22.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/16_Charging_Power_Limit_YgjLbaQ2YoZwavxUqrHclXNdnuK.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/17_Battery_Power_Indicator_WqL2b7JZio7HnGxsWaOctZ7inkh.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/18_Remaining_Battery_Percentage_F7gbbsgPKo4mdkx4JqccMfQRngc.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/19_Low_Battery_Indicator_TcggbK0LLodgNwx04T6cEqjPn5f.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/20_Discharge_Timer_X2jjb9dwIomvH6xVJLJclRzpnAh.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/22_Energy_Saving_Mode_FdBWbTvwwosJ7TxfeVIc2Flinkh.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/23_High_Temperature_Indicator_HbD7betDOoeilexZaaQcqOknnMd.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/24_Low_Temperature_Indicator_PkYSbqrsooorJhxkTOfcUutJnKu.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/25_Fault_code_LaTmb4IQYo3vwvxMqQNcC2RgnIf.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/26_Output_Power_MRflbp7C7oqGbdxeWO1cl79XnBc.png",
+      "tests/fixtures/phase2/_attachments/lcd_icons/27_Remaining_Discharge_Time_QvCQbFmEhoQR3kxgWt4c6H9zn0b.png"
+    ],
+    "schema_version": "manual-ir/v1",
+    "metadata": {
+      "declared_languages": [],
+      "layout_params_hash_algorithm": "ordered-layout-tokens/v1",
+      "page_count": 10,
+      "block_count": 51,
+      "skipped_raw": 0
+    }
+  },
+  "frozen-components-v2": {
+    "model": "JE-1000F",
+    "region": "US",
+    "language": "ja",
+    "source": "prepared-document",
+    "bundle_root": "/tmp/tmpnd2sinvp/source",
+    "bundle_sha256": "5d5a1b262639d0b6c6f2b7e30d57fd1a2f5bfce34bb1e0569273a54d44f4d5ab",
+    "snapshot_sha256": null,
+    "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
+    "style_contract_sha256": "a6de836f123cae6026ed553dc084d32aaae4839c7b7d4c89ba621ded7ec083ee",
+    "content_sha256": "042bce60dbe9741118e95d1df4c48f638e91e6b3115fe60115c244e2ed8deb12",
+    "pages": [
+      {
+        "page_id": "03_product_overview_placeholder.rst",
+        "source_ref": "03_product_overview_placeholder.rst",
+        "source_path": "/tmp/tmpnd2sinvp/source/03_product_overview_placeholder.rst",
+        "language": "ja",
+        "source_sha256": "4dde35a052d49bf9abb62a44c223957e9001c68e8a3610d4cd6f662e576d56ae",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "03_product_overview_placeholder.rst:block-0001",
+            "source_ref": "03_product_overview_placeholder.rst#block-1",
+            "kind": "flow",
+            "payload": {
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "日語文書"
+                }
+              ],
+              "kind": "heading",
+              "level": 1,
+              "schema_version": "manual-flow/v2"
+            },
+            "content_sha256": "0c23ad12e8bdfaa61076d35e42dc858eea431f14c7df163a4796eab48e34271c",
+            "asset_refs": []
+          },
+          {
+            "block_id": "03_product_overview_placeholder.rst:block-0002",
+            "source_ref": "03_product_overview_placeholder.rst#block-2",
+            "kind": "flow",
+            "payload": {
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "説明 "
+                },
+                {
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "重要"
+                    }
+                  ],
+                  "kind": "strong"
+                },
+                {
+                  "kind": "text",
+                  "text": "。"
+                }
+              ],
+              "kind": "paragraph",
+              "schema_version": "manual-flow/v2"
+            },
+            "content_sha256": "1aa17a642a501bb49925f045d2649340260d367a05531346a091d1a97877a46c",
+            "asset_refs": []
+          },
+          {
+            "block_id": "03_product_overview_placeholder.rst:block-0003",
+            "source_ref": "03_product_overview_placeholder.rst#block-3",
+            "kind": "flow",
+            "payload": {
+              "kind": "text",
+              "schema_version": "manual-flow/v2",
+              "text": "\n"
+            },
+            "content_sha256": "409f08d09ec16d10e5859c444f978d45e82cc092bc1ece8fafaf29f65dc755f8",
+            "asset_refs": []
+          },
+          {
+            "block_id": "03_product_overview_placeholder.rst:block-0004",
+            "source_ref": "03_product_overview_placeholder.rst#block-4",
+            "kind": "flow",
+            "payload": {
+              "alt": "帯字図",
+              "kind": "image",
+              "schema_version": "manual-flow/v2",
+              "source": "assets/ir/e2d59211b74c7d370308575c25729fc404ebbfbda70955c87f57e99470ab4c0e/figure.png"
+            },
+            "content_sha256": "92877d6cfbdcfa1a41741dc1107faa63331c99444450b0b389c469a0dfcdf784",
+            "asset_refs": [
+              "assets/ir/e2d59211b74c7d370308575c25729fc404ebbfbda70955c87f57e99470ab4c0e/figure.png"
+            ]
+          }
+        ]
+      },
+      {
+        "page_id": "spec_ja.rst",
+        "source_ref": "spec_ja.rst",
+        "source_path": "/tmp/tmpnd2sinvp/source/spec_ja.rst",
+        "language": "ja",
+        "source_sha256": "0dbbad452e46b02ecfe1c2bb8e22e9b13e0a14ade7d46df2dbe4c839e7843eea",
+        "skipped_raw": 0,
+        "blocks": [
+          {
+            "block_id": "spec_ja.rst:block-0001",
+            "source_ref": "spec_ja.rst#block-1",
+            "kind": "flow",
+            "payload": {
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "仕様"
+                }
+              ],
+              "kind": "heading",
+              "level": 1,
+              "schema_version": "manual-flow/v2"
+            },
+            "content_sha256": "14eae98227a4297324fcff3a9d36b6a216652ae5bb4d0d38f1ad9b5038421205",
+            "asset_refs": []
+          },
+          {
+            "block_id": "spec_ja.rst:block-0002",
+            "source_ref": "spec_ja.rst#block-2",
+            "kind": "flow",
+            "payload": {
+              "children": [
+                {
+                  "kind": "text",
+                  "text": "\n"
+                },
+                {
+                  "children": [
+                    {
+                      "kind": "text",
+                      "text": "\n"
+                    },
+                    {
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "容量"
+                                }
+                              ],
+                              "kind": "paragraph"
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "\n"
+                        },
+                        {
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "kind": "text",
+                                  "text": "2042.8Wh"
+                                }
+                              ],
+                              "kind": "paragraph"
+                            }
+                          ],
+                          "header": false,
+                          "kind": "table_cell"
+                        },
+                        {
+                          "kind": "text",
+                          "text": "\n"
+                        }
+                      ],
+                      "kind": "table_row"
+                    },
+                    {
+                      "kind": "text",
+                      "text": "\n"
+                    }
+                  ],
+                  "kind": "table_body"
+                },
+                {
+                  "kind": "text",
+                  "text": "\n"
+                }
+              ],
+              "kind": "table",
+              "schema_version": "manual-flow/v2"
+            },
+            "content_sha256": "85bdf173778ba7b3daee98172bc63bc7145850b8815e139926f34cc99b873e36",
+            "asset_refs": []
+          }
+        ]
+      }
+    ],
+    "asset_refs": [
+      "assets/ir/e2d59211b74c7d370308575c25729fc404ebbfbda70955c87f57e99470ab4c0e/figure.png"
+    ],
+    "schema_version": "manual-ir/v2",
+    "metadata": {
+      "asset_sha256": {
+        "assets/ir/e2d59211b74c7d370308575c25729fc404ebbfbda70955c87f57e99470ab4c0e/figure.png": "e2d59211b74c7d370308575c25729fc404ebbfbda70955c87f57e99470ab4c0e"
+      },
+      "block_count": 6,
+      "component_registry": {
+        "components": {
+          "HB-CALLOUT-STRIP": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_notice"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_callout"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "manual_callout_table"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_manual_callout_table"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "body": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": true
+              },
+              "items": {
+                "content_kinds": [
+                  "list_items"
+                ],
+                "required": false
+              },
+              "label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "callout_strip",
+              "notice"
+            ],
+            "style_id": "HB-CALLOUT-STRIP",
+            "token_roles": [
+              "component.callout"
+            ],
+            "variants": [
+              "warning",
+              "danger",
+              "caution",
+              "note",
+              "tip"
+            ]
+          },
+          "HB-SPECIAL-APP": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_app"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_app"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_app"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_app"
+              }
+            },
+            "asset_roles": {
+              "control_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "phone_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "qr_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "source_art": {
+                "locale_policies": [
+                  "exact"
+                ],
+                "required": false
+              },
+              "store_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "columns": {
+                "content_kinds": [
+                  "ordered_columns"
+                ],
+                "required": false
+              },
+              "labels": {
+                "content_kinds": [
+                  "ordered_labels"
+                ],
+                "required": false
+              },
+              "paragraph": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": false
+              },
+              "reference_id": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": false
+              },
+              "step_captions": {
+                "content_kinds": [
+                  "ordered_labels"
+                ],
+                "required": false
+              }
+            },
+            "source_kinds": [
+              "app_download",
+              "app_inline_control",
+              "app_add_device"
+            ],
+            "style_id": "HB-SPECIAL-APP",
+            "token_roles": [
+              "component.special.app"
+            ],
+            "variants": [
+              "download",
+              "inline-control",
+              "add-device"
+            ]
+          },
+          "HB-SPECIAL-FCC": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_fcc"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_fcc"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_fcc"
+              },
+              "word": {
+                "capability": "rendered",
+                "key": "word_fcc"
+              }
+            },
+            "asset_roles": {
+              "compliance_mark": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "body_blocks": {
+                "content_kinds": [
+                  "ordered_blocks"
+                ],
+                "required": true
+              },
+              "column_break": {
+                "content_kinds": [
+                  "block_index"
+                ],
+                "required": true
+              },
+              "opening_copy": {
+                "content_kinds": [
+                  "line_items"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "fcc"
+            ],
+            "style_id": "HB-SPECIAL-FCC",
+            "token_roles": [
+              "component.special.fcc"
+            ],
+            "variants": [
+              "two-column"
+            ]
+          },
+          "HB-SPECIAL-INBOX": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_inbox"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_inbox"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_inbox"
+              },
+              "word": {
+                "capability": "rendered",
+                "key": "word_inbox"
+              }
+            },
+            "asset_roles": {
+              "card_1_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "card_2_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "card_3_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": false
+              },
+              "card_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "multiple": true,
+                "required": false
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "cards": {
+                "content_kinds": [
+                  "ordered_cards"
+                ],
+                "required": true
+              },
+              "tip_body": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": true
+              },
+              "tip_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "inbox"
+            ],
+            "style_id": "HB-SPECIAL-INBOX",
+            "token_roles": [
+              "component.special.inbox"
+            ],
+            "variant_adapters": {
+              "responsive-card-grid": {
+                "idml": {
+                  "capability": "not-applicable",
+                  "key": "idml_inbox"
+                },
+                "latex": {
+                  "capability": "not-applicable",
+                  "key": "hb_latex_inbox"
+                },
+                "web": {
+                  "capability": "rendered",
+                  "key": "hb_inbox"
+                },
+                "word": {
+                  "capability": "not-applicable",
+                  "key": "word_inbox"
+                }
+              }
+            },
+            "variants": [
+              "three-card-responsive",
+              "responsive-card-grid"
+            ]
+          },
+          "HB-SPECIAL-OPERATION": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_operation"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "hb_latex_operation"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_operation"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_operation"
+              }
+            },
+            "asset_roles": {
+              "artwork": {
+                "locale_policies": [
+                  "shared",
+                  "exact"
+                ],
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "mode_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": false
+              },
+              "operation_id": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "prerequisite": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": false
+              },
+              "sos_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": false
+              },
+              "steps": {
+                "content_kinds": [
+                  "ordered_steps"
+                ],
+                "required": true
+              },
+              "supporting_copy": {
+                "content_kinds": [
+                  "line_items"
+                ],
+                "required": false
+              }
+            },
+            "source_kinds": [
+              "operation_panel"
+            ],
+            "style_id": "HB-SPECIAL-OPERATION",
+            "token_roles": [
+              "component.special.operation"
+            ],
+            "variants": [
+              "status-right",
+              "footer-overlay",
+              "footer-panel"
+            ]
+          },
+          "HB-SPECIAL-OVERVIEW": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_overview"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "hb_latex_overview"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_overview"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_overview"
+              }
+            },
+            "asset_roles": {
+              "front_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": true
+              },
+              "right_art": {
+                "locale_policies": [
+                  "shared"
+                ],
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "geometry_ref": {
+                "content_kinds": [
+                  "instance_ref"
+                ],
+                "required": true
+              },
+              "views": {
+                "content_kinds": [
+                  "ordered_views"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "overview"
+            ],
+            "style_id": "HB-SPECIAL-OVERVIEW",
+            "token_roles": [
+              "component.special.overview"
+            ],
+            "variants": [
+              "annotated-live",
+              "approved-composite"
+            ]
+          },
+          "HB-SPECIAL-REFERENCE-FIGURE": {
+            "adapters": {
+              "idml": {
+                "capability": "projection-only",
+                "key": "idml_reference_figure"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "hb_latex_reference_figure"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_reference_figure"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_reference_figure"
+              }
+            },
+            "asset_roles": {
+              "approved_composite": {
+                "locale_policies": [
+                  "exact",
+                  "shared"
+                ],
+                "required": false
+              },
+              "source_art": {
+                "locale_policies": [
+                  "exact",
+                  "shared"
+                ],
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "adjacent_copy": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": false
+              },
+              "caption_layout": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "caption_mode": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "captions": {
+                "content_kinds": [
+                  "ordered_labels"
+                ],
+                "required": false
+              },
+              "reference_id": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "reference_figure"
+            ],
+            "style_id": "HB-SPECIAL-REFERENCE-FIGURE",
+            "token_roles": [
+              "component.special.reference-figure"
+            ],
+            "variants": [
+              "semantic-fallback",
+              "approved-composite"
+            ]
+          },
+          "HB-TABLE-AUTO-RESUME": {
+            "adapters": {
+              "idml": {
+                "capability": "projection-only",
+                "key": "idml_auto_resume"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "hb_latex_auto_resume"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_auto_resume"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_auto_resume"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "conditions": {
+                "content_kinds": [
+                  "ordered_columns"
+                ],
+                "required": true
+              },
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_auto_resume"
+            ],
+            "style_id": "HB-TABLE-AUTO-RESUME",
+            "token_roles": [
+              "component.table.auto-resume"
+            ],
+            "variants": [
+              "two-column-middle-span"
+            ]
+          },
+          "HB-TABLE-KEY-COMBINATIONS": {
+            "adapters": {
+              "idml": {
+                "capability": "projection-only",
+                "key": "idml_key_combinations"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "hb_latex_key_combinations"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_key_combinations"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_key_combinations"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              },
+              "rows": {
+                "content_kinds": [
+                  "ordered_rows"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_key_combinations"
+            ],
+            "style_id": "HB-TABLE-KEY-COMBINATIONS",
+            "token_roles": [
+              "component.table.key-combinations"
+            ],
+            "variants": [
+              "three-column"
+            ]
+          },
+          "HB-TABLE-LCD-ICON": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_lcd_icon"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_lcd_icon"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_lcd_icon"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_lcd_icon"
+              }
+            },
+            "asset_roles": {
+              "icons": {
+                "locale_policies": [
+                  "shared",
+                  "exact"
+                ],
+                "multiple": true,
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "rows": {
+                "content_kinds": [
+                  "ordered_rows"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_lcd_icon",
+              "lcd-icons"
+            ],
+            "style_id": "HB-TABLE-LCD-ICON",
+            "token_roles": [
+              "component.table.lcd-icon"
+            ],
+            "variants": [
+              "icon-catalog"
+            ]
+          },
+          "HB-TABLE-LCD-MODE": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_lcd_mode"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_lcd_mode"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_lcd_mode"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_lcd_mode"
+              }
+            },
+            "asset_roles": {
+              "artwork": {
+                "locale_policies": [
+                  "shared",
+                  "exact"
+                ],
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "groups": {
+                "content_kinds": [
+                  "ordered_groups"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_lcd_mode"
+            ],
+            "style_id": "HB-TABLE-LCD-MODE",
+            "token_roles": [
+              "component.table.lcd-mode"
+            ],
+            "variants": [
+              "two-state-three-action"
+            ]
+          },
+          "HB-TABLE-REFERENCE": {
+            "adapters": {
+              "idml": {
+                "capability": "projection-only",
+                "key": "idml_reference_table"
+              },
+              "latex": {
+                "capability": "projection-only",
+                "key": "latex_reference_table"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "web_reference_table"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_reference_table"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              },
+              "rows": {
+                "content_kinds": [
+                  "ordered_rows"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_reference"
+            ],
+            "style_id": "HB-TABLE-REFERENCE",
+            "token_roles": [
+              "component.table.reference"
+            ],
+            "variants": [
+              "lcd-legend",
+              "lcd-actions",
+              "lcd-actions-compact",
+              "symbol-meanings",
+              "plain-inventory"
+            ]
+          },
+          "HB-TABLE-SPEC": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_spec_table"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_spec_table"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_spec_table"
+              },
+              "word": {
+                "capability": "rendered",
+                "key": "word_spec_table"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "rows": {
+                "content_kinds": [
+                  "structured_rows"
+                ],
+                "required": true
+              },
+              "section_title": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_spec",
+              "spec-table"
+            ],
+            "style_id": "HB-TABLE-SPEC",
+            "token_roles": [
+              "component.table.spec"
+            ],
+            "variants": [
+              "vertical"
+            ]
+          },
+          "HB-TABLE-SYMBOL-ICON": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_symbol_icon"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_symbol_icon"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_symbol_icon"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_symbol_icon"
+              }
+            },
+            "asset_roles": {
+              "icons": {
+                "locale_policies": [
+                  "shared",
+                  "exact"
+                ],
+                "multiple": true,
+                "required": true
+              }
+            },
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              },
+              "panels": {
+                "content_kinds": [
+                  "ordered_panels"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_symbol_icon",
+              "symbols"
+            ],
+            "style_id": "HB-TABLE-SYMBOL-ICON",
+            "token_roles": [
+              "component.table.symbol-icon"
+            ],
+            "variants": [
+              "two-panel-responsive"
+            ]
+          },
+          "HB-TABLE-SYMBOL-SIGNAL": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_symbol_signal"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_symbol_signal"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_symbol_signal"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_symbol_signal"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              },
+              "rows": {
+                "content_kinds": [
+                  "ordered_rows"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_symbol_signal"
+            ],
+            "style_id": "HB-TABLE-SYMBOL-SIGNAL",
+            "token_roles": [
+              "component.table.symbol-signal"
+            ],
+            "variants": [
+              "localized-badges"
+            ]
+          },
+          "HB-TABLE-TROUBLESHOOTING": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_troubleshooting"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_troubleshooting"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_troubleshooting"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_troubleshooting"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "headers": {
+                "content_kinds": [
+                  "ordered_headers"
+                ],
+                "required": true
+              },
+              "rows": {
+                "content_kinds": [
+                  "ordered_rows"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "table_troubleshooting",
+              "troubleshooting"
+            ],
+            "style_id": "HB-TABLE-TROUBLESHOOTING",
+            "token_roles": [
+              "component.table.troubleshooting"
+            ],
+            "variants": [
+              "two-column"
+            ]
+          },
+          "HB-WARRANTY-LEAD": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_warranty_lead"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_warranty_lead"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_warranty_lead"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_warranty_lead"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "accessibility_label": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              },
+              "lead": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": true
+              },
+              "local_note": {
+                "content_kinds": [
+                  "rich_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "warranty_lead"
+            ],
+            "style_id": "HB-WARRANTY-LEAD",
+            "token_roles": [
+              "component.warranty.lead"
+            ],
+            "variants": [
+              "intro-panel"
+            ]
+          },
+          "HB-WARRANTY-SECTION": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_warranty_section"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_warranty_section"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_warranty_section"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_warranty_section"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "blocks": {
+                "content_kinds": [
+                  "ordered_blocks"
+                ],
+                "required": true
+              },
+              "section_index": {
+                "content_kinds": [
+                  "block_index"
+                ],
+                "required": true
+              },
+              "title": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "warranty_section"
+            ],
+            "style_id": "HB-WARRANTY-SECTION",
+            "token_roles": [
+              "component.warranty.section"
+            ],
+            "variants": [
+              "rounded-card"
+            ]
+          },
+          "HB-WARRANTY-YEARS": {
+            "adapters": {
+              "idml": {
+                "capability": "rendered",
+                "key": "idml_warranty_years"
+              },
+              "latex": {
+                "capability": "rendered",
+                "key": "hb_latex_warranty_years"
+              },
+              "web": {
+                "capability": "rendered",
+                "key": "hb_warranty_years"
+              },
+              "word": {
+                "capability": "projection-only",
+                "key": "word_warranty_years"
+              }
+            },
+            "asset_roles": {},
+            "slots": {
+              "periods": {
+                "content_kinds": [
+                  "ordered_periods"
+                ],
+                "required": true
+              },
+              "title": {
+                "content_kinds": [
+                  "inline_text"
+                ],
+                "required": true
+              }
+            },
+            "source_kinds": [
+              "warranty_years"
+            ],
+            "style_id": "HB-WARRANTY-YEARS",
+            "token_roles": [
+              "component.warranty.years"
+            ],
+            "variants": [
+              "numeric-badges"
+            ]
+          }
+        },
+        "registry_id": "hb-component-registry",
+        "schema_version": "component-registry/v1"
+      },
+      "component_registry_sha256": "88efb1501365057caabc774c827953122d09d2a1333e3ba4c5fb744af2605a00",
+      "composites": [],
+      "declared_languages": [
+        "ja"
+      ],
+      "illustration_provenance": null,
+      "manual_theme": {
+        "component_roles": {
+          "component.callout": {
+            "component_ids": [
+              "HB-CALLOUT-STRIP"
+            ],
+            "theme_roles": [
+              "surface.brand",
+              "surface.paper",
+              "border.strong",
+              "width.component-band"
+            ]
+          },
+          "component.special.app": {
+            "component_ids": [
+              "HB-SPECIAL-APP"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.special.fcc": {
+            "component_ids": [
+              "HB-SPECIAL-FCC"
+            ],
+            "theme_roles": [
+              "surface.fcc",
+              "radius.fcc",
+              "type.fcc.body",
+              "width.component-band"
+            ]
+          },
+          "component.special.inbox": {
+            "component_ids": [
+              "HB-SPECIAL-INBOX"
+            ],
+            "theme_roles": [
+              "surface.brand",
+              "surface.paper",
+              "surface.muted",
+              "border.inbox",
+              "radius.inbox",
+              "type.inbox.label",
+              "width.component-band"
+            ]
+          },
+          "component.special.operation": {
+            "component_ids": [
+              "HB-SPECIAL-OPERATION"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.special.overview": {
+            "component_ids": [
+              "HB-SPECIAL-OVERVIEW"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "line.overview.leader",
+              "type.overview.label",
+              "width.component-band"
+            ]
+          },
+          "component.special.reference-figure": {
+            "component_ids": [
+              "HB-SPECIAL-REFERENCE-FIGURE"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "border.strong",
+              "radius.panel",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.auto-resume": {
+            "component_ids": [
+              "HB-TABLE-AUTO-RESUME"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.key-combinations": {
+            "component_ids": [
+              "HB-TABLE-KEY-COMBINATIONS"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.lcd-icon": {
+            "component_ids": [
+              "HB-TABLE-LCD-ICON"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.lcd-mode": {
+            "component_ids": [
+              "HB-TABLE-LCD-MODE"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.reference": {
+            "component_ids": [
+              "HB-TABLE-REFERENCE"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.spec": {
+            "component_ids": [
+              "HB-TABLE-SPEC"
+            ],
+            "theme_roles": [
+              "surface.brand",
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.symbol-icon": {
+            "component_ids": [
+              "HB-TABLE-SYMBOL-ICON"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.symbol-signal": {
+            "component_ids": [
+              "HB-TABLE-SYMBOL-SIGNAL"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.table.troubleshooting": {
+            "component_ids": [
+              "HB-TABLE-TROUBLESHOOTING"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "surface.muted",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.warranty.lead": {
+            "component_ids": [
+              "HB-WARRANTY-LEAD"
+            ],
+            "theme_roles": [
+              "surface.muted",
+              "radius.panel",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.warranty.section": {
+            "component_ids": [
+              "HB-WARRANTY-SECTION"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "border.strong",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          },
+          "component.warranty.years": {
+            "component_ids": [
+              "HB-WARRANTY-YEARS"
+            ],
+            "theme_roles": [
+              "surface.paper",
+              "radius.panel",
+              "type.table.label",
+              "type.table.value",
+              "width.component-band"
+            ]
+          }
+        },
+        "roles": {
+          "border.inbox": {
+            "bindings": {
+              "idml": {
+                "kind": "color",
+                "name": "Color/HB Line K40"
+              },
+              "latex": {
+                "kind": "layout-token",
+                "name": "comp_table_outer_rule"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-line-soft"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "hb-inbox-word-card"
+              }
+            }
+          },
+          "border.strong": {
+            "bindings": {
+              "idml": {
+                "kind": "layout-token",
+                "name": "comp_table_outer_rule"
+              },
+              "latex": {
+                "kind": "layout-token",
+                "name": "comp_table_outer_rule"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-brand-dark"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "_set_spec_table_borders"
+              }
+            }
+          },
+          "line.overview.leader": {
+            "bindings": {
+              "idml": {
+                "kind": "color",
+                "name": "Color/HB Brand Dark"
+              },
+              "latex": {
+                "kind": "color",
+                "name": "HBTextBlack"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-brand-dark"
+              },
+              "word": {
+                "kind": "style",
+                "name": "BodyText"
+              }
+            }
+          },
+          "radius.fcc": {
+            "bindings": {
+              "idml": {
+                "kind": "layout-token",
+                "name": "comp_fcc_arc"
+              },
+              "latex": {
+                "kind": "layout-token",
+                "name": "comp_fcc_arc"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-fcc-radius"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "transform_word_fcc_html"
+              }
+            }
+          },
+          "radius.inbox": {
+            "bindings": {
+              "idml": {
+                "kind": "object-style",
+                "name": "HB Inbox Card"
+              },
+              "latex": {
+                "kind": "layout-token",
+                "name": "comp_inbox_card_arc"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-inbox-card-radius"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "transform_word_inbox_html"
+              }
+            }
+          },
+          "radius.panel": {
+            "bindings": {
+              "idml": {
+                "kind": "object-style",
+                "name": "HB Rounded Table Outer"
+              },
+              "latex": {
+                "kind": "layout-token",
+                "name": "comp_table_outer_arc"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-panel-radius"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "_set_spec_table_layout"
+              }
+            }
+          },
+          "surface.brand": {
+            "bindings": {
+              "idml": {
+                "kind": "color",
+                "name": "Color/HB Brand Dark"
+              },
+              "latex": {
+                "kind": "color",
+                "name": "HBSharedTableFrameColor"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-brand-dark"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "_set_spec_table_borders"
+              }
+            }
+          },
+          "surface.fcc": {
+            "bindings": {
+              "idml": {
+                "kind": "color",
+                "name": "Color/HB Bg K05"
+              },
+              "latex": {
+                "kind": "color",
+                "name": "BgK05"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-surface"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "hb-fcc-word-table"
+              }
+            }
+          },
+          "surface.muted": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB Spec Label"
+              },
+              "latex": {
+                "kind": "color",
+                "name": "HBSharedTableLeftBg"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-surface"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "manual-spec-label"
+              }
+            }
+          },
+          "surface.paper": {
+            "bindings": {
+              "idml": {
+                "kind": "color",
+                "name": "Color/Paper"
+              },
+              "latex": {
+                "kind": "color",
+                "name": "white"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-paper"
+              },
+              "word": {
+                "kind": "table-style",
+                "name": "tableHeader"
+              }
+            }
+          },
+          "type.fcc.body": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB FCC Text"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "HBTypeFccText"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-font-family"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "hb-fcc-word-table"
+              }
+            }
+          },
+          "type.inbox.label": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB InBox Label"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "HBtype_inbox_label_font_size"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-font-family"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "hb-inbox-word-card"
+              }
+            }
+          },
+          "type.overview.label": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB Body"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "HBOverviewPanel"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-font-family"
+              },
+              "word": {
+                "kind": "style",
+                "name": "BodyText"
+              }
+            }
+          },
+          "type.table.label": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB Spec Label"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "HBTypeSpecLabel"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-font-family"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "manual-spec-label"
+              }
+            }
+          },
+          "type.table.value": {
+            "bindings": {
+              "idml": {
+                "kind": "paragraph-style",
+                "name": "HB Spec Value"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "HBTypeSpecValue"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-font-family"
+              },
+              "word": {
+                "kind": "html-class",
+                "name": "manual-spec-value"
+              }
+            }
+          },
+          "width.component-band": {
+            "bindings": {
+              "idml": {
+                "kind": "property-adapter",
+                "name": "spec_table_body_width"
+              },
+              "latex": {
+                "kind": "macro",
+                "name": "linewidth"
+              },
+              "web": {
+                "kind": "css-custom-property",
+                "name": "--hb-component-band-max"
+              },
+              "word": {
+                "kind": "property-adapter",
+                "name": "_set_spec_table_cell_widths"
+              }
+            }
+          }
+        },
+        "schema_version": "manual-theme/v1",
+        "theme_id": "hb-manual-default"
+      },
+      "manual_theme_sha256": "e8fc88458d239edef85f2cfb0b26b71df2e83859c8e51e9c093e5abc2982b47d",
+      "page_count": 2,
+      "page_declarations": {},
+      "page_slots": {},
+      "projection": "whole-document-components/v1",
+      "skipped_raw": 0,
+      "title": "加電包",
+      "web_contract": {
+        "app_download": {
+          "source_patterns": []
+        },
+        "app_inline_controls": {
+          "source_patterns": []
+        },
+        "fcc": {
+          "mark_asset_ref": "mark/fcc",
+          "mark_path": "docs/renderers/latex/assets/fcc_mark.png",
+          "right_column_markers": [
+            {
+              "language": "en",
+              "marker": "If this equipment does cause harmful interference",
+              "source_patterns": [
+                "01_fcc"
+              ]
+            },
+            {
+              "language": "fr",
+              "marker": "Si cet équipement trouble la réception",
+              "source_patterns": [
+                "p22_01_fcc"
+              ]
+            },
+            {
+              "language": "es",
+              "marker": "Si este aparato causa interferencias dañinas",
+              "source_patterns": [
+                "p38_01_fcc"
+              ]
+            },
+            {
+              "language": "pt-BR",
+              "marker": "Se este equipamento causar interferência prejudicial",
+              "source_patterns": [
+                "01_fcc"
+              ]
+            }
+          ],
+          "source_patterns": [
+            "*01_fcc"
+          ]
+        },
+        "figure_coverage": {
+          "requirements": []
+        },
+        "figure_targets": [
+          {
+            "model": "JE-1000F",
+            "region": "US"
+          }
+        ],
+        "in_the_box": {
+          "semantic_source_patterns": [
+            "box_contents_*"
+          ],
+          "source_patterns": [
+            "*02_whats_in_the_box"
+          ]
+        },
+        "meaning_symbols": {
+          "signal_row_count": 4,
+          "source_patterns": [
+            "symbols_*"
+          ]
+        },
+        "operations": {
+          "auto_resume_table": {
+            "body_rows": 4
+          },
+          "key_combination_table": {
+            "minimum_body_rows": 3
+          },
+          "lcd_mode_table": {
+            "body_rows": 6,
+            "image_key": "operation/lcd_mode"
+          },
+          "source_patterns": [
+            "*05_operation_guide_placeholder",
+            "*05_operation_guide_je2000e"
+          ]
+        },
+        "preface": {
+          "source_patterns": [
+            "00_preface*"
+          ],
+          "targets": []
+        },
+        "presentation_layers": {
+          "base": "shared-manual-semantics-v1",
+          "skeleton_profile": null,
+          "target_overlay": null
+        },
+        "product_overview": {
+          "source_patterns": [
+            "*03_product_overview_placeholder"
+          ]
+        },
+        "profiles": {
+          "document": {
+            "description": "Complete paginated manual for DOCX and ordinary Markdown exports."
+          },
+          "web": {
+            "entry_source_pattern": "00_preface*",
+            "excluded_source_patterns": [
+              "cover*",
+              "00_toc*",
+              "99_back_cover*"
+            ]
+          }
+        },
+        "reference_figures": {
+          "figures": [
+            {
+              "asset_scope": "shared",
+              "captions_embedded": true,
+              "capture_following_lines": 3,
+              "control_artwork": "docs/renderers/latex/assets/app_control_panel.png",
+              "id": "app-add-device",
+              "image_key": "app/add_device",
+              "label_roles": [
+                "main-power",
+                "dc-usb",
+                "ac-power"
+              ],
+              "phone_artwork": "docs/renderers/contracts/assets/app/app_add_device_steps.png",
+              "presentation": "shared-art-live-labels",
+              "source_patterns": [
+                "*12_app_setup_placeholder"
+              ]
+            }
+          ],
+          "source_patterns": [
+            "*12_app_setup_placeholder"
+          ]
+        },
+        "schema_version": "web-manual-presentation/v2",
+        "specifications": {
+          "circled_reference_count": 2,
+          "section_count": 4,
+          "source_patterns": [
+            "spec_*"
+          ]
+        },
+        "troubleshooting_table": {
+          "source_patterns": [
+            "troubleshooting_*"
+          ]
+        },
+        "warranty": {
+          "period_years": [
+            "3",
+            "2"
+          ],
+          "section_count": 6,
+          "source_patterns": [
+            "*11_warranty"
+          ]
+        }
+      },
+      "web_figure_coverage": {
+        "model": "BP",
+        "region": "JP",
+        "schema_version": "web-figure-coverage/v1",
+        "slots": [
+          {
+            "locale": "ja",
+            "page_id": "03_product_overview_placeholder.rst",
+            "section": "overview",
+            "slot_id": "source-image.figure",
+            "source_image": "figure.png",
+            "status": "missing"
+          }
+        ],
+        "summary": {
+          "by_section": {
+            "overview": {
+              "by_status": {
+                "approved-composite": 0,
+                "editable-fallback": 0,
+                "finished-panel": 0,
+                "missing": 1
+              },
+              "total": 1
+            }
+          },
+          "by_status": {
+            "approved-composite": 0,
+            "editable-fallback": 0,
+            "finished-panel": 0,
+            "missing": 1
+          },
+          "total": 1
+        }
+      },
+      "web_source_normalization": "preface-auto-resume/v1",
+      "overview_instance": {
+        "component_id": "HB-SPECIAL-OVERVIEW",
+        "target": {
+          "model": "JE-1000F",
+          "region": "US"
+        },
+        "source_patterns": [
+          "*03_product_overview_placeholder"
+        ],
+        "page": {
+          "title_frame": [
+            29.505,
+            28.035,
+            311.91,
+            20.065
+          ]
+        },
+        "views": [
+          {
+            "id": "front",
+            "asset_role": "front_art",
+            "image_key": "overview/front_controls",
+            "web_replace_key": "product-overview.front",
+            "composite_locales": [
+              {
+                "source_patterns": [
+                  "03_product_overview_placeholder"
+                ],
+                "locale": "en"
+              },
+              {
+                "source_patterns": [
+                  "p24_03_product_overview_placeholder"
+                ],
+                "locale": "fr"
+              },
+              {
+                "source_patterns": [
+                  "p40_03_product_overview_placeholder"
+                ],
+                "locale": "es"
+              }
+            ],
+            "web": {
+              "aspect_ratio": 1.668421,
+              "decorative_leaders": [
+                [
+                  [
+                    58.644,
+                    60.581
+                  ],
+                  [
+                    58.644,
+                    85.435
+                  ]
+                ]
+              ]
+            },
+            "idml": {
+              "art_rect": [
+                28.0,
+                98.0,
+                317.0,
+                185.0
+              ],
+              "heading_text_y": 69.832,
+              "heading_bullet_rect": [
+                30.425,
+                69.991,
+                7.067,
+                7.068
+              ]
+            },
+            "callouts": [
+              {
+                "id": "power",
+                "source_slot": "front.left.0",
+                "web": {
+                  "rect": [
+                    1.104,
+                    4.326,
+                    34.069,
+                    7.368
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.101,
+                      8.518
+                    ],
+                    [
+                      41.169,
+                      8.518
+                    ],
+                    [
+                      41.169,
+                      33.378
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    106.22,
+                    76.0,
+                    14.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      31.489,
+                      114.185
+                    ],
+                    [
+                      158.505,
+                      114.185
+                    ],
+                    [
+                      158.505,
+                      161.418
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "lcd",
+                "source_slot": "front.right.0",
+                "web": {
+                  "rect": [
+                    76.341,
+                    4.379,
+                    22.471,
+                    7.368
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      99.005,
+                      8.519
+                    ],
+                    [
+                      51.04,
+                      8.519
+                    ],
+                    [
+                      51.04,
+                      33.506
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    270.0,
+                    106.32,
+                    71.232,
+                    14.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      341.847,
+                      114.186
+                    ],
+                    [
+                      189.796,
+                      114.186
+                    ],
+                    [
+                      189.796,
+                      161.661
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "dc12",
+                "source_slot": "front.left.1",
+                "web": {
+                  "rect": [
+                    1.104,
+                    16.805,
+                    34.069,
+                    13.684
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.101,
+                      25.722
+                    ],
+                    [
+                      35.787,
+                      25.722
+                    ],
+                    [
+                      35.787,
+                      35.193
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    129.93,
+                    76.0,
+                    26.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      31.489,
+                      146.871
+                    ],
+                    [
+                      141.445,
+                      146.871
+                    ],
+                    [
+                      141.445,
+                      164.866
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "led_button",
+                "source_slot": "front.right.1",
+                "web": {
+                  "rect": [
+                    75.71,
+                    16.516,
+                    23.115,
+                    8.947
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      99.006,
+                      21.853
+                    ],
+                    [
+                      59.042,
+                      21.853
+                    ],
+                    [
+                      59.042,
+                      32.851
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    268.0,
+                    129.38,
+                    73.273,
+                    17.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      341.848,
+                      139.52
+                    ],
+                    [
+                      215.164,
+                      139.52
+                    ],
+                    [
+                      215.164,
+                      160.417
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "usb_c_30",
+                "source_slot": "front.left.2",
+                "web": {
+                  "rect": [
+                    1.104,
+                    32.247,
+                    34.069,
+                    12.632
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.101,
+                      43.854
+                    ],
+                    [
+                      29.645,
+                      43.854
+                    ],
+                    [
+                      29.645,
+                      49.175
+                    ],
+                    [
+                      34.437,
+                      49.175
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    159.27,
+                    76.0,
+                    24.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      31.489,
+                      181.322
+                    ],
+                    [
+                      121.975,
+                      181.322
+                    ],
+                    [
+                      121.975,
+                      191.433
+                    ],
+                    [
+                      137.166,
+                      191.433
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "led",
+                "source_slot": "front.right.2",
+                "web": {
+                  "rect": [
+                    78.233,
+                    32.116,
+                    21.068,
+                    7.368
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      99.389,
+                      36.855
+                    ],
+                    [
+                      66.946,
+                      36.855
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    276.0,
+                    159.02,
+                    66.786,
+                    14.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      343.063,
+                      168.024
+                    ],
+                    [
+                      240.218,
+                      168.024
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "usb_c_100",
+                "source_slot": "front.left.3",
+                "web": {
+                  "rect": [
+                    1.104,
+                    45.989,
+                    34.069,
+                    20.526
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.486,
+                      57.141
+                    ],
+                    [
+                      33.346,
+                      57.141
+                    ],
+                    [
+                      33.346,
+                      53.33
+                    ],
+                    [
+                      34.353,
+                      53.33
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    185.38,
+                    76.0,
+                    39.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      32.711,
+                      206.567
+                    ],
+                    [
+                      133.707,
+                      206.567
+                    ],
+                    [
+                      133.707,
+                      199.327
+                    ],
+                    [
+                      136.899,
+                      199.327
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "ac_power",
+                "source_slot": "front.right.3",
+                "web": {
+                  "rect": [
+                    74.448,
+                    43.389,
+                    24.244,
+                    13.158
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      98.843,
+                      47.914
+                    ],
+                    [
+                      46.994,
+                      47.914
+                    ],
+                    [
+                      46.994,
+                      52.076
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    264.0,
+                    180.44,
+                    76.854,
+                    25.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      341.333,
+                      189.037
+                    ],
+                    [
+                      176.97,
+                      189.037
+                    ],
+                    [
+                      176.97,
+                      196.944
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "usb_a",
+                "source_slot": "front.left.4",
+                "web": {
+                  "rect": [
+                    1.104,
+                    67.9,
+                    34.069,
+                    17.895
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.124,
+                      78.5
+                    ],
+                    [
+                      35.787,
+                      78.5
+                    ],
+                    [
+                      35.787,
+                      61.68
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    227.01,
+                    76.0,
+                    34.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      31.564,
+                      247.15
+                    ],
+                    [
+                      141.445,
+                      247.15
+                    ],
+                    [
+                      141.445,
+                      215.192
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "ac_output",
+                "source_slot": "front.right.4",
+                "web": {
+                  "rect": [
+                    77.603,
+                    56.453,
+                    21.09,
+                    14.737
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      99.006,
+                      69.051
+                    ],
+                    [
+                      62.833,
+                      69.051
+                    ],
+                    [
+                      62.833,
+                      60.586
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    274.0,
+                    205.26,
+                    66.854,
+                    28.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      341.848,
+                      229.197
+                    ],
+                    [
+                      227.181,
+                      229.197
+                    ],
+                    [
+                      227.181,
+                      213.113
+                    ]
+                  ],
+                  "anchor": "above-leader"
+                }
+              },
+              {
+                "id": "dc_usb",
+                "source_slot": "front.left.5",
+                "web": {
+                  "rect": [
+                    1.104,
+                    89.437,
+                    34.069,
+                    9.474
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.226,
+                      95.303
+                    ],
+                    [
+                      40.866,
+                      95.303
+                    ],
+                    [
+                      40.866,
+                      57.434
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    31.5,
+                    267.93,
+                    76.0,
+                    18.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      31.887,
+                      279.076
+                    ],
+                    [
+                      157.544,
+                      279.076
+                    ],
+                    [
+                      157.544,
+                      207.125
+                    ]
+                  ],
+                  "anchor": "above-leader"
+                }
+              },
+              {
+                "id": "total",
+                "source_slot": "front.total.0",
+                "web": {
+                  "rect": [
+                    73.817,
+                    84.974,
+                    24.875,
+                    15.263
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      99.389,
+                      94.297
+                    ],
+                    [
+                      68.813,
+                      94.297
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    246.0,
+                    259.45,
+                    94.854,
+                    29.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      343.063,
+                      277.164
+                    ],
+                    [
+                      246.136,
+                      277.164
+                    ]
+                  ],
+                  "anchor": "above-leader"
+                }
+              }
+            ]
+          },
+          {
+            "id": "right",
+            "asset_role": "right_art",
+            "image_key": "overview/right_side_ports",
+            "web_replace_key": "product-overview.right",
+            "composite_locales": [
+              {
+                "source_patterns": [
+                  "03_product_overview_placeholder"
+                ],
+                "locale": "en"
+              },
+              {
+                "source_patterns": [
+                  "p24_03_product_overview_placeholder"
+                ],
+                "locale": "fr"
+              },
+              {
+                "source_patterns": [
+                  "p40_03_product_overview_placeholder"
+                ],
+                "locale": "es"
+              }
+            ],
+            "web": {
+              "aspect_ratio": 2.006369,
+              "decorative_leaders": []
+            },
+            "idml": {
+              "art_rect": [
+                30.0,
+                335.0,
+                315.0,
+                157.0
+              ],
+              "heading_text_y": 317.009,
+              "heading_bullet_rect": [
+                30.425,
+                317.336,
+                7.067,
+                7.068
+              ]
+            },
+            "callouts": [
+              {
+                "id": "handle",
+                "source_slot": "right.sequence.0",
+                "web": {
+                  "rect": [
+                    1.429,
+                    3.35,
+                    34.921,
+                    8.917
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.416,
+                      9.834
+                    ],
+                    [
+                      55.045,
+                      9.834
+                    ],
+                    [
+                      55.045,
+                      18.308
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    34.5,
+                    340.26,
+                    87.0,
+                    14.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      34.461,
+                      350.439
+                    ],
+                    [
+                      203.393,
+                      350.439
+                    ],
+                    [
+                      203.393,
+                      363.743
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "dc_input",
+                "source_slot": "right.sequence.2",
+                "web": {
+                  "rect": [
+                    1.641,
+                    22.045,
+                    28.571,
+                    25.478
+                  ],
+                  "align": "left",
+                  "leader": [
+                    [
+                      1.416,
+                      41.989
+                    ],
+                    [
+                      43.752,
+                      41.989
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    35.17,
+                    369.61,
+                    87.0,
+                    40.0
+                  ],
+                  "align": "LeftAlign",
+                  "leader": [
+                    [
+                      34.461,
+                      400.923
+                    ],
+                    [
+                      167.819,
+                      400.923
+                    ]
+                  ],
+                  "anchor": "above-leader"
+                }
+              },
+              {
+                "id": "ac_input",
+                "source_slot": "right.sequence.1",
+                "web": {
+                  "rect": [
+                    77.46,
+                    29.745,
+                    20.984,
+                    17.834
+                  ],
+                  "align": "right",
+                  "leader": [
+                    [
+                      98.813,
+                      40.483
+                    ],
+                    [
+                      56.874,
+                      40.483
+                    ]
+                  ]
+                },
+                "idml": {
+                  "rect": [
+                    262.0,
+                    381.7,
+                    78.099,
+                    28.0
+                  ],
+                  "align": "RightAlign",
+                  "leader": [
+                    [
+                      341.261,
+                      398.558
+                    ],
+                    [
+                      209.153,
+                      398.558
+                    ]
+                  ],
+                  "anchor": "above-leader"
+                }
+              }
+            ]
+          }
+        ],
+        "idml_leader_order": [
+          "front.power",
+          "front.lcd",
+          "front.dc12",
+          "front.led_button",
+          "front.usb_c_30",
+          "front.usb_c_100",
+          "front.usb_a",
+          "front.dc_usb",
+          "front.led",
+          "front.ac_power",
+          "front.ac_output",
+          "front.total",
+          "right.handle",
+          "right.dc_input",
+          "right.ac_input",
+          "decorative.total_connector"
+        ],
+        "idml_decorative_leaders": [
+          {
+            "id": "total_connector",
+            "points": [
+              [
+                213.902,
+                213.103
+              ],
+              [
+                213.902,
+                260.327
+              ]
+            ],
+            "stroke_weight": 0.6
+          }
+        ],
+        "instance_id": "je1000f-us-v1"
+      },
+      "overview_instance_sha256": "99f9625d3146d542b6187ec34bc751a072eca4b4d670a69e89775e561ade6716"
+    }
+  }
+}
