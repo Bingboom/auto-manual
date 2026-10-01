@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-3600A / EU / en` (`HTE139`, Jackery Explorer 3600 Plus)
 
-Status: Git implementation complete and ready for engineering review. The
+Status: active · Recorded detail: Git implementation complete and ready for engineering review. The
 frozen-source build, strict Sphinx site, asset hashes, semantic LCD content and
 localhost desktop/mobile checks pass. This record does not claim a live table
 write, merge or formal publication.

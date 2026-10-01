@@ -89,7 +89,8 @@ def collect_safety_content(
                 continue
             try:
                 meta = json.loads(r["meta"] or "{}")
-            except Exception as exc:
+            except (ValueError, RecursionError) as exc:
+                # Include integer/depth limits as well as JSON syntax failures.
                 block_id = (r.get("block_id") or "").strip() or "?"
                 line = (r.get("line") or "").strip() or "?"
                 raise ValueError(

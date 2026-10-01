@@ -1,5 +1,7 @@
 # IDML 样式契约欠账清算 discovery（2026-08-05）
 
+Status: active
+
 ## 结论
 
 `fix/idml-style-contract-debt` 可以继续，但必须拆成四个独立验证阶段。批准版式并未缺页：`docs/_review/JE-1000F/US/index.rst` 可生成 52 个 Manual-IR 源页绑定，对应批准合同的 58 个物理页。真正的装配缺口是 `tools/build_dispatch.py::_dispatch_idml_action` 在 `--source auto` 下把所有 IDML 目标都强制为 `runtime`，没有让已批准目标使用冻结 review derivative。

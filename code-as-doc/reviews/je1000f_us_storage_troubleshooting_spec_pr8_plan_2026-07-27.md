@@ -1,5 +1,7 @@
 # JE-1000F US PR8: storage, troubleshooting, and specification parity
 
+Status: done
+
 ## Scope
 
 PR8 aligns the editable storage/troubleshooting and specification compositions

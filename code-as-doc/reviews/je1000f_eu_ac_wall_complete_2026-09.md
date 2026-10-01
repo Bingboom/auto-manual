@@ -1,5 +1,7 @@
 # AC wall charging panel correction
 
+Status: active
+
 Source PDF p154 has a panel border ending at y=152.111pt. The frozen recipe clips
 the shared artwork at y=136pt, cutting the bottom frame. Four locales share this
 language-neutral asset. Recover the whole source panel with clip [26,52,340,153]

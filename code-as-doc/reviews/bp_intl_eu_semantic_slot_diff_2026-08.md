@@ -1,5 +1,7 @@
 # BP@INTL EU semantic slot diff (R1a, 2026-08)
 
+Status: done
+
 ## 1. Decision
 
 `JBP-2000B_EU` remains in the existing `skeleton_id=bp-intl` cell. The

@@ -1,5 +1,7 @@
 # JE-1000F US PR3: global page and type metrics
 
+Status: done
+
 ## Scope
 
 PR3 aligns physical PDF pages 1-3 with the supplied V2.0 reference while

@@ -18,8 +18,8 @@ tools/audit_code_copy.py	write_summary	26
 tools/bitable_content_backup.py	_sync_select_options	22
 tools/bitable_content_backup.py	main	30
 tools/bitable_content_backup.py	restore_content	23
+tools/bitable_schema.py	_cmd_promote	22
 tools/bitable_schema.py	apply	31
-tools/bitable_schema.py	main	71
 tools/bitable_schema.py	parity	26
 tools/bitable_schema.py	seed_import	30
 tools/build_docs_bundle.py	prepare_manual_bundle	40
@@ -128,8 +128,8 @@ tools/idml/prose_flow.py	_apply_single_page_ups_callout_roles	29
 tools/idml/prose_flow.py	apply_component_composition_data	28
 tools/idml/prose_flow.py	promote_reference_figures	87
 tools/idml/prose_paragraph.py	build_text_paragraph	21
+tools/idml/reference_layout_plan.py	_validate_reference_pages	28
 tools/idml/reference_layout_plan.py	load_approved_reference_plan	21
-tools/idml/reference_layout_plan.py	validate_approved_reference_plan	107
 tools/idml/reference_layout_rebind.py	build_rebound_reference_layout_plan	23
 tools/idml/reference_story_flow.py	ReferenceStoryEmitter.emit	72
 tools/idml/safety_story.py	_safety_section_story	33
@@ -148,8 +148,8 @@ tools/idml_rst_extract.py	extract_page	80
 tools/idml_rst_extract_latex.py	_extract_raw_latex	75
 tools/idml_rst_tables.py	parse_grid_table	24
 tools/indesign_finalize.py	_collect_finalize_result	28
+tools/lang_asset_sweep.py	_cmd_sweep	29
 tools/lang_asset_sweep.py	collect_template_entries	22
-tools/lang_asset_sweep.py	main	71
 tools/language_block_trim.py	trim_bundle_language_pages	21
 tools/language_block_trim.py	trim_language_blocks	27
 tools/listen_build_queue_events.py	event_requests_immediate_build	22
@@ -159,7 +159,8 @@ tools/manual_index_query.py	infer_manual_index_intent	26
 tools/manual_ir/document.py	validate_document	45
 tools/manual_ir/flow.py	_encode	32
 tools/manual_ir/flow.py	_validate_node	49
-tools/manual_ir/validate.py	_payload_issues	71
+tools/manual_ir/validate.py	_validate_embedded_overview	27
+tools/manual_ir/validate.py	_validate_payload_pages	25
 tools/manual_ir/web_app_download.py	_download_payload	22
 tools/manual_ir/web_callouts.py	decode_callout_payload	31
 tools/manual_ir/web_symbols.py	decode_pair_table	35
@@ -234,7 +235,10 @@ tools/utils/spec_master_repairs.py	repair_known_spec_master_values	35
 tools/utils/spec_master_row_helpers.py	_row_matches_target	34
 tools/utils/spec_master_row_helpers.py	collect_matching_footnote_rows	27
 tools/utils/targets.py	config_uses_token_in_pages	22
-tools/validate_config.py	validate	138
+tools/validate_config.py	_validate_build	25
+tools/validate_config.py	_validate_pages	31
+tools/validate_config.py	_validate_paths	37
+tools/validate_config.py	_validate_sync	42
 tools/web_base_art_operation.py	arrange_base_art_operation	35
 tools/web_composite_presentation.py	WebCompositeContext.resolve_locale	23
 tools/web_document_ir.py	_render_document_fragments	22

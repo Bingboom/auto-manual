@@ -1,5 +1,7 @@
 # JE-300D EU/en Web intake — 2026-09
 
+Status: active
+
 ## Target and source boundary
 
 - Target: `JE-300D / EU / en`; product name: `Jackery Explorer 300D`; internal material family: `HTE150`.
