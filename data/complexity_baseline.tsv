@@ -126,8 +126,8 @@ tools/idml/prose_flow.py	_apply_single_page_ups_callout_roles	29
 tools/idml/prose_flow.py	apply_component_composition_data	28
 tools/idml/prose_flow.py	promote_reference_figures	87
 tools/idml/prose_paragraph.py	build_text_paragraph	21
+tools/idml/reference_layout_plan.py	_validate_reference_pages	28
 tools/idml/reference_layout_plan.py	load_approved_reference_plan	21
-tools/idml/reference_layout_plan.py	validate_approved_reference_plan	107
 tools/idml/reference_layout_rebind.py	build_rebound_reference_layout_plan	23
 tools/idml/reference_story_flow.py	ReferenceStoryEmitter.emit	72
 tools/idml/safety_story.py	_safety_section_story	33
