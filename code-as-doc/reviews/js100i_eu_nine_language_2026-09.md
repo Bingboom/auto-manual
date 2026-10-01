@@ -5,8 +5,9 @@ Status: active
 The candidate fixes English operation layout and adds `fr/es/de/it/uk/pt/nl/pl`
 through the existing Solar@INTL RST/CSV → `build.py md` → manual-ir/v2 → shared
 Web/Sphinx route. No alternate renderer, OCR, machine translation or generated
-illustration is introduced. This is an engineering review candidate; publication,
-live Base writes, asset promotion and merge are outside this change.
+illustration is introduced. The operator authorized publication of this candidate on 2026-10-01; MA-216
+covers the engineering merge and the corresponding Git-only Web release. Live
+Base writes and asset-registry promotion remain outside this change.
 
 ## Source and scope
 
@@ -185,3 +186,18 @@ missing live Base record.
 Publication, remote RTD/CDN acceptance, live analytics, native print/IDML layout,
 source-owner errata approval and asset-registry promotion remain unverified and
 are not claimed by the local Web checks.
+
+## Publication follow-up (2026-10-01)
+
+The original `check-all` failure was the SKIP-count ratchet: the new shared
+multilingual config adds one discovered JS-100I/EU target without rows in the
+common fixture. Its eight separate Git snapshots remain validated by the locale
+CLI tests and formal builds above. The baseline now records 17 instead of 16
+skips and names the exact new config; the FAIL allowance is unchanged. The
+JE-1000F/EU/uk observation failure is pre-existing and outside this release.
+Main integration includes the upstream CN fixture line-ending correction.
+
+The release retains the documented native-copy decisions and source errata.
+Online acceptance will be recorded against the final source commit and the
+Hello-Docs/Read the Docs deployment; local browser evidence alone does not
+confirm publication.

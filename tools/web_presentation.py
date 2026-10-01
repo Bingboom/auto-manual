@@ -57,7 +57,7 @@ PRESENTATION_PROFILE_ENV = "AUTO_MANUAL_PRESENTATION_PROFILE"
 WEB_CONTRACT_NAME = "web_manual.json"
 _WEB_FIGURE_RE = re.compile(
     r'<figure\b(?=[^>]*\bclass=["\'][^"\']*\bhb-'
-    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|key-combination-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
+    r'(?:(?:annotated|operation|reference)-figure|inbox-composition|app-(?:add-device|download)-composition|fcc-composition|lcd-table-composition|lcd-mode-composition|auto-resume-composition|key-combination-composition|symbol-(?:signal|pair)-composition|troubleshooting-composition|spec-table-composition|registration-composition|warranty-intro-composition|warranty-card|warranty-period-card)\b)'
     r"[^>]*>.*?</figure>",
     re.IGNORECASE | re.DOTALL,
 )
