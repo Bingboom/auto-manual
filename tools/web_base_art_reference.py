@@ -125,6 +125,10 @@ def arrange_base_art_reference(
     # The art is decorative for assistive technology: the lines it carried in
     # the approved composite are live text on the panel, in source order.
     image["alt"] = ""
+    if layout.get("preserve_frame"):
+        semantic["data-preserve-art-frame"] = "true"
+    if layout.get("mobile_labels") == "overlay":
+        semantic["data-mobile-labels"] = "overlay"
     panel = soup.new_tag(
         "div",
         attrs={

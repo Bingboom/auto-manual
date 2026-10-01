@@ -96,3 +96,23 @@
     font-size: clamp(0.48rem, 2.05vw, 0.72rem);
   }
 }
+
+/* QR-only downloads keep the source copy beside a scan-sized code. */
+#furo-main-content .hb-app-download-qr-only {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(6rem, 9rem);
+  align-items: center;
+  gap: 1rem;
+}
+#furo-main-content .hb-app-download-qr-only > .hb-app-download-art-qr {
+  width: 100% !important;
+  max-width: 9rem !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+@media (max-width: 480px) {
+  #furo-main-content .hb-app-download-qr-only {
+    grid-template-columns: minmax(0, 1fr) 6rem;
+    gap: .75rem;
+  }
+}
