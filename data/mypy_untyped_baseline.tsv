@@ -1,0 +1,35 @@
+# Per-file count of `mypy --disallow-untyped-defs` errors in tools/manual_ir,
+# tools/component_specs and tools/csv_pages (mypy 2.3.1). No file may grow,
+# unlisted files may not add one, and a lower count must be written back.
+# Regenerate intentionally with:
+#   python tools/check_mypy_ratchet.py update
+tools/component_specs/app_html.py	2
+tools/component_specs/authored_tables_html.py	12
+tools/component_specs/auto_resume.py	1
+tools/component_specs/fcc_html.py	4
+tools/component_specs/key_combinations.py	1
+tools/component_specs/operation.py	1
+tools/component_specs/operation_html.py	5
+tools/component_specs/operation_tables_html.py	4
+tools/component_specs/overview_instance.py	2
+tools/component_specs/reference_figure.py	1
+tools/component_specs/reference_figure_html.py	8
+tools/component_specs/registry.py	1
+tools/component_specs/theme.py	4
+tools/component_specs/warranty_html.py	3
+tools/component_specs/web_source.py	2
+tools/csv_pages/builder.py	1
+tools/csv_pages/renderers_safety.py	2
+tools/csv_pages/renderers_spec.py	8
+tools/csv_pages/renderers_spec_parser.py	9
+tools/csv_pages/renderers_troubleshooting.py	1
+tools/manual_ir/document.py	1
+tools/manual_ir/flow.py	1
+tools/manual_ir/validate.py	2
+tools/manual_ir/web_app_controls.py	1
+tools/manual_ir/web_app_download.py	1
+tools/manual_ir/web_callouts.py	4
+tools/manual_ir/web_specs.py	3
+tools/manual_ir/web_symbols.py	13
+tools/manual_ir/web_tables.py	5
+tools/manual_ir/whole_document_components.py	16

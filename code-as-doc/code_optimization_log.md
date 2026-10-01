@@ -1,6 +1,6 @@
 ﻿# Code Optimization Log
 
-Updated: 2026-09-30
+Updated: 2026-10-02
 
 This file records major maintainability milestones.
 It is a history log, not the day-to-day usage guide.
@@ -15,6 +15,28 @@ For current rules, see:
 - [`code-as-doc/build_doc_guide.md`](build_doc_guide.md)
 - [`code-as-doc/code_style_guide.md`](code_style_guide.md)
 - [`user-guide/hello_auto-doc.md`](../user-guide/hello_auto-doc.md)
+
+## 2026-10-02: Workstream Y parallel lanes round
+
+The [parallel-lanes plan](dev/workstream_y_parallel_lanes.md) ran the remaining
+[Workstream Y](dev/code_quality_iterability_plan.md) items as independent agent
+lanes for one day, with no build-output changes:
+
+- CQ-3.2 done: the five head validators (#1350, #1357, #1355, #1363/#1377,
+  #1361) became per-section functions behind characterization nets; functions
+  with complexity ≥50 fell 32 → 25.
+- CQ-3.3: `lang_asset_sweep` and `bitable_schema` `main()` split into command
+  handlers (#1356, #1360); `export_idml` remains.
+- CQ-2.3: queue `QueueDeps` seam landed (#1362); no test migrated yet, so
+  facade patches stay at 363.
+- CQ-7.3: lifecycle status backfilled for `reviews/` and `dev/` docs
+  (#1354, #1359), 174 → 5 unclassified.
+- CQ-5.3: `csv_pages` exception audit (#1358), broad handlers 89 → 86.
+- New ratchets: `zip()` without `strict=` (64, guardrails) and per-file
+  untyped-def mypy errors in the three CQ-4.5 packages (119, CI `type-check`
+  job with mypy pinned). Both counts had regressed during the round
+  (B905 62 → 64; mypy fixed back by #1375, #1379).
+- #1365, #1366 and #1368 were closed unmerged after falling 16 commits behind.
 
 ## 2026-09-30: Shared-component admission and 14-manual rollout
 
