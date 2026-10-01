@@ -109,7 +109,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
   - [ ] 按测试文件迁移门面 patch：
     - [x] `QueueDeps` 增加 11 个可选的单次运行覆盖项（会话预检、链接绑定、身份、快照同步、构建、产物目标、钉钉镜像、产物发布、云文档导入/收尾），`test_process_build_queue.py` 203 → 70、`test_process_build_queue_routing.py` 29 → 25，合计 363 → 226（2026-10-02，用脚本按 AST 机械改写，测试断言不变）
     - [ ] `resolve_wiki_destination`、`upload_word_to_drive` 等在其它门面服务内部再次查找的名字，需先把内部调用改成经 deps 传递
-    - [ ] `process_review_start_queue`（87，改用已有 `ReviewStartRuntimeDeps`）、`build_docs` 门面（22）
+    - [x] `process_review_start_queue`：直接调用 `process_review_start_queue()` 的 9 个测试块改为传 `deps=replace(default_review_start_deps(), ...)`（已有 `ReviewStartRuntimeDeps`，8 个字段），87 → 21，合计 226 → 160（2026-10-02）
+    - [ ] `build_docs` 门面（22）
 - [ ] **CQ-2.4 删除无人使用的转发。** 某个 `*_impl` 转发或再导出在测试和代码中都没有引用时，
   将其删除，并把门面的公开名写入 `__all__`。先做 `tools/build_docs.py`，再做
   `tools/process_build_queue.py`。
