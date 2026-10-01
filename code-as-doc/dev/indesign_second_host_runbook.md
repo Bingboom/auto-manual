@@ -1,5 +1,7 @@
 # InDesign 第二主机 Runbook（Milestone K7）
 
+Status: active
+
 Registered: 2026-07-17
 
 ## 0. 为什么有这份文件

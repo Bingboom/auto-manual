@@ -1,5 +1,7 @@
 # IDML Exporter Module Map
 
+Status: active
+
 Result of the componentization plan (`reports/idml_componentization/20260705-01`,
 P0–P4, 2026-07-05). The exporter went from a 2001-line single file to a layered
 package with the emitted `.idml` **bit-identical** throughout (enforced by a

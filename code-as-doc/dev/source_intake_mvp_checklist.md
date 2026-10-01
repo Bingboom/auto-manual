@@ -1,5 +1,7 @@
 # Source Intake MVP Checklist
 
+Status: done
+
 Updated: 2026-06-26
 
 Goal:

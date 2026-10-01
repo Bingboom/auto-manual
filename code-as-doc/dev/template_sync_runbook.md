@@ -1,6 +1,6 @@
 # Template-Sync Operator Runbook
 
-Status: runbook · Owner: 夏冰 · Created: 2026-06-19 · Milestone F PR F7
+Status: active · Recorded detail: runbook · Owner: 夏冰 · Created: 2026-06-19 · Milestone F PR F7
 
 This is the operator procedure for the **template-sync role** in the backport
 reverse-sync (see [`../architecture/Feishu_Cloud_Doc_Backport_Design.md`](../architecture/Feishu_Cloud_Doc_Backport_Design.md)

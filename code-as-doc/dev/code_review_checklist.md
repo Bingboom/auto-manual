@@ -1,5 +1,7 @@
 # Code Review Checklist
 
+Status: active
+
 Updated: 2026-03-15
 
 Use this checklist when reviewing changes to code, config, data, or review workflow.

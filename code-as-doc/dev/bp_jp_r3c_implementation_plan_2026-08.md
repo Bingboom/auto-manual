@@ -1,5 +1,7 @@
 # BP@JP R3c implementation plan (JBP-2000B_JP)
 
+Status: done
+
 Date: 2026-08-31
 
 This plan is intentionally staged from cheap and reversible checks to the

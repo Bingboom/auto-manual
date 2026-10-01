@@ -1,5 +1,7 @@
 # OPS-05b1: bounded read-only HTTP checks
 
+Status: active
+
 Discovery: OPS-05a checks local release artifacts, not deployed links. The RTD
 portal already owns frozen index discovery and OPS-02 validates stored identity;
 reuse that catalog rather than inventing a second inventory or live data table.

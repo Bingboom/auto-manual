@@ -1,5 +1,7 @@
 # OPS-05a：只读发布产物检查（不是部署验收）
 
+Status: active
+
 在包含冻结发布产物的 checkout 中运行：
 
 ```bash

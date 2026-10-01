@@ -1,5 +1,7 @@
 # Web Component and Figure Asset Coverage Discovery (2026-09)
 
+Status: done
+
 ## Scope
 
 This discovery covers the responsive Web manual path after the current Web

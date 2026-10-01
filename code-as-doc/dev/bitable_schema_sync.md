@@ -1,5 +1,7 @@
 # Bitable Schema Sync (dev → prod tenant)
 
+Status: active
+
 Updated: 2026-06-28
 
 The repo's **code** already mirrors dev → prod (`auto-manual` →

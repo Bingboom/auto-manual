@@ -1,5 +1,7 @@
 # EU PDF Style Iteration Plan
 
+Status: active
+
 This plan tracks the work needed to make the current JE-1000F EU LaTeX PDF output closer to the attached Jackery-style reference PDF, while keeping template maintenance cost under control.
 
 The cover is out of scope for this plan. The focus is text style, component density, page structure, table behavior, and build stability.

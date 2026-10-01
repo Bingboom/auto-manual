@@ -1,5 +1,7 @@
 # IDML candidate → production 晋升流程
 
+Status: active
+
 每条新产线的 IDML 装配都会走到同一扇门前：candidate 装配合同能出包、能交付
 InDesign 手工层,但在视觉验收通过并**晋升为批准参考版式合同**之前,它永远不是
 production。此前这条流程只有 `configs/config.bp-us.yaml` 里的一句注释;本文是
