@@ -110,8 +110,13 @@ class FreshPdfWebTests(unittest.TestCase):
                     lcd = soup.select_one('.hb-lcd-table-composition .hb-lcd-icon-table')
                     self.assertIsNotNone(lcd)
                     self.assertEqual(26, len(lcd.select('tbody tr')))
-                    self.assertTrue(all(len(row.find_all('td', recursive=False)) == 4
-                                        for row in lcd.select('tbody tr')))
+                    lcd_rows = lcd.select('tbody tr')
+                    self.assertEqual([4] * 22 + [3] + [4] * 3,
+                                     [len(row.find_all('td', recursive=False)) for row in lcd_rows])
+                    shared_number = lcd_rows[21].select_one('.hb-lcd-number')
+                    self.assertEqual('22', shared_number.get_text(strip=True))
+                    self.assertEqual('2', shared_number['rowspan'])
+                    self.assertIsNone(lcd_rows[22].select_one('.hb-lcd-number'))
                     self.assertEqual(26, len(lcd.select('.hb-lcd-icon-art')))
 
                     self.assertEqual('--hb-aspect-ratio:1.5', soup.select_one('.hb-annotated-stage')['style'])
