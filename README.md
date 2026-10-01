@@ -98,4 +98,6 @@ README 只保留路线图、视频位和最短入口；详细机制由上表中�
 
 Prepared EU Web admission and legacy migration debt: [shared-component admission](code-as-doc/dev/prepared_component_admission.md).
 
+中规/日规审核源的纯文字清单、LCD 表和 App 接入规则见 [构建说明](code-as-doc/build_doc_guide.md)。
+
 旧版 RST 网页表格的共享组件声明见 [样式定义](docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。

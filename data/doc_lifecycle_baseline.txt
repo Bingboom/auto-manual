@@ -3,7 +3,6 @@
 # `Status: <proposed|active|done|archived|superseded-by>`; fixed entries become stale.
 # Regenerate intentionally with:
 #   python tools/check_doc_lifecycle.py update
-code-as-doc/dev/four_language_shared_ir_alignment.md
 code-as-doc/dev/je1000f_us_base_art_web.md
 code-as-doc/dev/manual_revitalization_execution.md
 code-as-doc/dev/merge_authorizations.md

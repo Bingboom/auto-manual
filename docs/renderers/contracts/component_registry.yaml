@@ -168,7 +168,7 @@ components:
   HB-SPECIAL-APP:
     style_id: HB-SPECIAL-APP
     source_kinds: [app_download, app_inline_control, app_add_device]
-    variants: [download, inline-control, add-device]
+    variants: [download, download-qr-only, inline-control, add-device]
     slots:
       accessibility_label:
         required: true
@@ -188,6 +188,9 @@ components:
       step_captions:
         required: false
         content_kinds: [ordered_labels]
+      interstitial_note:
+        required: false
+        content_kinds: [rich_text]
     asset_roles:
       source_art: {required: false, locale_policies: [exact]}
       store_art: {required: false, locale_policies: [shared]}
@@ -200,6 +203,12 @@ components:
       latex: {capability: rendered, key: hb_latex_app}
       idml: {capability: rendered, key: idml_app}
       word: {capability: projection-only, key: word_app}
+    variant_adapters:
+      download-qr-only:
+        web: {capability: rendered, key: hb_app}
+        latex: {capability: not-applicable, key: hb_latex_app}
+        idml: {capability: not-applicable, key: idml_app}
+        word: {capability: not-applicable, key: word_app}
 
   HB-SPECIAL-REFERENCE-FIGURE:
     style_id: HB-SPECIAL-REFERENCE-FIGURE

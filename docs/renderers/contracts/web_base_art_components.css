@@ -527,3 +527,32 @@
     padding: 0.15rem 0.7rem;
   }
 }
+
+/* A declared source frame is part of the approved art and must not be clipped. */
+.hb-reference-figure.hb-base-art-live-copy [data-preserve-art-frame="true"] .hb-reference-art-panel {
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+.hb-reference-figure.hb-base-art-live-copy [data-preserve-art-frame="true"] .hb-reference-art-panel > .hb-reference-art {
+  clip-path: none;
+}
+
+/* Explicit source-bound labels remain on the illustration at every width.
+   Other approved layouts retain their readable stacked mobile treatment. */
+.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-art-panel {
+  padding-top: var(--hb-panel-top);
+  padding-bottom: 0;
+}
+.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-label {
+  position: absolute;
+  display: flex;
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  margin: 0;
+  font-size: max(.5rem, 1.99cqw);
+}
+.hb-reference-figure.hb-base-art-live-copy [data-mobile-labels="overlay"] .hb-reference-live-pill {
+  max-width: none;
+  padding: 0.3cqw 1.2cqw;
+}
