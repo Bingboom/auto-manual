@@ -148,6 +148,23 @@ class DeploymentReceiptTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 self.verify()
 
+    def test_source_storage_budget_does_not_expand_served_output_budget(self):
+        source_size = sum(p.stat().st_size for p in self.web.parent.rglob("*") if p.is_file())
+        with patch.object(receipt, "MAX_TOTAL_BYTES", 1), \
+                patch.object(receipt, "MAX_SOURCE_TOTAL_BYTES", source_size):
+            self.assertTrue(receipt.source_fingerprint(self.web))
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.write_deployment_receipt(self.app, None)
+        with patch.object(receipt, "MAX_SOURCE_TOTAL_BYTES", source_size - 1):
+            with self.assertRaisesRegex(ValueError, "safety limits"):
+                receipt.source_fingerprint(self.web)
+
+    def test_source_storage_budget_retains_file_size_and_count_limits(self):
+        for limit in ("MAX_FILE_BYTES", "MAX_FILES"):
+            with self.subTest(limit=limit), patch.object(receipt, limit, 1):
+                with self.assertRaisesRegex(ValueError, "safety limits"):
+                    receipt.source_fingerprint(self.web)
+
     def test_real_frozen_sphinx_build_emits_verifiable_receipt(self):
         (self.web / "conf.py").write_text(
             "project='Receipt fixture'\n"

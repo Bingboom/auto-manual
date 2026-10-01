@@ -852,10 +852,7 @@
       "table_event_y": {
         "troubleshooting": 249
       },
-      "pending_source_review": [
-        "new-locale-review",
-        "source-version-difference"
-      ],
+      "pending_source_review": [],
       "media": {
         "inbox": {
           "title_bbox": [
@@ -2073,7 +2070,14 @@
             ]
           ]
         }
-      ]
+      ],
+      "source_review_approval": {
+        "operator_request": "发布上线",
+        "date": "2026-10-01",
+        "authorization": "MA-218",
+        "reviewed_candidate": "candidate-24",
+        "resolution": "Approve PT/NL/PL native JAK-UM-V1.0 source for this Git-only release; existing six-language EUUK V2.0 sources remain unchanged."
+      }
     },
     "nl": {
       "chapter_heading_bboxes": {
@@ -2786,10 +2790,7 @@
       "table_event_y": {
         "troubleshooting": 249
       },
-      "pending_source_review": [
-        "new-locale-review",
-        "source-version-difference"
-      ],
+      "pending_source_review": [],
       "media": {
         "inbox": {
           "title_bbox": [
@@ -4024,7 +4025,14 @@
             ]
           ]
         }
-      ]
+      ],
+      "source_review_approval": {
+        "operator_request": "发布上线",
+        "date": "2026-10-01",
+        "authorization": "MA-218",
+        "reviewed_candidate": "candidate-24",
+        "resolution": "Approve PT/NL/PL native JAK-UM-V1.0 source for this Git-only release; existing six-language EUUK V2.0 sources remain unchanged."
+      }
     },
     "pl": {
       "chapter_heading_bboxes": {
@@ -4737,10 +4745,7 @@
       "table_event_y": {
         "troubleshooting": 249
       },
-      "pending_source_review": [
-        "new-locale-review",
-        "source-version-difference"
-      ],
+      "pending_source_review": [],
       "media": {
         "inbox": {
           "title_bbox": [
@@ -5979,7 +5984,14 @@
             ]
           ]
         }
-      ]
+      ],
+      "source_review_approval": {
+        "operator_request": "发布上线",
+        "date": "2026-10-01",
+        "authorization": "MA-218",
+        "reviewed_candidate": "candidate-24",
+        "resolution": "Approve PT/NL/PL native JAK-UM-V1.0 source for this Git-only release; existing six-language EUUK V2.0 sources remain unchanged."
+      }
     }
   },
   "media_asset_keys": [
