@@ -1,0 +1,258 @@
+[
+  {
+    "asset_key": "operation-main-power",
+    "page": 109,
+    "clip": [
+      38,
+      78,
+      340,
+      157
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3624,
+      948
+    ],
+    "sha256": "6bc9507107c3e8cbce6174a177f305141fffb64f121ef8f7a3535bbd4f53cbcd"
+  },
+  {
+    "asset_key": "operation-ac-output",
+    "page": 109,
+    "clip": [
+      35,
+      272,
+      340,
+      467
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3660,
+      2340
+    ],
+    "sha256": "c3f6fc2a8f2c332756a2a17300921d9ac7dc757b326ced129711d95268f1da12"
+  },
+  {
+    "asset_key": "operation-dc-usb-output",
+    "page": 110,
+    "clip": [
+      35,
+      47,
+      341,
+      210
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3672,
+      1956
+    ],
+    "sha256": "cd8e46e05be07339db79fed91dbb3de372647ce75ad7d57b9ca4f84195910e9d"
+  },
+  {
+    "asset_key": "reference-energy_saving",
+    "page": 111,
+    "clip": [
+      35,
+      36,
+      337,
+      130
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3624,
+      1128
+    ],
+    "sha256": "222be1caa5342b0c1a45df51df708d7b3bf656f11714827feded992a8db8bf27"
+  },
+  {
+    "asset_key": "lcd-mode",
+    "page": 111,
+    "clip": [
+      37,
+      201,
+      333,
+      280
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3552,
+      948
+    ],
+    "sha256": "3a01e09d603ddc83289b3869304c7f45909dec2aaa650d4a84306e4dc4b8b55a"
+  },
+  {
+    "asset_key": "reference-solar_four",
+    "page": 114,
+    "clip": [
+      28,
+      28,
+      342,
+      160
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3768,
+      1584
+    ],
+    "sha256": "7ad94201abe40140734960df667a4523bb640c32d582b3807b8cc2b6654f8fda"
+  },
+  {
+    "asset_key": "reference-car_charging",
+    "page": 114,
+    "clip": [
+      28,
+      306,
+      341,
+      437
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3756,
+      1572
+    ],
+    "sha256": "594fa3eb67203bc5c45a260c9423f37992c93361f52c9d07671e7452dbc62f7f"
+  },
+  {
+    "asset_key": "app-phone",
+    "page": 118,
+    "clip": [
+      100,
+      215.5,
+      269,
+      366.5
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      2028,
+      1812
+    ],
+    "sha256": "eba70d2cac9d117d5e53bf7572da12548d08f23ee824a473b652eb839bb93f77"
+  },
+  {
+    "asset_key": "app-result",
+    "page": 119,
+    "clip": [
+      54,
+      145,
+      320,
+      294
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3192,
+      1788
+    ],
+    "sha256": "123ee64484e222f7565742843818885dc4e5520c47b8f5fcb60c362b04a562f7"
+  },
+  {
+    "asset_key": "app-control",
+    "page": 118,
+    "clip": [
+      28,
+      379,
+      341,
+      471
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3756,
+      1104
+    ],
+    "sha256": "4653c9cd4faf5f9add373894c9776b9e3028a9a2eeb9938fdea2956762c17885"
+  },
+  {
+    "asset_key": "reference-overview_front_view-pt",
+    "page": 106,
+    "clip": [
+      25,
+      76,
+      344,
+      289
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      2556
+    ],
+    "sha256": "b7edc6e663213bb9e5c1b434d1c8948844fd9625361e4f5cfa33f74648a3c1b1"
+  },
+  {
+    "asset_key": "reference-overview_right_view-pt",
+    "page": 106,
+    "clip": [
+      25,
+      328,
+      344,
+      444
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      1392
+    ],
+    "sha256": "1a91d6d7799d3abeb9a7b53c924e3fb5879fd4a628a0bcd332cb513990ec1e8a"
+  },
+  {
+    "asset_key": "reference-overview_front_view-nl",
+    "page": 122,
+    "clip": [
+      25,
+      76,
+      344,
+      289
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      2556
+    ],
+    "sha256": "c037c858fe766ca9a3ba1afb6239236620047a1cc89909ade24a5bc5e6b35d04"
+  },
+  {
+    "asset_key": "reference-overview_right_view-nl",
+    "page": 122,
+    "clip": [
+      25,
+      328,
+      344,
+      444
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      1392
+    ],
+    "sha256": "70e824fe0b2339c324cc520d2599bc5f27eef73c9b8809b2c546636f72cbb7de"
+  },
+  {
+    "asset_key": "reference-overview_front_view-pl",
+    "page": 138,
+    "clip": [
+      25,
+      76,
+      344,
+      289
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      2556
+    ],
+    "sha256": "9461003c66580a1f7188e03eac4190a189fdbd90b0698360f911bb72c80f415e"
+  },
+  {
+    "asset_key": "reference-overview_right_view-pl",
+    "page": 138,
+    "clip": [
+      25,
+      328,
+      344,
+      444
+    ],
+    "render_scale": 12,
+    "dimensions": [
+      3828,
+      1392
+    ],
+    "sha256": "0e4c751969caa90f585ae1bd441b49d9651f92b04c9bb36511f07e53263eb913"
+  }
+]
