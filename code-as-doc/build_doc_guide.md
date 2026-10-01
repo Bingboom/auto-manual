@@ -29,7 +29,7 @@ Exact frozen-source/served-asset identity can be checked with the
 [Git-only deployment receipt](dev/rtd_deployment_receipt.md), emitted by the
 existing frozen Sphinx portal build. Reads use an internal unique cache probe and
 bounded retries for incomplete transport; served source and asset hashes remain
-exact. This check performs no link writeback.
+exact. Frozen-source inventory has a separate 640 MiB storage budget; served output and fetched-byte budgets remain 512 MiB. This check performs no link writeback.
 
 Web profile plus an explicit `--lang` uses the
 [frozen language projection](dev/web_language_projection.md): it keeps the complete
