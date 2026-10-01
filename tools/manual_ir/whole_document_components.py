@@ -9,7 +9,7 @@ from __future__ import annotations
 from dataclasses import dataclass, replace
 import fnmatch
 from pathlib import Path
-from typing import Any, Callable, Mapping, Sequence
+from typing import Any, Callable, Iterable, Iterator, Mapping, Sequence, TypeGuard
 
 from bs4 import BeautifulSoup, Comment, Tag
 
@@ -68,7 +68,9 @@ class ComponentClaim:
     consume_interstitial: bool = False
 
 
-def _reference_bindings(references, *, source_path, supports_figures):
+def _reference_bindings(
+    references: Iterable[object], *, source_path: Path, supports_figures: bool,
+) -> Iterator[Mapping[str, Any]]:
     """Select explicit base-art bindings without granting all legacy layouts."""
     for reference in references:
         if not isinstance(reference, Mapping) or not _matches_source(
@@ -87,6 +89,16 @@ def _reference_bindings(references, *, source_path, supports_figures):
 def _matches_source(source_path: Path, patterns: Sequence[str]) -> bool:
     stem = source_path.stem.casefold()
     return any(fnmatch.fnmatch(stem, str(pattern).casefold()) for pattern in patterns)
+
+
+def _matches_app_download(
+    app_download: object, *, source_path: Path, supports_figures: bool,
+) -> TypeGuard[Mapping[str, Any]]:
+    return (
+        isinstance(app_download, Mapping)
+        and (supports_figures or app_download.get("presentation") == "qr-only")
+        and _matches_source(source_path, app_download.get("source_patterns", []))
+    )
 
 
 def _matches_asset_source(source: str, image_key: str) -> bool:
@@ -203,7 +215,10 @@ def _claim_inbox(soup, source_path, language, contract, claimed, claims):
         claims.append(claim)
 
 
-def _claim_lcd_mode(soup, source_path, language, lcd_config, claimed, claims):
+def _claim_lcd_mode(
+    soup: BeautifulSoup, source_path: Path, language: str,
+    lcd_config: Mapping[str, Any], claimed: set[int], claims: list[ComponentClaim],
+) -> None:
     lcd_spec, lcd_table, lcd_artwork = parse_lcd_mode_html(
         soup,
         source_path=source_path,
@@ -377,9 +392,7 @@ def discover_registered_components(
         claims.append(claim)
 
     app_download = contract["app_download"]
-    if (supports_figures or app_download.get("presentation") == "qr-only") and _matches_source(
-        source_path, app_download.get("source_patterns", [])
-    ):
+    if _matches_app_download(app_download, source_path=source_path, supports_figures=supports_figures):
         spec, owned, asset_tags, asset_paths = parse_app_download_html(
             soup,
             source_path=source_path,
