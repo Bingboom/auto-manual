@@ -146,8 +146,8 @@ tools/idml_rst_extract.py	extract_page	80
 tools/idml_rst_extract_latex.py	_extract_raw_latex	75
 tools/idml_rst_tables.py	parse_grid_table	24
 tools/indesign_finalize.py	_collect_finalize_result	28
+tools/lang_asset_sweep.py	_cmd_sweep	29
 tools/lang_asset_sweep.py	collect_template_entries	22
-tools/lang_asset_sweep.py	main	71
 tools/language_block_trim.py	trim_bundle_language_pages	21
 tools/language_block_trim.py	trim_language_blocks	27
 tools/listen_build_queue_events.py	event_requests_immediate_build	22
