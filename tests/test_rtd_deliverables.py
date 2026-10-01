@@ -13,6 +13,9 @@ from contextlib import redirect_stdout
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
+from urllib.parse import unquote, urlsplit
+
+from bs4 import BeautifulSoup
 
 from tools import rtd_deliverables as dl
 from tools import rtd_portal
@@ -284,13 +287,14 @@ class RealSphinxTests(unittest.TestCase):
                 return result, page
 
             _, page = build("good")
-            self.assertIn("<h1>交付物", page)
+            self.assertIn("<h1>说明书工作台", page)
             self.assertIn('<tbody data-model="JE-1000F">', page)
             self.assertIn('<tr data-region="pt-BR">', page)
             # Web manuals link to their page on this site; Feishu links open in a new tab.
             self.assertIn('href="../../JE-1000F/US/en/md/manual_je1000f_us.html"', page)
             self.assertIn('href="https://t.feishu.cn/wiki/print-us"', page)
-            self.assertEqual(page.count('target="_blank" rel="noopener"'), 4)
+            soup = BeautifulSoup(page, 'html.parser')
+            self.assertEqual(len(soup.select('.dl-table a[target="_blank"][rel="noopener"]')), 4)
             self.assertIn('<option value="JE-1800B">JE-1800B</option>', page)
             self.assertIn("飞书快照 2026-09-25", page)
             self.assertTrue((base / "good" / "_static" / "deliverables.css").is_file())
@@ -299,6 +303,28 @@ class RealSphinxTests(unittest.TestCase):
             system = (base / "good" / "workspace" / "system" / "index.html").read_text(encoding="utf-8")
             self.assertIn('href="../deliverables/index.html"', system)
             self.assertIn('href="../system/index.html"', page)
+
+            # The work map remains usable without JS and points at real repo resources.
+            nodes = soup.select('[data-workbench-node]')
+            self.assertEqual(len(nodes), 4)
+            for node in nodes:
+                panel = soup.find(id=node['aria-controls'])
+                self.assertIsNotNone(panel)
+                self.assertFalse(panel.has_attr('hidden'))
+                self.assertTrue(panel.select('a[href]'))
+            for anchor in soup.select('.wb-workflow a[href]'):
+                url = urlsplit(anchor['href'])
+                if url.hostname == 'github.com' and url.path.startswith('/Bingboom/auto-manual/'):
+                    path = unquote(url.path.split('/main/', 1)[1])
+                    self.assertTrue((REPO / path).exists(), path)
+                if url.hostname and url.hostname.endswith('.feishu.cn'):
+                    self.assertEqual(url.scheme, 'https')
+                    self.assertEqual(anchor.get('target'), '_blank')
+                    self.assertIn('noopener', anchor.get('rel', []))
+            for name in ('manual-workbench.css', 'manual-workbench.js'):
+                self.assertTrue((base / 'good' / '_static' / name).is_file())
+            self.assertIn('说明书工作台', workspace)
+            self.assertIn('说明书工作台', system)
 
             # An unsound snapshot empties only the Feishu columns.
             (assets / SNAPSHOT_NAME).write_text("{not json", encoding="utf-8")
