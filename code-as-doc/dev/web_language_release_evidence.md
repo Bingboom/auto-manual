@@ -1,5 +1,7 @@
 # Web language release evidence (OPS-01b2)
 
+Status: active
+
 ## Discovery and implementation boundary
 
 Baseline: main `51791920bf5d9326f13b54c26af03cf2c1caf7d5`. OPS-01b1

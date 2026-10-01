@@ -1,6 +1,6 @@
 # IDML component targets
 
-Status: pilot. `JE-1000F / US / en` is the only declared target; whole-book
+Status: active · Recorded detail: pilot. `JE-1000F / US / en` is the only declared target; whole-book
 designer sign-off is pending.
 
 ## 1. What a component target is

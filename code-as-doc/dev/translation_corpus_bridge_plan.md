@@ -1,7 +1,7 @@
 # Translation Corpus Bridge — Landing Plan
 
 Updated: 2026-06-01
-Status: **Phases 1–3 + cleanup complete** (2026-06-01) — single-source migration, the
+Status: done · Recorded detail: **Phases 1–3 + cleanup complete** (2026-06-01) — single-source migration, the
 `Glossary_term` relation, 182 sentence→term links, all 9 `term_<lang>` lookups, per-model
 sentence merge, whitespace + glossary-dedup, and language-column standardization
 (`ko`/`uk`, `jp` kept) are all live and verified. Every write step was owner-approved (夏冰).

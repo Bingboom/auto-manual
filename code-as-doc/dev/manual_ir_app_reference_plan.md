@@ -1,5 +1,7 @@
 # ManualIR v2 App and Reference Figure ComponentSpec Plan
 
+Status: done
+
 Date: 2026-09-05
 Branch: `feat/manual-ir-app-reference-figures`
 Baseline: `ef45a0df` (cut 4)

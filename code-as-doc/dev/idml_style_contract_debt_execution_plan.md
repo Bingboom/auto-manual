@@ -1,5 +1,7 @@
 # IDML 样式契约欠账清算 — 实施计划
 
+Status: done
+
 Discovery：[`../reviews/idml_style_contract_debt_discovery_2026-08-05.md`](../reviews/idml_style_contract_debt_discovery_2026-08-05.md)。
 
 ## Phase A — 等价批准装配路由

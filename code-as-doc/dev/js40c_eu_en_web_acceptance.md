@@ -1,6 +1,6 @@
 # JS-40C EU English Web target — implementation and acceptance
 
-Status: engineering implementation complete; frozen-source Web package accepted
+Status: done · Recorded detail: engineering implementation complete; frozen-source Web package accepted
 locally and ready for pull-request review. No online Base write, queue dispatch,
 OSS upload, or formal Web publication is part of this change.
 

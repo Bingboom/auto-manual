@@ -1,5 +1,7 @@
 # REV-02 结论 — HTML_link / 印刷二维码 / 历史交付链接只读核查
 
+Status: done
+
 - 调查窗口（UTC）：**2026-09-19T03:27:06Z – 2026-09-19T03:37:06Z**；逐条抓取时间见 `raw/http_probe_log.csv` 与本文台账（§6）。
 - 全程只读：lark-cli 仅 `+field-list` / `+record-list`（bot 身份，profile `cli_aaa0db0d4b39dcca`，CLI 1.0.69）；仓库仅 `git show origin/main:<path>` / `git grep origin/main`；未 checkout 主仓、未写任何飞书表。
 - 明细表：`rev02_link_audit.csv`（154 行 = 构建表 33 + 根别名 52 + legacy_route 兼容页 22 + 旧站入口 2 + 发布目录 45；其中 27 行带本轮实测 HTTP 状态，另有 6 条负对照/正式路由探测只入 `raw/http_probe_log.csv`，合计 33 次实测）。
