@@ -16,6 +16,7 @@ from tools.component_specs.overview_instance import (
     overview_instance_sha256, resolve_overview_instance, validate_resolved_overview_instance,
 )
 from tools.frozen_ai_source import FrozenBook
+from tools.frozen_pdf_errata import apply_native_errata
 from tools.frozen_pdf_app import APP_ASSET_KEYS, app_section
 from tools.frozen_pdf_glyphs import recover_pdf_glyphs, recover_recorded_glyphs
 from tools.frozen_pdf_intake import load_pdf_book, read_recipe_json
@@ -133,6 +134,7 @@ class PdfBook(FrozenBook):
         data = load_pdf_book(pdf_path, language, recipe_root)
         self.target_layout = data.get('target_layout') or {}
         data = _recover_source_data(self, data, pdf_path, original, language)
+        data = apply_native_errata(data, self.errata, language, text_source['sha256'])
         _repair_label_wrapping(data, language)
         for key in ('source', 'index', 'locale', 'records', 'front_back', 'provenance'):
             setattr(self, key, data[key])
