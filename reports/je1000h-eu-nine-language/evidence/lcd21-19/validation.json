@@ -1,0 +1,10 @@
+{
+  "native_builds": 3,
+  "chapters_per_language": 16,
+  "strict_sphinx_builds": 3,
+  "pinned_native_pdfs_verified": 39,
+  "asset_manifests": "passed",
+  "six_language_files_unchanged": 46,
+  "shared_code_css_changes": false,
+  "cold_replay": "passed"
+}

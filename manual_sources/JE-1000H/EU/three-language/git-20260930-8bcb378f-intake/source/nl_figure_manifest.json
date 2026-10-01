@@ -1,0 +1,114 @@
+{
+  "figures": [
+    {
+      "slug": "overview_front_view",
+      "section_id": "product_overview",
+      "physical_page": 129,
+      "clip_points": [
+        25,
+        69,
+        344,
+        245
+      ]
+    },
+    {
+      "slug": "overview_left_view",
+      "section_id": "product_overview",
+      "physical_page": 129,
+      "clip_points": [
+        25,
+        266,
+        344,
+        368
+      ]
+    },
+    {
+      "slug": "overview_right_view",
+      "section_id": "product_overview",
+      "physical_page": 129,
+      "clip_points": [
+        25,
+        389,
+        344,
+        491
+      ]
+    },
+    {
+      "slug": "energy_saving",
+      "section_id": "operations",
+      "physical_page": 134,
+      "clip_points": [
+        27,
+        228,
+        343,
+        375
+      ]
+    },
+    {
+      "slug": "ups_connection",
+      "section_id": "ups",
+      "physical_page": 135,
+      "clip_points": [
+        27.0,
+        256.0,
+        343.0,
+        497.0
+      ]
+    },
+    {
+      "slug": "battery_stack",
+      "section_id": "battery_expansion",
+      "physical_page": 136,
+      "clip_points": [
+        28.0,
+        203.0,
+        343.0,
+        412.0
+      ]
+    },
+    {
+      "slug": "battery_items",
+      "section_id": "battery_expansion",
+      "physical_page": 136,
+      "clip_points": [
+        28.0,
+        418.0,
+        344.0,
+        490.0
+      ]
+    },
+    {
+      "slug": "ac_wall_charging",
+      "section_id": "charging",
+      "physical_page": 137,
+      "clip_points": [
+        25.0,
+        246.0,
+        341.0,
+        364.0
+      ]
+    },
+    {
+      "slug": "solar_four",
+      "section_id": "charging",
+      "physical_page": 138,
+      "clip_points": [
+        27.0,
+        30.0,
+        343.0,
+        177.0
+      ]
+    },
+    {
+      "slug": "car_charging",
+      "section_id": "charging",
+      "physical_page": 138,
+      "clip_points": [
+        26.0,
+        356.0,
+        341.0,
+        496.0
+      ]
+    }
+  ]
+}

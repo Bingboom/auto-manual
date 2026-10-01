@@ -1,0 +1,512 @@
+{
+  "pt": {
+    "chapters": [
+      "introduction",
+      "safety",
+      "symbols",
+      "in_the_box",
+      "product_overview",
+      "lcd_display",
+      "operations",
+      "ups",
+      "battery_expansion",
+      "charging",
+      "storage",
+      "troubleshooting",
+      "specifications",
+      "warranty",
+      "app_setup",
+      "eu-declaration"
+    ],
+    "component_inventory": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE": 11,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "coverage": {
+      "applicable": true,
+      "chapters": {
+        "app_setup": {
+          "HB-CALLOUT-STRIP": 3,
+          "HB-SPECIAL-APP": 3,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "battery_expansion": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 2
+        },
+        "charging": {
+          "HB-CALLOUT-STRIP": 5,
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "eu-declaration": {},
+        "in_the_box": {
+          "HB-SPECIAL-INBOX": 1
+        },
+        "introduction": {},
+        "lcd_display": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 1,
+          "HB-TABLE-LCD-ICON": 1
+        },
+        "operations": {
+          "HB-CALLOUT-STRIP": 2,
+          "HB-SPECIAL-OPERATION": 5,
+          "HB-TABLE-AUTO-RESUME": 1,
+          "HB-TABLE-KEY-COMBINATIONS": 1,
+          "HB-TABLE-LCD-MODE": 1
+        },
+        "product_overview": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "safety": {
+          "HB-CALLOUT-STRIP": 1
+        },
+        "specifications": {
+          "HB-TABLE-SPEC": 4
+        },
+        "storage": {},
+        "symbols": {
+          "HB-TABLE-SYMBOL-ICON": 1,
+          "HB-TABLE-SYMBOL-SIGNAL": 1
+        },
+        "troubleshooting": {
+          "HB-TABLE-TROUBLESHOOTING": 1
+        },
+        "ups": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "warranty": {
+          "HB-WARRANTY-LEAD": 1,
+          "HB-WARRANTY-SECTION": 5,
+          "HB-WARRANTY-YEARS": 1
+        }
+      },
+      "components": {
+        "HB-CALLOUT-STRIP": 13,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-KEY-COMBINATIONS": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      },
+      "governed_reference_figures": [
+        {
+          "location": "pt/product_overview#block-3",
+          "source_ref": "pt/pdf-page-112#overview_front_view"
+        },
+        {
+          "location": "pt/product_overview#block-5",
+          "source_ref": "pt/pdf-page-112#overview_left_view"
+        },
+        {
+          "location": "pt/product_overview#block-7",
+          "source_ref": "pt/pdf-page-112#overview_right_view"
+        },
+        {
+          "location": "pt/lcd_display#block-2",
+          "source_ref": "pt/lcd-display"
+        },
+        {
+          "location": "pt/ups#block-3",
+          "source_ref": "pt/pdf-page-118#ups_connection"
+        },
+        {
+          "location": "pt/battery_expansion#block-3",
+          "source_ref": "pt/pdf-page-119#battery_stack"
+        },
+        {
+          "location": "pt/battery_expansion#block-4",
+          "source_ref": "pt/pdf-page-119#battery_items"
+        },
+        {
+          "location": "pt/charging#block-6",
+          "source_ref": "pt/pdf-page-120#ac_wall_charging"
+        },
+        {
+          "location": "pt/charging#block-12",
+          "source_ref": "pt/pdf-page-121#solar_four"
+        },
+        {
+          "location": "pt/charging#block-18",
+          "source_ref": "pt/pdf-page-121#car_charging"
+        },
+        {
+          "location": "pt/app_setup#block-13",
+          "source_ref": "pt/pdf-page-125/app#connect-result"
+        }
+      ],
+      "issues": [],
+      "language": "pt",
+      "model": "JE-1000H",
+      "profile": "native-portable-shared-components/v1",
+      "region": "EU"
+    },
+    "manual_ir_sha256": "a94ce60f1fc51aa9649359a722048ba250c2df7affde32b35195842e8bf1384b",
+    "markdown_sha256": "a6589c621bf83194dac430bf43ab1a4a184481cc69a36726c06c58c6f936f00b",
+    "stylesheet_sha256": "2be97f76b09963afc6f54191f3098757caf17251a0d52dcb0bea48b08859920d"
+  },
+  "nl": {
+    "chapters": [
+      "introduction",
+      "safety",
+      "symbols",
+      "in_the_box",
+      "product_overview",
+      "lcd_display",
+      "operations",
+      "ups",
+      "battery_expansion",
+      "charging",
+      "storage",
+      "troubleshooting",
+      "specifications",
+      "warranty",
+      "app_setup",
+      "eu-declaration"
+    ],
+    "component_inventory": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE": 11,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "coverage": {
+      "applicable": true,
+      "chapters": {
+        "app_setup": {
+          "HB-CALLOUT-STRIP": 3,
+          "HB-SPECIAL-APP": 3,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "battery_expansion": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 2
+        },
+        "charging": {
+          "HB-CALLOUT-STRIP": 5,
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "eu-declaration": {},
+        "in_the_box": {
+          "HB-SPECIAL-INBOX": 1
+        },
+        "introduction": {},
+        "lcd_display": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 1,
+          "HB-TABLE-LCD-ICON": 1
+        },
+        "operations": {
+          "HB-CALLOUT-STRIP": 2,
+          "HB-SPECIAL-OPERATION": 5,
+          "HB-TABLE-AUTO-RESUME": 1,
+          "HB-TABLE-KEY-COMBINATIONS": 1,
+          "HB-TABLE-LCD-MODE": 1
+        },
+        "product_overview": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "safety": {
+          "HB-CALLOUT-STRIP": 1
+        },
+        "specifications": {
+          "HB-TABLE-SPEC": 4
+        },
+        "storage": {},
+        "symbols": {
+          "HB-TABLE-SYMBOL-ICON": 1,
+          "HB-TABLE-SYMBOL-SIGNAL": 1
+        },
+        "troubleshooting": {
+          "HB-TABLE-TROUBLESHOOTING": 1
+        },
+        "ups": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "warranty": {
+          "HB-WARRANTY-LEAD": 1,
+          "HB-WARRANTY-SECTION": 5,
+          "HB-WARRANTY-YEARS": 1
+        }
+      },
+      "components": {
+        "HB-CALLOUT-STRIP": 13,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-KEY-COMBINATIONS": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      },
+      "governed_reference_figures": [
+        {
+          "location": "nl/product_overview#block-3",
+          "source_ref": "nl/pdf-page-129#overview_front_view"
+        },
+        {
+          "location": "nl/product_overview#block-5",
+          "source_ref": "nl/pdf-page-129#overview_left_view"
+        },
+        {
+          "location": "nl/product_overview#block-7",
+          "source_ref": "nl/pdf-page-129#overview_right_view"
+        },
+        {
+          "location": "nl/lcd_display#block-2",
+          "source_ref": "nl/lcd-display"
+        },
+        {
+          "location": "nl/ups#block-3",
+          "source_ref": "nl/pdf-page-135#ups_connection"
+        },
+        {
+          "location": "nl/battery_expansion#block-3",
+          "source_ref": "nl/pdf-page-136#battery_stack"
+        },
+        {
+          "location": "nl/battery_expansion#block-4",
+          "source_ref": "nl/pdf-page-136#battery_items"
+        },
+        {
+          "location": "nl/charging#block-6",
+          "source_ref": "nl/pdf-page-137#ac_wall_charging"
+        },
+        {
+          "location": "nl/charging#block-13",
+          "source_ref": "nl/pdf-page-138#solar_four"
+        },
+        {
+          "location": "nl/charging#block-19",
+          "source_ref": "nl/pdf-page-138#car_charging"
+        },
+        {
+          "location": "nl/app_setup#block-13",
+          "source_ref": "nl/pdf-page-142/app#connect-result"
+        }
+      ],
+      "issues": [],
+      "language": "nl",
+      "model": "JE-1000H",
+      "profile": "native-portable-shared-components/v1",
+      "region": "EU"
+    },
+    "manual_ir_sha256": "4dac3335ce34e05fe9c9b95779bacf4f7fe0e7639de8f78d19f8c576e0a2ace5",
+    "markdown_sha256": "402df2619696ba71225fc2c3ee112065a8e4cbbecdeb56a0fd0cca397c0ea976",
+    "stylesheet_sha256": "2be97f76b09963afc6f54191f3098757caf17251a0d52dcb0bea48b08859920d"
+  },
+  "pl": {
+    "chapters": [
+      "introduction",
+      "safety",
+      "symbols",
+      "in_the_box",
+      "product_overview",
+      "lcd_display",
+      "operations",
+      "ups",
+      "battery_expansion",
+      "charging",
+      "storage",
+      "troubleshooting",
+      "specifications",
+      "warranty",
+      "app_setup",
+      "eu-declaration"
+    ],
+    "component_inventory": {
+      "HB-CALLOUT-STRIP": 13,
+      "HB-SPECIAL-APP": 3,
+      "HB-SPECIAL-INBOX": 1,
+      "HB-SPECIAL-OPERATION": 5,
+      "HB-SPECIAL-REFERENCE-FIGURE": 11,
+      "HB-TABLE-AUTO-RESUME": 1,
+      "HB-TABLE-KEY-COMBINATIONS": 1,
+      "HB-TABLE-LCD-ICON": 1,
+      "HB-TABLE-LCD-MODE": 1,
+      "HB-TABLE-SPEC": 4,
+      "HB-TABLE-SYMBOL-ICON": 1,
+      "HB-TABLE-SYMBOL-SIGNAL": 1,
+      "HB-TABLE-TROUBLESHOOTING": 1,
+      "HB-WARRANTY-LEAD": 1,
+      "HB-WARRANTY-SECTION": 5,
+      "HB-WARRANTY-YEARS": 1
+    },
+    "coverage": {
+      "applicable": true,
+      "chapters": {
+        "app_setup": {
+          "HB-CALLOUT-STRIP": 3,
+          "HB-SPECIAL-APP": 3,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "battery_expansion": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 2
+        },
+        "charging": {
+          "HB-CALLOUT-STRIP": 5,
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "eu-declaration": {},
+        "in_the_box": {
+          "HB-SPECIAL-INBOX": 1
+        },
+        "introduction": {},
+        "lcd_display": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 1,
+          "HB-TABLE-LCD-ICON": 1
+        },
+        "operations": {
+          "HB-CALLOUT-STRIP": 2,
+          "HB-SPECIAL-OPERATION": 5,
+          "HB-TABLE-AUTO-RESUME": 1,
+          "HB-TABLE-KEY-COMBINATIONS": 1,
+          "HB-TABLE-LCD-MODE": 1
+        },
+        "product_overview": {
+          "HB-SPECIAL-REFERENCE-FIGURE": 3
+        },
+        "safety": {
+          "HB-CALLOUT-STRIP": 1
+        },
+        "specifications": {
+          "HB-TABLE-SPEC": 4
+        },
+        "storage": {},
+        "symbols": {
+          "HB-TABLE-SYMBOL-ICON": 1,
+          "HB-TABLE-SYMBOL-SIGNAL": 1
+        },
+        "troubleshooting": {
+          "HB-TABLE-TROUBLESHOOTING": 1
+        },
+        "ups": {
+          "HB-CALLOUT-STRIP": 1,
+          "HB-SPECIAL-REFERENCE-FIGURE": 1
+        },
+        "warranty": {
+          "HB-WARRANTY-LEAD": 1,
+          "HB-WARRANTY-SECTION": 5,
+          "HB-WARRANTY-YEARS": 1
+        }
+      },
+      "components": {
+        "HB-CALLOUT-STRIP": 13,
+        "HB-SPECIAL-APP": 3,
+        "HB-SPECIAL-INBOX": 1,
+        "HB-SPECIAL-OPERATION": 5,
+        "HB-SPECIAL-REFERENCE-FIGURE": 11,
+        "HB-TABLE-AUTO-RESUME": 1,
+        "HB-TABLE-KEY-COMBINATIONS": 1,
+        "HB-TABLE-LCD-ICON": 1,
+        "HB-TABLE-LCD-MODE": 1,
+        "HB-TABLE-SPEC": 4,
+        "HB-TABLE-SYMBOL-ICON": 1,
+        "HB-TABLE-SYMBOL-SIGNAL": 1,
+        "HB-TABLE-TROUBLESHOOTING": 1,
+        "HB-WARRANTY-LEAD": 1,
+        "HB-WARRANTY-SECTION": 5,
+        "HB-WARRANTY-YEARS": 1
+      },
+      "governed_reference_figures": [
+        {
+          "location": "pl/product_overview#block-3",
+          "source_ref": "pl/pdf-page-146#overview_front_view"
+        },
+        {
+          "location": "pl/product_overview#block-5",
+          "source_ref": "pl/pdf-page-146#overview_left_view"
+        },
+        {
+          "location": "pl/product_overview#block-7",
+          "source_ref": "pl/pdf-page-146#overview_right_view"
+        },
+        {
+          "location": "pl/lcd_display#block-2",
+          "source_ref": "pl/lcd-display"
+        },
+        {
+          "location": "pl/ups#block-3",
+          "source_ref": "pl/pdf-page-152#ups_connection"
+        },
+        {
+          "location": "pl/battery_expansion#block-3",
+          "source_ref": "pl/pdf-page-153#battery_stack"
+        },
+        {
+          "location": "pl/battery_expansion#block-4",
+          "source_ref": "pl/pdf-page-153#battery_items"
+        },
+        {
+          "location": "pl/charging#block-6",
+          "source_ref": "pl/pdf-page-154#ac_wall_charging"
+        },
+        {
+          "location": "pl/charging#block-13",
+          "source_ref": "pl/pdf-page-155#solar_four"
+        },
+        {
+          "location": "pl/charging#block-19",
+          "source_ref": "pl/pdf-page-155#car_charging"
+        },
+        {
+          "location": "pl/app_setup#block-13",
+          "source_ref": "pl/pdf-page-159/app#connect-result"
+        }
+      ],
+      "issues": [],
+      "language": "pl",
+      "model": "JE-1000H",
+      "profile": "native-portable-shared-components/v1",
+      "region": "EU"
+    },
+    "manual_ir_sha256": "972b22b87098259d225f06822124d52024fa25dc46dc91dff38ac92c42ef8122",
+    "markdown_sha256": "6012a50c190d70548a655cf7f3b1c6374ad7f634226ff18396cf1fa3d62d0f94",
+    "stylesheet_sha256": "2be97f76b09963afc6f54191f3098757caf17251a0d52dcb0bea48b08859920d"
+  }
+}

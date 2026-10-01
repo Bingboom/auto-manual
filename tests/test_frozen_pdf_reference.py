@@ -37,6 +37,40 @@ def fixture():
 
 
 class FrozenPdfReferenceTests(unittest.TestCase):
+    def test_finished_caption_panel_keeps_native_copy_without_duplicate_caption_row(self):
+        book = object.__new__(PdfBook)
+        book.language = 'pt'
+        asset = {'asset_ref': 'assets/items.png', 'content_mode': 'source-finished-panel',
+                 'language': 'pt', 'physical_page': 5, 'captions_embedded': True}
+        book.assets = {'items': asset}
+        labels = ['Battery Pack', 'Cabo de expansão', 'Documentos', 'Vendido separadamente']
+        book.records = {'reference_captions': {'items': {
+            'physical_page': 5, 'labels': [{'text': label} for label in labels]}}}
+        figure = {'asset_key': 'items', 'slug': 'items',
+                  'section_id': 'battery_expansion', 'physical_page': 5}
+        native_records = deepcopy(book.records)
+        value = book.figure(figure)
+        html = flow_nodes_to_html((value,), component_renderer=lambda component:
+            render_embedded_web_component(
+                component, source_path=Path('battery.rst'), model='JE-1000H',
+                region='EU', language='pt', composite_manifest=None, contract={}))
+        soup = BeautifulSoup(html, 'html.parser')
+        self.assertEqual('assets/items.png', soup.img['src'])
+        self.assertFalse(soup.select('figcaption, .line-block'))
+        for label in labels:
+            self.assertEqual(1, soup.get_text().count(label))
+        self.assertIn('clip-path:inset(50%)', soup.p['style'])
+        self.assertEqual(native_records, book.records)
+        for key, wrong in [('language', 'nl'), ('physical_page', 6)]:
+            original = asset[key]
+            asset[key] = wrong
+            with self.assertRaisesRegex(ValueError, 'locale/page mismatch'):
+                book.figure(figure)
+            asset[key] = original
+        asset.pop('captions_embedded')
+        spec, = component_specs_in_flow((book.figure(figure),))
+        self.assertEqual(4, len(spec.slot('captions').content))
+
     def test_overview_semantic_copy_applies_approved_erratum_without_mutating_native_source(self):
         book = object.__new__(PdfBook)
         book.language = 'nl'
