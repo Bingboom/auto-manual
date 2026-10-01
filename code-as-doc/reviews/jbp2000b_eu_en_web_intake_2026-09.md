@@ -1,5 +1,7 @@
 # JBP-2000B EU/en Web intake
 
+Status: active
+
 Baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`.
 Target: JBP-2000B / EU / en, current source V2.0-2026-09-11.
 

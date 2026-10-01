@@ -1,5 +1,7 @@
 # IDML approved-layout contract v2 discovery
 
+Status: done
+
 Date: 2026-08-05
 
 ## Decision

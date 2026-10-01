@@ -1,5 +1,7 @@
 # IDML LCD Continuation Geometry Discovery - 2026-07-23
 
+Status: active
+
 ## Scope
 
 This phase targets the approved JE-1000F US V2.0 LCD continuation table on

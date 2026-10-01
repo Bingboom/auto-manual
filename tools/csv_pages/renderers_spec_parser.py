@@ -47,7 +47,7 @@ def _split_spec_row_text(text: str, block_id: str, line: str) -> tuple[str, str]
 def _to_float(value: str, default: float = 0.0) -> float:
     try:
         return float((value or "").strip())
-    except Exception:
+    except ValueError:
         return default
 
 

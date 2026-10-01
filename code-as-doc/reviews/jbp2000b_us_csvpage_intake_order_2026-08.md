@@ -1,5 +1,7 @@
 # JBP-2000B_US 第二批入库单：三张 csv_page 源表（待操作者确认）
 
+Status: done
+
 日期：2026-08-22 · 目标：`JBP-2000B_US` · 前置：第一批已入库（见
 [record_id 台账](jbp2000b_us_intake_record_ids_2026-08.md)），`validate_spec_master` 已 OK
 

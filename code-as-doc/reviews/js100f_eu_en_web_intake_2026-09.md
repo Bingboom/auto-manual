@@ -1,5 +1,7 @@
 # JS-100F EU English Web intake — 2026-09
 
+Status: active
+
 ## Target checklist
 
 - [x] Confirm isolated worktree, branch, clean starting tree and latest fetched `origin/main`.

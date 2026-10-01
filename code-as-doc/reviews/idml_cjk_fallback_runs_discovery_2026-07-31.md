@@ -1,5 +1,7 @@
 # IDML CJK Fallback Runs Discovery — 2026-07-31
 
+Status: done
+
 ## Decision
 
 Stage 5 item 10 is implemented as explicit editable character runs, using the

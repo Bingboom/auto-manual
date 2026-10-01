@@ -1,5 +1,7 @@
 # JE-500A EU/en Web intake checklist - 2026-09
 
+Status: active
+
 ## Released-PDF correction in progress — 2026-09-13
 
 Operator handoff decision (2026-09-13): proceed with the existing corrections

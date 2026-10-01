@@ -1,5 +1,7 @@
 # JBP-3600A EU/en packing-list artwork correction
 
+Status: active
+
 The Web three-card component supplies each border, item number and caption.
 The former image crops also included borders and numbers, producing nested
 cards. Three target-scoped Web illustration replacements now contain only
