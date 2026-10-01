@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.lcd_mode import lcd_mode_component_spec
 from tools.component_specs.lcd_mode_source import standalone_lcd_actions
+from tools.component_specs.model import ComponentSpec
 
 
 def _matches_image(image: Tag, image_key: str) -> bool:
@@ -32,7 +33,7 @@ def parse_lcd_mode_html(
     image_key: str,
     expected_body_rows: int,
     language: str,
-) -> tuple[object, Tag, Tag]:
+) -> tuple[ComponentSpec, Tag, Tag]:
     images = [
         image for image in soup.find_all("img")
         if isinstance(image, Tag)

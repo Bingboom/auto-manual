@@ -1,5 +1,6 @@
 """Shared semantics for source-authored text-only packing inventories."""
 from pathlib import Path
+from typing import cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -38,8 +39,8 @@ def plain_inventory_spec(soup: BeautifulSoup, *, source_path: Path, language: st
     """Project an authored text-only inventory without inventing illustrations."""
     if not is_plain_inventory(soup):
         raise ValueError(f"{source_path}: expected a complete plain inventory")
-    heading = soup.find("h1")
-    table = heading.find_next_sibling()
+    heading = cast(Tag, soup.find("h1"))
+    table = cast(Tag, heading.find_next_sibling())
     return reference_table_component_spec(
         variant="plain-inventory", label=heading.get_text(" ", strip=True), headers=[],
         rows=[[{"html": cell.decode_contents().strip(), "text": cell.get_text("\n", strip=True)}

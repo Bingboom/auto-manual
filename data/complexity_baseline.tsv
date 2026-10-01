@@ -164,7 +164,7 @@ tools/manual_ir/web_app_download.py	_download_payload	22
 tools/manual_ir/web_callouts.py	decode_callout_payload	31
 tools/manual_ir/web_symbols.py	decode_pair_table	35
 tools/manual_ir/web_symbols.py	decode_signal_table	45
-tools/manual_ir/whole_document_components.py	discover_registered_components	65
+tools/manual_ir/whole_document_components.py	discover_registered_components	63
 tools/manual_ir/whole_document_components.py	embed_component_claims	21
 tools/manual_operations_health.py	build_health_report	33
 tools/page_plan/model.py	PagePlan.physical_pages	21
