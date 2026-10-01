@@ -137,7 +137,9 @@ tools/idml/spec_tables.py	spec_table_xml	48
 tools/idml/stories.py	add_prose_story	43
 tools/idml/symbols_page.py	_symbols_icon_table	21
 tools/idml/target_assembly_plan.py	_figure_callout_issues	22
-tools/idml/target_assembly_plan.py	_validate_composition_data	213
+tools/idml/target_assembly_plan.py	_validate_app_composition	25
+tools/idml/target_assembly_plan.py	_validate_lcd_composition	35
+tools/idml/target_assembly_plan.py	_validate_specifications_composition	42
 tools/idml/target_assembly_plan.py	normalize_target_assembly_plan	52
 tools/idml/target_assembly_render.py	TargetAssemblyRenderer.render	58
 tools/idml_rst_extract.py	extract_page	80

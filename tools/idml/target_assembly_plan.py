@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import math
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable, NamedTuple
 
 from tools.manual_ir import ManualIR
 from tools.page_plan import build_renderer_page_plan
@@ -311,6 +311,896 @@ def _validate_page_breaks(
     return issues
 
 
+class _CompositionContext(NamedTuple):
+    """Per-page values the composition_data validators share."""
+
+    source_ref: str
+    page_index: int
+    ir: ManualIR
+    page_width: float | None
+    page_height: float | None
+
+
+def _validate_toc_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.TOC.value or page.get(
+        "composition_type"
+    ) != "toc":
+        issues.append(
+            f"{source_ref}.composition_data.toc requires a TOC composition"
+        )
+        return issues
+    toc = data["toc"]
+    if not isinstance(toc, dict) or set(toc) != {"layout_variant"}:
+        issues.append(
+            f"{source_ref}.composition_data.toc must contain "
+            "exactly ['layout_variant']"
+        )
+        return issues
+    if toc.get("layout_variant") not in TOC_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.toc.layout_variant must be one of "
+            + ", ".join(sorted(TOC_LAYOUT_VARIANTS))
+        )
+    return issues
+
+
+def _validate_symbols_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.SYMBOLS.value or page.get(
+        "composition_type"
+    ) not in {"symbols", "safety_symbols"}:
+        issues.append(
+            f"{source_ref}.composition_data.symbols requires "
+            "a symbols source in a symbols composition"
+        )
+        return issues
+    symbols = data["symbols"]
+    if not isinstance(symbols, dict) or set(symbols) != {"left_count"}:
+        issues.append(
+            f"{source_ref}.composition_data.symbols must contain "
+            "exactly ['left_count']"
+        )
+        return issues
+    left_count = symbols.get("left_count")
+    if (
+        isinstance(left_count, bool)
+        or not isinstance(left_count, int)
+        or left_count <= 0
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.symbols.left_count "
+            "must be a positive integer"
+        )
+    return issues
+
+
+def _validate_charging_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    page_index = context.page_index
+    ir = context.ir
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.CHARGING.value or page.get(
+        "composition_type"
+    ) != "charging":
+        issues.append(
+            f"{source_ref}.composition_data.charging requires "
+            "a charging composition"
+        )
+        return issues
+    charging = data["charging"]
+    if not isinstance(charging, dict):
+        issues.append(
+            f"{source_ref}.composition_data.charging must be an object"
+        )
+        return issues
+    expected = {"image_role", "h2_suffix_pill_indices"}
+    # `figure_callouts` is optional so the contracts written before it
+    # stay valid and keep printing their label tables under the art.
+    if set(charging) - {"figure_callouts"} != expected:
+        issues.append(
+            f"{source_ref}.composition_data.charging must contain "
+            f"exactly {sorted(expected)}"
+        )
+        return issues
+    issues.extend(
+        _figure_callout_issues(
+            charging.get("figure_callouts"),
+            label=f"{source_ref}.composition_data.charging.figure_callouts",
+        )
+    )
+    if charging.get("image_role") not in {
+        "charging_diagram",
+        "full_measure",
+        "reference_measure",
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.charging.image_role is invalid"
+        )
+    indices = charging.get("h2_suffix_pill_indices")
+    if not isinstance(indices, list) or not indices:
+        issues.append(
+            f"{source_ref}.composition_data.charging."
+            "h2_suffix_pill_indices must be a non-empty list"
+        )
+        return issues
+    if any(
+        isinstance(index, bool)
+        or not isinstance(index, int)
+        or index < 0
+        for index in indices
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.charging."
+            "h2_suffix_pill_indices must contain non-negative integers"
+        )
+        return issues
+    if len(set(indices)) != len(indices):
+        issues.append(
+            f"{source_ref}.composition_data.charging."
+            "h2_suffix_pill_indices must be unique"
+        )
+        return issues
+    source_page = ir.pages[page_index] if page_index < len(ir.pages) else None
+    h2s = [
+        str(block.payload)
+        for block in (source_page.blocks if source_page is not None else ())
+        if block.kind == "h2"
+    ]
+    for index in indices:
+        label = (
+            f"{source_ref}.composition_data.charging."
+            "h2_suffix_pill_indices"
+        )
+        if index >= len(h2s):
+            issues.append(f"{label} index {index} is out of range")
+        elif split_trailing_parenthetical(h2s[index]) is None:
+            issues.append(
+                f"{label} index {index} requires a trailing parenthetical"
+            )
+    return issues
+
+
+def _validate_connections_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.CONNECTIONS.value or page.get(
+        "composition_type"
+    ) != "connections":
+        issues.append(
+            f"{source_ref}.composition_data.connections requires "
+            "a connections composition"
+        )
+        return issues
+    connections = data["connections"]
+    if not isinstance(connections, dict):
+        issues.append(
+            f"{source_ref}.composition_data.connections must be an object"
+        )
+        return issues
+    expected = {"image_role", "layout_variant"}
+    if set(connections) != expected:
+        issues.append(
+            f"{source_ref}.composition_data.connections must contain "
+            f"exactly {sorted(expected)}"
+        )
+        return issues
+    if connections.get("layout_variant") not in CONNECTIONS_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.connections.layout_variant "
+            "must be one of "
+            + ", ".join(sorted(CONNECTIONS_LAYOUT_VARIANTS))
+        )
+    if connections.get("image_role") not in {
+        "full_measure",
+        "reference_measure",
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.connections.image_role "
+            "is invalid"
+        )
+    return issues
+
+
+def _validate_operation_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.OPERATION_GUIDE.value or page.get(
+        "composition_type"
+    ) != "operation":
+        issues.append(
+            f"{source_ref}.composition_data.operation requires an "
+            "operation composition"
+        )
+        return issues
+    operation = data["operation"]
+    if not isinstance(operation, dict) or set(operation) != {
+        "layout_variant"
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.operation must contain "
+            "exactly ['layout_variant']"
+        )
+        return issues
+    if operation.get("layout_variant") not in OPERATION_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.operation.layout_variant "
+            "must be one of "
+            + ", ".join(sorted(OPERATION_LAYOUT_VARIANTS))
+        )
+    return issues
+
+
+def _validate_inbox_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.INBOX.value or page.get(
+        "composition_type"
+    ) != "inbox_overview":
+        issues.append(
+            f"{source_ref}.composition_data.inbox requires an "
+            "inbox_overview composition on the inbox source"
+        )
+        return issues
+    inbox = data["inbox"]
+    # `corner_radii` is optional so the contracts written before it stay
+    # valid and keep rendering the shared defaults.
+    if not isinstance(inbox, dict) or set(inbox) - {"corner_radii"} != {
+        "layout_variant"
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.inbox must contain "
+            "exactly ['layout_variant']"
+        )
+        return issues
+    issues.extend(
+        _corner_radii_issues(
+            inbox.get("corner_radii"),
+            allowed=INBOX_CORNER_RADII,
+            label=f"{source_ref}.composition_data.inbox.corner_radii",
+        )
+    )
+    if inbox.get("layout_variant") not in INBOX_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.inbox.layout_variant "
+            "must be one of " + ", ".join(sorted(INBOX_LAYOUT_VARIANTS))
+        )
+    return issues
+
+
+def _validate_overview_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.PRODUCT_OVERVIEW.value or page.get(
+        "composition_type"
+    ) not in {"inbox_overview", "fcc_inbox_overview"}:
+        issues.append(
+            f"{source_ref}.composition_data.overview requires an "
+            "inbox overview composition on the product overview source"
+        )
+        return issues
+    overview = data["overview"]
+    if (
+        not isinstance(overview, dict)
+        or "instance_id" not in overview
+        or not set(overview) <= {
+            "instance_id",
+            "asset_refs",
+            "layout_variant",
+        }
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.overview must contain "
+            "instance_id and supports optional asset_refs or "
+            "layout_variant"
+        )
+        return issues
+    if not isinstance(overview.get("instance_id"), str) or not str(
+        overview.get("instance_id")
+    ).strip():
+        issues.append(
+            f"{source_ref}.composition_data.overview.instance_id must "
+            "be a non-empty string"
+        )
+    asset_refs = overview.get("asset_refs")
+    if asset_refs is not None:
+        if not isinstance(asset_refs, dict) or set(asset_refs) != {
+            "front_art",
+            "right_art",
+        }:
+            issues.append(
+                f"{source_ref}.composition_data.overview.asset_refs must "
+                "contain exactly front_art and right_art"
+            )
+        elif any(
+            not isinstance(value, str)
+            or not value.strip()
+            or Path(value).is_absolute()
+            or ".." in Path(value).parts
+            for value in asset_refs.values()
+        ):
+            issues.append(
+                f"{source_ref}.composition_data.overview.asset_refs "
+                "values must be non-empty bundle-relative strings"
+            )
+    layout_variant = overview.get("layout_variant")
+    if layout_variant is not None and (
+        layout_variant not in OVERVIEW_LAYOUT_VARIANTS
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.overview.layout_variant "
+            "must be one of "
+            + ", ".join(sorted(OVERVIEW_LAYOUT_VARIANTS))
+        )
+    return issues
+
+
+def _validate_app_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.APP_SETUP.value or page.get(
+        "composition_type"
+    ) != "app":
+        issues.append(
+            f"{source_ref}.composition_data.app requires an app composition"
+        )
+        return issues
+    app = data["app"]
+    required = {
+        "instance_id",
+        "control_image",
+        "labels_by_role",
+    }
+    if (
+        not isinstance(app, dict)
+        or not required <= set(app)
+        or not set(app) <= required | {"figure_assets"}
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.app must contain "
+            f"{sorted(required)} and supports optional figure_assets"
+        )
+        return issues
+    for field in ("instance_id", "control_image"):
+        value = app.get(field)
+        if (
+            not isinstance(value, str)
+            or not value.strip()
+            or Path(value).is_absolute()
+            or ".." in Path(value).parts
+        ):
+            issues.append(
+                f"{source_ref}.composition_data.app.{field} must be a "
+                "non-empty bundle-relative string"
+            )
+    labels = app.get("labels_by_role")
+    required_roles = {"main_power", "dc_usb", "ac"}
+    if (
+        not isinstance(labels, dict)
+        or set(labels) != required_roles
+        or any(
+            not isinstance(value, str) or not value.strip()
+            for value in labels.values()
+        )
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.app.labels_by_role must "
+            "contain non-empty ac, dc_usb, and main_power labels"
+        )
+    figure_assets = app.get("figure_assets")
+    allowed_figure_roles = {
+        "app_download",
+        "app_add_device",
+        "app_connect_result",
+    }
+    if figure_assets is not None and (
+        not isinstance(figure_assets, dict)
+        or not figure_assets
+        or not set(figure_assets) <= allowed_figure_roles
+        or any(
+            not isinstance(value, str)
+            or not value.strip()
+            or Path(value).is_absolute()
+            or ".." in Path(value).parts
+            for value in figure_assets.values()
+        )
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.app.figure_assets must be "
+            "a non-empty bundle-relative mapping of App figure roles"
+        )
+    return issues
+
+
+def _validate_specifications_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.SPEC.value or page.get(
+        "composition_type"
+    ) not in {
+        "storage_specifications",
+        "troubleshooting_specifications",
+        "specifications",
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.specifications requires "
+            "a specifications composition on the spec source"
+        )
+        return issues
+    storage = data.get("storage")
+    if storage is not None:
+        if page.get("composition_type") != "storage_specifications":
+            issues.append(
+                f"{source_ref}.composition_data.storage requires a "
+                "storage_specifications composition"
+            )
+            return issues
+        if (
+            not isinstance(storage, dict)
+            or set(storage) != {"layout_variant"}
+        ):
+            issues.append(
+                f"{source_ref}.composition_data.storage must contain "
+                "exactly ['layout_variant']"
+            )
+            return issues
+        if storage.get("layout_variant") not in STORAGE_LAYOUT_VARIANTS:
+            issues.append(
+                f"{source_ref}.composition_data.storage.layout_variant "
+                "must be one of "
+                + ", ".join(sorted(STORAGE_LAYOUT_VARIANTS))
+            )
+            return issues
+    specifications = data["specifications"]
+    if not isinstance(specifications, dict):
+        issues.append(
+            f"{source_ref}.composition_data.specifications must be an object"
+        )
+        return issues
+    allowed = {
+        "layout_variant",
+        "section_groups",
+        "annotation_order",
+        "split",
+    }
+    if "layout_variant" not in specifications or not set(
+        specifications
+    ) <= allowed:
+        issues.append(
+            f"{source_ref}.composition_data.specifications must contain "
+            "layout_variant and supports optional section_groups, "
+            "annotation_order, or split"
+        )
+        return issues
+    split = specifications.get("split")
+    if split is not None and (
+        isinstance(split, bool)
+        or not isinstance(split, (int, float))
+        or not math.isfinite(float(split))
+        or not 120.0 <= float(split) <= 400.0
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.specifications.split "
+            "must be a finite number between 120 and 400 points"
+        )
+        return issues
+    if specifications.get(
+        "layout_variant"
+    ) not in SPECIFICATION_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.specifications."
+            "layout_variant must be one of "
+            + ", ".join(sorted(SPECIFICATION_LAYOUT_VARIANTS))
+        )
+    annotation_order = specifications.get("annotation_order")
+    if annotation_order is not None and (
+        not isinstance(annotation_order, list)
+        or not annotation_order
+        or any(
+            isinstance(index, bool)
+            or not isinstance(index, int)
+            or index < 0
+            for index in annotation_order
+        )
+        or len(set(annotation_order)) != len(annotation_order)
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.specifications."
+            "annotation_order must be a non-empty list of unique "
+            "non-negative indices"
+        )
+    groups = specifications.get("section_groups")
+    if groups is None and page.get("composition_type") == "specifications":
+        return issues
+    if not isinstance(groups, list) or not groups:
+        issues.append(
+            f"{source_ref}.composition_data.specifications."
+            "section_groups must be a non-empty list"
+        )
+        return issues
+    seen_indices: set[int] = set()
+    for index, group in enumerate(groups):
+        label = (
+            f"{source_ref}.composition_data.specifications."
+            f"section_groups[{index}]"
+        )
+        if not isinstance(group, dict):
+            issues.append(f"{label} must be an object")
+            continue
+        if not set(group) <= {"source_indices", "title"} or (
+            "source_indices" not in group
+        ):
+            issues.append(
+                f"{label} supports only source_indices and optional title"
+            )
+            continue
+        source_indices = group.get("source_indices")
+        if not isinstance(source_indices, list) or not source_indices:
+            issues.append(f"{label}.source_indices must be a non-empty list")
+            continue
+        for source_index in source_indices:
+            if (
+                isinstance(source_index, bool)
+                or not isinstance(source_index, int)
+                or source_index < 0
+            ):
+                issues.append(
+                    f"{label}.source_indices must contain non-negative integers"
+                )
+                continue
+            if source_index in seen_indices:
+                issues.append(
+                    f"{label}.source_indices contains duplicate {source_index}"
+                )
+            seen_indices.add(source_index)
+        if "title" in group and not isinstance(group["title"], str):
+            issues.append(f"{label}.title must be a string")
+    return issues
+
+
+def _validate_regulatory_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.REGULATORY_COMPLIANCE.value or page.get(
+        "composition_type"
+    ) != "regulatory_compliance":
+        issues.append(
+            f"{source_ref}.composition_data.regulatory requires a "
+            "regulatory_compliance composition"
+        )
+        return issues
+    regulatory = data["regulatory"]
+    if (
+        not isinstance(regulatory, dict)
+        or "layout_variant" not in regulatory
+        or not set(regulatory) <= {"layout_variant", "qr_asset"}
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.regulatory must contain "
+            "layout_variant and supports optional qr_asset"
+        )
+        return issues
+    if regulatory.get("layout_variant") not in REGULATORY_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.regulatory.layout_variant "
+            "must be one of "
+            + ", ".join(sorted(REGULATORY_LAYOUT_VARIANTS))
+        )
+    qr_asset = regulatory.get("qr_asset")
+    if qr_asset is not None and (
+        not isinstance(qr_asset, str)
+        or not qr_asset.strip()
+        or Path(qr_asset).is_absolute()
+        or ".." in Path(qr_asset).parts
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.regulatory.qr_asset must "
+            "be a non-empty repository-relative string"
+        )
+    return issues
+
+
+def _validate_warranty_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.WARRANTY.value or page.get(
+        "composition_type"
+    ) != "warranty":
+        issues.append(
+            f"{source_ref}.composition_data.warranty requires "
+            "a warranty composition"
+        )
+        return issues
+    warranty = data["warranty"]
+    if not isinstance(warranty, dict):
+        issues.append(
+            f"{source_ref}.composition_data.warranty must be an object"
+        )
+        return issues
+    # `corner_radii` is optional so the contracts written before it
+    # stay valid and keep rendering the shared arcs.
+    if set(warranty) - {"corner_radii"} != {"layout_variant"}:
+        issues.append(
+            f"{source_ref}.composition_data.warranty must contain "
+            "exactly ['layout_variant']"
+        )
+        return issues
+    issues.extend(
+        _corner_radii_issues(
+            warranty.get("corner_radii"),
+            allowed=WARRANTY_CORNER_RADII,
+            label=(
+                f"{source_ref}.composition_data.warranty.corner_radii"
+            ),
+        )
+    )
+    if warranty.get("layout_variant") not in WARRANTY_LAYOUT_VARIANTS:
+        issues.append(
+            f"{source_ref}.composition_data.warranty.layout_variant "
+            "must be one of "
+            + ", ".join(sorted(WARRANTY_LAYOUT_VARIANTS))
+        )
+    return issues
+
+
+def _validate_troubleshooting_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    page_height = context.page_height
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.TROUBLESHOOTING_DATA.value or page.get(
+        "composition_type"
+    ) != "troubleshooting":
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting requires "
+            "a troubleshooting composition"
+        )
+        return issues
+    troubleshooting = data["troubleshooting"]
+    if not isinstance(troubleshooting, dict):
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting must be an object"
+        )
+        return issues
+    expected = {
+        "connection_image_role",
+        "heading_space_after",
+        "split",
+    }
+    if set(troubleshooting) != expected:
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting must contain "
+            f"exactly {sorted(expected)}"
+        )
+        return issues
+    if troubleshooting.get("connection_image_role") not in {
+        "wide_diagram",
+        "full_measure",
+        "reference_measure",
+    }:
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting."
+            "connection_image_role is invalid"
+        )
+    split = _finite_number(troubleshooting.get("split"))
+    if (
+        split is None
+        or page_height is None
+        or not 0 < split < page_height
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting.split must "
+            "stay inside the reference page"
+        )
+    heading_space_after = _finite_number(
+        troubleshooting.get("heading_space_after")
+    )
+    if heading_space_after is None or not 0 <= heading_space_after <= 24:
+        issues.append(
+            f"{source_ref}.composition_data.troubleshooting."
+            "heading_space_after must be between 0 and 24"
+        )
+    return issues
+
+
+def _validate_lcd_composition(
+    page: dict[str, Any],
+    data: dict[str, Any],
+    context: _CompositionContext,
+) -> list[str]:
+    source_ref = context.source_ref
+    page_width = context.page_width
+    page_height = context.page_height
+    issues: list[str] = []
+    if page.get("page_role") != PageRole.LCD.value or page.get(
+        "composition_type"
+    ) not in {"lcd", "lcd_operations"}:
+        issues.append(
+            f"{source_ref}.composition_data.lcd requires an LCD composition"
+        )
+        return issues
+    lcd = data["lcd"]
+    if not isinstance(lcd, dict):
+        issues.append(f"{source_ref}.composition_data.lcd must be an object")
+        return issues
+    allowed = {
+        "table_variant",
+        "hero_horizontal_scale",
+        "hero_callouts",
+        "operation_panel_variant",
+    }
+    unknown = sorted(set(lcd) - allowed)
+    if unknown:
+        issues.append(
+            f"{source_ref}.composition_data.lcd has unknown keys: {unknown}"
+        )
+    variant = lcd.get("table_variant")
+    if variant not in {"number_icon_label_description", "label_description"}:
+        issues.append(
+            f"{source_ref}.composition_data.lcd.table_variant is invalid"
+        )
+    operation_panel_variant = lcd.get("operation_panel_variant")
+    if operation_panel_variant is not None and (
+        page.get("composition_type") != "lcd_operations"
+        or operation_panel_variant != "paired_cards"
+    ):
+        issues.append(
+            f"{source_ref}.composition_data.lcd.operation_panel_variant "
+            "requires lcd_operations and must be paired_cards"
+        )
+    scale = _finite_number(lcd.get("hero_horizontal_scale", 1.0))
+    if scale is None or not 0.5 <= scale <= 2.0:
+        issues.append(
+            f"{source_ref}.composition_data.lcd.hero_horizontal_scale "
+            "must be between 0.5 and 2.0"
+        )
+    callouts = lcd.get("hero_callouts", [])
+    if not isinstance(callouts, list):
+        issues.append(
+            f"{source_ref}.composition_data.lcd.hero_callouts must be a list"
+        )
+        return issues
+    if callouts and (page_width is None or page_height is None):
+        issues.append(
+            f"{source_ref}: reference_pdf.page_size_pt is required for callouts"
+        )
+        return issues
+    seen_rows: set[int] = set()
+    for index, callout in enumerate(callouts):
+        label = (
+            f"{source_ref}.composition_data.lcd.hero_callouts[{index}]"
+        )
+        if not isinstance(callout, dict):
+            issues.append(f"{label} must be an object")
+            continue
+        expected = {"row_index", "text_rect", "align", "leader_points"}
+        if set(callout) != expected:
+            issues.append(f"{label} must contain exactly {sorted(expected)}")
+            continue
+        try:
+            row_index = _positive_int(
+                callout.get("row_index"),
+                label=f"{label}.row_index",
+            )
+        except TargetAssemblyPlanError as exc:
+            issues.append(str(exc))
+            continue
+        if row_index in seen_rows:
+            issues.append(f"{label}.row_index must be unique")
+        seen_rows.add(row_index)
+        rect = callout.get("text_rect")
+        if not isinstance(rect, list) or len(rect) != 4:
+            issues.append(f"{label}.text_rect must contain four numbers")
+        else:
+            values = [_finite_number(value) for value in rect]
+            if any(value is None for value in values):
+                issues.append(f"{label}.text_rect must contain four numbers")
+            else:
+                x, y, width, height = values  # type: ignore[misc]
+                if (
+                    width <= 0
+                    or height <= 0
+                    or x < 0
+                    or y < 0
+                    or x + width > page_width  # type: ignore[operator]
+                    or y + height > page_height  # type: ignore[operator]
+                ):
+                    issues.append(
+                        f"{label}.text_rect must stay inside the reference page"
+                    )
+        if callout.get("align") not in {
+            "LeftAlign",
+            "CenterAlign",
+            "RightAlign",
+        }:
+            issues.append(f"{label}.align is invalid")
+        points = callout.get("leader_points")
+        if not isinstance(points, list) or len(points) < 2:
+            issues.append(f"{label}.leader_points requires at least two points")
+            continue
+        for point_index, point in enumerate(points):
+            issues.extend(_validate_page_point(
+                point,
+                label=f"{label}.leader_points[{point_index}]",
+                page_width=page_width,  # type: ignore[arg-type]
+                page_height=page_height,  # type: ignore[arg-type]
+            ))
+    return issues
+
+
+_CompositionValidator = Callable[
+    [dict[str, Any], dict[str, Any], _CompositionContext], list[str]
+]
+
+# composition_data key set -> validator; the key sets are disjoint, so lookup
+# order cannot matter. Anything else gets the "supports only" issue.
+_COMPOSITION_VALIDATORS: dict[frozenset[str], _CompositionValidator] = {
+    frozenset({"toc"}): _validate_toc_composition,
+    frozenset({"symbols"}): _validate_symbols_composition,
+    frozenset({"charging"}): _validate_charging_composition,
+    frozenset({"connections"}): _validate_connections_composition,
+    frozenset({"operation"}): _validate_operation_composition,
+    frozenset({"inbox"}): _validate_inbox_composition,
+    frozenset({"overview"}): _validate_overview_composition,
+    frozenset({"app"}): _validate_app_composition,
+    frozenset({"specifications"}): _validate_specifications_composition,
+    frozenset({"specifications", "storage"}): _validate_specifications_composition,
+    frozenset({"regulatory"}): _validate_regulatory_composition,
+    frozenset({"warranty"}): _validate_warranty_composition,
+    frozenset({"troubleshooting"}): _validate_troubleshooting_composition,
+    frozenset({"lcd"}): _validate_lcd_composition,
+}
+
+
 def _validate_composition_data(
     pages: list[dict[str, Any]],
     reference: dict[str, Any],
@@ -353,761 +1243,22 @@ def _validate_composition_data(
             )
         if not data:
             continue
-        if set(data) == {"toc"}:
-            if page.get("page_role") != PageRole.TOC.value or page.get(
-                "composition_type"
-            ) != "toc":
-                issues.append(
-                    f"{source_ref}.composition_data.toc requires a TOC composition"
-                )
-                continue
-            toc = data["toc"]
-            if not isinstance(toc, dict) or set(toc) != {"layout_variant"}:
-                issues.append(
-                    f"{source_ref}.composition_data.toc must contain "
-                    "exactly ['layout_variant']"
-                )
-                continue
-            if toc.get("layout_variant") not in TOC_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.toc.layout_variant must be one of "
-                    + ", ".join(sorted(TOC_LAYOUT_VARIANTS))
-                )
-            continue
-        if set(data) == {"symbols"}:
-            if page.get("page_role") != PageRole.SYMBOLS.value or page.get(
-                "composition_type"
-            ) not in {"symbols", "safety_symbols"}:
-                issues.append(
-                    f"{source_ref}.composition_data.symbols requires "
-                    "a symbols source in a symbols composition"
-                )
-                continue
-            symbols = data["symbols"]
-            if not isinstance(symbols, dict) or set(symbols) != {"left_count"}:
-                issues.append(
-                    f"{source_ref}.composition_data.symbols must contain "
-                    "exactly ['left_count']"
-                )
-                continue
-            left_count = symbols.get("left_count")
-            if (
-                isinstance(left_count, bool)
-                or not isinstance(left_count, int)
-                or left_count <= 0
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.symbols.left_count "
-                    "must be a positive integer"
-                )
-            continue
-        if set(data) == {"charging"}:
-            if page.get("page_role") != PageRole.CHARGING.value or page.get(
-                "composition_type"
-            ) != "charging":
-                issues.append(
-                    f"{source_ref}.composition_data.charging requires "
-                    "a charging composition"
-                )
-                continue
-            charging = data["charging"]
-            if not isinstance(charging, dict):
-                issues.append(
-                    f"{source_ref}.composition_data.charging must be an object"
-                )
-                continue
-            expected = {"image_role", "h2_suffix_pill_indices"}
-            # `figure_callouts` is optional so the contracts written before it
-            # stay valid and keep printing their label tables under the art.
-            if set(charging) - {"figure_callouts"} != expected:
-                issues.append(
-                    f"{source_ref}.composition_data.charging must contain "
-                    f"exactly {sorted(expected)}"
-                )
-                continue
-            issues.extend(
-                _figure_callout_issues(
-                    charging.get("figure_callouts"),
-                    label=f"{source_ref}.composition_data.charging.figure_callouts",
-                )
-            )
-            if charging.get("image_role") not in {
-                "charging_diagram",
-                "full_measure",
-                "reference_measure",
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.charging.image_role is invalid"
-                )
-            indices = charging.get("h2_suffix_pill_indices")
-            if not isinstance(indices, list) or not indices:
-                issues.append(
-                    f"{source_ref}.composition_data.charging."
-                    "h2_suffix_pill_indices must be a non-empty list"
-                )
-                continue
-            if any(
-                isinstance(index, bool)
-                or not isinstance(index, int)
-                or index < 0
-                for index in indices
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.charging."
-                    "h2_suffix_pill_indices must contain non-negative integers"
-                )
-                continue
-            if len(set(indices)) != len(indices):
-                issues.append(
-                    f"{source_ref}.composition_data.charging."
-                    "h2_suffix_pill_indices must be unique"
-                )
-                continue
-            source_page = ir.pages[page_index] if page_index < len(ir.pages) else None
-            h2s = [
-                str(block.payload)
-                for block in (source_page.blocks if source_page is not None else ())
-                if block.kind == "h2"
-            ]
-            for index in indices:
-                label = (
-                    f"{source_ref}.composition_data.charging."
-                    "h2_suffix_pill_indices"
-                )
-                if index >= len(h2s):
-                    issues.append(f"{label} index {index} is out of range")
-                elif split_trailing_parenthetical(h2s[index]) is None:
-                    issues.append(
-                        f"{label} index {index} requires a trailing parenthetical"
-                    )
-            continue
-        if set(data) == {"connections"}:
-            if page.get("page_role") != PageRole.CONNECTIONS.value or page.get(
-                "composition_type"
-            ) != "connections":
-                issues.append(
-                    f"{source_ref}.composition_data.connections requires "
-                    "a connections composition"
-                )
-                continue
-            connections = data["connections"]
-            if not isinstance(connections, dict):
-                issues.append(
-                    f"{source_ref}.composition_data.connections must be an object"
-                )
-                continue
-            expected = {"image_role", "layout_variant"}
-            if set(connections) != expected:
-                issues.append(
-                    f"{source_ref}.composition_data.connections must contain "
-                    f"exactly {sorted(expected)}"
-                )
-                continue
-            if connections.get("layout_variant") not in CONNECTIONS_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.connections.layout_variant "
-                    "must be one of "
-                    + ", ".join(sorted(CONNECTIONS_LAYOUT_VARIANTS))
-                )
-            if connections.get("image_role") not in {
-                "full_measure",
-                "reference_measure",
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.connections.image_role "
-                    "is invalid"
-                )
-            continue
-        if set(data) == {"operation"}:
-            if page.get("page_role") != PageRole.OPERATION_GUIDE.value or page.get(
-                "composition_type"
-            ) != "operation":
-                issues.append(
-                    f"{source_ref}.composition_data.operation requires an "
-                    "operation composition"
-                )
-                continue
-            operation = data["operation"]
-            if not isinstance(operation, dict) or set(operation) != {
-                "layout_variant"
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.operation must contain "
-                    "exactly ['layout_variant']"
-                )
-                continue
-            if operation.get("layout_variant") not in OPERATION_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.operation.layout_variant "
-                    "must be one of "
-                    + ", ".join(sorted(OPERATION_LAYOUT_VARIANTS))
-                )
-            continue
-        if set(data) == {"inbox"}:
-            if page.get("page_role") != PageRole.INBOX.value or page.get(
-                "composition_type"
-            ) != "inbox_overview":
-                issues.append(
-                    f"{source_ref}.composition_data.inbox requires an "
-                    "inbox_overview composition on the inbox source"
-                )
-                continue
-            inbox = data["inbox"]
-            # `corner_radii` is optional so the contracts written before it stay
-            # valid and keep rendering the shared defaults.
-            if not isinstance(inbox, dict) or set(inbox) - {"corner_radii"} != {
-                "layout_variant"
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.inbox must contain "
-                    "exactly ['layout_variant']"
-                )
-                continue
-            issues.extend(
-                _corner_radii_issues(
-                    inbox.get("corner_radii"),
-                    allowed=INBOX_CORNER_RADII,
-                    label=f"{source_ref}.composition_data.inbox.corner_radii",
-                )
-            )
-            if inbox.get("layout_variant") not in INBOX_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.inbox.layout_variant "
-                    "must be one of " + ", ".join(sorted(INBOX_LAYOUT_VARIANTS))
-                )
-            continue
-        if set(data) == {"overview"}:
-            if page.get("page_role") != PageRole.PRODUCT_OVERVIEW.value or page.get(
-                "composition_type"
-            ) not in {"inbox_overview", "fcc_inbox_overview"}:
-                issues.append(
-                    f"{source_ref}.composition_data.overview requires an "
-                    "inbox overview composition on the product overview source"
-                )
-                continue
-            overview = data["overview"]
-            if (
-                not isinstance(overview, dict)
-                or "instance_id" not in overview
-                or not set(overview) <= {
-                    "instance_id",
-                    "asset_refs",
-                    "layout_variant",
-                }
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.overview must contain "
-                    "instance_id and supports optional asset_refs or "
-                    "layout_variant"
-                )
-                continue
-            if not isinstance(overview.get("instance_id"), str) or not str(
-                overview.get("instance_id")
-            ).strip():
-                issues.append(
-                    f"{source_ref}.composition_data.overview.instance_id must "
-                    "be a non-empty string"
-                )
-            asset_refs = overview.get("asset_refs")
-            if asset_refs is not None:
-                if not isinstance(asset_refs, dict) or set(asset_refs) != {
-                    "front_art",
-                    "right_art",
-                }:
-                    issues.append(
-                        f"{source_ref}.composition_data.overview.asset_refs must "
-                        "contain exactly front_art and right_art"
-                    )
-                elif any(
-                    not isinstance(value, str)
-                    or not value.strip()
-                    or Path(value).is_absolute()
-                    or ".." in Path(value).parts
-                    for value in asset_refs.values()
-                ):
-                    issues.append(
-                        f"{source_ref}.composition_data.overview.asset_refs "
-                        "values must be non-empty bundle-relative strings"
-                    )
-            layout_variant = overview.get("layout_variant")
-            if layout_variant is not None and (
-                layout_variant not in OVERVIEW_LAYOUT_VARIANTS
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.overview.layout_variant "
-                    "must be one of "
-                    + ", ".join(sorted(OVERVIEW_LAYOUT_VARIANTS))
-                )
-            continue
-        if set(data) == {"app"}:
-            if page.get("page_role") != PageRole.APP_SETUP.value or page.get(
-                "composition_type"
-            ) != "app":
-                issues.append(
-                    f"{source_ref}.composition_data.app requires an app composition"
-                )
-                continue
-            app = data["app"]
-            required = {
-                "instance_id",
-                "control_image",
-                "labels_by_role",
-            }
-            if (
-                not isinstance(app, dict)
-                or not required <= set(app)
-                or not set(app) <= required | {"figure_assets"}
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.app must contain "
-                    f"{sorted(required)} and supports optional figure_assets"
-                )
-                continue
-            for field in ("instance_id", "control_image"):
-                value = app.get(field)
-                if (
-                    not isinstance(value, str)
-                    or not value.strip()
-                    or Path(value).is_absolute()
-                    or ".." in Path(value).parts
-                ):
-                    issues.append(
-                        f"{source_ref}.composition_data.app.{field} must be a "
-                        "non-empty bundle-relative string"
-                    )
-            labels = app.get("labels_by_role")
-            required_roles = {"main_power", "dc_usb", "ac"}
-            if (
-                not isinstance(labels, dict)
-                or set(labels) != required_roles
-                or any(
-                    not isinstance(value, str) or not value.strip()
-                    for value in labels.values()
-                )
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.app.labels_by_role must "
-                    "contain non-empty ac, dc_usb, and main_power labels"
-                )
-            figure_assets = app.get("figure_assets")
-            allowed_figure_roles = {
-                "app_download",
-                "app_add_device",
-                "app_connect_result",
-            }
-            if figure_assets is not None and (
-                not isinstance(figure_assets, dict)
-                or not figure_assets
-                or not set(figure_assets) <= allowed_figure_roles
-                or any(
-                    not isinstance(value, str)
-                    or not value.strip()
-                    or Path(value).is_absolute()
-                    or ".." in Path(value).parts
-                    for value in figure_assets.values()
-                )
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.app.figure_assets must be "
-                    "a non-empty bundle-relative mapping of App figure roles"
-                )
-            continue
-        if set(data) in (
-            {"specifications"},
-            {"storage", "specifications"},
-        ):
-            if page.get("page_role") != PageRole.SPEC.value or page.get(
-                "composition_type"
-            ) not in {
-                "storage_specifications",
-                "troubleshooting_specifications",
-                "specifications",
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.specifications requires "
-                    "a specifications composition on the spec source"
-                )
-                continue
-            storage = data.get("storage")
-            if storage is not None:
-                if page.get("composition_type") != "storage_specifications":
-                    issues.append(
-                        f"{source_ref}.composition_data.storage requires a "
-                        "storage_specifications composition"
-                    )
-                    continue
-                if (
-                    not isinstance(storage, dict)
-                    or set(storage) != {"layout_variant"}
-                ):
-                    issues.append(
-                        f"{source_ref}.composition_data.storage must contain "
-                        "exactly ['layout_variant']"
-                    )
-                    continue
-                if storage.get("layout_variant") not in STORAGE_LAYOUT_VARIANTS:
-                    issues.append(
-                        f"{source_ref}.composition_data.storage.layout_variant "
-                        "must be one of "
-                        + ", ".join(sorted(STORAGE_LAYOUT_VARIANTS))
-                    )
-                    continue
-            specifications = data["specifications"]
-            if not isinstance(specifications, dict):
-                issues.append(
-                    f"{source_ref}.composition_data.specifications must be an object"
-                )
-                continue
-            allowed = {
-                "layout_variant",
-                "section_groups",
-                "annotation_order",
-                "split",
-            }
-            if "layout_variant" not in specifications or not set(
-                specifications
-            ) <= allowed:
-                issues.append(
-                    f"{source_ref}.composition_data.specifications must contain "
-                    "layout_variant and supports optional section_groups, "
-                    "annotation_order, or split"
-                )
-                continue
-            split = specifications.get("split")
-            if split is not None and (
-                isinstance(split, bool)
-                or not isinstance(split, (int, float))
-                or not math.isfinite(float(split))
-                or not 120.0 <= float(split) <= 400.0
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.specifications.split "
-                    "must be a finite number between 120 and 400 points"
-                )
-                continue
-            if specifications.get(
-                "layout_variant"
-            ) not in SPECIFICATION_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.specifications."
-                    "layout_variant must be one of "
-                    + ", ".join(sorted(SPECIFICATION_LAYOUT_VARIANTS))
-                )
-            annotation_order = specifications.get("annotation_order")
-            if annotation_order is not None and (
-                not isinstance(annotation_order, list)
-                or not annotation_order
-                or any(
-                    isinstance(index, bool)
-                    or not isinstance(index, int)
-                    or index < 0
-                    for index in annotation_order
-                )
-                or len(set(annotation_order)) != len(annotation_order)
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.specifications."
-                    "annotation_order must be a non-empty list of unique "
-                    "non-negative indices"
-                )
-            groups = specifications.get("section_groups")
-            if groups is None and page.get("composition_type") == "specifications":
-                continue
-            if not isinstance(groups, list) or not groups:
-                issues.append(
-                    f"{source_ref}.composition_data.specifications."
-                    "section_groups must be a non-empty list"
-                )
-                continue
-            seen_indices: set[int] = set()
-            for index, group in enumerate(groups):
-                label = (
-                    f"{source_ref}.composition_data.specifications."
-                    f"section_groups[{index}]"
-                )
-                if not isinstance(group, dict):
-                    issues.append(f"{label} must be an object")
-                    continue
-                if not set(group) <= {"source_indices", "title"} or (
-                    "source_indices" not in group
-                ):
-                    issues.append(
-                        f"{label} supports only source_indices and optional title"
-                    )
-                    continue
-                source_indices = group.get("source_indices")
-                if not isinstance(source_indices, list) or not source_indices:
-                    issues.append(f"{label}.source_indices must be a non-empty list")
-                    continue
-                for source_index in source_indices:
-                    if (
-                        isinstance(source_index, bool)
-                        or not isinstance(source_index, int)
-                        or source_index < 0
-                    ):
-                        issues.append(
-                            f"{label}.source_indices must contain non-negative integers"
-                        )
-                        continue
-                    if source_index in seen_indices:
-                        issues.append(
-                            f"{label}.source_indices contains duplicate {source_index}"
-                        )
-                    seen_indices.add(source_index)
-                if "title" in group and not isinstance(group["title"], str):
-                    issues.append(f"{label}.title must be a string")
-            continue
-        if set(data) == {"regulatory"}:
-            if page.get("page_role") != PageRole.REGULATORY_COMPLIANCE.value or page.get(
-                "composition_type"
-            ) != "regulatory_compliance":
-                issues.append(
-                    f"{source_ref}.composition_data.regulatory requires a "
-                    "regulatory_compliance composition"
-                )
-                continue
-            regulatory = data["regulatory"]
-            if (
-                not isinstance(regulatory, dict)
-                or "layout_variant" not in regulatory
-                or not set(regulatory) <= {"layout_variant", "qr_asset"}
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.regulatory must contain "
-                    "layout_variant and supports optional qr_asset"
-                )
-                continue
-            if regulatory.get("layout_variant") not in REGULATORY_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.regulatory.layout_variant "
-                    "must be one of "
-                    + ", ".join(sorted(REGULATORY_LAYOUT_VARIANTS))
-                )
-            qr_asset = regulatory.get("qr_asset")
-            if qr_asset is not None and (
-                not isinstance(qr_asset, str)
-                or not qr_asset.strip()
-                or Path(qr_asset).is_absolute()
-                or ".." in Path(qr_asset).parts
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.regulatory.qr_asset must "
-                    "be a non-empty repository-relative string"
-                )
-            continue
-        if set(data) == {"warranty"}:
-            if page.get("page_role") != PageRole.WARRANTY.value or page.get(
-                "composition_type"
-            ) != "warranty":
-                issues.append(
-                    f"{source_ref}.composition_data.warranty requires "
-                    "a warranty composition"
-                )
-                continue
-            warranty = data["warranty"]
-            if not isinstance(warranty, dict):
-                issues.append(
-                    f"{source_ref}.composition_data.warranty must be an object"
-                )
-                continue
-            # `corner_radii` is optional so the contracts written before it
-            # stay valid and keep rendering the shared arcs.
-            if set(warranty) - {"corner_radii"} != {"layout_variant"}:
-                issues.append(
-                    f"{source_ref}.composition_data.warranty must contain "
-                    "exactly ['layout_variant']"
-                )
-                continue
-            issues.extend(
-                _corner_radii_issues(
-                    warranty.get("corner_radii"),
-                    allowed=WARRANTY_CORNER_RADII,
-                    label=(
-                        f"{source_ref}.composition_data.warranty.corner_radii"
-                    ),
-                )
-            )
-            if warranty.get("layout_variant") not in WARRANTY_LAYOUT_VARIANTS:
-                issues.append(
-                    f"{source_ref}.composition_data.warranty.layout_variant "
-                    "must be one of "
-                    + ", ".join(sorted(WARRANTY_LAYOUT_VARIANTS))
-                )
-            continue
-        if set(data) == {"troubleshooting"}:
-            if page.get("page_role") != PageRole.TROUBLESHOOTING_DATA.value or page.get(
-                "composition_type"
-            ) != "troubleshooting":
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting requires "
-                    "a troubleshooting composition"
-                )
-                continue
-            troubleshooting = data["troubleshooting"]
-            if not isinstance(troubleshooting, dict):
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting must be an object"
-                )
-                continue
-            expected = {
-                "connection_image_role",
-                "heading_space_after",
-                "split",
-            }
-            if set(troubleshooting) != expected:
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting must contain "
-                    f"exactly {sorted(expected)}"
-                )
-                continue
-            if troubleshooting.get("connection_image_role") not in {
-                "wide_diagram",
-                "full_measure",
-                "reference_measure",
-            }:
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting."
-                    "connection_image_role is invalid"
-                )
-            split = _finite_number(troubleshooting.get("split"))
-            if (
-                split is None
-                or page_height is None
-                or not 0 < split < page_height
-            ):
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting.split must "
-                    "stay inside the reference page"
-                )
-            heading_space_after = _finite_number(
-                troubleshooting.get("heading_space_after")
-            )
-            if heading_space_after is None or not 0 <= heading_space_after <= 24:
-                issues.append(
-                    f"{source_ref}.composition_data.troubleshooting."
-                    "heading_space_after must be between 0 and 24"
-                )
-            continue
-        if set(data) != {"lcd"}:
+        context = _CompositionContext(
+            source_ref=source_ref,
+            page_index=page_index,
+            ir=ir,
+            page_width=page_width,
+            page_height=page_height,
+        )
+        validator = _COMPOSITION_VALIDATORS.get(frozenset(data))
+        if validator is None:
             issues.append(
                 f"{source_ref}.composition_data supports only charging, "
                 "connections, lcd, regulatory, specifications, storage, toc, "
                 "troubleshooting, or warranty component data"
             )
             continue
-        if page.get("page_role") != PageRole.LCD.value or page.get(
-            "composition_type"
-        ) not in {"lcd", "lcd_operations"}:
-            issues.append(
-                f"{source_ref}.composition_data.lcd requires an LCD composition"
-            )
-            continue
-        lcd = data["lcd"]
-        if not isinstance(lcd, dict):
-            issues.append(f"{source_ref}.composition_data.lcd must be an object")
-            continue
-        allowed = {
-            "table_variant",
-            "hero_horizontal_scale",
-            "hero_callouts",
-            "operation_panel_variant",
-        }
-        unknown = sorted(set(lcd) - allowed)
-        if unknown:
-            issues.append(
-                f"{source_ref}.composition_data.lcd has unknown keys: {unknown}"
-            )
-        variant = lcd.get("table_variant")
-        if variant not in {"number_icon_label_description", "label_description"}:
-            issues.append(
-                f"{source_ref}.composition_data.lcd.table_variant is invalid"
-            )
-        operation_panel_variant = lcd.get("operation_panel_variant")
-        if operation_panel_variant is not None and (
-            page.get("composition_type") != "lcd_operations"
-            or operation_panel_variant != "paired_cards"
-        ):
-            issues.append(
-                f"{source_ref}.composition_data.lcd.operation_panel_variant "
-                "requires lcd_operations and must be paired_cards"
-            )
-        scale = _finite_number(lcd.get("hero_horizontal_scale", 1.0))
-        if scale is None or not 0.5 <= scale <= 2.0:
-            issues.append(
-                f"{source_ref}.composition_data.lcd.hero_horizontal_scale "
-                "must be between 0.5 and 2.0"
-            )
-        callouts = lcd.get("hero_callouts", [])
-        if not isinstance(callouts, list):
-            issues.append(
-                f"{source_ref}.composition_data.lcd.hero_callouts must be a list"
-            )
-            continue
-        if callouts and (page_width is None or page_height is None):
-            issues.append(
-                f"{source_ref}: reference_pdf.page_size_pt is required for callouts"
-            )
-            continue
-        seen_rows: set[int] = set()
-        for index, callout in enumerate(callouts):
-            label = (
-                f"{source_ref}.composition_data.lcd.hero_callouts[{index}]"
-            )
-            if not isinstance(callout, dict):
-                issues.append(f"{label} must be an object")
-                continue
-            expected = {"row_index", "text_rect", "align", "leader_points"}
-            if set(callout) != expected:
-                issues.append(f"{label} must contain exactly {sorted(expected)}")
-                continue
-            try:
-                row_index = _positive_int(
-                    callout.get("row_index"),
-                    label=f"{label}.row_index",
-                )
-            except TargetAssemblyPlanError as exc:
-                issues.append(str(exc))
-                continue
-            if row_index in seen_rows:
-                issues.append(f"{label}.row_index must be unique")
-            seen_rows.add(row_index)
-            rect = callout.get("text_rect")
-            if not isinstance(rect, list) or len(rect) != 4:
-                issues.append(f"{label}.text_rect must contain four numbers")
-            else:
-                values = [_finite_number(value) for value in rect]
-                if any(value is None for value in values):
-                    issues.append(f"{label}.text_rect must contain four numbers")
-                else:
-                    x, y, width, height = values  # type: ignore[misc]
-                    if (
-                        width <= 0
-                        or height <= 0
-                        or x < 0
-                        or y < 0
-                        or x + width > page_width  # type: ignore[operator]
-                        or y + height > page_height  # type: ignore[operator]
-                    ):
-                        issues.append(
-                            f"{label}.text_rect must stay inside the reference page"
-                        )
-            if callout.get("align") not in {
-                "LeftAlign",
-                "CenterAlign",
-                "RightAlign",
-            }:
-                issues.append(f"{label}.align is invalid")
-            points = callout.get("leader_points")
-            if not isinstance(points, list) or len(points) < 2:
-                issues.append(f"{label}.leader_points requires at least two points")
-                continue
-            for point_index, point in enumerate(points):
-                issues.extend(_validate_page_point(
-                    point,
-                    label=f"{label}.leader_points[{point_index}]",
-                    page_width=page_width,  # type: ignore[arg-type]
-                    page_height=page_height,  # type: ignore[arg-type]
-                ))
+        issues.extend(validator(page, data, context))
     return issues
 
 
