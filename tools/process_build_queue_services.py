@@ -3,9 +3,11 @@ from __future__ import annotations
 import os
 import time
 from datetime import datetime
+from functools import partial
 from pathlib import Path
 from typing import Any
 
+from tools.process_build_queue_deps import QueueDeps
 from tools.queue_build_execution import (
     build_document_for_task as _build_document_for_task_impl,
     sync_phase2_snapshot_before_queue as _sync_phase2_snapshot_before_queue_impl,
@@ -466,6 +468,7 @@ def build_document_for_task(
     lang: str | None = None,
     version: str = "",
     git_ref: str = "",
+    deps: QueueDeps | None = None,
 ) -> Any:
     return _build_document_for_task_impl(
         repo_root=module.ROOT,
@@ -478,10 +481,10 @@ def build_document_for_task(
         version=version,
         git_ref=git_ref,
         normalize_workflow_action=module.normalize_workflow_action,
-        prepare_git_ref_worktree=module._prepare_git_ref_worktree,
-        remove_worktree=module._remove_worktree,
+        prepare_git_ref_worktree=deps.prepare_git_ref_worktree if deps is not None else module._prepare_git_ref_worktree,
+        remove_worktree=deps.remove_worktree if deps is not None else module._remove_worktree,
         config_path_in_repo_root=module._config_path_in_repo_root,
-        run_command=module._run_command,
+        run_command=deps.run_command if deps is not None else module._run_command,
         build_py_target_command=module._build_py_target_command,
         resolve_word_output_path_for_target=module.resolve_word_output_path_for_target,
         resolve_pdf_output_path_for_target=module.resolve_pdf_output_path_for_target,
@@ -644,14 +647,14 @@ def best_effort_queue_workflow_action(module: Any, record: Any) -> str | None:
     )
 
 
-def _bootstrap_queue_session(module: Any, **kwargs: Any) -> Any:
+def _bootstrap_queue_session(module: Any, *, deps: QueueDeps | None = None, **kwargs: Any) -> Any:
     return _bootstrap_queue_session_impl(
         **kwargs,
         collect_queue_preflight_errors=module.collect_queue_preflight_errors,
         resolve_document_link_binding=module.resolve_document_link_binding,
         cli_bin=module._cli_bin,
         phase2_identity=module._phase2_identity,
-        source_factory=module.LarkCliSource,
+        source_factory=deps.source_factory if deps is not None else module.LarkCliSource,
         normalize_cli_queue_action=module.normalize_cli_queue_action,
         warn_legacy_cli_doc_phase=module.warn_legacy_cli_doc_phase,
     )
@@ -669,7 +672,19 @@ def process_build_queue(
     doc_phase: str | None = None,
     record_id: str | None = None,
     record_ids: tuple[str, ...] = (),
+    deps: QueueDeps | None = None,
 ) -> int:
+    # Keep existing facade lookups for callers that still patch those names.
+    sync_snapshot = module.sync_phase2_snapshot_before_queue
+    build_document = module.build_document_for_task
+    if deps is not None:
+        sync_snapshot = partial(
+            _sync_phase2_snapshot_before_queue_impl,
+            repo_root=module.ROOT,
+            run_command=deps.run_command,
+            build_py_sync_data_command=module._build_py_sync_data_command,
+        )
+        build_document = partial(build_document_for_task, module, deps=deps)
     return _process_build_queue_impl(
         cfg=cfg,
         config_path=config_path,
@@ -680,11 +695,11 @@ def process_build_queue(
         doc_phase=doc_phase,
         record_id=record_id,
         record_ids=record_ids,
-        bootstrap_queue_session=lambda **kwargs: _bootstrap_queue_session(module, **kwargs),
+        bootstrap_queue_session=partial(_bootstrap_queue_session, module, deps=deps),
         load_pending_queue_state=_load_pending_queue_state_impl,
         print_no_pending_message=_print_no_pending_message_impl,
         print_dry_run_groups=_print_dry_run_groups_impl,
-        sync_phase2_snapshot_before_queue=module.sync_phase2_snapshot_before_queue,
+        sync_phase2_snapshot_before_queue=sync_snapshot,
         resolve_and_report_wiki_destination=_resolve_and_report_wiki_destination_impl,
         process_queue_record_group=_process_queue_record_group_impl,
         acquire_queue_claim=_acquire_verified_queue_claim_impl,
@@ -720,7 +735,7 @@ def process_build_queue(
         resolve_dingtalk_mirror_destination=module.resolve_dingtalk_mirror_destination,
         ensure_dingtalk_session_ready=module.ensure_dingtalk_session_ready,
         build_started_fields=module.build_started_fields,
-        build_document_for_task=module.build_document_for_task,
+        build_document_for_task=build_document,
         publish_word_artifact=module.publish_word_artifact,
         import_markdown_to_cloud_doc=module.import_markdown_to_cloud_doc,
         finalize_cloud_doc=module.finalize_cloud_doc,

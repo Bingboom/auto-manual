@@ -86,6 +86,7 @@ from tools.phase2_support import (  # noqa: E402
     phase2_identity as _phase2_identity,
 )
 from tools.process_build_queue_bootstrap import configure_queue_bound_providers  # noqa: E402
+from tools.process_build_queue_deps import QueueDeps  # noqa: E402
 from tools.process_build_queue_services import (  # noqa: E402
     best_effort_queue_workflow_action as _best_effort_queue_workflow_action_service,
     build_document_for_task as _build_document_for_task_service,
@@ -303,12 +304,7 @@ def _build_py_sync_data_command(*, repo_root: Path = ROOT, config_path: Path, da
     )
 
 
-def sync_phase2_snapshot_before_queue(*, config_path: Path, data_root: str | None) -> None:
-    _sync_phase2_snapshot_before_queue_service(
-        _service_module(),
-        config_path=config_path,
-        data_root=data_root,
-    )
+sync_phase2_snapshot_before_queue = partial(_sync_phase2_snapshot_before_queue_service, _service_module())
 
 
 def build_document_for_task(
@@ -321,6 +317,7 @@ def build_document_for_task(
     lang: str | None = None,
     version: str = "",
     git_ref: str = "",
+    deps: QueueDeps | None = None,
 ) -> Any:
     return _build_document_for_task_service(
         _service_module(),
@@ -332,6 +329,7 @@ def build_document_for_task(
         lang=lang,
         version=version,
         git_ref=git_ref,
+        deps=deps,
     )
 
 
@@ -482,6 +480,7 @@ def process_build_queue(
     doc_phase: str | None = None,
     record_id: str | None = None,
     record_ids: tuple[str, ...] = (),
+    deps: QueueDeps | None = None,
 ) -> int:
     return _process_build_queue_service(
         _service_module(),
@@ -494,6 +493,7 @@ def process_build_queue(
         doc_phase=doc_phase,
         record_id=record_id,
         record_ids=record_ids,
+        deps=deps,
     )
 
 

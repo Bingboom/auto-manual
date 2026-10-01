@@ -419,6 +419,14 @@ Quality and release logic should follow concern-specific modules instead of drif
   - CLI bootstrap and data-root normalization for the queue entrypoint
 - [`tools/process_build_queue_services.py`](../../tools/process_build_queue_services.py)
   - wrapper-compatible service grouping for queue entrypoint helpers
+  - optional queue dependencies are forwarded to existing session/build callbacks; omitted dependencies preserve facade compatibility lookups
+- [`tools/process_build_queue_deps.py`](../../tools/process_build_queue_deps.py)
+  - `QueueDeps` owns the external client factory, command runner, and Git worktree prepare/remove callbacks
+  - `default_queue_deps(module)` resolves the current facade names when defaults are requested; this first dependency seam does not include a clock
+- [`tools/process_review_start_queue.py`](../../tools/process_review_start_queue.py)
+  - review-start facade accepts the existing `ReviewStartRuntimeDeps` object and builds its default instance per invocation
+- [`tools/process_review_start_queue_runtime.py`](../../tools/process_review_start_queue_runtime.py)
+  - existing review-start runtime dependency container and orchestration; no duplicate container or clock dependency is introduced
 - [`tools/queue_contract.py`](../../tools/queue_contract.py)
   - canonical queue contract constants
   - shared queue dataclasses
