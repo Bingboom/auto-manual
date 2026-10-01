@@ -719,3 +719,5 @@ Prepared Web admission: `tools/web_component_admission.py` owns fresh-publicatio
 `tools/component_specs/plain_inventory.py` owns recognition of complete, text-only packing inventories and their `HB-TABLE-REFERENCE/plain-inventory` spec. Word reuses the same source-shape check; whole-document Web IR claims the table and preserves sibling notes. Illustrated Inbox parsing remains strict.
 
 `component_specs/app_label_source.py` admits the explicitly bound historical control-image/paragraph shape before the common App parser. `_claim_inbox` owns illustrated/plain inventory dispatch in the whole-document component collector. The JP warranty overlay declares seven sections and no year-card table; authored line blocks remain ordered rich paragraph content.
+
+`component_specs/lcd_mode_source.py` owns standalone LCD image/action-matrix recognition, preserving authored headers through the shared reference table. `plain_inventory.py` admits complete three-item lists as well as one-row inventories. `app_label_source.py` preserves a separating note outside the explicitly bound shared panel.

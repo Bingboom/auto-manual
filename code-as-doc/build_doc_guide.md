@@ -2347,4 +2347,12 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 
 JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。
 
+中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
+
+原生 PDF 录入和审核 RST 的 Web Publish 共用[图文分工规则](../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：普通说明文字与文字框由共享 HTML/CSS 承载，保留实际插图边界，密集引线图按已批准例外处理。新目标必须登记组件和底图哈希并独立验收，不能把四语测试通过当作中规验收。显式 `base-art-live-copy` 绑定复用 ReferenceFigure 适配器，不需要启用该目标不适用的整套 legacy figure 布局。
+
+App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
+
 通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
+中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。

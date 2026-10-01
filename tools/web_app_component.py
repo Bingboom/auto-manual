@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.app_adapters import web_app_projection
 from tools.component_specs.model import ComponentSpec
+from tools.web_figure_captions import align_caption_centers
 from tools.web_reference_components import append_reference_captions
 
 
@@ -17,6 +18,35 @@ def _asset(payload: dict, role: str) -> str:
     if not value:
         raise ValueError(f"embedded App component is missing {role}")
     return value
+
+
+def _phone_width(spec: ComponentSpec) -> str:
+    maximum = spec.metadata.get("phone_max_width_rem", 44)
+    if isinstance(maximum, bool) or not isinstance(maximum, (int, float)) or not 12 <= maximum <= 44:
+        raise ValueError(f"{spec.source_ref}: invalid App phone-stage width")
+    return f"min(100%,{maximum:g}rem)"
+
+
+def _apply_phone_geometry(figure, spec):
+    stage = figure.select_one(".hb-app-add-device-phone-stage")
+    if "phone_max_width_rem" in spec.metadata:
+        stage["style"] = "width:" + _phone_width(spec)
+    if caption := figure.find("figcaption", recursive=False):
+        caption["style"] = str(caption["style"]) + ";width:" + _phone_width(spec)
+        align_caption_centers(figure, spec.metadata.get("caption_centers_pct"))
+
+
+def _append_interstitial_note(soup, figure, payload, source_ref):
+    note = payload.get("interstitial_note")
+    tables = soup.find_all("table", recursive=False)
+    if note is None and not tables:
+        return
+    if (note is None or len(tables) != 1 or str(tables[0]) != note["html"]
+            or tables[0].get_text(" ", strip=True) != note["text"]):
+        raise ValueError(f"{source_ref}: App interstitial note disagrees with slots")
+    wrapper = soup.new_tag("div", attrs={"class": "hb-app-add-device-note"})
+    wrapper.append(tables[0].extract())
+    figure.append(wrapper)
 
 
 def _render_download(spec: ComponentSpec, carrier_html: str) -> str:
@@ -154,9 +184,8 @@ def _render_add_device(spec: ComponentSpec, carrier_html: str) -> str:
         append_reference_captions(
             soup, figure, labels=[str(item["text"]) for item in captions]
         )
-        # Match the 44rem screenshot stage instead of the wider reading column.
-        caption = figure.find("figcaption", recursive=False)
-        caption["style"] = str(caption["style"]) + ";width:min(100%,44rem)"
+    _apply_phone_geometry(figure, spec)
+    _append_interstitial_note(soup, figure, payload, spec.source_ref)
     control_panel = soup.new_tag("div", attrs={"class": "hb-app-add-device-control-panel"})
     control_panel.append(
         soup.new_tag(
@@ -197,6 +226,9 @@ def render_app_component(spec: ComponentSpec, carrier_html: str) -> str:
 
     if spec.variant == "download":
         return _render_download(spec, carrier_html)
+    if spec.variant == "download-qr-only":
+        from tools.web_app_qr_component import render_qr_download
+        return render_qr_download(spec, carrier_html)
     if spec.variant == "inline-control":
         return _render_inline_control(spec, carrier_html)
     if spec.variant == "add-device":
