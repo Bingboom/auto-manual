@@ -1,5 +1,7 @@
 # JE-1000F EU: four new Web languages from the nine-language AI
 
+Status: active
+
 ## Scope
 
 The requested increment is **uk (Ukrainian), pt, nl, and pl**. The already

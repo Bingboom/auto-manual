@@ -1,5 +1,7 @@
 # JE-1000H EU/en Web intake — 2026-09
 
+Status: active
+
 ## Scope
 
 - Target: `JE-1000H / EU / en`

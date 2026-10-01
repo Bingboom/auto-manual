@@ -1,5 +1,7 @@
 # JA-AD600A / EU / en Web intake review (2026-09)
 
+Status: active
+
 ## Scope and authority
 
 - Target: `JA-AD600A / EU / en / Web`.

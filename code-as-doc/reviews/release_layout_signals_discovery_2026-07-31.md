@@ -1,5 +1,7 @@
 # Release Layout Signals Discovery — 2026-07-31
 
+Status: done
+
 ## Scope
 
 Workstream W / Stage 4a item 15 asks release manifests to expose page count
