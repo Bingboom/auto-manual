@@ -1,5 +1,7 @@
 # JE-1000F US visual parity PR2 plan (2026-07-26)
 
+Status: done
+
 ## Outcome
 
 Bring the native, editable JE-1000F US InDesign export into final visual

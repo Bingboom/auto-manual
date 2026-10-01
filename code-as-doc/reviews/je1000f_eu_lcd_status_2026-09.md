@@ -1,4 +1,7 @@
 # LCD status typography correction
+
+Status: active
+
 Confirmed clean reusable checkout, local tree equals remote main 4da8ac44 / 8812323c.
 Git transport previously hangs; create a local branch on tree-equivalent base and use authenticated Git Data API.
 Root cause: frozen_pdf_lcd._pair flattens description into a plain paragraph.

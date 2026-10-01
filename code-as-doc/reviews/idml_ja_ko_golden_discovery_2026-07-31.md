@@ -1,5 +1,7 @@
 # Japanese and Korean IDML Golden Discovery (2026-07-31)
 
+Status: done
+
 Scope: Workstream W / Stage 5 item 9.
 
 ## Finding
