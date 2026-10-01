@@ -209,6 +209,10 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
+  - [x] 计数棘轮（2026-10-01；`tools/check_broad_except_ratchet.py` + `data/broad_except_baseline.tsv`，
+    已接入 `check_maintainability_guardrails.py`；扫描 `build.py`、`tools/`、`scripts/`、`integrations/`，
+    基线 56 个文件 89 处，含 `except BaseException` 与包含二者的元组）
+  - [ ] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误），每族一个 PR
 - [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
   （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给
