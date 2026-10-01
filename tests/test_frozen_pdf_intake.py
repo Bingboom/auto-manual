@@ -8,7 +8,7 @@ from unittest.mock import patch
 import fitz
 
 from tools.frozen_pdf_intake import (
-    _PDFReader, _chapter_titles, _front_back, _page_record, _preface_candidate,
+    _PDFReader, _chapter_titles, _front_back, _lcd, _page_record, _preface_candidate,
     load_pdf_book, read_recipe_json,
 )
 from tools.manual_ir.hashing import file_sha256
@@ -21,6 +21,19 @@ PDF_SHA = "39f90f96c5825e835358a82329b8e36a40e6f9b59fccde9bb46f4ba81fe5b469"
 
 
 class FreshPDFGeometryTests(unittest.TestCase):
+    def test_lcd_majority_lines_exclude_adjacent_row_descenders(self):
+        with fitz.open() as document:
+            page = document.new_page(width=300, height=150)
+            page.insert_text((30, 40), "Previous", fontsize=10)
+            page.insert_text((30, 53), "Current", fontsize=10)
+            page.insert_text((150, 53), "Description", fontsize=10)
+            row = {"number": 2, "physical_page": 1, "label_bbox": [25, 41, 120, 57],
+                   "meaning_bbox": [140, 41, 280, 57], "selection": "lines"}
+            reader = _PDFReader(document)
+            result = _lcd(reader, {"pages": [1], "rows": [row]})
+            self.assertEqual("Current", result["rows"][0]["label"])
+            self.assertEqual("pdf-line-majority-overlap", reader.spans[0]["selection"])
+
     def test_preface_approval_requires_matching_dated_operator_decision(self):
         approval = {"date": "2026-09-29", "instruction": "Use Jackery",
                     "scope": "JE-2000E EU NL preface"}

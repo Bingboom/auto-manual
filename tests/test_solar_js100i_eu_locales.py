@@ -12,6 +12,7 @@ import unicodedata
 import unittest
 
 from bs4 import BeautifulSoup
+from PIL import Image
 
 from tools.manual_ir import read_manual_ir
 from tools.prepared_component_coverage import audit_prepared_component_coverage
@@ -29,6 +30,19 @@ def normalized(value: str) -> str:
 
 
 class SolarJs100iEuLocalesTest(unittest.TestCase):
+    def test_web_encoding_preserves_every_native_rgba_pixel(self) -> None:
+        receipt = json.loads((SNAPSHOT / 'reproduce/lossless_encoding_receipt.json').read_text())
+        self.assertEqual(len(receipt['files']), 24)
+        for entry in receipt['files']:
+            source, output = ROOT / entry['source'], ROOT / entry['output']
+            self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(), entry['source_sha256'])
+            self.assertEqual(hashlib.sha256(output.read_bytes()).hexdigest(), entry['output_sha256'])
+            with Image.open(source) as original, Image.open(output) as encoded:
+                self.assertEqual(original.size, encoded.size)
+                pixels = original.convert('RGBA').tobytes()
+                self.assertEqual(pixels, encoded.convert('RGBA').tobytes(), entry['output'])
+                self.assertEqual(hashlib.sha256(pixels).hexdigest(), entry['rgba_sha256'])
+
     def test_source_inventory_pins_all_inputs(self) -> None:
         manifest = json.loads((SNAPSHOT / 'source_manifest.json').read_text())
         self.assertEqual(manifest['languages'], list(LANGUAGES))

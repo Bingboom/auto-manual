@@ -53,6 +53,20 @@ def reference_label_regions(figures):
             for figure in figures for label in figure.get('live_captions', [])]
 
 
+def finished_artwork_node(figure, asset, source_captions, language):
+    """Keep a locale-bound source panel intact, with its native captions once."""
+    from tools.frozen_pdf_app import artwork_node
+
+    if asset.get('language') != language or asset.get('physical_page') != figure['physical_page']:
+        raise ValueError(f"{figure['slug']}: finished reference panel locale/page mismatch")
+    captions = [item['text'] for item in source_captions['labels']]
+    return artwork_node(
+        asset['asset_ref'], figure['slug'], language,
+        f"{language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
+        accessibility_label=captions[0], semantic_copy=' '.join(captions),
+    )
+
+
 def labeled_artwork_node(figure, asset_ref, language):
     """Create a frozen ReferenceFigure spec through the shared HTML intake adapter."""
     identity = figure['slug']

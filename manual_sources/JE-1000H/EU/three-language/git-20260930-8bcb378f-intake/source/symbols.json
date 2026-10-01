@@ -1,0 +1,338 @@
+{
+  "source_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb",
+  "locales": {
+    "pt": {
+      "physical_page": 110,
+      "pictogram_page": 111,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            70,
+            43,
+            174,
+            77
+          ],
+          "icon_bbox": [
+            34,
+            44,
+            67,
+            76
+          ]
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            70,
+            78,
+            174,
+            106
+          ],
+          "icon_bbox": [
+            35,
+            78,
+            67,
+            106
+          ]
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            70,
+            108,
+            174,
+            133
+          ],
+          "icon_bbox": [
+            35,
+            109,
+            67,
+            132
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            70,
+            134,
+            174,
+            165
+          ],
+          "icon_bbox": [
+            35,
+            134,
+            67,
+            164
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            222,
+            43,
+            341,
+            69
+          ],
+          "icon_bbox": [
+            190,
+            43,
+            221,
+            69
+          ]
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            222,
+            69,
+            341,
+            98
+          ],
+          "icon_bbox": [
+            190,
+            70,
+            221,
+            98
+          ]
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            222,
+            98,
+            341,
+            165
+          ],
+          "icon_bbox": [
+            190,
+            109,
+            221,
+            147
+          ]
+        }
+      ]
+    },
+    "nl": {
+      "physical_page": 127,
+      "pictogram_page": 128,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            70,
+            43,
+            174,
+            77
+          ],
+          "icon_bbox": [
+            34,
+            44,
+            67,
+            76
+          ]
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            70,
+            78,
+            174,
+            106
+          ],
+          "icon_bbox": [
+            35,
+            78,
+            67,
+            106
+          ]
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            70,
+            108,
+            174,
+            133
+          ],
+          "icon_bbox": [
+            35,
+            109,
+            67,
+            132
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            70,
+            134,
+            174,
+            165
+          ],
+          "icon_bbox": [
+            35,
+            134,
+            67,
+            164
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            222,
+            43,
+            341,
+            69
+          ],
+          "icon_bbox": [
+            190,
+            43,
+            221,
+            69
+          ]
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            222,
+            69,
+            341,
+            98
+          ],
+          "icon_bbox": [
+            190,
+            70,
+            221,
+            98
+          ]
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            222,
+            98,
+            341,
+            165
+          ],
+          "icon_bbox": [
+            190,
+            109,
+            221,
+            147
+          ]
+        }
+      ]
+    },
+    "pl": {
+      "physical_page": 144,
+      "pictogram_page": 145,
+      "pictograms": [
+        {
+          "icon_id": "general_warning",
+          "meaning_bbox": [
+            70,
+            43,
+            174,
+            77
+          ],
+          "icon_bbox": [
+            34,
+            44,
+            67,
+            76
+          ]
+        },
+        {
+          "icon_id": "read_manual",
+          "meaning_bbox": [
+            70,
+            78,
+            174,
+            106
+          ],
+          "icon_bbox": [
+            35,
+            78,
+            67,
+            106
+          ]
+        },
+        {
+          "icon_id": "do_not_disassemble",
+          "meaning_bbox": [
+            70,
+            108,
+            174,
+            133
+          ],
+          "icon_bbox": [
+            35,
+            109,
+            67,
+            132
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_fire",
+          "meaning_bbox": [
+            70,
+            134,
+            174,
+            165
+          ],
+          "icon_bbox": [
+            35,
+            134,
+            67,
+            164
+          ]
+        },
+        {
+          "icon_id": "keep_away_from_children",
+          "meaning_bbox": [
+            222,
+            43,
+            341,
+            69
+          ],
+          "icon_bbox": [
+            190,
+            43,
+            221,
+            69
+          ]
+        },
+        {
+          "icon_id": "lithium_battery",
+          "meaning_bbox": [
+            222,
+            69,
+            341,
+            98
+          ],
+          "icon_bbox": [
+            190,
+            70,
+            221,
+            98
+          ]
+        },
+        {
+          "icon_id": "weee",
+          "meaning_bbox": [
+            222,
+            98,
+            341,
+            165
+          ],
+          "icon_bbox": [
+            190,
+            109,
+            221,
+            147
+          ]
+        }
+      ]
+    }
+  }
+}

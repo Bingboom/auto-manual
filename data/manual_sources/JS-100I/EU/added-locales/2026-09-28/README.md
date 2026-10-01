@@ -78,3 +78,24 @@ promotion.
 `reproduce/extract_copy.py --master "$MASTER"` regenerates the locale JSON, RST
 and CSV carriers from native spans. It overwrites those candidates; use only
 when intentionally repeating intake and review the diff afterwards.
+
+## Lossless Web delivery encoding
+
+The 24 native PNG derivatives remain unchanged and retain the original export
+receipt. Web illustration bindings use lossless WebP companions to keep the
+complete published library below its fixed 512 MiB source-inventory ceiling.
+Every decoded RGBA pixel, image dimension and transparency value is identical;
+`reproduce/lossless_encoding_receipt.json` records both file hashes and decoded
+pixel hashes. No image resizing, color quantization or artwork edit is applied.
+The five original Inbox assets and English product view remain unchanged.
+
+```bash
+python3 data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/encode_webp.py \
+  --repo-root . \
+  --receipt data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/lossless_encoding_receipt.json
+```
+
+Before release evidence is sealed, the generated `manual.ir.json` sidecar can
+be serialized with compact JSON separators (`(',', ':')`), preserving its
+complete parsed value. Check and seal the resulting package normally; do not
+change already sealed files or the inventory ceiling.

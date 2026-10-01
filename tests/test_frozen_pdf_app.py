@@ -168,6 +168,23 @@ class FrozenPDFAppTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "expected one native number block"):
             app_section(self.book, self.assets)
 
+    def test_explicit_caption_only_step_keeps_unnumbered_prose_and_requires_caption(self):
+        record = self.book.records["app_sections"]["blocks"]["step_2_5"]
+        record["raw_text"] = "Het wifi-pictogram blijft aan."
+        with self.assertRaisesRegex(ValueError, "does not start with 2.5"):
+            app_section(self.book, self.assets)
+        self.book.target_layout = {"app": {"caption_only_steps": ["2.5"]}}
+        soup = _render(self.book, app_section(self.book, self.assets))
+        self.assertIn(record["raw_text"], soup.get_text())
+        self.assertNotIn("2.5 Het wifi", soup.get_text())
+        record["raw_text"] = "2.6 Conflicting source number."
+        with self.assertRaisesRegex(ValueError, "does not start with 2.5"):
+            app_section(self.book, self.assets)
+        record["raw_text"] = "Het wifi-pictogram blijft aan."
+        self.book.source["pages"][1]["blocks_visual_order"] = []
+        with self.assertRaisesRegex(ValueError, "expected one native number block"):
+            app_section(self.book, self.assets)
+
     @unittest.skipUnless(PDF.is_file(), "native intake PDF is not available")
     def test_complete_fresh_pdf_app_copy_survives_public_replay_in_four_languages(self):
         from tools.frozen_pdf_intake import load_pdf_book

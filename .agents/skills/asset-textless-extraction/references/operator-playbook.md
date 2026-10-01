@@ -6,24 +6,36 @@ the literal `transforms[].op` values accepted by
 `data/asset_recipes/asset-extraction-recipe-v1.schema.json` and implemented in
 `tools/asset_pipeline/extract.py` — verify against the code when in doubt.
 
-## Background handling before text removal
+## Reuse and classification before text removal
 
-Extract standalone artwork onto transparency. Gray page panels, table-cell
-shading and surrounding layout borders are not part of the illustration.
-Inspect vector paths and distinguish those backdrops from product material,
-button faces, shadows and screen/App content. Keep the latter intact. Prefer
-an existing transparent shared asset; otherwise export only the original
-artwork paths when they can be identified unambiguously.
+Complete the selection table in the shared
+[Web artwork contract](../../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)
+first: record searched manifests/candidates, identity/content checks, reuse or
+extraction decision, concrete reason for new extraction, source/hash and
+background policy. Reuse a matching asset unchanged; changing the manual's
+language or receiving a new PDF does not justify recropping.
+
+Only small standalone icons, such as LCD/status icons and individual button
+symbols, use transparency. Classify by semantic role, not rendered pixel size;
+a reduced full diagram is still a full diagram. Inspect vector
+paths to distinguish peripheral page/cell backdrops from product material,
+button faces, shadows and screen/App content. Complete panels retain gray
+backgrounds, white caption bands, borders, badges and leader geometry, even
+when their text becomes native HTML. App screenshots retain complete phone
+frames, status bars and bottom UI; reuse matching screenshots before extraction.
 
 Do not remove every gray/white path by color, paint the backdrop white, or rely
 on CSS blending to disguise it. This rule does not introduce a new pipeline
 operator: tune the supported extraction/export in the scratchpad, preserve any
-pinned approved recipe, and record which backdrop was excluded. Verify actual
-SVG transparency or PNG alpha, plus 12x white and gray/checkerboard previews.
+pinned approved recipe, and record which objects were retained or excluded.
+For new extractions, compare all four edges with the source at 12x; for these small
+icons also verify SVG transparency/PNG alpha on white and checkerboard surfaces.
 
 ## 1. Operator decision tree
 
-Work top-down; stop at the first fit. Every escalation needs evidence from
+Use this tree only after reuse has been ruled out and text removal is needed;
+complete finished panels use crop only. Work top-down; stop at the first fit.
+Every escalation needs evidence from
 the drawing's actual structure (`page.get_drawings()`, span dumps), never
 habit.
 
@@ -90,9 +102,15 @@ Precision facts that decide between rows:
 
 ## 5. Closing checklist (a round is not done until all boxes tick)
 
-- [ ] **Transparent artwork background**: no page/table gray backdrop or
-      surrounding frame; product shading, button faces and markings intact;
-      alpha/vector checks and 12x contrasting-background previews verified.
+- [ ] **Reuse decision recorded**: searched candidates and specific reason for
+      extraction are recorded; reused assets keep original bytes/source hashes.
+- [ ] **Background and boundaries match the declared type**: small LCD/status/button icons
+      have true transparency; complete panels keep their gray background and
+      frames; App screenshots keep phone tops/status bars and all four edges.
+      Product shading, markings and leaders are intact; new crops have source
+      comparisons at 12x and do not include neighboring panels.
+- [ ] **Web verification**: desktop/mobile show the selected asset with complete
+      bounds, correctly anchored labels and no duplicated captions/step numbers.
 - [ ] **Hash three-place sync**: recipe `expected_sha256` · registry 内容哈希
       12-hex prefix (`data/asset_registry.csv`) · pinned test censuses
       (`tests/test_asset_registry.py` ×2, `tests/test_asset_recipe.py`

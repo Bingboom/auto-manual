@@ -50,7 +50,7 @@
     "legacy_recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
     "legacy_recipe_sha256": "45755c66d4d98ec356d120b5dd14a535b9633c17191e90de0285fd1bb8910c14",
     "illustration_manifest": "docs/renderers/web/js100i_eu_en_illustrations.json",
-    "illustration_manifest_sha256": "7e0a5afb42ece6f3bc9e800dc82b0fa986171779b2107076f7281f928816ed3e",
+    "illustration_manifest_sha256": "67d7dc6d55edd7bb1eca78f81dc4bcdcef405085fe1be06ac1ce4aa933a10227",
     "semantic_asset_count": 22,
     "text_policy": "selectable operation copy with native shared drawings; legacy labelled product view",
     "source_note": "English structured facts and prose retain published authority; operation layout and figures use the pinned nine-language native master."

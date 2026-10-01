@@ -5,7 +5,7 @@ Status: active
 The candidate fixes English operation layout and adds `fr/es/de/it/uk/pt/nl/pl`
 through the existing Solar@INTL RST/CSV → `build.py md` → manual-ir/v2 → shared
 Web/Sphinx route. No alternate renderer, OCR, machine translation or generated
-illustration is introduced. The operator authorized publication of this candidate on 2026-10-01; MA-216
+illustration is introduced. The operator authorized publication of this candidate on 2026-10-01; MA-217
 covers the engineering merge and the corresponding Git-only Web release. Live
 Base writes and asset-registry promotion remain outside this change.
 
@@ -210,3 +210,10 @@ the source-authored warranty/legal chapter is recorded as bounded
 `warranty-intake` debt with an exact per-language chapter hash; this does not
 claim a shared warranty component. Missing pages/components or any warranty
 copy change must fail admission. All existing target policies are unchanged.
+
+The combined 74-target publication initially exceeded the existing 512 MiB
+source-inventory ceiling. Only this release's 24 new drawings use lossless
+WebP delivery companions; their original PNGs remain byte-identical. All
+decoded RGBA pixels and dimensions are pinned and tested. Compact JSON
+serialization removes only generated IR whitespace before release sealing.
+This keeps existing target sources and the deployment size guard unchanged.

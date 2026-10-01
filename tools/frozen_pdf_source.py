@@ -1,7 +1,7 @@
 """Fresh PDF intake bound to explicit, hash-verified shared artwork.
 
 The native PDF supplies every text field. Historical JSON supplies extraction
-geometry and approved errata. Finished overview panels are opt-in, locale-bound
+geometry and approved errata. Finished figure panels are opt-in, locale-bound
 and hash-verified; body and table screenshots remain forbidden.
 """
 from __future__ import annotations
@@ -209,8 +209,8 @@ class PdfBook(FrozenBook):
         return [*consumed_media_regions(self), *reference_label_regions(self.figures)]
 
     def figure(self, figure):
-        # Shared reference adapter never marks newly bound art an approved
-        # composite and never embeds printed captions in the bitmap.
+        # A local source panel is not an approved composite. Its embedded
+        # captions retain native semantic copy without a duplicate visible row.
         from tools.frozen_pdf_app import artwork_node
         asset = self.assets[figure['asset_key']]
         if figure.get('live_captions'):
@@ -220,6 +220,10 @@ class PdfBook(FrozenBook):
         if source_captions:
             if source_captions['physical_page'] != figure['physical_page']:
                 raise ValueError(f"{figure['slug']}: native caption page changed")
+            if (asset.get('content_mode') == 'source-finished-panel' and
+                    asset.get('captions_embedded') is True):
+                from tools.frozen_pdf_reference import finished_artwork_node
+                return finished_artwork_node(figure, asset, source_captions, self.language)
             return artwork_node(asset['asset_ref'], figure['slug'], self.language,
                                 f"{self.language}/pdf-page-{figure['physical_page']}#{figure['slug']}",
                                 captions=[item['text'] for item in source_captions['labels']])
