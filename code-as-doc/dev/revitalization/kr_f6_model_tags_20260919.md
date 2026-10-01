@@ -1,5 +1,7 @@
 # F6 活表修复执行日志：错误码源表 11 行 Model 标注
 
+Status: done
+
 - 授权：操作者原话「批」（2026-09-19），对象 = 根因报告 §5 推荐修法（11 个单元格，`ALL` → `ALL, JE-2000E`）
 - 执行时间（UTC）：写前读 2026-09-19T09:00:55Z → 试写 09:02:36Z → 批量 09:03:05Z → 整表回读 09:03:51Z → sync 09:05:31Z
 - 身份：lark-cli 1.0.69，profile `cli_aaa0db0d4b39dcca`（identity=user 唐夏冰，token valid）

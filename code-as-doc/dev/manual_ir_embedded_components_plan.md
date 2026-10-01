@@ -1,6 +1,6 @@
 # ManualIR Embedded Components — Discovery And Implementation Plan
 
-Status: complete
+Status: done · Recorded detail: complete
 
 Branch: `feat/manual-ir-embed-components`
 

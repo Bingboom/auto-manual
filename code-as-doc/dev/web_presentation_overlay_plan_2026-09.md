@@ -1,5 +1,7 @@
 # Web Presentation 分层继承与目标 Overlay 计划（第 6 刀）
 
+Status: done
+
 日期：2026-09-05
 分支：`feat/web-presentation-overlays`
 基线：`4da3121a`（JE-1000F/EU 五语含字整图 5B 已合入）

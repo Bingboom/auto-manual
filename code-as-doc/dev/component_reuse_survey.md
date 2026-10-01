@@ -1,5 +1,7 @@
 # 跨产线组件与样式复用 — 现状梳理
 
+Status: active
+
 Date: 2026-08-25
 
 Owner: renderer contract maintainers

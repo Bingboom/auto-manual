@@ -1,5 +1,7 @@
 # Web Publish Pipeline
 
+Status: active
+
 This document owns the release contract for responsive manuals published to
 Read the Docs. Web delivery is intentionally separate from print delivery.
 

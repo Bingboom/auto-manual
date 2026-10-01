@@ -1,6 +1,6 @@
 # JS-100I EU English Web target — implementation and acceptance
 
-Status: engineering implementation complete; Git-only frozen Web package
+Status: active · Recorded detail: engineering implementation complete; Git-only frozen Web package
 accepted locally and ready for the shared Hello-Docs publish candidate.
 
 The latest-main release-readiness rerun, frozen-package handoff, and formal

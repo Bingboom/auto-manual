@@ -1,5 +1,7 @@
 # Web Component and Figure Asset Coverage Plan (2026-09)
 
+Status: done
+
 ## Goal
 
 Make shared Web components inherit across document targets while keeping

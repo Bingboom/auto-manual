@@ -1,5 +1,7 @@
 # ManualIR v2 Operation, Warranty, and LCD Mode plan
 
+Status: done
+
 Date: 2026-09-05
 Branch: `feat/manual-ir-operation-warranty-lcd`
 Baseline: `cbdfa7e4` (cut 2)

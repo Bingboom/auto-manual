@@ -1,5 +1,7 @@
 # Cloud-doc operator edit-access setup
 
+Status: active
+
 How to make the built Feishu cloud docs **editable by the operator** on a given
 machine / repo (e.g. when bringing up the **Hello-Docs mirror** host). Without
 this, the build imports the doc **as the bot**, the bot owns it, and the operator

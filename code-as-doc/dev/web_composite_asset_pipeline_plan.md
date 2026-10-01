@@ -1,5 +1,7 @@
 # Web Composite Asset Pipeline — Discovery and Implementation Plan
 
+Status: done
+
 Date: 2026-08-01
 
 ## Outcome

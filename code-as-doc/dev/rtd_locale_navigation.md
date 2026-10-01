@@ -1,5 +1,7 @@
 # Frozen publication language navigation
 
+Status: active
+
 OPS-03a groups the explicit RTD index publications into one card per model and
 market. The default remains EU; EU and UK select the same EU publication set.
 It reads sibling `sources/web/**/publish_meta.json` from the frozen publish tree,
