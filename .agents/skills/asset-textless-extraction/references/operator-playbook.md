@@ -6,6 +6,21 @@ the literal `transforms[].op` values accepted by
 `data/asset_recipes/asset-extraction-recipe-v1.schema.json` and implemented in
 `tools/asset_pipeline/extract.py` — verify against the code when in doubt.
 
+## Background handling before text removal
+
+Extract standalone artwork onto transparency. Gray page panels, table-cell
+shading and surrounding layout borders are not part of the illustration.
+Inspect vector paths and distinguish those backdrops from product material,
+button faces, shadows and screen/App content. Keep the latter intact. Prefer
+an existing transparent shared asset; otherwise export only the original
+artwork paths when they can be identified unambiguously.
+
+Do not remove every gray/white path by color, paint the backdrop white, or rely
+on CSS blending to disguise it. This rule does not introduce a new pipeline
+operator: tune the supported extraction/export in the scratchpad, preserve any
+pinned approved recipe, and record which backdrop was excluded. Verify actual
+SVG transparency or PNG alpha, plus 12x white and gray/checkerboard previews.
+
 ## 1. Operator decision tree
 
 Work top-down; stop at the first fit. Every escalation needs evidence from
@@ -75,6 +90,9 @@ Precision facts that decide between rows:
 
 ## 5. Closing checklist (a round is not done until all boxes tick)
 
+- [ ] **Transparent artwork background**: no page/table gray backdrop or
+      surrounding frame; product shading, button faces and markings intact;
+      alpha/vector checks and 12x contrasting-background previews verified.
 - [ ] **Hash three-place sync**: recipe `expected_sha256` · registry 内容哈希
       12-hex prefix (`data/asset_registry.csv`) · pinned test censuses
       (`tests/test_asset_registry.py` ×2, `tests/test_asset_recipe.py`

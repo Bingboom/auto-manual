@@ -13,6 +13,23 @@ recipe can violate an immutable promotion contract. This skill encodes the
 judgment; `references/operator-playbook.md` holds the full decision tree,
 traps, and closing checklist — keep it open.
 
+## Transparent background requirement
+
+- **Standalone illustrations and icons must have a transparent background.**
+  Do not retain the PDF/AI page's gray panels, table-cell shading, surrounding
+  borders or other layout backdrops in the extracted asset. Reuse a matching
+  transparent shared asset first, including POWER / AC / DC/USB / LIGHT buttons.
+- Preserve actual product colors, material shading, circular button faces,
+  markings and screen/App content. Remove only identified layout backgrounds;
+  never delete all gray or white objects indiscriminately. Dense leader diagrams
+  may retain labels, but that exception does not authorize a gray backdrop.
+- Prefer original vector paths with no backdrop, or a PNG with real alpha.
+  A white rectangle, CSS background or blend mode is not transparent artwork.
+  Verify the asset itself at 12x on white and gray/checkerboard surfaces, then
+  inspect it in the target Web component before delivery.
+- The shared Web contract is
+  [共用图标优先](../../../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+
 ## Core rules
 
 1. **Choose the operator from the drawing's structure, not from habit.**
