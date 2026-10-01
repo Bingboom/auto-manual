@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from copy import deepcopy
+from dataclasses import replace
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
@@ -41,6 +42,7 @@ from tools.utils.path_utils import Paths
 from tools.web_document_ir import render_document_fragments
 from tools.web_document_source import load_web_document
 from tools.web_presentation import load_web_manual_contract
+from tools.web_manual_table_components import render_manual_table_component
 from tools.word_bundle_html import (
     _publish_rst_fragment_to_html,
     _rewrite_word_friendly_fragment,
@@ -118,6 +120,31 @@ class ManualTableComponentSpecTests(unittest.TestCase):
         self.assertTrue(
             self.registry["components"][SYMBOL_ICON_COMPONENT_ID]["asset_roles"]["icons"]["multiple"]
         )
+
+    def test_lcd_shared_number_spans_only_adjacent_rows_when_declared(self) -> None:
+        source = BeautifulSoup(_lcd_html(rows=4), "html.parser")
+        for row, number in zip(source.select("tr"), (23, 23, 24, 23), strict=True):
+            row.find("td").string = str(number)
+        spec, _, _ = parse_lcd_icon_html(
+            source, source_path=Path("lcd.rst"), declared_page=True, language="en",
+        )
+        historical = BeautifulSoup(render_manual_table_component(spec), "html.parser")
+        self.assertEqual(4, len(historical.select(".hb-lcd-number")))
+        self.assertFalse(historical.select("[rowspan]"))
+        grouped = replace(spec, metadata={**spec.metadata,
+                          "number_cell_layout": "span-adjacent-equal"})
+        rendered = BeautifulSoup(render_manual_table_component(grouped), "html.parser")
+        rows = rendered.select("tr")
+        self.assertEqual("2", rows[0].select_one(".hb-lcd-number")["rowspan"])
+        self.assertIsNone(rows[1].select_one(".hb-lcd-number"))
+        self.assertEqual(["23", "24", "23"],
+                         [cell.get_text() for cell in rendered.select(".hb-lcd-number")])
+        self.assertEqual([4, 3, 4, 4], [len(row.find_all("td", recursive=False)) for row in rows])
+        for role in ("icon", "name", "description"):
+            self.assertEqual(
+                [str(cell) for cell in historical.select(f".hb-lcd-{role}")],
+                [str(cell) for cell in rendered.select(f".hb-lcd-{role}")],
+            )
 
     def test_repeatable_asset_roles_are_ordered_and_single_roles_stay_unique(self) -> None:
         soup = BeautifulSoup(_lcd_html(), "html.parser")

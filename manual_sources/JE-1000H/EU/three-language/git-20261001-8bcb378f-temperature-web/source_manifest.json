@@ -330,13 +330,13 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 645460,
-      "sha256": "f327be7181139f801fa0ae5649b8149dcfc246f927f47074fe4c42b739c6443f"
+      "size": 645521,
+      "sha256": "b3d1008702f4ecc95ae6790a77c5d44cdab4a1c4da35da436b02c996c0139738"
     },
     {
       "path": "web/nl/manual_je1000h_eu_nl.md",
-      "size": 74932,
-      "sha256": "2cedd7750b82906b2e5bdbde45b295ae26827f5edad86a705b2cd90ad9d372e2"
+      "size": 74904,
+      "sha256": "279d7339a74adf6aefe1a630a4a09556a7e0ab8a970dd506c2faa9e62c58c349"
     },
     {
       "path": "web/pl/_static/web_manual.css",
@@ -650,13 +650,13 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 651058,
-      "sha256": "dae8be7d9fcffa6ca947c0e4efe35d6c0f7ca5aa4ed4de4ed8910a19421ada5c"
+      "size": 651119,
+      "sha256": "3666ec2c88ac697091a40ea10124cfcde6df495a520628e95e7013fa5faab72e"
     },
     {
       "path": "web/pl/manual_je1000h_eu_pl.md",
-      "size": 78032,
-      "sha256": "35cc3260876dd09b6832952c72e723c4078d918d57e6052be0e947595548a79c"
+      "size": 78004,
+      "sha256": "bc4ced6ad6e1b717b2da024b3a6db9d5ae6744d4b3b0b7cacd8ec190db6aed17"
     },
     {
       "path": "web/pt/_static/web_manual.css",
@@ -970,13 +970,13 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 648052,
-      "sha256": "96903a07be643901dc6444b08d68c0ae08641d84e06941f814d6f4559ef4d955"
+      "size": 648113,
+      "sha256": "07d9be818bbced5244f74d5dec96b4202521f5440d09c302e867a1b3dcbbf66a"
     },
     {
       "path": "web/pt/manual_je1000h_eu_pt.md",
-      "size": 75506,
-      "sha256": "59e0c64cc432eafb7baab84b9efa2bf39e42575199d53e6ab5649b3ce65ff012"
+      "size": 75478,
+      "sha256": "5a5a26a43df34be6f7ab0f9fa283a33624fd12535fe272d11ac0f62677023351"
     }
   ],
   "web_roots": {
@@ -987,7 +987,7 @@
   "release_authority": {
     "engineering_commit": "160c5995adba0cc1dad40fc6e36db548b30c6da8",
     "recipe_root": "manual_sources/JE-1000H/EU/three-language/git-20260930-8bcb378f-intake",
-    "reviewed_candidate": "candidate-25; high/low temperature rows independently checked at desktop and mobile widths",
+    "reviewed_candidate": "candidate-26; a single number 23 cell spans the high/low temperature rows, desktop and mobile checked",
     "approval": "发布上线 2026-10-01",
     "native_source_pages_one_based": {
       "pt": [
@@ -1004,6 +1004,6 @@
       ]
     },
     "validation_boundary": "Existing phase2 build.py check is repository regression only; these three bodies use the committed native PDF adapter and source-local recipes, strict Sphinx and browser gates.",
-    "review_disposition": "MA-218: approved native PT/NL/PL JAK-UM-V1.0 source with operator-requested separate high/low temperature rows; original six-language EUUK V2.0 unchanged."
+    "review_disposition": "MA-218: operator screenshot requires one vertically centered number 23 spanning independent high/low icon and copy rows; historical frozen versions without the new layout declaration remain unchanged."
   }
 }

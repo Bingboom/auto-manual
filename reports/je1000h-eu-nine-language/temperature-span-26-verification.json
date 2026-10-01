@@ -1,0 +1,165 @@
+{
+  "verification": [
+    {
+      "language": "pt",
+      "number_23_cells": 1,
+      "rowspan": 2,
+      "other_markup_unchanged_from_candidate_25": true,
+      "cold_replay_no_pdf_byte_parity": true
+    },
+    {
+      "language": "nl",
+      "number_23_cells": 1,
+      "rowspan": 2,
+      "other_markup_unchanged_from_candidate_25": true,
+      "cold_replay_no_pdf_byte_parity": true
+    },
+    {
+      "language": "pl",
+      "number_23_cells": 1,
+      "rowspan": 2,
+      "other_markup_unchanged_from_candidate_25": true,
+      "cold_replay_no_pdf_byte_parity": true
+    }
+  ],
+  "browser": [
+    {
+      "language": "pt",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Indicador de alta temperaturaA proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Indicador de temperatura baixaA proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    },
+    {
+      "language": "pt",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Indicador de alta temperaturaA proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Indicador de temperatura baixaA proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    },
+    {
+      "language": "nl",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Indicator voor hoge temperatuurDe beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Indicator voor lage temperatuurDe beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    },
+    {
+      "language": "nl",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Indicator voor hoge temperatuurDe beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Indicator voor lage temperatuurDe beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    },
+    {
+      "language": "pl",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Wskaźnik wysokiej temperaturyZadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Wskaźnik niskiej temperaturyZadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    },
+    {
+      "language": "pl",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "number": "23",
+      "numberCount": 1,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "numberCells": 1,
+          "text": "23Wskaźnik wysokiej temperaturyZadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "icons": 1,
+          "numberCells": 0,
+          "text": "Wskaźnik niskiej temperaturyZadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        }
+      ],
+      "span": "2",
+      "verticalAlign": "middle"
+    }
+  ]
+}

@@ -62,7 +62,7 @@
   ],
   "bundle_root": "frozen-source",
   "bundle_sha256": "decb2552b8a8ce870e5ac26bd53ac73303788398c39dd43483c256ce376d2ba2",
-  "content_sha256": "043cb31d987a9769b37edd83fb961172a2b4b48cddc147ae574ed53d939090bf",
+  "content_sha256": "0b756a452849d8c0a884bb29f2f6ca48b8e030ce2f35af2e1fa18880f5b7b3d8",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
   "metadata": {
@@ -11473,7 +11473,7 @@
             "assets/9b148ea95d3a_lcd-remaining-discharge-time.png"
           ],
           "block_id": "lcd_display:block-0003",
-          "content_sha256": "a49f59b379aeb4628e9d678de5d6f1443167ec9ca2ea174418349f42b37b545f",
+          "content_sha256": "6f0d25383de99eb7d13aabd9567683e964d8d85151d57ef175b02b5b3484483b",
           "kind": "flow",
           "payload": {
             "component_spec": {
@@ -11617,6 +11617,7 @@
               "component_id": "HB-TABLE-LCD-ICON",
               "language": "pt",
               "metadata": {
+                "number_cell_layout": "span-adjacent-equal",
                 "source_kind": "native-pdf-lcd-copy",
                 "source_rows": [
                   {

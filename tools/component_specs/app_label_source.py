@@ -1,8 +1,10 @@
 """Normalize an explicit control-image plus three label paragraphs source shape."""
+from typing import Any, Mapping, Sequence
+
 from bs4 import BeautifulSoup, Tag
 
 
-def _bound_control(image: Tag, image_key: str):
+def _bound_control(image: Tag, image_key: str) -> tuple[Tag | None, Tag | None]:
     if not image_key:
         return None, None
     control = image.find_next_sibling()
@@ -47,7 +49,14 @@ def normalize_control_labels(soup: BeautifulSoup, image: Tag, image_key: str) ->
     return control
 
 
-def app_label_boundaries(soup: BeautifulSoup, image: Tag, config: dict):
+def app_label_boundaries(
+    soup: BeautifulSoup, image: Tag, config: Mapping[str, Any],
+) -> tuple[
+    Tag | None,
+    tuple[Tag, Tag | None]
+    | tuple[Tag, Tag, Tag | None]
+    | tuple[Tag, Tag | None, Tag, Tag | None],
+]:
     control = normalize_control_labels(soup, image, str(config.get("control_image_key") or ""))
     if control is None:
         block = image.find_next_sibling()
@@ -58,7 +67,7 @@ def app_label_boundaries(soup: BeautifulSoup, image: Tag, config: dict):
     return block, owned
 
 
-def app_interstitial_note(owned):
+def app_interstitial_note(owned: Sequence[Tag]) -> dict[str, str] | None:
     """Snapshot the optional note without changing its source order."""
     if len(owned) != 4:
         return None
@@ -66,7 +75,7 @@ def app_interstitial_note(owned):
     return {"html": str(note), "text": note.get_text(" ", strip=True)}
 
 
-def app_display_metadata(config):
+def app_display_metadata(config: Mapping[str, Any]) -> dict[str, Any]:
     """Carry only explicitly bound geometry; legacy packages keep their output."""
     return {"captions_embedded": bool(config.get("captions_embedded")),
             **{key: config[key] for key in ("phone_max_width_rem", "caption_centers_pct")

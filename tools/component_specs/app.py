@@ -212,7 +212,10 @@ def app_inline_control_component_spec(
     )
 
 
-def app_qr_download_component_spec(*, label, paragraph, image_ref, source_ref, language):
+def app_qr_download_component_spec(
+    *, label: str, paragraph: Mapping[str, Any], image_ref: str,
+    source_ref: str, language: str,
+) -> ComponentSpec:
     """A source that supplies one QR and copy, without store-badge artwork."""
     if not label or not image_ref or not paragraph.get("text") or not paragraph.get("html"):
         raise ComponentSpecError("App QR download requires source copy and artwork")
