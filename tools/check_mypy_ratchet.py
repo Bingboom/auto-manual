@@ -13,7 +13,8 @@ ratchets:
 
 Only errors reported inside the scoped packages count; errors mypy reports in
 imported modules elsewhere are ignored, so unrelated edits cannot trip this
-check.  mypy is not in ``requirements.lock``: CI runs this in the ``type-check``
+check.  mypy runs with ``--no-site-packages`` so locally installed packages do
+not change the count: a local run and the CI run report the same numbers.  mypy is not in ``requirements.lock``: CI runs this in the ``type-check``
 job, which installs the version pinned there (keep ``MYPY_VERSION`` in step)::
 
     python tools/check_mypy_ratchet.py check
@@ -73,7 +74,7 @@ def run_mypy(repo_root: Path) -> str:
             f"mypy is not installed; run `python -m pip install mypy=={MYPY_VERSION}`"
         ) from exc
     proc = subprocess.run(
-        [sys.executable, "-m", "mypy", "--disallow-untyped-defs", "--no-error-summary", *PACKAGES],
+        [sys.executable, "-m", "mypy", "--disallow-untyped-defs", "--no-site-packages", "--no-error-summary", *PACKAGES],
         cwd=repo_root,
         capture_output=True,
         text=True,

@@ -33,7 +33,7 @@ lanes for one day, with no build-output changes:
   (#1354, #1359), 174 → 5 unclassified.
 - CQ-5.3: `csv_pages` exception audit (#1358), broad handlers 89 → 86.
 - New ratchets: `zip()` without `strict=` (64, guardrails) and per-file
-  untyped-def mypy errors in the three CQ-4.5 packages (119, CI `type-check`
+  untyped-def mypy errors in the three CQ-4.5 packages (68, CI `type-check`
   job with mypy pinned). Both counts had regressed during the round
   (B905 62 → 64; mypy fixed back by #1375, #1379).
 - #1365, #1366 and #1368 were closed unmerged after falling 16 commits behind.

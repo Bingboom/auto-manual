@@ -193,8 +193,8 @@ web、IDML、队列、回写这几块目前最大的代码面。
   `python -m mypy tools/utils`，扩大检查路径需要改 workflow，须操作者确认。**
   - [x] 计数棘轮（2026-10-02，操作者确认改 workflow）：`tools/check_mypy_ratchet.py` +
     `data/mypy_untyped_baseline.tsv`，按文件统计三个子包内 `mypy --disallow-untyped-defs` 错误（不计导入的
-    包外文件），在 `type-check` job 运行，mypy 锁定 2.3.1。基线 30 个文件 119 处（manual_ir 47、
-    component_specs 51、csv_pages 21）。本轮业务合入曾使错误回升，#1375、#1379 修回。
+    包外文件；`--no-site-packages`，本地结果与 CI 一致），在 `type-check` job 运行，mypy 锁定 2.3.1。
+    基线 22 个文件 68 处（manual_ir 29、component_specs 18、csv_pages 21）。本轮业务合入曾使错误回升，#1375、#1379 修回。
   - [ ] 逐个子包清零后加严格 override
 
 **验收。** `pyproject.toml` 的 ruff `select` 至少包含 `E722, F, B023, B904, PLW1510`；CI 绿色；
