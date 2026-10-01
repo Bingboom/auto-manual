@@ -63,12 +63,28 @@ The App label record accepts the existing three-control sequence or E's
 four-control sequence, with positions derived from source bboxes and the
 bound control-art crop.
 
+Two optional source-geometry controls also support the JE-1000H EU pt/nl/pl
+addition. An LCD recipe row with `selection: "lines"` uses majority line
+overlap, excluding a neighboring row's descender that barely touches its
+rectangle; rows without this option retain textbox extraction. The target
+layout's `app.caption_only_steps` may list a screenshot step such as `2.5`
+whose prose has no printed number. This opt-in preserves the prose verbatim,
+still requires the exact native screenshot-number block, and rejects a
+conflicting numeric prefix. It never synthesizes a missing source number.
+
 Operation label anchors must be derived from each model/language's bound
 art crop. The existing `base-art-live-copy` presentation separates the art
 canvas from supporting paragraphs, so paragraph height cannot shift labels
 relative to leader lines. Preserve complete circles, leaders and prerequisite
 pills in the crop; titles stay outside artwork. Reusing another target's
 percentage rectangles is not a substitute for checking native coordinates.
+The text-extraction rectangle is not the display pill's width: size each
+locale's prerequisite pill from its rendered text and the drawing's safe
+area, including narrow-screen wrapping. Footer-overlay components already
+render a clock beside the live duration; their bound artwork must not retain
+a second baked clock. Status-right duration anchors retain the native clock
+and add only the duration text. These are source-binding decisions, not
+reasons to change shared CSS.
 
 `pending_source_review` in the frozen IR metadata marks a review candidate,
 including E's visibly marked preview preface. The Web release-evidence seal

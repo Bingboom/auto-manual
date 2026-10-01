@@ -159,7 +159,10 @@ def _native_step_captions(
     for number in steps:
         key = "step_" + number.replace(".", "_")
         step = blocks[key]
-        if not re.match(rf"^{re.escape(number)}(?=\s|$)", step["raw_text"].strip()):
+        raw = step["raw_text"].strip()
+        caption_only = (getattr(book, "target_layout", None) or {}).get("app", {}).get("caption_only_steps", [])
+        unnumbered = number in caption_only and raw and not re.match(r"^\d+\.\d+", raw)
+        if not unnumbered and not re.match(rf"^{re.escape(number)}(?=\s|$)", raw):
             raise ValueError(f"{book.language}: {key} does not start with {number}")
     record = next(p for p in book.source["pages"] if p["physical_page"] == page)
     matches = []

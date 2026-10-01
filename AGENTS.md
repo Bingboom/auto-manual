@@ -41,6 +41,7 @@ For current human workflows, read:
 
 ## 3. Workflow Rules
 
+- Before any manual-to-Web asset work, follow the [Web artwork reuse order](docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则): inventory existing assets and record reuse decisions before extracting; preserve complete panels and App screenshot frames. A new language or source PDF alone is not a reason to recrop.
 - Do not create one config per model just because the model changed.
 - Keep the shared family config pattern with [`configs/config.us.yaml`](configs/config.us.yaml) and [`configs/config.ja.yaml`](configs/config.ja.yaml).
 - If a target is already in review, prefer `sync-review` over `review --refresh-review` for data-driven updates.

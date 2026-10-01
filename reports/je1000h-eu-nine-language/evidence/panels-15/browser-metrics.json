@@ -1,0 +1,560 @@
+[
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 501.21875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 199.15625
+    },
+    "semanticText": "",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 436.046875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 232.15625
+    },
+    "semanticText": "200 mm",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 149.7421875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 375.203125
+    },
+    "semanticText": "Jackery Battery Pack 2000 Cabo de expansão Documentos Vendido separadamente",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 245.40625,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 327.2421875
+    },
+    "semanticText": "Conecte o cabo de carregamento CA à porta de entrada CA do produto e a uma tomada da rede elétrica.",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 305.71875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 297.0078125
+    },
+    "semanticText": "SolarSaga 100 Air × 4",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 292.0859375,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 303.8671875
+    },
+    "semanticText": "*O cabo de carregamento veicular é vendido separadamente. Veículo",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 501.21875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 199.3203125
+    },
+    "semanticText": "",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 436.046875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 232.046875
+    },
+    "semanticText": "200 mm",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 149.7421875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 375.09375
+    },
+    "semanticText": "Jackery Battery Pack 2000 Uitbreidingskabel Documenten APART VERKOCHT",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 245.40625,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 327.1328125
+    },
+    "semanticText": "Sluit de AC-oplaadkabel aan op de AC-ingangspoort van het product en op een stopcontact.",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 305.71875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 297.015625
+    },
+    "semanticText": "SolarSaga 100 Air × 4",
+    "width": 1280
+  },
+  {
+    "lang": "nl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 292.0859375,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 304.015625
+    },
+    "semanticText": "*De oplaadkabel voor de auto is apart verkrijgbaar. Voertuig",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 501.21875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 199.2578125
+    },
+    "semanticText": "",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 436.046875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 231.7578125
+    },
+    "semanticText": "200 mm",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 149.7421875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 375.3046875
+    },
+    "semanticText": "Jackery Battery Pack 2000 Przedłużacz Dokumenty SPRZEDAWANE ODDZIELNIE",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 245.40625,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 327.1171875
+    },
+    "semanticText": "Podłącz przewód sieciowy do ładowania AC do portu wejściowego AC produktu i do gniazdka ściennego.",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 305.71875,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 297
+    },
+    "semanticText": "SolarSaga 100 Air × 4",
+    "width": 1280
+  },
+  {
+    "lang": "pl",
+    "viewport": "desktop",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 292.0859375,
+      "width": 657.203125,
+      "x": 431.3984375,
+      "y": 303.90625
+    },
+    "semanticText": "* Przewód samochodowy do ładowania jest sprzedawany osobno. Pojazd",
+    "width": 1280
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 273.03125,
+      "width": 358,
+      "x": 16,
+      "y": 285.4296875
+    },
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 237.5234375,
+      "width": 358,
+      "x": 16,
+      "y": 303.140625
+    },
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 81.5625,
+      "width": 358,
+      "x": 16,
+      "y": 381.1640625
+    },
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 133.6796875,
+      "width": 358,
+      "x": 16,
+      "y": 355.328125
+    },
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 166.53125,
+      "width": 358,
+      "x": 16,
+      "y": 338.6328125
+    },
+    "width": 390
+  },
+  {
+    "lang": "pt",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 159.109375,
+      "width": 358,
+      "x": 16,
+      "y": 342.46875
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 273.03125,
+      "width": 358,
+      "x": 16,
+      "y": 285.265625
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 237.5234375,
+      "width": 358,
+      "x": 16,
+      "y": 303.1171875
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 81.5625,
+      "width": 358,
+      "x": 16,
+      "y": 381.140625
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 133.6796875,
+      "width": 358,
+      "x": 16,
+      "y": 355.2890625
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 166.53125,
+      "width": 358,
+      "x": 16,
+      "y": 338.7109375
+    },
+    "width": 390
+  },
+  {
+    "lang": "nl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 159.109375,
+      "width": 358,
+      "x": 16,
+      "y": 342.34375
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ups_connection",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 273.03125,
+      "width": 358,
+      "x": 16,
+      "y": 285.4921875
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_stack",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 237.5234375,
+      "width": 358,
+      "x": 16,
+      "y": 303.203125
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "battery_items",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 81.5625,
+      "width": 358,
+      "x": 16,
+      "y": 381.2265625
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "ac_wall_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 133.6796875,
+      "width": 358,
+      "x": 16,
+      "y": 355.09375
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "solar_four",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 166.53125,
+      "width": 358,
+      "x": 16,
+      "y": 338.8125
+    },
+    "width": 390
+  },
+  {
+    "lang": "pl",
+    "viewport": "mobile",
+    "extraCaptions": 0,
+    "id": "car_charging",
+    "loaded": true,
+    "pageOverflow": false,
+    "rect": {
+      "height": 159.109375,
+      "width": 358,
+      "x": 16,
+      "y": 342.5546875
+    },
+    "width": 390
+  }
+]

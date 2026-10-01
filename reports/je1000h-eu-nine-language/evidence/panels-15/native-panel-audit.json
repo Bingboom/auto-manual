@@ -1,0 +1,272 @@
+[
+  {
+    "asset_key": "reference.ups_connection.pt",
+    "source_page": 118,
+    "crop": [
+      27.0,
+      256.0,
+      343.0,
+      497.0
+    ],
+    "pdf_sha256": "979248b7b89539a148a1f80f69d0a72c8a9c829965da1db27f58786f25f7de4b",
+    "png_sha256": "09fd7606dd10c2095e800cc0cc780d8dbec39d8f1ad745c4542b85d8c943e3cd",
+    "native_12x_mean_channel_delta": 1.2966705281362039,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_stack.pt",
+    "source_page": 119,
+    "crop": [
+      28.0,
+      203.0,
+      343.0,
+      412.0
+    ],
+    "pdf_sha256": "54ffd82f01e78ff3b1dce084c8b61c844ad3511162826e6e38fc494cfaa8deae",
+    "png_sha256": "6fd148123f4d4ef95d952c3a638ed5b938296e747a09a3d6df99c5c5fbe7d1f6",
+    "native_12x_mean_channel_delta": 0.9795475993575408,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_items.pt",
+    "source_page": 119,
+    "crop": [
+      28.0,
+      418.0,
+      344.0,
+      490.0
+    ],
+    "pdf_sha256": "042a4268087bbce82653f486f15abdf221e494b7599de1734dbf169270d2c9ee",
+    "png_sha256": "3d48cabe22c9036d25d4f2095c9de9e589c702521404f9f7ebda8e46d226a4aa",
+    "native_12x_mean_channel_delta": 0.21225250446033236,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.ac_wall_charging.pt",
+    "source_page": 120,
+    "crop": [
+      25.0,
+      246.0,
+      341.0,
+      364.0
+    ],
+    "pdf_sha256": "696063b576e5c6d3e1222c3fb19658acd588532de7daf37c0fa6424373f1411d",
+    "png_sha256": "b585f42afe3c1938be0c02f8f6bbc887bc51e9aa2061b7bef85097afc21a1cd0",
+    "native_12x_mean_channel_delta": 1.384048996499718,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.solar_four.pt",
+    "source_page": 121,
+    "crop": [
+      27.0,
+      30.0,
+      343.0,
+      177.0
+    ],
+    "pdf_sha256": "ca6730bd5e0d862ec2f895b6fe38d0a5ccee4a7e59b53d5348842803e5d38296",
+    "png_sha256": "b3addb094d348305e942490d699ae02e5541708018220709ef05d5cda489f74e",
+    "native_12x_mean_channel_delta": 1.6876949941955217,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.car_charging.pt",
+    "source_page": 121,
+    "crop": [
+      26.0,
+      356.0,
+      341.0,
+      496.0
+    ],
+    "pdf_sha256": "267c79dd93c3b29228f77bcc198568980535ec5e29c889c2aeb59238e4e0b359",
+    "png_sha256": "990e30845a75cd0137c5c00db9f1b8843eda79c0192c9510b50baf7efd810787",
+    "native_12x_mean_channel_delta": 1.6282739145040732,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.ups_connection.nl",
+    "source_page": 135,
+    "crop": [
+      27.0,
+      256.0,
+      343.0,
+      497.0
+    ],
+    "pdf_sha256": "d6231104fb7afaa90635331e6e35ae34fc79a162755f02cdad7e850871471588",
+    "png_sha256": "2a6eba4d73a08cec84c321552a56101ab1d8d14e8deec586b5604519fd6f521e",
+    "native_12x_mean_channel_delta": 1.2965627753850284,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_stack.nl",
+    "source_page": 136,
+    "crop": [
+      28.0,
+      203.0,
+      343.0,
+      412.0
+    ],
+    "pdf_sha256": "daf2032c9dcc52accc9df30a4b2d22f48e245dcd78bb6028dfaf27c00586198f",
+    "png_sha256": "4173e421d69596692d802adf49cbedc694ac3c0bbe67eb02a60eaf873d542f60",
+    "native_12x_mean_channel_delta": 0.9791300290569295,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_items.nl",
+    "source_page": 136,
+    "crop": [
+      28.0,
+      418.0,
+      344.0,
+      490.0
+    ],
+    "pdf_sha256": "e084066ed7238330e4e6b5799c492d8686fa6720392ece3e995eb312483a998b",
+    "png_sha256": "758647dfed719d52aaab73e15a868b5ffdf9311ea739e81730d4ea7c0080857d",
+    "native_12x_mean_channel_delta": 0.2121922736951086,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.ac_wall_charging.nl",
+    "source_page": 137,
+    "crop": [
+      25.0,
+      246.0,
+      341.0,
+      364.0
+    ],
+    "pdf_sha256": "25fd27d9a22a281dc4f0a02201c6ea1e93762a5eac1173a71e891a931701afaa",
+    "png_sha256": "7234d23a69fe4bc67a5d24846fe2fa2a09f43b3ee703f66612b5843e6b8f95c0",
+    "native_12x_mean_channel_delta": 1.3811704391046271,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.solar_four.nl",
+    "source_page": 138,
+    "crop": [
+      27.0,
+      30.0,
+      343.0,
+      177.0
+    ],
+    "pdf_sha256": "b2dfeb5c9f03fb37c3e7df5b0ead17f9e325631f2576017799d26917c845893d",
+    "png_sha256": "40e9308872866d4761118a9911e692e61675d6e7e69d0242434dfa6405672fba",
+    "native_12x_mean_channel_delta": 1.6876783003402955,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.car_charging.nl",
+    "source_page": 138,
+    "crop": [
+      26.0,
+      356.0,
+      341.0,
+      496.0
+    ],
+    "pdf_sha256": "8e2dfdf395b79093aa593f8ce03e2105babfc7d0e9925ff3d97fd8b8682034a5",
+    "png_sha256": "d8edc5d25c267e407829715575cda4ad3b9498572295e1a9b24a205e017665fa",
+    "native_12x_mean_channel_delta": 1.6283807844125304,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.ups_connection.pl",
+    "source_page": 152,
+    "crop": [
+      27.0,
+      256.0,
+      343.0,
+      497.0
+    ],
+    "pdf_sha256": "1810e7d00e28420b6577c44eac948028c25c87a86b17bb85a332b63270a7615f",
+    "png_sha256": "ec7bdc1f704ebafe144a87d3e29023ed96d02a5d4ae04e63c5642536c1b65cca",
+    "native_12x_mean_channel_delta": 1.2966583698568046,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_stack.pl",
+    "source_page": 153,
+    "crop": [
+      28.0,
+      203.0,
+      343.0,
+      412.0
+    ],
+    "pdf_sha256": "124321565109b42167fd9e5ebbdf1b0a6c9c0568f581657a7244a9046098223b",
+    "png_sha256": "e23bf35cb13c283125574e15ce604dda2353f4f57919d0cc877300c5d4d126c4",
+    "native_12x_mean_channel_delta": 0.979484344981421,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.battery_items.pl",
+    "source_page": 153,
+    "crop": [
+      28.0,
+      418.0,
+      344.0,
+      490.0
+    ],
+    "pdf_sha256": "25c5fff8599cc5e7b9a497734fa18b95cbd31445c356defe8f371af274a04c2e",
+    "png_sha256": "ad470a3d232cb51b9539507ec173daed5abc05ffa3d557441ff2041b35e06b3e",
+    "native_12x_mean_channel_delta": 0.20898976728134602,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.ac_wall_charging.pl",
+    "source_page": 154,
+    "crop": [
+      25.0,
+      246.0,
+      341.0,
+      364.0
+    ],
+    "pdf_sha256": "3992343d9e44890eb3370cf5f291a2e3d88555777680c41395a018f55ff98c06",
+    "png_sha256": "bccff65eac03d21652c88ca96c1a33c7e532b01bd43f4ff78c1606958e859be5",
+    "native_12x_mean_channel_delta": 1.3844553058475768,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.solar_four.pl",
+    "source_page": 155,
+    "crop": [
+      27.0,
+      30.0,
+      343.0,
+      177.0
+    ],
+    "pdf_sha256": "053fa84d42a97f30646ed50d3540e2e6e5b2044e198ee8b247fbf987504d7f7a",
+    "png_sha256": "5f64e9ace443ee9abab4b6dd516a26645f783e3660ea2806c68d78e3ecff6fcc",
+    "native_12x_mean_channel_delta": 1.687711837547959,
+    "crop_only": true,
+    "native_background_preserved": true
+  },
+  {
+    "asset_key": "reference.car_charging.pl",
+    "source_page": 155,
+    "crop": [
+      26.0,
+      356.0,
+      341.0,
+      496.0
+    ],
+    "pdf_sha256": "0ff8fe51f42b60ba4f0acc29a3d78961f80a5779a5836731cac020500db7ed26",
+    "png_sha256": "55a59b992189e21e17e744de5da42b9354bcc7e5a8f53483ecc6f30c1dc76c56",
+    "native_12x_mean_channel_delta": 1.6270550411522635,
+    "crop_only": true,
+    "native_background_preserved": true
+  }
+]

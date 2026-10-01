@@ -1,0 +1,66 @@
+{
+  "candidate": "candidate-09",
+  "publication_authorized": false,
+  "items": [
+    {
+      "id": "source-version",
+      "status": "retained-for-review",
+      "scope": "pt/nl/pl",
+      "detail": "JAK-UM-V1.0 differs from the six existing EUUK V2.0-based editions; old languages are unchanged."
+    },
+    {
+      "id": "pt-language-residue",
+      "status": "retained-for-review",
+      "scope": "pt operations",
+      "detail": "Native ON / Apagado retained without unapproved language corrections."
+    },
+    {
+      "id": "ac-count",
+      "status": "retained-for-review",
+      "scope": "pt specifications/operations",
+      "detail": "Source specs say three AC outlets; source operation text describes two independently controlled pairs. No resolution invented."
+    },
+    {
+      "id": "pt-dc-glyph",
+      "status": "semantic-recovered-native-evidence",
+      "scope": "pt overview",
+      "detail": "12 V⎓10 A máx. verified against Illustrator textFrames[1332] and matching artboard position. Finished overview bitmap preserves original PDF glyph limitation."
+    },
+    {
+      "id": "connected-battery-icon",
+      "status": "inherited-quality-debt",
+      "scope": "all three LCD tables",
+      "detail": "Existing 43x34 RGB asset preserved byte-for-byte; not transparent and not high resolution."
+    },
+    {
+      "id": "trademark-placement",
+      "status": "retained-for-review",
+      "scope": "native body copy",
+      "detail": "Some source superscripts appear after the extracted paragraph."
+    },
+    {
+      "id": "duplicate-clock",
+      "status": "fixed",
+      "scope": "all three energy-saving figures",
+      "detail": "Remove exact native clock paths; retain common footer clock and live duration."
+    },
+    {
+      "id": "prerequisite-overlap",
+      "status": "fixed",
+      "scope": "all three AC/DC figures",
+      "detail": "Keep original prerequisite once as native paragraph before the card, preventing desktop and phone overlays."
+    },
+    {
+      "id": "battery-neighbor-border",
+      "status": "fixed",
+      "scope": "shared new battery stack",
+      "detail": "Crop bottom to source y=403 pt, excluding neighboring accessory-panel border."
+    },
+    {
+      "id": "external-test-fixture",
+      "status": "blocks-pr",
+      "scope": "full unittest",
+      "detail": "Unmodified baseline reproduces sibling AI original disagrees with source provenance on the optional JE-1000F local source."
+    }
+  ]
+}

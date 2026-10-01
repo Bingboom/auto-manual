@@ -1,0 +1,47 @@
+[
+  {
+    "language": "en",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/en/md/manual_je1000h_eu_en.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "fr",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/fr/md/manual_je1000h_eu_fr.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "es",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/es/md/manual_je1000h_eu_es.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "de",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/de/md/manual_je1000h_eu_de.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "it",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/it/md/manual_je1000h_eu_it.html",
+    "error": "Remote end closed connection without response"
+  },
+  {
+    "language": "uk",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/uk/md/manual_je1000h_eu_uk.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "pt",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/pt/md/manual_je1000h_eu_pt.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "nl",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/nl/md/manual_je1000h_eu_nl.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "language": "pl",
+    "url": "https://ht-doc.readthedocs.io/en/latest/publish/web/JE-1000H/EU/pl/md/manual_je1000h_eu_pl.html",
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

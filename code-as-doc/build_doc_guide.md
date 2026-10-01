@@ -797,6 +797,14 @@ Packaging rule:
 
 Web Publish / Read the Docs note:
 
+- Before selecting or extracting artwork, follow the shared
+  [Web artwork reuse order](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则).
+  Inventory existing target/shared assets and record each reuse decision in the
+  target review record before any PDF/AI crop. Matching assets retain their bytes
+  and source hash; language-only label changes reuse the base art. Complete
+  panels retain backgrounds/frames, and App screenshots retain complete phone
+  bounds. The selection record is a procedural review prerequisite, not a new
+  automated build check. Validate actual bound assets at desktop/mobile widths.
 - Web-profile bundle export reads prepared pages once and writes
   `manual-ir/v2` / `whole-document-components/v1` beside the Markdown. Its ordered
   flow/rich-text nodes carry neutral headings, prose, lists, tables, links and
@@ -2315,6 +2323,16 @@ RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生�
 
 四语原生 PDF 导入按模板的 H1/H2 层级投影章节和子标题；前言提示与段落、安全警告框、LCD 四列图标表、质保卡片及 App 步骤编号均通过共享 IR/ComponentSpec 渲染。密集引线的产品前/右视图复用对应语言成品图，同时保留 IR 语义文案、来源和哈希；正文和表格继续使用原生 HTML。
 
+新增语言继续复用上述管线。LCD 行可显式选择多数行重叠提取，App 可显式声明编号只在截图下出现的步骤；默认行为不变，仍校验原稿编号。文字提取框不能直接当作网页提示框宽度，须逐语言检查遮图和手机换行；节能操作组件自带时钟时，底图不得重复保留。字段说明见[原生适配契约](dev/je2000_eu_new_locales_ir_adapters_2026-09.md)。
+
+经指定保留完整原稿样式的大图面板可使用目标已启用的 `source-finished-panel`，
+并明确绑定 `captions_embedded: true`、`language`、原稿页码和素材哈希。未声明时仍保留
+原有图外标题。原生提取的标题保留为检索/读屏文本，
+不再另绘等宽标题列；语言或页码不匹配会阻止构建。此方式保留图内文字，
+不提供图内逐项 HTML 编辑，也不替代普通无字插图、正文或表格的原生 HTML。
+大图面板只按完整边界裁取，灰底、白色说明区、圆角框及徽标随原稿保留，不能套用
+独立图标去底规则；见[大图与独立插图的边界](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+
 Native PDF LCD intake preserves semantic status lines and bold status prefixes in the existing `HB-TABLE-LCD-ICON` component. The verified uk/pt/nl/pl paragraph boundaries also separate App setup and retained-setting notes; printed line wrapping is not copied into Web layout. Numbered troubleshooting measures each start a new line; the emergency-charging lead retains its bold emphasis. Shared reference-figure captions follow the artwork, matching the App 2.1–2.2 captions. Source wording, governed icons and historical frozen versions remain unchanged.
 
 产品前／右视图的小标题使用图片外的原生网页文字。四语成品图只保留插图、参数与标注线；冻结绑定 `overview_finished_panels` 的 `captions_embedded: false` 恢复可见标题，旧版 `true` 仍隐藏重复标题。导出时按源 PDF 坐标排除标题，保留来源哈希及已批准勘误，不改写历史冻结版本。
@@ -2353,6 +2371,6 @@ JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有
 
 App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
 
-通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。仅上述 LCD／状态图标、独立按钮符号等小图默认透明底，移除其外围单元格底色和边框；保留符号、按键面和丝印。大图面板保留灰底、圆角、外框和引线，不能套用小图规则。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。
 
 中规共享配置 `configs/config.zh.yaml` 已声明 JE-2000E/CN 和 JE-2000F/CN；已有 JE-2000F 审核稿通过 `--source review-asis` 预览和 Web Publish，避免用运行时参数重建已确认版面。

@@ -1,0 +1,15 @@
+{
+  "three_native_builds": "passed; 16 chapters each",
+  "three_strict_sphinx_builds": "passed",
+  "component_coverage": "passed",
+  "finished_panel_recipe_pdf_hashes_checked": 21,
+  "source_input_pins": "passed",
+  "asset_manifests": "passed",
+  "final_package_geometry_hash": "matches current source manifest",
+  "browser_checks": 9,
+  "cold_replay": "passed for three locales",
+  "doc_links": "passed",
+  "diff_check": "passed",
+  "shared_logic_changed": false,
+  "full_unittest": "not rerun for source-only follow-up; prior turn passed 4958 tests"
+}
