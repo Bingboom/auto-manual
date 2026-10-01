@@ -1,10 +1,17 @@
 """Adapt a declared QR-only source to the shared App component."""
-from bs4 import Tag
+from pathlib import Path
+from typing import Any, Mapping
+
+from bs4 import BeautifulSoup, Tag
+
+from tools.component_specs.model import ComponentSpec
 
 from tools.component_specs.app import app_qr_download_component_spec
 
 
-def parse_app_qr_download_html(soup, *, config, source_path, language):
+def parse_app_qr_download_html(
+    soup: BeautifulSoup, *, config: Mapping[str, Any], source_path: Path, language: str,
+) -> tuple[ComponentSpec, tuple[Tag, Tag], tuple[tuple[str, Tag]], tuple[()]]:
     key = str(config.get("image_key") or "").strip()
     images = [im for im in soup.find_all("img") if key and key in str(im.get("src", ""))]
     if len(images) != 1:
