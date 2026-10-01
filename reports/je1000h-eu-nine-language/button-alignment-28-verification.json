@@ -1,0 +1,356 @@
+[
+  {
+    "expectedWidth": 390,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 41.98046875,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "main-power",
+        "text": "Botão liga/desliga",
+        "top": 33.39453125
+      },
+      {
+        "align": "right",
+        "bottom": 64.484375,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "dc-usb",
+        "text": "Botão de energia CC/USB",
+        "top": 47.3125
+      },
+      {
+        "align": "left",
+        "bottom": 60.19140625,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-1",
+        "text": "Botão POWER CA1",
+        "top": 51.60546875
+      },
+      {
+        "align": "left",
+        "bottom": 41.60546875,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-2",
+        "text": "Botão POWER CA2",
+        "top": 33.01953125
+      }
+    ],
+    "lang": "pt",
+    "leftAligned": true,
+    "leftGap": 5.33203125,
+    "lowerAligned": true,
+    "panelWidth": 358,
+    "rightAligned": true,
+    "rightGap": 10,
+    "width": 390
+  },
+  {
+    "expectedWidth": 390,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 41.98046875,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "main-power",
+        "text": "Aan/Uit-knop",
+        "top": 33.39453125
+      },
+      {
+        "align": "right",
+        "bottom": 64.484375,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "dc-usb",
+        "text": "Aan/uit-knop voor DC/USB",
+        "top": 47.3125
+      },
+      {
+        "align": "left",
+        "bottom": 64.484375,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-1",
+        "text": "Aan/uit-knop voor AC 1",
+        "top": 47.3125
+      },
+      {
+        "align": "left",
+        "bottom": 45.8984375,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-2",
+        "text": "Aan/uit-knop voor AC 2",
+        "top": 28.7265625
+      }
+    ],
+    "lang": "nl",
+    "leftAligned": true,
+    "leftGap": 5.33203125,
+    "lowerAligned": true,
+    "panelWidth": 358,
+    "rightAligned": true,
+    "rightGap": 1.4140625,
+    "width": 390
+  },
+  {
+    "expectedWidth": 390,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 41.98046875,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "main-power",
+        "text": "Przycisk zasilania",
+        "top": 33.39453125
+      },
+      {
+        "align": "right",
+        "bottom": 64.484375,
+        "font": "7.16px",
+        "left": 21.4765625,
+        "overflow": false,
+        "right": 103.8125,
+        "role": "dc-usb",
+        "text": "Przycisk zasilania DC/USB",
+        "top": 47.3125
+      },
+      {
+        "align": "left",
+        "bottom": 60.19140625,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-1",
+        "text": "Przycisk zasilania AC 1",
+        "top": 51.60546875
+      },
+      {
+        "align": "left",
+        "bottom": 41.60546875,
+        "font": "7.16px",
+        "left": 266.703125,
+        "overflow": false,
+        "right": 343.671875,
+        "role": "ac-power-2",
+        "text": "Przycisk zasilania AC 2",
+        "top": 33.01953125
+      }
+    ],
+    "lang": "pl",
+    "leftAligned": true,
+    "leftGap": 5.33203125,
+    "lowerAligned": true,
+    "panelWidth": 358,
+    "rightAligned": true,
+    "rightGap": 10,
+    "width": 390
+  },
+  {
+    "expectedWidth": 1280,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 77.0703125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "main-power",
+        "text": "Botão liga/desliga",
+        "top": 61.3046875
+      },
+      {
+        "align": "right",
+        "bottom": 118.3828125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "dc-usb",
+        "text": "Botão de energia CC/USB",
+        "top": 86.8515625
+      },
+      {
+        "align": "left",
+        "bottom": 110.5,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-1",
+        "text": "Botão POWER CA1",
+        "top": 94.734375
+      },
+      {
+        "align": "left",
+        "bottom": 76.390625,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-2",
+        "text": "Botão POWER CA2",
+        "top": 60.625
+      }
+    ],
+    "lang": "pt",
+    "leftAligned": true,
+    "leftGap": 9.78125,
+    "lowerAligned": true,
+    "panelWidth": 657.203125,
+    "rightAligned": true,
+    "rightGap": 18.34375,
+    "width": 1280
+  },
+  {
+    "expectedWidth": 1280,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 77.0703125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "main-power",
+        "text": "Aan/Uit-knop",
+        "top": 61.3046875
+      },
+      {
+        "align": "right",
+        "bottom": 118.3828125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "dc-usb",
+        "text": "Aan/uit-knop voor DC/USB",
+        "top": 86.8515625
+      },
+      {
+        "align": "left",
+        "bottom": 118.3828125,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-1",
+        "text": "Aan/uit-knop voor AC 1",
+        "top": 86.8515625
+      },
+      {
+        "align": "left",
+        "bottom": 84.2734375,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-2",
+        "text": "Aan/uit-knop voor AC 2",
+        "top": 52.7421875
+      }
+    ],
+    "lang": "nl",
+    "leftAligned": true,
+    "leftGap": 9.78125,
+    "lowerAligned": true,
+    "panelWidth": 657.203125,
+    "rightAligned": true,
+    "rightGap": 2.578125,
+    "width": 1280
+  },
+  {
+    "expectedWidth": 1280,
+    "image": "assets/8a8570026e27_app-control.png",
+    "imageLoaded": true,
+    "labels": [
+      {
+        "align": "right",
+        "bottom": 77.0703125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "main-power",
+        "text": "Przycisk zasilania",
+        "top": 61.3046875
+      },
+      {
+        "align": "right",
+        "bottom": 118.3828125,
+        "font": "13.1441px",
+        "left": 39.4296875,
+        "overflow": false,
+        "right": 190.5859375,
+        "role": "dc-usb",
+        "text": "Przycisk zasilania DC/USB",
+        "top": 86.8515625
+      },
+      {
+        "align": "left",
+        "bottom": 110.5,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-1",
+        "text": "Przycisk zasilania AC 1",
+        "top": 94.734375
+      },
+      {
+        "align": "left",
+        "bottom": 76.390625,
+        "font": "13.1441px",
+        "left": 489.609375,
+        "overflow": false,
+        "right": 630.90625,
+        "role": "ac-power-2",
+        "text": "Przycisk zasilania AC 2",
+        "top": 60.625
+      }
+    ],
+    "lang": "pl",
+    "leftAligned": true,
+    "leftGap": 9.78125,
+    "lowerAligned": true,
+    "panelWidth": 657.203125,
+    "rightAligned": true,
+    "rightGap": 18.34375,
+    "width": 1280
+  }
+]
