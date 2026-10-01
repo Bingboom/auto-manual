@@ -1,5 +1,7 @@
 # IDML East Asian Width Estimation Discovery — 2026-07-31
 
+Status: done
+
 ## Decision
 
 Workstream W / Stage 5 item 11 replaces the renderer's duplicated

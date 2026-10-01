@@ -1,5 +1,7 @@
 # IDML three-target final-assembly discovery — 2026-08-29
 
+Status: done
+
 ## Decision
 
 Restore the real final-assembly build for all three currently exercised targets

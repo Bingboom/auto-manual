@@ -10,7 +10,7 @@ Formal source commit: `3609e42f4a506870c250b40172c77029c3689ed1`
 
 Final release build Git ref: `359c7edc833d659aaf78e0b128eea595c3ce58e4`
 
-Status: **the target-specific Git-only release root and single-target
+Status: active · Recorded detail: **the target-specific Git-only release root and single-target
 `docs/publish/**` candidate are generated and locally accepted.** This batch
 does not require or permit a live Bitable write. The central release task owns
 the shared Hello-Docs candidate, its `docs/publish/**`-only PR, merge and the

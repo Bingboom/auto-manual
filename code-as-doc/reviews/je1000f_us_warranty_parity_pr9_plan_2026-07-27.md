@@ -1,5 +1,7 @@
 # JE-1000F US PR9: warranty parity and zero overset
 
+Status: done
+
 ## Scope
 
 PR9 aligns the editable English, French, and Spanish warranty compositions on

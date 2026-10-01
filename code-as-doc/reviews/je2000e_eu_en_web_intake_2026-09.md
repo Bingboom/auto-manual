@@ -6,7 +6,7 @@ Implementation baseline: `d1b12bf8686941b5e79d9b507d7cc991da3427b9`
 
 Target: `JE-2000E / EU / en` (`HTE152`, Jackery Explorer 2000 Plus)
 
-Status: local Web implementation and verification complete; PR pending review.
+Status: active · Recorded detail: local Web implementation and verification complete; PR pending review.
 
 ## Authority and source inventory
 

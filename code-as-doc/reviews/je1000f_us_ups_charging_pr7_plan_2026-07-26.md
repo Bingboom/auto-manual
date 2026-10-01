@@ -1,5 +1,7 @@
 # JE-1000F US PR7: UPS and charging parity
 
+Status: done
+
 ## Scope
 
 PR7 aligns the editable UPS and charging compositions on physical pages 14-16,

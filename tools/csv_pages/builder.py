@@ -47,7 +47,7 @@ def _parse_langs(value: str) -> list[str]:
 def _parse_order(value: str) -> float:
     try:
         return float((value or "").strip())
-    except Exception:
+    except ValueError:
         return 0.0
 
 
