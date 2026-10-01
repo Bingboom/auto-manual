@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from copy import deepcopy
+from typing import TypedDict
 
 from tools.component_specs.model import ComponentSpec, ComponentSlot, ComponentSpecError
 from tools.component_specs.registry import adapter_binding, require_valid_component_spec
@@ -51,7 +52,16 @@ def reference_table_component_spec(
     return require_component_theme_roles(require_valid_component_spec(spec))
 
 
-def reference_table_projection(spec: ComponentSpec, renderer: str = "web") -> dict:
+class _ReferenceTableProjection(TypedDict):
+    variant: str
+    label: str
+    headers: list[dict[str, str]]
+    rows: list[list[dict[str, str]]]
+
+
+def reference_table_projection(
+    spec: ComponentSpec, renderer: str = "web",
+) -> _ReferenceTableProjection:
     binding = adapter_binding(spec, renderer)
     if spec.component_id != COMPONENT_ID or binding["key"] != f"{renderer}_reference_table":
         raise ComponentSpecError("unexpected reference table adapter")

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections.abc import Sequence
 from copy import deepcopy
+from typing import TypedDict
 
 from tools.component_specs.model import ComponentSlot, ComponentSpec, ComponentSpecError
 from tools.component_specs.registry import adapter_binding, load_component_registry, require_valid_component_spec
@@ -14,7 +15,12 @@ _ADAPTERS = {"web": "hb_auto_resume", "latex": "hb_latex_auto_resume",
              "idml": "idml_auto_resume", "word": "word_auto_resume"}
 
 
-def _copy(headers, conditions):
+class _AutoResumeCopy(TypedDict):
+    headers: list[str]
+    conditions: list[list[str]]
+
+
+def _copy(headers: Sequence[str], conditions: Sequence[Sequence[str]]) -> _AutoResumeCopy:
     if (len(headers) != 2 or len(conditions) != 2
             or [len(column) for column in conditions] != [3, 4]):
         raise ComponentSpecError("auto-resume requires two headers and 3/4 conditions")
@@ -41,7 +47,7 @@ def auto_resume_component_spec(
     return require_component_theme_roles(spec, load_manual_theme(component_registry=registry))
 
 
-def auto_resume_projection(spec: ComponentSpec, renderer: str) -> dict:
+def auto_resume_projection(spec: ComponentSpec, renderer: str) -> _AutoResumeCopy:
     """Expose the same copy to every adapter; only Web is rendered here."""
     if spec.component_id != COMPONENT_ID or adapter_binding(spec, renderer)["key"] != _ADAPTERS[renderer]:
         raise ComponentSpecError("unexpected auto-resume component or adapter")
