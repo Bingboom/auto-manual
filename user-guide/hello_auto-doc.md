@@ -38,7 +38,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 
 系统建设页随 auto-manual/main 合入，经 Hello-Docs 镜像同步和 RTD 成功构建后更新。页首显示本次站点构建的提交版本与时间；已打开的页面每分钟及重新切回时检查已发布版本，发现更新可点“刷新到新版本”，阅读中不会强制跳页。同步或构建失败时仍显示旧快照，不代表 main 已上线。语料等飞书数据仍需按原流程导出、审核并提交快照，页面刷新不会读取活表。
 
-侧栏的“交付物”页（`/workspace/deliverables/`）把各型号交付的网页手册、印刷交付包（IDML + PDF）和 Word 云文档链接汇总成一张表，按型号分组，每个区域一行，可以按型号、区域筛选。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
+侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。下方保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
 
 ### 发布候选、撤回与恢复
 

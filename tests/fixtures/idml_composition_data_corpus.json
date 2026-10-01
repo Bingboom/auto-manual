@@ -1,0 +1,1515 @@
+{
+ "_comment": "Frozen copy of every composition_data page in docs/renderers/contracts/target_assembly/*.json (2026-10-01). Seeds tests/test_idml_composition_data_characterization.py; do not refresh when contracts change.",
+ "page_size_pt": {
+  "width": 368.754,
+  "height": 524.659
+ },
+ "pages": [
+  {
+   "source_ref": "page/symbol_meaning_en.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_en.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_en.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_en.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.4,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_en.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_en.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "INPUT / OUTPUT PORTS"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_en.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/symbol_meaning_fr.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_fr.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_fr.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_fr.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.35,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_fr.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_fr.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "PORTS D’ENTRÉE/SORTIE"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_fr.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "multiline_lead"
+    }
+   }
+  },
+  {
+   "source_ref": "page/symbol_meaning_es.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_es.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_es.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_es.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 4.3,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_es.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_es.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "PUERTOS DE ENTRADA/SALIDA"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_es.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/symbol_meaning_de.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_de.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_de.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_de.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.4,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_de.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_de.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "EINGANGS-/AUSGANGSANSCHLÜSSE"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_de.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "multiline_lead"
+    }
+   }
+  },
+  {
+   "source_ref": "page/symbol_meaning_it.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_it.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_it.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_it.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.4,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_it.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_it.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "PORTE DI INGRESSO/USCITA"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_it.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/symbol_meaning_uk.rst",
+   "page_role": "symbols",
+   "composition_type": "safety_symbols",
+   "composition_data": {
+    "symbols": {
+     "left_count": 6
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_uk.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_uk.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_uk.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.4,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_uk.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_uk.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "storage": {
+     "layout_variant": "rounded_panel"
+    },
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "ВХІДНІ/ВИХІДНІ ПОРТИ"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_uk.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "multiline_lead"
+    }
+   }
+  },
+  {
+   "source_ref": "page/regulatory_compliance.rst",
+   "page_role": "regulatory_compliance",
+   "composition_type": "regulatory_compliance",
+   "composition_data": {
+    "regulatory": {
+     "layout_variant": "bottom_card",
+     "qr_asset": "docs/renderers/latex/assets/jbp2000b_eu_regulatory_qr.pdf"
+    }
+   }
+  },
+  {
+   "source_ref": "page/toc.rst",
+   "page_role": "toc",
+   "composition_type": "toc",
+   "composition_data": {
+    "toc": {
+     "layout_variant": "single_column"
+    }
+   }
+  },
+  {
+   "source_ref": "page/box_contents_ja.rst",
+   "page_role": "inbox",
+   "composition_type": "inbox_overview",
+   "composition_data": {
+    "inbox": {
+     "layout_variant": "compact_with_tip"
+    }
+   }
+  },
+  {
+   "source_ref": "page/product_overview_ja.rst",
+   "page_role": "product_overview",
+   "composition_type": "inbox_overview",
+   "composition_data": {
+    "overview": {
+     "instance_id": "jbp2000b-jp-v1",
+     "layout_variant": "annotated_without_view_headings"
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_ja.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.0,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": []
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_ja.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "stacking_guide",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_ja.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ],
+     "figure_callouts": [
+      [
+       {
+        "cell_index": 0,
+        "x": 0.07,
+        "y": 0.8703,
+        "width": 0.14
+       },
+       {
+        "cell_index": 1,
+        "x": 0.5485,
+        "y": 0.8756,
+        "width": 0.14
+       }
+      ],
+      [
+       {
+        "cell_index": 0,
+        "x": 0.0286,
+        "y": 0.834,
+        "width": 0.14
+       },
+       {
+        "cell_index": 1,
+        "x": 0.8245,
+        "y": 0.6323,
+        "width": 0.16
+       }
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_ja.rst",
+   "page_role": "spec",
+   "composition_type": "troubleshooting_specifications",
+   "composition_data": {
+    "specifications": {
+     "layout_variant": "compact",
+     "split": 246.0,
+     "section_groups": [
+      {
+       "source_indices": [
+        0,
+        1,
+        2,
+        3
+       ],
+       "title": ""
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_ja.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_en.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_en.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_en.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.4,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_en.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_en.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "INPUT / OUTPUT PORTS"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_en.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_fr.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_fr.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_fr.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 5.35,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_fr.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_fr.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "PORTS D’ENTRÉE/SORTIE"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_fr.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "multiline_lead"
+    }
+   }
+  },
+  {
+   "source_ref": "page/lcd_display_es.rst",
+   "page_role": "lcd",
+   "composition_type": "lcd_operations",
+   "composition_data": {
+    "lcd": {
+     "table_variant": "label_description",
+     "hero_horizontal_scale": 1.14,
+     "operation_panel_variant": "paired_cards",
+     "hero_callouts": [
+      {
+       "row_index": 1,
+       "text_rect": [
+        28.35,
+        65.0,
+        101.0,
+        16.0
+       ],
+       "align": "RightAlign",
+       "leader_points": [
+        [
+         130.0,
+         72.5
+        ],
+        [
+         159.0,
+         72.5
+        ]
+       ]
+      },
+      {
+       "row_index": 2,
+       "text_rect": [
+        276.0,
+        65.0,
+        64.5,
+        16.0
+       ],
+       "align": "LeftAlign",
+       "leader_points": [
+        [
+         228.0,
+         72.5
+        ],
+        [
+         274.0,
+         72.5
+        ]
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/connections_es.rst",
+   "page_role": "connections",
+   "composition_type": "connections",
+   "composition_data": {
+    "connections": {
+     "layout_variant": "notice_before_primary_figure",
+     "image_role": "reference_measure"
+    }
+   }
+  },
+  {
+   "source_ref": "page/troubleshooting_es.rst",
+   "page_role": "troubleshooting_data",
+   "composition_type": "troubleshooting",
+   "composition_data": {
+    "troubleshooting": {
+     "connection_image_role": "reference_measure",
+     "heading_space_after": 4.3,
+     "split": 306.5
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging_es.rst",
+   "page_role": "charging",
+   "composition_type": "charging",
+   "composition_data": {
+    "charging": {
+     "image_role": "reference_measure",
+     "h2_suffix_pill_indices": [
+      1
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/specifications_es.rst",
+   "page_role": "spec",
+   "composition_type": "storage_specifications",
+   "composition_data": {
+    "specifications": {
+     "layout_variant": "compact",
+     "section_groups": [
+      {
+       "source_indices": [
+        0
+       ]
+      },
+      {
+       "source_indices": [
+        1,
+        2
+       ],
+       "title": "PUERTOS DE ENTRADA/SALIDA"
+      },
+      {
+       "source_indices": [
+        3
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/warranty_es.rst",
+   "page_role": "warranty",
+   "composition_type": "warranty",
+   "composition_data": {
+    "warranty": {
+     "layout_variant": "bp_default"
+    }
+   }
+  },
+  {
+   "source_ref": "page/02_whats_in_the_box.rst",
+   "page_role": "inbox",
+   "composition_type": "inbox_overview",
+   "composition_data": {
+    "inbox": {
+     "layout_variant": "compact_with_tip"
+    }
+   }
+  },
+  {
+   "source_ref": "page/03_product_overview_placeholder.rst",
+   "page_role": "product_overview",
+   "composition_type": "inbox_overview",
+   "composition_data": {
+    "overview": {
+     "instance_id": "je3000c-kr-v1",
+     "asset_refs": {
+      "front_art": "renderers/latex/assets/je3000c_kr_overview_front.pdf",
+      "right_art": "renderers/latex/assets/je3000c_kr_overview_right.pdf"
+     }
+    }
+   }
+  },
+  {
+   "source_ref": "page/05_operation_guide_placeholder.rst",
+   "page_role": "operation_guide",
+   "composition_type": "operation",
+   "composition_data": {
+    "page_breaks": [
+     {
+      "at_kind": "h2",
+      "occurrence": 4
+     }
+    ],
+    "assets": {
+     "image_refs": [
+      "renderers/latex/assets/je3000c_kr_operation_main_power.pdf",
+      "renderers/latex/assets/je3000c_kr_operation_ac_output.pdf",
+      "renderers/latex/assets/je3000c_kr_operation_dc_usb_output.pdf",
+      "renderers/latex/assets/je3000c_kr_operation_energy_saving.pdf"
+     ]
+    },
+    "operation": {
+     "layout_variant": "guidance_stack"
+    }
+   }
+  },
+  {
+   "source_ref": "page/06_ups_mode.rst",
+   "page_role": "ups_mode",
+   "composition_type": "ups_charging",
+   "composition_data": {
+    "assets": {
+     "image_refs": [
+      "renderers/latex/assets/je3000c_kr_operation_ups_mode.pdf"
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/charging.rst",
+   "page_role": "charging",
+   "composition_type": "ups_charging",
+   "composition_data": {
+    "page_breaks": [
+     {
+      "at_kind": "h1",
+      "occurrence": 1
+     }
+    ],
+    "assets": {
+     "image_refs": [
+      "renderers/latex/assets/je3000c_kr_charging_ac_wall.pdf"
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/08_charging_methods.rst",
+   "page_role": "charging_methods",
+   "composition_type": "charging_methods",
+   "composition_data": {
+    "assets": {
+     "image_refs": [
+      "renderers/latex/assets/je3000c_kr_charging_solar_composite.pdf",
+      "renderers/latex/assets/je3000c_kr_charging_car_charge.pdf"
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/spec_ko.rst",
+   "page_role": "spec",
+   "composition_type": "specifications",
+   "composition_data": {
+    "specifications": {
+     "layout_variant": "compact",
+     "annotation_order": [
+      1,
+      2,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "source_ref": "page/12_app_setup_placeholder.rst",
+   "page_role": "app_setup",
+   "composition_type": "app",
+   "composition_data": {
+    "app": {
+     "instance_id": "je3000c-kr-v1",
+     "control_image": "renderers/latex/assets/je3000c_kr_network_pairing_panel.pdf",
+     "figure_assets": {
+      "app_add_device": "renderers/latex/assets/je3000c_kr_app_add_device_textless.png",
+      "app_connect_result": "renderers/latex/assets/je3000c_kr_app_connect_result.png"
+     },
+     "labels_by_role": {
+      "main_power": "POWER 버튼",
+      "dc_usb": "DC/USB 전원 버튼",
+      "ac": "AC 전원 버튼"
+     }
+    }
+   }
+  }
+ ]
+}
