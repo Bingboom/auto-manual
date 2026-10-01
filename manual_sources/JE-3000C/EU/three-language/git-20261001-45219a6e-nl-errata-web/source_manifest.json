@@ -312,13 +312,11 @@
     }
   ],
   "web_roots": {
-    "pt": "web/pt",
-    "nl": "web/nl",
-    "pl": "web/pl"
+    "nl": "web/nl"
   },
   "source_intake": {
-    "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-intake",
-    "sha256": "47e5997728dc9532c5fe94b859464cca89dcf56640d466ee78583e03d765c818"
+    "path": "manual_sources/JE-3000C/EU/three-language/git-20261001-45219a6e-nl-errata-intake",
+    "sha256": "bfe9ea99457595ecf6e74df81f02cc6b1e401d1a4580f34374635951e49732d7"
   },
   "validation_scope": "Native source and shared IR verified per locale; build.py check is a repository regression, not phase2 validation of these three language bodies."
 }
