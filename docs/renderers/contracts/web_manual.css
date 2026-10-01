@@ -84,6 +84,14 @@ body {
   max-width: var(--hb-copy-width);
 }
 
+/* The manual stays on white paper even when the surrounding Furo UI is dark.
+ * Pair quote foreground/background explicitly instead of mixing both themes. */
+#furo-main-content blockquote {
+  background: var(--hb-surface);
+  color: var(--hb-text);
+  border-left-color: var(--hb-line);
+}
+
 #furo-main-content p {
   margin: 0 0 0.82rem;
 }
@@ -792,6 +800,16 @@ body {
 #furo-main-content .manual-callout-label p,
 #furo-main-content .manual-callout-body p {
   margin-bottom: 0;
+}
+
+/* Opt-in source treatment for a shaded label and white notice body. */
+#furo-main-content .hb-callout-label-shaded .manual-callout-label {
+  width: auto !important;
+  background: var(--hb-surface-strong) !important;
+}
+
+#furo-main-content .hb-callout-label-shaded .manual-callout-body {
+  background: var(--hb-paper) !important;
 }
 
 /* Preserve the searchable four-column LCD grid and explicit RST status lines. */

@@ -1,5 +1,7 @@
 # JBP-2000B EU R2 native IDML validation (2026-08)
 
+Status: done
+
 ## Decision and scope
 
 R2 onboards `JBP-2000B_EU` as the second target of the existing `BP@INTL`

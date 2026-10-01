@@ -7,6 +7,7 @@
 - `start_branch.sh` and `start_branch.ps1`: required branch wrappers for new work.
 - `git_branch_guard.py` and `openclaw_git_guard.py`: branch and push safety.
 - `local_build.*` and `build_us_jp_manuals.*`: local build helpers.
+- `setup_dev_env.sh` and `setup_dev_env.ps1`: build `.venv` from the pinned Python and `requirements.lock`, then run `tools/env_preflight.py --strict`.
 - `process_build_queue*.ps1`, `listen_build_queue.ps1`: queue service wrappers.
 - `run_feishu_im_*`: service launch helpers.
 

@@ -1,5 +1,7 @@
 # Windows Build Guide
 
+
+Web 引用块在深色站点主题下仍使用配对的浅底深字；源稿要求左侧灰标签、右侧白正文时，可在 `manual-callout-table` 上使用 `hb-callout-label-shaded`。已发布内容的结构勘误须更新冻结源并重新发布，修改模板本身不会改变线上快照。
 JBP-3600A EU/en 概览使用不含标题的独立正面/侧面插图，LCD 使用带引线插图和原生两列说明；见[版面修复记录](reviews/jbp3600a-overview-lcd-20260916.md)。
 
 Verified single-language pages omit a duplicate plain leading language label at render time; the locale switcher and frozen source remain intact.
@@ -440,7 +442,7 @@ GitHub validation note:
 
 - `Manual Validation` is the repository CI workflow
 - `Manual Validation` uses `tests/fixtures/phase2` for check/doctor/schema-drift smoke coverage so GitHub runners do not require a live `data/phase2` snapshot. The schema-drift gate also validates `data/source_table_contracts/phase2_source_tables.json` against fixture/local snapshot headers, so source-table identity or writable-field drift is caught before a live Feishu run.
-- `python build.py doctor` also emits advisory `env.python` / `env.lock` rows from [`../tools/env_preflight.py`](../tools/env_preflight.py): the running Python versus the `pyproject.toml` pin, and installed packages versus `requirements.lock`. They are `OK`/`WARN` only and never fail the doctor; `python tools/env_preflight.py` prints the same report standalone, and every `python -m unittest` run prints its `WARN` rows once before the first test (`tests/__init__.py`; silent when the environment matches CI, off with `AUTO_MANUAL_ENV_PREFLIGHT=0`). Test outcomes never change.
+- `python build.py doctor` also emits advisory `env.python` / `env.lock` rows from [`../tools/env_preflight.py`](../tools/env_preflight.py): the running Python versus the `pyproject.toml` pin, and installed packages versus `requirements.lock`. They are `OK`/`WARN` only and never fail the doctor; `python tools/env_preflight.py` prints the same report standalone (`--strict` exits 1 on any `WARN`; [`../scripts/setup_dev_env.sh`](../scripts/setup_dev_env.sh) / `.ps1` build `.venv` from the pinned Python and `requirements.lock` and finish with it), and every `python -m unittest` run prints its `WARN` rows once before the first test (`tests/__init__.py`; silent when the environment matches CI, off with `AUTO_MANUAL_ENV_PREFLIGHT=0`). Test outcomes never change.
 - `python build.py doctor --data-plane --config <config> --model <model> --region <region> [--data-root <snapshot>]` is the read-only new-line data-plane preflight: it checks the complete phase2 manifest/files and required target `Spec_Master` rows before a build. It does not sync Feishu or write source data, and requires one explicit model/region.
 - `Manual Validation` keeps the stable `check-en` and `check-jp` jobs and also runs [`../tools/ci_check_targets.py`](../tools/ci_check_targets.py), which discovers every `configs/config*.yaml`, runs `build.py check` for targets represented in the fixture snapshot, and reports missing `document_key` rows as explicit `SKIP`. Coverage is reported as `PASS/(PASS+SKIP+FAIL)`; the tracked [`../.github/ci_check_targets_skip_baseline.json`](../.github/ci_check_targets_skip_baseline.json) carries **two** no-increase ratchets, `skip_count` and `fail_count`. Stage 1 invokes the driver with `--observation`, so the FAIL rows already recorded in `fail_count` are reported without blocking the lane — but one more than that fails it, as does a SKIP-ratchet increase. The FAIL ratchet is what makes the observation lane meaningful: `--observation` alone reported a target sliding from `PASS` to `FAIL` without turning the job red, so only `check-en` and `check-jp` (JE-1000F/US and JE-1000F/JP) were genuinely gated. Both baselines are pinned by `tests/test_ci_check_targets.py`, so removing `fail_count` to silence a regression fails the unit suite instead.
 - `Manual Validation` also runs every `tests/*.test.mjs` with Node's built-in test runner (job `node-ui`, Node 22, no npm dependencies). These tests cover browser-side portal scripts such as `tools/rtd_portal_assets/_static/product-voc.js`. Run them locally with `node --test tests/*.test.mjs`; a new `tests/*.test.mjs` file is picked up without editing the workflow.
@@ -454,6 +456,7 @@ GitHub validation note:
 - the maintainability gate includes `python tools/check_language_literal_ratchet.py check`, which records remaining multi-language literal tables and fails on new residue
 - the maintainability gate also includes `python tools/check_complexity_ratchet.py check`: `data/complexity_baseline.tsv` records every function above complexity 20; a new function may not exceed 20, a recorded one may not grow, and a lower value must be written back with `python tools/check_complexity_ratchet.py update` in the same PR
 - the maintainability gate also includes `python tools/check_facade_patch_ratchet.py check`: `data/facade_patch_baseline.tsv` records, per test file, how often tests patch names on the facade modules (`build_docs`, `process_build_queue`, `process_review_start_queue`, `cloud_doc_backport`); a new test file may not patch a facade, a recorded count may not grow, and a lower count must be written back with `python tools/check_facade_patch_ratchet.py update`
+- the maintainability gate also includes `python tools/check_broad_except_ratchet.py check`: `data/broad_except_baseline.tsv` records, per source file in `build.py`, `tools/`, `scripts/` and `integrations/`, how many `except Exception` / `except BaseException` handlers it has; a new file may not add one, a recorded count may not grow, and a lower count must be written back with `python tools/check_broad_except_ratchet.py update`
 - `build.py check` scans template and prepared bundle RST files for duplicated list text across normal RST and raw HTML branches; maintainers should treat the RST list as the source wording and keep renderer-specific copies aligned whenever manual prose changes
 - `build.py check` preflights every prepared FCC page through the document and web renderer profiles with the resolved target language. FCC language coverage is derived from manifest entries in tests, so a new FCC locale must add its governed right-column marker and keep the required opening line-block structure before it can pass validation.
 - pull requests run the required merge-gating checks
@@ -2304,7 +2307,7 @@ Manual Center 的 HTML 构建会从已发布手册生成静态章节检索索引
 状态配置写错时构建只跳过该页并输出警告，不影响手册站点；详见
 [System workspace page](dev/rtd_manual_portal.md#system-workspace-page)。
 
-同一构建还生成 `/workspace/deliverables/` 交付物页：按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
+同一构建还生成 `/workspace/deliverables/` 说明书工作台：上方以“结构化数据 + 模板与骨架 → 构建与发布 → 多格式交付物”地图组织入口，点击节点可查看业务工作位置、使用指引与下一步。链接配置集中在 `tools/rtd_portal_assets/manual_workbench.html`，业务位置以双平面地图为准；页面只负责导航，不直接执行构建或写入飞书。下方交付物矩阵按型号分组、每个区域一行，汇总网页手册、印刷交付包（IDML + PDF）和 Word 云文档的链接；手机端保留矩阵并横向滚动。网页链接在构建时从发布清单生成；另外两列来自飞书文档构建表的快照 `tools/rtd_portal_assets/deliverables_snapshot.json`，有新的草稿或发布构建后用 `python tools/rtd_deliverables.py export` 只读导出、`check` 核对后提交 PR。飞书链接需要登录才能打开，但地址在公开页上可见。详见 [Deliverables page](dev/rtd_manual_portal.md#deliverables-page)。
 
 RTD 构建中的说明书目录与发布证据每轮校验一次，由页面生成及搜索索引复用；
 构建结束或失败后清除缓存，下次构建仍重新校验。见
@@ -2343,3 +2346,11 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
 
 JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。
+
+中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
+
+原生 PDF 录入和审核 RST 的 Web Publish 共用[图文分工规则](../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：普通说明文字与文字框由共享 HTML/CSS 承载，保留实际插图边界，密集引线图按已批准例外处理。新目标必须登记组件和底图哈希并独立验收，不能把四语测试通过当作中规验收。显式 `base-art-live-copy` 绑定复用 ReferenceFigure 适配器，不需要启用该目标不适用的整套 legacy figure 布局。
+
+App 下载段如果只有一张二维码，使用显式 `app_download.presentation=qr-only` 绑定，映射到 `HB-SPECIAL-APP/download-qr-only`；它保留相邻说明段和单个源二维码，复用共享限宽样式，不能按普通通栏插图输出。
+
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。

@@ -124,7 +124,11 @@ web、IDML、队列、回写这几块目前最大的代码面。
   基线在 `data/complexity_baseline.tsv`，由 `check_maintainability_guardrails.py` 执行）
 - [ ] **CQ-3.2 头部校验函数改成规则表**（每个函数一个 PR，改之前先补特征测试，
   固定现有错误信息列表；改后错误文本逐字不变）：
-  - [ ] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
+  - [x] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
+    （2026-10-01；先提交特征测试 `tests/test_idml_composition_data_characterization.py`：从目标装配契约冻结 77 页
+    composition_data，生成 8440 个确定性变异，按页哈希问题列表或异常；覆盖 328/337 条语句、90/92 处问题。
+    再用脚本机械拆分：13 个按组件类型的校验函数 + `_COMPOSITION_VALIDATORS`（键集合 → 校验函数）分派表，
+    问题文本逐字不变。主函数复杂度 213 → 12；拆出的 `specifications` 42、`lcd` 35、`app` 25 记入基线，待后续再拆）
   - [ ] `tools/validate_config.py::validate`（138）
   - [ ] `tools/idml/reference_layout_plan.py::validate_approved_reference_plan`（107）
   - [ ] `tools/config_pages.py::parse_config_pages`（87）
@@ -209,6 +213,10 @@ stdout 前缀排查问题；75 处 `except Exception` 的处理方式各不相�
 - [ ] **CQ-5.3 审计 75 处 `except Exception`。** 分三类：顶层边界（保留，改成 `log.exception`
   以保留堆栈）、可收窄（改成具体异常类型）、吞掉错误（改为重新抛出或记录后报错）。
   在 guardrails 中加计数棘轮，只减不增。
+  - [x] 计数棘轮（2026-10-01；`tools/check_broad_except_ratchet.py` + `data/broad_except_baseline.tsv`，
+    已接入 `check_maintainability_guardrails.py`；扫描 `build.py`、`tools/`、`scripts/`、`integrations/`，
+    基线 56 个文件 89 处，含 `except BaseException` 与包含二者的元组）
+  - [ ] 逐族审计分类（顶层边界 / 可收窄 / 吞掉错误），每族一个 PR
 - [x] **CQ-5.4 子进程命令契约测试。** 对 `build.py` 中每个 `*_command(args) -> list[str]` 构造器，
   增加一个测试：把生成的参数列表交给目标脚本的 `parse_args` 解析，必须成功。不改任何公开 CLI 参数。
   （2026-09-30；`tests/test_build_command_contracts.py`：13 个构造器、35 组参数组合，Python 子命令交给
@@ -233,16 +241,24 @@ PyMuPDF 1.28.2 与配方要求的 1.28.0 不一致；一个黄金文件中的几
   可关闭。原计划在 `setUpModule` 里报一条环境错误，但那样会把同一模块里本可通过的测试也变成
   错误，所以改为开头提示，不改变任何测试结果。**CI 中这类测试照常执行，不允许用 skip 让测试变绿。**
   （doctor 与独立命令：#1319，2026-09-29；测试开头提示：#1329，2026-09-30）
-- [ ] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
+- [x] **CQ-6.2 开发环境安装脚本。** 新增 `scripts/setup_dev_env.sh` / `.ps1`：检查 Python 3.12，
   并从 `requirements.lock` 安装依赖；在 [`../../ONBOARDING.md`](../../ONBOARDING.md) 加入这一步。
-- [ ] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
+  （#1344，2026-09-30；Python 版本读自 `pyproject.toml` 的 pin，装完跑新增的 `tools/env_preflight.py --strict`，
+  有任何 `WARN` 即退出码 1。在本容器实测：Python 3.12 + lock 的新 `.venv` 报告全部 `OK`）
+- [x] **CQ-6.3 测试分层。** 给需要真实 Sphinx 子进程、IDML 黄金对比的慢测试加标记
   （例如统一的 `slow` 基类或装饰器）；新增 `make test-fast`，本地只跑快速层。CI 的全量
   `python -m unittest` 不变。
+  （2026-09-30；按模块而不是逐个测试标记：`tests/slow_modules.txt` 列出 27 个实测慢测试合计 ≥4s 的模块，
+  `python -m tests.run_fast`（`make test-fast`）把其余模块分批放到并行进程里跑，只用标准库。
+  实测（4 CPU，Python 3.12 + lock）：单进程全量 879s；并行全量 251s；快速层 4435 个测试 171s）
 - [ ] **CQ-6.4 并行执行。** 评估两种方案：`pytest` + `pytest-xdist`（兼容 unittest 写法，
   但属于新增依赖，**需操作者确认**），或按模块在 CI 中分片（改 workflow，**需操作者确认**）。
   先用数据说明收益，再决定。
-- [ ] **CQ-6.5 黄金文件浮点数稳定化。** 几何类黄金对比改为按固定精度取整或给出容差
+- [x] **CQ-6.5 黄金文件浮点数稳定化。** 几何类黄金对比改为按固定精度取整或给出容差
   （先处理 `tests.test_idml_symbols_panel` 的三语言视觉契约）。
+  （2026-10-01；根因是 Python 3.12 的 `sum()` 改为补偿求和，同一布局在 3.11 得 `117.89999999999999`、
+  3.12 得 `117.9`。两个符号面板黄金对比改为比较前把浮点数取整到 6 位小数，黄金文件不变；3.11 与 3.12 均通过。
+  其余环境类失败（缺 `jinja2`、PyMuPDF 版本）由 CQ-6.2 的安装脚本解决，不是浮点问题）
 
 **验收。** 环境不符时 `build.py doctor` 给出单条明确诊断；`make test-fast` 在本地 ≤3 分钟；
 CI 全量测试时长下降 ≥40%（若采纳 CQ-6.4）。

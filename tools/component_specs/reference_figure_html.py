@@ -215,6 +215,7 @@ def parse_reference_figure_html(
             "capture_following_lines": capture_lines,
             "captions_embedded": bool(config.get("captions_embedded")),
             "captions_origin": "configured" if configured_captions else "carrier",
+            "caption_centers_pct": config.get("caption_centers_pct"),
             "composite_locale": str(composite_locale or ""),
             **(
                 {

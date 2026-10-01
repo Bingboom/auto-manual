@@ -12,7 +12,10 @@ from tools.component_specs.app import (
     app_inline_control_component_spec,
     resolve_app_control_label_roles,
 )
-from tools.component_specs.app_label_source import app_label_boundaries
+from tools.component_specs.app_label_source import (
+    app_display_metadata, app_interstitial_note, app_label_boundaries,
+)
+from tools.component_specs.app_qr_source import parse_app_qr_download_html
 from tools.manual_ir.web_app_download import load_web_download_source
 from tools.utils.path_utils import repo_root
 
@@ -48,6 +51,11 @@ def parse_app_download_html(
     region: str,
 ) -> tuple[object, tuple[Tag, ...], tuple[tuple[str, Tag], ...], tuple[tuple[str, Path], ...]]:
     """Parse the established two-column source contract without mutating it."""
+
+    if config.get("presentation") == "qr-only":
+        return parse_app_qr_download_html(
+            soup, config=config, source_path=source_path, language=language,
+        )
 
     source = load_web_download_source(
         str(soup),
@@ -189,7 +197,9 @@ def parse_app_add_device_html(
         control_art_ref=str(config.get("control_artwork") or ""),
         source_ref=f"{source_path}#app-add-device",
         language=language,
-        metadata={"captions_embedded": bool(config.get("captions_embedded"))},
+        step_captions=config.get("step_captions"),
+        interstitial_note=app_interstitial_note(owned_nodes),
+        metadata=app_display_metadata(config),
     )
     return (
         spec,

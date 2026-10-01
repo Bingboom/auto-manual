@@ -442,8 +442,22 @@ _REFERENCE_BASE_ART_LAYOUT_KEYS = frozenset({
     "panel_top",
     "panel_fill",
     "labels",
+    "preserve_frame",
+    "mobile_labels",
 })
 _REFERENCE_LABEL_KEYS = frozenset({"line", "rect", "fill"})
+
+
+def _validate_reference_display_options(layout: Mapping[str, Any], *, field: str) -> None:
+    """Validate optional frame preservation and responsive label policy."""
+    if "preserve_frame" in layout and not isinstance(layout["preserve_frame"], bool):
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.preserve_frame must be a boolean"
+        )
+    if layout.get("mobile_labels", "stack") not in {"stack", "overlay"}:
+        raise WebPresentationContractError(
+            f"{field}.base_art_layout.mobile_labels must be stack or overlay"
+        )
 
 
 def _validate_reference_base_art_layout(
@@ -467,6 +481,7 @@ def _validate_reference_base_art_layout(
         raise WebPresentationContractError(
             f"{field}.base_art_layout.art_sha256 must name the measured art"
         )
+    _validate_reference_display_options(layout, field=field)
     _require_percentages(
         [layout.get("panel_top")], count=1, field=f"{field}.base_art_layout.panel_top"
     )

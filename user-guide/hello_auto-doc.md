@@ -1,5 +1,7 @@
 # Hello Auto Doc
 
+
+网页备注若出现双层项目符号，应核对冻结源中的表格结构；若出现深底深字，应同时核对引用块背景和文字颜色。修复后须分别检查桌面、窄屏与深色主题；本地预览不代表 RTD 已发布。
 This file replaces `Template_maintenance_and_using_guide.md`.
 It documents the current build layout, maintenance rules, the review bundle layer under [`docs/_review/<model>/<region>/`](../docs/_review), and the current review-first publishing flow.
 It is the current workflow and editing-surface guide.
@@ -36,7 +38,7 @@ For Codex-assisted TM-first manual rewrite or translation that must preserve Mar
 
 系统建设页随 auto-manual/main 合入，经 Hello-Docs 镜像同步和 RTD 成功构建后更新。页首显示本次站点构建的提交版本与时间；已打开的页面每分钟及重新切回时检查已发布版本，发现更新可点“刷新到新版本”，阅读中不会强制跳页。同步或构建失败时仍显示旧快照，不代表 main 已上线。语料等飞书数据仍需按原流程导出、审核并提交快照，页面刷新不会读取活表。
 
-侧栏的“交付物”页（`/workspace/deliverables/`）把各型号交付的网页手册、印刷交付包（IDML + PDF）和 Word 云文档链接汇总成一张表，按型号分组，每个区域一行，可以按型号、区域筛选。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
+侧栏的“说明书工作台”（`/workspace/deliverables/`，沿用原交付物地址）从“结构化数据 + 模板与骨架”进入构建和多格式输出。点击地图节点，可找到飞书业务源表、语料库、资产、模板骨架、构建记录与对应操作指引；飞书入口需登录并具备权限，点击工作台入口本身不会触发构建。下方保留各型号的网页手册、印刷交付包（IDML + PDF）和 Word 云文档矩阵，按型号分组、每个区域一行，可以按型号、区域筛选，手机端可横向滚动。网页手册的链接随发布自动更新；印刷交付包和 Word 云文档的链接来自飞书文档构建表的快照，有新的草稿或发布构建后运行 `python tools/rtd_deliverables.py export`（只读取线上构建表）刷新快照，再提交 PR。飞书链接要登录飞书才能打开，但链接地址在公开页上可见。规则见[交付物页](../code-as-doc/dev/rtd_manual_portal.md#deliverables-page)。
 
 ### 发布候选、撤回与恢复
 
@@ -142,6 +144,21 @@ Before running any build, review, check, or publish command, prepare the local e
 
 ### 1.1 Python Environment
 
+The quickest way to get the environment CI uses is the setup script. It finds the
+Python version pinned in `pyproject.toml`, builds `.venv` from it, installs
+`requirements.lock`, and runs `python tools/env_preflight.py --strict`, which exits
+non-zero while anything still differs from CI:
+
+```bash
+scripts/setup_dev_env.sh                 # macOS / Linux; --python BIN, --venv DIR, --recreate
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_dev_env.ps1   # -Python, -Venv, -Recreate
+```
+
+To set it up by hand instead:
+
 Windows PowerShell:
 
 ```powershell
@@ -171,7 +188,8 @@ manifest embeds the same record under a `toolchain` key — a published PDF can
 always name the environment that produced it. `doctor` also reports drift
 against the pinned runtime (`env.python`, from `pyproject.toml`) and
 `requirements.lock` (`env.lock`) as advisory `WARN` rows; run
-`python tools/env_preflight.py` for the same report without a config. A local
+`python tools/env_preflight.py` for the same report without a config (`--strict`
+exits 1 on any `WARN`). A local
 `python -m unittest` run prints the `WARN` rows once before the first test,
 so environment-only failures are named up front; it is silent when the
 environment matches CI and `AUTO_MANUAL_ENV_PREFLIGHT=0` turns it off.
@@ -623,6 +641,7 @@ GitHub note:
 - that guard also applies a reviewed language-literal ratchet: language tables may shrink, but new literal tables must be explicitly reviewed in the baseline diff
 - the same guard applies a per-function complexity ratchet (`data/complexity_baseline.tsv`): new functions stay at complexity 20 or below, recorded ones may only get simpler, and a simplification is locked in by rerunning `python tools/check_complexity_ratchet.py update`
 - the same guard counts test patches on facade modules (`data/facade_patch_baseline.tsv`): tests should patch the module that looks a name up, so the count may only fall; a drop is locked in with `python tools/check_facade_patch_ratchet.py update`
+- the same guard counts broad exception handlers (`except Exception` / `except BaseException`, `data/broad_except_baseline.tsv`): new code catches the specific exception, so the count may only fall; a drop is locked in with `python tools/check_broad_except_ratchet.py update`
 - `build.py check` also compares duplicated RST and raw HTML list text so renderer-specific copies cannot silently drift from the source wording
 - `build.py check` also renders every prepared FCC page with the target language in both document and web profiles. A missing FCC opening line block, an unregistered localized right-column marker, or a runtime filename remap that loses language context now fails during `check`, before Word generation.
 - `build.py check` also enforces capability -> chapter consistency: [`../data/model_capabilities.csv`](../data/model_capabilities.csv) mirrors the 文档构建表 feature checkboxes (refreshed by `sync-data` when `FEISHU_PHASE2_MODEL_CAPABILITIES_TABLE_ID` is set — it is a tracked file like `page_registry.csv`, so the git diff is the review surface for capability changes; duplicate build-table rows collapse to one mirror row), and [`../data/capability_page_rules.csv`](../data/capability_page_rules.csv) maps each capability to a required/forbidden bundle page or in-page section regex. A target with `UPS功能=TRUE` must carry `06_ups_mode`; one with `加电包扩容=FALSE` must not carry an extra-battery page. Targets without a capability row emit a non-blocking `CAPABILITY_ROW_MISSING` warning unless listed in [`../data/capability_known_missing.csv`](../data/capability_known_missing.csv); capability page selection remains fail-open. Each rule's enforcement is toggled per direction in the rules CSV (`required_when_true` / `forbidden_when_false`), so noisy rules stay recorded but inert until their wording is unified. The Feishu 文档构建 base carries a mirror rules table for visibility; the repo CSVs are the consumed source.
@@ -1941,6 +1960,8 @@ Charging reference diagrams reuse the shared live-label component: captions occu
 
 ## 欧规网页共享组件防回退
 
+新型号、地区或语言录入也遵循同一套[图文分工规则](../docs/renderers/contracts/STYLE_DEFINITION.md#新录入网页的图文分工)：文字和承载它的灰/白框用 HTML/CSS；底图保留完整主机、线缆、放大圆和实际外框。密集引线概览图、App 界面、二维码及产品铭刻按各自例外保留。四语已有测试不替代中规等新入口的组件绑定、哈希和桌面/窄屏验收。
+
 新发布的欧规／英规候选包必须携带 IR，并符合已登记的章节、共享组件及变体要求。删除组件、旁车文件或扩大遗留例外会阻止发布。新增型号／语言要先登记适用章节；历史 App 整图和 LCD 降级不会算作已复用。历史发布仍可回放，详见[共享组件准入与迁移](../code-as-doc/dev/prepared_component_admission.md)。
 
 维护旧版网页表格时，在源 RST 中声明共享表格类型，重新构建整本；不要直接修改生成 HTML。纯文字 LCD 说明保留原编号（包括空编号），不自动补图标。多语质保开场可有多段，顺序和段落边界必须保留。定义见 [共享样式](../docs/renderers/contracts/STYLE_DEFINITION.md#authored-text-references-hb-table-reference)。
@@ -1962,3 +1983,7 @@ JE-1000H EU LCD 图标表（2026-09-30）：六语共用同一组冻结图标引
 日规等审核稿中的纯文字装箱清单，Web 整本 IR 将完整的三项无图清单映射为 `HB-TABLE-REFERENCE/plain-inventory`，复用公共表格样式，保留原有注意事项和强调。带图片或紧邻提示表的清单仍按 `HB-SPECIAL-INBOX` 校验，缺图会阻止发布；不补入其他地区的图片。
 
 JE-1000F/JP 的 Web 展示契约保留日规质保的 7 个正文章节与原有换行，不强制生成欧规年限卡片；旧 App 的“控制面板图 + 三段按钮名称”通过明确的源图绑定进入共享 App 组件，按钮标签保持日文并按 AC/DC 语义定位。
+
+中规审核源也支持三项无图项目列表：复用 `plain-inventory` 并保留列表强调和外部备注。独立 LCD 模式图后紧邻的四列表（首列全部为空、三项表头和六行动作）保留原图与表头，映射至 `HB-TABLE-REFERENCE/lcd-actions`；非空占位列或结构变化拒绝导入。显式绑定的 App 双图之间若有一张纯文字备注表，共享面板将其保留在面板后方，备注仍独立进入共享提示组件，不被图片或标签吞掉。
+
+通用 LCD／状态图标及 POWER、AC、DC/USB、LIGHT 按钮图先按功能语义复用现有共用素材（Web 按钮图使用透明 SVG），不从各语言 PDF 重裁带底色的小图；仅在共用素材缺失或有明确机型差异时才提取。提取独立插图默认透明底，不保留灰色面板、表格底色和外围边框；保留产品本身的颜色、阴影、按键面和丝印。普通图采用无字底图加原生文字，表格保持原生 HTML，密集引线图不重复显示图内文字。规则见[共用图标优先](../docs/renderers/contracts/STYLE_DEFINITION.md#共用图标优先web-插图选材规则)。

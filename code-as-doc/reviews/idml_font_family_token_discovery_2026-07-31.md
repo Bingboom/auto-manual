@@ -1,5 +1,7 @@
 # IDML Primary Font-Family Token Discovery (2026-07-31)
 
+Status: done
+
 Scope: Workstream W / Stage 5 item 8.
 
 ## Finding
