@@ -1806,3 +1806,1334 @@ body {
 @media (max-width: 42rem) {
   .hb-reference-table th, .hb-reference-table td { padding: 0.5rem; }
 }
+
+/*
+ * JBP-2000B and JBP-3600A EU keep the published composition: a compact LCD map and
+ * bordered two-column legend, followed by two rounded operation cards.  The
+ * selectors are pinned to the frozen EU artwork paths so the treatment cannot
+ * leak into another battery-pack target that happens to reuse these headings.
+ */
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"]) {
+  display: block;
+  width: 78% !important;
+  max-width: 34rem !important;
+  height: auto !important;
+  margin: 0.7rem auto 0.65rem !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > table.lcd-text-only {
+  width: 100% !important;
+  max-width: var(--hb-reading-width);
+  margin: 0 auto 2.15rem !important;
+  overflow: hidden;
+  border: 1.5px solid var(--hb-line) !important;
+  border-radius: 0.72rem;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  background: var(--hb-paper);
+  table-layout: fixed !important;
+  font-size: 0.78rem;
+  line-height: 1.24;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > table.lcd-text-only tr > :nth-child(n + 3) {
+  box-sizing: border-box;
+  padding: 0.62rem 0.72rem !important;
+  border: 0 !important;
+  vertical-align: middle !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > table.lcd-text-only tr:not(:last-child) > :nth-child(n + 3) {
+  border-bottom: 1px solid var(--hb-line) !important;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > table.lcd-text-only tr > :nth-child(3) {
+  border-right: 1px solid var(--hb-line) !important;
+  background: var(--hb-surface) !important;
+  font-weight: 700;
+}
+
+#furo-main-content
+  #lcd-display:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+  )
+  > table.lcd-text-only p {
+  margin: 0;
+}
+
+#furo-main-content
+  #power-on-off:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+  )
+  > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"]),
+#furo-main-content
+  #lcd-display-on-off:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_control_clean.png"])
+  )
+  > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_control_clean.png"]) {
+  display: block;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: var(--hb-reading-width) !important;
+  height: auto !important;
+  margin: 0.45rem auto 0 !important;
+  padding: clamp(0.65rem, 1.8vw, 1.05rem) clamp(0.55rem, 1.6vw, 0.95rem) 0.35rem;
+  border: 2px solid var(--hb-line-soft);
+  border-bottom: 0;
+  border-radius: 0.82rem 0.82rem 0 0;
+  background: var(--hb-paper);
+}
+
+#furo-main-content
+  #power-on-off:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+  )
+  > table.manual-callout-table {
+  width: 100% !important;
+  margin: 0 auto 1.35rem !important;
+  border-top: 1px solid var(--hb-line-soft) !important;
+  border-radius: 0 0 0.82rem 0.82rem;
+}
+
+#furo-main-content
+  #lcd-display-on-off:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_control_clean.png"])
+  )
+  > p:last-child {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 0 auto 1.35rem;
+  padding: 0.72rem 0.85rem;
+  border: 2px solid var(--hb-line-soft);
+  border-top: 1px solid var(--hb-line-soft);
+  border-radius: 0 0 0.82rem 0.82rem;
+  background: var(--hb-surface);
+  font-size: 0.78rem;
+  line-height: 1.28;
+}
+
+#furo-main-content
+  #operations
+  > #lcd-display-on-off:has(
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd_control.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_control_clean.png"])
+  ) {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 520px) {
+  #furo-main-content
+    #lcd-display:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+    )
+    > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"]) {
+    width: 100% !important;
+  }
+
+  #furo-main-content
+    #lcd-display:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/lcd.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/lcd_annotated.png"])
+    )
+    > table.lcd-text-only {
+    font-size: 0.72rem;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table {
+    display: table;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table tbody {
+    display: table-row-group;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table tr {
+    display: table-row;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table .manual-callout-label,
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table .manual-callout-body {
+    display: table-cell;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table .manual-callout-label {
+    width: 22% !important;
+    text-align: center;
+  }
+
+  #furo-main-content
+    #power-on-off:has(
+      > img:is([data-web-finished-panel-path="assets/jbp2000b_eu_en/power.png"], [data-web-finished-panel-path="assets/jbp3600a_eu_en/power_annotated.png"])
+    )
+    > table.manual-callout-table .manual-callout-body {
+    width: 78% !important;
+  }
+}
+
+/* Separate annotated views keep their native Web headings outside the artwork. */
+#furo-main-content img[data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_front.png"] {
+  display: block;
+  max-width: 25rem !important;
+  margin: 1rem auto 2rem;
+}
+#furo-main-content img[data-web-finished-panel-path="assets/jbp3600a_eu_en/overview_left.png"] {
+  display: block;
+  max-width: 34rem !important;
+  margin: 1rem auto 2rem;
+}
+
+#furo-main-content img[data-web-finished-panel-path="assets/jbp3600a_eu_en/clearance_clean.png"] {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: 0.82rem;
+  padding: 0.5rem;
+  background: var(--hb-paper);
+}
+
+/* Shared top-of-manual navigation for merged multilingual Web documents. */
+
+#furo-main-content .hb-language-nav {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 1.35rem;
+  padding: 0.82rem;
+  overflow: hidden;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-surface-strong);
+}
+
+#furo-main-content .hb-language-list {
+  display: flex;
+  gap: 0.72rem;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+}
+
+#furo-main-content .hb-language-list > li {
+  flex: 0 0 auto;
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+#furo-main-content a.hb-language-link {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0.58rem 1.25rem;
+  border: 1px solid var(--hb-line-soft);
+  border-radius: 999px;
+  background: var(--hb-paper);
+  box-shadow: 0 0.12rem 0.32rem rgba(52, 48, 49, 0.08);
+  color: var(--hb-brand-dark);
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#furo-main-content a.hb-language-link:hover {
+  border-color: var(--hb-line);
+  background: var(--hb-surface);
+}
+
+#furo-main-content a.hb-language-link:focus-visible {
+  outline: 0.18rem solid var(--hb-brand-dark);
+  outline-offset: 0.14rem;
+}
+
+#furo-main-content .hb-language-anchor {
+  display: block;
+  height: 0;
+  scroll-margin-top: 1.5rem;
+}
+
+@media (max-width: 760px) {
+  #furo-main-content .hb-language-nav {
+    margin-bottom: 1.1rem;
+    padding: 0.68rem;
+  }
+
+  #furo-main-content .hb-language-list {
+    gap: 0.58rem;
+    padding-bottom: 0.18rem;
+  }
+
+  #furo-main-content a.hb-language-link {
+    min-height: 2.72rem;
+    padding: 0.52rem 1rem;
+    font-size: 0.98rem;
+  }
+}
+
+@media print {
+  #furo-main-content .hb-language-nav,
+  #furo-main-content .hb-language-anchor {
+    display: none;
+  }
+}
+
+/* Searchable, editable FCC composition projected from HB-SPECIAL-FCC. */
+
+/* Keep FCC in navigation and assistive technology without rendering an H1 bar. */
+#furo-main-content section:has(> figure.hb-fcc-composition) > h1:first-child {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.hb-fcc-composition {
+  --hb-fcc-flow-gap: clamp(0.52rem, 0.9vw, 0.62rem);
+  --hb-fcc-radius: 1rem;
+
+  margin: 0 auto 2.25rem;
+  padding: clamp(1.15rem, 2.5vw, 1.8rem);
+  overflow: hidden;
+  border-radius: var(--hb-fcc-radius);
+  background: var(--hb-surface);
+  color: var(--hb-text);
+}
+
+.hb-fcc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+}
+
+#furo-main-content .hb-fcc-column {
+  display: grid;
+  min-width: 0;
+  align-content: start;
+  gap: var(--hb-fcc-flow-gap);
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+
+.hb-fcc-opening {
+  display: grid;
+  grid-template-columns: clamp(5.8rem, 25%, 7.8rem) minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+#furo-main-content .hb-fcc-mark {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+}
+
+#furo-main-content .hb-fcc-opening-copy .line-block,
+#furo-main-content .hb-fcc-column p,
+#furo-main-content .hb-fcc-column ul,
+#furo-main-content .hb-fcc-column li {
+  margin: 0 !important;
+}
+
+.hb-fcc-opening-copy .line {
+  margin: 0;
+}
+
+#furo-main-content .hb-fcc-column ul {
+  display: grid;
+  gap: var(--hb-fcc-flow-gap);
+  padding-left: 1.05rem;
+}
+
+@media (max-width: 760px) {
+  .hb-fcc-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+
+  .hb-fcc-composition {
+    padding: 1rem;
+    border-radius: 0.72rem;
+  }
+}
+
+/* HB-SPECIAL-INBOX: responsive card composition plus editable tip. */
+
+.hb-inbox-composition {
+  --hb-inbox-card-radius: 0.82rem;
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.2rem 0 2rem;
+}
+
+#furo-main-content .hb-inbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: clamp(0.55rem, 1.4vw, 0.9rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
+}
+
+.hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-card {
+  min-height: clamp(16rem, 29vw, 20rem);
+  padding-inline: clamp(0.35rem, 0.8vw, 0.7rem);
+}
+
+#furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-art {
+  height: clamp(7rem, 12vw, 9rem) !important;
+}
+
+@media (min-width: 901px) {
+  #furo-main-content .hb-inbox-composition[data-card-count="5"] .hb-inbox-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+.hb-inbox-card {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: clamp(20rem, 48vw, 24rem);
+  flex-direction: column;
+  align-items: center;
+  padding: 3.6rem clamp(0.55rem, 1.4vw, 1rem) 1.5rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: var(--hb-inbox-card-radius);
+  background: var(--hb-paper);
+  text-align: center;
+}
+
+#furo-main-content .hb-inbox-card + .hb-inbox-card {
+  margin-top: 0;
+}
+
+.hb-inbox-card::before {
+  content: attr(data-item-number);
+  position: absolute;
+  top: 1.55rem;
+  left: 50%;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  place-items: center;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+#furo-main-content .hb-inbox-art {
+  display: block;
+  width: 90% !important;
+  max-width: 10.8rem !important;
+  height: clamp(8.75rem, 18vw, 10.5rem) !important;
+  margin: 1.6rem auto 1rem !important;
+  object-fit: contain;
+}
+
+.hb-inbox-label {
+  display: grid;
+  min-height: 3.4rem;
+  margin-top: auto;
+  place-items: center;
+  color: var(--hb-text);
+  font-size: clamp(0.82rem, 1.45vw, 0.96rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.hb-inbox-label p,
+.hb-inbox-tip p {
+  margin: 0;
+}
+
+.hb-inbox-tip {
+  display: grid;
+  grid-template-columns: clamp(6.8rem, 16%, 8rem) minmax(0, 1fr);
+  margin-top: 1rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-line-soft);
+  border-radius: var(--hb-inbox-card-radius);
+  background: var(--hb-surface);
+  color: var(--hb-text);
+}
+
+.hb-inbox-tip-label {
+  display: grid;
+  min-height: 5rem;
+  padding: 0.8rem;
+  place-items: center;
+  background: var(--hb-paper);
+  font-weight: 700;
+  text-align: center;
+}
+
+.hb-inbox-tip-body {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  font-size: 0.94rem;
+  line-height: 1.3;
+}
+
+@media (max-width: 520px) {
+  .hb-inbox-composition {
+    --hb-inbox-card-radius: 0.58rem;
+  }
+
+  .hb-inbox-grid {
+    gap: 0.42rem;
+  }
+
+  .hb-inbox-card {
+    min-height: clamp(15.5rem, 56vw, 21rem);
+    padding: 2.8rem 0.38rem 0.85rem;
+  }
+
+  .hb-inbox-card::before {
+    top: 0.78rem;
+    width: 1.72rem;
+    height: 1.72rem;
+    font-size: 0.88rem;
+  }
+
+  #furo-main-content .hb-inbox-art {
+    width: 94% !important;
+    height: clamp(6.5rem, 24vw, 8.25rem) !important;
+    margin: 0.75rem auto 0.65rem !important;
+  }
+
+  .hb-inbox-label {
+    min-height: 2.8rem;
+    font-size: clamp(0.68rem, 3vw, 0.82rem);
+  }
+
+  .hb-inbox-tip {
+    grid-template-columns: 5.4rem minmax(0, 1fr);
+  }
+
+  .hb-inbox-tip-label,
+  .hb-inbox-tip-body {
+    min-height: 0;
+    padding: 0.7rem 0.62rem;
+    font-size: 0.78rem;
+  }
+
+  #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-card {
+    min-height: 14rem;
+  }
+}
+
+@media (min-width: 521px) and (max-width: 900px) { #furo-main-content .hb-inbox-composition[data-inbox-variant="responsive-card-grid"] .hb-inbox-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Searchable Symbols components layered over the shared Web manual theme. */
+
+.hb-symbol-signal-composition {
+  margin: 1rem auto 2rem;
+  overflow: hidden;
+  border: 2px solid var(--hb-brand-dark);
+  border-radius: 0.92rem;
+  background: var(--hb-paper);
+}
+
+#furo-main-content table.hb-symbol-signal-table {
+  width: 100% !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  /* Content-sized: a long localized badge (uk "ПОПЕРЕДЖЕННЯ") widens the label column instead of overflowing it. */
+  table-layout: auto;
+  background: var(--hb-paper);
+  color: var(--hb-text);
+  font-size: clamp(0.84rem, 1.35vw, 0.95rem);
+  line-height: 1.28;
+}
+
+#furo-main-content .hb-symbol-signal-col-label {
+  width: 24%;
+}
+
+#furo-main-content .hb-symbol-signal-col-meaning {
+  width: 76%;
+}
+
+#furo-main-content table.hb-symbol-signal-table th,
+#furo-main-content table.hb-symbol-signal-table td {
+  box-sizing: border-box;
+  padding: clamp(0.58rem, 1.45vw, 0.84rem) clamp(0.58rem, 1.35vw, 0.82rem) !important;
+  border: 0 !important;
+  border-right: 1.25px solid var(--hb-brand-dark) !important;
+  border-bottom: 1.25px solid var(--hb-brand-dark) !important;
+  vertical-align: middle !important;
+  text-align: left;
+}
+
+#furo-main-content table.hb-symbol-signal-table tr > *:last-child {
+  border-right: 0 !important;
+}
+
+#furo-main-content table.hb-symbol-signal-table tbody tr:last-child > td {
+  border-bottom: 0 !important;
+}
+
+#furo-main-content table.hb-symbol-signal-table thead th {
+  background: var(--hb-surface) !important;
+  font-size: clamp(0.94rem, 1.6vw, 1.08rem);
+  font-weight: 700;
+}
+
+#furo-main-content .hb-symbol-signal-label-cell,
+#furo-main-content .hb-symbol-signal-meaning-cell {
+  background: var(--hb-paper) !important;
+}
+
+#furo-main-content .hb-signal-badge {
+  display: flex;
+  box-sizing: border-box;
+  width: min(100%, 10.5rem);
+  min-width: max-content;
+  min-height: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
+  margin: 0 auto;
+  padding: 0.34rem 0.48rem;
+  background: var(--hb-brand-dark);
+  color: var(--hb-paper);
+  font-size: clamp(0.75rem, 1.45vw, 0.94rem);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+#furo-main-content .hb-signal-icon {
+  flex: 0 0 auto;
+  font-family: Arial, sans-serif;
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+#furo-main-content .hb-signal-label {
+  min-width: 0;
+}
+
+#furo-main-content table.hb-symbol-signal-table p {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  #furo-main-content .hb-symbol-signal-col-label {
+    width: 42%;
+  }
+
+  #furo-main-content .hb-symbol-signal-col-meaning {
+    width: 58%;
+  }
+
+  #furo-main-content table.hb-symbol-signal-table th,
+  #furo-main-content table.hb-symbol-signal-table td {
+    padding: 0.52rem 0.42rem !important;
+  }
+
+  #furo-main-content .hb-signal-badge {
+    gap: 0.28rem;
+    padding-inline: 0.34rem;
+    font-size: clamp(0.66rem, 3.2vw, 0.78rem);
+  }
+}
+
+/* App components keep shared artwork separate from localized live copy. */
+
+/*
+ * App copy uses numbered headings rather than the dot-led manual section
+ * headings.  Key the rule off the shared Add Device composition so the
+ * treatment survives translated section titles and generated anchor ids.
+ */
+#furo-main-content > section:has(.hb-app-add-device-composition) h2::before,
+#furo-main-content > section:has(.hb-app-add-device-composition) h3::before {
+  display: none;
+}
+
+#furo-main-content > section:has(.hb-app-add-device-composition) h2,
+#furo-main-content > section:has(.hb-app-add-device-composition) h3 {
+  gap: 0;
+}
+
+.hb-app-add-device-composition {
+  width: 100%;
+  max-width: var(--hb-reading-width);
+  margin: 1.15rem auto 2rem;
+}
+
+.hb-app-add-device-phone-stage {
+  display: grid;
+  width: min(100%, 44rem);
+  margin-inline: auto;
+  place-items: center;
+}
+
+#furo-main-content .hb-app-add-device-phone-art {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+}
+
+.hb-app-add-device-control-panel {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 1.15rem;
+}
+
+#furo-main-content .hb-app-add-device-control-art {
+  display: block;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  object-fit: contain;
+  /*
+   * The live labels are positioned against this box, and the image is
+   * lazy-loaded.  Reserve the artwork's ratio so the box already has its
+   * height before the file arrives; otherwise the labels collapse onto one
+   * line and overlap.  `auto` lets the loaded file's own ratio win.  Keep the
+   * numbers equal to the declared control artwork's pixel ratio (a test checks
+   * every contract's control_artwork).
+   */
+  aspect-ratio: auto 1203 / 265;
+}
+
+.hb-app-add-device-live-label {
+  position: absolute;
+  z-index: 1;
+  transform: translateY(-50%);
+  color: var(--hb-text);
+  font-size: clamp(0.6rem, 1.3vw, 1rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.hb-app-add-device-live-label-main-power {
+  top: 39%;
+  left: 4%;
+  width: 27%;
+}
+
+.hb-app-add-device-live-label-dc-usb {
+  top: 66%;
+  left: 4%;
+  width: 27%;
+}
+
+.hb-app-add-device-live-label-ac-power {
+  top: 66%;
+  right: 4%;
+  width: 20%;
+  text-align: left;
+}
+
+@media (max-width: 760px) {
+  .hb-app-add-device-live-label {
+    font-size: clamp(0.48rem, 2.05vw, 0.72rem);
+  }
+}
+
+/* Base-art operation figures (tools/web_base_art_operation.py).
+   Frozen, text-free artwork carries the product drawing; live, searchable copy
+   sits on the anchors the target contract declares for that exact art hash.
+   Every rule is scoped to .hb-base-art-live-copy, so other figures and the
+   approved composites keep their existing presentation. */
+
+.hb-base-art-live-copy {
+  --hb-prerequisite-surface: #e6e7e8;
+}
+
+.hb-base-art-live-copy > .hb-operation-stage {
+  container-type: inline-size;
+}
+
+/* The canvas holds the art box and the steps; the art box is exactly the art,
+   so pill, clock and duration anchors resolve against the drawing alone. */
+.hb-base-art-live-copy .hb-operation-canvas,
+.hb-base-art-live-copy .hb-operation-art-box {
+  position: relative;
+}
+
+/* Step overlays stay transparent so native brackets and leaders remain
+   visible. Prerequisite pills use their own rounded surface rule below. */
+.hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  pointer-events: none;
+}
+
+/* Each anchor is a drawn bracket arm: the label sits on it and the
+   instruction hangs below, however many lines the language needs. The offset
+   is the label's line box (2.8cqw x 1.1). */
+.hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+  position: absolute;
+  top: calc(var(--hb-step-y) - 3.08cqw);
+  left: var(--hb-step-x);
+  width: var(--hb-step-width);
+  margin: 0;
+  pointer-events: auto;
+}
+
+.hb-base-art-live-copy .hb-operation-step .line {
+  font-weight: 400;
+}
+
+/* A label is one word on a drawn arm ("Encendido"): it may overhang its step
+   box by a few pixels, never split mid-word onto a second line. */
+.hb-base-art-live-copy .hb-operation-step-label,
+.hb-base-art-live-copy .hb-operation-mode-label {
+  display: block;
+  font-size: 2.8cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  overflow-wrap: normal;
+}
+
+.hb-base-art-live-copy .hb-operation-step-label strong {
+  font-weight: inherit;
+}
+
+/* Two instruction lines (3.3cqw) must end above art drawn below an arm, such
+   as the main-power clock 3.85cqw under its lower arm. */
+.hb-base-art-live-copy .hb-operation-step-instruction {
+  display: block;
+  font-size: 1.5cqw;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* The first standby line is the native lead; later lines are body and note. */
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy > .line:first-child {
+  font-weight: 700;
+}
+
+/* Four native main-power blocks: standby lead/body/App note share a
+   right-hand bubble; the final energy-saving note stays on white below it.
+   A four-block guard leaves older three-line standby cards unchanged. */
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+  position: relative;
+  display: grid;
+  grid-template-columns: 40% minmax(0, 1fr);
+  margin-top: -5cqw;
+  padding: 0 3cqw 3cqw;
+  background: transparent;
+  font-size: 1.95cqw;
+  line-height: 1.25;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::before {
+  content: "";
+  grid-column: 2;
+  grid-row: 1 / 4;
+  border-radius: 2.4cqw;
+  background: var(--hb-surface);
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::after {
+  content: "";
+  position: absolute;
+  top: -1.4cqw;
+  left: 45%;
+  border-right: 1.5cqw solid transparent;
+  border-bottom: 1.5cqw solid var(--hb-surface);
+  border-left: 1.5cqw solid transparent;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line {
+  z-index: 1;
+  grid-column: 2;
+  margin: 0;
+  padding: 0 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:first-child {
+  grid-row: 1;
+  padding-top: 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:nth-child(2) {
+  grid-row: 2;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:nth-child(3) {
+  grid-row: 3;
+  padding-bottom: 2cqw;
+}
+
+.hb-base-art-live-copy[data-operation-id="main-power"]
+  .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  margin-top: 4cqw;
+  padding: 0;
+}
+
+/* Native AC/DC artwork can use different grays for the same prerequisite
+   role. Match the common darker source pill with one token at both breakpoints. */
+.hb-base-art-live-copy .hb-operation-prerequisite {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  height: var(--hb-height);
+  padding: 0 0 0 1.9cqw;
+  overflow: visible;
+  border: 0;
+  border-radius: 999px;
+  background: var(--hb-prerequisite-surface);
+  font-size: 1.85cqw;
+  font-weight: 700;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* The page paragraph rhythm (#furo-main-content p) must not push the copy off
+   the pill's centre. */
+#furo-main-content .hb-base-art-live-copy .hb-operation-prerequisite > p {
+  margin: 0;
+}
+
+.hb-base-art-live-copy .hb-operation-duration {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  font-size: 2.1cqw;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.hb-base-art-live-copy .hb-operation-footer {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 1.8cqw 2.4cqw var(--hb-footer-x);
+}
+
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+  top: 0.3em;
+  right: calc(100% - var(--hb-footer-x) + 1.4cqw);
+  left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  transform: none;
+}
+
+/* The same clock glyph the IDML panel places from icon_clock_3s.png. */
+.hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration::before {
+  content: "";
+  flex: none;
+  width: 1.45em;
+  height: 1.45em;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23343031'/%3E%3Cpath d='M12 5.2V12h5.4' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-steps {
+  position: static;
+  width: auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.hb-base-art-live-copy .hb-operation-footer .hb-operation-step {
+  margin: 0;
+}
+
+/* Footer-panel cards (LED): the lead is its own soft panel above the art, and
+   the art shares the row below with numbered steps. The text-free art carries
+   no numbers or step glyphs, so they are drawn here, as the IDML card draws
+   them natively. The lead keeps its prerequisite role; only this rule moves
+   it off the drawn-pill geometry the other layouts use. */
+.hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+  position: static;
+  display: block;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: auto;
+  margin: 2.2cqw 2.2cqw 0;
+  padding: 1.5cqw 2.4cqw;
+  border-radius: 2.6cqw;
+  background: var(--hb-surface);
+  font-size: 1.85cqw;
+  font-weight: 400;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.hb-base-art-live-copy .hb-operation-panel {
+  display: grid;
+  grid-template-columns: var(--hb-art-width) minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.2cqw;
+  padding: 1.2cqw 2.2cqw 2.2cqw;
+}
+
+/* One step per row: the editable LED fallback lays its steps out in three
+   columns (web_manual.css); the card stacks them beside the art. */
+.hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.2cqw;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  counter-reset: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+  display: grid;
+  grid-template-columns: 3.4cqw 4.8cqw minmax(0, 1fr);
+  align-items: center;
+  column-gap: 1.4cqw;
+  margin: 0;
+  counter-increment: hb-panel-step;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+  content: counter(hb-panel-step);
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border: 0.2cqw solid var(--hb-text);
+  border-radius: 50%;
+  font-size: 1.9cqw;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hb-base-art-live-copy .hb-operation-step-marker {
+  justify-self: center;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  width: 3.6cqw;
+  height: 3.6cqw;
+  background: center / contain no-repeat;
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-lit {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 1.6v2M5.3 4.3l1.4 1.4M18.7 4.3l-1.4 1.4'/%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+.hb-base-art-live-copy .hb-operation-marker-bulb-off {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23343031' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 7a5 5 0 0 0-3.1 8.9c.6.5 1 1.2 1 2V19h4.2v-1.1c0-.8.4-1.5 1-2A5 5 0 0 0 12 7z'/%3E%3Cpath d='M10 21.3h4'/%3E%3C/svg%3E");
+}
+
+/* The badge is one word in every locale ("SOS"): it never wraps inside its
+   pill, and the marker column is sized to hold it. */
+.hb-base-art-live-copy .hb-operation-marker-sos {
+  white-space: nowrap;
+  padding: 0.25cqw 0.7cqw;
+  border: 0.18cqw solid var(--hb-text);
+  border-radius: 999px;
+  font-size: 1.45cqw;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
+  font-size: 1.75cqw;
+  line-height: 1.35;
+}
+
+/* Base-art reference figures (tools/web_base_art_reference.py): the registered
+   art sits at the bottom of a panel of its own measured tone, a top band holds
+   copy the print card places above the drawing, and the figure's source lines
+   sit on the rectangles the contract declares, as percentages of the panel. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+  position: relative;
+  container-type: inline-size;
+  padding-top: var(--hb-panel-top);
+  overflow: hidden;
+  border-radius: var(--hb-panel-radius);
+  background: var(--hb-panel-fill);
+}
+
+/* The art's own hairline white edge and corner cut-outs would show as seams
+   inside the panel; clip them so the panel tone runs through. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel > .hb-reference-art {
+  display: block;
+  border-radius: 0;
+  clip-path: inset(0 0.24% 0.65% 0.16%);
+}
+
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+  position: absolute;
+  top: var(--hb-y);
+  left: var(--hb-x);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: var(--hb-width);
+  min-height: var(--hb-height);
+  color: var(--hb-text);
+  font-size: 1.99cqw;
+  line-height: 1.16;
+}
+
+/* A pill grows downward when a language needs a second line. */
+.hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+  justify-content: center;
+  padding: 0.3cqw 1.2cqw;
+  border-radius: 999px;
+  background: var(--hb-fill);
+  text-align: center;
+}
+
+/* Narrow screens: the drawing scales below readable overlay sizes, so copy
+   stacks under the art in source order instead of shrinking. */
+@media (max-width: 760px) {
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 0.75rem;
+    padding: 0 0.75rem 0.85rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::before,
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line {
+    grid-column: 1;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child)::after {
+    display: none;
+  }
+
+  .hb-base-art-live-copy[data-operation-id="main-power"]
+    .hb-operation-supporting-copy:has(> .line:nth-child(4):last-child) > .line:last-child {
+    margin-top: 1.1rem;
+  }
+
+  .hb-base-art-live-copy > .hb-operation-stage {
+    display: block;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas > .hb-operation-steps {
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+    pointer-events: auto;
+  }
+
+  .hb-base-art-live-copy .hb-operation-canvas .hb-operation-step {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-label,
+  .hb-base-art-live-copy .hb-operation-mode-label {
+    font-size: 1rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+
+  /* Keep the prerequisite on its native pill coordinates. It may grow into
+     the declared safe area, using the same shared tone as desktop pills. */
+  .hb-base-art-live-copy .hb-operation-prerequisite {
+    width: max-content;
+    min-width: var(--hb-width);
+    max-width: var(--hb-max-width, var(--hb-width));
+    height: auto;
+    min-height: var(--hb-height);
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    background: var(--hb-prerequisite-surface);
+    font-size: 0.78rem;
+    white-space: normal;
+  }
+
+  .hb-base-art-live-copy .hb-operation-art-box > .hb-operation-duration {
+    display: none;
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer {
+    padding: 0.55rem 0.65rem;
+    border-top: 1px solid var(--hb-line-soft);
+  }
+
+  .hb-base-art-live-copy .hb-operation-footer > .hb-operation-duration {
+    position: static;
+    margin-bottom: 0.3rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-prerequisite.hb-operation-lead {
+    margin: 0.65rem 0.65rem 0;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.8rem;
+    font-size: 0.88rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.5rem;
+    padding: 0.5rem 0.65rem 0.65rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel > .hb-operation-steps {
+    gap: 0.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step {
+    grid-template-columns: 1.6rem 2.5rem minmax(0, 1fr);
+    column-gap: 0.55rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step::before {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-width: 1.5px;
+    font-size: 0.9rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-bulb-lit,
+  .hb-base-art-live-copy .hb-operation-marker-bulb-off {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-marker-sos {
+    padding: 0.1rem 0.3rem;
+    border-width: 1.5px;
+    font-size: 0.72rem;
+  }
+
+  .hb-base-art-live-copy .hb-operation-panel .hb-operation-step-instruction {
+    font-size: 0.88rem;
+  }
+
+  /* The drawing scales below readable label sizes: the source lines stack
+     under the art in source order, on the panel tone. */
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-art-panel {
+    padding-top: 0;
+    padding-bottom: 0.55rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-label {
+    position: static;
+    display: block;
+    width: auto;
+    min-height: 0;
+    margin: 0.45rem 0.65rem 0;
+    font-size: 0.88rem;
+  }
+
+  .hb-reference-figure.hb-base-art-live-copy .hb-reference-live-pill {
+    width: fit-content;
+    max-width: calc(100% - 1.3rem);
+    padding: 0.15rem 0.7rem;
+  }
+}
