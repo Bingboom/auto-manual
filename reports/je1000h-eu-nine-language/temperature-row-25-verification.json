@@ -1,0 +1,160 @@
+{
+  "native_pages": {
+    "pt": 114,
+    "nl": 131,
+    "pl": 148
+  },
+  "split_y": 426.162,
+  "reused_icons": [
+    {
+      "source": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/23_high_temperature_indicator.png",
+      "sha256": "f548c6504f495da4f208cd8e5fe6eac6076daea05e314115abd26b46a9326ba5"
+    },
+    {
+      "source": "manual_sources/JE-1000H/EU/en/2.0/phase2/_attachments/lcd_icons/24_low_temperature_indicator.png",
+      "sha256": "bdbf602db74ade39a2a162209c0ff535315dee5e27e4832b2e6a201764b6941a"
+    }
+  ],
+  "verification": [
+    {
+      "language": "pt",
+      "temperature_rows": 2,
+      "number": 23,
+      "cold_replay_no_pdf": true,
+      "cold_replay_byte_parity": true,
+      "other_content_unchanged": true,
+      "rows": [
+        "23 Indicador de alta temperatura A proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação.",
+        "23 Indicador de temperatura baixa A proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+      ]
+    },
+    {
+      "language": "nl",
+      "temperature_rows": 2,
+      "number": 23,
+      "cold_replay_no_pdf": true,
+      "cold_replay_byte_parity": true,
+      "other_content_unchanged": true,
+      "rows": [
+        "23 Indicator voor hoge temperatuur De beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is.",
+        "23 Indicator voor lage temperatuur De beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+      ]
+    },
+    {
+      "language": "pl",
+      "temperature_rows": 2,
+      "number": 23,
+      "cold_replay_no_pdf": true,
+      "cold_replay_byte_parity": true,
+      "other_content_unchanged": true,
+      "rows": [
+        "23 Wskaźnik wysokiej temperatury Zadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego.",
+        "23 Wskaźnik niskiej temperatury Zadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+      ]
+    }
+  ],
+  "browser": [
+    {
+      "lang": "pt",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Indicador de alta temperaturaA proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "icons": 1,
+          "text": "23Indicador de temperatura baixaA proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        }
+      ]
+    },
+    {
+      "lang": "pt",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Indicador de alta temperaturaA proteção contra alta temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        },
+        {
+          "icons": 1,
+          "text": "23Indicador de temperatura baixaA proteção contra baixa temperatura foi ativada. O produto pode parar de funcionar até que sua temperatura retorne à faixa normal de operação."
+        }
+      ]
+    },
+    {
+      "lang": "nl",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Indicator voor hoge temperatuurDe beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "icons": 1,
+          "text": "23Indicator voor lage temperatuurDe beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        }
+      ]
+    },
+    {
+      "lang": "nl",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Indicator voor hoge temperatuurDe beveiliging tegen hoge temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        },
+        {
+          "icons": 1,
+          "text": "23Indicator voor lage temperatuurDe beveiliging tegen lege temperaturen is geactiveerd. Het product kan stoppen met werken totdat de temperatuur weer binnen het normale bedrijfsbereik is."
+        }
+      ]
+    },
+    {
+      "lang": "pl",
+      "width": 1280,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Wskaźnik wysokiej temperaturyZadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "icons": 1,
+          "text": "23Wskaźnik niskiej temperaturyZadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        }
+      ]
+    },
+    {
+      "lang": "pl",
+      "width": 390,
+      "broken": [],
+      "imageCount": 59,
+      "overflow": false,
+      "rows": [
+        {
+          "icons": 1,
+          "text": "23Wskaźnik wysokiej temperaturyZadziałało zabezpieczenie przed wysoką temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        },
+        {
+          "icons": 1,
+          "text": "23Wskaźnik niskiej temperaturyZadziałało zabezpieczenie przed niską temperaturą. Produkt może nie działać do czasu przywrócenia temperatury do normalnego zakresu roboczego."
+        }
+      ]
+    }
+  ]
+}

@@ -109,3 +109,10 @@ App type-annotation change; focused App tests (23 passed) supplement the previou
 suite. Publication will use the existing Git-only frozen-evidence and
 `docs/publish/**` assembly path. Engineering merge, release merge, RTD build and
 production verification are separate milestones and remain to be recorded.
+
+Before final CI, main advanced to `db96f5e0` with the shared LCD number-cell
+span fix. Both authorization entries were retained, and all three candidates
+were rebuilt from their original intake so high/low temperature remain
+separate rows with the shared number spanning both. Source text, artwork and
+Dutch publication eligibility are unchanged. Strict builds and cold replay
+passed again; composed LCD/native/reference tests cover this integration.

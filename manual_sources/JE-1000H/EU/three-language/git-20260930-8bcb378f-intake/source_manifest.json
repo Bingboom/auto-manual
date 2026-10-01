@@ -40,8 +40,8 @@
     },
     {
       "path": "source/lcd_indicators.json",
-      "size": 26485,
-      "sha256": "55e4966209e387c640252fb0ebe1527ccca983f98b0b0786dc55044f226f8ced"
+      "size": 27496,
+      "sha256": "a528aaaf61188a31a293f61517be5424ceae4372a136ceb1304f25e656d1364f"
     },
     {
       "path": "source/nl_direct_source.json",
@@ -100,8 +100,8 @@
     },
     {
       "path": "source/target_layout.json",
-      "size": 140037,
-      "sha256": "8c33a723a14a20cef782992c3df509ff5e0bd7878fea8dba04767463539db9ab"
+      "size": 140110,
+      "sha256": "0a84b397474d62f1dc3b1aa05e7499291009067413481abff4207c997d8c8027"
     },
     {
       "path": "source/warranty_columns.json",
