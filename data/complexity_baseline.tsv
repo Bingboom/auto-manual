@@ -18,8 +18,8 @@ tools/audit_code_copy.py	write_summary	26
 tools/bitable_content_backup.py	_sync_select_options	22
 tools/bitable_content_backup.py	main	30
 tools/bitable_content_backup.py	restore_content	23
+tools/bitable_schema.py	_cmd_promote	22
 tools/bitable_schema.py	apply	31
-tools/bitable_schema.py	main	71
 tools/bitable_schema.py	parity	26
 tools/bitable_schema.py	seed_import	30
 tools/build_docs_bundle.py	prepare_manual_bundle	40
