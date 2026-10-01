@@ -11,10 +11,14 @@ It is read-only and never blocks: every finding is ``OK`` or ``WARN``.  It runs
 inside ``build.py doctor`` and standalone before a local test run::
 
     python tools/env_preflight.py
+
+``--strict`` exits 1 when any finding is ``WARN``; ``scripts/setup_dev_env.*``
+use it to prove a fresh environment matches CI.
 """
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 import tomllib
@@ -126,9 +130,15 @@ def collect_environment_findings(
     return findings
 
 
-def main() -> int:
-    for level, area, message in collect_environment_findings():
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Compare this environment with the pinned CI environment.")
+    parser.add_argument("--strict", action="store_true", help="exit 1 when any finding is WARN")
+    args = parser.parse_args(argv)
+    findings = collect_environment_findings()
+    for level, area, message in findings:
         print(f"[env-preflight] {level:<5} {area}: {message}")
+    if args.strict and any(level != "OK" for level, _, _ in findings):
+        return 1
     return 0
 
 
