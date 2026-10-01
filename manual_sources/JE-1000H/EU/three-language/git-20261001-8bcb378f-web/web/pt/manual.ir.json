@@ -60,7 +60,7 @@
     "assets/5a5a8acac5df_app-result-reused.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "18e18db67907fcb8e014f8c6e4f59315ea891a96c6653f645d4997d7de678ccf",
+  "bundle_sha256": "1ddbe9f8e7c35707488c4f5826805d351dbdf520d612f5ae316183f06bb9fae5",
   "content_sha256": "632c9ee9c64bdfcf18c595fd35ebdc2531c670ac983c9c03d126db8f424980bd",
   "language": "pt",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -1557,7 +1557,7 @@
     ],
     "frozen_source_manifest": {
       "artwork_manifest_sha256": "065454b4dec82227b12911f21e7ccc0ede5f86f4ce4cde3e203fe4c67e1e47e7",
-      "geometry_recipe_sha256": "0fd44aef9dd182ab7c9ff333214f51273657062b9244be442f76c7968191be66",
+      "geometry_recipe_sha256": "e26f50b56b41d614b383b59a33cf7e2648ed182893a950844698413940930e9b",
       "intake_method": "fresh-native-pdf-text",
       "original_source": {
         "filename": "HTE159-EU-9国说明书-0928(1).ai",
@@ -1566,7 +1566,7 @@
         "size_bytes": 70646547
       },
       "schema_version": "auto-manual-frozen-web-source/v1",
-      "source_records_sha256": "3d3ef31d37f9597870463a5559b500b1a316c76a8bfd30cacb1467c54a5f7faa",
+      "source_records_sha256": "22bc389a2ad59d01620523e4198203e1632db7352679defe5d7ffdd4a662ca2a",
       "target": {
         "languages": [
           "pt",
@@ -2388,17 +2388,13 @@
           "source_ai_sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb"
         }
       ],
-      "geometry_recipe_sha256": "0fd44aef9dd182ab7c9ff333214f51273657062b9244be442f76c7968191be66",
+      "geometry_recipe_sha256": "e26f50b56b41d614b383b59a33cf7e2648ed182893a950844698413940930e9b",
       "image_extraction_performed": false,
       "pdf": {
         "filename": "HTE159-EU-9国说明书-0928(1).ai",
         "page_count": 161,
         "sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb"
       },
-      "pending_source_review": [
-        "new-locale-review",
-        "source-version-difference"
-      ],
       "text_spans": [
         {
           "bbox": [
@@ -9363,12 +9359,9 @@
       ],
       "unresolved_text": []
     },
-    "pending_source_review": [
-      "new-locale-review",
-      "source-version-difference"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 10,
     "shared_component_coverage": {
       "applicable": true,

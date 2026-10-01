@@ -60,7 +60,7 @@
     "assets/5a5a8acac5df_app-result-reused.png"
   ],
   "bundle_root": "frozen-source",
-  "bundle_sha256": "4f2d824ed27481fcde1785f3222519b55cf5592b7de6e193feb929a45fa2e56d",
+  "bundle_sha256": "7fd166adaa47686d37cce46077d863ebea758a005832220215a85d3d53138c95",
   "content_sha256": "1d6afd1d082ffbc1f87d7c969f4e8d84ad0ad70a5e660ec4882952c59bce7e65",
   "language": "pl",
   "layout_params_sha256": "f5ae099abc1a82ffda3abcc5a13725aca3c201e720a0374d88d1643f9773f279",
@@ -1557,7 +1557,7 @@
     ],
     "frozen_source_manifest": {
       "artwork_manifest_sha256": "333a6c1554039a318e75db800a602771cc3e2a1d75a4e99af2491b6406fda63a",
-      "geometry_recipe_sha256": "0fd44aef9dd182ab7c9ff333214f51273657062b9244be442f76c7968191be66",
+      "geometry_recipe_sha256": "e26f50b56b41d614b383b59a33cf7e2648ed182893a950844698413940930e9b",
       "intake_method": "fresh-native-pdf-text",
       "original_source": {
         "filename": "HTE159-EU-9国说明书-0928(1).ai",
@@ -1566,7 +1566,7 @@
         "size_bytes": 70646547
       },
       "schema_version": "auto-manual-frozen-web-source/v1",
-      "source_records_sha256": "44c27e794503566a5a28d3c5992a14391e36b3d8644721aaee4f5fdd044f7380",
+      "source_records_sha256": "41e8d8cfb55586546f3e108c98e76626d7f40341f7eb1f5de96becc70ffbd4fd",
       "target": {
         "languages": [
           "pt",
@@ -2317,17 +2317,13 @@
         }
       ],
       "corrections_applied": [],
-      "geometry_recipe_sha256": "0fd44aef9dd182ab7c9ff333214f51273657062b9244be442f76c7968191be66",
+      "geometry_recipe_sha256": "e26f50b56b41d614b383b59a33cf7e2648ed182893a950844698413940930e9b",
       "image_extraction_performed": false,
       "pdf": {
         "filename": "HTE159-EU-9国说明书-0928(1).ai",
         "page_count": 161,
         "sha256": "8bcb378fd0505237d91d5aa201d8bc0e84ee392963bfa6a73d32b8ed90b68feb"
       },
-      "pending_source_review": [
-        "new-locale-review",
-        "source-version-difference"
-      ],
       "text_spans": [
         {
           "bbox": [
@@ -9299,12 +9295,9 @@
       ],
       "unresolved_text": []
     },
-    "pending_source_review": [
-      "new-locale-review",
-      "source-version-difference"
-    ],
+    "pending_source_review": [],
     "projection": "whole-document-components/v1",
-    "publication_eligible": false,
+    "publication_eligible": true,
     "rendered_source_figure_count": 10,
     "shared_component_coverage": {
       "applicable": true,

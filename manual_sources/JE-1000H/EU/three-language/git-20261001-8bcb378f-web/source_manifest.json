@@ -325,8 +325,8 @@
     },
     {
       "path": "web/nl/manual.ir.json",
-      "size": 643438,
-      "sha256": "3ed73fe7740c34ea5e40f7582901c789fa7913fc44ac2dbf143151bdea0aa66a"
+      "size": 643264,
+      "sha256": "a72614c03abd3b6b7dd4e0299b75e2a4885320bca68161eae362e6ef67c7ec4a"
     },
     {
       "path": "web/nl/manual_je1000h_eu_nl.md",
@@ -640,8 +640,8 @@
     },
     {
       "path": "web/pl/manual.ir.json",
-      "size": 649036,
-      "sha256": "654abcf030fa1383476b1a5241087d5cd90e46c8d6509a7d395762044d362d6d"
+      "size": 648862,
+      "sha256": "bbc343cfa4ce826d27ce9080a279a4ab7cbddc49402df111f3e158b7197a5bfa"
     },
     {
       "path": "web/pl/manual_je1000h_eu_pl.md",
@@ -955,8 +955,8 @@
     },
     {
       "path": "web/pt/manual.ir.json",
-      "size": 646030,
-      "sha256": "60e768538c9fd3b7c702ef8ea4780a85d484a2f87a055c4ee6bdcc192eb85d39"
+      "size": 645856,
+      "sha256": "8e6daff2b686351b225665441850745c9c09bb0ad1f4f333c8265d4e3073173d"
     },
     {
       "path": "web/pt/manual_je1000h_eu_pt.md",
@@ -988,6 +988,7 @@
         160
       ]
     },
-    "validation_boundary": "Existing phase2 build.py check is repository regression only; these three bodies use the committed native PDF adapter and source-local recipes, strict Sphinx and browser gates."
+    "validation_boundary": "Existing phase2 build.py check is repository regression only; these three bodies use the committed native PDF adapter and source-local recipes, strict Sphinx and browser gates.",
+    "review_disposition": "MA-218: approved native PT/NL/PL JAK-UM-V1.0 source and candidate-24; six-language EUUK V2.0 unchanged."
   }
 }
