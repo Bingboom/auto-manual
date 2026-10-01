@@ -1,7 +1,5 @@
 # Frozen four-language Web alignment
 
-Status: active
-
 ## Current correction: native PDF re-intake
 
 The screenshot-based candidate described below was rejected during user review.

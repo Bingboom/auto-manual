@@ -1,0 +1,44 @@
+{
+  "help": {
+    "exit_code": 0,
+    "stdout": "usage: lang_asset_sweep.py [-h] --out OUT [--adjudication ADJUDICATION]\n                           [--terminology] [--repo-root REPO_ROOT]\n                           [--tm-base-token TM_BASE_TOKEN]\n                           [--doc-base-token DOC_BASE_TOKEN]\n\nLanguage-asset fork sweep across Feishu tables and RST templates.\n\noptions:\n  -h, --help            show this help message and exit\n  --out OUT             fork report Markdown path\n  --adjudication ADJUDICATION\n                        optional adjudication checklist Markdown path\n  --terminology         also cross-check stored values against\n                        data/terminology_rules.csv\n  --repo-root REPO_ROOT\n  --tm-base-token TM_BASE_TOKEN\n  --doc-base-token DOC_BASE_TOKEN\n",
+    "stderr": "",
+    "report": null,
+    "adjudication": null
+  },
+  "required-out": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: lang_asset_sweep.py [-h] --out OUT [--adjudication ADJUDICATION]\n                           [--terminology] [--repo-root REPO_ROOT]\n                           [--tm-base-token TM_BASE_TOKEN]\n                           [--doc-base-token DOC_BASE_TOKEN]\nlang_asset_sweep.py: error: the following arguments are required: --out\n",
+    "report": null,
+    "adjudication": null
+  },
+  "missing-tokens": {
+    "exit_code": 2,
+    "stdout": "",
+    "stderr": "usage: lang_asset_sweep.py [-h] --out OUT [--adjudication ADJUDICATION]\n                           [--terminology] [--repo-root REPO_ROOT]\n                           [--tm-base-token TM_BASE_TOKEN]\n                           [--doc-base-token DOC_BASE_TOKEN]\nlang_asset_sweep.py: error: need --tm-base-token/--doc-base-token or the matching env vars\n",
+    "report": null,
+    "adjudication": null
+  },
+  "empty": {
+    "exit_code": 0,
+    "stdout": "fork report -> <TMP>/report.md\nadjudication -> <TMP>/adjudication.md\nforks=0 minors=0 dup_groups=0 diverge=0 shadow=0 overlap=0 junk=0 terminology=skipped\n",
+    "stderr": "",
+    "report": "# 语言资产分叉全库对账报告(P0 sweep)\n\n数据源:TM句对(0行) / Terms(0行) / LCD_icons(0行) / Symbols(0行) / TROUBLESHOOTING(0行) + 模板标题同位对齐(0 个文件对,跳过 0 个标题数不齐的)\n\n## 总览\n\n- 实质分叉:**0** 处(按 英文键×语言 计)\n- 轻微差异(大小写/标点):0 处\n- TM 同英文重复行:0 组;译文矛盾 0 处;空影行按语言:\n- Terms 与 TM 英文键重叠:0 个(重复维护面)\n- 活表垃圾值(test/TBD 等):0 处\n- 库内废弃术语:未检查(加 --terminology 开启)\n\n## 实质分叉清单(按语言)\n\n## TM 同英文重复行 — 译文矛盾\n\n\n## TM 空影重复行(样例,每语言≤10)\n\n\n## 轻微差异(样例≤30)\n\n\n## 垃圾值清单(活表里的 test/TBD 等占位残留)\n",
+    "adjudication": "# 语言资产分叉裁决清单\n\n逐条裁决:在「裁决」栏填最终值(或勾选建议)。建议规则 = 模板印刷证据优先,其次多来源多数。\n"
+  },
+  "forks": {
+    "exit_code": 0,
+    "stdout": "fork report -> <TMP>/report.md\nadjudication -> <TMP>/adjudication.md\nforks=1 minors=1 dup_groups=2 diverge=1 shadow=1 overlap=2 junk=1 terminology=skipped\n",
+    "stderr": "",
+    "report": "# 语言资产分叉全库对账报告(P0 sweep)\n\n数据源:TM句对(5行) / Terms(2行) / LCD_icons(0行) / Symbols(0行) / TROUBLESHOOTING(0行) + 模板标题同位对齐(1 个文件对,跳过 0 个标题数不齐的)\n\n## 总览\n\n- 实质分叉:**1** 处(按 英文键×语言 计)\n- 轻微差异(大小写/标点):1 处\n- TM 同英文重复行:2 组;译文矛盾 1 处;空影行按语言:ko:1\n- Terms 与 TM 英文键重叠:2 个(重复维护面)\n- 活表垃圾值(test/TBD 等):1 处\n- 库内废弃术语:未检查(加 --terminology 开启)\n\n## 实质分叉清单(按语言)\n\n### ko — 1 处\n\n**EN: Power**\n- `전원` ⟵ TM句对(rec1); 模板:eu/01.rst(docs/templates) ←模板出现 1 处\n- `옛전원` ⟵ TM句对(rec2)\n\n## TM 同英文重复行 — 译文矛盾\n\n- [ko] EN: Power\n    - rec1: `전원`\n    - rec2: `옛전원`\n    - rec3: `<空>`\n\n## TM 空影重复行(样例,每语言≤10)\n\n- **ko**(1 组): Mode\n\n## 轻微差异(样例≤30)\n\n- [ko] Mode → `모드` | `모드.`\n\n## 垃圾值清单(活表里的 test/TBD 等占位残留)\n\n- [ko] `test` @ Terms(term1) | EN: Power",
+    "adjudication": "# 语言资产分叉裁决清单\n\n逐条裁决:在「裁决」栏填最终值(或勾选建议)。建议规则 = 模板印刷证据优先,其次多来源多数。\n\n## ko — 1 处\n\n### Power\n- [ ] `전원` — TM句对; 模板:eu/01.rst(模板×1) ✅建议\n- [ ] `옛전원` — TM句对\n- 裁决:______\n"
+  },
+  "terminology": {
+    "exit_code": 0,
+    "stdout": "fork report -> <TMP>/report.md\nadjudication -> <TMP>/adjudication.md\nforks=1 minors=1 dup_groups=2 diverge=1 shadow=1 overlap=2 junk=1 terminology=1\n",
+    "stderr": "",
+    "report": "# 语言资产分叉全库对账报告(P0 sweep)\n\n数据源:TM句对(5行) / Terms(2行) / LCD_icons(0行) / Symbols(0行) / TROUBLESHOOTING(0行) + 模板标题同位对齐(1 个文件对,跳过 0 个标题数不齐的)\n\n## 总览\n\n- 实质分叉:**1** 处(按 英文键×语言 计)\n- 轻微差异(大小写/标点):1 处\n- TM 同英文重复行:2 组;译文矛盾 1 处;空影行按语言:ko:1\n- Terms 与 TM 英文键重叠:2 个(重复维护面)\n- 活表垃圾值(test/TBD 等):1 处\n- 库内废弃术语:**1** 处(其中标记 Approved 的 0 处)\n\n## 实质分叉清单(按语言)\n\n### ko — 1 处\n\n**EN: Power**\n- `전원` ⟵ TM句对(rec1); 模板:eu/01.rst(docs/templates) ←模板出现 1 处\n- `옛전원` ⟵ TM句对(rec2)\n\n## TM 同英文重复行 — 译文矛盾\n\n- [ko] EN: Power\n    - rec1: `전원`\n    - rec2: `옛전원`\n    - rec3: `<空>`\n\n## TM 空影重复行(样例,每语言≤10)\n\n- **ko**(1 组): Mode\n\n## 轻微差异(样例≤30)\n\n- [ko] Mode → `모드` | `모드.`\n\n## 库内废弃术语(与 terminology_rules.csv 交叉)\n\n构建期术语门只看构建产物;下面是**库里**仍在用废弃写法的记录——它们不会报错,直到某本手册把它们渲染出来。\n\n| 规则 | 语言 | 状态 | 出处 | record_id | 现值 | 应为 |\n|---|---|---|---|---|---|---|\n| OLD-POWER | ko | - | TM句对 | rec2 | `옛전원` | 전원 |\n\n## 垃圾值清单(活表里的 test/TBD 等占位残留)\n\n- [ko] `test` @ Terms(term1) | EN: Power",
+    "adjudication": "# 语言资产分叉裁决清单\n\n逐条裁决:在「裁决」栏填最终值(或勾选建议)。建议规则 = 模板印刷证据优先,其次多来源多数。\n\n## ko — 1 处\n\n### Power\n- [ ] `전원` — TM句对; 模板:eu/01.rst(模板×1) ✅建议\n- [ ] `옛전원` — TM句对\n- 裁决:______\n"
+  }
+}

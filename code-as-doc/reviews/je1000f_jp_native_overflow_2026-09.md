@@ -1,5 +1,7 @@
 # JE-1000F JP native overflow repair — 2026-09-05
 
+Status: active
+
 ## Baseline and scope
 
 The three round-three PRs merged in order with 17/17 final-head checks passing:

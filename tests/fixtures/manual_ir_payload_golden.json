@@ -1,0 +1,8 @@
+{
+  "variant_count": 4906,
+  "exception_count": 2,
+  "payload_digests": {
+    "fixture-v1": "3344bfdf01d941f2b5940c0164b183f1449e6f2bd26e9f79496b0f93d5409f3e",
+    "frozen-components-v2": "22072abfd9c419af9d159332dc9b8fee56d470e91166dc9a6dff00a713c0df26"
+  }
+}
