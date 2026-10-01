@@ -1126,7 +1126,8 @@ class TestCsvPageRenderers(unittest.TestCase):
             ("weee", "5", "Order 5."),
         ]
         table_blocks = [block for block in blocks if block.get("block_type") == "table_row"]
-        for block, (symbol_key, order, text) in zip(table_blocks, rows):
+        # Update existing blocks first; the remaining source rows are appended below.
+        for block, (symbol_key, order, text) in zip(table_blocks, rows, strict=False):
             block["symbol_key"] = symbol_key
             block["order"] = order
             block["text_en"] = text
