@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
+from unittest.mock import patch
 
 from tools import ops_catalog_sync as sync_tool
 
@@ -191,6 +192,29 @@ class CatalogTargetTests(unittest.TestCase):
 
 
 class SheetParsingTests(unittest.TestCase):
+    def test_bitable_records_preserve_truncated_field_row_pairs(self) -> None:
+        for fields, row, expected in (
+            (["first", "second"], ["one"], {"first": "one"}),
+            (["first"], ["one", "extra"], {"first": "one"}),
+            ([], ["extra"], {}),
+            (["first"], [], {}),
+            (["first", "second"], ["one", "two"], {"first": "one", "second": "two"}),
+        ):
+            with self.subTest(fields=fields, row=row):
+                runner = FakeRunner()
+                runner.bitable_pages = [{
+                    "ok": True,
+                    "data": {
+                        "fields": fields,
+                        "data": [row],
+                        "record_id_list": ["rec-one"],
+                    },
+                }]
+                self.assertEqual(
+                    make_ops(runner).bitable_records("BASE", "TABLE"),
+                    [{**expected, "_record_id": "rec-one"}],
+                )
+
     def test_parses_quoted_commas_and_pads_columns(self) -> None:
         line = '[row=2] JBP-2000B/EU/en,JBP-2000B,EU,en,"2,0",x,y,single,t,g,发布目录收录'
         rows = sync_tool.parse_annotated_csv(line)
@@ -387,6 +411,84 @@ class SyncWriteTests(unittest.TestCase):
         self.assertEqual([item["doc_id"] for item in failures], ["JE-1000H/EU/en"])
         applied = self.report["write"]["applied"]
         self.assertEqual([item["doc_id"] for item in applied], ["JE-1000H/EU/de"])
+
+    def test_main_preserves_row_failure_diagnostics_and_continues(self) -> None:
+        class TransportFailure(Exception):
+            pass
+
+        for failed_range, action, doc_id, row, applied_action, applied_doc, applied_row in (
+            ("A3:K3", "update", "JE-1000H/EU/en", 3, "append", "JE-1000H/EU/de", 4),
+            ("A4:O4", "append", "JE-1000H/EU/de", 4, "update", "JE-1000H/EU/en", 3),
+        ):
+            with self.subTest(action=action), TemporaryDirectory() as tmp:
+                runner = FakeRunner()
+                runner.set_sheet([HEADER, ROW_JBP_EN, ROW_H_EN_STALE])
+
+                def failing_runner(*, cli_bin: str, args: list[str]) -> dict:
+                    if args[1] == "+cells-set" and runner._flag(args, "--range") == failed_range:
+                        raise TransportFailure("transport unavailable")
+                    return runner(cli_bin=cli_bin, args=args)
+
+                ops = sync_tool.LarkOps(cli_bin="lark-cli", identity="bot", runner=failing_runner)
+                report_path = Path(tmp) / "report.json"
+                stdout, stderr = io.StringIO(), io.StringIO()
+                with (
+                    patch.object(sync_tool, "LarkOps", return_value=ops),
+                    contextlib.redirect_stdout(stdout),
+                    contextlib.redirect_stderr(stderr),
+                ):
+                    code = sync_tool.main([
+                        "sync", "--manifest-path", str(self._manifest(Path(tmp))),
+                        "--spreadsheet-token", "TOKEN", "--sheet-id", "15c75c",
+                        "--report-json", str(report_path), "--write",
+                    ])
+                self.assertEqual(code, 1)
+                self.assertEqual(stderr.getvalue(), (
+                    f"[ops-catalog-sync] FAILED {action} {doc_id}: "
+                    "TransportFailure: transport unavailable\n"
+                    "[ops-catalog-sync] 1 row(s) failed; rerun sync to retry just those rows "
+                    "(the plan is idempotent)\n"
+                ))
+                self.assertNotIn("FAILED", stdout.getvalue())
+                self.assertIn(
+                    f"[ops-catalog-sync] WROTE {applied_action} row {applied_row} "
+                    f"{applied_doc} (readback ok)\n", stdout.getvalue(),
+                )
+                report = json.loads(report_path.read_text(encoding="utf-8"))
+                self.assertEqual(report["write"]["failures"], [{
+                    "action": action, "doc_id": doc_id, "row": row,
+                    "error": "TransportFailure: transport unavailable",
+                }])
+                self.assertEqual(
+                    [item["doc_id"] for item in report["write"]["applied"]], [applied_doc],
+                )
+
+    def test_main_preserves_outer_failure_stderr_and_exit_code(self) -> None:
+        class TransportFailure(Exception):
+            pass
+
+        def failing_runner(*, cli_bin: str, args: list[str]) -> dict:
+            raise TransportFailure("catalog unavailable")
+
+        for mode in ("sync", "reconcile"):
+            with self.subTest(mode=mode), TemporaryDirectory() as tmp:
+                ops = sync_tool.LarkOps(cli_bin="lark-cli", identity="bot", runner=failing_runner)
+                stdout, stderr = io.StringIO(), io.StringIO()
+                report_path = Path(tmp) / "report.json"
+                with (
+                    patch.object(sync_tool, "LarkOps", return_value=ops),
+                    contextlib.redirect_stdout(stdout),
+                    contextlib.redirect_stderr(stderr),
+                ):
+                    code = sync_tool.main([
+                        mode, "--manifest-path", str(self._manifest(Path(tmp))),
+                        "--spreadsheet-token", "TOKEN", "--sheet-id", "15c75c",
+                        "--report-json", str(report_path),
+                    ])
+                self.assertEqual(code, 2)
+                self.assertEqual(stdout.getvalue(), "")
+                self.assertEqual(stderr.getvalue(), "[ops-catalog-sync] ERROR: catalog unavailable\n")
+                self.assertFalse(report_path.exists())
 
 
 class ReconcileTests(unittest.TestCase):
