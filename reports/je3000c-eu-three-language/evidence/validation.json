@@ -1,0 +1,40 @@
+{
+  "base_commit": "b78ec590ab4a0b6759aafab49625956e71fa03c7",
+  "full_suite": {
+    "passed": true,
+    "tests": 4995,
+    "skipped": 22,
+    "before_final_regression": true
+  },
+  "final_frozen_targeted": {
+    "passed": true,
+    "tests": 20
+  },
+  "composed_app_targeted": {
+    "passed": true,
+    "tests": 23
+  },
+  "ruff": true,
+  "guardrails": true,
+  "doc_links": true,
+  "checks": [
+    "JE-1000F/US/en",
+    "JE-3000C/EU/en"
+  ],
+  "strict_sphinx": [
+    "pt",
+    "nl",
+    "pl"
+  ],
+  "visual_car_widths": [
+    390,
+    1280
+  ],
+  "release_eligible": [
+    "pt",
+    "pl"
+  ],
+  "source_decision_pending": [
+    "nl"
+  ]
+}

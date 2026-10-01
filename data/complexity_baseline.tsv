@@ -83,7 +83,7 @@ tools/feishu_record_transport.py	run_lark_cli_json	23
 tools/flow_dashboard.py	_metric_card_html	21
 tools/frozen_ai_document.py	ordered_pages	59
 tools/frozen_pdf_document.py	ordered_pages	28
-tools/frozen_pdf_reference.py	bind_reference_labels	22
+tools/frozen_pdf_reference.py	bind_reference_labels	6
 tools/gen_index_bundle_assets.py	rewrite_single_asset_path	21
 tools/gen_index_bundle_page_render.py	materialize_planned_page	25
 tools/gen_index_bundle_plan.py	plan_materialized_pages	29

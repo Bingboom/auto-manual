@@ -72,6 +72,23 @@ def _book():
 
 
 class FrozenPDFDocumentTests(unittest.TestCase):
+    def test_merged_notice_keeps_body_once_with_either_native_reading_order(self):
+        book = object.__new__(FrozenBook)
+        book.language = "pt"
+        book.correct = lambda value: value
+        book.records = {"symbols": {"rows": [{"label": name} for name in
+                                           ("AVISO", "CUIDADO", "NOTA", "DICA")]}}
+        for value in ("CUIDADO\nUse at most two panels.",
+                      "Use at most two panels.\nCUIDADO"):
+            with self.subTest(value=value):
+                notices, consumed = book.callouts([_block(value, 170)], 114)
+                self.assertEqual({0}, consumed)
+                spec = notices[0]["component_spec"]
+                body = next(s["content"] for s in spec["slots"] if s["role"] == "body")
+                self.assertEqual("Use at most two panels.", body)
+        notices, consumed = book.callouts([_block("Ordinary prose mentions CUIDADO.", 170)], 114)
+        self.assertEqual(({}, set()), (notices, consumed))
+
     def test_approved_preface_omits_review_marker_while_preview_keeps_it(self):
         book = _book()
         candidate = {"heading": "IMPORTANT", "paragraphs": [{"text": "Reused legal copy."}]}

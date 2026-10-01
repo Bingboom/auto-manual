@@ -1,0 +1,163 @@
+{
+  "sections": [
+    {
+      "id": "safety",
+      "physical_pages": [
+        120
+      ]
+    },
+    {
+      "id": "symbols",
+      "physical_pages": [
+        120,
+        121
+      ]
+    },
+    {
+      "id": "in_the_box",
+      "physical_pages": [
+        121
+      ]
+    },
+    {
+      "id": "product_overview",
+      "physical_pages": [
+        122
+      ]
+    },
+    {
+      "id": "lcd_display",
+      "physical_pages": [
+        123,
+        124
+      ]
+    },
+    {
+      "id": "operations",
+      "physical_pages": [
+        125,
+        126,
+        127,
+        128
+      ]
+    },
+    {
+      "id": "ups",
+      "physical_pages": [
+        128
+      ]
+    },
+    {
+      "id": "charging",
+      "physical_pages": [
+        129,
+        130
+      ]
+    },
+    {
+      "id": "storage",
+      "physical_pages": [
+        131
+      ]
+    },
+    {
+      "id": "troubleshooting",
+      "physical_pages": [
+        131
+      ]
+    },
+    {
+      "id": "specifications",
+      "physical_pages": [
+        132
+      ]
+    },
+    {
+      "id": "warranty",
+      "physical_pages": [
+        133
+      ]
+    },
+    {
+      "id": "app_setup",
+      "physical_pages": [
+        134,
+        135
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "physical_page": 120,
+      "relative_body_page": 1
+    },
+    {
+      "physical_page": 121,
+      "relative_body_page": 2
+    },
+    {
+      "physical_page": 122,
+      "relative_body_page": 3
+    },
+    {
+      "physical_page": 123,
+      "relative_body_page": 4
+    },
+    {
+      "physical_page": 124,
+      "relative_body_page": 5
+    },
+    {
+      "physical_page": 125,
+      "relative_body_page": 6
+    },
+    {
+      "physical_page": 126,
+      "relative_body_page": 7
+    },
+    {
+      "physical_page": 127,
+      "relative_body_page": 8
+    },
+    {
+      "physical_page": 128,
+      "relative_body_page": 9
+    },
+    {
+      "physical_page": 129,
+      "relative_body_page": 10
+    },
+    {
+      "physical_page": 130,
+      "relative_body_page": 11
+    },
+    {
+      "physical_page": 131,
+      "relative_body_page": 12
+    },
+    {
+      "physical_page": 132,
+      "relative_body_page": 13
+    },
+    {
+      "physical_page": 133,
+      "relative_body_page": 14
+    },
+    {
+      "physical_page": 134,
+      "relative_body_page": 15
+    },
+    {
+      "physical_page": 135,
+      "relative_body_page": 16
+    }
+  ],
+  "tables": {
+    "troubleshooting": {
+      "physical_page": 131
+    },
+    "specifications": {
+      "physical_page": 132
+    }
+  }
+}

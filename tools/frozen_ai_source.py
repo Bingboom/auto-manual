@@ -95,9 +95,12 @@ def _inferred_callouts(book, blocks, number, labels, result, consumed):
             continue
         value = squash(label["text"])
         lines = [line.strip() for line in label["text"].splitlines() if line.strip()]
-        if len(lines) > 1 and lines[-1].casefold() in labels:
-            notice = lines[-1]
-            body = prose(book.correct(squash("\n".join(lines[:-1]))))
+        edge = (-1 if lines and lines[-1].casefold() in labels else
+                0 if lines and lines[0].casefold() in labels else None)
+        if len(lines) > 1 and edge is not None:
+            notice = lines[edge]
+            body_lines = lines[:-1] if edge == -1 else lines[1:]
+            body = prose(book.correct(squash("\n".join(body_lines))))
             result[index] = callout(notice, body, variant=labels[notice.casefold()], language=book.language,
                                     source_ref=f"{book.language}/page-{number}/notice-{index}")
             consumed.add(index)

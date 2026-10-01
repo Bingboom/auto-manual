@@ -1,0 +1,81 @@
+{
+  "figures": [
+    {
+      "slug": "overview_front_view",
+      "section_id": "product_overview",
+      "physical_page": 122,
+      "clip_points": [
+        25,
+        76,
+        344,
+        289
+      ]
+    },
+    {
+      "slug": "overview_right_view",
+      "section_id": "product_overview",
+      "physical_page": 122,
+      "clip_points": [
+        25,
+        328,
+        344,
+        444
+      ]
+    },
+    {
+      "slug": "energy_saving",
+      "section_id": "operations",
+      "physical_page": 127,
+      "clip_points": [
+        27,
+        28,
+        343,
+        167
+      ]
+    },
+    {
+      "slug": "ups_connection",
+      "section_id": "ups",
+      "physical_page": 128,
+      "clip_points": [
+        27,
+        294,
+        343,
+        420
+      ]
+    },
+    {
+      "slug": "ac_wall_charging",
+      "section_id": "charging",
+      "physical_page": 129,
+      "clip_points": [
+        27,
+        215,
+        343,
+        351
+      ]
+    },
+    {
+      "slug": "solar_four",
+      "section_id": "charging",
+      "physical_page": 130,
+      "clip_points": [
+        27,
+        27,
+        343,
+        162
+      ]
+    },
+    {
+      "slug": "car_charging",
+      "section_id": "charging",
+      "physical_page": 130,
+      "clip_points": [
+        27,
+        307,
+        343,
+        436
+      ]
+    }
+  ]
+}

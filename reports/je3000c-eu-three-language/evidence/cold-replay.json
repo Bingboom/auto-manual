@@ -1,0 +1,17 @@
+{
+  "pt": {
+    "sha256": "0c6dbdb4afefde081e79d057323d78d680308b1bdbd32ede1e25058eeb9f3dba",
+    "replay_sha256": "0c6dbdb4afefde081e79d057323d78d680308b1bdbd32ede1e25058eeb9f3dba",
+    "identical": true
+  },
+  "nl": {
+    "sha256": "2eb3d66af637c712b98e34cf1aa83285c9e5328b5cc88391d4e4f864ceace9e1",
+    "replay_sha256": "2eb3d66af637c712b98e34cf1aa83285c9e5328b5cc88391d4e4f864ceace9e1",
+    "identical": true
+  },
+  "pl": {
+    "sha256": "208d456ca2b959d3a5db545e89a3fe8f59ffe7fd18bdfd77de9520cf9d2b7c81",
+    "replay_sha256": "208d456ca2b959d3a5db545e89a3fe8f59ffe7fd18bdfd77de9520cf9d2b7c81",
+    "identical": true
+  }
+}
