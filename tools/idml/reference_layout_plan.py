@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from tools.manual_ir import ManualIR, unknown_language_issues
+from tools.manual_ir import ManualIR, ManualPage, unknown_language_issues
 from tools.render_contract import LAYOUT_PARAMS_HASH_ALGORITHM
 from tools.page_plan import build_renderer_page_plan
 from tools.utils.path_utils import PathSegments, Paths
@@ -373,13 +373,9 @@ def _unclassified_contract_issues(
     return issues
 
 
-def validate_approved_reference_plan(
-    payload: dict[str, Any],
-    ir: ManualIR,
-) -> list[str]:
-    """Return every reason an approved contract cannot govern this IR."""
-    issues = unknown_language_issues(ir)
-    schema_version = payload.get("schema_version")
+def _validate_reference_identity(
+    payload: dict[str, Any], ir: ManualIR, schema_version: Any, issues: list[str],
+) -> dict[str, Any]:
     if schema_version not in SUPPORTED_SCHEMA_VERSIONS:
         issues.append(
             "schema_version must be one of "
@@ -409,6 +405,12 @@ def validate_approved_reference_plan(
             f"{LAYOUT_PARAMS_HASH_ALGORITHM!r}"
         )
 
+    return expected_target
+
+
+def _validate_reference_pdf(
+    payload: dict[str, Any], issues: list[str],
+) -> tuple[int, Any]:
     reference = payload.get("reference_pdf")
     if not isinstance(reference, dict):
         issues.append("reference_pdf must be an object")
@@ -434,6 +436,10 @@ def validate_approved_reference_plan(
         if not isinstance(reference.get(field), str) or not reference[field].strip():
             issues.append(f"reference_pdf.{field} must be a non-empty string")
 
+    return physical_page_count, page_size
+
+
+def _validate_reference_approval(payload: dict[str, Any], issues: list[str]) -> None:
     approval = payload.get("approval")
     if not isinstance(approval, dict):
         issues.append("approval must be an object")
@@ -448,6 +454,10 @@ def validate_approved_reference_plan(
     if not isinstance(approved_at, str) or _RFC3339.fullmatch(approved_at) is None:
         issues.append("approval.approved_at must be an RFC3339 timestamp")
 
+
+def _validate_reference_render_contract(
+    payload: dict[str, Any], page_size: Any, issues: list[str],
+) -> None:
     render_contract = payload.get("render_contract")
     if not isinstance(render_contract, dict):
         issues.append("render_contract must be an object")
@@ -488,6 +498,11 @@ def validate_approved_reference_plan(
                 f"({expected_raster[0]} x {expected_raster[1]})"
             )
 
+
+def _validate_reference_idml_contract(
+    payload: dict[str, Any], ir: ManualIR, schema_version: Any,
+    expected_target: dict[str, Any], issues: list[str],
+) -> None:
     idml_contract = payload.get("idml_contract")
     if not isinstance(idml_contract, dict):
         issues.append("idml_contract must be an object")
@@ -526,6 +541,69 @@ def validate_approved_reference_plan(
         if schema_version == V2_SCHEMA_VERSION:
             issues.extend(_unclassified_contract_issues(idml_contract, ir))
 
+
+def _validate_reference_flow_split(
+    entry: dict[str, Any], index: int, source_ref: str, composition_id: str,
+    ir_pages: list[ManualPage], split_rules: list[tuple[str, str, str]], issues: list[str],
+) -> None:
+    flow_split = entry.get("flow_split")
+    if flow_split is not None:
+        if not isinstance(flow_split, dict):
+            issues.append(f"{source_ref}: flow_split must be an object")
+            return
+        at_kind = flow_split.get("at_kind")
+        occurrence = _as_positive_int(flow_split.get("occurrence"))
+        tail_composition = flow_split.get("tail_composition_id")
+        if not isinstance(at_kind, str) or not at_kind:
+            issues.append(f"{source_ref}: flow_split.at_kind must be non-empty")
+        if occurrence is None:
+            issues.append(f"{source_ref}: flow_split.occurrence must be positive")
+        if not isinstance(tail_composition, str) or not tail_composition:
+            issues.append(
+                f"{source_ref}: flow_split.tail_composition_id must be non-empty"
+            )
+        if index < len(ir_pages) and isinstance(at_kind, str) and occurrence:
+            available = sum(
+                block.kind == at_kind for block in ir_pages[index].blocks
+            )
+            if available < occurrence:
+                issues.append(
+                    f"{source_ref}: flow_split cannot find {at_kind} "
+                    f"occurrence {occurrence}"
+                )
+        if isinstance(tail_composition, str) and tail_composition:
+            split_rules.append((source_ref, composition_id, tail_composition))
+
+
+def _validate_reference_composition_coverage(
+    compositions: dict[str, tuple[int, int]],
+    split_rules: list[tuple[str, str, str]], physical_page_count: int,
+    issues: list[str],
+) -> None:
+    cursor = 1
+    for composition_id, (start_page, page_count) in sorted(
+        compositions.items(), key=lambda item: (item[1][0], item[0]),
+    ):
+        if start_page > cursor:
+            issues.append(f"composition {composition_id} leaves a gap before page {start_page}")
+        elif start_page < cursor:
+            issues.append(f"composition {composition_id} overlaps page {start_page}")
+        cursor = max(cursor, start_page + page_count)
+    if physical_page_count and cursor != physical_page_count + 1:
+        issues.append(
+            f"composition coverage ends at page {cursor - 1}, expected {physical_page_count}"
+        )
+    for source_ref, composition_id, tail_composition in split_rules:
+        if tail_composition not in compositions:
+            issues.append(f"{source_ref}: flow_split target composition does not exist")
+        elif compositions[tail_composition][0] <= compositions[composition_id][0]:
+            issues.append(f"{source_ref}: flow_split target must start on a later page")
+
+
+def _validate_reference_pages(
+    payload: dict[str, Any], ir: ManualIR, physical_page_count: int,
+    issues: list[str],
+) -> list[str]:
     plan_pages = payload.get("pages")
     if not isinstance(plan_pages, list):
         issues.append("pages must be a list")
@@ -586,33 +664,9 @@ def validate_approved_reference_plan(
         previous_extent = compositions.setdefault(composition_id, extent)
         if previous_extent != extent:
             issues.append(f"composition {composition_id} has inconsistent page ranges")
-        flow_split = entry.get("flow_split")
-        if flow_split is not None:
-            if not isinstance(flow_split, dict):
-                issues.append(f"{source_ref}: flow_split must be an object")
-                continue
-            at_kind = flow_split.get("at_kind")
-            occurrence = _as_positive_int(flow_split.get("occurrence"))
-            tail_composition = flow_split.get("tail_composition_id")
-            if not isinstance(at_kind, str) or not at_kind:
-                issues.append(f"{source_ref}: flow_split.at_kind must be non-empty")
-            if occurrence is None:
-                issues.append(f"{source_ref}: flow_split.occurrence must be positive")
-            if not isinstance(tail_composition, str) or not tail_composition:
-                issues.append(
-                    f"{source_ref}: flow_split.tail_composition_id must be non-empty"
-                )
-            if index < len(ir_pages) and isinstance(at_kind, str) and occurrence:
-                available = sum(
-                    block.kind == at_kind for block in ir_pages[index].blocks
-                )
-                if available < occurrence:
-                    issues.append(
-                        f"{source_ref}: flow_split cannot find {at_kind} "
-                        f"occurrence {occurrence}"
-                    )
-            if isinstance(tail_composition, str) and tail_composition:
-                split_rules.append((source_ref, composition_id, tail_composition))
+        _validate_reference_flow_split(
+            entry, index, source_ref, composition_id, ir_pages, split_rules, issues,
+        )
 
     if actual_refs != expected_refs:
         missing = [ref for ref in expected_refs if ref not in seen_refs]
@@ -622,25 +676,25 @@ def validate_approved_reference_plan(
         if extra:
             issues.append("unexpected source_ref entries: " + ", ".join(sorted(extra)))
 
-    cursor = 1
-    for composition_id, (start_page, page_count) in sorted(
-        compositions.items(), key=lambda item: (item[1][0], item[0]),
-    ):
-        if start_page > cursor:
-            issues.append(f"composition {composition_id} leaves a gap before page {start_page}")
-        elif start_page < cursor:
-            issues.append(f"composition {composition_id} overlaps page {start_page}")
-        cursor = max(cursor, start_page + page_count)
-    if physical_page_count and cursor != physical_page_count + 1:
-        issues.append(
-            f"composition coverage ends at page {cursor - 1}, expected {physical_page_count}"
-        )
-    for source_ref, composition_id, tail_composition in split_rules:
-        if tail_composition not in compositions:
-            issues.append(f"{source_ref}: flow_split target composition does not exist")
-        elif compositions[tail_composition][0] <= compositions[composition_id][0]:
-            issues.append(f"{source_ref}: flow_split target must start on a later page")
+    _validate_reference_composition_coverage(
+        compositions, split_rules, physical_page_count, issues,
+    )
     return issues
+
+
+def validate_approved_reference_plan(
+    payload: dict[str, Any],
+    ir: ManualIR,
+) -> list[str]:
+    """Return every reason an approved contract cannot govern this IR."""
+    issues = unknown_language_issues(ir)
+    schema_version = payload.get("schema_version")
+    expected_target = _validate_reference_identity(payload, ir, schema_version, issues)
+    physical_page_count, page_size = _validate_reference_pdf(payload, issues)
+    _validate_reference_approval(payload, issues)
+    _validate_reference_render_contract(payload, page_size, issues)
+    _validate_reference_idml_contract(payload, ir, schema_version, expected_target, issues)
+    return _validate_reference_pages(payload, ir, physical_page_count, issues)
 
 
 def _canonical_sha256(payload: dict[str, Any]) -> str:
