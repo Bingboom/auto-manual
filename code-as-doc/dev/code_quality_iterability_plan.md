@@ -124,7 +124,11 @@ web、IDML、队列、回写这几块目前最大的代码面。
   基线在 `data/complexity_baseline.tsv`，由 `check_maintainability_guardrails.py` 执行）
 - [ ] **CQ-3.2 头部校验函数改成规则表**（每个函数一个 PR，改之前先补特征测试，
   固定现有错误信息列表；改后错误文本逐字不变）：
-  - [ ] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
+  - [x] `tools/idml/target_assembly_plan.py::_validate_composition_data`（213）
+    （2026-10-01；先提交特征测试 `tests/test_idml_composition_data_characterization.py`：从目标装配契约冻结 77 页
+    composition_data，生成 8440 个确定性变异，按页哈希问题列表或异常；覆盖 328/337 条语句、90/92 处问题。
+    再用脚本机械拆分：13 个按组件类型的校验函数 + `_COMPOSITION_VALIDATORS`（键集合 → 校验函数）分派表，
+    问题文本逐字不变。主函数复杂度 213 → 12；拆出的 `specifications` 42、`lcd` 35、`app` 25 记入基线，待后续再拆）
   - [ ] `tools/validate_config.py::validate`（138）
   - [ ] `tools/idml/reference_layout_plan.py::validate_approved_reference_plan`（107）
   - [ ] `tools/config_pages.py::parse_config_pages`（87）
