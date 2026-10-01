@@ -27,8 +27,10 @@ def normalize_control_labels(soup: BeautifulSoup, image: Tag, image_key: str) ->
     if control is None:
         return None
     existing = control.find_next_sibling()
-    if isinstance(existing, Tag) and "line-block" in existing.get("class", []):
-        return control
+    if isinstance(existing, Tag):
+        classes = existing.get("class")
+        if classes is not None and "line-block" in classes:
+            return control
     labels = []
     node = control.find_next_sibling()
     for _ in range(3):

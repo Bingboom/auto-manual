@@ -1,10 +1,16 @@
 """Preserve authored headers in a standalone LCD image and action matrix."""
+from pathlib import Path
+from typing import Callable, Sequence
+
 from bs4 import Tag
 
+from tools.component_specs.model import ComponentSpec
 from tools.component_specs.reference_table import reference_table_component_spec
 
 
-def standalone_lcd_actions(image, *, source_path, expected_body_rows, language):
+def standalone_lcd_actions(
+    image: Tag, *, source_path: Path, expected_body_rows: int, language: str,
+) -> tuple[ComponentSpec, Tag, Tag]:
     table = image.find_next_sibling()
     if not isinstance(table, Tag) or table.name != "table":
         raise ValueError(f"{source_path}: standalone LCD artwork requires an adjacent table")
@@ -15,8 +21,10 @@ def standalone_lcd_actions(image, *, source_path, expected_body_rows, language):
             or not all(cell.name == "th" for cell in rows[0])
             or not all(cell.get_text(strip=True) for cell in rows[0][1:])):
         raise ValueError(f"{source_path}: standalone LCD matrix geometry changed")
-    cells = lambda row: [{"html": c.decode_contents().strip(),
-                          "text": c.get_text(" ", strip=True)} for c in row[1:]]
+    cells: Callable[[Sequence[Tag]], list[dict[str, str]]] = lambda row: [
+        {"html": c.decode_contents().strip(), "text": c.get_text(" ", strip=True)}
+        for c in row[1:]
+    ]
     spec = reference_table_component_spec(
         variant="lcd-actions", label=str(image.get("alt") or "LCD display mode"),
         headers=cells(rows[0]), rows=[cells(row) for row in rows[1:]],
