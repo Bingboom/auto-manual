@@ -274,7 +274,8 @@ class LarkOps:
             for index, row in enumerate(rows):
                 if not isinstance(row, list):
                     continue
-                entry = dict(zip(fields, row))
+                # Preserve partial rows and ignore values without a matching field.
+                entry = dict(zip(fields, row, strict=False))
                 if index < len(record_ids):
                     entry["_record_id"] = record_ids[index]
                 records.append(entry)
