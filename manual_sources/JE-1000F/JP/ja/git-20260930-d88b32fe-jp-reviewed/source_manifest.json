@@ -20,7 +20,8 @@
     "Native tables retain merged cells and corrected grid borders.",
     "Textless operation/charging drawings use native labels; dense leader overview annotations and actual UI/markings remain.",
     "Use shared semantic LCD icons and transparent shared button vectors.",
-    "All local preview corrections through v23 are preserved; navigation chrome is rebuilt by Sphinx."
+    "All local preview corrections through v23 are preserved; navigation chrome is rebuilt by Sphinx.",
+    "Keep image zoom links synchronized with assembled image URLs; hide only the Sphinx navigation title across locale wrappers."
   ],
   "web_roots": {
     "ja": "web/ja"
@@ -29,8 +30,8 @@
   "inputs": [
     {
       "path": "README.md",
-      "size": 1082,
-      "sha256": "2857356dbf2140343f9233793f9cc488d91825065f52dc29991f0f0a1d3ee6a8"
+      "size": 1316,
+      "sha256": "c9d6f80e1b0844269e2d7d0b5c7bfb5980736528f941873b5330992959385c03"
     },
     {
       "path": "asset_provenance.json",
@@ -399,8 +400,8 @@
     },
     {
       "path": "web/ja/manual_je1000f_jp.md",
-      "size": 117299,
-      "sha256": "16a103773553f4a3ec1bf008a8d01cb641e865c6ba6d7885292dd52702b6dfba"
+      "size": 117601,
+      "sha256": "aa739ec1a0b1ca9afb420c3cb213fa1d220c96f6c88cbb66eadb5dcb8250694f"
     }
   ],
   "included_sections": [

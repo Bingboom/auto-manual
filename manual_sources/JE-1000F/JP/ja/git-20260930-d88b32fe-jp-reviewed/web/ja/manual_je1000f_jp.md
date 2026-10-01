@@ -229,7 +229,7 @@
 .jp-operation-stage .jp-clock:after{content:'';position:absolute;left:47%;top:17%;width:29%;height:36%;border-left:.11em solid white;border-bottom:.11em solid white;}
 </style>
 <style>/* Sphinx document title is navigation metadata; reviewed section headings follow. */
-#furo-main-content > section > h1:first-child {display:none;}
+#furo-main-content #jackery-1000-new-je-1000f > h1:first-child {display:none;}
 </style>
 
 
@@ -909,4 +909,11 @@
 </section>
 
 
+<script>
+// The publication assembler pools img sources; keep zoom links on those same assets.
+document.querySelectorAll('#furo-main-content a[href^="assets/"]').forEach(function (link) {
+  var artwork = link.querySelector('img');
+  if (artwork) link.href = artwork.src;
+});
+</script>
 ```

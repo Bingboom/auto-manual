@@ -16,3 +16,7 @@ then use the ordinary publish assembler against current Hello-Docs/main.
 Do not dispatch a live-data rebuild as a substitute for this reviewed source.
 The phase2 JP check is a regression check; it does not validate this source's
 reviewed body. This Git-only release does not modify online tables.
+
+Zoom links follow the assembled image URL, so pooled production assets remain
+openable. The hidden Sphinx navigation title is scoped by ID to survive the
+production locale wrapper. Both adaptations leave the reviewed body unchanged.
