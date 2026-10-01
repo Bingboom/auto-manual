@@ -1888,6 +1888,28 @@ class TestCsvPageRenderers(unittest.TestCase):
         self.assertEqual("GENERAL INFO", data["sections"][0]["title"])
         self.assertIn("Demo footnote text", data["footnotes"][0])
 
+    def test_spec_invalid_orders_keep_default_content_and_rendered_output(self) -> None:
+        fields = ("Section_order", "row_order", "Line_order", "note_order", "footnote_order")
+        invalid_values = (" \t", "invalid", "1 W", "1,000", "1\0", "9" * 100000 + " W")
+        for field in fields:
+            expected_blocks = self._spec_master_blocks()
+            for row in expected_blocks:
+                row[field] = ""
+            arguments = dict(sku_id="JB1000", lang="en", vars_map=self._localized_copy_vars())
+            expected_content = renderers.collect_spec_content(blocks=expected_blocks, **arguments)
+            expected_output = renderers.render_spec_page(
+                self._spec_template(), expected_blocks, **arguments,
+            )
+            for value in invalid_values:
+                with self.subTest(field=field, value=value[:20], length=len(value)):
+                    blocks = [dict(row, **{field: value}) for row in expected_blocks]
+                    self.assertEqual(
+                        expected_content, renderers.collect_spec_content(blocks=blocks, **arguments),
+                    )
+                    self.assertEqual(
+                        expected_output, renderers.render_spec_page(self._spec_template(), blocks, **arguments),
+                    )
+
     def test_collect_spec_content_filters_by_model_when_model_column_exists(self) -> None:
         blocks = self._spec_master_blocks()
         blocks.append(
