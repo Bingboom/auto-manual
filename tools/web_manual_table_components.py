@@ -1,6 +1,8 @@
 """Native Web rendering for embedded LCD, troubleshooting, and symbol tables."""
 from __future__ import annotations
 
+from itertools import groupby
+
 from bs4 import BeautifulSoup, Tag
 
 from tools.component_specs.manual_table_adapters import web_manual_table_projection
@@ -48,13 +50,25 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
         )
     )
     body = soup.new_tag("tbody")
-    for row in projection["rows"]:
+    spans = [1] * len(projection["rows"])
+    if spec.metadata.get("number_cell_layout") == "span-adjacent-equal":
+        spans = []
+        for _, group in groupby(
+            projection["rows"], key=lambda row: (row["number_text"], row["number_html"])
+        ):
+            count = len(list(group))
+            spans.extend([count] + [0] * (count - 1))
+    for row, span in zip(projection["rows"], spans, strict=True):
         tr = soup.new_tag("tr")
-        number = soup.new_tag("td", attrs={"class": "hb-lcd-number"})
+        if span:
+            number = soup.new_tag("td", attrs={"class": "hb-lcd-number"})
+            if span > 1:
+                number["rowspan"] = str(span)
+            _append_html(number, row["number_html"])
+            tr.append(number)
         icon = soup.new_tag("td", attrs={"class": "hb-lcd-icon"})
         name = soup.new_tag("td", attrs={"class": "hb-lcd-name"})
         description = soup.new_tag("td", attrs={"class": "hb-lcd-description"})
-        _append_html(number, row["number_html"])
         icon.append(
             soup.new_tag(
                 "img",
@@ -67,7 +81,7 @@ def _render_lcd(spec: ComponentSpec, projection: dict) -> str:
         )
         _append_html(name, row["name_html"])
         _append_html(description, row["description_html"])
-        tr.extend((number, icon, name, description))
+        tr.extend((icon, name, description))
         body.append(tr)
     table.append(body)
     figure.append(table)
