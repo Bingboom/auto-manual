@@ -278,49 +278,7 @@ def suggest(variants: dict, evidence: dict) -> str:
     return top[0] if len(top) == 1 else ""
 
 
-def main() -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--out", required=True, help="fork report Markdown path")
-    ap.add_argument("--adjudication", help="optional adjudication checklist Markdown path")
-    ap.add_argument(
-        "--terminology",
-        action="store_true",
-        help="also cross-check stored values against data/terminology_rules.csv",
-    )
-    ap.add_argument("--repo-root", default=str(Path(__file__).resolve().parents[1]))
-    ap.add_argument("--tm-base-token", default=os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"))
-    ap.add_argument("--doc-base-token", default=os.environ.get("FEISHU_PHASE2_BASE_TOKEN"))
-    args = ap.parse_args()
-    if not args.tm_base_token or not args.doc_base_token:
-        ap.error("need --tm-base-token/--doc-base-token or the matching env vars")
-    repo_root = Path(args.repo_root)
-
-    entries: list[tuple[str, str, str, str, str]] = []
-    tm_rows_by_key: dict[str, list[dict]] = defaultdict(list)
-    row_status: dict[tuple[str, str], str] = {}
-    stats: dict[str, int] = {}
-    stats["TM句对"] = collect_table_entries(
-        args.tm_base_token, TM_SENTENCE_TABLE, "TM句对", entries, tm_rows_by_key, row_status)
-    stats["Terms"] = collect_table_entries(
-        args.tm_base_token, TM_TERMS_TABLE, "Terms", entries, None, row_status)
-    for table_id, name in DOC_TABLES:
-        stats[name] = collect_table_entries(
-            args.doc_base_token, table_id, name, entries, None, row_status)
-    paired, skipped = collect_template_entries(repo_root, entries)
-
-    tpl_corpus = {
-        str(f.relative_to(repo_root)): unicodedata.normalize(
-            "NFC", f.read_text(encoding="utf-8", errors="ignore")
-        )
-        for f in (repo_root / "docs" / "templates").rglob("*.rst")
-    }
-
-    def tpl_evidence(variant: str) -> tuple[int, list[str]]:
-        if not template_evidence_eligible(variant):
-            return 0, []
-        hits = [p for p, txt in tpl_corpus.items() if variant.strip() in txt]
-        return len(hits), hits[:3]
-
+def _classify_entries(entries):
     bykey: dict[tuple[str, str], dict[str, list]] = defaultdict(lambda: defaultdict(list))
     en_display: dict[str, str] = {}
     for src, rid, en, lang, val in entries:
@@ -344,6 +302,10 @@ def main() -> int:
         else:
             forks.append((key, lang, variants))
 
+    return forks, minors, junky, en_display
+
+
+def _find_tm_duplicates(tm_rows_by_key):
     dup_diverge, dup_shadow = [], defaultdict(list)
     for key, rows in tm_rows_by_key.items():
         if len(rows) < 2:
@@ -358,6 +320,111 @@ def main() -> int:
             elif non_empty and any(not v for v in vals):
                 dup_shadow[lang].append((key, [r["record_id"] for r in rows]))
     dup_groups = sum(1 for rows in tm_rows_by_key.values() if len(rows) > 1)
+
+    return dup_diverge, dup_shadow, dup_groups
+
+
+def _append_fork_reports(forks, en_display, tpl_corpus, lines, adj):
+    def tpl_evidence(variant: str) -> tuple[int, list[str]]:
+        if not template_evidence_eligible(variant):
+            return 0, []
+        hits = [p for p, txt in tpl_corpus.items() if variant.strip() in txt]
+        return len(hits), hits[:3]
+
+    by_lang: dict[str, list] = defaultdict(list)
+    for key, lang, variants in forks:
+        by_lang[lang].append((key, variants))
+    for lang in sorted(by_lang):
+        items = by_lang[lang]
+        lines.append(f"### {lang} — {len(items)} 处")
+        lines.append("")
+        adj.append(f"## {lang} — {len(items)} 处")
+        adj.append("")
+        for key, variants in items:
+            evidence = {v: tpl_evidence(occ[0][3]) for v, occ in variants.items()}
+            lines.append(f"**EN: {en_display[key][:90]}**")
+            for nv, occ in variants.items():
+                srcs = "; ".join(sorted({f"{s}({r[:14]})" for s, r, _, _ in occ}))
+                n_hits = evidence[nv][0]
+                ev = f" ←模板出现 {n_hits} 处" if n_hits else ""
+                lines.append(f"- `{occ[0][3][:80]}` ⟵ {srcs}{ev}")
+            lines.append("")
+            pick = suggest(variants, evidence)
+            adj.append(f"### {en_display[key][:80]}")
+            for nv, occ in variants.items():
+                srcs = "; ".join(sorted({f"{s}" for s, _, _, _ in occ}))
+                mark = " ✅建议" if nv == pick else ""
+                n_hits = evidence[nv][0]
+                ev = f"(模板×{n_hits})" if n_hits else ""
+                adj.append(f"- [ ] `{occ[0][3][:80]}` — {srcs}{ev}{mark}")
+            adj.append("- 裁决:______")
+            adj.append("")
+
+
+def _append_terminology_report(term_violations, lines):
+    lines += ["", "## 库内废弃术语(与 terminology_rules.csv 交叉)", ""]
+    if term_violations:
+        lines += [
+            "构建期术语门只看构建产物;下面是**库里**仍在用废弃写法的记录——"
+            "它们不会报错,直到某本手册把它们渲染出来。",
+            "",
+            "| 规则 | 语言 | 状态 | 出处 | record_id | 现值 | 应为 |",
+            "|---|---|---|---|---|---|---|",
+        ]
+        for f in sorted(term_violations, key=lambda x: (x["lang"], x["rule_id"], x["source"])):
+            value = f["value"].replace("|", "\\|")[:60]
+            lines.append(
+                f"| {f['rule_id']} | {f['lang']} | {f['status'] or '-'} | {f['source']} "
+                f"| {f['record_id']} | `{value}` | {f['preferred'] or '-'} |"
+            )
+    else:
+        lines.append("未发现:所有存储值都符合当前规则表。")
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--out", required=True, help="fork report Markdown path")
+    ap.add_argument("--adjudication", help="optional adjudication checklist Markdown path")
+    ap.add_argument(
+        "--terminology",
+        action="store_true",
+        help="also cross-check stored values against data/terminology_rules.csv",
+    )
+    ap.add_argument("--repo-root", default=str(Path(__file__).resolve().parents[1]))
+    ap.add_argument("--tm-base-token", default=os.environ.get("FEISHU_TRANSLATION_MEMORY_BASE_TOKEN"))
+    ap.add_argument("--doc-base-token", default=os.environ.get("FEISHU_PHASE2_BASE_TOKEN"))
+    args = ap.parse_args()
+    if not args.tm_base_token or not args.doc_base_token:
+        ap.error("need --tm-base-token/--doc-base-token or the matching env vars")
+    return _cmd_sweep(args)
+
+
+def _cmd_sweep(args: argparse.Namespace) -> int:
+    repo_root = Path(args.repo_root)
+
+    entries: list[tuple[str, str, str, str, str]] = []
+    tm_rows_by_key: dict[str, list[dict]] = defaultdict(list)
+    row_status: dict[tuple[str, str], str] = {}
+    stats: dict[str, int] = {}
+    stats["TM句对"] = collect_table_entries(
+        args.tm_base_token, TM_SENTENCE_TABLE, "TM句对", entries, tm_rows_by_key, row_status)
+    stats["Terms"] = collect_table_entries(
+        args.tm_base_token, TM_TERMS_TABLE, "Terms", entries, None, row_status)
+    for table_id, name in DOC_TABLES:
+        stats[name] = collect_table_entries(
+            args.doc_base_token, table_id, name, entries, None, row_status)
+    paired, skipped = collect_template_entries(repo_root, entries)
+
+    tpl_corpus = {
+        str(f.relative_to(repo_root)): unicodedata.normalize(
+            "NFC", f.read_text(encoding="utf-8", errors="ignore")
+        )
+        for f in (repo_root / "docs" / "templates").rglob("*.rst")
+    }
+
+    forks, minors, junky, en_display = _classify_entries(entries)
+
+    dup_diverge, dup_shadow, dup_groups = _find_tm_duplicates(tm_rows_by_key)
 
     term_violations = (
         collect_terminology_violations(
@@ -405,34 +472,7 @@ def main() -> int:
         "逐条裁决:在「裁决」栏填最终值(或勾选建议)。建议规则 = 模板印刷证据优先,其次多来源多数。",
         "",
     ]
-    by_lang: dict[str, list] = defaultdict(list)
-    for key, lang, variants in forks:
-        by_lang[lang].append((key, variants))
-    for lang in sorted(by_lang):
-        items = by_lang[lang]
-        lines.append(f"### {lang} — {len(items)} 处")
-        lines.append("")
-        adj.append(f"## {lang} — {len(items)} 处")
-        adj.append("")
-        for key, variants in items:
-            evidence = {v: tpl_evidence(occ[0][3]) for v, occ in variants.items()}
-            lines.append(f"**EN: {en_display[key][:90]}**")
-            for nv, occ in variants.items():
-                srcs = "; ".join(sorted({f"{s}({r[:14]})" for s, r, _, _ in occ}))
-                n_hits = evidence[nv][0]
-                ev = f" ←模板出现 {n_hits} 处" if n_hits else ""
-                lines.append(f"- `{occ[0][3][:80]}` ⟵ {srcs}{ev}")
-            lines.append("")
-            pick = suggest(variants, evidence)
-            adj.append(f"### {en_display[key][:80]}")
-            for nv, occ in variants.items():
-                srcs = "; ".join(sorted({f"{s}" for s, _, _, _ in occ}))
-                mark = " ✅建议" if nv == pick else ""
-                n_hits = evidence[nv][0]
-                ev = f"(模板×{n_hits})" if n_hits else ""
-                adj.append(f"- [ ] `{occ[0][3][:80]}` — {srcs}{ev}{mark}")
-            adj.append("- 裁决:______")
-            adj.append("")
+    _append_fork_reports(forks, en_display, tpl_corpus, lines, adj)
     lines += ["## TM 同英文重复行 — 译文矛盾", ""]
     for key, lang, rows in dup_diverge[:40]:
         lines.append(f"- [{lang}] EN: {en_display.get(key, key)[:70]}")
@@ -448,23 +488,7 @@ def main() -> int:
     for key, lang, variants in minors[:30]:
         lines.append(f"- [{lang}] {en_display[key][:60]} → " + " | ".join(f"`{v[:40]}`" for v in variants))
     if args.terminology:
-        lines += ["", "## 库内废弃术语(与 terminology_rules.csv 交叉)", ""]
-        if term_violations:
-            lines += [
-                "构建期术语门只看构建产物;下面是**库里**仍在用废弃写法的记录——"
-                "它们不会报错,直到某本手册把它们渲染出来。",
-                "",
-                "| 规则 | 语言 | 状态 | 出处 | record_id | 现值 | 应为 |",
-                "|---|---|---|---|---|---|---|",
-            ]
-            for f in sorted(term_violations, key=lambda x: (x["lang"], x["rule_id"], x["source"])):
-                value = f["value"].replace("|", "\\|")[:60]
-                lines.append(
-                    f"| {f['rule_id']} | {f['lang']} | {f['status'] or '-'} | {f['source']} "
-                    f"| {f['record_id']} | `{value}` | {f['preferred'] or '-'} |"
-                )
-        else:
-            lines.append("未发现:所有存储值都符合当前规则表。")
+        _append_terminology_report(term_violations, lines)
 
     lines += ["", "## 垃圾值清单(活表里的 test/TBD 等占位残留)", ""]
     for key, lang, junk in junky:

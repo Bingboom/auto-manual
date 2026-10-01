@@ -1,5 +1,7 @@
 # JE-1000F EU auto-resume table correction
 
+Status: active
+
 ## Discovery and bounded plan
 
 The native PDF extraction already preserves two headers and 3/4 conditions.

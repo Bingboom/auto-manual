@@ -22,9 +22,6 @@ tools/component_specs/inbox_html.py	1
 tools/component_specs/overview_html.py	1
 tools/config_loader.py	2
 tools/cred_health_check.py	2
-tools/csv_pages/builder.py	1
-tools/csv_pages/renderers_safety.py	1
-tools/csv_pages/renderers_spec_parser.py	1
 tools/data_plane_doctor.py	1
 tools/delivery_outbox.py	3
 tools/flow_dashboard.py	1
