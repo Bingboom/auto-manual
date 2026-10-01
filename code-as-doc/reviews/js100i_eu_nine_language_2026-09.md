@@ -110,7 +110,11 @@ The glyph audit leaves exactly nine classified native lines per new locale:
 five Inbox item numbers represented by the five-card component, the microscopic
 DC7909/DC8020 adapter marks retained in the Inbox PNG, and STC*/BNPI* column
 headings represented explicitly in the flattened value cells. No ordinary body
-prose remains uncovered. Dense product-view labels remain in the image and are
+prose remains uncovered. The provenance record uses `field_path` for its native
+copy-location identifier. This replaces the ambiguous generic `key` label that
+caused 18 credential-scan false positives in compact coordinate/glyph records;
+all 1,081 records retain identical native text, coordinates and glyph IDs. The
+extractor and pinned hashes are updated together; scanner rules are unchanged. Dense product-view labels remain in the image and are
 also provided as selectable captions.
 
 | Source issue | Candidate handling | Human review boundary |

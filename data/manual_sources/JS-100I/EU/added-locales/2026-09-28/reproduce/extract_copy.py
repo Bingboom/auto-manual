@@ -69,7 +69,7 @@ def T(n, box, key):
         raise ValueError((n, key, box))
     RECORDS.append(
         {
-            "key": key,
+            "field_path": key,
             "physical_page": n,
             "bbox_pt": box,
             "native_text": native,

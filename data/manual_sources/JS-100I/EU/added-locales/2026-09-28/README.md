@@ -29,7 +29,8 @@ source snapshots are not a merged-language data root. Existing English keeps
 
 `source/*.json` retains extracted wording, including original device-label
 errors. `positioned_copy.json` records each field's native text, physical page,
-selection rectangle and glyph IDs. German page 35 duplicates page 34 and is
+selection rectangle and glyph IDs. Its `field_path` identifies the native
+copy field. German page 35 duplicates page 34 and is
 excluded. Native line wrapping and ligatures are normalized; text is not
 retranslated. STC/BNPI values remain individually labelled in the two-column
 Web table. The source-authored design-load sentence follows those notes.

@@ -140,7 +140,7 @@
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/README.md",
-      "sha256": "9575a22f69d8d04a6a486064e94bf68cc2ac66f1d3877f243e111b3f72a78667"
+      "sha256": "b097e098913fffc75847b6b73141015c6df0adf8d98b9d3858587858edfb0ee9"
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/de/Spec_Footnotes.csv",
@@ -316,7 +316,7 @@
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/extract_copy.py",
-      "sha256": "8ac7f0593d794b687c95c0e0dbd70c16ece5f48ce32084ecb11756edafd2d131"
+      "sha256": "c54dd96ab33762d934fb12cdb046c6be1726daea54f3165dd01fb53554baee4f"
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/rasterize.cjs",
@@ -348,7 +348,7 @@
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/positioned_copy.json",
-      "sha256": "964bf8077201a67c2e50bd0e63667b4a67effc46bd7c78ea880eae2d6afe3bd1"
+      "sha256": "b8e8f2d6dc671e58efdec30027f6437d5ab0ef92fed09dd03cfc23abc48964e1"
     },
     {
       "path": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/source/pt.json",
