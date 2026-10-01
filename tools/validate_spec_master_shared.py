@@ -19,15 +19,22 @@ from tools.config_pages import GeneratedPage  # noqa: E402
 from tools.data_snapshot import resolve_data_snapshot_paths  # noqa: E402
 from tools.draft_engine import load_draft_recipe  # noqa: E402
 from tools.page_manifest import resolve_config_pages_or_raise  # noqa: E402
+from tools.lang_registry import canonical_language  # noqa: E402
 from tools.utils.path_utils import Paths  # noqa: E402
 from tools.utils.spec_master import (  # noqa: E402
     canonicalize_model_token,
     model_value_matches_target,
+    normalize_source_lang,
     read_spec_master_rows,
     region_value_matches_target,
     source_language_for_row,
 )
 from tools.word_bundle_common import resolve_config_path  # noqa: E402
+
+
+def _supported_source_language(value: str) -> bool:
+    """Validate registered output languages without changing legacy read precedence."""
+    return bool(canonical_language(value) or normalize_source_lang(value))
 
 
 @dataclass(frozen=True)

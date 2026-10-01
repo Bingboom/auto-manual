@@ -240,7 +240,7 @@ tools/validate_config.py	_validate_sync	42
 tools/web_base_art_operation.py	arrange_base_art_operation	35
 tools/web_composite_presentation.py	WebCompositeContext.resolve_locale	23
 tools/web_document_ir.py	_render_document_fragments	22
-tools/web_document_source.py	load_web_document	72
+tools/web_document_source.py	load_web_document	68
 tools/web_embedded_components.py	render_embedded_web_component	22
 tools/web_figure_coverage.py	build_web_figure_coverage	45
 tools/web_figure_coverage.py	enforce_required_web_figure_coverage	79

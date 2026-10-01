@@ -1,0 +1,377 @@
+{
+  "schema_version": "web-illustrations/v1",
+  "model": "JS-100I",
+  "region": "EU",
+  "language": "pl",
+  "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json",
+  "illustrations": [
+    {
+      "replaces": [
+        "inbox_panel.png"
+      ],
+      "path": "assets/js100i_eu_en/inbox_panel.png",
+      "sha256": "bfe453b396d7c30b52136317f6e3ca084f4ad6e9e59abe908772de525244f58a",
+      "source_page": 2,
+      "bbox_pt": [
+        47,
+        260,
+        105,
+        328
+      ],
+      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    {
+      "replaces": [
+        "inbox_bag.png"
+      ],
+      "path": "assets/js100i_eu_en/inbox_bag.png",
+      "sha256": "7995365a1852cadaa0a34a5d758a299a6e0415179c657fe6a57166b515f3c515",
+      "source_page": 2,
+      "bbox_pt": [
+        155,
+        252,
+        215,
+        328
+      ],
+      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    {
+      "replaces": [
+        "inbox_cable.png"
+      ],
+      "path": "assets/js100i_eu_en/inbox_cable.png",
+      "sha256": "0d1e2c82ce86e51eeb4a1001096fb5073c867927d8f4c86ec29cff2a86f8014f",
+      "source_page": 2,
+      "bbox_pt": [
+        260,
+        247,
+        310,
+        328
+      ],
+      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    {
+      "replaces": [
+        "inbox_adapter.png"
+      ],
+      "path": "assets/js100i_eu_en/inbox_adapter.png",
+      "sha256": "2ef8624af0e7c186791e46be41b09cac73a548962a381667e7471fd85bf722b5",
+      "source_page": 2,
+      "bbox_pt": [
+        62,
+        375,
+        103,
+        428
+      ],
+      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    {
+      "replaces": [
+        "inbox_manual.png"
+      ],
+      "path": "assets/js100i_eu_en/inbox_manual.png",
+      "sha256": "d93feafa1c2c5c987c915a64d9ea076eaf375dd55f46db61e105925575fcc27c",
+      "source_page": 2,
+      "bbox_pt": [
+        165,
+        372,
+        203,
+        428
+      ],
+      "source_master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json"
+    },
+    {
+      "replaces": [
+        "views_pl.png"
+      ],
+      "path": "assets/js100i_eu_added/views_pl.png",
+      "sha256": "685fbf1fc87d544d43b73ead4ba8d3b2bb99f0bdc2bb5c3896c881b402be6135",
+      "source_page": 79,
+      "bbox_pt": [
+        30,
+        57,
+        344,
+        405
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "unfold_1.png"
+      ],
+      "path": "assets/js100i_eu_shared/unfold_1.png",
+      "sha256": "401a4aed8b6e8e2a9b4fa0270f3694c9db7cee1ed78f0cd3834a67a45d642460",
+      "source_page": 7,
+      "bbox_pt": [
+        35,
+        80,
+        335,
+        169
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "unfold_2.png"
+      ],
+      "path": "assets/js100i_eu_shared/unfold_2.png",
+      "sha256": "95df14639a15683e1f5c090cce932974689c2ab8c68db78a6a39167bd5b061b2",
+      "source_page": 7,
+      "bbox_pt": [
+        35,
+        198,
+        335,
+        356
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "unfold_3.png"
+      ],
+      "path": "assets/js100i_eu_shared/unfold_3.png",
+      "sha256": "a697833ed68f7079e7a170d7b3c0b283ea70ffd4d52b307ec0dc85d87232cbc8",
+      "source_page": 7,
+      "bbox_pt": [
+        35,
+        387,
+        335,
+        487
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "unfold_4.png"
+      ],
+      "path": "assets/js100i_eu_shared/unfold_4.png",
+      "sha256": "1c25f75766252deb69985184c42c3af7462a959b588ee3556e34d5e2f979ee43",
+      "source_page": 8,
+      "bbox_pt": [
+        34,
+        49,
+        334,
+        134
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "fold_1.png"
+      ],
+      "path": "assets/js100i_eu_shared/fold_1.png",
+      "sha256": "a8d513b1f34f4da33e8e69cf448de72e858ca6fa1b82f72f1d4b10379810ae4b",
+      "source_page": 8,
+      "bbox_pt": [
+        34,
+        198,
+        334,
+        267
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "fold_2.png"
+      ],
+      "path": "assets/js100i_eu_shared/fold_2.png",
+      "sha256": "816b24b43a0d59ca1dad4ea8aaa21e6f322ee6ed42e9ec66e33666a1c9f48d03",
+      "source_page": 8,
+      "bbox_pt": [
+        34,
+        295,
+        334,
+        380
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "fold_3.png"
+      ],
+      "path": "assets/js100i_eu_shared/fold_3.png",
+      "sha256": "3856b5bee5f1f51b0f6c6a6389c44676dcdfc97456c9d1f152d50c185b727c65",
+      "source_page": 8,
+      "bbox_pt": [
+        34,
+        411,
+        334,
+        484
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "dc8020.png"
+      ],
+      "path": "assets/js100i_eu_shared/dc8020.png",
+      "sha256": "bfe7cd701d5dbd71ef8f5b5bc4d07c3a86660045a50d2ed06e468e4b418cdfa1",
+      "source_page": 9,
+      "bbox_pt": [
+        28,
+        94,
+        341,
+        247
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "dc7909.png"
+      ],
+      "path": "assets/js100i_eu_shared/dc7909.png",
+      "sha256": "09b1f0cdd01669a2e08fff0728df14a5e331ce4b02bf62396f099dc216937f68",
+      "source_page": 9,
+      "bbox_pt": [
+        28,
+        303,
+        341,
+        438
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "usbc.png"
+      ],
+      "path": "assets/js100i_eu_shared/usbc.png",
+      "sha256": "24a3a80c74d3d59d5bc50b92e42cbc88481079f78ac3dfaf8d10ab9ea875ffce",
+      "source_page": 10,
+      "bbox_pt": [
+        28,
+        56,
+        341,
+        192
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "parallel.png"
+      ],
+      "path": "assets/js100i_eu_shared/parallel.png",
+      "sha256": "08c31f28017b8889e000b6d866a9ff1bd59c6f47a413b3db63143079c56f7a43",
+      "source_page": 10,
+      "bbox_pt": [
+        28,
+        278,
+        341,
+        432
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "angle.png"
+      ],
+      "path": "assets/js100i_eu_shared/angle.png",
+      "sha256": "437eb84725e6d86c951e9c31dc62e7062754047ff0563f1fa36fe0eb67074663",
+      "source_page": 11,
+      "bbox_pt": [
+        28,
+        68,
+        341,
+        184
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "angle_choice_1.png"
+      ],
+      "path": "assets/js100i_eu_shared/angle_choice_1.png",
+      "sha256": "ea9307d45f0616cd0de6bd14243799c9675c03cc17219ced4a5d7cfd07fa9f11",
+      "source_page": 11,
+      "bbox_pt": [
+        36,
+        223,
+        116,
+        267
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "angle_choice_2.png"
+      ],
+      "path": "assets/js100i_eu_shared/angle_choice_2.png",
+      "sha256": "fcec905512471cea168c085300b11b806e34a19f5cc1fb4b4f2a2889dcf59bb8",
+      "source_page": 11,
+      "bbox_pt": [
+        193,
+        223,
+        272,
+        267
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "device.png"
+      ],
+      "path": "assets/js100i_eu_shared/device.png",
+      "sha256": "54554bf005c5e2483e82a0ff495a5263cb7aee492174928153a85028bcc1d449",
+      "source_page": 11,
+      "bbox_pt": [
+        28,
+        340,
+        341,
+        482
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    },
+    {
+      "replaces": [
+        "dust.png"
+      ],
+      "path": "assets/js100i_eu_shared/dust.png",
+      "sha256": "1e26a0f690a8de068b5ab04d92371332099c0241eddf9425645cc6b02dedc70b",
+      "source_page": 12,
+      "bbox_pt": [
+        28,
+        29,
+        340,
+        120
+      ],
+      "source_master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json"
+    }
+  ],
+  "sources": [
+    {
+      "master_name": "371JNuMVqZ.ai",
+      "master_sha256": "5d7ded6ba7810505cfb4c91b128a71cbef16a0e11aae720cdbd887559224b96a",
+      "published_pdf_sha256": "cec27af653d9f5da11d641e2431ddc0b71ced186bbadfd9594fa8cd9c96e1596",
+      "recipe": "data/asset_recipes/manual_js100i_eu_en_web.json",
+      "usage": "Existing Inbox assets; existing English product view only"
+    },
+    {
+      "master_name": "HTS006-EU-9国语言-0928(1).ai",
+      "master_sha256": "6fd4533fd713b25d95547afa0d839d7a52c74e6e6e40ebf2228c6c8218cbc92f",
+      "recipe": "data/asset_recipes/manual_js100i_eu_shared_web.json",
+      "export_receipt": "data/manual_sources/JS-100I/EU/added-locales/2026-09-28/reproduce/export_receipt.json",
+      "usage": "16 shared native figures and eight localized product views; candidate, no registry promotion"
+    }
+  ]
+}

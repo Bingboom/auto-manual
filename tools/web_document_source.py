@@ -94,6 +94,23 @@ def _consume_covered_annotations(soup, entry, image):
         image["alt"] = "；".join(covered)
 
 
+def _selected_illustration_manifests(single, by_language, target_language, *, projected):
+    """Select a frozen language projection without reading other family assets."""
+    if single is not None and by_language:
+        raise ValueError(
+            "Web illustration manifest and per-language manifests are mutually exclusive"
+        )
+    if single is not None:
+        return {target_language: single}
+    if not by_language:
+        return {}
+    if not projected:
+        return dict(by_language)
+    if target_language not in by_language:
+        raise ValueError(f"Missing Web illustration manifest for {target_language}")
+    return {target_language: by_language[target_language]}
+
+
 def load_web_document(materialized, *, page_paths, declarations, page_languages, active_tags,
                       output_dir: Path, composite_manifest, illustration_manifest: Path | None = None,
                       illustration_manifests: dict[str, Path] | None = None,
@@ -130,15 +147,10 @@ def load_web_document(materialized, *, page_paths, declarations, page_languages,
     illustration_entries = {}
     text_corrections = []
     provenance = None
-    manifest_by_language: dict[str, Path] = {}
-    if illustration_manifest is not None and illustration_manifests:
-        raise ValueError(
-            "Web illustration manifest and per-language manifests are mutually exclusive"
-        )
-    if illustration_manifest is not None:
-        manifest_by_language[target_language] = illustration_manifest
-    elif illustration_manifests:
-        manifest_by_language.update(illustration_manifests)
+    manifest_by_language = _selected_illustration_manifests(
+        illustration_manifest, illustration_manifests, target_language,
+        projected=bool(materialized.lang),
+    )
     for manifest_language, manifest_path in manifest_by_language.items():
         loaded = json.loads(manifest_path.read_text(encoding="utf-8"))
         if loaded.get("schema_version") != "web-illustrations/v1":

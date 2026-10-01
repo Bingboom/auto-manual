@@ -1122,6 +1122,27 @@ and RTD verification. Do not publish an unidentified fixture or write the
 mirror engineering tree directly. See
 [`dev/js100i_eu_en_web_acceptance.md`](dev/js100i_eu_en_web_acceptance.md).
 
+JS-100I EU adds a Git-only eight-language candidate through
+`configs/config.solar-eu-multilingual.yaml`, the same Solar@INTL skeleton and
+RST/CSV → `build.py md` → manual-ir/v2 → shared Web/Sphinx chain. Pair
+`--lang <language>` with
+`--data-root data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/<language>`;
+`Source_lang` is source metadata, not a Spec_Master row filter. The eight
+snapshots preserve the native source's 21 rows and localized notes independently.
+The language registry recognizes `pt`, `nl`, and `pl` with `sync_enabled=False`,
+so offline output does not add live synchronization columns or conflate `pt`
+with `pt-BR`. A single-language Web projection consumes only that language's
+illustration binding from the family map and fails if it is missing.
+
+English retains its existing structured facts and approved Inbox/product-view
+assets. Operation figures use 16 shared native derivatives with selectable
+captions; narrow two-column specifications wrap within their container. The
+old approved recipe is immutable. The new strict recipe and separate native
+SVG/Chromium export receipt record backdrop removal and exact PNG hashes.
+Source errata, reproduction commands and local nine-language browser evidence
+are in the [review record](reviews/js100i_eu_nine_language_2026-09.md).
+This candidate has no publication, Base-write or asset-promotion authority.
+
 `JAAC-WHE-100-EUA1 / EU / en` reuses `configs/config.charger-eu-en.yaml`
 through the `charger-intl` skeleton's `accessory-v1` Product Manual Plan. The
 plan contains only Inbox, native specifications/notes, and two complete

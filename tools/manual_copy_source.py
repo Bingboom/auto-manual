@@ -46,7 +46,7 @@ _LOCALIZED_COPY_BASE_COLUMNS = (
 )
 
 _LOCALIZED_COPY_TEXT_COLUMNS = tuple(
-    spec.localized_copy_column for spec in lang_registry.LANGUAGE_REGISTRY
+    spec.localized_copy_column for spec in lang_registry.sync_language_specs()
 )
 LOCALIZED_COPY_COLUMNS = (
     *_LOCALIZED_COPY_BASE_COLUMNS,
@@ -56,17 +56,17 @@ LOCALIZED_COPY_COLUMNS = (
 
 TM_LANGUAGE_FIELDS = {
     alias.casefold(): spec.tm_column
-    for spec in lang_registry.LANGUAGE_REGISTRY
+    for spec in lang_registry.sync_language_specs()
     for alias in spec.aliases
 }
 
 LOCALIZED_COPY_TEXT_COLUMNS = {
     spec.localized_copy_column: spec.tm_column
-    for spec in lang_registry.LANGUAGE_REGISTRY
+    for spec in lang_registry.sync_language_specs()
 }
 
 _STATUS_WORD_TEXT_COLUMNS = tuple(
-    spec.status_word_column for spec in lang_registry.LANGUAGE_REGISTRY
+    spec.status_word_column for spec in lang_registry.sync_language_specs()
 )
 STATUS_WORD_COLUMNS = (*_STATUS_WORD_TEXT_COLUMNS, STATUS_WORD_MARKER_FIELD)
 TRANSLATION_MEMORY_COLUMNS = (
@@ -77,7 +77,7 @@ TRANSLATION_MEMORY_COLUMNS = (
 
 _SPEC_TITLE_COLUMNS = tuple(
     spec.spec_title_column
-    for spec in lang_registry.LANGUAGE_REGISTRY
+    for spec in lang_registry.sync_language_specs()
     if spec.spec_title_column is not None
 )
 SPEC_TITLE_COLUMNS = (
@@ -87,7 +87,7 @@ SPEC_TITLE_COLUMNS = (
 )
 SPEC_TITLE_TEXT_COLUMNS = {
     spec.spec_title_column: spec.tm_column
-    for spec in lang_registry.LANGUAGE_REGISTRY
+    for spec in lang_registry.sync_language_specs()
     if spec.spec_title_column is not None
 }
 
