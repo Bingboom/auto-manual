@@ -66,6 +66,10 @@ _VARIANTS_BY_LABEL = {
     "참고": "note",
     "팁": "tip",
     "중요": "note",
+    # Source-authored solar notes in offline Git languages have no live
+    # signal-word columns; preserve their native label in the shared strip.
+    "OPMERKING": "note",
+    "UWAGA": "note",
 }
 
 

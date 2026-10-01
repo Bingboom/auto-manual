@@ -805,6 +805,25 @@ python -m sphinx -b html \
 线上快照并创建 Hello-Docs `docs/publish/**` PR；不要把 fixture 当成线上源表，也
 不要直接修改业务镜像工程树。
 
+### SolarSaga 100 Air 欧规新增语言候选
+
+八语候选 `fr/es/de/it/uk/pt/nl/pl` 共用一个配置，但每次使用匹配语言的结构源：
+
+```bash
+AUTO_MANUAL_PRESENTATION_PROFILE=web python build.py md \
+  --config configs/config.solar-eu-multilingual.yaml \
+  --model JS-100I --region EU --lang fr \
+  --data-root data/manual_sources/JS-100I/EU/added-locales/2026-09-28/phase2/fr \
+  --staging-root .tmp/js100i-locales
+```
+
+将两处 `fr` 一起替换为目标语言；`Source_lang` 不负责在混合 CSV 中筛选行。
+随后按上方示例用 `readthedocs_source.py` 和 Sphinx 组装预览，将目录改成
+`.tmp/js100i-locales`。英语正式 Git 源使用
+`data/manual_sources/JS-100I/EU/en/2.0/phase2` 和原英语配置。
+本轮保留原稿技术事实与制造商名称，勘误和待确认项见
+[九语候选验收记录](../code-as-doc/reviews/js100i_eu_nine_language_2026-09.md)。
+
 ### SolarSaga 40 Air 欧规英语 Web 本地验收
 
 JS-40C 使用同一 Solar 配置入口，但由独立 Product Manual Plan 解析七项 Inbox、

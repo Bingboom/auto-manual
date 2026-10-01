@@ -337,6 +337,10 @@ Quality and release logic should follow concern-specific modules instead of drif
   - FCC document/web renderer preflight using the resolved target language
 - [`tools/check_docs_generated.py`](../../tools/check_docs_generated.py)
   - generated-page rule helpers
+- [`tools/validate_spec_master_shared.py`](../../tools/validate_spec_master_shared.py)
+  owns shared validation predicates, including source-language recognition from
+  the canonical registry plus legacy display aliases. This validation boundary
+  does not change Spec_Master value lookup precedence.
 - [`tools/validate_spec_master_runtime.py`](../../tools/validate_spec_master_runtime.py)
   - runtime Spec_Master validation rules
 - [`tools/page_contracts.py`](../../tools/page_contracts.py)
