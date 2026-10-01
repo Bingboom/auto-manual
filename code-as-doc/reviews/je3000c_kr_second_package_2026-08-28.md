@@ -1,5 +1,7 @@
 # JE-3000C KR second-package build and reuse report
 
+Status: done
+
 > 2026-08-29 portability update: the v13 hashes and native-finalize results
 > below are historical. The current shared IDML contract routes native Hangul
 > to bundled `NanumGothic` under `Document fonts/`; a placed full-page cover

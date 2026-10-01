@@ -1,5 +1,7 @@
 # JE-3000C EU English Web intake — 2026-09
 
+Status: active
+
 ## Scope and authority
 
 - Target: `JE-3000C / EU / en`, Web manual only.

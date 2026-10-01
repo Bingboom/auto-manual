@@ -1,5 +1,7 @@
 # JE-1000F US PR6: Spanish operation parity
 
+Status: done
+
 ## Scope
 
 PR6 aligns the Spanish editable operation composition on physical pages 46-49

@@ -1,5 +1,7 @@
 # IDML render-contract regression discovery (2026-07-22)
 
+Status: active
+
 ## Outcome
 
 The regression is a contract-selection failure, not a loss of source copy and

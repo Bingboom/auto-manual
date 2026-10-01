@@ -1,5 +1,7 @@
 # JBP-3600A EU/en overview and LCD presentation
 
+Status: active
+
 Use the operator-supplied current published PDF (filename says JBP-3000A;
 visible product and frozen target are JBP-3600A), SHA-256
 `084dd4517feddcd9b77da10415a2787ec4427f882a7b819160725fdff679ccfe`.
