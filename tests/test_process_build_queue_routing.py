@@ -2,12 +2,18 @@ from __future__ import annotations
 
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 from unittest import mock
 
-from tools import document_link_queue
-from tools import process_build_queue
 from tests.test_helpers import temp_test_root, write_text
+from tools import document_link_queue, process_build_queue
+from tools.process_build_queue_deps import QueueDeps, default_queue_deps
+
+
+def _queue_deps(**overrides: object) -> QueueDeps:
+    """Run-scoped collaborators; built inside the test body so defaults see active patches."""
+    return replace(default_queue_deps(process_build_queue), **overrides)  # type: ignore[arg-type]
 
 
 class TestProcessBuildQueueRouting(unittest.TestCase):
@@ -738,23 +744,25 @@ class TestProcessBuildQueueRouting(unittest.TestCase):
             def upsert_record(self, **_: object) -> dict[str, object]:
                 raise AssertionError("dry-run should not write records")
 
-        with mock.patch.object(process_build_queue, "collect_queue_preflight_errors", return_value=[]), mock.patch.object(
-            process_build_queue,
-            "resolve_document_link_binding",
-            return_value=binding,
-        ), mock.patch.object(process_build_queue, "LarkCliSource", return_value=FakeSource()), mock.patch.object(
-            process_build_queue,
-            "sync_phase2_snapshot_before_queue",
-        ) as sync_mock, mock.patch.object(
-            process_build_queue,
-            "resolve_config_path_for_task",
-            return_value=Path("configs/config.us.yaml"),
-        ) as resolve_mock:
+        sync_mock = mock.MagicMock()
+        with (
+            mock.patch.object(
+                process_build_queue,
+                "resolve_config_path_for_task",
+                return_value=Path("configs/config.us.yaml"),
+            ) as resolve_mock,
+        ):
             exit_code = process_build_queue.process_build_queue(
                 cfg=cfg,
                 config_path=Path("configs/config.us.yaml"),
                 data_root="data/phase2",
                 dry_run=True,
+                deps=_queue_deps(
+                    collect_queue_preflight_errors=mock.MagicMock(return_value=[]),
+                    resolve_document_link_binding=mock.MagicMock(return_value=binding),
+                    source_factory=mock.MagicMock(return_value=FakeSource()),
+                    sync_phase2_snapshot_before_queue=sync_mock,
+                ),
             )
 
         self.assertEqual(0, exit_code)
