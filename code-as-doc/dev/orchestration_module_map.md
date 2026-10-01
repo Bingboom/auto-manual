@@ -388,6 +388,8 @@ Quality and release logic should follow concern-specific modules instead of drif
   - stdlib per-function cyclomatic complexity against `data/complexity_baseline.tsv`: new functions stay at 20 or below, recorded ones may not grow, a lower value must be written back
 - [`tools/check_facade_patch_ratchet.py`](../../tools/check_facade_patch_ratchet.py)
   - per-test-file count of patches on facade modules against `data/facade_patch_baseline.tsv`: unlisted files may not patch a facade, recorded counts may not grow, a lower count must be written back
+- [`tools/check_broad_except_ratchet.py`](../../tools/check_broad_except_ratchet.py)
+  - per-file count of `except Exception` / `except BaseException` in `build.py`, `tools/`, `scripts/`, `integrations/` against `data/broad_except_baseline.tsv`: unlisted files may not add one, recorded counts may not grow, a lower count must be written back
 - [`tools/check_doc_link_integrity.py`](../../tools/check_doc_link_integrity.py)
   - relative links under `code-as-doc/` and `user-guide/`; with the default roots it also runs the lifecycle check
 - [`tools/check_doc_lifecycle.py`](../../tools/check_doc_lifecycle.py)
